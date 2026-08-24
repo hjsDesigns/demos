@@ -56,9 +56,12 @@
         var href = a.dataset['tier' + tier];
         if (href && href !== '#') {
           a.href = href;
+          a.target = '_blank';
+          a.rel = 'noopener';
           a.removeAttribute('data-soon');
         } else {
           a.href = '#';
+          a.removeAttribute('target');
           a.setAttribute('data-soon', '');
         }
       });
