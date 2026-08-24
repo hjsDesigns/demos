@@ -1,0 +1,365 @@
+/* ============================================================
+   HAYDEN JAMES CO. — Buckley, WA
+   Palette: alpine shadow / granite / snow / scree / alpenglow
+   Type:    Bricolage Grotesque (display) + Newsreader (body)
+   Five real pages. Cross-document view transitions.
+   ============================================================ */
+
+:root{
+  /* Pulled from a range at dawn: shadowed rock at one end, the warm
+     light that hits a summit first at the other. */
+  --shadow:#0E1418;      /* deepest ground */
+  --granite:#161F26;     /* raised surface */
+  --granite-2:#1D2831;   /* card / hover */
+  --snow:#EEF3F5;
+  --scree:#7E8D96;       /* blue-biased neutral, chosen not defaulted */
+  --scree-lo:#5A6870;
+  --alpenglow:#E4915E;   /* the one warm accent */
+  --alpenglow-lo:#B96C3E;
+  --line:#26323B;
+
+  /* Accent as raw channels so glows can be tokenised too — never
+     hardcode the rgb() triplet in a component rule. */
+  --glow:228,145,94;
+
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --body:'Newsreader',Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --header-h:74px;
+  --pad:clamp(20px,5vw,56px);
+  --maxw:1220px;
+  --ease:cubic-bezier(.2,.6,.2,1);
+  --enter:cubic-bezier(.16,.84,.30,1);
+}
+
+*{box-sizing:border-box}
+/* `clip` not `hidden`: hidden turns the element into a scroll container,
+   which silently kills any scroll-driven animation inside it. */
+html{scroll-behavior:smooth;overflow-x:clip}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  margin:0;background:var(--shadow);color:var(--snow);
+  font-family:var(--body);font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+  min-height:100svh;display:flex;flex-direction:column;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.02;
+  letter-spacing:-.025em;text-wrap:balance;font-weight:800}
+h1{font-size:clamp(2.1rem,5vw,3.4rem)}
+h2{font-size:clamp(1.9rem,4.4vw,2.9rem)}
+:focus-visible{outline:3px solid var(--alpenglow);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);width:100%}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+main{flex:1}
+
+/* film grain, generated inline — no image file */
+.grain::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;z-index:3;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" seed="11" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.93 0 0 0 0 0.95 0 0 0 0 0.96 0 0 0 0.045 0"/></filter><rect width="240" height="240" filter="url(%23g)"/></svg>');
+}
+
+/* ============================================================
+   PAGE TRANSITIONS — cross-document, no JavaScript at all.
+   The browser holds the old frame, loads the new document, then
+   runs these. The header is given its own name so it does NOT
+   animate: it stays nailed in place while the page wipes under it.
+   ============================================================ */
+@view-transition{navigation:auto}
+
+::view-transition-group(root){animation-duration:420ms}
+::view-transition-old(root){
+  animation:hjc-out 200ms cubic-bezier(.4,0,1,1) both;
+}
+::view-transition-new(root){
+  animation:hjc-in 420ms var(--enter) both;
+}
+@keyframes hjc-out{to{opacity:0;transform:scale(.995)}}
+@keyframes hjc-in{
+  from{clip-path:inset(0 0 0 100%)}
+  to  {clip-path:inset(0 0 0 0)}
+}
+
+/* the header persists across the navigation */
+.site-header{view-transition-name:hjc-header}
+::view-transition-old(hjc-header),
+::view-transition-new(hjc-header){animation:none;height:100%;overflow:clip}
+
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*){animation:none!important}
+}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:rgba(14,20,24,.82);backdrop-filter:blur(14px) saturate(1.3);
+  -webkit-backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);height:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;flex:none;color:var(--snow)}
+.logo .mark{width:38px;height:28px;flex:none;color:var(--snow)}
+.logo b{font-family:var(--display);font-weight:800;font-size:15.5px;letter-spacing:-.015em;display:block}
+.logo i{font-family:var(--display);font-style:normal;font-size:8px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--scree);font-weight:700;display:block;margin-top:2px}
+
+#main-nav{display:flex;align-items:center;gap:4px}
+#main-nav a{font-family:var(--display);font-size:14px;font-weight:600;padding:9px 15px;
+  border-radius:99px;color:var(--snow);position:relative;
+  transition:background .18s var(--ease),color .18s var(--ease)}
+#main-nav a:hover{background:var(--granite-2)}
+#main-nav a[aria-current="page"]{color:var(--alpenglow)}
+#main-nav a.cta{background:var(--alpenglow);color:var(--shadow);font-weight:700;margin-left:6px}
+#main-nav a.cta:hover{background:#EFA774}
+
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;
+  width:42px;height:42px;padding:0;cursor:pointer;color:var(--snow);align-items:center;justify-content:center}
+.nav-toggle span{display:block;width:18px;height:1.5px;background:currentColor;position:relative}
+.nav-toggle span::before,.nav-toggle span::after{content:"";position:absolute;left:0;width:18px;
+  height:1.5px;background:currentColor;transition:transform .22s var(--ease),top .22s var(--ease)}
+.nav-toggle span::before{top:-6px}
+.nav-toggle span::after{top:6px}
+.nav-toggle[aria-expanded="true"] span{background:transparent}
+.nav-toggle[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+@media (max-width:860px){
+  .nav-toggle{display:flex}
+  #main-nav{position:fixed;inset:var(--header-h) 0 auto 0;flex-direction:column;align-items:stretch;
+    gap:0;background:var(--shadow);border-bottom:1px solid var(--line);padding:10px var(--pad) 22px;
+    transform:translateY(-8px);opacity:0;pointer-events:none;
+    transition:opacity .2s var(--ease),transform .2s var(--ease)}
+  #main-nav.open{transform:none;opacity:1;pointer-events:auto}
+  #main-nav a{padding:15px 4px;border-radius:0;border-bottom:1px solid var(--line);font-size:17px}
+  #main-nav a.cta{margin:14px 0 0;border:0;border-radius:99px;text-align:center}
+}
+
+/* ============================================================
+   HERO — a real photograph, full bleed. Every page gets one.
+   ============================================================ */
+.hero{position:relative;overflow:clip;isolation:isolate;
+  display:flex;align-items:flex-end;
+  min-height:clamp(420px,62svh,660px)}
+.hero.tall{min-height:calc(100svh - var(--header-h))}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+/* slow drift so the range is never quite still */
+@media (prefers-reduced-motion:no-preference){
+  .hero-bg img{animation:drift 34s ease-in-out infinite alternate;transform-origin:60% 50%}
+}
+@keyframes drift{from{transform:scale(1.06)}to{transform:scale(1.14) translateX(-1.5%)}}
+
+.hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(14,20,24,.93) 0%,rgba(14,20,24,.78) 34%,rgba(14,20,24,.28) 68%,rgba(14,20,24,.08) 100%),
+    linear-gradient(0deg,var(--shadow) 0%,rgba(14,20,24,.55) 26%,transparent 62%)}
+.hero-inner{position:relative;z-index:4;padding-block:clamp(44px,9vw,96px);width:100%}
+.hero .eyebrow{font-family:var(--display);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--alpenglow);font-weight:800;margin:0 0 18px}
+.hero h1{font-size:clamp(2.4rem,6.2vw,4.5rem);line-height:.95;max-width:16ch}
+.hero h1 em{font-style:italic;font-family:var(--body);font-weight:400;color:var(--alpenglow);
+  letter-spacing:-.01em}
+.hero-sub{font-size:clamp(1.02rem,1.8vw,1.24rem);color:#C6D0D5;margin:22px 0 0;
+  max-width:46ch;font-weight:300}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+.btn{font-family:var(--display);font-weight:700;font-size:14.5px;padding:15px 28px;border-radius:99px;
+  display:inline-block;transition:transform .18s var(--ease),background .18s var(--ease),
+  border-color .18s var(--ease)}
+.btn-fill{background:var(--alpenglow);color:var(--shadow)}
+.btn-fill:hover{background:#EFA774;transform:translateY(-2px)}
+.btn-line{border:1px solid rgba(238,243,245,.34);color:var(--snow)}
+.btn-line:hover{border-color:var(--snow);transform:translateY(-2px)}
+
+/* photo credit, small and out of the way */
+.hero-credit{position:absolute;right:12px;bottom:10px;z-index:4;font-family:var(--display);
+  font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,243,245,.42);font-weight:600}
+.hero-credit a:hover{color:var(--alpenglow)}
+
+/* ---------- sections ---------- */
+section{position:relative;padding:clamp(56px,9vw,110px) 0}
+.rule{border-top:1px solid var(--line)}
+.kicker{font-family:var(--display);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--alpenglow);font-weight:800;margin:0 0 16px;display:flex;align-items:center;gap:14px}
+.kicker::after{content:"";height:1px;flex:1;max-width:180px;background:var(--alpenglow);opacity:.4}
+h2 em,h1 em{font-style:italic;font-family:var(--body);font-weight:400;color:var(--alpenglow)}
+.lede{font-size:clamp(1.02rem,1.6vw,1.16rem);color:var(--scree);max-width:62ch;margin:20px 0 0;font-weight:300}
+.standfirst{font-size:clamp(1.06rem,1.8vw,1.24rem);color:#C6D0D5;max-width:56ch;
+  margin:22px 0 0;font-weight:300}
+
+/* ============================================================
+   PRICING — three medium tier bubbles, then large industry bubbles
+   ============================================================ */
+.tiers{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(18px,4vw,46px);
+  margin-top:clamp(34px,5vw,54px)}
+.tier{
+  appearance:none;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:inherit;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.tier .disc{
+  width:clamp(150px,20vw,205px);aspect-ratio:1;border-radius:50%;
+  display:grid;place-content:center;text-align:center;gap:3px;
+  background:radial-gradient(120% 120% at 30% 22%,var(--granite-2),var(--granite));
+  border:1px solid var(--line);
+  transition:transform .26s var(--ease),border-color .26s var(--ease),box-shadow .26s var(--ease);
+}
+.tier .amt{font-family:var(--display);font-weight:800;letter-spacing:-.035em;
+  font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1}
+.tier .lbl{font-family:var(--display);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--scree);font-weight:700}
+.tier .cap{font-family:var(--display);font-size:13px;font-weight:600;color:var(--scree);
+  transition:color .2s var(--ease);max-width:22ch}
+/* On a phone all three prices have to be on screen together — a stacked
+   column hides the choice below the fold and the pick stops being obvious. */
+@media (max-width:640px){
+  .tiers{gap:10px;flex-wrap:nowrap;align-items:flex-start}
+  .tier{flex:1 1 0;min-width:0}
+  .tier .disc{width:100%;max-width:118px;margin-inline:auto}
+  .tier .amt{font-size:clamp(1.05rem,5.2vw,1.4rem)}
+  .tier .lbl{font-size:8px;letter-spacing:.14em}
+  .tier .cap{font-size:11.5px;line-height:1.35;text-align:center}
+}
+.tier:hover .disc{transform:translateY(-5px);border-color:var(--alpenglow-lo)}
+.tier[aria-pressed="true"] .disc{
+  border-color:var(--alpenglow);transform:translateY(-5px);
+  background:radial-gradient(120% 120% at 30% 22%,rgba(var(--glow),.22),var(--granite));
+  box-shadow:0 0 0 1px var(--alpenglow),0 18px 50px -18px rgba(var(--glow),.55)}
+.tier[aria-pressed="true"] .cap{color:var(--snow)}
+.tier[aria-pressed="true"] .amt{color:var(--alpenglow)}
+
+/* the panel of industries */
+.shelf{margin-top:clamp(40px,6vw,72px)}
+.shelf-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.shelf-head h3{font-size:clamp(1.3rem,2.6vw,1.9rem)}
+.shelf-head p{margin:0;color:var(--scree);font-weight:300;font-size:.98rem;max-width:46ch}
+
+/* Three across on a desktop so each orb is genuinely large — 9 industries
+   land as a clean 3x3. Two on a tablet, one on a phone. */
+.industries{list-style:none;margin:clamp(28px,4vw,52px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(30px,4.5vw,64px)}
+@media (max-width:900px){.industries{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.industries{grid-template-columns:1fr;
+  max-width:340px;margin-inline:auto}}
+.industry{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.industry .orb{
+  position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;
+  border:1px solid var(--line);background:var(--granite);
+  transition:transform .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.industry .orb img{width:100%;height:100%;object-fit:cover;
+  transition:transform .5s var(--ease),filter .3s var(--ease);
+  filter:saturate(.62) brightness(.72)}
+.industry .orb::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(0deg,rgba(14,20,24,.72),transparent 58%);pointer-events:none}
+.industry:hover .orb,.industry:focus-visible .orb{transform:translateY(-6px);
+  border-color:var(--alpenglow);box-shadow:0 24px 60px -22px rgba(var(--glow),.5)}
+.industry:hover .orb img{transform:scale(1.07);filter:saturate(1) brightness(.9)}
+.industry .name{font-family:var(--display);font-weight:700;font-size:1.06rem;letter-spacing:-.015em}
+.industry .what{font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--scree-lo);font-weight:600;margin-top:5px;display:block}
+.industry:hover .name{color:var(--alpenglow)}
+/* placeholder ring while a demo doesn't exist yet */
+.industry[data-soon] .orb::before{content:"Coming soon";position:absolute;z-index:2;
+  left:50%;bottom:14%;transform:translateX(-50%);font-family:var(--display);font-size:9px;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--shadow);
+  background:var(--snow);padding:4px 11px;border-radius:99px;white-space:nowrap;opacity:.9}
+
+/* ---------- generic cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:44px}
+.card{background:var(--granite);border:1px solid var(--line);border-radius:14px;
+  padding:26px 26px 28px;display:flex;flex-direction:column;gap:9px}
+.card h3{font-size:1.12rem;font-weight:700}
+.card p{font-size:.94rem;color:var(--scree);margin:0;font-weight:300}
+.card ul{list-style:none;margin:6px 0 0;padding:0;font-size:.92rem;color:var(--scree);font-weight:300}
+.card li{padding:5px 0 5px 18px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:14px;width:7px;height:1.5px;background:var(--alpenglow)}
+.card .num{font-family:var(--mono);font-size:11px;color:var(--alpenglow);letter-spacing:.1em}
+
+/* ---------- story / about ---------- */
+.story{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,72px);align-items:start}
+.portrait{background:var(--granite);border:1px solid var(--line);border-radius:14px;
+  aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden;position:relative}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .ph{font-family:var(--mono);font-size:11px;color:var(--scree-lo);text-align:center;
+  padding:20px;line-height:1.7}
+.story-body p{margin:0 0 18px;font-size:1.05rem}
+.story-body p:last-child{margin-bottom:0}
+/* p.pull, not .pull — `.story-body p` is (0,1,1) and would otherwise win
+   the font-size and swallow this whole rule. */
+p.pull{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,2.8vw,2.05rem);
+  line-height:1.2;color:var(--snow);margin:32px 0;padding-left:24px;
+  border-left:3px solid var(--alpenglow);letter-spacing:-.028em}
+@media (max-width:840px){.story{grid-template-columns:1fr}}
+
+/* ---------- contact ---------- */
+.contact{background:var(--granite);border:1px solid var(--line);border-radius:16px;
+  padding:clamp(30px,5vw,58px);position:relative;overflow:clip;margin-top:44px}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px)}
+.tel{font-family:var(--display);font-size:clamp(1.8rem,3.8vw,2.7rem);font-weight:800;
+  letter-spacing:-.025em;color:var(--snow);display:inline-block;margin-top:6px}
+.tel:hover{color:var(--alpenglow)}
+.detail{font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--scree-lo);font-weight:700;margin:0 0 4px}
+.muted{color:var(--scree);font-weight:300;margin:0}
+.dl{display:grid;gap:22px}
+@media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
+
+/* ---------- footer ---------- */
+.site-footer{border-top:1px solid var(--line);padding:34px 0 46px;color:var(--scree-lo);font-size:13px}
+.foot-inner{display:flex;justify-content:space-between;gap:14px 26px;flex-wrap:wrap;align-items:center}
+.foot-inner a:hover{color:var(--alpenglow)}
+.credit-line{width:100%;font-size:10.5px;color:var(--scree-lo);opacity:.72;margin:14px 0 0;
+  line-height:1.6}
+
+/* ============================================================
+   REVEAL — scroll-driven where the browser supports it (runs on
+   the compositor, zero jank), IntersectionObserver everywhere
+   else. Base state is always VISIBLE, so a dead script or a
+   failed stylesheet can never hide content.
+   ============================================================ */
+.js .reveal{opacity:0;transform:translateY(20px);
+  transition:opacity .75s var(--enter),transform .75s var(--enter)}
+.js .reveal.in{opacity:1;transform:none}
+
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .js .reveal{opacity:1;transform:none;transition:none;
+      animation:reveal-rise linear both;
+      animation-timeline:view();
+      animation-range:entry 4% cover 26%}
+  }
+}
+@keyframes reveal-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* staggered children inside a revealed block */
+.js .reveal.in > .card,
+.js .reveal.in > .industry{animation:rise .68s var(--enter) backwards}
+.js .reveal.in > :nth-child(2){animation-delay:.07s}
+.js .reveal.in > :nth-child(3){animation-delay:.14s}
+.js .reveal.in > :nth-child(4){animation-delay:.21s}
+.js .reveal.in > :nth-child(5){animation-delay:.28s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .js .reveal{opacity:1;transform:none;transition:none;animation:none}
+  .js .reveal.in *{animation:none!important}
+  .hero-bg img{animation:none}
+}
+
+/* the line under the tier discs — the three prices are a starting map, not a cap */
+.tiers-note{max-width:56ch;margin:clamp(28px,4vw,40px) auto 0;text-align:center;
+  color:var(--scree);font-weight:300;font-size:.98rem}
+@media (max-width:640px){.tiers-note{text-align:left;font-size:.94rem}}
+
+/* wordmark: one word, but the trade half carries the accent */
+.logo b u{text-decoration:none;color:var(--alpenglow);font-weight:800}
+
+/* the contact card is the first thing in its section — no heading above it to clear */
+.wrap > .contact:first-child{margin-top:0}
