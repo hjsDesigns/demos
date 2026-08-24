@@ -1,0 +1,93 @@
+{
+  "01-teton-storm-light.jpg": {
+    "ground": "#140B03",
+    "raised": "#241B13",
+    "accent": "#C39961",
+    "accent_on_ground": 7.46,
+    "text_on_ground": 17.4
+  },
+  "02-fitzroy-dawn.jpg": {
+    "ground": "#180D09",
+    "raised": "#281D19",
+    "accent": "#8F5949",
+    "accent_on_ground": 3.36,
+    "text_on_ground": 17.06
+  },
+  "03-vestrahorn-pastel-dusk.jpg": {
+    "ground": "#332E41",
+    "raised": "#433E51",
+    "accent": "#3A96D2",
+    "accent_on_ground": 4.03,
+    "text_on_ground": 11.68
+  },
+  "04-paine-fire-sky.jpg": {
+    "ground": "#231514",
+    "raised": "#332524",
+    "accent": "#F79C81",
+    "accent_on_ground": 8.43,
+    "text_on_ground": 15.79
+  },
+  "05-tre-cime-milky-way.jpg": {
+    "ground": "#1E1D24",
+    "raised": "#2E2D34",
+    "accent": "#303443",
+    "accent_on_ground": 1.35,
+    "text_on_ground": 14.94
+  },
+  "06-vestrahorn-black-dunes.jpg": {
+    "ground": "#121211",
+    "raised": "#222221",
+    "accent": "#81A2C1",
+    "accent_on_ground": 7.03,
+    "text_on_ground": 16.76
+  },
+  "07-maroon-bells-starlight.jpg": {
+    "ground": "#132733",
+    "raised": "#233743",
+    "accent": "#153E74",
+    "accent_on_ground": 1.44,
+    "text_on_ground": 13.75
+  },
+  "08-moke-lake-milky-way.jpg": {
+    "ground": "#151417",
+    "raised": "#252427",
+    "accent": "#564F86",
+    "accent_on_ground": 2.5,
+    "text_on_ground": 16.41
+  },
+  "09-fitzroy-first-light.jpg": {
+    "ground": "#0D0705",
+    "raised": "#1D1715",
+    "accent": "#BF9677",
+    "accent_on_ground": 7.47,
+    "text_on_ground": 17.89
+  },
+  "10-vestrahorn-storm-surf.jpg": {
+    "ground": "#282524",
+    "raised": "#383534",
+    "accent": "#A28454",
+    "accent_on_ground": 4.32,
+    "text_on_ground": 13.6
+  },
+  "11-lofoten-cirrus.jpg": {
+    "ground": "#325A7A",
+    "raised": "#426A8A",
+    "accent": "#2D6690",
+    "accent_on_ground": 1.19,
+    "text_on_ground": 6.52
+  },
+  "12-himalaya-alpenglow.jpg": {
+    "ground": "#081534",
+    "raised": "#182544",
+    "accent": "#081534",
+    "accent_on_ground": 1.0,
+    "text_on_ground": 16.09
+  },
+  "13-teton-autumn-dawn.jpg": {
+    "ground": "#211C0E",
+    "raised": "#312C1E",
+    "accent": "#CF8627",
+    "accent_on_ground": 5.73,
+    "text_on_ground": 15.18
+  }
+}
