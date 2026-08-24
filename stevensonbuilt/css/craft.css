@@ -1,0 +1,238 @@
+/* ============================================================
+   STEVENSONBUILT — the craft layer.
+   Loaded after style.css. Everything here is finish: cut corners,
+   orchestrated motion, depth, micro-interaction. Nothing here is
+   load-bearing for content — the site reads correctly without it.
+   ============================================================ */
+
+:root{
+  --cut:18px;                 /* the chamfer. the recurring device. */
+  --cut-sm:11px;
+  --edge:rgba(238,243,245,.14);
+  --edge-lo:rgba(238,243,245,.05);
+  --lift:cubic-bezier(.16,.84,.30,1);
+}
+
+/* The shape. Top-left and bottom-right cut — asymmetric reads as
+   deliberate; symmetric reads like a stock bevel. */
+.cut{
+  clip-path:polygon(
+    var(--cut) 0, 100% 0,
+    100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%,
+    0 100%, 0 var(--cut));
+}
+
+/* ---------- the lit edge -------------------------------------------------
+   clip-path eats borders, so the "hairline" is a gradient in the background
+   instead: light catching the top-left facet, falling off across the panel. */
+.card,
+.contact,
+.portrait{
+  border:0!important;
+  clip-path:polygon(
+    var(--cut) 0, 100% 0,
+    100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%,
+    0 100%, 0 var(--cut));
+  background:
+    linear-gradient(148deg,var(--edge) 0%,var(--edge-lo) 26%,transparent 52%),
+    linear-gradient(160deg,#1F2B34 0%,#141D24 62%,#111920 100%);
+  border-radius:0!important;
+}
+
+/* cards that are links get a real hover, not a colour change */
+a.card{transition:transform .32s var(--lift),filter .32s var(--lift)}
+a.card:hover{transform:translateY(-6px);filter:brightness(1.14)}
+a.card::after{
+  content:"";position:absolute;right:18px;bottom:20px;width:18px;height:18px;
+  background:currentColor;color:var(--alpenglow);opacity:0;
+  transition:opacity .3s var(--lift),transform .3s var(--lift);
+  transform:translate(-6px,6px);
+  -webkit-mask:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="black" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>') center/contain no-repeat;
+  mask:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="black" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>') center/contain no-repeat;
+}
+a.card:hover::after{opacity:1;transform:none}
+.card{position:relative}
+
+/* ---------- buttons: a sweep, not a colour swap ---------- */
+.btn{position:relative;overflow:hidden;isolation:isolate;
+  clip-path:polygon(var(--cut-sm) 0,100% 0,100% calc(100% - var(--cut-sm)),
+    calc(100% - var(--cut-sm)) 100%,0 100%,0 var(--cut-sm));
+  border-radius:0!important}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.30) 50%,transparent 80%);
+  transform:translateX(-130%);transition:transform .62s var(--lift)}
+.btn:hover::before{transform:translateX(130%)}
+.btn-line{border:1px solid rgba(238,243,245,.30)}
+.btn-line:hover{background:rgba(238,243,245,.06)}
+#main-nav a.cta{clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),
+  calc(100% - 9px) 100%,0 100%,0 9px);border-radius:0}
+
+/* ============================================================
+   THE HERO — assembled, not faded in.
+   ============================================================ */
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln > span{display:block;will-change:transform}
+
+html.js .hero h1 .ln > span{
+  transform:translateY(105%);
+  animation:hj-line .95s var(--lift) forwards;
+  animation-delay:calc(.16s + var(--i,0) * .10s);
+}
+@keyframes hj-line{to{transform:none}}
+
+html.js .hero .eyebrow,
+html.js .hero .hero-sub,
+html.js .hero .hero-actions{
+  opacity:0;animation:hj-up .8s var(--lift) forwards}
+html.js .hero .eyebrow{animation-delay:.06s}
+html.js .hero .hero-sub{animation-delay:.46s}
+html.js .hero .hero-actions{animation-delay:.58s}
+@keyframes hj-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* a slow bar of light crossing the range, once, on arrival */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(104deg,transparent 34%,rgba(var(--glow),.16) 50%,transparent 66%);
+  transform:translateX(-100%);
+  animation:hj-sweep 2.6s var(--lift) .3s forwards}
+@keyframes hj-sweep{to{transform:translateX(100%)}}
+
+/* the photo drifts with the scroll instead of on a timer */
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .hero-bg img{
+      animation:hj-par linear both;
+      animation-timeline:scroll();
+      animation-range:0 100vh}
+    @keyframes hj-par{
+      from{transform:scale(1.08) translateY(0)}
+      to  {transform:scale(1.18) translateY(6%)}}
+  }
+}
+
+/* ---------- scroll progress, hairline, top of the page ---------- */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:70;
+  transform-origin:0 50%;transform:scaleX(0);pointer-events:none;
+  background:linear-gradient(90deg,var(--alpenglow-lo),var(--alpenglow));
+  box-shadow:0 0 14px rgba(var(--glow),.55)}
+@supports (animation-timeline:scroll()){
+  .progress{animation:hj-prog linear both;animation-timeline:scroll()}
+  @keyframes hj-prog{to{transform:scaleX(1)}}
+}
+
+/* ============================================================
+   SECTIONS — numbered, with a rule that draws itself
+   ============================================================ */
+.kicker{position:relative}
+.kicker::after{transform-origin:0 50%;transform:scaleX(0);
+  transition:transform 1.1s var(--lift) .1s}
+.reveal.in .kicker::after,
+.in .kicker::after{transform:scaleX(1)}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .kicker::after{transform:scaleX(0);transition:none;
+      animation:hj-rule 1s var(--lift) both;
+      animation-timeline:view();animation-range:entry 10% cover 30%}
+    @keyframes hj-rule{to{transform:scaleX(1)}}
+  }
+}
+
+/* big ghosted section index, the Casting Iron echo move, kept quiet */
+section[data-index]::before{
+  content:attr(data-index);
+  position:absolute;top:clamp(18px,4vw,44px);right:var(--pad);
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(4.5rem,13vw,11rem);line-height:.8;letter-spacing:-.06em;
+  color:var(--snow);opacity:.028;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1}
+
+/* ============================================================
+   TIER DISCS — magnetic, and they glow when chosen
+   ============================================================ */
+.tier .disc{
+  transition:transform .35s var(--lift),box-shadow .35s var(--lift),
+             background .35s var(--lift);
+  position:relative;overflow:hidden}
+.tier .disc::after{
+  content:"";position:absolute;inset:-2px;border-radius:50%;
+  background:conic-gradient(from var(--a,0deg),
+    transparent 0deg,rgba(var(--glow),.9) 40deg,transparent 90deg);
+  opacity:0;transition:opacity .4s var(--lift)}
+.tier[aria-pressed="true"] .disc::after{opacity:.85;animation:hj-spin 4.5s linear infinite}
+@keyframes hj-spin{to{--a:360deg}}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.tier[aria-pressed="true"] .disc{
+  box-shadow:0 0 0 1px var(--alpenglow),0 24px 70px -22px rgba(var(--glow),.75)}
+.tier .disc > *{position:relative;z-index:2}
+/* the inner face, so the conic ring reads as a rim not a fill */
+.tier .disc::before{
+  content:"";position:absolute;inset:2px;border-radius:50%;z-index:1;
+  background:radial-gradient(120% 120% at 30% 22%,#233039,#151E25)}
+.tier[aria-pressed="true"] .disc::before{
+  background:radial-gradient(120% 120% at 30% 22%,rgba(var(--glow),.30),#151E25 70%)}
+
+/* ============================================================
+   TRADE ORBS — a rim of light that follows the pointer
+   ============================================================ */
+.industry .orb{border:0;position:relative;isolation:isolate}
+.industry .orb::before{
+  content:"";position:absolute;inset:0;border-radius:50%;z-index:2;
+  padding:1px;pointer-events:none;
+  background:conic-gradient(from calc(var(--ang,0deg) - 40deg),
+    transparent 0deg,rgba(var(--glow),.85) 40deg,transparent 80deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .35s var(--lift)}
+.industry:hover .orb::before,
+.industry:focus-visible .orb::before{opacity:1}
+.industry .orb{box-shadow:inset 0 0 0 1px rgba(238,243,245,.10)}
+.industry:hover .orb{box-shadow:inset 0 0 0 1px rgba(var(--glow),.5),
+  0 28px 70px -26px rgba(var(--glow),.55)}
+.industry .name{transition:color .25s var(--lift)}
+
+/* the "coming soon" pill, restyled to match the chamfer language */
+.industry[data-soon] .orb::after{border-radius:0;
+  clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
+
+/* ============================================================
+   PAGE TRANSITION — a decisive wipe, led by a warm edge
+   ============================================================ */
+::view-transition-old(root){
+  animation:hjc-out 220ms cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){
+  animation:hjc-in 480ms var(--lift) both}
+@keyframes hjc-in{
+  from{clip-path:inset(0 0 0 100%)}
+  to  {clip-path:inset(0 0 0 0)}}
+
+/* the leading edge of the wipe, painted by the incoming page */
+.wipe-edge{
+  position:fixed;inset:0;z-index:800;pointer-events:none;
+  background:linear-gradient(90deg,
+    transparent calc(100% - 220px),
+    rgba(var(--glow),.10) calc(100% - 70px),
+    rgba(var(--glow),.75) calc(100% - 2px),
+    var(--alpenglow) 100%);
+  transform:translateX(-100%);
+  animation:hjc-edge 480ms var(--lift) both}
+@keyframes hjc-edge{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+
+@media (prefers-reduced-motion:reduce){
+  .hero::before,.wipe-edge{animation:none;display:none}
+  html.js .hero h1 .ln > span{transform:none;animation:none}
+  html.js .hero .eyebrow,html.js .hero .hero-sub,html.js .hero .hero-actions{
+    opacity:1;animation:none}
+  .tier[aria-pressed="true"] .disc::after{animation:none}
+  .progress{display:none}
+}
+
+/* ---------- desktop pointer glow ---------- */
+@media (hover:hover) and (pointer:fine){
+  .glow-field{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(340px circle at var(--mx,-999px) var(--my,-999px),
+      rgba(var(--glow),.055),transparent 62%);
+    transition:opacity .4s var(--lift)}
+}
+.glow-field{display:none}
+@media (hover:hover) and (pointer:fine){.glow-field{display:block}}
