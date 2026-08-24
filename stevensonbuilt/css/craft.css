@@ -259,3 +259,8 @@ section[data-index]::before{
 .work-more{margin:clamp(26px,4vw,38px) 0 0;color:var(--scree);font-weight:300}
 .work-more a{color:var(--alpenglow);font-family:var(--display);font-weight:700;font-size:.94rem}
 .work-more a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* Pricing tiles are deliberately ROUNDED, not chamfered — they are the one
+   place the site uses a soft corner, so they read as buttons. */
+.tier,.industry .tile{clip-path:none!important}
+.tier .disc,.industry .orb{display:none}
