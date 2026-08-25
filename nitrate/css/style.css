@@ -1,0 +1,553 @@
+/* ═══════════════════════════════════════════════════════════════════
+   NITRATE — Stevensonbuilt
+   A theatre. Violet-black house, projector gold, signal vermilion, bone.
+   Every corner is square. Every frame is crop-marked. You carry the light.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@property --r { syntax: "<length>"; inherits: true; initial-value: 0px; }
+
+:root{
+  /* ── ground: nitrate violet, not charcoal, not navy ── */
+  --nitrate:      #120C18;
+  --nitrate-2:    #1B1226;
+  --gate:         #241833;
+
+  /* ── bone: the cream. no white anywhere on this site ── */
+  --bone:         #F2E5CE;
+  --bone-70:      rgba(242,229,206,.72);
+  --bone-45:      rgba(242,229,206,.45);
+  --bone-18:      rgba(242,229,206,.18);
+  --bone-10:      rgba(242,229,206,.10);
+
+  /* ── ink: type on the lit act ── */
+  --ink:          #241033;
+  --ink-70:       rgba(36,16,51,.74);
+  --ink-15:       rgba(36,16,51,.15);
+
+  /* ── the two lights ── */
+  --vermilion:    #FF2D0F;   /* signal red: crop marks, the lit word, rules  */
+  --beam:         255,203,132;  /* projector gold, as an rgb triplet         */
+  --violet:       126,64,196;   /* house glow, as an rgb triplet             */
+
+  /* ── type ── */
+  --display: "Anton","Oswald",Impact,"Arial Narrow",sans-serif;
+  --body:    "Space Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+  /* ── metrics ── */
+  --header-h: 78px;
+  --pad:      clamp(20px,5vw,72px);
+  --maxw:     1240px;
+  --radius:   0px;              /* clean-cut corners. no exceptions. */
+  --ease:     cubic-bezier(.2,.8,.2,1);
+  --slow:     .8s var(--ease);
+}
+
+/* ── reset ─────────────────────────────────────────────────────── */
+*,*::before,*::after{ box-sizing:border-box; border-radius:var(--radius); }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--nitrate);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:clamp(16px,.42vw + 15px,18px);
+  line-height:1.6;
+  font-weight:300;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{ max-width:100%; height:auto; display:block; border:0; }
+a{ color:inherit; }
+h1,h2,h3{ margin:0; font-family:var(--display); font-weight:400; text-transform:none;
+          text-wrap:balance; }
+p{ margin:0 0 1.1em; }
+ul{ margin:0; padding:0; list-style:none; }
+button{ font:inherit; color:inherit; background:none; border:0; }
+::selection{ background:var(--vermilion); color:var(--nitrate); }
+:focus-visible{ outline:2px solid var(--vermilion); outline-offset:3px; }
+
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad); }
+.sr{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
+     clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0; }
+.skip{ position:fixed; top:8px; left:8px; z-index:200; transform:translateY(-160%);
+       background:var(--vermilion); color:var(--nitrate); padding:10px 16px;
+       font-weight:700; letter-spacing:.04em; text-decoration:none; transition:transform .2s; }
+.skip:focus{ transform:none; }
+
+/* ── film grain: the texture under everything ───────────────────── */
+.grain{
+  position:fixed; inset:-160px; z-index:60; pointer-events:none; opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 900ms steps(4,end) infinite;
+  will-change:transform;
+}
+@keyframes grain{
+  0%{ transform:translate(0,0) }      25%{ transform:translate(-3%,2%) }
+  50%{ transform:translate(2%,-3%) }  75%{ transform:translate(-2%,-2%) }
+  100%{ transform:translate(0,0) }
+}
+
+/* ═══ CROP MARKS — the signature device ═══════════════════════════
+   Four square brackets that draw themselves onto anything that
+   matters: the gate, the lit act, the work tiles, the call button.  */
+.marks{ position:absolute; inset:-11px; pointer-events:none; color:var(--vermilion); }
+.marks i{
+  position:absolute; width:0; height:0;
+  border:0 solid currentColor; border-width:0;
+  transition:width .5s var(--ease) .1s, height .5s var(--ease) .1s;
+}
+.marks i:nth-child(1){ top:0; left:0;  border-top-width:1.5px; border-left-width:1.5px; }
+.marks i:nth-child(2){ top:0; right:0; border-top-width:1.5px; border-right-width:1.5px; }
+.marks i:nth-child(3){ bottom:0; left:0;  border-bottom-width:1.5px; border-left-width:1.5px; }
+.marks i:nth-child(4){ bottom:0; right:0; border-bottom-width:1.5px; border-right-width:1.5px; }
+.in .marks:not(.sm) i, .marks.on i{ width:26px; height:26px; }
+/* the small set stays shut until the tile is the one being looked at */
+.marks.sm{ inset:-1px; color:var(--bone); }
+.marks.sm i{ transition-delay:0s; }
+.marks.big{ inset:clamp(14px,3vw,34px); color:var(--vermilion); opacity:.85; }
+.marks.big i{ transition-duration:.9s; }
+html:not(.js) .marks:not(.sm) i{ width:26px; height:26px; }
+
+/* ═══ HEADER ══════════════════════════════════════════════════════ */
+.site-header{
+  position:sticky; top:0; z-index:80; height:var(--header-h);
+  display:flex; align-items:center;
+  background:transparent;
+  transition:background .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+}
+.site-header.stuck{
+  background:rgba(18,12,24,.82);
+  backdrop-filter:blur(14px) saturate(1.2);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
+  box-shadow:0 1px 0 var(--bone-10);
+}
+.header-inner{
+  width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad);
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+
+/* the wordmark — a studio lockup with a hairline between the halves */
+.logo{ display:flex; align-items:center; gap:10px; text-decoration:none; line-height:1; }
+.logo-a{
+  font-family:var(--display); font-size:clamp(19px,2.2vw,23px);
+  letter-spacing:.015em; color:var(--bone); text-transform:uppercase;
+}
+.logo-r{ width:1px; height:20px; background:var(--bone-45); display:block; }
+.logo-b{
+  font-family:var(--display); font-size:clamp(19px,2.2vw,23px);
+  letter-spacing:.30em; text-transform:uppercase; color:var(--vermilion);
+  padding-left:2px;
+}
+
+/* nav */
+#main-nav{ display:flex; align-items:center; gap:clamp(18px,2.4vw,36px); }
+#main-nav ul{ display:flex; gap:clamp(18px,2.4vw,34px); }
+#main-nav ul a{
+  position:relative; text-decoration:none; font-size:14px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--bone-70);
+  padding-block:6px; transition:color .25s;
+}
+#main-nav ul a::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:var(--vermilion); transform:scaleX(0); transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+#main-nav ul a:hover, #main-nav ul a[aria-current="page"]{ color:var(--bone); }
+#main-nav ul a:hover::after, #main-nav ul a[aria-current="page"]::after{ transform:scaleX(1); }
+
+.call{
+  position:relative; text-decoration:none; padding:11px 20px;
+  border:1px solid var(--bone-18); color:var(--bone);
+  font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s;
+}
+.call .mk{ position:absolute; inset:-5px; pointer-events:none; color:var(--vermilion); }
+.call .mk i{ position:absolute; width:0; height:0; border:0 solid currentColor;
+             transition:width .35s var(--ease), height .35s var(--ease); }
+.call .mk i:nth-child(1){ top:0; left:0;  border-top-width:1.5px; border-left-width:1.5px; }
+.call .mk i:nth-child(2){ top:0; right:0; border-top-width:1.5px; border-right-width:1.5px; }
+.call .mk i:nth-child(3){ bottom:0; left:0;  border-bottom-width:1.5px; border-left-width:1.5px; }
+.call .mk i:nth-child(4){ bottom:0; right:0; border-bottom-width:1.5px; border-right-width:1.5px; }
+.call:hover{ background:var(--vermilion); color:var(--nitrate); border-color:var(--vermilion); }
+.call:hover .mk i, .call:focus-visible .mk i{ width:12px; height:12px; }
+
+/* mobile toggle */
+.nav-toggle{ display:none; width:44px; height:44px; margin-right:-10px; cursor:pointer; }
+.nav-toggle .bars{ position:relative; display:block; width:26px; height:12px; margin:0 auto; }
+.nav-toggle .bars i{
+  position:absolute; left:0; right:0; height:1.5px; background:var(--bone);
+  transition:transform .35s var(--ease), opacity .2s;
+}
+.nav-toggle .bars i:nth-child(1){ top:0; }
+.nav-toggle .bars i:nth-child(2){ bottom:0; }
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(2){ transform:translateY(-5px) rotate(-45deg); }
+
+/* ═══ ACT I — THE GATE ════════════════════════════════════════════ */
+.gate-act{
+  position:relative; isolation:isolate; overflow:hidden;
+  min-height:calc(100svh - var(--header-h));
+  display:flex; align-items:center;
+  padding-block:clamp(16px,3.4vh,44px);
+}
+/* the projector beam falling on the frame */
+.beam{
+  position:absolute; z-index:-2; left:50%; top:clamp(-260px,-24vh,-110px);
+  width:min(112vw,1020px); aspect-ratio:1/1; transform:translateX(-50%);
+  background:
+    radial-gradient(closest-side, rgba(var(--beam),.24), rgba(var(--beam),.08) 40%, transparent 68%);
+  animation:breathe 11s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes breathe{ from{ transform:translateX(-50%) scale(1) } to{ transform:translateX(-50%) scale(1.09) } }
+/* the house going dark at the edges */
+.vignette{
+  position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 12% 4%,  rgba(var(--violet),.24), transparent 55%),
+    radial-gradient(110% 80% at 92% 96%, rgba(var(--violet),.20), transparent 55%),
+    radial-gradient(95% 75% at 50% 55%,  transparent 30%, rgba(6,3,10,.72) 100%);
+}
+.gate-inner{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+
+.eyebrow{
+  margin:0 0 clamp(16px,2.8vh,32px);
+  font-size:12px; font-weight:500; letter-spacing:.42em; text-transform:uppercase;
+  color:var(--bone-45);
+}
+
+/* ── THE FILM GATE ─────────────────────────────────────────────
+   Sized by HEIGHT so the composition holds its proportion on any
+   screen and the whole opening act always fits one screen.       */
+.gate{
+  position:relative; margin:0 0 clamp(22px,3.6vh,40px);
+  height:clamp(228px,34svh,440px);
+}
+.gate-well{
+  position:relative; height:100%; aspect-ratio:4/5; overflow:hidden;
+  background:
+    linear-gradient(178deg, #2C1D3F 0%, var(--gate) 44%, #1A1027 100%);
+  box-shadow:
+    0 0 0 1px var(--bone-18),
+    0 0 0 9px var(--nitrate),
+    0 0 0 10px var(--bone-10),
+    0 44px 90px -26px rgba(0,0,0,.85),
+    0 0 130px -20px rgba(var(--beam),.22);
+}
+.gate-well .portrait{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2;
+  filter:contrast(1.04) saturate(1.05);
+}
+/* light leak drifting across the gate — alive whether or not a photo is in it */
+.gate-well .leak{
+  position:absolute; inset:0; z-index:3; pointer-events:none; mix-blend-mode:screen;
+  background:linear-gradient(112deg, transparent 30%, rgba(var(--beam),.20) 50%, transparent 68%);
+  animation:leak 9s ease-in-out infinite alternate;
+}
+@keyframes leak{ from{ transform:translateX(-38%) } to{ transform:translateX(38%) } }
+
+/* ── THE EMPTY STATE: a film slate. Deliberate, technical, not broken. ── */
+.slate{
+  position:absolute; inset:0; z-index:1; color:var(--bone-45);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:14px; padding:16px;
+}
+.slate::before{
+  content:""; position:absolute; inset:12px; border:1px dashed rgba(242,229,206,.16);
+}
+.slate .reg{ width:46%; max-width:112px; opacity:.7; }
+.slate-top, .slate-bottom{
+  position:absolute; left:0; right:0; text-align:center;
+  font-size:10px; letter-spacing:.28em; text-transform:uppercase; font-weight:500;
+}
+.slate-top{ top:22px; }
+.slate-bottom{ bottom:22px; letter-spacing:.14em; text-transform:none; opacity:.72;
+               font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+
+/* ── the headline ─────────────────────────────────────────────── */
+.gate-act h1{
+  max-width:19ch;
+  font-size:clamp(2.05rem,5.1vw,3.95rem);
+  line-height:.93; letter-spacing:-.005em;
+  margin:0 0 clamp(14px,2vh,22px);
+}
+.gate-act h1 em{ font-style:normal; color:var(--vermilion); }
+.lede{
+  max-width:46ch; color:var(--bone-70); font-size:clamp(.98rem,1.15vw,1.1rem);
+  text-wrap:pretty;
+  margin:0 0 clamp(22px,3.2vh,34px);
+}
+.lede.left{ margin-inline:0; }
+
+.acts{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.btn{
+  display:inline-block; padding:15px 26px; text-decoration:none;
+  font-size:13.5px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+  border:1px solid transparent; transition:background .3s, color .3s, border-color .3s, transform .3s var(--ease);
+}
+.btn-fill{ background:var(--vermilion); color:var(--nitrate); }
+.btn-fill:hover{ background:var(--bone); }
+.btn-line{ border-color:var(--bone-18); color:var(--bone); }
+.btn-line:hover{ background:var(--bone); color:var(--ink); border-color:var(--bone); }
+.btn:active{ transform:translateY(1px); }
+
+/* ═══ ACT II — HOUSE LIGHTS (the one lit band) ═════════════════════ */
+.house{
+  position:relative; background:var(--bone); color:var(--ink);
+  padding-block:clamp(72px,13vh,142px) clamp(58px,10vh,110px);
+}
+.house::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background:radial-gradient(120% 110% at 50% -10%, rgba(255,255,255,.6), transparent 60%);
+}
+.house-inner{ position:relative; }
+.kicker{
+  font-size:11.5px; font-weight:700; letter-spacing:.36em; text-transform:uppercase;
+  color:var(--vermilion); margin:0 0 18px;
+}
+.house h2{
+  font-size:clamp(2.2rem,7.2vw,5.6rem); line-height:.92; max-width:16ch;
+  margin:0 0 clamp(28px,4vw,48px);
+}
+.house h2 .draw{ position:relative; display:inline-block; }
+.house h2 .draw::after{
+  content:""; position:absolute; left:0; right:0; bottom:-.09em; height:6px;
+  background:var(--vermilion); transform:scaleX(0); transform-origin:left;
+  transition:transform 1s var(--ease) .25s;
+}
+.house h2.in .draw::after{ transform:scaleX(1); }
+html:not(.js) .house h2 .draw::after{ transform:scaleX(1); }
+.cols{
+  display:grid; gap:clamp(14px,3vw,44px);
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  max-width:900px; margin-bottom:14px;
+}
+.cols p{ color:var(--ink-70); font-size:clamp(1.02rem,1.35vw,1.22rem); line-height:1.5; }
+.txt-link{
+  display:inline-block; text-decoration:none; color:var(--ink);
+  font-weight:700; font-size:13px; letter-spacing:.16em; text-transform:uppercase;
+  border-bottom:1.5px solid var(--vermilion); padding-bottom:4px;
+  transition:color .25s, border-color .25s;
+}
+.txt-link:hover{ color:var(--vermilion); }
+
+/* ═══ ACT III — THE WORK WALL ═════════════════════════════════════ */
+.wall-act{
+  position:relative; padding-block:clamp(76px,13vh,146px);
+  background:
+    radial-gradient(110% 60% at 50% 0%, rgba(var(--violet),.16), transparent 60%),
+    var(--nitrate);
+}
+.wall-act h2{
+  font-size:clamp(2.1rem,6.4vw,4.6rem); line-height:.94; margin:0 0 18px; max-width:14ch;
+}
+.wall{
+  display:grid; gap:clamp(14px,2vw,26px);
+  grid-template-columns:repeat(3,1fr);
+  margin-top:clamp(30px,5vw,54px);
+}
+.build{
+  position:relative; display:flex; flex-direction:column; gap:14px;
+  text-decoration:none; color:var(--bone);
+}
+.shot{
+  position:relative; display:block; overflow:hidden; isolation:isolate;
+  aspect-ratio:880/591; background:var(--nitrate-2);
+  box-shadow:0 0 0 1px var(--bone-10), 0 26px 50px -30px #000;
+  transition:box-shadow .45s var(--ease), transform .45s var(--ease), --r .5s var(--ease);
+}
+.shot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+           object-position:50% 0%; }
+/* the print: violet duotone, only under JS (no JS = plain colour) */
+html.js .shot .mono{ filter:grayscale(1) contrast(1.1) brightness(.66); }
+html.js .shot::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(158deg, #4B2378 0%, #7E3E2A 100%);
+  mix-blend-mode:color; opacity:.95;
+}
+/* the beam you carry: a circle of restored colour that follows the pointer */
+html.js .shot .lit{
+  z-index:2; filter:saturate(1.3) brightness(1.14) contrast(1.04);
+  -webkit-mask-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),
+      #000 0 var(--r), transparent calc(var(--r) + 58px));
+  mask-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),
+      #000 0 var(--r), transparent calc(var(--r) + 58px));
+}
+.build:hover .shot{ transform:translateY(-4px); box-shadow:0 0 0 1px var(--bone-18), 0 34px 60px -28px #000; }
+.meta{ display:flex; flex-direction:column; gap:5px; }
+.kind{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--bone-45); }
+.ttl{
+  font-family:var(--display); font-size:clamp(1.15rem,1.7vw,1.5rem); line-height:1.05;
+  letter-spacing:.005em; position:relative; display:inline-block; padding-bottom:5px;
+}
+.ttl::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1.5px;
+  background:var(--vermilion); transform:scaleX(0); transform-origin:left;
+  transition:transform .55s var(--ease);
+}
+.build:hover .ttl::after, .build:focus-visible .ttl::after, .build.is-live .ttl::after{ transform:scaleX(1); }
+
+/* touch devices: no pointer, so the tile at the centre of the screen lights up */
+@media (hover:none){
+  html.js .shot .lit{
+    -webkit-mask-image:none; mask-image:none;
+    opacity:0; transition:opacity .55s var(--ease);
+  }
+  html.js .build.is-live .shot .lit{ opacity:1; }
+  html.js .build.is-live .shot{ box-shadow:0 0 0 1px var(--bone-18), 0 30px 56px -28px #000; }
+  .build.is-live .marks.sm i{ width:22px; height:22px; }
+}
+@media (hover:hover){
+  .build:hover .marks.sm i, .build:focus-visible .marks.sm i{ width:22px; height:22px; }
+}
+
+/* ═══ ACT IV — THE EXITS ══════════════════════════════════════════ */
+.exits{ padding-block:clamp(20px,4vh,40px) clamp(66px,11vh,120px); }
+.exit{
+  position:relative; display:grid; align-items:baseline; gap:clamp(14px,3vw,40px);
+  grid-template-columns:auto 1fr auto;
+  padding:clamp(24px,3.4vw,38px) 0; text-decoration:none;
+  border-top:1px solid var(--bone-10);
+}
+.exit:last-child{ border-bottom:1px solid var(--bone-10); }
+.exit::after{
+  content:""; position:absolute; left:0; right:0; top:-1px; height:1.5px;
+  background:var(--vermilion); transform:scaleX(0); transform-origin:left;
+  transition:transform .6s var(--ease);
+}
+.exit:hover::after, .exit:focus-visible::after{ transform:scaleX(1); }
+.exit .n{
+  font-family:var(--display); font-size:13px; letter-spacing:.16em;
+  color:var(--bone-45); transition:color .3s;
+}
+.e-ttl{
+  display:block; font-family:var(--display);
+  font-size:clamp(1.9rem,5.2vw,3.4rem); line-height:1;
+  transition:transform .5s var(--ease), color .3s;
+}
+.e-sub{ display:block; margin-top:9px; color:var(--bone-45); font-size:.94rem; max-width:56ch; }
+.arw{ font-size:clamp(1.2rem,2.4vw,1.9rem); color:var(--bone-45);
+      transition:transform .5s var(--ease), color .3s; }
+.exit:hover .n, .exit:hover .arw{ color:var(--vermilion); }
+.exit:hover .e-ttl{ transform:translateX(clamp(6px,1.2vw,16px)); }
+.exit:hover .arw{ transform:translate(6px,-6px); }
+
+/* ═══ FOOTER ══════════════════════════════════════════════════════ */
+.site-footer{
+  border-top:1px solid var(--bone-10); padding-block:clamp(40px,7vh,72px);
+  background:linear-gradient(180deg, transparent, rgba(var(--violet),.10));
+}
+.foot-inner{ display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+.foot-logo{
+  font-family:var(--display); font-size:clamp(1.6rem,4.6vw,2.6rem);
+  text-transform:uppercase; text-decoration:none; letter-spacing:.01em; line-height:1;
+}
+.foot-logo em{ font-style:normal; color:var(--vermilion); letter-spacing:.26em; padding-left:.1em; }
+.site-footer p{ margin:0; color:var(--bone-45); font-size:.92rem; }
+.site-footer .fine{ font-size:.8rem; letter-spacing:.06em; opacity:.7; margin-top:6px; }
+
+/* ═══ THE WIPE (page to page) ═════════════════════════════════════ */
+.wipe{
+  position:fixed; inset:0; z-index:120; pointer-events:none;
+  background:linear-gradient(180deg, var(--nitrate) 62%, rgba(var(--beam),.42));
+  transform:translateY(100%); transition:transform .42s var(--ease);
+}
+.wipe.out{ transform:translateY(0); }
+
+/* ═══ ENTRANCES ═══════════════════════════════════════════════════ */
+html.js .rise{ opacity:0; transform:translateY(26px); }
+html.js .rise.in{
+  opacity:1; transform:none;
+  transition:opacity .8s var(--ease), transform .8s var(--ease);
+  transition-delay:calc(var(--d,0) * 90ms);
+}
+html.js .gate-act .rise.in{ transition-delay:calc(var(--d,0) * 110ms + 60ms); }
+html.js .gate.rise{ transform:translateY(30px) scale(.985); }
+html.js .gate.rise.in{ transform:none; }
+
+/* ═══ RESPONSIVE ══════════════════════════════════════════════════ */
+@media (max-width:1000px){
+  .wall{ grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:860px){
+  :root{ --header-h:66px; }
+  .nav-toggle{ display:block; }
+  #main-nav{
+    position:fixed; inset:0; z-index:90;
+    flex-direction:column; align-items:flex-start; justify-content:center;
+    gap:30px; padding:0 var(--pad);
+    background:var(--nitrate);
+    clip-path:inset(0 0 100% 0);
+    transition:clip-path .5s var(--ease);
+    pointer-events:none;
+  }
+  #main-nav.open{ clip-path:inset(0 0 0 0); pointer-events:auto; }
+  #main-nav ul{ flex-direction:column; gap:6px; }
+  #main-nav ul a{
+    font-family:var(--display); font-size:clamp(2.2rem,11vw,3.4rem);
+    letter-spacing:.005em; text-transform:none; color:var(--bone);
+    opacity:0; transform:translateY(18px); transition:opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  #main-nav.open ul a{ opacity:1; transform:none; }
+  #main-nav.open ul li:nth-child(1) a{ transition-delay:.10s }
+  #main-nav.open ul li:nth-child(2) a{ transition-delay:.16s }
+  #main-nav.open ul li:nth-child(3) a{ transition-delay:.22s }
+  #main-nav.open ul li:nth-child(4) a{ transition-delay:.28s }
+  #main-nav ul a::after{ display:none; }
+  .call{ opacity:0; transform:translateY(18px); transition:opacity .5s var(--ease) .34s, transform .5s var(--ease) .34s, background .3s, color .3s; }
+  #main-nav.open .call{ opacity:1; transform:none; }
+  body.nav-open{ overflow:hidden; }
+}
+@media (max-width:720px){
+  .gate{ height:clamp(204px,32svh,320px); }
+  .gate-act{ padding-block:10px 44px; }
+  .gate-act h1{ font-size:clamp(1.85rem,7.9vw,2.7rem); max-width:14ch; line-height:.96; }
+  .lede{ font-size:1rem; }
+  .acts{ flex-direction:column; align-self:stretch; }
+  .acts .btn{ text-align:center; }
+  .wall{ grid-template-columns:1fr; gap:26px; }
+  .exit{ grid-template-columns:auto 1fr; }
+  .exit .arw{ display:none; }
+  .marks.big{ inset:12px; }
+  .e-sub{ font-size:.9rem; }
+}
+@media (max-height:700px) and (min-width:721px){
+  .gate{ height:clamp(180px,30svh,260px); }
+  .eyebrow{ margin-bottom:14px; }
+  .gate-act h1{ font-size:clamp(1.9rem,4.2vw,3rem); }
+}
+@media (max-width:400px){
+  .logo-a,.logo-b{ font-size:17px; }
+}
+/* short screens (landscape phones, small laptops): the act still plays,
+   it just plays smaller — nothing is hidden, nothing is cropped. */
+@media (max-height:600px){
+  .gate{ height:clamp(148px,38svh,224px); margin-bottom:18px; }
+  .eyebrow{ margin-bottom:12px; font-size:11px; }
+  .gate-act h1{ font-size:clamp(1.55rem,4.6vw,2.3rem); margin-bottom:12px; }
+  .lede{ margin-bottom:18px; font-size:.95rem; }
+}
+@media (max-height:600px) and (orientation:landscape){
+  .acts{ flex-direction:row; align-self:auto; }
+}
+
+/* ═══ REDUCED MOTION — the film stops, the picture stays ══════════ */
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important; scroll-behavior:auto !important;
+  }
+  html.js .rise{ opacity:1; transform:none; }
+  .marks:not(.sm) i{ width:26px; height:26px; }
+  .call .mk i{ width:12px; height:12px; }
+  html.js .shot .lit{ -webkit-mask-image:none; mask-image:none; opacity:1; }
+  html.js .shot::after{ display:none; }
+  html.js .shot .mono{ filter:none; }
+  .house h2 .draw::after{ transform:scaleX(1); }
+  .grain{ animation:none; }
+  .beam{ animation:none; }
+  .leak{ animation:none; opacity:.5; }
+  .wipe{ display:none; }
+}
