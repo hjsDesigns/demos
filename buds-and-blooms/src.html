@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buds &amp; Blooms at Enumclaw — All Occasion Florist</title>
+<meta name="description" content="Enumclaw's all-occasion florist since 1994. Hand-arranged flowers, same-day delivery, free within five miles. 1409 Griffin Ave, Enumclaw WA. (360) 825-5321.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Hanken+Grotesk:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — Buds & Blooms' world ============
+   gerbera magenta (their logo) · barn red (their sign band)
+   espresso (the daisy's center) · warm greige cream (their siding)
+   foliage green (the hanging baskets) */
+:root{
+  --brand:#C4157C;          /* gerbera magenta */
+  --brand-text:#9C0F62;     /* darker magenta for small text on cream */
+  --brand-soft:#E8B7D4;     /* petal pink tint */
+  --accent:#8E2F2B;         /* barn-red sign band */
+  --leaf:#3F7A4E;           /* foliage green — the open dot */
+  --leaf-soft:#7FB08B;
+  --ink:#2A1B22;            /* espresso, warmed toward the flower center */
+  --bg:#F3ECDF;             /* warm greige cream, never white */
+  --bg-2:#EAE0CC;           /* deeper cream for alternating bands */
+  --paper:#F9F3E8;          /* cards — a hair lighter, never white */
+  --kraft:#E3D3B4;          /* the price-tag paper */
+  --muted:#6E6259;
+  --line:#DCD0BB;
+  --dark:#2A1B22;           /* espresso closing band */
+  --dark-2:#3A2830;
+  --gold:#D9A54A;           /* review stars */
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono:ui-monospace, SFMono-Regular, Menlo, monospace;
+  --header-h:72px;
+  --pad:clamp(20px, 5vw, 56px);
+  --maxw:1180px;
+  --r:18px;
+}
+/* z-map: header 60 > mobile nav 50 > hero text 3 > petals 2 > garland 1 */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body); color:var(--ink); background:var(--bg);
+  overflow-x:hidden; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--brand-text)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--brand-text);display:flex;align-items:center;gap:.55em;font-weight:600;
+}
+.eyebrow .gerb{width:.95em;height:.95em;flex:none}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,4.2vw,3rem);margin:.5rem 0 .9rem}
+h2 em{font-style:italic;color:var(--brand)}
+.sub{color:var(--muted);max-width:56ch}
+section{padding:clamp(3.5rem,8vw,6rem) 0}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+  font-family:var(--body);font-weight:700;font-size:1rem;text-decoration:none;
+  border-radius:999px;padding:.85em 1.7em;min-height:44px;border:2px solid transparent;
+  transition:transform .15s ease, background .2s, color .2s, border-color .2s;
+  cursor:pointer;
+}
+.btn:active{transform:scale(.97)}
+.btn-solid{background:var(--brand);color:#FFF7F0}
+.btn-solid:hover{background:var(--brand-text)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+.btn-row{display:flex;gap:.8rem;flex-wrap:wrap}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  max-width:var(--maxw);margin:0 auto;height:100%;
+  padding:0 var(--pad);display:flex;align-items:center;gap:1rem;
+}
+.lockup{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);min-width:0}
+.lockup svg{width:38px;height:38px;flex:none}
+.lockup .lname{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.22rem;color:var(--brand);white-space:nowrap;line-height:1}
+.lockup .lsub{display:block;font-family:var(--body);font-style:normal;font-weight:600;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.live-pill{
+  margin-left:auto;display:inline-flex;align-items:center;gap:.45em;
+  font-size:.78rem;font-weight:700;letter-spacing:.02em;
+  background:var(--paper);border:1px solid var(--line);border-radius:999px;
+  padding:.42em .95em;white-space:nowrap;
+}
+.live-pill .dot{width:.55em;height:.55em;border-radius:50%;background:var(--muted);flex:none}
+.live-pill.is-open .dot{background:var(--leaf);box-shadow:0 0 0 0 color-mix(in srgb, var(--leaf) 45%, transparent);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--leaf) 45%, transparent)}70%{box-shadow:0 0 0 .55em transparent}100%{box-shadow:0 0 0 0 transparent}}
+#main-nav{display:flex;align-items:center;gap:1.4rem}
+#main-nav a{font-weight:600;font-size:.92rem;text-decoration:none;color:var(--ink)}
+#main-nav a:hover{color:var(--brand-text)}
+#main-nav .nav-cta{background:var(--ink);color:var(--bg);border-radius:999px;padding:.5em 1.1em}
+#main-nav .nav-cta:hover{background:var(--brand);color:#FFF7F0}
+.nav-toggle{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;flex-direction:column;justify-content:center;gap:5px;align-items:center}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);transition:.25s}
+@media (max-width:900px){
+  .nav-toggle{display:flex}
+  #main-nav{
+    position:fixed;inset:var(--header-h) 0 auto 0;z-index:50;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    padding:.5rem var(--pad) 1rem;transform:translateY(-130%);transition:transform .3s ease;
+  }
+  #main-nav.open{transform:translateY(0)}
+  #main-nav a{padding:.8rem 0;border-bottom:1px solid var(--line)}
+  #main-nav .nav-cta{margin-top:.8rem;text-align:center;border-bottom:0}
+  .nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-open .nav-toggle span:nth-child(2){opacity:0}
+  .nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+
+/* ---------- hero: the cooler garland ---------- */
+#hero{
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-start;
+  position:relative;overflow:hidden;padding:0;
+  background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 52%, var(--bg-2) 100%);
+}
+.hero-copy{
+  position:relative;z-index:3;text-align:center;
+  padding:clamp(2.2rem,6vh,4.5rem) var(--pad) 1rem;
+  max-width:820px;margin:0 auto;
+}
+.hero-copy .eyebrow{justify-content:center}
+#hero h1{
+  font-size:clamp(2.5rem,6.4vw,4.6rem);margin:.55rem 0 1rem;
+}
+#hero h1 em{font-style:italic;color:var(--brand)}
+.hero-sub{color:var(--muted);font-size:clamp(1rem,2vw,1.18rem);max-width:46ch;margin:0 auto 1.4rem}
+.hero-copy .btn-row{justify-content:center}
+.hero-spacer{flex:1 1 auto;min-height:1rem}
+.garland{
+  position:relative;z-index:1;width:100%;overflow:hidden;
+  padding-bottom:clamp(1.5rem,4vh,3rem);
+  background:var(--bg-2); /* the images multiply against THIS — white grounds melt into cream */
+}
+.garland-track{display:flex;width:max-content;animation:drift 48s linear infinite}
+.garland-track img{
+  width:clamp(215px,26vw,330px);height:auto;flex:none;
+  /* cream ground is baked into the JPEGs (multiply vs --bg-2) — no live blend, no stacking-context traps */
+}
+.garland-track img:nth-child(even){transform:translateY(clamp(10px,2.5vh,26px))}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.petal{
+  position:absolute;z-index:2;top:-40px;width:22px;height:22px;opacity:.75;
+  animation:fall linear infinite;pointer-events:none;
+}
+@keyframes fall{
+  0%{transform:translateY(-5vh) rotate(0deg)}
+  100%{transform:translateY(108vh) rotate(320deg)}
+}
+.scroll-hint{
+  position:absolute;left:50%;bottom:.6rem;transform:translateX(-50%);z-index:3;
+  color:var(--muted);font-size:1.2rem;animation:bob 2s ease-in-out infinite;pointer-events:none;
+}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+
+/* ---------- when to find us ---------- */
+#find-us{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.find-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.status-line{
+  font-family:var(--display);font-style:italic;font-size:clamp(1.35rem,2.6vw,1.8rem);
+  display:flex;align-items:center;gap:.5em;margin:.6rem 0 .4rem;
+}
+.status-line .dot{width:.55em;height:.55em;border-radius:50%;background:var(--muted);flex:none}
+#find-us.is-open .status-line .dot{background:var(--leaf);animation:pulse 2.2s infinite}
+.addr{color:var(--muted);margin-bottom:.35rem}
+.addr a{font-weight:600}
+.free-del{font-weight:700;color:var(--brand-text);font-size:.95rem}
+.hours-rows{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.hours-rows li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding:.85rem 1.1rem;border:1px solid var(--line);border-radius:12px;background:var(--bg);
+}
+.hours-rows li.today{
+  background:color-mix(in srgb, var(--brand) 10%, var(--paper));
+  border-color:color-mix(in srgb, var(--brand) 45%, var(--line));
+}
+.hours-rows .day{font-weight:700}
+.hours-rows li.today .day::after{
+  content:"today";font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brand-text);margin-left:.7em;vertical-align:middle;
+}
+.hours-rows .time{color:var(--muted)}
+.hours-rows .cut{display:block;font-size:.78rem;color:var(--brand-text);font-weight:600;text-align:right}
+
+/* ---------- occasion picker ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.6rem 0 1.5rem}
+.chip{
+  font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(1.05rem,2vw,1.3rem);
+  padding:.6em 1.3em;min-height:48px;border-radius:999px;cursor:pointer;
+  background:var(--paper);border:2px solid var(--line);color:var(--ink);
+  transition:transform .15s, background .2s, border-color .2s, color .2s;
+}
+.chip:hover{transform:translateY(-2px);border-color:var(--brand-soft)}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#FFF7F0;transform:translateY(-2px)}
+.occ-card{
+  display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:clamp(1.4rem,4vw,3rem);
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(1.4rem,3.5vw,2.6rem);align-items:center;
+}
+.occ-photo{border-radius:14px;overflow:hidden;background:var(--bg-2);position:relative}
+.occ-photo img{width:100%;height:100%;object-fit:cover}
+.occ-card.bloom .occ-photo img{animation:bloomIn .5s ease}
+.occ-card.bloom .occ-body > *{animation:bloomIn .5s ease backwards}
+.occ-card.bloom .occ-body > *:nth-child(2){animation-delay:.06s}
+.occ-card.bloom .occ-body > *:nth-child(3){animation-delay:.12s}
+.occ-card.bloom .occ-body > *:nth-child(4){animation-delay:.18s}
+@keyframes bloomIn{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:none}}
+.occ-title{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:.5rem}
+.occ-text{color:var(--muted);margin-bottom:1rem;max-width:48ch}
+.cutoff-line{
+  display:flex;align-items:flex-start;gap:.6em;font-weight:700;margin-bottom:1.2rem;
+  color:var(--ink);background:color-mix(in srgb, var(--leaf) 12%, var(--paper));
+  border:1px solid color-mix(in srgb, var(--leaf) 35%, var(--line));
+  border-radius:12px;padding:.8em 1em;font-size:.95rem;
+}
+.cutoff-line.past{
+  background:color-mix(in srgb, var(--accent) 10%, var(--paper));
+  border-color:color-mix(in srgb, var(--accent) 30%, var(--line));
+}
+.cutoff-line .clock{flex:none;font-size:1.1em}
+.deliver-note{margin-top:1.6rem;color:var(--muted);font-size:.95rem;max-width:72ch}
+.deliver-note b{color:var(--ink)}
+.deliver-note .gndl{margin-top:.5rem}
+.deliver-note .gndl b{color:var(--brand-text)}
+
+/* ---------- story ---------- */
+#story .find-grid{align-items:center}
+.print{
+  background:var(--paper);border:1px solid var(--line);border-radius:6px;
+  padding:14px 14px 12px;box-shadow:0 14px 34px -18px rgba(42,27,34,.45);
+  transform:rotate(-1.2deg);
+}
+.print img{border-radius:3px}
+.print figcaption{
+  font-family:var(--display);font-style:italic;color:var(--muted);
+  font-size:.9rem;padding-top:.7rem;text-align:center;
+}
+.story-copy p{color:var(--muted);margin-bottom:1rem;max-width:58ch}
+.story-copy p b{color:var(--ink)}
+
+/* ---------- in the shop: kraft tags ---------- */
+#shop{background:var(--bg-2);position:relative;overflow:hidden}
+.ghost{
+  position:absolute;inset:auto auto -0.18em -0.05em;z-index:0;pointer-events:none;
+  font-family:var(--display);font-style:italic;font-weight:700;line-height:1;
+  font-size:clamp(6rem,18vw,14rem);color:color-mix(in srgb, var(--brand) 7%, transparent);
+  white-space:nowrap;user-select:none;
+}
+#shop .wrap{position:relative;z-index:1}
+.tags{display:flex;flex-wrap:wrap;gap:clamp(.8rem,2vw,1.4rem);margin-top:2rem}
+.tag{
+  --rot:0deg;
+  position:relative;background:var(--kraft);border-radius:6px 14px 14px 6px;
+  padding:.9em 1.3em .9em 2.1em;font-weight:700;font-size:clamp(.9rem,1.7vw,1.05rem);
+  color:var(--ink);border:0;cursor:pointer;transform:rotate(var(--rot));
+  box-shadow:0 6px 14px -8px rgba(42,27,34,.5);
+  transition:transform .18s ease;font-family:var(--body);
+}
+.tag::before{ /* the string hole */
+  content:"";position:absolute;left:.7em;top:50%;transform:translateY(-50%);
+  width:.55em;height:.55em;border-radius:50%;background:var(--bg-2);
+  box-shadow:inset 0 1px 2px rgba(42,27,34,.45);
+}
+.tag:nth-child(3n){--rot:1.6deg}
+.tag:nth-child(3n+1){--rot:-1.8deg}
+.tag:nth-child(3n+2){--rot:.8deg}
+.tag:hover{transform:rotate(0deg) translateY(-3px) scale(1.04)}
+.tag.pop{animation:tagpop .45s ease}
+@keyframes tagpop{
+  0%{transform:rotate(var(--rot)) scale(1)}
+  40%{transform:rotate(calc(var(--rot) * -1.6)) scale(1.14)}
+  100%{transform:rotate(var(--rot)) scale(1)}
+}
+
+/* ---------- reviews ---------- */
+.rev-head{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.rev-score{font-family:var(--display);font-size:clamp(2rem,4vw,2.8rem);font-weight:700}
+.rev-stars{color:var(--gold);letter-spacing:.1em;font-size:1.1rem}
+.rev-src{color:var(--muted);font-size:.9rem}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.rev-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.5rem;display:flex;flex-direction:column;gap:1rem;
+}
+.rev-quote{font-family:var(--display);font-style:italic;font-size:1.02rem;line-height:1.55;flex:1}
+.rev-who{display:flex;align-items:center;gap:.8rem}
+.rev-disc{
+  width:44px;height:44px;border-radius:50%;flex:none;color:#FFF7F0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:700;font-size:1.15rem;
+}
+.rev-name{font-weight:700;line-height:1.2}
+.rev-meta{color:var(--gold);font-size:.8rem;letter-spacing:.12em}
+
+/* ---------- closing CTA ---------- */
+#cta{background:var(--dark);color:var(--bg);text-align:center}
+#cta h2{color:var(--bg)}
+#cta h2 em{color:var(--brand-soft)}
+#cta .sub{margin:0 auto 1.8rem;color:color-mix(in srgb, var(--bg) 70%, var(--dark))}
+#cta .btn-row{justify-content:center}
+#cta .btn-ghost{border-color:var(--bg);color:var(--bg)}
+#cta .btn-ghost:hover{background:var(--bg);color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer{background:var(--dark);color:color-mix(in srgb, var(--bg) 65%, var(--dark));border-top:1px solid var(--dark-2);padding:2.2rem 0 2.6rem;font-size:.9rem}
+.foot-grid{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;align-items:center}
+.foot-lockup{display:flex;align-items:center;gap:.6rem}
+.foot-lockup svg{width:30px;height:30px}
+.foot-lockup .lname{font-family:var(--display);font-style:italic;font-weight:700;color:var(--brand-soft);font-size:1.05rem}
+footer a{color:var(--bg);text-decoration:none;font-weight:600}
+footer a:hover{color:var(--brand-soft)}
+.foot-contact{display:flex;gap:1.4rem;flex-wrap:wrap}
+
+/* ---------- reveal ---------- */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:820px){
+  .find-grid{grid-template-columns:1fr}
+  .occ-card{grid-template-columns:1fr}
+  .occ-photo{max-height:300px}
+  .occ-photo img{height:300px}
+  .rev-grid{grid-template-columns:1fr}
+  .foot-grid{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:480px){
+  .hero-sub{font-size:1rem}
+  .live-pill .till{display:none}
+}
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .garland-track{animation:none}
+  .petal{display:none}
+  .scroll-hint{animation:none}
+  .live-pill .dot,.status-line .dot{animation:none!important}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .occ-card.bloom .occ-photo img,.occ-card.bloom .occ-body > *{animation:none}
+  .tag.pop{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="gerbera">
+      <g fill="#C4157C">
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(0 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(25.7 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(51.4 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(77.1 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(102.8 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(128.5 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(154.2 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(180 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(205.7 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(231.4 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(257.1 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(282.8 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(308.5 50 50)"/>
+        <ellipse cx="50" cy="18" rx="7.5" ry="17" transform="rotate(334.2 50 50)"/>
+      </g>
+      <g fill="#E060A8" opacity=".55">
+        <ellipse cx="50" cy="26" rx="5.5" ry="12" transform="rotate(12.8 50 50)"/>
+        <ellipse cx="50" cy="26" rx="5.5" ry="12" transform="rotate(64.2 50 50)"/>
+        <ellipse cx="50" cy="26" rx="5.5" ry="12" transform="rotate(115.6 50 50)"/>
+        <ellipse cx="50" cy="26" rx="5.5" ry="12" transform="rotate(167 50 50)"/>
+        <ellipse cx="50" cy="26" rx="5.5" ry="12" transform="rotate(218.4 50 50)"/>
+        <ellipse cx="50" cy="26" rx="5.5" ry="12" transform="rotate(269.8 50 50)"/>
+        <ellipse cx="50" cy="26" rx="5.5" ry="12" transform="rotate(321.2 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="15" fill="#2A1B22"/>
+      <circle cx="50" cy="50" r="15" fill="none" stroke="#D9A54A" stroke-width="1.6" stroke-dasharray="1.2 3.4" opacity=".8"/>
+    </g>
+    <g id="petalshape">
+      <path d="M11 0C16 6 22 12 11 22C0 12 6 6 11 0Z" fill="#E8B7D4"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="lockup" href="#hero" aria-label="Buds and Blooms at Enumclaw — home">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>
+      <span class="lname">Buds &amp; Blooms<span class="lsub">at Enumclaw</span></span>
+    </a>
+    <span class="live-pill" id="live-pill"><span class="dot"></span><span class="ptxt">&nbsp;</span></span>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" aria-label="Main">
+      <a href="#occasions">Occasions</a>
+      <a href="#story">Our story</a>
+      <a href="#shop">In the shop</a>
+      <a href="#reviews">Reviews</a>
+      <a class="nav-cta" href="tel:3608255321">Call the shop</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO — the cooler garland ============ -->
+<section id="hero" aria-label="Buds and Blooms at Enumclaw">
+  <div class="hero-copy">
+    <p class="eyebrow"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>All-occasion florist &middot; since 1994</p>
+    <h1>Fresh flowers for every&nbsp;occasion, <em>delivered today.</em></h1>
+    <p class="hero-sub">Hand-arranged in the shop each morning and on someone's porch by the afternoon.</p>
+    <div class="btn-row">
+      <a class="btn btn-solid" href="tel:3608255321">Call (360) 825-5321</a>
+      <a class="btn btn-ghost" href="#occasions">What's the occasion?</a>
+    </div>
+  </div>
+  <div class="hero-spacer"></div>
+  <div class="garland" aria-hidden="true">
+    <div class="garland-track">
+      <img src="__ARR1__" alt="">
+      <img src="__ARR2__" alt="">
+      <img src="__ARR5__" alt="">
+      <img src="__ARR7__" alt="">
+      <img src="__ARR1__" alt="">
+      <img src="__ARR2__" alt="">
+      <img src="__ARR5__" alt="">
+      <img src="__ARR7__" alt="">
+    </div>
+  </div>
+  <span class="petal" style="left:12%;animation-duration:14s;animation-delay:0s"><svg viewBox="0 0 22 22" width="22" height="22"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:32%;animation-duration:18s;animation-delay:4s"><svg viewBox="0 0 22 22" width="17" height="17"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:55%;animation-duration:15s;animation-delay:8s"><svg viewBox="0 0 22 22" width="20" height="20"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:72%;animation-duration:20s;animation-delay:2s"><svg viewBox="0 0 22 22" width="15" height="15"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:88%;animation-duration:16s;animation-delay:10s"><svg viewBox="0 0 22 22" width="19" height="19"><use href="#petalshape"/></svg></span>
+</section>
+
+<!-- ============ WHEN TO FIND US ============ -->
+<section id="find-us" aria-label="Hours and location">
+  <div class="wrap find-grid">
+    <div class="reveal">
+      <p class="eyebrow"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>When to find us</p>
+      <p class="status-line"><span class="dot"></span><span id="status-text">&nbsp;</span></p>
+      <p class="addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Buds+and+Blooms+1409+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">1409 Griffin Ave, Enumclaw, WA 98022 ↗</a></p>
+      <p class="free-del">Free delivery within 5 miles.</p>
+    </div>
+    <ul class="hours-rows reveal">
+      <li data-days="1,2,3,4,5"><span class="day">Mon – Fri</span><span class="time">9:00 AM – 5:00 PM<span class="cut">same-day orders by 1 PM</span></span></li>
+      <li data-days="6"><span class="day">Saturday</span><span class="time">9:00 AM – 4:00 PM<span class="cut">same-day orders by 10 AM</span></span></li>
+      <li data-days="0"><span class="day">Sunday</span><span class="time">Closed</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SIGNATURE: WHAT'S THE OCCASION? ============ -->
+<section id="occasions" aria-label="What's the occasion?">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>Start here</p>
+      <h2>What's the <em>occasion?</em></h2>
+      <p class="sub">Tap one — we'll tell you what to send and whether it can get there today.</p>
+    </div>
+    <div class="chips reveal" role="tablist" aria-label="Occasions">
+      <button class="chip on" data-occ="birthday" role="tab" aria-selected="true">Birthday</button>
+      <button class="chip" data-occ="anniversary" role="tab" aria-selected="false">Anniversary</button>
+      <button class="chip" data-occ="justbecause" role="tab" aria-selected="false">Just because</button>
+      <button class="chip" data-occ="sympathy" role="tab" aria-selected="false">Sympathy</button>
+    </div>
+    <div class="occ-card reveal" id="occ-card">
+      <figure class="occ-photo"><img id="occ-img" src="__ARR4__" alt="A bright hand-arranged bouquet from Buds and Blooms"></figure>
+      <div class="occ-body">
+        <h3 class="occ-title" id="occ-title">Birthday</h3>
+        <p class="occ-text" id="occ-text">A bright hand-tied arrangement, made in the shop that morning — with something from the gift shelf tied on if you like.</p>
+        <p class="cutoff-line" id="cutoff-line"><span class="clock">🕐</span><span id="cutoff-text">&nbsp;</span></p>
+        <a class="btn btn-solid" href="tel:3608255321" id="occ-cta">Call &amp; send it</a>
+      </div>
+    </div>
+    <div class="deliver-note reveal">
+      <p><b>Same-day delivery</b> to Enumclaw, Buckley, Bonney Lake, Sumner, Orting, Black Diamond, Ravensdale, Cumberland, Wilkeson &amp; Carbonado.</p>
+      <p class="gndl"><b>Not ready yet? Gift Now, Deliver Later</b> — choose the flowers today and we'll deliver them on the day you pick.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section id="story" aria-label="Our story">
+  <div class="wrap find-grid">
+    <figure class="print reveal">
+      <img src="__STOREFRONT__" alt="The Buds and Blooms storefront — red sign band, white awning, and the OPEN neon glowing">
+      <figcaption>Look for the red sign and the OPEN neon.</figcaption>
+    </figure>
+    <div class="story-copy reveal">
+      <p class="eyebrow"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>Our story</p>
+      <h2>The shop Enumclaw sends its <em>love</em> through.</h2>
+      <p>Buds &amp; Blooms is a family operation run by owner <b>Alana Christenson</b> — the shop that's been arranging Enumclaw's birthdays, weddings and goodbyes for a generation.</p>
+      <p>Walk in and someone like <b>Evelyn</b> will walk you through what you might need — that's straight out of a customer's review, and it's how the whole shop works. Tell us who it's for. We'll take it from there.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IN THE SHOP: KRAFT TAGS ============ -->
+<section id="shop" aria-label="In the shop">
+  <div class="ghost" aria-hidden="true">Blooms</div>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>More than bouquets</p>
+      <h2>In the <em>shop.</em></h2>
+      <p class="sub">Everything on the shelves is pick-up-able today — or tucked in beside a bouquet.</p>
+    </div>
+    <div class="tags reveal">
+      <button class="tag">House plants</button>
+      <button class="tag">European garden baskets</button>
+      <button class="tag">Balloons</button>
+      <button class="tag">Candles &amp; bath soaps</button>
+      <button class="tag">Seattle's Best Chocolates</button>
+      <button class="tag">Wine pairings</button>
+      <button class="tag">Wedding flowers</button>
+      <button class="tag">Sunday service flowers</button>
+      <button class="tag">Corporate &amp; house accounts</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews" aria-label="Reviews">
+  <div class="wrap">
+    <div class="rev-head reveal">
+      <span class="rev-score">4.8</span>
+      <span class="rev-stars" aria-label="4.8 out of 5 stars">★★★★★</span>
+      <span class="rev-src">122+ reviews on Google</span>
+    </div>
+    <div class="rev-grid">
+      <article class="rev-card reveal">
+        <p class="rev-quote">"Their website was super simple to use, and I loved how delivery was fast and the flowers arrived so beautiful."</p>
+        <div class="rev-who">
+          <span class="rev-disc" style="background:var(--brand)">E</span>
+          <span><span class="rev-name">Emily</span><br><span class="rev-meta" aria-label="5 stars">★★★★★</span></span>
+        </div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="rev-quote">"Buds and Blooms Enumclaw went above and beyond with the flowers I ordered for my brother in law's funeral service."</p>
+        <div class="rev-who">
+          <span class="rev-disc" style="background:var(--accent)">B</span>
+          <span><span class="rev-name">Becky</span><br><span class="rev-meta" aria-label="5 stars">★★★★★</span></span>
+        </div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="rev-quote">"Always a Great place in Enumclaw to have Tasteful, Fresh &amp; Beautiful Flowers delivered on time and with no problems."</p>
+        <div class="rev-who">
+          <span class="rev-disc" style="background:var(--leaf)">B</span>
+          <span><span class="rev-name">Bruce</span><br><span class="rev-meta" aria-label="5 stars">★★★★★</span></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section id="cta" aria-label="Send flowers">
+  <div class="wrap reveal">
+    <p class="eyebrow" style="justify-content:center;color:var(--brand-soft)"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>One call does it</p>
+    <h2>Somebody's day is about to get <em>a lot better.</em></h2>
+    <p class="sub">Tell us the occasion and the address — the shop handles the rest.</p>
+    <div class="btn-row">
+      <a class="btn btn-solid" href="tel:3608255321">Call the shop</a>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Buds+and+Blooms+1409+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Get directions</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-lockup">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>
+      <span class="lname">Buds &amp; Blooms at Enumclaw</span>
+    </div>
+    <div class="foot-contact">
+      <a href="tel:3608255321">(360) 825-5321</a>
+      <a href="mailto:wecare@enumclawflorist.com">wecare@enumclawflorist.com</a>
+      <a href="https://www.facebook.com/p/Buds-Blooms-Enumclaw-100057932749897/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+document.body.classList.add('js');
+
+/* ---------- nav ---------- */
+(function(){
+  var t = document.getElementById('nav-toggle'), n = document.getElementById('main-nav');
+  function close(){ n.classList.remove('open'); document.body.classList.remove('nav-open'); t.setAttribute('aria-expanded','false'); }
+  t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    document.body.classList.toggle('nav-open', open);
+    t.setAttribute('aria-expanded', open);
+  });
+  n.addEventListener('click', function(e){ if (e.target.tagName === 'A') close(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  document.addEventListener('click', function(e){
+    if (n.classList.contains('open') && !n.contains(e.target) && !t.contains(e.target)) close();
+  });
+})();
+
+/* ---------- live clock: their real hours ---------- */
+var HOURS = {
+  tz: 'America/Los_Angeles',
+  days: { 0:null, 1:[9,17], 2:[9,17], 3:[9,17], 4:[9,17], 5:[9,17], 6:[9,16] },
+  cutoff: { 0:null, 1:13, 2:13, 3:13, 4:13, 5:13, 6:10 }
+};
+var DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+function nowLA(){
+  var q = new URLSearchParams(location.search);
+  var parts = new Intl.DateTimeFormat('en-US', {timeZone:HOURS.tz, weekday:'short', hour:'numeric', minute:'numeric', hour12:false}).formatToParts(new Date());
+  var map = {}; parts.forEach(function(p){ map[p.type] = p.value; });
+  var day = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[map.weekday];
+  var h = parseInt(map.hour,10) % 24 + parseInt(map.minute,10)/60;
+  if (q.has('demo')) h = parseFloat(q.get('demo'));
+  if (q.has('day')) day = parseInt(q.get('day'),10);
+  return {day:day, h:h};
+}
+function fmtHour(h){
+  var hh = Math.floor(h), mm = Math.round((h-hh)*60);
+  var ap = hh >= 12 ? 'PM' : 'AM';
+  var h12 = hh % 12; if (h12 === 0) h12 = 12;
+  return h12 + (mm ? ':' + (mm<10?'0':'')+mm : '') + ' ' + ap;
+}
+function nextOpen(p){
+  for (var i = 1; i <= 7; i++){
+    var d = (p.day + i) % 7;
+    if (HOURS.days[d]) return {day:d, at:HOURS.days[d][0], inDays:i};
+  }
+  return null;
+}
+function clockState(){
+  var p = nowLA(), span = HOURS.days[p.day];
+  var open = !!(span && p.h >= span[0] && p.h < span[1]);
+  return {p:p, span:span, open:open};
+}
+function renderClock(){
+  var s = clockState(), pill = document.getElementById('live-pill'),
+      ptxt = pill.querySelector('.ptxt'), band = document.getElementById('find-us'),
+      status = document.getElementById('status-text');
+  if (s.open){
+    pill.classList.add('is-open'); band.classList.add('is-open');
+    ptxt.innerHTML = 'Open <span class="till">&middot; til ' + fmtHour(s.span[1]) + '</span>';
+    status.textContent = 'Open now — closes at ' + fmtHour(s.span[1]);
+  } else {
+    pill.classList.remove('is-open'); band.classList.remove('is-open');
+    var nx = nextOpen(s.p);
+    var when = nx.inDays === 1 ? 'tomorrow' : DAY_NAMES[nx.day];
+    if (s.span && s.p.h < s.span[0]) when = 'today';
+    var at = s.span && s.p.h < s.span[0] ? s.span[0] : nx.at;
+    ptxt.innerHTML = 'Closed <span class="till">&middot; opens ' + when + ' ' + fmtHour(at) + '</span>';
+    status.textContent = 'Closed — opens ' + when + ' at ' + fmtHour(at);
+  }
+  document.querySelectorAll('.hours-rows li').forEach(function(li){
+    var days = li.getAttribute('data-days').split(',').map(Number);
+    li.classList.toggle('today', days.indexOf(s.p.day) !== -1);
+  });
+}
+renderClock();
+setInterval(renderClock, 60000);
+
+/* ---------- same-day cutoff sentence ---------- */
+function cutoffSentence(){
+  var s = clockState(), p = s.p, cut = HOURS.cutoff[p.day];
+  if (p.day === 0) return {past:true,  text:"We're closed Sundays — call Monday morning and it delivers the same day."};
+  if (cut && p.h < cut && s.span && p.h < s.span[1]){
+    return {past:false, text:'Order by ' + fmtHour(cut) + ' today and this can still be delivered this afternoon.'};
+  }
+  if (p.day === 6) return {past:true, text:"Past Saturday's " + fmtHour(HOURS.cutoff[6]) + " cutoff — call and we'll deliver it Monday."};
+  return {past:true, text:"Past today's " + fmtHour(cut) + " same-day cutoff — call now and it goes out tomorrow."};
+}
+function renderCutoff(){
+  var c = cutoffSentence(), line = document.getElementById('cutoff-line');
+  document.getElementById('cutoff-text').textContent = c.text;
+  line.classList.toggle('past', c.past);
+  line.querySelector('.clock').textContent = c.past ? '🕐' : '🚚';
+}
+renderCutoff();
+setInterval(renderCutoff, 60000);
+
+/* ---------- occasion picker ---------- */
+var OCCASIONS = {
+  birthday: {
+    title: 'Birthday',
+    text: 'A bright hand-tied arrangement, made in the shop that morning — with something from the gift shelf tied on if you like.',
+    img: '__ARR4__',
+    alt: 'A bright hand-arranged birthday bouquet from Buds and Blooms'
+  },
+  anniversary: {
+    title: 'Anniversary',
+    text: 'Roses and soft garden blooms, arranged fresh — with a bottle to pair alongside if you want to really land it.',
+    img: '__ARR3__',
+    alt: 'Pink roses and daisies arranged in a vase'
+  },
+  justbecause: {
+    title: 'Just because',
+    text: 'A sunny pick-me-up — the kind of bouquet that needs no reason and fixes the whole week.',
+    img: '__ARR6__',
+    alt: 'A cheerful arrangement of yellow daisies'
+  },
+  sympathy: {
+    title: 'Sympathy',
+    text: 'Sympathy arrangements handled gently, delivered right to services anywhere on the plateau.',
+    img: '__ARR8__',
+    alt: 'A soft pink and lavender sympathy arrangement'
+  }
+};
+(function(){
+  var card = document.getElementById('occ-card');
+  document.querySelectorAll('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); c.setAttribute('aria-selected','false'); });
+      chip.classList.add('on'); chip.setAttribute('aria-selected','true');
+      var o = OCCASIONS[chip.getAttribute('data-occ')];
+      document.getElementById('occ-title').textContent = o.title;
+      document.getElementById('occ-text').textContent = o.text;
+      var img = document.getElementById('occ-img');
+      img.src = o.img; img.alt = o.alt;
+      renderCutoff();
+      card.classList.remove('bloom');
+      void card.offsetWidth; /* restart animation */
+      card.classList.add('bloom');
+    });
+  });
+})();
+
+/* ---------- kraft tag pop ---------- */
+document.querySelectorAll('.tag').forEach(function(tag){
+  tag.addEventListener('click', function(){
+    tag.classList.remove('pop');
+    void tag.offsetWidth;
+    tag.classList.add('pop');
+  });
+});
+
+/* ---------- scroll reveal ---------- */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
