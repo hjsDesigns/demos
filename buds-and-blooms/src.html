@@ -130,7 +130,7 @@ section{padding:clamp(3.5rem,8vw,6rem) 0}
 }
 .hero-copy{
   position:relative;z-index:3;text-align:center;
-  padding:clamp(2.2rem,6vh,4.5rem) var(--pad) 1rem;
+  padding:clamp(1.8rem,5vh,3.4rem) var(--pad) 1rem;
   max-width:820px;margin:0 auto;
 }
 .hero-copy .eyebrow{justify-content:center}
@@ -148,19 +148,33 @@ section{padding:clamp(3.5rem,8vw,6rem) 0}
 }
 .garland-track{display:flex;width:max-content;animation:drift 48s linear infinite}
 .garland-track img{
-  width:clamp(215px,26vw,330px);height:auto;flex:none;
+  width:clamp(300px,min(38vw,52vh),500px);height:auto;flex:none;
   /* cream ground is baked into the JPEGs (multiply vs --bg-2) — no live blend, no stacking-context traps */
 }
 .garland-track img:nth-child(even){transform:translateY(clamp(10px,2.5vh,26px))}
 @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .petal{
-  position:absolute;z-index:2;top:-40px;width:22px;height:22px;opacity:.75;
+  position:absolute;z-index:2;top:-40px;width:22px;height:22px;opacity:.78;
   animation:fall linear infinite;pointer-events:none;
 }
+.petal.sway{animation-name:fallSway}
 @keyframes fall{
   0%{transform:translateY(-5vh) rotate(0deg)}
   100%{transform:translateY(108vh) rotate(320deg)}
 }
+@keyframes fallSway{
+  0%{transform:translate(0,-5vh) rotate(0deg)}
+  25%{transform:translate(26px,24vh) rotate(85deg)}
+  50%{transform:translate(-18px,52vh) rotate(170deg)}
+  75%{transform:translate(22px,80vh) rotate(250deg)}
+  100%{transform:translate(-8px,108vh) rotate(330deg)}
+}
+.hero-bloom{position:absolute;z-index:1;pointer-events:none;opacity:.55}
+.hero-bloom svg{width:100%;height:100%;display:block}
+.hb-l{left:clamp(-64px,-4vw,-24px);top:5%;width:clamp(120px,17vw,250px);height:auto;aspect-ratio:1;animation:spinSlow 80s linear infinite}
+.hb-r{right:clamp(-52px,-3.5vw,-18px);top:36%;width:clamp(96px,13vw,200px);aspect-ratio:1;animation:spinSlow 100s linear infinite reverse}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@media (max-width:600px){.hb-r{display:none}.hb-l{opacity:.4}}
 .scroll-hint{
   position:absolute;left:50%;bottom:.6rem;transform:translateX(-50%);z-index:3;
   color:var(--muted);font-size:1.2rem;animation:bob 2s ease-in-out infinite;pointer-events:none;
@@ -178,7 +192,6 @@ section{padding:clamp(3.5rem,8vw,6rem) 0}
 #find-us.is-open .status-line .dot{background:var(--leaf);animation:pulse 2.2s infinite}
 .addr{color:var(--muted);margin-bottom:.35rem}
 .addr a{font-weight:600}
-.free-del{font-weight:700;color:var(--brand-text);font-size:.95rem}
 .hours-rows{list-style:none;display:flex;flex-direction:column;gap:.55rem}
 .hours-rows li{
   display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
@@ -286,6 +299,42 @@ section{padding:clamp(3.5rem,8vw,6rem) 0}
   100%{transform:rotate(var(--rot)) scale(1)}
 }
 
+/* ---------- delivery map ---------- */
+#delivery .find-grid{align-items:center}
+.map-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(.9rem,2vw,1.4rem);box-shadow:0 14px 34px -20px rgba(42,27,34,.4);
+}
+.map-card svg{width:100%;height:auto;display:block}
+#delmap .ring{fill:color-mix(in srgb, var(--brand) 4%, transparent);stroke:var(--brand-soft);stroke-width:2.5;stroke-dasharray:3 9;stroke-linecap:round;pointer-events:none}
+#delmap .ring-label,#delmap .compass,#delmap .rainier,#delmap .rainier-label,#del-route,#del-van,#del-bloom{pointer-events:none}
+#delmap .ring-label{font-family:var(--display);font-style:italic;font-size:19px;fill:var(--muted);opacity:.9}
+#delmap .compass{font-family:var(--mono);font-size:20px;fill:var(--muted);opacity:.75}
+#delmap .rainier{fill:var(--muted);opacity:.55}
+#delmap .rainier-label{font-family:var(--display);font-style:italic;font-size:18px;fill:var(--muted);opacity:.75}
+#del-route{stroke:var(--brand);stroke-width:4;stroke-dasharray:2 12;stroke-linecap:round;opacity:.95}
+#del-van{font-size:36px}
+.town{cursor:pointer}
+.town .hit{fill:transparent;pointer-events:all}
+.town .dot{fill:var(--paper);stroke:var(--brand);stroke-width:3.5;transition:fill .2s}
+.town:hover .dot{fill:var(--brand-soft)}
+.town.on .dot{fill:var(--brand)}
+.town text{font-family:var(--body);font-weight:700;font-size:23px;fill:var(--ink);pointer-events:none}
+.town.on text{fill:var(--brand-text)}
+.town:focus{outline:none}
+.town:focus-visible .dot{stroke:var(--ink);stroke-width:5}
+#delmap .shop-label{font-family:var(--display);font-style:italic;font-weight:700;font-size:24px;fill:var(--brand-text)}
+#del-bloom .bp{transform-box:fill-box;transform-origin:center}
+#del-bloom.pop .bp{animation:bloomPop .55s cubic-bezier(.2,1.5,.4,1) backwards}
+@keyframes bloomPop{from{transform:scale(0) rotate(-60deg)}to{transform:scale(1) rotate(0deg)}}
+.del-result{
+  display:flex;align-items:flex-start;gap:.6em;font-weight:700;font-size:1rem;
+  color:var(--ink);background:var(--bg);border:1px solid var(--line);
+  border-radius:12px;padding:.85em 1em;margin-top:1rem;font-family:var(--body);
+}
+.del-result .truck{flex:none;font-size:1.15em}
+.del-result b{color:var(--brand-text)}
+
 /* ---------- reviews ---------- */
 .rev-head{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
 .rev-score{font-family:var(--display);font-size:clamp(2rem,4vw,2.8rem);font-weight:700}
@@ -346,6 +395,8 @@ footer a:hover{color:var(--brand-soft)}
 @media (prefers-reduced-motion:reduce){
   .garland-track{animation:none}
   .petal{display:none}
+  .hero-bloom{animation:none}
+  #del-bloom.pop .bp{animation:none}
   .scroll-hint{animation:none}
   .live-pill .dot,.status-line .dot{animation:none!important}
   .js .reveal{opacity:1;transform:none;transition:none}
@@ -407,6 +458,7 @@ footer a:hover{color:var(--brand-soft)}
       <a href="#occasions">Occasions</a>
       <a href="#story">Our story</a>
       <a href="#shop">In the shop</a>
+      <a href="#delivery">Delivery</a>
       <a href="#reviews">Reviews</a>
       <a class="nav-cta" href="tel:3608255321">Call the shop</a>
     </nav>
@@ -439,11 +491,19 @@ footer a:hover{color:var(--brand-soft)}
       <img src="__ARR7__" alt="">
     </div>
   </div>
-  <span class="petal" style="left:12%;animation-duration:14s;animation-delay:0s"><svg viewBox="0 0 22 22" width="22" height="22"><use href="#petalshape"/></svg></span>
-  <span class="petal" style="left:32%;animation-duration:18s;animation-delay:4s"><svg viewBox="0 0 22 22" width="17" height="17"><use href="#petalshape"/></svg></span>
-  <span class="petal" style="left:55%;animation-duration:15s;animation-delay:8s"><svg viewBox="0 0 22 22" width="20" height="20"><use href="#petalshape"/></svg></span>
-  <span class="petal" style="left:72%;animation-duration:20s;animation-delay:2s"><svg viewBox="0 0 22 22" width="15" height="15"><use href="#petalshape"/></svg></span>
-  <span class="petal" style="left:88%;animation-duration:16s;animation-delay:10s"><svg viewBox="0 0 22 22" width="19" height="19"><use href="#petalshape"/></svg></span>
+  <span class="hero-bloom hb-l" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#gerbera"/></svg></span>
+  <span class="hero-bloom hb-r" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#gerbera"/></svg></span>
+  <span class="petal" style="left:4%;animation-duration:16s;animation-delay:0s"><svg viewBox="0 0 22 22" width="26" height="26"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:12%;animation-duration:14s;animation-delay:5s"><svg viewBox="0 0 22 22" width="22" height="22"><use href="#petalshape"/></svg></span>
+  <span class="petal sway" style="left:20%;animation-duration:19s;animation-delay:9s"><svg viewBox="0 0 22 22" width="30" height="30"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:28%;animation-duration:13s;animation-delay:2s"><svg viewBox="0 0 22 22" width="18" height="18"><use href="#petalshape"/></svg></span>
+  <span class="petal sway" style="left:36%;animation-duration:17s;animation-delay:11s"><svg viewBox="0 0 22 22" width="34" height="34"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:45%;animation-duration:15s;animation-delay:6s"><svg viewBox="0 0 22 22" width="20" height="20"><use href="#petalshape"/></svg></span>
+  <span class="petal sway" style="left:54%;animation-duration:18s;animation-delay:0s"><svg viewBox="0 0 22 22" width="28" height="28"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:63%;animation-duration:14s;animation-delay:13s"><svg viewBox="0 0 22 22" width="24" height="24"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:72%;animation-duration:20s;animation-delay:3s"><svg viewBox="0 0 22 22" width="19" height="19"><use href="#petalshape"/></svg></span>
+  <span class="petal sway" style="left:81%;animation-duration:16s;animation-delay:8s"><svg viewBox="0 0 22 22" width="32" height="32"><use href="#petalshape"/></svg></span>
+  <span class="petal" style="left:90%;animation-duration:13s;animation-delay:10s"><svg viewBox="0 0 22 22" width="22" height="22"><use href="#petalshape"/></svg></span>
 </section>
 
 <!-- ============ WHEN TO FIND US ============ -->
@@ -453,7 +513,6 @@ footer a:hover{color:var(--brand-soft)}
       <p class="eyebrow"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>When to find us</p>
       <p class="status-line"><span class="dot"></span><span id="status-text">&nbsp;</span></p>
       <p class="addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Buds+and+Blooms+1409+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">1409 Griffin Ave, Enumclaw, WA 98022 ↗</a></p>
-      <p class="free-del">Free delivery within 5 miles.</p>
     </div>
     <ul class="hours-rows reveal">
       <li data-days="1,2,3,4,5"><span class="day">Mon – Fri</span><span class="time">9:00 AM – 5:00 PM<span class="cut">same-day orders by 1 PM</span></span></li>
@@ -485,10 +544,6 @@ footer a:hover{color:var(--brand-soft)}
         <p class="cutoff-line" id="cutoff-line"><span class="clock">🕐</span><span id="cutoff-text">&nbsp;</span></p>
         <a class="btn btn-solid" href="tel:3608255321" id="occ-cta">Call &amp; send it</a>
       </div>
-    </div>
-    <div class="deliver-note reveal">
-      <p><b>Same-day delivery</b> to Enumclaw, Buckley, Bonney Lake, Sumner, Orting, Black Diamond, Ravensdale, Cumberland, Wilkeson &amp; Carbonado.</p>
-      <p class="gndl"><b>Not ready yet? Gift Now, Deliver Later</b> — choose the flowers today and we'll deliver them on the day you pick.</p>
     </div>
   </div>
 </section>
@@ -529,6 +584,47 @@ footer a:hover{color:var(--brand-soft)}
       <button class="tag">Sunday service flowers</button>
       <button class="tag">Corporate &amp; house accounts</button>
     </div>
+  </div>
+</section>
+
+<!-- ============ WHERE WE DELIVER: THE PLATEAU MAP ============ -->
+<section id="delivery" aria-label="Where we deliver">
+  <div class="wrap find-grid">
+    <div class="reveal">
+      <p class="eyebrow"><svg class="gerb" viewBox="0 0 100 100" aria-hidden="true"><use href="#gerbera"/></svg>Where we deliver</p>
+      <h2>Same-day, all over <em>the plateau.</em></h2>
+      <p class="sub">Arranged in the shop, hand-delivered the same day to nine towns around us.</p>
+      <p class="sub gndl" style="margin-top:1rem"><b style="color:var(--brand-text)">Not ready yet? Gift Now, Deliver Later</b> — choose the flowers today and we'll deliver them on the day you pick.</p>
+    </div>
+    <figure class="map-card reveal">
+      <svg id="delmap" viewBox="0 0 730 778" role="group" aria-label="Delivery map — tap a town">
+        <text class="compass" x="52" y="56">N ↑</text>
+        <circle class="ring" cx="530.4" cy="420.9" r="170"/>
+        <text class="ring-label" x="440" y="318" text-anchor="middle">free delivery within 5 mi</text>
+        <line id="del-route" x1="530.4" y1="420.9" x2="530.4" y2="420.9" visibility="hidden"/>
+        <g id="towns">
+          <g class="town" data-town="ravensdale" role="button" tabindex="0" aria-label="Ravensdale — check delivery"><circle class="hit" cx="546.6" cy="72" r="48"/><circle class="dot" cx="546.6" cy="72" r="10"/><text x="546.6" y="41" text-anchor="middle">Ravensdale</text></g>
+          <g class="town" data-town="blackdiamond" role="button" tabindex="0" aria-label="Black Diamond — check delivery"><circle class="hit" cx="507.3" cy="174.3" r="48"/><circle class="dot" cx="507.3" cy="174.3" r="10"/><text x="507.3" y="143" text-anchor="middle">Black Diamond</text></g>
+          <g class="town" data-town="cumberland" role="button" tabindex="0" aria-label="Cumberland — check delivery"><circle class="hit" cx="583.9" cy="237.4" r="48"/><circle class="dot" cx="583.9" cy="237.4" r="10"/><text x="583.9" y="272" text-anchor="middle">Cumberland</text></g>
+          <g class="town" data-town="sumner" role="button" tabindex="0" aria-label="Sumner — check delivery"><circle class="hit" cx="130" cy="421.8" r="48"/><circle class="dot" cx="130" cy="421.8" r="10"/><text x="130" y="391" text-anchor="middle">Sumner</text></g>
+          <g class="town" data-town="bonneylake" role="button" tabindex="0" aria-label="Bonney Lake — check delivery"><circle class="hit" cx="215.3" cy="482.5" r="48"/><circle class="dot" cx="215.3" cy="482.5" r="10"/><text x="215.3" y="451" text-anchor="middle">Bonney Lake</text></g>
+          <g class="town" data-town="buckley" role="button" tabindex="0" aria-label="Buckley — check delivery"><circle class="hit" cx="470.4" cy="515.6" r="48"/><circle class="dot" cx="470.4" cy="515.6" r="10"/><text x="470.4" y="552" text-anchor="middle">Buckley</text></g>
+          <g class="town" data-town="orting" role="button" tabindex="0" aria-label="Orting — check delivery"><circle class="hit" cx="187.5" cy="668.1" r="48"/><circle class="dot" cx="187.5" cy="668.1" r="10"/><text x="187.5" y="702" text-anchor="middle">Orting</text></g>
+          <g class="town" data-town="wilkeson" role="button" tabindex="0" aria-label="Wilkeson — check delivery"><circle class="hit" cx="438.6" cy="645.4" r="42"/><circle class="dot" cx="438.6" cy="645.4" r="10"/><text x="460" y="652" text-anchor="start">Wilkeson</text></g>
+          <g class="town" data-town="carbonado" role="button" tabindex="0" aria-label="Carbonado — check delivery"><circle class="hit" cx="429.6" cy="710.6" r="42"/><circle class="dot" cx="429.6" cy="710.6" r="10"/><text x="429.6" y="745" text-anchor="middle">Carbonado</text></g>
+        </g>
+        <g id="shopmark" class="town" data-town="shop" role="button" tabindex="0" aria-label="Buds and Blooms — the shop">
+          <rect class="hit" x="486" y="377" width="190" height="98" rx="14"/>
+          <use href="#gerbera" transform="translate(505.4,395.9) scale(.5)"/>
+          <text class="shop-label" x="562" y="463" text-anchor="start">the shop</text>
+        </g>
+        <path class="rainier" d="M615 726 L640 694 L650 706 L659 690 L685 726 Z"/>
+        <text class="rainier-label" x="650" y="748" text-anchor="middle">Mt Rainier ↘</text>
+        <text id="del-van" text-anchor="middle" visibility="hidden">🚚</text>
+        <g id="del-bloom" visibility="hidden"><g class="bp"><use href="#gerbera" transform="scale(.34)"/></g></g>
+      </svg>
+      <figcaption class="del-result" id="del-result" aria-live="polite"><span class="truck">🚚</span><span id="del-result-text">Tap a town.</span></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -749,6 +845,83 @@ document.querySelectorAll('.tag').forEach(function(tag){
     tag.classList.add('pop');
   });
 });
+
+/* ---------- delivery map: tap a town, the van makes the run ---------- */
+(function(){
+  var SHOP = {x:530.4, y:420.9};
+  var DEL = {
+    buckley:      {x:470.4, y:515.6, mi:3,  name:'Buckley'},
+    bonneylake:   {x:215.3, y:482.5, mi:10, name:'Bonney Lake'},
+    sumner:       {x:130,   y:421.8, mi:12, name:'Sumner'},
+    orting:       {x:187.5, y:668.1, mi:13, name:'Orting'},
+    blackdiamond: {x:507.3, y:174.3, mi:7,  name:'Black Diamond'},
+    ravensdale:   {x:546.6, y:72,   mi:10, name:'Ravensdale'},
+    cumberland:   {x:583.9, y:237.4, mi:6,  name:'Cumberland'},
+    wilkeson:     {x:438.6, y:645.4, mi:7,  name:'Wilkeson'},
+    carbonado:    {x:429.6, y:710.6, mi:9,  name:'Carbonado'}
+  };
+  var route = document.getElementById('del-route'),
+      van = document.getElementById('del-van'),
+      bloom = document.getElementById('del-bloom'),
+      out = document.getElementById('del-result-text'),
+      reduce = window.matchMedia('(prefers-reduced-motion: reduce)'),
+      runId = 0;
+  function setBloom(x, y, popIt){
+    bloom.setAttribute('transform', 'translate(' + (x - 17) + ',' + (y - 17) + ')');
+    bloom.setAttribute('visibility', 'visible');
+    bloom.classList.remove('pop');
+    if (popIt){ void bloom.getBoundingClientRect(); bloom.classList.add('pop'); }
+  }
+  function drive(t){
+    var id = ++runId;
+    route.setAttribute('visibility', 'visible');
+    if (reduce.matches){
+      route.setAttribute('x2', t.x); route.setAttribute('y2', t.y);
+      van.setAttribute('visibility', 'hidden');
+      setBloom(t.x, t.y, false);
+      return;
+    }
+    var start = null, DUR = 700,
+        east = t.x > SHOP.x, sx = east ? -1 : 1;
+    bloom.setAttribute('visibility', 'hidden');
+    van.setAttribute('visibility', 'visible');
+    function step(ts){
+      if (id !== runId) return;
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / DUR, 1),
+          e = p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2,
+          x = SHOP.x + (t.x - SHOP.x)*e,
+          y = SHOP.y + (t.y - SHOP.y)*e;
+      route.setAttribute('x2', x); route.setAttribute('y2', y);
+      van.setAttribute('transform', 'translate(' + x + ',' + (y - 12) + ') scale(' + sx + ',1)');
+      if (p < 1){ requestAnimationFrame(step); }
+      else { van.setAttribute('visibility', 'hidden'); setBloom(t.x, t.y, true); }
+    }
+    requestAnimationFrame(step);
+  }
+  function pick(g){
+    document.querySelectorAll('#delmap .town').forEach(function(el){ el.classList.remove('on'); });
+    g.classList.add('on');
+    var key = g.getAttribute('data-town');
+    if (key === 'shop'){
+      runId++;
+      route.setAttribute('visibility', 'hidden');
+      van.setAttribute('visibility', 'hidden');
+      bloom.setAttribute('visibility', 'hidden');
+      out.innerHTML = "That's us. Come say hi.";
+      return;
+    }
+    var t = DEL[key];
+    out.innerHTML = '<b>' + t.name + '</b> — same-day delivery ✓ · about ' + t.mi + ' miles from the shop.';
+    drive(t);
+  }
+  document.querySelectorAll('#delmap .town').forEach(function(g){
+    g.addEventListener('click', function(){ pick(g); });
+    g.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(g); }
+    });
+  });
+})();
 
 /* ---------- scroll reveal ---------- */
 (function(){
