@@ -484,8 +484,8 @@ p.eyebrow{font-size:.7rem;line-height:1.62;max-width:none;margin:0;color:var(--b
         <div class="pin-card" id="pin-card" aria-live="polite">
           <svg class="ghost-crown" viewBox="0 0 24 21" aria-hidden="true"><use href="#crown"/></svg>
           <p class="kicker" id="pc-kicker">¿Qué comemos?</p>
-          <h3 id="pc-name">Tap the piñata.</h3>
-          <p class="desc" id="pc-desc">Every hit pulls a real dish off the food board hanging in the taquería — the same board that has never been anywhere online until now.</p>
+          <h3 id="pc-name">See what they cook.</h3>
+          <p class="desc" id="pc-desc">Give it a swing and the board shows you something they actually make — real dish, real price, straight off the taquería board that has never been online until now.</p>
           <span class="tag" id="pc-tag" hidden></span>
         </div>
       </div>
@@ -837,10 +837,10 @@ function showDish(){
   var i;do{i=Math.floor(Math.random()*DISHES.length);}while(i===lastDish&&DISHES.length>1);
   lastDish=i;
   var dish=DISHES[i];
-  pcKicker.textContent='Out of the piñata';
+  pcKicker.textContent='On the board today';
   pcName.innerHTML=dish.n+'<span class="price">'+dish.p+'</span>';
   pcDesc.textContent=dish.d;
-  pcTag.textContent=dish.t+' · on the board';
+  pcTag.textContent=dish.t+' · ask at the counter';
   pcTag.hidden=false;
   card.classList.remove('pop');void card.offsetWidth;card.classList.add('pop');
 }
