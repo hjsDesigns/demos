@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bonnie's Buns — Cinnamon Roll Bakery in Buckley, WA</title>
+<meta name="description" content="Bonnie's Buns — the plateau's only dedicated cinnamon-roll bakery. A rotating case of huge, fresh-from-the-pan rolls in Mr. Bill's Plaza, Buckley, WA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — Bonnie's Buns world ============ */
+:root{
+  --brand:#C9463F;          /* their red vinyl banner */
+  --brand-text:#A6352F;
+  --brand-bright:#D9534F;
+  --accent:#4C7A4E;         /* petunia-basket foliage, the "open" green */
+  --cinnamon:#8B4A2F;       /* the swirl itself */
+  --caramel:#C98A3E;
+  --ink:#33241C;            /* dark cocoa ink */
+  --bg:#F5EDE0;             /* cream-cheese icing cream — never white */
+  --bg-2:#EBDFC9;           /* deeper cream band */
+  --paper:#FAF4E9;
+  --muted:#7A6A5B;
+  --line:#DFD3BE;
+  --dark:#5C1F24;           /* their interior maroon wall */
+  --dark-2:#6E2A30;
+  --warm:#E0A452;           /* highlighted words on maroon */
+  --display:'Crete Round', 'Georgia', serif;
+  --body:'Cabin', -apple-system, 'Helvetica Neue', sans-serif;
+  --header-h:70px;
+  --pad:clamp(18px,4.5vw,48px);
+  --maxw:1160px;
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{font-family:var(--body);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;color:var(--brand-text);display:flex;align-items:center;gap:.6em}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--brand);border-radius:2px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.12;margin:.45em 0 .5em}
+h2 em{font-style:italic;color:var(--brand-text)}
+.sub{color:var(--muted);max-width:60ch}
+section{position:relative;padding:clamp(58px,9vw,104px) 0}
+
+/* ============ header ============ */
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);z-index:60;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb, var(--line) 70%, transparent)}
+.site-header .wrap{height:100%;display:flex;align-items:center;gap:14px;max-width:1280px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo svg{width:34px;height:34px}
+.logo-name{font-family:var(--display);font-size:1.22rem;line-height:1;letter-spacing:.01em}
+.logo-sub{font-size:.6rem;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+.live-pill{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:8px 13px;border-radius:99px;background:var(--paper);border:1px solid var(--line);white-space:nowrap}
+.live-pill .dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.live-pill.open .dot{background:var(--accent);box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);animation:pulse 2.2s infinite}
+.live-pill.open{color:var(--accent)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+#main-nav{display:flex;align-items:center;gap:26px}
+#main-nav a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink)}
+#main-nav a:hover{color:var(--brand-text)}
+#main-nav a.cta{background:var(--brand);color:#fff;padding:10px 18px;border-radius:99px;transition:background .2s}
+#main-nav a.cta:hover{background:var(--brand-bright)}
+.nav-toggle{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-toggle span{display:block;width:22px;height:2.5px;background:var(--ink);border-radius:2px;transition:.25s}
+@media (max-width:880px){
+  .nav-toggle{display:flex}
+  #main-nav{position:fixed;top:var(--header-h);right:0;left:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:18px var(--pad) 24px;gap:16px;transform:translateY(-130%);transition:transform .28s ease;z-index:40}
+  #main-nav.open{transform:translateY(0)}
+  .live-pill{margin-left:auto;margin-right:4px}
+}
+
+/* ============ hero ============ */
+.hero{position:relative;height:calc(100svh - var(--header-h));min-height:530px;margin-top:var(--header-h);display:flex;flex-direction:column;overflow:hidden;background:var(--dark)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.02)}
+.js .hero-img{animation:kenburns 26s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.02) translateX(0)}to{transform:scale(1.12) translateX(-1.6%)}}
+.hero-img.mobile{display:none}
+@media (max-width:720px){.hero-img.desktop{display:none}.hero-img.mobile{display:block;object-position:50% 62%}}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(11deg, rgba(26,12,8,.82) 0%, rgba(26,12,8,.46) 34%, rgba(26,12,8,.06) 62%, rgba(26,12,8,.18) 100%)}
+.hero-grain{position:absolute;inset:0;z-index:2;opacity:.5;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.055'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-inner{position:relative;z-index:3;margin-top:auto;width:100%;padding-bottom:clamp(34px,6vh,72px)}
+.hero-eyebrow{color:#F3E3CB;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;display:flex;align-items:center;gap:.6em}
+.hero-eyebrow::before{content:"";width:26px;height:2px;background:var(--warm)}
+.hero h1{font-family:var(--display);font-weight:400;color:#FBF4E7;font-size:clamp(2.5rem,6.4vw,4.4rem);line-height:1.04;margin:.32em 0 .34em;max-width:13ch;text-shadow:0 2px 26px rgba(20,8,4,.55)}
+.hero h1 .swirlword{position:relative;white-space:nowrap}
+.hero h1 .swirlword svg{position:absolute;left:-2%;bottom:-.28em;width:104%;height:.42em;overflow:visible}
+.hero h1 .swirlword path{fill:none;stroke:var(--brand-bright);stroke-width:5;stroke-linecap:round}
+.js .hero h1 .swirlword path{stroke-dasharray:320;stroke-dashoffset:320;animation:draw 1s ease-out 1.15s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-sub{color:#EAD9C2;max-width:52ch;font-size:1.02rem;text-shadow:0 1px 14px rgba(20,8,4,.6)}
+.hero-sub .long{display:inline}.hero-sub .short{display:none}
+@media (max-width:720px){.hero-sub .long{display:none}.hero-sub .short{display:inline}}
+.hero-btns{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:.95rem;text-decoration:none;padding:14px 24px;border-radius:99px;min-height:48px;transition:transform .15s, background .2s}
+.btn:active{transform:scale(.97)}
+.btn-solid{background:var(--brand);color:#fff}
+.btn-solid:hover{background:var(--brand-bright)}
+.btn-ghost{background:color-mix(in srgb, #1A0C08 30%, transparent);color:#FBF4E7;border:1.5px solid rgba(251,244,231,.55);backdrop-filter:blur(4px)}
+.btn-ghost:hover{background:color-mix(in srgb, #1A0C08 50%, transparent)}
+.js .hero-stagger>*{opacity:0;transform:translateY(18px);animation:rise .7s ease-out forwards}
+.js .hero-stagger>*:nth-child(1){animation-delay:.15s}
+.js .hero-stagger>*:nth-child(2){animation-delay:.3s}
+.js .hero-stagger>*:nth-child(3){animation-delay:.45s}
+.js .hero-stagger>*:nth-child(4){animation-delay:.6s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ============ when to find us ============ */
+#find{background:var(--bg-2);padding:clamp(50px,7vw,84px) 0}
+.find-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.find-status{font-family:var(--display);font-style:italic;font-size:clamp(1.35rem,2.6vw,1.8rem);display:flex;align-items:center;gap:12px;margin:14px 0 8px}
+.find-status .dot{width:13px;height:13px;border-radius:50%;background:var(--muted);flex:none}
+.find-status.open .dot{background:var(--accent);animation:pulse 2.2s infinite}
+.find-address{color:var(--muted);line-height:1.55}
+.find-address a{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1.5px solid color-mix(in srgb, var(--brand) 40%, transparent)}
+.find-phone{margin-top:14px;font-weight:700;font-size:1.05rem}
+.find-phone a{text-decoration:none;color:var(--ink)}
+.find-phone a:hover{color:var(--brand-text)}
+.hours-rows{list-style:none;border-top:1px solid var(--line)}
+.hours-rows li{display:flex;justify-content:space-between;gap:16px;padding:11px 10px;border-bottom:1px solid var(--line);font-size:.98rem;color:var(--muted)}
+.hours-rows li span:first-child{font-weight:600;color:var(--ink)}
+.hours-rows li.today{background:color-mix(in srgb, var(--brand) 9%, transparent);border-left:3px solid var(--brand);color:var(--ink);border-radius:4px}
+.hours-rows li.today span:last-child{font-weight:700;color:var(--brand-text)}
+.proof-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{background:var(--paper);border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-size:.82rem;font-weight:700;display:inline-flex;align-items:center;gap:7px}
+.chip .star{color:var(--caramel)}
+@media (max-width:820px){.find-grid{grid-template-columns:1fr}}
+
+/* ============ THE CASE — signature gadget ============ */
+#case{overflow:hidden}
+.ghost-swirl{position:absolute;pointer-events:none;opacity:.05;z-index:0}
+.case-grid{display:grid;grid-template-columns:minmax(280px,1fr) 1.15fr;gap:clamp(26px,4.5vw,64px);align-items:center;position:relative;z-index:1}
+.roll-stage{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,3vw,34px);text-align:center;box-shadow:0 18px 44px -26px rgba(51,36,28,.45)}
+.roll-stage svg{width:min(300px,72vw);height:auto;margin:0 auto;display:block;transition:transform .18s ease}
+.roll-stage.pop svg{transform:scale(1.045)}
+.roll-name{font-family:var(--display);font-size:clamp(1.5rem,2.6vw,2rem);margin-top:10px}
+.roll-note{color:var(--brand-text);font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;min-height:1.4em;margin-top:2px}
+.roll-price{color:var(--muted);font-weight:600;margin-top:2px}
+.flavor-hint{color:var(--muted);font-weight:600;margin:2px 0 14px}
+.flavor-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+@media (min-width:560px){.flavor-tiles{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:881px){.flavor-tiles{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1040px){.flavor-tiles{grid-template-columns:repeat(3,1fr)}}
+.flavor-tiles button{font-family:var(--body);font-weight:700;font-size:.9rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:13px 10px;min-height:56px;cursor:pointer;display:flex;align-items:center;gap:9px;transition:transform .15s, border-color .2s, box-shadow .2s;text-align:left}
+.flavor-tiles button .fdot{width:17px;height:17px;border-radius:50%;flex:none;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.flavor-tiles button:hover{transform:translateY(-2px)}
+.flavor-tiles button.active{border-color:var(--brand);box-shadow:0 8px 20px -12px color-mix(in srgb, var(--brand) 70%, transparent);background:#fff0}
+.case-foot{margin-top:20px;color:var(--muted);font-size:.95rem}
+.case-foot strong{color:var(--ink)}
+.case-cta{margin-top:16px}
+.btn-brand{background:var(--brand);color:#fff}
+.btn-brand:hover{background:var(--brand-bright)}
+@media (max-width:880px){.case-grid{grid-template-columns:1fr}.roll-stage{order:-1}}
+
+/* ============ story ============ */
+#story{background:var(--bg-2)}
+.story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,76px);align-items:center;position:relative;z-index:1}
+.story-copy p{margin:0 0 1.05em;color:#54453A}
+.story-copy p strong{color:var(--ink)}
+.pull{font-family:var(--display);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);line-height:1.4;color:var(--dark);border-left:4px solid var(--brand);padding:6px 0 6px 20px;margin:1.4em 0}
+.print{background:var(--paper);border:1px solid var(--line);padding:14px 14px 12px;border-radius:6px;box-shadow:0 22px 44px -24px rgba(51,36,28,.5);transform:rotate(1.6deg)}
+.print img{border-radius:3px;width:100%;height:auto}
+.print figcaption{font-size:.85rem;color:var(--muted);padding-top:10px;font-style:italic;text-align:center}
+@media (max-width:820px){.story-grid{grid-template-columns:1fr}.print{transform:rotate(1deg);max-width:440px;margin:0 auto}}
+
+/* ============ gallery ============ */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.6vw,28px)}
+.gal-grid .print{transform:rotate(0deg)}
+.gal-grid .print:nth-child(odd){transform:rotate(-.8deg)}
+.gal-grid .print:nth-child(even){transform:rotate(.9deg)}
+.gal-grid .print img{aspect-ratio:4/4.6;object-fit:cover}
+@media (max-width:880px){.gal-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.gal-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+
+/* ============ three ways ============ */
+.ways-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,26px)}
+.way{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px}
+.way .icon{width:46px;height:46px;border-radius:14px;background:color-mix(in srgb, var(--brand) 12%, transparent);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.way .icon svg{width:24px;height:24px;stroke:var(--brand-text);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.way h3{font-family:var(--display);font-weight:400;font-size:1.25rem;margin-bottom:8px}
+.way p{color:var(--muted);font-size:.95rem}
+@media (max-width:820px){.ways-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+
+/* ============ reviews ============ */
+#reviews{background:var(--bg-2)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,26px)}
+.rev{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+.rev blockquote{font-size:.97rem;color:#54453A;line-height:1.6;font-style:italic}
+.rev-who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.rev-disc{width:44px;height:44px;border-radius:50%;color:#FBF4E7;font-weight:700;font-family:var(--display);font-size:1.15rem;display:flex;align-items:center;justify-content:center;flex:none}
+.rev-name{font-weight:700;font-size:.95rem}
+.rev-meta{color:var(--muted);font-size:.8rem}
+@media (max-width:820px){.rev-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+
+/* ============ closing quote band ============ */
+#home-bite{background:var(--dark);color:#F3E3CB;text-align:center;overflow:hidden}
+#home-bite .ghost-swirl path{stroke:#F3E3CB}
+#home-bite .eyebrow{color:var(--warm);justify-content:center}
+#home-bite .eyebrow::before{background:var(--warm)}
+.big-quote{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.28;max-width:21ch;margin:.5em auto .4em;color:#FBF4E7}
+.big-quote .hl{color:var(--warm)}
+.quote-attr{color:color-mix(in srgb, #F3E3CB 70%, transparent);font-size:.95rem}
+#home-bite .hero-btns{justify-content:center;margin-top:30px}
+#home-bite .btn-ghost{border-color:rgba(243,227,203,.5);color:#F3E3CB;background:transparent}
+#home-bite .btn-ghost:hover{background:rgba(243,227,203,.08)}
+
+/* ============ footer ============ */
+footer{background:#2A1A14;color:#CDBCA9;padding:52px 0 40px;font-size:.92rem}
+.foot-grid{display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between;align-items:flex-start}
+.foot-brand .logo-name{color:#F3E3CB;font-size:1.3rem}
+.foot-brand p{margin-top:10px;max-width:34ch;color:#A8927C}
+.foot-col h4{color:#F3E3CB;font-family:var(--body);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+.foot-col a{display:block;text-decoration:none;color:#CDBCA9;padding:3px 0}
+.foot-col a:hover{color:#F3E3CB}
+.foot-col p{padding:3px 0}
+.foot-note{border-top:1px solid #3E2A20;margin-top:38px;padding-top:20px;color:#8A745F;font-size:.8rem;text-align:center}
+
+/* ============ reveal ============ */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .js .hero-img,.js .hero-stagger>*,.live-pill.open .dot,.find-status.open .dot{animation:none !important;opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .js .hero h1 .swirlword path{animation:none;stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Bonnie's Buns home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" fill="#E9C79A"/><path d="M20 20 m-1.2 0 a1.2 1.2 0 1 1 2.4 0 a3.4 3.4 0 1 1 -6.8 0 a5.8 5.8 0 1 1 11.6 0 a8.4 8.4 0 1 1 -16.8 0 a11 11 0 1 1 22 0 a13.6 13.6 0 1 1 -27.2 0" fill="none" stroke="#8B4A2F" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span><span class="logo-name">Bonnie's Buns</span><br><span class="logo-sub">Buckley&nbsp;·&nbsp;WA</span></span>
+    </a>
+    <span class="live-pill" id="live-pill"><span class="dot"></span><span id="live-pill-text">&nbsp;</span></span>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav id="main-nav">
+      <a href="#case">Flavors</a>
+      <a href="#story">Our story</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#find">Find us</a>
+      <a class="cta" href="tel:+12535798225">Call ahead</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <img class="hero-img desktop" src="{{IMG01}}" alt="Bonnie's Buns storefront in Mr. Bill's Plaza — red banner, hanging petunia baskets, and the door propped open">
+  <img class="hero-img mobile" src="{{IMG02}}" alt="The Bonnie's Buns bakery case, stocked with labeled cinnamon rolls">
+  <div class="hero-scrim"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-stagger">
+      <p class="hero-eyebrow">A cinnamon roll bakery in Buckley, Washington</p>
+      <h1>Fresh from the pan. Famously <span class="swirlword">huge<svg viewBox="0 0 120 24" aria-hidden="true"><path d="M4 16 C 30 8, 62 8, 88 13 C 100 15, 110 14, 116 10 C 110 18, 92 21, 70 19"/></svg></span>.</h1>
+      <p class="hero-sub"><span class="long">The plateau's only dedicated cinnamon-roll bakery — a rotating case of Bonnie's own recipes, baked by her daughter Christina.</span><span class="short">The plateau's only dedicated cinnamon-roll bakery.</span></p>
+      <div class="hero-btns">
+        <a class="btn btn-solid" href="#case">See the flavors</a>
+        <a class="btn btn-ghost" href="tel:+12535798225">Call the bakery</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHEN TO FIND US ================= -->
+<section id="find">
+  <div class="wrap find-grid">
+    <div class="reveal">
+      <p class="eyebrow">When to find us</p>
+      <p class="find-status" id="find-status"><span class="dot"></span><span id="find-status-text">Checking the ovens…</span></p>
+      <p class="find-address">29297 WA‑410 E, Ste D · Buckley, WA 98321<br>Mr. Bill's Plaza, right on Highway 410</p>
+      <p class="find-phone"><a href="tel:+12535798225">(253) 579‑8225</a></p>
+      <div class="proof-chips">
+        <span class="chip"><span class="star">★</span> 4.3 on Yelp</span>
+        <span class="chip"><span class="star">★</span> 5.0 on DoorDash</span>
+        <span class="chip">Storefront since Dec 2023</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <ul class="hours-rows" id="hours-rows">
+        <li data-day="3"><span>Wednesday</span><span>9:00 am – 2:00 pm</span></li>
+        <li data-day="4"><span>Thursday</span><span>9:00 am – 5:00 pm</span></li>
+        <li data-day="5"><span>Friday</span><span>9:00 am – 5:00 pm</span></li>
+        <li data-day="6"><span>Saturday</span><span>9:00 am – 12:30 pm</span></li>
+        <li data-day="0"><span>Sunday</span><span>10:00 am – 3:00 pm</span></li>
+        <li data-day="12"><span>Monday &amp; Tuesday</span><span>Closed — the ovens rest</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE CASE (signature) ================= -->
+<section id="case">
+  <svg class="ghost-swirl" style="top:-40px;right:-90px;width:420px;height:420px" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 100 m-6 0 a6 6 0 1 1 12 0 a17 17 0 1 1 -34 0 a29 29 0 1 1 58 0 a42 42 0 1 1 -84 0 a55 55 0 1 1 110 0 a68 68 0 1 1 -136 0 a81 81 0 1 1 162 0" fill="none" stroke="#8B4A2F" stroke-width="7" stroke-linecap="round"/></svg>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">The case</p>
+      <h2>Pick your <em>roll</em>.</h2>
+      <p class="sub">Around a dozen flavors move through the case at the counter. Tap one.</p>
+    </div>
+    <div class="case-grid" style="margin-top:34px">
+      <div class="reveal">
+        <div class="flavor-tiles" id="flavor-tiles" role="group" aria-label="Flavors"></div>
+        <p class="case-foot">Also in rotation: <strong>traditional cinnamon with raisins, maple, banana walnut,</strong> and <strong>Reese's peanut butter swirl</strong> — plus dinner rolls, breads, and the OG bread pudding.</p>
+        <p class="case-foot"><strong>The case changes every morning.</strong> Call to hear what's in it today.</p>
+        <p class="case-cta"><a class="btn btn-brand" href="tel:+12535798225">Ask what's in the case</a></p>
+      </div>
+      <div class="roll-stage reveal" id="roll-stage" aria-live="polite">
+        <svg id="roll-svg" viewBox="0 0 240 240" role="img" aria-label="Drawing of the selected cinnamon roll">
+          <defs>
+            <radialGradient id="doughGrad" cx="42%" cy="38%" r="72%">
+              <stop offset="0%" stop-color="#F0D5AC"/><stop offset="72%" stop-color="#E3BC85"/><stop offset="100%" stop-color="#C99B60"/>
+            </radialGradient>
+            <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.1"/></filter>
+          </defs>
+          <ellipse cx="120" cy="212" rx="86" ry="12" fill="#33241C" opacity=".12"/>
+          <circle cx="120" cy="118" r="93" fill="url(#doughGrad)"/>
+          <path id="roll-spiral" fill="none" stroke="#8B4A2F" stroke-width="14" stroke-linecap="round" opacity=".9"/>
+          <path id="roll-icing" fill="#F7EFE2" opacity=".94" filter="url(#soft)"
+            d="M120 44 C158 42 186 66 190 98 C193 122 178 132 182 150 C170 146 164 160 150 156 C140 172 116 162 106 172 C94 160 76 168 68 152 C52 154 46 138 52 124 C42 104 52 72 74 56 C88 46 104 45 120 44 Z"/>
+          <g id="roll-drizzle" fill="none" stroke-width="6" stroke-linecap="round" opacity=".95">
+            <path d="M62 84 C92 76 148 76 178 90"/>
+            <path d="M56 118 C96 106 150 108 184 122"/>
+            <path d="M68 150 C100 138 146 140 168 152"/>
+          </g>
+          <g id="roll-specks"></g>
+        </svg>
+        <p class="roll-name" id="roll-name">Original — the OG</p>
+        <p class="roll-note" id="roll-note"></p>
+        <p class="roll-price">$6–7 in the case · built to share</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section id="story">
+  <svg class="ghost-swirl" style="bottom:-70px;left:-110px;width:460px;height:460px" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 100 m-6 0 a6 6 0 1 1 12 0 a17 17 0 1 1 -34 0 a29 29 0 1 1 58 0 a42 42 0 1 1 -84 0 a55 55 0 1 1 110 0 a68 68 0 1 1 -136 0 a81 81 0 1 1 162 0" fill="none" stroke="#8B4A2F" stroke-width="7" stroke-linecap="round"/></svg>
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <p class="eyebrow">Our story</p>
+      <h2>Named for <em>Momma&nbsp;Bonnie</em>.</h2>
+      <p><strong>Christina King</strong> learned these rolls at her mother's side — <strong>Bonnie Jacobs</strong>, who passed down her cinnamon-roll and dinner-roll recipes while Christina was raising toddler twins. It started with Christmas mornings.</p>
+      <p>In 2019, Christina was diagnosed with brain cancer and had to relearn to walk. Her physical therapists kept pushing her back toward the thing she loved — baking. So she baked: farmers markets first, the Buckley Kitchen in 2021, Puyallup after that, and in December 2023 she and her husband Kenny opened the counter on Highway 410.</p>
+      <div class="pull">The part nobody believes: Christina can't eat sugar. Every roll in the case is one she'll never taste.</div>
+    </div>
+    <figure class="print reveal">
+      <img src="{{IMG10}}" alt="A sheet of cinnamon filling with 'momma' and hearts written into it, rolling pin beside it">
+      <figcaption>Hearts in the filling — a batch signed "momma."</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">From the counter</p>
+      <h2>Out of the <em>oven</em>.</h2>
+    </div>
+    <div class="gal-grid" style="margin-top:34px">
+      <figure class="print reveal"><img src="{{IMG09}}" alt="Roll topped with cherries and red drizzle over cream-cheese icing"><figcaption>Cherry-topped, drizzled to the edge.</figcaption></figure>
+      <figure class="print reveal"><img src="{{IMG08}}" alt="Maple bacon bun with glossy maple frosting"><figcaption>The maple bacon — glazed deep.</figcaption></figure>
+      <figure class="print reveal"><img src="{{IMG06}}" alt="Lemon Grace and Raspberry Swirl rolls labeled in the bakery case"><figcaption>Lemon Grace &amp; Raspberry Swirl, labeled in the case.</figcaption></figure>
+      <figure class="print reveal"><img src="{{IMG07}}" alt="Pierce County Fair award ribbons hanging in the bakery"><figcaption>Pierce County Fair ribbons, earned the sweet way.</figcaption></figure>
+      <figure class="print reveal"><img src="{{IMG03}}" alt="Whiteboard listing special event flavors for the Buckley Log Show"><figcaption>Special flavors drop for the Buckley Log Show.</figcaption></figure>
+      <figure class="print reveal"><img src="{{IMG11}}" alt="OG Bread Pudding and Caramel Pecan boxes on a table in the shop"><figcaption>OG Bread Pudding &amp; Caramel Pecan, boxed to go.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THREE WAYS ================= -->
+<section id="ways" style="padding-top:0">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Three ways to get them</p>
+      <h2>However you <em>roll</em>.</h2>
+    </div>
+    <div class="ways-grid" style="margin-top:34px">
+      <div class="way reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 12 m-1 0 a1 1 0 1 1 2 0 a3.2 3.2 0 1 1 -6.4 0 a5.4 5.4 0 1 1 10.8 0 a7.6 7.6 0 1 1 -15.2 0 a9.8 9.8 0 1 1 19.6 0"/></svg></div>
+        <h3>At the counter</h3>
+        <p>Baked that morning — come early and catch them still warm from the pan.</p>
+      </div>
+      <div class="way reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1.2 12.5a1.5 1.5 0 0 1-1.5 1.4H8.7a1.5 1.5 0 0 1-1.5-1.4Z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg></div>
+        <h3>On DoorDash</h3>
+        <p>Pickup and delivery, rated 5.0 by the people who couldn't wait.</p>
+      </div>
+      <div class="way reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3.5 9.5 5 4.5h14l1.5 5"/><path d="M4.5 9.5h15v10h-15Z"/><path d="M9.5 19.5v-6h5v6"/></svg></div>
+        <h3>Around the plateau</h3>
+        <p>Wholesale at Rockridge Country Market in Enumclaw and Red Barn Market in Puyallup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Word travels</p>
+      <h2>What the plateau <em>says</em>.</h2>
+    </div>
+    <div class="rev-grid" style="margin-top:34px">
+      <div class="rev reveal">
+        <blockquote>"Best cinnamon rolls my family has ever had! We stumbled upon Bonnie's Buns while staying in Enumclaw for an event and made a second stop before leaving town because they were that delicious. The blackberry roll was everyone's favorite."</blockquote>
+        <div class="rev-who"><span class="rev-disc" style="background:#C9463F">M</span><div><div class="rev-name">Michelle M.</div><div class="rev-meta">Yelp · Aug 3, 2026</div></div></div>
+      </div>
+      <div class="rev reveal">
+        <blockquote>"I don't say this lightly: Bonnie's Buns is next level delicious. If you've ever thought Cinnabon set the standard for cinnamon rolls, prepare to have your mind (and taste buds) completely blown."</blockquote>
+        <div class="rev-who"><span class="rev-disc" style="background:#5C1F24">J</span><div><div class="rev-name">Juston B. · Enumclaw</div><div class="rev-meta">Yelp · Dec 7, 2024</div></div></div>
+      </div>
+      <div class="rev reveal">
+        <blockquote>"The dough is really good. Soft and fluffy, but a nice crisp on the outside. Not chemically tasting like those from the grocery store."</blockquote>
+        <div class="rev-who"><span class="rev-disc" style="background:#C98A3E">P</span><div><div class="rev-name">Pauline L. · Bonney Lake</div><div class="rev-meta">Yelp · Jun 29, 2024</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section id="home-bite">
+  <svg class="ghost-swirl" style="top:-60px;left:-100px;width:400px;height:400px" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 100 m-6 0 a6 6 0 1 1 12 0 a17 17 0 1 1 -34 0 a29 29 0 1 1 58 0 a42 42 0 1 1 -84 0 a55 55 0 1 1 110 0 a68 68 0 1 1 -136 0 a81 81 0 1 1 162 0" fill="none" stroke-width="7" stroke-linecap="round"/></svg>
+  <div class="wrap">
+    <p class="eyebrow reveal">Christina's rule</p>
+    <blockquote class="big-quote reveal">"It's got to be fresh. I want that first bite that y'all have to speak: <span class="hl">'I am home.'</span>"</blockquote>
+    <p class="quote-attr reveal">— Christina King, owner &amp; baker</p>
+    <div class="hero-btns reveal">
+      <a class="btn btn-brand" href="tel:+12535798225">Call ahead</a>
+      <a class="btn btn-ghost" href="https://maps.google.com/?q=Bonnie%27s+Buns,+29297+WA-410+Ste+D,+Buckley,+WA+98321" target="_blank" rel="noopener">Get directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <span class="logo-name">Bonnie's Buns</span>
+      <p>Cinnamon rolls from Momma Bonnie's recipes, baked fresh by the King family.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Visit</h4>
+      <p>29297 WA‑410 E, Ste D<br>Buckley, WA 98321</p>
+      <a href="tel:+12535798225">(253) 579‑8225</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="https://www.facebook.com/Yourbonniesbuckley" target="_blank" rel="noopener">Facebook — Bonnies Buns Swirlsoflove</a>
+      <a href="https://www.instagram.com/ibakethatsmysuperpower" target="_blank" rel="noopener">Instagram — @ibakethatsmysuperpower</a>
+      <p>And on DoorDash for pickup &amp; delivery</p>
+    </div>
+    <div class="foot-col">
+      <h4>Page</h4>
+      <a href="#case">Flavors</a>
+      <a href="#story">Our story</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#find">Find us</a>
+    </div>
+  </div>
+  <div class="wrap foot-note">© <span id="yr"></span> Bonnie's Buns · Buckley, Washington</div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+document.body.classList.add('js');
+
+/* ---------- nav ---------- */
+(function(){
+  var t=document.getElementById('nav-toggle'), n=document.getElementById('main-nav');
+  t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o)});
+  n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');t.setAttribute('aria-expanded','false')}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){n.classList.remove('open')}});
+  document.addEventListener('click',function(e){if(!n.contains(e.target)&&!t.contains(e.target)){n.classList.remove('open')}});
+})();
+
+/* ---------- live hours (America/Los_Angeles) ---------- */
+var HOURS = { 0:[10,15], 1:null, 2:null, 3:[9,14], 4:[9,17], 5:[9,17], 6:[9,12.5] };
+var DAYNAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function nowPacific(){
+  var q = new URLSearchParams(location.search);
+  var parts = new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'numeric',hour12:false,weekday:'short'}).formatToParts(new Date());
+  var map={}; parts.forEach(function(p){map[p.type]=p.value});
+  var day = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[map.weekday];
+  var h = parseInt(map.hour,10)%24 + parseInt(map.minute,10)/60;
+  if(q.get('demo')!==null && q.get('demo')!==''){ h=parseFloat(q.get('demo')); }
+  if(q.get('day')!==null && q.get('day')!==''){ day=parseInt(q.get('day'),10); }
+  return {day:day, h:h};
+}
+function fmt(t){
+  var h=Math.floor(t), m=Math.round((t-h)*60), ap = h>=12?'pm':'am', hh=((h+11)%12)+1;
+  return hh + (m? ':'+String(m).padStart(2,'0') : '') + ' ' + ap;
+}
+function status(){
+  var p=nowPacific(), today=HOURS[p.day];
+  if(today && p.h>=today[0] && p.h<today[1]) return {open:true, text:'Open now · til '+fmt(today[1])};
+  if(today && p.h<today[0]) return {open:false, text:'Closed · opens today at '+fmt(today[0])};
+  for(var i=1;i<=7;i++){
+    var d=(p.day+i)%7;
+    if(HOURS[d]) return {open:false, text:'Closed · opens '+(i===1?'tomorrow':DAYNAMES[d])+' at '+fmt(HOURS[d][0])};
+  }
+  return {open:false,text:'Closed'};
+}
+function paintStatus(){
+  var s=status(), pill=document.getElementById('live-pill'), fs=document.getElementById('find-status');
+  document.getElementById('live-pill-text').textContent = s.open?'Open now':'Closed';
+  document.getElementById('find-status-text').textContent = s.text;
+  pill.classList.toggle('open',s.open); fs.classList.toggle('open',s.open);
+  var d=nowPacific().day;
+  document.querySelectorAll('#hours-rows li').forEach(function(li){
+    var v=li.getAttribute('data-day');
+    var hit = (v==='12') ? (d===1||d===2) : (parseInt(v,10)===d);
+    li.classList.toggle('today',hit);
+  });
+}
+paintStatus(); setInterval(paintStatus,60000);
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- THE CASE gadget ---------- */
+var FLAVORS = [
+  {name:'Original — the OG', short:'Original (OG)', fill:'#8B4A2F', icing:'#F7EFE2', driz:'#EFE3CE', specks:null,      dot:'#8B4A2F', note:''},
+  {name:'Raspberry',          short:'Raspberry',     fill:'#B3244A', icing:'#F7EFE2', driz:'#D6355F', specks:'#B3244A', dot:'#C22F55', note:''},
+  {name:'Lemon Grace',        short:'Lemon Grace',   fill:'#D9A82C', icing:'#F8F1D8', driz:'#E5BE45', specks:null,      dot:'#E0B33A', note:''},
+  {name:'Blackberry Swirl',   short:'Blackberry',    fill:'#4E2B57', icing:'#F1E7F0', driz:'#6C3F77', specks:'#4E2B57', dot:'#5C3566', note:''},
+  {name:'Caramel Pecan',      short:'Caramel Pecan', fill:'#8B4A2F', icing:'#D89A48', driz:'#A65E22', specks:'#6E4526', dot:'#B06A2C', note:''},
+  {name:'Caramel Apple Pie',  short:'Caramel Apple', fill:'#996136', icing:'#E0AC5C', driz:'#B4762C', specks:'#9BA24A', dot:'#C08A3E', note:''},
+  {name:'Oreo Cookie Swirl',  short:'Oreo Swirl',    fill:'#2E2826', icing:'#F5EFE6', driz:'#3A332F', specks:'#2E2826', dot:'#3A332F', note:''},
+  {name:'Maple Bacon',        short:'Maple Bacon',   fill:'#8B4A2F', icing:'#D0913E', driz:'#B27431', specks:'#A03A2E', dot:'#C88F3F', note:'Made with real bacon'}
+];
+function spiralPath(cx,cy,rMax,turns){
+  var pts=[], steps=140;
+  for(var i=0;i<=steps;i++){
+    var t=i/steps, a=t*turns*2*Math.PI, r=6+(rMax-6)*t;
+    pts.push((cx+r*Math.cos(a)).toFixed(1)+','+(cy+r*Math.sin(a)).toFixed(1));
+  }
+  return 'M'+pts.join(' L');
+}
+document.getElementById('roll-spiral').setAttribute('d', spiralPath(120,118,78,3.05));
+function speck(x,y,r,c){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+c+'"/>'}
+function paintRoll(f){
+  document.getElementById('roll-spiral').setAttribute('stroke', f.fill);
+  document.getElementById('roll-icing').setAttribute('fill', f.icing);
+  document.getElementById('roll-drizzle').setAttribute('stroke', f.driz);
+  var g=document.getElementById('roll-specks'), out='';
+  if(f.specks){
+    for(var i=0;i<14;i++){
+      var a=Math.random()*2*Math.PI, rr=Math.random()*58;
+      out+=speck((120+rr*Math.cos(a)).toFixed(1),(112+rr*0.86*Math.sin(a)).toFixed(1),(1.8+Math.random()*2.4).toFixed(1),f.specks);
+    }
+  }
+  g.innerHTML=out;
+  document.getElementById('roll-name').textContent=f.name;
+  document.getElementById('roll-note').textContent=f.note;
+  var st=document.getElementById('roll-stage');
+  st.classList.remove('pop'); void st.offsetWidth; st.classList.add('pop');
+}
+(function(){
+  var tiles=document.getElementById('flavor-tiles');
+  FLAVORS.forEach(function(f,i){
+    var b=document.createElement('button');
+    b.innerHTML='<span class="fdot" style="background:'+f.dot+'"></span>'+f.short;
+    b.addEventListener('click',function(){
+      tiles.querySelectorAll('button').forEach(function(x){x.classList.remove('active')});
+      b.classList.add('active'); paintRoll(f);
+    });
+    if(i===0) b.classList.add('active');
+    tiles.appendChild(b);
+  });
+  paintRoll(FLAVORS[0]);
+})();
+
+/* ---------- reveal on scroll ---------- */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

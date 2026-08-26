@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sumalee's Thai Cuisine — Bonney Lake, WA</title>
+<meta name="description" content="Sumalee's Thai Cuisine — a family-owned Thai kitchen in the 410 plaza, Bonney Lake. Fresh, made to order, heat levels 1–5. Open 7 days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chonburi&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — Sumalee's Thai Cuisine ============
+   palette from their real storefront + logo photos:
+   sign crimson / script green / terracotta walls / cream ground */
+:root{
+  --brand:#B0322A;          /* the oval THAI CUISINE sign */
+  --brand-text:#93231D;
+  --brand-bright:#C93B31;
+  --accent:#7A9A2E;         /* the painted window script + neon */
+  --accent-soft:#A9C45B;    /* script green on dark grounds */
+  --terra:#C4634F;          /* the dining-room walls */
+  --terra-deep:#A54E3D;
+  --ink:#241A16;
+  --bg:#F3ECDC;             /* true cream, never white */
+  --bg-2:#EAE0C9;
+  --paper:#F9F3E6;
+  --muted:#6E6157;
+  --line:#DCD1BB;
+  --dark:#221713;           /* the night-window board */
+  --dark-2:#2C1F19;
+  --neon-blue:#5FA8D3;      /* the OPEN sign's blue ring */
+  --curry:#DFA43C;
+  --display:'Chonburi', 'Georgia', serif;
+  --body:'Mitr', -apple-system, 'Helvetica Neue', sans-serif;
+  --header-h:72px;
+  --pad:clamp(20px,5vw,56px);
+  --maxw:1180px;
+  --r:18px;
+}
+@media (max-width:720px){ :root{--header-h:62px} }
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);font-weight:300;color:var(--ink);background:var(--bg);overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.12}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--body);font-weight:600;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--brand-text);margin-bottom:14px}
+section{padding:clamp(64px,9vw,110px) 0}
+
+/* squiggle underline — echo of their hand-painted window script */
+.sq{position:relative;white-space:nowrap}
+.sq svg{position:absolute;left:0;right:0;bottom:-.28em;width:100%;height:.42em;overflow:visible}
+.sq svg path{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:240;transition:stroke-dashoffset 1.1s ease .25s}
+.in .sq svg path{stroke-dashoffset:0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);font-weight:500;font-size:.95rem;background:var(--brand);color:#FBF5E9;border:0;border-radius:999px;padding:.9em 1.7em;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s;min-height:44px}
+.btn:hover{background:var(--brand-bright);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.ghost:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.btn.on-dark{color:#FBF5E9}
+.btn.ghost.on-dark{color:#F3ECDC;box-shadow:inset 0 0 0 2px color-mix(in srgb,#F3ECDC 70%,transparent)}
+.btn.ghost.on-dark:hover{background:color-mix(in srgb,#F3ECDC 10%,transparent)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  *{animation:none!important;transition:none!important}
+}
+
+/* ============ HEADER ============ */
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);z-index:60;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.header-in{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;gap:18px}
+.lockup{text-decoration:none;line-height:1.05;margin-right:auto}
+.lk-script{display:block;font-family:var(--display);font-size:1.3rem;color:var(--accent)}
+.lk-sub{display:block;font-weight:600;font-size:.56rem;letter-spacing:.3em;color:var(--brand-text)}
+/* the live pill — styled like the red OPEN neon with its blue ring on their door */
+.neon-pill{font-weight:600;font-size:.78rem;letter-spacing:.12em;padding:.5em 1em;border-radius:999px;white-space:nowrap;border:2px solid var(--neon-blue);color:#E8473C;background:rgba(20,10,8,.85);box-shadow:0 0 10px color-mix(in srgb,var(--neon-blue) 45%,transparent),inset 0 0 8px rgba(232,71,60,.25);text-shadow:0 0 8px rgba(232,71,60,.9)}
+.neon-pill.is-closed{color:#C8BBA8;text-shadow:none;border-color:#5b5148;box-shadow:none;background:rgba(30,24,20,.7)}
+#main-nav{display:flex;align-items:center;gap:26px}
+#main-nav a{font-weight:400;font-size:.92rem;text-decoration:none;color:var(--ink);opacity:.85}
+#main-nav a:hover{opacity:1;color:var(--brand-text)}
+#main-nav .btn{font-size:.85rem;padding:.6em 1.3em}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.nav-toggle span{width:24px;height:2.5px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s}
+@media (max-width:880px){
+  .nav-toggle{display:flex}
+  #main-nav{position:fixed;top:var(--header-h);right:0;left:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;padding:22px var(--pad) 28px;gap:18px;transform:translateY(-130%);transition:transform .3s ease}
+  #main-nav.open{transform:none}
+  body.nav-open .nav-toggle span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  body.nav-open .nav-toggle span:nth-child(2){opacity:0}
+  body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+}
+
+/* ============ HERO — the walk-up strip ============ */
+#hero{position:relative;height:calc(100svh - var(--header-h));min-height:520px;margin-top:var(--header-h);overflow:hidden;background:var(--dark);display:flex;flex-direction:column}
+.hero-strip{position:absolute;inset:0;overflow:hidden}
+.hero-strip img{height:100%;width:auto;max-width:none;min-width:135vw;object-fit:cover;object-position:left center;filter:saturate(1.14) contrast(1.05) brightness(.96) sepia(.06);animation:walkup 58s ease-in-out infinite alternate;will-change:transform}
+@keyframes walkup{from{transform:translateX(0)}to{transform:translateX(calc(-100% + 100vw))}}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(to top,rgba(18,10,7,.88) 0%,rgba(18,10,7,.44) 38%,rgba(18,10,7,.12) 68%,rgba(18,10,7,.25) 100%)}
+.hero-grain{position:absolute;inset:0;z-index:2;opacity:.13;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
+.hero-inner{position:relative;z-index:3;margin-top:auto;width:100%;max-width:var(--maxw);margin-left:auto;margin-right:auto;padding:0 var(--pad) clamp(44px,7vh,84px)}
+.hero-eyebrow{color:#E9DFCB;font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;margin-bottom:16px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+#hero h1{color:#FBF5E9;font-size:clamp(2.1rem,5.6vw,4.1rem);max-width:15ch;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+#hero h1 em{font-style:normal;color:var(--accent-soft);text-shadow:0 0 18px color-mix(in srgb,var(--accent-soft) 65%,transparent),0 2px 14px rgba(0,0,0,.5)}
+.hero-sub{color:#EDE3CE;font-size:clamp(1rem,1.6vw,1.18rem);max-width:44ch;margin:18px 0 28px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+@media (max-width:720px){
+  .hero-sub{margin:14px 0 22px}
+  .hero-btns{gap:10px}
+  .hero-btns .btn{font-size:.86rem;padding:.8em 1.2em}
+}
+
+/* ============ HOURS BAND ============ */
+#hours{background:color-mix(in srgb,var(--terra) 13%,var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(56px,7vw,84px) 0}
+.hours-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,72px);align-items:start}
+@media (max-width:840px){ .hours-grid{grid-template-columns:1fr} }
+#hours h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:18px}
+.status-line{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:clamp(1.15rem,2vw,1.5rem);margin-bottom:8px}
+.status-dot{width:13px;height:13px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent);animation:pulse 2.2s infinite;flex:none}
+.status-dot.closed{background:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 22%,transparent);animation:none}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}50%{box-shadow:0 0 0 9px color-mix(in srgb,var(--accent) 10%,transparent)}}
+.addr{color:var(--muted);max-width:42ch}
+.addr strong{color:var(--ink);font-weight:500}
+.addr a{color:var(--brand-text);font-weight:500;text-decoration:none;border-bottom:1.5px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.proof-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.proof-chips span{font-size:.8rem;font-weight:500;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:.45em 1em}
+.day-rows{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 22px;box-shadow:0 10px 30px rgba(36,26,22,.07)}
+.day-rows .row{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px dashed var(--line);font-size:.95rem}
+.day-rows .row:last-of-type{border-bottom:0}
+.day-rows .row.today{font-weight:500;color:var(--brand-text)}
+.day-rows .row.today .d::after{content:"today";font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:var(--accent);color:#FBF5E9;border-radius:999px;padding:.25em .8em;margin-left:10px;vertical-align:2px}
+.hours-note{font-size:.85rem;color:var(--muted);padding:12px 4px 4px;font-style:italic}
+
+/* ============ MENU BOARD (dark — their window at night) ============ */
+#menu{background:var(--dark);color:#EFE6D2;position:relative;overflow:hidden}
+#menu .eyebrow{color:var(--accent-soft)}
+#menu h2{color:#FBF5E9;font-size:clamp(1.8rem,3.6vw,2.7rem)}
+#menu h2 em{font-style:normal;color:var(--accent-soft)}
+.menu-intro{color:#C9BCA6;max-width:52ch;margin:14px 0 42px}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,56px)}
+@media (max-width:760px){ .menu-grid{grid-template-columns:1fr} }
+.menu-group h3{font-size:1.15rem;color:var(--accent-soft);margin-bottom:16px;letter-spacing:.02em}
+.mi{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(239,230,210,.14)}
+.mi .nm{font-weight:400}
+.mi .dots{flex:1;border-bottom:2px dotted rgba(239,230,210,.22);transform:translateY(-4px)}
+.mi .pr{font-family:var(--display);color:#E8A98F;font-size:1.02rem}
+.star-card{margin-top:46px;background:linear-gradient(135deg,var(--brand) 0%,#8E2620 100%);border-radius:var(--r);padding:clamp(24px,4vw,40px);display:flex;flex-wrap:wrap;align-items:center;gap:18px 34px;box-shadow:0 18px 44px rgba(0,0,0,.4)}
+.star-card .sc-eyebrow{flex-basis:100%;font-weight:600;font-size:.68rem;letter-spacing:.26em;color:#F5D9A8}
+.star-card h3{font-size:clamp(1.5rem,3vw,2.1rem);color:#FBF5E9}
+.star-card p{color:#F3D9CF;max-width:34ch;font-size:.95rem}
+.also-board{margin-top:40px}
+.also-board .ab-label{font-weight:600;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:#9C8E77;margin-bottom:14px}
+.also-board .chips{display:flex;flex-wrap:wrap;gap:10px}
+.also-board .chips span{font-size:.85rem;border:1px solid rgba(239,230,210,.25);border-radius:999px;padding:.45em 1.1em;color:#DFD4BC}
+.menu-fine{margin-top:34px;font-size:.85rem;color:#9C8E77;font-style:italic}
+
+/* placeholder chips — visibly non-final, per factory law */
+.ph{display:inline-block;font-family:var(--body);font-weight:500;font-size:.78rem;background:rgba(224,179,76,.14);border:1.5px dashed #E0B34C;color:#B8860B;border-radius:8px;padding:.4em .9em}
+#menu .ph,.on-dark-ph{background:rgba(224,179,76,.12);color:#E9C979}
+
+/* ============ HEAT DIAL ============ */
+#heat{background:var(--bg)}
+.heat-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,70px);align-items:center}
+@media (max-width:840px){ .heat-grid{grid-template-columns:1fr} }
+#heat h2{font-size:clamp(1.9rem,3.8vw,2.8rem);margin-bottom:16px}
+.heat-intro{color:var(--muted);max-width:40ch;margin-bottom:26px}
+.heat-quote{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:18px 22px;max-width:46ch}
+.heat-quote p{font-size:.95rem;font-style:italic;color:var(--ink)}
+.heat-quote .hq-who{display:flex;align-items:center;gap:10px;margin-top:12px;font-style:normal}
+.heat-quote .disc{width:34px;height:34px;flex:none}
+.heat-quote .hq-meta{font-size:.78rem;color:var(--muted)}
+.heat-quote .hq-name{font-weight:500;font-size:.88rem}
+.gadget{background:var(--paper);border:1px solid var(--line);border-radius:calc(var(--r) + 6px);padding:clamp(24px,4vw,44px);text-align:center;box-shadow:0 18px 44px rgba(36,26,22,.1)}
+.bowl-wrap{max-width:340px;margin:0 auto}
+.bowl-wrap svg{width:100%;height:auto}
+#bowl .curry{fill:var(--curry);transition:fill .45s ease}
+#bowl .flake{opacity:0;transition:opacity .4s}
+#bowl.f-on .flake{opacity:1}
+#bowl .steam{fill:none;stroke:#B9AC96;stroke-width:5;stroke-linecap:round;opacity:.5;animation:rise 2.6s ease-in-out infinite}
+#bowl .steam.s2{animation-delay:.9s}
+#bowl .steam.s3{animation-delay:1.7s}
+@keyframes rise{0%{transform:translateY(6px);opacity:0}35%{opacity:var(--steam,.5)}100%{transform:translateY(-14px);opacity:0}}
+.bowl-pop{animation:bowlpop .5s ease}
+@keyframes bowlpop{0%{transform:scale(1)}35%{transform:scale(1.045) rotate(-1.2deg)}70%{transform:scale(.99) rotate(.6deg)}100%{transform:scale(1)}}
+.chilis{display:flex;justify-content:center;gap:clamp(6px,1.6vw,14px);margin:18px 0 6px}
+.chip-chili{position:relative;background:var(--bg);border:2px solid var(--line);border-radius:16px;cursor:pointer;padding:10px 6px 8px;width:clamp(52px,13vw,66px);transition:transform .15s,border-color .2s,background .2s}
+.chip-chili .pep{display:block;font-size:clamp(1.5rem,4.5vw,1.9rem);filter:grayscale(1);opacity:.38;transition:filter .2s,opacity .2s,transform .2s}
+.chip-chili .n{display:block;font-weight:600;font-size:.85rem;color:var(--muted);margin-top:2px}
+.chip-chili:hover{transform:translateY(-3px)}
+.chip-chili.lit{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 7%,var(--paper))}
+.chip-chili.lit .pep{filter:none;opacity:1;transform:scale(1.12)}
+.chip-chili.lit .n{color:var(--brand-text)}
+.chip-chili .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#FBF5E9;border-radius:999px;padding:.3em .8em}
+.heat-read{font-family:var(--display);font-size:clamp(1.15rem,2.4vw,1.5rem);min-height:2.2em;margin-top:14px}
+.heat-read.pop{animation:readpop .35s ease}
+@keyframes readpop{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+.heat-close{font-size:.88rem;color:var(--muted);font-style:italic;margin-top:6px}
+
+/* ============ GALLERY ============ */
+#gallery{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#gallery h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}
+.gal-intro{color:var(--muted);margin:12px 0 44px;max-width:46ch}
+.gal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(16px,2.6vw,30px)}
+.print{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 12px 14px;box-shadow:0 14px 34px rgba(36,26,22,.12);transition:transform .3s}
+.print:hover{transform:translateY(-6px) rotate(0deg)!important}
+.print img{border-radius:5px;width:100%;height:100%;object-fit:cover}
+.print figcaption{font-size:.8rem;color:var(--muted);padding-top:10px;text-align:center;font-style:italic}
+.print .im{overflow:hidden;border-radius:5px}
+.p-a{grid-column:span 3;grid-row:span 2;transform:rotate(-1.1deg)}
+.p-b{grid-column:span 3;transform:rotate(.9deg)}
+.p-c{grid-column:span 2;transform:rotate(-.8deg)}
+.p-d{grid-column:span 2;transform:rotate(1deg)}
+.p-e{grid-column:span 2;transform:rotate(-1.2deg)}
+.p-a .im{height:min(58vw,540px)}
+.p-b .im{height:min(34vw,250px)}
+.p-c .im,.p-d .im,.p-e .im{height:min(30vw,230px)}
+@media (max-width:760px){
+  .p-a,.p-b,.p-c,.p-d,.p-e{grid-column:span 6}
+  .p-a .im,.p-b .im{height:64vw}
+  .p-c .im,.p-d .im,.p-e .im{height:52vw}
+}
+
+/* ============ ABOUT (terracotta — their dining-room walls) ============ */
+#about{background:var(--terra);color:#FDF6EA;position:relative;overflow:hidden}
+#about .eyebrow{color:#FBE7C9}
+#about h2{font-size:clamp(1.9rem,3.8vw,2.8rem);color:#FFFBF1}
+#about h2 em{font-style:normal;color:#FBE099}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,72px);align-items:center}
+@media (max-width:840px){ .about-grid{grid-template-columns:1fr} }
+.about-lede{font-size:clamp(1.05rem,1.8vw,1.25rem);margin:18px 0 16px;max-width:48ch}
+.about-p{color:#F7E3D3;max-width:50ch;margin-bottom:26px}
+.ask-block{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.ask-block .ph{background:rgba(255,244,214,.14);border-color:#F5D9A8;color:#FFF0CE}
+.about-print{background:var(--paper);border-radius:10px;padding:12px 12px 14px;box-shadow:0 22px 54px rgba(30,15,10,.35);transform:rotate(1.3deg)}
+.about-print img{border-radius:5px}
+.about-print figcaption{font-size:.8rem;color:var(--muted);padding-top:10px;text-align:center;font-style:italic}
+
+/* ============ REVIEWS ============ */
+#reviews h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}
+.rev-stat{display:flex;align-items:baseline;gap:14px;margin:16px 0 8px;font-family:var(--display)}
+.rev-stat .big{font-size:clamp(2.4rem,5vw,3.6rem);color:var(--brand-text)}
+.rev-stat .lbl{font-family:var(--body);font-weight:400;color:var(--muted)}
+.rev-sub{font-size:.85rem;color:var(--muted);margin-bottom:40px}
+.rev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.6vw,26px)}
+@media (max-width:760px){ .rev-grid{grid-template-columns:1fr} }
+.rev-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;box-shadow:0 12px 30px rgba(36,26,22,.07)}
+.rev-card p{font-style:italic;font-size:.97rem}
+.rev-who{display:flex;align-items:center;gap:12px;margin-top:18px}
+.disc{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.05rem;color:#FBF5E9;flex:none}
+.disc.c1{background:var(--brand)}
+.disc.c2{background:var(--accent)}
+.disc.c3{background:var(--terra-deep)}
+.rev-name{font-weight:500;font-size:.92rem}
+.rev-name .elite{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--brand);color:#FBF5E9;border-radius:999px;padding:.25em .7em;margin-left:8px;vertical-align:2px}
+.rev-meta{font-size:.78rem;color:var(--muted)}
+.rev-wide{grid-column:1/-1;background:var(--dark);color:#EFE6D2;border:0;text-align:center;padding:clamp(30px,5vw,52px)}
+.rev-wide p{font-family:var(--display);font-style:normal;font-size:clamp(1.15rem,2.4vw,1.7rem);max-width:34ch;margin:0 auto;color:#F6EEDB}
+.rev-wide p em{font-style:normal;color:var(--accent-soft)}
+.rev-wide .rev-meta{color:#9C8E77;margin-top:16px}
+
+/* ============ CTA — the night window ============ */
+#cta{background:var(--dark);position:relative;overflow:hidden;text-align:center;padding:clamp(80px,11vw,140px) 0}
+#cta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(122,154,46,.14),transparent 70%)}
+#cta .eyebrow{color:#9C8E77;position:relative}
+.tagline{position:relative;font-family:var(--display);font-size:clamp(2rem,6vw,4rem);color:var(--accent-soft);text-shadow:0 0 26px color-mix(in srgb,var(--accent-soft) 55%,transparent),0 0 70px color-mix(in srgb,var(--accent-soft) 30%,transparent);margin:10px 0 8px;line-height:1.15}
+.tagline-src{position:relative;color:#9C8E77;font-size:.85rem;font-style:italic;margin-bottom:36px}
+.cta-btns{position:relative;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.note-f{position:absolute;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--accent-soft);opacity:.28;animation:floaty 7s ease-in-out infinite;pointer-events:none}
+.note-f.n2{animation-delay:2.4s;animation-duration:9s}
+.note-f.n3{animation-delay:4.8s;animation-duration:8s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-16px) rotate(7deg)}}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#CDBFAE;padding:54px 0 40px}
+.foot-grid{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start;justify-content:space-between}
+.foot-lk .lk-script{font-size:1.5rem}
+.foot-lk .lk-sub{color:#E8A98F}
+.foot-line{margin-top:8px;font-size:.9rem;max-width:30ch}
+.foot-nav{display:flex;gap:20px;flex-wrap:wrap}
+.foot-nav a{font-size:.88rem;text-decoration:none;opacity:.8}
+.foot-nav a:hover{opacity:1}
+.foot-fine{margin-top:34px;padding-top:20px;border-top:1px solid rgba(205,191,174,.18);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:.75rem;color:#8C7F6F}
+</style>
+</head>
+<body id="top" class="js">
+
+<header class="site-header">
+  <div class="header-in">
+    <a class="lockup" href="#top" aria-label="Sumalee's Thai Cuisine — back to top">
+      <span class="lk-script">Sumalee&rsquo;s</span>
+      <span class="lk-sub">THAI CUISINE &middot; BONNEY LAKE</span>
+    </a>
+    <span class="neon-pill" id="openPill" aria-live="polite">&hellip;</span>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" aria-label="Main">
+      <a href="#menu">Menu</a>
+      <a href="#heat">Heat</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">Story</a>
+      <a href="#reviews">Reviews</a>
+      <a class="btn" href="tel:+12538263514">Order to-go</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO — the walk-up strip: their real storefront collage drifting past
+     (sign → painted windows → neon at night → the terracotta room) -->
+<section id="hero">
+  <div class="hero-strip">
+    <img src="{{IMG_HERO}}" alt="Sumalee's Thai Cuisine storefront: the red Thai Cuisine sign, hand-painted windows at night, the green neon script sign, and the warm terracotta dining room">
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Thai kitchen &middot; Bonney Lake, WA</p>
+    <h1>Real <em>Southern Thai</em>, right off the 410.</h1>
+    <p class="hero-sub">Chef Sumalee&rsquo;s kitchen — everything cooked fresh, made to order.</p>
+    <div class="hero-btns">
+      <a class="btn" href="#menu">See the favorites</a>
+      <a class="btn ghost on-dark" href="#hours">Find us on 410</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS + ADDRESS + PHONE — the one band -->
+<section id="hours">
+  <div class="wrap hours-grid">
+    <div class="rv">
+      <p class="eyebrow">When to find us</p>
+      <h2><span class="sq">Open seven days<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q30 2 58 7 T114 7 T170 6 T198 8"/></svg></span> a week</h2>
+      <p class="status-line"><span class="status-dot" id="statusDot"></span><span id="statusLine">Checking the clock&hellip;</span></p>
+      <p class="addr"><strong>20831 State Route 410 E, Bonney Lake, WA 98391</strong><br>
+      In the 410 plaza, next to the Regal movie theater &middot; <a href="tel:+12538263514">(253)&nbsp;826-3514</a></p>
+      <div class="proof-chips">
+        <span>Family-owned</span><span>Orders to-go</span><span>No MSG</span>
+      </div>
+    </div>
+    <div class="day-rows rv" id="dayRows">
+      <div class="row" data-day="1"><span class="d">Monday</span><span>11 AM – 9 PM</span></div>
+      <div class="row" data-day="2"><span class="d">Tuesday</span><span>11 AM – 9 PM</span></div>
+      <div class="row" data-day="3"><span class="d">Wednesday</span><span>11 AM – 9 PM</span></div>
+      <div class="row" data-day="4"><span class="d">Thursday</span><span>11 AM – 9 PM</span></div>
+      <div class="row" data-day="5"><span class="d">Friday</span><span>11 AM – 9 PM</span></div>
+      <div class="row" data-day="6"><span class="d">Saturday</span><span>11 AM – 9 PM</span></div>
+      <div class="row" data-day="0"><span class="d">Sunday</span><span>12 PM – 9 PM</span></div>
+      <p class="hours-note">&ldquo;Open 7 Days&rdquo; — it&rsquo;s hand-painted right on the window.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU — the board, set dark like their painted window at night -->
+<section id="menu">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">The board</p>
+      <h2>What the regulars <em>order</em></h2>
+      <p class="menu-intro">A taste of the menu — prices straight from their Yelp listing, August 2026. The full board lives at the counter.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-group rv">
+        <h3>To start</h3>
+        <div class="mi"><span class="nm">Fresh Spring Rolls</span><span class="dots"></span><span class="pr">$10.50</span></div>
+        <div class="mi"><span class="nm">Tom Yum Soup</span><span class="dots"></span><span class="pr">$16.95</span></div>
+        <div class="mi"><span class="nm">Papaya Salad</span><span class="dots"></span><span class="pr">$17.75</span></div>
+      </div>
+      <div class="menu-group rv">
+        <h3>Woks &amp; curries</h3>
+        <div class="mi"><span class="nm">Pad Thai</span><span class="dots"></span><span class="pr">$16.95</span></div>
+        <div class="mi"><span class="nm">Pad Kee Mao</span><span class="dots"></span><span class="pr">$16.95</span></div>
+        <div class="mi"><span class="nm">Green Curry</span><span class="dots"></span><span class="pr">$17.95</span></div>
+        <div class="mi"><span class="nm">Red or Yellow Curry</span><span class="dots"></span><span class="pr">$19.95</span></div>
+        <div class="mi"><span class="nm">Pineapple Fried Rice</span><span class="dots"></span><span class="pr">$19.95</span></div>
+      </div>
+    </div>
+    <div class="star-card rv">
+      <span class="sc-eyebrow">The cult dish</span>
+      <h3>Crispy Garlic Chicken</h3>
+      <p>The one everybody photographs — 18 photos and 47 reviews on Yelp. It out-shot the pad thai.</p>
+      <span class="ph on-dark-ph">[PLACEHOLDER — ask client: current price]</span>
+    </div>
+    <div class="also-board rv">
+      <p class="ab-label">Also on the board</p>
+      <div class="chips">
+        <span>Panang Curry</span><span>Pad See Ew</span><span>Cream Cheese Wontons</span>
+        <span>Chicken Satay</span><span>BBQ Pork Fried Rice</span><span>Spicy Pork Belly</span><span>Mango Sticky Rice</span>
+      </div>
+    </div>
+    <p class="menu-fine rv">Vegan-friendly, and most dishes can go gluten-free — just ask at the counter.</p>
+  </div>
+</section>
+
+<!-- SIGNATURE — the heat dial: their real 1–5 ritual as a toy -->
+<section id="heat">
+  <div class="wrap heat-grid">
+    <div class="rv">
+      <p class="eyebrow">The house ritual</p>
+      <h2>How hot is <span class="sq">hot?<svg viewBox="0 0 80 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q20 2 40 7 T78 6"/></svg></span></h2>
+      <p class="heat-intro">Every dish here is ordered on a 1-to-5 heat scale — and this kitchen actually means it. Tap a chili.</p>
+      <div class="heat-quote">
+        <p>&ldquo;They bring the spicy! So be careful what heat level you order. 2 is probably enough.&rdquo;</p>
+        <div class="hq-who">
+          <span class="disc c2">B</span>
+          <div>
+            <div class="hq-name">Branden B.</div>
+            <div class="hq-meta">Yelp &middot; Aug 2, 2025 &middot; orders here every month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gadget rv">
+      <div class="bowl-wrap">
+        <svg id="bowl" viewBox="0 0 220 170" role="img" aria-label="A curry bowl that changes color with your heat level">
+          <g class="steam-g">
+            <path class="steam s1" d="M78 52 q-6 -10 0 -20 q6 -10 0 -20"/>
+            <path class="steam s2" d="M110 50 q-7 -11 0 -22 q7 -11 0 -20"/>
+            <path class="steam s3" d="M142 52 q-6 -10 0 -20 q6 -10 0 -20"/>
+          </g>
+          <ellipse cx="110" cy="86" rx="80" ry="18" fill="#4A382E"/>
+          <ellipse class="curry" cx="110" cy="85" rx="70" ry="14"/>
+          <circle class="flake" cx="88" cy="83" r="2.6" fill="#7E1A12"/>
+          <circle class="flake" cx="118" cy="88" r="2.2" fill="#7E1A12"/>
+          <circle class="flake" cx="138" cy="82" r="2.6" fill="#7E1A12"/>
+          <circle class="flake" cx="103" cy="80" r="1.9" fill="#7E1A12"/>
+          <path d="M30 88 Q36 138 110 143 Q184 138 190 88 Q160 100 110 100 Q60 100 30 88 Z" fill="#A65B41"/>
+          <path d="M30 88 Q36 138 110 143 Q184 138 190 88 Q160 100 110 100 Q60 100 30 88 Z" fill="url(#bowlshade)" opacity=".35"/>
+          <defs><linearGradient id="bowlshade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#3A1F14"/></linearGradient></defs>
+          <ellipse cx="110" cy="148" rx="34" ry="7" fill="#7E4430"/>
+        </svg>
+      </div>
+      <div class="chilis" role="group" aria-label="Pick your heat level, 1 to 5">
+        <button class="chip-chili" data-lvl="1"><span class="pep">🌶️</span><span class="n">1</span></button>
+        <button class="chip-chili" data-lvl="2"><span class="tag">Regulars&rsquo; pick</span><span class="pep">🌶️</span><span class="n">2</span></button>
+        <button class="chip-chili" data-lvl="3"><span class="pep">🌶️</span><span class="n">3</span></button>
+        <button class="chip-chili" data-lvl="4"><span class="pep">🌶️</span><span class="n">4</span></button>
+        <button class="chip-chili" data-lvl="5"><span class="pep">🌶️</span><span class="n">5</span></button>
+      </div>
+      <p class="heat-read" id="heatRead" aria-live="polite">Warm and happy — the regulars&rsquo; pick.</p>
+      <p class="heat-close">Whatever your number, just say it when you order.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — framed prints, shot by Yelp diners -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">From the table</p>
+      <h2>Straight off the <span class="sq">table<svg viewBox="0 0 110 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q26 2 55 7 T108 6"/></svg></span></h2>
+      <p class="gal-intro">Every photo below was taken right here — by the diners who keep coming back.</p>
+    </div>
+    <div class="gal-grid">
+      <figure class="print p-a rv"><div class="im"><img src="{{IMG_G1}}" alt="A bowl of curry with jasmine rice and a plate of pad see ew on the table"></div><figcaption>Curry, rice, and pad see ew</figcaption></figure>
+      <figure class="print p-b rv"><div class="im"><img src="{{IMG_G2}}" alt="Green curry with chicken and a bowl of brown rice"></div><figcaption>Green curry, brown rice</figcaption></figure>
+      <figure class="print p-c rv"><div class="im"><img src="{{IMG_G3}}" alt="A layered Thai iced tea on the counter"></div><figcaption>Thai iced tea at the counter</figcaption></figure>
+      <figure class="print p-d rv"><div class="im"><img src="{{IMG_G4}}" alt="Pad thai with bean sprouts and carrot, packed to go"></div><figcaption>Pad thai, packed to go</figcaption></figure>
+      <figure class="print p-e rv"><div class="im"><img src="{{IMG_G5}}" alt="Cucumber salad with red onion and pepper in a wooden bowl"></div><figcaption>The cool-down: cucumber salad</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT — set on their dining-room terracotta -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="rv">
+      <p class="eyebrow">The story</p>
+      <h2>The chef it&rsquo;s <em>named for</em></h2>
+      <p class="about-lede">Sumalee&rsquo;s is exactly what the sign says — one chef&rsquo;s small, family-owned kitchen. Chef Sumalee grew up cooking in Southern Thailand, and you can taste it in the curries.</p>
+      <p class="about-p">The room is warm and easy — salmon walls, a slate fireplace, art on every side — and the kitchen happily cooks around allergies.</p>
+      <div class="ask-block">
+        <span class="ph">[PLACEHOLDER — ask client: the year they opened]</span>
+        <span class="ph">[PLACEHOLDER — ask client: the jazz story behind the house line]</span>
+      </div>
+    </div>
+    <figure class="about-print rv">
+      <img src="{{IMG_ABOUT}}" alt="The dining room: salmon-pink walls, a slate-tile fireplace, and warm gold accents">
+      <figcaption>The dining room off SR-410</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- REVIEWS — faces law: initial discs in brand colors -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">The proof</p>
+      <h2>What the regulars say</h2>
+      <div class="rev-stat"><span class="big"><span id="statStar" data-count="4.2">0.0</span>★</span><span class="lbl"><span id="statRev" data-count="411">0</span> reviews on Yelp</span></div>
+      <p class="rev-sub">Plus 4.1★ across 232 more on Restaurantji.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card rv">
+        <p>&ldquo;Workers in there are very friendly and the food is amazing! They work very quick to get your food to you fast. Fairly priced and the restaurant has a great atmosphere&rdquo;</p>
+        <div class="rev-who"><span class="disc c1">B</span><div><div class="rev-name">Bill T.</div><div class="rev-meta">Bonney Lake, WA &middot; Yelp &middot; Aug 2, 2026</div></div></div>
+      </div>
+      <div class="rev-card rv">
+        <p>&ldquo;Sumalee&rsquo;s is the absolute best Thai in Bonney Lake. I am completely obsessed! Portions are huge and the flavors are excellent. Priced normally.&rdquo;</p>
+        <div class="rev-who"><span class="disc c2">A</span><div><div class="rev-name">Alex T.</div><div class="rev-meta">Kent, WA &middot; Yelp &middot; May 28, 2026</div></div></div>
+      </div>
+      <div class="rev-card rv">
+        <p>&ldquo;Really enjoy the orange chicken and Pad Thai, you definitely need to come if you haven&rsquo;t. Service has always been good as well!&rdquo;</p>
+        <div class="rev-who"><span class="disc c3">J</span><div><div class="rev-name">Joseph D.</div><div class="rev-meta">Huntington Beach, CA &middot; Yelp &middot; Jun 10, 2026</div></div></div>
+      </div>
+      <div class="rev-card rv">
+        <p>&ldquo;We had the summer rolls which were absolutely perfect and I could eat about 5,000. &hellip; It was hopping for 5:30 on a Friday night &hellip; It&rsquo;s small but it has a lot to offer in the way of date night.&rdquo;</p>
+        <div class="rev-who"><span class="disc c1">A</span><div><div class="rev-name">Amanda T.<span class="elite">Elite</span></div><div class="rev-meta">Alpharetta, GA &middot; Yelp &middot; Nov 23, 2025</div></div></div>
+      </div>
+      <div class="rev-card rev-wide rv">
+        <p>&ldquo;For the very first time I can honestly say that I no longer need to drive to Tukwila to get the killer Thai food. <em>All I need to do is cross 410!</em>&rdquo;</p>
+        <div class="rev-meta">Restaurantji review &middot; Nov 2021</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — the night window, their own line in neon -->
+<section id="cta">
+  <span class="note-f" style="left:12%;top:24%">♪</span>
+  <span class="note-f n2" style="right:14%;top:30%">♫</span>
+  <span class="note-f n3" style="left:22%;bottom:20%">♪</span>
+  <div class="wrap rv">
+    <p class="eyebrow">The house line</p>
+    <p class="tagline">&ldquo;Where Curry Meet Jazz&rdquo;</p>
+    <p class="tagline-src">— their words, painted across their own masthead</p>
+    <div class="cta-btns">
+      <a class="btn on-dark" href="tel:+12538263514">Order to-go</a>
+      <a class="btn ghost on-dark" href="https://maps.google.com/?q=Sumalee%27s+Thai+Cuisine%2C+20831+State+Route+410+E%2C+Bonney+Lake%2C+WA+98391" target="_blank" rel="noopener">Get directions&nbsp;↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-lk">
+        <span class="lk-script" style="color:var(--accent-soft)">Sumalee&rsquo;s</span>
+        <span class="lk-sub">THAI CUISINE</span>
+        <p class="foot-line">Thai comfort food &middot; Bonney Lake, WA</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="#menu">Menu</a>
+        <a href="#heat">Heat</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">Story</a>
+        <a href="#reviews">Reviews</a>
+      </nav>
+    </div>
+    <div class="foot-fine">
+      <span>&copy; 2026 Sumalee&rsquo;s Thai Cuisine</span>
+      <span>Demo preview — anything marked &ldquo;ask client&rdquo; gets confirmed with the owner before launch.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- LIVE HOURS (America/Los_Angeles) ---------- */
+  var HOURS = { tz:'America/Los_Angeles',
+    days:{ 0:[12,21], 1:[11,21], 2:[11,21], 3:[11,21], 4:[11,21], 5:[11,21], 6:[11,21] } };
+
+  function getNow(){
+    var q = new URLSearchParams(location.search);
+    var f = new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',hour:'numeric',minute:'numeric',hour12:false});
+    var map = {};
+    f.formatToParts(new Date()).forEach(function(p){ map[p.type]=p.value; });
+    var dn = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var day = dn[map.weekday];
+    var h = (parseInt(map.hour,10)%24) + parseInt(map.minute,10)/60;
+    if(q.get('demo')!==null && q.get('demo')!==''){ h = parseFloat(q.get('demo')); }
+    if(q.get('day')!==null && q.get('day')!==''){ day = parseInt(q.get('day'),10); }
+    return {day:day, h:h};
+  }
+  function fmtH(x){
+    var h = Math.floor(x), m = Math.round((x-h)*60);
+    var ap = h>=12 ? 'PM' : 'AM';
+    var hh = h%12; if(hh===0) hh=12;
+    return hh + (m ? ':'+('0'+m).slice(-2) : '') + ' ' + ap;
+  }
+  function tick(){
+    var n = getNow(), t = HOURS.days[n.day];
+    var pill = document.getElementById('openPill');
+    var dot = document.getElementById('statusDot');
+    var line = document.getElementById('statusLine');
+    var open = t && n.h >= t[0] && n.h < t[1];
+    if(open){
+      pill.textContent = 'OPEN · til ' + fmtH(t[1]);
+      pill.classList.remove('is-closed');
+      dot.classList.remove('closed');
+      line.textContent = 'Open now — closes ' + fmtH(t[1]);
+    }else{
+      var nd = n.day, add = 0, nt;
+      if(t && n.h < t[0]){ nt = t; }
+      else{
+        do{ nd = (nd+1)%7; add++; nt = HOURS.days[nd]; }while(!nt && add<8);
+      }
+      var when = (add===0) ? 'at '+fmtH(nt[0]) : (add===1 ? 'tomorrow at '+fmtH(nt[0]) : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][nd]+' at '+fmtH(nt[0]));
+      pill.textContent = 'CLOSED · opens ' + (add===0 ? fmtH(nt[0]) : when.replace('at ',''));
+      pill.classList.add('is-closed');
+      dot.classList.add('closed');
+      line.textContent = 'Closed — opens ' + when;
+    }
+    document.querySelectorAll('#dayRows .row').forEach(function(r){
+      r.classList.toggle('today', parseInt(r.getAttribute('data-day'),10) === n.day);
+    });
+  }
+  tick();
+  setInterval(tick, 60000);
+
+  /* ---------- NAV ---------- */
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('main-nav');
+  function closeNav(){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded','false'); }
+  toggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var isOpen = nav.classList.toggle('open');
+    document.body.classList.toggle('nav-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNav(); });
+  document.addEventListener('click', function(e){ if(!nav.contains(e.target) && e.target!==toggle) closeNav(); });
+  nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNav); });
+
+  /* ---------- HEAT DIAL ---------- */
+  var LEVELS = {
+    1:{c:'#E9D8A6', s:.25, read:'Mild — all flavor, no fire.'},
+    2:{c:'#DFA43C', s:.4,  read:'Warm and happy — the regulars’ pick.'},
+    3:{c:'#D97C2B', s:.6,  read:'Now you’re sweating a little.'},
+    4:{c:'#C24A24', s:.8,  read:'Okay, hotshot.'},
+    5:{c:'#A81E1E', s:1,   read:'You’ve been warned.'}
+  };
+  var bowl = document.getElementById('bowl');
+  var read = document.getElementById('heatRead');
+  var chips = document.querySelectorAll('.chip-chili');
+  function setHeat(lvl, silent){
+    var L = LEVELS[lvl];
+    bowl.querySelector('.curry').style.fill = L.c;
+    bowl.style.setProperty('--steam', L.s);
+    bowl.classList.toggle('f-on', lvl >= 4);
+    chips.forEach(function(c){ c.classList.toggle('lit', parseInt(c.getAttribute('data-lvl'),10) <= lvl); });
+    read.textContent = L.read;
+    if(!silent){
+      read.classList.remove('pop'); void read.offsetWidth; read.classList.add('pop');
+      bowl.classList.remove('bowl-pop'); void bowl.getBoundingClientRect(); bowl.classList.add('bowl-pop');
+    }
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){ setHeat(parseInt(c.getAttribute('data-lvl'),10)); });
+  });
+  setHeat(2, true);
+
+  /* ---------- REVEAL ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* ---------- COUNT-UP ---------- */
+  var counted = false;
+  var statIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting && !counted){
+        counted = true;
+        countUp(document.getElementById('statStar'), 4.2, 1);
+        countUp(document.getElementById('statRev'), 411, 0);
+        statIo.disconnect();
+      }
+    });
+  },{threshold:.4});
+  statIo.observe(document.querySelector('.rev-stat'));
+  function countUp(el, target, dec){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = target.toFixed(dec); return; }
+    var t0 = null, dur = 1400;
+    function step(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min((ts-t0)/dur, 1);
+      p = 1 - Math.pow(1-p, 3);
+      el.textContent = (target*p).toFixed(dec);
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+})();
+</script>
+</body>
+</html>

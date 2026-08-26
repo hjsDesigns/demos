@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johann's Garden — Nursery &amp; Farm · Buckley, WA</title>
+<meta name="description" content="Specialty plant nursery and small farm in Lower Burnett, Buckley WA — perennial edibles, PNW natives and ornamentals, every plant grown on site inside a working food forest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style id="imgvars">
+:root{
+  --ph-yarrow:url("{{IMG:02-yarrow.jpg}}");
+  --ph-woodland:url("{{IMG:03-vine-maple.jpg}}");
+  --ph-bergenia:url("{{IMG:08-bergenia.jpg}}");
+  --ph-kiwi:url("{{IMG:04-kiwi-berry.jpg}}");
+  --ph-shield:url("{{IMG:01-logo-shield.png}}");
+}
+</style>
+<style>
+/* ============ JOHANN'S GARDEN — tokens ============
+   z-map: header 60 > mobile nav 50 > hero text 3 > grain 2 > scrim 1 */
+:root{
+  --brand:#B4487E;          /* daylily magenta, deepened from the logo pinks */
+  --brand-bright:#D477A8;
+  --brand-text:#93325F;
+  --accent:#5B6F43;         /* foliage green from their photos */
+  --accent-deep:#3A4D2D;
+  --terra:#C4703F;          /* terracotta pot */
+  --ink:#1E2418;
+  --bg:#F1EBDB;             /* true cream — never white */
+  --bg-2:#E6DEC7;
+  --paper:#F8F3E7;
+  --muted:#68644F;
+  --line:#DAD1B8;
+  --dark:#14170F;           /* the shield's near-black, green-tinted */
+  --dark-2:#1E2314;
+  --cream:#EFEEEE;
+  --sheep:#B9BCC0;
+  --display:'Besley',Georgia,'Times New Roman',serif;
+  --body:'Hanken Grotesk',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --header-h:72px;
+  --pad:clamp(20px,5vw,56px);
+  --maxw:1180px;
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+section{position:relative}
+
+/* eyebrow with hand-inked daylily tick */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);display:flex;align-items:center;gap:10px;font-weight:600}
+.eyebrow svg{flex:none}
+.on-dark .eyebrow{color:var(--brand-bright)}
+h1,h2{font-family:var(--display);font-weight:700;line-height:1.05;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:17px;line-height:1.6;max-width:56ch}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:13px 26px;border-radius:999px;font-family:var(--body);font-weight:700;font-size:15.5px;text-decoration:none;border:0;cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s}
+.btn:active{transform:scale(.97)}
+.btn-brand{background:var(--brand);color:#fff}
+.btn-brand:hover{background:var(--brand-bright)}
+.btn-ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--cream) 55%,transparent)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--cream)}
+.btn-ink{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ink) 35%,transparent)}
+.btn-ink:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+
+/* ============ header ============ */
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);z-index:60;display:flex;align-items:center;background:color-mix(in srgb,var(--dark) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb,var(--cream) 12%,transparent)}
+.site-header .wrap{width:100%;display:flex;align-items:center;gap:16px}
+.lockup{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--cream);min-width:0}
+.lockup img{height:44px;width:auto}
+.lockup .lname{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.01em;white-space:nowrap}
+.lockup .lsub{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.28em;color:var(--sheep);text-transform:uppercase;margin-top:1px}
+.live-pill{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--cream);background:color-mix(in srgb,var(--cream) 8%,transparent);border:1px solid color-mix(in srgb,var(--cream) 18%,transparent);border-radius:999px;padding:8px 14px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--sheep);flex:none}
+.dot.open{background:#7FBF5E;box-shadow:0 0 10px 2px rgba(127,191,94,.55);animation:pulse 2.2s infinite}
+.dot.closed{background:var(--brand-bright);box-shadow:0 0 8px 1px color-mix(in srgb,var(--brand-bright) 55%,transparent)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+#main-nav{display:flex;align-items:center;gap:26px}
+#main-nav a{color:var(--cream);text-decoration:none;font-size:14.5px;font-weight:600;opacity:.85}
+#main-nav a:hover{opacity:1}
+#main-nav .btn{min-height:42px;padding:9px 20px;font-size:14px}
+.nav-toggle{display:none;margin-left:6px;width:46px;height:46px;background:none;border:0;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--cream);transition:transform .25s,opacity .25s}
+@media(max-width:960px){
+  .live-pill .pill-when{display:none}
+  #main-nav{position:fixed;top:var(--header-h);right:0;left:0;z-index:50;flex-direction:column;align-items:flex-start;gap:0;background:var(--dark);padding:10px var(--pad) 26px;transform:translateY(-130%);transition:transform .3s ease;border-bottom:1px solid color-mix(in srgb,var(--cream) 12%,transparent)}
+  #main-nav.open{transform:translateY(0)}
+  #main-nav a{padding:13px 0;font-size:17px;width:100%}
+  #main-nav .btn{margin-top:10px;width:100%}
+  .nav-toggle{display:flex}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+@media(max-width:520px){.lockup .lname{font-size:16px}.lockup img{height:38px}}
+
+/* ============ hero — THE GARDEN WALK ============ */
+#hero{height:calc(100svh - var(--header-h));min-height:520px;margin-top:var(--header-h);position:relative;overflow:hidden;background:var(--dark);display:flex}
+.drift{position:absolute;inset:0;z-index:0;overflow:hidden}
+.strip{display:flex;height:100%;width:max-content;animation:drift 95s linear infinite;filter:saturate(1.14) contrast(1.04) brightness(.97)}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.car{height:100%;aspect-ratio:1/1;background-size:cover;background-position:center;flex:none;box-shadow:inset 0 0 60px rgba(10,12,6,.35)}
+.car.c1{background-image:var(--ph-yarrow)}
+.car.c2{background-image:var(--ph-woodland)}
+.car.c3{background-image:var(--ph-bergenia)}
+.car.c4{background-image:var(--ph-kiwi)}
+.scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(13,15,8,.92) 0%,rgba(13,15,8,.55) 34%,rgba(13,15,8,.12) 62%,rgba(13,15,8,.28) 100%)}
+.scrim::after{content:"";position:absolute;inset:0;background:radial-gradient(110% 90% at 18% 88%,rgba(13,15,8,.82) 0%,transparent 55%)}
+.grain{position:absolute;inset:0;z-index:2;opacity:.5;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-inner{position:relative;z-index:3;align-self:flex-end;width:100%;padding-bottom:clamp(34px,6vh,72px);color:var(--cream)}
+.hero-inner .eyebrow{color:var(--brand-bright);text-shadow:0 1px 12px rgba(13,15,8,.85)}
+#hero h1{font-size:clamp(40px,6.6vw,84px);color:var(--cream);margin:14px 0 24px;max-width:13ch;text-shadow:0 2px 24px rgba(13,15,8,.55)}
+#hero h1 .hl{color:var(--brand-bright);position:relative;white-space:nowrap}
+#hero h1 .hl svg{position:absolute;left:0;right:0;bottom:-.05em;width:100%;height:.13em;overflow:visible;z-index:-1}
+#hero h1 .hl path{stroke:color-mix(in srgb,var(--brand-bright) 55%,transparent);stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600}
+#hero h1 .hl path.draw{animation:inkdraw 1.1s .9s ease forwards}
+@keyframes inkdraw{to{stroke-dashoffset:0}}
+#hero .sub{color:color-mix(in srgb,var(--cream) 82%,transparent);max-width:52ch;font-size:clamp(15.5px,1.9vw,18px)}
+.hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.js .stagger{opacity:0;transform:translateY(22px)}
+.js .stagger.in{opacity:1;transform:none;transition:opacity .8s ease,transform .8s ease}
+@media(max-width:640px){#hero{min-height:480px}.hero-cta .btn{flex:1;min-width:150px;padding:13px 10px}}
+
+/* ============ hours band ============ */
+#hours{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 14%,var(--bg)) 0%,var(--bg) 100%);border-bottom:1px solid var(--line)}
+#hours .wrap{padding-top:64px;padding-bottom:64px;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);align-items:start}
+#hours h2{font-size:clamp(30px,3.6vw,44px);font-style:italic;font-weight:600;margin:12px 0 18px}
+.status-line{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:clamp(19px,2.2vw,24px);font-weight:700}
+.status-line .dot{width:12px;height:12px}
+.addr{margin:10px 0 0 24px;color:var(--muted);font-size:16px;line-height:1.55}
+.addr a{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1.5px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.addr .tel{color:var(--ink);font-weight:600;text-decoration:none}
+.day-rows{list-style:none;display:flex;flex-direction:column;gap:8px}
+.day-rows li{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 18px;font-size:15.5px}
+.day-rows .d{font-weight:700;font-family:var(--display);font-size:17px}
+.day-rows .t{color:var(--muted);font-weight:600}
+.day-rows li.today{background:var(--dark);color:var(--cream);border-color:var(--dark);box-shadow:0 10px 26px -14px rgba(20,23,15,.55)}
+.day-rows li.today .t{color:var(--brand-bright)}
+.day-rows li.today .d::after{content:"· today";font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--sheep);margin-left:10px}
+@media(max-width:860px){#hours .wrap{grid-template-columns:1fr;padding-top:52px;padding-bottom:52px}}
+
+/* ============ what grows here ============ */
+#grows .wrap{padding-top:84px;padding-bottom:84px}
+#grows h2{font-size:clamp(30px,4vw,50px);margin:14px 0 14px;max-width:22ch}
+#grows h2 .hl{color:var(--brand-text)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;display:flex;flex-direction:column;gap:12px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;appearance:none;-webkit-appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 34px -20px rgba(30,36,24,.35)}
+.card>svg{color:var(--accent-deep)}
+.card h3{font-family:var(--display);font-size:19px;font-weight:700}
+.card p{color:var(--muted);font-size:14.5px;line-height:1.6}
+.card .more{margin-top:auto;display:inline-flex;align-items:center;gap:7px;color:var(--brand-text);font-weight:700;font-size:13.5px;padding-top:4px}
+.card .more svg{flex:none;transition:transform .25s ease}
+.card.active{border-color:var(--brand);transform:translateY(-4px);box-shadow:0 18px 34px -20px rgba(180,72,126,.4)}
+.card.active .more svg{transform:rotate(45deg)}
+.cat-panels{margin-top:16px}
+.cat-panel{background:var(--paper);border:1.5px solid color-mix(in srgb,var(--brand) 45%,var(--line));border-radius:var(--r);padding:clamp(18px,3vw,28px)}
+.cat-panel .cp-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin-bottom:16px}
+.cat-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:14px}
+.citem{background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0;opacity:0;transform:translateY(12px) scale(.98);animation:pop .4s ease forwards}
+.citem:nth-child(2){animation-delay:.06s}.citem:nth-child(3){animation-delay:.12s}.citem:nth-child(4){animation-delay:.18s}.citem:nth-child(5){animation-delay:.24s}
+.citem img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.citem .cico{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:color-mix(in srgb,var(--accent) 12%,var(--bg-2));color:var(--accent-deep)}
+.citem .cico svg{width:54px;height:54px}
+.citem figcaption{padding:12px 14px 15px}
+.citem b{font-family:var(--display);font-size:16px;display:block}
+.citem i{font-family:var(--display);font-style:italic;color:var(--accent-deep);font-size:13px;display:block;margin:2px 0 6px}
+.citem p{color:var(--muted);font-size:13px;line-height:1.5}
+.tag-cluster{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+@keyframes tagpop{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+.gtag{background:#F7F0DC;border:1px solid var(--line);border-radius:5px;padding:10px 18px 12px;box-shadow:0 10px 20px -12px rgba(30,36,24,.4);transform:rotate(-1.6deg);opacity:0;animation:tagpop .4s ease forwards}
+.gtag:nth-child(even){transform:rotate(1.4deg)}
+.gtag:nth-child(2){animation-delay:.04s}.gtag:nth-child(3){animation-delay:.08s}.gtag:nth-child(4){animation-delay:.12s}.gtag:nth-child(5){animation-delay:.16s}.gtag:nth-child(6){animation-delay:.2s}.gtag:nth-child(7){animation-delay:.24s}.gtag:nth-child(8){animation-delay:.28s}.gtag:nth-child(9){animation-delay:.32s}.gtag:nth-child(10){animation-delay:.36s}.gtag:nth-child(11){animation-delay:.4s}
+.gtag::before{content:"";display:block;width:7px;height:7px;border-radius:50%;background:var(--bg-2);border:1px solid var(--line);margin:0 auto 7px}
+.gtag b{font-family:var(--display);font-size:15px;display:block;text-align:center}
+.gtag i{font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.08em;color:var(--muted);display:block;text-align:center;margin-top:3px}
+.gtag.gmore{background:var(--dark);border-color:var(--dark);align-self:center}
+.gtag.gmore::before{background:var(--dark-2);border-color:color-mix(in srgb,var(--cream) 25%,transparent)}
+.gtag.gmore b{color:var(--brand-bright)}
+.gtag.gmore i{color:var(--sheep)}
+@media(max-width:960px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}.cat-items{grid-template-columns:1fr 1fr}.citem img,.citem .cico{aspect-ratio:16/10}}
+@media(prefers-reduced-motion:reduce){.citem,.gtag{animation:none;opacity:1}.citem{transform:none}.gtag.gmore{transform:rotate(0)}}
+
+/* ============ signature — FIND YOUR PLANT ============ */
+#find{background:var(--dark);color:var(--cream);overflow:hidden}
+#find .wrap{padding-top:88px;padding-bottom:88px}
+#find h2{font-size:clamp(32px,4.4vw,54px);color:var(--cream);margin:14px 0 12px}
+#find h2 .hl{color:var(--brand-bright)}
+#find .sub{color:color-mix(in srgb,var(--cream) 66%,transparent)}
+.ghost-shield{position:absolute;right:-4%;top:6%;width:min(46vw,460px);aspect-ratio:961/1241;background-image:var(--ph-shield);background-size:contain;background-repeat:no-repeat;opacity:.05;pointer-events:none;user-select:none}
+.pick{margin-top:36px;display:flex;flex-direction:column;gap:18px;position:relative;z-index:1}
+.pick-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pick-row .plabel{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(17px,2vw,20px);color:var(--cream);width:100%;margin-bottom:6px}
+.chip{display:inline-flex;align-items:center;gap:11px;min-height:62px;padding:12px 20px;border-radius:18px;background:color-mix(in srgb,var(--cream) 7%,transparent);border:1.5px solid color-mix(in srgb,var(--cream) 22%,transparent);color:var(--cream);font-family:var(--body);font-weight:700;font-size:15.5px;cursor:pointer;transition:all .2s ease;text-align:left}
+.chip svg{flex:none}
+.chip .ct{display:flex;flex-direction:column;gap:2px}
+.chip .ct b{font-size:15.5px;line-height:1.2}
+.chip .ct small{font-size:12.5px;font-weight:500;color:color-mix(in srgb,var(--cream) 60%,transparent);line-height:1.35}
+.chip[aria-pressed="true"] .ct small{color:rgba(255,255,255,.85)}
+.chip:hover{border-color:color-mix(in srgb,var(--cream) 45%,transparent)}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff;transform:scale(1.04)}
+.chip[aria-pressed="true"] svg{color:#fff}
+#plant-out{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:1}
+.pcard{background:color-mix(in srgb,var(--cream) 96%,var(--brand) 4%);color:var(--ink);border-radius:var(--r);padding:24px 22px;display:flex;flex-direction:column;gap:10px;opacity:0;transform:translateY(14px) scale(.98);animation:pop .45s ease forwards}
+.pcard:nth-child(2){animation-delay:.08s}.pcard:nth-child(3){animation-delay:.16s}
+@keyframes pop{to{opacity:1;transform:none}}
+.pcard svg{color:var(--brand-text)}
+.pcard h3{font-family:var(--display);font-size:21px;font-weight:700}
+.pcard .latin{font-family:var(--display);font-style:italic;font-weight:500;color:var(--accent-deep);font-size:14.5px}
+.pcard p{color:#565343;font-size:14.5px;line-height:1.6}
+.pcard.ask{background:color-mix(in srgb,var(--dark-2) 60%,var(--dark));color:var(--cream);border:1.5px dashed color-mix(in srgb,var(--cream) 30%,transparent)}
+.pcard.ask svg{color:var(--brand-bright)}
+.pcard.ask p{color:color-mix(in srgb,var(--cream) 70%,transparent)}
+.find-note{margin-top:22px;font-size:13px;color:color-mix(in srgb,var(--cream) 55%,transparent);font-style:italic;position:relative;z-index:1}
+@media(max-width:860px){#plant-out{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.pcard{animation:none;opacity:1;transform:none}}
+
+/* ============ the flock ============ */
+#flock .wrap{padding-top:84px;padding-bottom:84px;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.print{background:var(--paper);border:1px solid var(--line);padding:14px;border-radius:6px;box-shadow:0 24px 48px -26px rgba(30,36,24,.45);transform:rotate(-1.2deg)}
+.print img{border-radius:2px;filter:saturate(1.1) contrast(1.03)}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);padding:12px 4px 2px;text-transform:uppercase}
+#flock h2{font-size:clamp(30px,4vw,48px);margin:14px 0 16px}
+#flock h2 .hl{color:var(--brand-text)}
+#flock .body-copy{color:var(--muted);font-size:16px;line-height:1.7;max-width:52ch}
+.tours{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+.tour{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--brand);border-radius:12px;padding:16px 18px}
+.tour b{font-family:var(--display);font-size:16.5px}
+.tour p{color:var(--muted);font-size:14px;line-height:1.55;margin-top:4px}
+.tour .q{font-style:italic;color:var(--brand-text)}
+@media(max-width:860px){#flock .wrap{grid-template-columns:1fr}}
+
+/* ============ pot exchange toy ============ */
+#pots{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#pots .wrap{padding-top:76px;padding-bottom:80px;text-align:center}
+#pots h2{font-size:clamp(32px,4.4vw,52px);margin:14px auto 10px}
+#pots h2 .hl{color:var(--terra)}
+#pots .eyebrow{justify-content:center}
+#pots .sub{margin:0 auto}
+.shelf-zone{max-width:640px;margin:34px auto 0}
+.shelf-pots{display:flex;align-items:flex-end;justify-content:center;gap:10px;min-height:110px}
+.pot{width:64px;transition:transform .2s ease;transform-origin:bottom center}
+.pot.in{animation:potdrop .5s cubic-bezier(.34,1.56,.64,1)}
+.pot.out{animation:potout .35s ease forwards}
+@keyframes potdrop{0%{transform:translateY(-70px) rotate(-8deg);opacity:0}60%{transform:translateY(4px) rotate(2deg);opacity:1}100%{transform:none;opacity:1}}
+@keyframes potout{to{transform:translateY(26px) rotate(10deg);opacity:0}}
+.plank{height:14px;background:linear-gradient(180deg,#8A6A44,#6E5233);border-radius:4px;box-shadow:0 10px 24px -12px rgba(30,36,24,.5);margin-top:-2px}
+.plank::after{content:"";display:block}
+.pot-btns{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.pot-btns .btn-take{background:var(--paper);color:var(--terra);box-shadow:inset 0 0 0 2px var(--terra)}
+.pot-btns .btn-take:hover{background:var(--terra);color:#fff}
+.pot-btns .btn-leave{background:var(--terra);color:#fff}
+.pot-btns .btn-leave:hover{background:#D5854F}
+@media(max-width:520px){.pot{width:52px}}
+@media(prefers-reduced-motion:reduce){.pot.in,.pot.out{animation:none}.pot.out{opacity:0}}
+
+/* ============ gallery — trial beds ============ */
+#beds .wrap{padding-top:84px;padding-bottom:84px}
+#beds h2{font-size:clamp(30px,4vw,48px);margin:14px 0 34px}
+#beds h2 .hl{color:var(--brand-text)}
+.bed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.bed-grid .print{transform:rotate(0)}
+.bed-grid .print:nth-child(odd){transform:rotate(-1deg)}
+.bed-grid .print:nth-child(even){transform:rotate(1deg)}
+.bed-grid .print:hover{transform:rotate(0) translateY(-5px);transition:transform .3s ease}
+.bed-grid img{aspect-ratio:3/4;object-fit:cover;width:100%}
+@media(max-width:960px){.bed-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.bed-grid{grid-template-columns:1fr}.bed-grid img{aspect-ratio:4/3}}
+
+/* ============ story ============ */
+#story{background:var(--bg-2)}
+#story .wrap{padding-top:88px;padding-bottom:88px;display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,70px);align-items:start}
+.shield-frame{background:var(--dark);border-radius:var(--r);padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;align-items:center;gap:18px;box-shadow:0 30px 60px -30px rgba(20,23,15,.6);position:sticky;top:calc(var(--header-h) + 24px)}
+.shield-frame img{width:min(72%,240px)}
+.shield-frame figcaption{color:var(--sheep);font-size:13px;line-height:1.6;text-align:center;font-style:italic;max-width:30ch}
+#story h2{font-size:clamp(30px,4vw,48px);margin:14px 0 18px}
+#story h2 .hl{color:var(--brand-text)}
+#story .lede{font-family:var(--display);font-size:clamp(18px,2.2vw,22px);font-weight:500;line-height:1.5;margin-bottom:18px}
+#story .body-copy{color:var(--muted);font-size:16px;line-height:1.75}
+#story .body-copy + .body-copy{margin-top:14px}
+.pull{margin:26px 0;padding:20px 24px;border-left:5px solid var(--brand);background:var(--paper);border-radius:0 12px 12px 0;font-family:var(--display);font-style:italic;font-size:17.5px;line-height:1.6;color:var(--ink)}
+.pull small{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.sust{list-style:none;margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sust li{display:flex;gap:10px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.5;color:var(--muted)}
+.sust li svg{flex:none;color:var(--accent);margin-top:1px}
+@media(max-width:860px){#story .wrap{grid-template-columns:1fr}.shield-frame{position:static}.sust{grid-template-columns:1fr}}
+
+/* ============ visit ============ */
+#visit .wrap{padding-top:88px;padding-bottom:88px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px)}
+#visit h2{font-size:clamp(30px,4vw,48px);margin:14px 0 26px}
+#visit h2 .hl{color:var(--brand-text)}
+.steps{list-style:none;display:flex;flex-direction:column;gap:18px;counter-reset:step}
+.steps li{display:flex;gap:16px;align-items:flex-start}
+.steps .n{counter-increment:step;flex:none;width:44px;height:44px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:18px}
+.steps .n::before{content:counter(step)}
+.steps b{font-family:var(--display);font-size:17px}
+.steps p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-top:3px}
+.steps .q{font-style:italic;color:var(--brand-text)}
+.reach{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.reach .btn{min-height:46px;font-size:14px;padding:10px 20px}
+.contact-form{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:14px}
+.contact-form label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;min-height:48px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);padding:12px 14px;font-family:var(--body);font-size:15px;color:var(--ink)}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.form-success{display:none;background:color-mix(in srgb,var(--accent) 14%,var(--paper));border:1.5px solid var(--accent);border-radius:12px;padding:18px;font-size:15px;line-height:1.6}
+.form-success.show{display:block}
+@media(max-width:860px){#visit .wrap{grid-template-columns:1fr}}
+
+/* ============ CTA ============ */
+#cta{background:var(--dark);color:var(--cream);overflow:hidden}
+#cta .wrap{padding-top:92px;padding-bottom:92px;text-align:center;position:relative}
+#cta .ghost-shield{left:50%;top:50%;transform:translate(-50%,-50%);right:auto;width:min(70vw,560px);opacity:.045}
+#cta h2{font-size:clamp(34px,5vw,60px);color:var(--cream);margin:16px auto 10px;max-width:16ch}
+#cta h2 .hl{color:var(--brand-bright)}
+#cta .eyebrow{justify-content:center}
+#cta .award{color:color-mix(in srgb,var(--cream) 62%,transparent);font-size:15px;font-style:italic;max-width:52ch;margin:0 auto}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:860px;margin:44px auto 40px;position:relative;z-index:1}
+.num b{display:block;font-family:var(--display);font-size:clamp(30px,4vw,46px);font-weight:800;color:var(--brand-bright)}
+.num span{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--sheep);display:block;margin-top:6px;line-height:1.5}
+#cta .hero-cta{justify-content:center;margin-top:8px}
+@media(max-width:700px){.nums{grid-template-columns:1fr 1fr;gap:26px 14px}}
+
+/* ============ footer ============ */
+footer{background:var(--dark-2);color:var(--sheep);border-top:1px solid color-mix(in srgb,var(--cream) 10%,transparent)}
+footer .wrap{padding-top:52px;padding-bottom:44px;display:flex;flex-wrap:wrap;gap:30px;align-items:center;justify-content:space-between}
+.f-brand{display:flex;align-items:center;gap:14px}
+.f-brand img{height:56px;width:auto}
+.f-brand .fn{font-family:var(--display);font-weight:700;font-size:18px;color:var(--cream)}
+.f-brand .ft{font-size:13px;color:var(--sheep);margin-top:3px;font-style:italic}
+.f-links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
+.f-links a{color:var(--sheep);text-decoration:none;font-weight:600}
+.f-links a:hover{color:var(--cream)}
+.f-legal{width:100%;border-top:1px solid color-mix(in srgb,var(--cream) 8%,transparent);padding-top:18px;font-size:12.5px;color:color-mix(in srgb,var(--sheep) 70%,transparent);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .strip{animation:none}
+  .js .stagger,.js .reveal{opacity:1;transform:none;transition:none}
+  #hero h1 .hl path.draw{animation:none;stroke-dashoffset:0}
+  .dot.open{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="lockup" href="#hero" aria-label="Johann's Garden — home">
+      <img src="{{IMG:shield-sm.png}}" alt="Johann's Garden shield logo — a grey sheep's head ringed by pink daylilies">
+      <span><span class="lname">Johann's Garden</span><span class="lsub">Nursery &amp; Farm</span></span>
+    </a>
+    <span class="live-pill" id="pill"><span class="dot" id="pill-dot"></span><span id="pill-text">—</span></span>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="main-nav" aria-label="Main">
+      <a href="#grows">The garden</a>
+      <a href="#find">Find your plant</a>
+      <a href="#flock">The flock</a>
+      <a href="#story">Story</a>
+      <a class="btn btn-brand" href="#visit">Plan a visit</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO — THE GARDEN WALK: their real beds stitched into a slow stroll -->
+<section id="hero" aria-label="A slow walk through the Johann's Garden beds — yarrow bank, woodland path, potted bergenia, kiwi berry bloom">
+  <div class="drift" aria-hidden="true">
+    <div class="strip">
+      <div class="car c1"></div><div class="car c2"></div><div class="car c3"></div><div class="car c4"></div>
+      <div class="car c1"></div><div class="car c2"></div><div class="car c3"></div><div class="car c4"></div>
+    </div>
+  </div>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="hero-inner wrap">
+    <p class="eyebrow stagger">Nursery &amp; farm · Lower Burnett · Buckley, WA</p>
+    <h1 class="stagger">Walk into a working <span class="hl">food forest<svg viewBox="0 0 300 24" aria-hidden="true"><path id="ink-underline" d="M4 16 C 60 8, 120 20, 170 13 S 270 10, 296 15"/></svg></span></h1>
+    <p class="sub stagger">Perennial edibles, Northwest natives and ornamentals — every plant raised right here, sold from dirt paths inside the garden that grew it.</p>
+    <div class="hero-cta stagger">
+      <a class="btn btn-brand" href="#find">Find your plant</a>
+      <a class="btn btn-ghost" href="#visit">Plan a visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS — the one band: hours + address + phone, today lit -->
+<section id="hours">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2 C9.5 4.5 12 5 14 5 C12 6.5 12 9 12 11 C10 10 9 10.5 8 12 C7 10.5 6 10 4 11 C4 9 4 6.5 2 5 C4 5 6.5 4.5 8 2Z" stroke="currentColor" stroke-width="1.3"/></svg>When the gate's open</p>
+      <h2>When to find us</h2>
+      <p class="status-line"><span class="dot" id="band-dot"></span><span id="band-text">Checking the clock…</span></p>
+      <p class="addr">27013 Lower Burnett Rd E, Buckley, WA 98321<br>
+      <a href="https://maps.google.com/?q=27013+Lower+Burnett+Rd+E,+Buckley,+WA+98321" target="_blank" rel="noopener">Get directions</a> &nbsp;·&nbsp; <a class="tel" href="tel:+12063351816">(206)&nbsp;335-1816</a> — call or text</p>
+    </div>
+    <div class="reveal">
+      <ul class="day-rows" id="day-rows">
+        <li data-days="1"><span class="d">Monday</span><span class="t">9:00am – 5:00pm</span></li>
+        <li data-days="2"><span class="d">Tuesday</span><span class="t">9:00am – 5:00pm</span></li>
+        <li data-days="3"><span class="d">Wednesday</span><span class="t">9:00am – 5:00pm</span></li>
+        <li data-days="4"><span class="d">Thursday</span><span class="t">9:00am – 5:00pm</span></li>
+        <li data-days="5"><span class="d">Friday</span><span class="t">9:00am – 5:00pm</span></li>
+        <li data-days="6"><span class="d">Saturday</span><span class="t">9:00am – 5:00pm</span></li>
+        <li data-days="0"><span class="d">Sunday</span><span class="t">Closed</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT GROWS HERE -->
+<section id="grows">
+  <div class="wrap">
+    <p class="eyebrow reveal"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14 C8 9 8 6 8 4 M8 4 C6 4 4 3 3.5 1.5 C6 1.5 8 2.5 8 4 M8 6 C10 6 12.5 5 13 3 C10.5 3 8.5 4.5 8 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>What grows here</p>
+    <h2 class="reveal">A huge diversity, a few of each — <span class="hl">that's the point.</span></h2>
+    <p class="sub reveal">This isn't a garden center with pallets of the same ten shrubs. It's one grower's living catalog — small batches of many, many plants, each one already proven in Buckley dirt.</p>
+    <div class="cards">
+      <button type="button" class="card reveal" data-panel="panel-edibles" aria-expanded="false" aria-controls="panel-edibles">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 26 V12 M15 12 C15 7 11 4 6 4 C6 9 10 12 15 12 M15 16 C15 12 19 9 24 9 C24 13 20 16 15 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="15" cy="27" r="1.4" fill="currentColor"/></svg>
+        <h3>Perennial edibles</h3>
+        <p>Plant once, harvest for years — kiwi berries, dwarf apples, hardy sugar cane and a bench of edibles you won't meet at a box store.</p>
+        <span class="more">See the plants<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2 V12 M2 7 H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button type="button" class="card reveal" data-panel="panel-natives" aria-expanded="false" aria-controls="panel-natives">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 4 L17 10 L23 8 L19 13 L25 16 L18 16 L20 23 L15 18 L10 23 L12 16 L5 16 L11 13 L7 8 L13 10 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <h3>Northwest natives</h3>
+        <p>Vine maple, sweet flag, local yarrow — listed under their Indigenous names alongside the Latin, grown from stock that already calls this land home.</p>
+        <span class="more">See the plants<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2 V12 M2 7 H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button type="button" class="card reveal" data-panel="panel-ornamentals" aria-expanded="false" aria-controls="panel-ornamentals">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 15 C13 12 13 8 15 5 C17 8 17 12 15 15 M15 15 C12 14 8.5 12 7 9 C10.5 8.5 13.5 11 15 15 M15 15 C18 14 21.5 12 23 9 C19.5 8.5 16.5 11 15 15 M15 15 V26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>Ornamentals</h3>
+        <p>Bergenia, mukdenia, variegated rarities — the kind of finds a plant-trial blog turns up, potted and ready for your beds.</p>
+        <span class="more">See the plants<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2 V12 M2 7 H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+      <button type="button" class="card reveal" data-panel="panel-grown" aria-expanded="false" aria-controls="panel-grown">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M6 24 C6 17 10 10 15 6 C20 10 24 17 24 24 M6 24 H24 M15 24 V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Grown on site</h3>
+        <p>Nothing trucked in. If it's on the sale table, it started and grew up on this one piece of land — no wholesale pallets, ever.</p>
+        <span class="more">See the list<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2 V12 M2 7 H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+    </div>
+    <div class="cat-panels" id="cat-panels">
+      <div class="cat-panel" id="panel-edibles" hidden>
+        <p class="cp-eyebrow">Perennial edibles — plant once, pick for years</p>
+        <div class="cat-items">
+          <figure class="citem">
+            <img src="{{IMG:p-kiwi.jpg}}" alt="A kiwi berry vine climbing the greenhouse frame at Johann's Garden">
+            <figcaption><b>Kiwi berry</b><i>Actinidia arguta</i><p>Grape-sized, smooth-skinned kiwis on a hardy vine — several cultivars on the tables.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <img src="{{IMG:p-apple.jpg}}" alt="A William's Pride apple cut open in the grower's hand">
+            <figcaption><b>Apple trees</b><i>Malus domestica, semi-dwarf</i><p>Proven cultivars — William's Pride, Wolf River, Winter Banana and more.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <span class="cico"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M10 27 V5 M20 27 V5 M8 10 H12 M18 10 H22 M8 17 H12 M18 17 H22 M8 24 H12 M18 24 H22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <figcaption><b>Hardy sugar cane</b><i>from the trial beds</i><p>A cold-hardy strain proven through Buckley winters, cut in season.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <span class="cico"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 27 C10 27 7 23 7 18 C7 12 11 7 15 7 C19 7 23 12 23 18 C23 23 20 27 15 27 Z M15 7 C15 5 15 3.5 15 2.5 M12 4 C13 4.7 14 5.6 15 7 M18 4 C17 4.7 16 5.6 15 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <figcaption><b>Elephant garlic</b><i>Allium ampeloprasum</i><p>Fat, mild cloves — planted in fall, lifted in high summer.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="cat-panel" id="panel-natives" hidden>
+        <p class="cp-eyebrow">Northwest natives — from this land, for this land</p>
+        <div class="cat-items">
+          <figure class="citem">
+            <img src="{{IMG:p-fern.jpg}}" alt="A bed of western maidenhair fern fronds at the nursery">
+            <figcaption><b>Western maidenhair fern</b><i>Adiantum aleuticum</i><p>Black-stemmed green fans for the damp shade the Northwest hands you.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <img src="{{IMG:p-columbine.jpg}}" alt="Red western columbine flowers blooming at a woodland edge">
+            <figcaption><b>Western columbine</b><i>Aquilegia formosa</i><p>Red lanterns for the hummingbirds, at home at a forest edge.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <span class="cico"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 27 V14 M15 14 L7 17 L9 12 L4 11 L9 7 L8 4 L13 6 L15 2 L17 6 L22 4 L21 7 L26 11 L21 12 L23 17 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            <figcaption><b>Vine maple</b><i>Acer circinatum · u-u-ac</i><p>Fire-colored fall leaves for a woodland edge, listed under its Lushootseed name.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <span class="cico"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="10" r="4.5" stroke="currentColor" stroke-width="1.4"/><circle cx="15" cy="10" r="1.6" fill="currentColor"/><path d="M15 14.5 V27 M15 19 C12 19 10 17.5 9 15 M15 22 C18 22 20 20.5 21 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+            <figcaption><b>Yarrow</b><i>Achillea millefolium · Pierce County selection</i><p>White summer lace the pollinators mob — their own locally collected strain.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <span class="cico"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M9 27 C9 18 8 11 6 6 M15 27 C15 16 15 9 15 4 M21 27 C21 18 22 11 24 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <figcaption><b>American sweet flag</b><i>sinkpe tawote · wiikenh</i><p>A sweet-scented water-edge classic for pond margins and rain-garden low spots.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="cat-panel" id="panel-ornamentals" hidden>
+        <p class="cp-eyebrow">Ornamentals — the lookers of the trial beds</p>
+        <div class="cat-items">
+          <figure class="citem">
+            <img src="{{IMG:p-bergenia.jpg}}" alt="Pink Dragonfly bergenia blooming over leathery evergreen leaves">
+            <figcaption><b>Bergenia</b><i>'Pink Dragonfly'</i><p>Evergreen leather leaves, pink spikes when winter finally loosens.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <img src="{{IMG:p-mukdenia.jpg}}" alt="Crimson Fans mukdenia — maple-shaped leaves flushing red in the beds">
+            <figcaption><b>Mukdenia</b><i>'Karasuba' Crimson Fans</i><p>Maple-shaped fans that flush crimson as the season runs.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <img src="{{IMG:p-alstro.jpg}}" alt="Orange Third Harmonic Peruvian lily flowers on a wire trellis">
+            <figcaption><b>Peruvian lily</b><i>Alstroemeria 'Third Harmonic'</i><p>Armloads of flame-orange cut-flower stems from midsummer on.</p></figcaption>
+          </figure>
+          <figure class="citem">
+            <span class="cico"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 27 V10 M15 10 C13 8 12.5 5.5 13.5 3 M15 14 C12 13 10.5 11 10 8 M15 14 C18 13 19.5 11 20 8 M15 20 C12.5 19.5 11 18 10.5 16 M15 20 C17.5 19.5 19 18 19.5 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12 24 C12.8 25.4 14 26 15 26 C16 26 17.2 25.4 18 24" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+            <figcaption><b>Variegated comfrey</b><i>Symphytum</i><p>Cream-edged leaves and little bells — as useful as it is handsome.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="cat-panel" id="panel-grown" hidden>
+        <p class="cp-eyebrow">Started here, grew up here — a pull from the living catalog</p>
+        <div class="tag-cluster">
+          <span class="gtag"><b>Monkey puzzle tree</b><i>pehuén</i></span>
+          <span class="gtag"><b>Sweetgrass</b><i>wiingaashk</i></span>
+          <span class="gtag"><b>Groundnut 'Kennebec'</b><i>hopniss</i></span>
+          <span class="gtag"><b>Walking onion</b><i>cebollas egipcias</i></span>
+          <span class="gtag"><b>Marshmallow</b><i>the real plant</i></span>
+          <span class="gtag"><b>Anise hyssop</b><i>Agastache</i></span>
+          <span class="gtag"><b>Pearly everlasting</b><i>Anaphalis</i></span>
+          <span class="gtag"><b>Mayapple 'Spotty Dotty'</b><i>Podophyllum</i></span>
+          <span class="gtag"><b>Strawberry tree</b><i>Arbutus unedo</i></span>
+          <span class="gtag"><b>Giant miscanthus</b><i>Miscanthus</i></span>
+          <span class="gtag gmore"><b>…and 500-odd more</b><i>a few of each</i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE — FIND YOUR PLANT -->
+<section id="find" class="on-dark">
+  <div class="ghost-shield" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M8 1 V3 M8 13 V15 M1 8 H3 M13 8 H15 M3 3 L4.4 4.4 M11.6 11.6 L13 13 M13 3 L11.6 4.4 M4.4 11.6 L3 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>The matchmaker</p>
+    <h2 class="reveal">Find <span class="hl">your plant</span></h2>
+    <p class="sub reveal">Tap your spot. Tap what you want from it. The garden answers.</p>
+    <div class="pick reveal">
+      <div class="pick-row" role="group" aria-label="How much sun does the spot you're planting get?">
+        <span class="plabel">The spot you're planting gets…</span>
+        <button class="chip" data-group="sun" data-val="sun" aria-pressed="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.5 V3.5 M10 16.5 V18.5 M1.5 10 H3.5 M16.5 10 H18.5 M4 4 L5.4 5.4 M14.6 14.6 L16 16 M16 4 L14.6 5.4 M5.4 14.6 L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="ct"><b>Full sun</b><small>baking light most of the day</small></span></button>
+        <button class="chip" data-group="sun" data-val="part" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2 A8 8 0 0 1 10 18" stroke="currentColor" stroke-width="1.6"/><path d="M10 2 A8 8 0 0 0 10 18" stroke="currentColor" stroke-width="1.6" fill="currentColor" fill-opacity=".35"/></svg><span class="ct"><b>Half and half</b><small>morning sun, afternoon shade</small></span></button>
+        <button class="chip" data-group="sun" data-val="shade" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2 L10 18 M10 5 C7 6.5 5 9 4.5 12 M10 5 C13 6.5 15 9 15.5 12 M10 9 C8 10 6.8 12 6.5 14.5 M10 9 C12 10 13.2 12 13.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="ct"><b>Mostly shade</b><small>bright sky, little direct sun</small></span></button>
+      </div>
+      <div class="pick-row" role="group" aria-label="What do you want out of it?">
+        <span class="plabel">And what do you want out of it?</span>
+        <button class="chip" data-group="want" data-val="food" aria-pressed="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 6 C6 4 3 7 4 11 C5 15 8 17.5 10 17.5 C12 17.5 15 15 16 11 C17 7 14 4 10 6 Z M10 6 C10 4 11 2.5 12.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="ct"><b>Something to eat</b><small>harvests that come back every year</small></span></button>
+        <button class="chip" data-group="want" data-val="native" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 18 V9 M10 9 L5 4 M10 9 L15 4 M10 13 L6.5 9.5 M10 13 L13.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="ct"><b>Native roots</b><small>plants that already call this land home</small></span></button>
+        <button class="chip" data-group="want" data-val="flowers" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="2.2" stroke="currentColor" stroke-width="1.4"/><path d="M10 7.8 C8.5 5 10 2.5 10 2.5 C10 2.5 11.5 5 10 7.8 M12.2 10 C15 8.5 17.5 10 17.5 10 C17.5 10 15 11.5 12.2 10 M10 12.2 C11.5 15 10 17.5 10 17.5 C10 17.5 8.5 15 10 12.2 M7.8 10 C5 11.5 2.5 10 2.5 10 C2.5 10 5 8.5 7.8 10" stroke="currentColor" stroke-width="1.4"/></svg><span class="ct"><b>Flowers &amp; foliage</b><small>something beautiful in every season</small></span></button>
+      </div>
+    </div>
+    <div id="plant-out" aria-live="polite"></div>
+    <p class="find-note reveal">The stock list shifts with the seasons — call ahead for what's out on the tables today.</p>
+  </div>
+</section>
+
+<!-- THE FLOCK -->
+<section id="flock">
+  <div class="wrap">
+    <figure class="print reveal">
+      <img src="{{IMG:06-duck-eggs.jpg}}" alt="The Johann's Garden duck flock — a dozen mixed ducks on the grass bank beside their pond in the poultry yard">
+      <figcaption>The flock, down at the pond</figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow reveal"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 10 C3 6 6 4 9 4 C9 6 8 7 7 7.5 C10 7.5 13 9 13 12 H3 C3 11 3 10 3 10Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8.2" cy="5.2" r=".5" fill="currentColor"/></svg>The farm half of the name</p>
+      <h2 class="reveal">Ducks on patrol, <span class="hl">eggs at the stand</span></h2>
+      <p class="body-copy reveal">The "&amp; Farm" is no decoration. A working flock of ducks keeps the poultry yard busy — and keeps the stand stocked with farm-fresh, free-range duck eggs when the girls are laying.</p>
+      <div class="tours">
+        <div class="tour reveal">
+          <b>Tour: Gardening in a Poultry Yard</b>
+          <p>An informal, interactive walk over real terrain — how a garden and a flock share the same ground. Sturdy footwear recommended; bring a walking stick or a folding chair if that helps you ramble.</p>
+        </div>
+        <div class="tour reveal">
+          <b>Tour: Perennial Vegetable Diversity</b>
+          <p>A grazing tour of the plant-once-eat-for-years beds. In their words: <span class="q">"Feel free to bring a little cup of your favorite salad dressing if you wanna have fun."</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POT EXCHANGE -->
+<section id="pots">
+  <div class="wrap">
+    <p class="eyebrow reveal"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 5 H13 L11.5 13 H4.5 Z M2 5 H14" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>A Johann's tradition</p>
+    <h2 class="reveal">"Take some, <span class="hl">leave some."</span></h2>
+    <p class="sub reveal">The pot exchange by the gate — drop off your empty nursery pots, help yourself to what you need. Go on, try it:</p>
+    <div class="shelf-zone reveal">
+      <div class="shelf-pots" id="shelf"></div>
+      <div class="plank" aria-hidden="true"></div>
+      <div class="pot-btns">
+        <button class="btn btn-take" id="take-pot">Take a pot</button>
+        <button class="btn btn-leave" id="leave-pot">Leave a pot</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIAL BEDS GALLERY -->
+<section id="beds">
+  <div class="wrap">
+    <p class="eyebrow reveal"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M5 10.5 L7.5 7.5 L9.5 9.5 L11 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>From the trial beds</p>
+    <h2 class="reveal">Sixteen years of <span class="hl">growing notes</span></h2>
+    <p class="sub reveal">The plant-trial blog behind this nursery has been logging what actually thrives here since around 2010. These are its field notes, in pictures.</p>
+    <div class="bed-grid" style="margin-top:34px">
+      <figure class="print reveal">
+        <img src="{{IMG:05-fern-hand.jpg}}" alt="A young fern frond held in a gloved hand over a terracotta pot at the propagation table">
+        <figcaption>Off the propagation table — Nov 2025</figcaption>
+      </figure>
+      <figure class="print reveal">
+        <img src="{{IMG:07-comfrey.jpg}}" alt="A large cream-and-green variegated comfrey leaf held up in the grower's hand in the trial beds">
+        <figcaption>Variegated comfrey, in hand</figcaption>
+      </figure>
+      <figure class="print reveal">
+        <img src="{{IMG:09-dwarf-apple.jpg}}" alt="A bag filled with red-striped apples from the dwarf roadside apple tree">
+        <figcaption>Dwarf roadside apple, bagged</figcaption>
+      </figure>
+      <figure class="print reveal">
+        <img src="{{IMG:10-sugar-cane.jpg}}" alt="Bundles of hardy sugar cane cuttings laid out on kraft paper">
+        <figcaption>Hardy sugar cane, cut &amp; wrapped</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="wrap">
+    <figure class="shield-frame reveal">
+      <img src="{{IMG:01-logo-shield.png}}" alt="The hand-inked Johann's Garden shield: a grey sheep's head ringed by pink daylilies on a black ground">
+      <figcaption>Meet Johann. The shield is hand-inked: the sheep himself, ringed in daylilies.</figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow reveal"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14 C5 11 2 9 2 6 C2 4 3.5 2.5 5.5 2.5 C6.5 2.5 7.5 3 8 4 C8.5 3 9.5 2.5 10.5 2.5 C12.5 2.5 14 4 14 6 C14 9 11 11 8 14Z" stroke="currentColor" stroke-width="1.3"/></svg>The story</p>
+      <h2 class="reveal">One pair of hands, <span class="hl">one growing food forest</span></h2>
+      <p class="lede reveal">Johann's Garden is a one-person operation "borne out of passion for gardening and food" — a nursery whose plants are raised by the same hands, in the same dirt, as the forest around them.</p>
+      <p class="body-copy reveal">The display tables aren't in a parking lot — they stand in the garden itself, on land the owner names plainly: this nursery grows "on Lushootseed Salish land," and its catalog carries those older plant names beside the Latin. Every description is written from firsthand, localized experience — what this exact plant did in this exact county.</p>
+      <blockquote class="pull reveal">"As a small nursery, I could go one of two major routes… focus on growing a huge diversity of plants, but only produce each in limited quantities to maximize the selection available. I chose option&nbsp;#2."
+        <small>— the grower, on how this nursery works</small>
+      </blockquote>
+      <ul class="sust">
+        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 10 L7 14 L15 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Pesticides avoided by growing locally-adapted plants in the first place</li>
+        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 10 L7 14 L15 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Gravity-fed irrigation to keep the energy bill near zero</li>
+        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 10 L7 14 L15 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Durable grow trays and nursery pots reused season after season</li>
+        <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 10 L7 14 L15 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Biodegradable pots where pots can't be reused</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow reveal"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 15 C8 15 13 10.5 13 6.5 C13 3.7 10.8 1.5 8 1.5 C5.2 1.5 3 3.7 3 6.5 C3 10.5 8 15 8 15Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.3"/></svg>Plan a visit</p>
+      <h2 class="reveal">Come <span class="hl">walk the paths</span></h2>
+      <ol class="steps">
+        <li class="reveal"><span class="n" aria-hidden="true"></span><div><b>Pick your day</b><p>Walk in any time the clock up top says the gate's open — no appointment needed.</p></div></li>
+        <li class="reveal"><span class="n" aria-hidden="true"></span><div><b>Or coordinate a time</b><p>Odd schedule? In their words: <span class="q">"I am often able to accommodate alternative times… we just need to coordinate in advance."</span></p></div></li>
+        <li class="reveal"><span class="n" aria-hidden="true"></span><div><b>Wander</b><p>Wear sturdy shoes — the paths are real dirt. And when your feet complain, there's a bench waiting under the weeping willow.</p></div></li>
+      </ol>
+      <div class="reach reveal">
+        <a class="btn btn-brand" href="tel:+12063351816">Call or text the farm</a>
+        <a class="btn btn-ink" href="mailto:JohannsGarden@gmail.com">JohannsGarden@gmail.com</a>
+      </div>
+    </div>
+    <form class="contact-form reveal" id="contact-form">
+      <div><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" placeholder="First name is plenty" required></div>
+      <div><label for="cf-email">Email or phone</label><input id="cf-email" name="email" type="text" placeholder="So the garden can answer" required></div>
+      <div><label for="cf-topic">What are you after?</label>
+        <select id="cf-topic" name="topic">
+          <option>Plants for a spot in my yard</option>
+          <option>Duck eggs</option>
+          <option>A garden tour</option>
+        </select></div>
+      <div><label for="cf-msg">Tell them about it</label><textarea id="cf-msg" name="message" placeholder="Sun, soil, slope — whatever you know"></textarea></div>
+      <button class="btn btn-brand" type="submit">Send it to the garden</button>
+      <p class="form-success" id="form-success">Got it — your note is on its way. Expect a reply from the one pair of hands that runs this place, usually within a day or two.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="on-dark">
+  <div class="wrap">
+    <div class="ghost-shield" aria-hidden="true"></div>
+    <p class="eyebrow reveal">Lower Burnett, WA</p>
+    <h2 class="reveal">The forest is <span class="hl">always growing.</span></h2>
+    <p class="award reveal">Named "The Best Garden Centre in Bonney Lake, Washington 2026" by the Quality Business Awards.</p>
+    <div class="nums">
+      <div class="num reveal"><b data-count="2020">0</b><span>The January the gate opened</span></div>
+      <div class="num reveal"><b data-suffix="b" data-count="7">0</b><span>USDA growing zone</span></div>
+      <div class="num reveal"><b data-count="0">0</b><span>Peat in the potting mix</span></div>
+      <div class="num reveal"><b data-suffix="%" data-count="95">0</b><span>2026 quality-award score</span></div>
+    </div>
+    <div class="hero-cta reveal">
+      <a class="btn btn-brand" href="#visit">Plan a visit</a>
+      <a class="btn btn-ghost" href="#find">Find your plant</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-brand">
+      <img src="{{IMG:shield-sm.png}}" alt="Johann's Garden shield logo">
+      <div><div class="fn">Johann's Garden</div><div class="ft">Nursery &amp; Farm — a food forest that sells its own plants.</div></div>
+    </div>
+    <nav class="f-links" aria-label="Footer">
+      <a href="https://facebook.com/JohannsGarden" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://instagram.com/johannsgardennurseryfarm" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://johannsgarden.blogspot.com" target="_blank" rel="noopener">The trial-bed blog</a>
+      <a href="#hours">Hours &amp; directions</a>
+    </nav>
+    <div class="f-legal">
+      <span>© 2026 Johann's Garden — Nursery &amp; Farm · Buckley, Washington</span>
+      <span>Grown, not stocked.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');document.body.classList.add('js');
+/* ===== HOURS — their own Square-site set ===== */
+var HOURS={tz:'America/Los_Angeles',days:{0:null,1:[9,17],2:[9,17],3:[9,17],4:[9,17],5:[9,17],6:[9,17]}};
+var DAYN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function nowP(){
+  var q=new URLSearchParams(location.search);
+  if(q.has('demo')){return{day:parseInt(q.get('day')||'3',10),h:parseFloat(q.get('demo'))};}
+  var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+  var o={};parts.forEach(function(p){o[p.type]=p.value});
+  var wd={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday];
+  var hh=parseInt(o.hour,10);if(hh===24)hh=0;
+  return{day:wd,h:hh+parseInt(o.minute,10)/60};
+}
+function fmtH(h){var hr=Math.floor(h),m=Math.round((h-hr)*60),am=hr<12||hr>=24,d=hr%12;if(d===0)d=12;return d+(m?':'+(m<10?'0':'')+m:'')+(am?'am':'pm');}
+function nextOpen(p){
+  for(var i=1;i<=7;i++){var d=(p.day+i)%7,w=HOURS.days[d];
+    if(w){return{label:i===1?'tomorrow':DAYN[d],h:w[0]};}}
+  return null;
+}
+function clockTick(){
+  var p=nowP(),w=HOURS.days[p.day],open=false,line='',pill='';
+  if(w&&p.h>=w[0]&&p.h<w[1]){open=true;pill='Open now';line='Open now — the gate’s open til '+fmtH(w[1]);}
+  else if(w&&p.h<w[0]){pill='Closed';line='Closed — opens '+fmtH(w[0])+' today';}
+  else{var n=nextOpen(p);pill='Closed';line='Closed — opens '+fmtH(n.h)+' '+n.label;}
+  var pd=document.getElementById('pill-dot'),pt=document.getElementById('pill-text');
+  var bd=document.getElementById('band-dot'),bt=document.getElementById('band-text');
+  pd.className='dot '+(open?'open':'closed');bd.className='dot '+(open?'open':'closed');
+  pt.textContent=pill;bt.textContent=line;
+  document.querySelectorAll('#day-rows li').forEach(function(li){
+    var days=li.getAttribute('data-days').split(',');
+    li.classList.toggle('today',days.indexOf(String(p.day))>-1);
+  });
+}
+clockTick();setInterval(clockTick,30000);
+
+/* ===== nav ===== */
+var tog=document.getElementById('nav-toggle'),nav=document.getElementById('main-nav');
+tog.addEventListener('click',function(){var o=nav.classList.toggle('open');tog.setAttribute('aria-expanded',o);});
+nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');tog.setAttribute('aria-expanded','false');}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){nav.classList.remove('open');tog.setAttribute('aria-expanded','false');}});
+document.addEventListener('click',function(e){if(!nav.contains(e.target)&&!tog.contains(e.target)){nav.classList.remove('open');tog.setAttribute('aria-expanded','false');}});
+
+/* ===== reveal + stagger + hero ink ===== */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);
+  if(en.target.querySelector&&en.target.querySelector('[data-count]'))countUp(en.target);}});},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+document.querySelectorAll('.stagger').forEach(function(el,i){setTimeout(function(){el.classList.add('in');},250+i*180);});
+setTimeout(function(){var p=document.getElementById('ink-underline');if(p)p.classList.add('draw');},600);
+document.querySelectorAll('.num').forEach(function(el){io.observe(el);});
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function countUp(scope){scope.querySelectorAll('[data-count]').forEach(function(b){
+  if(b.dataset.done)return;b.dataset.done='1';
+  var end=parseInt(b.dataset.count,10),suf=b.dataset.suffix||'';
+  if(reduce||end===0){b.textContent=end+suf;return;}
+  var t0=null;function step(ts){if(!t0)t0=ts;var k=Math.min((ts-t0)/1200,1);k=1-Math.pow(1-k,3);
+    b.textContent=Math.round(end*k)+suf;if(k<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);});}
+
+/* ===== WHAT GROWS HERE — tap a category, its plants appear ===== */
+var catCards=document.querySelectorAll('#grows .card');
+catCards.forEach(function(c){
+  c.addEventListener('click',function(){
+    var p=document.getElementById(c.dataset.panel),wasOpen=!p.hidden;
+    document.querySelectorAll('.cat-panel').forEach(function(x){x.hidden=true;});
+    catCards.forEach(function(x){x.classList.remove('active');x.setAttribute('aria-expanded','false');});
+    if(!wasOpen){
+      p.hidden=false;c.classList.add('active');c.setAttribute('aria-expanded','true');
+      if(window.innerWidth<960){p.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});}
+    }
+  });
+});
+
+/* ===== FIND YOUR PLANT ===== */
+var ICONS={
+  vine:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M5 25 C10 20 12 14 12 7 M12 7 C12 10 14 12 17 12 C17 9 15 7 12 7Z M12 15 C14 17 17 17.5 20 16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="22" cy="19" r="3.4" stroke="currentColor" stroke-width="1.6"/></svg>',
+  fruit:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 9 C9 6 5 10.5 6.5 16 C8 21.5 12 25 15 25 C18 25 22 21.5 23.5 16 C25 10.5 21 6 15 9Z M15 9 C15 6 16.5 4 19 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  cane:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M10 27 V5 M20 27 V5 M8 10 H12 M18 10 H22 M8 17 H12 M18 17 H22 M8 24 H12 M18 24 H22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  flower:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="7.5" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="21.5" cy="11.2" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="21.5" cy="18.8" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="22.5" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="18.8" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="11.2" r="3" stroke="currentColor" stroke-width="1.5"/></svg>',
+  reed:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M9 27 C9 18 8 11 6 6 M15 27 C15 16 15 9 15 4 M21 27 C21 18 22 11 24 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  maple:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 27 V14 M15 14 L7 17 L9 12 L4 11 L9 7 L8 4 L13 6 L15 2 L17 6 L22 4 L21 7 L26 11 L21 12 L23 17 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>',
+  frond:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 27 C15 17 15 9 15 4 M15 8 C12 8 9.5 6.5 8.5 4 M15 8 C18 8 20.5 6.5 21.5 4 M15 13 C11.5 13 9 11.5 8 9 M15 13 C18.5 13 21 11.5 22 9 M15 18 C12 18 10 16.5 9 14.5 M15 18 C18 18 20 16.5 21 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
+  spike:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 27 V10 M15 10 C13 8 12.5 5.5 13.5 3 M15 14 C12 13 10.5 11 10 8 M15 14 C18 13 19.5 11 20 8 M9 27 C13 23 17 23 21 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="13.5" cy="3" r="1.2" fill="currentColor"/></svg>',
+  ask:'<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 26 C4 20 8 16 14 16 M10 26 H4 V20 M14 16 C13 11 15 6 20 4 C26 8 25 15 19 17 C17 17.7 15.5 17 14 16Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+};
+var PLANTS={
+  kiwi:{i:'vine',n:'Kiwi berry',l:'Actinidia arguta',t:'Grape-sized kiwis with smooth, eat-them-whole skin — no fuzz, no peeling. The vine is vigorous and hardy well below zero, so give it a stout trellis and one hard pruning each winter and it will outlive the fence it climbs.'},
+  apple:{i:'fruit',n:'Apple trees',l:'Malus domestica · semi-dwarf',t:'Semi-dwarf trees stay picking-height without a ladder and still fill bags come fall. They want full sun, decent drainage and a deep drink through summer dry spells; prune once in late winter and they stay tidy for decades.'},
+  cane:{i:'cane',n:'Hardy sugar cane',l:'trial-bed proven',t:'A cold-tolerant cane that survives Pacific Northwest winters most sugar cane never sees. Plant it in your warmest, sunniest corner, water it through the summer push, then cut and chew at season’s end — mulch the crown and it comes back thicker.'},
+  yarrow:{i:'flower',n:'Yarrow',l:'Achillea millefolium · Pierce County WA selection',t:'Not a catalog strain — this yarrow was collected right here in Pierce County and grown on. Flat white lace blooms all summer over ferny foliage the pollinators mob, and once its roots are down it barely asks for summer water at all.'},
+  sweetflag:{i:'reed',n:'Sweet flag',l:'sinkpe tawote · wiikenh',t:'A grass-like water-edge plant, carried in the catalog under its Indigenous names. It wants wet feet — a pond margin, a ditch, the rain-garden low spot — and its leaves release a sweet scent when brushed. Divide the clumps every few years and it only thickens.'},
+  vinemaple:{i:'maple',n:'Vine maple',l:'Acer circinatum · u-u-ac',t:'The Northwest’s own understory maple — happiest with some shelter, glowing orange-to-scarlet come fall. Once established it needs almost nothing from you; it grows slow and graceful, more leaning sculpture than shade tree.'},
+  fern:{i:'frond',n:'Woodland ferns',l:'off the propagation table',t:'The native furniture of the Northwest shade floor, unbothered by soaked winters and bone-dry Augusts alike. Set them in loose, leafy soil and water the first season; after that, just trim the tattered fronds in late winter and let the fiddleheads do the rest.'},
+  bergenia:{i:'spike',n:'Bergenia',l:'the “pigsqueak”',t:'Named for the squeak a rubbed leaf makes, it holds its big leather leaves all winter, bronzing in the cold, then sends up magenta spikes while the rest of the garden is still asleep. It even tolerates dry shade — the hardest spot a garden has.'},
+  mukdenia:{i:'maple',n:'Mukdenia',l:'Mukdenia rossii',t:'Fans of maple-shaped leaves that flush crimson as the season runs, with white star flowers on bare stems in earliest spring. Give it the bright edge of shade and steady moisture and it creeps into a tidy, glowing patch — no fussing required.'},
+  alstro:{i:'flower',n:'Peruvian lily',l:'Alstroemeria · e.g. ‘Third Harmonic’',t:'Armloads of flame-orange stems from midsummer on — and the more you pull for the vase, the more it sends up. A tuberous perennial that asks for sun, good drainage and a winter mulch its first couple of years.'},
+  comfrey:{i:'spike',n:'Variegated comfrey',l:'Symphytum',t:'Handsome up top, useful underneath. Cut the leaves a few times a season and lay them down as mulch — a chop-and-drop fertility engine that feeds the soil around fruit trees while the bees work its little bell flowers.'}
+};
+var MATCH={
+  'sun-food':['kiwi','apple','cane'],
+  'sun-native':['yarrow','sweetflag'],
+  'sun-flowers':['yarrow','alstro'],
+  'part-food':['kiwi'],
+  'part-native':['vinemaple','sweetflag'],
+  'part-flowers':['bergenia','comfrey'],
+  'shade-food':[],
+  'shade-native':['vinemaple','fern'],
+  'shade-flowers':['bergenia','mukdenia']
+};
+var sel={sun:'sun',want:'food'};
+function renderPlants(){
+  var keys=MATCH[sel.sun+'-'+sel.want]||[],out=document.getElementById('plant-out'),html='';
+  if(!keys.length){
+    html='<div class="pcard ask">'+ICONS.ask+'<h3>Now that’s a puzzle</h3><p class="latin">mostly shade + something to eat</p><p>Honest answer: almost nothing fruits in deep shade — food plants trade sunlight for sugar. But shade has its edges, and a diversity-first grower keeps a few surprises for them. Bring the details of your spot out to the garden and talk it through; puzzles like this are the fun part.</p></div>';
+  }else{
+    keys.forEach(function(k){var p=PLANTS[k];
+      html+='<div class="pcard">'+ICONS[p.i]+'<h3>'+p.n+'</h3><p class="latin">'+p.l+'</p><p>'+p.t+'</p></div>';});
+  }
+  out.innerHTML=html;
+}
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    var g=c.dataset.group;sel[g]=c.dataset.val;
+    document.querySelectorAll('.chip[data-group="'+g+'"]').forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false');});
+    renderPlants();
+  });
+});
+renderPlants();
+
+/* ===== POT EXCHANGE toy ===== */
+function potSVG(sprout){return '<svg viewBox="0 0 64 70" fill="none" aria-hidden="true">'+(sprout?'<path d="M32 26 C32 18 32 13 32 9 M32 13 C28 13 25 11 24 7 C28 7 31 9 32 13 M32 17 C36 17 39 15 40 11 C36 11 33 13 32 17" stroke="#5B6F43" stroke-width="2.4" stroke-linecap="round"/>':'')+'<path d="M8 28 H56 L54 38 H10 Z" fill="#C4703F"/><path d="M12 38 H52 L46 68 H18 Z" fill="#B05F31"/><path d="M8 28 H56 L54 38 H10 Z" stroke="#8A4520" stroke-width="1.4"/><path d="M12 38 H52 L46 68 H18 Z" stroke="#8A4520" stroke-width="1.4"/></svg>';}
+var shelf=document.getElementById('shelf'),potN=0,MAXP=8;
+function addPot(anim){if(potN>=MAXP)return;potN++;
+  var d=document.createElement('div');d.className='pot'+(anim?' in':'');
+  d.style.transform='rotate('+((Math.random()*6)-3)+'deg)';
+  d.innerHTML=potSVG(potN%3===0);shelf.appendChild(d);}
+function takePot(){if(potN<=0){shelf.parentElement.querySelector('.btn-leave').animate([{transform:'scale(1)'},{transform:'scale(1.12)'},{transform:'scale(1)'}],{duration:350});return;}
+  potN--;var pots=shelf.querySelectorAll('.pot:not(.out)'),last=pots[pots.length-1];if(!last){potN++;return;}last.classList.add('out');setTimeout(function(){last.remove();},340);}
+for(var i=0;i<5;i++)addPot(false);
+document.getElementById('take-pot').addEventListener('click',takePot);
+document.getElementById('leave-pot').addEventListener('click',function(){addPot(true);});
+
+/* ===== form (demo) ===== */
+document.getElementById('contact-form').addEventListener('submit',function(e){
+  e.preventDefault();document.getElementById('form-success').classList.add('show');
+  this.querySelector('button[type=submit]').textContent='Sent ✓';
+});
+</script>
+</body>
+</html>
