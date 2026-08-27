@@ -1099,6 +1099,27 @@ footer a:hover{text-decoration:underline}
   .v-str{transform:translate(var(--x0),var(--y0)) rotate(var(--r0))!important}
   .d-str{transform:translate(var(--cx),var(--cy)) rotate(var(--r0)) translate(calc(-1 * var(--cx)),calc(-1 * var(--cy)))!important}
 }
+
+/* ================= SAFARI FIX =================
+   The string used to track the arrow by animating the SVG `d` property in CSS
+   keyframes. Chrome supports that; Safari (and therefore every iPhone) does not
+   — it silently ignores the keyframes and leaves the string parked at rest while
+   the arrow pulls back without it.
+
+   The string is now driven in script instead: each frame it reads the arrow's
+   actual rendered position and pins its apex to the arrow's tail. That is exact
+   tracking by construction, uses only setAttribute, and works in every browser.
+   Every `d:path()` keyframe below is inert once this block loads.            */
+@keyframes stringPull{
+  0%,38%  {opacity:0}
+  42%     {opacity:1}
+  74%     {opacity:1}
+  83%,100%{opacity:0}
+}
+.bow-string{
+  animation:stringPull 5s cubic-bezier(.33,0,.25,1) both!important;
+  stroke-dasharray:none!important;stroke-dashoffset:0!important;
+}
 </style>
 </head>
 <body>
@@ -1713,6 +1734,61 @@ form.addEventListener('submit',function(e){
   addEventListener('scroll', function(){
     if(!queued){ queued = true; requestAnimationFrame(check); }
   }, {passive:true});
+})();
+</script>
+<script>
+/* ---- bowstring driver -------------------------------------------------------
+   Pins the string's apex to the arrow's tail every frame by reading the arrow
+   group's rendered transform. No dependence on CSS `d` animation, so it behaves
+   identically in Safari, Chrome and Firefox. Runs only while the hero is on
+   screen.                                                                     */
+(function(){
+  var arrow = document.querySelector('.hero-art .arrow');
+  var str   = document.querySelector('.hero-art .bow-string');
+  var hero  = document.getElementById('hero');
+  if(!arrow || !str || !hero) return;
+
+  var TOP='M213 50 L', MID=' 292 L241 508';
+  var REST=131, RELEASED=206;
+  var running=false, lastApex=null;
+
+  function apexFromArrow(){
+    var t = getComputedStyle(arrow).transform;
+    if(!t || t==='none') return REST;
+    var tx=0;
+    if(window.DOMMatrixReadOnly){
+      try{ tx = new DOMMatrixReadOnly(t).m41; }catch(e){ tx = 0; }
+    }else{
+      var m = t.match(/matrix\(([^)]+)\)/);
+      if(m){ var p=m[1].split(','); tx=parseFloat(p[4])||0; }
+    }
+    /* while the arrow is at or behind the nock it is still on the string;
+       the moment it travels forward the string has already been loosed */
+    return tx <= 0 ? REST + tx : RELEASED;
+  }
+
+  function frame(){
+    if(!running) return;
+    var a = apexFromArrow();
+    if(a !== lastApex){
+      lastApex = a;
+      str.setAttribute('d', TOP + a.toFixed(1) + MID);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function start(){ if(!running){ running=true; requestAnimationFrame(frame); } }
+  function stop(){ running=false; }
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es[es.length-1].isIntersecting ? start() : stop();
+    },{threshold:0}).observe(hero);
+  }else{ start(); }
+  document.addEventListener('visibilitychange',function(){
+    document.hidden ? stop() : start();
+  });
+  start();
 })();
 </script>
 </body>
