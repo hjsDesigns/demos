@@ -573,6 +573,22 @@ footer a:hover{color:#F4EFE3}
   #hero .btns .btn{flex:1 1 auto;min-height:48px;justify-content:center}
 }
 @media (min-width:701px){ #hero .sub-short{display:none} }
+
+/* ===== RACE REBUILD — the world moves, not just the car ===== */
+.lane{--vel:0;background-repeat:repeat!important}
+#funny{transform-origin:81% 79%!important}
+.lane .finish,.strip-shell{will-change:transform}
+.lane .speedlines{
+  opacity:calc(var(--vel) * .95)!important;animation:none!important;
+  background:repeating-linear-gradient(90deg,
+    rgba(255,255,255,0) 0 46px, rgba(255,255,255,.30) 46px 52px,
+    rgba(255,255,255,0) 52px 96px)!important;
+  transform:scaleX(calc(1 + var(--vel) * .5));transform-origin:right center;
+}
+#flash{background:radial-gradient(circle at 50% 50%,
+  rgba(255,255,255,.95) 0%, rgba(255,240,190,.55) 18%, transparent 55%)!important}
+#flash.go{animation:flashPop .28s ease-out!important}
+@media (prefers-reduced-motion:reduce){.lane .speedlines{opacity:0!important}}
 </style>
 </head>
 <body>
@@ -1078,6 +1094,12 @@ function resetRun(){
   stamp.classList.remove('go');
   flash.classList.remove('go');
   funny.style.transform = 'translateY(-50%)';
+  funny.style.filter = '';
+  lane.style.backgroundPosition = '';
+  lane.style.setProperty('--vel', 0);
+  strip.style.transform = '';
+  var _f = lane.querySelector('.finish');
+  if(_f){ _f.style.transform = ''; }
   resultLine.classList.remove('show');
   setTel(0,0);
 }
@@ -1093,37 +1115,63 @@ runBtn.addEventListener('click', function(){
   }
   runBtn.disabled = true;
   var laneW = lane.clientWidth;              // single layout read, before any motion
-  lane.classList.add('staging','rumble-1');  // tension starts the instant you tap
-  var stage = 0;
-  var treeTimer = setInterval(function(){
-    if(stage < 3){
-      bulbs[stage].classList.add('lit');
-      lane.classList.remove('rumble-1','rumble-2');
-      lane.classList.add('rumble-' + Math.min(stage+2, 3));  // rumble builds with each amber
-      stage++;
-    } else {
-      clearInterval(treeTimer);
-      bulbs[3].classList.add('lit');         // green —
-      launch();
-    }
-  }, 330);
+  lane.classList.add('staging','rumble-3');   // full rumble the instant you tap
+  bulbs[0].classList.add('lit');
+  bulbs[1].classList.add('lit');
+  bulbs[2].classList.add('lit');             // pro tree: three ambers together
+  setTimeout(function(){
+    bulbs[0].classList.remove('lit');
+    bulbs[1].classList.remove('lit');
+    bulbs[2].classList.remove('lit');        // ambers OUT, so only the green is lit
+    bulbs[3].classList.add('lit');
+    launch();
+  }, 400);
   function launch(){
     lane.classList.remove('staging','rumble-1','rumble-2','rumble-3');
     lane.classList.add('launch');            // blur, nitro trail, streaks, big flames
     strip.classList.add('shake');
-    var travel = laneW + 60;                 // through the finish and gone
+    /* On a phone the car is a quarter of the lane, so a quarter mile was three
+       car-lengths. The camera tracks the car instead: it lunges once, then holds
+       frame while six lane-widths of world rip past. Everything speed-dependent
+       is driven here, not in CSS keyframes, so Safari behaves identically. */
+    var WORLD  = laneW * 6;
+    var BURST  = Math.min(laneW * 0.30, 120);
+    var DUR    = 1500;
+    var finish = lane.querySelector('.finish');
     var t0 = performance.now();
     (function frame(t){
-      var p = Math.min((t-t0)/SCREEN_TIME, 1);
-      var dist = Math.pow(p, 1.35);          // leaves NOW, still pulling at the stripe
-      var wheelie = p < .18 ? (p/.18)*-7 : (p < .4 ? -7*(1-(p-.18)/.22) : 0);
-      funny.style.transform = 'translateY(-50%) translateX(' + (dist*travel).toFixed(1) + 'px) rotate(' + wheelie.toFixed(2) + 'deg) scaleX(1.05)';
-      setTel(ET*p, TOP*Math.pow(p,.45));     // numbers slam up — 4.868s of clock in 1.2s
+      var p = Math.min((t-t0)/DUR, 1);
+      var vNorm = Math.min(Math.pow(p,0.42) * (1 - 0.15*p) / 0.9, 1);
+      var world = WORLD * (0.78*Math.pow(p,1.45) + 0.22*p);
+
+      lane.style.backgroundPosition = (-(world % 180)).toFixed(1) + 'px 0';
+      lane.style.setProperty('--vel', vNorm.toFixed(3));
+
+      var lunge   = BURST * (1 - Math.pow(1 - Math.min(p/0.22,1), 3));
+      var settle  = p > 0.22 ? (p-0.22)/0.78 * -BURST * 0.18 : 0;
+      var wheelie = p < .16 ? (p/.16)*-9 : (p < .36 ? -9*(1-(p-.16)/.20) : 0);
+      var stretch = 1 + vNorm*0.30;
+
+      funny.style.transform = 'translateY(-50%) translateX(' + (lunge+settle).toFixed(1) +
+        'px) rotate(' + wheelie.toFixed(2) + 'deg) scaleX(' + stretch.toFixed(3) + ')';
+      funny.style.filter = 'drop-shadow(0 6px 10px rgba(0,0,0,.5)) blur(' + (vNorm*1.6).toFixed(2) + 'px)';
+
+      if(finish) finish.style.transform = 'translateX(' + (WORLD - world).toFixed(1) + 'px)';
+
+      var jolt = Math.max(0, 1 - p/0.30);
+      strip.style.transform = jolt > 0.01
+        ? 'translate(' + (Math.sin(t*0.09)*5*jolt).toFixed(2) + 'px,' + (Math.cos(t*0.11)*3.5*jolt).toFixed(2) + 'px)'
+        : '';
+
+      setTel(ET*p, TOP*vNorm);
       if(p < 1){ requestAnimationFrame(frame); }
       else{
         setTel(ET, TOP);
         lane.classList.remove('launch');
         strip.classList.remove('shake');
+        strip.style.transform = '';
+        funny.style.filter = '';
+        lane.style.setProperty('--vel', 0);
         flash.classList.add('go');
         stamp.classList.add('go');
         resultLine.classList.add('show');
