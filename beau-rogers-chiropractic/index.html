@@ -92,7 +92,9 @@ section{position:relative}
 .hero-grid{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,64px);align-items:center;padding-top:clamp(30px,5vh,60px);padding-bottom:clamp(44px,6vh,76px)}
 
 /* -- left column -- */
-.hero-copy{position:relative;z-index:3;min-width:0;display:flex;flex-direction:column;gap:clamp(14px,2vh,22px);padding-top:clamp(240px,30vw,400px);padding-right:clamp(112px,16vw,220px)}
+.hero-copy{position:relative;z-index:3;min-width:0;display:flex;flex-direction:column;gap:clamp(14px,2vh,22px);padding-top:clamp(240px,30vw,400px);padding-right:0}
+/* only the eyebrow + headline clear the spine band; everything below runs full width */
+.hero-copy .eyebrow,.hero-copy h1{padding-right:clamp(112px,16vw,220px)}
 .ghost-mark{position:absolute;z-index:-1;left:-.04em;top:.06em;font-family:var(--display);font-weight:700;font-size:clamp(280px,34vw,460px);line-height:.78;letter-spacing:-.04em;color:var(--brand);opacity:.20;pointer-events:none;user-select:none}
 .hero-copy h1{font-size:clamp(44px,6.6vw,88px);letter-spacing:-.018em;margin:16px 0 14px}
 .hero-copy h1 .line{display:block}
@@ -416,10 +418,10 @@ footer a:hover{text-decoration:underline}
 .day-row.today .d::after{content:"today";font-family:var(--mono,ui-monospace);font-size:.58rem;font-weight:700;
   letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-left:12px;vertical-align:2px}
 
-.hero-art{position:absolute;top:50%;transform:translateY(-50%);right:clamp(18px,3.5vw,64px);
-  width:clamp(84px,11vw,140px);z-index:2;pointer-events:none;opacity:.9;line-height:0}
+.hero-art{position:absolute;top:48px;transform:none;right:clamp(30px,5vw,110px);
+  width:clamp(168px,22vw,280px);z-index:2;pointer-events:none;opacity:.9;line-height:0}
 .hero-art svg{display:block;width:100%;height:auto}
-@media (max-width:640px){.hero-art{width:clamp(76px,17vw,104px);right:14px;opacity:.75}}
+@media (max-width:640px){.hero-art{width:clamp(116px,25vw,158px);right:clamp(10px,2.5vw,26px);opacity:.85}}
 </style>
 </head>
 <body>
