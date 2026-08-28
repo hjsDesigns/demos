@@ -59,7 +59,7 @@ section{padding:clamp(64px,9vw,110px) 0}
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);font-weight:500;font-size:.95rem;background:var(--brand);color:#FBF5E9;border:0;border-radius:999px;padding:.9em 1.7em;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s;min-height:44px}
 .btn:hover{background:var(--brand-bright);transform:translateY(-2px)}
-.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.ghost{position:static;left:auto;top:auto;transform:none;z-index:auto;pointer-events:auto;white-space:nowrap;background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
 .btn.ghost:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
 .btn.on-dark{color:#FBF5E9}
 .btn.ghost.on-dark{color:#F3ECDC;box-shadow:inset 0 0 0 2px color-mix(in srgb,#F3ECDC 70%,transparent)}
@@ -555,7 +555,14 @@ footer{background:var(--ink);color:#CDBFAE;padding:54px 0 40px}
           <figcaption id="dishCap">Pad Thai with Chicken</figcaption>
         </figure>
         <div class="steam-g" aria-hidden="true"><i></i><i></i><i></i></div>
-      </div>
+        <div class="burner"></div>
+        <div class="flame" id="flame"><i></i><i></i><i></i></div>
+        <div class="wokwrap" id="wokwrap">
+          <div class="pan">
+            <div class="pool" id="pool"></div>
+            <div class="bits" id="bits"></div>
+            <div class="handle"></div>
+          </div>
         </div>
       </div>
 
