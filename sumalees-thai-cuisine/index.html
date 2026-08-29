@@ -59,7 +59,7 @@ section{padding:clamp(64px,9vw,110px) 0}
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);font-weight:500;font-size:.95rem;background:var(--brand);color:#FBF5E9;border:0;border-radius:999px;padding:.9em 1.7em;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s;min-height:44px}
 .btn:hover{background:var(--brand-bright);transform:translateY(-2px)}
-.btn.ghost{position:static;left:auto;top:auto;transform:none;z-index:auto;pointer-events:auto;white-space:nowrap;background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.ghost{position:static;left:auto;top:auto;transform:none;z-index:auto;pointer-events:auto;white-space:nowrap;font-family:var(--body);font-size:.95rem;line-height:normal;color:var(--ink);background:transparent;box-shadow:inset 0 0 0 2px var(--ink)}
 .btn.ghost:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
 .btn.on-dark{color:#FBF5E9}
 .btn.ghost.on-dark{color:#F3ECDC;box-shadow:inset 0 0 0 2px color-mix(in srgb,#F3ECDC 70%,transparent)}
@@ -805,6 +805,8 @@ footer{background:var(--ink);color:#CDBFAE;padding:54px 0 40px}
   ];
 
   var pick = {dish:0, meat:0, heat:2};
+  var dishImg = document.getElementById('dishImg');
+  var dishCap = document.getElementById('dishCap');
   var bitsEl  = document.getElementById('bits');
   var poolEl  = document.getElementById('pool');
   var flameEl = document.getElementById('flame');
@@ -826,6 +828,9 @@ footer{background:var(--ink);color:#CDBFAE;padding:54px 0 40px}
 
   function buildBits(){
     var D = DISHES[pick.dish], M = MEATS[pick.meat], H = HEATS[pick.heat];
+    if(dishImg.getAttribute('src') !== D.photo){ dishImg.src = D.photo; }
+    dishImg.alt = D.nm + ' with ' + M.nm;
+    dishCap.textContent = D.nm + ' with ' + M.nm;
     var rnd = rng(97 + pick.dish*31 + pick.meat*7);
     var list = [];
     D.bits.forEach(function(pair){ for(var i=0;i<pair[1];i++) list.push(pair[0]); });
