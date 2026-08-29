@@ -21,7 +21,7 @@
   --bg-2:#E9E0D2;        /* deeper cream */
   --paper:#FAF6EE;       /* cards, never white */
   --ink:#241B16;         /* espresso — the table */
-  --muted:#6E6154;
+  --muted:#5C5040;       /* darkened from #6E6154 — clears AA 4.5:1 on every bg in the system, not just the lightest */
   --line:#DCD1BF;
   --brand:#6E3A22;       /* teriyaki glaze mahogany */
   --brand-2:#8C4C2C;
@@ -50,6 +50,12 @@ body{
 img{max-width:100%;display:block}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 a{color:var(--brand);text-underline-offset:3px}
+
+/* ---------- focus ---------- */
+a:focus-visible,button:focus-visible,.btn:focus-visible,.chip:focus-visible,.dish-btn:focus-visible,.lockup:focus-visible{
+  outline:2px solid var(--brand);outline-offset:3px;border-radius:4px;
+}
+.on-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--accent)}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 .section{padding:var(--sec) 0}
@@ -90,7 +96,8 @@ p{max-width:60ch}
   border-bottom:1px solid var(--line);
 }
 .site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.lockup{display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--ink)}
+.lockup{display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--ink);transition:opacity .2s}
+.lockup:hover{opacity:.7}
 .lockup .mark{font-family:var(--display);font-weight:900;font-size:1.28rem;letter-spacing:.14em}
 .lockup .sub{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:5px}
 .nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px)}
@@ -164,7 +171,7 @@ p{max-width:60ch}
   margin-left:9px;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--brand);border:1px solid rgba(110,58,34,.32);border-radius:999px;padding:2px 8px;vertical-align:2px;
 }
-.day.closed .t{color:var(--muted);opacity:.75}
+.day.closed .t{color:var(--muted)}
 
 /* ---------- menu board ---------- */
 .board{background:var(--bg-2)}
@@ -194,19 +201,20 @@ p{max-width:60ch}
   transition:color .2s;
 }
 .dish-btn:hover{color:var(--brand)}
-.dish-btn .plus{
+/* ARROW LAW: a downward chevron that flips to point up when open — never a plus sign */
+.dish-btn .chev{
   flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);
-  display:grid;place-items:center;position:relative;transition:border-color .25s, background .25s, transform .35s cubic-bezier(.22,1,.36,1);
+  display:grid;place-items:center;position:relative;transition:border-color .25s, background .25s;
 }
-.dish-btn .plus::before,.dish-btn .plus::after{
-  content:"";position:absolute;background:var(--muted);border-radius:1px;transition:transform .35s cubic-bezier(.22,1,.36,1), background .25s;
+.dish-btn .chev::before{
+  content:"";width:8px;height:8px;margin-top:-3px;
+  border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);
+  transform:rotate(45deg);transition:transform .35s cubic-bezier(.22,1,.36,1), border-color .25s, margin-top .35s cubic-bezier(.22,1,.36,1);
 }
-.dish-btn .plus::before{width:9px;height:1px}
-.dish-btn .plus::after{width:1px;height:9px}
-.dish-btn:hover .plus{border-color:var(--brand)}
-.dish[data-open="1"] .plus{background:var(--brand);border-color:var(--brand);transform:rotate(90deg)}
-.dish[data-open="1"] .plus::before,.dish[data-open="1"] .plus::after{background:var(--bg)}
-.dish[data-open="1"] .plus::after{transform:scaleY(0)}
+.dish-btn:hover .chev{border-color:var(--brand)}
+.dish-btn:hover .chev::before{border-color:var(--brand)}
+.dish[data-open="1"] .chev{background:var(--brand);border-color:var(--brand)}
+.dish[data-open="1"] .chev::before{border-color:var(--bg);transform:rotate(225deg);margin-top:3px}
 .dish-note{
   display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s cubic-bezier(.22,1,.36,1);
 }
@@ -235,7 +243,7 @@ p{max-width:60ch}
 .fact .glyph small{display:block;font-family:var(--body);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:12px;font-weight:500}
 .fact h3{margin:20px 0 12px;font-size:1.24rem}
 .fact p{color:var(--muted);font-size:.98rem;max-width:44ch}
-.fact .src{margin-top:auto;padding-top:20px;font-size:.72rem;letter-spacing:.08em;color:var(--muted);opacity:.8}
+.fact .src{margin-top:auto;padding-top:20px;font-size:.72rem;letter-spacing:.08em;color:var(--muted)}
 
 /* ---------- sauce band ---------- */
 .on-dark{background:var(--dark);color:var(--on-dark)}
@@ -250,7 +258,7 @@ p{max-width:60ch}
   font-family:var(--display);font-weight:500;font-size:clamp(1.14rem,2vw,1.44rem);
   line-height:1.55;color:#FBF6EC;max-width:26ch;
 }
-.pull cite{display:block;font-family:var(--body);font-style:normal;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(243,237,226,.5);margin-top:16px}
+.pull cite{display:block;font-family:var(--body);font-style:normal;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(243,237,226,.6);margin-top:16px}
 
 /* ---------- reviews ---------- */
 .reviews{background:var(--bg-2)}
@@ -261,7 +269,7 @@ p{max-width:60ch}
 .score b i{font-style:normal;color:var(--accent);font-size:.6em;margin-left:.14em;vertical-align:.2em}
 .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(18px,2.6vw,26px)}
 .rev{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:clamp(24px,3vw,34px);display:flex;flex-direction:column}
-.stars{color:var(--accent);letter-spacing:.16em;font-size:.86rem;margin-bottom:16px}
+.stars{color:var(--brand-2);letter-spacing:.16em;font-size:.86rem;margin-bottom:16px}
 .rev blockquote{font-family:var(--display);font-weight:400;font-size:1.06rem;line-height:1.62;color:var(--ink)}
 .rev-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:24px}
 .disc{
@@ -278,13 +286,17 @@ p{max-width:60ch}
 .find-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 
 /* ---------- footer ---------- */
-.site-footer{background:var(--ink);color:rgba(243,237,226,.62);padding:clamp(44px,6vw,64px) 0}
+.site-footer{
+  background:var(--ink);color:rgba(243,237,226,.62);padding:clamp(40px,6vw,58px) 0 clamp(28px,4vw,36px);
+  border-top:1px solid rgba(243,237,226,.14);
+}
 .foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px}
 .foot .lockup{color:#FBF6EC}
-.foot .lockup .sub{color:rgba(243,237,226,.5)}
-.foot a{color:rgba(243,237,226,.72);text-decoration:none;font-size:.88rem;letter-spacing:.05em}
+.foot .lockup:hover{opacity:.72}
+.foot .lockup .sub{color:rgba(243,237,226,.6)}
+.foot a{color:rgba(243,237,226,.72);text-decoration:none;font-size:.88rem;letter-spacing:.05em;transition:color .2s}
 .foot a:hover{color:var(--accent)}
-.foot .place{font-size:.86rem;letter-spacing:.06em}
+.foot .place{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,237,226,.6)}
 
 /* ---------- reveal ---------- */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1)}
@@ -413,10 +425,10 @@ p{max-width:60ch}
             <h3>Off the grill</h3>
             <p class="kicker">Every plate comes with rice and a green salad.</p>
             <ul class="dishes">
-              <li class="dish"><button class="dish-btn">Chicken teriyaki<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>The one people drive in for — grilled dark meat, sliced, and brushed with the house glaze.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Beef teriyaki<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Thin-sliced beef, charred on the flat grill and finished in the same sauce.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Chicken katsu<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Breaded and fried until it crackles, sliced, and served with our own katsu sauce.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Combination plates<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Can't choose? Two proteins land on one plate — chicken and beef is the usual answer.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Chicken teriyaki<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>The one people drive in for — grilled dark meat, sliced, and brushed with the house glaze.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Beef teriyaki<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Thin-sliced beef, charred on the flat grill and finished in the same sauce.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Chicken katsu<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Breaded and fried until it crackles, sliced, and served with our own katsu sauce.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Combination plates<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Can't choose? Two proteins land on one plate — chicken and beef is the usual answer.</p></div></div></li>
             </ul>
           </div>
 
@@ -424,10 +436,10 @@ p{max-width:60ch}
             <h3>Rolled by hand</h3>
             <p class="kicker">Made to order at the bar, boxed neatly for takeout.</p>
             <ul class="dishes">
-              <li class="dish"><button class="dish-btn">Rainbow roll<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>A California roll laid over with tuna, salmon and avocado — the one that comes out looking like a stained-glass window.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Caterpillar roll<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Avocado shingled the whole length of the roll, drizzled dark and finished with sesame.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Spicy tuna roll<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>The house standby — tuna with a little heat, cut into six.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">California roll<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Crab, cucumber and avocado. The roll to start a kid on.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Rainbow roll<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>A California roll laid over with tuna, salmon and avocado — the one that comes out looking like a stained-glass window.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Caterpillar roll<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Avocado shingled the whole length of the roll, drizzled dark and finished with sesame.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Spicy tuna roll<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>The house standby — tuna with a little heat, cut into six.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">California roll<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Crab, cucumber and avocado. The roll to start a kid on.</p></div></div></li>
             </ul>
           </div>
 
@@ -435,10 +447,10 @@ p{max-width:60ch}
             <h3>Out of the wok</h3>
             <p class="kicker">Noodles and stir-fry, the plates that travel best.</p>
             <ul class="dishes">
-              <li class="dish"><button class="dish-btn">Chicken yakisoba<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Noodles tossed with cabbage, broccoli, carrot and zucchini — the order reviewers keep naming.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Beef yakisoba<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Same noodles, sliced beef instead. Enough for two lunches out of one box.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Mongolian beef<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Sweet, dark and glossy, with onion, over rice.</p></div></div></li>
-              <li class="dish"><button class="dish-btn">Gyoza<span class="plus" aria-hidden="true"></span></button><div class="dish-note"><div><p>Pan-fried dumplings — the thing to put in the middle of the table while the plates come up.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Chicken yakisoba<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Noodles tossed with cabbage, broccoli, carrot and zucchini — the order reviewers keep naming.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Beef yakisoba<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Same noodles, sliced beef instead. Enough for two lunches out of one box.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Mongolian beef<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Sweet, dark and glossy, with onion, over rice.</p></div></div></li>
+              <li class="dish"><button class="dish-btn">Gyoza<span class="chev" aria-hidden="true"></span></button><div class="dish-note"><div><p>Pan-fried dumplings — the thing to put in the middle of the table while the plates come up.</p></div></div></li>
             </ul>
           </div>
 

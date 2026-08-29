@@ -1,0 +1,26 @@
+{
+  "_comment": "QA facts for Oshio Teriyaki & Sushi. Every string is checked against the page's visible text (whitespace-normalized, case-insensitive). Phone is compared digits-only.",
+
+  "name": "Oshio Teriyaki & Sushi",
+  "phone": "(360) 802-8988",
+  "address": "730 Griffin Ave, Enumclaw, WA 98022",
+
+  "hours": {
+    "Mon": "10:30 am – 8:30 pm",
+    "Tue": "10:30 am – 8:30 pm",
+    "Wed": "10:30 am – 8:30 pm",
+    "Thu": "10:30 am – 8:30 pm",
+    "Fri": "10:30 am – 8:30 pm",
+    "Sat": "10:30 am – 8:30 pm",
+    "Sun": "Closed"
+  },
+
+  "header_selector": "header, .site-header",
+
+  "expected_sections": ["top", "hours", "menu", "find"],
+
+  "allow_repeat": [
+    "teriyaki & sushi",
+    "call to order"
+  ]
+}

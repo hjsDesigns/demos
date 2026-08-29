@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Live view</title>
+<style>
+  html,body{margin:0;height:100%;background:#16171a;font:12px system-ui,sans-serif;color:#e8e6df}
+  .bar{height:30px;display:flex;align-items:center;gap:10px;padding:0 10px;background:#22242a}
+  .bar b{letter-spacing:.05em}
+  .dot{width:7px;height:7px;border-radius:50%;background:#5dbb84;animation:p 1.6s infinite}
+  @keyframes p{50%{opacity:.25}}
+  .bar span{color:#9a988f}
+  iframe{width:100%;height:calc(100% - 30px);border:0;background:#fff;display:block}
+</style>
+<div class="bar"><span class="dot"></span><b>BEAU ROGERS — LIVE</b><span id="n">auto-refreshing every 6s</span></div>
+<iframe id="f" src="/beau-rogers-chiropractic/"></iframe>
+<script>
+  var f=document.getElementById('f'), n=document.getElementById('n'), c=0;
+  setInterval(function(){
+    c++;
+    var y=0; try{ y=f.contentWindow.scrollY||0; }catch(e){}
+    f.src='/beau-rogers-chiropractic/?t='+Date.now()+'#keep';
+    f.onload=function(){ try{ f.contentWindow.scrollTo(0,y); }catch(e){} };
+    n.textContent='refresh #'+c;
+  }, 6000);
+</script>

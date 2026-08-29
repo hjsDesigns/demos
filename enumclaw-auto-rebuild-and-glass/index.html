@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Enumclaw Auto Rebuild &amp; Glass — Collision, Paint &amp; Auto Glass, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Collision repair, auto body, paint and auto glass at 1942 Railroad St in Enumclaw, Washington. Family shop on the plateau since 1944 — call (360) 825-2981.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Alfa Slab One (1930s-40s poster slab — sign-painter weight) + Asap (shop-clean workhorse) -->
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ENUMCLAW AUTO REBUILD & GLASS — 1942 Railroad St, Enumclaw WA
+   Built on the website-factory one-page template.
+
+   MIRROR LAW derivation: a body-and-glass shop's own materials —
+   masking paper (the cream ground), enamel blue (the brand), the
+   green edge-tint of laminated windshield glass (the accent), the
+   safety-amber of a work light (the highlight), shop-floor charcoal
+   (the dark bands). No photographs of this business exist online
+   that pass the photo gate, so the page's surfaces are built from
+   feTurbulence paint-mist texture instead of imagery (the sanctioned
+   818 fallback), and the recurring device is a strip of kraft
+   masking tape — a real object off their own bench.
+   ============================================================ */
+:root{
+  /* ---- palette ---- */
+  --brand:#12556B;          /* enamel blue — the shop blue */
+  --brand-text:#0E4356;     /* darkened for small type on cream (AA) */
+  --brand-bright:#186A85;   /* hover */
+  --accent:#3F8C7E;         /* the green edge-tint of laminated glass */
+  --accent-soft:#6FBBAC;    /* accent on dark grounds */
+  --ink:#20262B;
+  --bg:#EDE3D1;             /* masking paper */
+  --bg-2:#E1D5BB;           /* deeper kraft, alternating bands */
+  --paper:#F6EFE0;          /* cards */
+  --muted:#6B6153;
+  --line:#D6C6A9;
+  --dark:#17313B;           /* shop-floor charcoal, blue-cast (derived, not a flat default) */
+  --dark-2:#1F414E;
+  --warm:#E0A03A;           /* safety amber — the work light */
+  --tint:#D9E6E6;           /* glass-tint band */
+  --oxide:#B44A33;          /* primer red — the "needs replacing" verdict */
+
+  /* ---- type: Alfa Slab One (1930s-40s poster slab, sign-painter weight) + Asap (shop-clean workhorse) ---- */
+  --display:'Alfa Slab One','Bookman Old Style',Georgia,'Times New Roman',serif;
+  --body:'Asap',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+
+  /* ---- metrics ---- */
+  --header-h:76px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.34,1.42,.64,1);   /* the glass-check chip pops on with a small overshoot */
+  --r:16px;
+}
+
+/* ============================================================
+   Z-INDEX MAP
+     60  .site-header
+     40  #main-nav (mobile dropdown)
+      3  .hero-inner
+      2  .hero-field .grain
+      1  .hero-field .mist
+   Nothing else above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:var(--display);font-weight:400;line-height:1.04;margin:0;text-wrap:balance;letter-spacing:-.005em}
+h3,h4{font-family:var(--body);font-weight:700;line-height:1.2;margin:0;letter-spacing:-.01em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 55%,transparent);border-radius:8px}
+.section-dark :focus-visible{outline-color:var(--warm)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* the recurring device: a strip of kraft masking tape off their own bench */
+.tape{display:inline-block;position:relative;background:linear-gradient(180deg,#E3CFA4,#D3BC8B);
+  color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  padding:6px 16px;transform:rotate(-1.1deg);box-shadow:0 6px 14px -10px rgba(0,0,0,.6)}
+.tape::before,.tape::after{content:"";position:absolute;top:0;bottom:0;width:7px;
+  background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(0,0,0,.10) 3px 4px)}
+.tape::before{left:0}.tape::after{right:0}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:8px;
+  font-weight:700;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 70%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px);background:rgba(255,255,255,.07)}
+.btn-amber{background:var(--warm);color:var(--ink)}
+.btn-amber:hover{background:#EBB055;transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:2px solid var(--brand)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo .wm{font-family:var(--display);font-weight:400;font-size:19px;letter-spacing:0;line-height:1;color:var(--brand)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:20px;font-size:14.5px;font-weight:500}
+.main-nav a{color:var(--ink);opacity:.84;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:11px 17px;border-radius:8px;opacity:1;font-weight:700}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 60%,transparent);background:color-mix(in srgb,var(--accent-soft) 16%,transparent)}
+.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:var(--oxide)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 32%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1160px){.hdr-live .txt-long{display:none}}
+@media (max-width:980px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.32)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:16px}.logo .wm small{display:none}}
+@media (max-width:430px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   No photograph of this shop exists that passes the photo gate, so the
+   opener is their NAME laid down the way the shop lays down paint: a
+   masked spray sweep across each line, over an enamel-blue panel with
+   paint-mist grain. Plays once, deterministically, on every load. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+  background:var(--dark);color:#fff}
+.hero-spacer{display:none}
+.hero-field{position:absolute;inset:0;overflow:hidden}
+/* the panel: enamel blue laid down in passes, the way a gun lays it down —
+   a bright wet band top-left where the light hits, drier and darker at the edges */
+.hero-field .mist{position:absolute;inset:-12%;z-index:1;
+  background:
+    radial-gradient(46% 34% at 26% 26%, color-mix(in srgb,var(--brand-bright) 92%,#fff) 0%, transparent 64%),
+    radial-gradient(64% 40% at 70% 8%,  color-mix(in srgb,var(--warm) 20%,transparent) 0%, transparent 72%),
+    radial-gradient(58% 46% at 88% 78%, color-mix(in srgb,var(--brand) 70%,#000) 0%, transparent 70%),
+    linear-gradient(158deg,#164253 0%,#0F2E39 42%,#0B242D 72%,#154150 100%)}
+/* the spray passes themselves — soft diagonal bands of wet colour */
+.hero-field .mist::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(112deg,transparent 8%,rgba(120,205,225,.13) 20%,transparent 34%),
+    linear-gradient(112deg,transparent 30%,rgba(224,160,58,.10) 44%,transparent 58%),
+    linear-gradient(112deg,transparent 54%,rgba(120,205,225,.09) 68%,transparent 82%);
+  filter:blur(26px)}
+.hero-field .grain{position:absolute;inset:0;z-index:2;opacity:.5;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+/* an overspray vignette so the type always sits in a darker pool */
+.hero-field::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(9,24,30,.42) 0%,transparent 26%,transparent 46%,rgba(9,24,30,.72) 100%)}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(24px,4vh,48px) var(--pad) clamp(38px,7vh,86px)}
+.hero .tape{margin-bottom:clamp(16px,2.4vh,26px);color:#2A2317}
+.hero h1{margin:0 0 20px;color:#fff;font-size:clamp(34px,min(6.7vw,9.6vh),84px);line-height:.98;letter-spacing:-.01em}
+.hero h1 .ln{display:block;overflow:visible}
+.hero h1 .ln > span{display:inline-block;position:relative}
+.hero h1 .amp{color:var(--warm)}
+.hero-sub{font-size:clamp(16px,1.75vw,20px);max-width:44ch;margin:0 0 30px;color:rgba(255,255,255,.93);font-weight:400}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* the spray sweep — clip reveal + a travelling nozzle glow */
+.js .hero h1 .ln > span{clip-path:inset(-.25em 101% -.25em -.1em);animation:spray .78s var(--ease) forwards}
+.js .hero h1 .l1 > span{animation-delay:.15s}
+.js .hero h1 .l2 > span{animation-delay:.52s}
+.js .hero h1 .l3 > span{animation-delay:.89s}
+@keyframes spray{to{clip-path:inset(-.25em -.12em -.25em -.1em)}}
+.js .hero h1 .ln::after{content:"";position:absolute;left:0;top:0;bottom:0;width:34%;pointer-events:none;opacity:0;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--warm) 60%,transparent),transparent 78%);
+  animation:nozzle .78s var(--ease) forwards}
+.js .hero h1 .l1::after{animation-delay:.15s}
+.js .hero h1 .l2::after{animation-delay:.52s}
+.js .hero h1 .l3::after{animation-delay:.89s}
+@keyframes nozzle{0%{opacity:0;transform:translateX(-24%)}18%{opacity:.85}82%{opacity:.75}100%{opacity:0;transform:translateX(112%)}}
+.hero h1 .ln{position:relative}
+.js .hero .tape{opacity:0;transform:translateY(10px) rotate(-6deg);animation:tapeDown .6s var(--ease) .02s forwards}
+@keyframes tapeDown{to{opacity:1;transform:translateY(0) rotate(-1.1deg)}}
+.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(16px);animation:rise .8s var(--ease) forwards}
+.js .hero-sub{animation-delay:1.52s}.js .hero-actions{animation-delay:1.68s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (max-width:520px){
+  .hero h1{font-size:clamp(31px,9.4vw,42px)}
+  .hero-sub{font-size:16px;max-width:none}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(28px,3.6vw,42px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 24%,transparent)}
+.live-line.is-closed .dot{background:var(--oxide)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;
+  box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 55%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:11px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 22%,transparent)}
+.hours-list .day{font-weight:500}
+.hours-list li.today .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:13.5px;text-align:right;font-variant-numeric:tabular-nums}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--oxide)}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 14px}
+.proof .ico{color:var(--accent)}
+.proof .star{color:var(--warm)}
+@media (max-width:860px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,110px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.section-dark::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.4;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n2)' opacity='.5'/%3E%3C/svg%3E")}
+.section-dark .wrap{position:relative}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(30px,4.2vw,50px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.8)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============================================================ CLAIMS — the doubt-killer, placed first
+   The one thing a person needs to believe before they'll bring a wrecked
+   car anywhere: that this will not be a fight with the insurance company. */
+.claims{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(30px,5vw,72px);align-items:start}
+.claims h2{font-size:clamp(30px,4.2vw,50px);margin:0 0 16px}
+.claims .lede{font-size:18.5px;color:var(--ink);max-width:34ch}
+.claim-note{margin:22px 0 0;padding:16px 18px;background:var(--paper);border:var(--rule);border-left:5px solid var(--accent);border-radius:0 12px 12px 0;font-size:15px;color:var(--muted)}
+.claim-note b{color:var(--ink);font-weight:600}
+.rail{list-style:none;margin:0;padding:0;counter-reset:s;position:relative}
+.rail li{position:relative;padding:0 0 26px 68px;counter-increment:s}
+.rail li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:-2px;width:46px;height:46px;border-radius:10px;
+  background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:.06em}
+.rail li::after{content:"";position:absolute;left:22px;top:52px;bottom:2px;width:2px;
+  background:repeating-linear-gradient(180deg,var(--line) 0 6px,transparent 6px 12px)}
+.rail li:last-child{padding-bottom:0}
+.rail li:last-child::after{display:none}
+.rail h3{font-size:19.5px;margin:0 0 6px}
+.rail p{font-size:15.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.claims{grid-template-columns:1fr}}
+
+/* ============================================================ SIGNATURE — THE GLASS CHECK
+   The counter conversation turned into a tool (the AT-HOME TOOL rule):
+   the question every glass customer asks is "do I need a whole new
+   windshield, or can that be fixed?" Two taps: where it is, how big.
+   The windshield above reacts instantly; the answer reads underneath. */
+.glass-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,56px);align-items:center}
+.ws-stage{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.16);border-radius:var(--r);padding:clamp(14px,2.4vw,26px)}
+.ws-stage svg{width:100%;height:auto;display:block;overflow:visible}
+.ws-hint{margin:12px 0 0;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+.gq{margin:0 0 22px}
+.gq:last-of-type{margin-bottom:26px}
+.gq > .lbl{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);font-weight:600;margin:0 0 12px}
+.gopts{display:flex;flex-wrap:wrap;gap:10px}
+.gopt{appearance:none;-webkit-appearance:none;font-family:var(--body);font-size:15px;font-weight:600;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.24);border-radius:10px;padding:13px 18px;min-height:50px;
+  display:inline-flex;align-items:center;gap:9px;transition:background .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease-2),color .18s}
+.gopt:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.45);transform:translateY(-2px)}
+.gopt[aria-pressed="true"]{background:var(--warm);border-color:var(--warm);color:#221B0C;transform:translateY(-2px)}
+.gopt .pip{width:11px;height:11px;border-radius:50%;border:2px solid currentColor;flex:none;opacity:.55}
+.gopt[aria-pressed="true"] .pip{background:currentColor;opacity:1}
+
+.verdict{border-radius:var(--r);border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);padding:22px 24px;min-height:172px;
+  display:flex;flex-direction:column;justify-content:center}
+.verdict.is-empty{align-items:center;text-align:center;color:rgba(255,255,255,.55);font-size:15.5px}
+.verdict .tag{display:inline-flex;align-items:center;gap:9px;align-self:flex-start;font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:600;padding:7px 14px;border-radius:8px;margin-bottom:14px}
+.verdict.v-repair{border-color:color-mix(in srgb,var(--accent-soft) 60%,transparent);background:color-mix(in srgb,var(--accent) 20%,transparent)}
+.verdict.v-repair .tag{background:var(--accent-soft);color:#0C2620}
+.verdict.v-maybe{border-color:color-mix(in srgb,var(--warm) 62%,transparent);background:color-mix(in srgb,var(--warm) 15%,transparent)}
+.verdict.v-maybe .tag{background:var(--warm);color:#221B0C}
+.verdict.v-replace{border-color:color-mix(in srgb,var(--oxide) 68%,transparent);background:color-mix(in srgb,var(--oxide) 22%,transparent)}
+.verdict.v-replace .tag{background:var(--oxide);color:#fff}
+.verdict h3{font-size:22px;margin:0 0 8px;color:#fff}
+.verdict p{font-size:15.5px;color:rgba(255,255,255,.86);margin:0 0 16px}
+.verdict .go{align-self:flex-start;font-weight:600;font-size:15px;color:var(--warm);border-bottom:2px solid color-mix(in srgb,var(--warm) 45%,transparent);padding-bottom:2px}
+.verdict .go:hover{border-bottom-color:var(--warm)}
+.glass-fine{margin:22px 0 0;font-size:13.5px;color:rgba(255,255,255,.55);max-width:66ch}
+/* the damage mark on the glass */
+.ws{color:var(--warm)}
+.ws.v-repair{color:var(--accent-soft)}
+.ws.v-maybe{color:var(--warm)}
+.ws.v-replace{color:#E4795E}
+#dmg{opacity:0;transition:opacity .22s var(--ease)}
+#dmg.on{opacity:1}
+#dmg.pop{animation:chipPop .44s var(--ease-2)}
+@keyframes chipPop{from{transform:scale(.15)}to{transform:scale(1)}}
+#dmgWrap{transition:transform .48s var(--ease-2)}
+#dmgScale{transition:transform .34s var(--ease-2)}
+#crackMark{display:none}
+.ws.is-crack #crackMark{display:block}
+.ws.is-crack #chipMark{display:none}
+@media (max-width:900px){.glass-wrap{grid-template-columns:1fr}}
+@media (max-width:560px){.gopt{width:100%;justify-content:flex-start}}
+
+/* contact lines */
+.contact-lines .em{flex:none;width:22px}
+
+/* ============================================================ SERVICES — title cards that unroll */
+.svc{display:grid;gap:14px}
+.svc-card{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;transition:box-shadow .3s var(--ease),border-color .3s}
+.svc-card:hover{box-shadow:0 26px 46px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.svc-card.open{border-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+.svc-head{width:100%;display:flex;align-items:center;gap:18px;text-align:left;background:none;border:0;cursor:pointer;
+  padding:22px clamp(18px,3vw,28px);font-family:var(--body);color:var(--ink);min-height:64px}
+.svc-head .ico{width:48px;height:48px;border-radius:10px;display:grid;place-items:center;background:var(--tint);color:var(--brand);flex:none}
+.svc-head .ico svg{width:26px;height:26px}
+.svc-head .ct{flex:1 1 auto;min-width:0}
+.svc-head .t{display:block;font-family:var(--body);font-weight:700;font-size:clamp(19px,2.2vw,23px);letter-spacing:-.01em;line-height:1.2}
+.svc-head .d{display:block;font-size:14.5px;color:var(--muted);margin-top:4px}
+.svc-head .chev{width:26px;height:26px;flex:none;color:var(--brand);transition:transform .3s var(--ease)}
+.svc-card.open .svc-head .chev{transform:rotate(180deg)}
+.unroll{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.svc-card.open .unroll{grid-template-rows:1fr}
+.unroll > div{overflow:hidden}
+.unroll ul{list-style:none;margin:0;padding:0 clamp(18px,3vw,28px) 24px clamp(84px,9vw,94px)}
+.unroll li{position:relative;padding:9px 0 9px 22px;font-size:16px;border-top:1px dashed var(--line)}
+.unroll li::before{content:"";position:absolute;left:0;top:19px;width:9px;height:2px;background:var(--brand)}
+@media (max-width:620px){.unroll ul{padding-left:clamp(18px,5vw,28px)}.svc-head .ico{display:none}}
+
+/* ============================================================ STORY — since 1944 */
+.story{display:grid;grid-template-columns:1fr .82fr;gap:clamp(30px,5vw,72px);align-items:center}
+.story h2{font-size:clamp(30px,4.2vw,50px);margin:0 0 16px}
+.story .lede{font-size:19px;font-weight:500;color:var(--dark)}
+.story p{font-size:16.5px}
+/* the shop plate: a functional object from their world — the job-ticket card */
+.plate-card{position:relative;background:var(--dark);color:#fff;border-radius:var(--r);padding:clamp(26px,3.4vw,38px);overflow:hidden;
+  box-shadow:0 40px 80px -46px color-mix(in srgb,var(--dark) 80%,transparent)}
+.plate-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n3)' opacity='.5'/%3E%3C/svg%3E")}
+.plate-card .echo{position:absolute;right:-.07em;bottom:-.34em;font-family:var(--display);font-size:clamp(110px,15vw,190px);line-height:.8;
+  color:rgba(255,255,255,.045);pointer-events:none;letter-spacing:-.02em}
+.plate-card > *{position:relative;z-index:1}
+.plate-card h3{font-family:var(--display);font-weight:400;font-size:clamp(24px,3vw,32px);color:#fff;margin:0 0 18px;line-height:1.1}
+.plate-rows{list-style:none;margin:0;padding:0}
+.plate-rows li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.13);font-size:15.5px}
+.plate-rows li:last-child{border-bottom:0}
+.plate-rows .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--warm);font-weight:600;flex:none}
+.plate-rows .v{text-align:right;color:#fff;font-weight:500;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.story{grid-template-columns:1fr}}
+
+/* ============================================================ WORD (single verbatim review) */
+.word{max-width:52ch;margin:0 auto;text-align:center}
+.word blockquote{margin:0 0 24px;font-family:var(--display);font-weight:400;font-size:clamp(23px,3.1vw,36px);line-height:1.24;color:#fff;letter-spacing:-.005em}
+.word blockquote::before{content:"\201C"}
+.word blockquote::after{content:"\201D"}
+.word .who{display:inline-flex;align-items:center;gap:12px;justify-content:center}
+.word .disc{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--warm);color:#221B0C;
+  font-family:var(--display);font-weight:400;font-size:20px;flex:none}
+.word .nm{text-align:left;font-size:14.5px;color:rgba(255,255,255,.9);font-weight:600;line-height:1.35}
+.word .nm small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600;margin-top:3px}
+.word .stars{color:var(--warm);letter-spacing:.14em;font-size:15px;margin:0 0 16px;display:block}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(30px,4.2vw,50px);margin:0 0 20px}
+.contact-lines{display:flex;flex-direction:column;gap:10px;font-size:16px;margin-top:6px}
+.contact-lines span{display:flex;gap:10px;align-items:baseline}
+.contact-lines a{font-weight:600;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 16%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 20%,transparent);border:1px solid var(--accent);border-radius:10px;padding:14px 16px;font-weight:600;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.05)}
+.num b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(34px,4.4vw,54px);line-height:1;letter-spacing:-.01em;color:#fff;font-variant-numeric:tabular-nums}
+.num b i{font-style:normal;color:var(--warm);font-size:.42em;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.74);margin-top:10px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:32px;align-items:start}
+.foot .wm{font-family:var(--display);font-weight:400;font-size:21px;color:#fff;line-height:1.15;display:block;margin-bottom:12px}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--warm);margin-top:7px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a{border-bottom:1px solid transparent}
+.foot a:hover{color:#fff;border-bottom-color:rgba(255,255,255,.4)}
+.foot .soc{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================ REDUCED MOTION
+   Not shortened — REMOVED. Every entrance, sweep and pulse lands on its
+   final frame immediately (818 brain item 5 / Approved-Is-Locked bar). */
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero h1 .ln > span{animation:none;clip-path:none}
+  .js .hero h1 .ln::after{animation:none;display:none;content:none}
+  .js .hero .tape,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .js .hero .tape{transform:rotate(-1.1deg)}
+  .hdr-live.is-open .dot{animation:none}
+  #dmg.on{animation:none}
+  #dmgWrap,.unroll,.svc-head .chev,.gopt,.btn,.svc-card,.verdict,#dmg{transition:none}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Enumclaw Auto Rebuild and Glass — home">
+      <span class="wm">Enumclaw Auto Rebuild<small>Collision · Paint · Auto Glass</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#claims">After a wreck</a>
+        <a href="#glass">Glass check</a>
+        <a href="#services">What we do</a>
+        <a href="#story">The shop</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Get an estimate</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       No photograph of this shop clears the photo gate, so the opener is
+       their own name laid down the way the shop lays down paint: masked,
+       then sprayed line by line, on an enamel-blue panel with paint mist.
+       Nothing else sits on it but the name, one line, and two buttons. -->
+  <section class="hero" id="hero">
+    <div class="hero-field" aria-hidden="true"><span class="mist"></span><span class="grain"></span></div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <span class="tape">1942 Railroad St · Enumclaw</span>
+      <h1>
+        <span class="ln l1"><span>Enumclaw</span></span>
+        <span class="ln l2"><span>Auto&nbsp;Rebuild</span></span>
+        <span class="ln l3"><span><em class="amp">&amp;</em> Glass</span></span>
+      </h1>
+      <p class="hero-sub">Collision, auto body, paint and glass — one shop, two blocks off Griffin, run by people who still answer the phone.</p>
+      <div class="hero-actions">
+        <a href="#claims" class="btn btn-amber">Start a repair</a>
+        <a href="#glass" class="btn btn-ghost">Check my windshield</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours ===================== -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Open weekdays on <em>Railroad Street</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          1942 Railroad St, Enumclaw, WA 98022<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Enumclaw+Auto+Rebuild+%26+Glass+1942+Railroad+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 100% recommended on Facebook</span>
+          <span class="proof"><span class="ico">✓</span> Body shop and glass shop, same roof</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">8:00 am – 5:00 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">8:00 am – 5:00 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">8:00 am – 5:00 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">8:00 am – 5:00 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">8:00 am – 5:00 pm</span></li>
+        <li data-days="6" class="closed"><span class="day">Saturday</span><span class="time">Closed</span></li>
+        <li data-days="0" class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #claims =====================
+       Placed FIRST after the hours because it retires the one doubt that
+       stops a person from picking a body shop: "is this going to be a
+       fight with my insurance company?" Everything else can wait. -->
+  <section class="section" id="claims">
+    <div class="wrap">
+      <div class="claims">
+        <div class="reveal">
+          <p class="eyebrow">After a wreck</p>
+          <h2>You got hit. <em>Here's what happens next.</em></h2>
+          <p class="lede">Nobody plans this part. It's five steps, and we do four of them.</p>
+          <div class="claim-note">
+            <b>You choose the shop.</b> Your insurance company can recommend one. Where your car actually goes is your call — say our name and we'll take it from there.
+          </div>
+        </div>
+        <ol class="rail reveal">
+          <li>
+            <h3>Bring it by, or call first</h3>
+            <p>Drive it over if it's drivable. If it isn't, call and we'll tell you what to do with it.</p>
+          </li>
+          <li>
+            <h3>We look at it and write it up</h3>
+            <p>A real look at the damage — the part you can see and the part behind it — written into an estimate.</p>
+          </li>
+          <li>
+            <h3>We deal with the adjuster</h3>
+            <p>The estimate, the supplements, the back-and-forth. You shouldn't have to translate insurance language.</p>
+          </li>
+          <li>
+            <h3>Parts come in, your car goes on the schedule</h3>
+            <p>We'll tell you when it's going in and roughly how long it's staying.</p>
+          </li>
+          <li>
+            <h3>You get a call when it's done</h3>
+            <p>We keep you posted while it's here and let you know the day it's ready to pick up.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #glass — THE SIGNATURE =====================
+       The counter conversation turned into a tool. Two taps: where the
+       damage is, how big it is. The windshield reacts; the answer reads
+       underneath. Uses the standard repair-vs-replace rules of thumb;
+       the shop makes the final call and the copy says so. -->
+  <section class="section section-dark" id="glass">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The glass side of the shop</p>
+        <h2>Chip or replacement? <em>Two taps.</em></h2>
+        <p>Everybody asks the same thing at the counter: can that be fixed, or do I need a whole new windshield? Tap where the damage is and how big it is.</p>
+      </div>
+
+      <div class="glass-wrap reveal">
+        <div class="ws-stage">
+          <svg id="wsSvg" class="ws" viewBox="2 8 416 226" role="img" aria-labelledby="wsTitle">
+            <title id="wsTitle">A windshield, with the damage you picked shown on the glass</title>
+            <defs>
+              <linearGradient id="gGlass" x1="0" y1="0" x2="0.6" y2="1">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".16"/>
+                <stop offset="55%" stop-color="#ffffff" stop-opacity=".07"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity=".12"/>
+              </linearGradient>
+              <clipPath id="cGlass">
+                <path d="M44 36 C150 24, 270 24, 376 36 L400 212 C268 224, 152 224, 20 212 Z"/>
+              </clipPath>
+            </defs>
+
+            <!-- roof line + A-pillars -->
+            <path d="M32 30 C150 12, 270 12, 388 30" fill="none" stroke="rgba(255,255,255,.30)" stroke-width="7" stroke-linecap="round"/>
+            <path d="M32 30 L8 216" fill="none" stroke="rgba(255,255,255,.24)" stroke-width="7" stroke-linecap="round"/>
+            <path d="M388 30 L412 216" fill="none" stroke="rgba(255,255,255,.24)" stroke-width="7" stroke-linecap="round"/>
+
+            <!-- the glass -->
+            <path d="M44 36 C150 24, 270 24, 376 36 L400 212 C268 224, 152 224, 20 212 Z"
+                  fill="url(#gGlass)" stroke="#6FBBAC" stroke-opacity=".55" stroke-width="3"/>
+            <!-- reflection streaks -->
+            <g clip-path="url(#cGlass)" opacity=".5">
+              <path d="M70 -20 L170 250" stroke="#ffffff" stroke-opacity=".10" stroke-width="34"/>
+              <path d="M140 -20 L215 250" stroke="#ffffff" stroke-opacity=".06" stroke-width="14"/>
+            </g>
+            <!-- black frit band around the edge -->
+            <path d="M44 36 C150 24, 270 24, 376 36 L400 212 C268 224, 152 224, 20 212 Z"
+                  fill="none" stroke="#0C2027" stroke-opacity=".55" stroke-width="9" stroke-dasharray="0" clip-path="url(#cGlass)"/>
+            <!-- rear-view mirror -->
+            <g>
+              <rect x="203" y="30" width="14" height="16" rx="4" fill="rgba(255,255,255,.30)"/>
+              <rect x="186" y="44" width="48" height="19" rx="8" fill="rgba(255,255,255,.34)"/>
+            </g>
+            <!-- wipers -->
+            <path d="M60 214 C130 176, 190 178, 214 200" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M232 214 C300 180, 348 184, 370 206" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- the damage the visitor picked -->
+            <g id="dmgWrap" transform="translate(140,118)">
+              <g id="dmg">
+               <g id="dmgScale" transform="scale(0.8)">
+                <g id="chipMark">
+                  <circle r="22" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="2"/>
+                  <circle r="5.5" fill="currentColor"/>
+                  <g stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                    <path d="M0 -6 L2 -19"/><path d="M4.5 -4 L15 -14"/><path d="M6 0 L20 2"/>
+                    <path d="M4.5 4.5 L13 15"/><path d="M0 6 L-2 19"/><path d="M-4.5 4.5 L-14 13"/>
+                    <path d="M-6 0 L-20 -3"/><path d="M-4.5 -4.5 L-13 -15"/>
+                  </g>
+                </g>
+                <g id="crackMark" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <circle r="4.5" fill="currentColor" stroke="none"/>
+                  <path d="M2 -2 L18 -12 L30 -4 L48 -16 L62 -8 L80 -19"/>
+                  <path d="M-2 2 L-16 12 L-28 6 L-44 17"/>
+                  <path d="M30 -4 L34 8"/>
+                </g>
+               </g>
+              </g>
+            </g>
+          </svg>
+          <p class="ws-hint">Tap a button — watch the glass</p>
+        </div>
+
+        <div class="glass-controls">
+          <div class="gq" role="group" aria-labelledby="gqWhere">
+            <span class="lbl" id="gqWhere">Where is it?</span>
+            <div class="gopts">
+              <button type="button" class="gopt" data-zone="edge" aria-pressed="false"><span class="pip"></span>Near the edge</button>
+              <button type="button" class="gopt" data-zone="driver" aria-pressed="false"><span class="pip"></span>In front of the driver</button>
+              <button type="button" class="gopt" data-zone="side" aria-pressed="false"><span class="pip"></span>Out to the passenger side</button>
+            </div>
+          </div>
+
+          <div class="gq" role="group" aria-labelledby="gqSize">
+            <span class="lbl" id="gqSize">How big?</span>
+            <div class="gopts">
+              <button type="button" class="gopt" data-size="small" aria-pressed="false"><span class="pip"></span>Smaller than a quarter</button>
+              <button type="button" class="gopt" data-size="big" aria-pressed="false"><span class="pip"></span>Bigger than a quarter</button>
+              <button type="button" class="gopt" data-size="crack" aria-pressed="false"><span class="pip"></span>A crack, longer than a dollar bill</button>
+            </div>
+          </div>
+
+          <div class="verdict is-empty" id="verdict" aria-live="polite">
+            <span>Pick one from each row and the answer shows up here.</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="glass-fine reveal">Those are the rules of thumb the glass trade works from — a quarter for chips, a dollar bill for cracks, and extra caution at the edge or straight in the driver's line of sight. The car in your driveway gets the final look in person.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #services — title cards that unroll ===================== -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What we do</p>
+        <h2>Two trades, <em>one building</em></h2>
+        <p>Most shops send the glass out. Here it's the same roof, the same phone number, the same guy telling you when it's ready.</p>
+      </div>
+      <div class="svc">
+
+        <article class="svc-card reveal">
+          <button class="svc-head" type="button" aria-expanded="false" aria-controls="svc-1">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l1.8-4.6A2 2 0 0 1 6.7 7h10.6a2 2 0 0 1 1.9 1.4L21 13v5h-3v-2H6v2H3z"/><circle cx="7" cy="15" r="1"/><circle cx="17" cy="15" r="1"/></svg></span>
+            <span class="ct"><span class="t">Collision &amp; auto body</span><span class="d">What people bring us</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="unroll" id="svc-1"><div><ul>
+            <li>Somebody rear-ended you and their insurance is paying</li>
+            <li>You backed into something and you're paying yourself</li>
+            <li>A deer, a fence post, a shopping cart, a garage door</li>
+            <li>An adjuster already wrote an estimate and you want a shop to actually do the work</li>
+            <li>Dents, creased panels and bumpers that don't line up any more</li>
+          </ul></div></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <button class="svc-head" type="button" aria-expanded="false" aria-controls="svc-2">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V9l3-4h10l3 4v8z"/><path d="M4 13h16"/><path d="M9 5v8"/></svg></span>
+            <span class="ct"><span class="t">Auto glass</span><span class="d">The half of the name most people miss</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="unroll" id="svc-2"><div><ul>
+            <li>Windshield replacement</li>
+            <li>Rock chip repair</li>
+            <li>Door glass and back glass</li>
+            <li>Glass claims run through your insurance</li>
+          </ul></div></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <button class="svc-head" type="button" aria-expanded="false" aria-controls="svc-3">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l4 4-8.5 8.5-4 .5.5-4z"/><path d="M4 21h16"/><path d="M12.5 5.5l3 3"/></svg></span>
+            <span class="ct"><span class="t">Paint &amp; refinishing</span><span class="d">Why a repair either disappears or doesn't</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="unroll" id="svc-3"><div><ul>
+            <li>Matching to your car's own factory colour code, not "close enough"</li>
+            <li>Blending into the panel next door so the repair doesn't stop at a seam</li>
+            <li>Clear coat over the top, the same as the factory did it</li>
+            <li>Spot repair where a whole panel would be overkill</li>
+          </ul></div></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #story ===================== -->
+  <section class="section section-alt" id="story">
+    <div class="wrap">
+      <div class="story">
+        <div class="reveal">
+          <p class="eyebrow">The shop</p>
+          <h2>Fixing plateau cars <em>since 1944</em></h2>
+          <p class="lede">Enumclaw was a mill and dairy town of a few thousand people when this shop started straightening cars. It is still here, still on Railroad Street, still doing the same two things.</p>
+          <p>Steve Maris runs it now. The reviews that exist say the same thing about him more than once: he tells you where the car is at, he works with your insurance agent instead of against them, and it comes back when he said it would.</p>
+          <p>There's no waiting room full of brochures and no call centre. There's a phone, a shop, and somebody who knows what your car needs — which on a plateau this size is most of what anybody actually wants.</p>
+        </div>
+        <div class="plate-card reveal">
+          <span class="echo" aria-hidden="true">1944</span>
+          <h3>The short version</h3>
+          <ul class="plate-rows">
+            <li><span class="k">Trades</span><span class="v">Auto body, collision, glass</span></li>
+            <li><span class="k">Owner</span><span class="v">Steve Maris</span></li>
+            <li><span class="k">Street</span><span class="v">Railroad St at Washington Ave</span></li>
+            <li><span class="k">Working</span><span class="v">Weekdays, <span class="tnum">8</span> to <span class="tnum">5</span></span></li>
+            <li><span class="k">Pays</span><span class="v">Visa · Mastercard · Amex · debit</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #word — one real, verbatim review ===================== -->
+  <section class="section section-dark" id="word">
+    <div class="wrap">
+      <div class="word reveal">
+        <span class="stars" aria-label="Five stars">★★★★★</span>
+        <blockquote>Steve was easy and efficient to work with. I was rear ended by an under-insured driver and he worked seamlessly with my insurance agent.</blockquote>
+        <div class="who">
+          <span class="disc" aria-hidden="true">S</span>
+          <span class="nm">Sarah S.<small>Customer · December 2020</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Get an estimate</p>
+          <h2>Tell us what happened <em>and we'll take it from there</em></h2>
+          <p>Send the year, make and model plus a couple of photos on your phone and we can tell you a lot before the car ever gets here. If it's glass, the check above is a good place to start.</p>
+          <div class="contact-lines">
+            <span><span class="em" aria-hidden="true">📞</span><a href="tel:+13608252981">(360) 825-2981</a></span>
+            <span><span class="em" aria-hidden="true">📍</span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=1942+Railroad+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions to the shop ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>Collision or body repair</option><option>Windshield or auto glass</option><option>Paint or refinishing</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Year, make, model — and what happened to it."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — Steve will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One phone call</p>
+        <h2>The shop that's been here <em>longer than the freeway</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count tnum" id="yearsNum" data-to="82">82</span></b><span>Years straightening cars on the plateau</span></div>
+        <div class="num"><b><span class="count tnum" data-to="2">2</span></b><span>Trades under one roof — body and glass</span></div>
+        <div class="num"><b><span class="count tnum" data-to="100">100</span><i>%</i></b><span>Of Facebook reviewers recommend the shop</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-amber">Send us the damage</a>
+        <a href="tel:+13608252981" class="btn btn-ghost">Call (360) 825-2981</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <span class="wm">Enumclaw Auto Rebuild &amp; Glass<small>Collision · Paint · Auto Glass</small></span>
+        <p>An Enumclaw body-and-glass shop, working out of the same block since the war years.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/p/Enumclaw-Auto-Rebuild-Glass-100048738026961/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>1942 Railroad St<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+13608252981">(360) 825-2981</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#claims">After a wreck</a><br><a href="#glass">Glass check</a><br><a href="#services">What we do</a><br><a href="#story">The shop</a><br><a href="#contact">Get an estimate</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Enumclaw Auto Rebuild &amp; Glass</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   WEBSITE FACTORY — site.js
+   Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
+   count-up numbers · contact form success.
+   The ONLY thing to edit per client is the HOURS block right below.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HOURS CONFIG  — fill from the client's Google listing.
+   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
+   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
+   null = closed that day. Closing past midnight: use 26 for 2 am.
+   ------------------------------------------------------------ */
+var HOURS = {
+  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  days: {
+    0: null,                          // Sunday      closed
+    1: [8, 17],                       // Monday      8:00 am – 5:00 pm
+    2: [8, 17],                       // Tuesday
+    3: [8, 17],                       // Wednesday
+    4: [8, 17],                       // Thursday
+    5: [8, 17],                       // Friday
+    6: null                           // Saturday    closed
+  }
+};
+
+/* Year the shop dates to. Used to keep "82 years" from ever going stale. */
+var FOUNDED = 1944;
+
+/* ------------------------------------------------------------
+   CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
+   Two functions site.js calls every minute. `p` is the Pacific "now":
+   {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
+
+   customClosure(p) → return a string to mark the whole day CLOSED
+                      ("Closed today for Labor Day"), or null.
+   customClose(p, close) → return an adjusted closing hour for today.
+
+   Reference-build example (path in README, "HOURS config"): Friday closed
+   at the earlier of 6 pm or SUNDOWN (NOAA sunset math), and US holidays
+   from their rate sheet returned a closure string. Port that logic here
+   only when the business actually has such a rule.
+   ------------------------------------------------------------ */
+function customClosure(p){ return null; }
+function customClose(p, close){ return close; }
+
+
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
+  var toggle=$('.nav-toggle'), nav=$('#main-nav');
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  if(toggle&&nav){
+    toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
+    $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
+    document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==toggle)setNav(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setNav(false);toggle.focus()}});
+  }
+  var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
+
+  /* ---------- Pacific time, wherever the viewer is ---------- */
+  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
+  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
+  var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
+    var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
+    var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
+    return o}catch(e){return null}})();
+  function pacificNow(){
+    if(DEMO) return DEMO;
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    var o={};parts.forEach(function(p){o[p.type]=p.value});
+    var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var h=parseInt(o.hour,10)%24, m=parseInt(o.minute,10);
+    return {day:days[o.weekday], h:h+m/60, y:parseInt(o.year,10), mo:parseInt(o.month,10)-1, d:parseInt(o.day,10)};
+  }
+  function fmt(h){h=h%24;var ap=h>=12?'pm':'am';var hh=Math.floor(h)%12;if(hh===0)hh=12;var mm=Math.round((h%1)*60);if(mm===60){mm=0;hh=(hh%12)+1}return hh+(mm?':'+(mm<10?'0':'')+mm:'')+' '+ap}
+  function dayName(d){return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d]}
+  function hoursFor(day){return HOURS.days[day]||null}
+
+  function computeStatus(){
+    var p=pacificNow(), d=p.day, h=p.h;
+    var closure=customClosure(p);
+    if(closure) return {open:false,text:'Closed today for '+closure};
+    // still inside yesterday's after-midnight hours? (e.g. a bar closing at 2 am = 26)
+    var yd=(d+6)%7, yh=hoursFor(yd);
+    if(yh&&yh[1]>24&&h<yh[1]-24) return {open:true,text:'Open now · til '+fmt(yh[1])};
+    var today=hoursFor(d);
+    if(today){
+      var close=customClose(p,today[1]);
+      if(h>=today[0]&&h<close) return {open:true,text:'Open now · til '+fmt(close),soon:(close-h)<=1};
+      if(h<today[0]) return {open:false,text:'Opens today at '+fmt(today[0])};
+    }
+    // find the next open day
+    for(var i=1;i<=7;i++){
+      var nd=(d+i)%7, nh=hoursFor(nd);
+      if(nh){var label=i===1?'tomorrow':dayName(nd);return {open:false,text:'Closed · opens '+label+' at '+fmt(nh[0])}}
+    }
+    return {open:false,text:'Closed'};
+  }
+  function applyStatus(){
+    var s=computeStatus(), p=pacificNow();
+    var hp=$('#hdrLive'), ht=$('#hdrLiveText');
+    if(hp&&ht){hp.className='hdr-live '+(s.open?'is-open':'is-closed');ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+s.text.replace(/^Open now · /,'').replace(/^Closed · /,'')+'</span>';}
+    var sl=$('#statusLine'), st=$('#statusText');
+    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
+    $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
+  }
+  applyStatus(); setInterval(applyStatus,60000);
+  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
+
+  /* ---------- scroll-reveal + count-up ---------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      en.target.classList.add('in');
+      $$('.count',en.target).forEach(function(c){
+        if(c.dataset.done)return; c.dataset.done='1';
+        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
+        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(reduce){c.textContent=to;return}
+        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
+        requestAnimationFrame(step);
+      });
+      io.unobserve(en.target);
+    });
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  $$('.reveal').forEach(function(el){io.observe(el)});
+
+  /* ---------- contact form (front-end success state only; wire a backend at launch) ---------- */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){form.addEventListener('submit',function(e){e.preventDefault();ok.classList.add('show');ok.setAttribute('role','status');form.querySelector('button[type=submit]').disabled=true})}
+
+  /* ---------- years-in-business, computed so it can never go stale ---------- */
+  var yn=$('#yearsNum');
+  if(yn){var yrs=new Date().getFullYear()-FOUNDED; yn.setAttribute('data-to',String(yrs)); yn.textContent=String(yrs);}
+
+  /* ---------- TITLE CARDS UNROLL (services) ----------
+     The descriptor title IS the tap target; the real items roll out in
+     place under it. Chevron only — never a plus sign. */
+  $$('.svc-head').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('.svc-card');
+      var open=!card.classList.contains('open');
+      card.classList.toggle('open',open);
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+
+  /* ---------- SIGNATURE GADGET — THE GLASS CHECK ----------
+     Two taps: where the damage is, how big it is. The windshield above
+     shows it instantly; the verdict reads underneath. Rules of thumb the
+     glass trade actually works from — quarter for chips, dollar bill for
+     cracks, extra caution at the edge and in the driver's sightline. */
+  var ws=$('#wsSvg'), dmgWrap=$('#dmgWrap'), dmg=$('#dmg'), dmgScale=$('#dmgScale'), verdict=$('#verdict');
+  if(ws&&dmgWrap&&dmg&&dmgScale&&verdict){
+
+    // where each zone sits on the glass, and how the mark is scaled there
+    var ZONES={
+      edge:   {x:64,  y:190, label:'near the edge'},
+      driver: {x:140, y:118, label:"in the driver's sightline"},
+      side:   {x:288, y:104, label:'out to the passenger side'}
+    };
+    var SCALE={small:.62, big:1.05, crack:1};
+
+    var pick={zone:null,size:null};
+
+    var ANSWERS={
+      'edge|small':   ['maybe','Probably a replacement','Damage out at the edge sits in the band of glass that’s bonded to the body. Even a small one there tends to spread — and a repair on the bond line isn’t something to gamble on.'],
+      'edge|big':     ['replace','Replacement','It’s big and it’s at the edge. That’s the combination the glass trade doesn’t repair — the windshield is part of what holds the roof up.'],
+      'edge|crack':   ['replace','Replacement','A long crack running to the edge has already found the weak point. New glass.'],
+      'driver|small': ['maybe','Your call, and we’ll help you make it','It’s small enough to repair. But a repair leaves a faint mark, and this one is right where your eyes live. Some people take the repair, some want new glass. Bring it by and look at it in daylight with us.'],
+      'driver|big':   ['replace','Replacement','Bigger than a quarter and straight in front of you. A repair that size would leave something you’d notice every drive.'],
+      'driver|crack': ['replace','Replacement','A crack that long across the driver’s view is a windshield, not a repair.'],
+      'side|small':   ['repair','Usually a repair','A chip under quarter-size out of the driver’s sightline is the classic fixable one — the glass stays in the car and you’re not out a windshield.'],
+      'side|big':     ['maybe','Could go either way','Over quarter-size is past the comfortable range for a repair, but it’s in the easiest spot on the glass. Worth having us look before you buy a windshield.'],
+      'side|crack':   ['replace','Replacement','Once it’s a long crack rather than a chip, it’s new glass — wherever it is.']
+    };
+
+    function press(list,attr,value){
+      list.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute(attr)===value ? 'true':'false'); });
+    }
+
+    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    function render(first){
+      var z=pick.zone, s=pick.size;
+      // every tap moves or resizes the mark, so something visible happens either way
+      if(z){ var p=ZONES[z]; dmgWrap.setAttribute('transform','translate('+p.x+','+p.y+')'); }
+      ws.classList.toggle('is-crack', s==='crack');
+      dmgScale.setAttribute('transform','scale('+(SCALE[s]||.8)+')');
+      var show=!!(z||s);
+      var wasOff=!dmg.classList.contains('on');
+      dmg.classList.toggle('on', show);
+      if(show && wasOff && !first && !reduce){        // pop it on only when it first appears
+        dmg.classList.remove('pop'); void dmg.getBBox(); dmg.classList.add('pop');
+      }
+      if(!show) dmg.classList.remove('pop');
+
+      ws.classList.remove('v-repair','v-maybe','v-replace');
+      if(!z||!s){
+        verdict.className='verdict is-empty';
+        verdict.innerHTML='<span>'+(z||s?'One more tap — pick from the other row too.':'Pick one from each row and the answer shows up here.')+'</span>';
+        return;
+      }
+      var a=ANSWERS[z+'|'+s];
+      ws.classList.add('v-'+a[0]);
+      verdict.className='verdict v-'+a[0];
+      verdict.innerHTML=
+        '<span class="tag">'+(a[0]==='repair'?'Fixable':a[0]==='maybe'?'Worth a look':'New glass')+'</span>'+
+        '<h3>'+a[1]+'</h3>'+
+        '<p>'+a[2]+'</p>'+
+        '<a class="go" href="#contact">Tell us the year, make and model →</a>';
+    }
+
+    var zoneBtns=$$('.gopt[data-zone]'), sizeBtns=$$('.gopt[data-size]');
+    zoneBtns.forEach(function(b){
+      b.addEventListener('click',function(){
+        pick.zone = (pick.zone===b.dataset.zone) ? null : b.dataset.zone;
+        press(zoneBtns,'data-zone',pick.zone); render();
+      });
+    });
+    sizeBtns.forEach(function(b){
+      b.addEventListener('click',function(){
+        pick.size = (pick.size===b.dataset.size) ? null : b.dataset.size;
+        press(sizeBtns,'data-size',pick.size); render();
+      });
+    });
+    render(true);
+  }
+
+})();
+
+</script>
+</body>
+</html>
