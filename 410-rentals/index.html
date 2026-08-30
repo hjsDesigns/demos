@@ -8,7 +8,7 @@
 <meta name="description" content="410 Rentals — locally owned tool and equipment rental between Bonney Lake and Buckley on SR 410. Lawn and garden to backhoes, propane and kerosene, hydraulic hoses built on site. Open seven days a week since 2002.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Permanent+Marker&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bevan:ital@0;1&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    WEBSITE FACTORY — ONE-PAGE TEMPLATE
@@ -50,7 +50,7 @@
   --display:'Alfa Slab One','AlfaFallback',Georgia,serif;
   --body:'Libre Franklin','Helvetica Neue',Helvetica,Arial,sans-serif;
   --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
-  --marker:'Permanent Marker',cursive; /* the actual hand-marker "410" lettering in their logo oval — for the "Highway 410" headline callout only */
+  --marker:'Bevan',serif; /* the logo's actual "410" lettering — a bold italic slab serif with a drop shadow (Cooper-Black-Italic family), not a hand-marker script. Applied with a CSS skew + shadow below to match the logo's slant and depth. */
 
   /* ---- metrics ---- */
   --header-h:74px;
@@ -360,7 +360,8 @@ h3{line-height:1.15}
 /* ---------- HERO: the yard, drifting sideways like you're walking it ---------- */
 .hero-bg img{object-position:50% 52%;animation:yardpan 46s linear infinite alternate;will-change:transform}
 @keyframes yardpan{from{transform:scale(1.14) translateX(-2.2%)}to{transform:scale(1.14) translateX(2.2%)}}
-.hero h1{max-width:15ch;font-size:clamp(32px,min(4.8vw,7.8vh),60px);font-family:var(--marker);font-weight:400;letter-spacing:.01em}
+.hero h1{max-width:15ch;font-size:clamp(32px,min(4.8vw,7.8vh),60px);font-family:var(--marker);font-weight:400;
+  font-style:italic;letter-spacing:0;text-shadow:2px 3px 0 rgba(0,0,0,.35),0 2px 30px rgba(0,0,0,.45)}
 .hero h1 em{color:var(--warm)}
 .hero-sub{font-weight:500}
 .hero-inner::before{content:"";position:absolute;left:0;right:0;bottom:0;top:-14%;z-index:-1;
