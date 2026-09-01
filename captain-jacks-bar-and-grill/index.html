@@ -33,8 +33,9 @@
   --brand:#A8331F;          /* oxblood — the "Bar & Grill" banner + the skull's bandana */
   --brand-text:#D9A93A;     /* barrel-gold — small type + eyebrows on the dark ground */
   --brand-bright:#C4402A;   /* hover of --brand */
-  --accent:#5FB94B;         /* Bud Light lime neon green — the live "open" dot */
+  --accent:#4CAF50;         /* true green — the live "open" dot (STATUS LIGHT LAW) */
   --accent-soft:#8ED07C;    /* lighter accent on dark grounds */
+  --closed:#EF4444;         /* bright red — the live "closed" dot (STATUS LIGHT LAW) */
   --ink:#EDE4CB;            /* parchment — the "Sumner, Wa" script + Mermaid Lounge sign field */
   --bg:#241A12;             /* dark tavern brown — plank floor + cedar shadow */
   --bg-2:#1B120C;           /* deeper brown, alternating bands */
@@ -126,8 +127,8 @@ b,strong{font-weight:700}
 .hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 60%,transparent);background:color-mix(in srgb,var(--accent) 12%,transparent);
   box-shadow:0 0 18px -4px color-mix(in srgb,var(--accent) 45%,transparent)}
 .hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
-.hdr-live.is-closed{border-color:color-mix(in srgb,var(--brand) 55%,transparent)}
-.hdr-live.is-closed .dot{background:var(--brand)}
+.hdr-live.is-closed{border-color:color-mix(in srgb,var(--closed) 55%,transparent)}
+.hdr-live.is-closed .dot{background:var(--closed)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 34%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
 @media (max-width:1100px){.hdr-live .txt-long{display:none}}
@@ -186,7 +187,7 @@ b,strong{font-weight:700}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
 .live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
 .live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent),0 0 16px color-mix(in srgb,var(--accent) 60%,transparent)}
-.live-line.is-closed .dot{background:var(--brand);box-shadow:0 0 0 5px color-mix(in srgb,var(--brand) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--closed);box-shadow:0 0 0 5px color-mix(in srgb,var(--closed) 22%,transparent)}
 .status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
 .status-addr a{color:var(--warm);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--warm) 40%,transparent)}
 .status-addr a:hover{border-bottom-color:var(--warm)}

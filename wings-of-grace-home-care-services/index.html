@@ -142,10 +142,10 @@ p{margin:0 0 1em}
   font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums}
 .hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
-.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent-soft) 14%,transparent)}
-.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
-.hdr-live.is-closed .dot{background:var(--brand)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.hdr-live.is-open{border-color:color-mix(in srgb,#2E7D32 55%,transparent);background:color-mix(in srgb,#2E7D32 14%,transparent)}
+.hdr-live.is-open .dot{background:#2E7D32;animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:#C62828}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,#2E7D32 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
 @media (max-width:1100px){.hdr-live .txt-long{display:none}}
 @media (max-width:900px){
@@ -204,8 +204,8 @@ p{margin:0 0 1em}
 .status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
 .live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
-.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
-.live-line.is-closed .dot{background:var(--brand)}
+.live-line.is-open .dot{background:#2E7D32;box-shadow:0 0 0 5px color-mix(in srgb,#2E7D32 22%,transparent)}
+.live-line.is-closed .dot{background:#C62828}
 .status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
 .status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
 .status-addr a:hover{border-bottom-color:var(--brand)}
@@ -566,9 +566,9 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:-.005em}
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#services">The care</a>
-        <a href="#signature">Six checks</a>
         <a href="#about">Who we are</a>
         <a href="#rate">What it costs</a>
+        <a href="#signature">Six checks</a>
         <a href="#hours">Hours</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </nav>
@@ -720,52 +720,6 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:-.005em}
     </div>
   </section>
 
-  <!-- ===================== #signature — THE SIX CHECKS =====================
-       The signature interactive. The single question every family actually
-       asks is "who are you sending into my mother's house?" — so the six
-       screenings Wings of Grace publishes become one tappable object. One
-       obvious button runs all six; each line can also be tapped on its own. -->
-  <section class="section section-dark" id="signature">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Who comes to the door</p>
-        <h2>Six checks before <em>anyone gets a key</em></h2>
-        <p>Wings of Grace screens every caregiver on all six of these. Press the button and watch them clear.</p>
-      </div>
-      <div class="checks reveal">
-
-        <div class="badge" id="badge">
-          <div class="badge-head">
-            <span class="badge-seal" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v6.2c0 4.6-3.2 7.9-7.5 8.8-4.3-.9-7.5-4.2-7.5-8.8V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg>
-            </span>
-            <span class="badge-who">
-              <b>Caregiver screening</b>
-              <span>Wings of Grace</span>
-            </span>
-            <span class="badge-state" id="badgeState">Not run</span>
-          </div>
-          <ul class="check-list" id="checkList">
-            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Criminal background check</button></li>
-            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Sex offender registry check</button></li>
-            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Reference check</button></li>
-            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Driving record check</button></li>
-            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Drug screening</button></li>
-            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Immunization check</button></li>
-          </ul>
-          <p class="sr-only" id="checkStatus" role="status" aria-live="polite">Nothing run yet.</p>
-        </div>
-
-        <div class="checks-copy">
-          <p class="checks-count"><span class="tnum" id="checkCount">0</span> of 6 cleared</p>
-          <button class="btn btn-primary" type="button" id="runChecks">Run the six checks</button>
-          <p class="checks-note">Ask any agency for this list and see how long it takes them to answer. Wings of Grace publishes it.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== #about ===================== -->
   <section class="section" id="about">
     <div class="wrap">
@@ -842,6 +796,53 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:-.005em}
     </div>
   </section>
 
+  <!-- ===================== #signature — THE SIX CHECKS =====================
+       The signature interactive, placed directly after the rate so the price
+       is immediately answered by who it buys. The single question every family
+       actually asks is "who are you sending into my mother's house?" — so the
+       six screenings Wings of Grace publishes become one tappable object. One
+       obvious button runs all six; each line can also be tapped on its own. -->
+  <section class="section section-dark" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Who comes to the door</p>
+        <h2>Six checks before <em>anyone gets a key</em></h2>
+        <p>An hourly rate only means something once you know who it sends. Wings of Grace screens every caregiver on all six of these. Press the button and watch them clear.</p>
+      </div>
+      <div class="checks reveal">
+
+        <div class="badge" id="badge">
+          <div class="badge-head">
+            <span class="badge-seal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v6.2c0 4.6-3.2 7.9-7.5 8.8-4.3-.9-7.5-4.2-7.5-8.8V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg>
+            </span>
+            <span class="badge-who">
+              <b>Caregiver screening</b>
+              <span>Wings of Grace</span>
+            </span>
+            <span class="badge-state" id="badgeState">Not run</span>
+          </div>
+          <ul class="check-list" id="checkList">
+            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Criminal background check</button></li>
+            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Sex offender registry check</button></li>
+            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Reference check</button></li>
+            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Driving record check</button></li>
+            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Drug screening</button></li>
+            <li><button class="chk" type="button" aria-pressed="false"><span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>Immunization check</button></li>
+          </ul>
+          <p class="sr-only" id="checkStatus" role="status" aria-live="polite">Nothing run yet.</p>
+        </div>
+
+        <div class="checks-copy">
+          <p class="checks-count"><span class="tnum" id="checkCount">0</span> of 6 cleared</p>
+          <button class="btn btn-primary" type="button" id="runChecks">Run the six checks</button>
+          <p class="checks-note">Ask any agency for this list and see how long it takes them to answer. Wings of Grace publishes it.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== #contact ===================== -->
   <section class="section section-alt" id="contact">
     <div class="wrap">
@@ -893,7 +894,7 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:-.005em}
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">The care</a><br><a href="#signature">Six checks</a><br><a href="#about">Who we are</a><br><a href="#rate">What it costs</a><br><a href="#contact">Get in touch</a></p>
+        <p><a href="#services">The care</a><br><a href="#about">Who we are</a><br><a href="#rate">What it costs</a><br><a href="#signature">Six checks</a><br><a href="#contact">Get in touch</a></p>
       </div>
     </div>
     <div class="foot-bottom">

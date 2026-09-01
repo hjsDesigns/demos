@@ -65,6 +65,12 @@
   --warm:#FFD23B;           /* highlighted word inside headlines on dark grounds */
   --tint:#D9DEE0;           /* light tinted band (the hours/status band) — cured concrete */
   --cone:#F55C18;           /* crew-vest orange — gadget warning state only */
+  /* ---- live status signal — the only two colors allowed to mean open/closed.
+     Universal green/red, darkened until each holds AA (>=4.5:1) as small text
+     on --bg #EEE9DD and on --paper #F7F2E6, so the dot reads at a glance and
+     the same token can tint the pill's border/label without failing contrast. */
+  --live-open:#166B36;      /* signal green — OPEN  (4.85:1 on the concrete band) */
+  --live-closed:#B3241C;    /* signal red — CLOSED (4.86:1 on the concrete band) */
 
   /* ---- type: two faces max, loaded in index.html <head> ----
      Overpass is drawn from the Highway Gothic lettering on American road
@@ -151,10 +157,13 @@ p{margin:0 0 1em}
   font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums}
 .hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
-.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent-soft) 14%,transparent)}
-.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
-.hdr-live.is-closed .dot{background:var(--brand)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+/* --live is the one switch: each state sets it, dot + glow + border read from it */
+.hdr-live.is-open{--live:var(--live-open)}
+.hdr-live.is-closed{--live:var(--live-closed)}
+.hdr-live.is-open,.hdr-live.is-closed{border-color:color-mix(in srgb,var(--live) 55%,transparent);background:color-mix(in srgb,var(--live) 10%,var(--paper))}
+.hdr-live.is-open .dot,.hdr-live.is-closed .dot{background:var(--live)}
+.hdr-live.is-open .dot{animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--live) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
 @media (max-width:1100px){.hdr-live .txt-long{display:none}}
 @media (max-width:900px){
@@ -213,8 +222,9 @@ p{margin:0 0 1em}
 .status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
 .live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
-.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
-.live-line.is-closed .dot{background:var(--brand)}
+.live-line.is-open{--live:var(--live-open)}
+.live-line.is-closed{--live:var(--live-closed)}
+.live-line.is-open .dot,.live-line.is-closed .dot{background:var(--live);box-shadow:0 0 0 5px color-mix(in srgb,var(--live) 22%,transparent)}
 .status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
 .status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
 .status-addr a:hover{border-bottom-color:var(--brand)}
@@ -379,8 +389,9 @@ p{margin:0 0 1em}
 .main-nav .nav-cta{color:var(--ink)}
 .main-nav .nav-cta:hover{color:var(--ink)}
 .steps li::before{color:var(--ink);border-radius:10px 10px 10px 3px}
-.hdr-live.is-closed .dot{background:var(--muted)}
-.live-line.is-closed .dot{background:var(--muted)}
+/* the live dots are NOT brand-tinted — open is signal green, closed is signal
+   red, both set from --live-open/--live-closed in :root (see HEADER + STATUS
+   BAND rules above). No override belongs here. */
 .hours-list li.closed .time{color:var(--muted)}
 .hours-list li.today{background:color-mix(in srgb,var(--brand) 26%,transparent)}
 .proof .star{color:var(--brand-text)}
@@ -1119,9 +1130,12 @@ function customClose(p, close){ return close; }
   function applyStatus(){
     var s=computeStatus(), p=pacificNow();
     var hp=$('#hdrLive'), ht=$('#hdrLiveText');
-    if(hp&&ht){hp.className='hdr-live '+(s.open?'is-open':'is-closed');ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+s.text.replace(/^Open now · /,'').replace(/^Closed · /,'')+'</span>';}
+    // exactly one of is-open / is-closed on each element, every tick — the CSS
+    // reads --live off that class (green when open, red when closed).
+    function flag(el){el.classList.toggle('is-open',s.open);el.classList.toggle('is-closed',!s.open)}
+    if(hp&&ht){flag(hp);ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+s.text.replace(/^Open now · /,'').replace(/^Closed · /,'')+'</span>';}
     var sl=$('#statusLine'), st=$('#statusText');
-    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
+    if(sl&&st){flag(sl);st.textContent=s.text;}
     $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
   }
   applyStatus(); setInterval(applyStatus,60000);

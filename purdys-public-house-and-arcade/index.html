@@ -144,11 +144,10 @@ p{margin:0 0 1em}
   font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums}
 .hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
-.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
-.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
-/* closed reads rust, open reads verdigris — two clearly different hues now
-   that --brand is brass and brass is everywhere else on the page. */
-.hdr-live.is-closed .dot{background:var(--rust)}
+.hdr-live.is-open{border-color:color-mix(in srgb,#4CAF50 55%,transparent);background:color-mix(in srgb,#4CAF50 12%,transparent)}
+.hdr-live.is-open .dot{background:#4CAF50;animation:pulse 2.4s var(--ease) infinite}
+/* STATUS LIGHT LAW: open = green, closed = red */
+.hdr-live.is-closed .dot{background:#E53935}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 34%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
 @media (max-width:1100px){.hdr-live .txt-long{display:none}}
@@ -229,8 +228,8 @@ p{margin:0 0 1em}
 .status-head h2{font-size:clamp(28px,3.5vw,42px);margin:0 0 18px}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
 .live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
-.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
-.live-line.is-closed .dot{background:var(--rust);box-shadow:0 0 0 5px color-mix(in srgb,var(--rust) 24%,transparent)}
+.live-line.is-open .dot{background:#4CAF50;box-shadow:0 0 0 5px color-mix(in srgb,#4CAF50 22%,transparent)}
+.live-line.is-closed .dot{background:#E53935;box-shadow:0 0 0 5px color-mix(in srgb,#E53935 24%,transparent)}
 .status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
 .status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 45%,transparent)}
 .status-addr a:hover{border-bottom-color:var(--brand)}

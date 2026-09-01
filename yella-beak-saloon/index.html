@@ -134,10 +134,10 @@ p{margin:0 0 1em}
   font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums}
 .hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
-.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent-soft) 14%,transparent)}
-.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
-.hdr-live.is-closed .dot{background:var(--brand)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.hdr-live.is-open{border-color:color-mix(in srgb,#4CAF50 55%,transparent);background:color-mix(in srgb,#4CAF50 14%,transparent)}
+.hdr-live.is-open .dot{background:#4CAF50;animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:#E53935}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,#4CAF50 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
 @media (max-width:1100px){.hdr-live .txt-long{display:none}}
 @media (max-width:900px){
@@ -196,7 +196,7 @@ p{margin:0 0 1em}
 .status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
 .live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
-.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
+.live-line.is-open .dot{background:#4CAF50;box-shadow:0 0 0 5px color-mix(in srgb,#4CAF50 22%,transparent)}
 .live-line.is-closed .dot{background:var(--brand)}
 .status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
 .status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
@@ -381,10 +381,13 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:0}
 .site-footer{background:var(--dark);color:color-mix(in srgb,var(--ink) 76%,transparent)}
 .foot .plate{background:var(--bg-2);border:var(--rule)}
 
-/* "closed" reads orange, not brand-yellow (yellow is the identity colour, it
-   must never mean "shut") */
-.hdr-live.is-closed .dot,.live-line.is-closed .dot{background:var(--closed)}
-.hours-list li.closed .time{color:var(--closed)}
+/* STATUS LIGHT LAW (2026-09-01): open = green, closed = red. Brand-colored or
+   neon-colored status lights are forbidden. */
+.hdr-live.is-open .dot,
+.live-line.is-open .dot{background:#4CAF50}
+.hdr-live.is-closed .dot,
+.live-line.is-closed .dot{background:#E53935}
+.hours-list li.closed .time{color:#E53935}
 .status-addr a{color:var(--brand);border-bottom-color:color-mix(in srgb,var(--brand) 40%,transparent)}
 .contact-lines a{color:var(--brand);border-bottom-color:color-mix(in srgb,var(--brand) 40%,transparent)}
 .form-success{color:var(--ink)}
