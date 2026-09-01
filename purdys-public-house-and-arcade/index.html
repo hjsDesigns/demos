@@ -13,17 +13,22 @@
 /* ============================================================
    PURDY'S PUBLIC HOUSE & ARCADE — Sumner, WA
    Dark-ground build. EARNED: the interior is genuinely dark (black
-   ceilings, wood-hull walls, lantern glow, neon) — see room-ship /
-   room-bar / room-stage in images/. The exterior neon sets the palette.
+   ceilings, wood-hull walls, lantern glow) — see room-ship / room-bar /
+   room-stage in images/. THE ROOM sets the palette, not the sign.
 
-   MIRROR LAW derivation (every hex sampled from their own photos):
-     night sky behind the neon gable ....... #0E1526   --bg
-     hot pink neon outlining the gable ..... #FF3E96   --brand
-     blue neon tube beside the pink ........ #47C9FF   --accent
-     Edison string bulbs / ship lanterns ... #F5B25C   --warm
-     the gold two-lion crest on black ...... #D4A94E   --gold
+   MIRROR LAW derivation — INTERIOR FIRST (every hex from their own photos).
+   The hot pink is real, but it is the EXTERIOR roofline neon; inside,
+   Purdy's is a tall ship: rope-tan hull planking, black ceiling, brass
+   lantern chandeliers, a rust-terracotta bar wall, the gold two-lion
+   crest. The pink now lives only inside the hero photograph, where it
+   belongs. It appears nowhere in the UI.
+     black ceiling over dark hull wood ..... #1A130D   --bg
+     the gold two-lion crest .............. #C8A24B   --brand
+     verdigris / the blue wash on the bar .. #4FA3A0   --accent
+     lantern + Edison bulb glow ............ #F0AE55   --warm
+     polished brass (chandeliers, taps) .... #D8B25E   --gold
      cream building fascia ("PURDY'S") ..... #EFE4CD   --bone / --ink
-     violet porch glow under the eaves ..... #8A4FE8   --violet
+     rust bar wall + the crest's copper .... #A85A33   --rust
 
    DARK-GROUND SWEEP (template README warns the shared rules assume a
    light ground). Every one is overridden below under "DARK SWEEP":
@@ -35,24 +40,24 @@
    (.hero-bg::before already uses --dark upstream — correct here.)
    ============================================================ */
 :root{
-  /* ---- palette ---- */
-  --brand:#FF3E96;          /* hot pink neon — the gable */
-  --brand-text:#FF7CBB;     /* same hue, lightened to pass AA on the dark ground */
-  --brand-bright:#FF66AE;   /* hover */
-  --accent:#47C9FF;         /* blue neon tube — "open" dots, checks, success */
-  --accent-soft:#8FDFFF;
+  /* ---- palette: ship wood · brass · lantern ---- */
+  --brand:#C8A24B;          /* the gold two-lion crest — buttons, dots, rules */
+  --brand-text:#E2BE72;     /* same brass, lightened to pass AA on the dark wood */
+  --brand-bright:#DDB65E;   /* hover — polished */
+  --accent:#4FA3A0;         /* verdigris on brass / the blue wash on the bar — "open", success */
+  --accent-soft:#93D3D0;
   --ink:#F2EADA;            /* body text — bone (dark-ground build: this is LIGHT) */
-  --bg:#0E1526;             /* page ground — blue-hour night */
-  --bg-2:#0A0F1D;           /* deeper band */
-  --paper:#16203A;          /* cards — a step up from the ground, never white */
-  --muted:#9DAAC6;          /* secondary text */
-  --line:#26314F;           /* hairlines */
-  --dark:#070B14;           /* the one token guaranteed dark — scrims, footer, cta */
-  --dark-2:#111A2E;
-  --warm:#F5B25C;           /* Edison amber — highlighted word in headlines */
-  --tint:#121B31;           /* the hours band ground */
-  --gold:#D4A94E;           /* the crest */
-  --violet:#8A4FE8;         /* porch neon */
+  --bg:#1A130D;             /* page ground — dark hull wood under a black ceiling (warm, not flat black) */
+  --bg-2:#120D08;           /* deeper band */
+  --paper:#241A10;          /* cards — a step up from the ground, never white */
+  --muted:#B0A088;          /* secondary text — weathered rope */
+  --line:#3D2E1D;           /* hairlines — plank seams */
+  --dark:#0A0705;           /* the one token guaranteed dark — scrims, footer, cta */
+  --dark-2:#150F09;
+  --warm:#F0AE55;           /* lantern amber — highlighted word in headlines */
+  --tint:#211710;           /* the hours band ground */
+  --gold:#D8B25E;           /* polished brass — stars, chandeliers */
+  --rust:#A85A33;           /* the rust-terracotta bar wall + the crest's copper */
   --bone:#EFE4CD;           /* the fascia cream */
 
   /* ---- type: two faces, loaded in index.html <head> ----
@@ -108,12 +113,13 @@ p{margin:0 0 1em}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
   font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
   font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
-/* DARK SWEEP: #fff on hot pink is only ~3:1 — the sign's own move is dark type inside lit neon. */
+/* DARK SWEEP: #fff on brass is only ~2:1 — dark type inside lit brass, like their crest. */
 .btn-primary{background:var(--brand);color:var(--dark)}
 .btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 0 34px -6px color-mix(in srgb,var(--brand) 70%,transparent)}
 /* DARK SWEEP: --bg is now the dark ground, so "cream" has to be named explicitly. */
 .btn-cream{background:var(--bone);color:var(--dark)}
-.btn-cream:hover{background:#fff;transform:translateY(-2px)}
+/* cream law: lift toward a brighter cream on hover, never to pure white. */
+.btn-cream:hover{background:color-mix(in srgb,var(--bone) 82%,#FFFDF6);transform:translateY(-2px)}
 .btn-ghost{border-color:currentColor;color:inherit;background:transparent}
 .btn-ghost:hover{transform:translateY(-2px);border-color:var(--warm);color:var(--warm)}
 
@@ -139,7 +145,9 @@ p{margin:0 0 1em}
 .hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
 .hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
 .hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
-.hdr-live.is-closed .dot{background:var(--brand)}
+/* closed reads rust, open reads verdigris — two clearly different hues now
+   that --brand is brass and brass is everywhere else on the page. */
+.hdr-live.is-closed .dot{background:var(--rust)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 34%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
 @media (max-width:1100px){.hdr-live .txt-long{display:none}}
@@ -176,10 +184,12 @@ p{margin:0 0 1em}
   100% {filter:brightness(1) saturate(1.06) contrast(1)}
 }
 @keyframes driftIn{from{transform:scale(1.085)}to{transform:scale(1)}}
-/* the neon bloom that washes across as the sign strikes — sits under the scrim */
+/* the bloom that washes across as the sign strikes — sits under the scrim.
+   Re-derived to brass + rust so the wash reads as lamplight, not a pink
+   filter over the photo; the sign's own pink stays in the photograph. */
 .hero-bg .glow{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
   background:radial-gradient(58% 42% at 34% 34%,color-mix(in srgb,var(--brand) 34%,transparent) 0%,transparent 70%),
-             radial-gradient(46% 40% at 74% 46%,color-mix(in srgb,var(--violet) 26%,transparent) 0%,transparent 72%);
+             radial-gradient(46% 40% at 74% 46%,color-mix(in srgb,var(--rust) 26%,transparent) 0%,transparent 72%);
   mix-blend-mode:screen;animation:bloom 2400ms linear both}
 @keyframes bloom{0%,26%{opacity:0}32%{opacity:.85}38%{opacity:.1}46%{opacity:1}54%{opacity:.42}100%{opacity:.5}}
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
@@ -219,7 +229,7 @@ p{margin:0 0 1em}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
 .live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
 .live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
-.live-line.is-closed .dot{background:var(--brand);box-shadow:0 0 0 5px color-mix(in srgb,var(--brand) 20%,transparent)}
+.live-line.is-closed .dot{background:var(--rust);box-shadow:0 0 0 5px color-mix(in srgb,var(--rust) 24%,transparent)}
 .status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
 .status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 45%,transparent)}
 .status-addr a:hover{border-bottom-color:var(--brand)}
@@ -320,11 +330,11 @@ p{margin:0 0 1em}
 .flag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;
   border-radius:999px;padding:8px 14px;border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);color:var(--accent-soft);
   background:color-mix(in srgb,var(--accent) 10%,transparent)}
-.flag.is-music{border-color:color-mix(in srgb,var(--violet) 62%,transparent);color:#C9AEFF;background:color-mix(in srgb,var(--violet) 16%,transparent)}
+.flag.is-music{border-color:color-mix(in srgb,var(--rust) 70%,transparent);color:#E8B491;background:color-mix(in srgb,var(--rust) 18%,transparent)}
 .board-fine{font-size:13px;color:var(--muted);margin:20px 0 0}
 /* next booked show — a real dated Bandsintown listing, counted down live */
 .next-show{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:20px 0 0;padding:16px 20px;
-  border:1px solid var(--line);border-left:3px solid var(--violet);border-radius:12px;background:var(--paper)}
+  border:1px solid var(--line);border-left:3px solid var(--rust);border-radius:12px;background:var(--paper)}
 .next-show .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .next-show .who{font-family:var(--display);font-weight:400;font-size:20px;color:var(--bone);line-height:1.1}
 .next-show .when{font-size:14px;color:var(--muted)}
@@ -392,9 +402,9 @@ p{margin:0 0 1em}
 .rv-who{display:flex;align-items:center;gap:12px;margin-top:auto}
 .rv-ini{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
   font-family:var(--display);font-weight:400;font-size:19px;color:var(--dark);
-  background:linear-gradient(150deg,var(--brand),var(--violet));box-shadow:0 0 22px -8px color-mix(in srgb,var(--brand) 90%,transparent)}
+  background:linear-gradient(150deg,var(--brand),var(--rust));box-shadow:0 0 22px -8px color-mix(in srgb,var(--brand) 90%,transparent)}
 .rv-ini.g2{background:linear-gradient(150deg,var(--warm),var(--gold));}
-.rv-ini.g3{background:linear-gradient(150deg,var(--accent),var(--violet));}
+.rv-ini.g3{background:linear-gradient(150deg,var(--accent),var(--rust));}
 .rv-meta b{display:block;font-size:15px}
 .rv-meta span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
 .stars{color:var(--gold);letter-spacing:.14em;font-size:14px}
@@ -480,8 +490,10 @@ p{margin:0 0 1em}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
 
 /* ============================================================ NEON RULE
-   The recurring device: a hot-pink hairline that strikes on like the tube
-   over the gable. Used under every section eyebrow. */
+   The recurring device: a brass hairline that strikes on like a filament
+   in one of the ship lanterns. Used under every section eyebrow.
+   (Class name kept — renaming it would touch markup, and this is a
+   colour-only pass.) */
 .neon-rule{position:relative;display:block;width:64px;height:2px;background:color-mix(in srgb,var(--brand) 22%,transparent);margin:0 0 18px;border-radius:2px}
 .neon-rule::after{content:"";position:absolute;inset:0;background:var(--brand);border-radius:2px;
   box-shadow:0 0 12px var(--brand),0 0 26px color-mix(in srgb,var(--brand) 70%,transparent);
