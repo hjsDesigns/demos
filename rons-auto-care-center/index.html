@@ -422,58 +422,74 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.steps li::before,.face .ini{font-weight:
 @media (max-width:980px){.cards-3{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.cards-3{grid-template-columns:1fr}}
 
-/* --- SIGNATURE GADGET: "how much will your bottle take?"
-       The counter question turned into a tool. One tap on a cylinder size,
-       the drawn tank resizes and refills to the 80% line, the number changes.
+/* --- SIGNATURE GADGET: "what is that light?"
+       A drawn instrument cluster — six warning lamps, one tap each. The
+       tapped lamp lights up (red or amber, the way the real one does) and the
+       card beside it says in plain English what to do. Everything is drawn:
+       CSS panel + inline SVG glyphs, no image files.
        Dark ground, so every colour here is stated explicitly rather than
        inherited from the template's light-ground defaults. --- */
-.tanks{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,72px);align-items:center}
-.tank-stage{height:clamp(300px,40vw,400px);display:flex;align-items:flex-end;justify-content:center;
-  border-radius:var(--r);background:
-    radial-gradient(90% 70% at 50% 100%, color-mix(in srgb,var(--warm) 16%,transparent), transparent 70%),
-    rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.12);padding:24px}
-/* width stays fixed and only the height changes: that's how the real
-   cylinders differ — a 100 lb bottle is nearly three times the height of a
-   grill bottle at roughly the same diameter. */
-.tank{position:relative;width:clamp(76px,11vw,104px);height:var(--tank-h);min-height:110px;
-  display:flex;flex-direction:column;align-items:center;
-  transition:height .55s var(--ease)}
-.tank-collar{width:36%;height:16px;flex:none;border-radius:6px 6px 0 0;
-  background:linear-gradient(180deg,#9C948A,#6E675E);border:1px solid rgba(0,0,0,.45);border-bottom:0}
-.tank-body{position:relative;flex:1 1 auto;width:100%;overflow:hidden;border-radius:12px 12px 8px 8px;
-  background:linear-gradient(100deg,#4A443D 0%,#5E574E 42%,#3E3931 100%);
-  border:1px solid rgba(0,0,0,.5);box-shadow:inset 0 2px 0 rgba(255,255,255,.14),0 30px 50px -30px rgba(0,0,0,.85)}
-.tank-fill{position:absolute;left:0;right:0;bottom:0;height:80%;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--warm) 92%,#fff) 0%,var(--warm) 34%,#B77C1E 100%);
-  box-shadow:0 -1px 0 rgba(255,255,255,.55),0 0 34px color-mix(in srgb,var(--warm) 55%,transparent)}
-.tank-mark{position:absolute;left:0;right:0;top:20%;height:0;border-top:2px dashed rgba(255,255,255,.72)}
-.tank-mark i{position:absolute;right:6px;top:-19px;font-style:normal;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.14em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8)}
-.tank-foot{width:70%;height:13px;flex:none;border-radius:0 0 6px 6px;
-  background:linear-gradient(180deg,#6E675E,#413C35);border:1px solid rgba(0,0,0,.45);border-top:0}
+.dash{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,4vw,56px);align-items:center}
 
-.tank-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 28px}
-.tank-chip{min-height:74px;padding:12px 10px;cursor:pointer;text-align:center;border-radius:var(--r);
-  background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body);
-  transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
-.tank-chip b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(21px,2.5vw,27px);letter-spacing:.03em;line-height:1}
-.tank-chip small{display:block;font-size:11.5px;margin-top:6px;color:rgba(255,255,255,.66);line-height:1.25}
-.tank-chip:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
-.tank-chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand-bright)}
-.tank-chip[aria-pressed="true"] small{color:rgba(255,255,255,.9)}
-.tank-out{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 12px}
-.tank-num{font-family:var(--display);font-weight:400;font-size:clamp(56px,9vw,104px);line-height:.9;letter-spacing:.01em;color:var(--warm)}
-.tank-unit{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.72)}
-.tank-note{font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.78);max-width:52ch;margin:0 0 26px}
-.tank-note b{color:#fff}
+/* the cluster: a dark instrument panel with a brushed hood lip under it */
+.dash-cluster{position:relative;border-radius:20px;padding:clamp(18px,2.4vw,30px);
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,.11), transparent 60%),
+    linear-gradient(180deg,#1E1A17 0%,#15120F 100%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 40px 70px -40px rgba(0,0,0,.9)}
+.dash-lip{position:absolute;left:8%;right:8%;bottom:-9px;height:9px;border-radius:0 0 16px 16px;
+  background:linear-gradient(180deg,#3A342E,#211D1A)}
+
+.lamps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,16px)}
+.lamp{position:relative;cursor:pointer;padding:clamp(14px,1.8vw,20px) 10px 13px;border-radius:16px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;
+  background:rgba(255,255,255,.045);border:2px solid rgba(255,255,255,.13);color:rgba(255,255,255,.5);
+  font-family:var(--body);
+  transition:background .22s var(--ease),border-color .22s var(--ease),color .22s var(--ease),transform .22s var(--ease)}
+.lamp-ico{display:block;width:clamp(38px,4.4vw,54px);height:clamp(38px,4.4vw,54px)}
+.lamp-ico svg{width:100%;height:100%;display:block}
+.lamp-name{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);line-height:1.25;transition:color .22s var(--ease)}
+.lamp:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
+
+/* lit: the lamp takes its real colour and throws a glow, like the bulb behind it */
+.lamp[aria-pressed="true"]{background:rgba(255,255,255,.07);transform:none}
+.lamp.is-red[aria-pressed="true"]{color:var(--brand-bright);border-color:color-mix(in srgb,var(--brand-bright) 70%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--brand-bright) 30%,transparent),0 0 40px -6px color-mix(in srgb,var(--brand-bright) 60%,transparent)}
+.lamp.is-amber[aria-pressed="true"]{color:var(--warm);border-color:color-mix(in srgb,var(--warm) 70%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--warm) 30%,transparent),0 0 40px -6px color-mix(in srgb,var(--warm) 60%,transparent)}
+.lamp[aria-pressed="true"] .lamp-ico{filter:drop-shadow(0 0 10px currentColor)}
+.lamp[aria-pressed="true"] .lamp-name{color:#fff}
+/* the bulb warming up — restarted from JS on every tap, so tap 1 and tap 50 match */
+@keyframes lampOn{0%{opacity:.25}45%{opacity:1}62%{opacity:.72}100%{opacity:1}}
+.lamp.lit .lamp-ico{animation:lampOn .42s var(--ease) both}
+
+/* the read-out card */
+.dash-read{align-self:center}
+.urg{display:inline-block;margin:0 0 14px;padding:8px 15px;border-radius:999px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:600}
+.dash-read.level-red .urg{background:color-mix(in srgb,var(--brand-bright) 22%,transparent);
+  color:#fff;border:1px solid color-mix(in srgb,var(--brand-bright) 62%,transparent)}
+.dash-read.level-amber .urg{background:color-mix(in srgb,var(--warm) 18%,transparent);
+  color:#fff;border:1px solid color-mix(in srgb,var(--warm) 58%,transparent)}
+.dash-read h3{font-size:clamp(30px,3.8vw,46px);letter-spacing:.02em;margin:0 0 14px;color:#fff}
+.dash-body{font-size:16px;line-height:1.62;color:rgba(255,255,255,.8);max-width:46ch;margin:0 0 26px;min-height:8.2em}
+.dash-body b{color:#fff}
+.dash-fine{font-size:13px;line-height:1.55;color:rgba(255,255,255,.5);max-width:44ch;margin:18px 0 0}
 .section-dark :focus-visible{outline-color:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.25)}
-@keyframes tankFill{from{height:0}to{height:80%}}
-.tanks.in .tank-fill{animation:tankFill .9s var(--ease) both}
-@media (max-width:860px){
-  .tanks{grid-template-columns:1fr;gap:30px}
-  .tank-stage{height:clamp(300px,66vw,360px)}
-  .tank-chips{grid-template-columns:repeat(2,1fr)}
+
+@media (max-width:900px){
+  .dash{grid-template-columns:1fr;gap:32px}
+  .dash-body{min-height:0}
+}
+/* "Tire pressure" is the only two-line label — reserve the second line on
+   every lamp so the two rows of the cluster stay the same height */
+@media (max-width:560px){.lamp-name{min-height:2.5em}}
+@media (max-width:420px){
+  .lamps{gap:8px}
+  .lamp{padding:12px 6px 11px;border-radius:14px}
+  .lamp-name{font-size:9.5px;letter-spacing:.07em}
 }
 
 /* --- REVIEWS (faces are drawn initial discs, never a scraped photo) --- */
@@ -497,12 +513,12 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.steps li::before,.face .ini{font-weight:
 .story-solo .lede{font-family:var(--display);font-size:clamp(23px,2.9vw,34px);line-height:1.18;letter-spacing:.015em;color:var(--brand-text);margin:0 0 22px}
 .story-solo p{font-size:17px;color:var(--muted)}
 
-/* --- reduced motion: no doors sweeping, no tank refilling — land on the
-       final frame (doors up, tank filled to the 80% line, correct height) --- */
+/* --- reduced motion: no doors sweeping, no bulb warming up — land on the
+       final frame (doors up, the picked lamp lit at full brightness) --- */
 @media (prefers-reduced-motion:reduce){
   .door{animation:none;transform:translateY(-101%)}
-  .tanks.in .tank-fill,.tank-fill{animation:none;height:80%}
-  .tank,.tank-chip{transition:none}
+  .lamp.lit .lamp-ico{animation:none;opacity:1}
+  .lamp{transition:none}
 }
 
 </style>
@@ -521,7 +537,7 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.steps li::before,.face .ini{font-weight:
       <nav class="main-nav" id="main-nav">
         <a href="#services">What we do</a>
         <a href="#reviews">Reviews</a>
-        <a href="#signature">Propane</a>
+        <a href="#signature">Dash lights</a>
         <a href="#about">About Ron</a>
         <a href="#hours">Hours</a>
         <a href="#contact" class="nav-cta">Call the shop</a>
@@ -683,49 +699,107 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.steps li::before,.face .ini{font-weight:
   </section>
 
   <!-- ===================== #signature =====================
-       THE AT-HOME TOOL: the question people actually ask at the propane
-       counter — "how much will my bottle take?" — turned into a toy.
-       One tap on a cylinder size, the drawn tank resizes and refills to the
-       80% line, the gallon figure changes. No price is stated anywhere: the
-       dossier has no propane pricing, so the tool ends by sending them to Ron
-       for today's number. The gallon figures are the physical capacity of a
-       standard cylinder at the 80% fill limit (propane weighs ~4.2 lb/gal),
-       not a claim about this shop's rates. -->
+       THE AT-HOME TOOL: the counter question every shop answers daily —
+       "there's a light on, is it bad?" — turned into a toy. A drawn instrument
+       cluster with the six warning lights everybody actually sees. Tap one:
+       it lights up on the dash, and a plain-English card says what it means
+       and how urgent it is (red = stop, amber = book it soon). Ends in the
+       phone number.
+       Every word is standard automotive common knowledge — nothing here is a
+       claim about this shop's prices, parts or process. No photos: the whole
+       cluster is drawn in CSS + inline SVG. -->
   <section class="section section-dark" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Before you drive over</p>
-        <h2>How much will <em>your bottle take?</em></h2>
-        <p>Tap the cylinder you've got sitting at home.</p>
+        <p class="eyebrow">That light on your dash</p>
+        <h2>What is <em>that light?</em></h2>
+        <p>Tap the one that's on.</p>
       </div>
 
-      <div class="tanks reveal">
-        <div class="tank-stage">
-          <div class="tank" id="tank" style="--tank-h:52%">
-            <span class="tank-collar" aria-hidden="true"></span>
-            <span class="tank-body" aria-hidden="true">
-              <span class="tank-fill" id="tankFill"></span>
-              <span class="tank-mark"><i>80%</i></span>
-            </span>
-            <span class="tank-foot" aria-hidden="true"></span>
+      <div class="dash reveal">
+        <div class="dash-cluster">
+          <div class="lamps" role="group" aria-label="Tap the warning light that came on in your car">
+
+            <button type="button" class="lamp is-amber" aria-pressed="true"
+              data-name="Check engine"
+              data-level="amber"
+              data-urg="Amber — get it looked at soon"
+              data-body="The engine computer has logged a fault. If the car is driving normally you can keep going, but have the code read soon — a small fault left alone usually turns into a bigger one. If the light is &lt;b&gt;flashing&lt;/b&gt;, treat it as urgent: stop somewhere safe and call.">
+              <span class="lamp-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15.5v-5h2v-2h3.5v-2H14v2h1.5L20 5v11.5h-4.5v2H9.5v-2H6.5v-1.5z"/><path d="M8.5 6.5h5"/></svg>
+              </span>
+              <span class="lamp-name">Check engine</span>
+            </button>
+
+            <button type="button" class="lamp is-red" aria-pressed="false"
+              data-name="Oil pressure"
+              data-level="red"
+              data-urg="Red — stop as soon as it's safe"
+              data-body="Oil isn't circulating at the pressure the engine needs. Pull over as soon as you safely can and shut the engine off — running it in this state can do real damage in a matter of minutes. Call from where you're parked.">
+              <span class="lamp-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 16.2v-2.8c0-.9.7-1.6 1.6-1.6h5.3l3.2-2.3h3.1v2.3h2l3.3-2.7v4.3c0 1.6-1.3 2.9-2.9 2.9H4.1a1.6 1.6 0 0 1-1.6-1.6z"/><path d="M6 12v-1.7h3.5"/><path d="M21.3 5.6c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5 1.5-3.1 1.5-3.1 1.5 2.3 1.5 3.1z"/></svg>
+              </span>
+              <span class="lamp-name">Oil can</span>
+            </button>
+
+            <button type="button" class="lamp is-red" aria-pressed="false"
+              data-name="Battery / charging"
+              data-level="red"
+              data-urg="Red — don't shut the engine off"
+              data-body="The charging system isn't keeping up, so the car is running off the battery and can stall without warning. Switch off the radio, heater and anything else you don't need, drive straight to wherever you want it to end up, and call.">
+              <span class="lamp-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="10" rx="2"/><path d="M7 5.5h3M14 5.5h3M6 12.5h3M7.5 11v3M15 12.5h3"/></svg>
+              </span>
+              <span class="lamp-name">Battery</span>
+            </button>
+
+            <button type="button" class="lamp is-red" aria-pressed="false"
+              data-name="Engine temperature"
+              data-level="red"
+              data-urg="Red — stop and let it cool"
+              data-body="The engine is running hotter than it should. Pull over somewhere safe, shut it off and let it cool down — don't open the radiator cap while it's hot. Call once you're stopped.">
+              <span class="lamp-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2a2.2 2.2 0 0 0-2.2 2.2v7.1a3.7 3.7 0 1 0 4.4 0V5.4A2.2 2.2 0 0 0 12 3.2z"/><path d="M12 7.6v7.6"/><path d="M2.2 12.6c1.1-1.4 2.3-1.4 3.4 0s2.3 1.4 3.4 0M15 12.6c1.1-1.4 2.3-1.4 3.4 0s2.3 1.4 3.4 0M2.2 17.6c1.1-1.4 2.3-1.4 3.4 0s2.3 1.4 3.4 0M15 17.6c1.1-1.4 2.3-1.4 3.4 0s2.3 1.4 3.4 0"/></svg>
+              </span>
+              <span class="lamp-name">Temperature</span>
+            </button>
+
+            <button type="button" class="lamp is-amber" aria-pressed="false"
+              data-name="Tire pressure"
+              data-level="amber"
+              data-urg="Amber — check it today"
+              data-body="At least one tire is low. Put air in it and look it over for a nail or a slow leak — a low tire can go flat quickly at highway speed, and driving on one ruins the tire.">
+              <span class="lamp-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18.5v-6a8 8 0 0 1 16 0v6z"/><path d="M4 18.5h16"/><path d="M12 8v4.5M12 15.4v.1"/></svg>
+              </span>
+              <span class="lamp-name">Tire pressure</span>
+            </button>
+
+            <button type="button" class="lamp is-red" aria-pressed="false"
+              data-name="Brake system"
+              data-level="red"
+              data-urg="Red — don't drive on it"
+              data-body="Check the obvious one first: the parking brake may still be partly on. If it's fully released and the light stays on, the brake system has a fault — stop somewhere safe and call rather than driving on it.">
+              <span class="lamp-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5.2"/><path d="M12 9v3.4M12 15v.1"/><path d="M4.6 7.4a8 8 0 0 0 0 9.2M19.4 7.4a8 8 0 0 1 0 9.2"/></svg>
+              </span>
+              <span class="lamp-name">Brake</span>
+            </button>
+
           </div>
+          <span class="dash-lip" aria-hidden="true"></span>
         </div>
 
-        <div class="tank-read">
-          <div class="tank-chips" role="group" aria-label="Pick your propane cylinder">
-            <button type="button" class="tank-chip" aria-pressed="true"  data-gal="4.7"  data-h="52"  data-name="20 lb"><b>20 lb</b><small>the grill bottle</small></button>
-            <button type="button" class="tank-chip" aria-pressed="false" data-gal="7.1"  data-h="66"  data-name="30 lb"><b>30 lb</b><small>the trailer bottle</small></button>
-            <button type="button" class="tank-chip" aria-pressed="false" data-gal="9.4"  data-h="78"  data-name="40 lb"><b>40 lb</b><small>the big one</small></button>
-            <button type="button" class="tank-chip" aria-pressed="false" data-gal="23.6" data-h="100" data-name="100 lb"><b>100 lb</b><small>the tall one</small></button>
+        <div class="dash-read">
+          <div class="dash-say" aria-live="polite">
+            <p class="urg" id="dashUrg">Amber — get it looked at soon</p>
+            <h3 id="dashTitle">Check engine</h3>
+            <p class="dash-body" id="dashBody">The engine computer has logged a fault. If the car is driving normally you can keep going, but have the code read soon — a small fault left alone usually turns into a bigger one. If the light is <b>flashing</b>, treat it as urgent: stop somewhere safe and call.</p>
           </div>
-
-          <p class="tank-out"><span class="tank-num tnum" id="tankGal">4.7</span> <span class="tank-unit">gallons to fill it</span></p>
-          <p class="tank-note" id="tankNote">A <b>20 lb</b> cylinder takes about 4.7 gallons before it reaches the 80% line — every propane bottle stops there, and the space above it is left for vapor.</p>
-
-          <a class="btn btn-primary" href="tel:+13608255563">Call for today's price</a>
+          <a class="btn btn-primary" href="tel:+13608255563">Call Ron — (360) 825-5563</a>
+          <p class="dash-fine">Ron reads the actual code at the shop — this is just what the light is telling you to do next.</p>
         </div>
       </div>
-      <p class="sr-only" id="tankLive" aria-live="polite"></p>
     </div>
   </section>
 
@@ -806,7 +880,7 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.steps li::before,.face .ini{font-weight:
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">What we do</a><br><a href="#reviews">Reviews</a><br><a href="#signature">Propane</a><br><a href="#about">About Ron</a><br><a href="#hours">Hours</a><br><a href="#contact">Call the shop</a></p>
+        <p><a href="#services">What we do</a><br><a href="#reviews">Reviews</a><br><a href="#signature">Dash lights</a><br><a href="#about">About Ron</a><br><a href="#hours">Hours</a><br><a href="#contact">Call the shop</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -956,50 +1030,51 @@ function customClose(p, close){ return close; }
      Per-client interactive code goes below this line (EA: day timeline +
      rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
 
-  /* ---------- SIGNATURE GADGET — "HOW MUCH WILL YOUR BOTTLE TAKE?" ----------
-     The propane-counter question turned into a tool. Tap a cylinder size and
-     the drawn tank resizes to that bottle's real proportions and refills to
-     the 80% line, and the gallon figure changes with it. One tap, one visible
-     payoff, four choices, no hidden modes, no price stated anywhere.
+  /* ---------- SIGNATURE GADGET — "WHAT IS THAT LIGHT?" ----------
+     The counter question every shop answers daily, turned into a toy. Tap one
+     of the six warning lamps on the drawn cluster: it lights up in its real
+     colour and the card beside it says, in plain English, what the light means
+     and how urgent it is. One tap, one visible payoff, six targets, no modes,
+     no numbers to type, no units.
 
-     The gallon figures are physical capacity at the 80% fill limit that every
-     propane cylinder stops at (propane ≈ 4.2 lb per gallon) — they live in the
-     markup as data-gal, and they are NOT a claim about this shop's rates.
+     Every word of the read-out lives in the markup (data-urg / data-body), so
+     it's real content, not strings buried in a script. It's ordinary
+     automotive common knowledge — nothing here is a claim about this shop's
+     prices, parts or process.
 
-     Deterministic by construction: every tap writes the same three values for
-     a given chip (height, number, sentence) with no state carried between
-     taps, and the refill is restarted with an explicit animation reset +
-     forced reflow, so tap 1 and tap 50 look identical. Under reduced motion
-     the refill is skipped entirely and the tank sits at its final frame. */
-  var tankChips=$$('.tank-chip'), tankEl=$('#tank'), tankFill=$('#tankFill'),
-      tankGal=$('#tankGal'), tankNote=$('#tankNote'), tankLive=$('#tankLive');
-  var TANK_ANIM='tankFill .9s var(--ease) both';
+     Deterministic by construction: a tap writes the same four values for a
+     given lamp (pressed state, urgency, title, body) with nothing carried
+     between taps, and the bulb-warm-up is restarted with an explicit class
+     removal + forced reflow, so tap 1 and tap 50 look identical. Under reduced
+     motion the warm-up is skipped and the lamp sits lit at full brightness. */
+  var lamps=$$('.lamp'), dashRead=$('.dash-read'),
+      dashUrg=$('#dashUrg'), dashTitle=$('#dashTitle'), dashBody=$('#dashBody');
 
-  function selectTank(btn,animate){
-    var gal=btn.getAttribute('data-gal'),
-        h=btn.getAttribute('data-h'),
-        name=btn.getAttribute('data-name');
-    tankChips.forEach(function(b){b.setAttribute('aria-pressed',b===btn?'true':'false')});
-    if(tankEl) tankEl.style.setProperty('--tank-h',h+'%');
-    if(tankGal) tankGal.textContent=gal;
-    if(tankNote) tankNote.innerHTML='A <b>'+name+'</b> cylinder takes about '+gal+
-      ' gallons before it reaches the 80% line — every propane bottle stops there, '+
-      'and the space above it is left for vapor.';
-    if(tankFill){
-      if(animate && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-        tankFill.style.animation='none';
-        void tankFill.offsetWidth;            // force reflow so the refill always replays
-        tankFill.style.animation=TANK_ANIM;
-      }else{
-        tankFill.style.animation='';          // hand control back to the stylesheet
-      }
+  function selectLamp(btn,animate){
+    var level=btn.getAttribute('data-level');
+    lamps.forEach(function(b){
+      b.setAttribute('aria-pressed',b===btn?'true':'false');
+      if(b!==btn) b.classList.remove('lit');
+    });
+    if(dashRead) dashRead.className='dash-read level-'+level;
+    if(dashUrg) dashUrg.textContent=btn.getAttribute('data-urg');
+    if(dashTitle) dashTitle.textContent=btn.getAttribute('data-name');
+    if(dashBody) dashBody.innerHTML=btn.getAttribute('data-body');
+    if(animate && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      btn.classList.remove('lit');
+      void btn.offsetWidth;                 // force reflow so the bulb always re-warms
+      btn.classList.add('lit');
+    }else{
+      btn.classList.add('lit');
     }
-    if(tankLive) tankLive.textContent=name+' cylinder — about '+gal+' gallons to fill it.';
   }
 
-  tankChips.forEach(function(btn){
-    btn.addEventListener('click',function(){selectTank(btn,true)});
+  lamps.forEach(function(btn){
+    btn.addEventListener('click',function(){selectLamp(btn,true)});
   });
+  // land on the same opening frame every load: whichever lamp ships pressed
+  var first=lamps.filter(function(b){return b.getAttribute('aria-pressed')==='true'})[0]||lamps[0];
+  if(first) selectLamp(first,false);
 
 })();
 
