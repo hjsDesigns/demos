@@ -7,8 +7,11 @@
 <meta name="description" content="European and American pub food, 50+ classic arcade and pinball machines, a stage with live music, and a family dining room built like a tall ship — 16202 64th St E, Sumner.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Rye (display, single weight — approximates their hand-lettered crest) + Alegreya Sans (body) -->
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<!-- Rye (display, single weight — approximates their hand-lettered crest) + Alegreya Sans (body).
+     Press Start 2P is a THIRD face loaded for ONE section only (#arcade, the retro
+     pocket) — it never appears anywhere else on the page, so the site is still a
+     two-face build everywhere outside the arcade floor. -->
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Alegreya+Sans:wght@400;500;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    PURDY'S PUBLIC HOUSE & ARCADE — Sumner, WA
@@ -501,6 +504,167 @@ p{margin:0 0 1em}
 .reveal.in .neon-rule::after,.section-head.in .neon-rule::after{transform:scaleX(1)}
 .section-dark .neon-rule::after{background:var(--warm);box-shadow:0 0 12px var(--warm),0 0 26px color-mix(in srgb,var(--warm) 70%,transparent)}
 
+/* ============================================================ #arcade
+   THE ARCADE FLOOR — a contained RETRO POCKET.
+
+   Every rule below is scoped to #arcade. Nothing here leaks into the
+   ship-wood world: the third face (Press Start 2P) is used only inside
+   this section, the deeper CRT ground only paints between this section's
+   two brass hairlines, and the multicolour neon is confined to the
+   cabinets. The section's own frame — the eyebrow, the neon-rule, the
+   top/bottom edges — stays brass, so the page hands back cleanly.
+
+   COLOUR SOURCE: each cabinet's --neon is that machine's own real
+   backglass colour as it reads in Purdy's arcade photograph — John Wick
+   violet, Pulp Fiction yellow-amber. The cyan is the arcade's ambient
+   screen glow. The exterior hot pink appears only as a faint corner
+   wash behind the cabinets (it is the roofline neon, not a UI colour).
+
+   MOTION: prefers-reduced-motion kills the scanline drift, the blink and
+   the lamp/neon transitions outright, and every element lands on its
+   FINAL frame — an unlit cabinet stays legibly unlit, a lit one lit.
+   ============================================================ */
+#arcade{
+  --crt:#0B0712;                 /* the deeper ground — near-black with a violet cast */
+  --crt-2:#150E22;               /* cabinet body */
+  --crt-3:#0D0817;               /* screen glass */
+  --crt-line:rgba(216,178,94,.22);
+  --scr-idle:#9C93B8;            /* standby text — passes AA on --crt-3 */
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(90% 120% at 12% 0%, rgba(138,79,232,.20), transparent 62%),
+    radial-gradient(70% 110% at 92% 8%, rgba(255,79,160,.13), transparent 60%),
+    radial-gradient(80% 120% at 50% 108%, rgba(79,227,224,.10), transparent 62%),
+    var(--crt);
+  border-top:1px solid color-mix(in srgb,var(--brand) 42%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--brand) 42%,transparent);
+}
+#arcade .wrap{position:relative;z-index:2}
+
+/* the CRT texture — fixed 3px pitch, drifting one pitch on a linear loop */
+#arcade .crt-scan{
+  position:absolute;inset:-4px;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,
+    rgba(255,255,255,.055) 0 1px, rgba(0,0,0,0) 1px 3px);
+  animation:crtDrift 7s linear infinite;
+}
+#arcade .crt-vig{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 45%, transparent 52%, rgba(0,0,0,.55) 100%);
+}
+@keyframes crtDrift{from{transform:translateY(0)}to{transform:translateY(3px)}}
+
+/* the section frame stays in the pub's brass */
+#arcade .eyebrow{color:var(--brand-text)}
+#arcade .section-head h2{font-family:'Press Start 2P','Courier New',ui-monospace,monospace;
+  font-size:clamp(19px,3.1vw,34px);line-height:1.32;letter-spacing:0;color:var(--bone);
+  text-shadow:0 0 18px rgba(79,227,224,.20)}
+#arcade .section-head h2 em{font-style:normal;color:var(--warm);
+  text-shadow:0 0 14px rgba(240,174,85,.55),0 0 34px rgba(240,174,85,.28)}
+#arcade .section-head p{color:color-mix(in srgb,var(--bone) 74%,transparent)}
+
+/* the blinking cursor — 1s square wave, deterministic */
+#arcade .blink{font-weight:400;font-style:normal;color:var(--warm);animation:coinBlink 1s steps(1,end) infinite}
+@keyframes coinBlink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+
+/* ---- the cabinets ---- */
+#arcade .cab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,22px)}
+#arcade .cab{
+  --neon:#4FE3E0;
+  display:grid;gap:12px;align-content:start;text-align:left;
+  padding:14px 14px 16px;
+  border:1px solid color-mix(in srgb,var(--neon) 26%,transparent);
+  border-radius:12px;
+  background:linear-gradient(180deg,var(--crt-2),#0A0612);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+  font:inherit;color:var(--bone);cursor:pointer;
+  transition:border-color .35s var(--ease),box-shadow .35s var(--ease),transform .35s var(--ease);
+}
+#arcade .cab-violet{--neon:#A87BF0}   /* John Wick — its own backglass violet */
+#arcade .cab-amber{--neon:#F0AE55}    /* Pulp Fiction — its own marquee yellow */
+#arcade .cab-cyan{--neon:#4FE3E0}     /* the rest of the row — the floor's screen glow */
+#arcade .cab:hover{border-color:color-mix(in srgb,var(--neon) 52%,transparent);transform:translateY(-2px)}
+#arcade .cab:focus-visible{outline:3px solid var(--neon);outline-offset:3px}
+#arcade .cab[aria-pressed="true"]{
+  border-color:var(--neon);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--neon) 45%,transparent),
+             0 12px 40px color-mix(in srgb,var(--neon) 24%,transparent),
+             inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+/* marquee lamps across the top of the cabinet */
+#arcade .cab-lamps{display:flex;gap:7px;justify-content:center}
+#arcade .cab-lamps i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.13);
+  transition:background .3s var(--ease),box-shadow .3s var(--ease)}
+#arcade .cab[aria-pressed="true"] .cab-lamps i{background:var(--neon);box-shadow:0 0 8px var(--neon)}
+
+/* the marquee itself */
+#arcade .cab-marquee{
+  display:grid;place-items:center;min-height:74px;padding:12px 10px;
+  border:1px solid color-mix(in srgb,var(--neon) 22%,transparent);border-radius:8px;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.34));
+  transition:border-color .35s var(--ease),background .35s var(--ease);
+}
+#arcade .cab[aria-pressed="true"] .cab-marquee{
+  border-color:color-mix(in srgb,var(--neon) 62%,transparent);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--neon) 15%,transparent),rgba(0,0,0,.34));
+}
+#arcade .cab-name{
+  font-family:'Press Start 2P','Courier New',ui-monospace,monospace;
+  font-size:clamp(10px,1.35vw,13px);line-height:1.72;text-align:center;
+  color:#8E86A6;                                  /* unlit tube */
+  transition:color .35s var(--ease),text-shadow .35s var(--ease);
+}
+#arcade .cab[aria-pressed="true"] .cab-name{
+  color:#FFF6E6;
+  text-shadow:0 0 8px var(--neon),0 0 22px var(--neon),0 0 46px color-mix(in srgb,var(--neon) 60%,transparent);
+}
+
+/* the screen — both states stacked in one grid cell so nothing shifts */
+#arcade .cab-screen{
+  display:grid;min-height:86px;align-items:center;padding:12px 13px;
+  border:1px solid rgba(255,255,255,.07);border-radius:8px;background:var(--crt-3);
+  position:relative;overflow:hidden;
+}
+#arcade .cab-screen::after{                       /* glass scanlines over the screen only */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.05) 0 1px,transparent 1px 3px);
+}
+#arcade .scr{grid-area:1/1;font-size:14.5px;line-height:1.5;transition:opacity .3s var(--ease)}
+#arcade .scr-idle{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--scr-idle)}
+#arcade .scr-on{color:var(--bone);visibility:hidden;opacity:0}
+#arcade .cab[aria-pressed="true"] .scr-idle{visibility:hidden;opacity:0}
+#arcade .cab[aria-pressed="true"] .scr-on{visibility:visible;opacity:1}
+#arcade .cab[aria-pressed="true"] .cab-screen{
+  border-color:color-mix(in srgb,var(--neon) 34%,transparent);
+  box-shadow:inset 0 0 34px color-mix(in srgb,var(--neon) 16%,transparent);
+}
+
+#arcade .cab-tag{justify-self:start;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:color-mix(in srgb,var(--bone) 58%,transparent);
+  border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:4px 11px}
+#arcade .cab[aria-pressed="true"] .cab-tag{color:var(--bone);border-color:color-mix(in srgb,var(--neon) 45%,transparent)}
+
+#arcade .cab-fine{margin:clamp(22px,3vw,32px) 0 0;max-width:68ch;font-size:14.5px;
+  color:color-mix(in srgb,var(--bone) 62%,transparent)}
+
+@media (max-width:860px){#arcade .cab-grid{grid-template-columns:1fr}
+  #arcade .cab-marquee{min-height:66px}
+  #arcade .cab-screen{min-height:auto;padding:14px 13px}
+  #arcade .cab-name{font-size:12px}
+}
+
+/* ---- reduced motion: no drift, no blink, no transitions. Final frame. ---- */
+@media (prefers-reduced-motion:reduce){
+  #arcade .crt-scan{animation:none;transform:none}
+  #arcade .blink{animation:none;opacity:1}
+  #arcade .cab,#arcade .cab-lamps i,#arcade .cab-marquee,#arcade .cab-name,
+  #arcade .scr,#arcade .cab-screen{transition:none}
+  #arcade .cab:hover{transform:none}
+}
+
 </style>
 </head>
 <body>
@@ -669,6 +833,82 @@ p{margin:0 0 1em}
           <p class="cd tnum" id="showCountdown" aria-live="polite">—</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== #arcade — THE ARCADE FLOOR =====================
+       A contained RETRO POCKET inside the ship-wood world. Everything here is
+       scoped to #arcade: CRT ground, scanlines, neon marquees, and one extra
+       display face (Press Start 2P). The section's top and bottom edges are
+       brass hairlines, so the frame hands straight back to the pub.
+
+       SOURCING — REAL ONLY, nothing invented.
+       Two machines are named because their marquees are legible in Purdy's own
+       arcade photograph (images/room-arcade.jpg, read at 5–9x):
+         · JOHN WICK    — purple/violet backglass, middle of the pinball row
+         · PULP FICTION — yellow-orange marquee, immediately to its right
+       Every other cabinet in that frame is blown out, turned away or cropped,
+       so NO other title is named and no lineup is implied. The third card says
+       so plainly instead of guessing. Each card's neon hue is taken from that
+       machine's own real backglass colour, not picked for decoration.
+       The "25 reviews" line is Google's own review-topic count for "pinball"
+       (dossier — Reviews). The 65-arcade-review count is NOT repeated here;
+       it stays on the closing numbers band (NEVER TWICE).
+       OWNER ASK: the full machine lineup — see the ask-client notes.
+
+       NO PHOTOGRAPH in this section, deliberately: the single arcade photo on
+       file is already carrying the arcade tab of THE FOUR ROOMS above (never
+       the same photo twice on one site), and detail crops off a 750px source
+       fall under the photo-quality gate. Flagged for a floor shoot.
+
+       TODDLER LAW: one obvious tap per cabinet, marquee lights, screen powers
+       on, tap again to switch it off. No scores, no leaderboard, nothing that
+       implies the visitor wins anything.
+  -->
+  <section class="section arcade" id="arcade">
+    <span class="crt-scan" aria-hidden="true"></span>
+    <span class="crt-vig" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Press start<b class="blink" aria-hidden="true">_</b></p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>The arcade <em>floor</em></h2>
+        <p>Their pinball row, machine by machine. Tap one to light its marquee.</p>
+      </div>
+
+      <div class="cab-grid reveal">
+        <button class="cab cab-violet" type="button" aria-pressed="false">
+          <span class="cab-lamps" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="cab-marquee"><span class="cab-name">John Wick</span></span>
+          <span class="cab-screen">
+            <span class="scr scr-idle">Insert coin<b class="blink" aria-hidden="true">_</b></span>
+            <span class="scr scr-on">Violet backglass lit, playfield running &mdash; the middle of the row.</span>
+          </span>
+          <span class="cab-tag" aria-hidden="true">Pinball</span>
+        </button>
+
+        <button class="cab cab-amber" type="button" aria-pressed="false">
+          <span class="cab-lamps" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="cab-marquee"><span class="cab-name">Pulp Fiction</span></span>
+          <span class="cab-screen">
+            <span class="scr scr-idle">Insert coin<b class="blink" aria-hidden="true">_</b></span>
+            <span class="scr scr-on">Yellow marquee glowing, stood right alongside its neighbour.</span>
+          </span>
+          <span class="cab-tag" aria-hidden="true">Pinball</span>
+        </button>
+
+        <button class="cab cab-cyan" type="button" aria-pressed="false">
+          <span class="cab-lamps" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="cab-marquee"><span class="cab-name">The rest of the row</span></span>
+          <span class="cab-screen">
+            <span class="scr scr-idle">Insert coin<b class="blink" aria-hidden="true">_</b></span>
+            <span class="scr scr-on">Machines keep going past those two, down the wall and into the dark.</span>
+          </span>
+          <span class="cab-tag" aria-hidden="true">Cabinets</span>
+        </button>
+      </div>
+
+      <p class="cab-fine">Twenty-five of their reviews name the pinball on its own &mdash; and the row runs further down the wall than these three cards.</p>
     </div>
   </section>
 
@@ -1152,6 +1392,28 @@ function customClose(p, close){ return close; }
     });
   });
 
+})();
+
+/* =========================================================
+   THE ARCADE FLOOR — #arcade
+   One obvious tap per cabinet: the marquee lights, the screen powers
+   on. Tap again and it goes dark. Nothing is scored, nothing is won,
+   nothing is hidden behind a mode. State lives entirely in aria-pressed,
+   so the CSS and the accessibility tree can never disagree, and every
+   cabinet starts unlit on every load — deterministic, no persistence,
+   no randomness.
+   ========================================================= */
+(function(){
+  'use strict';
+  var cabs = document.querySelectorAll('#arcade .cab');
+  if(!cabs.length) return;
+  Array.prototype.forEach.call(cabs, function(cab){
+    cab.setAttribute('aria-pressed','false');          // known state on load
+    cab.addEventListener('click', function(){
+      var on = cab.getAttribute('aria-pressed') === 'true';
+      cab.setAttribute('aria-pressed', on ? 'false' : 'true');
+    });
+  });
 })();
 
 </script>
