@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ron's Auto Care Center — Auto repair, RV dump &amp; propane, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Full-service auto repair, a 24/7 RV dump station and propane filling at one shop on Griffin Ave in Enumclaw — 4.9 stars across 91 Google reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Staatliches (garage-sign display) + Epilogue (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Epilogue:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   WEBSITE FACTORY — ONE-PAGE TEMPLATE
+   Distilled from the 2026-08 reference build (the quality bar; see README).
+   EVERY brand decision lives in :root below. Component rules only
+   ever reference tokens — never a hex color. Change the business,
+   change this block, done.
+
+   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
+   dark (a genuinely dark venue), three rules below still assume the light-
+   ground default and will render illegible — check/override these in the
+   SITE's OWN style.css, never edit this shared file:
+     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
+     .story-copy .lede         — color:var(--dark)
+     .site-footer              — background:var(--ink)
+   (The hero scrim had the same bug — built from var(--ink), which on a
+   dark-ground site is the light body-text color, so the "dark scrim" washed
+   the hero photo pale instead of darkening it; Hayden caught it live as
+   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
+   now uses var(--dark), the one token guaranteed dark in either mode — so
+   this one no longer needs a per-site override.)
+   Three separate bugs of this exact shape shipped in one build before this
+   note existed (footer, the About lede, then the hero scrim) — sweep the
+   remaining three before calling a dark-ground build done, don't wait for
+   Hayden to catch it.
+   ============================================================ */
+:root{
+  /* ---- palette ----
+     ZERO-PHOTO BUILD: no photograph of this shop exists online (see dossier),
+     so the palette is derived from the trade itself rather than invented from
+     a picture that doesn't exist — shop-manual cream paper, primer/placard red,
+     service-bay green and shop-lamp brass on a warm shop-floor charcoal.
+     Re-derive from real photos after the drive-by shoot. */
+  --brand:#B4432A;          /* primer red / propane placard red — buttons, dots, big type */
+  --brand-text:#963621;     /* same hue darkened to pass AA on cream for small type */
+  --brand-bright:#CC5334;   /* hover state of --brand */
+  --accent:#2E6B54;         /* service green — "open" dots, checkmarks, success */
+  --accent-soft:#5C9B83;    /* lighter accent for dark grounds */
+  --ink:#221C17;            /* warm near-black text */
+  --bg:#EFE8D9;             /* TRUE CREAM page ground — never white (factory law) */
+  --bg-2:#E4DBC8;           /* deeper cream, alternating bands */
+  --paper:#F7F1E4;          /* cards — a hair lighter than --bg, never white */
+  --muted:#6A6055;          /* secondary text */
+  --line:#D8CDB8;           /* hairlines, borders */
+  --dark:#2A2622;           /* shop-floor charcoal (hero ground, closing CTA band) */
+  --dark-2:#3A342E;         /* dark hover */
+  --warm:#E0A73F;           /* shop-lamp brass — highlighted word on dark grounds */
+  --tint:#E2E5DE;           /* shop grey-green wash (the hours/status band) */
+
+  /* ---- type: two faces max, loaded in index.html <head> ---- */
+  --display:'Staatliches','Haettenschweiler','Arial Narrow',Impact,sans-serif;
+  --body:'Epilogue','Avenir Next',Avenir,'Segoe UI',Helvetica,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+
+  /* ---- metrics ---- */
+  --header-h:72px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.32,.02,.18,1);     /* the bay doors: mechanical — steep start, firm stop */
+  --r:14px;
+}
+
+/* ============================================================
+   Z-INDEX MAP (QA lesson from EA — keep it documented)
+     60  .site-header   sticky header, always on top
+     40  #main-nav      the dropped-down mobile menu (inside header)
+      3  .hero-inner    hero text block
+      2  .hero-bg::after film grain
+      1  .hero-bg::before scrim
+      0  .hero-bg img   photo
+   Nothing else on the page sets a z-index above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  border-bottom:var(--rule)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo img{height:46px;width:auto}
+.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+/* live open/closed pill in the header */
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent-soft) 14%,transparent)}
+.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:var(--brand)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1100px){.hdr-live .txt-long{display:none}}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
+@media (max-width:420px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   Sized to the phone screen minus the sticky header (100svh under a sticky
+   header overshoots by the header's height — EA lesson). Content sits in
+   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
+   to opposite edges, so it can't collide on short screens. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
+/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
+   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
+   light-ground AND a dark-ground build (it's the same token the .hero fallback
+   background above uses), where --ink flips to a light color on a dark-ground site
+   and would wash the photo pale instead of darkening it. */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+/* film grain */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
+.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* entrance stagger (only when JS is on, so no-JS never hides text) */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.sub-short{display:none}
+@media (max-width:520px){
+  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--brand)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--brand)}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.proof .ico{color:var(--accent)}
+.proof .star{color:var(--warm)}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.78)}
+/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .hero-bg img{animation:none}
+  .hdr-live.is-open .dot{animation:none}
+}
+
+/* ============================================================ SERVICES (cards grid) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
+.card .ico svg{width:26px;height:26px}
+.card h3{font-size:21px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================ MENU (priced list) — removable */
+.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
+.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:800;font-size:16.5px}
+.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
+.tnum{font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
+
+/* ============================================================ GALLERY (framed prints) */
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print:hover{transform:rotate(0) scale(1.01)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* ============================================================ SIGNATURE (per-client gadget goes here)
+   No styles by design. The gadget for each client is custom — build its CSS
+   in a block below this comment, using only tokens. EA's went here:
+   the live day-timeline + the rate calculator. */
+.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+
+/* ============================================================ ABOUT (owner story + photo) */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
+.team{margin-top:clamp(36px,5vw,64px)}
+.team h3{font-size:22px;margin:0 0 16px}
+.faces{display:flex;flex-wrap:wrap;gap:10px}
+.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
+.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
+.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
+.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND (dark, with count-up numbers) */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
+.num b i{font-style:normal;color:var(--warm)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
+.foot .plate img{height:44px;width:auto}
+.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#fff}
+.foot .soc{display:flex;gap:10px;margin-top:8px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================================
+   SITE BLOCK — Ron's Auto Care Center
+   Tokens are all in :root above; everything below is component work for this
+   build only (zero-photo hero, the three-bay gadget, the review wall).
+   ============================================================================ */
+
+/* --- display face: Staatliches ships one weight (400) and is all-caps by
+       design, so the template's 800-weight / negative tracking would fake-bold
+       and cramp it. Reset once, here. --- */
+h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.steps li::before,.face .ini{font-weight:400;letter-spacing:.015em}
+.logo .wm{font-size:26px}
+.logo .wm small{font-size:10px}
+
+/* --- HERO: no photograph of this shop exists, so the opener is the sign
+       itself. Three bay doors roll up off it, once, on load. --- */
+.hero{background:
+    repeating-linear-gradient(112deg, rgba(255,255,255,.018) 0 2px, transparent 2px 9px),
+    radial-gradient(120% 90% at 50% 8%, color-mix(in srgb,var(--warm) 20%,transparent) 0%, transparent 60%),
+    linear-gradient(180deg, var(--dark-2) 0%, var(--dark) 62%, #1D1A17 100%)}
+.hero{justify-content:center}
+.hero .hero-spacer{display:none}
+.hero-shop{display:grid;place-items:center;padding:0 var(--pad);width:100%}
+.hero-inner{padding-top:clamp(22px,4vh,40px);padding-bottom:clamp(22px,4vh,40px);display:grid;place-items:center}
+.hero-actions{justify-content:center}
+.markwrap{position:relative;width:min(100%,860px);overflow:hidden;border-radius:8px;
+  background:linear-gradient(180deg,#1B1815 0%,#242019 100%);
+  border:1px solid color-mix(in srgb,var(--warm) 26%,transparent);
+  box-shadow:0 60px 120px -60px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08),
+             0 0 90px -30px color-mix(in srgb,var(--warm) 40%,transparent)}
+.markwrap::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(80% 60% at 50% 0%, color-mix(in srgb,var(--warm) 26%,transparent), transparent 70%)}
+.mark{position:relative;z-index:2;text-align:center;color:#fff;padding:clamp(30px,6vw,60px) clamp(20px,4vw,48px)}
+.mark-1{display:block;font-family:var(--display);font-size:clamp(64px,14.5vw,160px);line-height:.86;letter-spacing:.01em;
+  text-shadow:0 0 40px color-mix(in srgb,var(--warm) 45%,transparent)}
+.mark-2{display:block;font-family:var(--display);font-size:clamp(24px,5.6vw,56px);line-height:1;letter-spacing:.08em;color:var(--warm);margin-top:clamp(6px,1vw,12px)}
+.mark-rule{display:block;height:2px;width:min(100%,420px);margin:clamp(14px,2.4vw,22px) auto;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--warm) 80%,transparent),transparent)}
+.mark-3{display:block;font-family:var(--mono);font-size:clamp(9.5px,1.9vw,13px);letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+.doors{position:absolute;inset:0;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);pointer-events:none}
+.door{position:relative;display:block;height:100%;
+  background:repeating-linear-gradient(180deg,#7C756B 0 13px,#6A645B 13px 15px);
+  border-right:1px solid rgba(0,0,0,.45);
+  box-shadow:inset 0 -14px 24px -12px rgba(0,0,0,.65);
+  transform:translateY(0);animation:doorUp .85s var(--ease-2) forwards}
+.door:last-child{border-right:0}
+.door::after{content:"";position:absolute;bottom:16px;left:8%;right:8%;height:6px;border-radius:3px;background:#4E4941}
+.door.d1{animation-delay:.45s}
+.door.d2{animation-delay:.68s}
+.door.d3{animation-delay:.91s}
+@keyframes doorUp{from{transform:translateY(0)}to{transform:translateY(-101%)}}
+@media (max-width:520px){.hero-shop{padding-top:clamp(16px,4vh,32px)}}
+
+/* --- HOURS: the 24/7 dump-station note row is a fact, not a closure --- */
+.hours-list li.note{background:color-mix(in srgb,var(--accent-soft) 14%,transparent)}
+.hours-list li.note .time{font-family:var(--mono);font-size:12.5px;color:var(--accent);font-weight:600;max-width:none}
+.hours-list li.note .day{color:var(--ink)}
+.hdr-live.is-unknown .dot,.live-line.is-unknown .dot{background:var(--warm)}
+.hdr-live.is-unknown{border-color:color-mix(in srgb,var(--warm) 55%,transparent);background:color-mix(in srgb,var(--warm) 14%,transparent)}
+.live-line.is-unknown .dot{box-shadow:0 0 0 5px color-mix(in srgb,var(--warm) 22%,transparent)}
+
+/* --- SIGNATURE: three doors, one shop --- */
+.bays{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(26px,4vw,60px);align-items:start}
+.shop{filter:drop-shadow(0 40px 60px rgba(0,0,0,.22))}
+.shop-roof{background:var(--brand);color:#fff;border-radius:8px 8px 0 0;padding:14px 18px;text-align:center;
+  border-bottom:4px solid color-mix(in srgb,var(--ink) 45%,var(--brand))}
+.shop-roof span{font-family:var(--display);font-size:clamp(24px,3.4vw,34px);letter-spacing:.16em}
+.shop-front{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.4vw,14px);
+  background:var(--dark);padding:clamp(10px,1.6vw,16px)}
+.bay{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:3px;display:grid;place-items:center;
+  background:radial-gradient(120% 85% at 50% 18%, color-mix(in srgb,var(--warm) 22%,transparent), #171412 78%)}
+.bay-room{color:var(--warm);opacity:.55;transition:opacity .5s var(--ease),transform .5s var(--ease);transform:translateY(6px)}
+.bay-room svg{width:clamp(34px,4.6vw,58px);height:auto}
+.bay.open .bay-room{opacity:1;transform:none}
+.bay-door{position:absolute;inset:0;
+  background:repeating-linear-gradient(180deg,#7C756B 0 9px,#6A645B 9px 11px);
+  border-bottom:3px solid #4E4941;box-shadow:inset 0 -10px 18px -10px rgba(0,0,0,.7);
+  transform:translateY(0);transition:transform .7s var(--ease-2)}
+.bay.open .bay-door{transform:translateY(-100%)}
+.shop-apron{height:16px;background:linear-gradient(180deg,#57524B,#3E3A35);border-radius:0 0 8px 8px}
+.bay-cards{display:flex;flex-direction:column;gap:12px}
+.bay-card{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.bay-card.open{border-color:var(--brand);box-shadow:0 24px 44px -30px color-mix(in srgb,var(--brand) 70%,transparent)}
+.bay-btn{width:100%;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 20px;background:none;border:0;cursor:pointer;color:var(--ink);text-align:left;font-family:var(--display);
+  font-size:clamp(22px,2.5vw,28px);letter-spacing:.02em}
+.bay-btn:hover{color:var(--brand-text)}
+.chev{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--bg-2);color:var(--ink);flex:none}
+.chev svg{width:20px;height:20px;transition:transform .35s var(--ease)}
+.bay-card.open .chev{background:var(--brand);color:#fff}
+.bay-card.open .chev svg{transform:rotate(180deg)}
+.bay-panel{padding:0 20px 20px;animation:unroll .45s var(--ease) both}
+.bay-panel p{font-size:15.5px;color:var(--muted);margin:0 0 16px}
+@keyframes unroll{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.btn-sm{padding:11px 20px;font-size:14px}
+@media (max-width:860px){.bays{grid-template-columns:1fr;gap:26px}.shop{max-width:460px;margin:0 auto;width:100%}}
+
+/* --- REVIEWS (faces are drawn initial discs, never a scraped photo) --- */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,28px)}
+.rev{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px;
+  box-shadow:0 30px 56px -44px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rev-who{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rev .ini{width:48px;height:48px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-family:var(--display);font-size:23px;color:#fff;background:var(--brand)}
+.rev:nth-child(2) .ini{background:var(--dark)}
+.rev:nth-child(3) .ini{background:var(--accent)}
+.rev-meta b{display:block;font-size:16px;line-height:1.2}
+.rev-meta small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.stars{color:var(--warm);font-size:15px;letter-spacing:.14em;margin-bottom:10px}
+.rev blockquote{margin:0;font-size:16px;line-height:1.62}
+@media (max-width:900px){.revs{grid-template-columns:1fr}}
+
+/* --- ABOUT (no photo exists — the type carries the band) --- */
+.story-solo{max-width:66ch;margin:0 auto;text-align:left}
+.story-solo h2{font-size:clamp(34px,4.6vw,58px);margin:0 0 18px}
+.story-solo .lede{font-family:var(--display);font-size:clamp(23px,2.9vw,34px);line-height:1.18;letter-spacing:.015em;color:var(--brand-text);margin:0 0 22px}
+.story-solo p{font-size:17px;color:var(--muted)}
+
+/* --- reduced motion: no doors sweeping, no unroll, land on the final frame --- */
+@media (prefers-reduced-motion:reduce){
+  .door{animation:none;transform:translateY(-101%)}
+  .bay-door,.bay-room,.chev svg,.bay-card{transition:none}
+  .bay-panel{animation:none}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Ron's Auto Care Center — home">
+      <span class="wm">Ron's<small>Auto Care Center</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#signature">One stop</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#about">About Ron</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Call the shop</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       ZERO-PHOTO BUILD: no real photography exists for this shop anywhere
+       online (see the dossier), so the opener is the animated wordmark —
+       three bay doors roll up off the sign. Typographic approximation of a
+       shop sign, NOT a recreation of a real mark: no mark was ever found.
+       Autoplay once, pure CSS, deterministic; reduced-motion lands on the
+       final frame (doors up, sign readable). -->
+  <section class="hero" id="hero">
+    <div class="hero-shop">
+      <div class="markwrap" aria-hidden="true">
+        <div class="mark">
+          <span class="mark-1">Ron's</span>
+          <span class="mark-2">Auto Care Center</span>
+          <span class="mark-rule"></span>
+          <span class="mark-3">Repair · RV dump · Propane</span>
+        </div>
+        <div class="doors">
+          <span class="door d1"></span>
+          <span class="door d2"></span>
+          <span class="door d3"></span>
+        </div>
+      </div>
+    </div>
+    <h1 class="sr-only">Ron's Auto Care Center — auto repair, RV dump station and propane filling in Enumclaw, Washington</h1>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Call the shop</a>
+        <a href="#signature" class="btn btn-cream">See what's here</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Only Monday's closing time is independently confirmed (Google live
+       panel, 2026-08-31). The other six days are NOT invented — they read
+       "Call to confirm" until Ron gives us the real grid, and the live clock
+       never claims "open now" on a day we can't stand behind. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Right on <em>Griffin Ave</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          435 Griffin Ave, Enumclaw, WA 98022<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=435+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.9 on Google · 91 reviews</span>
+          <span class="proof"><span class="ico">✓</span> Ron does the work himself</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">Closes 5:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">Call to confirm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">Call to confirm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">Call to confirm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">Call to confirm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">Call to confirm</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">Call to confirm</span></li>
+        <li class="note"><span class="day">RV dump station</span><span class="time">Open around the clock, 24/7</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #signature =====================
+       THE ONE-OF-ONE: repair + RV dump + propane under one roof, run solo.
+       Three doors on one drawn shop. Tap a door card, that door rolls up and
+       the panel unrolls in place. One tap, instant payoff, three choices. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One stop, three things</p>
+        <h2>Three doors, <em>one shop</em></h2>
+        <p>Tap a door — it rolls up.</p>
+      </div>
+
+      <div class="bays reveal">
+        <div class="shop" aria-hidden="true">
+          <div class="shop-roof"><span>Ron's</span></div>
+          <div class="shop-front">
+            <div class="bay" id="bay-repair">
+              <div class="bay-room">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M31 8a9 9 0 0 0-11.6 11.6L8.6 30.4a4 4 0 1 0 5.6 5.6l10.8-10.8A9 9 0 0 0 38 14l-5 5-5-1-1-5z"/></svg>
+              </div>
+              <span class="bay-door"></span>
+            </div>
+            <div class="bay" id="bay-rv">
+              <div class="bay-room">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h26a6 6 0 0 1 6 6v10H4z"/><path d="M36 22h4l4 6v2h-8z"/><circle cx="14" cy="34" r="4"/><circle cx="36" cy="34" r="4"/><path d="M9 19h10v6H9z"/></svg>
+              </div>
+              <span class="bay-door"></span>
+            </div>
+            <div class="bay" id="bay-propane">
+              <div class="bay-room">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 16h14v22a4 4 0 0 1-4 4h-6a4 4 0 0 1-4-4z"/><path d="M21 16v-4h6v4"/><path d="M19 10h10"/><path d="M21 26h6"/></svg>
+              </div>
+              <span class="bay-door"></span>
+            </div>
+          </div>
+          <div class="shop-apron"></div>
+        </div>
+
+        <div class="bay-cards">
+          <div class="bay-card">
+            <button type="button" class="bay-btn" aria-expanded="false" aria-controls="panel-repair" data-bay="bay-repair">
+              <span class="bay-name">Auto repair</span>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="bay-panel" id="panel-repair" hidden>
+              <p>Full-service repair, done by the same person who took the keys. Tell him what the car is doing and he'll tell you what it needs — and what it doesn't.</p>
+              <a class="btn btn-primary btn-sm" href="tel:+13608255563">Call about a repair</a>
+            </div>
+          </div>
+
+          <div class="bay-card">
+            <button type="button" class="bay-btn" aria-expanded="false" aria-controls="panel-rv" data-bay="bay-rv">
+              <span class="bay-name">RV dump station</span>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="bay-panel" id="panel-rv" hidden>
+              <p>Pull the rig in and empty the tanks on your way through town. It's the same driveway as the shop, so you can hand the truck over while you're here.</p>
+              <a class="btn btn-cream btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=435+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a>
+            </div>
+          </div>
+
+          <div class="bay-card">
+            <button type="button" class="bay-btn" aria-expanded="false" aria-controls="panel-propane" data-bay="bay-propane">
+              <span class="bay-name">Propane filling</span>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="bay-panel" id="panel-propane" hidden>
+              <p>Bring the bottle or bring the whole motorhome. Customers dump their tanks and top off the propane in the same visit — call ahead for today's price.</p>
+              <a class="btn btn-primary btn-sm" href="tel:+13608255563">Ask about propane</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sr-only" id="bayLive" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEWS CARRY FACES: verbatim Google reviews, first name, stars, date.
+       No reviewer photo is scraped — each face is a clean initial disc drawn
+       in the site's own type and palette. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What people say</p>
+        <h2>No runaround. <em>One guy, straight answers.</em></h2>
+        <p>Three of the reviews sitting on Ron's Google listing right now, word for word.</p>
+      </div>
+      <div class="revs">
+        <figure class="rev reveal">
+          <div class="rev-who">
+            <span class="ini" aria-hidden="true">B</span>
+            <span class="rev-meta"><b>bri weigelt</b><small>Google · 3 weeks ago</small></span>
+          </div>
+          <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“Great service! Super fair prices. No bullshit, no trying to sell you on other pointless services. Definitely come here before trying anywhere else!”</blockquote>
+        </figure>
+        <figure class="rev reveal">
+          <div class="rev-who">
+            <span class="ini" aria-hidden="true">D</span>
+            <span class="rev-meta"><b>Deborah Olin</b><small>Google Local Guide · 6 months ago</small></span>
+          </div>
+          <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“Ron is a one man team. So no going back and forth or not knowing who's working on your vehicle. He is extremely fair and honest. He doesn't charge you for things that aren't needed.”</blockquote>
+        </figure>
+        <figure class="rev reveal">
+          <div class="rev-who">
+            <span class="ini" aria-hidden="true">D</span>
+            <span class="rev-meta"><b>Donna</b><small>Google Local Guide · 3 months ago</small></span>
+          </div>
+          <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“Great! We were able to dump our RV tanks and refill propane at the same time. He's a nice guy!”</blockquote>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="story-solo reveal">
+        <p class="eyebrow">The shop</p>
+        <h2>One guy, <em>three jobs</em></h2>
+        <p class="lede">Ron runs the place himself — and that's the whole pitch.</p>
+        <p>There's no service writer at Ron's, no queue of technicians your car gets handed down. The person who diagnoses it is the person who fixes it and the person who explains the bill, which is why so many of the reviews are about being told the truth rather than about the repair itself.</p>
+        <p>Alongside the repair work he keeps two things running that most shops in town don't: an RV dump station that never closes, and propane filling at the same driveway. Travelers coming off Highway 410 can empty the tanks, fill the bottle and get the truck looked at without moving the rig twice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Get it looked at</p>
+          <h2>Bring it in, <em>or call first</em></h2>
+          <ol class="steps">
+            <li><h3>Call the shop</h3><p>One number, and it goes straight to the bay Ron is standing in.</p></li>
+            <li><h3>Pull up to the door</h3><p>Hand over the keys — cars, trucks, and rigs with a trailer behind them.</p></li>
+            <li><h3>Hear what it actually needs</h3><p>You get told what the vehicle needs before the work starts, not after.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+13608255563">(360) 825-5563</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=435+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What do you need?<select name="topic"><option>Auto repair</option><option>RV dump station</option><option>Propane filling</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Year, make and model — and what it's doing."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to Ron</button>
+          <p class="form-success">Thanks — Ron will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Enumclaw, WA</p>
+        <h2>Fixed, dumped, filled — <em>one driveway</em></h2>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+13608255563" class="btn btn-primary">Call (360) 825-5563</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=435+Griffin+Ave+Enumclaw+WA+98022" class="btn btn-ghost" target="_blank" rel="noopener">Directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm">Ron's<small>Auto Care Center</small></span>
+        </div>
+        <p>Auto repair, an RV dump station and propane filling, all at one shop on Griffin Ave.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>435 Griffin Ave<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+13608255563">(360) 825-5563</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#signature">One stop</a><br><a href="#reviews">Reviews</a><br><a href="#about">About Ron</a><br><a href="#hours">Hours</a><br><a href="#contact">Call the shop</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Ron's Auto Care Center</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   WEBSITE FACTORY — site.js
+   Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
+   count-up numbers · contact form success.
+   The ONLY thing to edit per client is the HOURS block right below.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HOURS CONFIG  — fill from the client's Google listing.
+   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
+   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
+   null = closed that day. Closing past midnight: use 26 for 2 am.
+   ------------------------------------------------------------ */
+/* RON'S — WHAT IS ACTUALLY CONFIRMED.
+   Recon could only verify ONE hours fact: Monday closes at 5 PM (Google's live
+   panel, 2026-08-31, a Monday). No opening time, and nothing at all for the
+   other six days. So this build does NOT run the normal open/closed clock —
+   it would have to invent six days of hours to do it. Instead the clock states
+   only what's true, and says "call to confirm" the rest of the time.
+   WHEN RON GIVES US THE GRID: fill CONFIRMED below with {open:8, close:17} per
+   weekday and the band upgrades itself to a real live "Open now" status. */
+var HOURS = {
+  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  days: { 0:null, 1:null, 2:null, 3:null, 4:null, 5:null, 6:null }
+};
+
+var CONFIRMED = {
+  1: { close: 17 }                    // Monday — closing time only
+};
+
+/* ------------------------------------------------------------
+   CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
+   Two functions site.js calls every minute. `p` is the Pacific "now":
+   {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
+
+   customClosure(p) → return a string to mark the whole day CLOSED
+                      ("Closed today for Labor Day"), or null.
+   customClose(p, close) → return an adjusted closing hour for today.
+
+   Reference-build example (path in README, "HOURS config"): Friday closed
+   at the earlier of 6 pm or SUNDOWN (NOAA sunset math), and US holidays
+   from their rate sheet returned a closure string. Port that logic here
+   only when the business actually has such a rule.
+   ------------------------------------------------------------ */
+function customClosure(p){ return null; }
+function customClose(p, close){ return close; }
+
+
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
+  var toggle=$('.nav-toggle'), nav=$('#main-nav');
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  if(toggle&&nav){
+    toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
+    $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
+    document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==toggle)setNav(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setNav(false);toggle.focus()}});
+  }
+  var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
+
+  /* ---------- Pacific time, wherever the viewer is ---------- */
+  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
+  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
+  var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
+    var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
+    var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
+    return o}catch(e){return null}})();
+  function pacificNow(){
+    if(DEMO) return DEMO;
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    var o={};parts.forEach(function(p){o[p.type]=p.value});
+    var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var h=parseInt(o.hour,10)%24, m=parseInt(o.minute,10);
+    return {day:days[o.weekday], h:h+m/60, y:parseInt(o.year,10), mo:parseInt(o.month,10)-1, d:parseInt(o.day,10)};
+  }
+  function fmt(h){h=h%24;var ap=h>=12?'pm':'am';var hh=Math.floor(h)%12;if(hh===0)hh=12;var mm=Math.round((h%1)*60);if(mm===60){mm=0;hh=(hh%12)+1}return hh+(mm?':'+(mm<10?'0':'')+mm:'')+' '+ap}
+  function dayName(d){return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d]}
+  function hoursFor(day){return HOURS.days[day]||null}
+
+  // Ron's version: never claims a status we can't stand behind.
+  //  · a day with a confirmed close, before that hour  → "closes at 5 pm · call to confirm"
+  //  · a day with a confirmed close, after that hour   → closed for the day (hard fact)
+  //  · every other day                                 → unknown, "call to confirm"
+  function computeStatus(){
+    var p=pacificNow(), d=p.day, h=p.h;
+    var c=CONFIRMED[d];
+    if(c && typeof c.close==='number'){
+      if(h<c.close) return {state:'unknown',short:'Closes '+fmt(c.close),
+        text:dayName(d)+' · closes at '+fmt(c.close)+' — call to confirm today’s opening time'};
+      return {state:'closed',short:'Closed for the day',
+        text:'Closed for the day · '+dayName(d)+' closes at '+fmt(c.close)};
+    }
+    return {state:'unknown',short:'Hours not posted',
+      text:dayName(d)+' hours aren’t published — call (360) 825-5563 to confirm'};
+  }
+  function applyStatus(){
+    var s=computeStatus(), p=pacificNow();
+    var cls=s.state==='open'?'is-open':(s.state==='closed'?'is-closed':'is-unknown');
+    var word=s.state==='open'?'Open':(s.state==='closed'?'Closed':'Call ahead');
+    var hp=$('#hdrLive'), ht=$('#hdrLiveText');
+    if(hp&&ht){hp.className='hdr-live '+cls;ht.innerHTML=word+' <span class="txt-long">· '+s.short+'</span>';}
+    var sl=$('#statusLine'), st=$('#statusText');
+    if(sl&&st){sl.className='live-line '+cls;st.textContent=s.text;}
+    $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
+  }
+  applyStatus(); setInterval(applyStatus,60000);
+  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
+
+  /* ---------- scroll-reveal + count-up ---------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      en.target.classList.add('in');
+      $$('.count',en.target).forEach(function(c){
+        if(c.dataset.done)return; c.dataset.done='1';
+        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
+        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(reduce){c.textContent=to;return}
+        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
+        requestAnimationFrame(step);
+      });
+      io.unobserve(en.target);
+    });
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  $$('.reveal').forEach(function(el){io.observe(el)});
+
+  /* ---------- contact form (front-end success state only; wire a backend at launch) ---------- */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){form.addEventListener('submit',function(e){e.preventDefault();ok.classList.add('show');ok.setAttribute('role','status');form.querySelector('button[type=submit]').disabled=true})}
+
+  /* ---------- SIGNATURE GADGET ----------
+     Per-client interactive code goes below this line (EA: day timeline +
+     rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+
+  /* ---------- SIGNATURE GADGET — THREE DOORS, ONE SHOP ----------
+     Tap a door card: that bay's door rolls up on the drawn shop and the
+     panel unrolls under the card. Tap again and it rolls back down.
+     One tap, one visible result, three choices, no hidden modes. */
+  var bayBtns=$$('.bay-btn'), live=$('#bayLive');
+  bayBtns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.parentNode,
+          panel=document.getElementById(btn.getAttribute('aria-controls')),
+          bay=document.getElementById(btn.getAttribute('data-bay')),
+          open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      card.classList.toggle('open',!open);
+      if(bay) bay.classList.toggle('open',!open);
+      if(panel){ if(open){panel.hidden=true} else {panel.hidden=false} }
+      if(live) live.textContent=($('.bay-name',btn)||{}).textContent+(open?' closed':' open');
+    });
+  });
+
+})();
+
+</script>
+</body>
+</html>

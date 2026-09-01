@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Enumclaw Family Optometry Clinic — Family Eye Care, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Family eye care on the Enumclaw plateau since 1984 — comprehensive exams, glasses and fitting, and retinal imaging at 2726 Griffin Ave, Ste B.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Bitter (display) + Mulish (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   WEBSITE FACTORY — ONE-PAGE TEMPLATE
+   Distilled from the 2026-08 reference build (the quality bar; see README).
+   EVERY brand decision lives in :root below. Component rules only
+   ever reference tokens — never a hex color. Change the business,
+   change this block, done.
+
+   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
+   dark (a genuinely dark venue), three rules below still assume the light-
+   ground default and will render illegible — check/override these in the
+   SITE's OWN style.css, never edit this shared file:
+     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
+     .story-copy .lede         — color:var(--dark)
+     .site-footer              — background:var(--ink)
+   (The hero scrim had the same bug — built from var(--ink), which on a
+   dark-ground site is the light body-text color, so the "dark scrim" washed
+   the hero photo pale instead of darkening it; Hayden caught it live as
+   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
+   now uses var(--dark), the one token guaranteed dark in either mode — so
+   this one no longer needs a per-site override.)
+   Three separate bugs of this exact shape shipped in one build before this
+   note existed (footer, the About lede, then the hero scrim) — sweep the
+   remaining three before calling a dark-ground build done, don't wait for
+   Hayden to catch it.
+   ============================================================ */
+:root{
+  /* ---- palette — ENUMCLAW FAMILY OPTOMETRY CLINIC ----
+     No photograph of this office exists online (recon 2026-08-31), and the
+     one palette that DOES exist is the Vision Source network's rented blue
+     (#449FDB) — the exact thing this build replaces, so it is deliberately
+     not used anywhere here. Derived instead from the practice's real world:
+     chart paper cream, the spruce of the plateau, and the brass of an
+     optical trial frame. Warm, quiet, forty-years-old — not clinic blue. */
+  --brand:#8C5A1E;          /* trial-frame brass — buttons, brand accents, "closed" dot */
+  --brand-text:#7A4E19;     /* same hue, darkened to pass AA on cream for small type */
+  --brand-bright:#A96D25;   /* hover state of --brand */
+  --accent:#2F6B55;         /* plateau spruce — "open" dot, checkmarks, success */
+  --accent-soft:#5B9A81;    /* lighter accent for dark grounds */
+  --ink:#22261F;            /* warm near-black text */
+  --bg:#F0E8D7;             /* TRUE CREAM page ground — chart paper, never white */
+  --bg-2:#E5DBC6;           /* deeper cream, alternating bands */
+  --paper:#F7F1E3;          /* cards — a hair lighter than --bg, never white */
+  --muted:#6A6355;          /* secondary text */
+  --line:#DBD0B8;           /* hairlines, borders */
+  --dark:#1F3A31;           /* deep spruce panels (hero ground, closing CTA band) */
+  --dark-2:#2A4C41;         /* dark hover */
+  --warm:#D9A961;           /* brass highlight inside headlines on dark grounds */
+  --tint:#DFE7DB;           /* soft sage wash (the hours/status band) */
+
+  /* ---- type: two faces max, loaded in index.html <head> ----
+     Bitter — a warm slab serif with the flat, unmistakable letterforms of a
+     printed acuity chart, which is exactly what the hero and the signature
+     interactive are made of. Mulish carries the reading copy. */
+  --display:'Bitter',Georgia,'Iowan Old Style','Times New Roman',serif;
+  --body:'Mulish',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+
+  /* ---- metrics ---- */
+  --header-h:72px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
+  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
+                                                (mechanical → steeper start; confident → slower settle;
+                                                elastic → overshoot past 1). Leave equal to --ease if
+                                                the build doesn't need a second feel. */
+  --r:18px;
+}
+
+/* ============================================================
+   Z-INDEX MAP (QA lesson from EA — keep it documented)
+     60  .site-header   sticky header, always on top
+     40  #main-nav      the dropped-down mobile menu (inside header)
+      3  .hero-inner    hero text block
+      2  .hero-bg::after film grain
+      1  .hero-bg::before scrim
+      0  .hero-bg img   photo
+   Nothing else on the page sets a z-index above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  border-bottom:var(--rule)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo img{height:46px;width:auto}
+.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+/* live open/closed pill in the header */
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent-soft) 14%,transparent)}
+.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:var(--brand)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1100px){.hdr-live .txt-long{display:none}}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
+@media (max-width:420px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   Sized to the phone screen minus the sticky header (100svh under a sticky
+   header overshoots by the header's height — EA lesson). Content sits in
+   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
+   to opposite edges, so it can't collide on short screens. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
+/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
+   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
+   light-ground AND a dark-ground build (it's the same token the .hero fallback
+   background above uses), where --ink flips to a light color on a dark-ground site
+   and would wash the photo pale instead of darkening it. */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+/* film grain */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
+.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* entrance stagger (only when JS is on, so no-JS never hides text) */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.sub-short{display:none}
+@media (max-width:520px){
+  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--brand)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--brand)}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.78)}
+/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .hero-bg img{animation:none}
+  .hdr-live.is-open .dot{animation:none}
+}
+
+/* ============================================================ SERVICES (cards grid) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
+.card .ico svg{width:26px;height:26px}
+.card h3{font-size:21px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================ MENU (priced list) — removable */
+.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
+.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:800;font-size:16.5px}
+.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
+.tnum{font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
+
+/* ============================================================ GALLERY (framed prints) */
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print:hover{transform:rotate(0) scale(1.01)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* ============================================================ SIGNATURE (per-client gadget goes here)
+   No styles by design. The gadget for each client is custom — build its CSS
+   in a block below this comment, using only tokens. EA's went here:
+   the live day-timeline + the rate calculator. */
+.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+
+/* ============================================================ ABOUT (owner story + photo) */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
+.team{margin-top:clamp(36px,5vw,64px)}
+.team h3{font-size:22px;margin:0 0 16px}
+.faces{display:flex;flex-wrap:wrap;gap:10px}
+.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
+.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
+.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
+.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND (dark, with count-up numbers) */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
+.num b i{font-style:normal;color:var(--warm)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
+.foot .plate img{height:44px;width:auto}
+.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#fff}
+.foot .soc{display:flex;gap:10px;margin-top:8px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================================
+   ENUMCLAW FAMILY OPTOMETRY CLINIC — site-specific block
+   Everything below references tokens only. Recurring device: the acuity line
+   (flat slab letterforms, wide tracking, stepping down in size) — it is the
+   hero, it is the signature interactive, and it edges the section eyebrows.
+   ============================================================================ */
+
+/* ---------- header / footer wordmarks (no logo file exists — typographic
+     lockup set in Bitter, deliberately NOT a redrawn mark; see askClientNotes) */
+.logo .wm{font-size:18px;letter-spacing:-.01em}
+.foot .brand{margin-bottom:14px}
+@media (max-width:1040px){.logo .wm{font-size:16px}}
+
+/* ============================================================ HERO — the mark pulls into focus */
+.hero{background:var(--dark)}
+.hero-bg{
+  background:
+    radial-gradient(58% 60% at 22% 30%, color-mix(in srgb,var(--warm) 26%,transparent) 0%, transparent 66%),
+    radial-gradient(48% 50% at 84% 78%, color-mix(in srgb,var(--accent-soft) 30%,transparent) 0%, transparent 68%),
+    radial-gradient(120% 110% at 50% 0%, var(--dark-2) 0%, var(--dark) 62%);
+}
+/* the concentric lens rings — a phoropter looking back at you */
+.hero-bg::before{
+  background:
+    repeating-radial-gradient(circle at 26% 42%,
+      color-mix(in srgb,var(--warm) 9%,transparent) 0 1px,
+      transparent 1px 58px),
+    linear-gradient(180deg, color-mix(in srgb,var(--dark) 30%,transparent) 0%, transparent 34%, color-mix(in srgb,var(--dark) 62%,transparent) 100%);
+}
+.hero-bg::after{opacity:.3}
+
+.mark{margin:0 0 clamp(24px,4vh,40px);color:#fff}
+.mark .mk{
+  display:block;font-family:var(--display);font-weight:800;line-height:.94;
+  letter-spacing:.02em;text-transform:uppercase;
+  font-size:clamp(30px,min(7.4vw,9vh),84px);
+  text-shadow:0 2px 34px color-mix(in srgb,var(--dark) 70%,transparent);
+}
+.mark .mk-2,.mark .mk-3{color:var(--warm)}
+.mark .mk-4{font-size:clamp(13px,min(2.1vw,2.4vh),22px);font-weight:700;letter-spacing:.44em;color:rgba(255,255,255,.82)}
+.mark .mk-rule{display:block;height:2px;width:clamp(120px,26vw,300px);margin:clamp(14px,2.2vh,24px) 0 clamp(12px,1.8vh,18px);
+  background:linear-gradient(90deg,var(--warm),color-mix(in srgb,var(--warm) 0%,transparent));transform-origin:left center}
+
+/* refraction: out of focus → sharp → a half-step off ("or two?") → sharp.
+   Deterministic keyframes, `forwards`, runs exactly once on load. */
+.js .mark .mk{opacity:0;filter:blur(20px);transform:scale(1.05);animation:refract 2.15s var(--ease) forwards;will-change:filter,opacity,transform}
+.js .mark .mk-2{animation-delay:.13s}
+.js .mark .mk-3{animation-delay:.26s}
+.js .mark .mk-4{animation-delay:.52s}
+.js .mark .mk-rule{transform:scaleX(0);animation:ruleIn .8s var(--ease) .46s forwards}
+@keyframes refract{
+  0%{opacity:0;filter:blur(20px);transform:scale(1.05)}
+  26%{opacity:1;filter:blur(9px);transform:scale(1.028)}
+  52%{opacity:1;filter:blur(0);transform:scale(1)}
+  68%{opacity:1;filter:blur(3.4px);transform:scale(1.006)}
+  100%{opacity:1;filter:blur(0);transform:scale(1)}
+}
+@keyframes ruleIn{to{transform:scaleX(1)}}
+.js .hero-actions{animation-delay:.86s}
+
+@media (prefers-reduced-motion:reduce){
+  .js .mark .mk{animation:none;opacity:1;filter:none;transform:none}
+  .js .mark .mk-rule{animation:none;transform:scaleX(1)}
+}
+@media (max-width:520px){
+  .mark .mk{font-size:clamp(30px,10.4vw,44px)}
+  .mark .mk-4{letter-spacing:.34em}
+}
+
+/* ============================================================ ABOUT — the doctors card stack */
+.docs{display:flex;flex-direction:column;gap:14px}
+.doc{display:flex;align-items:center;gap:16px;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:18px 22px;box-shadow:0 30px 60px -44px color-mix(in srgb,var(--dark) 60%,transparent)}
+.doc .ini{width:60px;height:60px;flex:none;border-radius:50%;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--accent) 18%,var(--tint));color:var(--dark);
+  font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.02em}
+.doc .ini.alt{background:color-mix(in srgb,var(--brand) 20%,var(--bg-2));color:var(--brand-text)}
+.doc h3{font-size:19px;margin:0 0 3px}
+.doc p{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.docs-note{font-size:14.5px;color:var(--muted);margin:6px 0 0;padding-left:4px;border-left:2px solid var(--line);padding:2px 0 2px 14px}
+
+/* ============================================================ SERVICES — title cards unroll */
+.card{display:flex;flex-direction:column;padding:28px 24px 26px}
+.card h3{margin:0}
+.card .ico{width:54px;height:54px;border-radius:16px;background:color-mix(in srgb,var(--accent) 14%,var(--tint));
+  color:var(--dark);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);margin-bottom:20px}
+.card .ico svg{width:28px;height:28px}
+.unroll{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left;
+  font-family:var(--display);font-weight:800;font-size:19.5px;line-height:1.14;letter-spacing:-.01em;color:var(--ink);
+  min-height:44px}
+.unroll:hover{color:var(--brand-text)}
+.chev{width:26px;height:26px;flex:none;border-radius:50%;background:var(--bg-2);position:relative;
+  transition:transform .3s var(--ease),background .2s}
+.chev::before{content:"";position:absolute;left:8px;top:9px;width:8px;height:8px;
+  border-right:2px solid var(--brand-text);border-bottom:2px solid var(--brand-text);transform:rotate(45deg)}
+.unroll[aria-expanded="true"] .chev{transform:rotate(180deg);background:color-mix(in srgb,var(--brand) 22%,transparent)}
+.drop{display:grid;grid-template-rows:0fr;transition:grid-template-rows .34s var(--ease)}
+.drop > .drop-in{overflow:hidden;min-height:0}
+.card.open .drop{grid-template-rows:1fr}
+.drop ul{list-style:none;margin:14px 0 0;padding:0}
+.drop li{position:relative;padding:7px 0 7px 20px;font-size:14.5px;color:var(--muted);line-height:1.5;border-bottom:var(--rule)}
+.drop li:last-child{border-bottom:0}
+.drop li::before{content:"";position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:50%;
+  background:color-mix(in srgb,var(--accent) 70%,transparent)}
+.drop-quote{margin:14px 0 0;font-family:var(--display);font-style:italic;font-size:15px;color:var(--ink);line-height:1.4}
+.drop-quote span{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-top:6px}
+@media (prefers-reduced-motion:reduce){.drop,.chev{transition:none}}
+
+/* ============================================================ SIGNATURE — START WITH THE CHART */
+.chart{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(22px,4vw,52px);align-items:start}
+.chart-rows{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(14px,2vw,24px);
+  box-shadow:0 40px 80px -50px color-mix(in srgb,var(--dark) 60%,transparent)}
+.chart-row{display:flex;align-items:baseline;gap:16px;width:100%;min-height:52px;
+  background:none;border:0;border-bottom:var(--rule);padding:8px 6px;cursor:pointer;text-align:left;
+  color:var(--ink);transition:background .2s var(--ease),color .2s}
+.chart-row:last-child{border-bottom:0}
+.chart-row i{font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.1em;color:var(--muted);
+  width:14px;flex:none;font-variant-numeric:tabular-nums}
+.chart-row span{font-family:var(--display);font-weight:800;letter-spacing:.16em;line-height:1;display:block}
+.chart-row:nth-child(1) span{font-size:clamp(30px,4.4vw,46px)}
+.chart-row:nth-child(2) span{font-size:clamp(24px,3.4vw,36px)}
+.chart-row:nth-child(3) span{font-size:clamp(19px,2.6vw,28px)}
+.chart-row:nth-child(4) span{font-size:clamp(16px,2.1vw,22px)}
+.chart-row:nth-child(5) span{font-size:clamp(14px,1.7vw,18px)}
+.chart-row:hover{background:color-mix(in srgb,var(--warm) 14%,transparent)}
+.chart-row[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--dark)}
+.chart-row[aria-pressed="true"] i{color:var(--brand-text)}
+.chart-card{background:var(--dark);color:#fff;border-radius:var(--r);padding:clamp(22px,3vw,34px);
+  display:flex;flex-direction:column;gap:18px;align-items:flex-start;
+  box-shadow:0 40px 80px -50px color-mix(in srgb,var(--dark) 80%,transparent)}
+.chart-out h3{font-size:clamp(23px,2.8vw,30px);color:#fff;margin:0 0 12px}
+.chart-out p{font-size:16px;color:rgba(255,255,255,.82);margin:0}
+.chart-card .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chart-card .chips span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;color:var(--warm);border:1px solid color-mix(in srgb,var(--warm) 45%,transparent);
+  border-radius:999px;padding:7px 13px}
+@media (max-width:820px){.chart{grid-template-columns:1fr}}
+
+/* ============================================================ REVIEWS — recreated initial discs */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.6vw,26px)}
+.rev{background:var(--paper);border:var(--rule);border-radius:var(--r);margin:0;padding:clamp(22px,2.6vw,30px);
+  display:flex;flex-direction:column;justify-content:space-between;gap:20px;
+  box-shadow:0 34px 66px -50px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rev blockquote{margin:0;font-family:var(--display);font-size:16px;line-height:1.5;color:var(--ink)}
+.rev blockquote::before{content:"“";display:block;font-size:44px;line-height:.5;color:var(--brand);margin-bottom:14px}
+.rev figcaption{display:flex;align-items:center;gap:12px}
+.rev .av{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--display);font-weight:800;font-size:18px;color:#fff;background:var(--accent)}
+.rev .av-2{background:var(--brand)}
+.rev .av-3{background:var(--dark)}
+.rev .who{font-weight:800;font-size:15px}
+.rev .who small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);
+  font-weight:600;margin-top:4px}
+.rev .stars{color:var(--warm);letter-spacing:.06em}
+@media (max-width:900px){.revs{grid-template-columns:1fr}}
+
+/* ============================================================ CONTACT lines (phone + directions) */
+.contact-lines{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px 12px;font-size:16px}
+.contact-lines .ic{font-size:15px}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Enumclaw Family Optometry Clinic — home">
+      <span class="wm">Enumclaw Family Optometry<small>Clinic · Enumclaw, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#about">Our doctors</a>
+        <a href="#services">Eye care</a>
+        <a href="#signature">Your visit</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Book a visit</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       ANIMATED-MARK OPENER. No real photograph of this office, these doctors
+       or this staff exists anywhere online (recon 2026-08-31), so the opener
+       is the practice name set as a typographic wordmark that pulls into
+       focus — the refraction moment. The mark IS the headline: no eyebrow,
+       no title card, two buttons. Replace with a real photo hero the moment
+       an in-person harvest happens. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <h1 class="sr-only">Enumclaw Family Optometry Clinic — family eye care in Enumclaw, Washington since 1984</h1>
+      <div class="mark" aria-hidden="true">
+        <span class="mk mk-1">ENUMCLAW</span>
+        <span class="mk mk-2">FAMILY</span>
+        <span class="mk mk-3">OPTOMETRY</span>
+        <span class="mk-rule"></span>
+        <span class="mk mk-4">CLINIC</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book an eye exam</a>
+        <a href="#signature" class="btn btn-ghost">What brings you in?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Live band. All seven days as rows, today lit, midday closure honoured
+       by the clock ("Closed for lunch · back at 1 pm"). Hours live HERE and
+       nowhere else on the page. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Mornings and <em>afternoons</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          2726 Griffin Ave, Ste B, Enumclaw, WA 98022<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=2726+Griffin+Ave+Ste+B+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">8 am–12 pm · 1–5 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">8 am–12 pm · 1–5 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">8 am–12 pm · 1–5 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">8 am–12 pm · 1–5 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">8 am–12 pm</span></li>
+        <li data-days="6" class="closed"><span class="day">Saturday</span><span class="time">Closed</span></li>
+        <li data-days="0" class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #about — the new chapter ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <div class="docs reveal" aria-label="Doctors currently seeing patients">
+          <article class="doc">
+            <span class="ini" aria-hidden="true">AS</span>
+            <div>
+              <h3>Dr. Alexander Shepherd, O.D.</h3>
+              <p>Seeing patients here</p>
+            </div>
+          </article>
+          <article class="doc">
+            <span class="ini alt" aria-hidden="true">SH</span>
+            <div>
+              <h3>Dr. Sarah Humrick, O.D.</h3>
+              <p>Newest to the practice</p>
+            </div>
+          </article>
+          <p class="docs-note">Dr. Paul Shepherd has retired after four decades of practice on the plateau.</p>
+        </div>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The new chapter</p>
+          <h2>Same practice, <em>new hands</em></h2>
+          <p class="lede">A lot of people in this town got their first pair of glasses in this building — and then brought their own kids back for the same thing.</p>
+          <p>The practice is mid-handoff. Dr. Paul Shepherd has stepped into retirement, and the office asked patients to join them in welcoming Dr. Sarah Humrick, who is already seeing families. Dr. Alexander Shepherd continues to see patients alongside her.</p>
+          <p>What patients keep writing about isn't the equipment. It's the check-in, the technician, and a doctor who takes the time to explain what's actually going on with your eyes before anyone talks about frames.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #services — title cards unroll ===================== -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Eye care</p>
+        <h2>What the practice <em>actually does</em></h2>
+        <p>Four things, in plain language. Tap any one to see what it involves.</p>
+      </div>
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.6 12S5.5 5.5 12 5.5 22.4 12 22.4 12 18.5 18.5 12 18.5 1.6 12 1.6 12z"/><circle cx="12" cy="12" r="3.1"/></svg></div>
+          <h3><button class="unroll" type="button" aria-expanded="false" aria-controls="u1">Comprehensive eye exams<span class="chev" aria-hidden="true"></span></button></h3>
+          <div class="drop" id="u1">
+            <div class="drop-in">
+            <ul>
+              <li>How clearly you see, near and far</li>
+              <li>How the two eyes work together</li>
+              <li>A look at the health of the eye itself</li>
+            </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="14" r="3.6"/><circle cx="18" cy="14" r="3.6"/><path d="M9.6 13.4c1.4-.9 3.4-.9 4.8 0"/><path d="M2.4 13.4 4 9.4M21.6 13.4 20 9.4"/></svg></div>
+          <h3><button class="unroll" type="button" aria-expanded="false" aria-controls="u2">Glasses and fitting<span class="chev" aria-hidden="true"></span></button></h3>
+          <div class="drop" id="u2">
+            <div class="drop-in">
+            <ul>
+              <li>An up-to-date prescription first</li>
+              <li>Frames you try on, not a catalogue</li>
+              <li>Fitted so they sit level and stay put</li>
+            </ul>
+            <p class="drop-quote">“Beautiful selection of glasses.” <span>— a line Google pulls out of their patient reviews</span></p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3"/><path d="M12 3.6v3M12 17.4v3M3.6 12h3M17.4 12h3"/></svg></div>
+          <h3><button class="unroll" type="button" aria-expanded="false" aria-controls="u3">Retinal imaging<span class="chev" aria-hidden="true"></span></button></h3>
+          <div class="drop" id="u3">
+            <div class="drop-in">
+            <ul>
+              <li>A photograph of the back of the eye</li>
+              <li>Compared against your earlier visits</li>
+              <li>Something the doctor can show you on screen</li>
+            </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18.5 8.2 8.9l3.4 5 2.6-3.4 5.8 8z"/><path d="M3 21h18"/><circle cx="17" cy="5.5" r="2"/></svg></div>
+          <h3><button class="unroll" type="button" aria-expanded="false" aria-controls="u4">Eye testing and diagnosis<span class="chev" aria-hidden="true"></span></button></h3>
+          <div class="drop" id="u4">
+            <div class="drop-in">
+            <ul>
+              <li>For blur, strain or end-of-day headaches</li>
+              <li>For a change you noticed suddenly</li>
+              <li>Next steps explained in plain language</li>
+            </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — START WITH THE CHART =====================
+       Their real service list turned into the counter conversation: the
+       visitor taps the reason they'd actually call, the chart line lights,
+       and the visit behind it appears. One tap, instant payoff, five lines. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Start with the chart</p>
+        <h2>What brings you <em>in?</em></h2>
+        <p>Tap a line.</p>
+      </div>
+      <div class="chart reveal">
+        <div class="chart-rows" role="group" aria-label="Reason for your visit">
+          <button class="chart-row" type="button" data-k="exam" aria-pressed="true"><i aria-hidden="true">1</i><span>EXAM</span></button>
+          <button class="chart-row" type="button" data-k="glasses" aria-pressed="false"><i aria-hidden="true">2</i><span>GLASSES</span></button>
+          <button class="chart-row" type="button" data-k="blurry" aria-pressed="false"><i aria-hidden="true">3</i><span>BLURRY</span></button>
+          <button class="chart-row" type="button" data-k="imaging" aria-pressed="false"><i aria-hidden="true">4</i><span>IMAGING</span></button>
+          <button class="chart-row" type="button" data-k="kids" aria-pressed="false"><i aria-hidden="true">5</i><span>KIDS</span></button>
+        </div>
+        <div class="chart-card">
+          <div class="chart-out" id="chartOut" aria-live="polite">
+            <h3 id="chartTitle">The yearly check</h3>
+            <p id="chartText">Even when nothing feels wrong. Most of what an exam looks for is quiet, and the doctor is comparing today against the last time you sat in the chair.</p>
+            <div class="chips" id="chartChips"></div>
+          </div>
+          <a class="btn btn-primary" href="#contact">Book this visit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews — real Google reviews, faces recreated ===================== -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Straight from their Google page</p>
+        <h2>What patients <em>write down</em></h2>
+      </div>
+      <div class="revs">
+        <figure class="rev reveal">
+          <blockquote>There is so much personality throughout the whole office. From the check in process, to the exam, to picking out glasses has been a great experience.</blockquote>
+          <figcaption>
+            <span class="av" aria-hidden="true">A</span>
+            <span class="who">Alyssa<small><span class="stars" aria-hidden="true">★★★★★</span> 2 months ago</small></span>
+          </figcaption>
+        </figure>
+        <figure class="rev reveal">
+          <blockquote>Your whole experience will be one of concern, compassion and kindness. They go over the top to make sure everything is done right. The office staff is so friendly and makes sure all of your questions are answered.</blockquote>
+          <figcaption>
+            <span class="av av-2" aria-hidden="true">D</span>
+            <span class="who">Diane<small><span class="stars" aria-hidden="true">★★★★★</span> a month ago</small></span>
+          </figcaption>
+        </figure>
+        <figure class="rev reveal">
+          <blockquote>Dr. Sarah Humrick is very nice and listens to her patients, she also helps them find the right prescription for their eyes. My two girls both saw her and they loved the way she explained how the eye works.</blockquote>
+          <figcaption>
+            <span class="av av-3" aria-hidden="true">S</span>
+            <span class="who">Sabrina<small><span class="stars" aria-hidden="true">★★★★★</span> 2 months ago</small></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting in the door</p>
+          <h2>Three things <em>before you come in</em></h2>
+          <ol class="steps">
+            <li><h3>Say who's coming</h3><p>One patient or the whole family — the front desk needs to know how many exams to plan for.</p></li>
+            <li><h3>Bring what you wear now</h3><p>Your current glasses tell the doctor how much has actually changed since the last prescription.</p></li>
+            <li><h3>We confirm the time</h3><p>The desk calls back with a slot that fits, and anything you should bring along.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span class="ic">📞</span><a href="tel:+13608253000">(360) 825-3000</a>
+            <span class="ic">📍</span><a href="https://www.google.com/maps/search/?api=1&amp;query=2726+Griffin+Ave+Ste+B+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's this about?<select name="topic"><option>An eye exam</option><option>Glasses</option><option>Something's changed with my vision</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Anything the doctor should know before your visit?"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — the front desk will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Ready when you are</p>
+        <h2>Due for an exam? <em>Let's get you in.</em></h2>
+      </div>
+      <!-- Identity facts, not counters — stated plainly, no count-up. -->
+      <div class="numbers reveal">
+        <div class="num"><b><i>est.</i> <span class="tnum">1984</span></b><span>The year the doors opened on Griffin Ave</span></div>
+        <div class="num"><b><span class="tnum">2</span></b><span>Doctors seeing patients right now</span></div>
+        <div class="num"><b><span class="tnum">4.6</span><i>★</i></b><span>Averaged across 54 Google reviews</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-primary">Request an appointment</a>
+        <a href="tel:+13608253000" class="btn btn-ghost">Call (360) 825-3000</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm">Enumclaw Family Optometry Clinic<small>Family eye care · Enumclaw, WA</small></span>
+        </div>
+        <p>Family eye care for the Enumclaw plateau.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>2726 Griffin Ave, Ste B<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+13608253000">(360) 825-3000</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#about">Our doctors</a><br><a href="#services">Eye care</a><br><a href="#signature">Your visit</a><br><a href="#reviews">Reviews</a><br><a href="#contact">Book a visit</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Enumclaw Family Optometry Clinic © <span id="year">2026</span></span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   WEBSITE FACTORY — site.js
+   Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
+   count-up numbers · contact form success.
+   The ONLY thing to edit per client is the HOURS block right below.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HOURS CONFIG  — fill from the client's Google listing.
+   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
+   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
+   null = closed that day. Closing past midnight: use 26 for 2 am.
+   ------------------------------------------------------------ */
+/* THIS PRACTICE CLOSES FOR LUNCH, so each day is a LIST of shifts rather than
+   one [open, close] pair. Monday–Thursday run 8–12 and 1–5; Friday is mornings
+   only; the weekend is closed. Verified 2026-08-31 against the clinic's own
+   site and its Yelp Location & Hours panel — the two agree exactly. */
+var HOURS = {
+  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  days: {
+    0: null,                          // Sunday      — closed
+    1: [[8, 12], [13, 17]],           // Monday      — 8–12, 1–5
+    2: [[8, 12], [13, 17]],           // Tuesday
+    3: [[8, 12], [13, 17]],           // Wednesday
+    4: [[8, 12], [13, 17]],           // Thursday
+    5: [[8, 12]],                     // Friday      — mornings only
+    6: null                           // Saturday    — closed
+  }
+};
+
+/* ------------------------------------------------------------
+   CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
+   Two functions site.js calls every minute. `p` is the Pacific "now":
+   {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
+
+   customClosure(p) → return a string to mark the whole day CLOSED
+                      ("Closed today for Labor Day"), or null.
+   customClose(p, close) → return an adjusted closing hour for today.
+
+   Reference-build example (path in README, "HOURS config"): Friday closed
+   at the earlier of 6 pm or SUNDOWN (NOAA sunset math), and US holidays
+   from their rate sheet returned a closure string. Port that logic here
+   only when the business actually has such a rule.
+   ------------------------------------------------------------ */
+function customClosure(p){ return null; }
+function customClose(p, close){ return close; }
+
+
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
+  var toggle=$('.nav-toggle'), nav=$('#main-nav');
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  if(toggle&&nav){
+    toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
+    $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
+    document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==toggle)setNav(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setNav(false);toggle.focus()}});
+  }
+  var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
+
+  /* ---------- Pacific time, wherever the viewer is ---------- */
+  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
+  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
+  var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
+    var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
+    var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
+    return o}catch(e){return null}})();
+  function pacificNow(){
+    if(DEMO) return DEMO;
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    var o={};parts.forEach(function(p){o[p.type]=p.value});
+    var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var h=parseInt(o.hour,10)%24, m=parseInt(o.minute,10);
+    return {day:days[o.weekday], h:h+m/60, y:parseInt(o.year,10), mo:parseInt(o.month,10)-1, d:parseInt(o.day,10)};
+  }
+  function fmt(h){h=h%24;var ap=h>=12?'pm':'am';var hh=Math.floor(h)%12;if(hh===0)hh=12;var mm=Math.round((h%1)*60);if(mm===60){mm=0;hh=(hh%12)+1}return hh+(mm?':'+(mm<10?'0':'')+mm:'')+' '+ap}
+  function dayName(d){return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d]}
+  function hoursFor(day){return HOURS.days[day]||null}
+
+  /* Split-shift aware. A day is a list of [open, close] shifts; the gap
+     between two shifts is the midday closure and gets its own wording so a
+     patient standing outside at 12:20 knows it's lunch, not "closed today". */
+  function computeStatus(){
+    var p=pacificNow(), d=p.day, h=p.h;
+    var closure=customClosure(p);
+    if(closure) return {open:false,text:'Closed today for '+closure};
+    var today=hoursFor(d), i;
+    if(today){
+      for(i=0;i<today.length;i++){
+        var open=today[i][0], close=customClose(p,today[i][1]);
+        if(h>=open&&h<close) return {open:true,text:'Open now · til '+fmt(close)};
+        if(h<open){
+          // before the first shift = not open yet; before a later shift = the lunch gap
+          if(i===0) return {open:false,text:'Opens today at '+fmt(open)};
+          return {open:false,text:'Closed for lunch · back at '+fmt(open)};
+        }
+      }
+    }
+    // find the next open day
+    for(i=1;i<=7;i++){
+      var nd=(d+i)%7, nh=hoursFor(nd);
+      // nh is a list of shifts — the day's first opening is nh[0][0], not nh[0]
+      if(nh){var label=i===1?'tomorrow':dayName(nd);return {open:false,text:'Closed · opens '+label+' at '+fmt(nh[0][0])}}
+    }
+    return {open:false,text:'Closed'};
+  }
+  function applyStatus(){
+    var s=computeStatus(), p=pacificNow();
+    var hp=$('#hdrLive'), ht=$('#hdrLiveText');
+    // header pill: "Open · til 5 pm" / "Closed · back at 1 pm" / "Closed · opens tomorrow at 8 am"
+    var tail=s.text.replace(/^Open now · /,'').replace(/^Closed for lunch · /,'').replace(/^Closed · /,'');
+    tail=tail.charAt(0).toLowerCase()+tail.slice(1);   // it reads as a clause after "Open ·" / "Closed ·"
+    if(hp&&ht){hp.className='hdr-live '+(s.open?'is-open':'is-closed');ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+tail+'</span>';}
+    var sl=$('#statusLine'), st=$('#statusText');
+    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
+    $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
+  }
+  applyStatus(); setInterval(applyStatus,60000);
+  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
+
+  /* ---------- scroll-reveal + count-up ---------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      en.target.classList.add('in');
+      $$('.count',en.target).forEach(function(c){
+        if(c.dataset.done)return; c.dataset.done='1';
+        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
+        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(reduce){c.textContent=to;return}
+        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
+        requestAnimationFrame(step);
+      });
+      io.unobserve(en.target);
+    });
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  $$('.reveal').forEach(function(el){io.observe(el)});
+
+  /* ---------- contact form (front-end success state only; wire a backend at launch) ---------- */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){form.addEventListener('submit',function(e){e.preventDefault();ok.classList.add('show');ok.setAttribute('role','status');form.querySelector('button[type=submit]').disabled=true})}
+
+  /* ---------- TITLE CARDS UNROLL ----------
+     The service headline IS the tap target; the real list rolls out in place
+     under a downward chevron. No plus signs, no modals, no links away. */
+  $$('.unroll').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('.card'), open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      card.classList.toggle('open',!open);
+    });
+  });
+
+  /* ---------- SIGNATURE GADGET — START WITH THE CHART ----------
+     Five acuity lines, each one a reason a patient actually calls. Tap a line:
+     it lights, and the visit behind it lands in the card beside it. The chips
+     name only services this practice has verified it provides. */
+  var VISITS={
+    exam:{
+      t:'The yearly check',
+      p:'Even when nothing feels wrong. Most of what an exam looks for is quiet — the doctor is comparing today against the last time you sat in the chair.',
+      c:['Comprehensive eye exam','Retinal imaging']
+    },
+    glasses:{
+      t:'A new pair',
+      p:'The prescription gets measured first, then you spend real time at the board trying frames on before anything is ordered or fitted.',
+      c:['Comprehensive eye exam','Glasses and fitting']
+    },
+    blurry:{
+      t:'Something has changed',
+      p:'Blur that crept in, strain by the end of the day, or a change that showed up all at once. This is the visit worth booking sooner rather than at the next annual.',
+      c:['Eye testing and diagnosis']
+    },
+    imaging:{
+      t:'A look at the back of the eye',
+      p:'A photograph of the retina, kept on file so this year can be held up against last year. The doctor can pull it up on screen and walk you through it.',
+      c:['Retinal imaging']
+    },
+    kids:{
+      t:'Bringing the kids',
+      p:'It is a family practice, and a child’s first exam is mostly about whether the two eyes are working together — plus a doctor who will explain it to them, not just to you.',
+      c:['Comprehensive eye exam','Eye testing and diagnosis']
+    }
+  };
+  var rows=$$('.chart-row'), cT=$('#chartTitle'), cP=$('#chartText'), cC=$('#chartChips');
+  function showVisit(key){
+    var v=VISITS[key]; if(!v)return;
+    cT.textContent=v.t; cP.textContent=v.p;
+    cC.innerHTML=v.c.map(function(x){return '<span>'+x+'</span>'}).join('');
+    rows.forEach(function(r){r.setAttribute('aria-pressed',r.getAttribute('data-k')===key?'true':'false')});
+  }
+  if(rows.length&&cT&&cP&&cC){
+    rows.forEach(function(r){r.addEventListener('click',function(){showVisit(r.getAttribute('data-k'))})});
+    showVisit('exam');   // never an empty state — line 1 is lit on arrival
+  }
+
+})();
+
+</script>
+</body>
+</html>
