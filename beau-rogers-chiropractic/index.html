@@ -551,11 +551,12 @@ footer a:hover{text-decoration:underline}
 }
 
 /* hero reverted to the anatomy plate — logo watermark replaces the B monogram */
-
-@media (max-width:900px){}
+.hero-logo{position:absolute;z-index:-1;left:-2.5%;top:-4%;width:clamp(340px,46vw,620px);
+  height:auto;opacity:.13;pointer-events:none;user-select:none}
+@media (max-width:900px){.hero-logo{width:clamp(300px,72vw,520px);top:-2%;opacity:.11}}
 
 /* ---- HERO FIT PASS: nothing overlaps, nothing crops, phone + laptop ---- */
-
+.hero-logo{mix-blend-mode:multiply;opacity:.16}
 #hero .hero-grid{padding-top:clamp(24px,4vh,52px);padding-bottom:clamp(34px,5vh,64px)}
 #hero .hero-copy{position:relative;z-index:3}
 #hero .cred-rail{margin-top:clamp(18px,2.6vh,30px)}
@@ -582,7 +583,7 @@ footer a:hover{text-decoration:underline}
   .hero-art svg{max-height:44vh;width:auto;margin-left:auto}
   #hero .hero-copy .eyebrow,#hero .hero-copy h1{padding-right:clamp(104px,25vw,144px)}
   #hero .hero-copy .sub{max-width:32ch}
-
+  .hero-logo{width:clamp(280px,80vw,420px);top:-1%;left:-3%;opacity:.13}
   #hero .cred-rail{gap:8px}
 }
 
@@ -641,10 +642,10 @@ footer a:hover{text-decoration:underline}
 }
 
 /* ---- final hero fit: nothing clipped on phone or laptop ---- */
-
+.hero-logo{top:-6%;left:-4%}
 @media (max-width:900px){
   #hero .hero-copy .eyebrow{font-size:.6rem;letter-spacing:.13em;white-space:nowrap;padding-right:0}
-
+  .hero-logo{top:-3%}
 }
 @media (max-width:700px){
   #hero .hero-grid{padding-top:14px;padding-bottom:20px}
@@ -661,54 +662,463 @@ footer a:hover{text-decoration:underline}
   #hero .creed-hero{margin-top:14px}
 }
 
-/* ================= HERO SIGNATURE: the spine assembles, their bow appears,
-   the arrow flies, and the spine straightens into good posture ================= */
+/* ============ HERO SIGNATURE — their own mark, animated:
+   the spine assembles → the bow appears → the arrow flies → the spine straightens ============ */
 .hero-art svg{overflow:visible}
-.v-str,.d-str,.bow,.arrow{transform-box:view-box;transform-origin:0 0}
+.v-str,.d-str,.bow,.arrow,.nock{transform-box:view-box;transform-origin:0 0}
 
 @keyframes vStraighten{
   from{transform:translate(var(--x0),var(--y0)) rotate(var(--r0))}
   to  {transform:translate(var(--x1),var(--y0)) rotate(0deg)}
 }
 @keyframes dStraighten{
-  from{transform:translate(var(--cx),var(--cy)) rotate(var(--r0)) translate(calc(-1*var(--cx)),calc(-1*var(--cy)))}
-  to  {transform:translate(var(--dx1),0px) rotate(0deg)}
+  from{transform:translate(var(--cx),var(--cy)) rotate(var(--r0)) translate(calc(-1 * var(--cx)),calc(-1 * var(--cy)))}
+  to  {transform:translate(var(--dx1),0px)}
 }
-.v-str{animation:vStraighten .85s cubic-bezier(.55,0,.2,1) both;
-  animation-delay:calc(3.05s + var(--i) * 16ms)}
-.d-str{animation:dStraighten .85s cubic-bezier(.55,0,.2,1) both;
-  animation-delay:calc(3.05s + var(--i) * 16ms)}
+.v-str{animation:vStraighten .8s cubic-bezier(.5,0,.2,1) both calc(3.15s + var(--i) * 14ms)}
+.d-str{animation:dStraighten .8s cubic-bezier(.5,0,.2,1) both calc(3.15s + var(--i) * 14ms)}
 
-/* --- the bow, in their own mark's language --- */
+/* the bow, in the language of their logo */
 .bow-limb{fill:none;stroke:var(--brand);stroke-width:5;stroke-linecap:round;
-  stroke-dasharray:560;stroke-dashoffset:560;animation:draw .85s ease 1.45s forwards}
+  stroke-dasharray:600;stroke-dashoffset:600;
+  animation:drawIn .9s ease 1.5s forwards, limbRelax .9s ease 3.15s forwards}
 .bow-string{fill:none;stroke:var(--brand-text);stroke-width:2.6;stroke-linecap:round;
-  stroke-dasharray:260;stroke-dashoffset:260;animation:draw .5s ease 2.05s forwards}
-.bow-string.s2{animation-delay:2.2s}
-.nock{fill:var(--brand-text);opacity:0;animation:pop .35s cubic-bezier(.2,1.5,.4,1) 2.55s forwards}
+  stroke-dasharray:280;stroke-dashoffset:280;animation:drawIn .45s ease 2.1s forwards}
+.bow-string.s2{animation-delay:2.28s}
+.nock{fill:var(--brand-text);opacity:0;animation:nockPop .35s cubic-bezier(.2,1.6,.4,1) 2.6s forwards}
 .arrow-shaft,.arrow-fletch{fill:none;stroke:var(--brand-text);stroke-width:3;stroke-linecap:round}
 .arrow-head{fill:var(--brand-text)}
-.arrow{opacity:0;animation:nocked .3s ease 2.7s forwards, loose .55s cubic-bezier(.5,0,.35,1) 3.05s forwards}
+.arrow{opacity:0;animation:nockUp .3s ease 2.72s forwards, loose .6s cubic-bezier(.45,0,.3,1) 3.15s forwards}
+.bow{animation:bowSettle .9s ease 3.5s forwards}
 
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes pop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
-@keyframes nocked{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
-@keyframes loose{
-  0%{opacity:1;transform:translateX(0)}
-  70%{opacity:1}
-  100%{opacity:0;transform:translateX(190px)}
-}
-/* the limb relaxes as the arrow leaves */
-.bow-limb{animation:draw .85s ease 1.45s forwards, relax 1s ease 3.05s forwards}
-@keyframes relax{to{opacity:.32;stroke-width:3.4}}
-.bow-string{animation-fill-mode:forwards}
-.bow{animation:bowFade 1s ease 3.5s forwards}
-@keyframes bowFade{to{opacity:.22}}
+@keyframes drawIn{to{stroke-dashoffset:0}}
+@keyframes nockPop{from{opacity:0;transform:translate(131px,292px) scale(.2) translate(-131px,-292px)}
+                   to{opacity:1;transform:none}}
+@keyframes nockUp{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+@keyframes loose{0%{opacity:1;transform:translateX(0)}68%{opacity:1}100%{opacity:0;transform:translateX(210px)}}
+@keyframes limbRelax{to{stroke-width:3.2;opacity:.5}}
+@keyframes bowSettle{to{opacity:.26}}
+
+
 
 @media (prefers-reduced-motion:reduce){
-  .v-str,.d-str,.bow-limb,.bow-string,.nock,.arrow,.bow{animation:none!important}
+  .v-str,.d-str,.bow-limb,.bow-string,.nock,.arrow,.bow,.v-in{animation:none!important}
   .arrow,.nock{opacity:1}
   .bow-limb,.bow-string{stroke-dashoffset:0}
+  .v-str{transform:translate(var(--x0),var(--y0)) rotate(var(--r0))}
+  .d-str{transform:translate(var(--cx),var(--cy)) rotate(var(--r0)) translate(calc(-1 * var(--cx)),calc(-1 * var(--cy)))}
+}
+
+/* plate sizing — height-driven so the new width never crowds the copy */
+.hero-art{width:auto!important}
+.hero-art svg{width:auto!important;margin-left:auto}
+@media (min-width:981px){
+  .hero-art{top:clamp(34px,6vh,74px);right:clamp(16px,3vw,64px)}
+  .hero-art svg{height:clamp(430px,64vh,620px);max-height:none}
+  #hero .hero-copy{max-width:min(56%,600px)}
+}
+@media (min-width:641px) and (max-width:980px){
+  .hero-art{top:26px;right:8px}
+  .hero-art svg{height:clamp(330px,50vh,450px);max-height:none}
+  #hero .hero-copy{max-width:min(64%,540px)}
+}
+@media (max-width:640px){
+  .hero-art{top:8px;right:0}
+  .hero-art svg{height:clamp(230px,33vh,310px);max-height:none}
+  #hero .hero-copy .eyebrow,#hero .hero-copy h1{padding-right:clamp(96px,27vw,140px)}
+}
+
+/* the bow stays legible after the shot; plate reads clearly on every size */
+@keyframes bowSettle{to{opacity:.9}}
+.bow-limb{stroke-width:5}
+@keyframes limbRelax{to{stroke-width:4;opacity:.95}}
+.hero-art{opacity:1!important}
+@media (max-width:640px){.hero-art{opacity:.95!important}}
+.bow-string{stroke:color-mix(in srgb,var(--ink) 78%,transparent)}
+.arrow-shaft,.arrow-fletch{stroke:color-mix(in srgb,var(--ink) 82%,transparent)}
+.arrow-head{fill:color-mix(in srgb,var(--ink) 82%,transparent)}
+@keyframes loose{0%{opacity:1;transform:translateX(0)}72%{opacity:1}100%{opacity:0;transform:translateX(240px)}}
+
+/* ---- full-draw bow: the arrow pulls back across the headline, then looses ---- */
+.str-logo,.str-deep{fill:none;stroke:color-mix(in srgb,var(--ink) 80%,transparent);
+  stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.str-logo{opacity:0;animation:strLogo 1s ease both}
+.str-deep{opacity:0;animation:strDeep 1s ease both}
+@keyframes strLogo{
+  0%,18%{opacity:0}
+  22%,40%{opacity:1}
+  46%,58%{opacity:0}
+  64%,100%{opacity:1}
+}
+@keyframes strDeep{
+  0%,40%{opacity:0}
+  48%,58%{opacity:1}
+  62%,100%{opacity:0}
+}
+.str-logo,.str-deep{animation-duration:5s;animation-delay:0s}
+
+.nock-g{transform-box:view-box;transform-origin:0 0;opacity:0;
+  animation:nockLife 5s ease both}
+@keyframes nockLife{
+  0%,36%{opacity:0;transform:translateX(0)}
+  42%{opacity:1;transform:translateX(0)}
+  58%{opacity:1;transform:translateX(-209px)}
+  60%{opacity:1;transform:translateX(0)}
+  100%{opacity:1;transform:translateX(0)}
+}
+
+.arrow{opacity:0;animation:arrowLife 5s cubic-bezier(.4,0,.3,1) both}
+@keyframes arrowLife{
+  0%,36%{opacity:0;transform:translateX(0)}
+  42%{opacity:1;transform:translateX(0)}
+  56%{opacity:1;transform:translateX(-209px)}
+  58%{opacity:1;transform:translateX(-209px)}
+  63%{opacity:1;transform:translateX(120px)}
+  70%{opacity:0;transform:translateX(330px)}
+  85%{opacity:0;transform:translateX(0)}
+  100%{opacity:1;transform:translateX(0)}
+}
+
+/* spine straightens the instant the string is loosed (58% of 5s = 2.9s) */
+.v-str{animation-delay:calc(2.95s + var(--i) * 14ms)}
+.d-str{animation-delay:calc(2.95s + var(--i) * 14ms)}
+.bow-limb{animation:drawIn .8s ease 1.15s forwards, limbRelax .7s ease 2.95s forwards}
+.bow{animation:none;opacity:1}
+.hero-art svg{overflow:visible}
+
+@media (prefers-reduced-motion:reduce){
+  .str-logo,.str-deep,.nock-g,.arrow{animation:none!important}
+  .str-logo,.nock-g,.arrow{opacity:1}
+  .str-deep{opacity:0}
+}
+
+/* ---- timing: build → pull back → HOLD half a second → loose ---- */
+/* 5s cycle · pull 2.10s→2.70s · hold 2.70s→3.20s · release 3.20s */
+@keyframes strLogo{
+  0%,38%{opacity:0}
+  42%{opacity:1}
+  54%,64%{opacity:0}
+  67%,100%{opacity:1}
+}
+@keyframes strDeep{
+  0%,44%{opacity:0}
+  54%,64%{opacity:1}
+  67%,100%{opacity:0}
+}
+@keyframes nockLife{
+  0%,38%{opacity:0;transform:translateX(0)}
+  42%{opacity:1;transform:translateX(0)}
+  54%,64%{opacity:1;transform:translateX(-209px)}
+  67%,100%{opacity:1;transform:translateX(0)}
+}
+@keyframes arrowLife{
+  0%,38%{opacity:0;transform:translateX(0)}
+  42%{opacity:1;transform:translateX(0)}
+  54%{opacity:1;transform:translateX(-209px)}
+  64%{opacity:1;transform:translateX(-209px)}
+  68%{opacity:1;transform:translateX(150px)}
+  73%{opacity:0;transform:translateX(360px)}
+  86%{opacity:0;transform:translateX(0)}
+  96%,100%{opacity:1;transform:translateX(0)}
+}
+.str-logo,.str-deep,.nock-g{animation-timing-function:cubic-bezier(.4,0,.3,1)}
+.arrow{animation-timing-function:cubic-bezier(.35,0,.25,1)}
+/* the spine straightens on the loose (64% of 5s = 3.20s) */
+.v-str,.d-str{animation-delay:calc(3.2s + var(--i) * 13ms)!important}
+.bow-limb{animation:drawIn .8s ease 1.05s forwards, limbRelax .6s ease 3.2s forwards}
+
+/* ---- the spine is the bow: no separate limb, and the string clears out after the shot ---- */
+.bow-limb{display:none}
+@keyframes strLogo{
+  0%,38%{opacity:0}
+  42%{opacity:1}
+  54%,64%{opacity:0}
+  100%{opacity:0}
+}
+@keyframes strDeep{
+  0%,44%{opacity:0}
+  54%,64%{opacity:1}
+  70%,100%{opacity:0}
+}
+@keyframes nockLife{
+  0%,38%{opacity:0;transform:translateX(0)}
+  42%{opacity:1;transform:translateX(0)}
+  54%,64%{opacity:1;transform:translateX(-209px)}
+  70%,100%{opacity:0;transform:translateX(-209px)}
+}
+@keyframes arrowLife{
+  0%,38%{opacity:0;transform:translateX(0)}
+  42%{opacity:1;transform:translateX(0)}
+  54%{opacity:1;transform:translateX(-209px)}
+  64%{opacity:1;transform:translateX(-209px)}
+  68%{opacity:1;transform:translateX(150px)}
+  74%,100%{opacity:0;transform:translateX(380px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .str-logo{opacity:1}.str-deep,.nock-g,.arrow{opacity:0}
+}
+
+/* ---- the plate is bone-and-tan, not green ---- */
+.hero-art{--bone:#F0E6D2;--bone-2:#E6D8BC;--tan:#D9BE8C;--tan-2:#C7A469;--plate-ink:#6B563A}
+.hero-art .v-body{fill:var(--bone);stroke:var(--plate-ink);stroke-width:1.6}
+.hero-art .v-spin{fill:var(--bone-2);stroke:var(--plate-ink);stroke-width:1.4}
+.hero-art .v-line{fill:none;stroke:var(--plate-ink);stroke-width:1.2;opacity:.55}
+.hero-art .v-nub{fill:var(--plate-ink);opacity:.45}
+.hero-art .disc{fill:var(--tan-2);opacity:.5}
+.hero-art .r-c .v-body{fill:var(--bone)}
+.hero-art .r-t .v-body{fill:color-mix(in srgb,var(--tan) 26%,var(--bone))}
+.hero-art .r-l .v-body{fill:color-mix(in srgb,var(--tan) 44%,var(--bone))}
+.hero-art .r-s .v-body{fill:color-mix(in srgb,var(--tan) 58%,var(--bone))}
+.hero-art .str-logo,.hero-art .str-deep{stroke:#3A2E1E;stroke-width:2.4}
+.hero-art .nock{fill:#3A2E1E}
+.hero-art .arrow-shaft,.hero-art .arrow-fletch{stroke:#3A2E1E}
+.hero-art .arrow-head{fill:#3A2E1E}
+
+/* ================= the string now tracks the arrow (same keyframes, same easing),
+   so nothing trails behind it ================= */
+.str-logo,.str-deep,.nock-g{display:none!important}
+
+.bow-string{
+  fill:none;stroke:#3A2E1E;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+  opacity:0;
+  animation:stringPull 5s cubic-bezier(.33,0,.25,1) both;
+}
+.arrow{
+  opacity:0;
+  animation:arrowPull 5s cubic-bezier(.33,0,.25,1) both;
+  will-change:transform,opacity;
+}
+.nock{fill:#3A2E1E}
+
+@keyframes stringPull{
+  0%,38%  {opacity:0; d:path("M213 50 L131 292 L241 508")}
+  42%     {opacity:1; d:path("M213 50 L131 292 L241 508")}
+  54%     {opacity:1; d:path("M213 50 L-78 292 L241 508")}
+  64%     {opacity:1; d:path("M213 50 L-78 292 L241 508")}
+  68%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+  74%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+  82%,100%{opacity:0; d:path("M213 50 L206 292 L241 508")}
+}
+@keyframes arrowPull{
+  0%,38%  {opacity:0; transform:translateX(0)}
+  42%     {opacity:1; transform:translateX(0)}
+  54%     {opacity:1; transform:translateX(-209px)}
+  64%     {opacity:1; transform:translateX(-209px)}
+  68%     {opacity:1; transform:translateX(150px)}
+  74%,100%{opacity:0; transform:translateX(400px)}
+}
+
+/* browsers without CSS d-animation still get the drawn bow, just without the pull */
+@supports not (d: path("M0 0 L1 1")){
+  .bow-string{animation:stringFade 5s ease both}
+  @keyframes stringFade{0%,38%{opacity:0}42%,74%{opacity:1}82%,100%{opacity:0}}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .bow-string,.arrow{animation:none!important;opacity:1}
+}
+
+/* ---- the crack: the spine snaps straight exactly as the arrow passes through it ---- */
+.v-str{animation:vStraighten .16s cubic-bezier(.25,1.15,.35,1) both calc(3.14s + var(--i) * 2.5ms)!important}
+.d-str{animation:dStraighten .16s cubic-bezier(.25,1.15,.35,1) both calc(3.14s + var(--i) * 2.5ms)!important}
+
+/* string reads clearly at every plate size */
+.bow-string{stroke-width:4.2}
+.arrow-shaft,.arrow-fletch{stroke-width:4.2}
+.nock{r:5.5}
+
+/* ---- phone: shorter eyebrow and a shorter draw so the string never crosses the type ---- */
+.eb-short{display:none}
+@media (max-width:640px){
+  .eb-long{display:none}
+  .eb-short{display:inline}
+  #hero .hero-copy .eyebrow,#hero .hero-copy h1{padding-right:clamp(112px,30vw,150px)}
+  .hero-art svg{height:clamp(250px,36vh,330px)}
+  .hero-art{top:6px;right:-4px}
+
+  @keyframes stringPull{
+    0%,38%  {opacity:0; d:path("M213 50 L131 292 L241 508")}
+    42%     {opacity:1; d:path("M213 50 L131 292 L241 508")}
+    54%     {opacity:1; d:path("M213 50 L48 292 L241 508")}
+    64%     {opacity:1; d:path("M213 50 L48 292 L241 508")}
+    68%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    74%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    82%,100%{opacity:0; d:path("M213 50 L206 292 L241 508")}
+  }
+  @keyframes arrowPull{
+    0%,38%  {opacity:0; transform:translateX(0)}
+    42%     {opacity:1; transform:translateX(0)}
+    54%     {opacity:1; transform:translateX(-83px)}
+    64%     {opacity:1; transform:translateX(-83px)}
+    68%     {opacity:1; transform:translateX(150px)}
+    74%,100%{opacity:0; transform:translateX(400px)}
+  }
+  /* the scroll cue sits clear of the closing line */
+  #hero .hero-grid{padding-bottom:52px}
+  .hero-scroll-hint{bottom:12px}
+}
+
+/* ---- phone final: deeper draw over clear space, hero trimmed to one screen ---- */
+@media (max-width:640px){
+  @keyframes stringPull{
+    0%,38%  {opacity:0; d:path("M213 50 L131 292 L241 508")}
+    42%     {opacity:1; d:path("M213 50 L131 292 L241 508")}
+    54%     {opacity:1; d:path("M213 50 L-19 292 L241 508")}
+    64%     {opacity:1; d:path("M213 50 L-19 292 L241 508")}
+    68%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    74%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    82%,100%{opacity:0; d:path("M213 50 L206 292 L241 508")}
+  }
+  @keyframes arrowPull{
+    0%,38%  {opacity:0; transform:translateX(0)}
+    42%     {opacity:1; transform:translateX(0)}
+    54%     {opacity:1; transform:translateX(-150px)}
+    64%     {opacity:1; transform:translateX(-150px)}
+    68%     {opacity:1; transform:translateX(150px)}
+    74%,100%{opacity:0; transform:translateX(400px)}
+  }
+  #hero .hero-copy h1{font-size:clamp(1.95rem,8.1vw,2.5rem);margin:6px 0 8px}
+  #hero .hero-copy .sub{margin-bottom:13px;font-size:.94rem}
+  #hero .cred-rail{margin-top:13px;gap:5px}
+  #hero .cred-rail .cred{padding:7px 11px}
+  #hero .creed-hero{margin-top:11px;font-size:.9rem}
+  #hero .hero-grid{padding-top:10px;padding-bottom:46px}
+  #hero .btn-row{gap:9px}
+}
+
+/* ---- large screens: one-line eyebrow, deeper draw, hero trimmed to one screen ---- */
+@media (min-width:981px){
+  #hero .hero-copy .eyebrow,#hero .hero-copy h1{padding-right:0}
+  #hero .hero-copy .eyebrow{white-space:nowrap}
+  #hero .hero-copy h1{font-size:clamp(2.5rem,4.4vw,3.6rem);line-height:1.04;margin:10px 0 10px}
+  #hero .hero-copy .sub{margin-bottom:16px;font-size:1rem;line-height:1.5}
+  #hero .hero-grid{padding-top:20px;padding-bottom:30px}
+  #hero .cred-rail{margin-top:14px;gap:6px}
+  #hero .cred-rail .cred{padding:7px 13px}
+  #hero .creed-hero{margin-top:12px;font-size:1rem}
+
+  @keyframes stringPull{
+    0%,38%  {opacity:0; d:path("M213 50 L131 292 L241 508")}
+    42%     {opacity:1; d:path("M213 50 L131 292 L241 508")}
+    54%     {opacity:1; d:path("M213 50 L-230 292 L241 508")}
+    64%     {opacity:1; d:path("M213 50 L-230 292 L241 508")}
+    68%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    74%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    82%,100%{opacity:0; d:path("M213 50 L206 292 L241 508")}
+  }
+  @keyframes arrowPull{
+    0%,38%  {opacity:0; transform:translateX(0)}
+    42%     {opacity:1; transform:translateX(0)}
+    54%     {opacity:1; transform:translateX(-361px)}
+    64%     {opacity:1; transform:translateX(-361px)}
+    68%     {opacity:1; transform:translateX(150px)}
+    74%,100%{opacity:0; transform:translateX(430px)}
+  }
+}
+
+/* ===== FIX 1: clear the dash left over from an earlier draw-on version =====
+   it was clipping the string to a 280-unit segment, so only part of it ever showed */
+.bow-string{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+
+/* ===== FIX 2: the straighten runs ~40% slower, and the arrow's flight through
+   the spine is slowed to match so it still clears a straight back ===== */
+.v-str{animation:vStraighten .27s cubic-bezier(.3,1.06,.36,1) both calc(3.17s + var(--i) * 2ms)!important}
+.d-str{animation:dStraighten .27s cubic-bezier(.3,1.06,.36,1) both calc(3.17s + var(--i) * 2ms)!important}
+
+/* release phase stretched 64%→70% (was 64%→68%) at every size */
+@keyframes arrowPull{
+  0%,38%  {opacity:0; transform:translateX(0)}
+  42%     {opacity:1; transform:translateX(0)}
+  54%     {opacity:1; transform:translateX(-209px)}
+  64%     {opacity:1; transform:translateX(-209px)}
+  68.4%   {opacity:1; transform:translateX(150px)}
+  75%,100%{opacity:0; transform:translateX(400px)}
+}
+@keyframes stringPull{
+  0%,38%  {opacity:0; d:path("M213 50 L131 292 L241 508")}
+  42%     {opacity:1; d:path("M213 50 L131 292 L241 508")}
+  54%     {opacity:1; d:path("M213 50 L-78 292 L241 508")}
+  64%     {opacity:1; d:path("M213 50 L-78 292 L241 508")}
+  68.4%   {opacity:1; d:path("M213 50 L206 292 L241 508")}
+  75%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+  83%,100%{opacity:0; d:path("M213 50 L206 292 L241 508")}
+}
+@media (max-width:640px){
+  @keyframes arrowPull{
+    0%,38%  {opacity:0; transform:translateX(0)}
+    42%     {opacity:1; transform:translateX(0)}
+    54%     {opacity:1; transform:translateX(-150px)}
+    64%     {opacity:1; transform:translateX(-150px)}
+    68.4%   {opacity:1; transform:translateX(150px)}
+    75%,100%{opacity:0; transform:translateX(400px)}
+  }
+  @keyframes stringPull{
+    0%,38%  {opacity:0; d:path("M213 50 L131 292 L241 508")}
+    42%     {opacity:1; d:path("M213 50 L131 292 L241 508")}
+    54%     {opacity:1; d:path("M213 50 L-19 292 L241 508")}
+    64%     {opacity:1; d:path("M213 50 L-19 292 L241 508")}
+    68.4%   {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    75%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    83%,100%{opacity:0; d:path("M213 50 L206 292 L241 508")}
+  }
+}
+@media (min-width:981px){
+  @keyframes arrowPull{
+    0%,38%  {opacity:0; transform:translateX(0)}
+    42%     {opacity:1; transform:translateX(0)}
+    54%     {opacity:1; transform:translateX(-361px)}
+    64%     {opacity:1; transform:translateX(-361px)}
+    68.4%   {opacity:1; transform:translateX(150px)}
+    75%,100%{opacity:0; transform:translateX(430px)}
+  }
+  @keyframes stringPull{
+    0%,38%  {opacity:0; d:path("M213 50 L131 292 L241 508")}
+    42%     {opacity:1; d:path("M213 50 L131 292 L241 508")}
+    54%     {opacity:1; d:path("M213 50 L-230 292 L241 508")}
+    64%     {opacity:1; d:path("M213 50 L-230 292 L241 508")}
+    68.4%   {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    75%     {opacity:1; d:path("M213 50 L206 292 L241 508")}
+    83%,100%{opacity:0; d:path("M213 50 L206 292 L241 508")}
+  }
+}
+
+/* ---- spine straighten: 30% slower than the original snap; arrow ~10% slower ---- */
+.v-str{animation:vStraighten .21s cubic-bezier(.3,1.05,.35,1) both calc(3.19s + var(--i) * 2ms)!important}
+.d-str{animation:dStraighten .21s cubic-bezier(.3,1.05,.35,1) both calc(3.19s + var(--i) * 2ms)!important}
+
+/* ---- AUDIT FIX 1: the nock carried a stale opacity:0 + nockPop from an earlier
+   build, so the arrow drew back with no tail dot for ~0.5s and then popped one in.
+   It belongs to the .arrow group, which already handles its fade. ---- */
+.nock{opacity:1!important;animation:none!important}
+
+/* ---- AUDIT FIX 2: three later base rules re-declared .v-str/.d-str with
+   !important, which silently defeated the reduced-motion override. This block is
+   last, so it wins for anyone who has reduced motion turned on. ---- */
+@media (prefers-reduced-motion:reduce){
+  .v-str,.d-str{animation:none!important}
+  .v-str{transform:translate(var(--x0),var(--y0)) rotate(var(--r0))!important}
+  .d-str{transform:translate(var(--cx),var(--cy)) rotate(var(--r0)) translate(calc(-1 * var(--cx)),calc(-1 * var(--cy)))!important}
+}
+
+/* ================= SAFARI FIX =================
+   The string used to track the arrow by animating the SVG `d` property in CSS
+   keyframes. Chrome supports that; Safari (and therefore every iPhone) does not
+   — it silently ignores the keyframes and leaves the string parked at rest while
+   the arrow pulls back without it.
+
+   The string is now driven in script instead: each frame it reads the arrow's
+   actual rendered position and pins its apex to the arrow's tail. That is exact
+   tracking by construction, uses only setAttribute, and works in every browser.
+   Every `d:path()` keyframe below is inert once this block loads.            */
+@keyframes stringPull{
+  0%,38%  {opacity:0}
+  42%     {opacity:1}
+  74%     {opacity:1}
+  83%,100%{opacity:0}
+}
+.bow-string{
+  animation:stringPull 5s cubic-bezier(.33,0,.25,1) both!important;
+  stroke-dasharray:none!important;stroke-dashoffset:0!important;
 }
 </style>
 </head>
@@ -737,7 +1147,7 @@ footer a:hover{text-decoration:underline}
   <div class="grain" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Chiropractic · Enumclaw, Washington</p>
+      <p class="eyebrow"><span class="eb-long">Chiropractic · Enumclaw, Washington</span><span class="eb-short">Enumclaw, Washington</span></p>
       <h1><span class="line">Carried in.</span><span class="line hl">Danced out.</span></h1>
       
       <p class="sub">
@@ -772,21 +1182,17 @@ footer a:hover{text-decoration:underline}
     </div>
 
     <div class="hero-art" aria-hidden="true"><svg class="spine-svg" style="aspect-ratio:226/552" viewBox="104 26 226 552" role="img" aria-label="Anatomical plate: the spine in lateral view, labelled cervical, thoracic, lumbar and sacrum">
-<g class="lab"><text class="lab-t" x="108" y="262" text-anchor="end">THORACIC</text><text class="lab-s" x="108" y="276" text-anchor="end">T1 – T12</text><path class="lead" d="M114 258 H134 L146 268"/><circle class="lead-dot" cx="146" cy="268" r="2.6"/></g>
-<g class="lab"><text class="lab-t" x="108" y="402" text-anchor="end">LUMBAR</text><text class="lab-s" x="108" y="416" text-anchor="end">L1 – L5</text><path class="lead" d="M114 398 H183 L195 408"/><circle class="lead-dot" cx="195" cy="408" r="2.6"/></g>
-<g class="lab"><text class="lab-t" x="108" y="486" text-anchor="end">SACRUM</text><text class="lab-s" x="108" y="500" text-anchor="end">the base</text><path class="lead" d="M114 482 H194 L206 494"/><circle class="lead-dot" cx="206" cy="494" r="2.6"/></g>
 </g>
 
 <g class="bow" aria-hidden="true">
-  <path class="bow-limb" d="M209 56 C258 168 262 414 219 516"/>
-  <path class="bow-string" d="M209 56 L131 292"/>
-  <path class="bow-string s2" d="M219 516 L131 292"/>
+  <!-- one string, whose apex is animated so it tracks the arrow exactly -->
+  <path class="bow-string" d="M213 50 L131 292 L241 508"/>
   <g class="arrow">
     <path class="arrow-shaft" d="M131 292 H286"/>
-    <path class="arrow-head" d="M286 292 L268 284 L268 300 Z"/>
-    <path class="arrow-fletch" d="M133 292 L146 285 M133 292 L146 299"/>
+    <path class="arrow-head" d="M290 292 L268 282 L268 302 Z"/>
+    <path class="arrow-fletch" d="M133 292 L150 283 M133 292 L150 301 M141 292 L158 283 M141 292 L158 301"/>
+    <circle class="nock" cx="131" cy="292" r="4.2"/>
   </g>
-  <circle class="nock" cx="131" cy="292" r="4"/>
 </g>
 <g class="spine-body">
 <g class="discs" aria-hidden="true">
@@ -1291,26 +1697,99 @@ form.addEventListener('submit',function(e){
 })();
 </script>
 
+
+
+
+
 <script>
-/* replay the spine build every time the hero re-enters view */
+/* ---- hero signature replay ----------------------------------------------
+   Restarts the whole sequence (spine assembly, draw, loose, straighten) each
+   time the hero is scrolled back to. Uses the Web Animations API rather than a
+   CSS class so it is immune to !important on the animation shorthand.        */
 (function(){
-  var art=document.querySelector('.hero-art'); if(!art) return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var parts=art.querySelectorAll('.v-in');
-  if(!parts.length) return;
-  function replay(){
-    parts.forEach(function(p){
-      p.style.animation='none';
-      void p.getBoundingClientRect();
-      p.style.animation='';
-    });
+  var art  = document.querySelector('.hero-art');
+  var hero = document.getElementById('hero');
+  if(!art || !hero || !art.getAnimations) return;
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function restart(){
+    var anims;
+    try{ anims = art.getAnimations({subtree:true}); }catch(e){ return; }
+    for(var i=0;i<anims.length;i++){
+      try{ anims[i].cancel(); anims[i].play(); }catch(e){}
+    }
   }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting) replay(); });
-  },{threshold:.25});
-  io.observe(art);
+
+  var armed = false, queued = false;
+  function check(){
+    queued = false;
+    var r = hero.getBoundingClientRect();
+    if(r.bottom < window.innerHeight * 0.4){        // scrolled well past the hero
+      armed = true;
+    } else if(armed && r.top > -60){                // came back to the top of it
+      armed = false;
+      restart();
+    }
+  }
+  addEventListener('scroll', function(){
+    if(!queued){ queued = true; requestAnimationFrame(check); }
+  }, {passive:true});
 })();
 </script>
+<script>
+/* ---- bowstring driver -------------------------------------------------------
+   Pins the string's apex to the arrow's tail every frame by reading the arrow
+   group's rendered transform. No dependence on CSS `d` animation, so it behaves
+   identically in Safari, Chrome and Firefox. Runs only while the hero is on
+   screen.                                                                     */
+(function(){
+  var arrow = document.querySelector('.hero-art .arrow');
+  var str   = document.querySelector('.hero-art .bow-string');
+  var hero  = document.getElementById('hero');
+  if(!arrow || !str || !hero) return;
 
+  var TOP='M213 50 L', MID=' 292 L241 508';
+  var REST=131, RELEASED=206;
+  var running=false, lastApex=null;
+
+  function apexFromArrow(){
+    var t = getComputedStyle(arrow).transform;
+    if(!t || t==='none') return REST;
+    var tx=0;
+    if(window.DOMMatrixReadOnly){
+      try{ tx = new DOMMatrixReadOnly(t).m41; }catch(e){ tx = 0; }
+    }else{
+      var m = t.match(/matrix\(([^)]+)\)/);
+      if(m){ var p=m[1].split(','); tx=parseFloat(p[4])||0; }
+    }
+    /* while the arrow is at or behind the nock it is still on the string;
+       the moment it travels forward the string has already been loosed */
+    return tx <= 0 ? REST + tx : RELEASED;
+  }
+
+  function frame(){
+    if(!running) return;
+    var a = apexFromArrow();
+    if(a !== lastApex){
+      lastApex = a;
+      str.setAttribute('d', TOP + a.toFixed(1) + MID);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function start(){ if(!running){ running=true; requestAnimationFrame(frame); } }
+  function stop(){ running=false; }
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es[es.length-1].isIntersecting ? start() : stop();
+    },{threshold:0}).observe(hero);
+  }else{ start(); }
+  document.addEventListener('visibilitychange',function(){
+    document.hidden ? stop() : start();
+  });
+  start();
+})();
+</script>
 </body>
 </html>
