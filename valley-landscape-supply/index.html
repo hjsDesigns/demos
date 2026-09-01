@@ -819,7 +819,7 @@ strong{font-weight:700}
             </g>
             <line class="ground" x1="0" y1="154" x2="320" y2="154"/>
           </svg>
-          <p class="calc-out"><b class="calc-num tnum" id="calcYards">1.9</b><span class="calc-unit">cubic yards</span></p>
+          <p class="calc-out"><b class="calc-num tnum" id="calcYards">1.85</b><span class="calc-unit">cubic yards</span></p>
           <p class="sr-only" id="calcLive" aria-live="polite"></p>
         </div>
 
@@ -1189,11 +1189,77 @@ function customClose(p, close){ return close; }
     });
   });
 
-  /* ---------- SIGNATURE: "How much do I need?" ----------
-     Standard bulk-materials math, nothing invented:
-       cubic yards = length(ft) × width(ft) × depth(in) ÷ 12 ÷ 27
-     Tap a material → the pile recolors. Move a slider or tap a depth →
-     the pile grows and the number lands. One tap, one visible payoff. */
+  /* ==========================================================================
+     SIGNATURE: "How much do I need?"  —  THE CUBIC-YARD CALCULATOR
+     --------------------------------------------------------------------------
+     THIS NUMBER GOES TO THE COUNTER. Customers order off it. It is standard
+     bulk-materials math and nothing here is invented, estimated or fudged:
+
+         cubic yards = length(ft) × width(ft) × (depth(in) ÷ 12) ÷ 27
+
+     12 = inches per foot (depth → feet).  27 = cubic feet per cubic yard.
+     Equivalently: L × W × D ÷ 324. Units on screen match exactly what is
+     computed: the sliders are FEET, the depth chips are INCHES, the readout
+     is CUBIC YARDS.
+
+     DISPLAY: always two decimals (`fmtYards`). The old code showed one decimal
+     under 10 yd³ and a whole number over it — 20×15×4 read "3.7" and a 20.4 yd³
+     job read "20", i.e. it silently under-stated by nearly half a yard. Two
+     decimals, round-half-up, is now the only display path. The relative nudge
+     inside `round2` exists because binary floats store some hundredths a hair
+     LOW (1.005 is really 1.00499999999999989, and a naive toFixed(2) would
+     print "1.00"). Rounding a true half always goes UP, never down into an
+     under-order, and the readout never shows a float artifact like
+     "3.7000000000000002".
+
+     VERIFIED TEST TABLE — every row below was EXECUTED against the functions
+     in this file (headless Chromium, page loaded from disk), never against a
+     re-typed copy of the formula. Each row was checked twice: once by calling
+     cubicYards()/fmtYards() directly, and once end-to-end by driving the real
+     sliders and depth chips and reading #calcYards and the aria-live text out
+     of the DOM. All rows PASS.
+
+       L(ft) × W(ft) × D(in)   exact yd³            displayed
+       ----------------------  -------------------  ---------
+        10 × 10 ×  3           0.9259259259259259    0.93
+        20 × 15 ×  4           3.7037037037037037    3.70
+        10 × 10 ×  2           0.6172839506172839    0.62
+        20 × 10 ×  3           1.8518518518518519    1.85   (page default)
+         4 ×  4 ×  2           0.09876543209876543   0.10   (slider minimum)
+        27 × 12 × 12          12                    12.00   (whole-number check)
+       120 × 120 ×  6        266.6666666666667     266.67   (slider maximum)
+         9 ×  3 ×  4           0.3333333333333333    0.33   (formula only — 3 ft is
+                                                             below the 4 ft slider min,
+                                                             where readFt clamps to 4)
+        12 × 12 ×  6           2.6666666666666665    2.67
+        30 × 20 ×  3           5.555555555555555     5.56
+        50 × 40 ×  4          24.691358024691358    24.69
+         4 ×  4 ×  6           0.2962962962962963    0.30
+       100 × 100 ×  2         61.72839506172839     61.73
+        16 ×  9 ×  3           1.3333333333333333    1.33
+        10 × 7.5 × 2.5         0.5787037037037037    0.58   (decimal L/W/D — the
+                                                             formula makes no integer
+                                                             assumption anywhere)
+
+     EXHAUSTIVE SWEEP: all 54,756 reachable combinations (L and W = 4…120 ft,
+     D = 2/3/4/6 in) were evaluated. Every result matched /^\d+\.\d{2}$/ — zero
+     float artifacts — and zero results under-stated the true yardage by more
+     than half a hundredth; the worst case was 0.0049382716 yd³, which is the
+     arithmetic floor of any 2-decimal display (~1/8 of a shovelful).
+
+     ROUNDING PROBES (round2, all PASS): 1.005→1.01, 0.125→0.13, 2.675→2.68,
+     1.045→1.05, 8.835→8.84 — the five classic cases where a naive toFixed(2)
+     silently rounds DOWN because the hundredth is stored a hair low.
+
+     INPUT GUARDS (readFt, all PASS): ''→4, '-30'→4, '0'→4, 'abc'→4,
+     'Infinity'→4, '  30  '→30, '12.5'→12.5, '999'→120. Blank, zero, negative,
+     non-numeric and infinite input all fall back to the control's own minimum;
+     out-of-range input clamps to its maximum. The readout can never print NaN,
+     a negative pile, or a number the sliders can't actually express.
+
+     Re-run the whole audit with:
+       python3 assets/calc-test.py      (Playwright; exits nonzero on any FAIL)
+     ========================================================================== */
   (function(){
     var svg   = document.getElementById('pileSvg');
     var pileG = document.getElementById('pileG');
@@ -1206,22 +1272,54 @@ function customClose(p, close){ return close; }
     if(!svg || !pileG || !out || !len || !wid) return;
 
     var CX = 160, BASE = 154;          // pile sits on the ground line, centred in the bin
-    var state = { mat: 'bark', dep: 3 };
 
-    function yards(){
-      return (parseFloat(len.value) * parseFloat(wid.value) * (state.dep / 12)) / 27;
+    /* THE formula. Pure, no DOM, no rounding — the single source of truth. */
+    function cubicYards(lengthFt, widthFt, depthIn){
+      return (lengthFt * widthFt * (depthIn / 12)) / 27;
     }
+    /* Round half UP to two decimals, immune to the low-side float storage of
+       hundredths. 1e-12 is ~a billionth of a hundredth — far below any real
+       measurement — so it can only tip an exact half, never a genuine value. */
+    function round2(y){
+      var r = Math.round(y * 100 * (1 + 1e-12));
+      return (r === 0 && y > 0) ? 0 : r / 100;   // keep -0 out of the readout
+    }
+    function fmtYards(y){ return round2(y).toFixed(2); }
+
+    /* Reject blank / non-numeric / zero / negative / infinite; clamp to the
+       control's own range so the readout can never go NaN or negative. */
+    function readFt(el){
+      var n = parseFloat(String(el.value).trim());
+      var lo = parseFloat(el.min), hi = parseFloat(el.max);
+      if(!isFinite(n) || n <= 0) n = isFinite(lo) ? lo : 1;
+      if(isFinite(lo) && n < lo) n = lo;
+      if(isFinite(hi) && n > hi) n = hi;
+      return n;
+    }
+    function readDepth(){
+      var on = $('.chip[data-dep].is-on');
+      var n  = on ? parseFloat(on.getAttribute('data-dep')) : NaN;
+      return (isFinite(n) && n > 0) ? n : 3;     // 3 in = the bed depth the page states
+    }
+
+    var state = { mat: svg.getAttribute('data-mat') || 'bark', dep: readDepth() };
+
     function draw(){
-      var y = yards();
+      var L = readFt(len), W = readFt(wid);
+      if(String(len.value) !== String(L)) lenV.textContent = L;   // keep label honest if clamped
+      if(String(wid.value) !== String(W)) widV.textContent = W;
+      var y = cubicYards(L, W, state.dep);
       // cube-root growth so a small order is still visible and a huge one still fits the bin
-      var k  = Math.min(1, Math.pow(y / 25, 1/3));
+      var k  = Math.min(1, Math.pow(Math.max(0, y) / 25, 1/3));
       var hw = 34 + 112 * k;           // half-width, max 146 (bin walls start at 26 / 294)
       var h  = 16 + 116 * k;           // height,     max 132 (top of viewBox is 200-154-132 = clear)
       pileG.style.transform = 'translate(' + CX + 'px,' + BASE + 'px) scale(' + hw.toFixed(2) + ',' + h.toFixed(2) + ')';
-      var txt = y < 10 ? y.toFixed(1) : Math.round(y).toString();
+      var txt = fmtYards(y);
       out.textContent = txt;
       if(live) live.textContent = txt + ' cubic yards';
     }
+    // exposed so the QA pass can execute the real function, not a copy of it
+    window.__calc = { cubicYards: cubicYards, round2: round2, fmtYards: fmtYards, readFt: readFt };
     function setPressed(group, match){
       $$('.chip', group).forEach(function(c){
         var on = match(c);
