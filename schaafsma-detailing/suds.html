@@ -86,17 +86,11 @@ section{padding:clamp(64px,9vw,110px) 0;position:relative}
 .wm-clean{position:absolute;inset:0;padding:inherit;clip-path:inset(0 102% 0 0)}
 .wm-clean .row{color:#A6C0FF;text-shadow:0 0 1px #DCE8FF,0 0 8px var(--neon),0 0 20px color-mix(in srgb,var(--neon) 55%,transparent),0 0 40px color-mix(in srgb,var(--neon) 26%,transparent)}
 .wm-clean .row.r2{color:#FF9C94;text-shadow:0 0 1px #FFE0DC,0 0 8px var(--brand-bright),0 0 18px color-mix(in srgb,var(--brand-bright) 50%,transparent),0 0 36px color-mix(in srgb,var(--brand-bright) 25%,transparent)}
-.wm-clean{animation:wmWipe 2.4s linear .45s forwards,wmShine 1.1s ease 2.95s 1}
+.wm-clean{animation:wmWipe 1.92s linear .45s forwards,wmShine 1.1s ease 2.45s 1}
 .wm-sponge{position:absolute;top:30%;left:-5%;font-size:.5em;opacity:0;
-  animation:wmSpongeX 2.4s linear .45s forwards;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5))}
-.wm-sponge b{display:inline-block;transform:rotate(-14deg);animation:wmSpongeY .3s ease-in-out .45s 8 alternate}
-.wm-sparks i{position:absolute;font-style:normal;font-size:.22em;opacity:0}
-.wm-sparks i{animation:sparkPop .9s ease forwards}
-.wm-sparks i:nth-child(1){animation-delay:3.0s}
-.wm-sparks i:nth-child(2){animation-delay:3.12s}
-.wm-sparks i:nth-child(3){animation-delay:3.24s}
-.wm-sparks i:nth-child(4){animation-delay:3.36s}
-.wm-sparks i:nth-child(5){animation-delay:3.48s}
+  animation:wmSpongeX 1.92s linear .45s forwards;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5))}
+.wm-sponge b{display:inline-block;position:relative;transform:rotate(-14deg);animation:wmSpongeY .24s ease-in-out .45s 8 alternate}
+.wm-sponge .suds{position:absolute;left:-18%;top:-26%;font-size:.62em;font-style:normal;opacity:.9}
 @keyframes wmWipe{0%{clip-path:inset(0 102% 0 0)}100%{clip-path:inset(0 -8% 0 0)}}
 @keyframes wmSpongeX{0%{opacity:0;left:-5%}6%{opacity:1}94%{opacity:1}100%{opacity:0;left:97%}}
 @keyframes wmSpongeY{from{transform:rotate(-14deg) translateY(-.34em)}to{transform:rotate(-10deg) translateY(.34em)}}
@@ -199,7 +193,7 @@ footer nav a:hover{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){
   .wm-dirty{animation:none;opacity:0}
   .wm-clean{animation:none;clip-path:inset(0 -8% 0 0)}
-  .wm-sponge,.wm-sparks i{animation:none;opacity:0}
+
   .hero-eyebrow,.hero-sub,.hero-btns{opacity:1;animation:none}
   .rv{opacity:1;transform:none;transition:none}
   .work-grid.swap{animation:none}
@@ -231,8 +225,7 @@ footer nav a:hover{color:var(--ink)}
     <h1 class="wordmark" aria-label="Schaafsma Detailing">
       <span class="wm-layer wm-dirty" aria-hidden="true"><span class="row">Schaafsma</span><span class="row r2">Detailing</span></span>
       <span class="wm-layer wm-clean" aria-hidden="true"><span class="row">Schaafsma</span><span class="row r2">Detailing</span></span>
-      <span class="wm-sponge" aria-hidden="true"><b>🧽</b></span>
-      <span class="wm-sparks" aria-hidden="true"><i style="left:12%;top:8%">✨</i><i style="left:78%;top:14%">✨</i><i style="left:46%;top:52%">✨</i><i style="left:88%;top:64%">✨</i><i style="left:24%;top:78%">✨</i></span>
+      <span class="wm-sponge" aria-hidden="true"><b>🧽<i class="suds">🫧</i></b></span>
     </h1>
     <p class="hero-sub fadeUp d2">Your driveway. Showroom finish. Sam comes to you — trucks, SUVs, daily drivers — and leaves them looking like they just rolled off the lot.</p>
     <div class="hero-btns fadeUp d3">
