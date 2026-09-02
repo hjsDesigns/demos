@@ -449,7 +449,7 @@ applyCat('truck');
   var img=new Image(); img.src='images/wash-car.jpg';
   var W=0,H=0,ready=false,done=false,strokes=0,initOpaque=0;
   /* Yukon silhouette, normalized to the cropped frame */
-  var POLY=[[.132,.147],[.412,.110],[.603,.293],[.934,.367],[.971,.428],[.953,.720],[.794,.842],[.544,.854],[.324,.793],[.176,.757],[.081,.696],[.071,.306]];
+  var POLY=[[.224,.247],[.549,.228],[.627,.366],[.784,.382],[.796,.407],[.802,.634],[.775,.650],[.549,.740],[.412,.715],[.294,.699],[.221,.659],[.214,.407]];
   function carPath(){
     var path=new Path2D();
     POLY.forEach(function(pt,i){ var x=pt[0]*W,y=pt[1]*H; i?path.lineTo(x,y):path.moveTo(x,y); });
