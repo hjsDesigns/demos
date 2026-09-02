@@ -511,12 +511,24 @@ applyCat('truck');
   });
 })();
 
-/* interior clips run slow-mo */
-document.querySelectorAll('#inside video').forEach(function(v,i){
-  var rate=(i<2)?0.9:0.95;
-  var slow=function(){ v.playbackRate=rate; };
-  slow(); v.addEventListener('loadedmetadata',slow); v.addEventListener('play',slow);
-});
+/* interior clips: play start-to-finish from when you reach them, calm pace */
+(function(){
+  var vids=document.querySelectorAll('#inside video');
+  vids.forEach(function(v,i){
+    v.removeAttribute('autoplay'); v.pause();
+    var rate=(i<2)?0.7:0.95;
+    var slow=function(){ v.playbackRate=rate; };
+    slow(); v.addEventListener('loadedmetadata',slow); v.addEventListener('play',slow);
+  });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ try{v.currentTime=0}catch(_){} v.play().catch(function(){}); }
+      else{ v.pause(); }
+    });
+  },{threshold:.35});
+  vids.forEach(function(v){ io.observe(v); });
+})();
 
 /* hero clip at natural-looking 0.9 pace */
 document.querySelectorAll('.hero-media video').forEach(function(v){
