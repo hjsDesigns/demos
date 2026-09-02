@@ -513,7 +513,7 @@ applyCat('truck');
 
 /* interior clips run slow-mo */
 document.querySelectorAll('#inside video').forEach(function(v){
-  var slow=function(){ v.playbackRate=0.36; };
+  var slow=function(){ v.playbackRate=0.95; };
   slow(); v.addEventListener('loadedmetadata',slow); v.addEventListener('play',slow);
 });
 
