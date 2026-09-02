@@ -280,7 +280,7 @@ footer nav a:hover{color:var(--ink)}
     </div>
     <div>
       <div class="wash-stage rv" id="washStage">
-        <img class="wash-clean" src="images/work-truck-4.jpg" alt="Black Silverado, freshly detailed">
+        <img class="wash-clean" src="images/work-truck-3.jpg" alt="White Silverado HD, freshly detailed">
         <canvas id="washDirt"></canvas>
         <div class="wash-sponge" id="washSponge" aria-hidden="true">🧽</div>
         <div class="wash-sparks" id="washSparks" aria-hidden="true"></div>
@@ -432,7 +432,7 @@ applyCat('truck');
   var stage=document.getElementById('washStage'); if(!stage) return;
   var cv=document.getElementById('washDirt'), ctx=cv.getContext('2d');
   var sponge=document.getElementById('washSponge'), sparks=document.getElementById('washSparks'), hint=document.getElementById('washHint');
-  var img=new Image(); img.src='images/work-truck-4.jpg';
+  var img=new Image(); img.src='images/work-truck-3.jpg';
   var W=0,H=0,ready=false,done=false,strokes=0;
   function size(){
     var r=stage.getBoundingClientRect();
@@ -443,17 +443,17 @@ applyCat('truck');
     ctx.globalCompositeOperation='source-over';
     ctx.clearRect(0,0,W,H);
     /* the same photo, filthy: desaturated, brown, dim */
-    ctx.filter='saturate(.35) brightness(.72) sepia(.45) contrast(.9)';
+    ctx.filter='saturate(.45) brightness(.82) sepia(.55) contrast(.92)';
     var s=Math.max(W/img.width,H/img.height), dw=img.width*s, dh=img.height*s;
     ctx.drawImage(img,(W-dw)/2,(H-dh)/2,dw,dh);
     ctx.filter='none';
     /* grime splatter */
-    ctx.fillStyle='rgba(74,58,40,.28)';
+    ctx.fillStyle='rgba(92,68,40,.45)';
     for(var i=0;i<260;i++){
       var x=Math.random()*W,y=Math.random()*H,rr=2+Math.random()*14;
       ctx.beginPath();ctx.ellipse(x,y,rr,rr*.7,Math.random()*3,0,7);ctx.fill();
     }
-    ctx.fillStyle='rgba(94,78,56,.18)';
+    ctx.fillStyle='rgba(110,84,52,.38)';
     for(var j=0;j<120;j++){
       var x2=Math.random()*W,y2=H*.55+Math.random()*H*.45,r2=6+Math.random()*22;
       ctx.beginPath();ctx.ellipse(x2,y2,r2,r2*.5,0,0,7);ctx.fill();
