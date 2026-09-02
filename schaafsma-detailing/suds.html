@@ -247,7 +247,7 @@ footer nav a:hover{color:var(--ink)}
   <div class="wrap">
     <p class="eyebrow">Fresh out of Sam's hands</p>
     <h2 class="h2 rv">The <em>work</em></h2>
-    <p class="lede rv">Every rig below was detailed by Sam. Pick a lane.</p>
+    <p class="lede rv">Every rig below was detailed by Sam. Pick a lane — tap any print to see it move.</p>
     <div class="filter-row rv" role="tablist" aria-label="Filter work by vehicle type">
       <button class="fchip on" data-cat="truck">Trucks</button>
       <button class="fchip" data-cat="suv">SUVs</button>
@@ -280,7 +280,7 @@ footer nav a:hover{color:var(--ink)}
     </div>
     <div>
       <div class="wash-stage rv" id="washStage">
-        <img class="wash-clean" src="images/work-truck-3.jpg" alt="White Silverado HD, freshly detailed">
+        <img class="wash-clean" src="images/wash-car.jpg" alt="White GMC Yukon Denali, freshly detailed">
         <canvas id="washDirt"></canvas>
         <div class="wash-sponge" id="washSponge" aria-hidden="true">🧽</div>
         <div class="wash-sparks" id="washSparks" aria-hidden="true"></div>
@@ -290,7 +290,7 @@ footer nav a:hover{color:var(--ink)}
   </div>
 </section>
 <style>
-.wash-stage{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:3/4;max-width:560px;margin:0 auto;cursor:none;touch-action:none;background:var(--paper)}
+.wash-stage{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:1020/615;max-width:640px;margin:0 auto;cursor:none;touch-action:none;background:var(--paper)}
 .wash-stage .wash-clean{width:100%;height:100%;object-fit:cover;filter:saturate(1.12) contrast(1.04)}
 .wash-stage canvas{position:absolute;inset:0;width:100%;height:100%}
 .wash-sponge{position:absolute;left:0;top:0;font-size:44px;transform:translate(-50%,-50%) rotate(-12deg);pointer-events:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5));transition:opacity .3s;z-index:3}
@@ -301,6 +301,20 @@ footer nav a:hover{color:var(--ink)}
 .wash-sparks{position:absolute;inset:0;pointer-events:none;z-index:2}
 .wash-sparks i{position:absolute;font-style:normal;font-size:22px;opacity:0;animation:sparkPop 1.1s ease forwards}
 @keyframes sparkPop{0%{opacity:0;transform:scale(.2) rotate(0)}30%{opacity:1;transform:scale(1.25) rotate(18deg)}100%{opacity:0;transform:scale(.6) rotate(30deg) translateY(-14px)}}
+/* living gallery */
+.print{position:relative}
+.print .ph{position:relative}
+.print .play-badge{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;
+  background:color-mix(in srgb,var(--dark) 72%,transparent);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
+  color:var(--ink);font-size:13px;pointer-events:none;border:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
+.print video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:calc(var(--r) - 6px)}
+.print.playing .play-badge{opacity:0}
+/* gloss sweep — the wordmark's shine, recurring on every section headline */
+.h2{position:relative;display:inline-block}
+.h2::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.35) 50%,transparent 58%);transform:translateX(-120%)}
+.h2.in::after{opacity:1;animation:glossSweep 1.1s ease .35s 1 forwards}
+@media (prefers-reduced-motion:reduce){.h2.in::after{animation:none;opacity:0}}
 </style>
 <!-- LIGHT TEST -->
 <section id="light">
@@ -427,13 +441,20 @@ applyCat('truck');
   requestAnimationFrame(frame);
 })();
 
-/* THE WASH — scrub the dirt layer off, sparkle when clean */
+/* THE WASH — only the car is dirty; scrub it clean, it sparkles */
 (function(){
   var stage=document.getElementById('washStage'); if(!stage) return;
   var cv=document.getElementById('washDirt'), ctx=cv.getContext('2d');
   var sponge=document.getElementById('washSponge'), sparks=document.getElementById('washSparks'), hint=document.getElementById('washHint');
-  var img=new Image(); img.src='images/work-truck-3.jpg';
-  var W=0,H=0,ready=false,done=false,strokes=0;
+  var img=new Image(); img.src='images/wash-car.jpg';
+  var W=0,H=0,ready=false,done=false,strokes=0,initOpaque=0;
+  /* Yukon silhouette, normalized to the cropped frame */
+  var POLY=[[.132,.147],[.412,.110],[.603,.293],[.934,.367],[.971,.428],[.953,.720],[.794,.842],[.544,.854],[.324,.793],[.176,.757],[.081,.696],[.071,.306]];
+  function carPath(){
+    var path=new Path2D();
+    POLY.forEach(function(pt,i){ var x=pt[0]*W,y=pt[1]*H; i?path.lineTo(x,y):path.moveTo(x,y); });
+    path.closePath(); return path;
+  }
   function size(){
     var r=stage.getBoundingClientRect();
     W=cv.width=Math.round(r.width); H=cv.height=Math.round(r.height);
@@ -442,22 +463,34 @@ applyCat('truck');
   function paintDirt(){
     ctx.globalCompositeOperation='source-over';
     ctx.clearRect(0,0,W,H);
-    /* the same photo, filthy: desaturated, brown, dim */
-    ctx.filter='saturate(.45) brightness(.82) sepia(.55) contrast(.92)';
-    var s=Math.max(W/img.width,H/img.height), dw=img.width*s, dh=img.height*s;
-    ctx.drawImage(img,(W-dw)/2,(H-dh)/2,dw,dh);
+    var path=carPath();
+    ctx.save(); ctx.clip(path);
+    /* the car, filthy — background stays untouched */
+    ctx.filter='saturate(.45) brightness(.8) sepia(.55) contrast(.92)';
+    ctx.drawImage(img,0,0,W,H);
     ctx.filter='none';
-    /* grime splatter */
-    ctx.fillStyle='rgba(92,68,40,.45)';
-    for(var i=0;i<260;i++){
-      var x=Math.random()*W,y=Math.random()*H,rr=2+Math.random()*14;
-      ctx.beginPath();ctx.ellipse(x,y,rr,rr*.7,Math.random()*3,0,7);ctx.fill();
+    /* mud blobs, only inside the silhouette */
+    ctx.fillStyle='rgba(92,68,40,.5)';
+    for(var i=0;i<220;i++){
+      var x=Math.random()*W,y=Math.random()*H;
+      if(!ctx.isPointInPath(path,x,y)) continue;
+      var rr=3+Math.random()*13;
+      ctx.beginPath();ctx.ellipse(x,y,rr,rr*.65,Math.random()*3,0,7);ctx.fill();
     }
-    ctx.fillStyle='rgba(110,84,52,.38)';
-    for(var j=0;j<120;j++){
-      var x2=Math.random()*W,y2=H*.55+Math.random()*H*.45,r2=6+Math.random()*22;
+    ctx.fillStyle='rgba(110,84,52,.4)';
+    for(var j=0;j<140;j++){
+      var x2=Math.random()*W,y2=H*.5+Math.random()*H*.5;
+      if(!ctx.isPointInPath(path,x2,y2)) continue;
+      var r2=5+Math.random()*18;
       ctx.beginPath();ctx.ellipse(x2,y2,r2,r2*.5,0,0,7);ctx.fill();
     }
+    ctx.restore();
+    initOpaque=countOpaque();
+  }
+  function countOpaque(){
+    var d=ctx.getImageData(0,0,W,H).data, n=0;
+    for(var i=3;i<d.length;i+=160){ if(d[i]>60) n++; }
+    return n;
   }
   img.onload=function(){ready=true;size()};
   addEventListener('resize',size); size();
@@ -466,31 +499,49 @@ applyCat('truck');
     var r=stage.getBoundingClientRect(), x=cx-r.left, y=cy-r.top;
     sponge.style.left=x+'px'; sponge.style.top=y+'px';
     ctx.globalCompositeOperation='destination-out';
-    var g=ctx.createRadialGradient(x,y,6,x,y,46);
+    var g=ctx.createRadialGradient(x,y,6,x,y,44);
     g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(.7,'rgba(0,0,0,.85)'); g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,46,0,7); ctx.fill();
-    if(++strokes%14===0) check();
-  }
-  function check(){
-    var d=ctx.getImageData(0,0,W,H,{willReadFrequently:true}).data, opaque=0, total=0;
-    for(var i=3;i<d.length;i+=160){ total++; if(d[i]>60) opaque++; }
-    if(opaque/total<.12) finish();
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,44,0,7); ctx.fill();
+    if(++strokes%12===0 && initOpaque>0 && countOpaque()/initOpaque<.13) finish();
   }
   function finish(){
     done=true; stage.classList.add('done');
     cv.style.transition='opacity .5s'; cv.style.opacity='0';
     hint.textContent='Spotless. Sam does the real thing.';
-    var em=['✨','✨','✨','✨','✨','⭐','✨','✨'];
+    var em=['\u2728','\u2728','\u2728','\u2728','\u2728','\u2b50','\u2728','\u2728'];
     em.forEach(function(e,i){
-      var s=document.createElement('i'); s.textContent=e;
-      s.style.left=(8+Math.random()*84)+'%'; s.style.top=(8+Math.random()*84)+'%';
-      s.style.animationDelay=(i*.09)+'s'; sparks.appendChild(s);
+      var sp=document.createElement('i'); sp.textContent=e;
+      sp.style.left=(8+Math.random()*84)+'%'; sp.style.top=(8+Math.random()*84)+'%';
+      sp.style.animationDelay=(i*.09)+'s'; sparks.appendChild(sp);
     });
     setTimeout(function(){sparks.innerHTML=''},2200);
   }
   stage.addEventListener('pointermove',function(e){scrub(e.clientX,e.clientY)});
   stage.addEventListener('pointerdown',function(e){scrub(e.clientX,e.clientY)});
   stage.addEventListener('touchmove',function(e){scrub(e.touches[0].clientX,e.touches[0].clientY);e.preventDefault()},{passive:false});
+})();
+
+
+/* living gallery — tap a print, Sam's actual clip of that rig plays */
+(function(){
+  var current=null;
+  document.querySelectorAll('#workGrid .print').forEach(function(fig){
+    var im=fig.querySelector('img'); if(!im) return;
+    var wrap=document.createElement('div'); wrap.className='ph';
+    im.parentNode.insertBefore(wrap,im); wrap.appendChild(im);
+    var badge=document.createElement('span'); badge.className='play-badge'; badge.textContent='\u25B6'; wrap.appendChild(badge);
+    fig.addEventListener('click',function(){
+      var v=wrap.querySelector('video');
+      if(v){ v.remove(); fig.classList.remove('playing'); if(current===fig) current=null; return; }
+      if(current){ var cv2=current.querySelector('video'); if(cv2) cv2.remove(); current.classList.remove('playing'); }
+      var name=im.getAttribute('src').split('/').pop().replace('.jpg','');
+      v=document.createElement('video');
+      v.src='videos/work/'+name+'.mp4'; v.muted=true; v.loop=true; v.playsInline=true; v.autoplay=true;
+      v.setAttribute('playsinline',''); v.poster=im.getAttribute('src');
+      wrap.appendChild(v); v.play().catch(function(){});
+      fig.classList.add('playing'); current=fig;
+    });
+  });
 })();
 
 /* pause hero videos offscreen (battery) */
