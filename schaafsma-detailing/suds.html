@@ -518,6 +518,12 @@ document.querySelectorAll('#inside video').forEach(function(v,i){
   slow(); v.addEventListener('loadedmetadata',slow); v.addEventListener('play',slow);
 });
 
+/* hero clip at natural-looking 0.9 pace */
+document.querySelectorAll('.hero-media video').forEach(function(v){
+  var slow=function(){ v.playbackRate=0.9; };
+  slow(); v.addEventListener('loadedmetadata',slow); v.addEventListener('play',slow);
+});
+
 /* pause hero videos offscreen (battery) */
 var vids=document.querySelectorAll('.hero-media video');
 new IntersectionObserver(function(es){
