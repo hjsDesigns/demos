@@ -512,8 +512,9 @@ applyCat('truck');
 })();
 
 /* interior clips run slow-mo */
-document.querySelectorAll('#inside video').forEach(function(v){
-  var slow=function(){ v.playbackRate=0.95; };
+document.querySelectorAll('#inside video').forEach(function(v,i){
+  var rate=(i<2)?0.9:0.95;
+  var slow=function(){ v.playbackRate=rate; };
   slow(); v.addEventListener('loadedmetadata',slow); v.addEventListener('play',slow);
 });
 
