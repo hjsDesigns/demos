@@ -11,8 +11,9 @@
 <style>
 /* ============ TOKENS ============ */
 :root{
-  --brand:#C58A4E;          /* saddle leather — the Navigator interior */
-  --brand-bright:#DCA265;
+  --brand:#C8272B;          /* flag red — from Sam's own logo border + 'Detailing' script */
+  --brand-bright:#E03038;
+  --neon:#5B82FF;           /* the blue neon glow of 'Schaafsma' in his mark */
   --ink:#EFE9DE;            /* cream type on the dark ground */
   --bg:#0C0E11;             /* coal gloss — black paint at night */
   --bg-2:#12151A;           /* lifted panel */
@@ -52,6 +53,7 @@ section{padding:clamp(64px,9vw,110px) 0;position:relative}
 .site-header .wrap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.12em;white-space:nowrap}
 .logo span{color:var(--brand)}
+.logo{text-shadow:0 0 14px color-mix(in srgb,var(--neon) 35%,transparent)}
 .nav{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600}
 .nav a{color:var(--muted);transition:color .2s}
 .nav a:hover{color:var(--ink)}
@@ -83,7 +85,7 @@ section{padding:clamp(64px,9vw,110px) 0;position:relative}
 .hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--brand);margin-bottom:14px;opacity:0}
 .wordmark{font-family:var(--display);font-weight:700;font-size:clamp(44px,9.2vw,104px);letter-spacing:.02em;line-height:.98;position:relative}
 .wordmark .row{display:block;overflow:hidden}
-.wordmark .row i{font-style:normal;display:inline-block;transform:translateY(110%);animation:riseIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+.wordmark .row i{font-style:normal;display:inline-block;transform:translateY(110%);animation:riseIn .8s cubic-bezier(.2,.7,.2,1) forwards;text-shadow:0 0 18px color-mix(in srgb,var(--neon) 55%,transparent),0 0 46px color-mix(in srgb,var(--neon) 30%,transparent)}
 .wordmark .row.r2 i{animation-delay:.18s;color:var(--brand);font-size:.42em;letter-spacing:.5em;font-weight:600;vertical-align:.14em}
 .wordmark::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.34) 50%,transparent 58%);
   transform:translateX(-120%);animation:glossSweep 1.5s ease .9s 1 forwards;pointer-events:none;mix-blend-mode:screen}
@@ -310,7 +312,7 @@ footer nav a:hover{color:var(--ink)}
 .print video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:calc(var(--r) - 6px)}
 .print.playing .play-badge{opacity:0}
 /* gloss sweep — the wordmark's shine, recurring on every section headline */
-.h2{position:relative;display:inline-block}
+.h2{position:relative;display:inline-block;overflow:hidden}
 .h2::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0;
   background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.35) 50%,transparent 58%);transform:translateX(-120%)}
 .h2.in::after{opacity:1;animation:glossSweep 1.1s ease .35s 1 forwards}
