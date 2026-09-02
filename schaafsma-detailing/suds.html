@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schaafsma Detailing — Mobile Detailing, Enumclaw Plateau</title>
+<meta name="description" content="Schaafsma Detailing — mobile auto detailing on the Enumclaw Plateau. Interior, exterior, paint correction. Your driveway, showroom finish. Text Sam for a quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --brand:#C58A4E;          /* saddle leather — the Navigator interior */
+  --brand-bright:#DCA265;
+  --ink:#EFE9DE;            /* cream type on the dark ground */
+  --bg:#0C0E11;             /* coal gloss — black paint at night */
+  --bg-2:#12151A;           /* lifted panel */
+  --paper:#171B21;          /* cards */
+  --muted:#97A0AB;
+  --line:#252B33;
+  --dark:#07080A;
+  --warm:#C58A4E;
+  --status-open:#10B981;
+  --status-closed:#DC2626;
+  --display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --body:'Manrope',ui-sans-serif,system-ui,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --header-h:68px;
+  --pad:clamp(18px,4.5vw,48px);
+  --maxw:1180px;
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--display);line-height:1.08;letter-spacing:-.01em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+section{padding:clamp(64px,9vw,110px) 0;position:relative}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--brand);display:inline-block}
+.h2{font-size:clamp(30px,4.6vw,52px);font-weight:700;margin-bottom:16px}
+.h2 em{font-style:normal;color:var(--brand)}
+.lede{color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:56ch}
+
+/* ============ HEADER ============ */
+.site-header{position:fixed;inset:0 0 auto 0;height:var(--header-h);z-index:60;display:flex;align-items:center;
+  background:color-mix(in srgb,var(--dark) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.site-header .wrap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.12em;white-space:nowrap}
+.logo span{color:var(--brand)}
+.nav{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600}
+.nav a{color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--display);font-weight:600;
+  font-size:15px;padding:13px 24px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.22s;min-height:44px}
+.btn-brand{background:var(--brand);color:#14100B}
+.btn-brand:hover{background:var(--brand-bright);transform:translateY(-1px)}
+.btn-ghost{border-color:color-mix(in srgb,var(--ink) 35%,transparent);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.nav .btn{padding:9px 18px;font-size:14px;min-height:40px}
+@media (max-width:860px){.nav a{display:none}}
+
+/* ============ HERO — video wall ============ */
+#hero{min-height:calc(100svh - 0px);padding:0;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;background:var(--dark)}
+.hero-media .cell{position:relative;overflow:hidden}
+.hero-media video{width:100%;height:100%;object-fit:cover;filter:saturate(1.08) contrast(1.04)}
+.hero-media .cell:nth-child(2) video{transition-delay:.1s}
+@media (max-width:760px){
+  .hero-media{grid-template-columns:1fr}
+  .hero-media .cell:nth-child(2),.hero-media .cell:nth-child(3){display:none}
+}
+.hero-scrim{position:absolute;inset:0;z-index:2;background:
+  linear-gradient(180deg,color-mix(in srgb,var(--dark) 55%,transparent) 0%,transparent 30%,transparent 45%,color-mix(in srgb,var(--dark) 88%,transparent) 82%,var(--dark) 100%),
+  radial-gradient(ellipse 62% 58% at 26% 68%,color-mix(in srgb,var(--dark) 78%,transparent) 0%,color-mix(in srgb,var(--dark) 45%,transparent) 55%,transparent 100%)}
+.hero-grain{position:absolute;inset:0;z-index:3;opacity:.5;pointer-events:none;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-text{position:relative;z-index:4;padding:0 var(--pad) clamp(46px,7vh,84px);max-width:var(--maxw);margin:0 auto;width:100%}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--brand);margin-bottom:14px;opacity:0}
+.wordmark{font-family:var(--display);font-weight:700;font-size:clamp(44px,9.2vw,104px);letter-spacing:.02em;line-height:.98;position:relative}
+.wordmark .row{display:block;overflow:hidden}
+.wordmark .row i{font-style:normal;display:inline-block;transform:translateY(110%);animation:riseIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+.wordmark .row.r2 i{animation-delay:.18s;color:var(--brand);font-size:.42em;letter-spacing:.5em;font-weight:600;vertical-align:.14em}
+.wordmark::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.34) 50%,transparent 58%);
+  transform:translateX(-120%);animation:glossSweep 1.5s ease .9s 1 forwards;pointer-events:none;mix-blend-mode:screen}
+@keyframes riseIn{to{transform:translateY(0)}}
+@keyframes glossSweep{to{transform:translateX(120%)}}
+.hero-sub{margin-top:18px;color:color-mix(in srgb,var(--ink) 82%,transparent);font-size:clamp(15px,1.9vw,19px);max-width:46ch;opacity:0}
+.hero-btns{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;opacity:0}
+.fadeUp{animation:fadeUp .7s ease forwards}
+.d1{animation-delay:.7s}.d2{animation-delay:.95s}.d3{animation-delay:1.15s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============ HOW IT WORKS strip ============ */
+#how{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(40px,6vw,64px) 0}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.how-step{display:flex;gap:16px;align-items:flex-start}
+.how-num{font-family:var(--display);font-weight:700;font-size:15px;color:var(--brand);border:1px solid color-mix(in srgb,var(--brand) 55%,transparent);
+  width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.how-step h3{font-size:17px;margin-bottom:4px}
+.how-step p{color:var(--muted);font-size:14.5px}
+.how-chips{margin-top:clamp(26px,4vw,38px);display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.chip-static{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:9px 18px}
+.chip-static b{color:var(--brand);font-weight:600}
+@media (max-width:760px){.how-grid{grid-template-columns:1fr}}
+
+/* ============ THE WORK — filtered gallery ============ */
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 34px}
+.fchip{font-family:var(--display);font-weight:600;font-size:15px;padding:11px 26px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:transparent;color:var(--muted);transition:.2s;min-height:44px}
+.fchip:hover{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 40%,transparent)}
+.fchip.on{background:var(--brand);border-color:var(--brand);color:#14100B}
+.work-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,22px)}
+.print{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 10px 14px;
+  transform:rotate(var(--tilt,0deg));transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.print:hover{transform:rotate(0deg) translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.5)}
+.print img{border-radius:calc(var(--r) - 6px);aspect-ratio:3/4;object-fit:cover;width:100%}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin-top:10px;text-transform:uppercase}
+.work-grid .print:nth-child(odd){--tilt:-.6deg}
+.work-grid .print:nth-child(even){--tilt:.6deg}
+.work-grid.swap{animation:gridIn .45s ease}
+@keyframes gridIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (max-width:900px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ============ LIGHT TEST — spotlight ============ */
+#light{background:var(--dark)}
+.light-stage{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);cursor:none;
+  aspect-ratio:4/5;max-width:560px;margin:0 auto}
+@media (min-width:861px){.light-wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,5vw,64px);align-items:center}}
+.light-stage img{width:100%;height:100%;object-fit:cover;filter:brightness(.14) saturate(.6);transition:none}
+.light-stage .lit{position:absolute;inset:0;filter:brightness(1.12) saturate(1.15) contrast(1.05);
+  -webkit-mask-image:radial-gradient(circle 150px at var(--lx,50%) var(--ly,40%),#000 0 55%,transparent 100%);
+  mask-image:radial-gradient(circle 150px at var(--lx,50%) var(--ly,40%),#000 0 55%,transparent 100%)}
+.light-stage .beam{position:absolute;left:var(--lx,50%);top:var(--ly,40%);width:8px;height:8px;border-radius:50%;
+  transform:translate(-50%,-50%);background:rgba(255,255,255,.95);box-shadow:0 0 34px 16px rgba(255,255,255,.4),0 0 90px 60px rgba(255,255,255,.12);pointer-events:none}
+.light-hint{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:14px}
+@media (max-width:860px){.light-copy{margin-bottom:30px}}
+
+/* ============ INSIDE ============ */
+.inside-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,22px);margin-top:38px}
+@media (max-width:760px){.inside-grid{grid-template-columns:1fr}.inside-grid .print img{aspect-ratio:4/3}}
+
+/* ============ ABOUT ============ */
+#about{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.about-copy p{color:var(--muted);margin-bottom:16px}
+.about-copy p strong{color:var(--ink)}
+.about-photo{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px;transform:rotate(1deg);box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.about-photo img{border-radius:calc(var(--r) - 6px)}
+.about-photo figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin-top:10px;text-transform:uppercase;padding:0 4px 4px}
+.socials{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.social-pill{font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--line);border-radius:999px;padding:10px 18px;color:var(--muted);transition:.2s}
+.social-pill:hover{color:var(--ink);border-color:var(--brand)}
+.social-pill b{color:var(--brand);font-weight:600}
+@media (max-width:860px){.about-wrap{grid-template-columns:1fr}}
+
+/* ============ CTA ============ */
+#cta{background:var(--dark);text-align:center}
+#cta .h2{margin-bottom:10px}
+#cta .lede{margin:0 auto 30px}
+.cta-phone{font-family:var(--display);font-weight:700;font-size:clamp(22px,3.4vw,34px);letter-spacing:.04em;margin-top:26px}
+.cta-phone a{color:var(--brand)}
+.cta-phone a:hover{color:var(--brand-bright)}
+.cta-note{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:34px 0;background:var(--dark)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+footer .logo{font-size:15px}
+footer p{color:var(--muted);font-size:13px}
+footer nav{display:flex;gap:18px;font-size:13px;color:var(--muted)}
+footer nav a:hover{color:var(--ink)}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .wordmark .row i{animation:none;transform:none}
+  .wordmark::after{animation:none;opacity:0}
+  .hero-eyebrow,.hero-sub,.hero-btns{opacity:1;animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+  .work-grid.swap{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#hero">SCHAAFSMA <span>DETAILING</span></a>
+    <nav class="nav">
+      <a href="#work">The work</a>
+      <a href="#light">Paint correction</a>
+      <a href="#about">Sam</a>
+      <a class="btn btn-brand" href="sms:+12535690938?&body=Hey%20Sam%20—%20saw%20your%20site%2C%20I%27d%20like%20a%20quote%20for%20a%20detail.">Text Sam</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO — the work itself, in motion -->
+<section id="hero">
+  <div class="hero-media" aria-hidden="true">
+    <div class="cell"><video autoplay muted loop playsinline preload="auto" poster="images/work-suv-4.jpg" src="videos/hero-nav.mp4"></video></div>
+    <div class="cell"><video autoplay muted loop playsinline preload="metadata" poster="images/work-truck-1.jpg" src="videos/hero-f350.mp4"></video></div>
+    <div class="cell"><video autoplay muted loop playsinline preload="metadata" poster="images/work-truck-4.jpg" src="videos/hero-gloss.mp4"></video></div>
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-text">
+    <p class="hero-eyebrow fadeUp d1">Mobile detailing · Enumclaw Plateau</p>
+    <h1 class="wordmark" aria-label="Schaafsma Detailing">
+      <span class="row"><i>SCHAAFSMA</i></span>
+      <span class="row r2"><i>DETAILING</i></span>
+    </h1>
+    <p class="hero-sub fadeUp d2">Your driveway. Showroom finish. Sam comes to you — trucks, SUVs, daily drivers — and leaves them looking like they just rolled off the lot.</p>
+    <div class="hero-btns fadeUp d3">
+      <a class="btn btn-brand" href="sms:+12535690938?&body=Hey%20Sam%20—%20saw%20your%20site%2C%20I%27d%20like%20a%20quote%20for%20a%20detail.">Text for a quote</a>
+      <a class="btn btn-ghost" href="#work">See the work</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="how-grid">
+      <div class="how-step rv"><span class="how-num">1</span><div><h3>Text Sam</h3><p>Say what you drive and what it needs. He'll text back a quote — no forms, no phone tag.</p></div></div>
+      <div class="how-step rv"><span class="how-num">2</span><div><h3>He rolls up</h3><p>Sam brings everything to your driveway — water, power, product. You don't go anywhere.</p></div></div>
+      <div class="how-step rv"><span class="how-num">3</span><div><h3>Walk out to it done</h3><p>Paint glossed, glass clear, cabin spotless. The double-take in your own driveway.</p></div></div>
+    </div>
+    <div class="how-chips rv">
+      <span class="chip-static"><b>Interior</b> — leather · carpet · every seam</span>
+      <span class="chip-static"><b>Exterior</b> — wash · gloss · wheels</span>
+      <span class="chip-static"><b>Paint correction</b> — swirls out, depth back</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE WORK -->
+<section id="work">
+  <div class="wrap">
+    <p class="eyebrow">Fresh out of Sam's hands</p>
+    <h2 class="h2 rv">The <em>work</em></h2>
+    <p class="lede rv">Every rig below was detailed by Sam. Pick a lane.</p>
+    <div class="filter-row rv" role="tablist" aria-label="Filter work by vehicle type">
+      <button class="fchip on" data-cat="truck">Trucks</button>
+      <button class="fchip" data-cat="suv">SUVs</button>
+      <button class="fchip" data-cat="car">Cars</button>
+    </div>
+    <div class="work-grid" id="workGrid">
+      <figure class="print" data-cat="truck"><img src="images/work-truck-1.jpg" alt="Lifted white Ford F-350 on black wheels after a full detail" loading="lazy"><figcaption>F-350 · lifted on blacks</figcaption></figure>
+      <figure class="print" data-cat="truck"><img src="images/work-truck-2.jpg" alt="Black Ford F-150 gleaming after exterior detail" loading="lazy"><figcaption>F-150 · black on black</figcaption></figure>
+      <figure class="print" data-cat="truck"><img src="images/work-truck-3.jpg" alt="White Chevy Silverado HD High Country after a detail" loading="lazy"><figcaption>Silverado HD · High Country</figcaption></figure>
+      <figure class="print" data-cat="truck"><img src="images/work-truck-4.jpg" alt="Black Chevy Silverado with mirror-gloss paint" loading="lazy"><figcaption>Silverado · mirror gloss</figcaption></figure>
+      <figure class="print" data-cat="suv"><img src="images/work-suv-1.jpg" alt="Black Lincoln Navigator front three-quarter after a full detail" loading="lazy"><figcaption>Navigator · blacked out</figcaption></figure>
+      <figure class="print" data-cat="suv"><img src="images/work-suv-2.jpg" alt="White GMC Yukon Denali after a full detail" loading="lazy"><figcaption>Yukon Denali</figcaption></figure>
+      <figure class="print" data-cat="suv"><img src="images/work-suv-3.jpg" alt="White Chevy Tahoe after a detail" loading="lazy"><figcaption>Tahoe · fresh</figcaption></figure>
+      <figure class="print" data-cat="suv"><img src="images/work-suv-4.jpg" alt="Black Lincoln Navigator rear three-quarter" loading="lazy"><figcaption>Navigator · rolling out</figcaption></figure>
+      <figure class="print" data-cat="car"><img src="images/work-car-1.jpg" alt="Grey Tesla after an exterior detail" loading="lazy"><figcaption>Tesla · clean lines</figcaption></figure>
+      <figure class="print" data-cat="car"><img src="images/work-car-2.jpg" alt="Tesla interior detailed, screen and console spotless" loading="lazy"><figcaption>Tesla · cabin reset</figcaption></figure>
+      <figure class="print" data-cat="car"><img src="images/work-car-3.jpg" alt="Tesla with door open showing detailed interior" loading="lazy"><figcaption>Tesla · door to door</figcaption></figure>
+      <figure class="print" data-cat="car"><img src="images/work-car-4.jpg" alt="Tesla front cabin after interior detail" loading="lazy"><figcaption>Tesla · front row</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- THE WASH -->
+<section id="wash">
+  <div class="wrap light-wrap">
+    <div class="light-copy">
+      <p class="eyebrow">Try it yourself</p>
+      <h2 class="h2 rv">Wash <em>one for Sam</em></h2>
+      <p class="lede rv">Grab the sponge and scrub. When you've got the whole rig, it shines — same feeling as watching him finish yours.</p>
+    </div>
+    <div>
+      <div class="wash-stage rv" id="washStage">
+        <img class="wash-clean" src="images/work-truck-4.jpg" alt="Black Silverado, freshly detailed">
+        <canvas id="washDirt"></canvas>
+        <div class="wash-sponge" id="washSponge" aria-hidden="true">🧽</div>
+        <div class="wash-sparks" id="washSparks" aria-hidden="true"></div>
+      </div>
+      <p class="light-hint" id="washHint">Scrub the car clean</p>
+    </div>
+  </div>
+</section>
+<style>
+.wash-stage{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:3/4;max-width:560px;margin:0 auto;cursor:none;touch-action:none;background:var(--paper)}
+.wash-stage .wash-clean{width:100%;height:100%;object-fit:cover;filter:saturate(1.12) contrast(1.04)}
+.wash-stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.wash-sponge{position:absolute;left:0;top:0;font-size:44px;transform:translate(-50%,-50%) rotate(-12deg);pointer-events:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5));transition:opacity .3s;z-index:3}
+.wash-stage.done{cursor:default}
+.wash-stage.done .wash-sponge{opacity:0}
+.wash-stage.done .wash-clean{animation:washShine 1.2s ease}
+@keyframes washShine{0%{filter:saturate(1.12) contrast(1.04) brightness(1)}35%{filter:saturate(1.3) contrast(1.1) brightness(1.22)}100%{filter:saturate(1.12) contrast(1.04) brightness(1)}}
+.wash-sparks{position:absolute;inset:0;pointer-events:none;z-index:2}
+.wash-sparks i{position:absolute;font-style:normal;font-size:22px;opacity:0;animation:sparkPop 1.1s ease forwards}
+@keyframes sparkPop{0%{opacity:0;transform:scale(.2) rotate(0)}30%{opacity:1;transform:scale(1.25) rotate(18deg)}100%{opacity:0;transform:scale(.6) rotate(30deg) translateY(-14px)}}
+</style>
+<!-- LIGHT TEST -->
+<section id="light">
+  <div class="wrap light-wrap">
+    <div class="light-copy">
+      <p class="eyebrow">Paint correction</p>
+      <h2 class="h2 rv">Proven <em>under the light</em></h2>
+      <p class="lede rv">Swirls and scratches hide in the shade — a work light shows the truth. Sam cuts and polishes until the light comes back clean. This is real paint from one of his corrections.</p>
+    </div>
+    <div>
+      <div class="light-stage rv" id="lightStage">
+        <img src="images/gloss-before.jpg" alt="Black hood in shadow">
+        <img class="lit" src="images/gloss-before.jpg" alt="" aria-hidden="true">
+        <div class="beam" aria-hidden="true"></div>
+      </div>
+      <p class="light-hint">Drag the light across the paint</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE -->
+<section id="inside">
+  <div class="wrap">
+    <p class="eyebrow">Interior work</p>
+    <h2 class="h2 rv">Inside gets the <em>same standard</em></h2>
+    <p class="lede rv">Leather fed, carpets pulled back to color, every vent and seam. If you haul kids, dogs, or job sites, this is the reset button.</p>
+    <div class="inside-grid">
+      <figure class="print rv"><img src="images/interior-1.jpg" alt="Lincoln Navigator saddle leather interior, detailed" loading="lazy"><figcaption>Navigator · saddle leather</figcaption></figure>
+      <figure class="print rv"><img src="images/interior-2.jpg" alt="Suburban cream leather rear seats after interior detail" loading="lazy"><figcaption>Suburban · cream leather</figcaption></figure>
+      <figure class="print rv"><img src="images/interior-3.jpg" alt="Yukon Denali interior with door open after detail" loading="lazy"><figcaption>Yukon · every seam</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about-wrap">
+    <div class="about-copy">
+      <p class="eyebrow">The guy behind it</p>
+      <h2 class="h2 rv">Sam <em>Schaafsma</em></h2>
+      <p class="rv"><strong>Sam details rigs the way Plateau people expect work to be done — right, and by hand.</strong></p>
+      <p class="rv">No shop, no drop-off, no waiting room. He loads his gear, drives to you, and works your vehicle over panel by panel — the paint, the glass, the wheels, the cabin. The photos and clips on this page are his actual work, straight off his phone.</p>
+      <p class="rv">Follow the fresh ones as they happen:</p>
+      <div class="socials rv">
+        <a class="social-pill" href="https://instagram.com/sam_schaafsma" target="_blank" rel="noopener">Instagram · <b>@sam_schaafsma</b></a>
+        <span class="social-pill">Snapchat · <b>sammydetail</b></span>
+      </div>
+    </div>
+    <figure class="about-photo rv">
+      <img src="images/about.jpg" alt="Truck interior mid-detail in the garage" loading="lazy">
+      <figcaption>Mid-job — where the hours go</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center">Ready when you are</p>
+    <h2 class="h2 rv">Your truck knows <em>the difference</em></h2>
+    <p class="lede rv">Text Sam what you drive and what it needs — he'll quote it straight back.</p>
+    <a class="btn btn-brand rv" href="sms:+12535690938?&body=Hey%20Sam%20—%20saw%20your%20site%2C%20I%27d%20like%20a%20quote%20for%20a%20detail.">Text for a quote</a>
+    <p class="cta-phone rv"><a href="sms:+12535690938">(253) 569-0938</a></p>
+    <p class="cta-note rv">Mobile — serving the Enumclaw Plateau</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#hero">SCHAAFSMA <span>DETAILING</span></a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#light">Paint correction</a>
+      <a href="#about">Sam</a>
+      <a href="https://instagram.com/sam_schaafsma" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <p>© <span id="yr"></span> Schaafsma Detailing · (253) 569-0938</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* reveal on scroll */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+/* work filter */
+var grid = document.getElementById('workGrid');
+var prints = grid.querySelectorAll('.print');
+function applyCat(cat){
+  prints.forEach(function(p){ p.style.display = (p.dataset.cat===cat)?'':'none'; });
+  grid.classList.remove('swap'); void grid.offsetWidth; grid.classList.add('swap');
+}
+document.querySelectorAll('.fchip').forEach(function(ch){
+  ch.addEventListener('click',function(){
+    document.querySelectorAll('.fchip').forEach(function(c){ c.classList.remove('on'); });
+    ch.classList.add('on'); applyCat(ch.dataset.cat);
+  });
+});
+applyCat('truck');
+
+/* light test — spotlight follows pointer, idle sweep when away */
+(function(){
+  var stage=document.getElementById('lightStage'); if(!stage) return;
+  var tx=50, ty=40, x=50, y=40, active=false, t0=performance.now();
+  function setVars(){ stage.style.setProperty('--lx',x+'%'); stage.style.setProperty('--ly',y+'%'); }
+  function frame(now){
+    if(!active){ var t=(now-t0)/1000; tx=50+38*Math.sin(t*.5); ty=42+26*Math.sin(t*.33+1.3); }
+    x+=(tx-x)*.18; y+=(ty-y)*.18; setVars(); requestAnimationFrame(frame);
+  }
+  function toPct(e){
+    var r=stage.getBoundingClientRect();
+    var cx=(e.touches?e.touches[0].clientX:e.clientX), cy=(e.touches?e.touches[0].clientY:e.clientY);
+    tx=Math.max(0,Math.min(100,(cx-r.left)/r.width*100));
+    ty=Math.max(0,Math.min(100,(cy-r.top)/r.height*100));
+  }
+  stage.addEventListener('pointermove',function(e){ active=true; toPct(e); });
+  stage.addEventListener('pointerleave',function(){ active=false; t0=performance.now(); });
+  stage.addEventListener('touchmove',function(e){ active=true; toPct(e); e.preventDefault(); },{passive:false});
+  stage.addEventListener('touchend',function(){ active=false; t0=performance.now(); });
+  requestAnimationFrame(frame);
+})();
+
+/* THE WASH — scrub the dirt layer off, sparkle when clean */
+(function(){
+  var stage=document.getElementById('washStage'); if(!stage) return;
+  var cv=document.getElementById('washDirt'), ctx=cv.getContext('2d');
+  var sponge=document.getElementById('washSponge'), sparks=document.getElementById('washSparks'), hint=document.getElementById('washHint');
+  var img=new Image(); img.src='images/work-truck-4.jpg';
+  var W=0,H=0,ready=false,done=false,strokes=0;
+  function size(){
+    var r=stage.getBoundingClientRect();
+    W=cv.width=Math.round(r.width); H=cv.height=Math.round(r.height);
+    if(ready) paintDirt();
+  }
+  function paintDirt(){
+    ctx.globalCompositeOperation='source-over';
+    ctx.clearRect(0,0,W,H);
+    /* the same photo, filthy: desaturated, brown, dim */
+    ctx.filter='saturate(.35) brightness(.72) sepia(.45) contrast(.9)';
+    var s=Math.max(W/img.width,H/img.height), dw=img.width*s, dh=img.height*s;
+    ctx.drawImage(img,(W-dw)/2,(H-dh)/2,dw,dh);
+    ctx.filter='none';
+    /* grime splatter */
+    ctx.fillStyle='rgba(74,58,40,.28)';
+    for(var i=0;i<260;i++){
+      var x=Math.random()*W,y=Math.random()*H,rr=2+Math.random()*14;
+      ctx.beginPath();ctx.ellipse(x,y,rr,rr*.7,Math.random()*3,0,7);ctx.fill();
+    }
+    ctx.fillStyle='rgba(94,78,56,.18)';
+    for(var j=0;j<120;j++){
+      var x2=Math.random()*W,y2=H*.55+Math.random()*H*.45,r2=6+Math.random()*22;
+      ctx.beginPath();ctx.ellipse(x2,y2,r2,r2*.5,0,0,7);ctx.fill();
+    }
+  }
+  img.onload=function(){ready=true;size()};
+  addEventListener('resize',size); size();
+  function scrub(cx,cy){
+    if(done||!ready) return;
+    var r=stage.getBoundingClientRect(), x=cx-r.left, y=cy-r.top;
+    sponge.style.left=x+'px'; sponge.style.top=y+'px';
+    ctx.globalCompositeOperation='destination-out';
+    var g=ctx.createRadialGradient(x,y,6,x,y,46);
+    g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(.7,'rgba(0,0,0,.85)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,46,0,7); ctx.fill();
+    if(++strokes%14===0) check();
+  }
+  function check(){
+    var d=ctx.getImageData(0,0,W,H,{willReadFrequently:true}).data, opaque=0, total=0;
+    for(var i=3;i<d.length;i+=160){ total++; if(d[i]>60) opaque++; }
+    if(opaque/total<.12) finish();
+  }
+  function finish(){
+    done=true; stage.classList.add('done');
+    cv.style.transition='opacity .5s'; cv.style.opacity='0';
+    hint.textContent='Spotless. Sam does the real thing.';
+    var em=['✨','✨','✨','✨','✨','⭐','✨','✨'];
+    em.forEach(function(e,i){
+      var s=document.createElement('i'); s.textContent=e;
+      s.style.left=(8+Math.random()*84)+'%'; s.style.top=(8+Math.random()*84)+'%';
+      s.style.animationDelay=(i*.09)+'s'; sparks.appendChild(s);
+    });
+    setTimeout(function(){sparks.innerHTML=''},2200);
+  }
+  stage.addEventListener('pointermove',function(e){scrub(e.clientX,e.clientY)});
+  stage.addEventListener('pointerdown',function(e){scrub(e.clientX,e.clientY)});
+  stage.addEventListener('touchmove',function(e){scrub(e.touches[0].clientX,e.touches[0].clientY);e.preventDefault()},{passive:false});
+})();
+
+/* pause hero videos offscreen (battery) */
+var vids=document.querySelectorAll('.hero-media video');
+new IntersectionObserver(function(es){
+  es.forEach(function(e){ vids.forEach(function(v){ e.isIntersecting?v.play().catch(function(){}):v.pause(); }); });
+},{threshold:.05}).observe(document.getElementById('hero'));
+</script>
+</body>
+</html>
