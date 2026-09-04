@@ -139,8 +139,11 @@
   .pill.text{background:var(--blue-soft); color:var(--blue)}
   .pill.call{background:var(--amber-soft); color:var(--amber)}
   .pill.stop{background:var(--red-soft); color:var(--red)}
+  .pill.sent{background:var(--green); color:var(--card)}
 
   .row.blocked{border-color:var(--red); border-left:5px solid var(--red)}
+  .row.sent{border-left:5px solid var(--green)}
+  .row.sent h3{color:var(--ink-2)}
 
   /* ---- log ---- */
   .log{
@@ -170,21 +173,27 @@
   <div class="mast">
     <div class="kicker">HJS Designs · Batman run · overnight + afternoon</div>
     <h1>Friday Dispatch</h1>
-    <div class="sub">18 demos live and gate-passed. Every pitch is written. None have gone out yet — that's the one thing needing you.</div>
+    <div class="sub">18 demos live and gate-passed. 5 of them went out at 1:30 this afternoon; 13 are written and still sitting.</div>
   </div>
 
   <div class="tally">
     <div><b>18</b><span>Demos live</span></div>
-    <div><b>18</b><span>Pitches written</span></div>
-    <div><b>13</b><span>Rescued today</span></div>
+    <div><b>5</b><span>Sent today</span></div>
+    <div><b>13</b><span>Still staged</span></div>
     <div><b>2</b><span>Blocked</span></div>
   </div>
 
+  <div class="notice" style="background:var(--green-soft);border-color:var(--green)">
+    <h2 style="color:var(--green)">The sender ran late — 16 pitches went out at 1:30 PM</h2>
+    <p>The 9:35 job didn't fire on time; the scheduler caught up and ran it at 1:19. Between 1:26 and 1:42 it sent <b>13 texts</b> (Optometry, Athena's, CC's, Carbonado, Firehouse, Twisted Hive, Fill's, Plateau Wine, Tire Shop, Nail Lab, Nana's, Daisy's, Hills), <b>1 email</b> (Outpost), and dropped <b>2 landlines</b> to the call list (Enumclaw Junction, Bonney Lake Barbecue).</p>
+    <p style="font-size:13.5px;color:var(--ink-2)"><b>Don't re-run the batch by hand today</b> — those 13 owners were contacted less than an hour ago and a second touch would land on top of the first.</p>
+  </div>
+
   <div class="notice">
-    <h2>Nothing sent today — the 9:30 sender never ran</h2>
-    <p>No <em>gordon-pitched.log</em>, no call list, and no pitch lines in the send log for Sept 4. There's no STOP file, so this wasn't deliberate — the job just didn't fire. All 18 drafts are staged and their links are live. This run did not send them; that's your call.</p>
+    <h2>13 pitches are written and still sitting</h2>
+    <p>The sender fired before this run finished drafting, so it never saw the 11 new ones — plus Modoo and Shalyn, which it skipped for having no email and no verified cell. Every link below is live. Sending them is your call.</p>
     <code>bash ~/website-factory/leads/gordon-final/run-batch.sh</code>
-    <p style="font-size:13px;color:var(--ink-2)">Or say <em>“send the staged batch”</em> in a session and it'll run the pivot for you — text a verified cell, else email, else the call list.</p>
+    <p style="font-size:13px;color:var(--ink-2)">Or say <em>“send the staged batch”</em> in a session — it runs the pivot (verified cell → email → call list) and skips anything already in the sent log, so nobody gets hit twice.</p>
   </div>
 
   <div class="notice" style="background:var(--amber-soft);border-color:var(--amber)">
@@ -195,27 +204,27 @@
   <section class="sec">
     <header>
       <h2>Email door</h2>
-      <span class="hint">ready to send</span>
+      <span class="hint">3 already sent · 6 staged</span>
       <span class="n">9</span>
     </header>
     <div class="rows">
 
-      <article class="row">
+      <article class="row sent">
         <div class="top"><span class="nn">73</span><h3>Outpost Coffee &amp; Creamery</h3><span class="town">Enumclaw</span></div>
         <p class="angle">outpostcoffeecreamery.com serves a <em>“verify you're human”</em> checkpoint instead of their site.</p>
-        <div class="foot"><span class="pill mail">Email</span><span class="door">outpost.coffee.creamery@gmail.com</span><a class="open" href="https://hjsdesigns.github.io/demos/outpost-coffee-and-creamery/">Open demo</a></div>
+        <div class="foot"><span class="pill sent">Email sent 1:42 PM</span><span class="door">outpost.coffee.creamery@gmail.com</span><a class="open" href="https://hjsdesigns.github.io/demos/outpost-coffee-and-creamery/">Open demo</a></div>
       </article>
 
-      <article class="row">
+      <article class="row sent">
         <div class="top"><span class="nn">76</span><h3>Nana's Sweets &amp; Crumbles</h3><span class="town">Orting</span></div>
         <p class="angle">Mobile bakery, no site — Facebook is the whole business. <span class="gadget">Build a box</span></p>
-        <div class="foot"><span class="pill mail">Email</span><span class="door">RG_roses@comcast.net · Gina</span><a class="open" href="https://hjsdesigns.github.io/demos/nanas-sweets-and-crumbles/">Open demo</a></div>
+        <div class="foot"><span class="pill sent">Texted 1:39 PM</span><span class="door">RG_roses@comcast.net · Gina</span><a class="open" href="https://hjsdesigns.github.io/demos/nanas-sweets-and-crumbles/">Open demo</a></div>
       </article>
 
-      <article class="row">
+      <article class="row sent">
         <div class="top"><span class="nn">78</span><h3>Hills of Comics</h3><span class="town">Auburn</span></div>
         <p class="angle">Google's Website button literally reads <em>facebook.com</em>. <span class="gadget">Animated inked mark · the piles</span></p>
-        <div class="foot"><span class="pill mail">Email</span><span class="pill text">+ cell</span><span class="door">hillsofcomics@gmail.com · (253) 333-8841 · John</span><a class="open" href="https://hjsdesigns.github.io/demos/hills-of-comics/">Open demo</a></div>
+        <div class="foot"><span class="pill sent">Texted 1:41 PM</span><span class="door">hillsofcomics@gmail.com · (253) 333-8841 · John</span><a class="open" href="https://hjsdesigns.github.io/demos/hills-of-comics/">Open demo</a></div>
       </article>
 
       <article class="row">
@@ -260,21 +269,21 @@
   <section class="sec">
     <header>
       <h2>Verified cell</h2>
-      <span class="hint">text these</span>
+      <span class="hint">both went out at 1:40</span>
       <span class="n">2</span>
     </header>
     <div class="rows">
 
-      <article class="row">
+      <article class="row sent">
         <div class="top"><span class="nn">75</span><h3>The Nail Lab by JC</h3><span class="town">Sumner</span></div>
         <p class="angle">Every link goes to a booking platform, none to a site of her own. She books by text, so texting is the right door.</p>
-        <div class="foot"><span class="pill text">Text</span><span class="door">(253) 453-6965 · Johanna</span><a class="open" href="https://hjsdesigns.github.io/demos/the-nail-lab-by-jc/">Open demo</a></div>
+        <div class="foot"><span class="pill sent">Texted 1:38 PM</span><span class="door">(253) 453-6965 · Johanna</span><a class="open" href="https://hjsdesigns.github.io/demos/the-nail-lab-by-jc/">Open demo</a></div>
       </article>
 
-      <article class="row">
+      <article class="row sent">
         <div class="top"><span class="nn">77</span><h3>Daisy's Boutique Antiques</h3><span class="town">Orting</span></div>
         <p class="angle">No site; the Google profile is unclaimed and reads <em>“Add website”</em>. <span class="gadget">Countdown to the Sept 13 pop-up</span></p>
-        <div class="foot"><span class="pill text">Text</span><span class="door">(253) 314-8314 · no email exists</span><a class="open" href="https://hjsdesigns.github.io/demos/daisys-boutique-antiques/">Open demo</a></div>
+        <div class="foot"><span class="pill sent">Texted 1:40 PM</span><span class="door">(253) 314-8314 · no email exists</span><a class="open" href="https://hjsdesigns.github.io/demos/daisys-boutique-antiques/">Open demo</a></div>
       </article>
 
     </div>
@@ -283,7 +292,7 @@
   <section class="sec">
     <header>
       <h2>Call or walk in</h2>
-      <span class="hint">no email found</span>
+      <span class="hint">no email anywhere · all staged</span>
       <span class="n">7</span>
     </header>
     <div class="rows">
@@ -361,7 +370,7 @@
     <dl>
       <dt>Rescued</dt><dd><b>13 builds published.</b> Four Seasons, El Corral, Buckley Laundromat, Nails 410, T&amp;J, Pretty Nails, Glamour, Spa Nails, Doggone, Studio on Cole, Vape &amp; Smoke, Doña Licha, Milton Wok — committed, pushed, live.</dd>
       <dt>Gate</dt><dd><b>13 / 13 pass</b> on the live URLs — every image paints at 390 and 1440.</dd>
-      <dt>Drafted</dt><dd><b>11 new pitches</b> (79–89), each on the standard frame, every owner name sourced from the business's own listing.</dd>
+      <dt>Drafted</dt><dd><b>11 new pitches</b> (79–89), each on the standard frame, every owner name sourced from the business's own listing. They were written after the sender fired, so none went out with the 1:30 batch.</dd>
       <dt>Doors</dt><dd><b>6 new emails</b> read off Facebook About panels and Square sites. 5 shops have no email anywhere — those are calls.</dd>
       <dt>Board</dt><dd>All 12 rows swapped from private previews to the live shareable links.</dd>
       <dt>Chrome</dt><dd>Extension not connected this run — door work went through curl and the in-app pane.</dd>
@@ -371,7 +380,7 @@
 
   <footer>
     Batman · Friday, September 4, 2026 · Enumclaw → Bonney Lake<br>
-    18 demos live · 18 pitches written · 0 sent
+    18 demos live · 18 pitches written · 5 sent at 1:30 PM · 13 staged
   </footer>
 
 </div>
