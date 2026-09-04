@@ -10,7 +10,7 @@
 var HOURS = {
   tz: 'America/Los_Angeles',
   days: {
-    0: null,          // Sunday — closed on Google (Fighter Fit is listed Sundays 8 am on the schedule; see ask list)
+    0: null,          // Sunday — closed
     1: [17, 20],      // Monday 5–8 pm
     2: [17, 20],      // Tuesday
     3: [17, 20],      // Wednesday
@@ -30,7 +30,6 @@ var SCHEDULE = [
   { id:'gi',   name:'Adult Gi Jiu-Jitsu',     type:'gi',   days:[1,3,5], start:18,  dur:90, note:'all levels' },
   { id:'nogi', name:'Adult No-Gi Jiu-Jitsu',  type:'nogi', days:[4],     start:18,  dur:90, note:'all levels' },
   { id:'mma',  name:'MMA',                    type:'mma',  days:[2,4],   start:17,  dur:60, note:'invite only' },
-  { id:'fit',  name:'Fighter Fit',            type:'fit',  days:[0],     start:8,   dur:55, note:'boxing / kickboxing conditioning' },
   { id:'open', name:'BJJ Open Mat',           type:'open', days:[6],     start:11,  dur:90, note:'rotating locations — ask a coach' }
 ];
 

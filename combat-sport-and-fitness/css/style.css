@@ -118,12 +118,17 @@ p{margin:0 0 1em}
    Nothing sits on the photo but the headline block. */
 .hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
 .hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:58% 50%;animation:kenburns 26s var(--ease) forwards}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;animation:kenburns 26s var(--ease) forwards}
+.hero-bg img.echo{display:none}
 @keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 82%,transparent) 0%,color-mix(in srgb,var(--dark) 52%,transparent) 42%,color-mix(in srgb,var(--dark) 12%,transparent) 78%,transparent 100%),
              linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent) 0%,transparent 28%,transparent 55%,color-mix(in srgb,var(--dark) 80%,transparent) 100%)}
-@media (max-width:760px){.hero-bg img{object-position:60% 50%}
+@media (max-width:760px){
+  /* phones: the whole photo, uncropped, sitting inside a blurred echo of itself (never crop the subject) */
+  .hero-bg img{object-fit:contain;object-position:50% 46%;animation:none}
+  .hero-bg img.echo{display:block;position:absolute;inset:-10%;width:120%;height:120%;object-fit:cover;filter:blur(22px) brightness(.55) saturate(1.1)}
+  .hero-bg img:not(.echo){position:relative}
   .hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,color-mix(in srgb,var(--dark) 6%,transparent) 30%,color-mix(in srgb,var(--dark) 58%,transparent) 62%,color-mix(in srgb,var(--dark) 94%,transparent) 100%)}}
 .hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.4;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
@@ -214,9 +219,10 @@ p{margin:0 0 1em}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .card{display:block;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:0;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;color:inherit}
 .card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -30px #000;border-color:color-mix(in srgb,var(--brand) 55%,transparent)}
-.card .ph{aspect-ratio:4/3;overflow:hidden;background:var(--dark)}
-.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.card:hover .ph img{transform:scale(1.04)}
+.card .ph{aspect-ratio:4/3;overflow:hidden;background:var(--dark);position:relative}
+.card .ph img.echo{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(16px) brightness(.5) saturate(1.1)}
+.card .ph img:not(.echo){position:relative;width:100%;height:100%;object-fit:contain;transition:transform .6s var(--ease)}
+.card:hover .ph img:not(.echo){transform:scale(1.04)}
 .card .body{padding:20px 20px 22px}
 .card h3{font-size:24px;margin:0 0 6px;letter-spacing:.03em}
 .card p{font-size:15px;color:var(--muted);margin:0 0 12px}
@@ -224,7 +230,7 @@ p{margin:0 0 1em}
 .card .ico{width:48px;height:48px;border-radius:var(--r);display:grid;place-items:center;background:var(--tint);color:var(--warm);margin-bottom:18px}
 .card .ico svg{width:26px;height:26px}
 @media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.cards{grid-template-columns:1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}.rates{grid-template-columns:1fr}}
 
 /* ============================================================ TONIGHT ON THE MATS (live day timeline — the signature) */
 .tonight{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(28px,5vw,72px);align-items:start}
@@ -342,8 +348,9 @@ p{margin:0 0 1em}
 .program:nth-child(even){grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
 .program:nth-child(even) .ph{order:2}
 .program .ph{background:var(--dark);min-height:280px;position:relative}
-.program .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.program .ph.contain img{object-fit:contain;background:var(--dark)}
+.program .ph{overflow:hidden}
+.program .ph img.echo{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(18px) brightness(.5) saturate(1.1)}
+.program .ph img:not(.echo){position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .program .body{padding:clamp(22px,3vw,36px)}
 .program .body .eyebrow{margin-bottom:8px}
 .program h2{font-size:clamp(30px,3.6vw,46px);margin:0 0 10px}
@@ -398,7 +405,7 @@ p{margin:0 0 1em}
 @media (max-width:420px){.week{grid-template-columns:1fr}}
 
 /* ============================================================ PRICING PAGE — the board */
-.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rates{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .rate{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px 24px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
 .rate.feature{border-color:var(--brand);box-shadow:inset 0 4px 0 var(--brand)}
 .rate .eyebrow{margin-bottom:4px}
@@ -424,7 +431,8 @@ p{margin:0 0 1em}
 .extra p{font-size:15.5px;color:var(--muted);margin:0}
 .extra a{color:var(--brand-text);font-weight:700}
 .fine{font-size:13.5px;color:var(--muted);margin:26px 0 0;max-width:80ch}
-@media (max-width:900px){.rates{grid-template-columns:1fr}.prepay{grid-template-columns:1fr}.extras{grid-template-columns:1fr}}
+@media (max-width:1100px){.rates{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.rates{grid-template-columns:1fr 1fr}.prepay{grid-template-columns:1fr}.extras{grid-template-columns:1fr}}
 
 /* ============================================================ EVENTS PAGE */
 .event{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);margin-bottom:22px}
@@ -472,3 +480,28 @@ p{margin:0 0 1em}
 .foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
 .foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+
+/* ============================================================ HOURS STRIP (rebuilt 9/4 — Hayden: "completely try again")
+   Live status as the headline, address under it, proof chips to the right, then the week as
+   seven tiles in a row — today's tile goes solid red, closed days go dim. */
+.hours-strip{background:var(--tint);border-top:var(--rule);border-bottom:var(--rule);padding:clamp(36px,5.5vw,60px) 0}
+.hs-top{display:flex;justify-content:space-between;align-items:flex-end;gap:22px 32px;flex-wrap:wrap;margin-bottom:24px}
+.hs-top .eyebrow{margin-bottom:10px}
+.hs-top .live-line{font-size:clamp(26px,3.6vw,46px);gap:14px}
+.hs-top .live-line .dot{width:16px;height:16px}
+.hs-top .status-addr{padding-left:30px;margin-top:8px;font-size:15px}
+.hs-top .proof-row{margin:0;justify-content:flex-end}
+.week-strip{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;counter-reset:none}
+.week-strip li{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 10px 16px;text-align:center;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;min-height:112px;transition:transform .3s var(--ease)}
+.week-strip .day{font-family:var(--display);font-size:24px;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.week-strip .time{font-family:var(--mono);font-size:12.5px;color:var(--muted);line-height:1.5;font-variant-numeric:tabular-nums}
+.week-strip .time b{font-weight:600;color:var(--ink);display:block}
+.week-strip li.closed .time b{color:var(--status-closed)}
+.week-strip li.closed .day{opacity:.45}
+.week-strip li.today{background:var(--brand);border-color:var(--brand);transform:translateY(-4px);box-shadow:0 18px 30px -18px var(--brand)}
+.week-strip li.today .time,.week-strip li.today .time b,.week-strip li.today .day{color:#fff}
+.week-strip li.today::before{content:"today";position:absolute;top:0;left:0;right:0;font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;background:rgba(0,0,0,.28);color:#fff;padding:4px 0}
+@media (max-width:900px){.hs-top .proof-row{justify-content:flex-start}}
+@media (max-width:820px){.week-strip{grid-template-columns:repeat(4,1fr)}.week-strip li:nth-child(n+5){grid-column:span 1}}
+@media (max-width:520px){.week-strip{grid-template-columns:repeat(2,1fr)}.week-strip li{min-height:0;padding:24px 8px 12px}.week-strip li:last-child{grid-column:1 / -1}}

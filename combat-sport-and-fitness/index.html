@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Combat Sport &amp; Fitness — Brazilian Jiu-Jitsu, MMA &amp; Fighter Fit, Enumclaw WA</title>
+<title>Combat Sport &amp; Fitness — Brazilian Jiu-Jitsu &amp; MMA, Enumclaw WA</title>
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Enumclaw's original home for jiu-jitsu since 2008. Kids and adult Brazilian Jiu-Jitsu, invite-only MMA and Fighter Fit under UFC vet and black belt Jeff Hougland. 750 Hwy 410 S, Enumclaw.">
+<meta name="description" content="Enumclaw\'s original home for jiu-jitsu since 2008. Kids and adult Brazilian Jiu-Jitsu, no-gi, and invite-only MMA under UFC vet and black belt Jeff Hougland. 750 Hwy 410 S, Enumclaw.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
 
   <!-- ===================== HERO — the room, and their own painted sign as the headline ===================== -->
   <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="The mat room at Combat Sport &amp; Fitness — red and black mats under the wood-plank ceiling" fetchpriority="high"></div>
+    <div class="hero-bg"><img class="echo" src="images/door.jpg" alt="" aria-hidden="true"><img src="images/door.jpg" alt="The front door of Combat Sport &amp; Fitness on Highway 410 — blue building, CSF Brazilian Jiu-Jitsu sign, COMBAT on the glass" fetchpriority="high"></div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
       <h1 class="sr-only">Combat Sport &amp; Fitness — Enumclaw's original home for jiu-jitsu</h1>
@@ -56,31 +56,29 @@
   </section>
 
   <!-- ===================== HOURS — live status, address, all seven days ===================== -->
-  <section class="status-band" id="hours">
+  <section class="hours-strip" id="hours">
     <div class="wrap">
-      <div class="status-head">
-        <p class="eyebrow">When to find us</p>
-        <h2>The mats are open <em>evenings.</em></h2>
-        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
-        <p class="status-addr">
-          750 Hwy 410 S, Enumclaw, WA 98022 · next to NAPA Auto<br>
-          <a href="https://www.google.com/maps/search/?api=1&query=Combat+Sport+%26+Fitness+750+Hwy+410+S+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
-        </p>
+      <div class="hs-top">
+        <div>
+          <p class="eyebrow">When to find us</p>
+          <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+          <p class="status-addr">750 Hwy 410 S, Enumclaw, WA 98022 · next to NAPA Auto · <a href="https://www.google.com/maps/search/?api=1&query=Combat+Sport+%26+Fitness+750+Hwy+410+S+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a></p>
+        </div>
         <div class="proof-row">
           <span class="proof"><span class="star">★</span> 4.9 on Google (20 reviews)</span>
           <span class="proof"><span class="ico">✓</span> 100% recommend on Facebook (59)</span>
           <span class="proof"><span class="ico">✓</span> Training Enumclaw since 2008</span>
         </div>
       </div>
-      <ul class="hours-list" id="hoursList">
-        <li data-days="1"><span class="day">Monday</span><span class="time">5:00 pm – 8:00 pm</span></li>
-        <li data-days="2"><span class="day">Tuesday</span><span class="time">5:00 pm – 8:00 pm</span></li>
-        <li data-days="3"><span class="day">Wednesday</span><span class="time">5:00 pm – 8:00 pm</span></li>
-        <li data-days="4"><span class="day">Thursday</span><span class="time">5:00 pm – 8:00 pm</span></li>
-        <li data-days="5"><span class="day">Friday</span><span class="time">5:00 pm – 8:30 pm</span></li>
-        <li data-days="6"><span class="day">Saturday</span><span class="time">11:00 am – 12:30 pm</span></li>
-        <li data-days="0" class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
-      </ul>
+      <ol class="week-strip" id="hoursList">
+        <li data-days="1"><span class="day">Mon</span><span class="time"><b>5:00 pm</b>–<b>8:00 pm</b></span></li>
+        <li data-days="2"><span class="day">Tue</span><span class="time"><b>5:00 pm</b>–<b>8:00 pm</b></span></li>
+        <li data-days="3"><span class="day">Wed</span><span class="time"><b>5:00 pm</b>–<b>8:00 pm</b></span></li>
+        <li data-days="4"><span class="day">Thu</span><span class="time"><b>5:00 pm</b>–<b>8:00 pm</b></span></li>
+        <li data-days="5"><span class="day">Fri</span><span class="time"><b>5:00 pm</b>–<b>8:30 pm</b></span></li>
+        <li data-days="6"><span class="day">Sat</span><span class="time"><b>11:00 am</b>–<b>12:30 pm</b></span></li>
+        <li data-days="0" class="closed"><span class="day">Sun</span><span class="time"><b>Closed</b></span></li>
+      </ol>
     </div>
   </section>
 
@@ -95,25 +93,25 @@
         <div class="front-copy section-head reveal">
           <p class="eyebrow">What we teach</p>
           <h2>Four ways onto <em>the mat.</em></h2>
-          <p>Brazilian Jiu-Jitsu for kids and adults, a boxing-and-kickboxing conditioning class anyone can join, and an MMA program you have to be invited into. Pick your door.</p>
+          <p>Brazilian Jiu-Jitsu for kids and adults, gi and no-gi, and an MMA program you have to be invited into. Pick your door.</p>
         </div>
       </div>
       <div class="cards">
         <a class="card reveal" href="classes.html#kids">
-          <div class="ph"><img src="images/kids.jpg" alt="Kids class on the mats in front of the mountain mural" loading="lazy"></div>
+          <div class="ph"><img class="echo" src="images/kids.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/kids.jpg" alt="Kids class on the mats in front of the mountain mural" loading="lazy"></div>
           <div class="body"><h3>Kids Jiu-Jitsu</h3><p>Mon · Wed · Fri at 5 pm. Discipline, confidence, and a belt that means something.</p><span class="go">Kids program →</span></div>
         </a>
         <a class="card reveal" href="classes.html#adult">
-          <div class="ph"><img src="images/mats.jpg" alt="Adult jiu-jitsu class rolling on the mats" loading="lazy"></div>
-          <div class="body"><h3>Adult Jiu-Jitsu</h3><p>Gi Mon · Wed · Fri, No-Gi Thursdays, open mat Saturdays. All levels.</p><span class="go">Adult program →</span></div>
+          <div class="ph"><img class="echo" src="images/team-gi.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/team-gi.jpg" alt="The team in gis after class" loading="lazy"></div>
+          <div class="body"><h3>Adult Gi</h3><p>Mon · Wed · Fri at 6 pm, open mat Saturdays. All levels, all ages.</p><span class="go">Adult program →</span></div>
         </a>
-        <a class="card reveal" href="classes.html#fit">
-          <div class="ph"><img src="images/kickbox.jpg" alt="Kickboxing pad work under the wood ceiling" loading="lazy"></div>
-          <div class="body"><h3>Fighter Fit</h3><p>Boxing and kickboxing conditioning. Gloves and wraps, no experience needed.</p><span class="go">Fighter Fit →</span></div>
+        <a class="card reveal" href="classes.html#adult">
+          <div class="ph"><img class="echo" src="images/nogi-team.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/nogi-team.jpg" alt="The no-gi crew after Thursday class" loading="lazy"></div>
+          <div class="body"><h3>Adult No-Gi</h3><p>Thursdays at 6 pm. Rash guard, shorts, no collar to grab.</p><span class="go">No-gi →</span></div>
         </a>
         <a class="card reveal" href="classes.html#mma">
-          <div class="ph"><img src="images/fight.jpg" alt="A Combat Sport &amp; Fitness fighter in the cage on fight night" loading="lazy"></div>
-          <div class="body"><h3>MMA</h3><p>Pro and amateur fight training. Invite only — earn your way in.</p><span class="go">How it works →</span></div>
+          <div class="ph"><img class="echo" src="images/nogi-action.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/nogi-action.jpg" alt="Live rounds on the mats under the wood ceiling" loading="lazy"></div>
+          <div class="body"><h3>MMA</h3><p>Tue · Thu at 5 pm. Pro and amateur fight training. Invite only — earn your way in.</p><span class="go">How it works →</span></div>
         </a>
       </div>
     </div>
@@ -232,7 +230,7 @@
     <div class="foot">
       <div>
         <div class="brand"><img src="images/logo-white.png" alt="Combat Sport &amp; Fitness" width="2253" height="376"></div>
-        <p>Brazilian Jiu-Jitsu, MMA and Fighter Fit on the Plateau. Train hard, train smart.</p>
+        <p>Brazilian Jiu-Jitsu and MMA on the Plateau. Train hard, train smart.</p>
         <div class="soc">
           <a href="https://www.facebook.com/combatsportfitness/" target="_blank" rel="noopener">Facebook</a>
           <a href="https://www.instagram.com/combat_sportfitness/" target="_blank" rel="noopener">Instagram</a>
