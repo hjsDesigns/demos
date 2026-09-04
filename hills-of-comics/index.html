@@ -354,7 +354,7 @@ p{margin:0 0 1em}
 @media (max-width:560px){.mark{width:min(92vw,420px)}}
 
 /* ---------- room print (storefront slot) ---------- */
-.room-print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);margin:0 0 clamp(30px,5vw,56px);
+.room-print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);margin:0 0 clamp(30px,5vw,56px) 0;
   box-shadow:0 40px 80px -44px color-mix(in srgb,var(--ink) 55%,transparent)}
 .room-print img{width:100%;height:auto;display:block}
 .room-print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
@@ -391,13 +391,22 @@ p{margin:0 0 1em}
 .pile:hover{transform:translateY(-2px)}
 .pile.is-on{background:var(--brand);color:#fff;box-shadow:0 10px 24px -12px color-mix(in srgb,var(--brand) 80%,transparent)}
 .pile-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(14px,2.2vw,26px)}
-.pile-grid .print{flex:0 1 clamp(186px,17vw,238px);transform:none;padding:11px 11px 30px}
+.pile-grid .print{margin:0;flex:0 1 clamp(186px,17vw,238px);transform:none;padding:11px 11px 30px}
 .pile-grid .print:nth-child(3n+1){transform:rotate(-1.4deg)}
 .pile-grid .print:nth-child(3n+2){transform:rotate(1deg)}
 .pile-grid .print:nth-child(3n){transform:rotate(-.7deg)}
 .pile-grid .print:hover{transform:rotate(0) scale(1.03)}
 .pile-grid .print[hidden]{display:none}
-@media (max-width:560px){.pile-grid .print{flex:0 1 calc(50% - 12px);transform:none}}
+@media (max-width:620px){
+  .pile-grid{gap:12px}
+  .pile-grid .print,
+  .pile-grid .print:nth-child(3n+1),
+  .pile-grid .print:nth-child(3n+2),
+  .pile-grid .print:nth-child(3n){flex:0 0 auto;width:calc(50% - 6px);min-width:0;transform:none;padding:8px 8px 26px}
+  .pile-grid .print figcaption{font-size:10px;letter-spacing:.08em;margin-top:10px}
+  .piles{gap:8px}
+  .pile{font-size:12.5px;padding:11px 14px}
+}
 .pile-grid .print{animation:pilePop .38s var(--ease) both}
 @keyframes pilePop{from{opacity:0;transform:translateY(12px) rotate(0)}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.pile-grid .print{animation:none}}
