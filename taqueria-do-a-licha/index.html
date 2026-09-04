@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Taquería Doña Licha — Traditional Mexican, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Taquería Doña Licha on Griffin Ave in Enumclaw — tacos, quesabirria, burritos and carne asada plates, made to order. 4.7 stars on Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Solway (display) + Rethink Sans (body) — both first use in the factory -->
+<link href="https://fonts.googleapis.com/css2?family=Solway:wght@400;700;800&family=Rethink+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   WEBSITE FACTORY — ONE-PAGE TEMPLATE
+   Distilled from the 2026-08 reference build (the quality bar; see README).
+   EVERY brand decision lives in :root below. Component rules only
+   ever reference tokens — never a hex color. Change the business,
+   change this block, done.
+
+   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
+   dark (a genuinely dark venue), three rules below still assume the light-
+   ground default and will render illegible — check/override these in the
+   SITE's OWN style.css, never edit this shared file:
+     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
+     .story-copy .lede         — color:var(--dark)
+     .site-footer              — background:var(--ink)
+   (The hero scrim had the same bug — built from var(--ink), which on a
+   dark-ground site is the light body-text color, so the "dark scrim" washed
+   the hero photo pale instead of darkening it; Hayden caught it live as
+   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
+   now uses var(--dark), the one token guaranteed dark in either mode — so
+   this one no longer needs a per-site override.)
+   Three separate bugs of this exact shape shipped in one build before this
+   note existed (footer, the About lede, then the hero scrim) — sweep the
+   remaining three before calling a dark-ground build done, don't wait for
+   Hayden to catch it.
+   ============================================================ */
+:root{
+/* ---- palette ----------------------------------------------------------
+   HONEST SOURCING NOTE (2026-09-04): this palette is NOT sampled from the
+   client's own materials, and must not be described as if it were. Every
+   photo in the recon harvest came from Instagram @lichastacos, which the
+   build-phase eyeball pass identified as a HOUSTON, TEXAS taco business
+   (Harris County constables; a Segundo Coffee Lab farewell post) — see
+   rejected/README.md. That killed the dossier's palette table too, since
+   all seven of its hexes were sampled from those photos.
+   With no verified logo, signage, room or product shot in existence, MIRROR
+   LAW has nothing to mirror. These tokens are a considered traditional-
+   cocina palette — masa, comal char, barro terracotta, tomatillo — chosen
+   to suit "comida típica de México" (their own Facebook words) and flagged
+   for revision the moment Hayden's drive-by shoot lands. ------------------ */
+  --brand:#B4472B;          /* barro terracotta — buttons, dots, big type */
+  --brand-text:#93331C;     /* same hue darkened to pass AA on masa cream */
+  --brand-bright:#CE5433;   /* hover state of --brand */
+  --accent:#4F7A3A;         /* tomatillo / salsa verde — checks, success */
+  --accent-soft:#7BA362;    /* lighter accent for dark grounds */
+  --ink:#241A14;            /* comal char brown — text, footer ground */
+  --bg:#F4EAD7;             /* TRUE CREAM page ground (masa) — never white */
+  --bg-2:#E8DAC0;           /* deeper masa, alternating bands */
+  --paper:#FBF4E6;          /* cards — a hair lighter than --bg, never white */
+  --muted:#6E6153;          /* secondary text */
+  --line:#DCC9AC;           /* hairlines, borders */
+  --dark:#2E211A;           /* dark panels (closing band, hero fallback) */
+  --dark-2:#3F2E24;         /* dark hover */
+  --warm:#E2A64E;           /* chile gold — highlighted word on dark grounds */
+  --tint:#E6E3CB;           /* light tinted band (the hours/status band) */
+  --status-open:#10B981;    /* open indicators — green, never brand [LAW] */
+  --status-closed:#DC2626;  /* closed indicators — red, never brand  [LAW] */
+
+  /* ---- type: two faces, loaded in index.html <head> ----
+     Solway  — a warm slab with real stroke weight and a slightly hand-cut,
+               painted-menu-board character. NOT claimed as a match to any
+               mark of theirs: no logo, sign or printed material for this
+               business exists in the harvest, so there is nothing to match
+               and NEVER RECREATE forbids drawing one. First use in factory.
+     Rethink Sans — humanist body sans, first use in factory. Checked against
+               every built site's own stylesheet and the last 12 Repetition
+               Ledger rows: neither face repeats a recent build. ----------- */
+  --display:'Solway','Hoefler Text',Georgia,'Times New Roman',serif;
+  --body:'Rethink Sans','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+
+  /* ---- metrics ---- */
+  --header-h:72px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
+  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
+                                                (mechanical → steeper start; confident → slower settle;
+                                                elastic → overshoot past 1). Leave equal to --ease if
+                                                the build doesn't need a second feel. */
+  --r:18px;
+}
+
+/* ============================================================
+   Z-INDEX MAP (QA lesson from EA — keep it documented)
+     60  .site-header   sticky header, always on top
+     40  #main-nav      the dropped-down mobile menu (inside header)
+      3  .hero-inner    hero text block
+      2  .hero-bg::after film grain
+      1  .hero-bg::before scrim
+      0  .hero-bg img   photo
+   Nothing else on the page sets a z-index above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  border-bottom:var(--rule)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+/* live open/closed pill in the header */
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--status-open) 55%,transparent);background:color-mix(in srgb,var(--status-open) 14%,transparent)}
+.hdr-live.is-open .dot{background:var(--status-open);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:var(--status-closed)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1100px){.hdr-live .txt-long{display:none}}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}}
+@media (max-width:420px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   Sized to the phone screen minus the sticky header (100svh under a sticky
+   header overshoots by the header's height — EA lesson). Content sits in
+   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
+   to opposite edges, so it can't collide on short screens. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
+/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
+   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
+   light-ground AND a dark-ground build (it's the same token the .hero fallback
+   background above uses), where --ink flips to a light color on a dark-ground site
+   and would wash the photo pale instead of darkening it. */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+/* film grain */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
+.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* entrance stagger (only when JS is on, so no-JS never hides text) */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.sub-short{display:none}
+@media (max-width:520px){
+  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--status-open);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--status-closed)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--status-closed)}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.proof .ico{color:var(--accent)}
+.proof .star{color:var(--warm)}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.78)}
+/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .hero-bg img{animation:none}
+  .hdr-live.is-open .dot{animation:none}
+}
+
+/* ============================================================ SERVICES (cards grid) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
+.card .ico svg{width:26px;height:26px}
+.card h3{font-size:21px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================ MENU (priced list) — removable */
+.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
+.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:800;font-size:16.5px}
+.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
+.tnum{font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
+
+/* ============================================================ GALLERY (framed prints) */
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print:hover{transform:rotate(0) scale(1.01)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* ============================================================ SIGNATURE (per-client gadget goes here)
+   No styles by design. The gadget for each client is custom — build its CSS
+   in a block below this comment, using only tokens. EA's went here:
+   the live day-timeline + the rate calculator. */
+.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+
+/* ============================================================ ABOUT (owner story + photo) */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
+.team{margin-top:clamp(36px,5vw,64px)}
+.team h3{font-size:22px;margin:0 0 16px}
+.faces{display:flex;flex-wrap:wrap;gap:10px}
+.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
+.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
+.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
+.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND (dark, with count-up numbers) */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
+.num b i{font-style:normal;color:var(--warm)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#fff}
+.foot .soc{display:flex;gap:10px;margin-top:8px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================================
+   TAQUERIA DOÑA LICHA — site-specific block
+   ============================================================================ */
+
+/* ---------------------------------------------------------------- TYPE HERO
+   WHY THERE IS NO PHOTO HERE: zero verified photographs of this business
+   exist (see rejected/README.md). The Heart Law wants the walk-in feeling and
+   this opener cannot deliver it — it is the honest maximum until Hayden's
+   drive-by shoot, at which point hero.jpg drops in and .hero-type comes off.
+   Deliberately NOT a wordmark-on-flat-ground opener (Hi-Way, 9/2 — "fake and
+   AI-ey"): nothing here imitates a sign, a logo or a storefront. It is an
+   editorial cover set in their own Spanish words on a masa-cream ground. */
+.hero-type{background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line)}
+/* type sits at the bottom of the opener (flex spacer above it, normal flow —
+   nothing pinned), so the comal bloom owns the top third the way a photo
+   would. Same composition as every other factory hero. */
+.hero-type .hero-bg{overflow:hidden}
+/* comal heat — an unmistakably abstract warm bloom, not a picture of anything */
+.hero-type .heat{position:absolute;inset:-30% -10% auto auto;width:min(76vw,760px);aspect-ratio:1;
+  border-radius:50%;background:radial-gradient(circle at 50% 50%,
+    color-mix(in srgb,var(--warm) 78%,transparent) 0%,
+    color-mix(in srgb,var(--brand) 40%,transparent) 40%,
+    color-mix(in srgb,var(--brand) 12%,transparent) 60%,
+    transparent 74%);filter:blur(6px)}
+/* paper tooth over the whole opener so the cream reads printed, not flat */
+.hero-type .hero-bg::before{background:none}
+.hero-type .hero-bg::after{opacity:.30;mix-blend-mode:multiply}
+.hero-type .hero-inner{padding-top:clamp(28px,6vh,64px);padding-bottom:clamp(28px,6vh,64px)}
+.hero-type .hero-eyebrow{color:var(--brand-text)}
+.hero-type .hero-eyebrow::after{content:"";display:block;width:52px;height:0;
+  border-top:2px solid var(--brand);border-bottom:2px solid var(--brand);height:5px;margin-top:12px}
+.hero-type h1{color:var(--ink);text-shadow:none;max-width:14ch;
+  font-size:clamp(46px,min(7.4vw,11.4vh),96px);letter-spacing:-.025em;line-height:.98}
+.hero-type h1 em{font-style:normal;color:var(--brand-text)}
+.hero-type .hero-sub{color:var(--muted);font-weight:600;max-width:48ch}
+.hero-type .hero-sub b{color:var(--ink);font-weight:800}
+@media (max-width:520px){
+  .hero-type h1{font-size:clamp(42px,12vw,56px);max-width:11ch}
+  .hero-type .hero-sub{white-space:normal;font-size:17px}
+}
+
+/* --------------------------------------------------- OFFERINGS: TITLE CARDS
+   The category headline IS the tap target and unrolls the real items in
+   place. Downward chevron flips up (ARROW LAW — never a plus sign).
+   NO PRICES ANYWHERE: this business publishes no price list on any surface
+   in the dossier, and the factory omits rather than invents. */
+.roll-stack{display:grid;gap:14px;max-width:940px}
+.roll{border:1px solid var(--line);border-radius:var(--r);background:var(--paper);overflow:hidden;
+  transition:border-color .25s var(--ease)}
+.roll:has(.roll-btn[aria-expanded="true"]){border-color:color-mix(in srgb,var(--brand) 45%,var(--line))}
+.roll-btn{appearance:none;width:100%;cursor:pointer;background:none;border:0;color:var(--ink);font-family:var(--body);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:20px clamp(18px,3vw,28px);text-align:left;min-height:68px;transition:background .2s}
+.roll-btn:hover{background:color-mix(in srgb,var(--warm) 12%,transparent)}
+.roll-btn h3{font-size:clamp(20px,2.6vw,27px);margin:0;letter-spacing:-.01em}
+.roll-btn .cnt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:7px;display:block;font-variant-numeric:tabular-nums}
+.chev{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
+  color:var(--brand-text);transition:transform .3s var(--ease),background .2s,border-color .2s}
+.chev svg{width:16px;height:16px}
+.roll-btn[aria-expanded="true"] .chev{transform:rotate(180deg);
+  background:color-mix(in srgb,var(--brand) 18%,transparent);border-color:var(--brand)}
+.roll-panel{display:none;padding:0 clamp(18px,3vw,28px) 10px;border-top:1px dashed var(--line)}
+.roll-panel.open{display:block}
+.roll-list{list-style:none;margin:0;padding:0}
+.roll-list li{padding:14px 0;border-bottom:1px dashed color-mix(in srgb,var(--line) 80%,transparent)}
+.roll-list li:last-child{border-bottom:0}
+.roll-list .name{font-weight:800;font-size:16.5px;display:block}
+.roll-list .desc{font-size:14.5px;color:var(--muted);line-height:1.55;margin-top:3px;display:block}
+@media (prefers-reduced-motion:reduce){.chev,.roll{transition:none}}
+
+/* ------------------------------------------------------------- ORDER DIRECT
+   The whole pitch, made useful: every route to their food in one place, with
+   the two that cost them nothing put first. Real listings only. */
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:940px}
+.order-card{border:1px solid var(--line);border-radius:var(--r);background:var(--paper);padding:24px 22px;
+  color:var(--ink);   /* MUST be explicit: this card sits on a .section-dark band */
+  display:flex;flex-direction:column;gap:10px;transition:transform .3s var(--ease),box-shadow .3s}
+.order-card:hover{transform:translateY(-3px);box-shadow:0 28px 48px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.order-card.is-direct{background:color-mix(in srgb,var(--warm) 16%,var(--paper));
+  border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}
+.order-card h3{font-size:21px;margin:0}
+.order-card p{font-size:15px;color:var(--muted);margin:0}
+.order-card .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:600;color:var(--brand-text)}
+.order-card .btn{align-self:flex-start;margin-top:6px}
+.apps{display:flex;flex-wrap:wrap;gap:9px;margin-top:2px}
+.apps a{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:999px;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:14px;font-weight:700;
+  transition:border-color .2s,background .2s,transform .2s var(--ease)}
+.apps a:hover{border-color:var(--brand);background:var(--paper);transform:translateY(-2px)}
+@media (max-width:760px){.order-grid{grid-template-columns:1fr}}
+
+/* ------------------------------------------------------------- QUOTE WALL
+   NOT review cards. The dossier captured three verbatim Google quotes but no
+   reviewer names, no per-review dates and no per-review star ratings, so the
+   REVIEW-FACE LAW's card anatomy (initial disc + name + stars + date) cannot
+   be built without inventing three people. Typographic pull-quotes instead,
+   each labelled as a Google review, with the listing's real aggregate stated
+   once. Upgrades to full review cards the moment the names are pulled. */
+.rating-line{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 clamp(26px,4vw,40px)}
+.rating-line .score{font-family:var(--display);font-weight:800;font-size:clamp(44px,6vw,64px);line-height:1;
+  color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.rating-line .stars{color:var(--brand);font-size:20px;letter-spacing:.14em;line-height:1}
+.rating-line .of{font-size:15px;color:var(--muted);font-weight:600}
+.quote-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,26px)}
+.qt{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px 22px;
+  display:flex;flex-direction:column;gap:14px;position:relative}
+.qt:nth-child(2){background:color-mix(in srgb,var(--warm) 12%,var(--paper))}
+.qt::before{content:"\201C";position:absolute;top:6px;right:20px;font-family:var(--display);font-weight:800;
+  font-size:62px;line-height:1;color:color-mix(in srgb,var(--brand) 18%,transparent);pointer-events:none}
+.qt blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(18px,2vw,21px);
+  line-height:1.35;color:var(--ink);letter-spacing:-.01em;padding-right:34px}
+.qt .src{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin-top:auto}
+@media (max-width:900px){.quote-wall{grid-template-columns:1fr}}
+
+/* --------------------------------------------------------------- OWN WORDS
+   Their Facebook intro, verbatim Spanish, with a plain English reading. */
+.own-words{max-width:900px}
+.own-words .es{font-family:var(--display);font-weight:700;font-style:normal;
+  font-size:clamp(23px,3.4vw,38px);line-height:1.24;color:var(--ink);margin:0 0 20px;letter-spacing:-.015em}
+.own-words .en{font-size:17.5px;color:var(--muted);margin:0 0 28px;max-width:60ch}
+.own-words .en b{color:var(--ink);font-weight:800}
+.pull-rule{width:64px;height:5px;border-top:2px solid var(--brand);border-bottom:2px solid var(--brand);margin:16px 0 24px}
+
+/* -------------------------------------------------------- CLOSING DARK BAND */
+.close-band .wrap{max-width:900px}
+.close-band h2{font-size:clamp(30px,4.2vw,50px);margin:0 0 16px}
+.close-band p{font-size:18px;color:rgba(255,255,255,.8);margin:0 0 28px}
+.order-card.span{grid-column:1 / -1}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     No logo image: this business has no logo, wordmark, signage photo or
+     printed material anywhere in the harvest, and NEVER RECREATE forbids
+     drawing one. Typographic lockup instead. (The "DOÑA LICHA's HANDMADE
+     TACOS" logo in the recon folder belongs to a DIFFERENT, Houston TX
+     business — see rejected/README.md — and must never be used here.) -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Taquería Doña Licha — home">
+      <span class="wm">Doña Licha<small>Taquería</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#food">Food</a>
+        <a href="#order">Order</a>
+        <a href="#words">Reviews</a>
+        <a href="#about">About</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       TYPE-LED OPENER, NOT A PHOTO HERO — and deliberately not a fake
+       wordmark-on-flat-ground either (Hi-Way, 9/2). Zero verified photographs
+       of this business exist: all nine harvested "own" photos trace to a
+       Houston TX Instagram account (rejected/README.md). The Heart Law wants
+       the walk-in feeling and this cannot deliver it. This is the honest
+       maximum until Hayden shoots 320 Griffin Ave; hero.jpg then drops
+       straight in and .hero-type comes off. SITE IS PITCH-BLOCKED UNTIL THEN. -->
+  <section class="hero hero-type" id="hero">
+    <div class="hero-bg" aria-hidden="true"><span class="heat"></span></div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Enumclaw, WA · Taquería</p>
+      <h1>Traditional Mexican, <em>plate by plate</em></h1>
+      <p class="hero-sub">
+        <span class="sub-long">Tacos, quesabirria, burritos and carne asada plates &mdash; <b>made to order</b>, six days a week.</span>
+        <span class="sub-short">Tacos, burritos, plates</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#food" class="btn btn-primary">See what they make</a>
+        <a href="tel:+12538024701" class="btn btn-ghost">Call the shop</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Hours live HERE and nowhere else on the page (NEVER TWICE) — the header
+       pill is the same live clock, not a second listing. All 7 days as rows.
+       Source: Yelp's Location & Hours table, page stamped "Updated September
+       2026" (the only source carrying all seven days).
+       OWNER ASK: Google's live snippet said "Opens 11 AM" against Yelp's
+       10:30 AM — confirm the real opening time before this is pitched.
+       Proof chips deliberately removed: the only verifiable proof is the
+       4.7/22 Google rating, and that lives once, in #words. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Closed Mondays. <em>Open the other six.</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          320 Griffin Ave, Enumclaw, WA 98022<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=320+Griffin+Ave%2C+Enumclaw%2C+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1" class="closed"><span class="day">Monday</span><span class="time">Closed</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">10:30 am – 8:00 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">10:30 am – 8:00 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">10:30 am – 9:00 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:30 am – 9:00 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">10:30 am – 9:00 pm</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">10:00 am – 7:00 pm</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #food =====================
+       TITLE CARDS UNROLL — the category headline is the tap target and rolls
+       the real items out in place; downward chevron flips up (ARROW LAW).
+       SOURCING: every item below is named on their own Google listing, or in
+       a Google review of it. NO PRICES: this business publishes no price list
+       on any surface the recon reached, and the factory omits rather than
+       invents. Tamales are deliberately ABSENT — the only source for tamales
+       was the Houston Instagram account (rejected/README.md), not this shop.
+       STOREFRONT LAW NOT SATISFIED: this section should open with an exterior
+       photo of the building since the hero isn't one. None exists. Flagged. -->
+  <section class="section" id="food">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From the griddle</p>
+        <h2>Tacos, quesabirria, <em>and plates</em></h2>
+        <p>Everything here is named on Doña Licha's own Google listing or by the neighbours reviewing it. Tap a heading to open it up.</p>
+      </div>
+
+      <div class="roll-stack">
+        <div class="roll reveal">
+          <button class="roll-btn" type="button" aria-expanded="true" aria-controls="rollTacos">
+            <span><h3>The tacos</h3><span class="cnt">2 named on the listing</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel open" id="rollTacos">
+            <ul class="roll-list">
+              <li><span class="name">Street tacos</span><span class="desc">The house order, listed first among the things they're known for.</span></li>
+              <li><span class="name">Quesabirria tacos</span><span class="desc">The one reviewers single out by name for the meat-and-cheese end of the board.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll reveal">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollPlates">
+            <span><h3>Wrapped, folded and plated</h3><span class="cnt">3 more off the same listing</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollPlates">
+            <ul class="roll-list">
+              <li><span class="name">Burritos</span><span class="desc">Rolled to order, same kitchen, same griddle.</span></li>
+              <li><span class="name">Quesadillas</span><span class="desc">Pressed on the flat top until the cheese goes.</span></li>
+              <li><span class="name">Carne asada plates</span><span class="desc">A full plate rather than a handheld — the sit-down end of the menu.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="menu-fine reveal">No prices are printed here yet — Doña Licha doesn't publish a price list online, so calling the shop is the honest answer until they hand one over.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #order =====================
+       This band IS the pitch made useful: every route to their food in one
+       place. Right now all three delivery listings are the only "website"
+       they have, and the Google Website button points at an ordering
+       aggregator rather than anything they own. Direct routes go first. -->
+  <section class="section section-dark" id="order">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">How to get it</p>
+        <h2>Order it however <em>you like</em></h2>
+        <p>Two ways straight to the counter, and three apps that already carry them.</p>
+      </div>
+
+      <div class="order-grid">
+        <article class="order-card is-direct reveal">
+          <span class="tag">Straight to the counter</span>
+          <h3>Call it in</h3>
+          <p>Tell them what you want and pick it up when it's ready.</p>
+          <a href="tel:+12538024701" class="btn btn-primary">(253) 802-4701</a>
+        </article>
+
+        <article class="order-card is-direct reveal">
+          <span class="tag">Downtown Enumclaw</span>
+          <h3>Walk in</h3>
+          <p>Park on the avenue and order at the counter, six days a week.</p>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=320+Griffin+Ave%2C+Enumclaw%2C+WA+98022" target="_blank" rel="noopener" class="btn btn-dark">Directions ↗</a>
+        </article>
+
+        <article class="order-card span reveal">
+          <span class="tag">Delivered</span>
+          <h3>Or let an app bring it</h3>
+          <p>Doña Licha is already listed on all three.</p>
+          <div class="apps">
+            <a href="https://www.doordash.com/en/store/taqueria-do%C3%B1a-licha-enumclaw-32121201/" target="_blank" rel="noopener">DoorDash ↗</a>
+            <a href="https://www.ubereats.com/store/taqueria-dona-licha-320-griffin-avenue/JK0Xm0sTUAuc3n9-ixVhMA" target="_blank" rel="noopener">Uber Eats ↗</a>
+            <a href="https://postmates.com/store/taqueria-dona-licha-320-griffin-avenue/JK0Xm0sTUAuc3n9-ixVhMA" target="_blank" rel="noopener">Postmates ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #words =====================
+       NOT review cards, on purpose. The recon captured three verbatim Google
+       quotes but no reviewer names, no dates and no per-review star ratings.
+       The REVIEW-FACE LAW's card anatomy (initial disc + name + stars + date)
+       cannot be built from that without inventing three people, so these ship
+       as labelled pull-quotes with the listing's real aggregate stated once.
+       OWNER ASK: pull the three names + dates and this becomes proper cards. -->
+  <section class="section section-alt" id="words">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From their Google listing</p>
+        <h2>What people say <em>after they eat</em></h2>
+      </div>
+
+      <div class="rating-line reveal">
+        <span class="score">4.7</span>
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="of">out of 5, across 22 Google reviews</span>
+      </div>
+
+      <div class="quote-wall">
+        <figure class="qt reveal">
+          <blockquote>Amazing customer service, prices and deals!</blockquote>
+          <figcaption class="src">Google review</figcaption>
+        </figure>
+        <figure class="qt reveal">
+          <blockquote>Food is made fresh, very tasty, with abundant meat and great presentation.</blockquote>
+          <figcaption class="src">Google review</figcaption>
+        </figure>
+        <figure class="qt reveal">
+          <blockquote>I highly recommend quesabirria tacos for all meat/cheese lovers:)</blockquote>
+          <figcaption class="src">Google review</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about =====================
+       Their own introduction, verbatim, in the Spanish they wrote it in,
+       from their own Facebook page. NOTHING is added around it: who Doña
+       Licha actually is never surfaced online, and the factory does not
+       invent an origin story. OWNER ASK #1 — this is the strongest
+       personalisation hook on the whole build and it needs one conversation.
+       The "handmade / small-batch / mucho amor / Doña Licha Style" voice from
+       the recon is the HOUSTON account's bio and is deliberately unused. -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="own-words reveal">
+        <p class="eyebrow">In their words</p>
+        <h2>Their promise, <em>word for word</em></h2>
+        <div class="pull-rule" aria-hidden="true"></div>
+        <p class="es" lang="es">“Comprometidos con ofrecer la mejor comida típica de México. Sabor y calidad en cada platillo es nuestro compromiso.”</p>
+        <p class="en"><b>“Committed to offering the best traditional Mexican food. Flavor and quality in every dish is our commitment.”</b> That is the shop's own introduction, posted on their Facebook page — and it is the whole of what they've ever written about themselves.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact =====================
+       Address and hours are NOT repeated here — they live in #hours and the
+       footer. Form ships in DEMO MODE (access_key empty): the visitor sees
+       the thank-you and nothing is sent. Builders never fill that field. -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Get in touch</p>
+          <h2>Call, or send <em>a message</em></h2>
+          <ol class="steps">
+            <li><h3>Say what you want</h3><p>Ring the shop and order straight off the griddle.</p></li>
+            <li><h3>Give it a few minutes</h3><p>Nothing sits under a lamp — it gets cooked after you ask for it.</p></li>
+            <li><h3>Come and collect</h3><p>Park downtown and pick it up at the counter.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12538024701">(253) 802-4701</a></span>
+            <span>✉️ <a href="mailto:donalichataqueria@gmail.com">donalichataqueria@gmail.com</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=320+Griffin+Ave%2C+Enumclaw%2C+WA+98022" target="_blank" rel="noopener">Find the shop ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's this about?<select name="topic"><option>Placing an order</option><option>A question about the food</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="What can we get started for you?"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it</button>
+          <p class="form-success">Thanks — the shop will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER =====================
+     Instagram is deliberately NOT linked. The @lichastacos account the recon
+     harvested is a Houston TX business, not this shop (rejected/README.md).
+     Linking it from their own site would send their customers to a stranger. -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm">Taquería Doña Licha<small>Enumclaw, Washington</small></span>
+        </div>
+        <p>The taquería on Griffin Ave.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/p/Do%C3%B1a-Licha-Taqueria-61576788307113/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>320 Griffin Ave<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+12538024701">(253) 802-4701</a><br><a href="mailto:donalichataqueria@gmail.com">donalichataqueria@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#food">Food</a><br><a href="#order">Order</a><br><a href="#words">Reviews</a><br><a href="#about">About</a><br><a href="#contact">Contact</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Taquería Doña Licha</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   WEBSITE FACTORY — site.js
+   Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
+   count-up numbers · contact form success.
+   The ONLY thing to edit per client is the HOURS block right below.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HOURS CONFIG  — fill from the client's Google listing.
+   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
+   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
+   null = closed that day. Closing past midnight: use 26 for 2 am.
+   ------------------------------------------------------------ */
+var HOURS = {
+  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  days: {
+    // Source: Yelp Location & Hours table, page stamped "Updated September 2026"
+    // — the only source in the dossier carrying all seven days.
+    // OWNER ASK: Google's live snippet showed "Opens 11 AM" against Yelp's
+    // 10:30 AM. Confirm the real opening time before this is pitched.
+    0: [10, 19],                      // Sunday     10:00 am - 7:00 pm
+    1: null,                          // Monday     closed
+    2: [10.5, 20],                    // Tuesday    10:30 am - 8:00 pm
+    3: [10.5, 20],                    // Wednesday  10:30 am - 8:00 pm
+    4: [10.5, 21],                    // Thursday   10:30 am - 9:00 pm
+    5: [10.5, 21],                    // Friday     10:30 am - 9:00 pm
+    6: [10.5, 21]                     // Saturday   10:30 am - 9:00 pm
+  }
+};
+
+/* ------------------------------------------------------------
+   CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
+   Two functions site.js calls every minute. `p` is the Pacific "now":
+   {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
+
+   customClosure(p) → return a string to mark the whole day CLOSED
+                      ("Closed today for Labor Day"), or null.
+   customClose(p, close) → return an adjusted closing hour for today.
+
+   Reference-build example (path in README, "HOURS config"): Friday closed
+   at the earlier of 6 pm or SUNDOWN (NOAA sunset math), and US holidays
+   from their rate sheet returned a closure string. Port that logic here
+   only when the business actually has such a rule.
+   ------------------------------------------------------------ */
+function customClosure(p){ return null; }
+function customClose(p, close){ return close; }
+
+
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
+  var toggle=$('.nav-toggle'), nav=$('#main-nav');
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  if(toggle&&nav){
+    toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
+    $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
+    document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==toggle)setNav(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setNav(false);toggle.focus()}});
+  }
+  var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
+
+  /* ---------- Pacific time, wherever the viewer is ---------- */
+  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
+  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
+  var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
+    var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
+    var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
+    return o}catch(e){return null}})();
+  function pacificNow(){
+    if(DEMO) return DEMO;
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    var o={};parts.forEach(function(p){o[p.type]=p.value});
+    var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var h=parseInt(o.hour,10)%24, m=parseInt(o.minute,10);
+    return {day:days[o.weekday], h:h+m/60, y:parseInt(o.year,10), mo:parseInt(o.month,10)-1, d:parseInt(o.day,10)};
+  }
+  function fmt(h){h=h%24;var ap=h>=12?'pm':'am';var hh=Math.floor(h)%12;if(hh===0)hh=12;var mm=Math.round((h%1)*60);if(mm===60){mm=0;hh=(hh%12)+1}return hh+(mm?':'+(mm<10?'0':'')+mm:'')+' '+ap}
+  function dayName(d){return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d]}
+  function hoursFor(day){return HOURS.days[day]||null}
+
+  function computeStatus(){
+    var p=pacificNow(), d=p.day, h=p.h;
+    var closure=customClosure(p);
+    if(closure) return {open:false,text:'Closed today for '+closure};
+    // still inside yesterday's after-midnight hours? (e.g. a bar closing at 2 am = 26)
+    var yd=(d+6)%7, yh=hoursFor(yd);
+    if(yh&&yh[1]>24&&h<yh[1]-24) return {open:true,text:'Open now · til '+fmt(yh[1])};
+    var today=hoursFor(d);
+    if(today){
+      var close=customClose(p,today[1]);
+      if(h>=today[0]&&h<close) return {open:true,text:'Open now · til '+fmt(close),soon:(close-h)<=1};
+      if(h<today[0]) return {open:false,text:'Opens today at '+fmt(today[0])};
+    }
+    // find the next open day
+    for(var i=1;i<=7;i++){
+      var nd=(d+i)%7, nh=hoursFor(nd);
+      if(nh){var label=i===1?'tomorrow':dayName(nd);return {open:false,text:'Closed · opens '+label+' at '+fmt(nh[0])}}
+    }
+    return {open:false,text:'Closed'};
+  }
+  function applyStatus(){
+    var s=computeStatus(), p=pacificNow();
+    var hp=$('#hdrLive'), ht=$('#hdrLiveText');
+    if(hp&&ht){hp.className='hdr-live '+(s.open?'is-open':'is-closed');ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+s.text.replace(/^Open now · /,'').replace(/^Closed · /,'')+'</span>';}
+    var sl=$('#statusLine'), st=$('#statusText');
+    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
+    $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
+  }
+  applyStatus(); setInterval(applyStatus,60000);
+  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
+
+  /* ---------- scroll-reveal + count-up ---------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      en.target.classList.add('in');
+      $$('.count',en.target).forEach(function(c){
+        if(c.dataset.done)return; c.dataset.done='1';
+        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
+        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(reduce){c.textContent=to;return}
+        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
+        requestAnimationFrame(step);
+      });
+      io.unobserve(en.target);
+    });
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  $$('.reveal').forEach(function(el){io.observe(el)});
+
+  /* ---------- contact form ----------
+     Demo mode (hidden access_key empty): show the thank-you, send nothing.
+     Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms from the visitor's
+     browser -> lands in the owner's inbox. Failure falls back to "call or text us". */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
+    function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
+    if(!key){done();return}
+    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
+    var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
+    data.subject=data.subject||('New message from your website ('+document.title+')');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()}).then(function(j){if(j&&j.success){done()}else{throw new Error('send failed')}})
+      .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
+  })}
+
+  /* =========================================================
+     OFFERINGS — TITLE CARDS UNROLL
+     The category headline is the tap target; the real items roll out in
+     place. Downward chevron flips up when open (ARROW LAW — never a plus).
+     ========================================================= */
+  $$('.roll-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var panel=document.getElementById(btn.getAttribute('aria-controls'));
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded', open?'false':'true');
+      if(panel) panel.classList.toggle('open', !open);
+    });
+  });
+
+  /* ---------- SIGNATURE GADGET ----------
+     DELETED FOR THIS BUILD. #signature is not in index.html and nothing is
+     stubbed here. There is no honest gadget available: the dossier's
+     one_of_one is "Doña Licha's own name and story", and that story is a
+     [PLACEHOLDER — ask client] that never surfaced online. Every other
+     candidate fails a standing law — a tap-a-dish toy has no photos and no
+     prices to pay off with and would just restate #food (NEVER TWICE), an
+     hours or price gadget is banned outright, and an estimator is banned.
+     A bolted-on signature is worse than none. The moment Hayden has the
+     photos and her story, this is the first thing to build. ------------ */
+
+})();
+
+</script>
+</body>
+</html>
