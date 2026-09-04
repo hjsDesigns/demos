@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Friday Dispatch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+  :root{
+    --paper:#F1F3F6; --card:#FFFFFF; --ink:#151E28; --ink-2:#4A5765; --ink-3:#7A8593;
+    --rule:#D6DCE4; --rule-soft:#E6EAEF;
+    --blue:#1B4F7C; --blue-soft:#E4EDF5; --on-blue:#FFFFFF;
+    --red:#A8271D; --red-soft:#FBE7E4;
+    --green:#186B4C; --green-soft:#E0F0E8;
+    --amber:#8A5A08; --amber-soft:#FBEED6;
+    --shadow:0 1px 2px rgba(21,30,40,.06), 0 6px 16px rgba(21,30,40,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E1319; --card:#171E27; --ink:#E7ECF2; --ink-2:#A9B4C1; --ink-3:#7B8794;
+      --rule:#2A3541; --rule-soft:#212B35;
+      --blue:#7FB2DD; --blue-soft:#152634; --on-blue:#0E1319;
+      --red:#F0897C; --red-soft:#2E1917;
+      --green:#63C199; --green-soft:#12261E;
+      --amber:#DDA94A; --amber-soft:#2A2113;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 16px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1319; --card:#171E27; --ink:#E7ECF2; --ink-2:#A9B4C1; --ink-3:#7B8794;
+    --rule:#2A3541; --rule-soft:#212B35;
+    --blue:#7FB2DD; --blue-soft:#152634; --on-blue:#0E1319;
+    --red:#F0897C; --red-soft:#2E1917;
+    --green:#63C199; --green-soft:#12261E;
+    --amber:#DDA94A; --amber-soft:#2A2113;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 16px rgba(0,0,0,.3);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:20px 16px 64px; display:flex; flex-direction:column; gap:22px}
+
+  /* ---- masthead ---- */
+  .mast{display:flex; flex-direction:column; gap:6px; border-bottom:2px solid var(--ink); padding-bottom:12px}
+  .mast .kicker{
+    font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-3);
+  }
+  .mast h1{
+    font-family:"Archivo", ui-sans-serif, system-ui, sans-serif; font-weight:700;
+    font-size:clamp(28px, 7vw, 40px); line-height:1.04; margin:0; letter-spacing:-.02em; text-wrap:balance;
+  }
+  .mast .sub{color:var(--ink-2); font-size:14px}
+
+  /* ---- tallies ---- */
+  .tally{display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden}
+  .tally div{background:var(--card); padding:11px 10px; display:flex; flex-direction:column; gap:2px}
+  .tally b{
+    font-family:"Archivo", sans-serif; font-weight:700; font-size:23px; line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .tally span{font-family:"IBM Plex Mono", monospace; font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); line-height:1.3}
+
+  /* ---- decide-first notice ---- */
+  .notice{
+    background:var(--red-soft); border:1px solid var(--red); border-left-width:5px;
+    border-radius:8px; padding:15px 16px; display:flex; flex-direction:column; gap:9px;
+  }
+  .notice h2{
+    font-family:"Archivo", sans-serif; font-weight:700; font-size:16px; margin:0;
+    color:var(--red); letter-spacing:.01em;
+  }
+  .notice p{margin:0; font-size:14.5px; color:var(--ink)}
+  .notice code{
+    font-family:"IBM Plex Mono", monospace; font-size:12.5px; background:var(--card);
+    border:1px solid var(--rule); border-radius:5px; padding:9px 10px; display:block;
+    overflow-x:auto; white-space:pre; color:var(--ink);
+  }
+
+  /* ---- section headers ---- */
+  .sec{display:flex; flex-direction:column; gap:10px}
+  .sec > header{display:flex; align-items:baseline; gap:10px; border-bottom:1px solid var(--rule); padding-bottom:6px}
+  .sec > header h2{
+    font-family:"Archivo", sans-serif; font-weight:700; font-size:14px; margin:0;
+    letter-spacing:.1em; text-transform:uppercase;
+  }
+  .sec > header .n{
+    font-family:"IBM Plex Mono", monospace; font-size:12px; color:var(--ink-3);
+    font-variant-numeric:tabular-nums; margin-left:auto;
+  }
+  .sec > header .hint{font-size:12.5px; color:var(--ink-3)}
+
+  /* ---- rows ---- */
+  .rows{display:flex; flex-direction:column; gap:9px}
+  .row{
+    background:var(--card); border:1px solid var(--rule-soft); border-radius:9px;
+    box-shadow:var(--shadow); padding:13px 14px; display:flex; flex-direction:column; gap:8px;
+  }
+  .row .top{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap}
+  .row .nn{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; color:var(--ink-3);
+    font-variant-numeric:tabular-nums; padding-top:2px;
+  }
+  .row h3{font-family:"Archivo", sans-serif; font-weight:600; font-size:16.5px; margin:0; letter-spacing:-.005em}
+  .row .town{
+    font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--ink-3);
+  }
+  .row .angle{margin:0; font-size:14px; color:var(--ink-2)}
+  .row .angle em{font-style:italic; color:var(--ink)}
+  .row .gadget{
+    font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--blue);
+  }
+  .row .foot{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding-top:2px}
+  .door{
+    font-family:"IBM Plex Mono", monospace; font-size:12px; color:var(--ink-2);
+    word-break:break-all; flex:1 1 auto; min-width:0;
+  }
+  .door a{color:var(--ink-2)}
+  .open{
+    flex:0 0 auto; display:inline-flex; align-items:center; gap:6px;
+    background:var(--blue); color:var(--on-blue); text-decoration:none;
+    font-family:"Archivo", sans-serif; font-weight:600; font-size:13.5px;
+    padding:9px 15px; border-radius:7px; min-height:40px; box-sizing:border-box;
+  }
+  .open:focus-visible{outline:3px solid var(--amber); outline-offset:2px}
+
+  .pill{
+    font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.08em;
+    text-transform:uppercase; padding:3px 7px; border-radius:4px; white-space:nowrap;
+  }
+  .pill.mail{background:var(--green-soft); color:var(--green)}
+  .pill.text{background:var(--blue-soft); color:var(--blue)}
+  .pill.call{background:var(--amber-soft); color:var(--amber)}
+  .pill.stop{background:var(--red-soft); color:var(--red)}
+
+  .row.blocked{border-color:var(--red); border-left:5px solid var(--red)}
+
+  /* ---- log ---- */
+  .log{
+    background:var(--card); border:1px solid var(--rule-soft); border-radius:9px; padding:15px 16px;
+    display:flex; flex-direction:column; gap:9px;
+  }
+  .log h2{font-family:"Archivo", sans-serif; font-weight:700; font-size:14px; margin:0; letter-spacing:.1em; text-transform:uppercase}
+  .log dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 14px; font-size:13.5px}
+  .log dt{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); padding-top:2px}
+  .log dd{margin:0; color:var(--ink-2)}
+  .log dd b{color:var(--ink); font-weight:500}
+
+  footer{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; color:var(--ink-3);
+    text-align:center; border-top:1px solid var(--rule); padding-top:14px; line-height:1.7;
+  }
+  @media (max-width:420px){
+    .tally{grid-template-columns:repeat(2,1fr)}
+    .open{width:100%; justify-content:center}
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mast">
+    <div class="kicker">HJS Designs · Batman run · overnight + afternoon</div>
+    <h1>Friday Dispatch</h1>
+    <div class="sub">18 demos live and gate-passed. Every pitch is written. None have gone out yet — that's the one thing needing you.</div>
+  </div>
+
+  <div class="tally">
+    <div><b>18</b><span>Demos live</span></div>
+    <div><b>18</b><span>Pitches written</span></div>
+    <div><b>13</b><span>Rescued today</span></div>
+    <div><b>2</b><span>Blocked</span></div>
+  </div>
+
+  <div class="notice">
+    <h2>Nothing sent today — the 9:30 sender never ran</h2>
+    <p>No <em>gordon-pitched.log</em>, no call list, and no pitch lines in the send log for Sept 4. There's no STOP file, so this wasn't deliberate — the job just didn't fire. All 18 drafts are staged and their links are live. This run did not send them; that's your call.</p>
+    <code>bash ~/website-factory/leads/gordon-final/run-batch.sh</code>
+    <p style="font-size:13px;color:var(--ink-2)">Or say <em>“send the staged batch”</em> in a session and it'll run the pivot for you — text a verified cell, else email, else the call list.</p>
+  </div>
+
+  <div class="notice" style="background:var(--amber-soft);border-color:var(--amber)">
+    <h2 style="color:var(--amber)">Last night's 13 builds were never published</h2>
+    <p>They were built, QA'd and packed, but the commit never happened — every link 404'd until this afternoon. They're pushed now, all 13 pass the live image gate, and the board links point at the real URLs. Worth knowing the overnight run can finish "green" and still ship nothing.</p>
+  </div>
+
+  <section class="sec">
+    <header>
+      <h2>Email door</h2>
+      <span class="hint">ready to send</span>
+      <span class="n">9</span>
+    </header>
+    <div class="rows">
+
+      <article class="row">
+        <div class="top"><span class="nn">73</span><h3>Outpost Coffee &amp; Creamery</h3><span class="town">Enumclaw</span></div>
+        <p class="angle">outpostcoffeecreamery.com serves a <em>“verify you're human”</em> checkpoint instead of their site.</p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">outpost.coffee.creamery@gmail.com</span><a class="open" href="https://hjsdesigns.github.io/demos/outpost-coffee-and-creamery/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">76</span><h3>Nana's Sweets &amp; Crumbles</h3><span class="town">Orting</span></div>
+        <p class="angle">Mobile bakery, no site — Facebook is the whole business. <span class="gadget">Build a box</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">RG_roses@comcast.net · Gina</span><a class="open" href="https://hjsdesigns.github.io/demos/nanas-sweets-and-crumbles/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">78</span><h3>Hills of Comics</h3><span class="town">Auburn</span></div>
+        <p class="angle">Google's Website button literally reads <em>facebook.com</em>. <span class="gadget">Animated inked mark · the piles</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="pill text">+ cell</span><span class="door">hillsofcomics@gmail.com · (253) 333-8841 · John</span><a class="open" href="https://hjsdesigns.github.io/demos/hills-of-comics/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">80</span><h3>Taqueria El Corral</h3><span class="town">Enumclaw</span></div>
+        <p class="angle">Food truck with no web presence at all. <span class="gadget">The meat board</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">t.elcorral@gmail.com</span><a class="open" href="https://hjsdesigns.github.io/demos/taqueria-el-corral/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">81</span><h3>Buckley Laundromat</h3><span class="town">Buckley</span></div>
+        <p class="angle">No site at all. Hero is their storefront — rainbow bubble sign, lit OPEN. <span class="gadget">Push start</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">u00mrb1@gmail.com</span><a class="open" href="https://hjsdesigns.github.io/demos/buckley-laundromat/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">85</span><h3>Glamour Nails &amp; Spa</h3><span class="town">Bonney Lake</span></div>
+        <p class="angle">No domain — the whole presence is a Vagaro booking page. 470 Google reviews. <span class="gadget">The add-on tray</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">glamournails.bonneylake@gmail.com · Sherry</span><a class="open" href="https://hjsdesigns.github.io/demos/glamour-nails-and-spa/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">86</span><h3>Spa Nails</h3><span class="town">Bonney Lake</span></div>
+        <p class="angle">Their domain is <em>hijacked</em> — it redirects to a gambling site. 4.4★ / 207. <span class="gadget">Under the lamp</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">bellanguyen1027@gmail.com</span><a class="open" href="https://hjsdesigns.github.io/demos/spa-nails-bonney-lake/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">87</span><h3>Doggone Salon</h3><span class="town">Lake Tapps</span></div>
+        <p class="angle">Google and BBB Website buttons both land on Facebook. <span class="gadget">Before &amp; after</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">doggonesalongrooming@gmail.com</span><a class="open" href="https://hjsdesigns.github.io/demos/doggone-salon-at-lake-tapps/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">88</span><h3>The Studio On Cole Street</h3><span class="town">Enumclaw</span></div>
+        <p class="angle">Whole presence is a Square booking page. 0.1 mi from Colibri. <span class="gadget">The shutter</span></p>
+        <div class="foot"><span class="pill mail">Email</span><span class="door">thestudiooncolestreet@gmail.com · Madison</span><a class="open" href="https://hjsdesigns.github.io/demos/the-studio-on-cole-street/">Open demo</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <header>
+      <h2>Verified cell</h2>
+      <span class="hint">text these</span>
+      <span class="n">2</span>
+    </header>
+    <div class="rows">
+
+      <article class="row">
+        <div class="top"><span class="nn">75</span><h3>The Nail Lab by JC</h3><span class="town">Sumner</span></div>
+        <p class="angle">Every link goes to a booking platform, none to a site of her own. She books by text, so texting is the right door.</p>
+        <div class="foot"><span class="pill text">Text</span><span class="door">(253) 453-6965 · Johanna</span><a class="open" href="https://hjsdesigns.github.io/demos/the-nail-lab-by-jc/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">77</span><h3>Daisy's Boutique Antiques</h3><span class="town">Orting</span></div>
+        <p class="angle">No site; the Google profile is unclaimed and reads <em>“Add website”</em>. <span class="gadget">Countdown to the Sept 13 pop-up</span></p>
+        <div class="foot"><span class="pill text">Text</span><span class="door">(253) 314-8314 · no email exists</span><a class="open" href="https://hjsdesigns.github.io/demos/daisys-boutique-antiques/">Open demo</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <header>
+      <h2>Call or walk in</h2>
+      <span class="hint">no email found</span>
+      <span class="n">7</span>
+    </header>
+    <div class="rows">
+
+      <article class="row">
+        <div class="top"><span class="nn">79</span><h3>Four Seasons</h3><span class="town">Enumclaw · 0.6 mi</span></div>
+        <p class="angle">Their Facebook website link resolves to <em>Four Seasons Hotels &amp; Resorts</em>. Ask for Bing. <span class="gadget">The four seasons table</span></p>
+        <div class="foot"><span class="pill call">Call</span><span class="door">(360) 825-6541</span><a class="open" href="https://hjsdesigns.github.io/demos/four-seasons/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">89</span><h3>Enumclaw Vape &amp; Smoke</h3><span class="town">Enumclaw · 0.8 mi</span></div>
+        <p class="angle">No site and no Facebook — Google and Yelp are the entire presence. <span class="gadget">The counter test</span></p>
+        <div class="foot"><span class="pill call">Call</span><span class="door">(360) 284-4186</span><a class="open" href="https://hjsdesigns.github.io/demos/enumclaw-vape-and-smoke/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">74</span><h3>Baked by Shalyn</h3><span class="town">Enumclaw</span></div>
+        <p class="angle">The only “website” that comes up is an auto-generated listing page somebody else made.</p>
+        <div class="foot"><span class="pill call">Call</span><span class="door">(253) 261-9644 · likely a cell, unverified</span><a class="open" href="https://hjsdesigns.github.io/demos/baked-by-shalyn/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">83</span><h3>T&amp;J Nails</h3><span class="town">Bonney Lake · 12 mi</span></div>
+        <p class="angle">No site; Facebook dormant since 2022 while Google stays busy. Ask for Tom. <span class="gadget">The chairs</span></p>
+        <div class="foot"><span class="pill call">Call</span><span class="door">(253) 891-3524</span><a class="open" href="https://hjsdesigns.github.io/demos/t-j-nails/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">84</span><h3>Pretty Nails</h3><span class="town">Bonney Lake · 12.5 mi</span></div>
+        <p class="angle">Their own domain returns a 502 builder error; Google's button goes to a booking widget. <span class="gadget">Take a seat</span></p>
+        <div class="foot"><span class="pill call">Call</span><span class="door">(253) 891-9392</span><a class="open" href="https://hjsdesigns.github.io/demos/pretty-nails-bonney-lake/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">82</span><h3>Nails 410</h3><span class="town">Bonney Lake · 11.5 mi</span></div>
+        <p class="angle">Google panel reads <em>“Add website”</em>. <span class="gadget">The wax map</span></p>
+        <div class="foot"><span class="pill call">Call</span><span class="door">(253) 862-1469</span><a class="open" href="https://hjsdesigns.github.io/demos/nails-410/">Open demo</a></div>
+      </article>
+
+      <article class="row">
+        <div class="top"><span class="nn">72</span><h3>Modoo #2 Teriyaki</h3><span class="town">Sumner</span></div>
+        <p class="angle">The link printed on their own takeout menu goes to a menu11 ordering page — meanwhile Modoo 3 in Orting has a real site.</p>
+        <div class="foot"><span class="pill call">Call</span><span class="door">(253) 826-7905</span><a class="open" href="https://hjsdesigns.github.io/demos/modoo-2-teriyaki/">Open demo</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <header>
+      <h2>Do not pitch yet</h2>
+      <span class="hint">needs you first</span>
+      <span class="n">2</span>
+    </header>
+    <div class="rows">
+
+      <article class="row blocked">
+        <div class="top"><span class="nn">—</span><h3>Taquería Doña Licha</h3><span class="town">Enumclaw</span></div>
+        <p class="angle">Built and live, but <em>photo-blocked</em>: all nine photos the harvest found turned out to belong to a Houston restaurant of the same name. The demo runs on type alone. Needs a drive-by shoot before it goes anywhere.</p>
+        <div class="foot"><span class="pill stop">Shoot first</span><span class="door">donalichataqueria@gmail.com · (253) 802-4701</span><a class="open" href="https://hjsdesigns.github.io/demos/taqueria-do-a-licha/">Open demo</a></div>
+      </article>
+
+      <article class="row blocked">
+        <div class="top"><span class="nn">—</span><h3>Milton Wok</h3><span class="town">Milton</span></div>
+        <p class="angle">Demo is live, but the business is <em>listed for sale</em> — only a broker email is reachable. Your call: pitch the current owner, wait for the buyer, or skip it.</p>
+        <div class="foot"><span class="pill stop">Your call</span><span class="door">broker contact only</span><a class="open" href="https://hjsdesigns.github.io/demos/milton-wok/">Open demo</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="log">
+    <h2>What this run did</h2>
+    <dl>
+      <dt>Rescued</dt><dd><b>13 builds published.</b> Four Seasons, El Corral, Buckley Laundromat, Nails 410, T&amp;J, Pretty Nails, Glamour, Spa Nails, Doggone, Studio on Cole, Vape &amp; Smoke, Doña Licha, Milton Wok — committed, pushed, live.</dd>
+      <dt>Gate</dt><dd><b>13 / 13 pass</b> on the live URLs — every image paints at 390 and 1440.</dd>
+      <dt>Drafted</dt><dd><b>11 new pitches</b> (79–89), each on the standard frame, every owner name sourced from the business's own listing.</dd>
+      <dt>Doors</dt><dd><b>6 new emails</b> read off Facebook About panels and Square sites. 5 shops have no email anywhere — those are calls.</dd>
+      <dt>Board</dt><dd>All 12 rows swapped from private previews to the live shareable links.</dd>
+      <dt>Chrome</dt><dd>Extension not connected this run — door work went through curl and the in-app pane.</dd>
+      <dt>Budget</dt><dd>Weekly meter is the constraint, so this run spent its tokens making existing inventory sellable rather than adding to the pile.</dd>
+    </dl>
+  </div>
+
+  <footer>
+    Batman · Friday, September 4, 2026 · Enumclaw → Bonney Lake<br>
+    18 demos live · 18 pitches written · 0 sent
+  </footer>
+
+</div>
+
+</body>
+</html>
