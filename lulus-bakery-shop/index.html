@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lulú's Bakery Shop — custom cakes &amp; Mexican desserts, Tacoma WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Lulú's Bakery Shop is a family-run bakery on South 96th in Tacoma — custom celebration cakes, hand-decorated sugar cookies and Mexican desserts, served in English and Spanish.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (display, soft sturdy serif) + Outfit (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     Sticky. Text wordmark (they have no logo file we could pull — never
+     redraw a client's mark). NO live open/closed pill: the hours in the
+     dossier are unverified placeholders, so nothing on this page claims
+     an opening time. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Lulú's Bakery Shop — home">
+      <span class="mark" aria-hidden="true">L</span>
+      <span class="wm">Lulú's Bakery Shop<small>Tacoma, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">At the counter</a>
+        <a href="#now">Right now</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#about">Our story</a>
+        <a href="#contact" class="nav-cta">Order a cake</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       THE HEART LAW: the walk-in feeling — the pink room, the case, Lulú
+       behind it. Shown WHOLE (object-fit:contain) inside a blurred echo of
+       itself so nothing is ever cropped at any width; the headline block is
+       the only thing on it. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img class="echo" src="images/hero-counter.jpg" alt="" aria-hidden="true">
+      <img class="shot" src="images/hero-counter.jpg" alt="Lourdes Hernández behind the counter at Lulú's Bakery Shop — blush pink walls, white cake stands and a display case" fetchpriority="high">
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Tacoma, WA · Family-run bakery<span class="eb-long"> · English &amp; Español</span></p>
+      <h1>A little pink shop where every cake is <em>made by hand.</em></h1>
+      <p class="hero-sub"><span class="sub-long">Lulú Hernández taught herself to bake, ran it out of her own kitchen, then opened the door on South 96th — celebration cakes, decorated cookies, and the Mexican desserts she grew up on.</span><span class="sub-short">Cakes, cookies, Mexican desserts.</span></p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Order a cake</a>
+        <a href="#menu" class="btn btn-cream">See the counter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #menu =====================
+       TITLE CARDS UNROLL: the heading is the tap target and the real list
+       rolls out in place, with a chevron (ARROW LAW), never a plus.
+       No prices anywhere — none are published, and we never invent one. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="counter-head">
+        <div class="reveal">
+          <p class="eyebrow">At the counter</p>
+          <h2>Two menus, <em>one counter.</em></h2>
+          <p class="lede-p">American celebration cakes on one side of the case, the Mexican desserts Lulú grew up with on the other — ordered in English or in Spanish, whichever you'd rather. Tap a heading to see what she makes.</p>
+        </div>
+        <figure class="print reveal">
+          <img src="images/cookies-set.jpg" alt="Hand-decorated sugar cookies from Lulú's Bakery Shop — school buses, coffee cups reading Teacher Fuel, and a red apple" loading="lazy" width="810" height="1440">
+          <figcaption>Hand-decorated, one cookie at a time</figcaption>
+        </figure>
+      </div>
+
+      <div class="unrolls">
+        <section class="unroll reveal">
+          <h3><button type="button" class="unroll-btn" aria-expanded="false" aria-controls="u-cakes">
+            <span class="u-name">Cakes &amp; celebrations</span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button></h3>
+          <div class="u-body" id="u-cakes" hidden>
+            <ul class="items">
+              <li>Custom tiered celebration cakes</li>
+              <li>Wedding cakes</li>
+              <li>Cupcakes</li>
+              <li>Cake pops</li>
+              <li>Cheesecake</li>
+              <li>Fruit tarts</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="unroll reveal">
+          <h3><button type="button" class="unroll-btn" aria-expanded="false" aria-controls="u-mexican">
+            <span class="u-name">Mexican desserts</span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button></h3>
+          <div class="u-body" id="u-mexican" hidden>
+            <ul class="items">
+              <li>Tres leches cake</li>
+              <li>Jericalla</li>
+              <li>Empanadas</li>
+              <li>Fresh cheese</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="unroll reveal">
+          <h3><button type="button" class="unroll-btn" aria-expanded="false" aria-controls="u-cookies">
+            <span class="u-name">Decorated sugar cookies</span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button></h3>
+          <div class="u-body" id="u-cookies" hidden>
+            <ul class="items">
+              <li>Sets made for the occasion</li>
+              <li>Back-to-school and teacher sets</li>
+              <li>School buses, apples, “Teacher fuel” cups</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <p class="menu-fine reveal">Nothing here is priced online — cakes and cookie sets are quoted by size and design, so ask Lulú for a number before you order.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #now =====================
+       A purpose-built object, not decor: their own current Facebook post,
+       framed, plus the two service facts their page actually lists. -->
+  <section class="section section-alt" id="now">
+    <div class="wrap">
+      <div class="now-grid">
+        <figure class="print post-print reveal">
+          <img src="images/post-back-to-school.jpg" alt="Facebook post in Spanish from Lulú's Bakery Shop announcing back-to-school teacher cookie sets, showing six decorated cookies" loading="lazy" width="1254" height="1254">
+          <figcaption>Posted on their Facebook page</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="eyebrow">Right now</p>
+          <h2>Straight off <em>their page.</em></h2>
+          <p>Lulú announces what's coming out of the case on Facebook, often in Spanish — her page lists both languages at the counter. This one is the back-to-school set: school buses, apples, and coffee cups that say <em class="say">Teacher fuel</em>.</p>
+          <div class="chips">
+            <span>In-store pickup</span>
+            <span>Online booking</span>
+            <span>English &amp; Español</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW-FACE LAW: initial disc in the site's own type and palette,
+       never a scraped photo of the reviewer. Quote verbatim from their
+       Facebook reviews tab. Facebook has no star ratings — it records a
+       recommendation — so this shows "Recommends", not invented stars. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From their reviews</p>
+        <h2>What people <em>say.</em></h2>
+      </div>
+      <div class="reviews">
+        <article class="review reveal">
+          <div class="who">
+            <span class="ini" aria-hidden="true">L</span>
+            <div>
+              <div class="name">Lisa N. Miller</div>
+              <div class="meta"><span class="rec">✓ Recommends</span> · Facebook · Aug 29, 2026</div>
+            </div>
+          </div>
+          <q>Absolutely adorable little shop. The daughter was a complete sweetheart. The deserts are definitely worth the $$</q>
+          <div class="reply">
+            <div class="reply-who"><span class="ini small" aria-hidden="true">LH</span><span>Lulú replied</span></div>
+            <q>Thank you so much for your kind words and for supporting our little shop! Camila said to say thank you as well. She was very happy to help you!</q>
+          </div>
+        </article>
+      </div>
+      <p class="review-src reveal">Four reviews on their Facebook page — she answers them herself. <a href="https://www.facebook.com/100094638674513/reviews" target="_blank" rel="noopener">Read them ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/cake-piping.jpg" alt="Lourdes Hernández piping the top tier of a three-tier blush pink wedding cake in her bakery" loading="lazy" width="585" height="1024">
+          <figcaption>Piping a three-tier wedding cake</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Meet Lulú</p>
+          <h2>She taught herself to bake, <em>then opened the door.</em></h2>
+          <p class="lede">Lourdes “Lulú” Hernández ran a cottage bakery out of her own kitchen before she moved it into a storefront on South 96th Street.</p>
+          <p>She is self-taught. The shop opened roughly two years before South Sound Magazine came to visit in 2024, with help from the small-business programs at the Tacoma-Pierce County Chamber of Commerce — she is a member there to this day.</p>
+          <p>Her daughter Camila works the counter beside her — a mother-and-daughter shop, not staffed help. When a customer left a note about Camila on their page, it was Lulú herself who wrote back.</p>
+          <div class="team">
+            <h3>Who you'll meet</h3>
+            <div class="faces">
+              <span class="face"><span class="ini">LH</span>Lourdes Hernández<small>Owner &amp; baker</small></span>
+              <span class="face"><span class="ini">C</span>Camila<small>At the counter</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact =====================
+       The form ships in DEMO MODE — the hidden access_key is empty, so the
+       visitor sees the thank-you line and nothing is sent anywhere. -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Ordering</p>
+          <h2>Tell her what you're <em>celebrating.</em></h2>
+          <ol class="steps">
+            <li><h3>Send the date</h3><p>The occasion, roughly how many people, and any picture you're working from.</p></li>
+            <li><h3>Get a number back</h3><p>Cakes and cookie sets are quoted by size and design, so Lulú prices each one herself.</p></li>
+            <li><h3>Pick it up on South 96th</h3><p>In-store pickup, and online booking if you'd rather lock the date in first.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span class="cl"><span class="ic" aria-hidden="true">☎</span><a href="tel:+12532788112">(253) 278-8112</a></span>
+            <span class="cl"><span class="ic" aria-hidden="true">✉</span><a href="mailto:lulubakeryshop77@gmail.com">lulubakeryshop77@gmail.com</a></span>
+            <span class="cl"><span class="ic" aria-hidden="true">◎</span><a href="https://www.google.com/maps/search/?api=1&amp;query=1447+S+96th+St+Tacoma+WA+98444" target="_blank" rel="noopener">1447 S 96th St, Tacoma, WA 98444 ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- DEMO MODE: empty access_key = shows the thank-you, sends nothing. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What are you after?<select name="topic"><option>A custom cake</option><option>Decorated cookies</option><option>Mexican desserts</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="The date you need it, how many people, and the idea you have in mind."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to Lulú</button>
+          <p class="form-success">Thanks — Lulú will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta =====================
+       Her own words, verbatim, from the South Sound Magazine feature. -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <figure class="pull reveal">
+        <p class="eyebrow">In her words</p>
+        <blockquote>There are many programs to help people succeed; <em>just don't quit.</em></blockquote>
+        <figcaption>Lourdes Hernández, in South Sound Magazine</figcaption>
+      </figure>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-primary">Order a cake</a>
+        <a href="tel:+12532788112" class="btn btn-ghost">Call (253) 278-8112</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate" aria-hidden="true">L</span>
+          <span class="wm">Lulu's Bakery Shop LLC<small>Tacoma, WA</small></span>
+        </div>
+        <p>A family-run cake shop and Mexican bakery on South 96th Street.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/100094638674513/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/lulusbakeryshop/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Reach her</h4>
+        <p><a href="tel:+12532788112">(253) 278-8112</a><br><a href="mailto:lulubakeryshop77@gmail.com">lulubakeryshop77@gmail.com</a></p>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=1447+S+96th+St+Tacoma+WA+98444" target="_blank" rel="noopener">Directions ↗</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#menu">At the counter</a><br><a href="#now">Right now</a><br><a href="#reviews">Reviews</a><br><a href="#about">Our story</a><br><a href="#contact">Order a cake</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Lulu's Bakery Shop LLC</span>
+      <span>Tacoma, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

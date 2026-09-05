@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jenna's Pet Grooming — dog grooming in Auburn, WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Jenna's Pet Grooming — baths, haircuts and nail trims for dogs at 416 E Main St in Auburn, WA. 100% recommended on Facebook. Call (253) 333-2346.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Jenna's Pet Grooming — home">
+      <span class="mark" aria-hidden="true">J</span>
+      <span class="wm">Jenna's Pet Grooming<small>Auburn, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#services">Grooming</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#about">The shop</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Book a groom</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       One real photo of their work, whole (contain) inside a blurred echo of
+       itself — never cropped. Nothing on it but the headline block. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img class="echo" src="images/hero.jpg" alt="" aria-hidden="true">
+      <img src="images/hero.jpg" alt="A brown-and-white doodle sitting up after a groom from Jenna's Pet Grooming" fetchpriority="high">
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Auburn, WA<span class="eb-long"> · Dog grooming on East Main</span></p>
+      <h1>Your dog comes home looking <em>like this.</em></h1>
+      <p class="hero-sub"><span class="sub-long">Baths, haircuts and nail trims at a small shop on East Main in downtown Auburn.</span><span class="sub-short">Baths, haircuts, nail trims.</span></p>
+      <div class="hero-actions">
+        <a href="tel:+12533332346" class="btn btn-primary">Call (253) 333-2346</a>
+        <a href="#services" class="btn btn-cream">What we do</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Live status + address + all seven days as tiles. Hours live HERE and
+       nowhere else on the page. Rows match the HOURS config in js/site.js. -->
+  <section class="hours-strip" id="hours">
+    <div class="wrap">
+      <div class="hs-top">
+        <div>
+          <p class="eyebrow">When to find us</p>
+          <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+          <p class="status-addr">416 E Main St, Auburn, WA 98002 · <a href="https://www.google.com/maps/search/?api=1&query=Jenna%27s+Pet+Grooming+416+E+Main+St+Auburn+WA+98002" target="_blank" rel="noopener">Open in Maps ↗</a></p>
+        </div>
+        <div class="proof-row">
+          <span class="proof"><span class="ico">✓</span> 100% recommend on Facebook (20)</span>
+          <span class="proof"><span class="star">★</span> 5.0 on Google</span>
+        </div>
+      </div>
+      <ol class="week-strip" id="hoursList">
+        <li data-days="1" class="closed"><span class="day">Mon</span><span class="time"><b>Closed</b></span></li>
+        <li data-days="2"><span class="day">Tue</span><span class="time"><b>8:00 am</b>–<b>4:30 pm</b></span></li>
+        <li data-days="3"><span class="day">Wed</span><span class="time"><b>8:00 am</b>–<b>4:30 pm</b></span></li>
+        <li data-days="4"><span class="day">Thu</span><span class="time"><b>8:00 am</b>–<b>4:30 pm</b></span></li>
+        <li data-days="5"><span class="day">Fri</span><span class="time"><b>8:00 am</b>–<b>4:30 pm</b></span></li>
+        <li data-days="6"><span class="day">Sat</span><span class="time"><b>8:00 am</b>–<b>4:30 pm</b></span></li>
+        <li data-days="0" class="closed"><span class="day">Sun</span><span class="time"><b>Closed</b></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== #services =====================
+       A real photo of their work opens the offerings (no exterior shot of the
+       shop exists yet — flagged for a drive-by), then three tappable cards
+       that unroll in place. Chevron down, flips up (ARROW LAW). -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <div class="front">
+        <figure class="print reveal">
+          <img src="images/gallery-1.jpg" alt="A grey-and-white sheepdog holding a heart toy after a groom at Jenna's" loading="lazy">
+          <figcaption>Fresh out of the tub · East Main St</figcaption>
+        </figure>
+        <div class="front-copy section-head reveal">
+          <p class="eyebrow">What we do</p>
+          <h2>Three things, done <em>properly.</em></h2>
+          <p>Every dog is different, so every groom is quoted on the dog in front of us — breed, size and coat. Tap one to see how it works.</p>
+        </div>
+      </div>
+
+      <div class="programs">
+        <article class="program reveal" id="svc-bath">
+          <div class="body">
+            <h2><button type="button" aria-expanded="false" aria-controls="svc-bath-more">Baths<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span></button></h2>
+            <p class="lede">Washed, dried and brushed out.</p>
+            <div class="more" id="svc-bath-more">
+              <div>
+                <ul class="facts">
+                  <li><b>Good for</b><span>Dogs that don't need a haircut, just a proper wash and blow-out.</span></li>
+                  <li><b>To book</b><span>Call or text the shop and say what your dog is.</span></li>
+                  <li><b>Price</b><span>Quoted on the dog: breed, size and coat. Ask when you call.</span></li>
+                </ul>
+                <div class="actions"><a href="tel:+12533332346" class="btn btn-primary">Call the shop</a></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="program reveal" id="svc-cut">
+          <div class="body">
+            <h2><button type="button" aria-expanded="false" aria-controls="svc-cut-more">Haircuts<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span></button></h2>
+            <p class="lede">Clipped and scissored to the cut you want.</p>
+            <div class="more" id="svc-cut-more">
+              <div>
+                <ul class="facts">
+                  <li><b>Good for</b><span>Doodles, poodles, terriers, sheepdogs — anything with a coat that keeps growing.</span></li>
+                  <li><b>Bring</b><span>A photo of the length you like, or just say "shorter than last time."</span></li>
+                  <li><b>Price</b><span>Quoted on the dog: breed, size and coat. Ask when you call.</span></li>
+                </ul>
+                <div class="actions"><a href="tel:+12533332346" class="btn btn-primary">Call the shop</a></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="program reveal" id="svc-nails">
+          <div class="body">
+            <h2><button type="button" aria-expanded="false" aria-controls="svc-nails-more">Nail trims<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span></button></h2>
+            <p class="lede">A quick one you don't have to fight your dog over.</p>
+            <div class="more" id="svc-nails-more">
+              <div>
+                <ul class="facts">
+                  <li><b>Good for</b><span>Dogs that only need their nails done, in and out.</span></li>
+                  <li><b>To book</b><span>Call ahead so she can fit your dog in.</span></li>
+                  <li><b>Price</b><span>Quoted on the dog. Ask when you call.</span></li>
+                </ul>
+                <div class="actions"><a href="tel:+12533332346" class="btn btn-primary">Call the shop</a></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Verbatim only. The Facebook recommendation is fully attributed (name +
+       date) and gets an initial disc. The Google lines are real quotes from
+       the listing but the names/dates weren't retrievable, so they run as
+       quotes with no invented identity attached. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From the people who bring their dogs</p>
+        <h2>What Auburn <em>says.</em></h2>
+      </div>
+      <div class="reviews">
+        <article class="review reveal">
+          <div class="who"><span class="ini">P</span><div><div class="name">Paige Anne</div><div class="meta"><span class="rec">👍 Recommends</span> · Facebook · April 15, 2025</div></div></div>
+          <q>The most thoughtful and caring staff to their four legged patrons. They go the extra mile to get the job done, so grateful to have found them.</q>
+        </article>
+        <article class="review reveal quotes">
+          <p class="eyebrow">From the Google listing</p>
+          <q>I am handycapped and she will bring the dog out to me when she is finished.</q>
+          <q>They are honest &amp; kind and offer a wonderful service.</q>
+          <q>Great place to have my dogs nails trimmed.</q>
+        </article>
+      </div>
+      <p class="review-src reveal">These are their own words, word for word. <a href="https://www.facebook.com/jennagroomsdogs/reviews" target="_blank" rel="noopener">Read the rest ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="A groomer at Jenna's Pet Grooming holding a freshly groomed white sheepdog inside the shop" loading="lazy">
+          <figcaption>Done for the day · inside the shop</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The shop</p>
+          <h2>A small shop on <em>East Main.</em></h2>
+          <p class="lede">Jenna's Pet Grooming is a small grooming shop in downtown Auburn — not a chain counter, not a conveyor belt.</p>
+          <p>Dogs get washed, trimmed and handed straight back to the person who brought them. The reviews all say some version of the same thing — thoughtful, careful, goes the extra mile — and one of them says she'll carry your dog out to your car if you can't come in and get it.</p>
+          <p>In July 2026 the shop was nominated for Best Pet Grooming in the CommunityVotes Auburn awards, and Jenna posted a thank-you to everyone who voted for her.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Book a groom</p>
+          <h2>Call the shop, <em>get a time.</em></h2>
+          <ol class="steps">
+            <li><h3>Call or text</h3><p>(253) 333-2346 reaches the shop. Say what your dog is and what you want done.</p></li>
+            <li><h3>Pick your day</h3><p>Ask what she has open. The sooner you call, the better your pick of times.</p></li>
+            <li><h3>Drop off, pick up</h3><p>Bring your dog in, get a call when they're done, take home a clean one.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12533332346">(253) 333-2346</a></span>
+            <span>✉️ <a href="mailto:jennagroomsdogs@gmail.com">jennagroomsdogs@gmail.com</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&query=Jenna%27s+Pet+Grooming+416+E+Main+St+Auburn+WA+98002" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
+               At go-live, pages-golive.sh fills this with the owner's Web3Forms key. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Your name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What does your dog need?<select name="topic"><option>A bath</option><option>A haircut</option><option>Just nails</option><option>Not sure yet</option></select></label>
+          <label class="full">Your dog<textarea name="msg" placeholder="Breed, size, and how they do with grooming"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the shop</button>
+          <p class="form-success">Thanks — Jenna will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more thing</p>
+        <h2>Your dog is due for <em>a good day.</em></h2>
+        <p>Call the shop and Jenna will tell you what your dog needs and what it costs.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12533332346" class="btn btn-primary">Call (253) 333-2346</a>
+        <a href="#contact" class="btn btn-ghost">Send a message instead</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><span class="mark" aria-hidden="true">J</span></span>
+          <span class="wm">Jenna's Pet Grooming<small>Auburn, WA</small></span>
+        </div>
+        <p>Baths, haircuts and nail trims for Auburn dogs.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/jennagroomsdogs" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>416 E Main St<br>Auburn, WA 98002</p>
+        <p><a href="tel:+12533332346">(253) 333-2346</a><br><a href="mailto:jennagroomsdogs@gmail.com">jennagroomsdogs@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">Grooming</a><br><a href="#reviews">Reviews</a><br><a href="#about">The shop</a><br><a href="#hours">Hours</a><br><a href="#contact">Book a groom</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Jenna's Pet Grooming</span>
+      <span>Auburn, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
