@@ -16,7 +16,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="index.html" aria-label="Combat Sport &amp; Fitness — home">
-      <img src="images/logo-white.png" alt="Combat Sport &amp; Fitness" width="2253" height="376">
+      <img src="images/logo-white.png" alt="Combat Sport &amp; Fitness" width="1690" height="500">
     </a>
     <div class="nav-wrap">
       <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
@@ -42,11 +42,21 @@
 
   <!-- ===================== HERO — the room, and their own painted sign as the headline ===================== -->
   <section class="hero" id="hero">
-    <div class="hero-bg"><img class="echo" src="images/door.jpg" alt="" aria-hidden="true"><img src="images/door.jpg" alt="The front door of Combat Sport &amp; Fitness on Highway 410 — blue building, CSF Brazilian Jiu-Jitsu sign, COMBAT on the glass" fetchpriority="high"></div>
+    <div class="hero-bg">
+      <picture>
+        <source media="(max-width:760px)" srcset="images/hero-phone.jpg">
+        <img src="images/door.jpg" alt="The front door of Combat Sport &amp; Fitness on Highway 410 — blue building, CSF Brazilian Jiu-Jitsu sign, COMBAT on the glass" fetchpriority="high">
+      </picture>
+    </div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
       <h1 class="sr-only">Combat Sport &amp; Fitness — Enumclaw's original home for jiu-jitsu</h1>
-      <img class="hero-mark" src="images/logo-white.png" alt="" aria-hidden="true" width="2253" height="376">
+      <div class="hero-mark" aria-hidden="true">
+        <img class="mk-letters" src="images/logo-letters.png" alt="" width="1690" height="500">
+        <img class="mk-outline" src="images/logo-cross-outline.png" alt="" width="1690" height="500">
+        <img class="mk-red" src="images/logo-cross-red.png" alt="" width="1690" height="500">
+        <span class="mk-shot"></span>
+      </div>
       <p class="hero-sub"><span class="sub-long">Enumclaw's original home for jiu-jitsu. Kids, adults, fighters — every stripe earned, never bought, since 2008.</span><span class="sub-short">Enumclaw's home for jiu-jitsu since 2008.</span></p>
       <div class="hero-actions">
         <a href="schedule.html" class="btn btn-primary">See the schedule</a>
@@ -229,7 +239,7 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="brand"><img src="images/logo-white.png" alt="Combat Sport &amp; Fitness" width="2253" height="376"></div>
+        <div class="brand"><img src="images/logo-white.png" alt="Combat Sport &amp; Fitness" width="1690" height="500"></div>
         <p>Brazilian Jiu-Jitsu and MMA on the Plateau. Train hard, train smart.</p>
         <div class="soc">
           <a href="https://www.facebook.com/combatsportfitness/" target="_blank" rel="noopener">Facebook</a>
