@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="home">
 
 <header class="site-header">
   <div class="header-inner">
@@ -43,10 +43,8 @@
   <!-- ===================== HERO — the room, and their own painted sign as the headline ===================== -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <picture>
-        <source media="(max-width:760px)" srcset="images/hero-phone.jpg">
-        <img src="images/door.jpg" alt="The front door of Combat Sport &amp; Fitness on Highway 410 — blue building, CSF Brazilian Jiu-Jitsu sign, COMBAT on the glass" fetchpriority="high">
-      </picture>
+      <img class="echo" src="images/window.jpg" alt="" aria-hidden="true">
+      <img src="images/window.jpg" alt="The painted COMBAT window seen from inside the gym, the mats behind it" fetchpriority="high">
     </div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
@@ -97,31 +95,27 @@
     <div class="wrap">
       <div class="front">
         <figure class="print reveal">
-          <img src="images/storefront.jpg" alt="The Combat Sport &amp; Fitness storefront on Highway 410 — Brazilian Jiu-Jitsu and Kick Boxing on the sign, two kids out front with new belts" loading="lazy">
-          <figcaption>750 Hwy 410 S · belt day out front</figcaption>
+          <img src="images/hero.jpg" alt="Jeff on the empty mats — red and black mats under the wood-plank ceiling" loading="lazy">
+          <figcaption>The room · 750 Hwy 410 S</figcaption>
         </figure>
         <div class="front-copy section-head reveal">
           <p class="eyebrow">What we teach</p>
-          <h2>Four ways onto <em>the mat.</em></h2>
+          <h2>Three ways onto <em>the mat.</em></h2>
           <p>Brazilian Jiu-Jitsu for kids and adults, gi and no-gi, and an MMA program you have to be invited into. Pick your door.</p>
         </div>
       </div>
-      <div class="cards">
+      <div class="cards cards-3">
         <a class="card reveal" href="classes.html#kids">
-          <div class="ph"><img class="echo" src="images/kids.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/kids.jpg" alt="Kids class on the mats in front of the mountain mural" loading="lazy"></div>
+          <div class="ph"><img class="echo" src="images/kids-line.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/kids-line.jpg" alt="Kids lined up on the mat after class" loading="lazy"></div>
           <div class="body"><h3>Kids Jiu-Jitsu</h3><p>Mon · Wed · Fri at 5 pm. Discipline, confidence, and a belt that means something.</p><span class="go">Kids program →</span></div>
         </a>
         <a class="card reveal" href="classes.html#adult">
-          <div class="ph"><img class="echo" src="images/team-gi.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/team-gi.jpg" alt="The team in gis after class" loading="lazy"></div>
-          <div class="body"><h3>Adult Gi</h3><p>Mon · Wed · Fri at 6 pm, open mat Saturdays. All levels, all ages.</p><span class="go">Adult program →</span></div>
-        </a>
-        <a class="card reveal" href="classes.html#adult">
-          <div class="ph"><img class="echo" src="images/nogi-team.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/nogi-team.jpg" alt="The no-gi crew after Thursday class" loading="lazy"></div>
-          <div class="body"><h3>Adult No-Gi</h3><p>Thursdays at 6 pm. Rash guard, shorts, no collar to grab.</p><span class="go">No-gi →</span></div>
+          <div class="ph"><img class="echo" src="images/jeff-kids-bw.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/jeff-kids-bw.jpg" alt="Jeff teaching on the mats" loading="lazy"></div>
+          <div class="body"><h3>Adult Gi</h3><p>Mon · Wed · Fri at 6 pm, open mat Saturdays. All levels.</p><span class="go">Adult program →</span></div>
         </a>
         <a class="card reveal" href="classes.html#mma">
           <div class="ph"><img class="echo" src="images/nogi-action.jpg" alt="" aria-hidden="true" loading="lazy"><img src="images/nogi-action.jpg" alt="Live rounds on the mats under the wood ceiling" loading="lazy"></div>
-          <div class="body"><h3>MMA</h3><p>Tue · Thu at 5 pm. Pro and amateur fight training. Invite only — earn your way in.</p><span class="go">How it works →</span></div>
+          <div class="body"><h3>MMA &amp; Adult No-Gi</h3><p>MMA Tue · Thu at 5 pm, invite only. No-Gi Thursdays at 6 pm, open to all.</p><span class="go">How it works →</span></div>
         </a>
       </div>
     </div>
@@ -149,21 +143,19 @@
   <!-- ===================== FIGHTERS FROM THIS ROOM — proof ===================== -->
   <section class="section section-alt" id="fighters">
     <div class="wrap">
-      <div class="fighters">
-        <figure class="print reveal">
-          <img src="images/podium.jpg" alt="Three Combat Sport &amp; Fitness kids on the podium at The Revolution tournament, April 2026" loading="lazy">
-          <figcaption>The Revolution · April 2026</figcaption>
-        </figure>
-        <div class="section-head reveal">
-          <p class="eyebrow">Fighters from this room</p>
-          <h2>Small gym. <em>Big names.</em></h2>
-          <p class="lede">Chase Hooper walked out of this building and into the UFC as the youngest fighter the promotion had ever signed. He's a black belt now, and he still fights out of Enumclaw.</p>
-          <p>Home to pro and amateur fighters, and to kids who bring medals home from Puyallup. The coaching staff is vetted, the curriculum is proven, and it shows up in competition.</p>
-          <div class="fight-next">
-            <span class="cd tnum" id="fightCd">—</span>
-            <span class="what"><b>Cam Burkey vs Demitri Morales</b>Sat, Sep 19 · 7 pm · Excite Fight at Muckleshoot Casino Resort. <a href="new-events.html">Fight night details →</a></span>
-          </div>
-        </div>
+      <div class="section-head reveal">
+        <p class="eyebrow">Fighters from this room</p>
+        <h2>Small gym. <em>Big names.</em></h2>
+        <p class="lede">Chase Hooper walked out of this building and into the UFC as the youngest fighter the promotion had ever signed. Elisha "Snack Panther" Ellison followed him — Dana White's Contender Series, then the Octagon, with Enumclaw, WA under his name on the screen.</p>
+      </div>
+      <div class="prints fighters-prints">
+        <figure class="print reveal"><img src="images/chase-octagon.jpg" alt="Chase Hooper in the UFC Octagon, his corner behind the fence" loading="lazy"><figcaption>Chase · the Octagon</figcaption></figure>
+        <figure class="print reveal"><img src="images/eli-jeff-chase.jpg" alt="Eli Ellison in the cage with Jeff Hougland and Chase Hooper after his Contender Series win" loading="lazy"><figcaption>Eli, Jeff and Chase · Contender Series</figcaption></figure>
+        <figure class="print reveal"><img src="images/eli-ufc.jpg" alt="Eli Ellison walking out at UFC 329, Enumclaw WA on the broadcast graphic, Chase in his corner" loading="lazy"><figcaption>Eli · UFC 329 · fighting out of Enumclaw</figcaption></figure>
+      </div>
+      <div class="fight-next reveal">
+        <span class="cd tnum" id="fightCd">—</span>
+        <span class="what"><b>Cam Burkey vs Demitri Morales</b>Sat, Sep 19 · 7 pm · Excite Fight at Muckleshoot Casino Resort. <a href="new-events.html">Fight night details →</a></span>
       </div>
     </div>
   </section>
