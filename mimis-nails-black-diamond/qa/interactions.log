@@ -1,0 +1,14 @@
+PASS navigation 360 Toggle/Escape/focus/outside click/link-close where applicable; no overflow.
+PASS lookbook 360 All filters/counts/pressed states correct; all 6 enlarged images decode; Escape restores focus, keyboard and close button work; 9 distinct main images decode, no errors.
+PASS navigation 390 Toggle/Escape/focus/outside click/link-close where applicable; no overflow.
+PASS lookbook 390 All filters/counts/pressed states correct; all 6 enlarged images decode; Escape restores focus, keyboard and close button work; 9 distinct main images decode, no errors.
+PASS navigation 736 Toggle/Escape/focus/outside click/link-close where applicable; no overflow.
+PASS lookbook 736 All filters/counts/pressed states correct; all 6 enlarged images decode; Escape restores focus, keyboard and close button work; 9 distinct main images decode, no errors.
+PASS navigation 768 Toggle/Escape/focus/outside click/link-close where applicable; no overflow.
+PASS lookbook 768 All filters/counts/pressed states correct; all 6 enlarged images decode; Escape restores focus, keyboard and close button work; 9 distinct main images decode, no errors.
+PASS navigation 1024 Toggle/Escape/focus/outside click/link-close where applicable; no overflow.
+PASS lookbook 1024 All filters/counts/pressed states correct; all 6 enlarged images decode; Escape restores focus, keyboard and close button work; 9 distinct main images decode, no errors.
+PASS navigation 1440 Toggle/Escape/focus/outside click/link-close where applicable; no overflow.
+PASS lookbook 1440 All filters/counts/pressed states correct; all 6 enlarged images decode; Escape restores focus, keyboard and close button work; 9 distinct main images decode, no errors.
+PASS Pacific hours Sunday before/open/closing boundaries and weekday opening correct from a Tokyo context; green=open/red=closed; URL cannot override live clock.
+PASS No JavaScript and honest actions Core copy, all looks and native image links remain; exact phone/address actions; no fake booking, prices or owner story.
