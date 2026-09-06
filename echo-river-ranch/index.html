@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo River Ranch — Guided Horseback Trail Rides, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Guided horseback trail rides year-round near Enumclaw, Washington — walk only, beginner-friendly, small groups of one to four riders. Text Debie to reserve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Young Serif (display) + Karla (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Echo River Ranch — home">
+      <span class="wm">Echo River Ranch<small>Guided trail rides</small></span>
+    </a>
+    <div class="nav-wrap">
+      <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="#services">Rides</a>
+        <a href="#signature">Rain or shine</a>
+        <a href="#gallery">Photos</a>
+        <a href="#about">The guide</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Reserve</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main id="main-content">
+
+  <!-- ===================== #hero =====================
+       HERO STACK: desktop shows hero-stack-1 full-bleed; phones scroll all
+       three at their natural aspect ratio (no crop, no gaps). -->
+  <section class="hero" id="hero">
+    <div class="hero-bg hero-stack">
+      <div class="hero-stack-track">
+        <img src="images/hero-stack-1.jpg" alt="From the saddle on a green forest trail, two riders ahead through waist-high ferns" fetchpriority="high" width="1000" height="563">
+        <img src="images/hero-stack-2.jpg" alt="Five riders coming down a sunlit trail through the fir timber near Enumclaw" width="774" height="960">
+        <img src="images/hero-stack-3.jpg" alt="Two horses stopped to drink at a shallow creek crossing in the woods" width="1000" height="750">
+        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="1000" height="563">
+        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="774" height="960">
+        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="1000" height="750">
+      </div>
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Enumclaw, WA · Guided trail rides<span class="eb-long"> · Year-round in the Cascade foothills</span></p>
+      <h1>Wooded trails, <em>at a walk</em></h1>
+      <p class="hero-sub"><span class="sub-long">Slow-paced, beginner-friendly guided rides in the Cascade foothills — half an hour to all day, in groups of one to four riders.</span><span class="sub-short">Beginner-friendly. One to four riders.</span></p>
+      <div class="hero-actions">
+        <a href="sms:+13603671201" class="btn btn-primary">Text to reserve</a>
+        <a href="#services" class="btn btn-cream">See the rides</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Reservation-first band. Day rows come from her directory listing and
+       are marked as such — every ride is set by text first. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to ride</p>
+        <h2>Rides are <em>by reservation</em></h2>
+        <p class="reservation-line">Text first to confirm a ride and meeting point.</p>
+        <p class="status-addr">
+          37901 304th Way SE, Enumclaw, WA 98022 — five acres, about five miles northeast of town<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=37901+304th+Way+SE+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <p class="status-note">Most rides start at a public trailhead nearby rather than at the ranch, so Debie will tell you exactly where to meet when you book.</p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="0"><span class="day">Sunday</span><span class="time">6:00 am – 8:00 pm</span></li>
+        <li data-days="1"><span class="day">Monday</span><span class="time">12:00 pm – 7:00 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">12:00 pm – 7:00 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">12:00 pm – 7:00 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">12:00 pm – 7:00 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">12:00 pm – 11:00 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">6:00 am – 11:00 pm</span></li>
+        <li class="note"><span class="day">Text first</span><span class="time">These are the hours on her listing. Every ride is set by text or call before you drive out.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #services — PICK YOUR RIDE =====================
+       Title cards that unroll. Prices appear ONLY where they are published
+       (Visit Rainier: 1 hour $100, 2 hours $180). Everything else is quoted
+       by Debie — no invented rates. -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <figure class="print ranch-shot reveal">
+        <img src="images/ranch.jpg" alt="Four horses standing along the rail fence at the ranch in evening light" loading="lazy" width="1000" height="551">
+        <figcaption>The ranch — five acres northeast of Enumclaw</figcaption>
+      </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">Pick your ride</p>
+        <h2>Half an hour to <em>all day</em></h2>
+        <p class="quote">“We have a huge variety of ride types, from one half hour to all day rides, we’ll even plan an overnight camping trip.” <cite>— Echo River Ranch’s own listing</cite></p>
+      </div>
+
+      <ul class="rides reveal">
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-1">
+            <span class="ride-name">Half-hour ride</span>
+            <span class="ride-price">Rate by text</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-1"><div><p>The shortest way to find out whether you like being on a horse. Guided the whole way, at a walk, on trails picked for your skill level.</p></div></div>
+        </li>
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-2">
+            <span class="ride-name">One hour</span>
+            <span class="ride-price price tnum">$100 <i>per rider</i></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-2"><div><p>Horses are brushed, tacked and ready when you arrive — the ranch charges for time in the saddle, not for the time it takes to get a horse ready.</p></div></div>
+        </li>
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-3">
+            <span class="ride-name">Two hours</span>
+            <span class="ride-price price tnum">$180 <i>per rider</i></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-3"><div><p>Long enough to get well into the timber and back. Riders call it a relaxing afternoon rather than a lesson — you ride, Debie guides and points things out along the way.</p></div></div>
+        </li>
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-4">
+            <span class="ride-name">Half day</span>
+            <span class="ride-price">Rate by text</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-4"><div><p>Horses can be hauled out to any of the many local trailheads, so a longer ride isn’t limited to what’s within reach of the ranch.</p></div></div>
+        </li>
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-5">
+            <span class="ride-name">All day</span>
+            <span class="ride-price">Rate by text</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-5"><div><p>In her own words: flat trails through to high back country in the mountains with amazing scenic views. The route gets matched to the riders, not the other way round.</p></div></div>
+        </li>
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-6">
+            <span class="ride-name">Overnight camping trip</span>
+            <span class="ride-price">Ask Debie</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-6"><div><p>The ranch will plan an overnight camping trip on horseback. It’s built around your group rather than run to a schedule, so start with a text about the dates you have in mind.</p></div></div>
+        </li>
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-7">
+            <span class="ride-name">Seasonal treat rides</span>
+            <span class="ride-price">Through the year</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-7"><div><p>The ranch sponsors egg hunt, trick-n-treat, candy cane, patriotic and sweetheart rides. In fall Debie runs rides that take in wild mushroom and berry foraging — she can name the native plants and edible berries as you pass them. Ask which one is coming up next.</p></div></div>
+        </li>
+        <li class="ride">
+          <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-8">
+            <span class="ride-name">Groups &amp; celebrations</span>
+            <span class="ride-price">Built to order</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="ride-body" id="ride-8"><div><p>Family and small-group rides for birthdays, campfires, lunches and dinners, picnics, scavenger hunts and wine tasting where age-appropriate. There are also casual bonfire meet-and-greets and basic horse introduction sessions for anyone who wants to be around horses before they get on one.</p></div></div>
+        </li>
+      </ul>
+
+      <p class="menu-fine reveal">For rides without a listed price, ask Debie for a quote before booking.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — RAIN OR SHINE =====================
+       Her real one-of-one claim, made provable: tap a season, see an actual
+       ride photographed in it. Four real photos, one tap, no numbers. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Rain or shine</p>
+        <h2>She rides <em>all four seasons</em></h2>
+        <p>“We ride rain or shine; we use comfy waterproof lap blankets to keep our riders warm and dry in poor weather conditions.” Tap a season and see a ride that actually went out in it.</p>
+      </div>
+      <div class="seasons reveal">
+        <figure class="season-stage">
+          <img id="seasonImg" src="images/season-summer.jpg" alt="Riders on a summer trail with ferns growing almost as high as the saddle" width="720" height="960">
+          <figcaption id="seasonCap" aria-live="polite">Summer — ferns almost as high as the saddle</figcaption>
+        </figure>
+        <div class="season-picks" role="group" aria-label="Choose a season">
+          <button class="season-pick" type="button" aria-pressed="false" aria-controls="seasonImg seasonCap" data-src="images/season-spring.jpg" data-alt="Riders climbing a spring trail through fresh green undergrowth" data-cap="Spring — new growth up over the trail">
+            <img src="images/season-spring.jpg" alt="" loading="lazy" width="720" height="960"><span>Spring</span>
+          </button>
+          <button class="season-pick is-on" type="button" aria-pressed="true" aria-controls="seasonImg seasonCap" data-src="images/season-summer.jpg" data-alt="Riders on a summer trail with ferns growing almost as high as the saddle" data-cap="Summer — ferns almost as high as the saddle">
+            <img src="images/season-summer.jpg" alt="" loading="lazy" width="720" height="960"><span>Summer</span>
+          </button>
+          <button class="season-pick" type="button" aria-pressed="false" aria-controls="seasonImg seasonCap" data-src="images/season-fall.jpg" data-alt="Four riders on a fall trail through rust-colored ferns and fallen leaves" data-cap="Fall — rust ferns, and the foraging rides">
+            <img src="images/season-fall.jpg" alt="" loading="lazy" width="750" height="1000"><span>Fall</span>
+          </button>
+          <button class="season-pick" type="button" aria-pressed="false" aria-controls="seasonImg seasonCap" data-src="images/season-winter.jpg" data-alt="Two riders on horseback beside the ranch outbuilding on a bare winter day" data-cap="Winter — bare timber, still riding">
+            <img src="images/season-winter.jpg" alt="" loading="lazy" width="1000" height="750"><span>Winter</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Real Yelp reviews, verbatim, with initial discs — never a scraped face. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">5.0 from 6 reviews on Yelp</p>
+        <h2>What riders <em>said afterwards</em></h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote-card reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“Ever have that great friend that says come on over and you just have a relaxing time..well thats what we had experienced on the 2 hour horse trail ride.”</blockquote>
+          <figcaption><span class="ini">IB</span><span class="who">Ian B.<small>Yelp · Oct 19, 2021</small></span></figcaption>
+        </figure>
+        <figure class="quote-card reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“The horses were ready when we arrived and we learned their back stories.”</blockquote>
+          <figcaption><span class="ini">SV</span><span class="who">Stephanie V.<small>Yelp · Jun 26, 2021</small></span></figcaption>
+        </figure>
+        <figure class="quote-card reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“The scenery was very nice and the owner, Debbie made it very fun.”</blockquote>
+          <figcaption><span class="ini">CF</span><span class="who">Chad F.<small>Yelp · Feb 28, 2021</small></span></figcaption>
+        </figure>
+        <figure class="quote-card reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“Debie’s love of horses shows in her nurturing relationship with her horses.”</blockquote>
+          <figcaption><span class="ini">VB</span><span class="who">Victoria B.<small>Yelp · Jun 19, 2019</small></span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out on the trail</p>
+        <h2>Riders’ own <em>photos</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Four riders lined up on a gravel river bar with mountains and blue sky behind them" loading="lazy" width="800" height="600"><figcaption>The river bar, mountains behind</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A herd of elk standing on and beside the trail among the birches" loading="lazy" width="750" height="1000"><figcaption>Elk on the trail ahead</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="View from the saddle of a young rider ahead on a trail walled in by tall ferns" loading="lazy" width="750" height="1000"><figcaption>Ferns to the stirrups</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A rider on a paint horse with a small white dog riding in a pack in front of the saddle" loading="lazy" width="579" height="960"><figcaption>Missy rides along</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A rider on a black and white paint horse stopped among sunlit sword ferns" loading="lazy" width="720" height="960"><figcaption>Sun through the timber</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Two young riders on horseback in front of the treeline at the ranch" loading="lazy" width="750" height="1000"><figcaption>Hawk and Dodger</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="Debie standing alongside a horse at the barn, helping a young rider get settled" loading="lazy" width="750" height="1000">
+          <figcaption>Debie helping a young rider with Hawk</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The guide</p>
+          <h2>Meet your <em>trail guide</em></h2>
+          <p class="lede">Debie grew up in Washington and has been riding here for over forty years — she has helped clear and maintain a good many of the trails you’ll be on.</p>
+          <p>That’s the difference between a trail ride and a trail ride with her. She knows the terrain, and along the way she can point out the native plants and the berries worth eating. In fall she runs rides built around wild mushroom and berry foraging.</p>
+          <p>The ranch is family-owned, five acres about five miles northeast of Enumclaw. There are only a few horses, so groups stay small — one to four riders, walk only, no loping and no running. She specialises in confidence building, which is why so many of the reviews are from people who had never sat on a horse before. Missy, the ranch’s riding dog, turns up in a lot of riders’ photos.</p>
+          <div class="team">
+            <h3>Who you’ll meet</h3>
+            <div class="faces">
+              <span class="face"><span class="ini">D</span>Debie<small>Owner &amp; trail guide</small></span>
+              <span class="face"><span class="ini">H</span>Hawk<small>Horse</small></span>
+              <span class="face"><span class="ini">D</span>Dodger<small>Horse</small></span>
+              <span class="face"><span class="ini">M</span>Missy<small>Trail dog</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Reserve a ride</p>
+          <h2>Your ride starts <em>with a text</em></h2>
+          <ol class="steps">
+            <li><h3>Text Debie</h3><p>Send the day you have in mind and how many riders. Texting is the way she takes reservations.</p></li>
+            <li><h3>Agree the ride and the meeting spot</h3><p>She’ll confirm the length, the rate and where to meet — often a public trailhead rather than the ranch itself.</p></li>
+            <li><h3>Show up ready to ride</h3><p>The horses are brushed and saddled before you arrive. Rides go rain or shine, with waterproof lap blankets when the weather turns.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📱 <a href="sms:+13603671201">Text (360) 367-1201</a></span>
+            <span>📞 <a href="tel:+13603671201">Call (360) 367-1201</a></span>
+            <span>✉️ <a href="mailto:horseaddict@msn.com">horseaddict@msn.com</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=37901+304th+Way+SE+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal" action="mailto:horseaddict@msn.com" method="post" enctype="text/plain" data-send-label="Send it to Debie">
+          <!-- Opens a visitor-controlled email draft. A configured access_key enables live form delivery at go-live. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">Which ride?<select name="topic"><option>One-hour ride</option><option>Two-hour ride</option><option>A longer or overnight ride</option><option>A group, birthday or campfire ride</option><option>Not sure yet — first time on a horse</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many riders, roughly which day, and whether anyone has ridden before."></textarea></label>
+          <button type="submit" class="btn btn-primary">Open email draft</button>
+          <p class="form-success" role="status" aria-live="polite"></p>
+          <p class="form-fine">Opens in your email app. Review your message there, then send.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Ready when you are</p>
+        <h2>Pick a day and <em>text her</em></h2>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="sms:+13603671201" class="btn btn-primary">Text to reserve</a>
+        <a href="tel:+13603671201" class="btn btn-ghost">Call (360) 367-1201</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm">Echo River Ranch<small>Guided trail rides</small></span>
+        </div>
+        <p>Family-owned, five acres northeast of Enumclaw. Guided horseback trail rides at a walk, year-round.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>37901 304th Way SE<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+13603671201">(360) 367-1201</a><br><a href="mailto:horseaddict@msn.com">horseaddict@msn.com</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">Rides</a><br><a href="#signature">Rain or shine</a><br><a href="#gallery">Photos</a><br><a href="#about">The guide</a><br><a href="#contact">Reserve</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Echo River Ranch</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

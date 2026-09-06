@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rose Spa — Massage in Bonney Lake, WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Rose Spa in Bonney Lake — body massage, foot reflexology, or both together, in private rooms on Highway 410. Open 9:30 am to 10 pm, seven days a week. Call (253) 447-8676.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Two faces: Fraunces (display) + DM Sans (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     The mark is a crop of their own storefront sign (never redrawn), so the
+     wordmark next to it is the descriptor only — the name is never set twice. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Rose Spa — home">
+      <img src="images/logo.png" alt="Rose Spa" width="230" height="34">
+      <span class="wm">Massage · Bonney Lake</span>
+    </a>
+    <div class="nav-wrap">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#services">Massages</a>
+        <a href="#signature">Where it hurts</a>
+        <a href="#rooms">The rooms</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Book by phone</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO: the plaza suite with their own sign, because the interiors
+       carry the rest of the page. Wide photo → HERO STACK on phones: three real
+       photos, height:auto, doubled track, no crop and no gap.
+       Nothing sits on the photo but the headline block. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg hero-stack">
+      <div class="hero-stack-track">
+        <img src="images/hero-stack-1.jpg" alt="The Rose Spa storefront and lit sign in the Highway 410 plaza in Bonney Lake" fetchpriority="high" width="2000" height="1125">
+        <img src="images/hero-stack-2.jpg" alt="The hallway at Rose Spa, red runner leading past the private massage rooms" width="1440" height="1080">
+        <img src="images/hero-stack-3.jpg" alt="A private massage room at Rose Spa, table made up with a rose on the folded towel" width="1000" height="750">
+        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="2000" height="1125">
+        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="1440" height="1080">
+        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="1000" height="750">
+      </div>
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <h1>A quiet hour of <em>body and foot massage</em></h1>
+      <p class="hero-sub"><span class="sub-long">Suite 302 on Highway 410 in Bonney Lake — private rooms, heated tables, and a therapist who asks what pressure you want.</span><span class="sub-short">Private rooms on Highway 410.</span></p>
+      <div class="hero-actions">
+        <a href="tel:+12534478676" class="btn btn-primary">Call (253) 447-8676</a>
+        <a href="#services" class="btn btn-cream">See the massages</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       The one place on this page hours, the live status and the address appear. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Late, and <em>seven days a week</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          20631 WA-410 E, Suite 302, Bonney Lake, WA 98391<br>
+          <a href="https://maps.google.com/?q=20631+WA-410+E+%23302,+Bonney+Lake,+WA+98391" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.0 on Google · 61 reviews</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="0"><span class="day">Sunday</span><span class="time">9:30 am – 10 pm</span></li>
+        <li data-days="1"><span class="day">Monday</span><span class="time">9:30 am – 10 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">9:30 am – 10 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">9:30 am – 10 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">9:30 am – 10 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">9:30 am – 10 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">9:30 am – 10 pm</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #services =====================
+       TITLE CARDS UNROLL: each headline is the tap target, the real detail
+       rolls out in place behind a downward chevron. Everything here comes
+       from their own former service page, the price board at the front desk
+       and dated guest reviews — no invented modalities, no invented prices. -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What they do</p>
+        <h2>Two hands, <em>however long you have</em></h2>
+        <p>Tap a line to see what the session is.</p>
+      </div>
+      <div class="roll reveal">
+
+        <div class="roll-item">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-1">
+            Traditional body massage
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-panel" id="roll-1">
+            <div class="roll-inner">
+              <p>Half an hour, an hour, or longer, on a heated table in a room with the door shut. The therapist asks what pressure you want before they start and adjusts as they go — say where it's tight and they stay there.</p>
+              <div class="roll-tags"><span class="dur">30 min</span><span class="dur">60 min</span><span>Pressure to taste</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roll-item">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-2">
+            Foot reflexology
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-panel" id="roll-2">
+            <div class="roll-inner">
+              <p>The other half of what Rose Spa has always done. Book it on its own after a long day standing, or put it on the end of a body massage.</p>
+              <div class="roll-tags"><span class="dur">30 min</span><span class="dur">60 min</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roll-item">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-3">
+            Body and foot in one visit
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-panel" id="roll-3">
+            <div class="roll-inner">
+              <p>Half the appointment on the body, half on the feet, one room, one hour. It has its own line on the board at the front desk.</p>
+              <div class="roll-tags"><span class="dur">30 min body + 30 min foot</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roll-item">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-4">
+            Add on when you book
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-panel" id="roll-4">
+            <div class="roll-inner">
+              <p>Four extras are listed under the massages on their board. Ask for one on the phone so the room is ready when you get there.</p>
+              <div class="roll-tags"><span>Deep pressure</span><span>Hot stone</span><span>Essential oil</span><span>Cupping</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="menu-fine reveal">Rates are posted on the board at the front desk — call for today's pricing.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #rooms =====================
+       Three real interior photos as framed prints — whole frames, never cropped.
+       The storefront, hallway and treatment room live in the hero, so nothing repeats. -->
+  <section class="section" id="rooms">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Inside suite 302</p>
+        <h2>A quiet place <em>to unwind</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The front desk at Rose Spa with a jade lamp, a clock and the framed price board" loading="lazy" width="1440" height="1080"><figcaption>The front desk</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="The waiting room at Rose Spa — curtained window, two black chairs and fresh flowers on the table" loading="lazy" width="1440" height="1080"><figcaption>Where you wait</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="The waiting room sofa at Rose Spa under framed artwork and two red knots" loading="lazy" width="1000" height="750"><figcaption>The sofa side</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature =====================
+       WHERE DOES IT HURT — tap the sore part, get the massage that covers it.
+       One tap, instant answer, tap again to clear. Nothing to type, no prices,
+       no hours: it only routes you to the right appointment. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Not sure what to book</p>
+        <h2>Where does <em>it hurt?</em></h2>
+        <p>Tap the sore part. We'll tell you what to ask for.</p>
+      </div>
+      <div class="hurt reveal">
+        <div class="hurt-out">
+          <p class="idle" id="hurtIdle">Tap yourself on the shoulder.</p>
+          <div class="hurt-card" id="hurtCard">
+            <p class="eyebrow">Ask for</p>
+            <h3 id="hurtName"></h3>
+            <span class="dur tnum" id="hurtDur"></span>
+            <p id="hurtLine"></p>
+            <div class="hurt-actions"><a href="tel:+12534478676" class="btn btn-primary">Call the desk</a></div>
+          </div>
+        </div>
+        <div class="hurt-figure">
+          <svg viewBox="0 0 300 486" role="group" aria-label="Tap where you are sore">
+            <!-- back-view silhouette, drawn from tokens only -->
+            <g class="hurt-body">
+              <circle cx="150" cy="44" r="27"/>
+              <rect x="137" y="66" width="26" height="20"/>
+              <path d="M105 84 Q150 72 195 84 L206 98 L213 152 L209 202 L196 240 L104 240 L91 202 L87 152 L94 98 Z"/>
+              <path d="M104 90 L83 100 L69 172 L63 236 L79 240 L92 174 Z"/>
+              <path d="M196 90 L217 100 L231 172 L237 236 L221 240 L208 174 Z"/>
+              <path d="M110 244 L106 330 L110 396 L136 396 L142 330 L150 268 L158 330 L164 396 L190 396 L194 330 L190 244 Z"/>
+              <path d="M104 398 h36 v18 h-42 a4 4 0 0 1 -4 -6 Z"/>
+              <path d="M196 398 h-36 v18 h42 a4 4 0 0 0 4 -6 Z"/>
+            </g>
+            <!-- tap zones -->
+            <rect class="hurt-zone" data-hurt="shoulders" x="84" y="76" width="132" height="48" rx="16" tabindex="0" role="button" aria-pressed="false" aria-label="Neck and shoulders"/>
+            <text class="hurt-label" x="150" y="104" text-anchor="middle">Neck &amp; shoulders</text>
+
+            <rect class="hurt-zone" data-hurt="back" x="96" y="132" width="108" height="94" rx="14" tabindex="0" role="button" aria-pressed="false" aria-label="Back"/>
+            <text class="hurt-label" x="150" y="184" text-anchor="middle">Back</text>
+
+            <rect class="hurt-zone" data-hurt="feet" x="92" y="366" width="116" height="54" rx="14" tabindex="0" role="button" aria-pressed="false" aria-label="Feet"/>
+            <text class="hurt-label" x="150" y="397" text-anchor="middle">Feet</text>
+
+            <rect class="hurt-zone" data-hurt="all" x="46" y="432" width="208" height="48" rx="24" tabindex="0" role="button" aria-pressed="false" aria-label="All over"/>
+            <text class="hurt-label" x="150" y="460" text-anchor="middle">All over</text>
+          </svg>
+          <p class="hurt-hint">Tap again to clear</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #guests =====================
+       One guest note, fully sourced: name, star rating, date and where it was
+       written. The mark beside it is an initials disc in the site's own type —
+       never a scraped photo of a real reviewer. -->
+  <section class="section" id="guests">
+    <div class="wrap">
+      <div class="note-quote reveal">
+        <span class="ini" aria-hidden="true">AR</span>
+        <div>
+          <blockquote>“My mom and I had a 1hr message at Rose Spa. The message was great from head to toe. Highly recommend it. Thanks ladies!”</blockquote>
+          <p class="note-meta"><b>Analia R.</b> <span class="stars" aria-label="5 out of 5 stars">★★★★★</span> <span class="src">Yelp · February 23, 2024</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact =====================
+       Phone is the real booking method — Fresha lists them as call-to-book and
+       there is no verified online scheduler. Address and hours are not repeated here. -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Booking</p>
+          <h2>One call, <em>and the room is yours</em></h2>
+          <ol class="steps">
+            <li><h3>Call the desk</h3><p>Someone answers between appointments. Say the day and the time you want.</p></li>
+            <li><h3>Say where it hurts</h3><p>Shoulders, back, feet or all over — they'll set the length to match.</p></li>
+            <li><h3>Come in</h3><p>Suite 302, in the plaza on the north side of Highway 410. Park right out front.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12534478676">(253) 447-8676</a></span>
+            <span>📍 <a href="https://maps.google.com/?q=20631+WA-410+E+%23302,+Bonney+Lake,+WA+98391" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
+               At go-live, pages-golive.sh <slug> [domain] <web3forms-key> fills this. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What are you after?<select name="topic"><option>Body massage</option><option>Foot massage</option><option>Body and foot</option><option>Not sure yet</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="The day and time that works, and where you're sore."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it</button>
+          <p class="form-success">Thanks — the front desk will get back to you soon.</p>
+          <p class="form-fine">Preview form — messages are not sent. Please call to arrange an appointment.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Bonney Lake</p>
+        <h2>Come and <em>get the knot out</em></h2>
+      </div>
+      <p class="cta-copy reveal">The board out front says massage. The room behind it is quiet, the door shuts, and the table is warm.</p>
+      <div class="cta-actions reveal">
+        <a href="tel:+12534478676" class="btn btn-primary">Call (253) 447-8676</a>
+        <a href="https://maps.google.com/?q=20631+WA-410+E+%23302,+Bonney+Lake,+WA+98391" target="_blank" rel="noopener" class="btn btn-ghost">Get directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt="Rose Spa" width="900" height="318"></span>
+        </div>
+        <p>Body and foot massage in Bonney Lake.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>20631 WA-410 E, Suite 302<br>Bonney Lake, WA 98391</p>
+        <p><a href="tel:+12534478676">(253) 447-8676</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">Massages</a><br><a href="#signature">Where it hurts</a><br><a href="#rooms">The rooms</a><br><a href="#hours">Hours</a><br><a href="#contact">Book by phone</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Rose Spa</span>
+      <span>Bonney Lake, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

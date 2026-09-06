@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thunder Rail Stables — Boarding, Lessons &amp; Summer Camps, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A family owned and operated boarding, training and lesson barn at the base of the Cascade foothills in Enumclaw — 60×120 indoor arena, 160×200 outdoor arena, summer camps and a homeschool club. 4.8 on Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Young Serif (display — sturdy, timber-weight old style) + Karla (body). Must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<!-- ===================== HEADER / NAV =====================
+     Sticky. Typeset wordmark (no invented logo — NEVER RECREATE law).
+     No live open/closed pill: this is a barn, not a store. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Thunder Rail Stables — home">
+      <span class="wm">Thunder Rail<small>Stables · Enumclaw</small></span>
+    </a>
+    <div class="nav-wrap">
+      <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="#programs">Programs</a>
+        <a href="#signature">Where to start</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#about">The barn</a>
+        <a href="#contact" class="nav-cta">Visit</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main id="main-content">
+
+  <!-- ===================== #hero =====================
+       HERO STACK: the widest real photo is 2000×1000 and would lose most of
+       its width to a phone crop, so mobile scrolls a conveyor of three real
+       photos at natural aspect (arrive → ride out → up in the saddle).
+       Desktop shows frame 1 full-bleed. Nothing on the photo but the headline. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg hero-stack">
+      <div class="hero-stack-track">
+        <img src="images/hero-stack-1.jpg" alt="The outdoor arena at Thunder Rail Stables, wood rail fence and fir treeline behind it" fetchpriority="high" width="1800" height="900">
+        <img src="images/hero-stack-2.jpg" alt="Two riders heading down the gravel drive past the fence line" width="851" height="1800">
+        <img src="images/hero-stack-3.jpg" alt="A rider's view between a horse's ears in the indoor arena" width="853" height="1800">
+        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="1800" height="900">
+        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="851" height="1800">
+        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="853" height="1800">
+      </div>
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Enumclaw, Washington<span class="eb-long"> · Family owned and operated</span></p>
+      <h1>Boarding, lessons and camps <em>at the foot of the Cascades</em></h1>
+      <p class="hero-sub"><span class="sub-long">Saddleseat, huntseat, western and dressage — all breeds and disciplines welcome.</span><span class="sub-short">All breeds and disciplines welcome.</span></p>
+      <div class="hero-actions">
+        <a href="#programs" class="btn btn-primary">See the programs</a>
+        <a href="tel:+12067076192" class="btn btn-cream">Call (206) 707-6192</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       A barn, not a shop — no live open/closed light (owner lives on site and
+       lessons run by appointment). All 7 posted rows still show, today lit. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">Where to find us</p>
+        <h2>Out on SE 424th — <em>lessons by appointment</em></h2>
+        <p class="appt-line">
+          <span class="appt-ico" aria-hidden="true">☏</span>
+          Call ahead and we&rsquo;ll set a time. The owner lives on site.
+        </p>
+        <p class="status-addr">
+          27102 SE 424th St, Enumclaw, WA 98022<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Thunder+Rail+Stables+27102+SE+424th+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+      </div>
+      <!-- data-days = weekday numbers (0=Sun…6=Sat); site.js lights today's row -->
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">9 am – 9 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">8 am – 9 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">9 am – 9 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">8 am – 7 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">9 am – 9 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">9 am – 9 pm</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">9 am – 9 pm</span></li>
+        <li class="note"><span class="day">Lessons &amp; visits</span><span class="time">By appointment — please call first</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #programs =====================
+       STOREFRONT-BELOW-THE-HOURS: the hero isn't a building, so a real
+       exterior facility photo opens the offerings section.
+       TITLE CARDS UNROLL: each heading is the tap target, chevron flips up. -->
+  <section class="section section-alt" id="programs">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What happens here</p>
+        <h2>Four ways to <em>be at the barn</em></h2>
+        <p>Boarding, lessons, training, haul-ins, summer camps, cattle events and a homeschool program — with, in their words, &ldquo;meticulous and exceptional care with all day turnouts.&rdquo;</p>
+      </div>
+
+      <figure class="print wide-print reveal">
+        <img src="images/round-pen.jpg" alt="The 60-foot covered round pen at Thunder Rail Stables, a horse working on the line under the canopy" loading="lazy" width="1800" height="900">
+        <figcaption>The 60-foot covered round pen</figcaption>
+      </figure>
+
+      <div class="rolls reveal">
+
+        <div class="roll" id="roll-lessons">
+          <button class="roll-head" type="button" aria-expanded="true" aria-controls="body-lessons">
+            <span class="roll-title">Riding lessons</span>
+            <span class="roll-note">Beginners to advanced</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-body" id="body-lessons">
+            <ul class="roll-list">
+              <li><b>Saddleseat, huntseat, western and dressage.</b> All breeds and disciplines are welcome, and the barn takes on problem horses as readily as first-timers.</li>
+              <li><b>Barrel racing with Jayda.</b> Beginners through advanced, green horses to seasoned. Haul-ins wanted.</li>
+              <li><b>Three arenas to ride in:</b> a 60 × 120 indoor, a 160 × 200 outdoor, and the 60-foot covered round pen.</li>
+              <li class="roll-fine">Call to confirm current lesson times and availability.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll" id="roll-boarding">
+          <button class="roll-head" type="button" aria-expanded="true" aria-controls="body-boarding">
+            <span class="roll-title">Boarding &amp; training</span>
+            <span class="roll-note">Full, partial or self care</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-body" id="body-boarding">
+            <ul class="roll-list">
+              <li><b>Three levels of care</b> — full, partial and self — all with all-day turnouts and spacious turnout fields.</li>
+              <li><b>12 × 12 matted stalls</b> with individual water systems.</li>
+              <li><b>Two hot-water wash racks</b>, individual tack lockers and spacious tack rooms.</li>
+              <li><b>Heated bathroom</b> with washer and dryer, a heated lounge, Wi-Fi, ample parking and a trailer turnaround.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll" id="roll-camps">
+          <button class="roll-head" type="button" aria-expanded="true" aria-controls="body-camps">
+            <span class="roll-title">Summer camps</span>
+            <span class="roll-note">Ages 5 and up</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-body" id="body-camps">
+            <ul class="roll-list">
+              <li><b>9 am to 12 pm, $75 a day</b> in the 2026 season, for horse-crazy kids ages 5 and up.</li>
+              <li><b>A day looks like:</b> horseback riding, swimming, roping, obstacles, gaming patterns, animal feeding and care, games, crafts and new friendships.</li>
+              <li><b>Scholarships.</b> In the barn&rsquo;s own words: &ldquo;We believe every child should have the opportunity to experience horse camp.&rdquo; Thanks to sponsors, limited financial assistance is available — reach out if cost is a concern.</li>
+              <li class="roll-fine">The 2026 camp days ran through August 19. Call for next season&rsquo;s dates.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll" id="roll-homeschool">
+          <button class="roll-head" type="button" aria-expanded="true" aria-controls="body-homeschool">
+            <span class="roll-title">Homeschool program</span>
+            <span class="roll-note">During the school year</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-body" id="body-homeschool">
+            <ul class="roll-list">
+              <li><b>A homeschool club that meets at the barn</b> — riding alongside hands-on time with the animals. It runs as its own club, not a drop-in lesson.</li>
+              <li class="roll-fine">Days, ages and this year&rsquo;s openings change with the season — call to hear what&rsquo;s running now.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="also reveal"><span>Also at the barn</span> Cattle events · Haul-ins welcome · Birthday parties · Wyatt&rsquo;s aged compost, $5 a 35&#8209;lb bag</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature =====================
+       Section 4. The gadget routes, it does not restate: tap the picture that
+       sounds like you, get a one-line answer and a button that scrolls to the
+       matching program card and opens it. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Not sure where to start</p>
+        <h2>Tap the one that <em>sounds like you</em></h2>
+      </div>
+
+      <div class="picker reveal">
+        <div class="picker-out" id="pickerOut" aria-live="polite">
+          <p class="picker-idle">Pick a picture and we&rsquo;ll point you at the right program.</p>
+        </div>
+        <div class="picker-choices" role="group" aria-label="Who is coming out to ride?">
+          <button class="pick" data-pick="kid" aria-pressed="false">
+            <img src="images/pick-kid.jpg" alt="A young rider in a helmet up on a horse in the indoor arena" loading="lazy" width="1800" height="1350">
+            <span>A horse-crazy kid</span>
+          </button>
+          <button class="pick" data-pick="adult" aria-pressed="false">
+            <img src="images/pick-adult.jpg" alt="A rider working a horse inside the round pen" loading="lazy" width="1012" height="1800">
+            <span>An adult starting out</span>
+          </button>
+          <button class="pick" data-pick="owner" aria-pressed="false">
+            <img src="images/pick-owner.jpg" alt="Horses and riders spread across the big indoor arena" loading="lazy" width="1800" height="1350">
+            <span>I already have a horse</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="Riders and families gathered along the rail of the indoor arena" loading="lazy" width="900" height="1800">
+          <figcaption>Inside the 60 × 120</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The family behind it</p>
+          <h2>Family owned, operated <em>and lived in</em></h2>
+          <p class="lede">&ldquo;Nestled in the base of the Cascade foothills in beautiful Enumclaw, Washington, with a stunning view of Mount Rainier.&rdquo;</p>
+          <p>Kelly Neu runs Thunder Rail. The care is the part people write about — the barn describes it as meticulous and exceptional, and the reviews that follow tend to agree.</p>
+          <p>The year runs on its own calendar. Summer camps fill the mornings in July and August, the homeschool club takes over during the school year, cattle events and 4-H clinics book the indoor, and riders haul in from around the plateau just to use the arena for an afternoon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW-FACE LAW: a clean typeset mark in the site's palette, never a
+       scraped photo and never a grey silhouette. Reviewer names were not in
+       the mirrored listing, so none are invented — see HANDOFF-CODEX.md. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">★ 4.8 on Google · 43 reviews</p>
+        <h2>What families <em>say about it</em></h2>
+      </div>
+      <div class="revs">
+        <figure class="rev reveal">
+          <span class="rev-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 20v-6a4 4 0 0 1 8 0v6"/><path d="M8 14a6 6 0 1 1 8 0"/><circle cx="8" cy="20" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="20" r="1.3" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="rev-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>Thunder Rails Stables is an excellent environment for your kids. They have an amazing homeschool program, horse back riding lessons, and summer camps. I&rsquo;ve chatted with people that have horses boarded there and they are so please with the excellent care their horses get.</blockquote>
+          <figcaption>Google review · February 2025</figcaption>
+        </figure>
+        <figure class="rev reveal">
+          <span class="rev-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 20v-6a4 4 0 0 1 8 0v6"/><path d="M8 14a6 6 0 1 1 8 0"/><circle cx="8" cy="20" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="20" r="1.3" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="rev-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>This is truly the best barn around. The owners are amazing humans who care deeply about the wellbeing of the animals. They are super supportive and great with young kids. They have made dreams come true for our girls and we are forever grateful!</blockquote>
+          <figcaption>Google review · March 2024</figcaption>
+        </figure>
+        <figure class="rev reveal">
+          <span class="rev-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 20v-6a4 4 0 0 1 8 0v6"/><path d="M8 14a6 6 0 1 1 8 0"/><circle cx="8" cy="20" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="20" r="1.3" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="rev-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>Friendly people, family-oriented and fun place to horse around</blockquote>
+          <figcaption>Google review · April 2023</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Come out and see it</p>
+          <h2>Three steps to <em>your first ride</em></h2>
+          <ol class="steps">
+            <li><h3>Call or send a note</h3><p>Tell us whether it&rsquo;s lessons, a camp spot, the homeschool club or a stall you&rsquo;re after.</p></li>
+            <li><h3>We&rsquo;ll find you a time</h3><p>Lessons and visits are set by appointment around the arena schedule.</p></li>
+            <li><h3>Come walk the barn</h3><p>See the stalls, meet the horses, and decide from there. No pressure either way.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12067076192">(206) 707-6192</a></span>
+            <span>✉️ <a href="mailto:ThunderRailStables@aol.com">ThunderRailStables@aol.com</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Thunder+Rail+Stables+27102+SE+424th+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal" action="mailto:ThunderRailStables@aol.com" method="post" enctype="text/plain" data-send-label="Send it to the barn">
+          <!-- Opens a visitor-controlled email draft. A configured access_key enables live form delivery at go-live. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What are you asking about?<select name="topic"><option>Riding lessons</option><option>Boarding &amp; training</option><option>Summer camp</option><option>Homeschool program</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Who&rsquo;s riding, how much experience they have, and when you&rsquo;re free."></textarea></label>
+          <button type="submit" class="btn btn-primary">Open email draft</button>
+          <p class="form-success" role="status" aria-live="polite"></p>
+          <p class="form-fine">Opens in your email app. Review your message there, then send.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Enumclaw, Washington</p>
+        <h2>The gate&rsquo;s on SE 424th. <em>Give us a call first.</em></h2>
+        <p>Lessons, camp spots and stalls all start the same way — a phone call and a look around the place.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-primary">Send a message</a>
+        <a href="tel:+12067076192" class="btn btn-ghost">Call (206) 707-6192</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm">Thunder Rail Stables LLC<small>Enumclaw, Washington</small></span>
+        </div>
+        <p>A family owned and operated boarding, training and lesson barn at the base of the Cascade foothills.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/302424916522967" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>27102 SE 424th St<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+12067076192">(206) 707-6192</a><br><a href="mailto:ThunderRailStables@aol.com">ThunderRailStables@aol.com</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#programs">Programs</a><br><a href="#signature">Where to start</a><br><a href="#reviews">Reviews</a><br><a href="#about">The barn</a><br><a href="#contact">Visit</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Thunder Rail Stables LLC</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

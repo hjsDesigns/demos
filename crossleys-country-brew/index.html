@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crossley's Country Brew — drive-thru coffee stand, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Crossley's Country Brew is the cedar drive-thru coffee stand on 264th Ave SE in Enumclaw — espresso, cold brew, chai and breakfast, open at 4 AM on weekdays. 4.8 on Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (display) + Karla (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Crossley's Country Brew — home">
+      <img src="images/logo.png" alt="Crossley's Country Brew" width="770" height="432">
+      <span class="wm-sub">Enumclaw · Drive-thru</span>
+    </a>
+    <div class="nav-wrap">
+      <button class="nav-toggle" aria-expanded="false" aria-label="Open menu" aria-controls="main-nav">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hours">Hours</a>
+        <a href="#menu">Drinks</a>
+        <a href="#gallery">Out the window</a>
+        <a href="#signature">Thank y'all</a>
+        <a href="#about">The stand</a>
+        <a href="#find" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main id="main">
+
+  <!-- ===================== #hero =====================
+       The stand itself. Desktop shows hero-stack-1 full bleed; phones scroll
+       the three-photo conveyor (README: HERO STACK) because the sign photo is
+       1.9:1 and a portrait crop would cut the wordmark in half. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg hero-stack">
+      <div class="hero-stack-track">
+        <img src="images/hero-stack-1.jpg" alt="Crossley's Country Brew — the cedar stand with its carved oval sign and a red OPEN sign in the window" fetchpriority="high" width="2000" height="1044">
+        <img src="images/hero-stack-2.jpg" alt="An iced coffee held up in front of the stand's cedar siding" width="1600" height="2000">
+        <img src="images/hero-stack-3.jpg" alt="The espresso bar inside the window — machine, syrups and stacked cups" width="2000" height="1500">
+        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="2000" height="1044">
+        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="1600" height="2000">
+        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="2000" height="1500">
+      </div>
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <h1>The cedar coffee stand on <em>264th</em>.</h1>
+      <p class="hero-sub"><span class="sub-long">Espresso, cold brew, chai and breakfast, served through the window.</span><span class="sub-short">Espresso, cold brew, breakfast.</span></p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">See what's on the board</a>
+        <a href="#find" class="btn btn-cream">Find the window</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Hours live HERE and nowhere else on the page. All seven days as rows.
+       Times match the HOURS config in js/site.js. Source: joe.coffee +
+       Restaurantji listings (they agree exactly). -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>An early start. <em>A familiar window.</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          42810 264th Ave SE, Enumclaw, WA 98022<br>
+          In the Enumclaw Masonic Center lot<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Crossley%27s+Country+Brew+42810+264th+Ave+SE+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.8 on Google (109 reviews)</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">4 am – 6 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">4 am – 6 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">4 am – 6 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">4 am – 6 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">4 am – 6 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">6 am – 6 pm</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">6 am – 6 pm</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — "Off the board" =====================
+       TITLE CARDS UNROLL: each heading is the tap target, downward chevron
+       flips up. Item names read off their own price board (images/board.jpg).
+       NO PRICES on the page — the board's price columns are not legible at
+       source resolution, and nothing is invented. See HANDOFF-CODEX.md. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Straight off the board</p>
+        <h2>It's all on the <em>board at the window</em>.</h2>
+        <p>Their price board hangs on the side of the stand — eight ounces up to thirty-two, six sizes across. Tap a heading to see what's under it.</p>
+      </div>
+      <div class="board-layout">
+        <figure class="print board-photo reveal">
+          <img src="images/board.jpg" alt="The whole cedar stand at golden hour, with the drinks price board mounted on the side of the building" loading="lazy" width="2000" height="1500">
+          <figcaption>The board, on the side of the stand</figcaption>
+        </figure>
+        <div class="board-cards reveal">
+          <article class="unroll">
+            <button type="button" class="unroll-head" aria-expanded="false">
+              <span class="unroll-title">Espresso, six sizes</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="unroll-body">
+              <ul>
+                <li>Americano</li><li>Latte</li><li>Mocha</li>
+                <li>White chocolate mocha</li><li>Caramel macchiato</li>
+                <li>Steamer</li><li>Extra espresso shot</li>
+              </ul>
+            </div>
+          </article>
+          <article class="unroll">
+            <button type="button" class="unroll-head" aria-expanded="false">
+              <span class="unroll-title">Cold brew, chai and tea</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="unroll-body">
+              <ul><li>Cold brew</li><li>Chai tea</li><li>Herbal tea</li></ul>
+            </div>
+          </article>
+          <article class="unroll">
+            <button type="button" class="unroll-head" aria-expanded="false">
+              <span class="unroll-title">Cold, sweet and fizzy</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="unroll-body">
+              <ul><li>Italian soda</li><li>Smoothie</li><li>Milk shake</li><li>Red Bull, flavored</li><li>Rockstar</li></ul>
+            </div>
+          </article>
+          <article class="unroll">
+            <button type="button" class="unroll-head" aria-expanded="false">
+              <span class="unroll-title">Sweet &amp; savory</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="unroll-body">
+              <ul><li>Breakfast burrito</li><li>Breakfast sandwich</li><li>Chicken bake</li><li>Bagel</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+      <p class="menu-fine reveal">Item names read off their own price board. Prices and seasonal specials are posted at the window.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out the window</p>
+        <h2>What comes back <em>through the window</em>.</h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Two espresso shots pulling into glasses on the machine" loading="lazy" width="828" height="1326"><figcaption>Two shots, pulled to order</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A Crossley's Country Brew cup on the counter beside a paper punch card" loading="lazy" width="1499" height="2000"><figcaption>Their cup — and the punch card</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="An iced latte beside Torani lavender syrup and Pacific oat barista milk" loading="lazy" width="1600" height="2000"><figcaption>Lavender, on oat</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Two peppermint mochas with whipped cream, iced and hot" loading="lazy" width="1600" height="2000"><figcaption>Peppermint, two ways</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A ham and egg croissant breakfast sandwich on checked paper" loading="lazy" width="2000" height="1573"><figcaption>Breakfast on a croissant</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="A pumpkin cheesecake cold brew beside a hand-lettered chalkboard" loading="lazy" width="1440" height="1080"><figcaption>Whatever's on the chalkboard</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — "Thank y'all" =====================
+       Their OWN real posted offer: a free 16 oz drink, a different trade each
+       weekday. One tap on a day, the board changes. No numbers to type, no
+       hours restated. Flyer source in HANDOFF-CODEX.md (harvest photo 29). -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From their thank-you board</p>
+        <h2>A little thanks for <em>the people who keep us going.</em></h2>
+        <p>This undated flyer offered a free 16 oz drink to a different trade each weekday. Confirm at the window whether the offer is running.</p>
+      </div>
+      <div class="thankboard reveal">
+        <div class="tb-plank" aria-live="polite" aria-atomic="true">
+          <p class="tb-kicker">Crossley's Country Brew would like to</p>
+          <p class="tb-title">Thank y'all</p>
+          <p class="tb-sub">with a free 16&nbsp;oz drink</p>
+          <div class="tb-rule" aria-hidden="true"></div>
+          <p class="tb-day" id="tbDay">Monday</p>
+          <p class="tb-who" id="tbWho">Postal service workers</p>
+        </div>
+        <div class="tb-picks" role="group" aria-label="Pick a day">
+          <button type="button" class="tb-pick is-on" data-day="1" data-who="Postal service workers">Mon</button>
+          <button type="button" class="tb-pick" data-day="2" data-who="Delivery &amp; trucking employees">Tue</button>
+          <button type="button" class="tb-pick" data-day="3" data-who="Custodial &amp; sanitation workers">Wed</button>
+          <button type="button" class="tb-pick" data-day="4" data-who="Military &amp; veterans">Thu</button>
+          <button type="button" class="tb-pick" data-day="5" data-who="City employees">Fri</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="A barista inside the stand, handing a cold drink toward the window" loading="lazy" width="1600" height="2000">
+          <figcaption>Behind the window</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The stand</p>
+          <h2>A little cedar building in the <em>Masonic lot</em>.</h2>
+          <p class="lede">Board-and-batten cedar, a metal roof, string lights strung over the service window, and a carved oval sign up on the gable.</p>
+          <p>It sits off 264th Ave SE in the Enumclaw Masonic Center lot, on the way out of town toward the mountain. Pull in on the gravel, roll your window down, and the whole transaction happens through theirs.</p>
+          <p>A paper punch card on the counter. Seasonal drinks on a hand-lettered chalkboard. The little details are part of the stop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Verbatim Google quotes as carried on the joe.coffee and Restaurantji
+       listings. The Google profile is UNCLAIMED, so reviewer names and dates
+       are not available — no scraped faces, no invented names, no grey
+       silhouettes: each card carries the stand's own oval mark instead.
+       See HANDOFF-CODEX.md (ask-client list). -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From their Google reviews</p>
+        <h2>What people <em>keep saying</em>.</h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal">
+          <span class="qmark" aria-hidden="true">C</span>
+          <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <blockquote>Amazing coffee stand! Their coffee is good, their spices chai is wonderful, and the baristas are always friendly. Also the prices are great and I love that they still use the old school punch card. Will drive out of our way to go here!</blockquote>
+          <figcaption>Google review</figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <span class="qmark" aria-hidden="true">C</span>
+          <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <blockquote>Good coffee &amp; service. Only $4 !! For 16oz iced macchiato.</blockquote>
+          <figcaption>Google review</figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <span class="qmark" aria-hidden="true">C</span>
+          <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <blockquote>I think it was one of the best, if not the best coffee I ever had. And the people working there were great. I would recommend this to anyone. And I know people that own stands. And this one I will be back.</blockquote>
+          <figcaption>Review, September 2023</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #find ===================== -->
+  <section class="section section-alt" id="find">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Find the window</p>
+          <h2>Pull in off <em>264th</em>.</h2>
+          <ol class="steps">
+            <li><h3>Off 264th Ave SE</h3><p>Look for the cedar building with the metal roof and the string lights, at 42810 264th Ave SE.</p></li>
+            <li><h3>In the Masonic Center lot</h3><p>Gravel lot, pull straight in — nothing to hunt for.</p></li>
+            <li><h3>Stay in the car</h3><p>It's a drive-thru window. Roll down, order, roll out.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Crossley%27s+Country+Brew+42810+264th+Ave+SE+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- Local inquiry note until a verified form destination is connected. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's this about?<select name="topic"><option>A question about the stand</option><option>Hours or a holiday</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Anything you'd like to ask"></textarea></label>
+          <button type="submit" class="btn btn-primary" disabled>Copy my question</button>
+          <p class="form-success" role="status"></p>
+          <label class="full project-note" hidden>Your prepared question<textarea readonly aria-label="Your prepared question"></textarea></label>
+          <p class="form-fine">Save a question to bring to the window. This preview does not send messages.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">See you at the window</p>
+        <h2>Pull in and <em>roll the window down</em>.</h2>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Crossley%27s+Country+Brew+42810+264th+Ave+SE+Enumclaw+WA+98022" target="_blank" rel="noopener" class="btn btn-primary">Get directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt="Crossley's Country Brew" width="770" height="432"></span>
+        </div>
+        <p>Drive-thru coffee on 264th Ave SE, Enumclaw.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>42810 264th Ave SE<br>Enumclaw, WA 98022</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Crossley%27s+Country+Brew+42810+264th+Ave+SE+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#hours">Hours</a><br><a href="#menu">Drinks</a><br><a href="#gallery">Out the window</a><br><a href="#signature">Thank y'all</a><br><a href="#about">The stand</a><br><a href="#find">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Crossley's Country Brew</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

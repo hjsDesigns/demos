@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Williams Family Farm — pumpkin patch &amp; corn maze, Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Williams Family Farm is a family-run pumpkin patch on SE 464th in Enumclaw, WA — pumpkins by the field, a four-acre corn maze, the pumpkin launcher, hay pyramid and slides. Call for current season dates and admission.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (display) + Karla (body) — matches --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Karla:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<!-- ===================== HEADER / NAV =====================
+     No live open/closed pill here: the farm is seasonal and the 2026 dates
+     are not published, so the ONE season line lives in #hours and nowhere else. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Williams Family Farm — home">
+      <img src="images/logo.png" alt="" width="46" height="46">
+      <span class="wm">Williams Family Farm<small>Enumclaw, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="#services">What&rsquo;s here</a>
+        <a href="#signature">Pumpkin launcher</a>
+        <a href="#about">The farm</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Plan your visit</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main id="main-content">
+
+  <!-- ===================== #hero =====================
+       The farm from outside: their pumpkin row along the pipe gate, the patch
+       behind it, Mount Rainier over the top. Source photo is 750×1000, so it is
+       shown WHOLE (object-fit:contain) inside a blurred warm echo of itself —
+       nothing is cropped at any width. Only the headline block sits on it. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img class="hero-echo" src="images/hero.jpg" alt="" aria-hidden="true" width="750" height="1000">
+      <img class="hero-shot" src="images/hero.jpg" alt="Pumpkins lined along the pipe gate at Williams Family Farm, the pumpkin field behind them and Mount Rainier on the horizon" fetchpriority="high" width="750" height="1000">
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Enumclaw, WA · Pumpkin patch &amp; corn maze<span class="eb-long"> · Family run</span></p>
+      <h1>A family pumpkin farm <em>under Mount Rainier</em></h1>
+      <p class="hero-sub"><span class="sub-long">Pick your pumpkin, get lost in the four-acre corn maze, and watch one fly out of the pumpkin launcher.</span><span class="sub-short">Pumpkins, corn maze, launcher.</span></p>
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-primary">See what&rsquo;s here</a>
+        <a href="tel:+15099483246" class="btn btn-cream">Call the farm</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       The one status on the page. 2026 dates are NOT published, so there is no
+       green/red light — a neutral season line instead (js/site.js SEASON config).
+       Day rows are last season's posted gate hours, labelled as such. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Plan your <em>fall visit</em></h2>
+        <p class="live-line is-pending" id="statusLine"><span class="dot"></span><span id="statusText">2026 dates have not been announced.</span></p>
+        <p class="status-addr">
+          23131 SE 464th St, Enumclaw, WA 98022<br>
+          <a href="https://maps.google.com/?q=23131+SE+464th+St,+Enumclaw,+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 5.0 on Google · 71 reviews</span>
+          <span class="proof"><span class="ico">✓</span> Family run</span>
+        </div>
+      </div>
+      <div class="hours-col">
+        <p class="hours-cap">Last season&rsquo;s gate hours</p>
+        <ul class="hours-list" id="hoursList">
+          <li class="closed" data-days="1"><span class="day">Monday</span><span class="time">Closed</span></li>
+          <li class="closed" data-days="2"><span class="day">Tuesday</span><span class="time">Closed</span></li>
+          <li class="closed" data-days="3"><span class="day">Wednesday</span><span class="time">Closed</span></li>
+          <li class="closed" data-days="4"><span class="day">Thursday</span><span class="time">Closed</span></li>
+          <li data-days="5"><span class="day">Friday</span><span class="time">10 am – sunset</span></li>
+          <li data-days="6"><span class="day">Saturday</span><span class="time">10 am – sunset</span></li>
+          <li data-days="0"><span class="day">Sunday</span><span class="time">10 am – 4 pm</span></li>
+          <li class="note"><span class="day">This year&rsquo;s dates</span><span class="time">Call the farm or check its Instagram for the current announcement.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #services =====================
+       The offerings section, opened by an exterior plate of the farm (the
+       storefront-below-the-hours rule). Every row is a title card that unrolls
+       its real detail on tap — downward chevron, flips up. Only attractions
+       named in the farm's own poster / their Google + Yelp listing appear here. -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <figure class="plate reveal">
+        <img src="images/farm-name-banner.jpg" alt="The Williams Family Farm fields with Mount Rainier behind them" loading="lazy" width="648" height="408">
+      </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">What&rsquo;s here</p>
+        <h2>Everything on the farm, <em>one tap at a time</em></h2>
+        <p>Explore attractions from the farm&rsquo;s recent seasons. Confirm this year&rsquo;s lineup and admission before visiting.</p>
+      </div>
+      <ul class="unroll reveal" id="unroll">
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-1">
+            <span class="ur-title">The pumpkin patch</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-1"><div class="ur-in">
+            <p>Twenty-plus varieties out in the field — orange, white, warty, tiny. Walk the rows, pick the one you want, and pay by its size on the way out.</p>
+          </div></div>
+        </li>
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-2">
+            <span class="ur-title">The four-acre corn maze</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-2"><div class="ur-in">
+            <p>Four acres cut fresh into the standing corn every season. The aerial below shows its 2024 design.</p>
+            <figure class="ur-shot"><img src="images/corn-maze.jpg" alt="The four-acre corn maze from above, cut in the shape of the farm's barn, mountain and sun mark" loading="lazy" width="576" height="566"><figcaption>The 2024 maze, cut as the farm&rsquo;s own barn-and-mountain mark</figcaption></figure>
+          </div></div>
+        </li>
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-3">
+            <span class="ur-title">Hay pyramid &amp; slides</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-3"><div class="ur-in">
+            <p>A towering stack of bales to climb, with the tube slide running down the side of it.</p>
+            <figure class="ur-shot"><img src="images/hay-pyramid-slides.jpg" alt="The tube slide and climbing structure at the farm, fields and Mount Rainier on the horizon behind" loading="lazy" width="480" height="360"><figcaption>The slide and climb, with Rainier on the horizon</figcaption></figure>
+          </div></div>
+        </li>
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-4">
+            <span class="ur-title">Giant pumpkin bounce house</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-4"><div class="ur-in">
+            <p>A pumpkin the size of a shed, and it bounces. Shoes off at the edge.</p>
+          </div></div>
+        </li>
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-5">
+            <span class="ur-title">Sports barn &amp; yard games</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-5"><div class="ur-in">
+            <p>Football, baseball and basketball inside the barn. Corn hole and giant Jenga out on the grass.</p>
+          </div></div>
+        </li>
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-6">
+            <span class="ur-title">Giant bubbles</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-6"><div class="ur-in">
+            <p>Bubbles the size of a person, pulled up off the truck bed when the light goes gold.</p>
+            <figure class="ur-shot"><img src="images/giant-bubbles.jpg" alt="Giant bubbles floating over the flower field at Williams Family Farm at sunset" loading="lazy" width="750" height="1000"><figcaption>Giant bubbles over the field at sunset</figcaption></figure>
+          </div></div>
+        </li>
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-7">
+            <span class="ur-title">Kettle corn &amp; local honey</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-7"><div class="ur-in">
+            <p>Kettle corn popped on site and honey from local hives, both at the stand. Fall decor is out for sale beside them.</p>
+          </div></div>
+        </li>
+        <li class="ur">
+          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-8">
+            <span class="ur-title">Somewhere to take the photo</span>
+            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ur-body" id="attraction-8"><div class="ur-in">
+            <p>The farm sets up photo spots through the season — pumpkins, corn stalks and the mountain doing most of the work.</p>
+          </div></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #signature =====================
+       THE PUMPKIN LAUNCHER — the farm's own one-of-one attraction, turned into
+       the toy. One tap on the launcher, a pumpkin flies, it lands and stays in
+       the field. No inputs, no numbers to read, no modes. Deterministic: six
+       preset shots in a fixed order, then it repeats. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The pumpkin launcher</p>
+        <h2>Tap it. <em>Launch one.</em></h2>
+        <p>There is a launcher out in the field that throws a pumpkin clean across it. This is the small version.</p>
+      </div>
+      <div class="launcher reveal">
+        <div class="stage" id="stage">
+          <div class="sky"></div>
+          <svg class="ridge" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 L0 96 L140 62 L215 92 L330 40 L400 74 L470 46 L560 88 L700 58 L820 96 L960 66 L1080 100 L1200 78 L1200 150 Z"/></svg>
+          <div class="ground"></div>
+          <div class="pumpkins" id="pumpkins" aria-hidden="true"></div>
+          <div class="flyer" id="flyer" aria-hidden="true">
+            <svg viewBox="0 0 40 40"><ellipse cx="20" cy="23" rx="15" ry="13"/><path class="rib" d="M20 11 v24 M12 13 q-3 10 0 20 M28 13 q3 10 0 20" /><path class="stem" d="M20 11 q1-6 5-8"/></svg>
+          </div>
+          <button class="cannon" id="cannon" type="button" aria-label="Launch a pumpkin" aria-describedby="launch-status">
+            <svg class="cannon-art" viewBox="0 0 120 90" aria-hidden="true">
+              <path class="barrel" d="M16 60 L92 26" />
+              <circle class="muzzle" cx="94" cy="25" r="7"/>
+              <path class="legs" d="M22 58 L14 84 M22 58 L44 84 M14 84 L52 84"/>
+              <rect class="base" x="8" y="82" width="52" height="6" rx="3"/>
+            </svg>
+            <span class="cannon-label">Tap to launch</span>
+          </button>
+        </div>
+        <p class="launcher-fine">The real one is a lot louder.</p>
+        <p class="sr-only" id="launch-status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="Williams Family Farm from above — the climbing structure and slide, the fields and the neighbouring farms beyond" loading="lazy" width="480" height="360">
+          <figcaption>The farm from above, end of a season</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The farm</p>
+          <h2>Run by the <em>Williams family</em></h2>
+          <p class="lede">A family farm on SE 464th that opens its fields to the rest of Enumclaw every fall.</p>
+          <p>The pumpkins are grown here, the maze is cut into their own corn, and the launcher, the hay pyramid and the bounce house go up for the season and come down again when the last pumpkin leaves.</p>
+          <p>Visitors have shared stories of family outings and birthday parties here, with the fields and Mount Rainier behind them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Verbatim from the farm's public listing. Initial discs in the site's own
+       type and palette — never a scraped photo of a real reviewer. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What visitors say</p>
+        <h2>Straight off <em>the listing</em></h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“We had our daughter&rsquo;s birthday party here this past weekend and it was AMAZING!”</blockquote>
+          <figcaption><span class="ini" aria-hidden="true">SS</span><span class="who">Samantha S.<small>October 8, 2024</small></span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“Plenty of fun activities for the whole family. Pumpkin launcher, hay pyramid, slides, bounce house, corn maze and more.”</blockquote>
+          <figcaption><span class="ini" aria-hidden="true">CE</span><span class="who">Cody E.<small>October 28, 2023</small></span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Plan your visit</p>
+          <h2>How to <em>find the farm</em></h2>
+          <ol class="steps">
+            <li><h3>Confirm your day</h3><p>Call for this year&rsquo;s opening dates, gate hours and arrival details before driving out.</p></li>
+            <li><h3>Ask about admission</h3><p>Check current prices, which attractions are included and how pumpkins are priced.</p></li>
+            <li><h3>Bring the wagon</h3><p>Wear boots you don&rsquo;t mind. It is a working field, and it is usually wet by mid-October.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+15099483246">(509) 948-3246</a></span>
+            <span>📍 <a href="https://maps.google.com/?q=23131+SE+464th+St,+Enumclaw,+WA+98022" target="_blank" rel="noopener">Directions ↗</a></span>
+            <span>📷 <a href="https://www.instagram.com/williamsfamilyfarm.wa/" target="_blank" rel="noopener">@williamsfamilyfarm.wa ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal" aria-describedby="visit-note-help">
+          <!-- Until live delivery is configured, prepare a local visit note; do not imply a message was sent. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What&rsquo;s this about?<select name="topic"><option>This year&rsquo;s dates and hours</option><option>A birthday party or group</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, and roughly when you&rsquo;d like to come out."></textarea></label>
+          <button type="submit" class="btn btn-primary" disabled>Copy visit note</button>
+          <p class="form-success" role="status" aria-live="polite"></p>
+          <label class="full project-note" hidden>Your visit note<textarea readonly aria-label="Your prepared visit note"></textarea></label>
+          <p class="form-fine" id="visit-note-help">Keep your questions handy when you <a href="tel:+15099483246">call the farm</a>. Nothing is sent from this form yet.</p>
+          <noscript><p class="form-fine">Call (509) 948-3246 to plan your visit.</p></noscript>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">A day at the farm</p>
+        <h2>Make room for <em>a fall afternoon</em></h2>
+        <p>Check with the family for this year&rsquo;s dates before planning your visit.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+15099483246" class="btn btn-primary">Call (509) 948-3246</a>
+        <a href="#contact" class="btn btn-ghost">Prepare your questions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate-ico"><img src="images/logo.png" alt="" width="564" height="570"></span>
+          <span class="wm">Williams Family Farm<small>Enumclaw, WA</small></span>
+        </div>
+        <p>A family pumpkin farm on SE 464th — patch, four-acre maze, and a launcher that throws them across the field.</p>
+        <div class="soc">
+          <a href="https://www.instagram.com/williamsfamilyfarm.wa/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>23131 SE 464th St<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+15099483246">(509) 948-3246</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">What&rsquo;s here</a><br><a href="#signature">Pumpkin launcher</a><br><a href="#about">The farm</a><br><a href="#hours">Hours</a><br><a href="#contact">Plan your visit</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Williams Family Farm</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
