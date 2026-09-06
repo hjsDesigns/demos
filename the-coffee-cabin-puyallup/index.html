@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Coffee Cabin — Drive-thru espresso, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Coffee Cabin is a drive-thru espresso stand in a log cabin on Canyon Road E in Puyallup — hot, iced, blended and energy drinks out the window, seven days a week.">
+<meta name="theme-color" content="#3F6B4F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Coffee Cabin — Drive-thru espresso, Puyallup WA">
+<meta property="og:description" content="Espresso out a log cabin window on Canyon Road E. Hot, iced, blended and energy drinks, seven days a week.">
+<meta property="og:image" content="https://hjsdesigns.github.io/demos/the-coffee-cabin-puyallup/images/hero-stack-1.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (display) + Karla (body) — the woodsy-coffee pair; matches --display / --body -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=Karla:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="The Coffee Cabin — home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 15 16 5l12 10"/><path d="M7 14v13h18V14"/><path d="M13 27v-7h6v7"/>
+        </svg>
+      </span>
+      <span class="wm">The Coffee Cabin<small>Drive-thru espresso</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#about">The Cabin</a>
+        <a href="#menu">Menu</a>
+        <a href="#signature">Free Drink</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       Exterior of the actual stand (exterior-hero-default law). Mobile runs
+       the 3-photo hero stack — the cover shot is 1.44:1 and a portrait crop
+       would lose either the cabin or the reader board. Nothing sits on the
+       photo but the headline block. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg hero-stack">
+      <div class="hero-stack-track">
+        <img src="images/hero-stack-1.jpg" width="2048" height="1424" alt="The Coffee Cabin's log-cabin drive-thru on Canyon Road E, with its green metal roof and the reader board out front" fetchpriority="high">
+        <img src="images/hero-stack-2.jpg" width="800" height="600" alt="The stand seen head-on from the parking lot, neon OPEN sign lit in the window">
+        <img src="images/hero-stack-3.jpg" width="800" height="1329" alt="An iced mocha with chocolate drizzle held up in a car just after the window">
+        <img src="images/hero-stack-1.jpg" width="2048" height="1424" alt="" aria-hidden="true">
+        <img src="images/hero-stack-2.jpg" width="800" height="600" alt="" aria-hidden="true">
+        <img src="images/hero-stack-3.jpg" width="800" height="1329" alt="" aria-hidden="true">
+      </div>
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Puyallup, WA · Canyon Road E<span class="eb-long"> · Drive-thru espresso</span></p>
+      <h1>Espresso out a <em>log cabin</em> window.</h1>
+      <p class="hero-sub"><span class="sub-long">Green tin roof, river-rock base, and a reader board out front that gets changed by hand.</span><span class="sub-short">Green roof. Real cabin.</span></p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">See the board</a>
+        <a href="#hours" class="btn btn-cream">When they're open</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       The one and only hours block on this page. All seven days as rows,
+       today lit. Dot is green when open / red when closed — never brand. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>The window opens <em>early</em>.</h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          10418 Canyon Rd E, Puyallup, WA 98373<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Coffee+Cabin+10418+Canyon+Rd+E+Puyallup+WA+98373" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.3 on Google, 124 reviews</span>
+          <span class="proof"><span class="ico">✓</span> Card, debit and tap to pay</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">4:00 am – 5:00 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">4:00 am – 5:00 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">4:00 am – 5:00 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">4:00 am – 5:00 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">4:00 am – 5:00 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">5:00 am – 5:00 pm</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">6:00 am – 5:00 pm</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" width="1266" height="1266" alt="Four Central Pierce Fire &amp; Rescue crew members standing with drinks in front of the big cut-out Coffee Cabin sign on the side of the stand" loading="lazy">
+          <figcaption>Central Pierce Fire &amp; Rescue, stopped in</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The stand on Canyon Road</p>
+          <h2>A real cabin, <em>not a kiosk</em></h2>
+          <p class="lede">Cedar shingles, a green metal roof, a river-rock base, black lantern sconces and a cut-out sign with an elk standing in the coffee mug.</p>
+          <p>Most drive-thrus are a box in a parking lot. This one was built to look like something you'd find at the end of a logging road — timber trusses in the gable, string lights along the eaves, evergreens crowded up behind it. The reader board out by the road gets its letters changed by hand.</p>
+          <p>It's a two-window stand run by a small crew, and the regulars are the whole business. People who've been pulling in for years, firefighters on shift, the same order most mornings. Ask for a punch card on your first stop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #menu =====================
+       Straight off their own boards, verbatim. Title cards unroll their real
+       items in place with a downward chevron (title-cards-unroll + arrow law).
+       No prices published — the board photo is legible enough to shoot but
+       not to transcribe, and a wrong price is a liability. -->
+  <section class="section section-alt" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The board</p>
+        <h2>Everything they pour, <em>off the real board</em></h2>
+        <p>Copied from the boards bolted to the side of the cabin. Tap a heading to roll it out.</p>
+      </div>
+      <div class="menu-layout">
+        <figure class="print board-shot reveal">
+          <img src="images/menu-board.jpg" width="800" height="1329" alt="The Coffee Cabin's printed drink board mounted on the cedar siding, listing hot drinks, iced drinks, energy drinks and blended options" loading="lazy">
+          <figcaption>The board on the side of the cabin</figcaption>
+        </figure>
+        <div class="rolls reveal">
+
+          <div class="roll is-open">
+            <h3><button type="button" class="roll-t" aria-expanded="true" aria-controls="roll-hot">
+              <span>Hot drinks</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button></h3>
+            <div class="roll-b" id="roll-hot"><div><ul>
+              <li>Hot latte / cappuccino</li><li>Mocha</li><li>White mocha</li><li>Caramel macchiato</li>
+              <li>Americano</li><li>Chai tea</li><li>Tea</li><li>Hot chocolate</li><li>Steamer</li>
+            </ul></div></div>
+          </div>
+
+          <div class="roll">
+            <h3><button type="button" class="roll-t" aria-expanded="false" aria-controls="roll-iced">
+              <span>Iced drinks</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button></h3>
+            <div class="roll-b" id="roll-iced"><div><ul>
+              <li>Iced latte</li><li>Iced mocha</li><li>Iced white mocha</li><li>Caramel macchiato</li>
+              <li>Iced americano</li><li>Iced chai tea</li><li>Iced tea</li><li>Italian soda</li>
+              <li>Lemonade</li><li>Flavored lemonade</li>
+            </ul></div></div>
+          </div>
+
+          <div class="roll">
+            <h3><button type="button" class="roll-t" aria-expanded="false" aria-controls="roll-energy">
+              <span>Energy drinks</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button></h3>
+            <div class="roll-b" id="roll-energy"><div><ul>
+              <li>Lotus / Red Bull spritzer</li><li>Lotus — red</li><li>Lotus — blue</li>
+              <li>Lotus — skinny red</li><li>Red Bull — regular</li><li>Red Bull — sugar free</li>
+            </ul>
+            <p class="roll-note">Available iced or blended.</p></div></div>
+          </div>
+
+          <div class="roll">
+            <h3><button type="button" class="roll-t" aria-expanded="false" aria-controls="roll-blended">
+              <span>Blended</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button></h3>
+            <div class="roll-b" id="roll-blended"><div><ul>
+              <li>Fresh fruit smoothies</li><li>Jet Tea smoothies</li><li>Blended coffee frapps</li>
+            </ul></div></div>
+          </div>
+
+          <div class="roll">
+            <h3><button type="button" class="roll-t" aria-expanded="false" aria-controls="roll-kids">
+              <span>Kids corner</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button></h3>
+            <div class="roll-b" id="roll-kids"><div><ul>
+              <li>Hot cocoa</li><li>Steamer</li><li>Flavored milk</li><li>Italian soda</li>
+            </ul>
+            <p class="roll-note">8 oz only.</p></div></div>
+          </div>
+
+          <div class="roll">
+            <h3><button type="button" class="roll-t" aria-expanded="false" aria-controls="roll-case">
+              <span>From the case</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button></h3>
+            <div class="roll-b" id="roll-case"><div><ul>
+              <li>Breakfast sandwiches</li><li>Muffins</li><li>Bagels</li><li>Scones</li>
+              <li>Cookies</li><li>Biscotti</li><li>Granola nut bars</li>
+              <li>Bottled water</li><li>Juice</li><li>Pre-paid card</li>
+            </ul></div></div>
+          </div>
+
+        </div>
+      </div>
+      <p class="menu-fine reveal">Sizes run 8, 12, 16, 20 and 32 oz hot; 16, 24 and 32 oz iced. Soy, coconut, almond, oat and breve are all on the board, along with extra shots, white coffee, caramel sauce, chocolate powder and syrup flavors. Ask at the window for today's prices.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature =====================
+       The gadget: their own Buy 10 / Get 1 Free bear card. One gesture —
+       tap a bear, it stamps. Ten stamps lights the free cup. No hours, no
+       prices, no address inside it. Section 5. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Their card, on your screen</p>
+        <h2>Buy ten, <em>get one free</em></h2>
+        <p>Ten bears on the card. Tap one.</p>
+      </div>
+      <!-- One bear silhouette, referenced ten times. Rendered in the HTML (not
+           injected by JS) so the card reserves its space from the first paint. -->
+      <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+        <symbol id="bear" viewBox="0 0 64 48">
+          <!-- The eyes and muzzle are knocked out through a mask rather than
+               painted, so the tile's own background shows through in BOTH the
+               blank and the stamped state. -->
+          <mask id="bear-cut">
+            <rect width="64" height="48" fill="#fff"/>
+            <ellipse cx="32" cy="30" rx="7" ry="5.4" fill="#000"/>
+            <circle cx="23.5" cy="20" r="2.1" fill="#000"/>
+            <circle cx="40.5" cy="20" r="2.1" fill="#000"/>
+          </mask>
+          <g mask="url(#bear-cut)">
+            <circle cx="17" cy="11" r="6.4"/>
+            <circle cx="47" cy="11" r="6.4"/>
+            <ellipse cx="32" cy="25" rx="15.5" ry="14"/>
+          </g>
+        </symbol>
+      </svg>
+      <div class="punch-wrap">
+        <div class="punch reveal" id="punch">
+          <div class="bears" id="bears">
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 1 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 2 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 3 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 4 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 5 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 6 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 7 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 8 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 9 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+            <button type="button" class="bear" aria-pressed="false" aria-label="Punch 10 of 10"><svg viewBox="0 0 64 48" aria-hidden="true"><use href="#bear"/></svg></button>
+          </div>
+          <div class="punch-free" id="punchFree">
+            <span class="pf-cup" aria-hidden="true">
+              <svg viewBox="0 0 40 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 13h22v18a7 7 0 0 1-7 7h-8a7 7 0 0 1-7-7z"/>
+                <path d="M29 18h4a4 4 0 0 1 0 8h-4"/>
+                <path d="M14 7c0-2 2-2 2-4M21 7c0-2 2-2 2-4"/>
+              </svg>
+            </span>
+            <span class="pf-label" id="punchLabel" role="status">Free drink</span>
+          </div>
+        </div>
+        <figure class="print reveal">
+          <img src="images/card.jpg" width="1152" height="1152" alt="A Coffee Cabin punch card held over a tray of drinks, printed with bear stamps around a Mount Rainier photo and the words Buy 10 Get 1 FREE" loading="lazy">
+          <figcaption>The real one, handed out at the window</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out the window</p>
+        <h2>What it looks like <em>from the car</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" width="942" height="1000" alt="The Coffee Cabin's roadside sign: a painted panel of pines and a steaming mug with an elk on it, above a white letter board" loading="lazy"><figcaption>The board out front, set by hand</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" width="800" height="1067" alt="An iced latte in a clear cup with a green straw, held up in front of a car windshield on a sunny day" loading="lazy"><figcaption>An iced latte, straight from the window</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" width="720" height="720" alt="Three Italian sodas in red, white and blue lined up on bark mulch beside a small American flag and a can of Red Bull" loading="lazy"><figcaption>Italian sodas, layered red white and blue</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Real reviews only, verbatim, with name, stars and date. Monogram
+       avatars in the site's own type and palette — never a scraped photo
+       of a real person, never a grey silhouette. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What regulars say</p>
+        <h2>Straight off <em>Google and Yelp</em></h2>
+      </div>
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-top">
+            <span class="mono" aria-hidden="true">SE</span>
+            <span class="rev-who"><b>Shane Elliott</b><small>Google · 2 months ago</small></span>
+          </div>
+          <p class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>Coffee Cabin has been my go to place for the last couple years, quality coffee and great people</blockquote>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-top">
+            <span class="mono" aria-hidden="true">DF</span>
+            <span class="rev-who"><b>Dan Ferrel</b><small>Google · a year ago</small></span>
+          </div>
+          <p class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>I don't get a chance to go here very often because it's usually out of my way, but it's worth it. I don't ever get a super complicated drink, but a lot of other places just don't get the simple ones right. But Coffee Cabin does it just right. Great flavor, always friendly, takes less time than Starbucks. The coffee tastes the way coffee should taste.</blockquote>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-top">
+            <span class="mono" aria-hidden="true">JM</span>
+            <span class="rev-who"><b>J M.</b><small>Yelp · July 2022</small></span>
+          </div>
+          <p class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>Always great service and personable. Very dependable and open each and every time I want a drink and a smile. Love supporting Ma n Pa stands.</blockquote>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Stopping by</p>
+          <h2>Three turns and <em>you're there</em></h2>
+          <ol class="steps">
+            <li><h3>Pull in off Canyon Road</h3><p>The cabin sits back behind the reader board, with the drive lane wrapping around it.</p></li>
+            <li><h3>Order at the window</h3><p>Hot, iced, blended, energy — it's all on the boards bolted to the side of the building.</p></li>
+            <li><h3>Tap, swipe or hand over cash</h3><p>Cards, debit and tap-to-pay all work at the window.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12535390414">(253) 539-0414</a></span>
+            <span>✉️ <a href="mailto:ajthorington@hotmail.com">ajthorington@hotmail.com</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Coffee+Cabin+10418+Canyon+Rd+E+Puyallup+WA+98373" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's this about?<select name="topic"><option>Question about the menu</option><option>Big order for the office</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Tell us what you need…"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — we'll get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Canyon Road E</p>
+        <h2>The green roof is <em>hard to miss</em>.</h2>
+        <p>Seven days a week, out a window, in a cabin.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12535390414" class="btn btn-primary">Call the cabin</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Coffee+Cabin+10418+Canyon+Rd+E+Puyallup+WA+98373" target="_blank" rel="noopener" class="btn btn-ghost">Directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 15 16 5l12 10"/><path d="M7 14v13h18V14"/><path d="M13 27v-7h6v7"/>
+            </svg>
+          </span>
+          <span class="wm">The Coffee Cabin<small>Drive-thru espresso</small></span>
+        </div>
+        <p>A log-cabin drive-thru on Canyon Road E in Puyallup, Washington.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/thecoffeecabin" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>10418 Canyon Rd E<br>Puyallup, WA 98373</p>
+        <p><a href="tel:+12535390414">(253) 539-0414</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#about">The Cabin</a><br><a href="#menu">Menu</a><br><a href="#signature">Free Drink</a><br><a href="#gallery">Photos</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> The Coffee Cabin</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
