@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Grow with Grace Fitness — Pilates, personal training &amp; nutrition, Enumclaw WA</title>
+<title>Grow with Grace Fitness — mat Pilates, personal training &amp; nutrition, Enumclaw WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Mat Pilates classes, weekly 1:1 personal training and nutrition guidance with Gracie on Cole Street in Enumclaw. 5.0 on Google.">
+<meta name="description" content="“Let's train together.” Mat Pilates classes, weekly one-to-one training and nutrition guidance with Gracie on Cole Street in Enumclaw. 5.0 on Google.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Two faces: DM Serif Display (matches the high-contrast serif in her real GWG monogram)
-     + Jost (the wide-tracked geometric sans set under it in the same mark). -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Two faces: DM Serif Display (the high-contrast serif of her real GWG monogram —
+     ships ONE weight, 400, pinned in css/style.css) + Jost (the wide-tracked
+     geometric sans set as "FITNESS" under the same mark). -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,14 +21,14 @@
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="Grow with Grace Fitness — home">
       <img src="images/logo.png" alt="" width="46" height="46">
-      <span class="wm">Grow with Grace<small>Pilates · Training · Nutrition</small></span>
+      <span class="wm">Grow with Grace<small>Enumclaw, WA</small></span>
     </a>
     <div class="nav-wrap">
       <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <a href="#services">Programs</a>
         <a href="#hours">Find her</a>
-        <a href="#signature">Your goal</a>
+        <a href="#signature">Start here</a>
         <a href="#about">About Gracie</a>
         <a href="#contact" class="nav-cta">Text Gracie</a>
       </nav>
@@ -39,126 +40,158 @@
 <main id="main-content">
 
   <!-- ===================== #hero =====================
-       PROVISIONAL hero (Batman hero clause). No exterior photo of 856 Cole St
-       exists in any recovered source, and the two room photos are both
-       compromised for an opener (one carries her own text overlay where a
-       headline goes; the other has identifiable class members' faces, which
-       the hero rule bars). So the opener is the owner herself, identified.
-       Runner-ups: images/studio.jpg, images/about.jpg. -->
+       LIGHT HERO (taste law: allowed when the frame has a plain surface).
+       Her studio is a bright wood-floor room and her whole brand is sage on
+       oatmeal, so the ground stays light and the type sits in ink ON the
+       ground — not scrimmed over the photo.
+
+       The photo is Gracie, the identified owner of a one-trainer business,
+       shown WHOLE (object-fit:contain) — never cropped through her.
+       No exterior photograph of 856 Cole St exists in any recovered source;
+       the interiors live below, in the programs section and the picker.
+
+       The headline is her own sentence, verbatim off her own site. -->
   <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="Gracie, the owner and trainer at Grow with Grace Fitness in Enumclaw" fetchpriority="high" width="1462" height="2000"></div>
-    <div class="hero-spacer"></div>
     <div class="hero-inner">
-      <h1>Pilates, training and nutrition <em>— one trainer, start to finish</em></h1>
-      <p class="hero-sub"><span class="sub-long">Mat Pilates classes, weekly one-to-one sessions and real food guidance — all of it with Gracie.</span><span class="sub-short">Classes, 1:1 training, nutrition.</span></p>
-      <div class="hero-actions">
-        <a href="sms:+12537400878" class="btn btn-primary">Text Gracie</a>
-        <a href="#services" class="btn btn-cream">See the programs</a>
+      <div class="hero-copy">
+        <p class="eyebrow">Grow with Grace Fitness · Enumclaw</p>
+        <h1>Let's train <em>together.</em></h1>
+        <p class="hero-sub">Her words, not ours. Mat Pilates classes, weekly one-to-one sessions and nutrition guidance — every one of them with Gracie, on Cole Street.</p>
+        <div class="hero-actions">
+          <a href="sms:+12537400878" class="btn btn-primary">Text Gracie</a>
+          <a href="#services" class="btn btn-outline">The four programs</a>
+        </div>
       </div>
+      <figure class="hero-photo">
+        <img src="images/hero.jpg" alt="Gracie, owner and trainer at Grow with Grace Fitness in Enumclaw" fetchpriority="high" width="1462" height="2000">
+      </figure>
     </div>
   </section>
 
-  <!-- ===================== #hours =====================
-       JUDGMENT CALL, documented in HANDOFF-CODEX.md: no green/red status dot
-       and no 7-day grid on this build. The only sourced hours datum anywhere
-       is a Google snippet saying she opens 9 AM on Sundays — a live clock
-       built on that would be inventing six days of the week. Her own site
-       says the class schedule goes out on Instagram and to text her for it,
-       so that is what this band says. js/site.js keeps the clock wired and
-       one flag away from switching on the moment Gracie gives the real rows. -->
-  <section class="status-band" id="hours">
+  <!-- ===================== #hours — the deep band =====================
+       DEEP SAGE-BLACK BAND (from her monogram's charcoal, pulled toward her
+       logo sage). First of two dark bands; the closing band is the other, so
+       the page alternates instead of running oatmeal on oatmeal.
+
+       HONEST HOURS. The single sourced hours datum for this business anywhere
+       is a Google snippet saying she opens 9 AM on Sundays — so there is no
+       live clock, no green/red dot and no invented 7-day grid. Her own site
+       says the schedule goes out on Instagram and to contact her for it, so
+       THAT is the content of this band: her sentence, the Instagram link and
+       the text button. js/site.js keeps the clock wired and one flag away. -->
+  <section class="status-band section-dark" id="hours">
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find her</p>
-        <h2>Cole Street, <em>Enumclaw</em></h2>
+        <h2>The schedule goes out <em>on Instagram</em></h2>
+        <blockquote class="her-words">
+          <p>“Mat Pilates classes available for sign up. Contact Gracie or follow along on Instagram for the schedule and upcoming events.”</p>
+          <cite>Gracie, on her own site</cite>
+        </blockquote>
+        <p class="sourced-note">The one time Google publishes for her is a 9 AM Sunday open. Everything else moves with the class list — which is exactly why she posts it.</p>
         <p class="status-addr">
-          856 Cole St, Enumclaw, WA 98022<br>
+          <b>856 Cole St</b><br>Enumclaw, WA 98022<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=Grow+with+Grace+Fitness+856+Cole+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
       </div>
-      <ul class="hours-list" id="hoursList">
-        <li><span class="day">Mat Pilates classes</span><span class="time">Ask for the current timetable</span></li>
-        <li><span class="day">1:1 personal training</span><span class="time">Weekly, in person, by appointment</span></li>
-        <li><span class="day">Nutrition guidance</span><span class="time">Arrange a start date with Gracie</span></li>
-        <li><span class="day">Workout programs</span><span class="time">24/7 access, wherever you are</span></li>
-        <li class="note"><span class="day">This week's times</span><span class="time"><a href="sms:+12537400878">Text (253) 740-0878</a></span></li>
-      </ul>
+
+      <div class="sched-panel">
+        <p class="sched-kicker">This week's classes</p>
+        <a class="sched-handle" href="https://www.instagram.com/grow.with.grace_/" target="_blank" rel="noopener">
+          <span class="ig" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+          <span class="handle">@grow.with.grace_</span>
+        </a>
+        <p class="sched-or">Or ask her straight out — she answers her own phone.</p>
+        <div class="sched-actions">
+          <a class="btn btn-cream" href="sms:+12537400878">Text (253) 740-0878</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/grow.with.grace_/" target="_blank" rel="noopener">Open Instagram ↗</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ===================== #services — the four real programs =====================
-       STOREFRONT-BELOW-THE-HOURS: no exterior photo exists, so the offerings
-       section opens with the closest true thing — her actual mat Pilates class
-       in the actual room. Card copy is HER OWN WORDS, verbatim from her site. -->
-  <section class="section section-alt" id="services">
+  <!-- ===================== #services — the four programs =====================
+       STOREFRONT BELOW THE HOURS: no exterior photograph of the building exists
+       in any source, so the offerings open with the closest true thing — her
+       actual mat Pilates class, in the actual room on Cole Street.
+       Inline like Jack's menu board: nothing hidden behind a tap, every word
+       of the four descriptions verbatim from her own site. -->
+  <section class="section" id="services">
     <div class="wrap">
       <figure class="print room-print reveal">
         <img src="images/studio.jpg" alt="A mat Pilates class at Grow with Grace Fitness, in the mirrored studio on Cole Street" loading="lazy" width="1842" height="2000">
-        <figcaption>Her mat Pilates class, in the room where it happens.</figcaption>
+        <figcaption>Her mat Pilates class, in the room on Cole Street</figcaption>
       </figure>
+
       <div class="section-head reveal">
-        <p class="eyebrow">Four ways to train</p>
-        <h2>Pick the one that <em>sounds like you</em></h2>
-        <p>“Let's train together! We'll start by setting goals and create a plan to reach them.” — Gracie</p>
+        <p class="eyebrow">What she runs</p>
+        <h2>Four ways to <em>train with her</em></h2>
+        <p>Same trainer in all four. Her descriptions below are word for word the way she wrote them.</p>
       </div>
 
-      <ul class="unroll">
-        <li class="reveal">
-          <button type="button" class="unroll-t" aria-expanded="true" aria-controls="program-1">
-            <span class="ul-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9v6M17.5 9v6M3.5 10.5v3M20.5 10.5v3M6.5 12h11"/></svg></span>
-            <span class="ul-t">Personal training</span>
-            <span class="ul-s">Weekly, in person, one to one</span>
-            <span class="chev" aria-hidden="true"></span>
-          </button>
-          <div class="unroll-p" id="program-1">
-            <p>Let's train together! We'll start by setting goals and create a plan to reach them. Meet in person weekly to train and learn the basics of exercise, proper form, and workouts to reach your goals.</p>
-          </div>
-        </li>
-        <li class="reveal">
-          <button type="button" class="unroll-t" aria-expanded="true" aria-controls="program-2">
-            <span class="ul-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M8 8v8M16 8v8"/></svg></span>
-            <span class="ul-t">Mat Pilates classes</span>
-            <span class="ul-s">Slow and controlled, in a small group</span>
-            <span class="chev" aria-hidden="true"></span>
-          </button>
-          <div class="unroll-p" id="program-2">
-            <p>Mat Pilates classes available for sign up. Contact Gracie or follow along on Instagram for the schedule and upcoming events.</p>
-          </div>
-        </li>
-        <li class="reveal">
-          <button type="button" class="unroll-t" aria-expanded="true" aria-controls="program-3">
-            <span class="ul-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4 0-7-3-7-7 0-4 3-8 7-11 4 3 7 7 7 11 0 4-3 7-7 7z"/><path d="M12 21V9"/></svg></span>
-            <span class="ul-t">Nutrition guidance</span>
-            <span class="ul-s">Eating to feel good, not to feel restricted</span>
-            <span class="chev" aria-hidden="true"></span>
-          </button>
-          <div class="unroll-p" id="program-3">
-            <p>Have guidance and direction as you take on the journey to a healthier life. Learn how to live a balanced lifestyle through eating to feel good without feeling restricted.</p>
-          </div>
-        </li>
-        <li class="reveal">
-          <button type="button" class="unroll-t" aria-expanded="true" aria-controls="program-4">
-            <span class="ul-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="2.5" width="15" height="19" rx="3"/><path d="M10 18.5h4"/></svg></span>
-            <span class="ul-t">Workout programs</span>
-            <span class="ul-s">A private library, open 24/7</span>
-            <span class="chev" aria-hidden="true"></span>
-          </button>
-          <div class="unroll-p" id="program-4">
-            <p>Join the online community of training through access to a private library of workouts. You'll have 24/7 access to this program, and complete these workouts when it works best for you.</p>
-          </div>
-        </li>
-      </ul>
+      <div class="progs">
+        <article class="prog reveal">
+          <h3>Personal training</h3>
+          <p class="prog-when">In person · weekly · one to one</p>
+          <p>Let's train together! We'll start by setting goals and create a plan to reach them. Meet in person weekly to train and learn the basics of exercise, proper form, and workouts to reach your goals.</p>
+        </article>
+        <article class="prog reveal">
+          <h3>Mat Pilates classes</h3>
+          <p class="prog-when">Small group · Cole Street · sign-ups open</p>
+          <p>Mat Pilates classes available for sign up. Contact Gracie or follow along on Instagram for the schedule and upcoming events.</p>
+        </article>
+        <article class="prog reveal">
+          <h3>Nutrition guidance</h3>
+          <p class="prog-when">Ongoing guidance and direction</p>
+          <p>Have guidance and direction as you take on the journey to a healthier life. Learn how to live a balanced lifestyle through eating to feel good without feeling restricted.</p>
+        </article>
+        <article class="prog reveal">
+          <h3>Workout programs</h3>
+          <p class="prog-when">A private library · 24/7 access</p>
+          <p>Join the online community of training through access to a private library of workouts. You'll have 24/7 access to this program, and complete these workouts when it works best for you.</p>
+        </article>
+      </div>
+
+      <p class="prog-fine reveal">Can't tell which one is yours? <a href="#signature">Tap a picture further down</a> and it will tell you.</p>
+
+      <div class="strip">
+        <figure class="print reveal"><img src="images/alt-salad.jpg" alt="A chopped green salad in a white bowl" loading="lazy" width="1200" height="1600"><figcaption>Off her own feed</figcaption></figure>
+        <figure class="print reveal"><img src="images/alt-smoothie.jpg" alt="A green smoothie in a jar in afternoon light" loading="lazy" width="1200" height="1600"><figcaption>Morning, most days</figcaption></figure>
+        <figure class="print reveal"><img src="images/alt-greens.jpg" alt="Kale and a green pepper in a colander at the sink" loading="lazy" width="1600" height="1200"><figcaption>The shopping half of it</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #proof — the number band =====================
+       SAGE-WASH BAND (third ground). Honest: the rating and the count are
+       Google's, dated. Her review BODIES are not published anywhere readable,
+       so there are no quotes here and none were invented — see the handoff's
+       ask-client list. -->
+  <section class="section proof-band" id="proof">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What Enumclaw already thinks</p>
+        <h2>Sixteen people, <em>five stars</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b class="tnum">5.0</b><span>Her rating on Google — the top of the scale, not near it.</span></div>
+        <div class="num"><b class="tnum">16</b><span>People who went and then went back to write about it.</span></div>
+        <div class="num"><b class="tnum">1</b><span>Trainer. The person who writes your plan is the person standing next to you.</span></div>
+      </div>
+      <p class="proof-fine reveal">Rating and count from her Google listing, September 2026.</p>
     </div>
   </section>
 
   <!-- ===================== #signature — "What are you after?" =====================
-       Section 5. One tap on a picture, instant answer above it, tap again clears.
-       Every photo is real and hers; every answer is one of her four real
-       programs, worded from her own copy. No numbers to type, no estimator. -->
+       Section 5 (INTERACTIVE = SECTION 4 OR LOWER). Toddler law: four real
+       photographs of her own work, one obvious tap each, the answer appears
+       instantly in the panel above them, tap the same picture again to clear.
+       Every photo shows WHOLE inside its mat — nothing cropped through the
+       subject. No numbers, no inputs, nothing to read before you can start. -->
   <section class="section" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Not sure where to start?</p>
+        <p class="eyebrow">Not sure where to start</p>
         <h2>What are you <em>after?</em></h2>
       </div>
 
@@ -172,22 +205,22 @@
             <a class="btn btn-primary" id="goalBtn" href="sms:+12537400878">Text Gracie about this</a>
           </div>
         </div>
-        <div class="goal-picks" id="goalPicks" role="group" aria-label="Choose your training goal">
-          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="stronger">
-            <img src="images/goal-stronger.jpg" alt="Rolling out on the gym floor" loading="lazy" width="2000" height="1500">
-            <span>Feel stronger</span>
+        <div class="goal-picks" id="goalPicks" role="group" aria-label="Choose what you are after">
+          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="classes">
+            <span class="mat"><img src="images/goal-move.jpg" alt="Gracie's own post announcing that slow and controlled mat Pilates is back" loading="lazy" width="1313" height="2000"></span>
+            <span class="lbl">Classes</span>
           </button>
-          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="move">
-            <img src="images/goal-move.jpg" alt="Gracie in the mirrored studio, announcing that mat Pilates is back" loading="lazy" width="1313" height="2000">
-            <span>Move better</span>
+          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="training">
+            <span class="mat"><img src="images/goal-stronger.jpg" alt="Rolling out on a foam roller on the gym floor" loading="lazy" width="2000" height="1500"></span>
+            <span class="lbl">Training</span>
           </button>
-          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="eat">
-            <img src="images/goal-eat.jpg" alt="A bowl of greens, roasted sweet potato and avocado" loading="lazy" width="1125" height="2000">
-            <span>Eat better</span>
+          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="food">
+            <span class="mat"><img src="images/goal-eat.jpg" alt="A bowl of greens, roasted sweet potato and avocado" loading="lazy" width="1125" height="2000"></span>
+            <span class="lbl">Food</span>
           </button>
-          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="own">
-            <img src="images/goal-own.jpg" alt="A mat, trainers and a water bottle set out on the gym floor" loading="lazy" width="2000" height="2000">
-            <span>Train on my own time</span>
+          <button type="button" class="goal-pick" aria-pressed="false" aria-controls="goalOut" data-goal="anytime">
+            <span class="mat"><img src="images/goal-own.jpg" alt="A mat, trainers and a water bottle set out on the gym floor" loading="lazy" width="2000" height="2000"></span>
+            <span class="lbl">Anytime</span>
           </button>
         </div>
       </div>
@@ -198,22 +231,22 @@
   <section class="section section-alt" id="about">
     <div class="wrap">
       <div class="story">
-        <figure class="print reveal">
-          <img src="images/about.jpg" alt="Gracie, owner and trainer at Grow with Grace Fitness" loading="lazy" width="1500" height="2000">
-          <figcaption>Gracie — owner and trainer, Grow with Grace Fitness LLC.</figcaption>
-        </figure>
+        <div class="story-prints">
+          <figure class="print reveal">
+            <img src="images/about.jpg" alt="Gracie, owner and trainer at Grow with Grace Fitness" loading="lazy" width="1500" height="2000">
+            <figcaption>Gracie — owner and trainer</figcaption>
+          </figure>
+          <figure class="print print-small reveal">
+            <img src="images/alt-foothills-dog.jpg" alt="Gracie walking her dog on the Foothills Trail" loading="lazy" width="1200" height="1600">
+            <figcaption>The Foothills Trail, on a day off</figcaption>
+          </figure>
+        </div>
         <div class="story-copy reveal">
           <p class="eyebrow">Meet the trainer</p>
           <h2>It's Gracie, <em>every session</em></h2>
-          <p class="lede">Grow with Grace is one trainer in Enumclaw — so the person who writes your plan is the person standing next to you while you do it.</p>
-          <p>Her one-to-one sessions start with your goals, then a plan and the basics of exercise and proper form. If you prefer to train independently, her workout library gives you a separate way to get started.</p>
-          <p>The mat Pilates classes run in a small group, slow and controlled, on Cole Street. Sign-ups and the current schedule go out on her Instagram — or just text her and she'll tell you what's running.</p>
-          <div class="team">
-            <h3>Rated on Google</h3>
-            <div class="faces">
-              <span class="face"><span class="ini">5.0</span>Google rating<small>16 reviews</small></span>
-            </div>
-          </div>
+          <p class="lede">Grow with Grace Fitness is one trainer in Enumclaw. The person who writes your plan is the person standing next to you while you do it.</p>
+          <p>Her one-to-one work starts where she says it starts — goals first, then a plan, then the basics of exercise and proper form. If you would rather train independently, the workout library is a separate door into the same coaching.</p>
+          <p>The mat Pilates runs in a small group on Cole Street, slow and controlled. Sign-ups and times go out on her Instagram, or she'll just tell you if you text.</p>
         </div>
       </div>
     </div>
@@ -225,17 +258,21 @@
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting started</p>
-          <h2>Three steps, <em>that's it</em></h2>
+          <h2>Three steps, <em>then you're in</em></h2>
           <ol class="steps">
-            <li><h3>Say hello</h3><p>Text or call Gracie, or prepare an email using this page. Tell her roughly what you're after — that's enough to start.</p></li>
-            <li><h3>Set the goals</h3><p>You'll talk through where you're at and what you want, and she'll put a plan against it.</p></li>
-            <li><h3>Find your first session</h3><p>Ask about available 1:1 appointments or the next mat Pilates class.</p></li>
+            <li><h3>Say hello</h3><p>Text her, call her, or use the form. Roughly what you're after is enough to start.</p></li>
+            <li><h3>Set the goals</h3><p>Her own first move: work out where you're at and where you want to be, then build the plan against it.</p></li>
+            <li><h3>Take the first session</h3><p>A 1:1 appointment, or the next mat Pilates class on the list.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📞 <a href="tel:+12537400878">(253) 740-0878</a></span>
             <span>✉️ <a href="mailto:growwithgrace23@gmail.com">growwithgrace23@gmail.com</a></span>
             <span>📸 <a href="https://www.instagram.com/grow.with.grace_/" target="_blank" rel="noopener">@grow.with.grace_ ↗</a></span>
           </div>
+          <figure class="print print-small contact-print reveal">
+            <img src="images/alt-green-juice.jpg" alt="Gracie at home with a row of green juices" loading="lazy" width="1200" height="1600">
+            <figcaption>Gracie</figcaption>
+          </figure>
         </div>
         <form class="contact-form reveal" action="mailto:growwithgrace23@gmail.com" method="post" enctype="text/plain" data-send-label="Send it to Gracie">
           <!-- Without a configured delivery key, prepare a visitor-controlled email draft. -->
@@ -254,16 +291,19 @@
     </div>
   </section>
 
-  <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta — the second deep band ===================== -->
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Grow with Grace Fitness</p>
-        <h2>Come find her on <em>Cole Street</em></h2>
-      </div>
-      <div class="cta-actions reveal">
-        <a href="sms:+12537400878" class="btn btn-primary">Text Gracie</a>
-        <a href="tel:+12537400878" class="btn btn-ghost">Call (253) 740-0878</a>
+      <div class="cta-inner reveal">
+        <img class="cta-mark" src="images/alt-logo-sage.png" alt="" width="500" height="500">
+        <div>
+          <p class="eyebrow">Grow with Grace Fitness LLC</p>
+          <h2>Come find her <em>on Cole Street</em></h2>
+          <div class="cta-actions">
+            <a href="sms:+12537400878" class="btn btn-cream">Text Gracie</a>
+            <a href="tel:+12537400878" class="btn btn-ghost">Call (253) 740-0878</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -291,7 +331,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">Programs</a><br><a href="#hours">Find her</a><br><a href="#signature">Your goal</a><br><a href="#about">About Gracie</a><br><a href="#contact">Text Gracie</a></p>
+        <p><a href="#services">Programs</a><br><a href="#hours">Find her</a><br><a href="#signature">Start here</a><br><a href="#about">About Gracie</a><br><a href="#contact">Text Gracie</a></p>
       </div>
     </div>
     <div class="foot-bottom">

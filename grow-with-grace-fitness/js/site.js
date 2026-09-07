@@ -174,31 +174,25 @@ function customClose(p, close){ return close; }
     });
   }
 
-  /* ---------- TITLE CARDS THAT UNROLL (the four programs) ----------
-     Each card's own title is the tap target; the chevron flips down→up.
-     Copy inside is Gracie's, verbatim from her own site — nothing invented. */
-  $$('.unroll-t').forEach(function(btn){
-    var li=btn.parentNode, panel=document.getElementById(btn.getAttribute('aria-controls'));
-    function setOpen(open){li.classList.toggle('open',open);btn.setAttribute('aria-expanded',String(open));panel.setAttribute('aria-hidden',String(!open));panel.inert=!open;}
-    setOpen(false);
-    btn.addEventListener('click',function(){setOpen(!li.classList.contains('open'))});
-  });
+  /* ATMOSPHERE PASS 2026-09-06: the four programs are no longer unroll cards.
+     Four short descriptions is not a long list, so they are inline and fully
+     visible in #services (Jack's menu-board rule) — nothing to tap open. */
 
   /* ---------- SIGNATURE GADGET — "What are you after?" ----------
      Tap one of four real photographs, the matching program appears instantly
      in the panel directly above them, tap the same one again to clear.
      Every line below is Gracie's own offer, worded from her own copy. */
   var GOALS={
-    stronger:{name:'Personal training',
-      line:'You and Gracie in person each week — goals first, then the plan, the proper form and the workouts that get you there.',
-      msg:'Hi Gracie — I want to feel stronger. Can you tell me about 1:1 training?'},
-    move:{name:'Mat Pilates classes',
-      line:'Slow and controlled mat work in a small class on Cole Street. Text Gracie for current times and availability.',
-      msg:'Hi Gracie — I’d like to move better. When is your next mat Pilates class?'},
-    eat:{name:'Nutrition guidance',
+    classes:{name:'Mat Pilates classes',
+      line:'Slow and controlled mat work, small group, Cole Street. She posts the times — or just ask her for this week’s.',
+      msg:'Hi Gracie — I’d like to join a mat Pilates class. When is the next one?'},
+    training:{name:'Personal training',
+      line:'You and Gracie in person each week. Goals first, then the plan, the proper form and the workouts that get you there.',
+      msg:'Hi Gracie — I’m interested in 1:1 personal training. How do we start?'},
+    food:{name:'Nutrition guidance',
       line:'Direction on eating to feel good rather than eating less — a balanced way of living you can actually keep.',
       msg:'Hi Gracie — I’d like some help with nutrition. How does that work?'},
-    own:{name:'Workout programs',
+    anytime:{name:'Workout programs',
       line:'A private library of her workouts with 24/7 access, done whenever your day allows.',
       msg:'Hi Gracie — I want to train on my own time. Can you tell me about the workout programs?'}
   };

@@ -25,31 +25,36 @@
    ============================================================ */
 :root{
   /* ---- palette — GROW WITH GRACE FITNESS ------------------------------
-     Every hex below is sampled from her OWN assets (MIRROR LAW), not invented:
-       her real GWG monogram, sage square version .......... #848478
-       her real GWG monogram, oatmeal card version ......... #E4D8D8
-       the monogram's letterforms (charcoal) ............... #303030
-       her sage activewear, the colour she wears in every
-         photo on her own site ............................. #61705D
-       the mat-Pilates studio's oak floor .................. #CCA878
-       the clay-rose mat on the studio floor ............... #C09C90
-     Sources logged in HANDOFF-CODEX.md.
+     ATMOSPHERE PASS 2026-09-06. Every hex below is re-sampled straight out of
+     her OWN files with PIL (MIRROR LAW), never invented or eyeballed:
+       her real GWG monogram, the oatmeal card it sits on .. #E4E2D9  → --bg
+       the monogram's letterforms, charcoal ................ #393535  → --ink / --dark
+       her real GWG monogram, sage colourway ............... #878C7B  → --brand
+       her sage activewear, the colour she wears in nearly
+         every photograph on her own site .................. #7B7A68
+       the mat-Pilates studio's oak floor .................. #A58E6F / #D9B986
+       the clay-rose mat on the studio floor ............... #C1948E
+     The ground is now HER oatmeal exactly (#E4E2D9), not a lifted cream — the
+     previous build ran cream-on-oatmeal and read washed. The two deep bands
+     (#hours and the closing band) are her monogram charcoal pulled toward her
+     logo sage, so the page alternates light / deep / light instead of
+     one long field of cream.
      -------------------------------------------------------------------- */
-  --brand:#6E7A62;          /* her logo sage #848478, deepened to hold AA on cream */
-  --brand-text:#4C563F;     /* same hue, darker, for small type on cream */
+  --brand:#6E7A62;          /* her logo sage #878C7B, deepened to hold AA on the oatmeal */
+  --brand-text:#485238;     /* same hue, darker, for small type on oatmeal */
   --brand-bright:var(--brand-text); /* darker sage keeps white hover labels legible */
-  --accent:#B78A80;         /* the clay-rose of her studio mat #C09C90 */
+  --accent:#B78A80;         /* the clay-rose of her studio mat #C1948E */
   --accent-soft:#D3A9A0;    /* lighter accent for dark grounds */
-  --ink:#2B2A26;            /* her monogram's charcoal #303030, warmed */
-  --bg:#EFE9DE;             /* ONE CREAM — her oatmeal logo card, lifted */
-  --bg-2:#E5DFD2;           /* deeper cream, alternating bands */
-  --paper:#F7F3EA;          /* cards — a hair lighter than --bg, never white */
-  --muted:#6B6659;          /* secondary text */
-  --line:#DBD4C4;           /* hairlines, borders */
-  --dark:#333A2E;           /* deep sage-charcoal panel (closing band, hero scrim) */
-  --dark-2:#414938;         /* dark hover */
-  --warm:#C9A87A;           /* the studio's oak floor — highlight word on dark */
-  --tint:#DFE3D6;           /* sage-washed band (the "when to find her" band) */
+  --ink:#2E2B2B;            /* her monogram's charcoal #393535, deepened */
+  --bg:#E4E2D9;             /* THE GROUND — her monogram's own oatmeal card, exact */
+  --bg-2:#D8D5C9;           /* deeper oatmeal, alternating bands */
+  --paper:#F0EEE6;          /* cards — lifted off the ground, never white */
+  --muted:#5E5A4E;          /* secondary text (5.8:1 on the oatmeal) */
+  --line:#C9C4B4;           /* hairlines, borders — visible on the deeper ground */
+  --dark:#262A23;           /* DEEP SAGE-BLACK — her charcoal pulled to her sage */
+  --dark-2:#333829;         /* dark hover */
+  --warm:#D6B489;           /* the studio's oak floor — highlight word on the deep bands */
+  --tint:#CFD6C4;           /* sage wash — the third ground (the numbers band) */
   --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
   --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
 
@@ -355,151 +360,288 @@ p{margin:0 0 1em}
 
 /* ============================================================
    GROW WITH GRACE FITNESS — site layer
-   Everything below is this build only. Tokens above are the source of
-   truth; no hex colours appear here.
+   ATMOSPHERE PASS 2026-09-06 (Captain Jack's bar). Tokens above are the
+   source of truth; no hex colours appear below.
+
+   THE GROUND DECISION (MIRROR LAW). Her room is genuinely bright — oak
+   floor, mirrored wall, daylight, and a sage-and-oatmeal brand — so this
+   stays LIGHT. What it stops doing is running cream on oatmeal: the ground
+   is now her monogram's exact oatmeal, and two DEEP SAGE-BLACK bands (the
+   hours band and the closing band, both her monogram charcoal pulled toward
+   her logo sage) break the page so it alternates:
+     hero oatmeal → hours DEEP → programs oatmeal → numbers SAGE WASH →
+     picker oatmeal → about deeper oatmeal → contact oatmeal → closing DEEP.
    ============================================================ */
 
 /* ---- DM Serif Display ships a single 400 weight ----------------------
    The shared template asks for 800 in six places; without this pin the
-   browser synthesises a fake bold and the headlines go smeary.
-   (Same trap as Young Serif on the Thunder Rail build.) */
+   browser synthesises a fake bold and the headlines go smeary. */
 h1,h2,h3,h4,
 .logo .wm,
 .face .ini,
 .steps li::before,
 .num b,
 .foot .wm{font-weight:400}
-h1,h2{letter-spacing:-.005em}
-.section-head h2 em,.story-copy h2 em,.hero h1 em,.contact h2 em,.cta-band h2 em{font-style:italic}
+h1,h2{letter-spacing:-.008em}
+.section-head h2 em,.story-copy h2 em,.hero h1 em,.contact h2 em,.cta-band h2 em,.status-head h2 em{font-style:italic}
 
-/* Jost runs light; lift the working weights so body copy holds on cream. */
-body{font-size:17.5px}
+/* ---- TYPE SCALE — pushed to Jack's scale. The old build's headlines and
+   body copy were both a size too small for the room. ---- */
+body{font-size:18px;line-height:1.62}
+.section{padding:clamp(64px,9vw,124px) 0}
+.section-head{margin-bottom:clamp(30px,4.4vw,54px)}
+.section-head h2{font-size:clamp(34px,5.4vw,62px);line-height:1.02}
+.section-head p:not(.eyebrow){font-size:19.5px;color:var(--muted);max-width:56ch}
+.story-copy h2,.contact h2{font-size:clamp(34px,5vw,58px)}
 .hours-list .day,.face,.proof{font-weight:600}
 
-/* ---- header: no live pill on this build (see #hours note in index.html) ---- */
+/* ---- header ---- */
 .nav-wrap{gap:14px}
 .logo img{border-radius:12px}
+.logo .wm{font-size:22px;letter-spacing:-.01em}
+.main-nav{font-weight:500}
 
-/* ---- hero ------------------------------------------------------------
-   Her portrait is 1846x2524. Desktop cover-crops a band out of the middle,
-   so the focal point is pinned high enough to keep her face and shoulders
-   in frame at every width; phones take the natural portrait crop. */
-.hero-bg img{object-position:50% 26%}
-@media (max-width:760px){.hero-bg img{object-position:50% 18%}}
+/* ============================================================ HERO
+   LIGHT HERO, editorial. Her portrait is 1462x2000 and she is the whole
+   subject, so it is never cover-cropped — object-fit:contain inside a
+   framed mat, with a sage panel offset behind it. The headline is her own
+   sentence in DM Serif at full scale, in ink ON the oatmeal ground.
+   (The template's .hero-bg photo/scrim machinery is unused here.) */
+.hero{background:var(--bg);color:var(--ink);min-height:calc(100svh - var(--header-h));
+  display:flex;align-items:center;overflow:hidden;position:relative}
+.hero::before{content:"";position:absolute;z-index:0;top:calc(var(--header-h) * -1);right:-8%;width:52%;height:78%;
+  border-radius:0 0 0 46%;background:color-mix(in srgb,var(--tint) 62%,transparent);pointer-events:none}
+.hero-inner{position:relative;z-index:1;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(36px,6vh,72px) var(--pad);
+  display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-copy{min-width:0}
+.hero .eyebrow{margin-bottom:18px}
+.hero h1{font-size:clamp(44px,7.6vw,84px);line-height:.98;letter-spacing:-.03em;color:var(--ink);max-width:11ch;margin:0 0 20px;text-shadow:none}
+.hero h1 em{font-style:italic;color:var(--brand)}
+.hero-sub{font-size:clamp(17px,1.55vw,20.5px);line-height:1.55;color:var(--muted);font-weight:400;max-width:40ch;margin:0 0 30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-outline{background:transparent;border-color:var(--ink);color:var(--ink)}
+.btn-outline:hover{background:var(--ink);color:var(--bg);transform:translateY(-2px)}
+/* her portrait, whole, in a print mat */
+.hero-photo{margin:0;background:var(--paper);border:var(--rule);padding:14px 14px 16px;
+  box-shadow:0 46px 90px -46px color-mix(in srgb,var(--dark) 62%,transparent);transform:rotate(-1.1deg)}
+.hero-photo img{width:100%;height:auto;max-height:min(62vh,620px);object-fit:contain;object-position:center;
+  background:var(--bg-2);display:block}
+/* entrance — the template's hero stagger, retargeted at the new blocks */
+.js .hero-eyebrow{animation:none}
+.js .hero .eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions,.js .hero-photo{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.1s}
+.js .hero-sub{animation-delay:.22s}
+.js .hero-actions{animation-delay:.34s}
+.js .hero-photo{animation-delay:.16s;transform:translateY(18px) rotate(-1.1deg)}
+@keyframes riseTilt{to{opacity:1;transform:rotate(-1.1deg)}}
+.js .hero-photo{animation-name:riseTilt}
+@media (max-width:900px){
+  .hero{min-height:0}
+  .hero::before{width:78%;height:40%;right:-16%;border-radius:0 0 0 40%}
+  .hero-inner{grid-template-columns:1fr;gap:26px;padding-top:clamp(28px,5vh,48px);padding-bottom:clamp(34px,6vh,60px)}
+  .hero h1{max-width:none}
+  .hero-sub{max-width:44ch}
+  .hero-photo{transform:none;max-width:460px;margin-inline:auto;width:100%}
+  .js .hero-photo{transform:translateY(18px);animation-name:rise}
+  .hero-photo img{max-height:46svh}
+}
+@media (max-width:520px){
+  .hero h1{font-size:clamp(42px,11.6vw,52px)}
+  .hero-sub{font-size:17px}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:14px 12px;font-size:14.5px;min-width:0}
+  .hero-photo{padding:10px 10px 12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .hero .eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .js .hero-photo{animation:none;opacity:1;transform:rotate(-1.1deg)}
+}
+@media (prefers-reduced-motion:reduce) and (max-width:900px){
+  .js .hero-photo{transform:none}
+}
 
-/* ---- "when to find her" band ----------------------------------------
-   Rows here are how each program runs, not clock hours — this business has
-   no sourced 7-day timetable and the build refuses to invent one. */
-.status-band .hours-list .time{max-width:34ch;line-height:1.45;font-family:var(--body);font-size:14px}
-.status-band .hours-list li.note{background:color-mix(in srgb,var(--brand) 9%,transparent)}
-.status-band .hours-list li.note .day{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text)}
-.status-band .hours-list li.note .time{font-family:var(--mono);font-size:14px;max-width:none}
-.status-band .hours-list li.note a{font-weight:600;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
-.status-head h2{font-size:clamp(30px,4vw,48px);margin-bottom:16px}
-.status-addr{margin-top:14px}
+/* ============================================================ #hours — THE DEEP BAND
+   No clock, no dot, no invented rows: the only sourced hours fact for this
+   business is a 9 AM Sunday open. Her own sentence about the schedule, the
+   Instagram handle and the text button ARE the content. */
+.status-band{background:var(--dark);color:#fff;border-bottom:0;position:relative;overflow:hidden}
+.status-band::after{content:"";position:absolute;inset:auto -10% -55% auto;width:46%;padding-top:46%;border-radius:50%;
+  background:color-mix(in srgb,var(--brand) 20%,transparent);pointer-events:none}
+.status-band .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(30px,5vw,72px);align-items:center;padding:clamp(58px,8vw,104px) var(--pad)}
+.status-head h2{font-size:clamp(32px,4.6vw,54px);line-height:1.03;margin:0 0 26px;color:#fff}
+.her-words{margin:0 0 22px;padding:0 0 0 22px;border-left:3px solid var(--warm)}
+.her-words p{font-family:var(--display);font-size:clamp(19px,2.1vw,25px);line-height:1.4;color:#fff;margin:0 0 10px}
+.her-words cite{font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--warm)}
+.sourced-note{font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.7);margin:0 0 22px;max-width:46ch}
+.status-band .status-addr{margin:0;padding:0;font-size:16.5px;line-height:1.6;color:rgba(255,255,255,.82)}
+.status-band .status-addr b{font-weight:600;color:#fff}
+.status-band .status-addr a{color:var(--warm);font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--warm) 45%,transparent)}
+.status-band .status-addr a:hover{border-bottom-color:var(--warm)}
+/* the schedule panel — where the times actually live */
+.sched-panel{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.16);border-radius:var(--r);
+  padding:clamp(24px,3.2vw,34px)}
+.sched-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 14px}
+.sched-handle{display:flex;align-items:center;gap:12px;margin:0 0 18px;min-height:48px}
+.sched-handle .ig{width:34px;height:34px;flex:none;color:var(--warm)}
+.sched-handle .ig svg{width:34px;height:34px}
+.sched-handle .handle{font-family:var(--display);font-size:clamp(21px,2.5vw,30px);line-height:1.1;color:#fff;
+  letter-spacing:-.01em;border-bottom:1px solid transparent;transition:border-color .2s,color .2s;word-break:break-word}
+.sched-handle:hover .handle{color:var(--warm);border-bottom-color:var(--warm)}
+.sched-or{font-size:15.5px;color:rgba(255,255,255,.72);margin:0 0 20px}
+.sched-actions{display:flex;flex-wrap:wrap;gap:10px}
+.sched-actions .btn{flex:1 1 auto}
+.status-band .btn-cream{background:var(--bg);color:var(--ink)}
+.status-band .btn-cream:hover{background:#fff}
+@media (max-width:900px){.status-band .wrap{grid-template-columns:1fr;gap:32px}}
 
-/* ---- the room print that opens the programs section ------------------
-   Stands in for the storefront photo the harvest never produced
-   (STOREFRONT BELOW THE HOURS). Whole photo, never cropped. */
-.room-print{max-width:660px;margin:0 auto clamp(34px,5vw,60px);transform:rotate(-1deg)}
+/* ============================================================ #services — the programs
+   The room print stands in for the storefront photo the harvest never
+   produced (STOREFRONT BELOW THE HOURS). Whole photo, never cropped. */
+.room-print{max-width:640px;margin:0 auto clamp(38px,5.5vw,66px);transform:rotate(-1.1deg)}
 .room-print img{width:100%;height:auto;display:block}
 .room-print:hover{transform:rotate(0) scale(1.01)}
 @media (max-width:560px){.room-print{transform:none}}
 
-/* ---- the four programs: title cards that unroll ----------------------
-   ARROW LAW: a downward chevron that flips up. Never a plus sign. */
-.unroll{list-style:none;margin:0;padding:0;display:grid;gap:14px;max-width:860px}
-.unroll > li{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;
-  box-shadow:0 30px 60px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
-.unroll-t{width:100%;min-height:76px;display:grid;grid-template-columns:44px 1fr 26px;grid-template-areas:"i t c" "i s c";
-  align-items:center;gap:2px 16px;padding:18px 22px;background:none;border:0;cursor:pointer;text-align:left;font:inherit;color:inherit}
-.unroll-t:hover{background:color-mix(in srgb,var(--brand) 7%,transparent)}
-.unroll-t:focus-visible{outline:3px solid var(--brand);outline-offset:-3px}
-.ul-ico{grid-area:i;width:44px;height:44px;border-radius:14px;background:var(--tint);color:var(--brand-text);display:grid;place-items:center}
-.ul-ico svg{width:24px;height:24px}
-.ul-t{grid-area:t;font-family:var(--display);font-size:clamp(21px,2.4vw,27px);line-height:1.1;letter-spacing:-.01em}
-.ul-s{grid-area:s;font-size:14px;color:var(--muted);line-height:1.35}
-.chev{grid-area:c;width:26px;height:26px;position:relative;transition:transform .35s var(--ease);color:var(--brand-text)}
-.chev::before{content:"";position:absolute;left:6px;top:9px;width:11px;height:11px;
-  border-right:2.4px solid currentColor;border-bottom:2.4px solid currentColor;transform:rotate(45deg)}
-.unroll-t[aria-expanded="true"] .chev{transform:rotate(-180deg)}
-.unroll-p{display:grid;grid-template-rows:1fr;transition:grid-template-rows .4s var(--ease)}
-.js .unroll-p{grid-template-rows:0fr}
-.js .unroll > li.open .unroll-p{grid-template-rows:1fr}
-.unroll-p > p{overflow:hidden;margin:0;padding:0 22px 0 82px;font-size:16.5px;color:var(--ink);line-height:1.65}
-.unroll > li.open .unroll-p > p{padding-bottom:24px}
-@media (max-width:560px){
-  .unroll-t{grid-template-columns:38px 1fr 24px;padding:16px 16px;gap:2px 12px}
-  .ul-ico{width:38px;height:38px;border-radius:12px}.ul-ico svg{width:20px;height:20px}
-  .unroll-p > p{padding-left:16px;padding-right:16px;font-size:16px}
-}
+/* four programs, inline like Jack's board — nothing hidden behind a tap */
+.progs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,54px)}
+.prog{border-top:2px solid var(--ink);padding-top:18px}
+.prog h3{font-size:clamp(24px,2.9vw,32px);line-height:1.08;margin:0 0 8px}
+.prog-when{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--brand-text);
+  margin:0 0 12px;font-weight:600}
+.prog p:last-child{font-size:17px;line-height:1.65;color:var(--muted);margin:0}
+.prog-fine{font-size:16px;color:var(--muted);margin:clamp(28px,4vw,46px) 0 0}
+.prog-fine a{font-weight:600;color:var(--brand-text);border-bottom:1.5px solid color-mix(in srgb,var(--brand) 45%,transparent)}
+.prog-fine a:hover{border-bottom-color:var(--brand)}
+@media (max-width:760px){.progs{grid-template-columns:1fr;gap:30px}}
 
-/* ---- SIGNATURE: "What are you after?" --------------------------------
-   Toddler law. Four real photographs, one obvious tap each, the answer
-   appears instantly directly above them, tap the same one again to clear.
-   No numbers, no inputs, nothing to read before you can start. */
-.goal{display:grid;gap:clamp(20px,3vw,30px);max-width:980px}
-/* The idle panel is not an empty box waiting to be filled — it carries the
-   section's one instruction, and the answer replaces it in place on the tap. */
-.goal-out{min-height:200px;display:grid;align-items:center;background:var(--paper);border:var(--rule);border-radius:var(--r);
-  padding:clamp(24px,3.5vw,36px);box-shadow:0 30px 60px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
-.goal-idle{margin:0;font-family:var(--display);font-size:clamp(22px,3vw,32px);line-height:1.2;color:var(--muted);text-align:center;
-  letter-spacing:-.01em}
-.goal-idle::after{content:"";display:block;width:22px;height:22px;margin:18px auto 0;
+/* her food, in three prints — the one program with no other picture */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.6vw,30px);margin-top:clamp(40px,5.5vw,72px)}
+.strip .print{margin:0}
+.strip .print img{width:100%;height:clamp(220px,26vw,320px);object-fit:cover}
+.strip .print:nth-child(1){transform:rotate(-1.1deg)}
+.strip .print:nth-child(2){transform:rotate(.7deg)}
+.strip .print:nth-child(3){transform:rotate(-.5deg)}
+.strip .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:700px){.strip{grid-template-columns:1fr}.strip .print{transform:none}.strip .print img{height:auto}}
+
+/* ============================================================ #proof — the sage-wash band
+   Honest: Google's rating and count, dated. Her review BODIES are not
+   published anywhere readable, so no quotes appear and none were invented. */
+.proof-band{background:var(--tint)}
+.proof-band .section-head h2{color:var(--ink)}
+.proof-band .numbers{grid-template-columns:repeat(3,1fr);margin-bottom:0}
+.proof-band .num{border:1px solid color-mix(in srgb,var(--dark) 20%,transparent);background:color-mix(in srgb,var(--paper) 55%,transparent);
+  padding:26px 24px}
+.proof-band .num b{color:var(--ink);font-size:clamp(46px,6.2vw,74px);letter-spacing:-.03em}
+.proof-band .num > span{color:var(--muted);font-size:15px;margin-top:10px}
+.proof-fine{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  margin:clamp(22px,3vw,32px) 0 0}
+@media (max-width:900px){.proof-band .numbers{grid-template-columns:1fr}}
+
+/* ============================================================ SIGNATURE — "What are you after?"
+   Toddler law. Four of her real photographs, each WHOLE inside a print mat
+   (never cropped through the subject), one obvious tap, the answer appears
+   instantly above, tap the same picture again to clear. */
+.goal{display:grid;gap:clamp(22px,3.2vw,34px)}
+.goal-out{min-height:186px;display:grid;align-items:center;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(26px,3.6vw,40px);box-shadow:0 34px 66px -50px color-mix(in srgb,var(--dark) 62%,transparent)}
+.goal-idle{margin:0;font-family:var(--display);font-size:clamp(24px,3.2vw,36px);line-height:1.2;color:var(--muted);
+  text-align:center;letter-spacing:-.01em}
+.goal-idle::after{content:"";display:block;width:22px;height:22px;margin:20px auto 0;
   border-right:2.4px solid var(--brand);border-bottom:2.4px solid var(--brand);transform:rotate(45deg);
   animation:goalNudge 2.6s var(--ease) infinite}
 @keyframes goalNudge{0%,70%,100%{transform:rotate(45deg) translate(0,0)}82%{transform:rotate(45deg) translate(4px,4px)}}
 @media (prefers-reduced-motion:reduce){.goal-idle::after{animation:none}}
 .goal-card{animation:goalIn .42s var(--ease) both}
 .goal-kicker{margin:0 0 8px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-text)}
-.goal-card h3{font-size:clamp(28px,3.6vw,42px);margin:0 0 12px}
-.goal-card > p{margin:0 0 20px;font-size:17.5px;color:var(--ink);max-width:52ch;line-height:1.6}
+.goal-card h3{font-size:clamp(30px,4vw,46px);line-height:1.05;margin:0 0 12px}
+.goal-card > p{margin:0 0 22px;font-size:18px;color:var(--ink);max-width:54ch;line-height:1.6}
 @keyframes goalIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.goal-card{animation:none}}
+.goal-card[hidden],.goal-idle[hidden]{display:none}
 
-.goal-picks{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,20px)}
+.goal-picks{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.2vw,24px);align-items:start}
 .goal-pick{display:block;padding:0;border:0;background:none;cursor:pointer;font:inherit;color:inherit;text-align:center}
-.goal-pick img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);
-  border:3px solid transparent;background:var(--bg-2);transition:transform .4s var(--ease),border-color .25s var(--ease),filter .4s var(--ease);
-  filter:saturate(.82)}
-.goal-pick span{display:block;margin-top:12px;font-weight:600;font-size:15.5px;line-height:1.3}
-.goal-pick:hover img{transform:translateY(-5px);filter:saturate(1)}
-.goal-pick:focus-visible img{outline:3px solid var(--brand);outline-offset:3px}
-.goal-pick.on img{border-color:var(--brand);filter:saturate(1);transform:translateY(-5px);
-  box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 18%,transparent)}
-.goal-pick.on span{color:var(--brand-text)}
-@media (max-width:760px){.goal-picks{grid-template-columns:1fr 1fr}.goal-pick img{aspect-ratio:1/1}}
-@media (prefers-reduced-motion:reduce){.goal-pick img,.goal-pick:hover img,.goal-pick.on img{transition:none;transform:none}}
+.goal-pick .mat{display:block;background:var(--paper);border:var(--rule);padding:12px;border-radius:6px;
+  box-shadow:0 30px 60px -48px color-mix(in srgb,var(--dark) 65%,transparent);
+  transition:transform .35s var(--ease),border-color .25s var(--ease),box-shadow .35s var(--ease)}
+.goal-pick img{display:block;width:100%;height:clamp(210px,25vw,320px);object-fit:contain;background:var(--bg-2)}
+.goal-pick .lbl{display:block;margin-top:14px;font-family:var(--display);font-size:clamp(19px,2.1vw,25px);line-height:1.2;
+  letter-spacing:-.01em;transition:color .2s}
+.goal-pick:hover .mat{transform:translateY(-6px);border-color:var(--brand)}
+.goal-pick:focus-visible .mat{outline:3px solid var(--brand);outline-offset:3px}
+.goal-pick.on .mat{transform:translateY(-6px);border-color:var(--brand);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 26%,transparent),0 30px 60px -48px color-mix(in srgb,var(--dark) 65%,transparent)}
+.goal-pick.on .lbl{color:var(--brand-text)}
+@media (max-width:820px){.goal-picks{grid-template-columns:1fr 1fr;gap:22px 16px}}
+@media (prefers-reduced-motion:reduce){.goal-pick .mat,.goal-pick:hover .mat,.goal-pick.on .mat{transition:none;transform:none}}
 
-/* ---- about: the Google rating pill instead of a staff row ------------ */
-.team h3{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 12px}
-.face .ini{font-size:14px;letter-spacing:-.02em;background:color-mix(in srgb,var(--brand) 22%,transparent);color:var(--brand-text)}
+/* ============================================================ ABOUT */
+.section-alt{background:var(--bg-2)}
+.story{grid-template-columns:.92fr 1.08fr;align-items:center}
+.story-prints{display:grid;gap:clamp(16px,2.4vw,26px);grid-template-columns:1fr}
+.story-prints .print{margin:0;transform:rotate(-1.2deg)}
+.story-prints .print-small{transform:rotate(1deg);width:72%;justify-self:end;margin-top:-8%}
+.story-prints .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy .lede{font-family:var(--body);font-size:20.5px;font-weight:500;line-height:1.5;color:var(--ink)}
+.story-copy p:not(.eyebrow){font-size:17.5px;color:var(--muted)}
+.story-copy p.lede{color:var(--ink)}
+@media (max-width:900px){
+  .story{grid-template-columns:1fr}
+  .story-prints{grid-template-columns:1fr 1fr;align-items:start}
+  .story-prints .print,.story-prints .print-small{transform:none;width:100%;margin-top:0}
+}
+@media (max-width:520px){.story-prints{grid-template-columns:1fr}}
 
-/* ---- closing band ---------------------------------------------------- */
-.num b i{font-size:.6em;letter-spacing:0}
+/* ============================================================ CONTACT */
+.steps li::before{font-size:18px}
+.steps h3{font-size:20px}
+.steps p{font-size:16px}
+.contact-lines{font-size:17px}
+.contact-print{margin:clamp(26px,3.5vw,38px) 0 0;max-width:300px;transform:rotate(-1.4deg)}
+.contact-print img{width:100%;height:auto}
+.contact-print:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:900px){.contact-print{max-width:260px;transform:none}}
 
-/* Codex finish: clear reading, keyboard paths and honest contact behavior. */
-.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
+/* ============================================================ CTA — the second deep band */
+.cta-band{background:var(--dark)}
+.cta-inner{display:flex;align-items:center;gap:clamp(24px,4vw,54px)}
+.cta-mark{width:clamp(96px,11vw,150px);height:auto;border-radius:var(--r);flex:none}
+.cta-band h2{font-size:clamp(32px,4.8vw,58px);line-height:1.02;margin:0 0 26px;color:#fff}
+.cta-band .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+.cta-band .btn-cream{background:var(--bg);color:var(--ink)}
+.cta-band .btn-cream:hover{background:#fff}
+@media (max-width:640px){.cta-inner{flex-direction:column;align-items:flex-start;gap:24px}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink)}
+.foot .plate{background:var(--bg)}
+
+/* ============================================================ ACCESS + NO-JS */
+.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);
+  padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:600}
 .skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
-.hero :focus-visible,.section-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
-.story .print{margin:0;align-self:center}
+.section-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
 .contact-lines a,.foot a{text-underline-offset:.2em}
 .contact-lines a:hover,.foot a:hover{text-decoration:underline}
-.status-addr{padding-left:0}
-@media (max-width:520px){.hero-sub{white-space:normal;text-wrap:balance;max-width:32ch}.hero-actions .btn{min-width:0}}
-@media (max-width:900px){html:not(.js) .site-header{height:auto}html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}html:not(.js) .nav-wrap{width:100%}html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}html:not(.js) .nav-toggle{display:none}}
+@media (max-width:900px){
+  html:not(.js) .site-header{height:auto}
+  html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}
+  html:not(.js) .nav-wrap{width:100%}
+  html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}
+  html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}
+  html:not(.js) .nav-toggle{display:none}
+}
 
-.unroll,.goal{width:100%;margin-left:auto;margin-right:auto}
-html:not(.js) .unroll-p>p{padding-bottom:24px}
-.goal-card[hidden],.goal-idle[hidden]{display:none}
-.goal-pick img{object-fit:contain;filter:none}
-.goal-pick.on img{border-color:var(--brand-text);box-shadow:0 0 0 5px color-mix(in srgb,var(--brand) 18%,transparent)}
-.goal-out{min-height:150px}
-.goal-picks{align-items:start}
-.goal-pick span{min-height:2.6em}
-.cta-band .section-head{margin-bottom:26px}
-@media (max-width:760px){.goal-picks{gap:22px 16px}.goal-pick img{aspect-ratio:3/4}.goal-out{padding:22px;min-height:150px}}
+/* The shared template's `.section-head p` / `.story-copy p` rules outrank the
+   bare `.eyebrow` class and were repainting the eyebrows as muted body copy.
+   Restate the label at matching specificity, last in the cascade. */
+p.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--brand-text);font-weight:600;margin:0 0 14px;max-width:none;line-height:1.5}
+.section-dark p.eyebrow{color:var(--warm)}
 
-/* Give Gracie’s portrait clear space above the headline. */
-.hero h1{max-width:18ch;line-height:1.04;letter-spacing:-.025em}
-.hero-sub{font-weight:400}
+/* The template hard-wraps .hero-sub with white-space:nowrap under 520px (it
+   was built for a two-span long/short pair this build doesn't use), which
+   ran the sentence straight off the right edge on a phone. */
+.hero-sub{white-space:normal;text-wrap:pretty}
+@media (max-width:520px){.hero-sub{white-space:normal;max-width:none}}
