@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="">
+<meta charset="utf-8">
+<title>Out &amp; About Burgers — drive-thru burger wagon on Meridian, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Out &amp; About Burgers on Meridian East in South Hill, Puyallup — a drive-thru-only burger wagon doing smash burgers, fresh-cut fries, onion rings, shakes and malts. 4.5 stars across 2,193 Google reviews. Open 11 to 8 daily.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Alfa Slab One (display, roadside-diner slab) + Archivo (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="versions/claude-hero/hero.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     The mark is a crop of the REAL painted oval off the side of their wagon
+     (harvest-0906/g44.jpg, ellipse-masked — cleaned, never redrawn). -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Out &amp; About Burgers — home">
+      <img src="images/logo.png" alt="" width="148" height="66">
+      <span class="wm">Out &amp; About<small>South Hill, Puyallup</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#services">The wagon</a>
+        <a href="#menu">The board</a>
+        <a href="#gallery">The food</a>
+        <a href="#signature">Shakes</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero — "PULLING IN" =====================
+       Their own hand-painted oval (cropped straight off the side of the wagon,
+       images/claude-mark.jpg + a CSS ellipse clip — never redrawn) arrives from
+       the right and brakes to a stop, the way a car comes down their one lane.
+       Behind it: their own sun-lit drive-thru shot (harvest-0906/g34.jpg) held
+       out of focus so nothing competes with the mark. Sun catches the paint once,
+       then everything goes quiet. Nothing on the photo but the mark and the two
+       buttons — hours, status and address stay in the band below. -->
+  <section class="hero" id="hero">
+
+    <div class="hero-sky" aria-hidden="true">
+      <div class="sky-drift">
+        <div class="sky-layer sky-soft"></div>
+        <div class="sky-layer sky-sharp"></div>
+      </div>
+      <div class="sky-veil"></div>
+    </div>
+
+    <div class="hero-stage">
+      <h1 class="sr-only">Out &amp; About Burgers — burgers, fresh-cut fries and twenty-ounce malts out a drive-thru window on Meridian East in Puyallup</h1>
+
+      <div class="hero-mark" aria-hidden="true">
+        <div class="mark-glow">
+          <div class="mark-plate">
+            <img src="images/claude-mark.jpg" alt="" width="1720" height="795" fetchpriority="high" decoding="async">
+            <span class="mark-shine"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">See the board</a>
+        <a href="#hours" class="btn btn-cream">Are they open?</a>
+      </div>
+    </div>
+
+    <div class="hero-hem" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock, address, and all seven days with today lit.
+       SOURCE: their own posted window sign — "OPEN 11-8 DAILY / SUNDAY 11-7 /
+       Drive Thru Only Please" (harvest-0906/g26.jpg and g50.jpg). Restaurantji
+       lists 11–8 all seven days; the wagon's own sign wins on Sunday.
+       Hours live HERE and nowhere else on the page (NEVER TWICE). -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Eleven to eight, <em>every day</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          14214 Meridian E, Puyallup, WA 98373<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Out+%26+About+Burgers%2C+14214+Meridian+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.5 on Google · 2,193 reviews</span>
+          <span class="proof"><span class="ico">✓</span> Drive thru only — no walk-up window</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">11:00 AM – 8:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">11:00 AM – 8:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">11:00 AM – 8:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">11:00 AM – 8:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">11:00 AM – 8:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">11:00 AM – 8:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 7:00 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #services — the wagon =====================
+       STOREFRONT LAW: the offerings open with a real exterior print. Four things
+       that are true of this specific stand, none of them repeating a price. -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <figure class="print wide-print reveal">
+        <img src="images/storefront.jpg" alt="The Out &amp; About Burgers wagon from the road on a clear day, its ORDER HERE arrow facing the lane, cars waiting alongside." loading="lazy">
+        <figcaption>From Meridian East — the lane runs down the side of the wagon</figcaption>
+      </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">What you're pulling into</p>
+        <h2>A wagon, a window, <em>and a line of cars</em></h2>
+        <p>No dining room, no patio, no counter. Everything happens at one window on the side of a white catering trailer parked off Meridian East.</p>
+      </div>
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l1.6-4.2A2 2 0 0 1 6.5 7.5h8.8a2 2 0 0 1 1.7 1L19 12l2 .8V16H3z"/><circle cx="7" cy="16.5" r="2"/><circle cx="16.5" cy="16.5" r="2"/></svg></div>
+          <h3>Drive thru only</h3>
+          <p>Their sign puts it in four words: <b>Drive Thru Only Please.</b> Walk-up service isn't provided — stay in the car and they'll come to the window.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V4.5M12 8V3.5M15 8V4.5"/></svg></div>
+          <h3>Fries cut with the skin on</h3>
+          <p>Regular or sweet potato, out of the fryer into paper — the baskets come out big enough that two people order one.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9c0-2.2 2.7-4 6-4s6 1.8 6 4"/><path d="M4 12.5h16"/><path d="M5.5 16c1.6-1.2 3.2-1.2 4.8 0s3.2 1.2 4.8 0 3.2-1.2 3.4-.6"/><path d="M5 19h14"/></svg></div>
+          <h3>Cagney sauce runs the menu</h3>
+          <p>It's on every starred burger unless you say otherwise, it's what "Cagney's Way" adds to your fries, and there's a Cagney's Cooler in the fountain.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 10v9h12v-9"/><path d="M9.5 19v-5h5v5"/></svg></div>
+          <h3>Look for the U-Haul</h3>
+          <p>It sits in front of the U-Haul lot on Meridian East, near 144th. Miss the turn once and you'll never miss it again.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — the board =====================
+       Read verbatim off the three printed panels bolted to the side of the wagon
+       (harvest-0906/g42.jpg). Every price on this page came off that photo —
+       nothing here is invented or rounded. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Off the panels on the wagon</p>
+        <h2>The whole board, <em>prices and all</em></h2>
+        <p>Three panels under the order window carry the entire menu. This is what they say.</p>
+      </div>
+
+      <figure class="print board-shot reveal">
+        <img src="images/menu-board.jpg" alt="The order window on the Out &amp; About Burgers wagon: a red neon OPEN sign, an ORDER HERE arrow, and three printed menu panels listing burgers, grilled cheeses, sides, drinks and milkshakes with prices." loading="lazy">
+        <figcaption>The board every price on this page was read from</figcaption>
+      </figure>
+
+      <p class="menu-legend reveal">* Has Lettuce, Tomato, Grilled Onions, &amp; Our Cagney Sauce</p>
+
+      <div class="menu-groups reveal">
+        <div class="menu-group">
+          <h3>Burgers</h3>
+          <ul class="menu-list">
+            <li><span class="name">Cheeseburger *</span><span class="price">$5.00</span></li>
+            <li><span class="name">Double Cheeseburger *</span><span class="price">$6.00</span></li>
+            <li><span class="name">Triple Cheeseburger *</span><span class="price">$7.00</span></li>
+            <li><span class="name">Hamburger *</span><span class="price">$4.20</span></li>
+            <li><span class="name">Double Hamburger *</span><span class="price">$5.20</span></li>
+            <li><span class="name">Triple Hamburger *</span><span class="price">$6.20</span></li>
+            <li><span class="name">BMC (Plain Double)</span><span class="price">$5.65</span><span class="desc">Bun, two meat, three cheese — and nothing else.</span></li>
+            <li><span class="name">Add Bacon</span><span class="price">$1.75</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Grilled cheeses</h3>
+          <ul class="menu-list">
+            <li><span class="name">Deluxe Grilled Cheese *</span><span class="price">$3.50</span></li>
+            <li><span class="name">Plain Grilled Cheese</span><span class="price">$2.50</span></li>
+            <li><span class="name">Add bacon to it</span><span class="price">$1.75</span></li>
+          </ul>
+
+          <h3 style="margin-top:34px">Sides</h3>
+          <ul class="menu-list">
+            <li><span class="name">Regular Fries</span><span class="price">$3.95</span></li>
+            <li><span class="name">Sweet Potato Fries</span><span class="price">$4.95</span></li>
+            <li><span class="name">Onion Rings</span><span class="price">$3.95</span></li>
+            <li><span class="name">Add Cagney's Way</span><span class="price">$1.75</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Milkshakes &amp; malts</h3>
+          <ul class="menu-list">
+            <li><span class="name">Milkshake (20 oz.)</span><span class="price">$5.00</span></li>
+            <li><span class="name">Malt (20 oz.)</span><span class="price">$6.00</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Fountain</h3>
+          <ul class="menu-list">
+            <li><span class="name">Large (24 oz.)</span><span class="price">$2.50</span></li>
+            <li><span class="name">Small (16 oz.)</span><span class="price">$1.75</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-note">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-fountain">
+            <span>Eleven things in the fountain</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-fountain"><div>
+            <ul class="flavor-chips">
+              <li>Pepsi</li><li>Diet Pepsi</li><li>Starry</li><li>Sweet Tea</li><li>Unsweetened Tea</li>
+              <li>Root Beer</li><li>Dr. Pepper</li><li>Diet Dr. Pepper</li><li>Lemonade</li>
+              <li>Cagney's Cooler</li><li>Mountain Dew</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <p class="menu-fine reveal">Read straight off the printed board on the wagon, September 2026. Prices on a hand-run stand move — call the window if you're counting to the dollar.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What comes out the window</p>
+        <h2>Handed over the sill, <em>in paper</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A double cheeseburger with lettuce and tomato beside a heaped basket of skin-on fries." loading="lazy"><figcaption>Double cheeseburger and a basket of regular fries</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A cheeseburger in white paper next to a stack of onion rings and a cup of fry sauce." loading="lazy"><figcaption>Onion rings, and the sauce cup that comes with them</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Two burgers in paper wrappers beside a pile of orange sweet potato fries." loading="lazy"><figcaption>Sweet potato fries, the ninety-five-cent upgrade</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A pink milkshake with a red straw held up in a car next to a burger and fries." loading="lazy"><figcaption>A twenty-ounce shake, riding shotgun</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A full basket of dark, skin-on hand-cut fries." loading="lazy"><figcaption>Cut with the skin on, fried dark</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Fries buried under melted cheese and sauce in a paper tray." loading="lazy"><figcaption>Fries, loaded, going out to the lane</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — the shake machine =====================
+       Section five, well below the fold. Their board lists exactly five milkshake
+       flavours and prints nothing else about them. Tap a flavour, the cup fills;
+       tap it again, it empties. One gesture, an instant payoff, no reading, and no
+       fact from anywhere else on the page restated. -->
+  <section class="section section-dark" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Twenty ounces, five ways</p>
+        <h2>Fill the cup <em>before you pull in</em></h2>
+        <p>These are the five flavours printed on the panel, and there is no sixth. Pick the one you're getting.</p>
+      </div>
+      <div class="shakes reveal">
+        <div class="shake-stage">
+          <div class="cup" id="cup">
+            <span class="straw" aria-hidden="true"></span>
+            <span class="cup-body"><span class="fill" id="cupFill"></span></span>
+          </div>
+          <p class="shake-name empty" id="shakeName" aria-live="polite">Empty cup</p>
+        </div>
+        <div class="flavors" id="flavors">
+          <button class="flav" type="button" aria-pressed="false" data-n="Chocolate" style="--sw:var(--f-choc)"><span class="sw" aria-hidden="true"></span>Chocolate</button>
+          <button class="flav" type="button" aria-pressed="false" data-n="Vanilla" style="--sw:var(--f-van)"><span class="sw" aria-hidden="true"></span>Vanilla</button>
+          <button class="flav" type="button" aria-pressed="false" data-n="Strawberry" style="--sw:var(--f-straw)"><span class="sw" aria-hidden="true"></span>Strawberry</button>
+          <button class="flav" type="button" aria-pressed="false" data-n="Orange Creamsicle" style="--sw:var(--f-orange)"><span class="sw" aria-hidden="true"></span>Orange Creamsicle</button>
+          <button class="flav" type="button" aria-pressed="false" data-n="Black Raspberry" style="--sw:var(--f-raspberry)"><span class="sw" aria-hidden="true"></span>Black Raspberry</button>
+          <p class="shake-hint">Tap a flavour — tap it again to empty it</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="The white Out &amp; About Burgers wagon parked on the gravel lot beside U-Haul trucks, with cars pulled up alongside it." loading="lazy">
+          <figcaption>The lot on Meridian East, U-Haul trucks and all</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Meridian East, near 144th</p>
+          <h2>One window, <em>one lane</em>, no walking up</h2>
+          <p class="lede">Out &amp; About Burgers works out of a white catering wagon on a gravel lot in South Hill — not a building, not a franchise pad, a trailer with wheels still under it.</p>
+          <p>The whole operation is bolted to the side of it. A neon OPEN in the sliding window, an ORDER HERE arrow pointing at the sill, three printed panels with the menu, and a hand-painted oval — a red marker script inside a gold car outline — big enough to read from the road.</p>
+          <p>Pull in off Meridian, roll down the window, and eat wherever you parked. That's the entire format, and 2,193 people have rated it.</p>
+          <a class="review-out" href="https://www.google.com/maps/search/?api=1&amp;query=Out+%26+About+Burgers%2C+14214+Meridian+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">How it goes</p>
+          <h2>Pull in, <em>order, go</em></h2>
+          <ol class="steps">
+            <li><h3>Take the lane, not a parking spot</h3><p>The drive-thru lane runs down the side of the wagon, marked by the red posts.</p></li>
+            <li><h3>Order at the window</h3><p>The board is right there under the sill, so you can read it while you wait your turn.</p></li>
+            <li><h3>Eat it in the car</h3><p>There's no dining room and there isn't meant to be. Most of the lot is somebody's table.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12539059830">(253) 905-9830</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Out+%26+About+Burgers%2C+14214+Meridian+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
+               At go-live, pages-golive.sh <slug> [domain] <web3forms-key> fills this. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's this about?<select name="topic"><option>A big order ahead of time</option><option>Catering or an event</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many, and roughly when?"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the wagon</button>
+          <p class="form-success">Thanks — someone will get back to you as soon as the window's not slammed.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The lane is open</p>
+        <h2>Pull in off <em>Meridian</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b>4.5<i> ★</i></b><span>their Google rating, out of five</span></div>
+        <div class="num"><b><span class="count" data-to="2193">2193</span></b><span>people have rated the wagon on Google</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#menu" class="btn btn-primary">Read the board</a>
+        <a href="tel:+12539059830" class="btn btn-ghost">Call (253) 905-9830</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt=""></span>
+          <span class="wm">Out &amp; About Burgers<small>Hot, fresh &amp; local</small></span>
+        </div>
+        <p>A drive-thru burger wagon on Meridian East in South Hill, Puyallup.</p>
+        <div class="soc">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Out+%26+About+Burgers%2C+14214+Meridian+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Google listing ↗</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>14214 Meridian E<br>Puyallup, WA 98373</p>
+        <p><a href="tel:+12539059830">(253) 905-9830</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">The wagon</a><br><a href="#menu">The board</a><br><a href="#gallery">The food</a><br><a href="#signature">Shakes</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Out &amp; About Burgers</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

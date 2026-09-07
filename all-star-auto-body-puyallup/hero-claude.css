@@ -31,16 +31,16 @@
 .hero .hero-bg::before{
   content:"";position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(78% 62% at 50% 44%,
-      color-mix(in srgb,var(--warm) 13%,transparent) 0%,
-      rgba(0,0,0,0) 46%,
-      color-mix(in srgb,var(--dark) 55%,transparent) 78%,
-      color-mix(in srgb,var(--dark) 80%,transparent) 100%),
+    radial-gradient(74% 60% at 50% 44%,
+      color-mix(in srgb,var(--warm) 10%,transparent) 0%,
+      rgba(0,0,0,0) 48%,
+      color-mix(in srgb,var(--dark) 34%,transparent) 78%,
+      color-mix(in srgb,var(--dark) 60%,transparent) 100%),
     linear-gradient(180deg,
-      color-mix(in srgb,var(--dark) 62%,transparent) 0%,
-      color-mix(in srgb,var(--dark) 22%,transparent) 24%,
-      color-mix(in srgb,var(--dark) 46%,transparent) 62%,
-      color-mix(in srgb,var(--dark) 88%,transparent) 88%,
+      color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 6%,transparent) 26%,
+      color-mix(in srgb,var(--dark) 26%,transparent) 60%,
+      color-mix(in srgb,var(--dark) 74%,transparent) 86%,
       var(--dark) 100%);
 }
 
@@ -69,7 +69,7 @@
 
 /* ---------- the sign plate ------------------------------------------------ */
 .hero .as-sign{
-  position:relative;width:100%;aspect-ratio:1380 / 610;
+  position:relative;width:100%;aspect-ratio:1380 / 642;
   border:6px solid #10131a;border-radius:5px;overflow:hidden;
   box-shadow:
     0 44px 96px -34px rgba(0,0,0,.96),
