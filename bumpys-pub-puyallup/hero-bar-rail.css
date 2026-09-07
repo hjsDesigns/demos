@@ -21,13 +21,13 @@
 .hero.v-bar-rail .brail-room{
   position:absolute;inset:-6%;width:112%;height:112%;
   object-fit:cover;object-position:50% 42%;
-  filter:blur(26px) saturate(1.15) brightness(.5);
+  filter:blur(24px) saturate(1.2) brightness(.66);
   transform:scale(1.06);opacity:.9;
 }
 .hero.v-bar-rail .brail-vig{
   position:absolute;inset:0;
   background:
-    radial-gradient(120% 88% at 50% 44%,transparent 8%,color-mix(in srgb,var(--dark) 78%,transparent) 62%,var(--dark) 100%),
+    radial-gradient(120% 88% at 50% 44%,transparent 8%,color-mix(in srgb,var(--dark) 68%,transparent) 64%,var(--dark) 100%),
     linear-gradient(180deg,color-mix(in srgb,var(--dark) 72%,transparent) 0%,transparent 26%,transparent 62%,var(--dark) 100%);
 }
 /* the pendant pool — the only thing still moving after the intro */
