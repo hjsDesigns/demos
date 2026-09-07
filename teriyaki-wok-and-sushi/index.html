@@ -41,16 +41,20 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero =====================
-       EXTERIOR HERO DEFAULT: their own building, shot sharp in full sun,
-       with the real sign reading top to bottom. The scrim pools at the
-       BOTTOM only, so the sign is never dimmed, and nothing sits on the
-       photo but the headline block. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero-exterior.jpg" alt="The Teriyaki Wok &amp; Sushi storefront on 214th Ave E — yellow channel letters and a fresh Sushi banner under a teal roof, menu photos filling the windows" fetchpriority="high" width="1920" height="1440"></div>
-    <div class="hero-inner">
-      <h1>Teriyaki, the wok, and a full <em>sushi bar</em>.</h1>
-      <p class="hero-sub"><span class="sub-long">Two hundred and one dishes off one menu — grilled teriyaki, twenty-two wok plates, and nigiri cut to order at the bar.</span><span class="sub-short">201 dishes. One menu.</span></p>
+  <!-- ===================== #hero ===================== -->
+  <section class="hero hero-mark" id="hero">
+    <!-- ANIMATED-MARK INTRO (Hayden, 9/7: "the sign and the wok being on fire").
+         Their real sign lettering, cropped from their own storefront photo
+         (never redrawn), and a canvas fire rising off the flame that is
+         already painted over the "o" in Wok. The mark IS the headline
+         (sr-only h1); nothing else competes. The storefront photo moved to
+         the print under the hours band (STOREFRONT BELOW THE HOURS). -->
+    <div class="hero-inner mark-inner">
+      <h1 class="sr-only">Teriyaki Wok &amp; Sushi — teriyaki, wok plates and a full sushi bar in Bonney Lake</h1>
+      <div class="mark-stage" id="markStage">
+        <canvas id="fireCanvas" aria-hidden="true"></canvas>
+        <img class="mark" src="images/sign-mark.png" alt="" width="720" height="194" fetchpriority="high" decoding="async">
+      </div>
       <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the whole menu</a>
         <a href="tel:+12538911980" class="btn btn-cream">Call (253) 891-1980</a>
@@ -93,8 +97,8 @@
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/room.jpg" alt="The dining room at Teriyaki Wok &amp; Sushi — walnut tables, lit menu boards over the counter, a red sushi lantern and counter seating along the far wall" loading="lazy" width="1200" height="1600">
-          <figcaption>The dining room, from the door</figcaption>
+          <img src="images/hero-exterior.jpg" alt="The Teriyaki Wok &amp; Sushi storefront on 214th Ave E — yellow channel letters and a fresh Sushi banner under a teal roof, menu photos filling the windows" loading="lazy" width="1920" height="1440">
+          <figcaption>Unit L, from the parking lot</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Inside Unit L</p>
@@ -685,5 +689,6 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script src="js/fire.js"></script>
 </body>
 </html>
