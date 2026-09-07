@@ -240,3 +240,27 @@
   .ch-hero .ch-shine{display:none}
   .ch-hero .ch-bub{display:none}
 }
+
+
+/* ============================================================ CRISP TYPE (Hayden 9/7: "make it 4K")
+   The awning lettering was a 350px crop blown up 6x. It's now live type in the
+   awning's face (Fredoka, SIGN-FONT LAW) with the sign's sky-to-blue fill and a
+   white edge, so it is sharp at any size. Same reveal, same shine. */
+.ch-word-text{
+  font-family:'Fredoka','Trebuchet MS',sans-serif;font-weight:700;letter-spacing:.005em;line-height:1;
+  font-size:clamp(46px,min(13.6vw,13vh),124px);text-align:center;white-space:nowrap;
+  background:linear-gradient(180deg,#F2FBFF 0%,#8EDBFF 34%,#2A8BE0 72%,#1B63B8 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  -webkit-text-stroke:.018em rgba(255,255,255,.92);paint-order:stroke fill;
+  filter:drop-shadow(0 3px 0 rgba(10,40,80,.55)) drop-shadow(0 10px 26px rgba(6,14,22,.6));
+  padding:.06em .04em .1em}
+.ch-word-text .ch-lc{font-size:.82em}
+.ch-word-text .ch-the{font-size:.58em;font-weight:600;vertical-align:.08em;margin:0 .04em}
+.ch-tag-text{
+  font-family:'Fredoka','Trebuchet MS',sans-serif;font-weight:700;letter-spacing:.01em;line-height:1.1;white-space:nowrap;
+  font-size:clamp(15px,min(3.6vw,4.2vh),30px);color:#CFF04A;text-align:center;
+  -webkit-text-stroke:.012em rgba(255,255,255,.55);paint-order:stroke fill;
+  filter:drop-shadow(0 2px 0 rgba(10,40,20,.6)) drop-shadow(0 6px 16px rgba(6,14,22,.7))}
+.ch-tag-text .ch-pawg{font-size:.9em;filter:grayscale(1) brightness(1.6) sepia(1) hue-rotate(50deg) saturate(3)}
+.ch-hero .ch-paw{max-width:280px}
+@media (max-width:420px){.ch-tag-text{font-size:14px}}
