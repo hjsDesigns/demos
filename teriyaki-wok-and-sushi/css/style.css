@@ -1,501 +1,414 @@
 /* ============================================================
-   WEBSITE FACTORY — ONE-PAGE TEMPLATE
-   Distilled from the 2026-08 reference build (the quality bar; see README).
-   EVERY brand decision lives in :root below. Component rules only
-   ever reference tokens — never a hex color. Change the business,
-   change this block, done.
+   TERIYAKI WOK & SUSHI — Bonney Lake, WA
+   Atmosphere pass 2026-09-06. Rebuilt on the Captain Jack's
+   architecture: dark ground, real photos in framed prints,
+   one bold display face, hours band with a live light.
 
-   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
-   dark (a genuinely dark venue), three rules below still assume the light-
-   ground default and will render illegible — check/override these in the
-   SITE's OWN style.css, never edit this shared file:
-     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
-     .story-copy .lede         — color:var(--dark)
-     .site-footer              — background:var(--ink)
-   (The hero scrim had the same bug — built from var(--ink), which on a
-   dark-ground site is the light body-text color, so the "dark scrim" washed
-   the hero photo pale instead of darkening it; Hayden caught it live as
-   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
-   now uses var(--dark), the one token guaranteed dark in either mode — so
-   this one no longer needs a per-site override.)
-   Three separate bugs of this exact shape shipped in one build before this
-   note existed (footer, the About lede, then the hero scrim) — sweep the
-   remaining three before calling a dark-ground build done, don't wait for
-   Hayden to catch it.
+   MIRROR LAW — why this is a dark build:
+   the surfaces of this restaurant are dark. Every plate they serve
+   lands on a reddish-walnut live-edge table; the wall behind the
+   counter is charcoal; the ten menu boards are black; the wok shot
+   is black cast iron. (Honest note for the handoff: the CEILING is
+   white acoustic tile and the floor is grey concrete — this is a
+   mixed-brightness room, not a dive bar. The ground mirrors the
+   TABLES and the food photography, which is where the eye goes.)
+
+   ZONED COLOR (their sign has exactly two colors):
+     YELLOW  --warm   → eyebrows, the highlighted word, the wordmark,
+                        the review stars, section ornaments.
+     TEAL    --brand  → everything functional: buttons, links,
+                        chevrons, prices, chips, the today row, focus.
+   The coral of the "fresh Sushi" banner stays in the photographs.
+
+   DARK-GROUND SWEEP: --bg/--ink are flipped, so every rule that
+   assumes a light ground is written dark-first here. No var(--dark)
+   text on dark, no cream-assumed scrims.
    ============================================================ */
 :root{
-  /* ---- palette — TERIYAKI WOK & SUSHI, Bonney Lake ------------------------
-     Sampled off their own storefront photo (images/storefront.png, the round
-     shot from teriyakiwoksushiwa.com):
-       roof / awning teal .... #4AC1DD  → darkened to --brand for AA on cream
-       channel-letter yellow . #FEE916  → --warm, the sign's own yellow
-       storefront shadow ..... #22364A  → --ink / --dark, pulled toward teal
-     ZONED COLOR: teal owns everything functional (buttons, links, prices,
-     dots, chevrons); the sign yellow owns eyebrows-on-dark, the highlighted
-     word on dark, the today row and the review star. Never mixed. The coral
-     of the "fresh Sushi" window banner stays in the photos only.
-     Ground is one warm rice-paper cream — the room is bright (light walls,
-     wood, daylight through a glass storefront), so no dark ground. */
-  --brand:#0A8CA6;          /* roof teal, darkened — buttons, links, prices, chevrons */
-  --brand-text:#066274;     /* same hue, darker, for small type on cream */
-  --brand-bright:#14A9C4;   /* hover of --brand */
-  --accent:#0E8FA6;         /* checkmarks / success — same teal family */
-  --accent-soft:#6FD0E2;    /* teal for dark grounds */
-  --ink:#152229;            /* near-black, cooled toward the storefront shadow */
-  --bg:#F6E7CB;             /* TRUE CREAM page ground — rice paper, never white */
-  --bg-2:#E7D2A8;           /* deeper cream, alternating bands */
-  --paper:#FFF8E8;          /* cards — a hair lighter than --bg, never white */
-  --muted:#6B655B;          /* secondary text */
-  --line:#D8C39A;           /* hairlines, borders */
-  --dark:#0A3B47;           /* dark teal panels (hero scrim, closing CTA band) */
-  --dark-2:#0F4F5E;         /* dark hover */
-  --warm:#F6CF12;           /* the sign's channel-letter yellow */
-  --tint:#CFE7EC;           /* pale teal wash — the hours/status band */
-  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
-  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
+  /* ---- palette — sampled from their own storefront and their room ---- */
+  --brand:#1B93A8;          /* the teal standing-seam roof, darkened to sit on dark */
+  --brand-bright:#2FB4CB;   /* hover */
+  --brand-text:#7FD6E4;     /* teal type / prices on the dark ground */
+  --warm:#F7CF17;           /* the yellow channel letters of "Teriyaki Wok" */
+  --warm-deep:#C9A50E;
+  --accent:#4CAF50;         /* STATUS LIGHT LAW — green means open */
+  --closed:#EF4444;         /* STATUS LIGHT LAW — red means closed */
+  --ink:#F3EADA;            /* warm cream type */
+  --bg:#1B1613;             /* walnut-charcoal — the tables and the counter wall */
+  --bg-2:#120F0D;           /* deeper, alternating bands */
+  --paper:#241D18;          /* cards and print mounts */
+  --muted:#B3A28F;          /* secondary type */
+  --line:#3B3027;           /* hairlines */
+  --dark:#0A0807;           /* guaranteed-dark: scrims, footer, dark bands */
+  --tint:#0A2C34;           /* the hours band — deep lacquer teal */
 
-  /* ---- type: two faces max, loaded in index.html <head> ----
-     Archivo Black matches the storefront's heavy grotesque channel letters
-     (verified against a 4x crop of the real sign). Barlow carries the body. */
-  --display:'Archivo Black','Helvetica Neue',Helvetica,sans-serif;
+  /* ---- type: two faces, real fallbacks. Archivo Black chosen off a 4x
+         crop of the real sign: heavy geometric grotesque, straight-legged
+         k, flat-topped T. It ships ONE weight — 400 is pinned everywhere
+         so no browser fakes a bolder one. ---- */
+  --display:'Archivo Black','Arial Black','Helvetica Neue',Impact,sans-serif;
   --body:'Barlow','Avenir Next',Avenir,'Segoe UI',Helvetica,sans-serif;
-  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
 
   /* ---- metrics ---- */
-  --header-h:72px;
+  --header-h:74px;
   --pad:clamp(20px,5vw,64px);
   --maxw:1180px;
   --rule:1px solid var(--line);
-  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
-  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
-                                                (mechanical → steeper start; confident → slower settle;
-                                                elastic → overshoot past 1). Leave equal to --ease if
-                                                the build doesn't need a second feel. */
-  --r:18px;
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.32,.9,.24,1);
+  --r:14px;
 }
 
 /* ============================================================
-   Z-INDEX MAP (QA lesson from EA — keep it documented)
-     60  .site-header   sticky header, always on top
-     40  #main-nav      the dropped-down mobile menu (inside header)
-      3  .hero-inner    hero text block
-      2  .hero-bg::after film grain
+   Z-INDEX MAP
+     60  .site-header
+     40  #main-nav (mobile drop)
+      3  .hero-inner
+      2  .hero-bg::after  grain
       1  .hero-bg::before scrim
-      0  .hero-bg img   photo
-   Nothing else on the page sets a z-index above 10.
+      0  .hero-bg img
+   Nothing else above 10.
    ============================================================ */
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;
   display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 main{flex:1 0 auto}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
-h2 em{font-style:normal;color:var(--brand)}
-.section-dark h2 em,.hero h1 em{color:var(--warm)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.04;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2 em,h1 em{font-style:normal;color:var(--warm)}
 p{margin:0 0 1em}
+figure,blockquote{margin:0}
+b,strong{font-weight:700}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
-.section-dark .eyebrow{color:var(--warm)}
-:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);font-weight:600;margin:0 0 14px}
+:focus-visible{outline:3px solid var(--brand-bright);outline-offset:2px;border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tnum{font-variant-numeric:tabular-nums}
 
-/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+/* ---------- buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
-  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-weight:700;font-size:15px;letter-spacing:.015em;border:2px solid transparent;min-height:48px;cursor:pointer;
   font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
-.btn-primary{background:var(--brand);color:#fff}
-.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
-.btn-cream{background:var(--bg);color:var(--ink)}
-.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-primary{background:var(--brand);color:#04191D}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 80%,transparent)}
+.btn-cream{background:var(--ink);color:var(--dark)}
+.btn-cream:hover{background:#FFF8EA;transform:translateY(-2px)}
 .btn-ghost{border-color:currentColor;color:inherit;background:transparent}
-.btn-ghost:hover{transform:translateY(-2px)}
-.btn-dark{background:var(--dark);color:#fff}
-.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--brand-bright);color:var(--brand-text)}
 
 /* ============================================================ HEADER */
 .site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
-  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
-  border-bottom:var(--rule)}
+  background:color-mix(in srgb,var(--bg-2) 90%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:1px solid color-mix(in srgb,var(--warm) 26%,transparent)}
 .header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
-.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
-.logo img{height:46px;width:auto}
-.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
-.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+/* The mark is a keyed crop of their real channel letters off the storefront
+   photo (harvest-0906/g1.jpg) — NEVER RECREATE: nothing here is redrawn. */
+.logo{display:inline-flex;align-items:center;gap:12px;flex:none}
+.logo .mark-img{height:34px;width:auto}
+.logo .wm{font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  line-height:1.3;border-left:1px solid var(--line);padding-left:12px}
 .nav-wrap{display:flex;align-items:center;gap:18px}
-.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
-.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
-.main-nav a:hover{opacity:1;color:var(--brand)}
-.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
-.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
-/* live open/closed pill in the header */
-.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+.main-nav{display:flex;align-items:center;gap:20px;font-size:14.5px;font-weight:600}
+.main-nav a{color:var(--ink);opacity:.84;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand-text)}
+.main-nav .nav-cta{background:var(--brand);color:#04191D;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#04191D}
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
   font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums}
 .hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
-.hdr-live.is-open{border-color:color-mix(in srgb,var(--status-open) 55%,transparent);background:color-mix(in srgb,var(--status-open) 14%,transparent)}
-.hdr-live.is-open .dot{background:var(--status-open);animation:pulse 2.4s var(--ease) infinite}
-.hdr-live.is-closed .dot{background:var(--status-closed)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 60%,transparent);background:color-mix(in srgb,var(--accent) 12%,transparent);
+  box-shadow:0 0 18px -4px color-mix(in srgb,var(--accent) 45%,transparent)}
+.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed{border-color:color-mix(in srgb,var(--closed) 55%,transparent)}
+.hdr-live.is-closed .dot{background:var(--closed)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 34%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
-@media (max-width:1100px){.hdr-live .txt-long{display:none}}
-@media (max-width:900px){
+@media (max-width:1150px){.hdr-live .txt-long{display:none}}
+@media (max-width:980px){
   .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
-    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+    background:var(--bg-2);border-bottom:3px solid var(--warm);padding:8px 0;box-shadow:0 20px 40px -18px rgba(0,0,0,.8)}
   .main-nav.open{display:flex}
   .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
   .main-nav .nav-cta{border-radius:0;margin-top:6px}
   .nav-toggle{display:flex;align-items:center;justify-content:center}
 }
-@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
-@media (max-width:420px){.hdr-live{display:none}}
+@media (max-width:600px){.logo .wm{display:none}.logo .mark-img{height:30px}}
+@media (max-width:430px){.hdr-live{display:none}}
 
 /* ============================================================ HERO
-   Sized to the phone screen minus the sticky header (100svh under a sticky
-   header overshoots by the header's height — EA lesson). Content sits in
-   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
-   to opposite edges, so it can't collide on short screens. */
-.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+   The real storefront, shot sharp in full sun. NOTHING ON THE HERO PHOTO
+   BUT THE HEADLINE BLOCK, and the block sits low over the asphalt so the
+   sign — which is the business's own name — stays completely legible. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--dark);color:var(--ink)}
 .hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
-@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
-/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
-   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
-   light-ground AND a dark-ground build (it's the same token the .hero fallback
-   background above uses), where --ink flips to a light color on a dark-ground site
-   and would wash the photo pale instead of darkening it. */
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:saturate(1.06) contrast(1.03);animation:kenburns 30s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.09)}to{transform:scale(1)}}
+/* the pool of dark sits at the BOTTOM only — the sign and the sky stay lit */
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
-             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
-@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
-/* film grain */
-.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background:radial-gradient(115% 66% at 24% 104%,color-mix(in srgb,var(--dark) 92%,transparent) 0%,color-mix(in srgb,var(--dark) 55%,transparent) 44%,transparent 74%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 32%,transparent) 0%,transparent 18%,transparent 32%,color-mix(in srgb,var(--dark) 46%,transparent) 58%,color-mix(in srgb,var(--dark) 82%,transparent) 82%,color-mix(in srgb,var(--dark) 96%,transparent) 100%)}
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.32;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
-.hero-spacer{flex:1 1 auto}
-.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
-.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
-.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
-.hero h1 em{font-style:normal}
-.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) clamp(38px,7vh,74px)}
+.hero h1{font-size:clamp(36px,6.2vw,66px);max-width:16ch;text-shadow:0 6px 30px rgba(0,0,0,.85),0 2px 8px rgba(0,0,0,.55)}
+.hero-sub{margin:18px 0 26px;font-size:clamp(16px,2vw,20px);color:var(--ink);max-width:46ch;font-weight:500;text-shadow:0 3px 18px rgba(0,0,0,.9)}
+.hero-sub .sub-short{display:none}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-/* entrance stagger (only when JS is on, so no-JS never hides text) */
-.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
-.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero-sub{animation-delay:.16s}
+.js .hero-actions{animation-delay:.3s}
 @keyframes rise{to{opacity:1;transform:none}}
-.sub-short{display:none}
-@media (max-width:520px){
-  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
-  .hero h1{font-size:clamp(36px,10.5vw,44px)}
-  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+/* PHONES — NEVER CROP THE IMPORTANT PART.
+   A `cover` hero on a 390-wide screen would throw away two thirds of this
+   photo and cut the sign in half, and the sign is the business's own name.
+   So on phones the photograph runs whole, full width, at its natural aspect,
+   and the headline block sits under it on the dark ground — still filling
+   the first screen, still nothing on the photo but the photo. */
+@media (max-width:640px){
+  .hero{min-height:0;display:flex;flex-direction:column;background:var(--dark)}
+  .hero-bg{position:relative;inset:auto;flex:none;border-bottom:3px solid var(--brand)}
+  .hero-bg img{height:auto;object-fit:contain;animation:none}
+  .hero-bg::before{background:linear-gradient(180deg,transparent 62%,color-mix(in srgb,var(--dark) 42%,transparent) 100%)}
+  .hero-bg::after{opacity:.18}
+  .hero-inner{flex:1 1 auto;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(30px,6vh,54px) var(--pad) clamp(28px,5vh,46px)}
+  .hero h1{text-shadow:none;max-width:none}
+  .hero-sub .sub-long{display:none}
+  .hero-sub .sub-short{display:inline}
+  .hero-sub{margin:14px 0 22px;text-shadow:none;color:var(--muted)}
+  .hero-actions{gap:10px;width:100%}.hero-actions .btn{flex:1 1 auto;padding:13px 10px;font-size:14px}
 }
 
-/* ============================================================ HOURS / STATUS BAND */
-.status-band{background:var(--tint);border-bottom:var(--rule)}
-.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
-.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+/* ============================================================ HOURS / STATUS BAND
+   Deep lacquer teal — the one saturated band on the page. Hours live HERE
+   and nowhere else (NEVER TWICE). */
+.status-band{background:var(--tint);border-top:1px solid color-mix(in srgb,var(--brand) 40%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.status-band .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,76px) var(--pad)}
+.status-head h2{font-size:clamp(28px,3.5vw,42px);margin:0 0 18px}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
 .live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
-.live-line.is-open .dot{background:var(--status-open);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 22%,transparent)}
-.live-line.is-closed .dot{background:var(--status-closed)}
-.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
-.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
-.status-addr a:hover{border-bottom-color:var(--brand)}
-.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
-.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent),0 0 16px color-mix(in srgb,var(--accent) 60%,transparent)}
+.live-line.is-closed .dot{background:var(--closed);box-shadow:0 0 0 5px color-mix(in srgb,var(--closed) 22%,transparent)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:#CFE3E7;line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand-text) 45%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand-text)}
+.hours-list{margin:0;padding:0;list-style:none;background:#08222A;border:1px solid color-mix(in srgb,var(--brand) 36%,transparent);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -34px rgba(0,0,0,.85)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 20px;border-bottom:1px solid rgba(127,214,228,.14);font-size:15.5px}
 .hours-list li:last-child{border-bottom:0}
-.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list li.closed .time{color:#8FA6AC}
+.hours-list li.today{background:color-mix(in srgb,var(--brand) 26%,transparent)}
 .hours-list .day{font-weight:700}
-.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
-.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .day::after{content:" · today";color:var(--warm);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:#B7CFD5;font-size:13.5px;text-align:right;font-variant-numeric:tabular-nums}
 .hours-list li.today .time{color:var(--ink);font-weight:600}
-.hours-list li.closed .time{color:var(--status-closed)}
 .proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
-.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:rgba(8,34,42,.85);border:1px solid color-mix(in srgb,var(--brand) 36%,transparent);border-radius:999px;padding:8px 14px}
 .proof .ico{color:var(--accent)}
 .proof .star{color:var(--warm)}
-@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+@media (max-width:860px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
 
 /* ============================================================ SECTION SHELL */
-.section{padding:clamp(56px,8vw,112px) 0}
+.section{padding:clamp(56px,8vw,110px) 0}
 .section-alt{background:var(--bg-2)}
-.section-dark{background:var(--dark);color:#fff}
+.section-dark{background:var(--dark);color:var(--ink)}
 .section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
-.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
-.section-head p{font-size:18px;color:var(--muted);margin:0}
-.section-dark .section-head p{color:rgba(255,255,255,.78)}
-/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
-.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.js .reveal.in{opacity:1;transform:none}
+.section-head h2{font-size:clamp(29px,4.1vw,50px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0 0 .7em}
+.section-head p:last-child{margin-bottom:0}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
-  .js .reveal{opacity:1;transform:none;transition:none}
-  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
   .hero-bg img{animation:none}
   .hdr-live.is-open .dot{animation:none}
 }
 
-/* ============================================================ SERVICES (cards grid) */
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
-.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
-.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
-.card .ico svg{width:26px;height:26px}
-.card h3{font-size:21px;margin:0 0 8px}
-.card p{font-size:15px;color:var(--muted);margin:0}
-.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
-@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.cards{grid-template-columns:1fr}}
-
-/* ============================================================ MENU (priced list) — removable */
-.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
-.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
-.menu-list{list-style:none;margin:0;padding:0}
-.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
-.menu-list li:last-child{border-bottom:0}
-.menu-list .name{font-weight:800;font-size:16.5px}
-.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
-/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
-.tnum{font-variant-numeric:tabular-nums}
-.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
-.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
-@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
-
-/* ============================================================ GALLERY (framed prints) */
-.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
-.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
-.print:hover{transform:rotate(0) scale(1.01)}
+/* ============================================================ FRAMED PRINTS
+   Every photograph on this page sits in a mounted print with a real
+   caption — never sprinkled as decor. */
+.print{background:var(--paper);padding:13px 13px 38px;border:var(--rule);box-shadow:0 40px 80px -40px rgba(0,0,0,.95);transition:transform .5s var(--ease)}
 .print img{width:100%;height:auto;display:block}
-.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
-.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
-.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
-.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:13px;text-align:center}
+.prints{column-count:2;column-gap:clamp(18px,3vw,34px)}
+.prints .print{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 clamp(18px,3vw,34px)}
+.prints .print:nth-child(2n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(2n){transform:rotate(.8deg)}
 .prints .print:hover{transform:rotate(0) scale(1.02)}
-@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+@media (max-width:600px){.prints{column-count:1}.prints .print{transform:none}}
 
-/* ============================================================ SIGNATURE — BUILD YOUR BENTO
-   Every bento on their menu carries the same four sides; the only choice is
-   the main. So the gadget IS that choice: five labelled pills, one tap, the
-   photo and the price change instantly. No numbers to type, nothing to read
-   before you can play with it, and the five bentos appear nowhere else on
-   the page (NEVER TWICE — the menu title cards deliberately skip B-3…B-7). */
-.bento{display:grid;gap:clamp(18px,3vw,28px);max-width:940px;margin:0 auto}
-.bento-stage{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,36px);align-items:center;
-  background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(16px,2.4vw,26px);
-  box-shadow:0 40px 80px -50px color-mix(in srgb,var(--dark) 60%,transparent)}
-.bento-shot{position:relative;margin:0;aspect-ratio:4/3;border-radius:calc(var(--r) - 6px);overflow:hidden;
-  background:var(--bg-2);border:1px solid var(--line)}
-.bento-shot .bshot{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;
-  opacity:0;transition:opacity .32s var(--ease-2)}
-.bento-shot .bshot.on{opacity:1}
-.bento-read{min-width:0}
-.bento-name{font-family:var(--display);font-size:clamp(19px,2.3vw,25px);line-height:1.12;margin:0 0 6px;letter-spacing:-.01em}
-.bento-price{font-family:var(--display);font-size:clamp(40px,6vw,64px);line-height:1;letter-spacing:-.03em;
-  color:var(--brand-text);margin:0 0 12px}
-.bento-note{font-size:13px;color:var(--muted);margin:0 0 12px;font-style:italic}
-.bento-fixed{font-size:15px;color:var(--ink);margin:0;padding-top:14px;border-top:var(--rule);line-height:1.55}
-.bento-fixed span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:5px}
-.bento-picks{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.pick{font-family:var(--body);font-size:16px;font-weight:700;min-height:52px;padding:13px 24px;border-radius:999px;
-  border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;
-  transition:transform .18s var(--ease),background .18s,border-color .18s,color .18s,box-shadow .18s}
-.pick:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--brand) 55%,transparent)}
-.pick.is-on{background:var(--brand);border-color:var(--brand);color:#fff;
-  box-shadow:0 14px 28px -14px color-mix(in srgb,var(--brand) 70%,transparent)}
-@media (max-width:760px){
-  /* phones: the RESULT sits ABOVE the swatches, and the read sits under the photo */
-  .bento-stage{grid-template-columns:1fr;gap:16px}
-  .bento-price{font-size:44px}
-}
-@media (prefers-reduced-motion:reduce){.bento-shot .bshot{transition:none}.pick{transition:none}}
-
-/* ============================================================ ABOUT (owner story + photo) */
-.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
-.story .print{transform:rotate(-1.2deg)}
+/* ============================================================ ABOUT — the room + the three stations */
+.story{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,5vw,68px);align-items:center}
+.story .print{transform:rotate(-1.4deg)}
 .story .print:hover{transform:rotate(0) scale(1.01)}
-.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
-.story-copy p{font-size:17px;color:var(--ink)}
-.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
-.team{margin-top:clamp(36px,5vw,64px)}
-.team h3{font-size:22px;margin:0 0 16px}
-.faces{display:flex;flex-wrap:wrap;gap:10px}
-.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
-.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
-.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
-.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
-@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+.story-copy h2{font-size:clamp(29px,4vw,48px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--muted)}
+.story-copy .lede{font-size:19px;font-weight:600;color:var(--warm);font-family:var(--body);line-height:1.5}
+.stations{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:0}
+.stations li{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:14px;padding:13px 0;border-top:var(--rule)}
+.stations li:last-child{border-bottom:var(--rule)}
+.stations .st-n{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--brand-text);font-variant-numeric:tabular-nums}
+.stations .st-name{font-family:var(--display);font-size:17px;color:var(--ink)}
+.stations .st-count{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:920px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ MENU */
+.menu-lead{display:grid;grid-template-columns:.62fr 1fr;gap:clamp(24px,4vw,56px);align-items:center;margin-bottom:clamp(30px,4vw,52px)}
+.menu-lead .print{transform:rotate(1.1deg)}
+.menu-lead .print:hover{transform:rotate(0) scale(1.01)}
+.menu-lead .section-head{margin-bottom:0}
+@media (max-width:860px){.menu-lead{grid-template-columns:1fr}.menu-lead .print{transform:none;order:2}}
+
+.menu-search{margin:0 0 22px}
+.menu-search label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.menu-search-line{display:flex;gap:10px;flex-wrap:wrap}
+.menu-search input{flex:1 1 260px;font-family:var(--body);font-size:16px;padding:12px 16px;min-height:48px;
+  border:1.5px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+.menu-search input::placeholder{color:#8A7B6B}
+.menu-search input:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 22%,transparent)}
+.menu-search button{font-family:var(--body);font-weight:700;font-size:14px;min-height:48px;padding:0 20px;border-radius:999px;
+  border:1.5px solid var(--line);background:transparent;color:var(--brand-text);cursor:pointer}
+.menu-search button:hover{border-color:var(--brand)}
+#menuSearchStatus{font-family:var(--mono);font-size:12.5px;color:var(--brand-text);margin:10px 0 0;min-height:1.2em}
+#bentoSearchLink{display:inline-block;font-size:13.5px;font-weight:700;color:var(--warm);margin-top:4px}
+
+.rolls{display:grid;gap:12px}
+.card-roll{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.card-roll:hover{border-color:color-mix(in srgb,var(--brand) 46%,transparent)}
+.card-roll.is-open{border-color:color-mix(in srgb,var(--brand) 60%,transparent);box-shadow:0 30px 60px -40px rgba(0,0,0,.95)}
+.roll-head{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:64px;
+  background:none;border:0;padding:18px clamp(16px,2.4vw,26px);margin:0;cursor:pointer;color:inherit;text-align:left;font:inherit}
+.roll-title{display:flex;flex-direction:column;gap:7px}
+.roll-name{font-family:var(--display);font-size:clamp(18px,2.2vw,23px);line-height:1.1;color:var(--ink)}
+.roll-meta{display:flex;flex-wrap:wrap;gap:8px}
+.roll-count,.roll-range{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-variant-numeric:tabular-nums;
+  padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+.roll-count{color:var(--muted)}
+.roll-range{color:var(--brand-text);border-color:color-mix(in srgb,var(--brand) 40%,transparent)}
+/* ARROW LAW — a downward chevron that flips up. Never a plus sign. */
+.chev{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--brand) 20%,transparent);color:var(--brand-text);transition:transform .3s var(--ease),background .2s}
+.chev svg{width:18px;height:18px}
+.roll-head:hover .chev{background:color-mix(in srgb,var(--brand) 40%,transparent);color:#EAFBFF}
+.card-roll.is-open .chev{transform:rotate(180deg);background:var(--brand);color:#04191D}
+.roll-body{padding:0 clamp(16px,2.4vw,26px) 24px}
+.roll-intro{font-size:15px;color:var(--muted);margin:0 0 12px;border-top:var(--rule);padding-top:16px}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:11px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:700;font-size:15.5px;color:var(--ink)}
+.menu-list .price{font-family:var(--mono);font-weight:600;font-size:14.5px;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:13.5px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:26px 0 0;max-width:74ch}
+@media (min-width:760px){.roll-body .menu-list{columns:2;column-gap:clamp(24px,4vw,52px)}
+  .roll-body .menu-list li{break-inside:avoid;-webkit-column-break-inside:avoid}}
+
+/* the printed in-house menu — items that exist nowhere online */
+.printed{margin-top:clamp(34px,5vw,60px);background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,34px)}
+.printed h3{font-size:clamp(20px,2.4vw,26px);margin:0 0 6px}
+.printed .src{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}
+.printed-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,52px)}
+.printed h4{font-size:15px;letter-spacing:.02em;color:var(--warm);margin:0 0 10px;padding-bottom:9px;border-bottom:2px solid color-mix(in srgb,var(--warm) 45%,transparent)}
+.printed .incl{font-size:13px;color:var(--muted);margin:0 0 8px}
+@media (max-width:700px){.printed-cols{grid-template-columns:1fr}}
+
+/* the dish strip — three real plates, mounted */
+.dish-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,26px);margin-top:clamp(30px,4vw,52px)}
+.dish{background:var(--paper);border:var(--rule);padding:12px 12px 34px;box-shadow:0 34px 66px -40px rgba(0,0,0,.95);transition:transform .5s var(--ease)}
+.dish img{width:100%;height:240px;object-fit:cover}
+.dish figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:12px;text-align:center}
+.dish:nth-child(1){transform:rotate(-1.1deg)}
+.dish:nth-child(2){transform:rotate(.7deg)}
+.dish:nth-child(3){transform:rotate(-.5deg)}
+.dish:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:760px){.dish-strip{grid-template-columns:1fr}.dish{transform:none}.dish img{height:auto}}
+
+/* ============================================================ SIGNATURE — BUILD YOUR BENTO */
+.bento{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(18px,3vw,32px);
+  box-shadow:0 40px 80px -46px rgba(0,0,0,.95)}
+.bento-stage{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,3.4vw,44px);align-items:center}
+/* A warm-white mount, like the lightbox a menu photo is shot on: their own
+   product shots have white backgrounds, so a dark stage would leave a white
+   slab floating. Contain, never crop — the box is always shown whole. */
+.bento-shot{position:relative;margin:0;aspect-ratio:4/3;background:#F0E7D6;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.bshot{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(.985);
+  transition:opacity .32s var(--ease),transform .32s var(--ease)}
+.bshot.on{opacity:1;transform:none}
+.bento-name{font-family:var(--display);font-size:clamp(20px,2.6vw,28px);line-height:1.12;margin:0 0 6px;color:var(--ink)}
+.bento-price{font-family:var(--display);font-size:clamp(34px,5vw,54px);line-height:1;margin:0;color:var(--warm)}
+.bento-note{font-size:13px;font-style:italic;color:var(--muted);margin:12px 0 0}
+.bento-fixed{font-size:14.5px;color:var(--muted);margin:18px 0 0;padding-top:16px;border-top:var(--rule)}
+.bento-fixed span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-text);margin-bottom:6px}
+.bento-picks{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(20px,3vw,28px)}
+.pick{font-family:var(--body);font-weight:700;font-size:15px;padding:13px 22px;min-height:48px;border-radius:999px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--bg-2);color:var(--ink);transition:transform .18s var(--ease),background .2s,border-color .2s,color .2s}
+.pick:hover{border-color:var(--brand);transform:translateY(-2px)}
+.pick.is-on{background:var(--brand);border-color:var(--brand);color:#04191D;box-shadow:0 12px 26px -14px color-mix(in srgb,var(--brand) 90%,transparent)}
+@media (max-width:820px){.bento-stage{grid-template-columns:1fr}.bento-read{text-align:left}}
+@media (prefers-reduced-motion:reduce){.bshot{transition:none}.pick{transition:none}}
+
+/* ============================================================ REVIEWS (quoted as written) */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.6vw,26px)}
+.quote{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px;margin:0;position:relative}
+.quote::before{content:"“";position:absolute;top:6px;left:16px;font-family:var(--display);font-size:64px;line-height:1;color:color-mix(in srgb,var(--warm) 26%,transparent)}
+.quote p{font-size:16px;font-style:italic;color:var(--ink);margin:0 0 16px;position:relative}
+.quote cite{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-style:normal}
+.quote .stars{color:var(--warm);font-size:14px;letter-spacing:.16em;display:block;margin-bottom:8px}
+.quotes-fine{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:20px 0 0}
+@media (max-width:860px){.quotes{grid-template-columns:1fr}}
 
 /* ============================================================ CONTACT */
 .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
-.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.contact h2{font-size:clamp(29px,4vw,48px);margin:0 0 22px}
 .steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
 .steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
-.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:11px;background:var(--brand);color:#04191D;display:grid;place-items:center;font-family:var(--display);font-size:16px}
 .steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
 .steps li:last-child::after{display:none}
-.steps h3{font-size:19px;margin:0 0 4px}
+.steps h3{font-size:17px;margin:0 0 4px}
 .steps p{font-size:15px;color:var(--muted);margin:0}
 .contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
-.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
-.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-lines a{font-weight:700;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand-text) 42%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand-text)}
 .contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;letter-spacing:.02em}
 .contact-form .full{grid-column:1 / -1}
-.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--bg-2);color:var(--ink);min-height:48px}
 .contact-form textarea{min-height:110px;resize:vertical}
-.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 20%,transparent)}
 .contact-form .btn{grid-column:1 / -1;justify-self:start}
-.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent) 16%,transparent);border:1px solid var(--accent);border-radius:11px;padding:14px 16px;font-weight:700;color:var(--ink)}
 .form-success.show{display:block}
 .form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
-@media (max-width:900px){.contact{grid-template-columns:1fr}}
-@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+@media (max-width:920px){.contact{grid-template-columns:1fr}}
+@media (max-width:600px){.contact-form{grid-template-columns:1fr}}
 
-/* ============================================================ CTA BAND (dark, with count-up numbers) */
+/* ============================================================ CTA BAND */
 .cta-band .section-head{max-width:none}
-.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
-.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
-.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
-.num b i{font-style:normal;color:var(--warm)}
-.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:clamp(28px,4vw,46px)}
+.num{border:1px solid color-mix(in srgb,var(--brand) 30%,transparent);border-radius:var(--r);padding:22px 20px;background:rgba(127,214,228,.04)}
+.num b{display:block;font-family:var(--display);font-size:clamp(36px,4.8vw,54px);line-height:1;color:var(--warm);font-variant-numeric:tabular-nums;font-weight:400}
+.num > span{display:block;font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.45}
 .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
-@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.numbers{grid-template-columns:1fr}}
 
 /* ============================================================ FOOTER */
-.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.site-footer{background:var(--dark);color:var(--muted);padding:clamp(40px,6vw,64px) 0 28px;border-top:1px solid color-mix(in srgb,var(--warm) 22%,transparent)}
 .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
-.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
-.foot .plate img{height:44px;width:auto}
-.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
-.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot .brand{margin-bottom:16px}
+.foot .brand img{height:38px;width:auto}
+.foot .brand small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
 .foot p{font-size:14.5px;margin:0 0 6px}
 .foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
-.foot a:hover{color:#fff}
-.foot .soc{display:flex;gap:10px;margin-top:8px}
-.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
-.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.foot a:hover{color:var(--brand-text)}
+.foot .soc{display:flex;gap:10px;margin-top:12px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:var(--rule);border-radius:999px;padding:7px 15px;min-height:44px;color:var(--ink)}
+.foot .soc a:hover{border-color:var(--brand)}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:var(--rule);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted)}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
-
-/* ============================================================================
-   SITE BLOCK — TERIYAKI WOK & SUSHI
-   Everything below is specific to this build. Tokens only, no raw hex.
-   ============================================================================ */
-
-/* ---- Archivo Black ships one weight (400). Asking for 800 makes the browser
-   synthesise a fake bold and smear the letterforms, so pin every display
-   element back to 400 — the face is already heavy. ---- */
-h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.face .ini,.bento-name,.bento-price,.steps li::before{font-weight:400}
-.logo .wm{font-size:19px;letter-spacing:-.02em;line-height:1.08;
-  border-bottom:4px solid var(--warm);padding-bottom:2px}
-.logo .wm small{border-bottom:0}
-@media (max-width:560px){.logo .wm{font-size:16px;border-bottom-width:3px}}
-
-/* ---- storefront medallion (STOREFRONT BELOW THE HOURS) ---- */
-.intro-split{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,56px);align-items:center;
-  margin-bottom:clamp(32px,4vw,52px)}
-.intro-split .section-head{margin-bottom:0}
-.storefront{margin:0;flex:none;text-align:center}
-.storefront img{width:clamp(190px,22vw,270px);height:auto;border-radius:50%;
-  box-shadow:0 30px 60px -30px color-mix(in srgb,var(--dark) 65%,transparent);
-  outline:6px solid var(--paper);outline-offset:-2px}
-.storefront figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);margin-top:16px}
-@media (max-width:820px){.intro-split{grid-template-columns:1fr;justify-items:center;text-align:center}
-  .intro-split .section-head{max-width:56ch}}
-
-/* ---- MENU: title cards that unroll (ARROW LAW — a downward chevron that flips up) ---- */
-.rolls{display:grid;gap:12px}
-.card-roll{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;
-  transition:box-shadow .3s var(--ease),border-color .3s}
-.card-roll.is-open{border-color:color-mix(in srgb,var(--brand) 45%,transparent);
-  box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 60%,transparent)}
-.roll-head{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;
-  background:none;border:0;cursor:pointer;text-align:left;font-family:var(--body);color:var(--ink);
-  padding:clamp(16px,2.2vw,22px) clamp(16px,2.4vw,26px);min-height:64px}
-.roll-head:hover .roll-name{color:var(--brand-text)}
-.roll-title{display:flex;flex-direction:column;gap:6px;min-width:0}
-.roll-name{font-family:var(--display);font-size:clamp(20px,2.5vw,27px);line-height:1.08;letter-spacing:-.015em;
-  transition:color .2s}
-.roll-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--mono);font-size:11.5px;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
-.roll-range{color:var(--brand-text);font-weight:600}
-.roll-meta .roll-count::after{content:"·";margin-left:8px;color:var(--line)}
-.chev{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
-  background:var(--tint);color:var(--brand-text);transition:transform .32s var(--ease),background .2s}
-.chev svg{width:22px;height:22px}
-.card-roll.is-open .chev{transform:rotate(180deg);background:var(--brand);color:#fff}
-.roll-body{padding:0 clamp(16px,2.4vw,26px) clamp(18px,2.4vw,26px)}
-.roll-intro{font-size:15.5px;color:var(--muted);margin:0 0 14px;max-width:62ch}
-.roll-body .menu-list{columns:2;column-gap:clamp(24px,4vw,48px)}
-.roll-body .menu-list li{break-inside:avoid;-webkit-column-break-inside:avoid}
-@media (max-width:760px){.roll-body .menu-list{columns:1}}
-@media (prefers-reduced-motion:reduce){.chev{transition:none}}
-
-/* ---- review quotes (no reviewer names are published anywhere we can reach,
-   so these are quotes, not review cards — no invented names, no stock faces) ---- */
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,22px);
-  margin-top:clamp(30px,4vw,48px)}
-.quote{margin:0;background:var(--paper);border:var(--rule);border-left:4px solid var(--warm);
-  border-radius:var(--r);padding:24px 24px 20px}
-.quote p{font-size:17px;line-height:1.5;margin:0 0 12px;color:var(--ink)}
-.quote cite{font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--muted)}
-.quotes-fine{font-size:12.5px;color:var(--muted);margin:18px 0 0}
-@media (max-width:900px){.quotes{grid-template-columns:1fr}}
-
-/* ---- about band lede (the template scopes .lede to .story-copy) ---- */
-.section-head .lede{font-size:19px;font-weight:600;color:var(--dark)}
-.section-head{max-width:70ch}
-
-/* ---- hero: the platter sits centre-frame in a square photo, so hold the
-   crop on the middle rather than the template's 62% ---- */
-.hero-bg img{object-position:50% 44%}
-
-/* ---- gallery: two square prints side by side, the wide sashimi platter
-   spanning underneath — a 1800x800 frame in a 3-up grid left a short, stranded
-   third card. Whole photos either way (never crop the important part). ---- */
-.prints{grid-template-columns:1fr 1fr}
-.prints .print:nth-child(3){grid-column:1 / -1}
-.prints .print:nth-child(3n+1){transform:rotate(-1deg)}
-.prints .print:nth-child(3n+2){transform:rotate(.7deg)}
-.prints .print:nth-child(3n){transform:rotate(0)}
-@media (max-width:560px){.prints{grid-template-columns:1fr}}
-
-/* Final refinement: preserve the whole platter and simplify the menu path. */
-.hero-bg img{position:relative;z-index:1;object-fit:contain;object-position:center;animation:none}
-.hero-bg::after{z-index:0;background-image:url('../images/hero.jpg');background-size:cover;background-position:center;filter:blur(24px);transform:scale(1.08);opacity:.65;mix-blend-mode:normal}
-.hero-bg::before{z-index:2}
-.hero h1{max-width:clamp(540px,57vw,820px);letter-spacing:-.035em}
-.hero-sub{font-weight:400;max-width:48ch;line-height:1.6}
-.menu-search{max-width:680px;margin:0 0 30px}
-.menu-search label{display:block;font-weight:700;margin-bottom:8px}
-.menu-search-line{display:flex;gap:10px}
-.menu-search input{width:100%;min-width:0;min-height:50px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:inherit}
-.menu-search button{border:1px solid var(--line);border-radius:12px;background:var(--bg-2);color:var(--ink);padding:10px 16px;min-height:48px;font:inherit;cursor:pointer}
-#menuSearchStatus{margin:8px 0 0;color:var(--muted);font-size:14px}
-#bentoSearchLink{display:inline-flex;align-items:center;min-height:44px;color:var(--brand-text);font-weight:700;text-decoration:underline;text-underline-offset:4px}
-[hidden]{display:none!important}
-.card-roll:focus-within{border-color:var(--brand)}
-.bento-picks{justify-content:flex-start}
-@media(min-width:901px){.header-inner{gap:12px}.main-nav{gap:16px}}
-@media(prefers-reduced-motion:reduce){.hero-bg::after{transform:none}}
-
-/* Basic navigation and content remain usable without JavaScript. */
-html:not(.js) .site-header{position:relative;height:auto}
-html:not(.js) .header-inner{flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
-html:not(.js) .nav-toggle{display:none}
-html:not(.js) .main-nav{display:flex;position:static;flex-direction:row;flex-wrap:wrap;box-shadow:none;border:0;gap:8px;background:none}
-html:not(.js) .main-nav a{padding:8px;min-height:44px}
-html:not(.js) .contact-form{display:none}
-
-/* Let the actual room/food photos fill their grid columns. */
-.prints .print{margin:0;align-self:start}
-.prints .print figcaption{font-family:var(--body);font-size:13px;letter-spacing:.025em;text-transform:none;line-height:1.5}
-
-@media(max-width:760px){.hero-bg img{object-position:center top}}

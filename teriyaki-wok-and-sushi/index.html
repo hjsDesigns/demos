@@ -7,25 +7,30 @@
 <meta name="description" content="Teriyaki Wok &amp; Sushi in Bonney Lake — 201 dishes off the grill, the wok and a full sushi bar. Dine in, take out or delivery, six days a week until 8:30.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Archivo Black (display — matches the storefront's channel letters) + Barlow (body) -->
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<!-- Archivo Black (display — the heavy grotesque of their real channel letters,
+     one weight only, pinned at 400) + Barlow (body). Must match --display / --body. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ===================== HEADER / NAV ===================== -->
+<!-- ===================== HEADER / NAV =====================
+     The mark is a keyed crop of the real "Teriyaki Wok" channel letters,
+     lifted straight off their storefront photo. Nothing is redrawn. -->
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="Teriyaki Wok &amp; Sushi — home">
-      <span class="wm">Teriyaki Wok &amp; Sushi<small>Bonney Lake, WA</small></span>
+      <img class="mark-img" src="images/sign-mark.png" alt="Teriyaki Wok &amp; Sushi" width="720" height="194">
+      <span class="wm">Bonney<br>Lake, WA</span>
     </a>
     <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
+        <a href="#about">The room</a>
         <a href="#menu">Menu</a>
         <a href="#signature">Bento box</a>
         <a href="#gallery">Photos</a>
-        <a href="#about">The restaurant</a>
         <a href="#hours">Hours</a>
         <a href="https://teriyakiwoksushi.menu11.com/bonneylake/order" target="_blank" rel="noopener" class="nav-cta">Order online</a>
       </nav>
@@ -36,10 +41,13 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero ===================== -->
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT: their own building, shot sharp in full sun,
+       with the real sign reading top to bottom. The scrim pools at the
+       BOTTOM only, so the sign is never dimmed, and nothing sits on the
+       photo but the headline block. -->
   <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="A sushi and sashimi party platter on a table in the Teriyaki Wok &amp; Sushi dining room" fetchpriority="high" width="1800" height="1800"></div>
-    <div class="hero-spacer"></div>
+    <div class="hero-bg"><img src="images/hero-exterior.jpg" alt="The Teriyaki Wok &amp; Sushi storefront on 214th Ave E — yellow channel letters and a fresh Sushi banner under a teal roof, menu photos filling the windows" fetchpriority="high" width="1920" height="1440"></div>
     <div class="hero-inner">
       <h1>Teriyaki, the wok, and a full <em>sushi bar</em>.</h1>
       <p class="hero-sub"><span class="sub-long">Two hundred and one dishes off one menu — grilled teriyaki, twenty-two wok plates, and nigiri cut to order at the bar.</span><span class="sub-short">201 dishes. One menu.</span></p>
@@ -51,7 +59,8 @@
   </section>
 
   <!-- ===================== #hours =====================
-       Hours live HERE and nowhere else on the page (NEVER TWICE). -->
+       Hours live HERE and nowhere else on the page (NEVER TWICE).
+       Live Pacific clock, green open / red closed (STATUS LIGHT LAW). -->
   <section class="status-band" id="hours">
     <div class="wrap">
       <div class="status-head">
@@ -79,56 +88,46 @@
     </div>
   </section>
 
-  <!-- ===================== #services =====================
-       STOREFRONT BELOW THE HOURS: the exterior opens the offerings section. -->
-  <section class="section section-alt" id="services">
+  <!-- ===================== #about — the room ===================== -->
+  <section class="section section-alt" id="about">
     <div class="wrap">
-      <div class="intro-split">
-        <figure class="storefront reveal">
-          <img src="images/storefront.png" alt="The Teriyaki Wok &amp; Sushi storefront — yellow lettering under a teal roof, Unit L in the plaza on 214th Ave E" loading="lazy" width="500" height="500">
-          <figcaption>Unit L, in the plaza on 214th Ave E</figcaption>
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/room.jpg" alt="The dining room at Teriyaki Wok &amp; Sushi — walnut tables, lit menu boards over the counter, a red sushi lantern and counter seating along the far wall" loading="lazy" width="1200" height="1600">
+          <figcaption>The dining room, from the door</figcaption>
         </figure>
-        <div class="section-head reveal">
-          <p class="eyebrow">Three kitchens, one room</p>
-          <h2>A grill, a wok and a <em>sushi bar</em>.</h2>
-          <p>Sit down, take it home, or have it brought to you. The same menu covers all three.</p>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Inside Unit L</p>
+          <h2>One room, <em>three stations</em>.</h2>
+          <p class="lede">A sit-down teriyaki house with its own sushi bar, in the plaza on 214th Ave E.</p>
+          <p>Most teriyaki places pick a lane. This one runs a grill, a wok and a sushi bar out of the same kitchen — so one table can order a chicken teriyaki plate, a Mongolian beef and a sashimi deluxe and have it all land at once.</p>
+          <p>Lit menu boards fill the wall over the counter, the tables are solid walnut, and there's counter seating down the far side under the sushi lanterns. Two hundred and one dishes, from a $2 scoop of rice to a $45 toro carpaccio.</p>
+          <ul class="stations">
+            <li><span class="st-n">01</span><span class="st-name">The teriyaki grill</span><span class="st-count">6 plates · 13 combos</span></li>
+            <li><span class="st-n">02</span><span class="st-name">The wok</span><span class="st-count">22 plates</span></li>
+            <li><span class="st-n">03</span><span class="st-name">The sushi bar</span><span class="st-count">56 rolls · 22 cuts</span></li>
+          </ul>
         </div>
-      </div>
-      <div class="cards">
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h18"/><path d="M5 15V9a7 7 0 0 1 14 0v6"/><path d="M8 19h8"/></svg></div>
-          <h3>The teriyaki grill</h3>
-          <p>Chicken, beef, pork, spicy chicken, chicken breast and shrimp — grilled and served over rice with a fresh salad.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h14a4 4 0 0 1 0 8H8a5 5 0 0 1-5-5z"/><path d="M17 12h2a2 2 0 0 1 0 4h-2"/><path d="M7 6c0-1.5 1.5-1.5 1.5-3M11 6c0-1.5 1.5-1.5 1.5-3"/></svg></div>
-          <h3>The wok</h3>
-          <p>Twenty-two wok plates — Mongolian beef, kung pao, orange chicken, sesame chicken, sweet and sour, bulgogi.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M4.5 8.5h15"/></svg></div>
-          <h3>The sushi bar</h3>
-          <p>Nigiri and sashimi cut to order, fifty-six rolls on the board — including one named the Bonney Lake.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11v9H4z"/><path d="M15 10h3.5L21 13v3h-6z"/><circle cx="7.5" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg></div>
-          <h3>However you want it</h3>
-          <p>Eat in the dining room, call ahead and pick it up, or order online and have it delivered.</p>
-          <div class="chips"><span>Dine in</span><span>Take out</span><span>Delivery</span></div>
-        </article>
       </div>
     </div>
   </section>
 
   <!-- ===================== #menu =====================
-       Every category is a title card that unrolls in place. Real names and
-       real prices, straight off their own ordering page. -->
+       Every category is a title card that unrolls in place (TITLE CARDS
+       UNROLL), the affordance is a downward chevron (ARROW LAW). Real
+       names, real prices, straight off their own ordering page. -->
   <section class="section" id="menu">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">The whole menu</p>
-        <h2>Two hundred and one dishes, <em>every price</em>.</h2>
-        <p>Tap any line to roll it open.</p>
+      <div class="menu-lead">
+        <figure class="print reveal">
+          <img src="images/menu-page.jpg" alt="A page of the printed in-house menu — the Tartare &amp; Tataki list above a photograph of tuna tataki, and the Carpaccio menu below" loading="lazy" width="816" height="1056">
+          <figcaption>Their printed menu, on the table</figcaption>
+        </figure>
+        <div class="section-head reveal">
+          <p class="eyebrow">The whole menu</p>
+          <h2>Two hundred and one dishes, <em>every price</em>.</h2>
+          <p>Ten categories. Tap a heading and it rolls open where it stands — no second page, no PDF to pinch at.</p>
+        </div>
       </div>
       <div class="menu-search" hidden>
         <label for="menuSearch">Find a dish</label>
@@ -474,31 +473,52 @@
           </div>
         </article>
       </div>
-      <p class="menu-fine reveal">Names and prices exactly as they appear on the restaurant's own ordering page, September 2026. Prices change — the kitchen has the last word.</p>
+      <p class="menu-fine reveal">Names and prices exactly as the restaurant writes them — the ten cards above from their own ordering page, the tataki and carpaccio lists below from the printed menu on the table, September 2026. Prices change; the kitchen has the last word.</p>
+
+      <!-- The printed in-house menu carries ten dishes the online ordering
+           page does not list at all. Transcribed verbatim from the photo. -->
+      <div class="printed reveal">
+        <h3>Only on the printed menu</h3>
+        <p class="src">Photographed at the table — not on the ordering page</p>
+        <div class="printed-cols">
+          <div>
+            <h4>Tartare &amp; Tataki</h4>
+            <ul class="menu-list">
+              <li><span class="name">Tuna Tataki</span><span class="price">$16</span><span class="desc">Seared tuna with green onion, fried garlic, ponzu</span></li>
+              <li><span class="name">Salmon Tartare</span><span class="price">$16</span><span class="desc">Salmon, quail eggs, avocado, special sauce</span></li>
+              <li><span class="name">Tuna Tartare</span><span class="price">$17</span><span class="desc">Tuna, quail egg yolk, avocado, special sauce</span></li>
+              <li><span class="name">Shiromi Usuzukuri</span><span class="price">$16</span><span class="desc">Thin sliced white fish with special sauce, katsuo tataki, kaiware</span></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Carpaccio</h4>
+            <p class="incl">Each item includes 7pcs with Special Sauce — avocado, jalapeño, kaiware, katsuo, itokake.</p>
+            <ul class="menu-list">
+              <li><span class="name">1 Tuna</span><span class="price">$25</span></li>
+              <li><span class="name">2 Salmon Belly</span><span class="price">$25</span></li>
+              <li><span class="name">3 Shima Aji</span><span class="price">$30</span></li>
+              <li><span class="name">4 Hamachi Belly</span><span class="price">$25</span></li>
+              <li><span class="name">5 Kampachi</span><span class="price">$30</span></li>
+              <li><span class="name">6 Toro</span><span class="price">$45</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-strip reveal">
+        <figure class="dish"><img src="images/dish-wok.jpg" alt="Glazed teriyaki chicken pieces in a black cast-iron wok" loading="lazy" width="1400" height="788"><figcaption>Chicken teriyaki, out of the wok</figcaption></figure>
+        <figure class="dish"><img src="images/dish-rainbow.jpg" alt="A long roll topped with sliced tuna, salmon and avocado on a white boat plate" loading="lazy" width="1400" height="1050"><figcaption>Sliced fish over a roll</figcaption></figure>
+        <figure class="dish"><img src="images/dish-specials.jpg" alt="Three specialty rolls lined up on white plates, one with seared salmon, one with tempura crunch and one topped with tuna" loading="lazy" width="1400" height="1050"><figcaption>Three specialty rolls, side by side</figcaption></figure>
+      </div>
     </div>
   </section>
 
-  <!-- ===================== #gallery ===================== -->
-  <section class="section section-alt" id="gallery">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Off the bar</p>
-        <h2>What comes out of the <em>kitchen</em>.</h2>
-      </div>
-      <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Nigiri and a specialty roll laid out on a cedar board with an orchid" loading="lazy" width="1000" height="1000"><figcaption>Nigiri and a specialty roll</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Shrimp and vegetable tempura on a grey plate with dipping sauce" loading="lazy" width="1000" height="1000"><figcaption>Shrimp and vegetable tempura</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A sashimi platter on a cedar board — salmon, tuna, escolar, scallop and roe" loading="lazy" width="1800" height="800"><figcaption>The sashimi platter</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #signature =====================
-       BUILD YOUR BENTO — the client's own real bento menu turned into a
-       one-tap picker. Every bento comes with the same four sides; the only
-       choice is the main, so the gadget is exactly that choice.
-       Prices are the real B-3 … B-7 prices; the five bentos live ONLY here. -->
-  <section class="section" id="signature">
+  <!-- ===================== #signature — BUILD YOUR BENTO =====================
+       Their own real bento menu turned into a one-tap picker. Every bento on
+       their menu carries the identical four sides, so the only real choice is
+       the main — and the gadget is exactly that choice. Section 5, well below
+       the "section 4 or lower" line. The five bentos live ONLY here. -->
+  <section class="section section-alt" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The bento box</p>
@@ -533,22 +553,46 @@
     </div>
   </section>
 
-  <!-- ===================== #about ===================== -->
-  <section class="section section-alt" id="about">
+  <!-- ===================== #gallery ===================== -->
+  <section class="section" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">The restaurant</p>
-        <h2>One kitchen that does <em>all of it</em>.</h2>
-        <p class="lede">A sit-down teriyaki house with a sushi bar, in the plaza on 214th Ave E.</p>
-        <p>Most teriyaki places pick a lane. This one runs a grill, a wok and a sushi bar out of the same kitchen — so a table can order a chicken teriyaki plate, a Mongolian beef and a sashimi deluxe and have it all land at once. Two hundred and one dishes, from a $2 scoop of rice to a $39 sashimi special.</p>
-        <p>Choose a favourite, then order through the restaurant’s existing ordering page.</p>
+        <p class="eyebrow">Off the sushi bar</p>
+        <h2>What lands on the <em>walnut</em>.</h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gal-roll.jpg" alt="A roll topped with sliced white fish and two cuts of red tuna, scattered with green onion and sesame, on a long white plate" loading="lazy" width="1400" height="788"><figcaption>Tuna and white fish, over a roll</figcaption></figure>
+        <figure class="print reveal"><img src="images/gal-table.jpg" alt="Two long specialty rolls on white plates set down on a walnut table, one of them dressed with sauce" loading="lazy" width="1100" height="1467"><figcaption>Two rolls hitting the table</figcaption></figure>
+        <figure class="print reveal"><img src="images/gal-close.jpg" alt="Close-up of a roll finished with red tuna, white fish and green onion beside a dark side dish" loading="lazy" width="1100" height="1467"><figcaption>Close enough to count the sesame</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Verbatim, with the star rating and month/year the listing publishes.
+       No reviewer names are published anywhere for these three, so no names
+       and no invented faces are shown — see the handoff's ask-client list. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">In their words</p>
+        <h2>What people <em>write down</em>.</h2>
       </div>
       <div class="quotes">
-        <blockquote class="quote reveal"><p>“Great food and service every time!!”</p><cite>Five stars · May 2026</cite></blockquote>
-        <blockquote class="quote reveal"><p>“MUST try their Sushi!! deliciously fresh”</p><cite>Five stars · March 2024</cite></blockquote>
-        <blockquote class="quote reveal"><p>“Tried your lunch special for the first time. The sweet and sour chicken was probably the best I've ever had. I had the #4 combo.”</p><cite>Five stars · April 2022</cite></blockquote>
+        <blockquote class="quote reveal">
+          <p>“Great food and service every time!!”</p>
+          <cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>Customer review · May 2026</cite>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>“MUST try their Sushi!! deliciously fresh”</p>
+          <cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>Customer review · March 2024</cite>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>“Tried your lunch special for the first time. The sweet and sour chicken was probably the best I've ever had. I had the #4 combo.”</p>
+          <cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>Customer review · April 2022</cite>
+        </blockquote>
       </div>
-      <p class="quotes-fine reveal">Customer reviews, quoted as written.</p>
+      <p class="quotes-fine reveal">Quoted as written. Names are not published with these reviews.</p>
     </div>
   </section>
 
@@ -595,6 +639,11 @@
         <p class="eyebrow">One menu, all of it</p>
         <h2>Grilled, wok-fired or <em>cut to order</em>.</h2>
       </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count tnum" data-to="201">201</span></b><span>dishes on the menu, priced</span></div>
+        <div class="num"><b><span class="count tnum" data-to="56">56</span></b><span>sushi rolls on the board, one of them the Bonney Lake</span></div>
+        <div class="num"><b><span class="count tnum" data-to="6">6</span></b><span>days a week the grill, the wok and the bar are all running</span></div>
+      </div>
       <div class="cta-actions reveal">
         <a href="https://teriyakiwoksushi.menu11.com/bonneylake/order" target="_blank" rel="noopener" class="btn btn-primary">Order online</a>
         <a href="tel:+12538911980" class="btn btn-ghost">Call (253) 891-1980</a>
@@ -610,7 +659,8 @@
     <div class="foot">
       <div>
         <div class="brand">
-          <span class="wm">Teriyaki Wok &amp; Sushi<small>Bonney Lake, WA</small></span>
+          <img src="images/sign-mark.png" alt="Teriyaki Wok &amp; Sushi" width="720" height="194">
+          <small>9925 214th Ave E, Unit L · Bonney Lake, WA</small>
         </div>
         <p>Teriyaki off the grill, twenty-two plates out of the wok, and a sushi bar cutting to order — six days a week in the plaza on 214th.</p>
         <div class="soc">
@@ -624,7 +674,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#menu">Menu</a><br><a href="#signature">Bento box</a><br><a href="#gallery">Photos</a><br><a href="#about">The restaurant</a><br><a href="#contact">Come get it</a></p>
+        <p><a href="#about">The room</a><br><a href="#menu">Menu</a><br><a href="#signature">Bento box</a><br><a href="#gallery">Photos</a><br><a href="#contact">Come get it</a></p>
       </div>
     </div>
     <div class="foot-bottom">
