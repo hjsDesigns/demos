@@ -2,32 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Sunrise Coffee Bar — Cole Street website preview</title>
+<title>Sunrise Coffee Bar — coffee, bites &amp; energy on Cole Street, Enumclaw WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Private website preview for 1325 Cole St, Enumclaw. Current business identity, menu and hours need confirmation; photographs and menu boards show the earlier Espresso Stop shop.">
+<meta name="description" content="Sunrise Coffee Bar at 1325 Cole St in downtown Enumclaw — espresso, a non-coffee board, build-your-own Tikki energy, and a case stocked from local kitchens. A room with tables, not a drive-thru window.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Bevan (display, retro slab — echoes the slab lettering on their own menu board) + Karla (body) -->
-<link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
+<!-- Bevan (display — a sturdy slab at the weight their painted sign carries) + Karla (body).
+     Bevan ships at ONE weight: never set a display face above 400 or it fake-bolds. -->
+<link href="https://fonts.googleapis.com/css2?family=Bevan&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
 
-<!-- ===================== HEADER / NAV ===================== -->
+<!-- ===================== HEADER / NAV =====================
+     The mark is their REAL sign — cropped off their own storefront
+     photograph, perspective-rectified and levelled. Never redrawn. -->
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="Sunrise Coffee Bar — home">
-      <span class="wm">Sunrise Coffee Bar<small>1325 Cole St · Enumclaw</small></span>
+      <img src="images/mark-header.png" alt="Sunrise Coffee Bar" width="620" height="251">
     </a>
     <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-        <a href="#menu">Menu</a>
-        <a href="#signature">Milkshakes</a>
-        <a href="#gallery">The shop</a>
         <a href="#hours">Hours</a>
+        <a href="#room">The room</a>
+        <a href="#menu">The boards</a>
+        <a href="#signature">Build your energy</a>
         <a href="#find" class="nav-cta">Find us</a>
       </nav>
     </div>
@@ -37,231 +41,228 @@
 <span id="top"></span>
 <main id="main-content">
 
-  <!-- ===================== #hero ===================== -->
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT (9/4): the interiors appear below, so the
+       opener is the real building with their sign lit on it. Nothing
+       sits on the photograph but the headline block. -->
   <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="Historical Espresso Stop interior at 1325 Cole St — the long counter, red tile wall and drink boards" fetchpriority="high" width="2000" height="1500"></div>
-    <div class="hero-spacer"></div>
+    <div class="hero-bg">
+      <picture>
+        <source media="(max-width:640px)" srcset="images/hero-tall.jpg" width="1200" height="1800">
+        <img src="images/hero.jpg" alt="The Sunrise Coffee Bar storefront on Cole Street — a black sign with the sunrise logo above a stone front, neon OPEN in the window and a chalk sandwich board on the sidewalk" width="1920" height="1280" fetchpriority="high">
+      </picture>
+    </div>
     <div class="hero-inner">
-      <p class="hero-eyebrow">Private preview · Enumclaw, WA</p>
-      <h1>The sit-down coffee bar on <em>Cole Street</em></h1>
-      <p class="hero-sub"><span class="sub-long">Espresso, specialty drinks and loaded milkshakes, pictured in the earlier Cole Street shop.</span><span class="sub-short">Coffee &amp; milkshakes on Cole</span></p>
+      <h1>A room to sit down in, <em>on Cole Street</em></h1>
+      <p class="hero-sub">
+        <span class="sub-long">Espresso, a non-coffee board, build-your-own energy, and a case stocked from local kitchens.</span>
+        <span class="sub-short">Espresso, energy and a case, in downtown Enumclaw.</span>
+      </p>
       <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the menu</a>
-        <a href="#find" class="btn btn-cream">Find us</a>
+        <a href="#menu" class="btn btn-primary">See the boards</a>
+        <a href="#hours" class="btn btn-cream">Are they open?</a>
       </div>
     </div>
   </section>
 
   <!-- ===================== #hours =====================
+       Live Pacific clock + address + all seven days, today lit.
        Hours live HERE and nowhere else on the page (NEVER TWICE). -->
-  <section class="status-band" id="hours">
+  <section class="section-dark status-band" id="hours">
     <div class="wrap">
       <div class="status-head">
-        <p class="eyebrow">Before you visit</p>
-        <h2>A familiar spot, <em>details to confirm</em></h2>
-        <p class="preview-note">This preview uses earlier Espresso Stop photos and menu boards from this address. The Sunrise name, current menu and opening hours still need confirmation.</p>
+        <p class="eyebrow">When to find us</p>
+        <h2>Open early, <em>done by one</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
           1325 Cole St, Enumclaw, WA 98022<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=1325+Cole+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
+        <div class="proof-row">
+          <span class="proof"><span class="ico">✓</span> Tables inside, not a drive-thru window</span>
+          <span class="proof"><span class="ico">✓</span> Locally sourced foods in the case</span>
+        </div>
       </div>
-      <div class="hours-note">
-        <p class="eyebrow">Hours unconfirmed</p>
-        <h3>Check before you make the trip.</h3>
-        <p>Earlier Espresso Stop directories list 7 am–1 pm daily. A separate Google observation on 5 September 2026 lists an 8 am Sunday opening.</p>
-        <p>These sources disagree; a current seven-day schedule has not been verified.</p>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">7:00 AM – 1:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">7:00 AM – 1:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">7:00 AM – 1:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">7:00 AM – 1:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">7:00 AM – 1:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">7:00 AM – 1:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">8:00 AM – 1:00 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #room =====================
+       The walk-in. The lede is their own sandwich board, quoted. -->
+  <section class="section" id="room">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/room.jpg" alt="Inside Sunrise Coffee Bar — a glossy deep-red tile wall running the length of the shop, a black stone counter with the espresso machine, and black tables with flowers by the window" loading="lazy" width="1600" height="1067">
+          <figcaption>The whole room, from the door</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Inside 1325 Cole</p>
+          <h2>Not a window. <em>A room.</em></h2>
+          <p>Glossy deep-red tile the whole length of one wall, a black stone counter with the syrup shelf above it, and tables that are yours for as long as you want them. Most coffee in this valley is handed through a window — this one comes with a chair.</p>
+          <p>Behind the counter: whole beans on the steel shelf, a wall of syrups, a pastry case, and a cooler for whatever you're grabbing on the way out.</p>
+          <blockquote class="board-quote">
+            <p>“Locally sourced foods — Sunrise Bites, Bonnie's Buns, Red Tea Room, &amp; house made sauces!”</p>
+            <cite>Their sandwich board, out front on Cole</cite>
+          </blockquote>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== #menu =====================
-       Opens with the storefront photo (STOREFRONT-BELOW-THE-HOURS law —
-       the hero is the room, so the building opens the offerings section).
-       Title cards: the heading IS the tap target; the real items unroll in place. -->
-  <section class="section" id="menu">
+       Transcribed word for word off the two boards on their wall.
+       Lists are short, so they sit open — nothing to tap to find. -->
+  <section class="section section-alt" id="menu">
     <div class="wrap">
-      <div class="menu-top">
-        <div class="section-head reveal">
-          <p class="eyebrow">Off the boards</p>
-          <h2>What's <em>on the wall</em></h2>
-          <p>Drinks transcribed from the earlier Espresso Stop boards at this address. Current availability and prices need confirmation. Tap a heading to explore.</p>
+      <div class="section-head reveal">
+        <p class="eyebrow">Off the boards on the wall</p>
+        <h2>What they pour, <em>and what's in the case</em></h2>
+        <p>Straight off the two boards behind the counter — the espresso side, the non-coffee side, and the case.</p>
+      </div>
+
+      <div class="menu-groups reveal">
+        <div class="menu-group">
+          <h3>Espresso &amp; more</h3>
+          <ul class="menu-list">
+            <li><span class="name">Americano</span></li>
+            <li><span class="name">Blended Coffee</span></li>
+            <li><span class="name">Cappuccino</span></li>
+            <li><span class="name">Chai</span></li>
+            <li><span class="name">Latte</span></li>
+            <li><span class="name">Matcha</span></li>
+            <li><span class="name">Mocha</span></li>
+            <li><span class="name">Macchiato</span></li>
+            <li><span class="name">White Mocha</span></li>
+          </ul>
+          <p class="group-note">Ask about our homemade sauces.</p>
         </div>
-        <figure class="storefront reveal">
-          <img src="images/storefront.jpg" alt="The Cole Street storefront — sidewalk tables under the awning, looking down Cole St" loading="lazy" width="1500" height="2000">
-          <figcaption>Historical Espresso Stop storefront · Cole St</figcaption>
-        </figure>
+        <div class="menu-group">
+          <h3>Non-coffee</h3>
+          <ul class="menu-list">
+            <li><span class="name">Italian Soda</span></li>
+            <li><span class="name">Ice Tea / Lemonade</span></li>
+            <li><span class="name">Hot Chocolate</span></li>
+            <li><span class="name">Kid's Steamer</span></li>
+            <li><span class="name">Real Fruit Smoothie</span></li>
+            <li><span class="name">Tea</span></li>
+          </ul>
+          <p class="group-note">And a cooler by the case — Red Bull, Poppi, Honest Kids.</p>
+        </div>
+        <div class="menu-group">
+          <h3>Bites to delight</h3>
+          <ul class="menu-list">
+            <li><span class="name">Bagels</span></li>
+            <li><span class="name">Breakfast Burrito</span><span class="desc">Made fresh in-house</span></li>
+            <li><span class="name">Breakfast Sandwich</span><span class="desc">Made fresh in-house</span></li>
+            <li><span class="name">Bonnie's Buns Cinnamon Rolls</span></li>
+            <li><span class="name">Cappuccino Cookie</span></li>
+            <li><span class="name">Cake Pops</span></li>
+            <li><span class="name">Gluten Free Treats</span></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="cardstack reveal">
-
-        <article class="tcard">
-          <h3><button type="button" class="tcard-tap" aria-expanded="true" aria-controls="p-coffee">
-            <span class="tcard-name">Coffee drinks</span>
-            <span class="tcard-count">8</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button></h3>
-          <div class="tcard-panel" id="p-coffee"><div class="tcard-inner">
-            <ul class="itemlist">
-              <li><span class="name">Americano</span></li>
-              <li><span class="name">Drip coffee</span></li>
-              <li><span class="name">Cold brew</span></li>
-              <li><span class="name">Nitro cold brew</span></li>
-              <li><span class="name">Latte</span></li>
-              <li><span class="name">Mocha</span></li>
-              <li><span class="name">White mocha</span></li>
-              <li><span class="name">Blended coffee</span></li>
-            </ul></div></div>
-        </article>
-
-        <article class="tcard">
-          <h3><button type="button" class="tcard-tap" aria-expanded="true" aria-controls="p-specialty">
-            <span class="tcard-name">Specialty drinks</span>
-            <span class="tcard-count">9</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button></h3>
-          <div class="tcard-panel" id="p-specialty"><div class="tcard-inner">
-            <ul class="itemlist">
-              <li><span class="name">Snickers mocha</span><span class="desc">Chocolate, caramel, hazelnut</span></li>
-              <li><span class="name">Milky Way</span><span class="desc">Chocolate, caramel, toasted marshmallow</span></li>
-              <li><span class="name">Butterscotch macchiato</span><span class="desc">Vanilla and butterscotch</span></li>
-              <li><span class="name">Banana split</span><span class="desc">Chocolate, banana, strawberry</span></li>
-              <li><span class="name">Banana bread</span><span class="desc">Chai, banana, hazelnut</span></li>
-              <li><span class="name">Andes mint</span><span class="desc">Chocolate, crème de menthe, crème de cacao</span></li>
-              <li><span class="name">Funky monkey</span><span class="desc">White chocolate, banana, hazelnut</span></li>
-              <li><span class="name">White out</span><span class="desc">White chocolate, vanilla, white coffee</span></li>
-              <li><span class="name">White bunny</span><span class="desc">White chocolate, butterscotch, white coffee</span></li>
-            </ul></div></div>
-        </article>
-
-        <article class="tcard">
-          <h3><button type="button" class="tcard-tap" aria-expanded="true" aria-controls="p-assorted">
-            <span class="tcard-name">Everything else in a cup</span>
-            <span class="tcard-count">12</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button></h3>
-          <div class="tcard-panel" id="p-assorted"><div class="tcard-inner">
-            <ul class="itemlist">
-              <li><span class="name">Protein shake</span></li>
-              <li><span class="name">Fruit smoothie</span></li>
-              <li><span class="name">Chai tea</span></li>
-              <li><span class="name">Tea</span></li>
-              <li><span class="name">Iced tea lemonade</span></li>
-              <li><span class="name">Flavored lemonade</span></li>
-              <li><span class="name">Italian soda</span></li>
-              <li><span class="name">Hot chocolate or steamer</span></li>
-              <li><span class="name">Apple cider</span></li>
-              <li><span class="name">Juice</span><span class="desc">Apple or orange</span></li>
-              <li><span class="name">Red Bull® mimosa</span></li>
-              <li><span class="name">Rockstar® mimosa</span></li>
-            </ul></div></div>
-        </article>
-
-        <article class="tcard">
-          <h3><button type="button" class="tcard-tap" aria-expanded="true" aria-controls="p-shakes">
-            <span class="tcard-name">Milkshakes, the simple way</span>
-            <span class="tcard-count">4</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button></h3>
-          <div class="tcard-panel" id="p-shakes"><div class="tcard-inner">
-            <ul class="itemlist">
-              <li><span class="name">Coffee shake</span></li>
-              <li><span class="name">Chocolate</span></li>
-              <li><span class="name">Creamsicle shake</span></li>
-              <li><span class="name">Candy bits shake</span></li>
-            </ul>
-            <p class="itemnote">The loaded ones are down below at the Milkshake Bar.</p></div></div>
-        </article>
-
-        <article class="tcard">
-          <h3><button type="button" class="tcard-tap" aria-expanded="true" aria-controls="p-food">
-            <span class="tcard-name">Food mentioned by earlier visitors</span>
-            <span class="tcard-count">4</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button></h3>
-          <div class="tcard-panel" id="p-food"><div class="tcard-inner">
-            <ul class="itemlist">
-              <li><span class="name">Breakfast sandwiches</span></li>
-              <li><span class="name">Breakfast burritos</span></li>
-              <li><span class="name">Lunch sandwiches</span></li>
-              <li><span class="name">Bagels</span><span class="desc">Various types</span></li>
-            </ul></div></div>
-        </article>
-
+      <!-- the boxed panel painted at the foot of their espresso board -->
+      <div class="sizes reveal">
+        <div>
+          <h4>Add ons</h4>
+          <ul>
+            <li>Alt. milk</li>
+            <li>Cold foam</li>
+            <li>Extra shots</li>
+            <li>Whip cream</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Sizes</h4>
+          <ul>
+            <li><span class="oz">12 oz</span><span class="lead">·······</span> Single</li>
+            <li><span class="oz">16 oz</span><span class="lead">·······</span> Double</li>
+            <li><span class="oz">20 oz</span><span class="lead">·······</span> Triple</li>
+            <li><span class="oz">24 oz</span><span class="lead">·······</span> Quad</li>
+          </ul>
+          <p class="fine">Extra shot in Americanos.</p>
+        </div>
       </div>
 
-      <p class="menu-fine reveal">Sizes 12, 16, 20, 24 and 32 oz — 32 oz iced only. Extras on the board: extra shot, extra flavor, white chocolate, chai, white coffee, milk alternative, peanut butter, protein, energy shot, E.N.P. shot.</p>
+      <div class="dish-strip">
+        <figure class="print reveal"><img src="images/cup-cinnamon.jpg" alt="An iced drink in a clear cup stamped with the Sunrise Coffee Bar sunrise logo, dusted with cinnamon on the foam" loading="lazy" width="627" height="836"><figcaption>In their own cup</figcaption></figure>
+        <figure class="print reveal"><img src="images/cinnamon-roll.jpg" alt="A cinnamon roll thick with icing in a takeaway container" loading="lazy" width="1400" height="933"><figcaption>Bonnie's Buns, from the case</figcaption></figure>
+        <figure class="print reveal"><img src="images/cookie.jpg" alt="A cappuccino cookie dipped halfway in dark chocolate, on parchment" loading="lazy" width="1400" height="933"><figcaption>The cappuccino cookie</figcaption></figure>
+      </div>
     </div>
   </section>
 
-  <!-- ===================== #signature =====================
-       THE MILKSHAKE BAR. Their own wall board asks "What's your Flavor?" —
-       so the site asks it too. Seven real creations, seven real recipes,
-       every cup cropped straight off that board. Tap a cup, it opens. -->
-  <section class="section section-tile" id="signature">
+  <!-- ===================== #signature — BUILD YOUR NATURAL ENERGY =====================
+       Their own board runs it in three steps. Steps 2 and 3 are the two
+       rows below: tap a base, tap a topper, the cup fills. One tap, an
+       instant payoff, nothing to read first. -->
+  <section class="section" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">The Milkshake Bar</p>
-        <h2>What's your <em>flavor?</em></h2>
-        <p>Seven shakes from the earlier photographed menu board. Tap a cup for its recipe; current availability is unconfirmed.</p>
+        <p class="eyebrow">Step 2 and step 3, off their own board</p>
+        <h2>Build your <em>natural energy</em></h2>
+        <p>Their Natural Energy board walks you through it: pick your flavour, pick your energy base, pick your topper. Here are the last two steps — tap one of each and watch it pour.</p>
       </div>
-      <div class="shake-grid reveal" id="shakeGrid">
 
-        <article class="shake">
-          <button type="button" class="shake-tap" aria-expanded="true" aria-controls="s-birthday">
-            <img src="images/shake-birthday-cake.jpg" alt="The Birthday Cake shake — cake batter milkshake under whipped cream and rainbow sprinkles" loading="lazy" width="402" height="690">
-            <span class="shake-name">Birthday Cake</span>
-          </button>
-          <div class="shake-panel" id="s-birthday"><div class="shake-inner"><p>Cake batter milkshake. Topped with whipped cream, birthday cake cookie dough, and animal cookies. Rolled in rainbow sprinkles.</p></div></div>
-        </article>
+      <div class="builder-wrap reveal" id="builder">
+        <div class="cup-stage">
+          <svg class="cup" viewBox="0 0 200 310" role="img" aria-labelledby="cupTitle">
+            <title id="cupTitle">A cup that fills with the energy base and topper you pick</title>
+            <defs>
+              <clipPath id="cupIn"><path d="M33,47 L167,47 L141,272 Q139,282 129,282 L71,282 Q61,282 59,272 Z"/></clipPath>
+            </defs>
+            <!-- straw -->
+            <rect x="118" y="6" width="13" height="46" rx="6" fill="#E9E3D6" stroke="#C9BCA5" stroke-width="1.5" transform="rotate(11 124 30)"/>
+            <!-- cup body -->
+            <path d="M26,40 L174,40 L146,276 Q144,288 132,288 L68,288 Q56,288 54,276 Z" fill="#EFE7DA" opacity=".55"/>
+            <g clip-path="url(#cupIn)">
+              <g class="fill-base"><rect x="0" y="110" width="200" height="220" fill="var(--base,#D6CDBD)"/></g>
+              <g class="fill-top"><rect x="0" y="47" width="200" height="64" fill="var(--top,#EFE7DA)"/></g>
+              <!-- ice — reads on the empty cup AND over any fill -->
+              <g fill="#FFFFFF" fill-opacity=".42" stroke="#A9B6BE" stroke-opacity=".55" stroke-width="2">
+                <rect x="48" y="96" width="34" height="30" rx="7" transform="rotate(-14 65 111)"/>
+                <rect x="104" y="118" width="32" height="28" rx="7" transform="rotate(9 120 132)"/>
+                <rect x="70" y="152" width="30" height="27" rx="6" transform="rotate(18 85 165)"/>
+                <rect x="112" y="188" width="28" height="25" rx="6" transform="rotate(-8 126 200)"/>
+                <rect x="66" y="216" width="26" height="23" rx="6" transform="rotate(12 79 227)"/>
+              </g>
+            </g>
+            <!-- rim + outline -->
+            <path d="M26,40 L174,40 L146,276 Q144,288 132,288 L68,288 Q56,288 54,276 Z" fill="none" stroke="#8E7F68" stroke-width="3.5" stroke-linejoin="round"/>
+            <ellipse cx="100" cy="40" rx="74" ry="10" fill="#F7F2E7" stroke="#8E7F68" stroke-width="3.5"/>
+          </svg>
+          <p class="builder-read empty" id="builderRead" role="status" aria-live="polite">Tap a base</p>
+        </div>
 
-        <article class="shake">
-          <button type="button" class="shake-tap" aria-expanded="true" aria-controls="s-cookie">
-            <img src="images/shake-cookie-monster.jpg" alt="The Cookie Monster shake — vanilla cream milkshake with a chocolate chip ice cream bar on top" loading="lazy" width="306" height="618">
-            <span class="shake-name">Cookie Monster</span>
-          </button>
-          <div class="shake-panel" id="s-cookie"><div class="shake-inner"><p>Vanilla cream milkshake. Topped with whipped cream, chocolate chunk cookie dough, chocolate chips, chocolate drizzle, and a chocolate chip ice cream bar. Rolled in chocolate sprinkles.</p></div></div>
-        </article>
+        <div class="builder-picks">
+          <p class="pick-label" id="lbl-base">Step 2 · your energy base</p>
+          <div class="pills" id="baseRow" role="group" aria-labelledby="lbl-base">
+            <button type="button" class="pill" data-name="Lavender Tikki" data-c="#B489DC" style="--c:#B489DC" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Lavender Tikki</button>
+            <button type="button" class="pill" data-name="Pink Tikki" data-c="#F26EA0" style="--c:#F26EA0" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Pink Tikki</button>
+            <button type="button" class="pill" data-name="Red Tikki" data-c="#E03A2F" style="--c:#E03A2F" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Red Tikki</button>
+            <button type="button" class="pill" data-name="Blue Tikki" data-c="#2E9BD6" style="--c:#2E9BD6" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Blue Tikki</button>
+          </div>
 
-        <article class="shake">
-          <button type="button" class="shake-tap" aria-expanded="true" aria-controls="s-fruity">
-            <img src="images/shake-fruity-pebble.jpg" alt="The Fruity Pebble shake — topped with a Fruity Pebble crispy treat" loading="lazy" width="420" height="669">
-            <span class="shake-name">Fruity Pebble</span>
-          </button>
-          <div class="shake-panel" id="s-fruity"><div class="shake-inner"><p>Tangy fruity milkshake. Topped with whipped cream, Fruity Pebbles, and a Fruity Pebble crispy treat. Rolled in Fruity Pebbles.</p></div></div>
-        </article>
+          <p class="pick-label" id="lbl-top">Step 3 · your topper</p>
+          <div class="pills" id="topRow" role="group" aria-labelledby="lbl-top">
+            <button type="button" class="pill" data-name="Lemonade" data-c="#FADE64" style="--c:#FADE64" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Lemonade</button>
+            <button type="button" class="pill" data-name="Half &amp; Half" data-c="#F6EBD6" style="--c:#F6EBD6" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Half &amp; Half</button>
+            <button type="button" class="pill" data-name="Orange juice" data-c="#F79B27" style="--c:#F79B27" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Orange juice</button>
+            <button type="button" class="pill" data-name="Coconut Milk" data-c="#FBF5E9" style="--c:#FBF5E9" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Coconut Milk</button>
+          </div>
 
-        <article class="shake">
-          <button type="button" class="shake-tap" aria-expanded="true" aria-controls="s-brookie">
-            <img src="images/shake-brookie.jpg" alt="The Brookie shake — chocolate malted milkshake with a brookie bar" loading="lazy" width="348" height="696">
-            <span class="shake-name">Brookie</span>
-          </button>
-          <div class="shake-panel" id="s-brookie"><div class="shake-inner"><p>Chocolate malted milkshake. Topped with whipped cream, chocolate chunk cookie dough, brownie dough, chocolate chips, and a brookie bar. Rolled in chocolate sprinkles.</p></div></div>
-        </article>
-
-        <article class="shake">
-          <button type="button" class="shake-tap" aria-expanded="true" aria-controls="s-waffle">
-            <img src="images/shake-wicked-waffle.jpg" alt="The Wicked Waffle shake — maple milkshake with a house made waffle on top" loading="lazy" width="372" height="711">
-            <span class="shake-name">Wicked Waffle</span>
-          </button>
-          <div class="shake-panel" id="s-waffle"><div class="shake-inner"><p>Maple milkshake. Topped with whipped cream, crushed waffle cone, maple syrup drizzle, and a house made waffle. Rolled in crushed waffle cones.</p></div></div>
-        </article>
-
-        <article class="shake">
-          <button type="button" class="shake-tap" aria-expanded="true" aria-controls="s-pbj">
-            <img src="images/shake-pbj.jpg" alt="The PB&amp;J shake — raspberry and vanilla milkshake with an Uncrustable on top" loading="lazy" width="378" height="696">
-            <span class="shake-name">PB&amp;J</span>
-          </button>
-          <div class="shake-panel" id="s-pbj"><div class="shake-inner"><p>Raspberry and vanilla milkshake. Topped with whipped cream, raspberry puree, mini peanut butter and jelly cups, and an Uncrustable. Rolled in peanut butter chips.</p></div></div>
-        </article>
-
-        <article class="shake">
-          <button type="button" class="shake-tap" aria-expanded="true" aria-controls="s-pbblast">
-            <img src="images/shake-peanut-butter-blast.jpg" alt="The Peanut Butter Blast shake — creamy peanut butter milkshake loaded with Reese's" loading="lazy" width="378" height="648">
-            <span class="shake-name">Peanut Butter Blast</span>
-          </button>
-          <div class="shake-panel" id="s-pbblast"><div class="shake-inner"><p>Creamy peanut butter milkshake. Topped with whipped cream, Reese's Pieces peanut butter cookie dough, mini Reese's peanut butter cups, and chocolate drizzle. Rolled in peanut butter chips.</p></div></div>
-        </article>
-
+          <p class="builder-hint">Tap again to clear it. Step 1 is your flavour — that's the syrup wall behind the counter, so ask.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -270,88 +271,65 @@
   <section class="section section-alt" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Inside</p>
-        <h2>Room enough to <em>stay a while</em></h2>
-        <p>Historical photographs of the Espresso Stop shop at this address, before the Sunrise name.</p>
+        <p class="eyebrow">Before you walk in</p>
+        <h2>The room, <em>on opening weekend</em></h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Looking across the counter to the pastry case and the seating inside" loading="lazy" width="1500" height="2000"><figcaption>The case, and a seat to take it to</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A breakfast sandwich and a breakfast burrito on plates beside an iced coffee" loading="lazy" width="800" height="600"><figcaption>Breakfast, and something iced</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Two loaded milkshakes on a tray at a table by the window" loading="lazy" width="2000" height="1500"><figcaption>Two off the Milkshake Bar</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A loaded milkshake on a plate at a table inside the shop" loading="lazy" width="800" height="1067"><figcaption>One built at the bar</figcaption></figure>
+        <figure class="print reveal"><img src="images/counter.jpg" alt="The service counter end to end — black stone top, the espresso machine, trailing greenery along the front and the pastry case at the far end against the red tile" loading="lazy" width="1600" height="1067"><figcaption>The counter, end to end</figcaption></figure>
+        <figure class="print reveal"><img src="images/case.jpg" alt="The pastry case, each shelf labelled — cinnamon rolls, cookies, cake pops and a hand-written flavour-guide card" loading="lazy" width="1600" height="1200"><figcaption>Everything in the case, labelled</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-open.jpg" alt="The dining side of the room with balloons up for opening weekend, tables set with flowers along the red wall" loading="lazy" width="1600" height="1067"><figcaption>Balloons still up</figcaption></figure>
+        <figure class="print reveal"><img src="images/cooler.jpg" alt="The glass case from the side — pastries and slices on the upper shelves, and the drink cooler underneath lined with Poppi, Red Bull and Honest Kids" loading="lazy" width="1100" height="1650"><figcaption>The cooler, under the case</figcaption></figure>
+        <figure class="print reveal"><img src="images/shake.jpg" alt="A loaded shake rimmed with chocolate chips under whipped cream, drizzle and a cookie on top" loading="lazy" width="1100" height="1467"><figcaption>One they built at the counter</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #reviews =====================
-       Historical Google quotes from the earlier Espresso Stop listing.
-       Names/dates unavailable; attribution and limits stay explicit. -->
-  <section class="section" id="reviews">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Earlier Google reviews at this location</p>
-        <h2>What people <em>actually said</em></h2>
-        <p>Quotes reproduced from the earlier Espresso Stop listing. Reviewer names and dates were not available in the source; these are not verified Sunrise reviews.</p>
-      </div>
-      <div class="quotes">
-        <figure class="quote reveal">
-          <blockquote><p>“They have a large variety of drink options that include usual coffee options but also include energy drinks and SHAKE options… Street parking is available and there is a good amount of seating inside. Definitely recommend!”</p></blockquote>
-        </figure>
-        <figure class="quote reveal">
-          <blockquote><p>“The barista working was very nice and good at her job. The service was as fast and the presentation perfect.”</p></blockquote>
-        </figure>
-        <figure class="quote reveal">
-          <blockquote><p>“It's great for coffee etc the food is great and I can read there or listen to a podcast on Bluetooth.”</p></blockquote>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #find (contact) ===================== -->
-  <section class="section section-alt" id="find">
+  <!-- ===================== #find ===================== -->
+  <section class="section" id="find">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting here</p>
-          <h2>Cole Street, <em>middle of town</em></h2>
+          <h2>1325 Cole, <em>middle of town</em></h2>
+          <figure class="print">
+            <img src="images/cup-iced.jpg" alt="An iced latte in a Sunrise Coffee Bar cup on the black stone counter, the red tile wall and a window behind it" loading="lazy" width="627" height="836">
+            <figcaption>On the counter, waiting</figcaption>
+          </figure>
+        </div>
+        <div class="contact-side reveal">
           <ol class="steps">
-            <li><h3>Park on Cole</h3><p>Earlier location photos show street parking along Cole Street. Check posted parking restrictions when you arrive.</p></li>
-            <li><h3>Check the current sign</h3><p>Confirm the business name and posted hours at 1325 Cole St.</p></li>
-            <li><h3>Ask what’s available</h3><p>The photos and drink boards here are historical. Ask about today’s menu before ordering.</p></li>
+            <li><h3>Park on Cole</h3><p>Street parking runs right past the door, and the entrance is on the corner under the stone.</p></li>
+            <li><h3>Take a table</h3><p>There's a whole seating side past the counter. Nobody's rushing you out.</p></li>
+            <li><h3>Read the board out front</h3><p>The chalk sandwich board on the sidewalk is where what's new that week goes up first.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=1325+Cole+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions to 1325 Cole St ↗</a></span>
           </div>
+          <form class="contact-form">
+            <label>Name<input type="text" name="name" autocomplete="name" required></label>
+            <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+            <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+            <label class="full">What's it about?<select name="topic"><option>A catering or large order</option><option>Something on the menu</option><option>Something else</option></select></label>
+            <label class="full">Message<textarea name="msg" placeholder="What you're after, and when you need it."></textarea></label>
+            <button type="submit" class="btn btn-primary">Send it to the shop</button>
+            <p class="form-success" role="status" aria-live="polite">Thanks — someone at Sunrise will get back to you.</p>
+            <p class="form-fine">We'll only use this to reply to you.</p>
+          </form>
         </div>
-        <form class="contact-form reveal">
-          <h3 class="full form-heading">Questions for your visit</h3>
-          <!-- Without a verified inbox, this prepares a local note and never sends it. -->
-          <input type="hidden" name="access_key" value="">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label>Name<input type="text" name="name" autocomplete="name"></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email"></label>
-          <label class="full">What's this about?<select name="topic"><option>A question about the menu</option><option>Hours or location</option><option>Something else</option></select></label>
-          <label class="full">Visit notes<textarea name="msg" required placeholder="Current name, opening hours, menu, or a drink to ask about…"></textarea></label>
-          <button type="submit" class="btn btn-primary" disabled>Copy visit note</button>
-          <label class="full project-note" hidden>Your note<textarea readonly aria-label="Your visit note"></textarea></label>
-          <p class="form-success" role="status" aria-live="polite"></p>
-          <p class="form-fine">Keep your questions handy for a visit. Nothing is sent from this form; a current phone number and email have not been verified.</p>
-          <noscript><p class="full">Write down your questions before you visit; this note tool needs JavaScript.</p></noscript>
-        </form>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta — their own three words ===================== -->
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">1325 Cole St</p>
-        <h2>A little color on <em>Cole Street</em></h2>
+        <p class="eyebrow">1325 Cole Street, Enumclaw</p>
+        <h2>Coffee. Bites. <em>Energy.</em></h2>
+        <p>Three words off the sign over the door. Park on Cole, walk in, take a table.</p>
       </div>
       <div class="cta-actions reveal">
-        <a href="#menu" class="btn btn-primary">See the menu</a>
+        <a href="#menu" class="btn btn-primary">See the boards</a>
         <a href="https://www.google.com/maps/search/?api=1&amp;query=1325+Cole+St+Enumclaw+WA+98022" class="btn btn-ghost" target="_blank" rel="noopener">Get directions ↗</a>
       </div>
     </div>
@@ -364,19 +342,23 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="brand">
-          <span class="wm">Sunrise Coffee Bar<small>Downtown Enumclaw</small></span>
-        </div>
-        <p>Private preview using earlier Espresso Stop photos and menu. Current Sunrise identity and offerings are unconfirmed.</p>
+        <div class="brand"><img src="images/mark.png" alt="Sunrise Coffee Bar — coffee, bites, energy" width="760" height="275"></div>
+        <p>A sit-down coffee bar in downtown Enumclaw.</p>
       </div>
       <div>
         <h4>Find us</h4>
-        <p>Cole Street, Enumclaw<br>Washington 98022</p>
+        <p>1325 Cole St<br>Enumclaw, WA 98022</p>
         <p><a href="https://www.google.com/maps/search/?api=1&amp;query=1325+Cole+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a></p>
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#menu">Menu</a><br><a href="#signature">Milkshakes</a><br><a href="#gallery">The shop</a><br><a href="#hours">Hours</a><br><a href="#find">Find us</a></p>
+        <nav class="foot-nav" aria-label="Sections of this page">
+          <a href="#hours">Hours</a>
+          <a href="#room">The room</a>
+          <a href="#menu">The boards</a>
+          <a href="#signature">Build your energy</a>
+          <a href="#find">Find us</a>
+        </nav>
       </div>
     </div>
     <div class="foot-bottom">

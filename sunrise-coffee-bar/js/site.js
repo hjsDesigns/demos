@@ -1,122 +1,189 @@
 /* ============================================================
-   WEBSITE FACTORY — site.js
-   Nav, progressive content, accessible disclosures and honest local notes.
-   Live inquiry delivery requires a configured owner inbox.
+   SUNRISE COFFEE BAR — site.js
+   Nav · live open/closed light · scroll reveal · the energy builder.
    ============================================================ */
 
 /* ------------------------------------------------------------
-   HOURS CONFIG  — fill from the client's Google listing.
-   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
-   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
-   null = closed that day. Closing past midnight: use 26 for 2 am.
+   HOURS CONFIG — days are 0=Sunday … 6=Saturday, decimal 24h.
+   PROVISIONAL: opening times are sourced (directory listings for this
+   address, plus a Google read showing an 8 AM Sunday); no one has read
+   the sheet taped inside their own door yet. It is visible in
+   harvest-0906/g12.jpg but too small to resolve — a phone photo of it
+   on a drive-by settles this in one shot. See HANDOFF-CODEX.md.
+   Change these AND the seven rows in index.html together.
    ------------------------------------------------------------ */
-/* Current Sunrise schedule is unverified. Historical source hours are preserved in facts.json. */
-var HOURS={tz:'America/Los_Angeles',verified:false,days:{}};
+var HOURS = {
+  tz: 'America/Los_Angeles',
+  days: {
+    0: [8, 13],
+    1: [7, 13],
+    2: [7, 13],
+    3: [7, 13],
+    4: [7, 13],
+    5: [7, 13],
+    6: [7, 13]
+  }
+};
 
-/* ------------------------------------------------------------
-   CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
-   Two functions site.js calls every minute. `p` is the Pacific "now":
-   {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
+function customClosure(p) { return null; }
+function customClose(p, close) { return close; }
 
-   customClosure(p) → return a string to mark the whole day CLOSED
-                      ("Closed today for Labor Day"), or null.
-   customClose(p, close) → return an adjusted closing hour for today.
-
-   Reference-build example (path in README, "HOURS config"): Friday closed
-   at the earlier of 6 pm or SUNDOWN (NOAA sunset math), and US holidays
-   from their rate sheet returned a closure string. Port that logic here
-   only when the business actually has such a rule.
-   ------------------------------------------------------------ */
-function customClosure(p){ return null; }
-function customClose(p, close){ return close; }
-
-
-(function(){
+(function () {
   'use strict';
   document.documentElement.classList.add('js');
-  var $=function(s,r){return (r||document).querySelector(s)};
-  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
   /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
-  var toggle=$('.nav-toggle'), nav=$('#main-nav');
-  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.setAttribute('aria-label',open?'Close menu':'Open menu');toggle.textContent=open?'✕':'☰'}
-  if(toggle&&nav){
-    toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
-    $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
-    document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==toggle)setNav(false)});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setNav(false);toggle.focus()}});
+  var toggle = $('.nav-toggle'), nav = $('#main-nav');
+  function setNav(open) {
+    nav.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    toggle.textContent = open ? '✕' : '☰';
   }
-  var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
-
-  /* Conflicting predecessor/current sources cannot drive a live status light. */
-  function computeStatus(){return {open:null,text:'Current hours unconfirmed'}}
-  window.__site={computeStatus:computeStatus,HOURS:HOURS};
-
-  /* ---------- scroll-reveal + count-up ---------- */
-  var io=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(!en.isIntersecting)return;
-      en.target.classList.add('in');
-      $$('.count',en.target).forEach(function(c){
-        if(c.dataset.done)return; c.dataset.done='1';
-        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
-        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-        if(reduce){c.textContent=to;return}
-        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
-        requestAnimationFrame(step);
-      });
-      io.unobserve(en.target);
+  if (toggle && nav) {
+    toggle.addEventListener('click', function (e) { e.stopPropagation(); setNav(!nav.classList.contains('open')); });
+    $$('#main-nav a').forEach(function (a) { a.addEventListener('click', function () { setNav(false); }); });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== toggle) setNav(false);
     });
-  },{threshold:.06,rootMargin:'0px 0px -6% 0px'}):null;
-  $$('.reveal').forEach(function(el){if(io)io.observe(el);else el.classList.add('in')});
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('open')) { setNav(false); toggle.focus(); }
+    });
+  }
+  var yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
 
-  /* ---------- inquiry: prepare a local note until live delivery is configured ---------- */
-  var form=$('.contact-form'), ok=$('.form-success');
-  if(form&&ok){
-    var btn=$('button[type=submit]',form), keyEl=$('[name=access_key]',form), note=$('.project-note',form), help=$('.form-fine',form);
-    btn.disabled=false;
-    if(keyEl&&keyEl.value.trim()){btn.textContent='Send message';help.textContent='Your message goes to the configured shop inbox.';}
-    if(keyEl&&keyEl.value.trim()){$('[name=name]',form).required=true;$('[name=email]',form).required=true;}
-    function feedback(message,error){ok.textContent=message;ok.classList.add('show');ok.setAttribute('role',error?'alert':'status');}
-    form.addEventListener('submit',function(e){
-      e.preventDefault();if(btn.disabled||!form.reportValidity())return;
-      var key=keyEl?keyEl.value.trim():'';
-      if(!key){
-        var fields=new FormData(form);
-        var body=['Visit: '+(fields.get('topic')||''),'Name: '+(fields.get('name')||''),'Phone: '+(fields.get('phone')||''),'Email: '+(fields.get('email')||''),'',fields.get('msg')||''].join('\n');
-        var area=$('textarea',note);area.value=body;note.hidden=false;
-        function selectNote(){area.focus();area.select();feedback('Your note is ready below. Select and copy it for your visit; nothing has been sent.',false);}
-        if(navigator.clipboard&&navigator.clipboard.writeText){
-          navigator.clipboard.writeText(body).then(function(){feedback('Visit note copied. Keep it handy for your visit; nothing has been sent.',false);}).catch(selectNote);
-        }else selectNote();
-        return;
+  /* ---------- live open / closed (Pacific, regardless of the visitor's clock) ----------
+     STATUS LIGHT LAW: green when open, red when closed. Never brand-coloured. */
+  function pacificNow() {
+    var f = new Intl.DateTimeFormat('en-US', {
+      timeZone: HOURS.tz, hour12: false,
+      weekday: 'short', hour: '2-digit', minute: '2-digit'
+    }).formatToParts(new Date());
+    var g = {}; f.forEach(function (p) { g[p.type] = p.value; });
+    var map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    var h = parseInt(g.hour, 10); if (h === 24) h = 0;
+    return { day: map[g.weekday], h: h + parseInt(g.minute, 10) / 60 };
+  }
+  function fmt(t) {
+    var h = Math.floor(t) % 24, m = Math.round((t - Math.floor(t)) * 60);
+    var ap = h >= 12 ? 'PM' : 'AM', hh = h % 12; if (hh === 0) hh = 12;
+    return hh + (m ? ':' + (m < 10 ? '0' : '') + m : '') + ' ' + ap;
+  }
+  function computeStatus() {
+    var p = pacificNow();
+    var shut = customClosure(p);
+    if (shut) return { open: false, text: shut };
+    var today = HOURS.days[p.day];
+    if (today) {
+      var close = customClose(p, today[1]);
+      if (p.h >= today[0] && p.h < close) {
+        return { open: true, text: 'Open now · until ' + fmt(close) };
       }
-      var label=btn.textContent;btn.disabled=true;btn.textContent='Sending…';
-      var data={};new FormData(form).forEach(function(v,k){data[k]=v});data.subject='Visit inquiry — Sunrise Coffee Bar';
-      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
-        .then(function(r){if(!r.ok)throw new Error('send failed');return r.json()})
-        .then(function(result){if(!result||!result.success)throw new Error('send failed');feedback('Message sent. The shop can reply using the contact details you provided.',false);btn.textContent='Message sent';})
-        .catch(function(){btn.disabled=false;btn.textContent=label;feedback('Could not send just now. Save your note and ask in person instead.',true);});
+      if (p.h < today[0]) return { open: false, text: 'Closed · opens ' + fmt(today[0]) };
+    }
+    /* find the next day that has hours */
+    for (var i = 1; i <= 7; i++) {
+      var d = (p.day + i) % 7, hrs = HOURS.days[d];
+      if (!hrs) continue;
+      var names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      return { open: false, text: 'Closed · opens ' + (i === 1 ? 'tomorrow' : names[d]) + ' ' + fmt(hrs[0]) };
+    }
+    return { open: false, text: 'Closed' };
+  }
+  function paintStatus() {
+    var s = computeStatus();
+    var line = $('#statusLine'), txt = $('#statusText'), pill = $('#hdrLive'), pillTxt = $('#hdrLiveText');
+    if (line && txt) {
+      line.classList.toggle('is-open', s.open === true);
+      line.classList.toggle('is-closed', s.open === false);
+      txt.textContent = s.text;
+    }
+    if (pill && pillTxt) {
+      pill.classList.toggle('is-open', s.open === true);
+      pill.classList.toggle('is-closed', s.open === false);
+      pillTxt.textContent = s.open ? 'Open now' : 'Closed';
+    }
+    var now = pacificNow();
+    $$('#hoursList li').forEach(function (li) {
+      li.classList.toggle('today', parseInt(li.getAttribute('data-days'), 10) === now.day);
     });
+  }
+  paintStatus();
+  setInterval(paintStatus, 60000);
+  window.__site = { computeStatus: computeStatus, HOURS: HOURS };
+
+  /* ---------- scroll reveal ---------- */
+  if (typeof IntersectionObserver !== 'undefined') {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    $$('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    $$('.reveal').forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* A single open card per group, with closed content removed from the accessibility tree. */
-  function disclosureGroup(selector,buttonSelector,panelSelector){
-    var cards=$$(selector);
-    function setOpen(card,open){
-      card.classList.toggle('open',open);
-      $(buttonSelector,card).setAttribute('aria-expanded',String(open));
-      var panel=$(panelSelector,card);panel.setAttribute('aria-hidden',String(!open));panel.inert=!open;
+  /* ---------- THE ENERGY BUILDER ----------
+     Two rows of tappable colours, off their own Natural Energy board.
+     Tap a base → the cup fills. Tap a topper → a layer lands on top.
+     Tap the same one again → it clears. No numbers, no readback sentence. */
+  var builder = $('#builder');
+  if (builder) {
+    var cup = $('.cup', builder), read = $('#builderRead');
+    var picked = { base: null, top: null };
+
+    function paintBuilder() {
+      cup.style.setProperty('--base', picked.base ? picked.base.c : '#D6CDBD');
+      cup.style.setProperty('--top', picked.top ? picked.top.c : '#EFE7DA');
+      cup.classList.toggle('is-based', !!picked.base);
+      cup.classList.toggle('is-topped', !!picked.top);
+      var parts = [];
+      if (picked.base) parts.push(picked.base.name);
+      if (picked.top) parts.push(picked.top.name);
+      if (parts.length) {
+        read.textContent = parts.join(' + ');
+        read.classList.remove('empty');
+      } else {
+        read.textContent = 'Tap a base';
+        read.classList.add('empty');
+      }
     }
-    cards.forEach(function(card){
-      var button=$(buttonSelector,card);if(!button)return;
-      setOpen(card,false);
-      button.addEventListener('click',function(){
-        var open=!card.classList.contains('open');
-        cards.forEach(function(other){setOpen(other,other===card&&open)});
+
+    function wire(rowSel, slot) {
+      var row = $(rowSel, builder);
+      if (!row) return;
+      $$('.pill', row).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var on = btn.getAttribute('aria-pressed') === 'true';
+          $$('.pill', row).forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          if (on) {
+            picked[slot] = null;
+          } else {
+            btn.setAttribute('aria-pressed', 'true');
+            picked[slot] = { name: btn.getAttribute('data-name'), c: btn.getAttribute('data-c') };
+          }
+          paintBuilder();
+        });
       });
+    }
+    wire('#baseRow', 'base');
+    wire('#topRow', 'top');
+    paintBuilder();
+  }
+
+  /* ---------- contact form (demo mode: shows the thank-you, sends nothing) ---------- */
+  var form = $('.contact-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ok = $('.form-success', form);
+      if (ok) ok.classList.add('show');
+      form.reset();
     });
   }
-  disclosureGroup('.tcard','.tcard-tap','.tcard-panel');
-  disclosureGroup('.shake','.shake-tap','.shake-panel');
 })();
