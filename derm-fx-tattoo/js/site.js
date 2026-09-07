@@ -11,7 +11,21 @@
    decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
    null = closed that day. Closing past midnight: use 26 for 2 am.
    ------------------------------------------------------------ */
-var HOURS = { tz:'America/Los_Angeles', confirmed:false, days:{} };
+var HOURS = {
+  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  days: {
+    // Read off the hours card taped inside their own front door in the
+    // storefront photo (Mon-Sat 12-8, Sun 2:30-8), and matched against three
+    // directory listings that carry the same Sunday 2:30 open.
+    0: [14.5, 20],                    // Sunday      2:30 PM - 8:00 PM
+    1: [12, 20],                      // Monday
+    2: [12, 20],                      // Tuesday
+    3: [12, 20],                      // Wednesday
+    4: [12, 20],                      // Thursday
+    5: [12, 20],                      // Friday
+    6: [12, 20]                       // Saturday
+  }
+};
 
 /* ------------------------------------------------------------
    CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
@@ -95,7 +109,7 @@ function customClose(p, close){ return close; }
     if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
     $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
   }
-  if(HOURS.confirmed){ applyStatus(); setInterval(applyStatus,60000); }
+  applyStatus(); setInterval(applyStatus,60000);
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
 
   /* ---------- scroll-reveal + count-up ---------- */
@@ -137,5 +151,27 @@ function customClose(p, close){ return close; }
   /* ---------- SIGNATURE GADGET ----------
      Per-client interactive code goes below this line (EA: day timeline +
      rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+
+  /* ---------- SIGNATURE GADGET — PICK A STYLE ----------
+     Five labelled pills, five real pieces off this shop's own wall. One tap,
+     the framed picture above swaps, instantly, with a short cross-fade. No
+     modes, no toggle-off state to discover, nothing to read first: whichever
+     pill is lit is the picture you're looking at. Toddler law. */
+  var pills=$$('.picker-pills .pill'), pImg=$('#pickImg'), pCap=$('#pickCap'), pFrame=$('#pickFrame');
+  if(pills.length && pImg && pCap && pFrame){
+    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    // pre-load every style so the swap never shows an empty frame
+    pills.forEach(function(b){var i=new Image();i.src=b.getAttribute('data-src')});
+    function pick(btn){
+      if(btn.getAttribute('aria-pressed')==='true') return;
+      pills.forEach(function(b){b.setAttribute('aria-pressed', b===btn?'true':'false')});
+      var src=btn.getAttribute('data-src'), alt=btn.getAttribute('data-alt'), cap=btn.getAttribute('data-cap');
+      function swap(){pImg.src=src;pImg.alt=alt;pCap.innerHTML=cap;pFrame.classList.remove('swapping')}
+      if(reduce){swap();return}
+      pFrame.classList.add('swapping');
+      setTimeout(swap,180);
+    }
+    pills.forEach(function(b){b.addEventListener('click',function(){pick(b)})});
+  }
 
 })();
