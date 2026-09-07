@@ -1,0 +1,155 @@
+/* ============================================================================
+   ALL STAR AUTO BODY — hero only. Namespaced under .hero; loaded AFTER
+   css/style.css. Uses the site's own tokens (--dark, --brand, --warm, --ink,
+   --header-h) so the hero and the hours band below it share one palette.
+
+   MIRROR LAW: the ground is their own barn wall — deep oxblood siding over
+   stone veneer — blurred back to a texture so the only sharp object on the
+   screen is their sign. It ends in --dark at the foot of the frame, which is
+   the colour the hours band starts in, so the two read as one surface.
+   ========================================================================== */
+
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:var(--dark);color:var(--ink);isolation:isolate;
+}
+
+/* ---------- the wall ------------------------------------------------------ */
+.hero .hero-bg{position:absolute;inset:0;z-index:0}
+.hero .hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 54%;
+  filter:saturate(1.06);
+  transform:scale(1.075);
+  animation:asWallDrift 30s cubic-bezier(.17,.63,.24,1) forwards;
+}
+@keyframes asWallDrift{to{transform:scale(1)}}
+
+/* warm pool in the middle of the wall (their own wall-pack light sits there),
+   dark at the edges, and --dark at the foot so the hours band continues it. */
+.hero .hero-bg::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(78% 62% at 50% 44%,
+      color-mix(in srgb,var(--warm) 13%,transparent) 0%,
+      rgba(0,0,0,0) 46%,
+      color-mix(in srgb,var(--dark) 55%,transparent) 78%,
+      color-mix(in srgb,var(--dark) 80%,transparent) 100%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 62%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 22%,transparent) 24%,
+      color-mix(in srgb,var(--dark) 46%,transparent) 62%,
+      color-mix(in srgb,var(--dark) 88%,transparent) 88%,
+      var(--dark) 100%);
+}
+
+/* ---------- layout -------------------------------------------------------- */
+.hero .hero-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(28px,6vh,64px) var(--pad);
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(30px,5.2vh,52px);
+}
+
+/* ---------- the stage glow ------------------------------------------------ */
+.hero .as-stage{position:relative;width:min(90vw,900px);max-width:100%}
+.hero .as-stage::before{
+  content:"";position:absolute;z-index:-1;inset:-26% -14%;
+  background:radial-gradient(56% 62% at 50% 50%,
+    color-mix(in srgb,var(--warm) 34%,transparent) 0%,
+    color-mix(in srgb,var(--brand) 16%,transparent) 44%,
+    transparent 72%);
+  filter:blur(30px);opacity:0;
+  animation:asGlowIn 1.9s ease .55s forwards, asGlowBreathe 14s ease-in-out 2.6s infinite;
+}
+@keyframes asGlowIn{to{opacity:1}}
+@keyframes asGlowBreathe{0%,100%{opacity:1}50%{opacity:.74}}
+
+/* ---------- the sign plate ------------------------------------------------ */
+.hero .as-sign{
+  position:relative;width:100%;aspect-ratio:1380 / 610;
+  border:6px solid #10131a;border-radius:5px;overflow:hidden;
+  box-shadow:
+    0 44px 96px -34px rgba(0,0,0,.96),
+    0 14px 34px -14px rgba(0,0,0,.8),
+    0 0 0 1px rgba(255,255,255,.07);
+  opacity:0;transform:translateY(26px) scale(.966);
+  animation:asPlateIn 1.05s cubic-bezier(.22,.85,.3,1) .18s forwards;
+}
+@keyframes asPlateIn{to{opacity:1;transform:none}}
+
+.hero .as-sign img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+/* the repaired car — the sign's own perfect half, reflected across the line the
+   sign painter drew. Revealed left to right, behind the light. */
+.hero .as-sign-fixed{
+  clip-path:inset(0 100% 0 0);
+  animation:asStraighten 1.5s cubic-bezier(.42,0,.2,1) 1.02s forwards;
+}
+@keyframes asStraighten{to{clip-path:inset(0 0 0 0)}}
+
+/* the sign hangs unlit until the light reaches it */
+.hero .as-dim{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 91%,transparent),
+    color-mix(in srgb,var(--dark) 86%,transparent));
+  clip-path:inset(0 0 0 0);
+  animation:asLight 1.5s cubic-bezier(.42,0,.2,1) 1.02s forwards;
+}
+@keyframes asLight{to{clip-path:inset(0 0 0 100%)}}
+
+/* one pass of a shop light across the vinyl */
+.hero .as-sweep{
+  position:absolute;top:-24%;bottom:-24%;left:-30%;width:30%;
+  transform:translateX(0);opacity:0;pointer-events:none;
+  mix-blend-mode:screen;
+  background:linear-gradient(102deg,
+    transparent 0%,
+    rgba(255,240,214,.10) 26%,
+    rgba(255,248,234,.80) 50%,
+    rgba(255,236,206,.16) 72%,
+    transparent 100%);
+  animation:asSweep 1.5s cubic-bezier(.42,0,.2,1) 1.02s forwards;
+}
+@keyframes asSweep{
+  0%{transform:translateX(0);opacity:0}
+  7%{opacity:1}
+  84%{opacity:1}
+  100%{transform:translateX(433%);opacity:0}
+}
+
+/* ---------- buttons ------------------------------------------------------- */
+.hero .hero-inner .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;transform:translateY(14px);
+  animation:asRise .85s cubic-bezier(.22,.85,.3,1) 2.18s forwards;
+}
+@keyframes asRise{to{opacity:1;transform:none}}
+
+/* ---------- phones -------------------------------------------------------- */
+@media (max-width:760px){
+  .hero .as-stage{width:calc(100vw - 22px)}
+  .hero .hero-inner{padding-left:11px;padding-right:11px;gap:clamp(26px,4.4vh,40px)}
+  .hero .hero-bg img{object-position:52% 58%}
+  .hero .as-sign{border-width:5px}
+}
+@media (max-width:520px){
+  .hero .hero-inner .hero-actions{width:100%}
+  .hero .hero-inner .hero-actions .btn{flex:1 1 auto;padding:13px 10px;font-size:13px;letter-spacing:.02em}
+}
+
+/* ---------- reduced motion: land on the final frame ----------------------- */
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-bg img{animation:none;transform:none}
+  .hero .as-stage::before{animation:none;opacity:1}
+  .hero .as-sign{animation:none;opacity:1;transform:none}
+  .hero .as-sign-fixed{animation:none;clip-path:inset(0 0 0 0)}
+  .hero .as-dim{animation:none;clip-path:inset(0 0 0 100%)}
+  .hero .as-sweep{display:none}
+  .hero .hero-inner .hero-actions{animation:none;opacity:1;transform:none}
+}

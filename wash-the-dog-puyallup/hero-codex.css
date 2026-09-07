@@ -14,9 +14,9 @@
 .hero.codex-wash-sign .codex-scene img{object-position:50% 56%;filter:saturate(.95);transform:scale(1.02);animation:codexWashPhoto 2.5s ease-out both}
 .hero.codex-wash-sign::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 75%,transparent),color-mix(in srgb,var(--bg) 24%,transparent) 56%,color-mix(in srgb,var(--dark) 36%,transparent));pointer-events:none}
 .hero.codex-wash-sign::after{height:16%;background:linear-gradient(transparent,var(--dark))}
-.hero.codex-wash-sign .codex-content{padding-top:20px;padding-bottom:35px}
-.hero.codex-wash-sign .codex-title{font-family:var(--display);font-weight:700;font-size:clamp(90px,12vw,168px);line-height:.83;letter-spacing:-.035em;color:var(--brand);-webkit-text-stroke:2px var(--paper);text-shadow:0 4px 0 var(--dark),0 14px 35px color-mix(in srgb,var(--dark) 24%,transparent)}
-.hero.codex-wash-sign .codex-title span{display:block;width:fit-content;margin:0 auto;background:linear-gradient(180deg,var(--brand-bright,var(--brand)) 12%,var(--brand) 50%,var(--dark) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:codexWashInflate 1.4s cubic-bezier(.16,.8,.2,1) both}
+.hero.codex-wash-sign .codex-content{align-self:start;margin:0 auto;padding-top:clamp(64px,11svh,110px);padding-bottom:35px}
+.hero.codex-wash-sign .codex-title{font-family:var(--display);font-weight:700;font-size:clamp(90px,12vw,168px);line-height:.83;letter-spacing:-.035em;color:var(--brand);-webkit-text-stroke:2px var(--paper);text-shadow:none}
+.hero.codex-wash-sign .codex-title span{display:block;width:fit-content;margin:0 auto;background:linear-gradient(180deg,var(--brand-bright,var(--brand)) 12%,var(--brand) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:codexWashInflate 1.4s cubic-bezier(.16,.8,.2,1) both}
 .hero.codex-wash-sign .codex-title .codex-wash-dog{animation-delay:.13s;margin-top:12px}.hero.codex-wash-sign .codex-title small{font-size:.4em;font-weight:600;vertical-align:middle;letter-spacing:-.04em;-webkit-text-stroke:1px var(--paper)}
 .hero.codex-wash-sign .codex-actions{margin-top:44px;animation:codexWashActions .7s .75s ease-out both}
 @keyframes codexWashInflate{0%{transform:translateY(24px) scale(.85);opacity:0}65%{transform:translateY(-3px) scale(1.025);opacity:1}100%{transform:none;opacity:1}}
