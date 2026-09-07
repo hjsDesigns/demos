@@ -1,79 +1,100 @@
 /* ============================================================
-   WEBSITE FACTORY — ONE-PAGE TEMPLATE
-   Distilled from the 2026-08 reference build (the quality bar; see README).
-   EVERY brand decision lives in :root below. Component rules only
-   ever reference tokens — never a hex color. Change the business,
-   change this block, done.
+   THUNDER RAIL STABLES — Enumclaw, WA
+   Built on the website-factory one-page template.
 
-   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
-   dark (a genuinely dark venue), three rules below still assume the light-
-   ground default and will render illegible — check/override these in the
-   SITE's OWN style.css, never edit this shared file:
-     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
-     .story-copy .lede         — color:var(--dark)
-     .site-footer              — background:var(--ink)
-   (The hero scrim had the same bug — built from var(--ink), which on a
-   dark-ground site is the light body-text color, so the "dark scrim" washed
-   the hero photo pale instead of darkening it; Hayden caught it live as
-   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
-   now uses var(--dark), the one token guaranteed dark in either mode — so
-   this one no longer needs a per-site override.)
-   Three separate bugs of this exact shape shipped in one build before this
-   note existed (footer, the About lede, then the hero scrim) — sweep the
-   remaining three before calling a dark-ground build done, don't wait for
-   Hayden to catch it.
+   ATMOSPHERE PASS 2026-09-06 — MIRROR LAW.
+   The room is dark. Every photo of this place is stained timber trusses,
+   cedar plank walls, dark sand footing and hanging lights under a roof.
+   So the page is now a BARN-WOOD build: deep walnut/soil grounds carry the
+   hero, the hours band, the signature, the reviews and the closing band;
+   warm cream carries the reading sections. The page alternates dark → cream
+   → dark all the way down instead of sitting in one cream wash.
+
+   ALTERNATION MAP (top to bottom)
+     #hero        DARK   (photo, walnut fallback)
+     #hours       DARK   walnut band
+     #programs    CREAM
+     #signature   DARK   walnut band  (.section-dark)
+     #about       CREAM
+     #reviews     DARK   walnut band  (.section-dark)
+     #contact     CREAM
+     #cta         DARK   walnut band  (.section-dark)
+     footer       DARKEST walnut
+
+   --bg / --ink are NOT flipped: the body ground stays cream, so the shared
+   template rules that assume a light ground still hold. Everything that sits
+   on walnut is repainted explicitly in the ON-WALNUT block near the bottom.
    ============================================================ */
 :root{
-  /* ---- palette (derive from the client's logo / storefront / photos) ---- */
-  /* THUNDER RAIL STABLES — every hex below is sampled from their own Google-origin
-     photos (see HANDOFF-CODEX.md for the sample regions). MIRROR LAW: the palette is
-     the place — fir treeline, pasture, arena timber and sand, sunlit gravel drive. */
-  --brand:#3C5A31;          /* fir treeline behind the outdoor arena  [hero-stack-1 sample #354d2c, lifted] */
-  --brand-text:#2F4A27;     /* same hue, darkened to pass AA on cream for small type */
-  --brand-bright:#4A6E3C;   /* hover state of --brand */
-  --accent:#A8763C;         /* saddle-leather tan — arena timber + footing [pick-owner #5b4f46 / #80735b, warmed] */
-  --accent-soft:#C89A63;    /* lighter accent for dark grounds */
-  --ink:#23201A;            /* near-black text — warm timber shadow */
-  --bg:#F1EBDB;             /* TRUE CREAM page ground — sunlit gravel drive [hero-stack-1 #b5b291, lifted] */
-  --bg-2:#E6DEC9;           /* deeper cream, alternating bands */
-  --paper:#F7F2E6;          /* cards — a hair lighter than --bg, never white */
-  --muted:#6B6455;          /* secondary text */
-  --line:#DCD3BE;           /* hairlines, borders */
-  --dark:#1E2A19;           /* dark panels (hero scrim, closing CTA band) — deep fir shadow */
-  --dark-2:#2A3A23;         /* dark hover */
-  --warm:#D6A868;           /* highlighted word inside headlines on dark grounds — arena light on sand */
-  --tint:#E3E5D2;           /* light tinted band (the find-us band) — pasture grass [hero-stack-1 #99a16a, lifted] */
-  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
-  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
+  /* ---- palette — every hex sampled with PIL from the 2026-09-06 harvest ----
+     g3 cedar round-pen wall #493126 · g3 arena sand #4C3B30 · g5 timber
+     trusses #483F3B · g5 lit footing #9D7F65 · g1 warm plank wall #8E6D58 ·
+     g1 tack-locker wood #84603D · g1 arena soil #5E534A · g1 doorway firs
+     #C0D5B6 · g3 canopy #ACACA1. Two accents only: SADDLE LEATHER and FIR. */
+  --brand:#3E5A3A;          /* fir — the treeline through the open sides of the round pen */
+  --brand-text:#33502F;     /* same hue, darkened to pass AA on cream */
+  --brand-bright:#4C6D45;   /* hover of --brand */
+  --accent:#B07A3E;         /* SADDLE LEATHER — tack lockers + lit footing [g1 #84603D, g5 #9D7F65] */
+  --accent-soft:#D9A96C;    /* saddle leather lifted, for walnut grounds */
+  --ink:#241A13;            /* warm timber near-black — body text on cream */
+  --bg:#F4EBD9;             /* ONE CREAM, warm — the canopy light [g3 #ACACA1, warmed] */
+  --bg-2:#E9DCC4;           /* deeper warm cream, alternating cream bands */
+  --paper:#FBF5E8;          /* cards on cream — never white */
+  --muted:#6A5B4A;          /* secondary text on cream */
+  --line:#DCCDB1;           /* hairlines on cream */
+
+  /* ---- the walnut family: the dark side of the page ---- */
+  --dark:#1E140E;           /* DEEPEST walnut — footer, hero fallback, scrims */
+  --dark-2:#2C1E15;         /* hover / deeper panel */
+  --band:#2C1E15;           /* the walnut band ground (hours, signature, reviews, cta) */
+  --band-2:#3A2819;         /* cards + photo mats sitting on the walnut band */
+  --band-line:#4E3722;      /* hairlines on walnut */
+  --cream-on-dark:#F3E7D2;  /* body text on walnut */
+  --muted-on-dark:#BCA98D;  /* secondary text on walnut */
+  --warm:#DDAA6A;           /* the barn lights on sand — highlighted words on walnut */
+  --tint:#E4DAC1;           /* light tinted chips on cream */
+
+  --status-open:#10B981;    /* STATUS LIGHT LAW tokens — no live light exists on this page */
+  --status-closed:#DC2626;
 
   /* ---- type: two faces max, loaded in index.html <head> ---- */
-  --display:'Young Serif','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --display:'Young Serif','Young Serif Fallback','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
   --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,sans-serif;
-  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
 
   /* ---- metrics ---- */
   --header-h:72px;
   --pad:clamp(20px,5vw,64px);
   --maxw:1180px;
   --rule:1px solid var(--line);
-  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
-  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
-                                                (mechanical → steeper start; confident → slower settle;
-                                                elastic → overshoot past 1). Leave equal to --ease if
-                                                the build doesn't need a second feel. */
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.22,.85,.3,1);
   --r:18px;
 }
 
 /* ============================================================
-   Z-INDEX MAP (QA lesson from EA — keep it documented)
-     60  .site-header   sticky header, always on top
-     40  #main-nav      the dropped-down mobile menu (inside header)
-      3  .hero-inner    hero text block
-      2  .hero-bg::after film grain
+   Z-INDEX MAP
+     60  .site-header
+     40  #main-nav (mobile drop)
+      3  .hero-inner
+      2  .hero-bg::after  film grain
       1  .hero-bg::before scrim
-      0  .hero-bg img   photo
-   Nothing else on the page sets a z-index above 10.
+      0  .hero-bg img
+   Nothing else above 10.
    ============================================================ */
+
+/* --- FONT-SWAP CLS. Young Serif renders 13% wider than Palatino/Georgia at the
+       same size, so the headline re-wrapped when the web font arrived and the
+       whole hero block jumped. This metric-matched local fallback holds the
+       line count until Young Serif lands. Measured, not guessed. --- */
+@font-face{
+  font-family:'Young Serif Fallback';
+  src:local('Palatino'),local('Palatino Linotype'),local('Georgia'),local('Times New Roman'),local('Times');
+  size-adjust:113.3%;
+  ascent-override:88%;
+  descent-override:20%;
+  line-gap-override:0%;
+}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
@@ -82,8 +103,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font
   display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 main{flex:1 0 auto}
 img{max-width:100%;height:auto;display:block}
+figure,blockquote{margin:0}   /* browser default is 0 40px — it eats a print's column */
 a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.04;margin:0;text-wrap:balance;letter-spacing:-.005em}
 h2 em{font-style:normal;color:var(--brand)}
 .section-dark h2 em,.hero h1 em{color:var(--warm)}
 p{margin:0 0 1em}
@@ -92,46 +114,37 @@ p{margin:0 0 1em}
 .section-dark .eyebrow{color:var(--warm)}
 :focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tnum{font-variant-numeric:tabular-nums}
 
 /* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
   font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
   font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
-.btn-primary{background:var(--brand);color:#fff}
+.btn-primary{background:var(--brand);color:#FFF8EC}
 .btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
 .btn-cream{background:var(--bg);color:var(--ink)}
 .btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
 .btn-ghost{border-color:currentColor;color:inherit;background:transparent}
 .btn-ghost:hover{transform:translateY(-2px)}
-.btn-dark{background:var(--dark);color:#fff}
+.btn-dark{background:var(--dark);color:#FFF8EC}
 .btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
 
 /* ============================================================ HEADER */
 .site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
-  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
   border-bottom:var(--rule)}
 .header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
 .logo{display:inline-flex;align-items:center;gap:11px;flex:none}
-.logo img{height:46px;width:auto}
-.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm{font-family:var(--display);font-weight:400;font-size:23px;letter-spacing:-.01em;line-height:1;color:var(--ink)}
 .logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 .nav-wrap{display:flex;align-items:center;gap:18px}
 .main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
 .main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
 .main-nav a:hover{opacity:1;color:var(--brand)}
-.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
-.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
-/* live open/closed pill in the header */
-.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
-  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
-  font-variant-numeric:tabular-nums}
-.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
-.hdr-live.is-open{border-color:color-mix(in srgb,var(--status-open) 55%,transparent);background:color-mix(in srgb,var(--status-open) 14%,transparent)}
-.hdr-live.is-open .dot{background:var(--status-open);animation:pulse 2.4s var(--ease) infinite}
-.hdr-live.is-closed .dot{background:var(--status-closed)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.main-nav a[aria-current]{color:var(--brand-text)}
+.main-nav .nav-cta{background:var(--brand);color:#FFF8EC;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#FFF8EC}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
-@media (max-width:1100px){.hdr-live .txt-long{display:none}}
 @media (max-width:900px){
   .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
     background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
@@ -140,168 +153,84 @@ p{margin:0 0 1em}
   .main-nav .nav-cta{border-radius:0;margin-top:6px}
   .nav-toggle{display:flex;align-items:center;justify-content:center}
 }
-@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
-@media (max-width:420px){.hdr-live{display:none}}
+@media (max-width:560px){.logo .wm{font-size:19px}.logo .wm small{display:none}}
 
 /* ============================================================ HERO
-   Sized to the phone screen minus the sticky header (100svh under a sticky
-   header overshoots by the header's height — EA lesson). Content sits in
-   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
-   to opposite edges, so it can't collide on short screens. */
-.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+   Sized to the phone screen minus the sticky header. Content sits in NORMAL
+   FLOW at the bottom via a flex spacer, so nothing can collide on a short
+   screen. NOTHING ON THE HERO PHOTO but the headline block. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:var(--cream-on-dark)}
 .hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
-@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
-/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
-   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
-   light-ground AND a dark-ground build (it's the same token the .hero fallback
-   background above uses), where --ink flips to a light color on a dark-ground site
-   and would wash the photo pale instead of darkening it. */
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:52% 58%;animation:kenburns 24s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+/* scrim built from --dark (the token guaranteed dark in either mode) so the
+   walnut pools under the type instead of washing the photo pale. */
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
-             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
-@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 84%,transparent) 0%,color-mix(in srgb,var(--dark) 55%,transparent) 42%,color-mix(in srgb,var(--dark) 14%,transparent) 78%,transparent 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,transparent 26%,transparent 52%,color-mix(in srgb,var(--dark) 78%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 46%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 26%,color-mix(in srgb,var(--dark) 58%,transparent) 60%,color-mix(in srgb,var(--dark) 94%,transparent) 100%)}}
 /* film grain */
-.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.42;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
 .hero-spacer{flex:1 1 auto}
-.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
-.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
-.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(40px,7vh,88px)}
+/* Jack's scale: one big sturdy display headline and nothing competing with it. */
+.hero h1{font-size:clamp(44px,min(6.4vw,10vh),76px);color:#FFF8EC;max-width:17ch;margin:0 0 20px;
+  letter-spacing:-.022em;line-height:1.02;text-shadow:0 2px 34px rgba(0,0,0,.5)}
 .hero h1 em{font-style:normal}
-.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:48ch;margin:0 0 30px;color:color-mix(in srgb,var(--cream-on-dark) 92%,transparent);font-weight:600}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-/* entrance stagger (only when JS is on, so no-JS never hides text) */
-.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
-.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero-sub{animation-delay:.16s}.js .hero-actions{animation-delay:.3s}
 @keyframes rise{to{opacity:1;transform:none}}
 .sub-short{display:none}
 @media (max-width:520px){
-  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
-  .hero h1{font-size:clamp(36px,10.5vw,44px)}
-  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+  .hero-sub{font-size:16.5px;max-width:34ch;text-wrap:balance}.sub-long{display:none}.sub-short{display:inline}
+  .hero h1{font-size:clamp(38px,11.5vw,46px);max-width:none}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px;min-width:0}
 }
-
-/* ============================================================ HOURS / STATUS BAND */
-.status-band{background:var(--tint);border-bottom:var(--rule)}
-.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
-.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
-.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
-.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
-.live-line.is-open .dot{background:var(--status-open);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 22%,transparent)}
-.live-line.is-closed .dot{background:var(--status-closed)}
-.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
-.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
-.status-addr a:hover{border-bottom-color:var(--brand)}
-.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
-.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
-.hours-list li:last-child{border-bottom:0}
-.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
-.hours-list .day{font-weight:700}
-.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
-.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
-.hours-list li.today .time{color:var(--ink);font-weight:600}
-.hours-list li.closed .time{color:var(--status-closed)}
-.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
-.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
-.proof .ico{color:var(--accent)}
-.proof .star{color:var(--warm)}
-@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
 
 /* ============================================================ SECTION SHELL */
 .section{padding:clamp(56px,8vw,112px) 0}
 .section-alt{background:var(--bg-2)}
-.section-dark{background:var(--dark);color:#fff}
+.section-dark{background:var(--band);color:var(--cream-on-dark)}
 .section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
-.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head h2{font-size:clamp(32px,4.6vw,56px);margin:0 0 14px}
 .section-head p{font-size:18px;color:var(--muted);margin:0}
-.section-dark .section-head p{color:rgba(255,255,255,.78)}
-/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.section-dark .section-head p{color:var(--muted-on-dark)}
 .reveal{opacity:1;transform:none}
 .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .js .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .js .reveal{opacity:1;transform:none;transition:none}
-  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
   .hero-bg img{animation:none}
-  .hdr-live.is-open .dot{animation:none}
 }
 
-/* ============================================================ SERVICES (cards grid) */
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
-.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
-.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
-.card .ico svg{width:26px;height:26px}
-.card h3{font-size:21px;margin:0 0 8px}
-.card p{font-size:15px;color:var(--muted);margin:0}
-.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
-@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.cards{grid-template-columns:1fr}}
-
-/* ============================================================ MENU (priced list) — removable */
-.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
-.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
-.menu-list{list-style:none;margin:0;padding:0}
-.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
-.menu-list li:last-child{border-bottom:0}
-.menu-list .name{font-weight:800;font-size:16.5px}
-.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
-/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
-.tnum{font-variant-numeric:tabular-nums}
-.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
-.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
-@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
-
-/* ============================================================ GALLERY (framed prints) */
-.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
-.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
-.print:hover{transform:rotate(0) scale(1.01)}
+/* ============================================================ FRAMED PRINTS
+   PHOTOS LIVE IN PURPOSE-BUILT OBJECTS: every photo on this page is a matted
+   print with a real caption. NEVER CROP THE IMPORTANT PART — the mat takes
+   the leftover, the photo is always whole. */
+.print{background:var(--paper);padding:14px 14px 16px;border:var(--rule);
+  box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
 .print img{width:100%;height:auto;display:block}
-.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
-.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
-.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
-.prints .print:nth-child(3n){transform:rotate(-.6deg)}
-.prints .print:hover{transform:rotate(0) scale(1.02)}
-@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
-
-/* ============================================================ SIGNATURE (per-client gadget goes here)
-   No styles by design. The gadget for each client is custom — build its CSS
-   in a block below this comment, using only tokens. EA's went here:
-   the live day-timeline + the rate calculator. */
-.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
-
-/* ============================================================ ABOUT (owner story + photo) */
-.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
-.story .print{transform:rotate(-1.2deg)}
-.story .print:hover{transform:rotate(0) scale(1.01)}
-.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
-.story-copy p{font-size:17px;color:var(--ink)}
-.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
-.team{margin-top:clamp(36px,5vw,64px)}
-.team h3{font-size:22px;margin:0 0 16px}
-.faces{display:flex;flex-wrap:wrap;gap:10px}
-.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
-.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
-.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
-.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
-@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.print:hover{transform:rotate(0) scale(1.01)}
+.section-dark .print{background:var(--band-2);border-color:var(--band-line);box-shadow:0 40px 80px -38px rgba(0,0,0,.85)}
+.section-dark .print figcaption{color:var(--muted-on-dark)}
 
 /* ============================================================ CONTACT */
 .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
-.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.contact h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 22px}
 .steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
 .steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
-.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#FFF8EC;display:grid;place-items:center;font-family:var(--display);font-weight:400;font-size:17px}
 .steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
 .steps li:last-child::after{display:none}
 .steps h3{font-size:19px;margin:0 0 4px}
 .steps p{font-size:15px;color:var(--muted);margin:0}
 .contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
-.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent);text-underline-offset:.2em}
 .contact-lines a:hover{border-bottom-color:var(--brand)}
 .contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
@@ -310,107 +239,127 @@ p{margin:0 0 1em}
 .contact-form textarea{min-height:110px;resize:vertical}
 .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
 .contact-form .btn{grid-column:1 / -1;justify-self:start}
-.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 22%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
 .form-success.show{display:block}
 .form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
 @media (max-width:900px){.contact{grid-template-columns:1fr}}
 @media (max-width:560px){.contact-form{grid-template-columns:1fr}}
 
-/* ============================================================ CTA BAND (dark, with count-up numbers) */
-.cta-band .section-head{max-width:none}
-.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
-.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
-.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
-.num b i{font-style:normal;color:var(--warm)}
-.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+/* ============================================================ CTA BAND */
+.cta-band .section-head{max-width:52ch;margin-bottom:clamp(24px,3.5vw,36px)}
+.cta-band .section-head h2{font-size:clamp(34px,4.6vw,56px)}
 .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
-@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
 
 /* ============================================================ FOOTER */
-.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.site-footer{background:var(--dark);color:var(--muted-on-dark);padding:clamp(40px,6vw,64px) 0 28px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
 .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
-.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
-.foot .plate img{height:44px;width:auto}
-.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
-.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.foot .wm{font-family:var(--display);font-weight:400;font-size:21px;color:#FFF8EC;line-height:1.15}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-on-dark);margin-top:6px}
 .foot p{font-size:14.5px;margin:0 0 6px}
 .foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
-.foot a:hover{color:#fff}
-.foot .soc{display:flex;gap:10px;margin-top:8px}
-.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
-.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.foot a{text-underline-offset:.2em}
+.foot a:hover{color:#FFF8EC;text-decoration:underline}
+.foot .soc{display:flex;gap:10px;margin-top:10px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid var(--band-line);border-radius:999px;padding:7px 15px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid var(--band-line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:color-mix(in srgb,var(--muted-on-dark) 78%,transparent)}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
 
 /* ============================================================================
-   THUNDER RAIL STABLES — site overrides
-   Everything below is specific to this build. Tokens only, no raw hexes.
+   THUNDER RAIL STABLES — site-specific
    ============================================================================ */
 
-/* --- Young Serif ships a single 400 weight. Asking for 700/800 makes the
+/* --- Young Serif ships a SINGLE 400 weight. Asking for 700/800 makes the
        browser synthesise a smeared fake bold, so every display use is pinned
-       to 400 and the weight comes from size + the ink color instead. --- */
-h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.face .ini,.steps li::before{font-weight:400}
-h1,h2,h3,h4{letter-spacing:-.005em}
-.hero h1{max-width:15ch;letter-spacing:-.01em}
-.logo .wm{font-size:23px;letter-spacing:-.01em}
-@media (max-width:560px){.logo .wm{font-size:19px}}
+       to 400 and the weight comes from size + ink instead. Do not add display
+       weights to the Google Fonts URL. --- */
+h1,h2,h3,h4,.logo .wm,.foot .wm,.roll-title,.steps li::before{font-weight:400}
 
-/* --- HERO STACK (README pattern): the widest real photo is 2000×1000 and
-       loses most of its width to a portrait crop, so phones scroll a conveyor
-       of three real photos at natural aspect. Desktop shows frame 1 only. --- */
-.hero-stack-track{display:contents}
-.hero-stack img{display:none}
-.hero-stack img:first-child{display:block}
+.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);
+  padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
+.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
+.hero :focus-visible,.section-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
+
+/* --- HERO: one wide real photo of the covered round pen on desktop, one true
+       vertical of the indoor arena on phones. Both are the hero — no reel, no
+       crossfade, nothing cropped through its subject. --- */
+.hero-photo-tall{display:none}
 @media (max-width:760px){
-  .hero-stack{overflow:hidden;background:var(--dark)}
-  .hero-stack-track{display:block;position:relative;animation:heroReel 58s linear infinite}
-  .hero-stack img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;
-    animation:none;transform:none;will-change:transform}
+  .hero-photo-wide{display:none}
+  .hero-photo-tall{display:block}
+  .hero-bg img{object-position:52% 42%}
 }
-@keyframes heroReel{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-@media (max-width:760px) and (prefers-reduced-motion:reduce){.hero-stack-track{animation:none}}
 
-/* --- FIND-US BAND: a barn, not a shop. No live open/closed light (STATUS
-       LIGHT LAW only governs indicators that exist); all 7 posted rows stay,
-       today lit, plus the by-appointment note. --- */
-.appt-line{display:flex;align-items:flex-start;gap:11px;font-size:16.5px;font-weight:600;color:var(--ink);
-  margin:0 0 14px;max-width:34ch;line-height:1.45}
-.appt-ico{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
-  background:var(--brand);color:var(--bg);font-size:15px;line-height:1;margin-top:1px}
-.status-addr{font-size:15.5px;color:var(--muted);margin:0}
-.status-addr a{font-weight:700;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
-.status-addr a:hover{border-bottom-color:var(--brand)}
-.hours-list li.note{background:color-mix(in srgb,var(--accent) 12%,transparent)}
-.hours-list li.note .day{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text)}
-.hours-list li.note .time{color:var(--ink);font-weight:600}
+/* --- HOURS BAND — walnut. A barn, not a shop: NO live open/closed light
+       (STATUS LIGHT LAW only governs indicators that exist). All 7 posted
+       rows show, today lit, plus the by-appointment note. --- */
+.status-band{background:var(--band);color:var(--cream-on-dark);
+  border-top:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.status-band .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(46px,6.5vw,82px) var(--pad)}
+.status-band .eyebrow{color:var(--warm)}
+.status-head h2{font-size:clamp(30px,4vw,46px);margin:0 0 20px;color:#FFF8EC}
+.status-head h2 em{font-style:normal;color:var(--warm)}
+.appt-line{display:flex;align-items:flex-start;gap:12px;font-size:16.5px;font-weight:600;color:var(--cream-on-dark);
+  margin:0 0 16px;max-width:36ch;line-height:1.45}
+.appt-ico{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:var(--accent);color:var(--dark);line-height:0;margin-top:1px}
+.appt-ico svg{width:17px;height:17px}
+.status-addr{font-size:15.5px;color:var(--muted-on-dark);margin:0;line-height:1.7}
+.status-addr a{font-weight:700;color:var(--warm);border-bottom:1px solid color-mix(in srgb,var(--warm) 42%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--warm)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--band-2);border:1px solid var(--band-line);border-radius:var(--r);
+  overflow:hidden;box-shadow:0 34px 66px -38px rgba(0,0,0,.85)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;
+  border-bottom:1px solid var(--band-line);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list .day{font-weight:700;color:var(--cream-on-dark)}
+.hours-list .time{font-family:var(--mono);color:var(--muted-on-dark);font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 16%,transparent)}
+.hours-list li.today .day::after{content:" · today";color:var(--warm);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list li.today .time{color:#FFF8EC;font-weight:600}
+.hours-list li.note{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+.hours-list li.note .day{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);font-weight:600}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--cream-on-dark);max-width:30ch;line-height:1.4;font-weight:600}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:30px}}
 
-/* --- The exterior facility photo that opens the offerings section
-       (STOREFRONT-BELOW-THE-HOURS: the hero isn't a building). --- */
-.wide-print{margin:0 0 clamp(28px,4vw,44px);transform:rotate(-.5deg)}
-.wide-print:hover{transform:rotate(0) scale(1.005)}
+/* --- PROGRAMS (cream). The section opens on the biggest real print the barn
+       has: the indoor arena mid cattle-sort. Photo right, copy left. --- */
+.lead-split{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center;
+  margin-bottom:clamp(34px,5vw,56px)}
+.lead-split .section-head{margin-bottom:0;max-width:none}
+.lead-split .print{transform:rotate(-1deg)}
+.tall-print img{height:min(540px,72vh);width:auto;max-width:100%;margin:0 auto;aspect-ratio:910/1920;object-fit:contain}
+@media (max-width:860px){
+  .lead-split{grid-template-columns:1fr;gap:30px}
+  .lead-split .print{transform:none;order:2}
+  .lead-split .section-head{order:1}
+  .tall-print img{height:min(460px,60vh)}
+}
 
 /* --- TITLE CARDS UNROLL: the heading IS the tap target; ARROW LAW = a
-       downward chevron that flips up. Real details only. --- */
+       downward chevron that flips up. Real, sourced details only. --- */
 .rolls{display:grid;gap:12px}
 .roll{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;
   transition:box-shadow .3s var(--ease),border-color .3s}
-.roll.open{border-color:color-mix(in srgb,var(--brand) 45%,transparent);
+.roll.open{border-color:color-mix(in srgb,var(--accent) 60%,transparent);
   box-shadow:0 30px 50px -38px color-mix(in srgb,var(--dark) 70%,transparent)}
 .roll-head{display:flex;align-items:center;gap:16px;width:100%;min-height:76px;padding:18px clamp(18px,3vw,28px);
   background:none;border:0;cursor:pointer;text-align:left;font-family:var(--body);color:var(--ink)}
 .roll-head:hover .roll-title{color:var(--brand-text)}
-.roll-title{font-family:var(--display);font-weight:400;font-size:clamp(22px,2.6vw,30px);line-height:1.1;letter-spacing:-.01em;flex:1 1 auto;transition:color .2s}
+.roll-head:focus-visible{outline-offset:-5px}
+.roll-title{font-family:var(--display);font-size:clamp(23px,2.8vw,32px);line-height:1.1;letter-spacing:-.01em;flex:1 1 auto;transition:color .2s}
 .roll-note{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);flex:none}
 .chev{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
-  background:var(--tint);color:var(--brand-text);transition:transform .35s var(--ease),background .2s}
+  background:var(--tint);color:var(--brand-text);transition:transform .35s var(--ease),background .2s,color .2s}
 .chev svg{width:22px;height:22px}
-.roll.open .chev{transform:rotate(180deg);background:var(--brand);color:var(--bg)}
+.roll.open .chev{transform:rotate(180deg);background:var(--accent);color:var(--dark)}
 .roll-body{padding:0 clamp(18px,3vw,28px) 26px}
 .roll-list{list-style:none;margin:0;padding:0;display:grid;gap:14px;max-width:70ch}
 .roll-list li{position:relative;padding-left:24px;font-size:16px;color:var(--muted);line-height:1.55}
 .roll-list li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:50%;
-  background:color-mix(in srgb,var(--accent) 75%,transparent)}
+  background:color-mix(in srgb,var(--accent) 85%,transparent)}
 .roll-list li b{color:var(--ink);font-weight:800}
 .roll-list li.roll-fine{font-size:14px;padding-top:12px;border-top:var(--rule);margin-top:2px}
 .roll-list li.roll-fine::before{top:calc(.62em + 12px);background:color-mix(in srgb,var(--muted) 45%,transparent)}
@@ -426,88 +375,85 @@ h1,h2,h3,h4{letter-spacing:-.005em}
 .also span{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-text);
   border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--paper)}
 
-/* --- SIGNATURE: three real pictures, tap one, get a route. It points at a
-       program, it never restates one (NEVER TWICE). Result sits ABOVE the
-       pictures on phones so the payoff is never off-screen. --- */
+/* --- SIGNATURE (walnut). Three real full-size frames matted on the walnut.
+       Tap one, get a route. It POINTS AT a program, it never restates one
+       (NEVER TWICE). Result sits ABOVE the pictures so the payoff is never
+       off-screen on a phone. Tap the lit one again to clear. --- */
 .picker{display:grid;grid-template-columns:1fr;gap:clamp(18px,3vw,28px)}
-.picker-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px)}
-.pick{display:block;padding:0;border:2px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--paper);
-  cursor:pointer;font-family:var(--body);color:var(--ink);text-align:left;
+.picker-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,22px);align-items:stretch}
+.pick{display:block;padding:10px 10px 0;border:1px solid var(--band-line);border-radius:var(--r);overflow:hidden;
+  background:var(--band-2);cursor:pointer;font-family:var(--body);color:var(--cream-on-dark);text-align:left;
   transition:transform .28s var(--ease),border-color .28s,box-shadow .28s}
-.pick img{width:100%;height:clamp(160px,20vw,230px);object-fit:cover;display:block;transition:transform .5s var(--ease)}
-.pick > span{display:block;padding:14px 16px;font-weight:800;font-size:16px;line-height:1.25}
-.pick:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 65%,transparent)}
-.pick:hover img{transform:scale(1.04)}
-.pick[aria-pressed="true"]{border-color:var(--brand);transform:translateY(-4px);
-  box-shadow:0 26px 46px -30px color-mix(in srgb,var(--brand) 75%,transparent)}
-.pick[aria-pressed="true"] > span{background:var(--brand);color:var(--bg)}
-.picker-out{border:2px dashed var(--line);border-radius:var(--r);padding:clamp(22px,3vw,32px);
-  display:flex;flex-direction:column;justify-content:center;min-height:150px;background:var(--paper)}
-.picker-out.has{border-style:solid;border-color:var(--brand);background:var(--tint)}
-.picker-idle{margin:0;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.picker-out h3{font-size:clamp(24px,3vw,34px);margin:0 0 10px}
-.picker-out p{font-size:17px;color:var(--ink);margin:0 0 18px;max-width:56ch}
+.pick-frame{position:relative;display:block;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:var(--dark)}
+/* The echo carries its background-image in the element's own style attribute.
+   A url() held in a CUSTOM PROPERTY resolves against the stylesheet's base
+   (css/images/…, a 404) — a style attribute resolves against the document. */
+.pick-echo{position:absolute;inset:0;background-size:cover;background-position:center;
+  filter:blur(24px) saturate(.75) brightness(.45);transform:scale(1.25)}
+.pick img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
+.pick > span{display:block;padding:15px 8px 17px;font-weight:800;font-size:16.5px;line-height:1.25;text-align:center}
+.pick:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--warm) 55%,transparent);
+  box-shadow:0 34px 56px -34px rgba(0,0,0,.9)}
+.pick[aria-pressed="true"]{border-color:var(--warm);transform:translateY(-4px);
+  box-shadow:0 0 0 2px var(--warm),0 30px 50px -30px rgba(0,0,0,.9)}
+.pick[aria-pressed="true"] > span{color:var(--warm)}
+.picker-out{border:1px solid var(--band-line);border-radius:var(--r);padding:20px clamp(22px,3vw,32px);
+  display:flex;flex-direction:column;justify-content:center;background:var(--band-2)}
+.picker-out.has{border-color:var(--warm);background:color-mix(in srgb,var(--warm) 12%,var(--band-2))}
+.picker-idle{margin:0;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-on-dark)}
+.picker-out h3{font-size:clamp(25px,3.2vw,36px);margin:0 0 10px;color:#FFF8EC}
+.picker-out p{font-size:17px;color:var(--cream-on-dark);margin:0 0 18px;max-width:56ch}
+.picker-out .btn{align-self:flex-start}
+.picker-out .btn-primary{background:var(--accent);color:var(--dark)}
+.picker-out .btn-primary:hover{background:var(--accent-soft)}
 @media (max-width:700px){
   .picker-choices{grid-template-columns:1fr;gap:12px}
-  .pick{display:grid;grid-template-columns:112px 1fr;align-items:center}
-  .pick img{height:100%;min-height:88px}
-  .pick > span{padding:12px 14px}
+  .pick{display:grid;grid-template-columns:42% 1fr;align-items:center;gap:14px;padding:10px}
+  .pick-frame{aspect-ratio:4/5}
+  .pick > span{padding:0 8px 0 0;text-align:left;font-size:17px}
 }
 
-/* --- REVIEW-FACE LAW: a clean typeset mark in the site's own palette.
-       Never a scraped photo, never a grey silhouette. --- */
-.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,24px);align-items:start}
-.rev{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(22px,3vw,30px);
-  display:flex;flex-direction:column;gap:12px;transition:transform .3s var(--ease),box-shadow .3s}
-.rev:hover{transform:translateY(-4px);box-shadow:0 30px 50px -36px color-mix(in srgb,var(--dark) 60%,transparent)}
-.rev-mark{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;
-  background:var(--brand);color:var(--bg)}
+/* --- ABOUT (cream) --- */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg);margin:0;align-self:center}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19.5px;font-weight:700;color:var(--brand-text);line-height:1.5}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* --- REVIEWS (walnut). REVIEW-FACE LAW: a clean typeset mark in the site's
+       own palette — never a scraped photo, never a grey silhouette. The
+       mirrored listing carried no reviewer names, so no initial is invented;
+       the mark is a horseshoe in saddle leather. --- */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,24px);align-items:stretch}
+.rev{margin:0;height:100%;background:var(--band-2);border:1px solid var(--band-line);border-radius:var(--r);
+  padding:clamp(22px,3vw,30px);display:flex;flex-direction:column;gap:12px;
+  transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.rev:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--warm) 45%,transparent);box-shadow:0 34px 56px -36px rgba(0,0,0,.9)}
+.rev-mark{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--accent);color:var(--dark)}
 .rev-mark svg{width:26px;height:26px}
-.rev-stars{color:var(--accent);font-size:15px;letter-spacing:.12em;line-height:1}
-.rev blockquote{margin:0;font-size:16px;line-height:1.6;color:var(--ink)}
+.rev-stars{color:var(--warm);font-size:15px;letter-spacing:.12em;line-height:1}
+.rev blockquote{margin:0;font-size:16px;line-height:1.62;color:var(--cream-on-dark)}
 .rev blockquote::before{content:"\201C"}
 .rev blockquote::after{content:"\201D"}
-.rev figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:auto;padding-top:4px}
+.rev figcaption{font-family:var(--body);font-size:13px;line-height:1.4;letter-spacing:.03em;color:var(--muted-on-dark);margin-top:auto;padding-top:4px}
 @media (max-width:900px){.revs{grid-template-columns:1fr}}
 
-/* --- Closing band: no trivia grid. The template's .numbers markup is deleted
-       for this build, so the band is head + buttons only. --- */
-.cta-band .section-head{max-width:52ch;margin-bottom:clamp(24px,3.5vw,36px)}
-.cta-band .section-head h2{font-size:clamp(32px,4.4vw,52px)}
+/* --- No-JS fallback: the header can't drop a menu without JS, so lay the nav
+       out flat rather than hiding it behind a dead toggle. --- */
+@media (max-width:900px){
+  html:not(.js) .site-header{height:auto}
+  html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}
+  html:not(.js) .nav-wrap{width:100%}
+  html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}
+  html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}
+  html:not(.js) .nav-toggle{display:none}
+}
 
-/* --- No invented logo mark, so the footer plate and header logo image are
-       gone from the markup; keep the wordmark lockup breathing. --- */
-.foot .brand{margin-bottom:16px}
-
-/* --- CLS: images carry intrinsic width/height in the markup. Two rules still
-       need an explicit ratio because CSS overrides the box. --- */
-.pick img{aspect-ratio:4/3}
-@media (max-width:700px){.pick img{aspect-ratio:auto}}
-/* The about print is a true portrait (900 × 1800) — capping its height keeps it
-   from dominating the story column. Whole photo, scaled, never cropped. */
-.story .print img{max-height:600px;width:auto;margin:0 auto}
-/* Idle picker reads as a prompt bar, not an empty well. */
-.picker-out{min-height:0}
-.picker-out:not(.has){padding:20px clamp(22px,3vw,32px);min-height:0}
-
-/* Codex finish: reading rhythm, keyboard paths, full-photo presentation. */
-.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
-.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
-.hero :focus-visible,.section-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
-.story .print{margin:0;align-self:center}
-.contact-lines a,.foot a{text-underline-offset:.2em}
-.contact-lines a:hover,.foot a:hover{text-decoration:underline}
-.main-nav a[aria-current]{color:var(--brand-text)}
-@media (max-width:520px){.hero-sub{white-space:normal;text-wrap:balance;max-width:32ch}.hero-actions .btn{min-width:0}}
-@media (max-width:900px){html:not(.js) .site-header{height:auto}html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}html:not(.js) .nav-wrap{width:100%}html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}html:not(.js) .nav-toggle{display:none}}
-
-.pick img{object-fit:contain;background:var(--bg-2)}
-.pick:hover img{transform:none}
-.roll-head:focus-visible{outline-offset:-5px}
-.picker-out .btn{align-self:flex-start}
-.picker-choices{align-items:stretch}
-.rev{height:100%}
-.rev figcaption{font-family:var(--body);font-size:13px;line-height:1.4;letter-spacing:.03em;text-transform:none}
-@media (max-width:700px){.pick img{height:106px;min-height:0;aspect-ratio:auto}.pick > span{font-size:15px}.picker-out.has{padding:20px}}
-
-@media(min-width:761px){.hero h1{max-width:18ch;letter-spacing:-.025em;line-height:1.04}}
+/* --- EYEBROWS: `.section-head p` and `.story-copy p` (0,1,1) outrank a bare
+       `.eyebrow` (0,1,0) and were repainting every eyebrow --muted at body
+       size. Match the specificity so the label stays a label. --- */
+p.eyebrow{font-family:var(--mono);font-size:12px;line-height:1.5;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark p.eyebrow,.status-band p.eyebrow{color:var(--warm)}
