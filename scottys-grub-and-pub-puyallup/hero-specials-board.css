@@ -49,9 +49,9 @@
 .v-specials-board .sb-scrim{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(120% 78% at 50% 6%, color-mix(in srgb,var(--warm) 13%,transparent) 0%, transparent 62%),
-    radial-gradient(96% 74% at 50% 52%, color-mix(in srgb,var(--dark) 42%,transparent) 0%, color-mix(in srgb,var(--dark) 86%,transparent) 74%),
-    linear-gradient(180deg, color-mix(in srgb,var(--dark) 74%,transparent) 0%, color-mix(in srgb,var(--dark) 30%,transparent) 34%, color-mix(in srgb,var(--dark) 88%,transparent) 100%);
+    radial-gradient(120% 80% at 50% 4%, color-mix(in srgb,var(--warm) 16%,transparent) 0%, transparent 60%),
+    radial-gradient(102% 80% at 50% 50%, transparent 0%, color-mix(in srgb,var(--dark) 62%,transparent) 78%),
+    linear-gradient(180deg, color-mix(in srgb,var(--dark) 52%,transparent) 0%, color-mix(in srgb,var(--dark) 10%,transparent) 32%, color-mix(in srgb,var(--dark) 58%,transparent) 100%);
 }
 
 /* ---------- the real Tightwad Tuesday poster, pinned on the same wall ---------- */
@@ -83,7 +83,7 @@
 /* ---------- the real oval sign, mounted on the board's head ---------- */
 .v-specials-board .sb-mark{
   width:clamp(118px,15.5vw,170px);
-  margin-bottom:-9%;
+  margin-bottom:-5%;
   position:relative;z-index:2;
   opacity:0;transform:translateY(-13px) scale(.965);
   animation:sbMark .85s var(--ease) .5s forwards;
@@ -97,7 +97,7 @@
 /* ---------- the board ---------- */
 .v-specials-board .sb-board{
   position:relative;width:100%;
-  padding:clamp(30px,4.4vw,44px) clamp(18px,3.4vw,38px) clamp(20px,2.8vw,30px);
+  padding:clamp(46px,6.2vw,68px) clamp(18px,3.4vw,38px) clamp(20px,2.8vw,30px);
   border-radius:9px;
   border:2px solid color-mix(in srgb,var(--brand-text) 40%,transparent);
   background:
@@ -125,7 +125,7 @@
 
 /* the head rail */
 .v-specials-board .sb-rail{
-  margin:0 0 clamp(12px,1.6vw,18px);text-align:center;
+  margin:0 0 clamp(12px,1.6vw,18px);text-align:center;opacity:0;
   border-bottom:1px solid color-mix(in srgb,var(--brand-text) 26%,transparent);
   padding-bottom:clamp(10px,1.4vw,14px);
 }
@@ -202,7 +202,7 @@
 
 /* ---------- desktop breathing room ---------- */
 @media (min-width:900px){
-  .v-specials-board .sb-inner{width:min(660px,52vw);margin-right:clamp(0px,7vw,120px)}
+  .v-specials-board .sb-inner{width:min(660px,52vw)}
 }
 
 /* ---------- phones ---------- */
@@ -214,10 +214,8 @@
     animation-name:sbPosterPhone;
   }
   @keyframes sbPosterPhone{to{opacity:.82}}
-  .v-specials-board .sb-mark{
-    width:132px;margin-top:calc(29vw * 1.355 + 26px);margin-bottom:-8%;
-  }
-  .v-specials-board .sb-board{padding:26px 16px 18px}
+  .v-specials-board .sb-mark{width:132px;margin-bottom:-6%}
+  .v-specials-board .sb-board{padding:40px 16px 18px}
   .v-specials-board .sb-what{font-size:23px}
   .v-specials-board .sb-num{font-size:20px}
   .v-specials-board .sb-note{font-size:12.5px}
@@ -238,8 +236,14 @@
   .v-specials-board .sb-rail,
   .v-specials-board .sb-row,
   .v-specials-board .sb-actions,
-  .v-specials-board .sb-poster{animation:none;opacity:1;transform:none;filter:none}
-  .v-specials-board .sb-poster{opacity:.9;transform:translateY(-50%) rotate(-2.2deg)}
-  .v-specials-board .sb-mark{transform:none}
-  .v-specials-board .sb-board::before{opacity:1}
+  .v-specials-board .sb-poster{animation:none}
+  .v-specials-board .sb-wall,
+  .v-specials-board .sb-mark,
+  .v-specials-board .sb-board,
+  .v-specials-board .sb-actions{opacity:1;transform:none}
+  .v-specials-board .sb-board::before,
+  .v-specials-board .sb-rail{opacity:1}
+  .v-specials-board .sb-row{opacity:1;filter:none}
+  .v-specials-board .sb-poster{opacity:.9}
+  @media (max-width:760px){.v-specials-board .sb-poster{opacity:.82}}
 }
