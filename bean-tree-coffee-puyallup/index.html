@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Bean Tree Coffee Co — drive-thru espresso on River Road, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Bean Tree Coffee Co — a drive-thru coffee stand at 745 River Rd in Puyallup, Washington, open at 4:30 in the morning Monday through Friday. Dillanos Coffee Roasters espresso, fruit smoothies, energy spritzers, fresh donuts and a cup that changes with the season. Est. 2003.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- DM Serif Display (display, 400 — the only weight it ships) + Jost (body).
+     Must match --display / --body in css/style.css. -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="The Bean Tree Coffee Co — home">
+      <!-- The mark is a straight crop of the real leaf glyph off their own
+           menu board (harvest-0906/g1.jpg), cleaned to alpha. Never redrawn. -->
+      <img src="images/logo.png" alt="" width="152" height="320">
+      <span class="wm">The Bean Tree<small>Puyallup, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hours">Hours</a>
+        <a href="#menu">The board</a>
+        <a href="#specials">Specials</a>
+        <a href="#signature">The season cup</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT: their own stand from the lot, their hexagon
+       sign lit, shot before sunrise — which is exactly when they open.
+       Nothing on the photo but the headline block. Source: harvest g44. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"><img src="images/hero.jpg" alt="The Bean Tree drive-thru coffee stand on River Road before sunrise, its lit hexagon sign and warm windows glowing against a blue sky" fetchpriority="high" width="1290" height="2281"></div>
+    <div class="hero-inner">
+      <h1>Coffee before <em>the sun</em>.</h1>
+      <p class="sub">The Bean Tree Coffee Co — a drive-thru stand on River Road, Puyallup. The window opens at 4:30 in the morning.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">See the board</a>
+        <a href="#hours" class="btn btn-cream">Are they open?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours — THE BOARD =====================
+       Live Pacific clock + address + all seven days, today lit.
+       Hours live HERE and nowhere else on the page. -->
+  <section class="status-band on-board section-dark" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Open <em>before dawn</em>, seven days</h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          745 River Rd, Puyallup, WA 98371<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=745+River+Rd%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.4 on Google · 245 ratings</span>
+          <span class="proof">Proudly serving Dillanos Coffee Roasters</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time tnum">4:30 AM – 6:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time tnum">4:30 AM – 6:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time tnum">4:30 AM – 6:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time tnum">4:30 AM – 6:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time tnum">4:30 AM – 6:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time tnum">5:30 AM – 6:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time tnum">6:00 AM – 5:00 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — THE BOARD =====================
+       Transcribed verbatim off the photograph of their own menu board
+       (harvest-0906/g1.jpg, read at 3x). Their board carries no prices,
+       so this page carries none either. -->
+  <section class="section on-board section-dark" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Everything on the window</p>
+        <h2>The <em>whole board</em>, word for word</h2>
+        <p>This is their board, exactly as it's painted on the side of the stand — hot, iced or blended, any of it.</p>
+      </div>
+
+      <div class="menu-board reveal">
+        <div class="menu-col">
+          <div>
+            <h3 class="board-h">Espresso <span class="scr">Drinks</span></h3>
+            <ul class="board-list">
+              <li>Espresso</li>
+              <li>Americano</li>
+              <li>Latte</li>
+              <li>Mocha</li>
+              <li>White Mocha</li>
+              <li>Caramel Macchiato</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="board-h">Something <span class="scr">Different</span></h3>
+            <ul class="board-list">
+              <li>Chai<span class="qual">spiced, vanilla, chocolate, SF</span></li>
+              <li>Hot Cocoa</li>
+              <li>Spiced Cider</li>
+              <li>Steamer</li>
+              <li>Tea</li>
+              <li>Juice<span class="qual">apple, orange</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="board-h">Fruit <span class="scr">Smoothies</span></h3>
+            <ul class="board-list">
+              <li>Strawberry</li>
+              <li>Banana</li>
+              <li>Peach</li>
+              <li>Mango</li>
+              <li>Raspberry</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="board-h">Bean Tree <span class="scr">Specialties</span></h3>
+            <ul class="board-list">
+              <li>Orange Creamsicle</li>
+              <li>Muddy Monkey</li>
+              <li>Rocket<span class="qual">Rockstar Recovery + fruit puree (32 oz only)</span></li>
+              <li>Energy Spritzer<span class="qual">red, blue or SF lotus energy drink + flavors, topped with lemonade or OJ + cream (24 &amp; 32 oz only)</span></li>
+            </ul>
+          </div>
+          <figure class="print">
+            <img src="images/board.jpg" alt="The Bean Tree's painted menu board on the side of the stand, listing espresso drinks, smoothies, specialties, kids' drinks, bakery goodies and add-ons" loading="lazy" width="1800" height="1444">
+            <figcaption>The board, on the side of the stand</figcaption>
+          </figure>
+        </div>
+
+        <div class="menu-col">
+          <div>
+            <h3 class="board-h">Kids <span class="scr">10 &amp; younger</span></h3>
+            <ul class="board-list">
+              <li>Hot Cocoa</li>
+              <li>Cider</li>
+              <li>Steamer</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="board-h">Bakery <span class="scr">Goodies</span></h3>
+            <ul class="board-list">
+              <li>Muffins</li>
+              <li>Cookies</li>
+              <li>Scones</li>
+              <li>Pizza Bagel<span class="qual">w/ cream cheese</span></li>
+              <li>Plain Bagel<span class="qual">w/ cream cheese</span></li>
+              <li>Oatmeal</li>
+              <li>Sandwiches</li>
+              <li>Seasonal</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="board-h">Add-<span class="scr">ons</span></h3>
+            <ul class="board-list">
+              <li>Breve or milk alternatives</li>
+              <li>Extra shot</li>
+              <li>Flavor</li>
+              <li>Extras<span class="qual">SF white choc, banana, powders</span></li>
+              <li>Blend it</li>
+              <li>Bottled water</li>
+              <li>Rockstar Recovery</li>
+              <li>Redbull XS Energy</li>
+              <li>Extra toppings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-sizes reveal">
+        <b>Available sizes</b>
+        <span class="tnum">12 oz · 16 oz · 20 oz · 24 oz · 32 oz</span>
+      </div>
+      <p class="menu-note reveal">Their board doesn't print prices — ask at the window, and ask what the daily special is while you're there.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #specials =====================
+       Their two hand-made boards, photographed: the printed Sweet
+       Specials sheet in the window and the chalkboard A-frame. Names and
+       lists are read straight off those photos. -->
+  <section class="section" id="specials">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The part that changes</p>
+        <h2>New boards go up <em>all year</em></h2>
+        <p>Two boards run alongside the painted one: a printed Sweet Specials sheet taped in the window, and a chalkboard out front that gets rewritten by hand. Here's a strawberry-season run of each — worth asking what's on them today.</p>
+      </div>
+
+      <div class="spec-grid">
+        <div class="reveal">
+          <ul class="spec-list">
+            <li>
+              <h3>Strawberry Shortcake</h3>
+              <p>Strawberry flavor with shortbread, topped with cream and dried strawberries.</p>
+            </li>
+            <li>
+              <h3>Dipped Berry</h3>
+              <p>White chocolate with fresh strawberry flavor.</p>
+            </li>
+            <li>
+              <h3>Berry Dreamsicle</h3>
+              <p>Orange creamsicle with a berry and cream twist.</p>
+            </li>
+            <li>
+              <h3>Strawberry Sally</h3>
+              <p>Lemonade drizzled with strawberry purée — and, the sheet promises, a special surprise.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="spec-prints">
+          <figure class="print reveal">
+            <img src="images/specials.jpg" alt="The Bean Tree's printed Sweet Specials sheet taped in the window, listing Strawberry Shortcake, Dipped Berry, Berry Dreamsicle and Strawberry Sally" loading="lazy" width="1300" height="1571">
+            <figcaption>Sweet Specials, in the window</figcaption>
+          </figure>
+          <figure class="print reveal">
+            <img src="images/donuts.jpg" alt="A hand-lettered chalkboard outside the stand reading Fresh Happy Donuts Today, with apple fritters, maple bars, old fashion and donut holes, and the day's baristas written at the bottom" loading="lazy" width="900" height="1140">
+            <figcaption>Apple fritters · maple bars · old fashion · donut holes</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — THE SEASON CUP =====================
+       Their genuinely one-of-one, repeating, visible habit: the cup is
+       redesigned for every season. Five of their own cups, five taps.
+       TODDLER LAW — one obvious tap on a labelled pill, the photo swaps
+       instantly, nothing to read and nothing to decode. Section 5. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The thing regulars notice first</p>
+        <h2>The cup changes <em>with the season</em></h2>
+        <p>Nobody else on River Road bothers. Tap a season and see the cup they were handing out the window that year.</p>
+      </div>
+
+      <div class="cup-stage reveal">
+        <p class="cup-hint">Tap a season.</p>
+        <div class="cup-frame">
+          <div class="shot" id="cupShot">
+            <img src="images/cup-valentines.jpg" alt="A pink strawberry drink under whipped cream in a Bean Tree cup printed with LOVE, the O made from their leaf mark" data-season="valentines" class="on" width="1100" height="1467">
+            <img src="images/cup-strawberry.jpg" alt="A chocolate and strawberry drink topped with whipped cream and a fresh strawberry, in a cup reading the Bean Tree, Est 2003" data-season="strawberry" loading="lazy" width="1100" height="1467">
+            <img src="images/cup-summer.jpg" alt="An orange iced drink in a Bean Tree cup with a pineapple sticker, held up beside a paper pineapple hanging in the stand" data-season="summer" loading="lazy" width="1100" height="1467">
+            <img src="images/cup-thanksgiving.jpg" alt="An iced coffee in a Happy Thanksgiving Bean Tree cup, set among gourds and pumpkins" data-season="thanksgiving" loading="lazy" width="1100" height="1467">
+            <img src="images/cup-christmas.jpg" alt="An iced latte with whipped cream in a Bean Tree cup whose logo wears a Santa hat, held in front of white Christmas trees" data-season="christmas" loading="lazy" width="1100" height="1467">
+          </div>
+          <p class="cup-cap" id="cupCap" role="status" aria-live="polite"><b>Valentine's</b>the LOVE cup</p>
+        </div>
+        <div class="cup-pills" id="cupPills">
+          <button class="cup-pill" type="button" data-season="valentines" aria-pressed="true" data-title="Valentine's" data-cap="the LOVE cup">Valentine's</button>
+          <button class="cup-pill" type="button" data-season="strawberry" aria-pressed="false" data-title="Strawberry season" data-cap="whipped cream and a fresh berry on top">Strawberry season</button>
+          <button class="cup-pill" type="button" data-season="summer" aria-pressed="false" data-title="Summer" data-cap="pineapples in the window">Summer</button>
+          <button class="cup-pill" type="button" data-season="thanksgiving" aria-pressed="false" data-title="Thanksgiving" data-cap="out among the gourds">Thanksgiving</button>
+          <button class="cup-pill" type="button" data-season="christmas" aria-pressed="false" data-title="Christmas" data-cap="the logo puts a hat on">Christmas</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out the window</p>
+        <h2>What the <em>lane looks like</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal">
+          <img src="images/colors.jpg" alt="A row of a dozen iced energy spritzers lined up on the counter in red, orange, yellow, green, blue and purple" loading="lazy" width="1800" height="1350">
+          <figcaption>A morning's worth of energy spritzers</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/rainier.jpg" alt="Mount Rainier lit pink at sunrise above a rooftop, seen from the lot on River Road" loading="lazy" width="1800" height="1013">
+          <figcaption>Mount Rainier at sunrise, from River Road</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/syrups.jpg" alt="Two Bean Tree drinks on the counter in front of the shelf of flavour syrup bottles" loading="lazy" width="1500" height="2000">
+          <figcaption>The syrup shelf</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/burrito.jpg" alt="A breakfast burrito filled with egg, potato and sausage, wrapped and cut open on red checkered paper" loading="lazy" width="1400" height="1867">
+          <figcaption>Breakfast, out the same window</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="Three Bean Tree baristas in matching brown Thankful sweatshirts inside the stand, autumn leaves strung above the counter" loading="lazy" width="1600" height="1200">
+          <figcaption>Inside the stand, autumn</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Twenty-odd years on River Road</p>
+          <h2>Est. 2003 — <em>and still a hut</em></h2>
+          <p class="lede">It's printed right on the cup: <b>the Bean Tree, Est. 2003</b>. Same small brown stucco box in the River Road Plaza lot, more than twenty years on.</p>
+          <p>Two windows, a red neon strip along the roofline and an espresso machine pulling Dillanos — the Sumner roaster whose truck backs up to the stand on delivery mornings. Everything else on the board comes out of the same twelve feet: the smoothies, the spritzers, the bagels, the fritters on the chalkboard.</p>
+          <p>The chalkboard out front is the tell. Under the donut list, in a different colour, they write the names of the baristas working that day. Regulars put the rest plainly in a review this July: <b>“There is no better coffee stand. Fight me about it.”</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #ratings =====================
+       REVIEW ATTRIBUTION LAW: no name + profile-image pair could be
+       sourced by curl for any individual reviewer, so this band carries
+       the honest aggregate and links to the live reviews instead of
+       inventing a face or running an anonymous quote strip. -->
+  <section class="section" id="ratings">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What people give them</p>
+        <h2><em class="tnum">399 ratings</em>, two listings</h2>
+      </div>
+      <div class="rate-row">
+        <div class="rate reveal">
+          <b class="tnum">4.4</b>
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="lbl">245 ratings on Google</span>
+        </div>
+        <div class="rate reveal">
+          <b class="tnum">4.2</b>
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="lbl">154 ratings on Restaurantji</span>
+        </div>
+      </div>
+      <p class="rate-note reveal"><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Bean+Tree+745+River+Rd+Puyallup+WA" target="_blank" rel="noopener">Read the reviews on Google ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting your coffee</p>
+          <h2>Pull in <em>off River Road</em></h2>
+          <ol class="steps">
+            <li><h3>Turn into the plaza</h3><p>The stand sits in the River Road Plaza lot by Tractor Supply and Dollar Tree — the little brown building with the red strip along the roof.</p></li>
+            <li><h3>Take the lane either side</h3><p>Two windows, so the line moves. There's a walk-up door too if you'd rather park.</p></li>
+            <li><h3>Ask what's on the boards</h3><p>The chalkboard and the Sweet Specials sheet both change. If there are fritters, they'll say so out front.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12538418141">(253) 841-8141</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=745+River+Rd%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Directions ↗</a></span>
+            <span>📷 <a href="https://www.instagram.com/thebeantree_/" target="_blank" rel="noopener">@thebeantree_</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A catering or large order</option><option>Something on the board</option><option>Working at the stand</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many drinks, what day, and anything we should know."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the stand</button>
+          <p class="form-success">Thanks — someone at The Bean Tree will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta — THE BOARD ===================== -->
+  <section class="section on-board section-dark cta-band" id="cta">
+    <div class="wrap">
+      <h2>See you <em>at 4:30</em></h2>
+      <p>745 River Rd, Puyallup — in the River Road Plaza lot, awake before anything else on this road is.</p>
+      <div class="cta-actions">
+        <a href="tel:+12538418141" class="btn btn-primary">Call the stand</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=745+River+Rd%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener" class="btn btn-ghost">Get directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <img src="images/logo-light.png" alt="" width="152" height="320">
+          <span class="wm">The Bean Tree Coffee Co<small>Puyallup, Washington</small></span>
+        </div>
+        <p>A drive-thru coffee stand on River Road. Est. 2003.</p>
+        <div class="soc">
+          <a href="https://www.instagram.com/thebeantree_/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>745 River Rd<br>Puyallup, WA 98371</p>
+        <p><a href="tel:+12538418141">(253) 841-8141</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#specials">Specials</a><br><a href="#signature">The season cup</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> The Bean Tree Coffee Co</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
