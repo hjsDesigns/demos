@@ -381,7 +381,7 @@ h1,h2,h3,h4{letter-spacing:-.005em}
 .foot .plate img{height:auto;width:200px}
 
 /* ---- hero: the storefront. Hold the awning + sign in frame on desktop. */
-.hero-bg img{object-position:center 42%}
+.hero-bg img{object-position:center 40%}
 
 /* ---- HERO STACK (standing rule): no vertical exterior exists, so phones
         scroll a conveyor of three real photos at their natural aspect —
