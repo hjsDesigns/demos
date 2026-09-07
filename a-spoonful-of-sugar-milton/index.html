@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A Spoonful of Sugar — cafe &amp; espresso, open at 5 AM, Milton WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A Spoonful of Sugar — cafe and espresso at 2420 Milton Way, Milton, Washington. Doors at 5 AM weekdays, breakfast served all day, sandwiches $7.75, Dillanos coffee and blended lotus drinks. Drive-thru around back.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (display) + Karla (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="A Spoonful of Sugar — home">
+      <img src="images/logo.png" alt="" width="1236" height="996">
+      <span class="wm">Milton, WA</span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hours">Hours</a>
+        <a href="#menu">The board</a>
+        <a href="#gallery">The room</a>
+        <a href="#signature">House drinks</a>
+        <a href="#about">Our story</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT (2026-09-04): interiors appear further down the
+       page, so the opener is the real building from outside with their own
+       "CAFE & ESPRESSO" sign on it — their photo, real sky behind it.
+       Nothing sits on the photo but the headline block. The frame survives a
+       portrait crop with the sign intact, so no hero stack is needed here —
+       object-position keeps the sign board in shot on a phone. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <picture>
+        <source media="(max-width:760px)" srcset="images/hero-phone.jpg">
+        <img src="images/hero.jpg" alt="" aria-hidden="true" fetchpriority="high">
+      </picture>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-block">
+        <h1>The lights are on <em>at five.</em></h1>
+        <p class="sub">A little white cafe on Milton Way. Espresso, breakfast all day, and sandwiches made behind the counter.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">See the board</a>
+          <a href="#hours" class="btn btn-cream">Are they open?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       The deep band. Live Pacific clock + address + all seven days, today lit.
+       Hours live HERE and nowhere else on the page. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Seven days, <em>starting early</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          2420 Milton Way, Milton, WA 98354<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=2420+Milton+Way%2C+Milton%2C+WA+98354" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="ico">✓</span> Breakfast served all day</span>
+          <span class="proof"><span class="ico">✓</span> Dillanos coffee, roasted in Sumner</span>
+        </div>
+      </div>
+      <div>
+        <ul class="hours-list" id="hoursList">
+          <li data-days="1"><span class="day">Monday</span><span class="time">5:00 AM – 3:00 PM</span></li>
+          <li data-days="2"><span class="day">Tuesday</span><span class="time">5:00 AM – 3:00 PM</span></li>
+          <li data-days="3"><span class="day">Wednesday</span><span class="time">5:00 AM – 3:00 PM</span></li>
+          <li data-days="4"><span class="day">Thursday</span><span class="time">5:00 AM – 3:00 PM</span></li>
+          <li data-days="5"><span class="day">Friday</span><span class="time">5:00 AM – 3:00 PM</span></li>
+          <li data-days="6"><span class="day">Saturday</span><span class="time">6:30 AM – 3:00 PM</span></li>
+          <li data-days="0"><span class="day">Sunday</span><span class="time">7:30 AM – 3:00 PM</span></li>
+        </ul>
+        <p class="hours-note"><b>Two things worth knowing</b>The grill shuts down thirty minutes before the doors do — that's their rule, printed on their own menu. And they've posted holiday closures at the counter before, so on a holiday Monday it's worth a call first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #services — how it works ===================== -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Four ways in</p>
+        <h2>Walk up, drive through, <em>or order it ahead</em></h2>
+        <p>It's a small house with a counter, a handful of farmhouse tables and a window around the back. Whichever way you come at it, the same kitchen is making it.</p>
+      </div>
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Doors at five</h3>
+          <p class="when">Mon–Fri · earliest in town</p>
+          <p>Weekday mornings the lights come on at 5 AM, which is well before almost anything else on Milton Way.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M5 17v-4l2-5h10l2 5v4"/><circle cx="7.5" cy="19" r="1.6"/><circle cx="16.5" cy="19" r="1.6"/></svg></div>
+          <h3>Drive-thru around back</h3>
+          <p class="when">Same menu, no parking</p>
+          <p>The window is at the rear of the building. Parking back there is tight when the line builds — that's the one thing regulars warn about.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 5.5h3"/></svg></div>
+          <h3>Order ahead on Joe</h3>
+          <p class="when">Pick up at the counter</p>
+          <p>They're on the Joe app, so you can put the order in from the truck and grab it on the way past.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V6z"/><path d="M20 7h1.5a2 2 0 0 1 0 4H20"/><path d="M3 20h18"/></svg></div>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-bread">
+            <h3>Bread, five ways</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">On any sandwich</p>
+          <p>Their board gives you the choice on any sandwich. Tap to see what they keep behind the counter.</p>
+          <div class="rolled" id="roll-bread">
+            <ul>
+              <li>White</li>
+              <li>Dave's wheat</li>
+              <li>Sourdough</li>
+              <li>Croissant</li>
+              <li>Bagel</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — the board on the wall =====================
+       Every item and every price read off the photograph of their own menu
+       board (Restaurantji menu gallery). Nothing here is invented. -->
+  <section class="section section-alt" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Off the board on the wall</p>
+        <h2>Breakfast all day, <em>and a Mary Poppins joke on every line</em></h2>
+        <p>The whole menu is named after the film — the club is a Supercali, the turkey-and-cranberry is a Practically Perfect Gobbler, the BLT is Jane's. Prices are exactly as the board reads.</p>
+      </div>
+
+      <div class="menu-groups reveal">
+
+        <div class="menu-group">
+          <h3>Breakfast</h3>
+          <p class="grp-note">Served all day</p>
+          <ul class="menu-list">
+            <li><span class="name">Breakfast Sandwich</span><span class="price">$5.00</span><span class="desc">Bagel or croissant with egg, your choice of sausage, ham or bacon, melted American cheese and honey mustard-mayo sauce.</span></li>
+            <li><span class="name">Cannonball Burrito</span><span class="price">$5.25</span><span class="desc">Bacon, sausage, hash brown, cheddar and egg with sour cream and salsa, all wrapped in a large soft tortilla.</span></li>
+            <li><span class="name">Petite Biscuit and Gravy</span><span class="price">$4.00</span><span class="desc">Classic buttermilk biscuit topped with hot sausage gravy.</span></li>
+            <li><span class="name">Deluxe Biscuits and Gravy</span><span class="price">$6.00</span><span class="desc">Two buttermilk biscuits topped with hot sausage gravy, sausage, bacon and cheddar cheese.</span></li>
+            <li><span class="name">Jane and Michael's Favorite</span><span class="price">$3.50</span><span class="desc">Six French toast sticks served with maple syrup.</span></li>
+            <li><span class="name">Uncle Albert's Scramble</span><span class="price">$5.50</span><span class="desc">Two scrambled eggs, sausage, bacon, hash brown and cheddar cheese. Sided with sour cream, salsa and tortilla.</span></li>
+            <li><span class="name">Veggie Scramble</span><span class="price">$6.00</span><span class="desc">Two scrambled eggs, spinach, onions, tomatoes, avocado, mushroom and cheddar cheese. Sided with sour cream, salsa and tortilla.</span></li>
+            <li><span class="name">The Heart Attack</span><span class="price">$6.00</span><span class="desc">Hash brown, onion and two scrambled eggs topped with hot sausage gravy, sliced kielbasa and cheddar cheese.</span></li>
+          </ul>
+
+          <button class="unroll menu-unroll" type="button" aria-expanded="false" aria-controls="roll-salads" style="margin-top:38px">
+            <h3>Salads &amp; a hot dog</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="grp-note">Ten more lines off the board — tap to open</p>
+          <div class="rolled" id="roll-salads">
+          <ul class="menu-list">
+            <li><span class="name">Caesar Salad</span><span class="price">$5.50</span><span class="desc">Fresh romaine with tomatoes, parmesan and croutons.</span></li>
+            <li><span class="name">Garden Salad</span><span class="price">$5.50</span><span class="desc">Romaine, cucumber, tomatoes, onions, croutons and cheddar cheese.</span></li>
+            <li><span class="name">Chef Salad</span><span class="price">$6.50</span><span class="desc">Romaine, ham, turkey, bacon, cheddar, tomato, cucumber, onion and croutons.</span></li>
+            <li><span class="name">Greek Salad</span><span class="price">$6.50</span><span class="desc">Romaine, feta cheese, onion, cucumber, tomato and olives.</span></li>
+            <li><span class="name">Fall Classic Salad</span><span class="price">$6.50</span><span class="desc">Romaine, chicken, apple, candy nuts, onions, cucumber, tomato and croutons.</span></li>
+            <li><span class="name">BLT Avocado Salad</span><span class="price">$6.50</span><span class="desc">Romaine, bacon, tomato, avocado and croutons.</span></li>
+            <li><span class="name">Element of Fun Salad</span><span class="price">$6.50</span><span class="desc">Romaine, apple, candy nuts, blue cheese and chicken, served with Greek dressing.</span></li>
+            <li><span class="name">Cobb Salad</span><span class="price">$6.50</span><span class="desc">Romaine, bacon, chicken, hard-boiled egg, tomato, cucumber, onion and cheddar cheese.</span></li>
+            <li><span class="name">Asian Salad</span><span class="price">$6.50</span><span class="desc">Romaine, onion, cucumber, grilled chicken, grilled pineapple, avocado and sesame seeds.</span></li>
+            <li><span class="name">Hot Dog</span><span class="price">$4.50</span><span class="desc">100% all-beef dog with your choice of toppings — ketchup, mustard, Dijon, mayo, pickled jalapeños, onions and cheese.</span></li>
+          </ul>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button class="unroll menu-unroll" type="button" aria-expanded="false" aria-controls="roll-sand">
+            <h3>Sandwiches — every one $7.75</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="grp-note">Thirteen of them, chips and a speared in-house pickle in — tap to open</p>
+          <div class="rolled" id="roll-sand">
+          <ul class="menu-list">
+            <li><span class="name">Supercali Club</span><span class="desc">Turkey, ham, bacon, lettuce, tomato and triple decker.</span></li>
+            <li><span class="name">Practically Perfect Gobbler</span><span class="desc">Turkey, lettuce, tomato, cranberry sauce and cream cheese.</span></li>
+            <li><span class="name">Roast Beef Kicker</span><span class="desc">Roast beef, bacon, pepper jack cheese, lettuce, tomato and horseradish mayo.</span></li>
+            <li><span class="name">French Dip</span><span class="desc">Roast beef with melted swiss, grilled onions, mayo or horseradish, served on a hoagie with au jus.</span></li>
+            <li><span class="name">Jane's Classic BLT</span><span class="desc">Bacon, lettuce, tomato and mayo.</span></li>
+            <li><span class="name">Michael Porker</span><span class="desc">Ham, bacon, swiss, lettuce, tomato and honey mustard mayo.</span></li>
+            <li><span class="name">The Carpetbag</span><span class="desc">Turkey, bacon, avocado, tomato, lettuce and ranch.</span></li>
+            <li><span class="name">Green Goddess</span><span class="desc">Lettuce, tomato, avocado, onion, cucumber and cream cheese.</span></li>
+            <li><span class="name">The Mammoth</span><span class="desc">Ham, turkey, roast beef, bacon, cheddar cheese, lettuce, tomato and mayo.</span></li>
+            <li><span class="name">Everett's Special</span><span class="desc">Bacon, lettuce, tomato, fried egg and mayo.</span></li>
+            <li><span class="name">Tuna Fish</span><span class="desc">Tuna, onion, pickles, parmesan, mayo, lettuce and tomato.</span></li>
+            <li><span class="name">Chicken Salad</span><span class="desc">Chicken, cranberries, onion, mayo, sour cream, lettuce and tomato.</span></li>
+            <li><span class="name">Egg Salad</span><span class="desc">Hard-boiled eggs with mayo, mustard, onions, lettuce and tomato.</span></li>
+          </ul>
+          </div>
+
+          <h3 style="margin-top:38px">The espresso bar</h3>
+          <table class="cups">
+            <caption>Dillanos coffee · cup sizes in ounces</caption>
+            <thead><tr><th scope="col">&nbsp;</th><th scope="col">12</th><th scope="col">16</th><th scope="col">20</th><th scope="col">24</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Drip coffee</th><td>2.00</td><td>2.50</td><td>3.00</td><td>3.50</td></tr>
+              <tr><th scope="row">Americano</th><td>2.25</td><td>2.75</td><td>3.25</td><td>3.75</td></tr>
+              <tr><th scope="row">Latte</th><td>3.25</td><td>3.75</td><td>4.25</td><td>4.75</td></tr>
+              <tr><th scope="row">Mocha</th><td>3.50</td><td>4.00</td><td>4.50</td><td>5.00</td></tr>
+              <tr><th scope="row">White mocha</th><td>3.75</td><td>4.25</td><td>4.75</td><td>5.25</td></tr>
+              <tr><th scope="row">Chai latte</th><td>3.75</td><td>4.25</td><td>4.75</td><td>5.25</td></tr>
+              <tr><th scope="row">Hot cocoa / steamer</th><td>2.50</td><td>2.75</td><td>3.25</td><td>3.75</td></tr>
+            </tbody>
+          </table>
+          <ul class="menu-list" style="margin-top:20px">
+            <li><span class="name">Blended lotus</span><span class="price">$4.00 / $5.00</span><span class="desc">The layered ones, 16 or 24 oz. Off the energy side of the board.</span></li>
+            <li><span class="name">Smoothies</span><span class="price">$4.50 / $5.00</span><span class="desc">Wild berry, mango, strawberry, strawberry-banana, passionate sunrise, peach, banana and raspberry.</span></li>
+            <li><span class="name">Protein shake</span><span class="price">$5.00 / $5.75</span><span class="desc">Chocolate banana, chocolate peanut butter, peanut butter banana chocolate, strawberry banana, wild berry banana.</span></li>
+            <li><span class="name">Fresh muffins</span><span class="price">$2.00</span></li>
+            <li><span class="name">Cookies</span><span class="price">$2.25</span></li>
+          </ul>
+        </div>
+
+      </div>
+      <p class="menu-fine reveal">Prices are as printed on the board behind the counter. There's a monthly specials list up there too — seasonal lotus drinks and mochas that change with the calendar — so ask what's on this month. The grill closes thirty minutes before the doors.</p>
+
+      <div class="dish-strip reveal">
+        <figure class="dish"><img src="images/dish-1.jpg" alt="A turkey and cranberry sandwich on a croissant, cut in half, with lettuce and tomato" loading="lazy"><figcaption>Turkey and cranberry, on a croissant</figcaption></figure>
+        <figure class="dish"><img src="images/dish-2.jpg" alt="A breakfast sandwich on a croissant with egg, ham and melted cheese on a painted plate" loading="lazy"><figcaption>The breakfast sandwich</figcaption></figure>
+        <figure class="dish"><img src="images/dish-3.jpg" alt="A bowl of biscuits and gravy topped with cheddar cheese and chopped bacon" loading="lazy"><figcaption>Biscuits and gravy, deluxe</figcaption></figure>
+        <figure class="dish"><img src="images/dish-4.jpg" alt="A scramble bowl with eggs, spinach, cheddar and sliced avocado, sided with salsa, sour cream and a tortilla" loading="lazy"><figcaption>A scramble, sided with a tortilla</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Before you walk in</p>
+        <h2>White chairs, oak tables, <em>and a wall of Mary Poppins</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Oak tables and white spindle-back chairs by the window, framed pictures covering the wall" loading="lazy"><figcaption>The window tables</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Rows of flavour syrup bottles on a shelf above the counter, chalkboards below them" loading="lazy"><figcaption>The syrup shelf</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A round oak table with five white spindle-back chairs pulled up to it" loading="lazy"><figcaption>The round table</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="The reader board and the lit sign in the parking lot at dusk with balloons tied to it" loading="lazy"><figcaption>The reader board out front</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A long table under a pink cloth set with cookies, white chairs around it and picture frames behind" loading="lazy"><figcaption>Set up for a party</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — FIVE OFF THE TOP OF THE BOARD =====================
+       Their own five house drinks, printed in a row across the top of their
+       menu board. TODDLER LAW: tap a cup, the cup fills, the real recipe
+       prints under it. Section 5 — well below the fold. -->
+  <section class="section section-dark" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Across the top of the board</p>
+        <h2>Five they made up <em>themselves</em></h2>
+        <p>Above every price on the wall there's a row of five house drinks with no prices next to them — just names. Tap a cup and it fills with what's actually in it.</p>
+      </div>
+
+      <div class="sig-wrap">
+        <div class="board reveal">
+          <p class="board-hint">Tap a cup.</p>
+          <div class="cup-row" id="cupRow">
+
+            <button class="cup-btn" type="button" aria-pressed="false"
+                    data-name="Spoonful of Sugar" data-recipe="White chocolate &amp; brown sugar cinnamon">
+              <svg viewBox="0 0 60 84" aria-hidden="true">
+                <clipPath id="cc1"><path d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z"/></clipPath>
+                <g clip-path="url(#cc1)"><rect class="cup-fill" x="8" y="21" width="44" height="61" fill="#CDA97C"/></g>
+                <path class="cup-glass" d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <rect x="8" y="14" width="44" height="8" rx="2.6" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <path d="M34 14V5h6" fill="none" stroke="#D8C4D0" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span class="lbl">Spoonful<br>of Sugar</span>
+            </button>
+
+            <button class="cup-btn" type="button" aria-pressed="false"
+                    data-name="Snickers" data-recipe="Chocolate, hazelnut &amp; caramel">
+              <svg viewBox="0 0 60 84" aria-hidden="true">
+                <clipPath id="cc2"><path d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z"/></clipPath>
+                <g clip-path="url(#cc2)"><rect class="cup-fill" x="8" y="21" width="44" height="61" fill="#7E4E2D"/></g>
+                <path class="cup-glass" d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <rect x="8" y="14" width="44" height="8" rx="2.6" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <path d="M34 14V5h6" fill="none" stroke="#D8C4D0" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span class="lbl">Snickers</span>
+            </button>
+
+            <button class="cup-btn" type="button" aria-pressed="false"
+                    data-name="White Ghost" data-recipe="White chocolate &amp; white coffee">
+              <svg viewBox="0 0 60 84" aria-hidden="true">
+                <clipPath id="cc3"><path d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z"/></clipPath>
+                <g clip-path="url(#cc3)"><rect class="cup-fill" x="8" y="21" width="44" height="61" fill="#F2E9DA"/></g>
+                <path class="cup-glass" d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <rect x="8" y="14" width="44" height="8" rx="2.6" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <path d="M34 14V5h6" fill="none" stroke="#D8C4D0" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span class="lbl">White<br>Ghost</span>
+            </button>
+
+            <button class="cup-btn" type="button" aria-pressed="false"
+                    data-name="Milky Way" data-recipe="Chocolate &amp; caramel">
+              <svg viewBox="0 0 60 84" aria-hidden="true">
+                <clipPath id="cc4"><path d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z"/></clipPath>
+                <g clip-path="url(#cc4)"><rect class="cup-fill" x="8" y="21" width="44" height="61" fill="#A06B3E"/></g>
+                <path class="cup-glass" d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <rect x="8" y="14" width="44" height="8" rx="2.6" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <path d="M34 14V5h6" fill="none" stroke="#D8C4D0" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span class="lbl">Milky Way</span>
+            </button>
+
+            <button class="cup-btn" type="button" aria-pressed="false"
+                    data-name="Snake Bite" data-recipe="White coffee, white chocolate &amp; coconut">
+              <svg viewBox="0 0 60 84" aria-hidden="true">
+                <clipPath id="cc5"><path d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z"/></clipPath>
+                <g clip-path="url(#cc5)"><rect class="cup-fill" x="8" y="21" width="44" height="61" fill="#DFD3B4"/></g>
+                <path class="cup-glass" d="M11 21h38l-4 55a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <rect x="8" y="14" width="44" height="8" rx="2.6" fill="none" stroke="#D8C4D0" stroke-width="2.4"/>
+                <path d="M34 14V5h6" fill="none" stroke="#D8C4D0" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span class="lbl">Snake Bite</span>
+            </button>
+
+          </div>
+          <div class="board-out" id="cupOut" role="status" aria-live="polite">
+            <p class="oidle">Any of them, hot or iced, in any of the four cup sizes.</p>
+          </div>
+        </div>
+
+        <figure class="sig-print reveal">
+          <img src="images/lotus.jpg" alt="Two tall iced lotus drinks on the counter, one layered violet and one peach, both wearing the round A Spoonful of Sugar sticker" loading="lazy">
+          <figcaption>The lotus drinks, layered</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="A framed Mary Poppins film poster on the cafe wall beside a shelf of teacups, snow globes and figurines" loading="lazy">
+          <figcaption>The wall by the door</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Why everything has that name</p>
+          <h2>The whole place is <em>a Mary Poppins joke</em></h2>
+          <p class="lede">Start with the name. Then read the board: Supercali Club, Practically Perfect Gobbler, Jane's Classic BLT, Michael Porker, Uncle Albert's Scramble, Element of Fun Salad. It goes all the way down.</p>
+          <p>There's a framed film poster on the wall, a shelf of teacups and snow globes under it, and a room full of white spindle-back chairs and honey-oak tables that look like somebody's grandmother's kitchen — because that's the point. People come for a $5 breakfast sandwich and stay because the room is comfortable.</p>
+          <p>The coffee is Dillanos, roasted up the road in Sumner, and it goes into everything from a $2 drip to the layered lotus drinks people photograph on the counter. They've been at it long enough to run a promo on their own cups reading <b>“14% off today, in honor of 14 years.”</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting here</p>
+          <h2>2420 Milton Way, <em>the white one</em></h2>
+          <ol class="steps">
+            <li><h3>Come in and read the wall</h3><p>The board is the whole menu, and it takes a minute — there's no reservation, no wait list, just the counter.</p></li>
+            <li><h3>Or take the drive-thru</h3><p>Around the back of the building. Go slow through the lot, it's tight when there's a line.</p></li>
+            <li><h3>Ask what this month's special is</h3><p>There's a specials board that changes with the calendar. It's the thing regulars order.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12539271174">(253) 927-1174</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=2420+Milton+Way%2C+Milton%2C+WA+98354" target="_blank" rel="noopener">Directions ↗</a></span>
+            <span>★ <a href="https://www.google.com/maps/search/?api=1&amp;query=A+Spoonful+of+Sugar+2420+Milton+Way+Milton+WA" target="_blank" rel="noopener">Read the reviews on Google ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A catering or party order</option><option>A question about the menu</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, what day, and anything the kitchen should know."></textarea></label>
+          <label class="botcheck"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">Leave this empty</label>
+          <button type="submit" class="btn btn-primary">Send it to the counter</button>
+          <p class="form-success">Thanks — someone at A Spoonful of Sugar will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more thing</p>
+        <h2>Milton's been going here <em>a long time</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count tnum" data-to="416">416</span></b><span>ratings on Google, averaging 4.7 stars</span></div>
+        <div class="num"><b><span class="count tnum" data-to="14">14</span></b><span>years, going by the “14% off in honor of 14 years” they printed on their own cups</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12539271174" class="btn btn-primary">Call the cafe</a>
+        <a href="#hours" class="btn btn-ghost">Check today's hours</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <img src="images/logo.png" alt="A Spoonful of Sugar" width="1236" height="996">
+        </div>
+        <p>Cafe &amp; espresso on Milton Way. Open at five, breakfast all day.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/A-Spoonful-of-Sugar-444670815552967" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/aspoonfulofsugar/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>2420 Milton Way<br>Milton, WA 98354</p>
+        <p><a href="tel:+12539271174">(253) 927-1174</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#gallery">The room</a><br><a href="#signature">House drinks</a><br><a href="#about">Our story</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> A Spoonful of Sugar</span>
+      <span>Milton, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
