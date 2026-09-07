@@ -1,0 +1,185 @@
+/* ============================================================
+   KYOTO TERIYAKI — HERO: "the sign comes on"
+   Self-contained, everything namespaced under .hero. Uses the site's
+   own tokens (--dark, --header-h, --pad, --maxw, --brand, --ease).
+
+   No CSS filters run during the intro — every halo is baked into the
+   PNG — so the whole thing animates on opacity, mask-position and
+   transform only, which the compositor handles without a repaint.
+
+   Deterministic: pure CSS, one pass, no JS, no random.
+   prefers-reduced-motion lands on the final frame (base styles ARE the
+   final frame; the intro uses animation-fill-mode:backwards).
+   ============================================================ */
+
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(24px,5vh,56px) 0;
+  overflow:hidden;
+  background:var(--dark);
+  color:#F0E9DA;
+  isolation:isolate;
+}
+
+/* ---------- 1. the room, out of focus ----------------------------------
+   harvest-0906/g19.jpg — their own dining room: the paper lanterns, the
+   window band, the rows of tables. Blurred and graded down to dusk, baked
+   into the file, so it costs nothing to paint at runtime. */
+.hero-room{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  opacity:.62;
+  transform:scale(1);
+  animation:heroRoomWake 3.2s var(--ease,cubic-bezier(.22,.85,.3,1)) .05s 1 backwards;
+}
+.hero-room-img{
+  position:absolute;inset:-6%;
+  /* --hero-room lets a page that loads this file from a subfolder retarget
+     the path without touching the rule (preview.html does exactly that) */
+  background:var(--hero-room,url("../images/claude-room-dusk.jpg")) center 30%/cover no-repeat;
+  animation:heroRoomDrift 38s ease-in-out 3.5s infinite alternate;
+}
+@keyframes heroRoomWake{
+  0%  {opacity:.20;transform:scale(1.055)}
+  55% {opacity:.40}
+  100%{opacity:.62;transform:scale(1)}
+}
+@keyframes heroRoomDrift{
+  from{transform:scale(1) translate3d(0,0,0)}
+  to  {transform:scale(1.05) translate3d(0,-1.4%,0)}
+}
+
+/* ---------- 2. the colour each tube throws back into the room ---------- */
+.hero-spill{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-spill .spill{
+  position:absolute;display:block;border-radius:50%;
+  mix-blend-mode:screen;opacity:1;
+}
+.s-blue{
+  left:50%;top:50%;width:min(1500px,150vw);height:min(1060px,104vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(24,140,255,.26),rgba(24,140,255,.10) 52%,transparent 78%);
+  animation:spillIn 1.1s var(--ease,ease-out) .30s 1 backwards;
+}
+.s-gold{
+  left:50%;top:40%;width:min(900px,86vw);height:min(430px,42vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(255,206,60,.20),rgba(255,206,60,.07) 55%,transparent 80%);
+  animation:spillIn .9s var(--ease,ease-out) 1.18s 1 backwards;
+}
+.s-red{
+  left:50%;top:52%;width:min(1080px,96vw);height:min(560px,50vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(255,52,32,.21),rgba(255,52,32,.07) 55%,transparent 80%);
+  animation:spillIn .9s var(--ease,ease-out) 1.72s 1 backwards;
+}
+.s-green{
+  left:50%;top:63%;width:min(1000px,92vw);height:min(400px,38vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(30,235,120,.17),rgba(30,235,120,.06) 55%,transparent 80%);
+  animation:spillIn 1s var(--ease,ease-out) 2.34s 1 backwards;
+}
+@keyframes spillIn{from{opacity:0}to{opacity:1}}
+
+/* ---------- 3. the sign itself ----------------------------------------
+   Height-driven so the whole torii is ALWAYS whole — never a crop, on any
+   width. All four tube layers share one box and one aspect ratio, so they
+   stay in perfect register at every size. */
+.hero-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);
+  text-align:center;
+}
+.hero-sign{
+  position:relative;
+  height:min(calc(100svh - var(--header-h) - 208px),66vw);
+  aspect-ratio:1400 / 997;
+  width:auto;
+  margin:0 auto clamp(22px,4.5vh,44px);
+}
+.hero-sign .tube{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  will-change:opacity;
+}
+
+/* the torii border draws itself on, left to right, the way the tube fills */
+.t-torii{
+  -webkit-mask-image:linear-gradient(102deg,#000 0 32%,rgba(0,0,0,.4) 41%,transparent 50% 100%);
+          mask-image:linear-gradient(102deg,#000 0 32%,rgba(0,0,0,.4) 41%,transparent 50% 100%);
+  -webkit-mask-size:250% 100%;mask-size:250% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:0% 0;mask-position:0% 0;
+  animation:toriiWipe 1.05s cubic-bezier(.3,.7,.25,1) .18s 1 backwards;
+}
+@keyframes toriiWipe{
+  0%  {-webkit-mask-position:100% 0;mask-position:100% 0;opacity:.55}
+  12% {opacity:1}
+  100%{-webkit-mask-position:0% 0;mask-position:0% 0;opacity:1}
+}
+
+/* the two word tubes strike, stutter, hold — a real tube warming up */
+.t-kyoto   {animation:tubeStrike .52s steps(1,end) 1.02s 1 backwards}
+.t-teriyaki{animation:tubeStrike .62s steps(1,end) 1.56s 1 backwards}
+@keyframes tubeStrike{
+  0%  {opacity:0}
+  8%  {opacity:.9}
+  15% {opacity:.06}
+  27% {opacity:.75}
+  35% {opacity:.1}
+  48% {opacity:1}
+  56% {opacity:.4}
+  68% {opacity:1}
+  78% {opacity:.82}
+  100%{opacity:1}
+}
+
+/* the script line writes itself in, left to right */
+.t-japanese{
+  -webkit-mask-image:linear-gradient(96deg,#000 0 34%,rgba(0,0,0,.35) 43%,transparent 52% 100%);
+          mask-image:linear-gradient(96deg,#000 0 34%,rgba(0,0,0,.35) 43%,transparent 52% 100%);
+  -webkit-mask-size:250% 100%;mask-size:250% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:0% 0;mask-position:0% 0;
+  animation:scriptWrite .82s cubic-bezier(.35,.65,.3,1) 2.18s 1 backwards;
+}
+@keyframes scriptWrite{
+  0%  {-webkit-mask-position:100% 0;mask-position:100% 0;opacity:.7}
+  10% {opacity:1}
+  100%{-webkit-mask-position:0% 0;mask-position:0% 0;opacity:1}
+}
+
+/* ---------- 4. the quiet hold — the sign just breathing ---------- */
+.hero-sign{animation:signBreathe 7.5s ease-in-out 3.4s infinite}
+@keyframes signBreathe{
+  0%,100%{opacity:1}
+  50%    {opacity:.955}
+}
+
+/* ---------- 5. buttons ---------- */
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  animation:heroRise .8s var(--ease,ease-out) 2.62s 1 backwards}
+@keyframes heroRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero .btn-ghost{color:#F0E9DA;border-color:rgba(240,233,218,.5)}
+.hero .btn-ghost:hover{border-color:#F0E9DA;background:rgba(240,233,218,.08)}
+.hero .btn-primary{box-shadow:0 18px 40px -18px rgba(196,36,28,.85)}
+
+/* ---------- 6. the hem — the hero pours into the hours band ---------- */
+.hero-hem{
+  position:absolute;left:0;right:0;bottom:0;height:22vh;max-height:180px;z-index:2;
+  pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--dark));
+}
+
+/* ---------- phones ---------- */
+@media (max-width:520px){
+  .hero-sign{height:min(calc(100svh - var(--header-h) - 190px),67vw)}
+  .hero-actions{gap:10px;width:100%}
+  .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+  .hero-hem{height:16vh}
+}
+
+/* ---------- reduced motion: the final frame, immediately ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero-room,.hero-room-img,.hero-spill .spill,
+  .hero-sign,.hero-sign .tube,.hero-actions{animation:none !important}
+  .t-torii,.t-japanese{-webkit-mask-image:none;mask-image:none}
+}

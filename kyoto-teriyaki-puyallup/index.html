@@ -10,6 +10,7 @@
 <!-- Oswald (display, condensed signage) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -43,22 +44,52 @@
        real tubes do, then holds. The mark IS the headline; the h1 is
        sr-only so nothing competes with it. Shown whole (contain) on the
        black of the window itself, so no letter is ever cropped. -->
-  <section class="hero hero-blur" id="hero">
-    <!-- Hayden, 9/7: the Captain Jack's move — a blurred shot of the inside,
-         and their real neon sign appears through the front. The sign photo is
-         screened over the blur so its dark glass disappears and only the tubes
-         and torii outline show. Nothing redrawn. -->
-    <div class="hero-bg"><img class="shot" src="images/room-2.jpg" alt="" aria-hidden="true" fetchpriority="high"></div>
+  <!-- ===================== #hero — "THE SIGN COMES ON" =====================
+       Hayden, 9/7: "a blurry image of the inside, and then… the neon sign
+       outline appears."
+
+       Nothing here is drawn. Their own neon window sign (harvest-0906/g14.jpg,
+       the sharpest frame of it) was luminance-keyed to alpha and split into the
+       four tubes that are actually four separate runs of glass — the blue torii
+       border, the yellow KYOTO, the red TERIYAKI, the green "Japanese
+       Restaurant" — each with its own halo baked in. They strike in the order a
+       real sign warms up, and their colour spills onto the blurred dining room
+       behind (harvest-0906/g19.jpg, their dining room — paper lanterns, window
+       band, rows of tables — graded down to dusk). Then it stops and just breathes.
+
+       The mark IS the headline. The h1 is sr-only. Nothing else on the hero. -->
+  <section class="hero" id="hero">
+
+    <!-- the room, out of focus, at the far end of the night -->
+    <div class="hero-room" aria-hidden="true"><div class="hero-room-img"></div></div>
+
+    <!-- the light each tube throws back into that room -->
+    <div class="hero-spill" aria-hidden="true">
+      <span class="spill s-blue"></span>
+      <span class="spill s-gold"></span>
+      <span class="spill s-red"></span>
+      <span class="spill s-green"></span>
+    </div>
+
     <div class="hero-inner">
       <h1 class="sr-only">Kyoto Teriyaki Restaurant — Japanese teriyaki, yakisoba and tempura at 513 S Meridian, Puyallup, Washington</h1>
-      <div class="sign">
-        <img src="images/sign-neon.jpg" alt="The Kyoto Teriyaki neon window sign — KYOTO in yellow, TERIYAKI in red and Japanese Restaurant in green inside a blue torii-shaped border" width="1800" height="1100" fetchpriority="high">
+
+      <div class="hero-sign" role="img"
+           aria-label="The Kyoto Teriyaki neon window sign: KYOTO in yellow above TERIYAKI in red, with Japanese Restaurant in green script, all inside a blue torii-shaped border.">
+        <img class="tube t-torii"    src="images/claude-neon-torii.png"    alt="" width="1400" height="997" fetchpriority="high" decoding="async">
+        <img class="tube t-kyoto"    src="images/claude-neon-kyoto.png"    alt="" width="1400" height="997" fetchpriority="high" decoding="async">
+        <img class="tube t-teriyaki" src="images/claude-neon-teriyaki.png" alt="" width="1400" height="997" fetchpriority="high" decoding="async">
+        <img class="tube t-japanese" src="images/claude-neon-japanese.png" alt="" width="1400" height="997" fetchpriority="high" decoding="async">
       </div>
+
       <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the board</a>
         <a href="#hours" class="btn btn-ghost">Are they open?</a>
       </div>
     </div>
+
+    <!-- the hero pours straight into the hours band, which is the same dark -->
+    <div class="hero-hem" aria-hidden="true"></div>
   </section>
 
   <!-- ===================== #hours =====================
