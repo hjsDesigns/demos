@@ -1,0 +1,199 @@
+/* ============================================================
+   LOG CABIN PUB — hero: "the lights come on at the Cabin"
+   Self-contained, namespaced under .hero. Loaded AFTER css/style.css.
+   No JS. One deterministic intro (~3.0 s), then a quiet hold:
+   a very slow ground drift and a barely-there breathing glow.
+   Palette comes entirely from the site's :root tokens.
+   ============================================================ */
+
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  overflow:hidden;
+  background:var(--dark);
+  color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---------- the room, out of focus ---------- */
+.hero .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero .hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:36% 46%;
+  transform:scale(1.075);
+  opacity:0;
+  animation:lcFade .9s linear forwards, lcSettleIn 2.6s var(--ease) forwards;
+  will-change:transform,opacity;
+}
+
+/* scrim: pools the dark under the mark and rolls the bottom into --bg
+   so the hero hands off to the hours band without a seam */
+.hero .hero-bg::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(74% 58% at 50% 44%, color-mix(in srgb,var(--dark) 62%,transparent) 0%, transparent 72%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 55%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 22%,transparent) 26%,
+      color-mix(in srgb,var(--dark) 46%,transparent) 66%,
+      color-mix(in srgb,var(--dark) 88%,transparent) 92%,
+      var(--bg) 100%);
+}
+/* the amber the room is actually lit by, laid back over the top */
+.hero .hero-bg::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  opacity:.30;mix-blend-mode:soft-light;
+  background:radial-gradient(120% 90% at 68% 30%, var(--brand) 0%, transparent 62%);
+}
+
+/* bottom hand-off to the hours band */
+.hero .lc-settle{
+  position:absolute;left:0;right:0;bottom:-1px;height:26%;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,transparent 0%,color-mix(in srgb,var(--bg) 72%,transparent) 62%,var(--bg) 100%);
+}
+
+/* ---------- the block ---------- */
+.hero .hero-inner{
+  position:relative;z-index:4;
+  width:100%;max-width:var(--maxw);
+  margin:0 auto;
+  padding:calc(var(--header-h) * .35) var(--pad) clamp(46px,9vh,96px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+
+/* ---------- their real circular mark ---------- */
+.hero .lc-mark-wrap{
+  position:relative;
+  height:min(33svh, calc(74vw / 1.2935), 336px);
+  aspect-ratio:520 / 402;
+  width:auto;
+  display:block;
+}
+.hero .lc-glow{
+  position:absolute;left:50%;top:52%;translate:-50% -50%;
+  width:190%;height:190%;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    color-mix(in srgb,var(--warm) 46%,transparent) 0%,
+    color-mix(in srgb,var(--brand) 22%,transparent) 34%,
+    transparent 68%);
+  filter:blur(14px);
+  opacity:0;
+  animation:lcGlowIn 1s var(--ease) .5s forwards, lcBreathe 9s ease-in-out 2.6s infinite;
+  pointer-events:none;
+}
+.hero .lc-mark{
+  position:relative;
+  width:100%;height:100%;object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 10px 34px color-mix(in srgb,var(--dark) 78%,transparent));
+  -webkit-mask-image:linear-gradient(102deg,#000 0 32%,rgba(0,0,0,.35) 44%,transparent 54%);
+          mask-image:linear-gradient(102deg,#000 0 32%,rgba(0,0,0,.35) 44%,transparent 54%);
+  -webkit-mask-size:260% 100%;         mask-size:260% 100%;
+  -webkit-mask-repeat:no-repeat;       mask-repeat:no-repeat;
+  /* mask box is wider than the element, so 100% = fully past (hidden),
+     0% = fully covered by the opaque head of the gradient (visible) */
+  -webkit-mask-position:100% 0;        mask-position:100% 0;
+  animation:lcWipe 1.5s var(--ease) .38s forwards;
+  will-change:mask-position;
+}
+/* the warm sweep that rides across the mark as it comes through */
+.hero .lc-sheen{
+  position:absolute;inset:0;pointer-events:none;
+  -webkit-mask-image:url(images/claude-mark.png);  mask-image:url(images/claude-mark.png);
+  -webkit-mask-size:contain;   mask-size:contain;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:center;  mask-position:center;
+  background:linear-gradient(102deg,
+    transparent 36%,
+    color-mix(in srgb,var(--warm) 92%,transparent) 47%,
+    color-mix(in srgb,#fff 70%,transparent) 50%,
+    color-mix(in srgb,var(--warm) 92%,transparent) 53%,
+    transparent 64%);
+  background-size:300% 100%;background-repeat:no-repeat;background-position:0% 0;
+  opacity:0;
+  animation:lcSheen 1.6s var(--ease) .42s forwards;
+  will-change:background-position,opacity;
+  mix-blend-mode:screen;
+}
+
+/* ---------- the reader board line, off their real roadside sign ---------- */
+.hero .lc-board{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(12px,2.6vw,22px);
+  margin:clamp(20px,3.4vh,34px) 0 clamp(26px,4.4vh,44px);
+  font-family:var(--body);
+  font-size:clamp(15px,2.9vw,22px);
+  font-weight:500;
+  letter-spacing:.26em;
+  text-transform:lowercase;
+  color:var(--ink);
+  text-shadow:0 2px 22px color-mix(in srgb,var(--dark) 80%,transparent);
+}
+.hero .lc-word{
+  display:inline-block;
+  opacity:0;transform:translateY(-11px);
+  animation:lcDrop .6s cubic-bezier(.2,1.5,.4,1) calc(1.3s + var(--i) * .33s) forwards;
+}
+.hero .lc-bar{
+  display:inline-block;width:1px;height:1.05em;
+  background:color-mix(in srgb,var(--brand-text) 82%,transparent);
+  opacity:0;transform:scaleY(0);transform-origin:50% 50%;
+  animation:lcBar .38s var(--ease) calc(1.56s + var(--i) * .33s) forwards;
+}
+
+/* ---------- buttons (site classes, site hrefs) ---------- */
+.hero .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;transform:translateY(16px);
+  animation:lcRise .7s var(--ease) 2.3s forwards;
+}
+/* neutralise the template's own hero entrance so nothing double-animates */
+.js .hero .hero-actions{animation:lcRise .7s var(--ease) 2.3s forwards}
+.hero .btn{box-shadow:0 14px 34px -18px color-mix(in srgb,var(--dark) 90%,transparent)}
+.hero .btn-cream{background:var(--ink);color:var(--bg)}
+.hero .btn-cream:hover{background:#fff;color:var(--bg)}
+
+/* ---------- keyframes ---------- */
+@keyframes lcFade{to{opacity:1}}
+@keyframes lcSettleIn{
+  from{transform:scale(1.075)}
+  to{transform:scale(1)}
+}
+@keyframes lcWipe{
+  to{-webkit-mask-position:0% 0; mask-position:0% 0}
+}
+@keyframes lcSheen{
+  0%{opacity:0;background-position:0% 0}
+  16%{opacity:1}
+  84%{opacity:1}
+  100%{opacity:0;background-position:100% 0}
+}
+@keyframes lcGlowIn{to{opacity:.62}}
+@keyframes lcBreathe{0%,100%{opacity:.62}50%{opacity:.46}}
+@keyframes lcDrop{to{opacity:1;transform:none}}
+@keyframes lcBar{to{opacity:1;transform:scaleY(1)}}
+@keyframes lcRise{to{opacity:1;transform:none}}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  .hero .hero-bg img{object-position:74% 44%}
+  .hero .hero-inner{padding-bottom:clamp(40px,8vh,72px)}
+  .hero .lc-mark-wrap{height:min(30svh, calc(80vw / 1.2935), 260px)}
+  .hero .lc-board{letter-spacing:.2em;gap:11px;font-size:clamp(14px,4vw,17px)}
+  .hero .hero-actions{width:100%;gap:10px}
+  .hero .hero-actions .btn{flex:1 1 0;padding:13px 10px;font-size:14px}
+}
+@media (max-width:400px){
+  .hero .lc-board{letter-spacing:.14em;gap:9px}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-bg img{animation:none;opacity:1;transform:none}
+  .hero .lc-mark{animation:none;-webkit-mask-image:none;mask-image:none}
+  .hero .lc-sheen{animation:none;opacity:0}
+  .hero .lc-glow{animation:none;opacity:.62}
+  .hero .lc-word,.hero .lc-bar,.hero .hero-actions,.js .hero .hero-actions{animation:none;opacity:1;transform:none}
+}

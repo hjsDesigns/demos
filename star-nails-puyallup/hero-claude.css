@@ -73,15 +73,15 @@
 /* ---- the mark IS the headline --------------------------------------- */
 .hero-glass .hg-mark{
   position:relative;
-  width:min(720px,74vw);
+  width:min(800px,70vw);
   aspect-ratio:2828 / 1138;
-  margin:0 0 clamp(30px,5.4vh,56px);
+  margin:0 0 clamp(30px,5.4vh,58px);
 }
 .hero-glass .hg-mark .mk{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:contain;
-  filter:drop-shadow(0 10px 26px rgba(78,42,70,.13));
+  filter:drop-shadow(0 12px 30px rgba(66,32,60,.20));
 }
 
 /* the script writes itself in, left to right */
@@ -158,11 +158,11 @@
 
 /* ============================ phone ================================== */
 @media (max-width:900px){
-  .hero-glass .hg-mark{width:min(88vw,470px)}
+  .hero-glass .hg-mark{width:min(90vw,520px)}
   .hero-glass .hg-inner{padding:clamp(24px,5vh,48px) var(--pad)}
 }
 @media (max-width:420px){
-  .hero-glass .hg-mark{width:90vw;margin-bottom:clamp(26px,5vh,40px)}
+  .hero-glass .hg-mark{width:92vw;margin-bottom:clamp(26px,5vh,40px)}
   .hero-glass .hg-actions .btn{padding:13px 20px;font-size:15px}
 }
 
