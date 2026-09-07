@@ -1,0 +1,164 @@
+/* ============================================================
+   TACOS LOS QUERETAROS — HERO: "Off the comal"
+   Self-contained, everything namespaced under .hero. Load AFTER
+   css/style.css. Tokens only — no hardcoded brand colour.
+
+     photo   images/hero.jpg          their lot, thrown out of focus
+     mark    images/claude-mark.png   their own logo.png, trimmed + 2x
+     ground  var(--dark) #0E1728      the navy of the banner the mark
+                                      is actually bolted to on the trailer
+     sweep   var(--gold)              the mascots' own shell colour
+
+   Timeline (deterministic, autoplays once, then holds):
+     0.00s  navy, the lot far out of focus and dim
+     0.30s  the mark rises out of the haze (hero.js shimmer decays to 0
+            by 2.66s), photo pulls toward focus and warms
+     1.25s  one gold sweep crosses the mark, masked to its own shape
+     1.75s  the two buttons rise
+     2.66s+ hold: 24s photo drift settling to rest, a 13s breathing glow
+   ============================================================ */
+
+/* ---- shell ---------------------------------------------------------- */
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;
+  background:var(--dark);
+  color:#fff;
+  isolation:isolate;
+}
+.hero .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---- the lot, out of focus ------------------------------------------ */
+.hero .hero-photo{position:absolute;inset:0;z-index:0;overflow:hidden;transform:scale(1.14);will-change:transform}
+.hero .hero-photo img{
+  /* overscanned so the blur never bleeds a soft edge into the frame */
+  position:absolute;inset:-7%;width:114%;height:114%;
+  object-fit:cover;object-position:56% 46%;
+  filter:blur(11px) brightness(1.02) saturate(1.45);
+}
+.js .hero .hero-photo{animation:tlqDrift 24s var(--ease) forwards}
+.js .hero .hero-photo img{animation:tlqFocus 2.4s var(--ease) forwards}
+@keyframes tlqDrift{from{transform:scale(1.14)}to{transform:scale(1)}}
+@keyframes tlqFocus{
+  0%  {filter:blur(32px) brightness(.50) saturate(.80)}
+  55% {filter:blur(17px) brightness(.86) saturate(1.24)}
+  100%{filter:blur(11px) brightness(1.02) saturate(1.45)}
+}
+
+/* ---- the ground the mark sits on ------------------------------------ */
+/* A pool of the banner navy under the mark, the lot left bright at the
+   edges, and the bottom melting into var(--dark) so the hours band picks
+   it up with no seam. Grain on top so the blur never looks like a gradient. */
+.hero .hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(56% 40% at 50% 45%,
+      color-mix(in srgb,var(--dark) 66%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 34%,transparent) 60%,
+      transparent 100%),
+    radial-gradient(130% 62% at 50% 104%,
+      color-mix(in srgb,var(--gold) 18%,transparent) 0%,
+      transparent 64%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 6%,transparent) 18%,
+      color-mix(in srgb,var(--dark) 18%,transparent) 54%,
+      color-mix(in srgb,var(--dark) 46%,transparent) 82%,
+      color-mix(in srgb,var(--dark) 82%,transparent) 95%,
+      var(--dark) 100%);
+}
+.hero .hero-veil::after{content:"";position:absolute;inset:0;opacity:.34;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+
+/* ---- the block ------------------------------------------------------ */
+.hero .hero-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(30px,6vh,72px) var(--pad);
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* ---- the mark, resolving out of the heat ---------------------------- */
+.hero .hero-mark{
+  position:relative;
+  width:min(660px,84vw);
+  margin:0 auto clamp(28px,5vh,46px);
+  aspect-ratio:1360/860;
+}
+.hero .hero-mark-img{
+  position:relative;z-index:2;display:block;width:100%;height:auto;
+  filter:drop-shadow(0 22px 46px rgba(0,0,0,.6));
+}
+/* the shimmer only exists while hero.js is running the pass */
+.hero.is-hot .hero-mark-img{filter:url(#tlqHeat) drop-shadow(0 22px 46px rgba(0,0,0,.6))}
+
+.hero .hero-mark-glow{position:absolute;z-index:1;inset:-16% -10%;border-radius:50%;pointer-events:none;opacity:.52;
+  background:radial-gradient(closest-side,
+    color-mix(in srgb,var(--gold) 38%,transparent) 0%,
+    color-mix(in srgb,var(--brand) 14%,transparent) 46%,
+    transparent 76%);
+  filter:blur(6px);
+}
+
+/* one warm sweep, clipped to the mark's own shape — light crossing the sign */
+.hero .hero-mark-sweep{position:absolute;z-index:3;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0;
+  background:linear-gradient(104deg,
+    transparent 40%,
+    color-mix(in srgb,var(--gold) 88%,transparent) 50%,
+    transparent 60%);
+  background-size:280% 100%;background-position:0% 0;
+  mix-blend-mode:screen;
+  -webkit-mask-image:url(images/claude-mark.png);mask-image:url(images/claude-mark.png);
+  -webkit-mask-size:100% 100%;mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+}
+
+.js .hero .hero-mark-img{opacity:0;transform:scale(.945) translateY(12px);animation:tlqMarkRise 1.5s var(--ease-2) .30s forwards}
+.js .hero .hero-mark-glow{opacity:0;animation:tlqGlowUp 1.5s var(--ease) .85s forwards,tlqGlowBreathe 13s ease-in-out 2.7s infinite}
+.js .hero .hero-mark-sweep{animation:tlqSweep 1.15s var(--ease) 1.25s forwards}
+
+@keyframes tlqMarkRise{
+  0%  {opacity:0;transform:scale(.945) translateY(12px)}
+  22% {opacity:1}
+  100%{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes tlqGlowUp{0%{opacity:0}100%{opacity:.52}}
+@keyframes tlqGlowBreathe{0%,100%{opacity:.52}50%{opacity:.68}}
+@keyframes tlqSweep{
+  0%  {opacity:0;background-position:0% 0}
+  14% {opacity:.9}
+  78% {opacity:.7}
+  100%{opacity:0;background-position:100% 0}
+}
+
+/* ---- the two buttons ------------------------------------------------ */
+.hero .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.js .hero .hero-actions{opacity:0;transform:translateY(16px);animation:tlqRise .85s var(--ease) 1.75s forwards}
+@keyframes tlqRise{to{opacity:1;transform:none}}
+
+/* ---- phone ---------------------------------------------------------- */
+@media (max-width:560px){
+  .hero .hero-photo img{object-position:52% 44%}
+  .hero .hero-mark{width:90vw;margin-bottom:clamp(24px,4vh,36px)}
+  .hero .hero-actions{gap:10px;width:100%}
+  .hero .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+@media (min-width:1100px){
+  .hero .hero-photo img{object-position:58% 54%}
+}
+
+/* ---- reduced motion: land on the final frame ------------------------ */
+@media (prefers-reduced-motion:reduce){
+  .js .hero .hero-photo,
+  .js .hero .hero-photo img,
+  .js .hero .hero-mark-img,
+  .js .hero .hero-mark-glow,
+  .js .hero .hero-actions{animation:none}
+  .js .hero .hero-photo{transform:none}
+  .js .hero .hero-mark-img{opacity:1;transform:none;filter:drop-shadow(0 22px 46px rgba(0,0,0,.6))}
+  .js .hero .hero-mark-glow{opacity:.52}
+  .js .hero .hero-mark-sweep{animation:none;opacity:0}
+  .js .hero .hero-actions{opacity:1;transform:none}
+}
