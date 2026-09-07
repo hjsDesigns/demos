@@ -24,48 +24,53 @@
    Hayden to catch it.
    ============================================================ */
 :root{
-  /* ---- palette — CROSSLEY'S COUNTRY BREW
-     Every value sampled from their own photos (see HANDOFF-CODEX.md for the
-     exact crops). The stand is cedar board-and-batten with a dark metal roof,
-     a cream carved oval sign, and an oxblood price board. ---- */
-  --brand:#8E3238;          /* oxblood — the DRINKS banner + "COUNTRY BREW" on their real price board (board.jpg, sampled #672D2C in shade) and their branded cups (#4E1D21 / #B74252) */
-  --brand-text:#6E2429;     /* same hue darkened for small type on cream */
+  /* ---- palette — CROSSLEY'S COUNTRY BREW, sampled from their own photographs.
+     MIRROR LAW: the "room" here is a cedar drive-thru stand — board-and-batten
+     stained a deep red-brown, a dark metal roof, string lights with red and
+     white bulbs, a cream carved oval sign and an oxblood price board. So the
+     page runs on a DEEP CEDAR GROUND for the hero, the hours band, the
+     "Thank y'all" board, the closing band and the footer, with warm cream for
+     the menu, the prints and the reviews. Two accents only (ZONED COLOR):
+     the board's oxblood red and the sign's cream/brass. ---- */
+  --brand:#8E3238;          /* oxblood — the DRINKS banner on their own price board (stand.jpg) and their branded cups */
+  --brand-text:#7A2A2F;     /* same hue, darkened for small type on cream */
   --brand-bright:#A63E44;   /* hover */
-  --accent:#2F4A44;         /* deep fir/teal — the stand's window trim + roof edge (hero.jpg, sampled #2A373B / #374F55) */
-  --accent-soft:#5B8677;    /* lighter accent for dark grounds */
-  --ink:#2B1C15;            /* dark espresso brown — cedar in shadow (hero.jpg #251819 / #513024) */
-  --bg:#F1E7D8;             /* TRUE CREAM — the carved sign's oval face (hero.jpg #F6E1D6) */
-  --bg-2:#E7DAC5;           /* deeper cream, alternating bands */
-  --paper:#F8F2E5;          /* cards — a hair lighter than --bg, never white */
-  --muted:#6B5A4C;          /* secondary text */
-  --line:#DCCCB4;           /* hairlines, borders */
-  --dark:#2B1C15;           /* dark panels — the same cedar-shadow brown */
-  --dark-2:#3B2820;         /* dark hover */
-  --warm:#D9A05C;           /* brass/sunlit cedar (board.jpg #9F6447 opened up) — highlight word on dark */
-  --tint:#E3E7DE;           /* the hours band — weathered sage off the metal roof (#819C9E, lightened) */
-  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
-  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
+  --brand-lift:#D98088;     /* the same red lifted to read on the cedar ground */
+  --accent:#2F4A44;         /* fir/slate — the stand's metal roof + window trim */
+  --accent-soft:#6E9585;
+  --ink:#2A1B15;            /* espresso brown — body type on cream */
+  --bg:#F4EBDB;             /* ONE CREAM — the carved oval sign's face (logo.png), never white */
+  --bg-2:#EADCC5;           /* deeper warm cream — alternating bands, with real contrast */
+  --paper:#FBF5E9;          /* cards + framed prints */
+  --muted:#6C5A4B;          /* secondary type on cream */
+  --line:#DBC9AF;           /* hairlines on cream */
+  --dark:#291A15;           /* DEEP CEDAR — hero fallback, dark bands, footer (cedar in shadow, g1 #5B3F3B pulled down) */
+  --dark-2:#3A2620;         /* one step up: panels on the dark ground */
+  --dark-3:#4A322A;         /* hairlines on the dark ground */
+  --warm:#E2A75E;           /* the warm bulb / sunlit cedar — the accent word + eyebrows on dark */
+  --warm-2:#F2D3A6;         /* the same, lighter */
+  --tint:#221510;           /* the hours band — the darkest cedar */
+  --on-dark:#F4EBDB;        /* type on every dark band = the sign's cream, never #fff */
+  --on-dark-2:#C9B49C;      /* secondary type on the dark bands */
+  --status-open:#10B981;    /* open  — GREEN, never brand   [STATUS LIGHT LAW] */
+  --status-closed:#DC2626;  /* closed — RED, never brand    [STATUS LIGHT LAW] */
 
-  /* ---- type: two faces max, loaded in index.html <head> ----
-     Fraunces: sturdy high-contrast serif with Victorian/wonky detail — sits in
-     the same family of letterforms as their carved oval sign and the serif
-     price board. Karla: plain, wide-aperture grotesque for reading.
-     NOT a recreation of their sign — the real mark is cropped into logo.png. */
+  /* ---- type: two faces. Fraunces (display) is a sturdy, slightly wonky
+     old-style serif that lives in the same world as the carved oval sign and
+     the serif price board — the sign itself is never re-set in type, it is
+     cropped from their own photo into logo.png. Karla carries the reading. ---- */
   --display:'Fraunces','Hoefler Text','Iowan Old Style',Georgia,'Times New Roman',serif;
   --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,sans-serif;
-  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
 
   /* ---- metrics ---- */
   --header-h:80px;
   --pad:clamp(20px,5vw,64px);
   --maxw:1180px;
   --rule:1px solid var(--line);
-  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
-  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
-                                                (mechanical → steeper start; confident → slower settle;
-                                                elastic → overshoot past 1). Leave equal to --ease if
-                                                the build doesn't need a second feel. */
-  --r:18px;
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.32,.9,.24,1);
+  --r:16px;
 }
 
 /* ============================================================
@@ -164,7 +169,7 @@ p{margin:0 0 1em}
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
              linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
-@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 16%,transparent) 0%,color-mix(in srgb,var(--dark) 4%,transparent) 26%,color-mix(in srgb,var(--dark) 58%,transparent) 62%,color-mix(in srgb,var(--dark) 94%,transparent) 100%)}}
 /* film grain */
 .hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
@@ -282,7 +287,7 @@ p{margin:0 0 1em}
 .story .print{transform:rotate(-1.2deg)}
 .story .print:hover{transform:rotate(0) scale(1.01)}
 .story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
-.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy p:not(.eyebrow){font-size:17px;color:var(--ink)}
 .story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
 .team{margin-top:clamp(36px,5vw,64px)}
 .team h3{font-size:22px;margin:0 0 16px}
@@ -345,156 +350,248 @@ p{margin:0 0 1em}
 .foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
 
+
 /* ============================================================================
-   CROSSLEY'S COUNTRY BREW — site-specific block
-   Everything below references tokens only. Nothing here overrides the
-   template's status-light, hero-sizing or z-index hardening.
+   CROSSLEY'S COUNTRY BREW — site-specific block  (atmosphere pass 2026-09-06)
+
+   GROUND: the room is a cedar drive-thru stand, so this build runs a DEEP
+   CEDAR ground on the hero, the hours band, the "Thank y'all" board, the
+   closing band and the footer, alternating with warm cream for the menu,
+   the prints, the about story and the reviews. Everything below references
+   tokens only. Dark bands never use #fff — they use --on-dark (the sign's
+   cream), so the whole page stays inside one warm world.
+
+   DARK-GROUND SWEEP (template README): --bg/--ink stay LIGHT here, so the
+   three template rules that assume a light ground are already correct. The
+   rules that had to be re-pointed are the ones the template paints for a
+   light band and this build shows on cedar — .status-band, .section-dark,
+   .site-footer — each overridden explicitly below.
    ============================================================================ */
 
-/* ---- type weights for Fraunces (the template assumes an 800-weight grotesque) ---- */
-h1,h2,h3,h4{font-weight:700;letter-spacing:-.005em}
-.hero h1{font-weight:900;letter-spacing:-.02em}
-.section-head h2,.status-head h2,.story-copy h2,.contact h2{font-weight:700}
-h2 em{font-style:italic}
-.hero h1 em{font-style:italic}
-.btn{font-weight:700}
-.logo .wm,.foot .wm{font-weight:700}
+/* ---------------------------------------------------------------- TYPE */
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em;line-height:1.03}
+h2 em,.hero h1 em{font-style:italic}
+h2 em{color:var(--brand)}
+.section-dark h2 em,.status-band h2 em,.hero h1 em{color:var(--warm)}
+.btn,.logo .wm,.foot .wm{font-weight:700}
+/* Eyebrows: `.eyebrow` (0,1,0) loses to the template's `.section-head p` /
+   `.story-copy p` (0,1,1) and gets repainted --muted at body size. Match the
+   specificity with p.eyebrow so the label keeps its own colour and size. */
+p.eyebrow{font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brand-text);margin:0 0 14px}
+.section-dark p.eyebrow,.status-band p.eyebrow{color:var(--warm)}
+.tnum{font-variant-numeric:tabular-nums}
+figure,blockquote{margin:0}
+[hidden]{display:none!important}
+.skip-link{position:fixed;left:16px;top:12px;z-index:50;transform:translateY(-200%);padding:12px 18px;
+  background:var(--paper);border:var(--rule);border-radius:10px;font-weight:700}
+.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
 
-/* ---- header lockup: the REAL carved oval sign is the wordmark (never re-set in type) ---- */
-.logo{gap:12px;align-items:center}
-.logo img{height:52px;width:auto;filter:drop-shadow(0 2px 6px color-mix(in srgb,var(--ink) 22%,transparent))}
-.wm-sub{font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+/* ------------------------------------------------------------- HEADER */
+/* The wordmark is the REAL carved oval sign, cropped out of their own photo
+   (harvest-0906/g1.jpg) and masked to the sign's own edge — never redrawn. */
+.logo{gap:13px;align-items:center}
+.logo img{height:54px;width:auto;filter:drop-shadow(0 3px 10px color-mix(in srgb,var(--ink) 26%,transparent))}
+.wm-sub{font-family:var(--body);font-weight:700;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap}
+.main-nav{gap:19px}
 @media (max-width:900px){.wm-sub{display:none}}
-@media (max-width:560px){.logo img{height:44px}}
-.foot .plate{width:auto;height:auto;padding:10px 14px;border-radius:14px}
-.foot .plate img{height:52px;width:auto}
+@media (max-width:560px){.logo img{height:46px}}
 
-/* ---- HERO STACK (README pattern): the sign photo is 1.9:1, so a phone
-   portrait crop would cut the wordmark. Desktop = first image full-bleed. ---- */
-.hero-stack-track{display:contents}
-.hero-stack img{display:none}
-.hero-stack img:first-child{display:block}
-@media (max-width:760px){
-  .hero-stack{overflow:hidden;background:var(--dark)}
-  .hero-stack-track{display:block;position:relative;animation:heroReel 52s linear infinite}
-  .hero-stack img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;
-    animation:none;transform:none;will-change:transform}
-}
-@keyframes heroReel{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-@media (max-width:760px) and (prefers-reduced-motion:reduce){.hero-stack-track{animation:none}}
-.hero-bg img{object-position:58% 46%}
+/* --------------------------------------------------------------- HERO */
+/* One real photograph of the stand, whole. Desktop = the front at golden
+   hour with the sign lit and the OPEN neon in the window; phones swap to a
+   portrait frame shot tonight, cropped so the whole oval sign survives.
+   NOTHING sits on the hero photo but the headline block. */
+.hero{background:var(--dark)}
+.hero-bg img{object-position:60% 34%;animation:kenburns 26s var(--ease) forwards}
+@media (max-width:760px){.hero-bg img{object-position:50% 34%}}
+.hero-inner{padding-bottom:clamp(40px,8vh,92px)}
+.hero h1{font-weight:700;font-size:clamp(40px,min(6.4vw,10vh),76px);max-width:13ch;line-height:1.02;
+  letter-spacing:-.025em;color:var(--on-dark);text-shadow:0 3px 34px rgba(0,0,0,.5)}
+.hero-sub{font-weight:500;color:color-mix(in srgb,var(--on-dark) 92%,transparent);max-width:44ch}
+.hero .btn-cream{background:var(--bg);color:var(--ink)}
+@media (max-width:520px){.hero h1{font-size:clamp(38px,11vw,46px);max-width:none}}
 
-/* ---- #menu: the whole stand across the top (STOREFRONT ABOVE THE OFFERINGS),
-   then the unrolling title cards beneath it ---- */
-.board-layout{display:block}
-.board-photo{transform:rotate(-.7deg);margin:0 0 clamp(30px,4vw,48px)}
+/* ------------------------------------------------- HOURS BAND (cedar) */
+/* The hours band is a dark band, so it carries .section-dark in the markup
+   (that is what the QA eyebrow check reads) but keeps its own darker ground. */
+.status-band,.status-band.section-dark{background:var(--tint);color:var(--on-dark);
+  border-bottom:1px solid color-mix(in srgb,var(--warm) 24%,transparent)}
+.status-band h2{color:var(--on-dark);font-size:clamp(30px,3.9vw,46px)}
+.live-line{font-family:var(--body);font-weight:700;font-size:15.5px;letter-spacing:.01em;color:var(--on-dark)}
+.live-line.is-open .dot{background:var(--status-open);
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 24%,transparent),0 0 18px color-mix(in srgb,var(--status-open) 55%,transparent)}
+.live-line.is-closed .dot{background:var(--status-closed);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-closed) 22%,transparent)}
+.status-addr{color:var(--on-dark-2)}
+.status-addr a{color:var(--warm);border-bottom-color:color-mix(in srgb,var(--warm) 45%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--warm)}
+.hours-list{background:var(--dark-2);border:1px solid var(--dark-3);box-shadow:0 34px 70px -40px rgba(0,0,0,.85)}
+.hours-list li{border-bottom:1px solid var(--dark-3);color:var(--on-dark)}
+.hours-list .time{color:var(--on-dark-2);font-family:var(--body);font-size:14.5px;font-variant-numeric:tabular-nums}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 17%,transparent)}
+.hours-list li.today .day::after{color:var(--warm);font-family:var(--body);font-weight:700}
+.hours-list li.today .time{color:var(--on-dark)}
+.hours-list li.closed .time{color:var(--status-closed)}
+
+/* ----------------------------------------------------- SECTION SHELL */
+.section-dark{background:var(--dark);color:var(--on-dark)}
+.section-dark .section-head p{color:var(--on-dark-2)}
+.section-head h2{font-size:clamp(32px,4.6vw,54px)}
+.section-alt{background:var(--bg-2)}
+
+/* ------------------------------------------------- FRAMED PRINTS */
+/* Every print is a real photograph of this stand with a real caption, in a
+   cream frame that reads the same on cedar and on cream. Photos live in
+   purpose-built objects — never sprinkled as decor. */
+.print{background:var(--paper);border:1px solid var(--line);padding:13px 13px 20px;margin:0;align-self:start;
+  box-shadow:0 40px 80px -44px color-mix(in srgb,var(--dark) 70%,transparent);transition:transform .5s var(--ease)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--body);font-size:13px;line-height:1.45;letter-spacing:0;text-transform:none;
+  color:var(--muted);margin-top:13px;text-align:center}
+.section-dark .print,.status-band .print{border-color:color-mix(in srgb,var(--warm) 30%,transparent)}
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,34px);align-items:start}
+.prints .print:nth-child(3n+1){transform:rotate(-1.1deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.7deg)}
+.prints .print:nth-child(3n){transform:rotate(-.5deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* --------------------------------------- #menu — straight off the board */
+/* STOREFRONT ABOVE THE OFFERINGS: the whole stand opens the section, the
+   real price board visible on the right end of the building. */
+.board-photo{transform:rotate(-.7deg);margin:0 0 clamp(30px,4.4vw,50px)}
 .board-photo:hover{transform:rotate(0) scale(1.005)}
-@media (max-width:900px){.board-photo{transform:none}}
+.board-layout{display:grid;grid-template-columns:1.4fr .8fr;gap:clamp(20px,3.4vw,44px);align-items:start}
+.board-side{transform:rotate(.8deg)}
+.board-side:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:900px){.board-layout{grid-template-columns:1fr}.board-photo,.board-side{transform:none}}
+.board-cards{display:grid;gap:12px;align-items:start}
 
-/* ---- TITLE CARDS UNROLL (arrow law: a downward chevron that flips up) ---- */
-.board-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
-@media (max-width:760px){.board-cards{grid-template-columns:1fr}}
+/* TITLE CARDS UNROLL — the headline is the tap target, the affordance is a
+   DOWNWARD CHEVRON that flips up (arrow law). Never a plus sign. */
 .unroll{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;
   transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
-.unroll.open{border-color:color-mix(in srgb,var(--brand) 45%,transparent);
-  box-shadow:0 24px 44px -34px color-mix(in srgb,var(--dark) 70%,transparent)}
-.unroll-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  background:none;border:0;cursor:pointer;text-align:left;padding:20px 22px;min-height:64px;color:var(--ink);font-family:var(--display)}
-.unroll-title{font-size:clamp(19px,2.2vw,24px);font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.unroll.open{border-color:color-mix(in srgb,var(--brand) 48%,transparent);
+  box-shadow:0 26px 46px -34px color-mix(in srgb,var(--dark) 70%,transparent)}
+.unroll-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:0;
+  cursor:pointer;text-align:left;padding:20px 22px;min-height:64px;color:var(--ink);font-family:var(--display)}
+.unroll-title{font-size:clamp(19px,2.2vw,25px);font-weight:700;letter-spacing:-.015em;line-height:1.14}
 .unroll-head:hover .unroll-title{color:var(--brand-text)}
 .chev{flex:none;width:36px;height:36px;border-radius:50%;background:var(--bg-2);position:relative;
   transition:transform .32s var(--ease),background .25s}
 .chev::before{content:"";position:absolute;left:50%;top:47%;width:11px;height:11px;
-  border-right:2.4px solid var(--brand);border-bottom:2.4px solid var(--brand);
-  transform:translate(-50%,-62%) rotate(45deg)}
+  border-right:2.4px solid var(--brand);border-bottom:2.4px solid var(--brand);transform:translate(-50%,-62%) rotate(45deg)}
 .unroll.open .chev{transform:rotate(180deg);background:color-mix(in srgb,var(--brand) 16%,transparent)}
 .unroll-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows .38s var(--ease)}
-.unroll.open .unroll-body{grid-template-rows:1fr}
+.js .unroll-body{grid-template-rows:0fr}
+.js .unroll.open .unroll-body{grid-template-rows:1fr}
 .unroll-body > ul{overflow:hidden;margin:0;padding:0 22px;list-style:none}
 .unroll-body li{padding:11px 0;border-top:var(--rule);font-size:16.5px;font-weight:500}
 .unroll-body li:first-child{border-top:0;padding-top:2px}
 .unroll-body li:last-child{padding-bottom:22px}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:20px 2px 0;max-width:60ch}
 @media (prefers-reduced-motion:reduce){.unroll-body,.chev{transition:none}}
 
-/* ---- #signature: the "Thank y'all" board (their own posted offer) ---- */
-.thankboard{display:grid;gap:22px;justify-items:center;max-width:640px;margin:0 auto}
-.tb-plank{width:100%;background:var(--paper);border:2px solid var(--ink);border-radius:6px;
-  padding:clamp(26px,5vw,40px) clamp(20px,4vw,38px);text-align:center;position:relative;
-  box-shadow:0 34px 60px -40px color-mix(in srgb,var(--dark) 80%,transparent)}
-.tb-plank::before{content:"";position:absolute;inset:7px;border:1px solid color-mix(in srgb,var(--ink) 28%,transparent);border-radius:3px;pointer-events:none}
-.tb-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
-.tb-title{font-family:var(--display);font-weight:700;font-style:italic;font-size:clamp(38px,7vw,58px);line-height:1;margin:0;color:var(--brand)}
-.tb-sub{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
-.tb-rule{height:1px;background:var(--line);margin:20px 0;position:relative}
+/* ------------------------- #signature — the "Thank y'all" board (cedar) */
+/* Their OWN posted offer, verbatim off their flyer. One tap on a day, the
+   board changes. No hours, no prices, no numbers to type. */
+.thank-layout{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,54px);align-items:center}
+@media (max-width:900px){.thank-layout{grid-template-columns:1fr}}
+.thankboard{display:grid;gap:22px;justify-items:center}
+.tb-plank{width:100%;background:var(--paper);border:2px solid var(--dark);border-radius:6px;
+  padding:clamp(26px,5vw,42px) clamp(20px,4vw,38px);text-align:center;position:relative;
+  box-shadow:0 40px 70px -38px rgba(0,0,0,.9)}
+.tb-plank::before{content:"";position:absolute;inset:7px;border:1px solid color-mix(in srgb,var(--ink) 26%,transparent);
+  border-radius:3px;pointer-events:none}
+.tb-kicker{font-family:var(--body);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.tb-title{font-family:var(--display);font-weight:700;font-style:italic;font-size:clamp(40px,7.4vw,62px);line-height:1;
+  margin:0;color:var(--brand)}
+.tb-sub{font-family:var(--body);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+.tb-rule{height:1px;background:var(--line);margin:22px 0;position:relative}
 .tb-rule::before,.tb-rule::after{content:"";position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--brand)}
 .tb-rule::before{left:0}.tb-rule::after{right:0}
-.tb-day{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);margin:0 0 8px;font-weight:600}
-.tb-who{font-family:var(--display);font-weight:700;font-size:clamp(24px,4.4vw,36px);line-height:1.1;margin:0;color:var(--ink);min-height:2.2em;
-  display:flex;align-items:center;justify-content:center}
+.tb-day{font-family:var(--body);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);
+  margin:0 0 8px;font-weight:700}
+.tb-who{font-family:var(--display);font-weight:700;font-size:clamp(24px,4.4vw,36px);line-height:1.1;margin:0;color:var(--ink);
+  min-height:2.2em;display:flex;align-items:center;justify-content:center}
 .tb-day,.tb-who{transition:opacity .18s var(--ease),transform .18s var(--ease)}
 .thankboard.swap .tb-day,.thankboard.swap .tb-who{opacity:0;transform:translateY(7px)}
-.tb-picks{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
-.tb-pick{font-family:var(--body);font-weight:800;font-size:15px;letter-spacing:.02em;
-  min-height:52px;min-width:72px;padding:14px 20px;border-radius:999px;cursor:pointer;
-  background:var(--paper);color:var(--ink);border:2px solid var(--line);
-  transition:transform .18s var(--ease),background .18s,border-color .18s,color .18s}
-.tb-pick:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--brand) 50%,transparent)}
-.tb-pick.is-on{background:var(--brand);border-color:var(--brand);color:#fff}
+.tb-picks{display:none;flex-wrap:wrap;gap:9px;justify-content:center}
+.js .tb-picks{display:flex}
+.tb-pick{font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:.02em;min-height:52px;min-width:74px;
+  padding:14px 20px;border-radius:999px;cursor:pointer;background:var(--dark-2);color:var(--on-dark);
+  border:2px solid var(--dark-3);transition:transform .18s var(--ease),background .18s,border-color .18s,color .18s}
+.tb-pick:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--warm) 60%,transparent)}
+.tb-pick.is-on{background:var(--brand);border-color:var(--brand-lift);color:var(--on-dark)}
 @media (prefers-reduced-motion:reduce){.tb-day,.tb-who,.tb-pick{transition:none}}
+@media (max-width:560px){.tb-picks{flex-wrap:nowrap;gap:7px;width:100%}
+  .tb-pick{flex:1 1 0;min-width:0;padding:14px 4px;font-size:14.5px;min-height:52px}}
+.thank-print{transform:rotate(1deg)}
+.thank-print:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:900px){.thank-print{transform:none;max-width:420px;margin:0 auto}}
 
-/* ---- #reviews: verbatim Google quotes.
-   The profile is unclaimed, so reviewer names/dates aren't available —
-   no scraped faces and no invented names: each card carries the stand's
-   own oval "C" instead of a person-mark. ---- */
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.6vw,26px)}
-.quote{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px 22px;
-  display:flex;flex-direction:column;gap:12px;transition:transform .3s var(--ease),box-shadow .3s}
-.quote:hover{transform:translateY(-3px);box-shadow:0 30px 50px -36px color-mix(in srgb,var(--dark) 65%,transparent)}
-.qmark{width:46px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;
-  background:var(--bg-2);border:1.5px solid color-mix(in srgb,var(--brand) 45%,transparent);
-  font-family:var(--display);font-weight:700;font-size:20px;color:var(--brand-text);line-height:1}
-.quote .stars{color:var(--warm);font-size:15px;letter-spacing:.14em}
-.quote blockquote{margin:0;font-size:16px;line-height:1.6;color:var(--ink)}
-.quote figcaption{margin-top:auto;padding-top:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-@media (max-width:900px){.quotes{grid-template-columns:1fr}}
+/* ------------------------------------------------------------ #about */
+.story{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.3vw,52px);margin:0 0 16px}
+.story-copy p:not(.eyebrow){font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19.5px;font-weight:700;color:var(--brand-text);font-family:var(--body)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
 
-/* ---- closing band: cedar-brown ground, so give the CTA row breathing room ---- */
-.cta-band .section-head{margin-bottom:clamp(22px,3vw,34px)}
+/* --------------------------------------- #reviews — the lid, and the score */
+/* REVIEW ATTRIBUTION LAW (2026-09-06): the Google profile is UNCLAIMED, so no
+   reviewer carries a real published name AND a real profile image. Nothing is
+   invented, no initials disc stands in for a person and no anonymous quote
+   strip runs here — the rating is shown and the reviews are linked out to the
+   listing where the names and faces actually live. See HANDOFF-CODEX.md. */
+.lid-wrap{max-width:520px;margin:0 auto}
+.lid-wrap .print{transform:rotate(-1deg)}
+.lid-wrap .print:hover{transform:rotate(0) scale(1.01)}
+.lid-cap{font-family:var(--display);font-style:italic;font-size:clamp(17px,2.1vw,21px);line-height:1.4;
+  color:var(--ink);text-align:center;margin-top:15px;letter-spacing:0;text-transform:none}
+.rating-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(14px,3vw,30px);
+  margin:clamp(34px,5vw,56px) auto 0;max-width:760px;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:22px clamp(20px,3vw,34px)}
+.rating-score{display:flex;align-items:baseline;gap:9px;font-family:var(--display);font-weight:700;
+  font-size:clamp(38px,5vw,52px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.rating-score small{font-family:var(--body);font-weight:700;font-size:15px;color:var(--muted)}
+.rating-mid{text-align:left}
+.rating-stars{color:var(--warm);font-size:19px;letter-spacing:.16em;display:block}
+.rating-stars i{font-style:normal;opacity:.42}
+.rating-mid span{display:block;font-size:14.5px;color:var(--muted);margin-top:4px}
+.rating-strip .btn{margin-left:auto}
+@media (max-width:640px){.rating-strip{flex-direction:column;text-align:center;gap:14px}
+  .rating-mid{text-align:center}.rating-strip .btn{margin:0;width:100%}}
 
-/* ---- framed prints size to their own photo — no dead paper under short ones ---- */
-.prints{align-items:start}
-.story{align-items:start}
-.quotes{align-items:stretch}
-
-/* ---- closing band: don't leave a field of empty brown under one button ---- */
-.cta-band{padding-bottom:clamp(48px,6vw,72px)}
-
-/* Focused handoff polish: keep the cedar/cream format and whole photographs. */
-[hidden]{display:none!important}
-.skip-link{position:fixed;left:16px;top:12px;z-index:60;transform:translateY(-200%);padding:12px 18px;background:var(--paper);border:var(--rule);border-radius:10px}
-.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
-.hero h1{font-weight:600;max-width:16ch;line-height:1.06;letter-spacing:-.025em}
-.hero-sub{font-weight:400}
-.main-nav{gap:17px}
-.js .unroll-body{grid-template-rows:0fr}
-.js .unroll.open .unroll-body{grid-template-rows:1fr}
-.print{margin:0;align-self:start;padding-bottom:24px}
-.board-photo{margin-bottom:clamp(28px,4vw,42px)}
-.print figcaption{font-family:var(--body);font-size:13px;line-height:1.45;letter-spacing:0;text-transform:none}
-.tb-kicker,.tb-sub,.tb-day,.quote figcaption{font-family:var(--body);letter-spacing:.06em}
-.tb-picks{display:none}.js .tb-picks{display:flex}
-.project-note{grid-column:1/-1}.project-note textarea{min-height:190px}
-.contact{align-items:center}
+/* ------------------------------------------------------------- #find */
+.contact{align-items:start}
+.contact-form{background:var(--paper)}
 html:not(.js) .contact-form{display:none}
-@media(min-width:761px){
- .hero-bg{background:var(--dark)}
- .hero-bg::after{background:url('../images/hero-stack-1.jpg') center/cover no-repeat;filter:blur(24px);transform:scale(1.08);opacity:.65;mix-blend-mode:normal;z-index:0}
- .hero-bg img{object-fit:contain;object-position:center;position:relative;z-index:1;animation:none}
- .hero-bg::before{z-index:2;background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 80%,transparent),color-mix(in srgb,var(--dark) 25%,transparent) 75%)}
-}
-@media(max-width:900px){
- html:not(.js) .site-header{position:relative;height:auto}
- html:not(.js) .header-inner{display:block;padding-top:12px}
- html:not(.js) .nav-toggle{display:none}
- html:not(.js) .main-nav{display:flex;position:static;box-shadow:none;border:0}
+.find-print{margin-top:clamp(24px,3.4vw,36px);transform:rotate(-.8deg)}
+.find-print:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:900px){.find-print{transform:none}}
+.project-note{grid-column:1/-1}
+.project-note textarea{min-height:190px}
+
+/* -------------------------------------------------- CLOSING BAND + FOOT */
+.cta-band{padding-bottom:clamp(48px,6vw,76px)}
+.cta-band .section-head{margin-bottom:clamp(22px,3vw,34px);max-width:none}
+.cta-band h2{font-size:clamp(34px,5vw,62px)}
+.site-footer{background:var(--dark);color:var(--on-dark-2);
+  border-top:1px solid color-mix(in srgb,var(--warm) 20%,transparent)}
+.foot h4{font-family:var(--body);font-weight:700;letter-spacing:.18em;color:var(--warm)}
+.foot .plate{width:auto;height:auto;padding:9px 13px;border-radius:12px;background:color-mix(in srgb,var(--on-dark) 8%,transparent)}
+.foot .plate img{height:52px;width:auto}
+.foot a:hover{color:var(--on-dark)}
+.foot-bottom{border-top:1px solid var(--dark-3);color:color-mix(in srgb,var(--on-dark) 52%,transparent)}
+
+/* --------------------------------------- no-JS: nav must still be usable */
+@media (max-width:900px){
+  html:not(.js) .site-header{position:relative;height:auto}
+  html:not(.js) .header-inner{display:block;padding-top:12px}
+  html:not(.js) .nav-toggle{display:none}
+  html:not(.js) .main-nav{display:flex;position:static;box-shadow:none;border:0}
 }
