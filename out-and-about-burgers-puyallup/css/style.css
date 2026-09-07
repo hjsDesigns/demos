@@ -575,3 +575,10 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:-.005em;line-height:1.06}
   .hero h1{text-shadow:0 2px 24px rgba(0,0,0,.6);margin-bottom:10px}
 }
 }
+
+/* ============================================================ #shakes — flavours, plainly (9/7) */
+.flavors-band{padding-top:clamp(28px,4vw,44px);padding-bottom:clamp(24px,3.5vw,40px)}
+.flavors-band .section-head{margin-bottom:14px}
+.flavor-chips-big{padding:0;gap:10px}
+.flavor-chips-big li{font-size:clamp(16px,1.6vw,19px);font-family:var(--display);font-weight:400;padding:12px 18px;border-radius:999px;background:var(--brand);color:#fff;border:0;letter-spacing:.01em}
+.flavors-band .menu-fine{margin-top:14px}
