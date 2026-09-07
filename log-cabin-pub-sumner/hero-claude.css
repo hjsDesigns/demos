@@ -65,7 +65,7 @@
 /* ---------- their real circular mark ---------- */
 .hero .lc-mark-wrap{
   position:relative;
-  height:min(33svh, calc(74vw / 1.2935), 336px);
+  height:min(34svh, calc(74vw / 1.2935), 372px);
   aspect-ratio:520 / 402;
   width:auto;
   display:block;
@@ -87,9 +87,8 @@
   position:relative;
   width:100%;height:100%;object-fit:contain;
   display:block;
-  filter:drop-shadow(0 10px 34px color-mix(in srgb,var(--dark) 78%,transparent));
-  -webkit-mask-image:linear-gradient(102deg,#000 0 32%,rgba(0,0,0,.35) 44%,transparent 54%);
-          mask-image:linear-gradient(102deg,#000 0 32%,rgba(0,0,0,.35) 44%,transparent 54%);
+  -webkit-mask-image:linear-gradient(102deg,#000 0 42%,rgba(0,0,0,.30) 52%,transparent 62%);
+          mask-image:linear-gradient(102deg,#000 0 42%,rgba(0,0,0,.30) 52%,transparent 62%);
   -webkit-mask-size:260% 100%;         mask-size:260% 100%;
   -webkit-mask-repeat:no-repeat;       mask-repeat:no-repeat;
   /* mask box is wider than the element, so 100% = fully past (hidden),

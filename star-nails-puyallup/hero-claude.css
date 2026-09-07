@@ -92,13 +92,13 @@
   -webkit-mask-size:250% 100%;  mask-size:250% 100%;
   -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
   -webkit-mask-position:100% 0;  mask-position:100% 0;
-  animation:hgWrite 1.35s cubic-bezier(.42,.02,.16,1) .35s both;
+  animation:hgWrite 1.25s cubic-bezier(.42,.02,.16,1) .3s both;
 }
 
 /* "Nails & Spa" settles underneath it */
 .hero-glass .mk-serif{
   opacity:0;
-  animation:hgSettle .9s var(--ease) 1.5s both;
+  animation:hgSettle .8s var(--ease) 1.35s both;
 }
 
 /* ONE gloss sweep — light off a fresh top coat, clipped to the lettering */
@@ -107,24 +107,24 @@
   pointer-events:none;
   -webkit-mask:url(images/claude-mark.png) center / 100% 100% no-repeat;
           mask:url(images/claude-mark.png) center / 100% 100% no-repeat;
-  background:linear-gradient(102deg,
-      rgba(255,246,251,0)   40%,
-      rgba(255,250,253,.55) 47%,
-      rgba(255,255,255,.96) 50.5%,
-      rgba(255,250,253,.55) 54%,
-      rgba(255,246,251,0)   61%);
-  background-size:280% 100%;
+  background:linear-gradient(100deg,
+      rgba(255,246,251,0)   34%,
+      rgba(255,249,252,.62) 44%,
+      rgba(255,255,255,.98) 50%,
+      rgba(255,249,252,.62) 56%,
+      rgba(255,246,251,0)   66%);
+  background-size:160% 100%;
   background-repeat:no-repeat;
-  background-position:170% 0;
+  background-position:132% 0;
   opacity:0;
-  animation:hgGloss 1.25s cubic-bezier(.36,.08,.24,1) 2.1s both;
+  animation:hgGloss 1.5s cubic-bezier(.34,.12,.32,.98) 2.25s both;
 }
 
 /* ---- the two buttons, and nothing else ------------------------------ */
 .hero-glass .hg-actions{
   display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
   opacity:0;
-  animation:hgSettle .75s var(--ease) 2.55s both;
+  animation:hgSettle .7s var(--ease) 2.6s both;
 }
 .hero-glass .btn-outline{
   background:rgba(252,247,242,.5);
@@ -150,10 +150,10 @@
   to  {opacity:1;transform:translateY(0);   filter:blur(0)}
 }
 @keyframes hgGloss{
-  0%  {opacity:0;   background-position:170% 0}
-  18% {opacity:1}
-  82% {opacity:1}
-  100%{opacity:0;   background-position:-70% 0}
+  0%  {opacity:0;   background-position:132% 0}
+  14% {opacity:1}
+  84% {opacity:1}
+  100%{opacity:0;   background-position:-32% 0}
 }
 
 /* ============================ phone ================================== */

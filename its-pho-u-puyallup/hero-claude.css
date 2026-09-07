@@ -1,0 +1,202 @@
+/* ============================================================
+   IT'S PHỞ U — hero pass, Claude's take (2026-09-07)
+   "The u arrives last."
+
+   GROUND  images/claude-broth.jpg — their OWN bowl of phở (images/bowl.jpg),
+           pre-blurred to a warm cream-and-broth surface. Light, not dark:
+           MIRROR LAW — the room is bright, the site is cream, and the sign is
+           a dark green panel that only sings on a light ground. Barely-there
+           steam drifts off it, then the ground holds still.
+   MARK    images/claude-mark-itspho.png + images/claude-mark-u.png — their
+           REAL exterior sign (images/logo.png) cut along the PHYSICAL gap
+           between the "Phở" panel and the "u" panel. Nothing redrawn.
+   BEAT    0.30s "It's Phở" rises out of the steam · 1.30s the yellow "u"
+           drops in and settles · 1.55s it lights up · 2.05s the buttons.
+           Then a 46s breath on the ground and nothing else asks for you.
+   All rules are namespaced to #hero / .hero and load AFTER css/style.css.
+   ============================================================ */
+
+/* ---------- the frame ---------- */
+#hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  overflow:hidden;
+  background:var(--bg);
+  color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---------- the broth ground ---------- */
+#hero .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+#hero .hero-bg::before{content:none}                       /* kill the template's pine scrim */
+#hero .hero-bg::after{opacity:.14;mix-blend-mode:soft-light}/* keep a whisper of grain only */
+
+#hero .broth{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 56%;
+  transform:scale(1.06);
+  transform-origin:50% 58%;
+  animation:chero-breath 46s cubic-bezier(.45,0,.55,1) 1.2s infinite alternate;
+  will-change:transform;
+}
+@keyframes chero-breath{from{transform:scale(1.06)}to{transform:scale(1.13)}}
+
+/* the cream veil: a light pool behind the mark so the green panels read,
+   the site's own cream at the top under the sticky header, the hours-band
+   pale pine already arriving at the bottom. */
+#hero .broth-wash{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(58% 44% at 50% 46%, rgba(255,252,244,.62) 0%, rgba(255,252,244,.22) 54%, rgba(255,252,244,0) 76%),
+    linear-gradient(180deg, rgba(247,240,224,.90) 0%, rgba(247,240,224,.26) 15%, rgba(247,240,224,.04) 42%, rgba(228,237,227,.26) 82%, rgba(228,237,227,.58) 100%),
+    radial-gradient(122% 98% at 50% 50%, rgba(255,252,244,0) 40%, rgba(199,181,145,.34) 100%);
+}
+
+/* ---------- steam, barely there ---------- */
+#hero .steam{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+#hero .plume{
+  position:absolute;bottom:6%;
+  width:clamp(120px,17vw,240px);height:clamp(280px,46vh,520px);
+  border-radius:50% 50% 46% 46%;
+  background:radial-gradient(ellipse at 50% 96%, rgba(255,253,246,.78) 0%, rgba(255,253,246,.34) 42%, rgba(255,253,246,0) 74%);
+  filter:blur(22px);
+  opacity:0;
+  will-change:transform,opacity;
+  animation:chero-steam 15s cubic-bezier(.36,.05,.4,1) infinite;
+}
+#hero .p1{left:30%;--dx:-16px;animation-duration:15s;animation-delay:-6s}
+#hero .p2{left:46%;--dx:12px; animation-duration:19s;animation-delay:-13s;opacity:0}
+#hero .p3{left:58%;--dx:22px; animation-duration:17s;animation-delay:-2.5s}
+#hero .p4{left:40%;--dx:-8px; animation-duration:22s;animation-delay:-17s}
+@keyframes chero-steam{
+  0%  {opacity:0;   transform:translate3d(0,12%,0)              scale(.72)}
+  16% {opacity:.55}
+  62% {opacity:.30}
+  100%{opacity:0;   transform:translate3d(var(--dx,0),-64%,0)   scale(1.34)}
+}
+
+/* ---------- the mark IS the headline ---------- */
+#hero .hero-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(24px,5vh,60px) var(--pad);
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+
+#hero .hero-mark{
+  position:relative;
+  width:min(820px,74vw);
+  aspect-ratio:900/319;
+  margin:0 0 clamp(30px,5.4vh,54px);
+}
+#hero .mk{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;                       /* NEVER CROP THE IMPORTANT PART */
+  filter:drop-shadow(0 16px 30px rgba(36,26,18,.26)) drop-shadow(0 3px 6px rgba(36,26,18,.16));
+}
+
+/* beat 1 — "It's Phở" rises out of the steam */
+#hero .mk-a{
+  opacity:0;
+  animation:chero-rise-a .95s var(--ease) .30s forwards;
+  will-change:transform,opacity,filter;
+}
+@keyframes chero-rise-a{
+  0%  {opacity:0;transform:translate3d(0,34px,0) scale(.952)}
+  55% {opacity:1}
+  100%{opacity:1;transform:none}
+}
+
+/* beat 2 — the yellow "u" drops in last and settles. Its own panel,
+   so it turns on its own centre (91.3% / 71.8% of the sign canvas). */
+#hero .mk-u{
+  opacity:0;
+  transform-origin:91.3% 71.8%;
+  animation:chero-drop-u .92s cubic-bezier(.22,.82,.3,1) 1.30s forwards;
+  will-change:transform,opacity;
+}
+@keyframes chero-drop-u{
+  0%  {opacity:0;transform:translate3d(14px,-52px,0) rotate(-8deg) scale(1.05)}
+  46% {opacity:1}
+  74% {opacity:1;transform:translate3d(0,5px,0)      rotate(1.1deg) scale(1)}
+  89% {opacity:1;transform:translate3d(0,-2px,0)     rotate(-.3deg) scale(1)}
+  100%{opacity:1;transform:none}
+}
+
+/* beat 3 — it lights up, then keeps a faint pilot glow. The sign's own
+   lettering yellow (--warm), nowhere near neon. */
+#hero .mark-glow{
+  position:absolute;z-index:-1;
+  left:91.3%;top:71.8%;
+  width:52%;aspect-ratio:1;
+  transform:translate(-50%,-50%) scale(.55);
+  border-radius:50%;
+  background:radial-gradient(circle, color-mix(in srgb,var(--warm) 62%,transparent) 0%, color-mix(in srgb,var(--warm) 22%,transparent) 42%, transparent 70%);
+  filter:blur(16px);
+  opacity:0;
+  animation:chero-bloom 1.6s var(--ease) 1.55s forwards;
+  pointer-events:none;
+}
+#hero .mark-glow::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:inherit;opacity:1;
+  animation:chero-pilot 6.5s cubic-bezier(.45,0,.55,1) 3.4s infinite alternate;
+}
+@keyframes chero-bloom{
+  0%  {opacity:0;  transform:translate(-50%,-50%) scale(.55)}
+  38% {opacity:.92;transform:translate(-50%,-50%) scale(1.08)}
+  100%{opacity:.34;transform:translate(-50%,-50%) scale(1)}
+}
+@keyframes chero-pilot{from{opacity:.62}to{opacity:1}}
+
+/* ---------- the two buttons, last ---------- */
+#hero .hero-actions{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  opacity:0;transform:translateY(16px);
+  animation:chero-rise-btn .8s var(--ease) 2.10s forwards;
+}
+@keyframes chero-rise-btn{to{opacity:1;transform:none}}
+
+/* the ground is light here, so the cream button becomes a pine outline */
+#hero .btn-cream{
+  background:transparent;color:var(--brand-text);
+  border-color:color-mix(in srgb,var(--brand) 46%,transparent);
+  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+}
+#hero .btn-cream:hover{background:color-mix(in srgb,var(--bg) 88%,transparent);border-color:var(--brand);color:var(--brand-text)}
+#hero .btn-primary{box-shadow:0 12px 26px -14px color-mix(in srgb,var(--brand) 78%,transparent)}
+
+/* ---------- melt into the hours band ---------- */
+#hero .hero-fade{
+  position:absolute;left:0;right:0;bottom:-1px;height:22%;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg, rgba(228,237,227,0) 0%, color-mix(in srgb,var(--tint) 72%,transparent) 58%, var(--tint) 100%);
+}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  #hero .broth{object-position:50% 52%}
+  #hero .hero-mark{width:min(440px,94vw);margin-bottom:clamp(26px,4.6vh,40px)}
+  #hero .hero-actions{gap:10px;width:100%}
+  #hero .hero-actions .btn{flex:1 1 0;padding:14px 10px;font-size:14.5px;min-width:0}
+  #hero .plume{filter:blur(17px)}
+  #hero .broth-wash{
+    background:
+      radial-gradient(74% 34% at 50% 44%, rgba(255,252,244,.68) 0%, rgba(255,252,244,.24) 56%, rgba(255,252,244,0) 78%),
+      linear-gradient(180deg, rgba(247,240,224,.92) 0%, rgba(247,240,224,.28) 13%, rgba(247,240,224,.04) 42%, rgba(228,237,227,.28) 82%, rgba(228,237,227,.62) 100%),
+      radial-gradient(122% 98% at 50% 50%, rgba(255,252,244,0) 40%, rgba(199,181,145,.34) 100%);
+  }
+}
+@media (max-width:380px){
+  #hero .hero-mark{width:96vw}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  #hero .broth{animation:none;transform:scale(1.06)}
+  #hero .mk-a,#hero .mk-u{animation:none;opacity:1;transform:none}
+  #hero .hero-actions{animation:none;opacity:1;transform:none}
+  #hero .mark-glow{animation:none;opacity:.34;transform:translate(-50%,-50%) scale(1)}
+  #hero .mark-glow::before{animation:none;opacity:.8}
+  #hero .plume{animation:none;opacity:.14;transform:translate3d(0,-30%,0) scale(1.1)}
+}
