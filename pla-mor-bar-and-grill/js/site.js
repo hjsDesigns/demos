@@ -1,34 +1,47 @@
 /* ============================================================
-   WEBSITE FACTORY — site.js
-   Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
-   count-up numbers · contact form success.
-   The ONLY thing to edit per client is the HOURS block right below.
+   PLA-MOR BAR & GRILL — site.js
+   Nav toggle · live open/closed clock (Pacific) · scroll-reveal ·
+   contact form · title-cards-unroll · THE SPECIALS SHEET
    ============================================================ */
 
 /* ------------------------------------------------------------
-   HOURS CONFIG  — fill from the client's Google listing.
-   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
-   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
-   null = closed that day. Closing past midnight: use 26 for 2 am.
+   HOURS — Restaurantji's structured listing for this place
+   ("Mo 11:00-24:00 … Fr 11:00-2:00 … Su 11:00-22:00"), which Apple
+   Maps and Waze both match. 0 = Sunday … 6 = Saturday. Decimal 24h.
+   26 = 2 AM the next morning, 24 = midnight — the clock knows the bar
+   is still open after midnight on a Friday and Saturday night.
    ------------------------------------------------------------ */
-var HOURS = {tz:'America/Los_Angeles',days:{0:[11,22],1:[11,24],2:[11,24],3:[11,24],4:[11,24],5:[11,26],6:[11,26]}};
+var HOURS = {
+  tz: 'America/Los_Angeles',
+  days: {
+    0: [11, 22],                      // Sunday    11:00 AM – 10:00 PM
+    1: [11, 24],                      // Monday    11:00 AM – 12:00 AM
+    2: [11, 24],                      // Tuesday
+    3: [11, 24],                      // Wednesday
+    4: [11, 24],                      // Thursday
+    5: [11, 26],                      // Friday    11:00 AM –  2:00 AM
+    6: [11, 26]                       // Saturday  11:00 AM –  2:00 AM
+  }
+};
 
-/* ------------------------------------------------------------
-   CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
-   Two functions site.js calls every minute. `p` is the Pacific "now":
-   {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
-
-   customClosure(p) → return a string to mark the whole day CLOSED
-                      ("Closed today for Labor Day"), or null.
-   customClose(p, close) → return an adjusted closing hour for today.
-
-   Reference-build example (path in README, "HOURS config"): Friday closed
-   at the earlier of 6 pm or SUNDOWN (NOAA sunset math), and US holidays
-   from their rate sheet returned a closure string. Port that logic here
-   only when the business actually has such a rule.
-   ------------------------------------------------------------ */
+/* No holiday or seasonal rule is confirmed for this bar — leave as-is. */
 function customClosure(p){ return null; }
 function customClose(p, close){ return close; }
+
+/* ------------------------------------------------------------
+   THE SPECIALS SHEET — transcribed word for word from a photograph
+   of the "Daily Specials" page in their menu binder. Dish and wording
+   only: the prices printed on that sheet belong to an older menu than
+   the one on the tables now, so no price is shown here.
+   ------------------------------------------------------------ */
+var SPECIALS = {
+  1: {day:'Monday',    dish:'Prime Rib Dinner', desc:'14 oz., baked potato or fries, and salad.',            extra:''},
+  2: {day:'Tuesday',   dish:'Burger Night',     desc:'Every regular-priced burger on the menu, a dollar off.', extra:''},
+  3: {day:'Wednesday', dish:'Steak Dinner',     desc:'14 oz. rib eye steak, baked potato or fries, and salad.', extra:''},
+  4: {day:'Thursday',  dish:'BBQ Rib Dinner',   desc:'Baked potato or salad.',                                extra:'Double order of ribs also on the sheet'},
+  5: {day:'Friday',    dish:'Fish & Chips',     desc:'Hand battered cod, fries or salad.',                    extra:'Double order of fish · steak dinner also on the sheet'}
+};
+var WEEKEND = {day:'Saturday and Sunday', dish:'No printed special', desc:'The specials page runs Monday through Friday — the full menu is on all weekend.', extra:''};
 
 
 (function(){
@@ -36,8 +49,9 @@ function customClose(p, close){ return close; }
   document.documentElement.classList.add('js');
   var $=function(s,r){return (r||document).querySelector(s)};
   var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var REDUCE=function(){return window.matchMedia('(prefers-reduced-motion:reduce)').matches};
 
-  /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
+  /* ---------- mobile nav ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
   function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
   if(toggle&&nav){
@@ -49,8 +63,6 @@ function customClose(p, close){ return close; }
   var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
 
   /* ---------- Pacific time, wherever the viewer is ---------- */
-  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
-  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
   var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
     var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
     var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
@@ -71,7 +83,6 @@ function customClose(p, close){ return close; }
     var p=pacificNow(), d=p.day, h=p.h;
     var closure=customClosure(p);
     if(closure) return {open:false,text:'Closed today for '+closure};
-    // still inside yesterday's after-midnight hours? (e.g. a bar closing at 2 am = 26)
     var yd=(d+6)%7, yh=hoursFor(yd);
     if(yh&&yh[1]>24&&h<yh[1]-24) return {open:true,text:'Open now · til '+fmt(yh[1])};
     var today=hoursFor(d);
@@ -80,7 +91,6 @@ function customClose(p, close){ return close; }
       if(h>=today[0]&&h<close) return {open:true,text:'Open now · til '+fmt(close),soon:(close-h)<=1};
       if(h<today[0]) return {open:false,text:'Opens today at '+fmt(today[0])};
     }
-    // find the next open day
     for(var i=1;i<=7;i++){
       var nd=(d+i)%7, nh=hoursFor(nd);
       if(nh){var label=i===1?'tomorrow':dayName(nd);return {open:false,text:'Closed · opens '+label+' at '+fmt(nh[0])}}
@@ -96,38 +106,69 @@ function customClose(p, close){ return close; }
     $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
   }
   applyStatus(); setInterval(applyStatus,60000);
-  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
+  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS};
 
-  /* ---------- scroll-reveal + count-up ---------- */
+  /* ---------- scroll-reveal ---------- */
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(!en.isIntersecting)return;
       en.target.classList.add('in');
-      $$('.count',en.target).forEach(function(c){
-        if(c.dataset.done)return; c.dataset.done='1';
-        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
-        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-        if(reduce){c.textContent=to;return}
-        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
-        requestAnimationFrame(step);
-      });
       io.unobserve(en.target);
     });
   },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
   $$('.reveal').forEach(function(el){io.observe(el)});
 
-  /* ---------- SIGNATURE GADGET ----------
-     Per-client interactive code goes below this line (EA: day timeline +
-     rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+  /* ---------- contact form ---------- */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){form.addEventListener('submit',function(e){e.preventDefault();ok.classList.add('show');ok.setAttribute('role','status');form.querySelector('button[type=submit]').disabled=true})}
 
-  // One tap filters the real printed menu; all content remains readable without JS.
-  var filters=$$('.menu-filters button'),groups=$$('.menu-category');
-  function category(name){
-    if(!filters.some(function(b){return b.dataset.category===name}))name='burgers';
-    filters.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.category===name))});
-    groups.forEach(function(g){g.hidden=name!=='all'&&g.dataset.group!==name});
+  /* ---------- TITLE CARDS UNROLL — the headline is the tap target ---------- */
+  $$('.unroll').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
+
+  /* ---------- SIGNATURE — THE SPECIALS SHEET ------------------------
+     One tap on a night, the sheet swaps to that night's special. On
+     load it lands on today; on a weekend it lands on the weekend line
+     with no night selected, because the printed sheet has none. */
+  var board=$('#board');
+  if(board){
+    var chips=$$('.day-chip'),
+        elTag=$('#boardTag'), elDay=$('#boardDay'), elDish=$('#boardDish'),
+        elDesc=$('#boardDesc'), elExtra=$('#boardExtra');
+
+    function paint(rec, isToday, animate){
+      elDay.textContent=rec.day;
+      elDish.textContent=rec.dish;
+      elDesc.textContent=rec.desc;
+      elExtra.textContent=rec.extra||'';
+      elTag.hidden=!isToday;
+      if(animate && !REDUCE()){
+        board.classList.remove('swap');
+        void board.offsetWidth;                 // reflow, so a rapid re-tap replays
+        board.classList.add('swap');
+      }
+    }
+
+    function select(n, animate){
+      var today=pacificNow().day;
+      chips.forEach(function(c){c.setAttribute('aria-pressed', String(parseInt(c.getAttribute('data-day'),10)===n))});
+      if(SPECIALS[n]) paint(SPECIALS[n], n===today, animate);
+      else paint(WEEKEND, false, animate);
+    }
+
+    chips.forEach(function(c){
+      c.addEventListener('click',function(){select(parseInt(c.getAttribute('data-day'),10), true)});
+    });
+
+    var d=pacificNow().day;
+    select(SPECIALS[d] ? d : 0, false);          // 0 falls through to the weekend line
   }
-  if(filters.length){var params=new URLSearchParams(location.search);category(params.get('category')||'burgers');filters.forEach(function(b){b.addEventListener('click',function(){category(b.dataset.category)})})}
-  var dialog=$('.photo-dialog');
-  if(dialog){var opener=null;$$('[data-photo]').forEach(function(b){b.addEventListener('click',function(){opener=b;var im=$('img',dialog);im.src=b.dataset.photo;im.alt=$('img',b).alt;$('figcaption',dialog).textContent=b.dataset.caption;dialog.showModal()})});$('.dialog-close',dialog).addEventListener('click',function(){dialog.close()});dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close()});dialog.addEventListener('close',function(){if(opener)opener.focus()})}
+
 })();

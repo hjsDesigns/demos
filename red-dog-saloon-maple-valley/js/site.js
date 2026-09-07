@@ -1,43 +1,34 @@
 /* ============================================================
-   WEBSITE FACTORY — site.js
-   Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
-   count-up numbers · contact form success.
-   The ONLY thing to edit per client is the HOURS block right below.
+   THE RED DOG SALOON — site.js
+   Nav toggle · live open/closed clock (Pacific) · scroll-reveal ·
+   count-up · contact form · title-cards-unroll · THE CHILI-DOG BOARD
    ============================================================ */
 
 /* ------------------------------------------------------------
-   HOURS CONFIG  — fill from the client's Google listing.
-   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
-   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
-   null = closed that day. Closing past midnight: use 26 for 2 am.
+   HOURS — the one internally consistent seven-day set that could be
+   sourced: the Restaurantji listing for this exact address, page
+   footer "Updated on: Aug 17, 2026".
+     Mon–Thu 12 PM – 12 AM · Fri–Sat 12 PM – 2 AM · Sun 12 PM – 11 PM
+   PROVISIONAL — one conflict flagged in HANDOFF-CODEX.md: another
+   listing shows Sunday running to 2 AM rather than 11 PM. Confirm the
+   Sunday close with the bar before this goes live.
+   0 = Sunday … 6 = Saturday, decimal 24h. 24 = midnight, 26 = 2 AM the
+   next morning — the clock knows the bar is still open after midnight.
    ------------------------------------------------------------ */
 var HOURS = {
-  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  tz: 'America/Los_Angeles',
   days: {
-    0: null,                          // Sunday      [SLOT: HOURS]
-    1: [9, 17],                       // Monday
-    2: [9, 17],                       // Tuesday
-    3: [9, 17],                       // Wednesday
-    4: [9, 17],                       // Thursday
-    5: [9, 17],                       // Friday
-    6: null                           // Saturday
+    0: [12, 23],                      // Sunday    12:00 PM – 11:00 PM
+    1: [12, 24],                      // Monday    12:00 PM – 12:00 AM
+    2: [12, 24],                      // Tuesday
+    3: [12, 24],                      // Wednesday
+    4: [12, 24],                      // Thursday
+    5: [12, 26],                      // Friday    12:00 PM –  2:00 AM
+    6: [12, 26]                       // Saturday  12:00 PM –  2:00 AM
   }
 };
 
-/* ------------------------------------------------------------
-   CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
-   Two functions site.js calls every minute. `p` is the Pacific "now":
-   {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
-
-   customClosure(p) → return a string to mark the whole day CLOSED
-                      ("Closed today for Labor Day"), or null.
-   customClose(p, close) → return an adjusted closing hour for today.
-
-   Reference-build example (path in README, "HOURS config"): Friday closed
-   at the earlier of 6 pm or SUNDOWN (NOAA sunset math), and US holidays
-   from their rate sheet returned a closure string. Port that logic here
-   only when the business actually has such a rule.
-   ------------------------------------------------------------ */
+/* No holiday or seasonal rule is confirmed for this bar — leave as-is. */
 function customClosure(p){ return null; }
 function customClose(p, close){ return close; }
 
@@ -47,6 +38,7 @@ function customClose(p, close){ return close; }
   document.documentElement.classList.add('js');
   var $=function(s,r){return (r||document).querySelector(s)};
   var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var REDUCE=function(){return window.matchMedia('(prefers-reduced-motion:reduce)').matches};
 
   /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
@@ -60,8 +52,7 @@ function customClose(p, close){ return close; }
   var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
 
   /* ---------- Pacific time, wherever the viewer is ---------- */
-  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
-  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
+  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=0-6] [&date=YYYY-MM-DD]
   var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
     var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
     var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
@@ -82,7 +73,6 @@ function customClose(p, close){ return close; }
     var p=pacificNow(), d=p.day, h=p.h;
     var closure=customClosure(p);
     if(closure) return {open:false,text:'Closed today for '+closure};
-    // still inside yesterday's after-midnight hours? (e.g. a bar closing at 2 am = 26)
     var yd=(d+6)%7, yh=hoursFor(yd);
     if(yh&&yh[1]>24&&h<yh[1]-24) return {open:true,text:'Open now · til '+fmt(yh[1])};
     var today=hoursFor(d);
@@ -91,7 +81,6 @@ function customClose(p, close){ return close; }
       if(h>=today[0]&&h<close) return {open:true,text:'Open now · til '+fmt(close),soon:(close-h)<=1};
       if(h<today[0]) return {open:false,text:'Opens today at '+fmt(today[0])};
     }
-    // find the next open day
     for(var i=1;i<=7;i++){
       var nd=(d+i)%7, nh=hoursFor(nd);
       if(nh){var label=i===1?'tomorrow':dayName(nd);return {open:false,text:'Closed · opens '+label+' at '+fmt(nh[0])}}
@@ -107,7 +96,7 @@ function customClose(p, close){ return close; }
     $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
   }
   applyStatus(); setInterval(applyStatus,60000);
-  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
+  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS};
 
   /* ---------- scroll-reveal + count-up ---------- */
   var io=new IntersectionObserver(function(entries){
@@ -117,9 +106,9 @@ function customClose(p, close){ return close; }
       $$('.count',en.target).forEach(function(c){
         if(c.dataset.done)return; c.dataset.done='1';
         var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
-        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-        if(reduce){c.textContent=to;return}
-        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
+        var show=function(n){c.textContent=n.toLocaleString('en-US')};
+        if(REDUCE()){show(to);return}
+        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);show(Math.round(from+(to-from)*e));if(k<1)requestAnimationFrame(step)}
         requestAnimationFrame(step);
       });
       io.unobserve(en.target);
@@ -129,24 +118,67 @@ function customClose(p, close){ return close; }
 
   /* ---------- contact form ----------
      Demo mode (hidden access_key empty): show the thank-you, send nothing.
-     Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms from the visitor's
-     browser -> lands in the owner's inbox. Failure falls back to "call or text us". */
+     Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms
+     from the visitor's browser -> lands in the owner's inbox. */
   var form=$('.contact-form'), ok=$('.form-success');
   if(form&&ok){form.addEventListener('submit',function(e){
     e.preventDefault();
     var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
     function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
     if(!key){done();return}
-    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
+    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending…';
     var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
     data.subject=data.subject||('New message from your website ('+document.title+')');
     fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json()}).then(function(j){if(j&&j.success){done()}else{throw new Error('send failed')}})
-      .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
+      .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn’t send just now — call the bar instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
   })}
 
-  /* ---------- SIGNATURE GADGET ----------
-     Per-client interactive code goes below this line (EA: day timeline +
-     rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+  /* ---------- TITLE CARDS UNROLL — the headline is the tap target ---------- */
+  $$('.unroll').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
+
+  /* ---------- SIGNATURE GADGET — THE CHILI-DOG BOARD -------------------
+     One tap on a labelled name builds that dog on the bun; tapping the same
+     name again clears the plate. Every name, price and description below is
+     read straight off the chili-dog board photographed on their own wall —
+     nothing here is invented and nothing here repeats the main menu.
+     Deterministic: pure state swap, no timers, no random. */
+  (function(){
+    var stage=$('#dogStage'), pills=$('#dogPills');
+    if(!stage||!pills) return;
+    var nameEl=$('#dogName'), priceEl=$('#dogPrice'), descEl=$('#dogDesc');
+    var REST={name:nameEl.textContent, price:priceEl.textContent, desc:descEl.childNodes[0].nodeValue};
+    var CITE=descEl.querySelector('cite');
+    var current=null;
+
+    function paint(btn){
+      $$('button',pills).forEach(function(b){b.setAttribute('aria-pressed', b===btn ? 'true':'false')});
+      if(!btn){
+        stage.removeAttribute('data-dog');
+        nameEl.textContent=REST.name; priceEl.textContent=REST.price;
+        descEl.childNodes[0].nodeValue=REST.desc;
+        CITE.textContent='Photographed from the board in their room';
+        current=null; return;
+      }
+      stage.setAttribute('data-dog', btn.getAttribute('data-dog'));
+      nameEl.textContent=btn.getAttribute('data-name');
+      priceEl.textContent=btn.getAttribute('data-price');
+      descEl.childNodes[0].nodeValue=btn.getAttribute('data-desc')+' ';
+      CITE.textContent='The board’s own words';
+      current=btn;
+    }
+
+    $$('button',pills).forEach(function(b){
+      b.addEventListener('click',function(){ paint(current===b ? null : b) });
+    });
+  })();
 
 })();

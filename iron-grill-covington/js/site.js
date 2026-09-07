@@ -11,7 +11,22 @@
    decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
    null = closed that day. Closing past midnight: use 26 for 2 am.
    ------------------------------------------------------------ */
-var HOURS = { tz:'America/Los_Angeles', confirmed:false, days:{} };
+var HOURS = {
+  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  days: {
+    // Source: the business-hours whiteboard by the entrance AND the printed
+    // "DEAR CUSTOMERS" notice on the door announcing the April change — both
+    // photographed, and they agree. The older door placard (Mon-Sat 11-9,
+    // Sun closed) is the SUPERSEDED pre-April schedule; do not use it.
+    0: [12, 20],                      // Sunday      12:00 pm - 8:00 pm
+    1: [11, 20],                      // Monday      11:00 am - 8:00 pm
+    2: null,                          // Tuesday     closed
+    3: [11, 20],                      // Wednesday   11:00 am - 8:00 pm
+    4: [11, 20],                      // Thursday    11:00 am - 8:00 pm
+    5: [11, 21],                      // Friday      11:00 am - 9:00 pm
+    6: [11, 21]                       // Saturday    11:00 am - 9:00 pm
+  }
+};
 
 /* ------------------------------------------------------------
    CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
@@ -95,7 +110,7 @@ function customClose(p, close){ return close; }
     if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
     $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
   }
-  if(HOURS.confirmed){ applyStatus(); setInterval(applyStatus,60000); }
+  applyStatus(); setInterval(applyStatus,60000);
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
 
   /* ---------- scroll-reveal + count-up ---------- */
@@ -137,5 +152,24 @@ function customClose(p, close){ return close; }
   /* ---------- SIGNATURE GADGET ----------
      Per-client interactive code goes below this line (EA: day timeline +
      rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+
+  /* ---------- SIGNATURE GADGET — the plate viewer ----------
+     TODDLER LAW: one obvious gesture (tap a plate), one instant visible
+     payoff (the big frame changes), no modes and no legend. The stage is
+     a fixed 4:3 box with object-fit:contain, so nothing is ever cropped
+     and nothing shifts (CLS). Works with no JS: the first plate is
+     already marked .on in the markup. */
+  var stage=$('#bowlStage'), cap=$('#bowlCap');
+  if(stage&&cap){
+    var shots=$$('img',stage), thumbs=$$('.bowl-thumb');
+    thumbs.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var i=parseInt(btn.getAttribute('data-i'),10);
+        shots.forEach(function(im,n){im.classList.toggle('on',n===i)});
+        thumbs.forEach(function(b){b.setAttribute('aria-pressed',b===btn?'true':'false')});
+        cap.textContent=btn.getAttribute('data-cap');
+      });
+    });
+  }
 
 })();

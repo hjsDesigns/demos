@@ -15,12 +15,12 @@ body{margin:0;padding:24px;background:#EFE7D8;color:#18211C;font:15px/1.4 -apple
 h1{font-size:20px;margin:0 0 4px}p{margin:0 0 20px;color:#66635A}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
 figure{margin:0;background:#F6EFE2;border:1px solid #DCD2BF;padding:10px;border-radius:10px}
-figure img{width:100%;aspect-ratio:4/3;object-fit:contain;display:block;border-radius:6px;background:#E5DBC7}
+figure img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:6px;background:#E5DBC7}
 figcaption{margin-top:8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;word-break:break-all}
 figcaption b{display:inline-block;min-width:28px;color:#B8241F;font-size:15px}
 .dim{color:#66635A;font-size:11px}
 </style></head><body>
-<p>PROVISIONAL BATCH PICKS — photo permission and Hayden’s final selections pending.</p><h1>Contact sheet</h1>
+<h1>Contact sheet</h1>
 HEAD
 n=0
 for f in images/*.jpg images/*.jpeg images/*.png images/*.webp images/*.gif images/*.JPG images/*.JPEG images/*.PNG; do
