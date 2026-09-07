@@ -7,7 +7,7 @@
 <meta name="description" content="Revolution Speed Shop builds, fabricates and restores classic and race cars in Enumclaw, Washington. Owner Scott Jensen — two builds featured in HOT ROD and autoevolution.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Chakra Petch (squarish techno — closest sturdy match to the real RSS wordmark) + Barlow -->
+<!-- Chakra Petch (squarish techno — closest sturdy match to the real RSS wordmark; 700 is its heaviest cut) + Barlow -->
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,20 +16,21 @@
 
 <!-- ===================== HEADER / NAV =====================
      No live open/closed pill on this build: the Enumclaw shop's hours are
-     unknown and nothing on this page invents them. -->
+     unknown and nothing on this page invents them. The badge is the real RSS
+     mark cropped out of their own photograph, background knocked out. -->
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="Revolution Speed Shop — home">
-      <img src="images/logo.png" alt="" width="118" height="35">
+      <img src="images/logo.png" alt="" width="1243" height="330">
       <span class="wm">Revolution Speed Shop<small>Enumclaw, WA</small></span>
     </a>
     <div class="nav-wrap">
       <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-        <a href="#gallery">The builds</a>
         <a href="#services">What we do</a>
+        <a href="#lift">On the lift</a>
+        <a href="#gallery">The builds</a>
         <a href="#about">The shop</a>
-        <a href="#visit">Visit</a>
         <a href="#contact" class="nav-cta">Start a build</a>
       </nav>
     </div>
@@ -40,19 +41,16 @@
 <main id="main-content">
 
   <!-- ===================== #hero =====================
-       Desktop shows the first photo full-bleed. Phones get the HERO STACK
-       conveyor (no portrait frame exists in the harvest) — three real photos,
-       height:auto so nothing is cropped, track doubled for an invisible loop. -->
+       HEART LAW: the room IS the business. Scott's own photograph of his shop
+       floor — two cars up on the lifts, seen from underneath, wood trusses and
+       foil overhead. Desktop covers the box (only ceiling is lost); phones show
+       the frame whole inside a blurred echo of itself so nothing is cropped.
+       Nothing sits on the photo but the headline block. -->
   <section class="hero" id="hero">
-    <div class="hero-bg hero-stack">
-      <div class="hero-stack-track">
-        <img src="images/hero-stack-1.jpg" alt="A 1968 Ford Mustang Fastback built by Revolution Speed Shop, photographed in profile at sunset on wet pavement." fetchpriority="high" width="2048" height="1152">
-        <img src="images/hero-stack-2.jpg" alt="The same 1968 Mustang Fastback in daylight, three-quarter front view, Acapulco blue with white stripes." width="2047" height="1152">
-        <img src="images/hero-stack-3.jpg" alt="The Mustang's 427ci Windsor-based engine with its polished Borla stack injection." width="2047" height="1152">
-        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="2048" height="1152">
-        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="2047" height="1152">
-        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="2047" height="1152">
-      </div>
+    <div class="hero-bg">
+      <img src="images/hero-shop.jpg"
+           alt="Inside Revolution Speed Shop: a red Chevrolet C10 and a red muscle car up on two-post lifts, photographed from underneath, wood trusses and foil insulation overhead."
+           fetchpriority="high" width="1920" height="1440">
     </div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
@@ -61,7 +59,7 @@
       <p class="hero-sub"><span class="sub-long">Revolution Speed Shop builds, fabricates and restores classic and race cars in Enumclaw, Washington.</span><span class="sub-short">Classic and race car builds.</span></p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Start a build</a>
-        <a href="#gallery" class="btn btn-cream">See the builds</a>
+        <a href="#lift" class="btn btn-cream">See the work</a>
       </div>
     </div>
   </section>
@@ -77,7 +75,6 @@
         <h2>The shop is in <em>Enumclaw</em>.</h2>
         <p class="visit-note">Revolution Speed Shop works out of Enumclaw, Washington, after years down the hill in Auburn. Call to confirm shop hours, the current location and a time to visit.</p>
         <p class="status-addr">
-          Enumclaw, Washington — call to confirm the current shop location.<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=Revolution+Speed+Shop+Enumclaw+WA" target="_blank" rel="noopener">Find the business on Maps ↗</a>
         </p>
       </div>
@@ -91,14 +88,14 @@
   </section>
 
   <!-- ===================== #services =====================
-       Storefront-below-the-hours law: the hero isn't the building, so the
-       building opens this section. -->
+       Opened by a real photograph of the shop floor, then the four things
+       that actually happen in it. TITLE CARDS UNROLL, downward chevron. -->
   <section class="section section-alt" id="services">
     <div class="wrap">
       <div class="shop-strip reveal">
         <figure>
-          <img src="images/shop.jpg" alt="Revolution Speed Shop's own 1966 Chevrolet Chevelle, dark grey over black, parked under the shop's RSS badge." loading="lazy" width="1440" height="960">
-          <figcaption>Revolution Speed Shop's own 1966 Chevelle, under the shop's badge</figcaption>
+          <img src="images/shop-69.jpg" alt="A purple Mustang with a matte-grey hood and hood pins, photographed nose-on inside Revolution Speed Shop." loading="lazy" width="1284" height="917">
+          <figcaption>Finished, and pointed at the door</figcaption>
         </figure>
       </div>
       <div class="section-head reveal">
@@ -115,63 +112,77 @@
     </div>
   </section>
 
-  <!-- ===================== #gallery — THE BUILDS ===================== -->
-  <section class="section" id="gallery">
+  <!-- ===================== #lift — ON THE LIFT =====================
+       Real evidence of fabrication, in the order a car actually moves through
+       the building. All three are Scott's own photographs. -->
+  <section class="section" id="lift">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Mid-build</p>
+        <h2>Most of it happens <em>with the car apart</em>.</h2>
+        <p>Anybody can post a finished car. These three are the shop's own photos of the middle part.</p>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/lift-arrive.jpg" alt="A grey Mustang strapped down by all four corners on a trailer deck inside the shop." loading="lazy" width="1600" height="900"><figcaption><b>How most of them arrive</b>Strapped down, four corners, nothing started yet.</figcaption></figure>
+        <figure class="print reveal"><img src="images/lift-shell.jpg" alt="A bare metal muscle-car shell in the shop with a roll cage fitted, mini-tubbed rear wheel wells and a wide rear tyre on an eighteen-inch wheel." loading="lazy" width="1600" height="1376"><figcaption><b>Stripped to the shell</b>Caged, mini-tubbed, back down on its own wheels.</figcaption></figure>
+        <figure class="print reveal"><img src="images/lift-c10.jpg" alt="A red Chevrolet C10 on a lift with its front clip tipped forward, showing a drilled Wilwood front disc, red caliper and long-tube headers." loading="lazy" width="1440" height="1080"><figcaption><b>Front clip forward</b>Wilwood discs and long-tube headers going in.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery — THE BUILDS =====================
+       The only borrowed photographs on this page, and the only place they
+       appear. Credited in full underneath. -->
+  <section class="section section-alt" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The builds</p>
         <h2>Two cars, <em>documented</em>.</h2>
-        <p>Both of these left the shop and ended up in print. Specs below each frame come straight from the published features.</p>
+        <p>Both of these left the shop and ended up in print. Specs under each frame come straight from the published features.</p>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="1966 Chevrolet Chevelle restomod in dark grey with a black lower body, side profile." loading="lazy" width="722" height="541"><figcaption><b>1966 Chevrolet Chevelle</b>427 LS · T56 Magnum six-speed</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="The 1966 Chevelle from the front three-quarter, sitting low on black Forgeline wheels." loading="lazy" width="809" height="607"><figcaption><b>1966 Chevrolet Chevelle</b>Mini-tubbed · narrowed nine-inch rear</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="The 1966 Chevelle from the rear three-quarter against a plain wall." loading="lazy" width="724" height="545"><figcaption><b>1966 Chevrolet Chevelle</b>C6 Corvette front clip · Forgeline wheels</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="The 1968 Mustang Fastback from the rear three-quarter at sunset, orange sky behind it." loading="lazy" width="2048" height="1152"><figcaption><b>1968 Mustang Fastback</b>596 hp 427ci Windsor-based stroker</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="Rear of the 1968 Mustang Fastback with its sequential LED taillights lit." loading="lazy" width="2048" height="1152"><figcaption><b>1968 Mustang Fastback</b>Sequential LEDs in stock housings</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="1966 Chevrolet Chevelle restomod in dark grey over black, front three-quarter view on black wheels." loading="lazy" width="722" height="541"><figcaption><b>1966 Chevrolet Chevelle</b>427 LS · T56 Magnum six-speed</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="The 1966 Chevelle from the side, sitting low on black Forgeline wheels." loading="lazy" width="809" height="607"><figcaption><b>1966 Chevrolet Chevelle</b>Mini-tubbed · narrowed nine-inch rear</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="The 1968 Mustang Fastback in profile at sunset on wet pavement, orange sky behind it." loading="lazy" width="2048" height="1152"><figcaption><b>1968 Mustang Fastback</b>596 hp 427ci Windsor-based stroker</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-6.jpg" alt="The 1968 Mustang Fastback in daylight, front three-quarter, Acapulco blue with Wimbledon white stripes." loading="lazy" width="2048" height="1152"><figcaption><b>1968 Mustang Fastback</b>Wilwood six-piston front brakes</figcaption></figure>
       </div>
-      <p class="credit reveal">Photography: Tim Keptner via HOT ROD — 1968 Mustang Fastback, January 2022 · Forgeline and Ridetech via autoevolution — 1966 Chevelle, February 2026.</p>
+      <p class="credit reveal">These four frames are the published ones: 1968 Mustang Fastback photographed by Tim Keptner for HOT ROD (January 2022); 1966 Chevelle via Forgeline and Ridetech on autoevolution (February 2026). Every other photograph on this page is the shop's own.</p>
     </div>
   </section>
 
-  <!-- ===================== #signature — "Look closer" =====================
-       The shop's own real offer as the toy: tap a photo of the car, the big
-       frame changes and one real number comes with it. Object + number, no
-       narration of the choice, four tap targets, no reading required. -->
-  <section class="section section-alt" id="signature">
+  <!-- ===================== #signature — POP A HOOD =====================
+       Three real engine bays out of Scott's own photographs. One obvious tap
+       on the picture itself, the big frame swaps instantly and one real
+       caption comes with it. Nothing invented, nothing to read first. -->
+  <section class="section" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Look closer</p>
-        <h2>Tap a piece of the <em>'68</em>.</h2>
-        <p>Every panel on Tim Keptner's Fastback looks the way Ford built it. Nothing underneath is.</p>
+        <p class="eyebrow">Pop a hood</p>
+        <h2>Three engines, <em>three ways</em>.</h2>
+        <p>Three bays out of the shop's own camera roll.</p>
       </div>
       <div class="detail reveal">
         <figure class="detail-frame">
-          <img id="detailImg" src="images/detail-1.jpg" alt="The Mustang's 427ci engine with polished Borla stack injection between the stock shock towers." width="2048" height="1152">
-          <figcaption class="detail-spec" aria-live="polite"><b id="detailNum">596 hp</b><span id="detailTxt">427ci Windsor-based stroker on Borla stack injection. Engine built by Prestige Motorsports, tuned by Turbogixxer Tuning.</span></figcaption>
+          <img id="detailImg" src="images/bay-ford.jpg" alt="A Ford Racing small-block with a chrome-topped round air cleaner, under an open carbon-fibre hood." width="1440" height="1080">
+          <figcaption class="detail-spec" aria-live="polite"><b id="detailNum">Ford small-block</b><span id="detailTxt">Ford Racing valve covers and a chrome-topped round air cleaner, with the whole bay smoothed and a carbon-fibre hood over the top of it.</span></figcaption>
         </figure>
+        <p class="detail-hint">Tap a hood</p>
         <ul class="detail-picks">
           <li><button type="button" class="detail-pick" aria-controls="detailImg detailNum detailTxt" aria-pressed="true"
-              data-img="images/detail-1.jpg" data-num="596 hp"
-              data-alt="The Mustang's 427ci engine with polished Borla stack injection between the stock shock towers."
-              data-txt="427ci Windsor-based stroker on Borla stack injection. Engine built by Prestige Motorsports, tuned by Turbogixxer Tuning.">
-              <img src="images/detail-1.jpg" alt="" loading="lazy" width="2048" height="1152"><span class="lbl">Engine</span></button></li>
+              data-img="images/bay-ford.jpg" data-num="Ford small-block"
+              data-alt="A Ford Racing small-block with a chrome-topped round air cleaner, under an open carbon-fibre hood."
+              data-txt="Ford Racing valve covers and a chrome-topped round air cleaner, with the whole bay smoothed and a carbon-fibre hood over the top of it.">
+              <img src="images/bay-ford.jpg" alt="" loading="lazy" width="1440" height="1080"><span class="lbl">Carbon hood</span></button></li>
           <li><button type="button" class="detail-pick" aria-controls="detailImg detailNum detailTxt" aria-pressed="false"
-              data-img="images/detail-2.jpg" data-num="200 mph speedometer"
-              data-alt="The Mustang's dashboard: a wood-rimmed steering wheel in front of New Vintage USA gauges in the stock 1968 bezel."
-              data-txt="The gauge reads to 200 mph; this is its scale, not a measured top speed. New Vintage USA gauges sit in the stock 1968 bezel.">
-              <img src="images/detail-2.jpg" alt="" loading="lazy" width="2048" height="1152"><span class="lbl">Cockpit</span></button></li>
+              data-img="images/bay-blown.jpg" data-num="Blown LS"
+              data-alt="A supercharged LS engine in a red car, with a Whipple blower and red powder-coated charge piping."
+              data-txt="A Whipple blower sitting on an LS, with the charge piping powder-coated to match the paint and a Wilwood master cylinder on the firewall.">
+              <img src="images/bay-blown.jpg" alt="" loading="lazy" width="1440" height="1079"><span class="lbl">Supercharged</span></button></li>
           <li><button type="button" class="detail-pick" aria-controls="detailImg detailNum detailTxt" aria-pressed="false"
-              data-img="images/detail-3.jpg" data-num="Deluxe Pony"
-              data-alt="The Mustang's rear seat in blue and white TMI upholstery with vertical stitching."
-              data-txt="TMI upholstery in the 1968 Deluxe Pony pattern; the door panels were made by Marks Custom Upholstery from the same material.">
-              <img src="images/detail-3.jpg" alt="" loading="lazy" width="2048" height="1152"><span class="lbl">Interior</span></button></li>
-          <li><button type="button" class="detail-pick" aria-controls="detailImg detailNum detailTxt" aria-pressed="false"
-              data-img="images/detail-4.jpg" data-num="18-inch"
-              data-alt="The 1968 Mustang Fastback from the rear three-quarter, showing its Forgeline wheels and stance."
-              data-txt="Forgeline wheels over Wilwood discs, on Ridetech coilovers and a four-link rear — with the stock shock towers left in place.">
-              <img src="images/detail-4.jpg" alt="" loading="lazy" width="2047" height="1152"><span class="lbl">Stance</span></button></li>
+              data-img="images/bay-black.jpg" data-num="Blacked-out LS"
+              data-alt="A blacked-out LS engine with Chevrolet coil covers in a dark grey two-door, hood up."
+              data-txt="Chevrolet covers, black piping and every bracket painted to disappear — the whole bay finished in one colour so the engine is the only thing you see.">
+              <img src="images/bay-black.jpg" alt="" loading="lazy" width="1440" height="1080"><span class="lbl">All black</span></button></li>
         </ul>
       </div>
     </div>
@@ -180,7 +191,7 @@
   <!-- ===================== #reviews =====================
        REVIEW-FACE LAW: initial discs in the site's own type and palette,
        never a scraped photo of the reviewer. Quotes verbatim, both sourced. -->
-  <section class="section" id="reviews">
+  <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">In their words</p>
@@ -206,17 +217,18 @@
   </section>
 
   <!-- ===================== #about ===================== -->
-  <section class="section section-alt" id="about">
+  <section class="section" id="about">
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/about.jpg" alt="Close detail of the front drive and pulleys on the Mustang's 427ci engine." loading="lazy" width="2048" height="1151">
-          <figcaption>Front drive on the Mustang's 427</figcaption>
+          <img src="images/driven-nova.jpg" alt="A red Chevrolet Nova built by the shop, parked on the sand at the beach under a clear blue sky." loading="lazy" width="960" height="720">
+          <figcaption>Built to be driven — out on the sand</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">The shop</p>
           <h2>Run by <em>Scott Jensen</em>.</h2>
           <p class="lede">Revolution Speed Shop is Scott Jensen's shop — now up on the Plateau in Enumclaw, after years in Auburn.</p>
+          <p>It is a working building, not a showroom: two-post lifts, open wood trusses, a flag on the back wall and whatever is halfway apart at the time sitting in the middle of the floor.</p>
           <p>Tim Keptner bought his 1968 Fastback in 2014 while he was in Army flight school. It was a clean, straight, stock 289 four-speed car. He spent a deployment overseas working out what it should become, and when he got home he went looking for a speed shop. He picked this one. The finished car ran in HOT ROD in January 2022.</p>
           <p>In February 2026 a 1966 Chevelle built here — 427 LS, T56 Magnum, mini-tubbed, sitting on black Forgeline wheels — was picked up by autoevolution, which named the shop as Enumclaw-based. Two documented cars, both built to be driven rather than parked.</p>
         </div>
@@ -225,7 +237,7 @@
   </section>
 
   <!-- ===================== #contact ===================== -->
-  <section class="section" id="contact">
+  <section class="section section-alt" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
@@ -266,8 +278,7 @@
     </div>
   </section>
 
-  <!-- ===================== #cta =====================
-       Three numbers, all off the shop's own published build sheets. -->
+  <!-- ===================== #cta ===================== -->
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
@@ -289,7 +300,7 @@
     <div class="foot">
       <div>
         <div class="brand">
-          <span class="plate"><img src="images/logo.png" alt="" width="1448" height="434"></span>
+          <span class="plate"><img src="images/logo.png" alt="" width="1243" height="330"></span>
           <span class="wm">Revolution Speed Shop<small>Enumclaw, WA</small></span>
         </div>
         <p>Custom fabrication, classic and race car builds, and restoration on the Enumclaw Plateau.</p>
@@ -305,7 +316,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#gallery">The builds</a><br><a href="#services">What we do</a><br><a href="#about">The shop</a><br><a href="#visit">Visit</a><br><a href="#contact">Start a build</a></p>
+        <p><a href="#services">What we do</a><br><a href="#lift">On the lift</a><br><a href="#gallery">The builds</a><br><a href="#about">The shop</a><br><a href="#contact">Start a build</a></p>
       </div>
     </div>
     <div class="foot-bottom">

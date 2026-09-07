@@ -165,11 +165,12 @@ function customClose(p, close){ return close; }
     });
   }
 
-  /* ---------- SIGNATURE GADGET — "Look closer" ----------
-     Tap one of four real photographs of Tim Keptner's 1968 Fastback; the big
-     frame swaps to it and brings its own real number with it. One gesture, one
-     visible payoff, nothing to read first, nothing to type. Every number and
-     every sentence comes from the HOT ROD feature (Jan 24 2022) — none invented. */
+  /* ---------- SIGNATURE GADGET — "Pop a hood" (rebuilt 2026-09-06) ----------
+     Tap one of three real engine-bay photographs from Scott's own Google
+     uploads; the big frame swaps to it and brings its own caption with it.
+     One gesture, one visible payoff, nothing to read first, nothing to type.
+     Every caption describes what is visibly in that photograph — no invented
+     horsepower, no borrowed magazine specs. */
   var dImg=$('#detailImg'), dNum=$('#detailNum'), dTxt=$('#detailTxt'), picks=$$('.detail-pick');
   if(dImg&&dNum&&dTxt&&picks.length){
     // preload so the swap is instant on the first tap

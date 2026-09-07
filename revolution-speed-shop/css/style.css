@@ -24,30 +24,31 @@
    Hayden to catch it.
    ============================================================ */
 :root{
-  /* ---- palette — REVOLUTION SPEED SHOP.
-     Every hex below was sampled from the shop's own photographs, not chosen.
-     Source frame for the mark: chevelle-23.jpg (their '66 Chevelle photographed
-     under the RSS badge). The badge is a semi-transparent overlay, so the two
-     letter colours read washed in the raw file — the HUE was taken from the
-     pixels and the saturation restored to a printable strength. Sampled values
-     are recorded next to each token so Codex can re-derive them.               */
-  --brand:#CB3A28;          /* the red "R" of the RSS mark — raw #F7896D, hue 13°, saturation restored */
-  --brand-text:#A22B1C;     /* same hue, darkened to pass AA on cream for small type */
-  --brand-bright:#E24A33;   /* hover state of --brand */
-  --accent:#414FB4;         /* the periwinkle "S" of the RSS mark — raw #91A1F7, hue 231° */
-  --accent-soft:#8B95E0;    /* lighter accent for dark grounds */
-  --ink:#191E24;            /* near-black text — the Chevelle's shadow side */
-  --bg:#EAE6DC;             /* TRUE CREAM ground. Their world samples near-neutral (shop wall
-                               #DCDCD8, the Mustang's cream upholstery #DCD8D4); warmed to a
-                               real cream per the one-cream-never-white law. */
-  --bg-2:#DFDACE;           /* deeper cream, alternating bands */
-  --paper:#F4F1E9;          /* cards — a hair lighter than --bg, never white */
-  --muted:#5F6068;          /* secondary text */
-  --line:#D3CDC0;           /* hairlines, borders */
-  --dark:#2A313A;           /* dark panels — the Chevelle's body, sampled #384048 / floor #32353A */
-  --dark-2:#363E48;         /* dark hover */
-  --warm:#C68A55;           /* the copper pinstripe running down the Chevelle's flank */
-  --tint:#DCDEE0;           /* light tinted band — the shop's grey concrete floor */
+  /* ---- palette — REVOLUTION SPEED SHOP, DARK GROUND (2026-09-06 atmosphere pass).
+     MIRROR LAW: Scott's own Google uploads (harvest-0906) finally show the room —
+     a low-lit shop under wood trusses and foil insulation, grey concrete, cars up
+     on two-post lifts. The room is dark and industrial, so the site is dark and
+     industrial. Sampled hexes are recorded beside each token.
+     ZONED COLOR (Schaafsma law): the badge's RED owns every functional control —
+     buttons, the nav CTA, links, chevrons, step numbers, active states. The badge's
+     PERIWINKLE owns every label — eyebrows, section `em`, captions, footer heads.
+     They are never mixed into each other's jobs.                                  */
+  --brand:#DC4128;          /* the red "R" of the RSS mark, opened up for a dark ground (raw #F7896D, hue 13°) */
+  --brand-text:#F2705A;     /* same hue, lifted so small red type reads on charcoal */
+  --brand-bright:#F1543A;   /* hover state of --brand */
+  --accent:#8E9BF0;         /* the periwinkle "S" of the RSS mark (raw #91A1F7, hue 231°) */
+  --accent-soft:#B3BCF6;    /* lighter periwinkle */
+  --accent-deep:#414FB4;    /* the same periwinkle at full strength — filled discs */
+  --ink:#E9E7E2;            /* warm off-white — the shop's lit wall, sampled #C9B199, desaturated and lifted */
+  --bg:#1A1E24;             /* CHARCOAL STEEL ground — the shop's roof beams, sampled #6C777B, taken to shadow */
+  --bg-2:#14181D;           /* deeper charcoal, alternating bands */
+  --paper:#22272E;          /* cards and framed prints — a hair lighter than the ground, never white */
+  --muted:#9AA2AE;          /* secondary text */
+  --line:#333A44;           /* hairlines, borders */
+  --dark:#0A0C0F;           /* THE GUARANTEED-DARK token — scrims, dark bands, footer */
+  --dark-2:#131720;         /* dark hover */
+  --warm:#8E9BF0;           /* the template's second-accent slot, pointed at the periwinkle so zoning holds */
+  --tint:#101317;           /* the visit band — near-black, like standing at the back of the shop */
   --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
   --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
   /* NOTE: hours for the Enumclaw shop are UNKNOWN, so this build shows NO live
@@ -358,159 +359,265 @@ p{margin:0 0 1em}
 
 /* ============================================================================
    REVOLUTION SPEED SHOP — site layer
-   Everything below is specific to this build. Tokens only, no raw hex.
+   Atmosphere pass 2026-09-06. Dark ground, Scott's own shop photos, two zoned
+   accents (red = controls, periwinkle = labels). Tokens only, no raw hex.
    ============================================================================ */
 
-/* Chakra Petch tops out at 700 — stop the browser synthesising a fake 800. */
-h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.face .ini,.card h3{font-weight:700}
-h1,h2{letter-spacing:-.005em}
+/* ---------- TYPE ----------
+   Chakra Petch tops out at 700 — pin it so the browser never synthesises a
+   fake 800 (which reads as mush at 76px). ---------- */
+h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.card h3,.quote .ini,.detail-spec b{font-weight:700}
+h1,h2{letter-spacing:-.008em;line-height:1.03}
 
-/* ---------- header lockup: the real RSS badge, cropped from their own photo ---------- */
-.logo img{height:30px;width:auto;border-radius:4px}
-.logo .wm{font-size:18px}
-@media (max-width:560px){.logo img{height:25px}.logo .wm{font-size:15px}}
+/* ---------- ZONED COLOR: periwinkle owns every label, red owns every control ---------- */
+h2 em,.section-dark h2 em,.hero h1 em{font-style:normal;color:var(--accent)}
+.eyebrow,.section-dark .eyebrow{color:var(--accent)}
+:focus-visible{outline-color:var(--accent)}
+
+/* ============================================================================
+   DARK-GROUND SWEEP — the five shared rules that assume a light ground.
+   (Template README + Babalouie's 2026-08-29. .hero-bg::before already uses
+   --dark, so it needs no override.)
+   ============================================================================ */
+.card .ico,.face .ini{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
+.story-copy .lede{color:var(--accent)}
+.site-footer{background:var(--dark);border-top:1px solid color-mix(in srgb,var(--accent) 20%,transparent)}
+.btn-cream{background:var(--ink);color:var(--dark)}
+.btn-cream:hover{background:#FFFDF7}
+.foot .plate{background:transparent;border:1px solid var(--line)}
+.contact-form input,.contact-form select,.contact-form textarea{background:var(--bg-2);color:var(--ink)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:color-mix(in srgb,var(--muted) 80%,transparent)}
+.card:hover{box-shadow:0 30px 50px -28px rgba(0,0,0,.85)}
+/* On a near-black ground a big drop shadow reads as a hard slab — the prints
+   get a soft short shadow plus a light rim instead. */
+.print,.hours-list,.visit-card,.detail-frame,.shop-strip figure{box-shadow:0 18px 40px -26px rgba(0,0,0,.85)}
+.section-dark{background:var(--dark);color:var(--ink)}
+.section-dark .section-head p{color:var(--muted)}
+.num{border-color:color-mix(in srgb,var(--accent) 24%,transparent);background:rgba(233,231,226,.035)}
+.num b{color:var(--ink)}
+.num > span{color:var(--muted)}
+/* z-index stays UNDER the sticky header (60) — it drops in below it when focused */
+.skip-link{position:fixed;top:12px;left:12px;z-index:55;transform:translateY(-200%);background:var(--paper);
+  color:var(--ink);padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
+.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
+
+/* ---------- HEADER: the real RSS badge, cropped from their own photo,
+     background knocked out so the letterforms sit straight on the charcoal ---------- */
+.site-header{background:color-mix(in srgb,var(--bg-2) 90%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+.logo img{height:26px;width:auto}
+.logo .wm{font-size:17px;letter-spacing:-.01em}
+.main-nav a:hover{color:var(--accent)}
+.main-nav{gap:20px}
+@media (max-width:900px){.main-nav{background:var(--bg-2);border-bottom:3px solid var(--brand)}}
+@media (max-width:560px){.logo img{height:22px}.logo .wm{font-size:14.5px}}
 @media (max-width:400px){.logo .wm{font-size:13px}}
-.foot .plate{width:auto;height:auto;padding:10px 12px;border-radius:12px}
-.foot .plate img{height:26px}
+.foot .plate{width:auto;height:auto;padding:10px 14px;border-radius:12px}
+.foot .plate img{height:24px}
+.foot .wm{color:var(--ink)}
+.foot .wm small,.foot p,.foot-bottom{color:var(--muted)}
+.foot h4{color:var(--accent)}
+.foot a:hover{color:var(--ink)}
+.foot .soc a{border-color:var(--line)}
+.foot-bottom{border-top:var(--rule)}
 
-/* ---------- HERO: mustang-010 is a 16:9 frame. No portrait photo exists in the
-     harvest, so phones get the standing HERO STACK conveyor (README, 2026-08-29):
-     three real photos, height:auto so nothing is ever cropped, track doubled and
-     translated 0 → -50% linear infinite so the loop point is invisible. ---------- */
-.hero-bg img{object-position:58% 52%}
-.hero-stack-track{display:contents}
-.hero-stack img{display:none}
-.hero-stack img:first-child{display:block}
+/* ============================================================================
+   HERO — the room IS the business (Heart law). One real photograph of Scott's
+   own shop floor, two cars up on the lifts under the trusses. Desktop covers
+   the box (only ceiling is lost, both cars stay whole); phones show the frame
+   WHOLE inside a blurred echo of itself, so nothing important is ever cropped.
+   ============================================================================ */
+.hero{min-height:calc(100svh - var(--header-h));background:var(--dark)}
+.hero-bg{overflow:hidden}
+.hero-bg img{position:relative;z-index:1;object-fit:cover;object-position:50% 64%;
+  animation:kenburns 26s var(--ease) forwards}
+/* The pool of dark sits UNDER the headline block only — the far side of the
+   shop stays lit (bright-opener law). */
+.hero-bg::before{z-index:2;background:
+  radial-gradient(76% 62% at 24% 78%,
+    color-mix(in srgb,var(--dark) 90%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 55%,transparent) 52%,
+    transparent 100%),
+  linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 6%,transparent) 24%,
+    color-mix(in srgb,var(--dark) 10%,transparent) 50%,
+    color-mix(in srgb,var(--dark) 58%,transparent) 82%,
+    color-mix(in srgb,var(--dark) 88%,transparent) 100%)}
+.hero-bg::after{z-index:0;inset:-8%;opacity:1;mix-blend-mode:normal;
+  background:url('../images/hero-shop.jpg') center/cover no-repeat;filter:blur(30px) saturate(.85) brightness(.6)}
+.hero-inner{z-index:3}
+.hero h1{font-size:clamp(40px,min(6.2vw,10vh),76px);max-width:15ch;margin:0 0 18px;
+  text-shadow:0 2px 34px rgba(0,0,0,.6)}
+.hero-eyebrow{color:var(--accent-soft);letter-spacing:.24em;text-shadow:0 2px 16px rgba(0,0,0,.85)}
+.hero-sub{font-weight:400;font-size:clamp(16.5px,1.7vw,20px);max-width:48ch;color:rgba(233,231,226,.92);
+  text-shadow:0 2px 18px rgba(0,0,0,.7)}
 @media (max-width:760px){
-  .hero-stack{overflow:hidden;background:var(--dark)}
-  .hero-stack-track{display:block;position:relative;animation:heroReel 46s linear infinite}
-  .hero-stack img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;
-    animation:none;transform:none;will-change:transform}
+  /* whole frame, never cropped, floating in a blurred echo of itself */
+  .hero-bg img{object-fit:contain;object-position:50% 10%;animation:none}
+  .hero-bg::before{background:linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 28%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 4%,transparent) 16%,
+    color-mix(in srgb,var(--dark) 26%,transparent) 44%,
+    color-mix(in srgb,var(--dark) 88%,transparent) 62%,
+    color-mix(in srgb,var(--dark) 97%,transparent) 100%)}
 }
-@keyframes heroReel{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-@media (max-width:760px) and (prefers-reduced-motion:reduce){.hero-stack-track{animation:none}}
+@media (max-width:520px){
+  .hero h1{font-size:clamp(38px,11.6vw,46px);max-width:none}
+  .hero-sub{font-size:16.5px;max-width:34ch;text-wrap:balance}
+  .sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px;min-width:0}
+}
+@media (prefers-reduced-motion:reduce){.hero-bg img{animation:none}}
 
-/* ---------- VISIT band (replaces the live-hours band: hours are unknown, so this
-     build shows no open/closed light anywhere — see the :root note) ---------- */
+/* ============================================================================
+   VISIT BAND — the template's hours band with the live light removed on
+   purpose: the Enumclaw shop's hours are genuinely unknown, and nothing on
+   this page invents them. Address is deliberately town-level (see handoff).
+   ============================================================================ */
+.status-band{background:var(--tint);border-bottom:1px solid color-mix(in srgb,var(--accent) 18%,transparent)}
 .status-band .wrap{align-items:start}
-.visit-card{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);
-  overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px)}
+.visit-card{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden}
 .visit-card li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:17px 22px;border-bottom:var(--rule)}
 .visit-card li:last-child{border-bottom:0}
 .visit-card .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);flex:none}
-.visit-card .v{font-weight:600;text-align:right;font-size:16px}
-.visit-card .v a{color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.visit-card .v{font-weight:600;text-align:right;font-size:16px;color:var(--ink)}
+.visit-card .v a{color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 45%,transparent)}
 .visit-card .v a:hover{border-bottom-color:var(--brand)}
 .visit-note{margin:18px 0 0;font-size:15.5px;color:var(--muted)}
+.status-addr{margin:16px 0 0;padding-left:0;color:var(--muted)}
+.status-addr a{color:var(--brand-text);border-bottom-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
 
-/* ---------- the shop photo that opens the offerings section (storefront-below-
-     the-hours law: the hero isn't the building, so the building opens #services) ---------- */
-.shop-strip{margin:0 0 clamp(30px,5vw,54px)}
-.shop-strip figure{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:14px;
-  box-shadow:0 40px 80px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
+/* ---------- the real shop photo that opens the offerings section ---------- */
+.shop-strip{margin:0 auto clamp(30px,5vw,54px);max-width:960px}
+.shop-strip figure{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:14px}
 .shop-strip img{width:100%;height:auto;border-radius:calc(var(--r) - 8px)}
-.shop-strip figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);margin-top:14px;text-align:center}
+.shop-strip figcaption{font-size:13px;letter-spacing:.03em;color:var(--muted);margin-top:14px;text-align:center}
 
-/* ---------- THE BUILDS: the car's name sits under its own frame ---------- */
-.print figcaption b{display:block;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:0;
-  text-transform:none;color:var(--ink);margin-bottom:5px}
-.credit{font-family:var(--mono);font-size:11.5px;line-height:1.7;letter-spacing:.04em;color:var(--muted);
-  margin:clamp(24px,3vw,36px) 0 0;text-align:center}
-
-/* ---------- SIGNATURE: "Look closer" — tap a picture, the big frame changes ---------- */
-.detail{display:grid;gap:16px}
-.detail-frame{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:14px;
-  box-shadow:0 40px 80px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
-.detail-frame img{width:100%;height:auto;border-radius:calc(var(--r) - 8px)}
-.detail-frame img.swap{animation:detailIn .42s var(--ease-2)}
-@keyframes detailIn{from{opacity:0;transform:scale(1.012)}to{opacity:1;transform:none}}
-.detail-spec{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:16px 4px 2px}
-.detail-spec b{font-family:var(--display);font-weight:700;font-size:19px}
-.detail-spec span{font-size:15.5px;color:var(--muted);flex:1 1 320px}
-.detail-picks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0;padding:0;list-style:none}
-.detail-pick{display:block;width:100%;background:var(--paper);border:2px solid var(--line);border-radius:14px;
-  padding:7px 7px 11px;cursor:pointer;font:inherit;color:inherit;text-align:center;
-  transition:border-color .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease)}
-.detail-pick img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;display:block}
-.detail-pick .lbl{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);margin-top:9px}
-.detail-pick:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--brand) 45%,var(--line))}
-.detail-pick[aria-pressed="true"]{border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 16%,transparent)}
-.detail-pick[aria-pressed="true"] .lbl{color:var(--brand-text);font-weight:700}
-@media (max-width:560px){
-  .detail-picks{grid-template-columns:1fr 1fr}
-  .detail-spec b{font-size:17px}
-}
-@media (prefers-reduced-motion:reduce){.detail-frame img.swap{animation:none}.detail-pick{transition:none}}
-
-/* ---------- what people said: initial discs, never a scraped face (REVIEW-FACE LAW) ---------- */
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,32px)}
-.quote{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(24px,3vw,34px);
-  display:flex;flex-direction:column}
-.quote blockquote{margin:0 0 auto;padding:0 0 24px;font-size:clamp(18px,2vw,21px);line-height:1.5;font-weight:500;color:var(--ink)}
-.quote .who{display:flex;align-items:center;gap:14px}
-.quote .ini{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;
-  background:var(--brand);color:#fff;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.02em}
-.quote:nth-child(2) .ini{background:var(--accent)}
-.quote .who b{display:block;font-size:15.5px}
-.quote .who small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--muted);margin-top:4px;line-height:1.5}
-@media (max-width:820px){.quotes{grid-template-columns:1fr}}
-
-/* ---------- closing band: three real numbers off their own build sheets ---------- */
-.numbers{grid-template-columns:repeat(3,1fr)}
-@media (max-width:900px){.numbers{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:700px){.numbers{grid-template-columns:1fr}}
-.num b i{font-size:.42em;letter-spacing:.06em;margin-left:4px;vertical-align:.28em}
-
-/* ---------- THE BUILDS run two-up: this is a portfolio shop, the cars have to
-     be big enough to read the paint on. Three-up made them thumbnails. ---------- */
-#gallery .prints{grid-template-columns:1fr 1fr;gap:clamp(22px,3.4vw,46px)}
-#gallery .prints .print{transform:rotate(-.9deg)}
-#gallery .prints .print:nth-child(2n){transform:rotate(.7deg)}
-#gallery .prints .print:hover{transform:rotate(0) scale(1.015)}
-@media (max-width:760px){#gallery .prints{grid-template-columns:1fr}#gallery .prints .print{transform:none}}
-
-/* Codex finish: keep the real car whole, make details and inquiry honest. */
-.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
-.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
-.hero :focus-visible,.section-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
-.story .print{margin:0;align-self:center}
-.status-addr{padding-left:0;margin-top:16px}
-#gallery .prints{align-items:start}
-#gallery .print{margin:0;padding-bottom:24px}
-.print figcaption,.quote .who small{font-family:var(--body);font-size:13px;letter-spacing:.035em;line-height:1.45;text-transform:none}
-.quote .who{align-items:flex-start;min-height:72px}
-.detail-frame img{aspect-ratio:16/9;object-fit:contain;background:var(--dark)}
-.detail-pick img{object-fit:contain;background:var(--dark)}
-.detail-spec{min-height:4.8em;align-items:flex-start}
-.detail-spec b{max-width:18ch;line-height:1.2;flex-shrink:0}
-.detail-pick:focus-visible{outline-offset:5px}
+/* ---------- SERVICE CARDS — the headline is the tap target, downward chevron ---------- */
 .cards{align-items:start}
 .service-card{padding:0;overflow:hidden}
-.service-card summary{list-style:none;position:relative;cursor:pointer;padding:26px 24px 48px}
+.service-card summary{list-style:none;position:relative;cursor:pointer;padding:26px 60px 26px 24px;min-height:44px}
 .service-card summary::-webkit-details-marker{display:none}
 .service-card summary:focus-visible{outline-offset:-5px}
 .service-card summary h3{margin:0}
-.service-chevron svg{width:20px;height:20px}
-.service-chevron{position:absolute;left:24px;bottom:14px;font-family:var(--body);font-size:25px;color:var(--brand-text);line-height:1;transition:transform .2s var(--ease)}
+.service-chevron{position:absolute;right:22px;top:30px;width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;background:color-mix(in srgb,var(--brand) 18%,transparent);color:var(--brand-text);
+  transition:transform .3s var(--ease),background .2s}
+.service-chevron svg{width:16px;height:16px}
+.service-card summary:hover .service-chevron{background:color-mix(in srgb,var(--brand) 34%,transparent)}
 .service-card[open] .service-chevron{transform:rotate(180deg)}
-.service-card>p{padding:0 24px 26px;margin:0}
-.project-note[hidden]{display:none}
-.project-note textarea{min-height:190px}
-.form-fine a{font-weight:700;color:var(--brand-text);text-decoration:underline;text-underline-offset:.2em}
-.cta-band .section-head{margin-bottom:26px}
-@media (min-width:761px){.hero-bg img{object-fit:contain;animation:none;object-position:center;transform:none}}
-@media (max-width:520px){.hero-sub{white-space:normal;text-wrap:balance;max-width:32ch}.hero-actions .btn{min-width:0}.detail-spec{min-height:8em}.detail-spec b{font-size:18px}.quote .who{min-height:0}}
-@media (max-width:900px){html:not(.js) .site-header{height:auto}html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}html:not(.js) .nav-wrap{width:100%}html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}html:not(.js) .nav-toggle{display:none}}
+.service-card>p{padding:0 24px 26px;margin:0;font-size:15px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.service-chevron{transition:none}}
 
-/* Carry the real sunset photo into the desktop surround without cropping the car. */
-@media(min-width:761px){
- .hero-bg::after{background:url('../images/hero-stack-1.jpg') center/cover no-repeat;filter:blur(26px);transform:scale(1.08);opacity:.55;mix-blend-mode:normal;z-index:0}
- .hero-bg img{position:relative;z-index:1}
- .hero-bg::before{z-index:2}
- .hero h1{max-width:16ch;line-height:1.04;letter-spacing:-.02em}
+/* ============================================================================
+   FRAMED PRINTS — every photo on this page lives in a print with a caption.
+   ============================================================================ */
+.print{background:var(--paper);padding:14px 14px 30px;border:var(--rule)}
+.print figcaption{font-family:var(--body);font-size:13px;letter-spacing:.03em;line-height:1.45;
+  text-transform:none;color:var(--muted);margin-top:14px;text-align:center}
+.print figcaption b{display:block;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:0;
+  color:var(--ink);margin-bottom:5px}
+
+/* ON THE LIFT — three prints, in the order a car actually moves through the shop */
+#lift .prints{grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,34px);align-items:start}
+#lift .print{margin:0}
+#lift .print:nth-child(1){transform:rotate(-1.1deg)}
+#lift .print:nth-child(2){transform:rotate(.8deg)}
+#lift .print:nth-child(3){transform:rotate(-.6deg)}
+#lift .print:hover{transform:rotate(0) scale(1.02)}
+/* no forced aspect — these three frames run at their real shapes so nothing
+   in them is cut (never-crop-the-important-part). Uneven bottoms read as
+   prints pinned to a wall, which is the point. */
+#lift .print img{width:100%;height:auto}
+@media (max-width:900px){#lift .prints{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){#lift .prints{grid-template-columns:1fr}#lift .print{transform:none}}
+
+/* THE BUILDS — two-up: this is a portfolio shop, the cars have to be big
+   enough to read the paint on. The only borrowed photographs on the page. */
+#gallery .prints{grid-template-columns:1fr 1fr;gap:clamp(22px,3.4vw,46px);align-items:start}
+#gallery .print{margin:0;transform:rotate(-.9deg)}
+#gallery .print:nth-child(2n){transform:rotate(.7deg)}
+#gallery .print:hover{transform:rotate(0) scale(1.015)}
+@media (max-width:760px){#gallery .prints{grid-template-columns:1fr}#gallery .print{transform:none}}
+.credit{font-family:var(--body);font-size:13px;line-height:1.6;letter-spacing:.02em;color:var(--muted);
+  margin:clamp(24px,3vw,36px) auto 0;text-align:center;max-width:56ch}
+
+/* ============================================================================
+   SIGNATURE — "Pop a hood". Three real engine bays out of Scott's own photos.
+   One obvious tap on the picture itself, the big frame swaps instantly, one
+   real caption comes with it. Nothing to read first, nothing to type, no
+   invented numbers. Sits at section six — a sprinkle, never near the top.
+   ============================================================================ */
+.detail{display:grid;gap:16px;max-width:940px;margin:0 auto}
+.detail-frame{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:14px}
+/* all three bays are re-cut to 4:3, so the frame never letterboxes and never
+   crops anything that matters — the picks and the frame share one shape */
+.detail-frame img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--dark);
+  border-radius:calc(var(--r) - 8px)}
+.detail-frame img.swap{animation:detailIn .42s var(--ease-2)}
+@keyframes detailIn{from{opacity:0;transform:scale(1.012)}to{opacity:1;transform:none}}
+.detail-spec{display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px 16px;margin:16px 4px 2px;min-height:4.4em}
+.detail-spec b{font-family:var(--display);font-size:19px;color:var(--accent);max-width:20ch;line-height:1.2;flex-shrink:0}
+.detail-spec span{font-size:15.5px;color:var(--muted);flex:1 1 320px}
+/* the hint sits directly above the things you tap — one line, nothing to decode */
+.detail-hint{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand-text);margin:2px 0 -2px}
+.detail-picks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0;padding:0;list-style:none}
+.detail-pick{display:block;width:100%;background:var(--paper);border:2px solid var(--line);border-radius:14px;
+  padding:7px 7px 11px;cursor:pointer;font:inherit;color:inherit;text-align:center;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease)}
+.detail-pick img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--dark)}
+.detail-pick .lbl{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:9px}
+.detail-pick:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--brand) 55%,var(--line))}
+.detail-pick[aria-pressed="true"]{border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 20%,transparent)}
+.detail-pick[aria-pressed="true"] .lbl{color:var(--brand-text);font-weight:700}
+.detail-pick:focus-visible{outline-offset:5px}
+@media (max-width:560px){.detail-spec b{font-size:17px}.detail-spec{min-height:6.6em}
+  .detail-pick .lbl{font-size:10px;letter-spacing:.1em}}
+@media (prefers-reduced-motion:reduce){.detail-frame img.swap{animation:none}.detail-pick{transition:none}}
+
+/* ---------- REVIEWS — monogram discs, never a scraped face (REVIEW-FACE LAW) ---------- */
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,32px)}
+.quote{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(24px,3vw,34px);
+  display:flex;flex-direction:column}
+.quote blockquote{margin:0 0 auto;padding:0 0 24px;font-size:clamp(18px,2vw,21px);line-height:1.5;
+  font-weight:400;font-style:italic;color:var(--ink)}
+.quote .who{display:flex;align-items:flex-start;gap:14px;min-height:64px}
+.quote .ini{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--brand);color:#fff;font-family:var(--display);font-size:17px;letter-spacing:.02em}
+.quote:nth-child(2) .ini{background:var(--accent-deep);color:#fff}
+.quote .who b{display:block;font-size:15.5px;color:var(--ink)}
+.quote .who small{display:block;font-family:var(--body);font-size:13px;letter-spacing:.03em;
+  color:var(--muted);margin-top:4px;line-height:1.45}
+@media (max-width:820px){.quotes{grid-template-columns:1fr}}
+
+/* ---------- ABOUT ---------- */
+.story .print{margin:0;align-self:center;transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy p{color:var(--ink)}
+@media (max-width:900px){.story .print{transform:none}}
+
+/* ---------- CONTACT + CTA ---------- */
+.steps li::after{background:var(--line)}
+.steps p{color:var(--muted)}
+.contact-lines a{color:var(--brand-text);border-bottom-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.form-success{background:color-mix(in srgb,var(--accent) 16%,transparent);border-color:var(--accent);color:var(--ink)}
+.form-fine a{font-weight:700;color:var(--brand-text);text-decoration:underline;text-underline-offset:.2em}
+.project-note[hidden]{display:none}
+.project-note textarea{min-height:190px}
+.cta-band .section-head{margin-bottom:26px}
+
+/* ---------- no-JS header fallback ---------- */
+@media (max-width:900px){
+  html:not(.js) .site-header{height:auto}
+  html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}
+  html:not(.js) .nav-wrap{width:100%}
+  html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}
+  html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}
+  html:not(.js) .nav-toggle{display:none}
 }
-.hero-sub{font-weight:400}
