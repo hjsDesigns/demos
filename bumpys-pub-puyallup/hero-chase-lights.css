@@ -1,0 +1,162 @@
+/* ============================================================
+   BUMPY'S PUB — hero variant: chase-lights (2026-09-07)
+   Their real wordmark inside a dive-bar marquee frame of amber
+   bulbs (the pub's own pendant colour, --brand-text). The bulbs
+   chase ONCE clockwise, then hold lit; the frame breathes slowly.
+   Ground: their own back-bar hat shelf, blurred.
+   Namespaced under .hero.v-chase-lights. CSS only, no JS.
+   ============================================================ */
+
+.hero.v-chase-lights{
+  --cl-amber:var(--brand-text, #E8A33B);
+  --cl-red:var(--brand, #B74141);
+  --cl-step:.052s;          /* delay between bulbs */
+  --cl-bulb:clamp(9px,1.5vw,13px);
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--dark,#080606);
+  isolation:isolate;
+}
+
+/* ---- ground: their blurred back bar, warmed and pooled ---- */
+.hero.v-chase-lights .hero-bg{
+  position:absolute; inset:0; z-index:0;
+}
+.hero.v-chase-lights .hero-bg .shot{
+  width:100%; height:100%;
+  object-fit:cover; object-position:50% 42%;
+  display:block;
+  filter:saturate(.85);
+  transform:scale(1.06);
+  animation:bumpys-cl-drift 26s var(--ease,cubic-bezier(.22,.85,.3,1)) forwards;
+}
+.hero.v-chase-lights .hero-bg::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(120% 78% at 50% 46%, rgba(232,163,59,.16), transparent 62%),
+    radial-gradient(100% 100% at 50% 50%, rgba(8,6,6,.34) 0%, rgba(8,6,6,.78) 72%, rgba(8,6,6,.94) 100%);
+}
+
+/* ---- the framed mark ---- */
+.hero.v-chase-lights .hero-inner{
+  position:relative; z-index:2;
+  width:100%;
+  padding:0 var(--pad,24px);
+  display:flex; flex-direction:column; align-items:center;
+  gap:clamp(26px,4.5vh,46px);
+}
+
+.hero.v-chase-lights .cl-frame{
+  position:relative;
+  width:min(86vw,720px);
+  padding:clamp(30px,6.5vw,58px) clamp(26px,5vw,54px);
+  border-radius:6px;
+  background:rgba(8,6,6,.42);
+  box-shadow:
+    inset 0 0 0 1px rgba(232,163,59,.16),
+    0 0 0 0 rgba(232,163,59,0);
+  animation:bumpys-cl-breathe 7s ease-in-out 2.4s infinite alternate;
+}
+
+/* ---- bulb edges ---- */
+.hero.v-chase-lights .cl-edge{
+  position:absolute; display:flex; pointer-events:none;
+}
+.hero.v-chase-lights .cl-top,
+.hero.v-chase-lights .cl-bottom{
+  left:0; right:0; justify-content:space-between;
+}
+.hero.v-chase-lights .cl-top{ top:0; transform:translateY(-50%); }
+.hero.v-chase-lights .cl-bottom{ bottom:0; transform:translateY(50%); flex-direction:row-reverse; }
+.hero.v-chase-lights .cl-left,
+.hero.v-chase-lights .cl-right{
+  top:0; bottom:0; flex-direction:column; justify-content:space-around;
+}
+.hero.v-chase-lights .cl-right{ right:0; transform:translateX(50%); }
+.hero.v-chase-lights .cl-left{ left:0; transform:translateX(-50%); flex-direction:column-reverse; }
+
+.hero.v-chase-lights .cl-edge i{
+  width:var(--cl-bulb); height:var(--cl-bulb);
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, #6B532B, #241A0E 68%);
+  box-shadow:0 0 0 1px rgba(0,0,0,.5);
+  animation:bumpys-cl-chase .62s var(--ease-2,cubic-bezier(.32,.9,.24,1)) both;
+  animation-delay:calc(.28s + var(--i) * var(--cl-step));
+}
+
+/* ---- the wordmark ---- */
+.hero.v-chase-lights .cl-mark{
+  position:relative;
+  display:flex; justify-content:center;
+  animation:bumpys-cl-mark 1.1s var(--ease,cubic-bezier(.22,.85,.3,1)) .16s both;
+}
+.hero.v-chase-lights .cl-mark img{
+  display:block;
+  width:100%; height:auto; max-width:100%;
+  filter:drop-shadow(0 0 26px rgba(183,65,65,.42)) drop-shadow(0 4px 12px rgba(0,0,0,.6));
+}
+
+/* ---- buttons (existing pair, unchanged hrefs) ---- */
+.hero.v-chase-lights .hero-actions{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+  animation:bumpys-cl-rise .8s var(--ease,cubic-bezier(.22,.85,.3,1)) 1.5s both;
+}
+
+/* ---- keyframes ---- */
+@keyframes bumpys-cl-chase{
+  0%{
+    background:radial-gradient(circle at 38% 34%, #6B532B, #241A0E 68%);
+    box-shadow:0 0 0 1px rgba(0,0,0,.5);
+    transform:scale(1);
+  }
+  30%{
+    background:radial-gradient(circle at 40% 34%, #FFF6E2, var(--cl-amber) 58%, #B9762A 100%);
+    box-shadow:0 0 6px 2px rgba(232,163,59,.95), 0 0 22px 8px rgba(232,163,59,.5), 0 0 0 1px rgba(0,0,0,.4);
+    transform:scale(1.28);
+  }
+  100%{
+    background:radial-gradient(circle at 40% 34%, #FFE9C4, var(--cl-amber) 62%, #8E5A20 100%);
+    box-shadow:0 0 5px 1px rgba(232,163,59,.6), 0 0 14px 4px rgba(232,163,59,.26), 0 0 0 1px rgba(0,0,0,.45);
+    transform:scale(1);
+  }
+}
+@keyframes bumpys-cl-mark{
+  from{ opacity:0; transform:translateY(10px) scale(.965); filter:drop-shadow(0 0 0 rgba(183,65,65,0)); }
+  to  { opacity:1; transform:none; }
+}
+@keyframes bumpys-cl-rise{
+  from{ opacity:0; transform:translateY(12px); }
+  to  { opacity:1; transform:none; }
+}
+@keyframes bumpys-cl-breathe{
+  from{ box-shadow:inset 0 0 0 1px rgba(232,163,59,.16), 0 0 34px 2px rgba(232,163,59,.10); }
+  to  { box-shadow:inset 0 0 0 1px rgba(232,163,59,.24), 0 0 62px 8px rgba(232,163,59,.20); }
+}
+@keyframes bumpys-cl-drift{
+  from{ transform:scale(1.06); }
+  to  { transform:scale(1.13); }
+}
+
+/* ---- phone ---- */
+@media (max-width:560px){
+  .hero.v-chase-lights{ --cl-step:.046s; }
+  .hero.v-chase-lights .cl-frame{ width:min(90vw,420px); }
+  .hero.v-chase-lights .hero-actions .btn{ flex:1 1 auto; text-align:center; }
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-chase-lights .cl-edge i,
+  .hero.v-chase-lights .cl-mark,
+  .hero.v-chase-lights .hero-actions,
+  .hero.v-chase-lights .cl-frame,
+  .hero.v-chase-lights .hero-bg .shot{ animation:none !important; }
+  .hero.v-chase-lights .cl-edge i{
+    background:radial-gradient(circle at 40% 34%, #FFE9C4, var(--cl-amber) 62%, #8E5A20 100%);
+    box-shadow:0 0 5px 1px rgba(232,163,59,.6), 0 0 14px 4px rgba(232,163,59,.26), 0 0 0 1px rgba(0,0,0,.45);
+  }
+}

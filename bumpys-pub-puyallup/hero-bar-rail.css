@@ -1,0 +1,134 @@
+/* ============================================================
+   HERO VARIANT — bar-rail  (Bumpy's Pub, 2026-09-07)
+   Namespaced under .hero.v-bar-rail. Self-contained, CSS only.
+   Real assets: bar-rail-room.jpg (crop of their backbar.jpg),
+   bar-rail-plate-1/2/3.jpg (crops of dish-burger / dish-tots /
+   dish-pizza), logo.png (their hand-drawn wordmark).
+   One deterministic pass: mark settles, rail lights, three plates
+   slide the rail into a row and stop. Then only the pendant pool
+   breathes. No loop of the plates, no interaction.
+   ============================================================ */
+
+.hero.v-bar-rail{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;background:var(--dark);color:var(--ink);
+}
+
+/* ---------- ground: their back bar, far out of focus ---------- */
+.hero.v-bar-rail .brail-bg{position:absolute;inset:0;z-index:0;background:var(--dark);overflow:hidden}
+.hero.v-bar-rail .brail-room{
+  position:absolute;inset:-6%;width:112%;height:112%;
+  object-fit:cover;object-position:50% 42%;
+  filter:blur(26px) saturate(1.15) brightness(.5);
+  transform:scale(1.06);opacity:.9;
+}
+.hero.v-bar-rail .brail-vig{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(120% 88% at 50% 44%,transparent 8%,color-mix(in srgb,var(--dark) 78%,transparent) 62%,var(--dark) 100%),
+    linear-gradient(180deg,color-mix(in srgb,var(--dark) 72%,transparent) 0%,transparent 26%,transparent 62%,var(--dark) 100%);
+}
+/* the pendant pool — the only thing still moving after the intro */
+.hero.v-bar-rail .brail-pool{
+  position:absolute;left:50%;top:52%;width:min(1120px,128vw);height:min(720px,86vh);
+  transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--brand-text) 26%,transparent),transparent 74%);
+  opacity:.34;mix-blend-mode:screen;
+  animation:brail-breathe 11s ease-in-out 2.8s infinite;
+}
+@keyframes brail-breathe{0%,100%{opacity:.30;transform:translate(-50%,-50%) scale(1)}50%{opacity:.42;transform:translate(-50%,-50%) scale(1.045)}}
+
+/* ---------- layout ---------- */
+.hero.v-bar-rail .hero-inner{
+  position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(28px,6vh,72px) var(--pad);text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3.4vh,36px);
+}
+
+/* ---------- the mark ---------- */
+.hero.v-bar-rail .brail-mark{
+  position:relative;width:min(520px,74vw);
+  opacity:0;transform:translateY(14px);
+  animation:brail-mark-in 1s var(--ease,cubic-bezier(.22,.85,.3,1)) .15s forwards;
+}
+.hero.v-bar-rail .brail-mark img{
+  display:block;width:100%;height:auto;
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.75)) drop-shadow(0 0 26px color-mix(in srgb,var(--brand) 42%,transparent));
+}
+@keyframes brail-mark-in{to{opacity:1;transform:translateY(0)}}
+
+/* ---------- the rail + the plates ---------- */
+.hero.v-bar-rail .brail-stage{
+  position:relative;width:100%;max-width:900px;
+  padding-top:clamp(16px,2.4vh,26px);
+  overflow:hidden;                     /* the plates arrive from off the rail */
+}
+.hero.v-bar-rail .brail-rail{
+  position:absolute;left:0;right:0;bottom:6px;height:7px;border-radius:999px;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--brand-text) 82%,#fff 18%) 0%,
+    var(--brand-text) 42%,
+    color-mix(in srgb,var(--brand-text) 40%,#000) 100%);
+  box-shadow:0 10px 26px -10px color-mix(in srgb,var(--brand-text) 70%,transparent);
+  transform:scaleX(0);transform-origin:100% 50%;opacity:.9;
+  animation:brail-rail-in .7s var(--ease-2,cubic-bezier(.32,.9,.24,1)) .5s forwards;
+}
+@keyframes brail-rail-in{to{transform:scaleX(1)}}
+
+.hero.v-bar-rail .brail-row{
+  position:relative;display:flex;justify-content:center;align-items:flex-end;
+  gap:clamp(10px,1.6vw,20px);padding-bottom:13px;
+}
+.hero.v-bar-rail .brail-plate{
+  position:relative;margin:0;flex:0 1 auto;
+  width:clamp(104px,26vw,244px);aspect-ratio:1/1;
+  border-radius:12px;overflow:hidden;
+  background:var(--dark-2);
+  border:1px solid color-mix(in srgb,var(--brand-text) 26%,transparent);
+  box-shadow:0 20px 38px -18px rgba(0,0,0,.95), 0 0 0 1px rgba(0,0,0,.4);
+  opacity:0;transform:translateX(150%);
+  animation:brail-slide .78s var(--ease-2,cubic-bezier(.32,.9,.24,1)) forwards;
+}
+.hero.v-bar-rail .brail-plate img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 52%}
+.hero.v-bar-rail .brail-plate::after{               /* warm top light on each plate */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--brand-text) 16%,transparent),transparent 46%,rgba(0,0,0,.36));
+}
+.hero.v-bar-rail .brail-plate.p1{animation-delay:.85s}
+.hero.v-bar-rail .brail-plate.p2{animation-delay:1.20s}
+.hero.v-bar-rail .brail-plate.p3{animation-delay:1.55s}
+@keyframes brail-slide{
+  0%{opacity:0;transform:translateX(150%)}
+  12%{opacity:1}
+  100%{opacity:1;transform:translateX(0)}
+}
+
+/* ---------- buttons ---------- */
+.hero.v-bar-rail .brail-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:brail-fade .8s ease 2.15s forwards;
+}
+@keyframes brail-fade{to{opacity:1}}
+
+/* ---------- phone ---------- */
+@media (max-width:560px){
+  .hero.v-bar-rail .brail-mark{width:min(400px,80vw)}
+  .hero.v-bar-rail .brail-plate{border-radius:10px}
+  .hero.v-bar-rail .brail-row{gap:8px}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-bar-rail .brail-mark,
+  .hero.v-bar-rail .brail-plate,
+  .hero.v-bar-rail .brail-rail,
+  .hero.v-bar-rail .brail-actions,
+  .hero.v-bar-rail .brail-pool{animation:none!important}
+  .hero.v-bar-rail .brail-mark{opacity:1;transform:none}
+  .hero.v-bar-rail .brail-plate{opacity:1;transform:none}
+  .hero.v-bar-rail .brail-rail{transform:scaleX(1)}
+  .hero.v-bar-rail .brail-actions{opacity:1}
+  .hero.v-bar-rail .brail-pool{opacity:.34}
+}

@@ -10,7 +10,7 @@
 <!-- Anton (display, condensed bar-sign weight) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="hero-brick-still.css">
+<link rel="stylesheet" href="hero-bar-rail.css">
 </head>
 <body>
 
@@ -47,37 +47,38 @@
        Association sponsor page — pulled directly, never redrawn) warms up
        over it like a tube catching. The mark IS the headline, so the h1 is
        sr-only and nothing else sits on the photo. -->
-  <!-- ===================== #hero — variant 6: brick-still =====================
-     Dick's Drive-In directness. The real daylight storefront on E Main is held
-     completely still: brick, the black BUMPY'S box sign, the Rainier "R" and
-     Bud Light neon in the windows, the Jameson pennants. Nothing pans, nothing
-     loops. On load one soft light bloom comes up across the front and the
-     Rainier "R" catches, then everything holds. Their own red wordmark
-     (logo.png, pulled directly — never redrawn) sits large in the lower third.
-     The mark IS the headline: sr-only h1, nothing else on the photo. -->
-<section class="hero v-brick-still" id="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <img class="bs-echo" src="images/hero.jpg" alt="" fetchpriority="high">
+  <!-- ===================== #hero — variant: bar-rail =====================
+     Food first. Their own back-bar wall (images/bar-rail-room.jpg, cropped
+     from images/backbar.jpg) sits far out of focus behind a brass bar rail.
+     Three of their real plates — the bacon cheeseburger, the loaded tots
+     under the room's magenta light, and the loaded pizza — slide in along
+     that rail one after another and stop. Their real hand-drawn wordmark
+     (images/logo.png) hangs above. One pass, no loop, no carousel.
+     The mark IS the headline: sr-only h1, the two buttons, nothing else. -->
+<section class="hero v-bar-rail" id="hero">
+  <div class="brail-bg" aria-hidden="true">
+    <img class="brail-room" src="images/bar-rail-room.jpg" alt="" fetchpriority="high">
+    <span class="brail-vig"></span>
+    <span class="brail-pool"></span>
   </div>
 
-  <div class="bs-frame">
-    <img class="bs-photo bs-wide" src="images/hero.jpg"
-         alt="Bumpy's Pub at 116 E Main Ave — brick front, the black BUMPY'S neon box over the sidewalk, the Rainier R and Bud Light neon in the windows, Jameson pennants along the glass"
-         width="1822" height="1027" fetchpriority="high">
-    <img class="bs-photo bs-tall" src="images/brick-still-front.jpg"
-         alt="Bumpy's Pub at 116 E Main Ave — brick front, the black BUMPY'S neon box over the sidewalk, the Rainier R neon in the window"
-         width="1360" height="1027" aria-hidden="true">
-    <span class="bs-r" aria-hidden="true"></span>
-    <span class="bs-bloom" aria-hidden="true"></span>
-    <span class="bs-vig" aria-hidden="true"></span>
-  </div>
-
-  <div class="hero-inner">
+  <div class="hero-inner brail-inner">
     <h1 class="sr-only">Bumpy's Pub — a dive bar, kitchen and pull-tab counter at 116 E Main Ave, Puyallup, Washington</h1>
-    <div class="mark bs-mark">
-      <img src="images/logo.png" alt="Bumpy's Pub" width="1001" height="286">
+
+    <div class="brail-mark" aria-hidden="true">
+      <img src="images/logo.png" alt="" width="1001" height="286">
     </div>
-    <div class="hero-actions">
+
+    <div class="brail-stage" aria-hidden="true">
+      <span class="brail-rail"></span>
+      <div class="brail-row">
+        <figure class="brail-plate p1"><img src="images/bar-rail-plate-1.jpg" alt="" width="900" height="900" loading="eager"></figure>
+        <figure class="brail-plate p2"><img src="images/bar-rail-plate-2.jpg" alt="" width="900" height="900" loading="eager"></figure>
+        <figure class="brail-plate p3"><img src="images/bar-rail-plate-3.jpg" alt="" width="900" height="900" loading="eager"></figure>
+      </div>
+    </div>
+
+    <div class="hero-actions brail-actions">
       <a href="#menu" class="btn btn-primary">See the menu</a>
       <a href="#hours" class="btn btn-cream">Are they open?</a>
     </div>
