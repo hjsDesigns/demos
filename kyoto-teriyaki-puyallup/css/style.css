@@ -368,3 +368,31 @@ b,strong{font-weight:700}
 p.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--brand-text);font-weight:600;margin:0 0 14px;line-height:1.5}
 .section-dark p.eyebrow,.status-band p.eyebrow{color:var(--warm)}
+
+
+/* ============================================================ THE SIGN THROUGH THE ROOM (hero, 9/7)
+   Blurred counter room behind; the real neon window sign wipes in through the
+   front, screened so only the lit tubes and torii outline show. */
+.hero-blur .hero-bg{position:absolute;inset:0;z-index:0;background:var(--dark)}
+.hero-blur .hero-bg .shot{width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:blur(16px) saturate(1.15) brightness(.42);transform:scale(1.15)}
+.hero-blur .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;background:
+  radial-gradient(56% 50% at 50% 46%,rgba(12,11,16,.55) 0%,rgba(12,11,16,.25) 60%,transparent 100%),
+  linear-gradient(180deg,rgba(12,11,16,.6) 0%,transparent 26%,transparent 62%,rgba(12,11,16,.86) 100%)}
+.hero-blur .sign{position:relative}
+.hero-blur .sign img{mix-blend-mode:screen;border-radius:0;box-shadow:none;filter:contrast(1.55) brightness(.92) saturate(1.2)}
+.hero-blur .sign::after{content:"";position:absolute;z-index:2;top:-6%;bottom:-6%;left:0;width:11%;opacity:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);filter:blur(8px)}
+.js .hero-blur .sign img{opacity:0;clip-path:inset(0 100% 0 0);
+  animation:signWipe 1.05s var(--ease-2,cubic-bezier(.32,.9,.24,1)) .2s forwards,tubeHold .7s steps(1,end) 1.3s forwards}
+.js .hero-blur .sign::after{animation:markSweep 1.05s var(--ease-2,cubic-bezier(.32,.9,.24,1)) .2s forwards}
+@keyframes signWipe{0%{clip-path:inset(0 100% 0 0);opacity:0;transform:scale(.96)}10%{opacity:1}100%{clip-path:inset(0 0 0 0);opacity:1;transform:scale(1)}}
+@keyframes markSweep{0%{transform:translateX(-45%);opacity:0}8%{opacity:.95}88%{opacity:.7}100%{transform:translateX(870%);opacity:0}}
+@keyframes tubeHold{0%{opacity:1}30%{opacity:.6}45%{opacity:1}62%{opacity:.75}75%{opacity:1}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.js .hero-blur .sign img{animation:none;opacity:1;clip-path:none;filter:saturate(1.15) contrast(1.08)}.js .hero-blur .sign::after{animation:none}}
+/* blend fix: .hero-inner's z-index made it an isolated group, so the screened
+   sign only blended with itself and showed its black box. Let it blend with
+   the blurred room behind. */
+.hero-blur .hero-inner{z-index:auto;isolation:auto}
+.hero-blur .hero-bg{z-index:auto}
+.hero-blur .hero-bg::before{z-index:auto}
+@media (max-width:640px){.hero-blur .hero-bg .shot{filter:blur(16px) saturate(1.15) brightness(.34)}}
