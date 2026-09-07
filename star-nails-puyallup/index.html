@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Star Nails &amp; Spa — acrylics, gel &amp; hand-painted nail art, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Star Nails &amp; Spa at 716 E Main Ave in downtown Puyallup — acrylics, gel, dip powder, pedicures and hand-painted nail art. Walk-ins welcome, gift certificates available. Open seven days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (display, sturdy elegant serif) + Karla (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     The mark is a crop of their OWN business card (harvest g11), levelled —
+     never redrawn. It is the only place the wordmark image appears at
+     small size; the hero carries the big one. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo logo-card" href="#top" aria-label="Star Nails &amp; Spa — home">
+      <img src="images/wordmark.jpg" alt="" width="1686" height="609">
+      <span class="sr-only">Star Nails &amp; Spa, Puyallup</span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#work">The work</a>
+        <a href="#services">Services</a>
+        <a href="#signature">Shapes</a>
+        <a href="#hours">Hours</a>
+        <a href="#book" class="nav-cta">Book</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       The product IS the photograph. Cream type panel + a panel of their
+       own finished sets. Nothing sits on the photo but nothing at all —
+       the headline block lives beside it (desktop) / under it (phone).
+       Phone uses the factory HERO STACK: exactly three real photos,
+       height:auto + contain (no crop, no gaps), doubled track on a linear
+       infinite conveyor. Desktop shows the first frame only. -->
+  <section class="hero hero-split" id="hero">
+    <div class="hero-photo">
+      <div class="hero-bg hero-stack">
+        <div class="hero-stack-track">
+          <img src="images/hero-stack-1.jpg" alt="Long lilac coffin acrylics on both hands, done at Star Nails" fetchpriority="high" width="1920" height="1957">
+          <img src="images/hero-stack-2.jpg" alt="Hot pink and gold coffin set with hand-painted art" width="1920" height="1920">
+          <img src="images/hero-stack-3.jpg" alt="Deep teal glitter stiletto nails" width="1500" height="2000">
+          <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="1920" height="1957">
+          <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="1920" height="1920">
+          <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="1500" height="2000">
+        </div>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="hero-inner">
+        <img class="hero-mark" src="images/wordmark.jpg" alt="Star Nails &amp; Spa" width="1686" height="609">
+        <h1>Acrylics, gel and <em>hand-painted art</em> on East Main.</h1>
+        <p class="hero-sub"><span class="sub-long">Professional nail, skin care, &amp; waxing for ladies &amp; gentlemen. Walk-ins welcome.</span><span class="sub-short">Walk-ins welcome on East Main.</span></p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">See the work</a>
+          <a href="#book" class="btn btn-outline">Book a time</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Deep charcoal-plum band: live Pacific clock, the address, and all
+       seven days with today lit. Hours live HERE and nowhere else. -->
+  <section class="status-band section-dark" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find them</p>
+        <h2>Open <em>seven days</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          716 E Main Ave, Puyallup, WA 98372<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=716+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="ico">✓</span> Walk-ins welcome</span>
+          <span class="proof"><span class="ico">✓</span> Gift certificates available</span>
+        </div>
+      </div>
+      <div>
+        <ul class="hours-list" id="hoursList">
+          <li data-days="1"><span class="day">Monday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+          <li data-days="2"><span class="day">Tuesday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+          <li data-days="3"><span class="day">Wednesday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+          <li data-days="4"><span class="day">Thursday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+          <li data-days="5"><span class="day">Friday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+          <li data-days="6"><span class="day">Saturday</span><span class="time">10:00 AM – 6:00 PM</span></li>
+          <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 5:00 PM</span></li>
+        </ul>
+        <p class="hours-note">Holidays can run short — give them a ring before you drive down.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #work =====================
+       A nail salon's website IS its portfolio. Every frame below is a real
+       finished set from their own listing. Captions name the STYLE only —
+       never the client. Masonry so nothing is cropped to fit a grid cell. -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Their own work</p>
+        <h2>The wall of <em>finished sets</em></h2>
+        <p>Every set here was done at 716 E Main and posted to their own listing. Nothing on this wall is stock.</p>
+      </div>
+      <div class="prints prints-masonry">
+        <figure class="print reveal"><img src="images/work-1.jpg" alt="Deep wine gel nails, glossy squoval shape" width="1500" height="2000" loading="lazy"><figcaption>Deep wine gel</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-2.jpg" alt="Pink and white ombré square nails" width="1500" height="2000" loading="lazy"><figcaption>Pink &amp; white ombré</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-3.jpg" alt="Matte plum nails with hand-painted moons and stars" width="1136" height="1492" loading="lazy"><figcaption>Matte plum, hand-painted</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-4.jpg" alt="Gold glitter coffin nails set with rhinestones and a bow" width="1500" height="2000" loading="lazy"><figcaption>Gold glitter, rhinestones</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-5.jpg" alt="Dark nails with chrome heart artwork" width="1500" height="2000" loading="lazy"><figcaption>Chrome hearts</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-6.jpg" alt="Red chrome nails with painted white snowflakes" width="1527" height="1989" loading="lazy"><figcaption>Red chrome, painted snowflakes</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-7.jpg" alt="Freehand painted nail art in blue, green and white" width="1789" height="2000" loading="lazy"><figcaption>Freehand art</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-8.jpg" alt="Long nude nails with burgundy swirl artwork" width="1766" height="2000" loading="lazy"><figcaption>Swirls on nude</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-9.jpg" alt="Black and silver magnetic cat-eye gel nails" width="1500" height="2000" loading="lazy"><figcaption>Cat eye</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #services =====================
+       Names only. Their Fresha booking page publishes the service list and
+       no prices; the two extra lines come off their own card. Nothing here
+       is invented and nothing carries a made-up number. -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">On the list</p>
+        <h2>What they <em>do</em></h2>
+        <p>Straight off their booking page and their card. Prices aren't published anywhere online — call and ask for yours.</p>
+      </div>
+      <div class="svc-groups">
+        <div class="svc-group svc-group-wide reveal">
+          <h3>Hands</h3>
+          <ul class="svc-list">
+            <li>Manicure</li>
+            <li>Russian manicure</li>
+            <li>Gel nails</li>
+            <li>Acrylic nails</li>
+            <li>Dip powder nails</li>
+            <li>Nail extensions</li>
+            <li>Gel nail extensions</li>
+            <li>Nail polish</li>
+            <li>Nail art</li>
+          </ul>
+        </div>
+        <div class="svc-group reveal">
+          <h3>Feet</h3>
+          <ul class="svc-list">
+            <li>Pedicure</li>
+            <li>Spa pedicure</li>
+            <li>Manicure and pedicure</li>
+          </ul>
+        </div>
+        <div class="svc-group reveal">
+          <h3>Skin &amp; waxing</h3>
+          <ul class="svc-list">
+            <li>Skin care</li>
+            <li>Waxing</li>
+          </ul>
+          <p class="svc-note">“Professional nail, skin care, &amp; waxing for ladies &amp; gentlemen” — their own card.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — PICK A SHAPE =====================
+       One tap, one photo. Every shape is a real finished set from their
+       harvest, never an illustration. Toddler law: four big labelled
+       targets, instant swap, no readback sentence, no hidden modes. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pick one</p>
+        <h2>What <em>shape</em> are you getting?</h2>
+        <p>Tap a shape — that's a real set of theirs, not a drawing.</p>
+      </div>
+      <div class="shaper reveal">
+        <figure class="print shape-frame">
+          <div class="shape-stage">
+            <img class="is-on" id="shapeImg" src="images/shape-coffin.jpg" alt="Nude coffin nails with hand-painted white cloud artwork" width="1174" height="1494">
+          </div>
+          <figcaption id="shapeCap">Coffin</figcaption>
+        </figure>
+        <div class="shape-pills" role="group" aria-label="Pick a nail shape">
+          <button type="button" class="shape-pill is-on" data-shape="coffin" data-img="images/shape-coffin.jpg" data-cap="Coffin" data-alt="Nude coffin nails with hand-painted white cloud artwork" aria-pressed="true">
+            <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M5 8 Q12 1 19 8 L17 32 Q12 36 7 32 Z"/></svg>
+            <span>Coffin</span>
+          </button>
+          <button type="button" class="shape-pill" data-shape="almond" data-img="images/shape-almond.jpg" data-cap="Almond" data-alt="White glitter French tips on almond-shaped nails" aria-pressed="false">
+            <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M5 10 Q12 2 19 10 Q19 28 12 36 Q5 28 5 10 Z"/></svg>
+            <span>Almond</span>
+          </button>
+          <button type="button" class="shape-pill" data-shape="square" data-img="images/shape-square.jpg" data-cap="Square" data-alt="Olive and gold cat-eye gel on square nails" aria-pressed="false">
+            <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M5 8 Q12 3 19 8 L19 34 L5 34 Z"/></svg>
+            <span>Square</span>
+          </button>
+          <button type="button" class="shape-pill" data-shape="stiletto" data-img="images/shape-stiletto.jpg" data-cap="Stiletto" data-alt="Turquoise and coral stiletto nails with sharp points" aria-pressed="false">
+            <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M5 12 Q12 4 19 12 L12 38 Z"/></svg>
+            <span>Stiletto</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #book ===================== -->
+  <section class="section section-tint" id="book">
+    <div class="wrap book-band">
+      <div class="reveal">
+        <p class="eyebrow">Two ways in</p>
+        <h2>Book a time, or <em>just walk in</em></h2>
+        <p>Their appointments already run through Fresha — pick a slot and you're done. No account, no deposit. If you'd rather ring the shop, the phone's right here.</p>
+      </div>
+      <div class="book-actions reveal">
+        <a class="btn btn-primary" href="https://www.fresha.com/lvp/star-nails-east-main-avenue-puyallup-gn21n7" target="_blank" rel="noopener">Open their booking page ↗</a>
+        <a class="btn btn-outline" href="tel:2534455093">Call (253) 445-5093</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Verbatim, with the reviewer's published name and how long ago it was
+       posted. No profile photos are published anywhere we can reach, so
+       these cards carry no avatar at all rather than a fabricated one —
+       and the live reviews are linked underneath. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">In their words</p>
+        <h2><em>4.5</em> out of 5, across 114 reviews</h2>
+        <p>Three of them, word for word. The same nail tech keeps getting named.</p>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal">
+          <blockquote>“Chita is incredibly talented and does an amazing job every single time. She is the only person I will see for my nails! I can always count on her for perfect results.”</blockquote>
+          <figcaption><b>S. N.</b><span>6 months ago</span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>“Chi is the best! She always knows what will look best and her attention to detail is top notch. I've always had issues of my nails lifting prior to seeing her, but with her work, I can go 3 weeks without a fill.”</blockquote>
+          <figcaption><b>Michelle Backman</b><span>6 months ago</span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>“Chita is amazing. She takes her time and makes sure everything looks perfect. She wants you happy with the job she does! I was able to get a last minute appointment for a repair and a fill and it turned out awesome!”</blockquote>
+          <figcaption><b>AJ B.</b><span>3 months ago</span></figcaption>
+        </figure>
+      </div>
+      <p class="quotes-src reveal"><a href="https://www.google.com/search?q=Star+Nails+716+E+Main+Ave+Puyallup+WA+reviews" target="_blank" rel="noopener">Read every review on Google ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #find ===================== -->
+  <section class="section section-alt" id="find">
+    <div class="wrap contact">
+      <div class="reveal">
+        <p class="eyebrow">Getting there</p>
+        <h2>Downtown Puyallup,<br><em>on East Main</em></h2>
+        <ol class="steps">
+          <li><h3>Park on Main</h3><p>They're in the row of shopfronts on the north side of East Main Ave.</p></li>
+          <li><h3>Bring a picture</h3><p>Screenshot anything off the wall above — the art on this page is all theirs to redo.</p></li>
+          <li><h3>Ask about a gift certificate</h3><p>Their card says they keep them on hand.</p></li>
+        </ol>
+        <div class="contact-lines">
+          <span>Phone · <a href="tel:2534455093">(253) 445-5093</a></span>
+          <span>Directions · <a href="https://www.google.com/maps/dir/?api=1&amp;destination=716+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Drive there ↗</a></span>
+        </div>
+      </div>
+      <form class="contact-form reveal">
+        <input type="hidden" name="access_key" value="">
+        <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off">
+        <label class="full">Your name<input type="text" name="name" required autocomplete="name"></label>
+        <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+        <label>Email<input type="email" name="email" autocomplete="email"></label>
+        <label class="full">What are you after?
+          <select name="service">
+            <option>A full set</option>
+            <option>A fill</option>
+            <option>Pedicure</option>
+            <option>Nail art — I have a picture</option>
+            <option>Gift certificate</option>
+          </select>
+        </label>
+        <label class="full">Anything else<textarea name="message" placeholder="Colour, shape, when you'd like to come in…"></textarea></label>
+        <button type="submit" class="btn btn-primary">Send it over</button>
+        <p class="form-success">Thanks — they'll get back to you.</p>
+        <p class="form-fine">Prefer to talk? Ring the shop instead — someone's usually at the desk.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== #cta — closing band ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Star Nails &amp; Spa · Puyallup</p>
+        <h2><em><span class="nb">Walk-ins</span> welcome.</em></h2>
+        <p>It's printed right on their card. Come down to East Main and pick a colour.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a class="btn btn-cream" href="https://www.google.com/maps/search/?api=1&amp;query=Star+Nails+716+E+Main+Ave+Puyallup+WA" target="_blank" rel="noopener">Get directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div>
+      <div class="brand">
+        <span class="plate"><img src="images/wordmark.jpg" alt="" width="1686" height="609"></span>
+        <span class="wm">Star Nails &amp; Spa<small>Puyallup, WA</small></span>
+      </div>
+      <p>Acrylics, gel, dip powder, pedicures and hand-painted art on East Main.</p>
+    </div>
+    <div>
+      <h4>Come in</h4>
+      <p>716 E&nbsp;Main Ave<br>Puyallup, WA 98372</p>
+      <p><a href="tel:2534455093">(253) 445-5093</a></p>
+    </div>
+    <div>
+      <h4>On this page</h4>
+      <p><a href="#work">The work</a></p>
+      <p><a href="#services">Services</a></p>
+      <p><a href="#signature">Shapes</a></p>
+      <p><a href="#book">Book</a></p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© <span id="year">2026</span> Star Nails &amp; Spa</span>
+    <span>Site by HJS Designs</span>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
