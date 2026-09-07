@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Young Serif (400 — the only weight it ships) + Karla 400/500/700 -->
-<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,62.5..80,600..800&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -38,23 +38,14 @@
 <main>
 
   <!-- ===================== #hero =====================
-       EXTERIOR HERO DEFAULT: the interiors run all the way down the page,
-       so the opener is the real building with the painted ANTIQUES letters.
-       Nothing on the photo but the headline block.
-       Phones get the HERO STACK — outside, walking in, the case aisle. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg hero-stack">
-      <div class="hero-stack-track">
-        <img src="images/hero-stack-1.jpg" alt="The ANTIQUES building on South Meridian in downtown Puyallup, a grey vintage pickup parked out front on a summer evening" fetchpriority="high" width="1800" height="1012">
-        <img src="images/hero-stack-2.jpg" alt="Inside the mall — a long aisle of glass cases under a wall of old Western Washington Fair signs" width="1350" height="2400">
-        <img src="images/hero-stack-3.jpg" alt="Cases, lamps and a tall clock down the length of the main aisle" width="1800" height="1012">
-        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="1800" height="1012">
-        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="1350" height="2400">
-        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="1800" height="1012">
-      </div>
-    </div>
+       Hayden, 9/7: the reel and the truck photo are out. Blurred aisle of glass
+       cases under the fair signs behind; the name set in the face of the red
+       ANTIQUES letters on the building (SIGN-FONT LAW), wiping in through the
+       front. Storefront photo now opens the story under the hours band. -->
+  <section class="hero hero-blur" id="hero">
+    <div class="hero-bg"><img class="shot" src="images/hero-stack-2.jpg" alt="" aria-hidden="true" fetchpriority="high"></div>
     <div class="hero-inner">
-      <h1>Two floors. <em>Bring time.</em></h1>
+      <h1 class="sign-title"><span class="t1">Pioneer</span> <span class="t2">Antique Mall</span></h1>
       <p class="hero-sub">
         <span class="sub-long">A vendor mall in downtown Puyallup — glass cases, comics, brass, records, and a wall of old fair signs hung over the top of it all.</span>
         <span class="sub-short">A vendor mall in downtown Puyallup.</span>
@@ -108,7 +99,7 @@
       </div>
       <div class="rooms">
         <figure class="room reveal">
-          <img src="images/inside-1.jpg" alt="A stairway inside the mall with a hanging sign reading More Antiques Up Stairs, cabinets of glass and china either side" loading="lazy" width="1800" height="2400">
+          <img src="images/hero-stack-1.jpg" alt="The ANTIQUES building on South Meridian in downtown Puyallup, the red letters high on the cream wall, a grey vintage pickup parked out front" loading="lazy" width="1800" height="1087">
           <figcaption class="cap">Their own sign, at the stairway</figcaption>
           <h3>Up the stairs</h3>
           <p>The sign on the post says it plainly — more antiques up stairs. The second floor keeps going.</p>

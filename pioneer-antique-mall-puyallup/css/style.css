@@ -39,7 +39,7 @@
   --brass:#9A7233;          /* brass, darkened for type on cream */
 
   /* ---- type: two faces, Google Fonts, weights pinned to what they ship ---- */
-  --display:'Young Serif','Bookman Old Style','Hoefler Text',Georgia,serif; /* 400 only */
+  --display:'Roboto Serif','Bookman Old Style','Hoefler Text',Georgia,serif; /* SIGN-FONT LAW: condensed bracketed serif, the red ANTIQUES letters on the building */
   --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,sans-serif;      /* 400 500 700 */
   --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
 
@@ -365,3 +365,29 @@ blockquote{margin:0}
 .foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid var(--line-dark);border-radius:999px;padding:7px 15px;min-height:44px}
 .foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid var(--line-dark);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted-dark)}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+
+/* ============================================================ THE NAME, IN THE SIGN'S FACE (hero, 9/7)
+   Blurred case aisle behind; the business name set condensed and heavy like
+   the red ANTIQUES letters on the front of the building, wiping in. */
+h1,h2,h3,.logo .wm,.hero h1{font-stretch:66%;font-weight:700}
+.hero-blur{justify-content:center;text-align:center}
+.hero-blur .hero-bg .shot{object-fit:cover;object-position:50% 40%;filter:blur(16px) saturate(1.2) brightness(.62);transform:scale(1.15);animation:none}
+.hero-blur .hero-bg::before{background:
+  radial-gradient(56% 50% at 50% 42%,rgba(20,12,6,.55) 0%,rgba(20,12,6,.25) 60%,transparent 100%),
+  linear-gradient(180deg,rgba(20,12,6,.55) 0%,transparent 26%,transparent 62%,rgba(20,12,6,.86) 100%)}
+.hero-blur .hero-inner{display:flex;flex-direction:column;align-items:center}
+.hero-blur .hero-sub{text-align:center;margin-left:auto;margin-right:auto}
+.hero-blur .hero-actions{justify-content:center}
+.hero h1.sign-title{position:relative;display:inline-block;font-family:var(--display);font-stretch:62.5%;font-weight:700;letter-spacing:.02em;text-transform:uppercase;line-height:.92;
+  font-size:clamp(52px,9.5vw,120px);color:#C8373A;max-width:none;margin:0 0 20px;
+  text-shadow:0 2px 0 rgba(90,20,20,.55),0 12px 34px rgba(20,12,6,.6)}
+.sign-title .t1,.sign-title .t2{display:block}
+.sign-title .t2{font-size:.62em;letter-spacing:.08em;color:#F3E6CF;margin-top:.12em}
+.hero h1.sign-title::after{content:"";position:absolute;z-index:2;top:-8%;bottom:-8%;left:0;width:11%;opacity:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,240,220,.95),transparent);filter:blur(7px)}
+.js .hero h1.sign-title{opacity:0;clip-path:inset(0 100% 0 0);animation:signWipe 1.05s var(--ease) .2s forwards;transform:none}
+.js .hero h1.sign-title::after{animation:markSweep 1.05s var(--ease) .2s forwards}
+@keyframes signWipe{0%{clip-path:inset(0 100% 0 0);opacity:0}10%{opacity:1}100%{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes markSweep{0%{transform:translateX(-45%);opacity:0}8%{opacity:.95}88%{opacity:.7}100%{transform:translateX(870%);opacity:0}}
+@media (prefers-reduced-motion:reduce){.js .sign-title{animation:none;opacity:1;clip-path:none}.js .sign-title::after{animation:none}}

@@ -50,7 +50,7 @@
   --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
 
   /* ---- type: two faces, pinned weights ---- */
-  --display:'Baloo 2','Trebuchet MS','Avenir Next',Avenir,Helvetica,Arial,sans-serif;  /* friendly sturdy rounded — echoes the bubbly window lettering */
+  --display:'Fredoka','Trebuchet MS','Avenir Next',Avenir,Helvetica,Arial,sans-serif;  /* SIGN-FONT LAW: the round bubbly caps of WASH the DOG on the awning */
   --body:'Karla',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
   --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
 
@@ -526,3 +526,12 @@ h1,h2,h3,h4{line-height:1.08;letter-spacing:-.005em}
   .hero-bg::after{opacity:.22}
   .hero h1{text-shadow:none}
 }
+
+
+/* ============================================================ SIGN-FONT LAW (9/7)
+   Title and wordmark in the awning's round lettering; the h1 takes the sign's
+   sky-to-deep-blue fill. Weight 700 everywhere the display face appears. */
+h1,h2,h3,.logo .wm{font-weight:700;letter-spacing:.005em}
+.hero h1{background:linear-gradient(180deg,#EAF7FF 0%,#7FD6FF 38%,#1E7BD8 78%,#155FAF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 3px 0 rgba(10,40,80,.55)) drop-shadow(0 10px 26px rgba(0,0,0,.5))}
+.hero h1 em{-webkit-text-fill-color:var(--warm);color:var(--warm);background:none}
