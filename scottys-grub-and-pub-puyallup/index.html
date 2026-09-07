@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Anton (display) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=0907162443">
+<link rel="stylesheet" href="css/hero.css?v=0907162443">
 </head>
 <body>
 
@@ -45,19 +46,43 @@
        the same storefront (the hanging PUB / SCOTTYS / GRUB banner plus the
        OPEN sign) so nothing is cropped away. Nothing sits on the photo but
        the headline block. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(max-width:760px)" srcset="images/hero-tall.jpg">
-        <img src="images/hero.jpg" alt="The red Scotty's Grub and Pub awning on North Meridian in downtown Puyallup, cocktails and Bud Light neon in the window and patio chairs on the sidewalk" fetchpriority="high" width="1920" height="1440">
-      </picture>
+  <!-- ===================== #hero — VARIANT 2: tap-wall =====================
+       The room is the hero. Their own tap-handle wall runs full bleed and the
+       camera pushes in for thirty seconds — slow enough that you feel it
+       rather than watch it. The frame arrives out of focus and low, comes up
+       and sharpens once, then the real oval sign and one line of type settle
+       into the bottom corner and nothing moves again.
+       Photo: harvest g46 (the handles behind their bar). Mark: the round sign
+       on their own brick, harvest g4, cut to an alpha ellipse.
+       ======================================================================= -->
+  <section class="hero v-tap-wall" id="hero">
+    <h1 class="tw-sr">Scotty's Grub and Pub — a downtown dive bar at 215 N Meridian, Puyallup</h1>
+
+    <div class="tw-stage" aria-hidden="true">
+      <div class="tw-shot">
+        <picture>
+          <source media="(max-width:760px)" srcset="images/tap-wall-tall.jpg" width="840" height="1555">
+          <img src="images/tap-wall-wide.jpg"
+               alt="The tap wall behind the bar at Scotty's — Mac &amp; Jack's African Amber, Mens Room Original Red, Puyallup River Electron IPA, Silver City Ziggy Zoggy Lager and 7 Seas on the handles, whiskey shelved behind them"
+               fetchpriority="high" width="1920" height="1080">
+        </picture>
+      </div>
+      <div class="tw-scrim"></div>
+      <div class="tw-grain"></div>
     </div>
-    <div class="hero-inner">
-      <h1>Pull tabs, pool <em>and cocktails</em></h1>
-      <p class="hero-sub">A downtown dive on North Meridian. Free popcorn on the bar, wings out of the kitchen, darts in the back.</p>
-      <div class="hero-actions">
-        <a href="#food" class="btn btn-primary">See what's cooking</a>
-        <a href="#hours" class="btn btn-cream">Find the door</a>
+
+    <div class="tw-inner">
+      <div class="tw-copy">
+        <p class="tw-line">Everything's <em>on tap</em></p>
+        <div class="tw-actions">
+          <a href="#food" class="btn btn-primary">See what's cooking</a>
+          <a href="#hours" class="btn btn-cream">Find the door</a>
+        </div>
+      </div>
+      <div class="tw-mark">
+        <img src="images/tap-wall-oval.png"
+             alt="Scotty's Grub &amp; Pub — the round sign on the brick out front: 215 N. Meridian, serving Puyallup since 1933"
+             width="460" height="499">
       </div>
     </div>
   </section>
@@ -419,6 +444,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=0907162443"></script>
 </body>
 </html>
