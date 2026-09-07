@@ -48,7 +48,8 @@
       rgba(252,244,231,.60) 0%,
       rgba(252,244,231,.14) 26%,
       rgba(252,244,231,.06) 54%,
-      rgba(250,241,228,.74) 86%,
+      rgba(250,241,228,.44) 84%,
+      rgba(249,240,227,.86) 96%,
       var(--bg) 100%);
 }
 /* keep the template's film grain, quieter on a light ground */
@@ -116,7 +117,7 @@
 .hero-sign{
   display:flex;align-items:center;justify-content:center;
   gap:3.4%;
-  width:min(900px,90vw);
+  width:min(900px,86vw);
 }
 .sign-piece{
   position:relative;display:block;
