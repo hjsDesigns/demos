@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Display: Baloo 2 (friendly sturdy rounded — echoes the bubbly window lettering). Body: Karla. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=0907164944">
+<link rel="stylesheet" href="css/hero.css?v=0907164944">
 </head>
 <body>
 
@@ -42,13 +43,42 @@
        EXTERIOR HERO DEFAULT: the interiors all appear below, so the opener is
        the real storefront on W Meeker with their own lit sign in it. Nothing
        sits on the photo but the headline block. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="The Wash The Dog storefront at 115 W Meeker in downtown Puyallup, lit sign reading Grooming &amp; Self Serve Bathing" fetchpriority="high" width="1080" height="1080"></div>
-    <div class="hero-spacer"></div>
+  <!-- ===================== #hero — "the sign, sudsed in" =====================
+       ANIMATED-MARK INTRO. Every visible piece is the business's own:
+         · the wordmark, the tagline and the bubbles-and-paw logo are cropped
+           straight off the awning at 115 W Meeker (images/hero.jpg), upscaled
+           and keyed to alpha — nothing redrawn, nothing set in a font.
+         · the ground is their own wash room (harvest-0906/g5.jpg), thrown out
+           of focus and sunk to the deep blue of the awning panel, so the hero
+           ends on the exact colour the hours band below it begins on.
+       Bubbles rise out of the tubs and pop across the sign, and the letters
+       come up behind them; the paw logo drops in last and settles.
+       The mark IS the headline — the h1 is sr-only, nothing else on the photo. -->
+  <section class="hero ch-hero" id="hero">
+    <div class="hero-bg">
+      <img src="images/claude-hero-room.jpg"
+           alt="The wash room at Wash The Dog — wood-clad tubs, white basins and the lime green wall, softly out of focus"
+           fetchpriority="high" width="1500" height="1368">
+    </div>
+
+    <div class="ch-pool" aria-hidden="true"></div>
+    <div class="ch-bubbles" id="chBubbles" aria-hidden="true"></div>
+
     <div class="hero-inner">
-      <h1>Self serve tubs in the heart of <em>downtown Puyallup</em></h1>
-      <p class="hero-sub sub-long">Walk in — first come, first serve. Shampoo, conditioner and aprons are here, the dryers are at the back. Full service grooming by appointment.</p>
-      <p class="hero-sub sub-short">Walk in. First come, first serve.</p>
+      <h1 class="sr-only">Wash The Dog — self serve dog bathing and full service grooming in downtown Puyallup</h1>
+
+      <div class="ch-mark" aria-hidden="true">
+        <div class="ch-paw-slot">
+          <img class="ch-paw" src="images/claude-mark-paw.png" alt="" width="560" height="355">
+          <div class="ch-burst" id="chBurst"></div>
+        </div>
+        <div class="ch-word-slot">
+          <img class="ch-word" src="images/claude-mark-word.png" alt="" width="1600" height="189">
+          <span class="ch-shine"></span>
+        </div>
+        <img class="ch-tag" src="images/claude-mark-tag.png" alt="" width="1200" height="89">
+      </div>
+
       <div class="hero-actions">
         <a href="#signature" class="btn btn-primary">How a wash goes</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>
@@ -332,6 +362,7 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=0907164944"></script>
+<script src="js/hero.js"></script>
 </body>
 </html>

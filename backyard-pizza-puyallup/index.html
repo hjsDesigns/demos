@@ -10,7 +10,8 @@
 <!-- Fredoka (display — sturdy rounded, matches the rounded neon lettering on their own sign)
      + Barlow (body). Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=0907164944">
+<link rel="stylesheet" href="css/hero.css?v=0907164944">
 </head>
 <body>
 
@@ -45,23 +46,28 @@
        the string lights and the blue sky (harvest g26). Nothing sits on the
        photo but the headline block. Phones get the three-frame stack — the
        trailer shot is wide and would lose the sign to a portrait crop. -->
+  <!-- HERO — "the sign comes on".
+       Background: harvest-0906/g6.jpg (their own mural wall at the order window),
+       blurred into a colour field. Mark: harvest-0906/g2.jpg, their real lit sign,
+       perspective-rectified and levelled — never redrawn. -->
   <section class="hero" id="hero">
-    <div class="hero-bg hero-stack">
-      <div class="hero-stack-track">
-        <img src="images/hero.jpg" alt="" aria-hidden="true" fetchpriority="high">
-        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true">
-        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true">
-        <img src="images/hero.jpg" alt="" aria-hidden="true">
-        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true">
-        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true">
-      </div>
+    <h1 class="sr-only">Backyard Pizza &amp; Burgers — Indian-fusion and classic pizza, burgers and wings at 1824 S Meridian, Puyallup</h1>
+
+    <div class="ch-bg" aria-hidden="true">
+      <img src="images/claude-hero-blur.jpg" alt="" width="1500" height="1560" fetchpriority="high" decoding="async">
     </div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <p class="hero-eyebrow">Puyallup · South Meridian</p>
-      <h1>Butter chicken pizza, <em>out of the backyard</em></h1>
-      <p class="hero-sub"><span class="sub-long">Nine Indian-fusion pies, the classics, burgers and wings — out of the painted trailer at 1824 S Meridian.</span><span class="sub-short">Fusion pies, classics, burgers, wings.</span></p>
-      <div class="hero-actions">
+    <div class="ch-veil" aria-hidden="true"></div>
+
+    <div class="ch-inner">
+      <div class="ch-mark">
+        <span class="ch-glow" aria-hidden="true"></span>
+        <span class="ch-frame">
+          <img src="images/claude-sign.jpg" alt="The lit sign on the Backyard Pizza &amp; Burgers trailer: a skateboarding burger and a skateboarding pizza slice in neon" width="1000" height="969" fetchpriority="high">
+          <span class="ch-sweep" aria-hidden="true"></span>
+        </span>
+      </div>
+
+      <div class="hero-actions ch-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>
       </div>
@@ -435,6 +441,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=0907164944"></script>
 </body>
 </html>

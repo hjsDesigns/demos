@@ -1,0 +1,191 @@
+/* claude hero take, applied 0907-1649 — source versions/claude-hero/ */
+/* ============================================================
+   BACKYARD PIZZA & BURGERS — hero pass (Claude, 2026-09-07)
+   "The sign comes on."
+
+   Everything below is namespaced under .hero. Nothing here touches
+   the rest of the page. Colours come only from the site's own tokens.
+
+   Base rules = the FINAL FRAME. The intro lives entirely inside
+   @media (prefers-reduced-motion:no-preference), so reduced-motion
+   users land on the finished picture with nothing moving.
+   ============================================================ */
+
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(22px,3.4vh,38px);
+  padding:clamp(20px,4vh,48px) var(--pad) clamp(30px,6vh,64px);
+  overflow:hidden;
+  background:var(--dark);
+  color:#fff;
+  isolation:isolate;
+}
+
+/* ---- the blurred mural field ------------------------------- */
+.hero .ch-bg{position:absolute;inset:0;z-index:0}
+.hero .ch-bg img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:62% 46%;
+  transform:scale(1.14) translate3d(1.4%,-1.4%,0);
+  filter:saturate(1.12) brightness(1.07);
+  will-change:transform;
+}
+
+/* ---- warm pool behind the sign + hand-off to the hours band --
+   Light touch on purpose: the mural's own colour is the point, so the
+   only real darkening is the bottom 20%, which hands off into the deep
+   navy hours band directly below the hero.                          */
+.hero .ch-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(56% 46% at 50% 44%,
+      rgba(255,178,88,.26),
+      rgba(255,160,70,.08) 58%,
+      rgba(255,160,70,0) 76%),
+    radial-gradient(74% 62% at 50% 46%,
+      color-mix(in srgb,var(--dark) 0%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 14%,transparent) 62%,
+      color-mix(in srgb,var(--dark) 34%,transparent) 100%),
+    linear-gradient(to bottom,
+      color-mix(in srgb,var(--dark) 24%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 0%,transparent) 16%,
+      color-mix(in srgb,var(--dark) 0%,transparent) 68%,
+      color-mix(in srgb,var(--dark) 26%,transparent) 88%,
+      var(--dark) 100%);
+}
+
+/* ---- the stack --------------------------------------------- */
+.hero .ch-inner{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(24px,3.6vh,42px);
+  width:100%;max-width:var(--maxw);
+}
+
+.hero h1.sr-only{max-width:none;margin:-1px;font-size:1px}
+
+/* ---- the real sign ----------------------------------------- */
+.hero .ch-mark{
+  position:relative;
+  width:min(80vw,600px,60svh);
+  aspect-ratio:1000/969;
+  display:block;
+}
+.hero .ch-glow{
+  position:absolute;left:50%;top:50%;
+  width:158%;height:158%;
+  transform:translate(-50%,-50%) scale(1.04);
+  border-radius:50%;
+  background:radial-gradient(closest-side,
+    rgba(255,190,102,.60),
+    rgba(255,148,60,.24) 54%,
+    rgba(255,140,60,0) 78%);
+  filter:blur(26px);
+  opacity:.62;
+  z-index:0;pointer-events:none;
+}
+.hero .ch-frame{
+  position:absolute;inset:0;z-index:1;
+  display:block;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.16) inset,
+    0 0 0 2px color-mix(in srgb,var(--dark) 55%,transparent),
+    0 34px 70px -26px rgba(0,0,0,.72),
+    0 10px 26px -14px rgba(0,0,0,.5);
+}
+.hero .ch-frame img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;
+}
+
+/* the one heat-shimmer pass across the glass */
+.hero .ch-sweep{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;
+  border-radius:14px;
+}
+.hero .ch-sweep::before{
+  content:"";position:absolute;top:-30%;bottom:-30%;left:0;width:44%;
+  background:linear-gradient(100deg,
+    rgba(255,246,222,0) 0%,
+    rgba(255,246,222,.50) 48%,
+    rgba(255,246,222,0) 100%);
+  filter:blur(7px);
+  transform:translateX(330%) skewX(-12deg);
+  opacity:0;
+}
+
+/* ---- the two buttons --------------------------------------- */
+.hero .ch-actions{justify-content:center;flex-wrap:wrap;gap:12px}
+.hero .ch-actions .btn{font-size:15.5px}
+.hero .ch-actions .btn-cream{box-shadow:0 12px 30px -16px rgba(0,0,0,.7)}
+
+/* ============================================================
+   THE INTRO — one deterministic run, then a quiet hold.
+   ============================================================ */
+@media (prefers-reduced-motion:no-preference){
+
+  /* background settles outward once over 34s and stops */
+  .hero .ch-bg img{animation:chDrift 34s var(--ease) both}
+
+  .hero .ch-frame{animation:chMarkIn 1.55s .30s cubic-bezier(.40,.05,.25,1) both}
+
+  .hero .ch-sweep::before{animation:chSweep 1.20s 1.25s cubic-bezier(.35,.1,.25,1) both}
+
+  /* the neon warms up, then breathes — slow enough to be atmosphere */
+  .hero .ch-glow{
+    animation:
+      chGlowIn 1.6s .70s ease both,
+      chBreathe 7.5s 2.6s ease-in-out infinite alternate;
+  }
+
+  .hero .ch-actions{animation:chRise .90s 1.75s var(--ease) both}
+}
+
+@keyframes chDrift{
+  from{transform:scale(1.055) translate3d(-1.2%,1.2%,0)}
+  to  {transform:scale(1.14)  translate3d(1.4%,-1.4%,0)}
+}
+@keyframes chMarkIn{
+  from{opacity:0;transform:translateY(20px) scale(1.05);filter:blur(18px) saturate(.62) brightness(.9)}
+  55% {opacity:1}
+  to  {opacity:1;transform:none;filter:blur(0) saturate(1) brightness(1)}
+}
+@keyframes chSweep{
+  from{transform:translateX(-170%) skewX(-12deg);opacity:0}
+  18% {opacity:1}
+  82% {opacity:1}
+  to  {transform:translateX(300%) skewX(-12deg);opacity:0}
+}
+@keyframes chGlowIn{
+  from{opacity:0;transform:translate(-50%,-50%) scale(.94)}
+  to  {opacity:.62;transform:translate(-50%,-50%) scale(1.04)}
+}
+@keyframes chBreathe{
+  from{opacity:.44;transform:translate(-50%,-50%) scale(1.00)}
+  to  {opacity:.74;transform:translate(-50%,-50%) scale(1.075)}
+}
+@keyframes chRise{
+  from{opacity:0;transform:translateY(14px)}
+  to  {opacity:1;transform:none}
+}
+
+/* ---- phones ------------------------------------------------- */
+@media (max-width:760px){
+  .hero{gap:clamp(20px,3vh,30px)}
+  .hero .ch-mark{width:min(90vw,440px,52svh)}
+  .hero .ch-actions .btn{padding:13px 20px;font-size:15px}
+  .hero .ch-bg img{object-position:58% 44%}
+}
+
+/* very short viewports (landscape phones) */
+@media (max-height:520px){
+  .hero .ch-mark{width:min(46vw,300px,64svh)}
+}

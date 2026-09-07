@@ -10,7 +10,8 @@
 <!-- Archivo Black (display — the squared, heavy sign lettering on their banner)
      + Barlow (body). Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=0907164944">
+<link rel="stylesheet" href="css/hero.css?v=0907164944">
 </head>
 <body>
 
@@ -48,20 +49,36 @@
        the headline block. On phones the wide frame would lose the building, so
        the documented HERO STACK runs three real photos in walk-up order:
        outside → a car in guide coat in their bay → a finished car with the bow. -->
+  <!-- ===================== #hero — "IT GOES IN BENT. IT COMES OUT STRAIGHT." =====================
+       The mark IS the headline. Nothing here is drawn: the plate is All Star's
+       own vinyl banner, cropped out of their own photograph (harvest g19) and
+       deskewed; the wall behind it is their own red barn at 2906 E Main
+       (hero-stack-1), blurred back so the sign is the only thing in focus.
+
+       One deterministic intro, once, no interaction: the sign hangs dark, then
+       a single shop-light sweep crosses it left to right. Behind that light the
+       sign lights up — and the car painted on it, wrecked down its left half,
+       is pulled straight. The repaired half is the sign's OWN perfect half
+       reflected across the divider line the sign painter drew; no new artwork.
+       It settles on a whole car and holds. -->
   <section class="hero" id="hero">
-    <div class="hero-bg hero-stack">
-      <div class="hero-stack-track">
-        <img src="images/hero-stack-1.jpg" alt="The red barn-sided All Star Auto Body shop at 2906 East Main Avenue, its banner sign mounted over the stone veneer beside the door" fetchpriority="high" width="1920" height="1440">
-        <img src="images/hero-stack-2.jpg" alt="A black BMW sedan in yellow guide coat and primer parked at the open bay door of the shop" width="1920" height="1440">
-        <img src="images/hero-stack-3.jpg" alt="A finished white Range Rover Evoque with a red delivery bow on the hood, parked against the shop's stone wall" width="1920" height="1440">
-        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="1920" height="1440">
-        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="1920" height="1440">
-        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="1920" height="1440">
-      </div>
+    <div class="hero-bg">
+      <img src="images/claude-hero-wall.jpg" alt="" width="1800" height="1620" fetchpriority="high">
     </div>
+
     <div class="hero-inner">
-      <h1>Bring it in bent.<br><em>Drive it out straight.</em></h1>
-      <p class="hero-sub">Collision, paint and panel work in the red barn on East Main, Puyallup.</p>
+      <h1 class="sr-only">All Star Auto Body — collision, paint and panel work at 2906 E Main Ave, Puyallup, Washington. Call 206-928-1600.</h1>
+
+      <div class="as-stage">
+        <div class="as-sign" role="img"
+             aria-label="All Star Auto Body's banner sign: a red car wrecked down its left half and perfect down its right, over the phone number 206.928.1600">
+          <img class="as-sign-base"  src="images/claude-sign.jpg"       alt="" width="1380" height="642" fetchpriority="high">
+          <img class="as-sign-fixed" src="images/claude-sign-fixed.jpg" alt="" width="1380" height="642" aria-hidden="true">
+          <span class="as-dim"   aria-hidden="true"></span>
+          <span class="as-sweep" aria-hidden="true"></span>
+        </div>
+      </div>
+
       <div class="hero-actions">
         <a href="#signature" class="btn btn-primary">See a real repair</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>
@@ -343,6 +360,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=0907164944"></script>
 </body>
 </html>
