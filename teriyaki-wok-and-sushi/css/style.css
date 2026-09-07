@@ -455,3 +455,33 @@ b,strong{font-weight:700}
 /* eyebrows: one label style everywhere, brand token, label size (QA rule; the
    template's .section-head p used to outrank .eyebrow) */
 .section .eyebrow,.section-head .eyebrow,.story-copy .eyebrow,.status-head .eyebrow,.cta-band .eyebrow,.menu-lead .eyebrow,p.eyebrow{color:var(--brand-text);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;font-family:var(--mono,var(--body))}
+
+
+/* ============================================================ BOWLING-ALLEY ENTRANCE (Hayden 9/7)
+   "like a bowling alley animation where it comes onto screen, and then the wok
+   lights up. The background is something other than just black."
+   The room, blurred, behind; the sign rolls in from the left along a lane of
+   light, lands with a little overshoot, the letters flash on, then the wok's
+   flame ignites (fire.js waits for the landing). */
+.hero-lane{background:var(--dark)}
+.hero-lane .lane-bg{position:absolute;inset:0;z-index:0}
+.hero-lane .lane-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;filter:blur(14px) saturate(1.2) brightness(.42);transform:scale(1.14)}
+.hero-lane .lane-bg::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(70% 60% at 62% 42%,rgba(255,140,30,.14) 0%,transparent 70%),
+  linear-gradient(180deg,color-mix(in srgb,var(--dark) 55%,transparent) 0%,transparent 30%,transparent 55%,color-mix(in srgb,var(--dark) 88%,transparent) 100%)}
+.hero-lane .mark-inner{position:relative;z-index:2}
+.hero-lane .mark-stage{overflow:visible}
+/* the lane: a bar of light the sign travels along, fades once it lands */
+.lane-streak{position:absolute;z-index:0;left:-40%;right:-40%;top:52%;height:18%;transform:translateY(-50%);pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,214,60,.28) 35%,rgba(255,255,230,.55) 50%,rgba(255,214,60,.28) 65%,transparent 100%);filter:blur(14px)}
+.js .lane-streak{animation:laneOn 1.6s var(--ease) .1s forwards}
+@keyframes laneOn{0%{opacity:0;transform:translateY(-50%) scaleX(.2)}25%{opacity:1}70%{opacity:.9;transform:translateY(-50%) scaleX(1)}100%{opacity:0;transform:translateY(-50%) scaleX(1.05)}}
+/* the sign rolls in and lands */
+.js .hero-lane .mark-stage .mark{opacity:1;transform:translateX(-135%) rotate(-3deg);animation:rollIn 1.15s cubic-bezier(.2,.9,.25,1.15) .25s forwards,flashOn .55s steps(1,end) 1.45s forwards}
+@keyframes rollIn{0%{transform:translateX(-135%) rotate(-3deg);filter:blur(6px) brightness(.55) drop-shadow(0 10px 30px rgba(0,0,0,.65))}
+  70%{filter:blur(0) brightness(.7) drop-shadow(0 10px 30px rgba(0,0,0,.65))}
+  100%{transform:translateX(0) rotate(0);filter:blur(0) brightness(.7) drop-shadow(0 10px 30px rgba(0,0,0,.65))}}
+/* the letters come on like a sign catching power, then the wok's glow (fire.js adds .is-lit at 1.6 s) */
+@keyframes flashOn{0%{filter:brightness(.7) drop-shadow(0 10px 30px rgba(0,0,0,.65))}25%{filter:brightness(1.35) drop-shadow(0 10px 30px rgba(0,0,0,.65))}40%{filter:brightness(.8) drop-shadow(0 10px 30px rgba(0,0,0,.65))}60%{filter:brightness(1.25) drop-shadow(0 10px 30px rgba(0,0,0,.65))}100%{filter:brightness(1) drop-shadow(0 10px 30px rgba(0,0,0,.65)) drop-shadow(0 0 26px rgba(255,140,30,.42))}}
+.js .hero-lane .hero-actions{animation-delay:1.9s}
+@media (prefers-reduced-motion:reduce){.js .hero-lane .mark-stage .mark{animation:none;transform:none;filter:drop-shadow(0 10px 30px rgba(0,0,0,.65)) drop-shadow(0 0 26px rgba(255,140,30,.42))}.js .lane-streak{animation:none;opacity:0}}

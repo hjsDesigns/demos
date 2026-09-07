@@ -23,7 +23,7 @@
   /* where the flame lives on the sign, as fractions of the mark box:
      the painted flame sits over the "o" in Wok — its base is ~54% down,
      centred ~84.5% across; the fire licks up from there. */
-  var FX = 0.845, FY = 0.56, SPREAD = 0.075;
+  var FX = 0.822, FY = 0.58, SPREAD = 0.06;
 
   var W = 0, H = 0, dpr = 1, emitter = { x: 0, y: 0, w: 0, h: 0 };
   function size() {
@@ -41,6 +41,7 @@
   size();
   var ro = window.ResizeObserver ? new ResizeObserver(size) : null;
   if (ro) ro.observe(stage); else window.addEventListener('resize', size);
+  mark.addEventListener('animationend', size);   /* the sign rolls in from off-screen — re-measure once it lands */
 
   var P = [], EMBERS = [];
   function spawn(burst) {
@@ -63,8 +64,8 @@
   /* colour ramp: pale-yellow core → orange → deep red → smoke-out.
      Each particle is a soft radial blob so the flame has no hard edges. */
   function rgb(t) {
-    if (t < 0.2) return [255, 232, 150, 0.55 - t * 0.6];
-    if (t < 0.5) return [255, 160, 40, 0.42 - (t - 0.2) * 0.5];
+    if (t < 0.2) return [255, 232, 150, 0.42 - t * 0.5];
+    if (t < 0.5) return [255, 160, 40, 0.34 - (t - 0.2) * 0.4];
     if (t < 0.8) return [225, 70, 18, 0.28 - (t - 0.5) * 0.5];
     return [120, 18, 10, Math.max(0, 0.12 - (t - 0.8) * 0.6)];
   }
@@ -84,11 +85,11 @@
     var dt = Math.min(0.05, (ts - last) / 1000); last = ts;
     var T = (ts - start) / 1000;
 
-    /* timeline: 0–0.55 s dark, 0.55 s ignition burst, then steady;
+    /* timeline: the sign rolls in and flashes on first (CSS), the wok ignites at 1.65 s;
        from 6 s the fire settles to a low idle */
-    if (!lit && T > 0.55) { lit = true; stage.classList.add('is-lit'); for (var b = 0; b < 40; b++) spawn(true); }
+    if (!lit && T > 1.65) { size(); lit = true; stage.classList.add('is-lit'); for (var b = 0; b < 22; b++) spawn(true); }
     if (lit) {
-      var rate = T < 6 ? 230 : 140;            /* particles per second */
+      var rate = T < 5 ? 130 : 80;            /* particles per second */
       var n = rate * dt + (rnd() < (rate * dt) % 1 ? 1 : 0);
       for (var i = 0; i < n; i++) spawn(false);
     }
