@@ -1,0 +1,186 @@
+/* ============================================================
+   HERO VARIANT — "walk-in"   (Scotty's Grub and Pub, Puyallup)
+
+   The room is the opener. Three of their own interior photographs,
+   exposure- and white-balance-matched and joined by shadowed posts, form
+   one continuous strip that drifts sideways the way you walk in: past the
+   pull-tab cases and the dollar-bill wall, down the bar and its stools,
+   out into the room under the string lights. Their real oval sign — cut
+   off their own brick — comes up out of the dark over it and then holds.
+
+   Self-contained. Everything namespaced under .hero.v-walkin, every
+   keyframe prefixed wi-. Uses the site's own tokens; adds no new colours.
+   No JS. Nothing below the hero is touched.
+   ============================================================ */
+
+.hero.v-walkin{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  height:calc(100svh - var(--header-h));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--dark);
+  color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---------- the panorama ------------------------------------------------
+   background-size:auto 100% scales the strip to the hero's height, so the
+   same file works at 390 and at 1440; background-position-x does the drift
+   in percentages of the overflow, which means the travel is correct at any
+   viewport width without a single magic number. ---------------------- */
+.hero.v-walkin .wi-pan{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  /* CSS urls resolve against THIS file, not the <base> tag. On merge into
+     css/style.css this becomes url("../images/walk-in-pano.jpg"). */
+  background-image:url("images/walk-in-pano.jpg");
+  background-repeat:no-repeat;
+  background-size:auto 100%;
+  background-position:54% 50%;
+  transform-origin:52% 55%;
+  will-change:transform,filter,background-position;
+  animation:
+    wi-open 2.1s cubic-bezier(.19,.86,.28,1) both,
+    wi-drift 150s ease-in-out 2.2s infinite alternate;
+}
+
+/* eyes adjusting as the door swings shut behind you: the room comes up out
+   of the dark once, settles, and then only drifts. */
+@keyframes wi-open{
+  0%  {transform:scale(1.085);filter:brightness(.22) saturate(.55) blur(3px)}
+  55% {filter:brightness(.86) saturate(.94) blur(0)}
+  100%{transform:scale(1);filter:brightness(1) saturate(1) blur(0)}
+}
+@keyframes wi-drift{
+  from{background-position-x:54%}
+  to  {background-position-x:92%}
+}
+
+/* ---------- the dark it sits in ---------------------------------------
+   A pool under the mark so the sign always reads, and a deeper foot so the
+   hero hands off cleanly to the near-black hours band below it. */
+.hero.v-walkin .wi-scrim{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb,var(--dark) 72%,transparent) 0%,
+      transparent 20%,
+      transparent 80%,
+      color-mix(in srgb,var(--dark) 72%,transparent) 100%),
+    radial-gradient(78% 62% at 50% 46%,
+      color-mix(in srgb,var(--dark) 62%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 40%,transparent) 42%,
+      transparent 72%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 58%,transparent) 0%,
+      transparent 26%,
+      transparent 52%,
+      color-mix(in srgb,var(--dark) 74%,transparent) 88%,
+      var(--dark) 100%);
+  animation:wi-fade 2.1s cubic-bezier(.19,.86,.28,1) both;
+}
+@keyframes wi-fade{
+  0%  {opacity:.45}
+  100%{opacity:1}
+}
+
+.hero.v-walkin .wi-grain{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  opacity:.2;
+  mix-blend-mode:overlay;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+/* ---------- the mark, and nothing else --------------------------------- */
+.hero.v-walkin .hero-inner{
+  position:relative;
+  z-index:3;
+  width:100%;
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 var(--pad);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.hero.v-walkin .wi-mark{
+  display:block;
+  width:min(34vw,384px);
+  height:auto;
+  margin:0 0 clamp(26px,4.4vh,44px);
+  filter:drop-shadow(0 26px 46px rgba(0,0,0,.62));
+  animation:wi-sign 1.8s cubic-bezier(.19,.86,.28,1) .6s both;
+}
+@keyframes wi-sign{
+  0%  {opacity:0;transform:translateY(18px) scale(.9);filter:blur(12px) drop-shadow(0 0 0 rgba(0,0,0,0))}
+  60% {opacity:1}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0) drop-shadow(0 26px 46px rgba(0,0,0,.62))}
+}
+
+/* beats the site's `.js .hero-actions` rise so the buttons land after the
+   sign has, not before it. */
+.hero.v-walkin .hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  opacity:0;
+  transform:translateY(16px);
+  animation:wi-rise .9s cubic-bezier(.19,.86,.28,1) 2.05s forwards;
+}
+@keyframes wi-rise{to{opacity:1;transform:none}}
+
+/* ---------- phone ------------------------------------------------------ */
+@media (max-width:640px){
+  .hero.v-walkin .wi-mark{width:min(66vw,282px);margin-bottom:clamp(22px,3.6vh,34px)}
+  .hero.v-walkin .hero-actions{gap:10px;width:100%}
+  .hero.v-walkin .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+  .hero.v-walkin .wi-scrim{
+    background:
+      linear-gradient(90deg,
+        color-mix(in srgb,var(--dark) 48%,transparent) 0%,
+        transparent 22%,
+        transparent 78%,
+        color-mix(in srgb,var(--dark) 48%,transparent) 100%),
+      radial-gradient(96% 52% at 50% 44%,
+        color-mix(in srgb,var(--dark) 66%,transparent) 0%,
+        color-mix(in srgb,var(--dark) 42%,transparent) 46%,
+        transparent 76%),
+      linear-gradient(180deg,
+        color-mix(in srgb,var(--dark) 60%,transparent) 0%,
+        transparent 24%,
+        transparent 50%,
+        color-mix(in srgb,var(--dark) 76%,transparent) 86%,
+        var(--dark) 100%);
+  }
+}
+
+/* short landscape phones: keep the mark from crowding the buttons */
+@media (max-height:560px){
+  .hero.v-walkin .wi-mark{width:min(26vw,210px);margin-bottom:20px}
+}
+
+/* ---------- reduced motion: land on the final frame -------------------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-walkin .wi-pan,
+  .hero.v-walkin .wi-scrim,
+  .hero.v-walkin .wi-mark,
+  .hero.v-walkin .hero-actions{animation:none}
+  .hero.v-walkin .wi-pan{background-position-x:58%;transform:none;filter:none}
+  .hero.v-walkin .wi-scrim{opacity:1}
+  .hero.v-walkin .wi-mark{opacity:1;transform:none;filter:drop-shadow(0 26px 46px rgba(0,0,0,.62))}
+  .hero.v-walkin .hero-actions{opacity:1;transform:none}
+}

@@ -1,0 +1,121 @@
+/* ============================================================
+   HERO VARIANT — neon-on-brick   (Scotty's Grub and Pub, Puyallup)
+   Self-contained. Everything is namespaced under .hero.v-neon-on-brick
+   and every keyframe carries the nob- prefix, so this file can sit on top
+   of css/style.css without touching anything else on the page.
+
+   The picture: one frame of their own storefront (harvest g14), graded to
+   blue hour so the neon that is already lit in the photograph does the work.
+   Nothing added to the photograph, nothing taken out of it.
+   ============================================================ */
+
+.hero.v-neon-on-brick{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;background:var(--dark);color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---------- the still ---------- */
+.hero.v-neon-on-brick .nob-still{
+  position:absolute;inset:0;z-index:0;
+  opacity:0;transform:scale(1.022);transform-origin:52% 46%;
+  animation:nobArrive 1.5s cubic-bezier(.2,.7,.25,1) forwards;
+}
+.hero.v-neon-on-brick .nob-plate{position:absolute;inset:0}
+.hero.v-neon-on-brick .nob-base{display:block;position:absolute;inset:0}
+.hero.v-neon-on-brick .nob-tube{display:block}
+.hero.v-neon-on-brick .nob-base img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 47%;
+}
+/* the one tube that strikes on — the same frame, exposed for the lit tube,
+   registered pixel-for-pixel on top of the base and flicked in once */
+.hero.v-neon-on-brick .nob-tube{position:absolute;inset:0;opacity:0;
+  animation:nobStrike 1.3s linear .45s forwards;will-change:opacity}
+.hero.v-neon-on-brick .nob-tube-in{display:block;position:absolute;inset:0;
+  animation:nobBreathe 9s ease-in-out 2.1s infinite alternate}
+.hero.v-neon-on-brick .nob-tube img{width:100%;height:100%;object-fit:cover;object-position:50% 47%}
+
+/* the blurred echo of the same frame — only used where the photo is letterboxed (phones) */
+.hero.v-neon-on-brick .nob-bed{display:none}
+.hero.v-neon-on-brick .nob-bed img{width:100%;height:100%;object-fit:cover;object-position:50% 46%}
+
+/* the pool of dark at the foot, so the frame melts into the hours band below */
+.hero.v-neon-on-brick .nob-scrim{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 50% 38%,transparent 44%,color-mix(in srgb,var(--dark) 62%,transparent) 100%),
+    linear-gradient(180deg,color-mix(in srgb,var(--dark) 55%,transparent) 0%,transparent 16%,transparent 46%,color-mix(in srgb,var(--dark) 78%,transparent) 84%,var(--dark) 100%);
+}
+.hero.v-neon-on-brick .nob-grain{
+  position:absolute;inset:0;z-index:3;opacity:.3;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+/* ---------- the only thing on the hero besides the sign ---------- */
+.hero.v-neon-on-brick .hero-inner{
+  position:relative;z-index:4;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(36px,7.5vh,80px);
+}
+.hero.v-neon-on-brick .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;
+  opacity:0;transform:translateY(16px);
+  animation:nobRise .8s cubic-bezier(.22,.85,.3,1) 1.15s forwards;
+}
+.hero.v-neon-on-brick .hero-actions .btn{
+  box-shadow:0 18px 42px -20px rgba(0,0,0,.95);
+}
+
+/* ---------- keyframes ---------- */
+@keyframes nobArrive{to{opacity:1;transform:scale(1)}}
+@keyframes nobRise{to{opacity:1;transform:none}}
+/* a cold tube hunting for its strike, then holding */
+@keyframes nobStrike{
+  0%{opacity:0}
+  5%{opacity:.82}
+  9%{opacity:.05}
+  15%{opacity:.94}
+  19%{opacity:.09}
+  25%{opacity:1}
+  32%{opacity:.31}
+  39%{opacity:1}
+  49%{opacity:.74}
+  58%{opacity:1}
+  100%{opacity:1}
+}
+@keyframes nobBreathe{from{opacity:.955}to{opacity:1}}
+
+/* ---------- phones: the frame is letterboxed into its own blurred echo,
+     so nothing in the photograph gets cropped away ---------- */
+@media (max-width:760px){
+  .hero.v-neon-on-brick .nob-bed{
+    display:block;position:absolute;inset:-14%;z-index:0;overflow:hidden;
+    filter:blur(38px) saturate(2.1) brightness(1.15) contrast(1.15);opacity:.8;
+  }
+  .hero.v-neon-on-brick .nob-plate{
+    position:absolute;left:0;right:0;top:0;bottom:auto;z-index:1;
+    box-shadow:0 26px 130px -18px color-mix(in srgb,var(--brand) 60%,transparent);
+  }
+  .hero.v-neon-on-brick .nob-base{position:static}
+  .hero.v-neon-on-brick .nob-base img{height:auto;object-fit:fill}
+  .hero.v-neon-on-brick .nob-tube img{object-fit:fill}
+  .hero.v-neon-on-brick .nob-scrim{
+    background:
+      radial-gradient(100% 46% at 50% 30%,transparent 52%,color-mix(in srgb,var(--dark) 52%,transparent) 100%),
+      linear-gradient(180deg,color-mix(in srgb,var(--dark) 62%,transparent) 0%,transparent 12%,transparent 34%,color-mix(in srgb,var(--dark) 62%,transparent) 45%,color-mix(in srgb,var(--dark) 94%,transparent) 55%,var(--dark) 63%,var(--dark) 100%);
+  }
+  .hero.v-neon-on-brick .nob-grain{opacity:.17}
+  .hero.v-neon-on-brick .hero-inner{padding-bottom:clamp(64px,11vh,104px)}
+  .hero.v-neon-on-brick .hero-actions{width:100%;gap:10px}
+  .hero.v-neon-on-brick .hero-actions .btn{flex:1 1 0;padding:14px 10px;font-size:14.5px}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-neon-on-brick .nob-still{opacity:1;transform:none;animation:none}
+  .hero.v-neon-on-brick .nob-tube{opacity:1;animation:none}
+  .hero.v-neon-on-brick .nob-tube-in{animation:none}
+  .hero.v-neon-on-brick .hero-actions{opacity:1;transform:none;animation:none}
+}
