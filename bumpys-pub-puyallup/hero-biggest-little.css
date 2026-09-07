@@ -1,0 +1,141 @@
+/* ============================================================
+   BUMPY'S PUB — hero variant "biggest-little" (2026-09-07)
+   Typographic. No photo. Their hat line, set on the room's ground.
+   Everything namespaced under .hero.v-biggest-little; keyframes bl-*.
+   Palette + type come from the site tokens (Anton / --brand / --ink).
+   ============================================================ */
+
+.hero.v-biggest-little{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;
+  background:var(--dark);
+  color:var(--ink);
+}
+
+/* --- ground: the lamp-lit near-black room, no photo -------------------- */
+.hero.v-biggest-little .hero-bg{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 50% 8%, #1A1211 0%, #0C0908 55%, #070505 100%);
+  z-index:0;}
+
+/* one warm pendant pool behind the type, breathing slowly */
+.hero.v-biggest-little .bl-glow{
+  position:absolute;left:50%;top:44%;width:min(120vw,1100px);aspect-ratio:1.6/1;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,
+    rgba(232,163,59,.20) 0%, rgba(183,65,65,.13) 42%, rgba(0,0,0,0) 72%);
+  filter:blur(6px);
+  opacity:0;
+  animation:bl-glow-in 1.5s var(--ease,cubic-bezier(.22,.85,.3,1)) .05s forwards,
+            bl-breath 9s ease-in-out 2.4s infinite;
+}
+
+/* film grain over the ground so the flat dark has texture */
+.hero.v-biggest-little .hero-bg::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  opacity:.30;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>");
+}
+
+.hero.v-biggest-little .hero-inner{
+  position:relative;z-index:3;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:clamp(28px,6vh,72px) var(--pad);text-align:center;
+}
+
+/* --- the line off their hats ------------------------------------------ */
+.hero.v-biggest-little .bl-type{
+  font-family:var(--display);
+  text-transform:uppercase;
+  line-height:.94;
+  margin:0 0 clamp(22px,4.4vh,44px);
+}
+.hero.v-biggest-little .bl-line{
+  margin:0;
+  opacity:0;
+  animation:bl-rise .78s cubic-bezier(.19,.9,.26,1) forwards;
+  animation-delay:calc(.20s + var(--i) * .26s);
+  will-change:transform,opacity,filter;
+}
+.hero.v-biggest-little .bl-lg{
+  font-size:clamp(56px,12.4vw,148px);
+  letter-spacing:.008em;
+  color:var(--ink);
+  text-shadow:0 0 42px rgba(0,0,0,.6);
+}
+.hero.v-biggest-little .bl-sm{
+  font-size:clamp(19px,3.6vw,40px);
+  letter-spacing:.20em;
+  color:var(--muted);
+  margin-bottom:.10em;
+}
+/* the joke: LITTLE, actually little */
+.hero.v-biggest-little .bl-tiny{
+  font-size:clamp(10px,1.25vw,15px);
+  letter-spacing:.44em;
+  color:var(--warm);
+  margin:.55em 0 .62em;
+}
+.hero.v-biggest-little .bl-tiny span{
+  display:inline-block;padding:0 .1em;
+}
+.hero.v-biggest-little .bl-tiny::before,
+.hero.v-biggest-little .bl-tiny::after{
+  content:"";display:inline-block;vertical-align:middle;
+  width:clamp(26px,6vw,86px);height:1px;margin:0 .9em;
+  background:linear-gradient(90deg,rgba(242,104,90,0),rgba(242,104,90,.55),rgba(242,104,90,0));
+}
+
+/* --- their real wordmark, last ---------------------------------------- */
+.hero.v-biggest-little .bl-mark{
+  margin:0 auto clamp(24px,4.6vh,42px);
+  max-width:min(74vw,430px);
+  opacity:0;
+  animation:bl-mark-in 1.05s cubic-bezier(.19,.9,.26,1) 1.62s forwards,
+            bl-mark-breath 8s ease-in-out 3.2s infinite;
+}
+.hero.v-biggest-little .bl-mark img{
+  width:100%;height:auto;
+  filter:drop-shadow(0 0 26px rgba(183,65,65,.42));
+}
+
+.hero.v-biggest-little .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;
+  animation:bl-rise .7s cubic-bezier(.19,.9,.26,1) 2.16s forwards;
+}
+
+/* --- keyframes --------------------------------------------------------- */
+@keyframes bl-rise{
+  from{opacity:0;transform:translateY(20px);filter:blur(9px)}
+  to  {opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@keyframes bl-mark-in{
+  from{opacity:0;transform:scale(.955);filter:blur(11px)}
+  to  {opacity:1;transform:scale(1);filter:blur(0)}
+}
+@keyframes bl-glow-in{ from{opacity:0} to{opacity:1} }
+@keyframes bl-breath{ 0%,100%{opacity:1} 50%{opacity:.72} }
+@keyframes bl-mark-breath{
+  0%,100%{filter:drop-shadow(0 0 26px rgba(183,65,65,.42))}
+  50%    {filter:drop-shadow(0 0 40px rgba(183,65,65,.60))}
+}
+
+/* --- phone ------------------------------------------------------------- */
+@media (max-width:520px){
+  .hero.v-biggest-little .bl-lg{font-size:clamp(52px,15.2vw,84px)}
+  .hero.v-biggest-little .bl-sm{font-size:clamp(17px,4.6vw,24px)}
+  .hero.v-biggest-little .bl-mark{max-width:min(78vw,320px)}
+  .hero.v-biggest-little .hero-actions .btn{flex:1 1 42%}
+}
+
+/* --- reduced motion: land on the final frame --------------------------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-biggest-little .bl-line,
+  .hero.v-biggest-little .bl-mark,
+  .hero.v-biggest-little .bl-glow,
+  .hero.v-biggest-little .hero-actions{
+    animation:none;opacity:1;transform:none;filter:none;
+  }
+  .hero.v-biggest-little .bl-mark img{filter:drop-shadow(0 0 26px rgba(183,65,65,.42))}
+}

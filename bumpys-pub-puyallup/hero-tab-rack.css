@@ -1,0 +1,150 @@
+/* ============================================================
+   BUMPY'S PUB — hero variant: TAB-RACK
+   Self-contained, namespaced under .hero.v-tab-rack.
+   Real assets only:
+     images/tab-rack-t1..t10.jpg  — their own numbered pull-tab rack,
+       cropped from images/backbar.jpg and cut on the compartment lines
+     images/tab-rack-bg.jpg       — the same back bar, blurred, as the room echo
+     images/logo.png              — their real red hand-drawn wordmark
+   One deterministic intro: the compartments light left-to-right like a
+   scoreboard, the wordmark comes forward out of the rack, then a slow breath.
+   No JS. Reduced motion lands on the final frame.
+   ============================================================ */
+
+.hero.v-tab-rack{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:var(--dark);
+  isolation:isolate;
+}
+
+/* ---- the room, blurred: the rack's own back bar ---- */
+.hero.v-tab-rack .hero-bg{position:absolute;inset:0;z-index:0}
+.hero.v-tab-rack .hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+  transform:scale(1.08);
+  filter:blur(3px) saturate(.8) brightness(.56);
+  animation:tabrack-room 1.6s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+}
+.hero.v-tab-rack .hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 78% at 50% 46%, rgba(232,163,59,.10), transparent 62%),
+    linear-gradient(180deg, rgba(8,6,6,.68) 0%, rgba(8,6,6,.20) 40%, rgba(8,6,6,.74) 100%);
+}
+
+.hero.v-tab-rack .hero-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:var(--maxw);
+  margin-inline:auto;
+  padding:calc(var(--pad) * .8) var(--pad);
+  display:flex;flex-direction:column;align-items:center;gap:clamp(26px,4.4vw,44px);
+}
+
+/* ---- the rack ---- */
+.hero.v-tab-rack .rack-wrap{position:relative;width:100%;max-width:960px}
+.hero.v-tab-rack .rack{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:clamp(3px,.7vw,7px);
+  padding:clamp(5px,1vw,10px);
+  border-radius:6px;
+  background:#0A0707;
+  box-shadow:0 26px 60px rgba(0,0,0,.62), 0 0 0 1px rgba(58,44,38,.9);
+}
+.hero.v-tab-rack .cell{
+  position:relative;display:block;overflow:hidden;border-radius:3px;
+  background:#0A0707;
+  aspect-ratio:140 / 167;
+}
+.hero.v-tab-rack .cell img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:brightness(.18) saturate(.42);
+  animation:tabrack-cell .55s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+  animation-delay:calc(.32s + var(--i) * .11s);
+}
+/* the compartment light striking, then settling to a low warm keep-alive */
+.hero.v-tab-rack .cell .lit{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:
+    linear-gradient(180deg, rgba(232,163,59,.55), rgba(232,163,59,.06) 46%, transparent 70%),
+    radial-gradient(90% 60% at 50% 0%, rgba(255,214,150,.45), transparent 70%);
+  mix-blend-mode:screen;
+  animation:tabrack-strike .9s ease-out both;
+  animation-delay:calc(.32s + var(--i) * .11s);
+}
+
+/* ---- their wordmark, coming forward out of the rack ---- */
+.hero.v-tab-rack .tabmark{
+  position:absolute;left:50%;top:50%;
+  width:clamp(260px,56%,540px);
+  transform:translate(-50%,-46%) scale(.52);
+  opacity:0;
+  animation:tabrack-mark 1s cubic-bezier(.2,.82,.24,1) both;
+  animation-delay:1.15s;
+}
+.hero.v-tab-rack .tabmark::before{
+  content:"";position:absolute;z-index:0;inset:-52% -20%;pointer-events:none;
+  background:radial-gradient(closest-side, rgba(8,6,6,.9), rgba(8,6,6,.55) 46%, rgba(8,6,6,0) 78%);
+}
+.hero.v-tab-rack .tabmark img{
+  position:relative;z-index:1;
+  width:100%;height:auto;display:block;
+  filter:drop-shadow(0 10px 26px rgba(0,0,0,.85)) drop-shadow(0 0 16px rgba(183,65,65,.38));
+  animation:tabrack-breathe 7s ease-in-out 2.3s infinite;
+}
+
+/* ---- buttons ---- */
+.hero.v-tab-rack .hero-actions{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
+  opacity:0;transform:none;animation:tabrack-in .7s ease-out 2.05s forwards;
+}
+
+@keyframes tabrack-room{
+  from{opacity:0;transform:scale(1.14)}
+  to{opacity:1;transform:scale(1.08)}
+}
+@keyframes tabrack-cell{
+  from{filter:brightness(.18) saturate(.42)}
+  55%{filter:brightness(1.5) saturate(1.15)}
+  to{filter:brightness(1.06) saturate(1)}
+}
+@keyframes tabrack-strike{
+  0%{opacity:0}
+  28%{opacity:.92}
+  to{opacity:.16}
+}
+@keyframes tabrack-mark{
+  from{opacity:0;transform:translate(-50%,-40%) scale(.52)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1)}
+}
+@keyframes tabrack-breathe{
+  0%,100%{filter:drop-shadow(0 10px 26px rgba(0,0,0,.85)) drop-shadow(0 0 14px rgba(183,65,65,.32))}
+  50%{filter:drop-shadow(0 10px 26px rgba(0,0,0,.85)) drop-shadow(0 0 26px rgba(242,104,90,.52))}
+}
+@keyframes tabrack-in{to{opacity:1}}
+
+/* ---- phone ---- */
+@media (max-width:640px){
+  .hero.v-tab-rack .rack-wrap{max-width:none}
+  .hero.v-tab-rack .tabmark{width:clamp(210px,74%,340px)}
+  .hero.v-tab-rack .hero-actions .btn{flex:1 1 44%;text-align:center}
+}
+
+/* ---- reduced motion: the final frame, immediately ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-tab-rack .hero-bg img,
+  .hero.v-tab-rack .cell img,
+  .hero.v-tab-rack .cell .lit,
+  .hero.v-tab-rack .tabmark,
+  .hero.v-tab-rack .tabmark img,
+  .hero.v-tab-rack .hero-actions{animation:none!important}
+  .hero.v-tab-rack .hero-bg img{opacity:1}
+  .hero.v-tab-rack .cell img{filter:brightness(1.06) saturate(1)}
+  .hero.v-tab-rack .cell .lit{opacity:.16}
+  .hero.v-tab-rack .tabmark{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .hero.v-tab-rack .hero-actions{opacity:1;transform:none}
+}

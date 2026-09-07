@@ -1,0 +1,163 @@
+/* ============================================================
+   BUMPY'S PUB — hero variant: coaster-flip
+   Self-contained. Everything namespaced under .hero.v-coaster-flip.
+   Keyframes prefixed cflip- so nothing collides with the site.
+   Real assets: images/coasterflip-bartop.jpg + images/coasterflip-board.jpg
+   (both cropped from their own images/coaster.jpg) and images/logo.png.
+   ============================================================ */
+
+.hero.v-coaster-flip{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--dark);
+  isolation:isolate;
+}
+
+/* ---------- the bar top, out of focus ---------- */
+.hero.v-coaster-flip .cflip-bg{position:absolute;inset:0;z-index:0;}
+.hero.v-coaster-flip .cflip-bar{
+  width:100%;height:100%;object-fit:cover;object-position:50% 55%;
+  filter:blur(8px) saturate(1.12) brightness(.82);
+  transform:scale(1.12);
+  animation:cflip-ground 1200ms var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+}
+/* warm vignette so the ground reads as the room, never flat black */
+.hero.v-coaster-flip .cflip-vig{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 50% 46%, rgba(0,0,0,0) 0%, rgba(8,6,6,.50) 60%, rgba(8,6,6,.90) 100%),
+    linear-gradient(180deg, rgba(8,6,6,.60) 0%, rgba(8,6,6,0) 26%, rgba(8,6,6,.72) 100%);
+}
+/* the pendant pool of light the coaster sits in — the slow warm breath */
+.hero.v-coaster-flip .cflip-pool{
+  position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);
+  width:min(120vmin,900px);aspect-ratio:1/.8;
+  background:radial-gradient(closest-side, rgba(232,163,59,.42), rgba(183,65,65,.20) 46%, rgba(0,0,0,0) 74%);
+  opacity:0;
+  animation:
+    cflip-pool-in 1400ms 300ms var(--ease,cubic-bezier(.22,.85,.3,1)) both,
+    cflip-breath 9s 2200ms ease-in-out infinite alternate;
+}
+
+/* ---------- layout ---------- */
+.hero.v-coaster-flip .cflip-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:var(--maxw);
+  padding:0 var(--pad);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(28px,5vh,52px);
+  text-align:center;
+}
+
+/* ---------- the coaster ---------- */
+.hero.v-coaster-flip .cflip-stage{
+  position:relative;
+  width:min(72vw,min(62vh,470px));
+  aspect-ratio:1/1;
+  perspective:1200px;
+}
+.hero.v-coaster-flip .cflip-shadow{
+  position:absolute;left:50%;bottom:-7%;transform:translateX(-50%) scale(.7);
+  width:86%;height:16%;
+  background:radial-gradient(closest-side, rgba(0,0,0,.72), rgba(0,0,0,0) 78%);
+  filter:blur(7px);opacity:0;
+  animation:cflip-shadow 1150ms 420ms var(--ease-2,cubic-bezier(.32,.9,.24,1)) both;
+}
+.hero.v-coaster-flip .cflip-coaster{
+  position:absolute;inset:0;
+  transform-style:preserve-3d;
+  transform:rotateY(180deg) rotateZ(-168deg) scale(.84) translateY(-4%);
+  animation:cflip-turn 1250ms 360ms var(--ease-2,cubic-bezier(.32,.9,.24,1)) both;
+  will-change:transform;
+}
+.hero.v-coaster-flip .cflip-face{
+  position:absolute;inset:0;
+  border-radius:12%;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  background-image:url("images/coasterflip-board.jpg");
+  background-size:cover;background-position:50% 50%;
+  box-shadow:
+    0 26px 48px rgba(0,0,0,.62),
+    0 2px 0 rgba(255,255,255,.22) inset,
+    0 -3px 10px rgba(0,0,0,.28) inset;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero.v-coaster-flip .cflip-back{transform:rotateY(180deg);filter:brightness(.86);}
+.hero.v-coaster-flip .cflip-front{
+  animation:cflip-glow 9s 2200ms ease-in-out infinite alternate;
+}
+/* the debossed circle pressed into every pub coaster */
+.hero.v-coaster-flip .cflip-deboss{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:82%;aspect-ratio:1/1;border-radius:50%;
+  box-shadow:0 1px 2px rgba(255,255,255,.5), 0 -1px 3px rgba(0,0,0,.20) inset;
+  background:radial-gradient(closest-side, rgba(255,255,255,.10), rgba(0,0,0,.06));
+}
+.hero.v-coaster-flip .cflip-mark{
+  position:relative;
+  width:72%;height:auto;display:block;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.45));
+}
+
+/* ---------- buttons (unchanged hrefs) ---------- */
+.hero.v-coaster-flip .cflip-actions{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  opacity:0;
+  animation:cflip-rise 700ms 1500ms var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+}
+
+/* ---------- keyframes ---------- */
+@keyframes cflip-ground{
+  from{opacity:0;transform:scale(1.2);}
+  to{opacity:1;transform:scale(1.12);}
+}
+@keyframes cflip-pool-in{ from{opacity:0;} to{opacity:1;} }
+@keyframes cflip-breath{
+  from{opacity:.86;transform:translate(-50%,-50%) scale(.97);}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1.04);}
+}
+@keyframes cflip-glow{
+  from{filter:brightness(.97);}
+  to{filter:brightness(1.06);}
+}
+@keyframes cflip-turn{
+  0%{transform:rotateY(180deg) rotateZ(-168deg) scale(.84) translateY(-4%);}
+  62%{transform:rotateY(24deg) rotateZ(-14deg) scale(1.05) translateY(-1%);}
+  84%{transform:rotateY(-6deg) rotateZ(3deg) scale(.995) translateY(0);}
+  100%{transform:rotateY(0deg) rotateZ(0deg) scale(1) translateY(0);}
+}
+@keyframes cflip-shadow{
+  0%{opacity:0;transform:translateX(-50%) scale(.7);}
+  60%{opacity:.5;transform:translateX(-50%) scale(1.06);}
+  100%{opacity:.9;transform:translateX(-50%) scale(1);}
+}
+@keyframes cflip-rise{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ---------- phone ---------- */
+@media (max-width:640px){
+  .hero.v-coaster-flip .cflip-stage{width:min(78vw,min(48vh,340px));}
+  .hero.v-coaster-flip .cflip-inner{gap:clamp(24px,4.5vh,40px);}
+  .hero.v-coaster-flip .cflip-actions .btn{flex:0 1 auto;}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-coaster-flip .cflip-bar,
+  .hero.v-coaster-flip .cflip-pool,
+  .hero.v-coaster-flip .cflip-coaster,
+  .hero.v-coaster-flip .cflip-front,
+  .hero.v-coaster-flip .cflip-shadow,
+  .hero.v-coaster-flip .cflip-actions{animation:none!important;}
+  .hero.v-coaster-flip .cflip-pool{opacity:1;}
+  .hero.v-coaster-flip .cflip-coaster{transform:none;}
+  .hero.v-coaster-flip .cflip-shadow{opacity:.9;transform:translateX(-50%) scale(1);}
+  .hero.v-coaster-flip .cflip-actions{opacity:1;}
+}

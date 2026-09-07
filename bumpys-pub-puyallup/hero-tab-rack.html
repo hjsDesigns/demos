@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bumpy's Pub — the biggest little bar in Puyallup, WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Bumpy's Pub at 116 E Main Ave in downtown Puyallup — a tiny, locally beloved dive bar with TVs, pub grub, burgers and loaded tots. Open nine in the morning, seven days a week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Anton (display, condensed bar-sign weight) + Barlow (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="hero-tab-rack.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Bumpy's Pub — home">
+      <img src="images/logo.png" alt="" width="300" height="86">
+      <span class="wm">Puyallup, WA</span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#services">What's here</a>
+        <a href="#signature">Loaded tots</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">The room</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT: interior frames run the whole page below, so
+       the opener is the actual storefront on E Main — brick, the black
+       BUMPY'S box sign, the Rainier "R" in the window, blue sky.
+       Their real wordmark (the PNG hosted on the Puyallup Main Street
+       Association sponsor page — pulled directly, never redrawn) warms up
+       over it like a tube catching. The mark IS the headline, so the h1 is
+       sr-only and nothing else sits on the photo. -->
+  <!-- ===================== #hero — variant: tab-rack =====================
+     Their real numbered pull-tab rack (cropped straight out of backbar.jpg,
+     compartments 12-20 and the "IN TILL YOU WIN" card, nothing redrawn) cut
+     into its own compartments. The rack lights compartment by compartment
+     like a scoreboard, then their real wordmark (logo.png) comes forward out
+     of the rack and holds on a slow warm breath. The mark IS the headline:
+     sr-only h1, nothing on the hero but the mark and the two buttons. -->
+<section class="hero v-tab-rack" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <img src="images/tab-rack-bg.jpg" alt="" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-inner">
+    <h1 class="sr-only">Bumpy's Pub — a dive bar, kitchen and pull-tab counter at 116 E Main Ave, Puyallup, Washington</h1>
+    <div class="rack-wrap">
+      <div class="rack" aria-hidden="true">
+        <span class="cell" style="--i:0"><img src="images/tab-rack-t1.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:1"><img src="images/tab-rack-t2.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:2"><img src="images/tab-rack-t3.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:3"><img src="images/tab-rack-t4.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:4"><img src="images/tab-rack-t5.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:5"><img src="images/tab-rack-t6.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:6"><img src="images/tab-rack-t7.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:7"><img src="images/tab-rack-t8.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:8"><img src="images/tab-rack-t9.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+        <span class="cell" style="--i:9"><img src="images/tab-rack-t10.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="lit"></i></span>
+      </div>
+      <div class="tabmark">
+        <img src="images/logo.png" alt="Bumpy's Pub" width="1001" height="286">
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">See the menu</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock + address + all seven days, today lit.
+       Hours live HERE and nowhere else on the page. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Nine in the morning, <em>seven days</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          116 E Main Ave, Puyallup, WA 98372<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=116+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="ico">✓</span> Covered outdoor seating, with heat</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">9:00 AM – 12:00 AM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">9:00 AM – 12:00 AM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">9:00 AM – 12:00 AM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">9:00 AM – 12:00 AM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">9:00 AM – 1:00 AM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">9:00 AM – 1:00 AM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">9:00 AM – 12:00 AM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #services — what's here =====================
+       Only what a source actually says. TITLE CARDS UNROLL on the one card
+       that has a real list behind it. -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <figure class="print lead-print reveal">
+        <img src="images/pizza-bar.jpg" alt="A pizza on red-and-white checked paper next to a frosted mug of beer on the dark wood bar, pull-tab flares pinned along the wall behind" loading="lazy">
+        <figcaption>A pizza and a cold one, on the bar</figcaption>
+      </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">A small room that does a lot</p>
+        <h2>Tiny bar. <em>Long counter.</em></h2>
+        <p>Google's own write-up runs one line and gets it right: a tiny, locally beloved dive bar with TVs, pub grub, burgers and specialty hot dogs. Here's what's actually going on in it.</p>
+      </div>
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18l-2 8H5l-2-8z"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h3>Taco Tuesday</h3>
+          <p class="when">Every Tuesday</p>
+          <p>Restaurantji names it first when it describes the place: Bumpy's is “known for its Taco Tuesdays, pizza, and trivia nights.”</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.8"/><circle cx="12" cy="17.5" r="1"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h3>Trivia nights</h3>
+          <p class="when">Flyer's behind the bar</p>
+          <p>They run trivia — but the night isn't published anywhere online, so it's a question for whoever's pouring.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M9 5v14"/></svg></div>
+          <h3>Pull tabs</h3>
+          <p class="when">Behind the counter</p>
+          <p>A numbered rack of tabs behind the bar, the flares pinned up above it, and a row of Bumpy's hats on the shelf over the lot.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H4z"/><path d="M8 20h8M12 16v4"/></svg></div>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-board">
+            <h3>Things only the board knows</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Not on the printed sheet</p>
+          <p>Regulars have named these online. They're not on the menu card below — ask for them.</p>
+          <div class="rolled" id="roll-board">
+            <ul>
+              <li>Seattle Style Hot Dog with cream cheese &amp; grilled onions</li>
+              <li>Meat Lovers Pizza</li>
+              <li>Jalapeño Bacon Cheeseburger</li>
+              <li>Crispy Beef Tacos</li>
+              <li>BLT on Rye</li>
+              <li>Bumpy's Side Salad</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — THE TOT BOARD =====================
+       Their four loaded tots, word for word off their own printed menu.
+       One tap on a name lights it like the sign out front and drops the real
+       item into the readout. Tap again, the light goes out. This board is the
+       ONLY place the Loaded Tots list appears on the page. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Four ways they load a basket</p>
+        <h2>Everything <em>on tots</em></h2>
+        <p>Nachos, a baked potato, a Reuben and a bowl of chili — all of it dumped over tots. Tap a name to light it up.</p>
+      </div>
+
+      <div class="board reveal">
+        <div class="board-top">
+          <figure class="board-photo">
+            <img src="images/dish-tots.jpg" alt="A red-and-white checked basket piled with tater tots under a slider on a skewer" loading="lazy">
+          </figure>
+          <div class="board-read" id="boardRead">
+            <span class="board-banner">Loaded Tots</span>
+            <p class="read-name" id="readName">Tap a name below.</p>
+            <p class="read-desc" id="readDesc">Every one of them starts as a basket of tots.</p>
+            <p class="read-price tnum" id="readPrice"></p>
+          </div>
+        </div>
+        <div class="board-plates">
+          <button class="plate" type="button" aria-pressed="false"
+            data-name="Tot Nachos" data-price="$13.50"
+            data-desc="Melted cheddar, ground beef, tomatoes, onions, jalapeños, olives, sour cream. Served with a side of pico de gallo. Sub chicken for $1.">Tot Nachos</button>
+          <button class="plate" type="button" aria-pressed="false"
+            data-name="Baked Po-tot-oes" data-price="$11.50"
+            data-desc="Melted cheddar, crispy diced bacon, green onions, sour cream.">Baked Po-tot-oes</button>
+          <button class="plate" type="button" aria-pressed="false"
+            data-name="Reuben Tots" data-price="$14"
+            data-desc="Melted Swiss, grilled pastrami, sauerkraut, Thousand Island dressing.">Reuben Tots</button>
+          <button class="plate" type="button" aria-pressed="false"
+            data-name="Chili Tots" data-price="$13.50"
+            data-desc="Melted cheddar, warm chili, onions, jalapeños.">Chili Tots</button>
+        </div>
+      </div>
+      <p class="board-foot">Wording and prices as printed on their own menu</p>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — off their own printed board =====================
+       Transcribed verbatim from the pub's laminated menu (photo g6, harvest
+       2026-09-06). Loaded Tots are deliberately absent — they live in the
+       board above, and nothing appears twice. -->
+  <section class="section section-alt" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The laminated card on the bar</p>
+        <h2>Bites, staples <em>and breakfast</em></h2>
+        <p>Wings four sauces deep, a French dip with au jus, and a breakfast run every single morning. Prices exactly as they're printed.</p>
+      </div>
+
+      <div class="menu-groups reveal">
+        <div class="menu-group">
+          <h3>Bites</h3>
+          <ul class="menu-list">
+            <li><span class="name">Homemade Deviled Eggs</span><span class="price">$8</span><span class="desc">Three halved and deviled, sprinkled with paprika and green onion. Smothered in crispy diced bacon.</span></li>
+            <li><span class="name">Soft Pretzels</span><span class="price">$11</span><span class="desc">Three Bavarian style soft pretzels served with beer cheese sauce &amp; stone ground mustard.</span></li>
+            <li><span class="name">Wings</span><span class="price">$16 / $13</span><span class="desc">Traditional or boneless, naked or tossed in your choice of sauce. Served with ranch. Traditional $16, boneless $13.</span><span class="add">Buffalo — Thai Sweet Chili — BBQ — Garlic Parmesan</span></li>
+            <li><span class="name">Cheesy Bread</span><span class="price">$11</span><span class="desc">Your choice of garlic or pesto. Served with marinara.</span></li>
+            <li><span class="name">Street Tacos</span><span class="price">$9</span><span class="desc">Your choice of chicken or beef wrapped in two soft warm tortillas. Topped with pico de gallo.</span></li>
+            <li><span class="name">OG Nachos</span><span class="price">$16</span><span class="desc">Chicken or beef on a pizza pan loaded with Juantonio's tortilla chips, smothered in melted cheese, onion, olive, tomato and jalapeno. Served with salsa and sour cream.</span></li>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3>Staples</h3>
+          <p class="group-note">Served with your choice of side</p>
+          <ul class="menu-list">
+            <li><span class="name">Bumpy's French Dip</span><span class="price">$15.50</span><span class="desc">A pile of warm roast beef topped with melted Swiss cheese. Served on a toasted hoagie roll, with au jus.</span><span class="add">Add horseradish for $1</span></li>
+            <li><span class="name">B.L.T</span><span class="price">$13.50</span><span class="desc">Applewood smoked bacon, iceberg lettuce, sliced tomato &amp; mayo. Served on toasted sourdough.</span></li>
+            <li><span class="name">Hot Pastrami</span><span class="price">$14.50</span><span class="desc">Grilled pastrami on toasted rye with mustard &amp; pickle spear.</span></li>
+            <li><span class="name">Italian Grinder</span><span class="price">$14.50</span><span class="desc">Salami, pepperoni, ham, sliced tomato, onion, lettuce, pepperoncini &amp; Italian dressing. Served on a toasted hoagie roll.</span></li>
+            <li><span class="name">Bumpy's Burger</span><span class="price">$13.50</span><span class="desc">A third-pound burger piled high with mushrooms, onions, Swiss cheese &amp; chipotle sauce.</span><span class="add">Add bacon for $1</span></li>
+            <li><span class="name">Classic Cheeseburger</span><span class="price">$13.50</span><span class="desc">A third-pound burger, cheddar cheese, iceberg lettuce, tomato, onion &amp; mayo.</span><span class="add">Add bacon for $1</span></li>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3>Breakfast</h3>
+          <p class="group-note">Mon–Fri 10 AM – noon · Sat–Sun 9 AM – noon</p>
+          <ul class="menu-list">
+            <li><span class="name">Bumpy's Scramble</span><span class="price">$14</span><span class="desc">Potatoes, scrambled eggs, cheddar cheese, ham, sausage, bacon, green pepper, onion &amp; country gravy.</span></li>
+            <li><span class="name">Spicy Scramble</span><span class="price">$14</span><span class="desc">Potatoes, scrambled eggs, pepper jack cheese, sausage, bacon, jalapeños, onions.</span></li>
+            <li><span class="name">Ezra Scramble</span><span class="price">$14</span><span class="desc">Potatoes, scrambled eggs, Swiss cheese, ham, bacon, olives, mushrooms.</span></li>
+            <li><span class="name">The Big Meaty</span><span class="price">$10.50</span><span class="desc">Ham, bacon, sausage patty, scrambled eggs, cheddar cheese on toasted sourdough. Served with tots.</span></li>
+            <li><span class="name">Perfect Breakfast Burrito</span><span class="price">$13</span><span class="desc">Bacon, breakfast sausage, scrambled eggs, cheddar cheese, potatoes, pico &amp; chipotle sauce. Wrapped in a large flour tortilla with a side of country gravy.</span></li>
+            <li><span class="name">Breakfast Pizza</span><span class="price">$16</span><span class="desc">Pizza topped with country gravy, cheddar cheese, scrambled eggs, sausage, bacon, ham.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-fine reveal">Transcribed word for word from the menu on the bar. Kitchen specials and anything the board has picked up since aren't on here — ask when you sit down.</p>
+
+      <div class="dish-strip reveal">
+        <figure class="dish"><img src="images/dish-burger.jpg" alt="A tall burger with cheese and bacon on a brioche bun, speared with a flag pick, in a red-and-white checked basket" loading="lazy"><figcaption>A third of a pound, in the basket</figcaption></figure>
+        <figure class="dish"><img src="images/dish-grinder.jpg" alt="A loaded hoagie roll piled with meat, lettuce and tomato on a plate lined with blue checked paper" loading="lazy"><figcaption>On a toasted hoagie roll</figcaption></figure>
+        <figure class="dish"><img src="images/dish-pizza.jpg" alt="A thin-crust pizza covered in pepperoni, olives, peppers and onions in a red checked basket beside two waters" loading="lazy"><figcaption>Pizza, out of the same kitchen</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Before you pull the door</p>
+        <h2>Neon, plywood <em>and pull tabs</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/hero.jpg" alt="The Bumpy's Pub storefront at 116 E Main Ave — brick front, the black neon sign box over the sidewalk, Rainier and Bud Light neon in the windows" loading="lazy"><figcaption>116 E Main, from the sidewalk</figcaption></figure>
+        <figure class="print reveal"><img src="images/pulltabs.jpg" alt="Hawkeye and Coyote Moon pull-tab flares pinned to the wall under a shelf of cream Bumpy's trucker hats reading The Biggest Little Bar in Puyallup" loading="lazy"><figcaption>Hawkeye and Coyote Moon, under the hats</figcaption></figure>
+        <figure class="print reveal"><img src="images/backbar.jpg" alt="The back bar at Bumpy's — a numbered pull-tab rack under a row of flares, bottles on the shelf below and hats along the top" loading="lazy"><figcaption>The back bar and the tab rack</figcaption></figure>
+        <figure class="print reveal"><img src="images/coaster.jpg" alt="A coaster sitting on a wooden table carved all over with initials and names" loading="lazy"><figcaption>Every table's been signed</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about =====================
+       Their own framed sign, their own framed joke review, and Google's own
+       one-line description. Nothing here is written for them. -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/room-wall.jpg" alt="The flyer wall inside Bumpy's — local posters pinned up beside a Sparkle Donkey tin sign, with a framed five-star card at the left end" loading="lazy">
+          <figcaption>The flyer wall, five-star card and all</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">It's written on their wall</p>
+          <h2>The biggest little bar <em>in Puyallup</em></h2>
+          <p class="lede">That isn't our line. It's on their own sign above the pass-through and stitched across every hat on the shelf behind the bar.</p>
+          <p>One narrow room on E Main with the TVs going, a kitchen that turns out burgers, grinders and pizza all day, pull tabs on the counter and neon doing most of the lighting. Out back there's covered seating with heat, so the patio still works in November.</p>
+          <p>And framed on the wall like an award, right beside the flyers, is a five-star review they liked enough to print:</p>
+          <blockquote class="wallcard">
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <p>“Chef was rude, would eat here again”</p>
+            <cite>Framed and hung behind the bar</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting here</p>
+          <h2>Downtown, <em>on Main</em></h2>
+          <ol class="steps">
+            <li><h3>Just walk in</h3><p>No reservations, no list. It's a small room — early evening is when the counter has space.</p></li>
+            <li><h3>Come hungry before noon</h3><p>Breakfast comes off the same kitchen every morning and stops at twelve sharp.</p></li>
+            <li><h3>Ask what's on tonight</h3><p>Trivia nights and the specials aren't posted anywhere online. The bar knows.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12536979824">(253) 697-9824</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=116+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+          <figure class="print reveal">
+            <img src="images/beer.jpg" alt="A frosted glass of beer on the bar at Bumpy's, taps and menus behind it" loading="lazy">
+            <figcaption>First one's on the counter</figcaption>
+          </figure>
+        </div>
+        <form class="contact-form reveal">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>Bringing a group in</option><option>Trivia or an event night</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, what night, and anything the kitchen should know."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the bar</button>
+          <p class="form-success">Thanks — someone at Bumpy's will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more round</p>
+        <h2>116 E Main Ave, <em>under the neon</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count tnum" data-to="839">839</span></b><span>Google reviews, averaging 4.3 out of 5</span></div>
+        <div class="num"><b><span class="count tnum" data-to="7">7</span></b><span>mornings a week the doors open at nine</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-primary">Get directions</a>
+        <a href="tel:+12536979824" class="btn btn-ghost">Call the bar</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand"><img src="images/logo.png" alt="Bumpy's Pub"></div>
+        <p>A tiny, locally beloved dive bar on E Main. Pull up to the counter.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>116 E Main Ave<br>Puyallup, WA 98372</p>
+        <p><a href="tel:+12536979824">(253) 697-9824</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">What's here</a><br><a href="#signature">Loaded tots</a><br><a href="#menu">Menu</a><br><a href="#gallery">The room</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Bumpy's Pub</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>

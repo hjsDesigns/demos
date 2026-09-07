@@ -1,0 +1,144 @@
+/* ============================================================
+   BUMPY'S PUB — hero variant: HAT-SHELF
+   Namespaced under .hero.v-hat-shelf. Self-contained; uses the site's
+   own tokens (--dark, --brand, --brand-text, --ink). Unique keyframe
+   names (hs*). No JS. One deterministic pass, then a quiet breath.
+   Real assets: images/hat-shelf-strip.jpg + images/hat-shelf-room.jpg
+   (both cropped from their own backbar.jpg) and images/logo.png.
+   ============================================================ */
+
+.hero.v-hat-shelf{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+  background:var(--dark);
+  color:var(--ink);
+  --hs-wipe:2.2s;          /* the light travelling the shelf */
+  --hs-delay:.35s;
+}
+
+/* ---- the room behind: their same back bar, blurred to an echo ---- */
+.hero.v-hat-shelf .hs-room{position:absolute; inset:0; z-index:0; overflow:hidden}
+.hero.v-hat-shelf .hs-room img{
+  width:100%; height:100%; object-fit:cover; object-position:50% 40%;
+  opacity:0; transform:scale(1.06);
+  animation:hsRoom 2.6s ease-out .05s forwards;
+}
+.hero.v-hat-shelf .hs-room::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(120% 80% at 50% 42%, rgba(0,0,0,0) 0%, rgba(8,6,6,.34) 60%, rgba(8,6,6,.86) 100%),
+    linear-gradient(180deg, rgba(8,6,6,.48) 0%, rgba(8,6,6,.10) 34%, rgba(8,6,6,.80) 100%);
+}
+@keyframes hsRoom{ to{ opacity:.62; transform:scale(1) } }
+
+/* ---- layout ---- */
+.hero.v-hat-shelf .hero-inner{
+  position:relative; z-index:2;
+  width:100%; max-width:var(--maxw,1180px);
+  margin:0 auto; padding:0 var(--pad,22px);
+  display:flex; flex-direction:column; align-items:center;
+  gap:clamp(18px,3.4vw,34px);
+  text-align:center;
+}
+
+/* ---- the shelf ---- */
+.hero.v-hat-shelf .hs-shelf{
+  margin:0; width:100%; max-width:1120px;
+  display:flex; flex-direction:column; align-items:stretch;
+}
+.hero.v-hat-shelf .hs-frame{position:relative; line-height:0}
+.hero.v-hat-shelf .hs-frame img{
+  display:block; width:100%; height:auto;   /* never cropped, never stretched */
+}
+
+/* base pass — the shelf before the light comes up */
+.hero.v-hat-shelf .hs-dim{
+  filter:brightness(.26) saturate(.55) contrast(1.02);
+}
+
+/* lit pass — revealed by a soft mask sweeping left to right, once */
+.hero.v-hat-shelf .hs-lit{
+  position:absolute; inset:0;
+  filter:brightness(1.06) saturate(1.1) contrast(1.04);
+  -webkit-mask-image:linear-gradient(90deg,#000 0 38%, rgba(0,0,0,0) 54%, rgba(0,0,0,0) 100%);
+          mask-image:linear-gradient(90deg,#000 0 38%, rgba(0,0,0,0) 54%, rgba(0,0,0,0) 100%);
+  -webkit-mask-size:260% 100%;  mask-size:260% 100%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:100% 0;  mask-position:100% 0;
+  animation:hsWipe var(--hs-wipe) cubic-bezier(.36,.06,.2,1) var(--hs-delay) forwards;
+}
+@keyframes hsWipe{
+  from{ -webkit-mask-position:100% 0; mask-position:100% 0 }
+  to  { -webkit-mask-position:0% 0;   mask-position:0% 0 }
+}
+
+/* the warm bar of light riding with the sweep, then gone */
+.hero.v-hat-shelf .hs-beam{
+  position:absolute; top:-6%; bottom:-6%; left:0; width:26%;
+  pointer-events:none; opacity:0;
+  background:linear-gradient(90deg, rgba(232,163,59,0) 0%, rgba(255,214,150,.30) 48%, rgba(232,163,59,0) 100%);
+  filter:blur(10px);
+  animation:hsBeam var(--hs-wipe) cubic-bezier(.36,.06,.2,1) var(--hs-delay) forwards;
+}
+@keyframes hsBeam{
+  0%{ transform:translateX(-30%); opacity:0 }
+  12%{ opacity:1 }
+  82%{ opacity:1 }
+  100%{ transform:translateX(390%); opacity:0 }
+}
+
+/* the LED strip under the shelf lip — grows with the light, then breathes */
+.hero.v-hat-shelf .hs-led{
+  display:block; height:3px; margin-top:-1px; transform-origin:0 50%;
+  background:linear-gradient(90deg, rgba(232,163,59,.15), rgba(255,206,140,.95) 45%, rgba(232,163,59,.6));
+  box-shadow:0 0 14px rgba(232,163,59,.5), 0 0 34px rgba(232,163,59,.22);
+  transform:scaleX(0);
+  animation:
+    hsLed var(--hs-wipe) cubic-bezier(.36,.06,.2,1) var(--hs-delay) forwards,
+    hsBreath 7s ease-in-out 3.4s infinite;
+}
+@keyframes hsLed{ to{ transform:scaleX(1) } }
+@keyframes hsBreath{
+  0%,100%{ opacity:.78 }
+  50%    { opacity:1 }
+}
+
+/* ---- their real wordmark, settling under the shelf ---- */
+.hero.v-hat-shelf .hs-mark{
+  opacity:0; transform:translateY(14px);
+  animation:hsMark .8s cubic-bezier(.2,.7,.25,1) 2.25s forwards;
+}
+.hero.v-hat-shelf .hs-mark img{
+  display:block; width:clamp(212px,30vw,352px); height:auto;
+  filter:drop-shadow(0 8px 26px rgba(0,0,0,.6));
+}
+@keyframes hsMark{ to{ opacity:1; transform:translateY(0) } }
+
+/* ---- the two existing buttons ---- */
+.hero.v-hat-shelf .hero-actions{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+  opacity:0; transform:translateY(10px);
+  animation:hsMark .55s ease-out 2.7s forwards;
+}
+
+/* ---- phone: give the row of hats real size ---- */
+@media (max-width:640px){
+  .hero.v-hat-shelf{ --hs-wipe:2s }
+  .hero.v-hat-shelf .hero-inner{ gap:22px; padding:0 14px }
+  .hero.v-hat-shelf .hs-shelf{ width:112%; margin-left:-6% }
+  .hero.v-hat-shelf .hs-mark img{ width:min(255px,66vw) }
+  .hero.v-hat-shelf .hero-actions{ width:100% }
+  .hero.v-hat-shelf .hero-actions .btn{ flex:1 1 0; min-width:0; text-align:center }
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-hat-shelf .hs-room img{ animation:none; opacity:.62; transform:none }
+  .hero.v-hat-shelf .hs-lit{ animation:none; -webkit-mask-image:none; mask-image:none }
+  .hero.v-hat-shelf .hs-beam{ animation:none; opacity:0 }
+  .hero.v-hat-shelf .hs-led{ animation:none; transform:scaleX(1); opacity:.9 }
+  .hero.v-hat-shelf .hs-mark,
+  .hero.v-hat-shelf .hero-actions{ animation:none; opacity:1; transform:none }
+}

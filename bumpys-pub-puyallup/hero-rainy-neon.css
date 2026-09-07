@@ -1,0 +1,183 @@
+/* ============================================================
+   BUMPY'S PUB — hero variant: rainy-neon
+   Self-contained. Everything is namespaced under .hero.v-rainy-neon
+   and every keyframe is prefixed rn-. Uses the site tokens only
+   (--dark, --brand, --header-h, --pad). No JS.
+   ============================================================ */
+
+.hero.v-rainy-neon{
+  position:relative;
+  height:calc(100svh - var(--header-h));
+  min-height:480px;
+  display:block;
+  overflow:hidden;
+  background:var(--dark);
+  isolation:isolate;
+}
+
+/* ---- full-bleed blurred echo of the same frame (never crop the photo) ---- */
+.hero.v-rainy-neon .rn-echo{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 42%;
+  transform:scale(1.24);
+  filter:blur(42px) saturate(1.25) brightness(.34);
+  z-index:0;
+  animation:rn-lift 3s cubic-bezier(.22,.85,.3,1) forwards;
+}
+
+/* ---- the real photo, whole, centred ---- */
+.hero.v-rainy-neon .rn-frame{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  aspect-ratio:828 / 466;
+  width:min(100%, calc((100svh - var(--header-h)) * 1.777));
+  max-height:100%;
+  z-index:1;
+}
+.hero.v-rainy-neon .rn-shot{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 50%;
+  filter:brightness(.5) saturate(.62) contrast(1.02);
+  animation:rn-lift 3s cubic-bezier(.22,.85,.3,1) forwards;
+}
+
+/* the tubes hunting — a soft dark patch over the real sign box, flickering off */
+.hero.v-rainy-neon .rn-dim{
+  position:absolute;
+  left:20.3%;top:13.3%;width:70.1%;height:45.1%;
+  background:rgba(7,4,4,.9);
+  filter:blur(16px);
+  z-index:2;
+  animation:rn-hunt 2.8s steps(1,end) forwards;
+}
+
+/* the strike — the same sign box, brightened, screened back in */
+.hero.v-rainy-neon .rn-strike{
+  position:absolute;
+  left:20.3%;top:13.3%;width:70.1%;height:45.1%;
+  mix-blend-mode:screen;
+  opacity:0;
+  z-index:3;
+  filter:drop-shadow(0 0 26px rgba(231,32,32,.55));
+  animation:rn-strike-in 2.8s steps(1,end) forwards, rn-breathe 7.5s 2.8s ease-in-out infinite;
+}
+
+/* the real snowflake light hanging under the sign */
+.hero.v-rainy-neon .rn-flake{
+  position:absolute;
+  left:37.4%;top:67.6%;width:19%;aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(214,236,255,.5) 0%, rgba(170,214,255,.22) 38%, rgba(120,180,255,0) 70%);
+  mix-blend-mode:screen;
+  opacity:0;
+  z-index:3;
+  animation:rn-flake-on 1.4s 1.9s ease-out forwards, rn-breathe 6s 3.3s ease-in-out infinite;
+}
+
+/* ---- rain ---- */
+.hero.v-rainy-neon .rn-rain{
+  position:absolute;left:-30%;top:-30%;width:160%;height:160%;
+  transform:rotate(9deg);
+  z-index:4;pointer-events:none;
+  opacity:0;
+  animation:rn-rain-on 2.2s .3s ease-out forwards;
+}
+.hero.v-rainy-neon .rn-rain span{
+  position:absolute;inset:0;display:block;
+  background-image:repeating-linear-gradient(90deg,
+    rgba(255,232,224,.34) 0 1.5px, rgba(255,255,255,0) 1.5px 30px);
+  -webkit-mask-image:repeating-linear-gradient(180deg, #000 0 24px, rgba(0,0,0,0) 24px 120px);
+          mask-image:repeating-linear-gradient(180deg, #000 0 24px, rgba(0,0,0,0) 24px 120px);
+}
+.hero.v-rainy-neon .rn-r1{ animation:rn-fall .62s linear infinite; }
+.hero.v-rainy-neon .rn-r2{
+  opacity:.5;filter:blur(1.6px);
+  background-position:14px 0;
+  animation:rn-fall 1.05s linear infinite;
+}
+
+/* ---- vignette + bottom scrim so the buttons stay legible ---- */
+.hero.v-rainy-neon .rn-vig{
+  position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:
+    radial-gradient(120% 85% at 50% 38%, rgba(0,0,0,0) 42%, rgba(4,2,2,.62) 100%),
+    linear-gradient(to bottom, rgba(4,2,2,.5) 0%, rgba(4,2,2,0) 22%, rgba(4,2,2,0) 58%, rgba(4,2,2,.86) 100%);
+}
+
+/* ---- the headline block: sr-only h1 + the two existing buttons ---- */
+.hero.v-rainy-neon .hero-inner{
+  position:absolute;left:0;right:0;bottom:0;z-index:6;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(30px,6vh,58px);
+  text-align:center;
+}
+.hero.v-rainy-neon .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;transform:translateY(14px);
+  animation:rn-rise .8s 2.2s cubic-bezier(.22,.85,.3,1) forwards;
+}
+
+@media (max-width:640px){
+  .hero.v-rainy-neon .hero-actions{gap:10px;width:100%}
+  .hero.v-rainy-neon .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+/* ============================================================
+   KEYFRAMES — one deterministic intro, then a quiet breath
+   ============================================================ */
+@keyframes rn-lift{
+  0%  {filter:brightness(.5) saturate(.62) contrast(1.02)}
+  18% {filter:brightness(.58) saturate(.7) contrast(1.02)}
+  46% {filter:brightness(.72) saturate(.9) contrast(1.03)}
+  70% {filter:brightness(1.02) saturate(1.14) contrast(1.04)}
+  100%{filter:brightness(1) saturate(1.12) contrast(1.04)}
+}
+/* the echo is the same lift, just darker — kept via its own filter chain */
+.hero.v-rainy-neon .rn-echo{animation-name:rn-lift-echo}
+@keyframes rn-lift-echo{
+  0%  {filter:blur(42px) saturate(.6) brightness(.14)}
+  46% {filter:blur(42px) saturate(.9) brightness(.22)}
+  100%{filter:blur(42px) saturate(1.25) brightness(.34)}
+}
+
+/* tubes hunting: dark, stutter, stutter, then gone */
+@keyframes rn-hunt{
+  0%,17%  {opacity:1}
+  18%     {opacity:.3}
+  21%     {opacity:1}
+  46%     {opacity:.12}
+  50%     {opacity:.85}
+  55%     {opacity:.06}
+  60%     {opacity:.5}
+  67%,100%{opacity:0}
+}
+@keyframes rn-strike-in{
+  0%,17%  {opacity:0}
+  18%     {opacity:.5}
+  21%     {opacity:0}
+  46%     {opacity:.8}
+  50%     {opacity:.1}
+  55%     {opacity:.9}
+  60%     {opacity:.35}
+  67%,100%{opacity:.9}
+}
+@keyframes rn-breathe{
+  0%,100%{opacity:.9}
+  50%    {opacity:.74}
+}
+@keyframes rn-flake-on{ from{opacity:0} to{opacity:.9} }
+@keyframes rn-rain-on{ from{opacity:0} to{opacity:.75} }
+@keyframes rn-fall{ from{transform:translate3d(0,0,0)} to{transform:translate3d(0,120px,0)} }
+@keyframes rn-rise{ to{opacity:1;transform:none} }
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-rainy-neon .rn-echo{animation:none;filter:blur(42px) saturate(1.25) brightness(.34)}
+  .hero.v-rainy-neon .rn-shot{animation:none;filter:brightness(1) saturate(1.12) contrast(1.04)}
+  .hero.v-rainy-neon .rn-dim{animation:none;opacity:0}
+  .hero.v-rainy-neon .rn-strike{animation:none;opacity:.9}
+  .hero.v-rainy-neon .rn-flake{animation:none;opacity:.9}
+  .hero.v-rainy-neon .rn-rain{animation:none;opacity:.5}
+  .hero.v-rainy-neon .rn-rain span{animation:none}
+  .hero.v-rainy-neon .hero-actions{animation:none;opacity:1;transform:none}
+}
