@@ -434,3 +434,33 @@ b,strong{font-weight:700}
 .story-copy .lede{color:var(--warm)}          /* not color:var(--dark) */
 .site-footer{background:var(--dark)}          /* not var(--ink), which is cream here */
 .btn-cream{background:var(--ink);color:var(--dark)}
+
+/* ============================================================ THE SIGN, THROUGH THE GLOW (hero, 9/7)
+   Blurred red glow of their own neon photo behind; the real sign box wipes
+   in through the front with a warm sweep (the Captain Jack's move), then a
+   tube stutter as it holds. Overrides the earlier hero rules below. */
+.hero-bg .shot{object-fit:cover;object-position:50% 40%;opacity:1;animation:none;
+  filter:blur(18px) saturate(1.25) brightness(.62);transform:scale(1.18)}
+.hero-bg .echo{display:none}
+.hero-bg::before{background:
+  radial-gradient(52% 44% at 50% 46%,color-mix(in srgb,var(--dark) 62%,transparent) 0%,color-mix(in srgb,var(--dark) 30%,transparent) 60%,transparent 100%),
+  linear-gradient(180deg,color-mix(in srgb,var(--dark) 58%,transparent) 0%,transparent 28%,transparent 60%,color-mix(in srgb,var(--dark) 84%,transparent) 100%)}
+.mark-sign{width:min(680px,88vw);overflow:visible}
+.mark-sign img{border-radius:6px;filter:drop-shadow(0 22px 48px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(255,40,30,.45))}
+.mark-sign::before{inset:-22% -12%;background:radial-gradient(closest-side,rgba(255,60,40,.42),transparent 72%)}
+.mark-sign::after{content:"";position:absolute;z-index:2;top:-6%;bottom:-6%;left:0;width:11%;opacity:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,220,200,.95),transparent);filter:blur(7px)}
+.js .mark-sign img{opacity:0;transform:none;clip-path:inset(0 100% 0 0);
+  animation:signWipe 1.05s var(--ease-2) .2s forwards,tubeHold .7s steps(1,end) 1.3s forwards}
+.js .mark-sign::after{animation:markSweep 1.05s var(--ease-2) .2s forwards}
+.js .mark-sign::before{opacity:0;animation:tubeGlow 1.4s var(--ease) 1.1s forwards}
+@keyframes signWipe{0%{clip-path:inset(0 100% 0 0);opacity:0;transform:scale(.96)}10%{opacity:1}100%{clip-path:inset(0 0 0 0);opacity:1;transform:scale(1)}}
+@keyframes markSweep{0%{transform:translateX(-45%);opacity:0}8%{opacity:.95}88%{opacity:.7}100%{transform:translateX(870%);opacity:0}}
+/* the tube catches: two quick dips, then holds */
+@keyframes tubeHold{0%{opacity:1}30%{opacity:.55}45%{opacity:1}62%{opacity:.7}75%{opacity:1}100%{opacity:1}}
+@media (max-aspect-ratio:6/5){
+  .hero{justify-content:center;min-height:calc(100svh - var(--header-h))}
+  .hero-bg .shot{object-fit:cover;object-position:50% 40%;opacity:1;filter:blur(16px) saturate(1.25) brightness(.6)}
+  .hero-inner{padding:clamp(40px,8vh,90px) var(--pad)}
+}
+@media (prefers-reduced-motion:reduce){.js .mark-sign img{animation:none;opacity:1;clip-path:none}.js .mark-sign::after{animation:none}.js .mark-sign::before{animation:none;opacity:.55}}
