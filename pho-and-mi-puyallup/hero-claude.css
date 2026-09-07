@@ -57,8 +57,8 @@
       color-mix(in srgb,var(--bg) 40%,transparent) 0%,
       color-mix(in srgb,var(--bg) 10%,transparent) 24%,
       transparent 52%,
-      color-mix(in srgb,var(--dark) 14%,transparent) 84%,
-      color-mix(in srgb,var(--dark) 40%,transparent) 100%);
+      color-mix(in srgb,var(--dark) 16%,transparent) 82%,
+      color-mix(in srgb,var(--dark) 54%,transparent) 100%);
 }
 /* the same film grain the rest of the page uses — keeps the hero in the
    page's world instead of looking like a separate render */
@@ -190,8 +190,8 @@
         color-mix(in srgb,var(--bg) 44%,transparent) 0%,
         color-mix(in srgb,var(--bg) 10%,transparent) 22%,
         transparent 52%,
-        color-mix(in srgb,var(--dark) 18%,transparent) 84%,
-        color-mix(in srgb,var(--dark) 46%,transparent) 100%);
+        color-mix(in srgb,var(--dark) 20%,transparent) 82%,
+        color-mix(in srgb,var(--dark) 56%,transparent) 100%);
   }
   .hero-inner{align-self:auto;padding:0 var(--pad);gap:clamp(22px,3.6vh,34px)}
   .mark{width:96vw}
