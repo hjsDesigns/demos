@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Batman brief — Sept 7</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0F1418;--card:#171E25;--line:#263038;--ink:#EEF2F5;--mute:#93A0AD;--teal:#3DD6B3;--amber:#F2B544;--red:#F2685C}
+*{box-sizing:border-box}
+body{margin:0 auto;max-width:660px;padding:16px 12px 90px;background:var(--bg);color:var(--ink);font:16px/1.5 'IBM Plex Sans',-apple-system,sans-serif}
+h1{font:400 38px/1 Anton,Impact,sans-serif;margin:6px 0 2px;letter-spacing:.01em}
+.sub{color:var(--mute);font-size:13px;margin:0 0 18px}
+h2{font:600 12px/1 'IBM Plex Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:30px 0 10px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.ask{background:var(--card);border:1px solid var(--amber);border-left:4px solid var(--amber);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.ask b{display:block;font-size:18px;margin-bottom:4px}
+.ask .why{color:var(--mute);font-size:14px;margin:6px 0 0}
+.say{display:inline-block;margin-top:10px;background:#20303a;border:1px solid var(--teal);color:var(--teal);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:6px}
+th{text-align:left;color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;padding:6px 8px 6px 0;border-bottom:1px solid var(--line)}
+td{padding:9px 8px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td a{color:var(--teal);text-decoration:none;font-weight:600}
+.ok{color:var(--teal)}.warn{color:var(--amber)}.bad{color:var(--red)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.card b{font-size:17px}
+.k{color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.06em;display:block;margin-top:2px}
+.note{color:var(--mute);font-size:13px;margin-top:8px}
+.big{font:400 30px/1 Anton,Impact,sans-serif;color:var(--teal)}
+.foot{color:var(--mute);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+</style></head><body>
+
+<h1>Batman — Sept 7</h1>
+<p class="sub">Ran the night of 9/5 into 9/7 (a browser call hung ~30 hrs — see the bottom). One build shipped, five doors opened.</p>
+
+<h2>Two things need your one word</h2>
+
+<div class="ask">
+  <b>Seeder's Steak &amp; Brew — their website is gone</b>
+  seederssteakandbrew.com has no DNS record at all. The domain expired 24 July and is in
+  its redemption window before deletion. Their site is offline right now.
+  I found their real email and wrote the pitch around it.
+  <p class="why">Held because the board says you already <em>walked in</em> on 9/3 — but there's no
+  send log, no client note, nothing backing that. If you never actually met them, this goes out
+  and it's the strongest angle in the pipeline. If you did meet them, I'll rewrite it.</p>
+  <span class="say">Say: "send Seeder's" — or "I met them"</span>
+</div>
+
+<div class="ask">
+  <b>The Coffee Cabin — new build, send is held</b>
+  The Governor stopped it on a closure grep. That grep is wrong: there are
+  <em>two</em> Coffee Cabins in Puyallup. The dead one is on SR-162 (closed 2019).
+  Ours is 10418 Canyon Rd E — live on Google, Yelp, joe.coffee and Facebook, different
+  phone, different owner.
+  <p class="why">Same false-positive class as Cast Iron Queen. Email is written and ready.</p>
+  <span class="say">Say: "send the Coffee Cabin"</span>
+</div>
+
+<h2>Sending at 9:35 without you</h2>
+<p class="sub" style="margin-top:-4px">Three demos that have sat finished for days, blocked only on nobody having an address. Now they have one.</p>
+<table>
+<tr><th>Business</th><th>Door</th><th>Demo</th></tr>
+<tr><td><b>Wings of Grace</b><span class="k">Bonney Lake · home care</span></td><td>their own FAQ block</td><td><a href="https://hjsdesigns.github.io/demos/wings-of-grace-home-care-services/">open</a></td></tr>
+<tr><td><b>The Smokehouse &amp; More</b><span class="k">Black Diamond</span></td><td>only mailto on their listing</td><td><a href="https://hjsdesigns.github.io/demos/the-smokehouse-and-more/">open</a></td></tr>
+<tr><td><b>Pretty Nails</b><span class="k">Bonney Lake</span></td><td>own site footer</td><td><a href="https://hjsdesigns.github.io/demos/pretty-nails-bonney-lake/">open</a></td></tr>
+</table>
+<p class="note">All three: Governor GO, image gate PASS, never contacted before. Your Sunday route didn't
+happen (you were up at 2), so Pretty Nails is still a clean first touch.</p>
+
+<h2>The new build</h2>
+<div class="card">
+  <b>The Coffee Cabin</b><span class="k">Puyallup · $500–1,000 · no website anywhere</span>
+  <p class="note">Their Google listing still says "Add website" <em>and</em> "Claim this business" — the
+  listing isn't even theirs. Built around the cabin itself: real exterior hero, all 7 day rows with a
+  live green/red dot, and their own Buy-10-Get-1 bear punch card as the toy — tap a bear, it stamps.
+  9 real photos, QA clean twice, image gate PASS.</p>
+  <a href="https://hjsdesigns.github.io/demos/the-coffee-cabin-puyallup/">open the site →</a>
+  <p class="note"><b>Ask them:</b> their first name (only an initials email is public), prices (their board
+  is shot at an angle and the columns don't line up — a wrong price is a liability, so it says
+  "ask at the window"), and whether they still pour Dillanos.</p>
+</div>
+
+<h2>One demo you can't send yet</h2>
+<div class="card">
+  <b class="bad">Ron's Auto Care — no photos at all</b>
+  <p class="note">I found their real email on their own site. But the demo ships with
+  <b>zero images</b> — no photos, no backgrounds, just an animated name and text. That breaks
+  the three-photo rule and it fails the image gate. Sending it would show an owner a site with
+  no pictures of his shop.</p>
+  <p class="note">The email is saved and ready. It needs about four minutes of your phone at
+  <b>435 Griffin Ave</b> — the building, the bays, the sign, the RV dump. Then it sends itself.</p>
+</div>
+
+<h2>Two machine problems worth knowing</h2>
+<table>
+<tr><th>What</th><th>Why it matters</th></tr>
+<tr><td><b>The closure check cries wolf</b></td><td>Second false positive in two days (Cast Iron Queen, now Coffee Cabin). It greps for the word "closed" and catches same-name businesses in other towns. It's now blocking real sends. Worth teaching it to match on address + phone, not name.</td></tr>
+<tr><td><b>Every site has a layout jump</b></td><td>The shared template's hero headline shifts when the font loads — measured up to 0.155 on the Coffee Cabin before it was fixed there. It's in the template, so it's in all of them. The fix is known; porting it needs a quiet moment when nothing else is building.</td></tr>
+</table>
+
+<h2>The real bottleneck</h2>
+<div class="card">
+<p style="margin:0 0 8px"><span class="big">26</span> finished demos were sitting on nothing but a missing email address.</p>
+<p class="note">Tonight took five of them off that list. Eighteen more have now been searched properly
+and genuinely have no address anywhere online — those are call-or-walk-in leads, not email leads,
+and no amount of hunting will change that. The honest read: the inventory problem isn't building
+more sites, it's that most of these owners can only be reached in person.</p>
+</div>
+
+<p class="foot">Both browsers died mid-run — Chrome's extension disconnected, and the in-app browser
+hung for about 30 hours on a single call, which is why this is landing Monday morning instead of
+Saturday. The door hunt fell back to plain web fetching. One address (410 Rentals) was found and then
+thrown out: it was buried in a commented-out line of their old site and was never actually live.</p>
+
+</body></html>
