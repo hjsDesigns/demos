@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tacos los Queretaros — taquería trailer in Edgewood, WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Taquería Los Queretaros — a blue taco trailer at 3420 Meridian Ave E in Edgewood, Washington. Birria, mulitas, asada fries, tortas and plates, ten meats to choose from. Order at the window, eat under the tent. Open every day, 10 AM to 10 PM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Alfa Slab One (display, one weight only) + Barlow (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     The mark is THEIR mark — cropped straight off the menu board fixed to
+     the trailer window (harvest g35), never redrawn. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Tacos los Queretaros — home">
+      <img src="images/logo.png" alt="" width="680" height="428">
+      <span class="wm">Los Queretaros<small>Edgewood, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hours">Hours</a>
+        <a href="#menu">The board</a>
+        <a href="#signature">What to get</a>
+        <a href="#gallery">The tent</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       Their lot on a clear afternoon: a plate of tacos held up in front of
+       the blue trailer and the tent. Exterior-hero default — the building is
+       in frame, the interiors of the operation live below. Nothing sits on
+       the photo but the headline block: no eyebrow, no chips, no badges. -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"><img src="images/hero.jpg" alt="A paper plate of tacos with lime, radish and a roasted jalapeño held up in front of the blue Tacos los Queretaros trailer and its white tent" fetchpriority="high" width="1730" height="2550"></div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <h1>Birria, mulitas and asada fries, <em>off the blue trailer</em>.</h1>
+      <p class="hero-sub"><span class="sub-long">Order at the window. Eat under the tent, at a red-check table on the grass.</span><span class="sub-short">Order at the window. Eat outside.</span></p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">See the whole board</a>
+        <a href="#hours" class="btn btn-cream">Are they open?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock, the address, and all seven days with today lit.
+       Hours live HERE and nowhere else on the page. Green when open, red
+       when closed — never the brand blue. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Seven days, <em>ten to ten</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          3420 Meridian Ave E, Edgewood, WA 98371<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=3420+Meridian+Ave+E%2C+Edgewood%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">10:00 AM – 10:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">10:00 AM – 10:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">10:00 AM – 10:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">10:00 AM – 10:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:00 AM – 10:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">10:00 AM – 10:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">10:00 AM – 10:00 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — THE FOOD =====================
+       Every line below is transcribed from the board bolted to the trailer
+       window and the green marker sign taped beside it (harvest g11, g4, g35).
+       Nothing here is invented; anything that couldn't be read off the board
+       is left off the page and listed in HANDOFF-CODEX.md instead. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="board">
+        <div class="board-copy reveal">
+          <p class="eyebrow">Straight off the board</p>
+          <h2>The pizza birria, <em>and everything under it</em></h2>
+          <p class="lede">Their own banner puts seven things in pictures: Taquitos, Queso Birrias, Pizza Birria, Mulitas, Sopes, Torta, Burrito. The Pizza Birria is the one people drive for — a quesabirria the size of a pizza, scored into eight and sent out with consommé to dip.</p>
+          <p>The rest is a numbered board, 2 through 35, with the prices written on in marker and a green sign taped up beside it for the tacos, the drinks and the desserts. Every one of those numbers is below.</p>
+        </div>
+        <figure class="print reveal">
+          <img src="images/menu-board.jpg" alt="The blue menu board in the trailer's service window, numbered 2 to 35, with prices handwritten on white tape" loading="lazy" width="1640" height="1655">
+          <figcaption>The board, in the window</figcaption>
+        </figure>
+      </div>
+
+      <div class="menu-groups reveal">
+        <div class="menu-group">
+          <h3>Tacos, burritos &amp; handhelds</h3>
+          <ul class="menu-list">
+            <li><span class="no">2</span><span class="name">Tacos</span><span class="price">$2.90</span></li>
+            <li><span class="no">3</span><span class="name">Quesatacos</span><span class="price">$4.99</span></li>
+            <li><span class="no">4</span><span class="name">California Burrito</span><span class="price">$13.99</span></li>
+            <li><span class="no">5</span><span class="name">Super Burrito</span><span class="price">$13.99</span></li>
+            <li><span class="no">6</span><span class="name">Super Wet Burrito</span><span class="price">$15.99</span></li>
+            <li><span class="no">7</span><span class="name">Nachos</span><span class="price">$13.99</span></li>
+            <li><span class="no">8</span><span class="name">Nachos No Meat</span><span class="price">$9.99</span></li>
+            <li><span class="no">9</span><span class="name">Asada Fries</span><span class="price">$13.99</span></li>
+            <li><span class="no">10</span><span class="name">Torta</span><span class="price">$12.99</span></li>
+            <li><span class="no">11</span><span class="name">Sopes</span><span class="price">$4.99</span></li>
+            <li class="star-item"><span class="no">12</span><span class="name">Mulitas</span><span class="price">$4.99</span></li>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3>Quesabirria, plates &amp; tamales</h3>
+          <ul class="menu-list">
+            <li class="star-item"><span class="no">13</span><span class="name">Mega Quesabirria</span><span class="price">$15.99</span></li>
+            <li><span class="no">14</span><span class="name">Super Quesadilla</span><span class="price">$12.99</span></li>
+            <li><span class="no">15</span><span class="name">Enchiladas</span><span class="price">$14.99</span></li>
+            <li><span class="no">16</span><span class="name">Tamal Plate</span><span class="price">$14.99</span></li>
+            <li><span class="no">17</span><span class="name">Tamal</span><span class="price">$4.25</span></li>
+            <li><span class="no">18</span><span class="name">Carne Asada</span><span class="price">$21.99</span></li>
+            <li><span class="no">19</span><span class="name">Pollo Asado</span><span class="price">$18.99</span></li>
+            <li><span class="no">20</span><span class="name">Carnitas Plate</span><span class="price">$18.99</span></li>
+            <li><span class="no">21</span><span class="name">Birria Plate</span><span class="price">$18.99</span></li>
+            <li><span class="no">+</span><span class="name">Taco Plate, Rice &amp; Beans</span><span class="price">$12.99</span></li>
+            <li><span class="no">+</span><span class="name">Veggie Burrito</span><span class="price">$14.99</span></li>
+          </ul>
+          <p class="menu-fine">The last two are written on the board in marker, under the printed list.</p>
+        </div>
+      </div>
+
+      <div class="menu-groups reveal" style="margin-top:clamp(28px,4vw,48px)">
+        <div class="menu-group">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-sides">
+            <h3>Side order</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-sides"><div>
+          <ul class="menu-list">
+            <li><span class="no">28</span><span class="name">Sour Cream</span><span class="price">$2.50</span></li>
+            <li><span class="no">29</span><span class="name">Guacamole</span><span class="price">$3.50</span></li>
+            <li><span class="no">30</span><span class="name">Pico De Gallo</span><span class="price">$2.50</span></li>
+            <li><span class="no">31</span><span class="name">Cheese</span><span class="price">$1.50</span></li>
+            <li><span class="no">32</span><span class="name">Fried Jalapeño And Onions</span><span class="price">$3.00</span></li>
+            <li><span class="no">33</span><span class="name">Rice</span><span class="price">$3.99</span></li>
+            <li><span class="no">34</span><span class="name">Beans</span><span class="price">$3.99</span></li>
+            <li><span class="no">35</span><span class="name">Rice And Beans</span><span class="price">$5.00</span></li>
+          </ul>
+          </div></div>
+        </div>
+        <div class="menu-group">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-green">
+            <h3>The green sign, in marker</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-green"><div>
+          <ul class="menu-list">
+            <li><span class="no">·</span><span class="name">Tripa y lengua tacos</span><span class="price">$3.50</span><span class="desc">Each.</span></li>
+            <li><span class="no">·</span><span class="name">Aguas frescas</span><span class="price">$4.75</span></li>
+            <li><span class="no">·</span><span class="name">Coca Mexicana</span><span class="price">$5.50</span></li>
+            <li><span class="no">·</span><span class="name">Jarritos</span><span class="price">$3.50</span></li>
+            <li><span class="no">·</span><span class="name">Chips and salsa</span><span class="price">$3.50</span></li>
+            <li><span class="no">·</span><span class="name">Flan</span><span class="price">$5.99</span></li>
+            <li><span class="no">·</span><span class="name">Churros</span><span class="price">$5.99</span></li>
+          </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="menu-groups reveal" style="margin-top:clamp(28px,4vw,48px)">
+        <div class="menu-group">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-meat">
+            <h3>Meat options — any of them, on any of it</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-meat"><div>
+          <ul class="meat-grid">
+            <li><b>Asada</b> <span>Steak</span></li>
+            <li><b>Lengua</b> <span>Tongue</span></li>
+            <li><b>Adobada</b> <span>Marinated pork</span></li>
+            <li><b>Suadero</b> <span>Brisket</span></li>
+            <li><b>Pollo</b> <span>Chicken</span></li>
+            <li><b>Tripa</b> <span>Tripe</span></li>
+            <li><b>Chorizo</b> <span>Mexican sausage</span></li>
+            <li><b>Buche</b> <span>Maw</span></li>
+            <li><b>Carnitas</b> <span>Braised pork</span></li>
+            <li><b>Cabeza</b> <span>Cheek meat</span></li>
+          </ul>
+          </div></div>
+        </div>
+        <div class="menu-group">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-kids">
+            <h3>Kids menu</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-kids"><div>
+          <ul class="plain-list">
+            <li>Kids Burrito</li>
+            <li>Kids Quesadilla</li>
+            <li>Kids Enchilada</li>
+            <li>Tamal, 1 pc</li>
+            <li>Side of Fries</li>
+            <li>Chicken Nuggets with Fries</li>
+          </ul>
+          <p class="menu-fine">The quesadilla, the enchilada and the tamal come with rice and beans, or fries.</p>
+          </div></div>
+        </div>
+      </div>
+
+      <aside class="notice reveal">
+        <span class="tag">Taped to the window</span>
+        <p><b>“Customer notice: items have both a cash &amp; a non-cash price. Pay with cash &amp; save!”</b> The prices above are the ones written on the board.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — WHAT ARE YOU HUNGRY FOR =====================
+       Four real plates off their own board. One tap on a photo and the answer
+       lands above it — the name and the board price, nothing else to read.
+       Tap it again and it clears. On phones the answer sits ABOVE the photos
+       so the thing that changes is never off-screen. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pick a picture</p>
+        <h2>What are you <em>hungry for?</em></h2>
+        <p>Four of the things they hand out of that window most. Tap one.</p>
+      </div>
+
+      <div class="hungry reveal" id="hungry">
+        <div class="hungry-out" aria-live="polite">
+          <p class="idle">Tap a plate<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></p>
+          <p class="pick-name" id="pickName">&nbsp;</p>
+          <p class="pick-price tnum" id="pickPrice">&nbsp;</p>
+        </div>
+        <div class="hungry-plates">
+          <button class="pick" type="button" aria-pressed="false" data-name="Mega Quesabirria" data-price="$15.99">
+            <img src="images/dish-birria.jpg" alt="A quesabirria the size of a pizza, cut into eight wedges in an open box with cups of consommé and radish" loading="lazy" width="1000" height="1000">
+            <span class="lbl">Mega Quesabirria</span>
+          </button>
+          <button class="pick" type="button" aria-pressed="false" data-name="Mulitas" data-price="$4.99">
+            <img src="images/dish-mulitas.jpg" alt="A stack of griddled mulitas on red-check paper with a cup of salsa" loading="lazy" width="1000" height="1000">
+            <span class="lbl">Mulitas</span>
+          </button>
+          <button class="pick" type="button" aria-pressed="false" data-name="Asada Fries" data-price="$13.99">
+            <img src="images/dish-fries.jpg" alt="Asada fries under crema, pico de gallo and chopped steak on checkered paper" loading="lazy" width="1000" height="1000">
+            <span class="lbl">Asada Fries</span>
+          </button>
+          <button class="pick" type="button" aria-pressed="false" data-name="Tacos" data-price="$2.90">
+            <img src="images/dish-tacos.jpg" alt="A plate of street tacos with onion, cilantro, sliced radish and lime" loading="lazy" width="1000" height="1000">
+            <span class="lbl">Tacos</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery — THE TENT ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Before you pull in</p>
+        <h2>A trailer, a tent, <em>and a lawn</em></h2>
+        <p>No dining room. A covered tent of picnic tables on the grass, string lights overhead, and salsa already on the table.</p>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/trailer.jpg" alt="The Tacos los Queretaros banner on the side of the trailer, showing photos of taquitos, queso birrias, pizza birria, mulitas, sopes, torta and burrito" loading="lazy" width="1800" height="1641"><figcaption>The banner on the trailer</figcaption></figure>
+        <figure class="print reveal"><img src="images/tent-1.jpg" alt="Looking out from under the white tent past red-check tables to the blue trailer's service window" loading="lazy" width="1180" height="1200"><figcaption>Under the tent</figcaption></figure>
+        <figure class="print reveal"><img src="images/tent-2.jpg" alt="Wooden picnic tables on the grass beside Meridian Avenue East with the taquería feather flag up" loading="lazy" width="1600" height="1205"><figcaption>The lawn, off Meridian</figcaption></figure>
+        <figure class="print reveal"><img src="images/tent-3.jpg" alt="A red-check picnic table with a stone molcajete of salsa, a plate of tacos and lime wedges" loading="lazy" width="1400" height="1867"><figcaption>Salsa on the table</figcaption></figure>
+        <figure class="print reveal"><img src="images/tent-4.jpg" alt="A large party tray of tacos ringed with cups of consommé on a red-check tablecloth" loading="lazy" width="1400" height="1867"><figcaption>A tray for the whole table</figcaption></figure>
+        <figure class="print reveal"><img src="images/counter.jpg" alt="A row of quesabirria pizzas boxed and lined up on the counter inside the trailer window" loading="lazy" width="900" height="1600"><figcaption>Boxed at the window</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       The honest aggregate only. No review text is printed because none could
+       be pulled with a reviewer's name attached — the factory never writes one. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What people rate it</p>
+        <h2>Five stars, <em>eighty-five percent</em> of the time</h2>
+      </div>
+      <div class="score reveal">
+        <div class="score-big">
+          <b class="tnum">4.8</b>
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <small>30 Google reviews</small>
+        </div>
+        <ul class="subscores">
+          <li><span>Food</span><span class="bar"><i style="--w:94%"></i></span><span class="val">4.7</span></li>
+          <li><span>Service</span><span class="bar"><i style="--w:96%"></i></span><span class="val">4.8</span></li>
+          <li><span>Atmosphere</span><span class="bar"><i style="--w:92%"></i></span><span class="val">4.6</span></li>
+        </ul>
+      </div>
+      <p class="score-note reveal">Google rating as listed on their profile. The three breakdowns and the five-star share are from Restaurantji, across 21 ratings.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting there</p>
+          <h2>Pull in, <em>walk up, order</em></h2>
+          <ol class="steps">
+            <li><h3>Turn off Meridian</h3><p>The trailer sits back on the grass with the tent beside it. Park on the lot and walk up — there's no dining room and no waiting list.</p></li>
+            <li><h3>Order at the window</h3><p>The board is right there on the trailer. Give them the number, then pick your meat.</p></li>
+            <li><h3>Eat under the tent</h3><p>Red-check tables, string lights, salsa already out. Or take it with you — everything boxes.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12063089792">(206) 308-9792</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=3420+Meridian+Ave+E%2C+Edgewood%2C+WA+98371" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A party tray or a big order</option><option>Catering an event</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many people, what day, and which meats."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the trailer</button>
+          <p class="form-success">Thanks — someone at the trailer will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more thing</p>
+        <h2>It's a bigger board <em>than it looks</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count tnum" data-to="34">34</span></b><span>numbered items on the board, 2 through 35</span></div>
+        <div class="num"><b><span class="count tnum" data-to="10">10</span></b><span>meats you can build any of them with</span></div>
+        <div class="num"><b><span class="count tnum" data-to="7">7</span></b><span>dishes they put on the banner themselves</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12063089792" class="btn btn-primary">Call the trailer</a>
+        <a href="#contact" class="btn btn-ghost">Get directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt=""></span>
+          <span class="wm">Taquería Los Queretaros<small>Edgewood, Washington</small></span>
+        </div>
+        <p>Consommé on the side, and a whole tent to sit in.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>3420 Meridian Ave E<br>Edgewood, WA 98371</p>
+        <p><a href="tel:+12063089792">(206) 308-9792</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#signature">What to get</a><br><a href="#gallery">The tent</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Tacos los Queretaros</span>
+      <span>Taquería · Edgewood, WA</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
