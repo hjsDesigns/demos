@@ -26,22 +26,31 @@
 :root{
   /* ---- palette — ECHO RIVER RANCH, sampled from the ranch's own photos ----
      Their world is fir timber, sword fern, wet trail dirt and tack leather.
-     Every hex below names the photo it came out of. */
-  --brand:#3F5E3A;          /* fir green — the conifer wall in hero-stack-1 / season-summer */
-  --brand-text:#2E4629;     /* same hue darkened for small type on cream (AA) */
-  --brand-bright:#4E7346;   /* hover state of --brand */
-  --accent:#A2703F;         /* saddle leather — bridles and stirrup leathers, hero-stack-3 / gallery-5 */
-  --accent-soft:#C69062;    /* lighter leather for dark grounds */
-  --ink:#1F2620;            /* forest shadow — the darkest timber in season-fall */
-  --bg:#F2EBDB;             /* TRUE CREAM ground — the dry river-bar gravel in gallery-1 */
-  --bg-2:#E8DFC9;           /* deeper cream, alternating bands */
-  --paper:#F8F2E5;          /* cards — a hair lighter than --bg, never white */
-  --muted:#62675C;          /* secondary text */
-  --line:#DCD2BC;           /* hairlines, borders */
-  --dark:#232E1E;           /* dark panels — deep shade under the timber */
-  --dark-2:#2F3D28;         /* dark hover */
-  --warm:#D6A868;           /* sunlit fern / trail dust in hero-stack-2 */
-  --tint:#DEE7D6;           /* pale fern wash — the hours band */
+     Every hex below names the photo it came out of.
+
+     GROUND (2026-09-06 atmosphere pass): the page now ALTERNATES —
+     forest-shadow dark for the hero, the hours band, the season gadget, the
+     photo wall and the closing band; warm river-bar cream for every reading
+     section. MIRROR LAW: her trails run under a closed fir canopy where the
+     light is green and low, and the river bar is the one bright place. */
+  --brand:#3F5E3A;          /* fir green — the conifer wall in hero-clearing / season-summer */
+  --brand-text:#2C4527;     /* same hue darkened for small type on cream (AA) */
+  --brand-bright:#517A48;   /* hover state of --brand */
+  --accent:#A2703F;         /* saddle leather — bridles and stirrup leathers, gallery-1 / ready */
+  --accent-soft:#CE9A63;    /* lighter leather for dark grounds */
+  --ink:#1F2620;            /* forest shadow — the darkest timber in season-grey */
+  --bg:#F4EBD8;             /* WARM CREAM ground — the dry river bar in hero-river */
+  --bg-2:#EADFC6;           /* deeper cream, alternating reading bands */
+  --paper:#FBF5E7;          /* cards — a hair lighter than --bg, never white */
+  --muted:#5F6559;          /* secondary text on cream */
+  --line:#DDD1B7;           /* hairlines, borders on cream */
+  --dark:#141A14;           /* deepest shade — footer, hero scrim */
+  --dark-2:#1F2620;         /* THE FOREST BAND ground — hours, gadget, photo wall, CTA */
+  --dark-3:#2A332A;         /* panels sitting on the forest ground */
+  --dark-line:#3B463A;      /* hairlines on the forest ground */
+  --dark-muted:#A9B3A3;     /* secondary text on the forest ground */
+  --warm:#E0B173;           /* low sun through the timber — hero-ferns, season-spring */
+  --tint:#E0E8D7;           /* pale fern wash — chips and icons on cream */
   --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
   --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
 
@@ -166,7 +175,7 @@ p{margin:0 0 1em}
 .hero-spacer{flex:1 1 auto}
 .hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
 .hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
-.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1{font-size:clamp(40px,min(6.4vw,10vh),76px);color:var(--bg);max-width:12ch;margin:0 0 18px;text-shadow:0 3px 34px rgba(0,0,0,.55)}
 .hero h1 em{font-style:normal}
 .hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
@@ -177,12 +186,12 @@ p{margin:0 0 1em}
 .sub-short{display:none}
 @media (max-width:520px){
   .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
-  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero h1{font-size:clamp(38px,11.4vw,46px)}
   .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
 }
 
 /* ============================================================ HOURS / STATUS BAND */
-.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band{background:var(--dark-2);color:var(--bg);border-bottom:0}
 .status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
 .status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
 .live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
@@ -211,11 +220,11 @@ p{margin:0 0 1em}
 /* ============================================================ SECTION SHELL */
 .section{padding:clamp(56px,8vw,112px) 0}
 .section-alt{background:var(--bg-2)}
-.section-dark{background:var(--dark);color:#fff}
+.section-dark{background:var(--dark-2);color:var(--bg)}
 .section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
-.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head h2{font-size:clamp(33px,4.8vw,58px);margin:0 0 14px}
 .section-head p{font-size:18px;color:var(--muted);margin:0}
-.section-dark .section-head p{color:rgba(255,255,255,.78)}
+.section-dark .section-head p{color:var(--dark-muted)}
 /* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
 .reveal{opacity:1;transform:none}
 .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -326,7 +335,7 @@ p{margin:0 0 1em}
 @media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
 
 /* ============================================================ FOOTER */
-.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.site-footer{background:var(--dark);color:var(--dark-muted);padding:clamp(40px,6vw,64px) 0 28px}
 .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
 .foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
@@ -344,39 +353,110 @@ p{margin:0 0 1em}
 /* ============================================================
    ECHO RIVER RANCH — site-specific block
    Tokens only. Nothing below sets a raw brand hex.
+
+   ATMOSPHERE PASS 2026-09-06. The page alternates grounds:
+     hero            FOREST (photo)
+     #hours          FOREST      .status-band
+     #services       cream       .section
+     #signature      FOREST      .section-dark
+     #reviews        cream       .section
+     #gallery        FOREST      .section-dark
+     #about          cream       .section
+     #contact        cream-2     .section-alt
+     #cta            FOREST      .section-dark
+     footer          deepest     --dark
+   Every rule that has to survive on BOTH grounds is written twice below,
+   under "ON THE FOREST GROUND".
    ============================================================ */
 
 /* Young Serif ships one weight (400). Everything that asks the display face
    for 800 would otherwise get a synthesised faux-bold. */
 h1,h2,h3,h4,.logo .wm,.foot .wm,.face .ini,.steps li::before,.num b,.quote-card .ini{font-weight:400}
 .logo .wm{letter-spacing:-.01em}
-.hero h1{max-width:14ch;letter-spacing:-.01em}
+.hero h1{max-width:13ch;letter-spacing:-.012em}
 
-/* ---------- HERO STACK (README pattern) ----------
-   Desktop: only the first photo shows, full-bleed cover.
-   Phones: all three scroll at their own aspect ratio — no crop, no gaps. */
+/* ---------- HERO ----------
+   Desktop: hero-river full-bleed — a rider on the gravel bar with the
+   river behind, seen from behind, no face. It is the product and it is
+   the ranch's own name.
+   Phones: the README HERO STACK — the same river frame, then two portrait
+   trail frames at their natural aspect (contain, height:auto, no crop). */
 .hero-stack-track{display:contents}
 .hero-stack img{display:none}
 .hero-stack img:first-child{display:block}
+.hero-bg img{object-position:50% 72%}
 @media (max-width:760px){
   .hero-stack{overflow:hidden;background:var(--dark)}
-  .hero-stack-track{display:block;position:relative;animation:heroReel 54s linear infinite}
+  .hero-stack-track{display:block;position:relative;animation:heroReel 45s linear infinite}
   .hero-stack img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;
     animation:none;transform:none;will-change:transform}
 }
 @keyframes heroReel{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 @media (max-width:760px) and (prefers-reduced-motion:reduce){.hero-stack-track{animation:none}}
-.hero-bg img{object-position:50% 52%}
+.hero-sub{max-width:44ch}
+@media (max-width:520px){.hero-sub{white-space:normal;text-wrap:balance;max-width:34ch;margin-bottom:24px}.hero-actions .btn{min-width:0}}
 
-/* ---------- HOURS BAND: the reservation note ---------- */
-.status-note{margin:14px 0 0;padding-left:22px;font-size:14.5px;color:var(--muted);line-height:1.6;max-width:46ch}
+/* ============================================================
+   ON THE FOREST GROUND — the dark bands
+   ============================================================ */
+.status-band .wrap{align-items:center}
+.status-band h2,.status-band .day{color:var(--bg)}
+.status-band h2 em{color:var(--warm)}
+.status-band .eyebrow{color:var(--warm)}
+.status-addr,.status-note{color:var(--dark-muted);padding-left:0}
+.status-addr a{color:var(--warm);border-bottom-color:color-mix(in srgb,var(--warm) 45%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--warm)}
+.reservation-line{font-size:17.5px;font-weight:700;color:var(--warm);margin:0 0 14px}
 
-/* ---------- THE RANCH SHOT (storefront above the offerings) ---------- */
-.ranch-shot{margin:0 auto clamp(30px,4vw,54px);max-width:820px;transform:rotate(-.7deg)}
+/* the hours card, on the forest ground */
+.status-band .hours-list{background:var(--dark-3);border:1px solid var(--dark-line);
+  box-shadow:0 34px 70px -40px rgba(0,0,0,.85)}
+.status-band .hours-list li{border-bottom:1px solid var(--dark-line)}
+.status-band .hours-list li:last-child{border-bottom:0}
+.status-band .hours-list .time{color:var(--dark-muted)}
+.status-band .hours-list li.today{background:color-mix(in srgb,var(--warm) 14%,transparent)}
+.status-band .hours-list li.today .day::after{color:var(--warm)}
+.status-band .hours-list li.today .time{color:var(--bg)}
+.status-band .hours-list li.note .day{color:var(--warm);font-size:14px}
+.status-band .hours-list li.note .time{color:var(--dark-muted)}
+
+/* prints and type inside any forest section */
+.section-dark h2,.section-dark h3{color:var(--bg)}
+.section-dark p{color:var(--dark-muted)}
+.section-dark .print{background:var(--dark-3);border:1px solid var(--dark-line);
+  box-shadow:0 44px 80px -40px rgba(0,0,0,.9)}
+.section-dark .print figcaption,.status-band .print figcaption{color:var(--dark-muted)}
+.status-band .print{background:var(--dark-3);border:1px solid var(--dark-line);
+  box-shadow:0 34px 70px -40px rgba(0,0,0,.85)}
+
+/* ---------- FRAMED PRINTS (both grounds) ---------- */
+.print{background:var(--paper);padding:13px 13px 30px;border:var(--rule);
+  box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--body);font-size:13px;line-height:1.45;letter-spacing:.03em;
+  color:var(--muted);margin-top:13px;text-align:center;text-transform:none}
+.print:hover{transform:rotate(0) scale(1.015)}
+/* masonry columns, not a grid — the frames are mixed portrait/landscape and
+   a fixed grid leaves gap-toothed cells under every landscape one. */
+.prints{display:block;column-count:3;column-gap:clamp(18px,3vw,34px)}
+.prints .print{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 clamp(18px,3vw,34px)}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{column-count:2}}
+@media (max-width:560px){.prints{column-count:1}.prints .print{transform:none}}
+
+/* the "ready when you arrive" print inside the hours band */
+.ready-shot{margin:26px 0 0;transform:rotate(-.8deg)}
+.ready-shot:hover{transform:rotate(0) scale(1.01)}
+
+/* ---------- THE RANCH SHOT (storefront, above the offerings) ---------- */
+.ranch-shot{margin:0 auto clamp(30px,4vw,54px);max-width:780px;transform:rotate(-.7deg)}
 .ranch-shot:hover{transform:rotate(0) scale(1.01)}
 
 /* ---------- OWNER QUOTE in a section head ---------- */
-.section-head .quote{font-family:var(--display);font-size:clamp(18px,2.1vw,23px);line-height:1.4;color:var(--ink);
+.section-head .quote{font-family:var(--display);font-size:clamp(18px,2.1vw,24px);line-height:1.4;color:var(--ink);
   border-left:3px solid var(--accent);padding-left:18px;margin:0}
 .section-head .quote cite{display:block;font-family:var(--body);font-style:normal;font-size:13px;font-weight:700;
   letter-spacing:.02em;color:var(--muted);margin-top:10px}
@@ -389,14 +469,16 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.face .ini,.steps li::before,.num b,.quote-card 
   padding:20px clamp(16px,2.4vw,26px);min-height:64px;text-align:left;color:var(--ink);font-family:var(--body);
   transition:background .2s var(--ease)}
 .ride-head:hover{background:color-mix(in srgb,var(--tint) 55%,transparent)}
-.ride-name{font-family:var(--display);font-size:clamp(19px,2.2vw,25px);line-height:1.15;flex:1 1 auto;letter-spacing:-.01em}
-.ride-price{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--brand-text);white-space:nowrap;flex:none}
+.ride-name{font-family:var(--display);font-size:clamp(20px,2.3vw,26px);line-height:1.15;flex:1 1 auto;letter-spacing:-.01em}
+.ride-price{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--brand-text);white-space:nowrap;flex:none;
+  font-variant-numeric:tabular-nums}
 .ride-price i{font-style:normal;color:var(--muted);font-size:12px}
-.chev{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);
-  transition:transform .35s var(--ease),background .2s}
+.chev{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--brand-text);
+  transition:transform .35s var(--ease),background .2s,color .2s}
 .chev svg{width:19px;height:19px}
 .ride-head[aria-expanded="true"]{background:color-mix(in srgb,var(--tint) 70%,transparent)}
 .ride-head[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--accent);color:var(--paper)}
+.ride-head:focus-visible{outline-offset:-5px}
 .ride-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows .4s var(--ease)}
 .ride-body>div{overflow:hidden}
 .js .ride-body{grid-template-rows:0fr}
@@ -404,38 +486,40 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.face .ini,.steps li::before,.num b,.quote-card 
 .ride-body p{margin:0;padding:0 clamp(16px,2.4vw,26px) 22px;font-size:16px;color:var(--muted);max-width:70ch}
 @media (prefers-reduced-motion:reduce){.ride-body,.chev{transition:none}}
 @media (max-width:520px){
-  .ride-head{flex-wrap:wrap;gap:8px 12px;padding:16px}
-  .ride-name{flex:1 1 100%;order:1}
-  .ride-price{order:2}
-  .chev{order:3;margin-left:auto}
+  .ride-head{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:6px 12px;padding:16px}
+  .ride-name{grid-column:1;grid-row:1}
+  .ride-price{grid-column:1;grid-row:2}
+  .chev{grid-column:2;grid-row:1/3;margin:0;align-self:center}
   .ride-body p{padding:0 16px 18px;font-size:15.5px}
 }
 
-/* ---------- SIGNATURE: rain-or-shine season switcher ---------- */
+/* ---------- SIGNATURE: rain-or-shine switcher, on the forest ground ---------- */
 .seasons{max-width:900px;margin:0 auto}
-.season-stage{margin:0 0 18px;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:14px 14px 16px;
-  box-shadow:0 44px 80px -50px color-mix(in srgb,var(--dark) 60%,transparent)}
-.season-stage{max-width:620px;margin-left:auto;margin-right:auto}
-.season-stage img{width:100%;height:clamp(300px,58vw,520px);object-fit:contain;object-position:center;display:block;border-radius:calc(var(--r) - 8px);background:var(--bg-2)}
-.season-stage figcaption{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
-  margin-top:13px;text-align:center}
-.season-picks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.season-pick{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:8px 8px 10px;cursor:pointer;
-  font-family:var(--body);font-weight:700;font-size:14px;color:var(--ink);min-height:48px;
+.season-stage{margin:0 auto 18px;max-width:478px;background:var(--dark-3);border:1px solid var(--dark-line);border-radius:var(--r);
+  padding:14px 14px 16px;box-shadow:0 44px 80px -46px rgba(0,0,0,.9)}
+/* every season frame is a 3:4 portrait, so the stage is 3:4 too — the photo
+   fills it exactly at every width: no crop, no letterbox bars, no jump. */
+.season-stage img{width:100%;aspect-ratio:3/4;height:auto;object-fit:contain;object-position:center;display:block;
+  border-radius:calc(var(--r) - 8px);background:var(--dark)}
+.season-stage figcaption{font-family:var(--body);font-size:13.5px;letter-spacing:.03em;color:var(--dark-muted);
+  margin-top:13px;text-align:center;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+.season-picks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:478px;margin:0 auto}
+.season-pick{background:var(--dark-3);border:2px solid var(--dark-line);border-radius:14px;padding:8px 8px 10px;cursor:pointer;
+  font-family:var(--body);font-weight:700;font-size:13.5px;color:var(--bg);min-height:48px;
   transition:transform .25s var(--ease),border-color .2s,box-shadow .2s}
-.season-pick img{width:100%;height:clamp(58px,9vw,92px);object-fit:cover;border-radius:9px;display:block;margin-bottom:8px;background:var(--bg-2)}
+.season-pick img{width:100%;height:clamp(58px,9vw,88px);object-fit:cover;border-radius:9px;display:block;margin-bottom:8px;background:var(--dark)}
 .season-pick span{display:block;text-align:center}
-.season-pick:hover{transform:translateY(-3px)}
-.season-pick.is-on{border-color:var(--accent);box-shadow:0 14px 28px -18px color-mix(in srgb,var(--dark) 70%,transparent)}
-.season-pick.is-on span{color:var(--brand-text)}
+.season-pick:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--warm) 50%,transparent)}
+.season-pick.is-on{border-color:var(--warm);box-shadow:0 0 0 3px color-mix(in srgb,var(--warm) 22%,transparent)}
+.season-pick.is-on span{color:var(--warm)}
 @media (prefers-reduced-motion:reduce){.season-pick{transition:none}}
-@media (max-width:520px){.season-picks{gap:8px}.season-pick{padding:6px 6px 8px;font-size:12.5px}}
+@media (max-width:520px){.season-picks{gap:8px}.season-pick{padding:6px 6px 8px;font-size:12px}}
 
 /* ---------- REVIEWS (initial discs, never a scraped face) ---------- */
 .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.6vw,26px)}
 .quote-card{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 26px 22px;
   display:flex;flex-direction:column;gap:14px}
-.quote-card .stars{color:var(--warm);letter-spacing:.14em;font-size:15px;line-height:1}
+.quote-card .stars{color:var(--accent);letter-spacing:.14em;font-size:15px;line-height:1}
 .quote-card blockquote{margin:0;font-size:17px;line-height:1.55;color:var(--ink);flex:1 1 auto}
 .quote-card figcaption{display:flex;align-items:center;gap:12px;margin-top:auto}
 .quote-card .ini{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none;
@@ -445,36 +529,30 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.face .ini,.steps li::before,.num b,.quote-card 
   text-transform:uppercase;color:var(--muted);margin-top:4px}
 @media (max-width:760px){.quotes{grid-template-columns:1fr}}
 
-/* ---------- WHO YOU'LL MEET chips ---------- */
+/* ---------- ABOUT / the guide ---------- */
+.story .print{transform:rotate(-1.2deg);margin:0;align-self:center}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy .lede{color:var(--brand-text)}
 .face .ini{background:var(--accent);color:var(--paper);font-size:17px}
+@media (max-width:900px){.story .print{transform:none}}
 
-/* ---------- CTA numbers ---------- */
+/* ---------- CTA band ---------- */
 .num b i{color:var(--warm)}
+.cta-band .section-head{margin-bottom:26px}
 
-@media (max-width:520px){.hero-eyebrow{font-size:11px;letter-spacing:.16em}}
-
-/* Codex finish: reading rhythm, keyboard paths, full-photo presentation. */
-.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
+/* ---------- keyboard + reading finishes ---------- */
+.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);
+  padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
 .skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
-.hero :focus-visible,.section-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
-.story .print{margin:0;align-self:center}
+.hero :focus-visible,.section-dark :focus-visible,.status-band :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
 .contact-lines a,.foot a{text-underline-offset:.2em}
 .contact-lines a:hover,.foot a:hover{text-decoration:underline}
 .main-nav a[aria-current]{color:var(--brand-text)}
-@media (max-width:520px){.hero-sub{white-space:normal;text-wrap:balance;max-width:32ch}.hero-actions .btn{min-width:0}}
 @media (max-width:900px){html:not(.js) .site-header{height:auto}html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}html:not(.js) .nav-wrap{width:100%}html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}html:not(.js) .nav-toggle{display:none}}
 
-.reservation-line{font-size:17px;font-weight:700;color:var(--brand-text);margin:0 0 14px}
-.status-addr,.status-note{padding-left:0}
-.prints{align-items:start}
-.prints .print{margin:0;padding-bottom:24px}
-.prints .print figcaption{font-family:var(--body);font-size:13px;line-height:1.45;letter-spacing:.035em;text-transform:none}
-.season-pick img{object-fit:contain}
-.season-stage figcaption{min-height:2.8em;display:flex;align-items:center;justify-content:center}
-.ride-head:focus-visible{outline-offset:-5px}
-.cta-band .section-head{margin-bottom:26px}
-@media (max-width:520px){
- .ride-head{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:6px 12px}
- .ride-name{grid-column:1;grid-row:1}.ride-price{grid-column:1;grid-row:2}
- .chev{grid-column:2;grid-row:1/3;margin:0}
-}
+/* ---------- CTA numbers: two real facts, on the forest ground ---------- */
+.cta-band .numbers{grid-template-columns:repeat(2,1fr);max-width:780px;gap:16px}
+.cta-band .num{border:1px solid var(--dark-line);background:color-mix(in srgb,var(--bg) 5%,transparent)}
+.cta-band .num b{color:var(--bg);font-size:clamp(38px,4.6vw,56px)}
+.cta-band .num > span{color:var(--dark-muted)}
+@media (max-width:760px){.cta-band .numbers{grid-template-columns:1fr}}
