@@ -1,0 +1,55 @@
+/* Codex hero alternative. Append after existing stylesheet. */
+.hero.codex-out-and-about-burgers-puyallup{
+  --codex-paper:var(--bg);--codex-button-ink:var(--bg);
+  position:relative;isolation:isolate;display:grid;place-items:center;
+  height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));
+  width:100%;max-width:none;overflow:hidden;box-sizing:border-box;margin:0;padding:24px;
+  background:var(--dark);color:var(--codex-paper);
+}
+.hero.codex-out-and-about-burgers-puyallup *,.hero.codex-out-and-about-burgers-puyallup *::before,.hero.codex-out-and-about-burgers-puyallup *::after{box-sizing:border-box}
+.hero.codex-out-and-about-burgers-puyallup .codex-sr{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;animation:none!important;transform:none!important;opacity:1!important}
+.hero.codex-out-and-about-burgers-puyallup .codex-scene{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.hero.codex-out-and-about-burgers-puyallup .codex-scene img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;pointer-events:none}
+.hero.codex-out-and-about-burgers-puyallup .codex-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:1000px;margin:0 auto;gap:clamp(22px,4svh,42px);text-align:center}
+.hero.codex-out-and-about-burgers-puyallup .codex-mark{position:relative;display:block;margin:0;flex:none;pointer-events:none}
+.hero.codex-out-and-about-burgers-puyallup .codex-mark img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.hero.codex-out-and-about-burgers-puyallup .codex-actions{display:flex;justify-content:center;align-items:stretch;gap:12px;max-width:100%;margin:0;opacity:1;transform:none}
+.hero.codex-out-and-about-burgers-puyallup .codex-actions a{display:flex;justify-content:center;align-items:center;min-height:50px;padding:14px 22px;border:1px solid transparent;border-radius:7px;white-space:nowrap;font-family:var(--body);font-size:15px;line-height:1.25;font-weight:700;letter-spacing:0;text-decoration:none;box-shadow:none;transform:none;animation:none;transition:background .2s,color .2s}
+.hero.codex-out-and-about-burgers-puyallup .codex-actions .btn-primary{background:var(--brand);color:var(--codex-button-ink)}
+.hero.codex-out-and-about-burgers-puyallup .codex-actions .btn-cream{background:var(--codex-paper);color:var(--dark);border-color:var(--codex-paper)}
+.hero.codex-out-and-about-burgers-puyallup .codex-actions a:focus-visible{outline:3px solid var(--codex-paper);outline-offset:5px}
+.hero.codex-out-and-about-burgers-puyallup .codex-actions a:hover{background:var(--brand-bright);color:var(--codex-button-ink);transform:none}
+@media(max-width:600px){
+  .hero.codex-out-and-about-burgers-puyallup{padding:22px}
+  .hero.codex-out-and-about-burgers-puyallup .codex-actions{gap:10px;width:100%}
+  .hero.codex-out-and-about-burgers-puyallup .codex-actions a{flex:1;min-width:0;padding:14px 10px;font-size:13px;min-height:48px}
+}
+
+.hero.codex-out-and-about-burgers-puyallup{background:var(--dark)}
+.hero.codex-out-and-about-burgers-puyallup::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 89%,transparent),color-mix(in srgb,var(--dark) 56%,transparent) 55%,color-mix(in srgb,var(--dark) 22%,transparent)),linear-gradient(0deg,var(--dark),transparent 45%)}
+.hero.codex-out-and-about-burgers-puyallup .codex-scene img{object-position:70% 55%;filter:blur(3px) saturate(.88);transform:scale(1.025);animation:codex-burgers-road 2.3s cubic-bezier(.18,.75,.25,1) both}
+.hero.codex-out-and-about-burgers-puyallup .codex-content{align-items:flex-start;max-width:1180px;text-align:left}
+.hero.codex-out-and-about-burgers-puyallup .codex-mark{width:min(750px,74vw,110svh);filter:drop-shadow(0 16px 26px color-mix(in srgb,var(--dark) 75%,transparent));animation:codex-burgers-arrive 1.55s cubic-bezier(.15,.85,.25,1) both}
+.hero.codex-out-and-about-burgers-puyallup .codex-mark::before{content:"";position:absolute;z-index:-1;left:-28%;top:53%;width:53%;height:2px;background:linear-gradient(90deg,transparent,var(--warm));opacity:0;animation:codex-burgers-trail 1.25s ease-out both}
+.hero.codex-out-and-about-burgers-puyallup .codex-actions{margin-left:5%;animation:codex-burgers-buttons 1s .4s ease-out both}
+@keyframes codex-burgers-arrive{0%{opacity:.48;transform:translateX(-60px) rotate(-2deg)}64%{opacity:1;transform:translateX(6px) rotate(.2deg)}100%{opacity:1;transform:none}}
+@keyframes codex-burgers-road{from{transform:scale(1.075) translateX(16px)}to{transform:scale(1.025) translateX(0)}}
+@keyframes codex-burgers-trail{0%{opacity:0;transform:scaleX(.2)}25%{opacity:.7}100%{opacity:0;transform:scaleX(1.7)}}
+@keyframes codex-burgers-buttons{from{opacity:.65;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@media(max-width:600px){
+ .hero.codex-out-and-about-burgers-puyallup .codex-content{align-items:center;gap:30px}
+ .hero.codex-out-and-about-burgers-puyallup .codex-mark{width:calc(100vw - 38px)}
+ .hero.codex-out-and-about-burgers-puyallup .codex-actions{margin-left:0}
+ .hero.codex-out-and-about-burgers-puyallup .codex-scene img{object-position:50% 55%;filter:blur(5px) saturate(.88)}
+ .hero.codex-out-and-about-burgers-puyallup::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent),color-mix(in srgb,var(--dark) 65%,transparent) 42%,color-mix(in srgb,var(--dark) 90%,transparent))}
+}
+
+@media(max-height:540px) and (min-width:601px){
+ .hero.codex-out-and-about-burgers-puyallup{padding:16px 6vw}
+ .hero.codex-out-and-about-burgers-puyallup .codex-content{flex-direction:row;justify-content:center;gap:40px}
+ .hero.codex-out-and-about-burgers-puyallup .codex-mark{width:min(46vw,55svh)!important;max-height:70svh}
+ .hero.codex-out-and-about-burgers-puyallup .codex-actions{flex-direction:column;min-width:180px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero.codex-out-and-about-burgers-puyallup *,.hero.codex-out-and-about-burgers-puyallup *::before,.hero.codex-out-and-about-burgers-puyallup *::after{animation:none!important;transition:none!important}
+}

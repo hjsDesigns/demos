@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>My Lil' Cube — ramen &amp; Asian cuisine on N Meridian, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="My Lil' Cube — Ramen &amp; Asian Cuisine at 402 N Meridian in Puyallup, Washington. Tonkotsu ramen, xiao long bao soup dumplings, katsu curry and the chili oil. Open Tuesday through Sunday from 11 AM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Young Serif (display, sturdy warm slab-serif) + Archivo (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="hero-codex.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="My Lil' Cube — home">
+      <img src="images/logo.png" alt="My Lil' Cube — Ramen &amp; Asian Cuisine" width="1600" height="569">
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">What they make</a>
+        <a href="#signature">The chili oil</a>
+        <a href="#gallery">The room</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find it</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT: interior shots appear further down, so the
+       opener is the actual building from the street — their own teal
+       storefront on N Meridian, neon "open" lit in the window.
+       The ANIMATED-MARK opener is deliberately DEMOTED on this build: their
+       real mark is already physically in this photo, bolted to the front of
+       the building, so floating a second copy of the same sign over it breaks
+       NEVER TWICE. The building's own sign does the wordmark job; the headline
+       block is one line saying what they are. The cropped sign still carries
+       the header and the footer. Headline block only — nothing else on the photo. -->
+  <section class="hero codex-cube" id="hero">
+  <div class="codex-cube-atmosphere" aria-hidden="true"><img src="images/codex-ramen-table.jpg" alt="" width="1079" height="1440" fetchpriority="high"></div>
+  <div class="codex-cube-food" aria-hidden="true"><img src="images/codex-ramen-table.jpg" alt="" width="1079" height="1440"></div>
+  <div class="codex-cube-content">
+    <h1 class="codex-a11y">My Lil’ Cube — ramen and Asian cuisine in Puyallup</h1>
+    <div class="codex-cube-plaque" aria-hidden="true"><img src="images/codex-sign-plaque.png" alt="" width="1563" height="440"></div>
+    <div class="codex-actions">
+      <a href="#menu" class="btn btn-primary">See what they make</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock + address + all seven days, today lit.
+       Hours live HERE and nowhere else on the page (NEVER TWICE).
+       Source: the OPENING HOURS card in their own front window, confirmed
+       against their Restaurantji listing. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Closed Mondays. <em>Open the rest.</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          402 N Meridian, Puyallup, WA 98371<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=My+Lil%27+Cube%2C+402+N+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.7 on Google</span>
+          <span class="proof"><span class="ico">✓</span> Dine in or take out</span>
+          <span class="proof"><span class="ico">✓</span> Kids' menu · vegan options</span>
+        </div>
+      </div>
+      <div>
+        <ul class="hours-list" id="hoursList">
+          <li data-days="1"><span class="day">Monday</span><span class="time">Closed</span></li>
+          <li data-days="2"><span class="day">Tuesday</span><span class="time">11:00 AM – 9:00 PM</span></li>
+          <li data-days="3"><span class="day">Wednesday</span><span class="time">11:00 AM – 9:00 PM</span></li>
+          <li data-days="4"><span class="day">Thursday</span><span class="time">11:00 AM – 9:00 PM</span></li>
+          <li data-days="5"><span class="day">Friday</span><span class="time">11:00 AM – 9:00 PM</span></li>
+          <li data-days="6"><span class="day">Saturday</span><span class="time">11:00 AM – 9:00 PM</span></li>
+          <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 8:00 PM</span></li>
+        </ul>
+        <p class="hours-note">Exactly as posted on the card in their front window.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — what comes out of the kitchen =====================
+       TITLE CARDS UNROLL (8/27 law): the headline is the tap target, the
+       affordance is a DOWNWARD CHEVRON that flips up, and the real items roll
+       out in place. Every item name is verbatim off their own Restaurantji
+       listing — no invented dishes. No prices are published online, so none
+       are shown; that's on the ask-client list, not on the page. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out of that little kitchen</p>
+        <h2>Ramen, dumplings <em>and the fryer</em></h2>
+        <p>Four things come up over and over in the reviews: the broth, the soup dumplings, the katsu curry and — more than any of them — the chili oil. Tap a card to see what's on the list.</p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="card-photo"><img src="images/dish-ramen.jpg" alt="A bowl of tonkotsu chashu ramen — sliced pork, a soft egg, nori and scallion in a black bowl on a wood table" loading="lazy"></div>
+          <div class="card-body">
+            <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-ramen">
+              <h3>The ramen bowls</h3>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <p>The black garlic tonkotsu is the one people come back for.</p>
+            <div class="rolled" id="roll-ramen"><div>
+              <ul>
+                <li>Black Garlic Tonkotsu Ramen</li>
+                <li>Tonkotsu Chashu Ramen</li>
+                <li>Tonkotsu Seaweed Corn Ramen</li>
+              </ul>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-photo"><img src="images/dish-dumplings.jpg" alt="Xiao long bao soup dumplings pleated by hand, steaming in a metal steamer basket" loading="lazy"></div>
+          <div class="card-body">
+            <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-dumplings">
+              <h3>Dumplings, steamed and pan-fried</h3>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <p>The soup dumplings get named as often as the ramen does.</p>
+            <div class="rolled" id="roll-dumplings"><div>
+              <ul>
+                <li>Xiao Long Bao Soup Dumplings</li>
+                <li>Gyoza 6pcs</li>
+                <li>Boiled Dumpling 10pcs</li>
+              </ul>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-photo"><img src="images/dish-curry.jpg" alt="Chicken katsu curry — breaded cutlet, a halved soft egg, broccoli and pickled red ginger over curry" loading="lazy"></div>
+          <div class="card-body">
+            <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-curry">
+              <h3>Rice bowls and curry</h3>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <p>Cutlet, curry, rice. The plate that fills you up for the afternoon.</p>
+            <div class="rolled" id="roll-curry"><div>
+              <ul>
+                <li>Curry Chicken Katsu Don</li>
+                <li>Chicken Katsu Curry</li>
+              </ul>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-photo"><img src="images/dish-tempura.jpg" alt="Shrimp tempura fried golden on a woven mat, with a spoon of dipping sauce beside it" loading="lazy"></div>
+          <div class="card-body">
+            <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-fryer">
+              <h3>Out of the fryer</h3>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <p>The small plates that land on the table first.</p>
+            <div class="rolled" id="roll-fryer"><div>
+              <ul>
+                <li>Shrimp Tempura</li>
+                <li>Vegetable Tempura</li>
+                <li>Scallion Pancake</li>
+              </ul>
+            </div></div>
+          </div>
+        </article>
+
+      </div>
+      <p class="menu-fine reveal">Dish names exactly as they're listed on their own Restaurantji page. The full board is on the wall inside — and everything on it goes in a box to take home.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Before you walk in</p>
+        <h2>A small room <em>on Meridian</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Inside My Lil' Cube — the counter under a warm pendant lamp, RAMEN and RICE spelled in metal letters on the wood-framed wall, a Hokusai wave print behind" loading="lazy"><figcaption>Ramen. Rice. That's the wall.</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A steamer of xiao long bao seen from above with a dish of dark dipping sauce beside it" loading="lazy"><figcaption>Soup dumplings, lid off</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Takoyaki under a drift of bonito flakes, mayo and sauce on a black plate" loading="lazy"><figcaption>Takoyaki, flakes still moving</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Six pan-fried gyoza lined up on a white plate with a wedge of tomato" loading="lazy"><figcaption>Gyoza, six to a plate</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A katsu don rice bowl with egg and pickled red ginger, edamame in the background" loading="lazy"><figcaption>Katsu over rice</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="A bowl of tonkotsu ramen with nori, a halved soft egg and chashu on the honey-wood table" loading="lazy"><figcaption>The table it lands on</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — THE CHILI OIL =====================
+       Their one-of-one. Section 5, well below the fold (9/2 law). One tap
+       target — the jar — and one instant payoff: it goes in the bowl. Tap
+       again clears. On phones the bowl (the thing that changes) sits ABOVE
+       the thing you tap. No numbers, no units, no readback sentence. -->
+  <section class="section section-dark" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The one thing everybody mentions</p>
+        <h2>The <em>chili oil</em></h2>
+        <p>Restaurantji's round-up of the reviews singles it out above everything else on the menu: one customer said it <b>“changed them as a person”</b> and asked whether they could get it shipped by the case.</p>
+      </div>
+
+      <div class="chili reveal" id="chili">
+        <div>
+          <div class="chili-bowl">
+            <img src="images/sig-ramen.jpg" alt="A bowl of tonkotsu ramen with chashu, bean sprouts, scallion and a soft egg">
+            <span class="heat" aria-hidden="true"></span>
+            <span class="flecks" aria-hidden="true">
+              <i style="left:31%;top:38%;animation-delay:0s"></i>
+              <i style="left:52%;top:29%;animation-delay:.05s"></i>
+              <i style="left:66%;top:44%;animation-delay:.1s"></i>
+              <i style="left:44%;top:52%;animation-delay:.15s"></i>
+              <i style="left:59%;top:63%;animation-delay:.2s"></i>
+              <i style="left:36%;top:66%;animation-delay:.25s"></i>
+              <i style="left:71%;top:57%;animation-delay:.3s"></i>
+              <i style="left:26%;top:52%;animation-delay:.35s"></i>
+              <i style="left:49%;top:73%;animation-delay:.4s"></i>
+            </span>
+          </div>
+          <p class="bowl-cap" id="bowlCap">Tonkotsu ramen, as it comes</p>
+        </div>
+        <div class="jar-side">
+          <button class="jar" type="button" id="jarBtn" aria-pressed="false" aria-label="Add the chili oil to the bowl">
+            <img src="images/chili-oil.jpg" alt="A white bowl of house chili oil — red, loaded with sesame seeds, a spoon resting in it">
+          </button>
+          <p class="jar-hint" id="jarHint">Tap the chili oil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="The dining room at My Lil' Cube — honey-wood tables and black chairs against slate walls, wood blinds and Meridian Avenue through the windows" loading="lazy">
+          <figcaption>Tables by the window</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The room</p>
+          <h2>Wood tables, big windows, <em>Meridian out front</em></h2>
+          <p class="lede">It's a little room. That's the whole idea — it's called My Lil' Cube.</p>
+          <p>Slate walls, honey-wood tables, black chairs, wood blinds, and a couple of pendant lamps over the counter. RAMEN and RICE are spelled out in metal letters on the back wall, with a Hokusai wave and a Sapporo poster beside them. From the tables in front you're looking straight out at N Meridian.</p>
+          <p>It sits a block up from downtown Puyallup and a short walk from the fairgrounds, with a Pierce Transit stop at the pole sign out front. Four and a half stars would be a good restaurant. They're carrying a <b>4.7 across more than sixteen hundred Google reviews</b> — for a room this size, that's a lot of people going out of their way.</p>
+          <a class="out" href="https://www.google.com/maps/search/?api=1&amp;query=My+Lil%27+Cube%2C+402+N+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Come find it</p>
+        <h2>Look for <em>the sign</em></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <ol class="steps">
+            <li><span class="n">1</span><div><h3>Watch for the white sign on the pole</h3><p>It stands at the curb on Meridian, right above the bus flags for the 402 and the 425.</p></div></li>
+            <li><span class="n">2</span><div><h3>Parking is tight — regulars say so</h3><p>The green DOWNTOWN PARKING sign at the light points you to the city lots a block off.</p></div></li>
+            <li><span class="n">3</span><div><h3>Walk in, or call it in</h3><p>They don't take reservations. Order at the table, or have the whole thing boxed to go.</p></div></li>
+          </ol>
+          <div class="reach">
+            <a href="tel:2538402158"><span><span class="lbl">Call the shop</span><span class="val">(253) 840-2158</span></span></a>
+            <a href="https://www.facebook.com/mylilcube" target="_blank" rel="noopener"><span><span class="lbl">Where they post</span><span class="val">facebook.com/mylilcube ↗</span></span></a>
+          </div>
+          <figure class="print">
+            <img src="images/sign.jpg" alt="The white My Lil' Cube pole sign at the curb on North Meridian, above the Pierce Transit route flags" loading="lazy">
+            <figcaption>The pole sign on Meridian</figcaption>
+          </figure>
+        </div>
+
+        <form class="contact-form reveal" novalidate>
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off">
+          <div>
+            <label for="cf-name">Your name</label>
+            <input id="cf-name" name="name" type="text" placeholder="First and last" required>
+          </div>
+          <div>
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div>
+            <label for="cf-topic">What's this about?</label>
+            <select id="cf-topic" name="topic">
+              <option>A question about the food</option>
+              <option>A large order to go</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div>
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" name="message" placeholder="Tell them what you need…" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send it</button>
+          <p class="form-success">Got it — thanks. They'll get back to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="cta-band" id="cta">
+    <div class="wrap">
+      <p class="eyebrow">Ramen &amp; Asian Cuisine</p>
+      <h2>Tuesday through Sunday, <em>from 11 in the morning</em></h2>
+      <div class="nums reveal">
+        <div class="num"><span class="v count" data-to="1649" data-from="1200">1649</span><span class="l">Google reviews</span></div>
+        <div class="num"><span class="v count" data-to="6">6</span><span class="l">days a week</span></div>
+        <div class="num"><span class="v count" data-to="11">11</span><span class="u">AM</span><span class="l">the door opens</span></div>
+        <div class="num"><span class="v count" data-to="402">402</span><span class="l">North Meridian</span></div>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="tel:2538402158">Call the shop</a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=My+Lil%27+Cube%2C+402+N+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Get directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="images/logo.png" alt="My Lil' Cube — Ramen &amp; Asian Cuisine" width="1600" height="569">
+        <p>A little ramen room in Puyallup, Washington. Bowls, dumplings, curry — and that chili oil.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>On the page</h4>
+          <a href="#menu">What they make</a>
+          <a href="#signature">The chili oil</a>
+          <a href="#gallery">The room</a>
+          <a href="#hours">Hours</a>
+        </div>
+        <div class="foot-col">
+          <h4>Reach them</h4>
+          <a href="tel:2538402158">(253) 840-2158</a>
+          <a href="https://www.facebook.com/mylilcube" target="_blank" rel="noopener">Facebook ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span>© <span id="year">2026</span> My Lil' Cube · Puyallup, WA</span>
+      <a href="#top">Back to the top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>

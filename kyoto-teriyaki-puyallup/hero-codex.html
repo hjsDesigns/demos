@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kyoto Teriyaki Restaurant — teriyaki, yakisoba &amp; tempura, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Kyoto Teriyaki Restaurant at 513 S Meridian in Puyallup — combination plates, yakisoba, tempura, fried rice and the Kyoto Special, straight off the board over the counter. Open Monday through Saturday, 11 AM to 7:30 PM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Oswald (display, condensed signage) + Barlow (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="hero-codex.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Kyoto Teriyaki Restaurant — home">
+      <span class="chip"><img src="images/logo.jpg" alt="" width="760" height="325"></span>
+      <span class="wm">Kyoto Teriyaki<small>Puyallup, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hours">Hours</a>
+        <a href="#menu">The board</a>
+        <a href="#signature">Plates</a>
+        <a href="#about">The room</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       ANIMATED-MARK OPENER. Their own neon window sign, photographed —
+       nothing redrawn, nothing recreated. It powers on once, the way the
+       real tubes do, then holds. The mark IS the headline; the h1 is
+       sr-only so nothing competes with it. Shown whole (contain) on the
+       black of the window itself, so no letter is ever cropped. -->
+  <!-- ===================== #hero — "THE SIGN COMES ON" =====================
+       Hayden, 9/7: "a blurry image of the inside, and then… the neon sign
+       outline appears."
+
+       Nothing here is drawn. Their own neon window sign (harvest-0906/g14.jpg,
+       the sharpest frame of it) was luminance-keyed to alpha and split into the
+       four tubes that are actually four separate runs of glass — the blue torii
+       border, the yellow KYOTO, the red TERIYAKI, the green "Japanese
+       Restaurant" — each with its own halo baked in. They strike in the order a
+       real sign warms up, and their colour spills onto the blurred dining room
+       behind (harvest-0906/g19.jpg, their dining room — paper lanterns, window
+       band, rows of tables — graded down to dusk). Then it stops and just breathes.
+
+       The mark IS the headline. The h1 is sr-only. Nothing else on the hero. -->
+  <section class="hero codex-kyoto-window" id="hero">
+
+  <div class="codex-scene" aria-hidden="true"><img src="images/room-1.jpg" alt="" width="1080" height="1920" fetchpriority="high"></div>
+  <div class="codex-content"><h1 class="sr-only">Kyoto Teriyaki Restaurant — Japanese teriyaki, yakisoba and tempura in Puyallup</h1>
+    <div class="codex-kyoto-sign" aria-hidden="true"><img class="codex-kyoto-rest" src="images/codex-neon-tubes.png" alt="" width="1200" height="744" fetchpriority="high"><img class="codex-kyoto-live" src="images/codex-neon-tubes.png" alt="" width="1200" height="744"></div>
+    <div class="codex-actions"><a href="#menu" class="btn btn-primary">See the board</a><a href="#hours" class="btn btn-ghost">Are they open?</a></div>
+  </div>
+
+</section>
+
+
+  <!-- ===================== #hours =====================
+       The deep band. Live Pacific clock, address and all seven days.
+       Hours live HERE and nowhere else on the page. -->
+  <section class="status-band section-dark" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Six days, <em>11 to 7:30</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          513 S Meridian, Puyallup, WA 98371 — Village Fair Shopping Center<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=513+S+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 3.8 from 229 Google ratings</span>
+          <span class="proof"><span class="ico">✓</span> Dine in · take-out · delivery</span>
+        </div>
+        <p class="hours-note">Holiday hours aren't posted anywhere — worth a call before a holiday Monday.</p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">11:00 AM – 7:30 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">11:00 AM – 7:30 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">11:00 AM – 7:30 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">11:00 AM – 7:30 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">11:00 AM – 7:30 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">11:00 AM – 7:30 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">Closed</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — the board =====================
+       Every line and every price read off the six lit screens over the
+       counter, photographed 2026-09-06. Nothing invented, nothing rounded. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <figure class="wide-print reveal">
+        <img src="images/board.jpg" alt="The lit menu screens over the counter at Kyoto Teriyaki — the Combination, Yakisoba and Tempura columns with their prices, under a heavy wood beam" loading="lazy" width="1800" height="947">
+        <figcaption>Straight off the screens over the register</figcaption>
+      </figure>
+
+      <div class="section-head reveal">
+        <p class="eyebrow">Off the screens over the counter</p>
+        <h2>Any two teriyakis, <em>one price</em></h2>
+        <p>Almost every combination on the board lands on the same number — $14.99 — so picking is about what you feel like, not what it costs. Short ribs are the one that steps up.</p>
+      </div>
+
+      <div class="menu-groups reveal">
+
+        <div class="menu-group">
+          <h3>Combination</h3>
+          <p class="grp-note">Served with rice and vegetables.</p>
+          <ul class="menu-list">
+            <li><span class="name">Beef with Pork Teriyaki</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken with Beef Teriyaki</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken with Pork Teriyaki</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken with Chicken Katsu</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken with Beef Short Ribs</span><span class="price">$20.99</span></li>
+            <li><span class="name">Beef Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
+            <li><span class="name">Pork Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
+            <li><span class="name">Beef Teriyaki with Tempura</span><span class="price">$14.99</span></li>
+            <li><span class="name">Pork Teriyaki with Tempura</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken Katsu with Tempura</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken Teriyaki with Tempura</span><span class="price">$14.99</span></li>
+            <li><span class="name">Beef Short Ribs with Tempura</span><span class="price">$20.99</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Yakisoba</h3>
+          <p class="grp-note">Six ways, all the same money.</p>
+          <ul class="menu-list">
+            <li><span class="name">Beef Yakisoba</span><span class="price">$14.99</span></li>
+            <li><span class="name">Tofu Yakisoba</span><span class="price">$14.99</span></li>
+            <li><span class="name">Pork Yakisoba</span><span class="price">$14.99</span></li>
+            <li><span class="name">Shrimp Yakisoba</span><span class="price">$14.99</span></li>
+            <li><span class="name">Chicken Yakisoba</span><span class="price">$14.99</span></li>
+            <li><span class="name">Vegetable Yakisoba</span><span class="price">$14.99</span></li>
+          </ul>
+
+          <h3 class="stack">Tempura</h3>
+          <ul class="menu-list">
+            <li><span class="name">Chicken Katsu</span><span class="price">$14.99</span></li>
+            <li><span class="name">Tempura Combo</span><span class="price">$13.99</span></li>
+            <li><span class="name">Vegetable Tempura plate</span><span class="price">$12.99</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Fried Rice</h3>
+          <ul class="menu-list">
+            <li><span class="name">Chicken Fried Rice</span><span class="price">$13.99</span></li>
+            <li><span class="name">Beef Fried Rice</span><span class="price">$13.99</span></li>
+            <li><span class="name">Pork Fried Rice</span><span class="price">$13.99</span></li>
+            <li><span class="name">Shrimp Fried Rice</span><span class="price">$14.99</span></li>
+            <li><span class="name">House Fried Rice</span><span class="price">$19.99</span></li>
+          </ul>
+
+          <h3 class="stack">Wok</h3>
+          <ul class="menu-list">
+            <li><span class="name">Sweet &amp; Sour Chicken</span><span class="price">$14.99</span></li>
+            <li><span class="name">General Tsao Chicken</span><span class="price">$14.99</span></li>
+            <li><span class="name">Orange Chicken</span><span class="price">$14.99</span></li>
+            <li><span class="name">Mongolian Beef</span><span class="price">$15.99</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Special Combo</h3>
+          <ul class="menu-list">
+            <li><span class="name">Kyoto Special</span><span class="price">$34.99</span><span class="desc">Their words, off the screen: “Our largest platter of rice chicken teriyaki, beef teriyaki chicken katsu, yakisoba, Gyoza prawn tempura, vegetables.”</span></li>
+            <li><span class="name">Kyoto Combo 1</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · beef teriyaki · tempura</span></li>
+            <li><span class="name">Kyoto Combo 2</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · yakisoba · gyoza</span></li>
+            <li><span class="name">Kyoto Combo 3</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · chicken katsu · yakisoba</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Appetizer</h3>
+          <ul class="menu-list">
+            <li><span class="name">Gyoza (7 ps)</span><span class="price">$5.99</span></li>
+            <li><span class="name">Egg Roll (2 ps)</span><span class="price">$4.99</span></li>
+            <li><span class="name">B.B.Q Pork</span><span class="price">$6.99</span></li>
+            <li><span class="name">Spring Roll (3 ps)</span><span class="price">$5.99</span></li>
+            <li><span class="name">Prawn Tempura</span><span class="price">$7.99</span></li>
+            <li><span class="name">Vegetable Tempura</span><span class="price">$7.99</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Side Order</h3>
+          <ul class="menu-list">
+            <li><span class="name">Rice</span><span class="price">$4.00</span></li>
+            <li><span class="name">Noodle</span><span class="price">$5.00</span></li>
+            <li><span class="name">Stir Vegetables</span><span class="price">$4.00</span></li>
+          </ul>
+        </div>
+
+      </div>
+      <p class="menu-fine reveal">Read off the screens over the counter on September 6, 2026. Single teriyaki plates — chicken, spicy chicken, beef, spicy beef, pork, tofu, short rib, gyoza plate and the stir-fried plates — are on the same screens; their prices are posted at the counter.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — PICK YOUR PLATE =====================
+       Toddler law: one tap on the picture of the food, the price stamps
+       on. Nothing to read first, nothing to decode, tap again to clear.
+       Every plate is a real photo of their food and every number is
+       verbatim off the board. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What $14.99 actually looks like</p>
+        <h2>Pick <em>your plate</em></h2>
+        <p>Tap a plate. The price stamps on.</p>
+      </div>
+
+      <div class="plates reveal">
+        <button class="plate" type="button" aria-pressed="false">
+          <span class="plate-pic"><img src="images/plate-1.jpg" alt="Chicken teriyaki with six gyoza, steamed rice, broccoli and cabbage on a white oval plate with a cup of dipping sauce" loading="lazy" width="1800" height="1350"></span>
+          <span class="plate-stamp" aria-hidden="true">$14.99</span>
+          <span class="plate-name">Chicken Teriyaki with Gyoza<small>Combination</small></span>
+        </button>
+        <button class="plate" type="button" aria-pressed="false">
+          <span class="plate-pic"><img src="images/plate-2.jpg" alt="A full container of yakisoba noodles tossed with cabbage, carrot, zucchini and grilled meat" loading="lazy" width="1800" height="2400"></span>
+          <span class="plate-stamp" aria-hidden="true">$14.99</span>
+          <span class="plate-name">Yakisoba<small>Beef, tofu, pork, shrimp, chicken or vegetable</small></span>
+        </button>
+        <button class="plate" type="button" aria-pressed="false">
+          <span class="plate-pic"><img src="images/plate-3.jpg" alt="A take-out box with two teriyakis side by side over steamed rice, with broccoli and cabbage in the corner" loading="lazy" width="1080" height="1920"></span>
+          <span class="plate-stamp" aria-hidden="true">$14.99</span>
+          <span class="plate-name">Two teriyakis, one box<small>Combination</small></span>
+        </button>
+      </div>
+      <p class="plates-fine reveal">Short ribs are the exception on the board — $20.99 either way.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery — the plates ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Photographed by customers, not by us</p>
+        <h2>What actually <em>comes out</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Chicken teriyaki sliced over steamed rice with cabbage, carrot and broccoli in a take-out tray" loading="lazy" width="1656" height="1243"><figcaption>Chicken teriyaki, out the door</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Thin-sliced teriyaki in sauce beside a mound of steamed rice and cabbage, carrot and broccoli on a white plate" loading="lazy" width="1800" height="1351"><figcaption>Sit-down plate, dining room</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A teriyaki plate on a diner table with rice, broccoli and a fork resting on the rim" loading="lazy" width="720" height="960"><figcaption>Lunch on the table</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A hinged take-out box open on a table with teriyaki, rice and steamed vegetables inside" loading="lazy" width="1800" height="2400"><figcaption>The to-go box</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about — the room ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/room-1.jpg" alt="The Kyoto Teriyaki dining room — white walls, wood trim, paper lanterns and rows of tables along a window" loading="lazy" width="1080" height="1920">
+          <figcaption>The dining room, mid-afternoon</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Village Fair Shopping Center</p>
+          <h2>A counter, a dining room, <em>and no pretending</em></h2>
+          <p class="lede">White walls, wood trim, paper lanterns, a shoji screen behind the register and enough tables to sit a shift change.</p>
+          <p>It is a strip-mall teriyaki shop on South Meridian and it does not pretend otherwise. You order at the counter under the screens, you sit down or you take it with you, and the plate that comes out is the size people write reviews about.</p>
+          <p>New things turn up on the whiteboard by the register before they make the screens — House Fried Rice, Tofu Teriyaki and Spring Rolls all started there in marker, and all three are on the board now.</p>
+        </div>
+      </div>
+      <figure class="wide-print reveal room-2">
+        <img src="images/room-2.jpg" alt="Looking toward the counter from a table — the lit menu board, a hanging paper lantern and a painted shoji screen" loading="lazy" width="1800" height="1012">
+        <figcaption>From a table, looking at the board</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       No Google review in the harvest carries both a published name and a
+       profile photo, so no review card is faked here — the honest
+       aggregate stands on its own and the link goes to the real list. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="score reveal">
+        <div class="score-num"><b class="tnum">3.8</b><span class="stars" aria-label="3.8 out of 5">★★★★<span class="half">★</span></span></div>
+        <div class="score-copy">
+          <p class="eyebrow">On Google</p>
+          <h2><span class="tnum">229</span> people have <em>rated it</em></h2>
+          <p>Read them yourself — the long ones are the useful ones.</p>
+          <a class="btn btn-cream" href="https://www.google.com/search?q=Kyoto+Teriyaki+Restaurant+513+S+Meridian+Puyallup+WA+reviews" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting your food</p>
+          <h2>Three ways, <em>all simple</em></h2>
+          <ol class="steps">
+            <li><h3>Walk in and order at the counter</h3><p>The whole menu is on the screens above the register. Point at what you want.</p></li>
+            <li><h3>Call it in for pick-up</h3><p>Ring the shop, give them ten or fifteen minutes and it's boxed and waiting.</p></li>
+            <li><h3>Have it delivered</h3><p>The listing shows take-out and delivery both — ask which service is running that day.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12534351599">(253) 435-1599</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=513+S+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" class="sr-only" style="display:none" tabindex="-1" autocomplete="off">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A large or catering order</option><option>A question about the menu</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many plates, what time you need them, and anything the kitchen should know."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the shop</button>
+          <p class="form-success">Thanks — someone at Kyoto Teriyaki will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">South Meridian, in the Village Fair</p>
+        <h2>The light's on <em>till 7:30</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b>$<span class="count tnum" data-to="14">14</span>.99</b><span>almost every combination plate on the board</span></div>
+        <div class="num"><b><span class="count tnum" data-to="44">44</span></b><span>priced items on the screens over the counter</span></div>
+        <div class="num"><b><span class="count tnum" data-to="6">6</span></b><span>days a week, Monday through Saturday</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12534351599" class="btn btn-primary">Call the shop</a>
+        <a href="#menu" class="btn btn-ghost">Back to the board</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate-mark"><img src="images/logo.jpg" alt=""></span>
+        </div>
+        <p>Teriyaki, yakisoba and tempura, ordered at the counter on South Meridian.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>513 S Meridian<br>Puyallup, WA 98371</p>
+        <p><a href="tel:+12534351599">(253) 435-1599</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#signature">Plates</a><br><a href="#about">The room</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Kyoto Teriyaki Restaurant</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>

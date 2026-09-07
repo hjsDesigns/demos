@@ -1,0 +1,179 @@
+/* ============================================================
+   STAR NAILS & SPA — HERO "THE TOP COAT"   (2026-09-07, Claude hero pass)
+   Self-contained, everything namespaced under .hero.hero-glass so it can
+   drop in over the template's own .hero rules without touching them.
+
+   IMAGE PATHS: written for this file's home (versions/claude-hero/), so
+   they read "images/…".  When this hero is adopted into the live
+   site, paste these rules at the end of css/style.css and change the two
+   url() references to "../images/…". Nothing else changes.
+
+   Real assets only:
+     images/claude-mark-star.png   the script "Star" off their own
+     images/claude-mark-serif.png  printed business card (harvest g11),
+     images/claude-mark.png        levelled + keyed to alpha, both
+                                         faces in their real ink colours.
+     images/claude-hero-wash.jpg   their own lilac coffin set (g9),
+                                         blurred and warm-graded.
+   ============================================================ */
+
+.hero.hero-glass{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:calc(100svh - var(--header-h));
+  overflow:hidden;
+  background:var(--bg);            /* never a flat black ground */
+  color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---- the ground: their own work, out of focus, warm ------------------ */
+.hero-glass .hg-bg{position:absolute;inset:0;z-index:0}
+.hero-glass .hg-bg img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center 46%;
+  transform:scale(1.06);
+  opacity:0;
+  animation:hgGround .95s var(--ease) both,
+            hgDrift 64s ease-in-out 1.6s infinite alternate;
+}
+
+/* ---- a cream pool so the ink has clean air around it ----------------- */
+.hero-glass .hg-bloom{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(78% 62% at 48% 45%,
+      rgba(253,247,241,.62) 0%,
+      rgba(252,244,238,.34) 44%,
+      rgba(252,244,238,0) 78%);
+  opacity:0;
+  animation:hgGround 1.3s var(--ease) .15s both,
+            hgBreathe 19s ease-in-out 2.6s infinite alternate;
+}
+
+/* ---- a soft landing into the charcoal-plum hours band below ---------- */
+.hero-glass .hg-foot{
+  position:absolute;left:0;right:0;bottom:0;height:26%;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,
+      rgba(43,33,48,0) 0%,
+      rgba(43,33,48,.045) 62%,
+      rgba(43,33,48,.13) 100%);
+}
+
+.hero-glass .hg-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);
+  margin:0 auto;
+  padding:clamp(28px,6vh,72px) var(--pad);
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+}
+
+/* ---- the mark IS the headline --------------------------------------- */
+.hero-glass .hg-mark{
+  position:relative;
+  width:min(720px,74vw);
+  aspect-ratio:2828 / 1138;
+  margin:0 0 clamp(30px,5.4vh,56px);
+}
+.hero-glass .hg-mark .mk{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 10px 26px rgba(78,42,70,.13));
+}
+
+/* the script writes itself in, left to right */
+.hero-glass .mk-star{
+  opacity:0;
+  -webkit-mask-image:linear-gradient(96deg,#000 0 38%,rgba(0,0,0,.45) 50%,transparent 63%);
+          mask-image:linear-gradient(96deg,#000 0 38%,rgba(0,0,0,.45) 50%,transparent 63%);
+  -webkit-mask-size:250% 100%;  mask-size:250% 100%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:100% 0;  mask-position:100% 0;
+  animation:hgWrite 1.35s cubic-bezier(.42,.02,.16,1) .35s both;
+}
+
+/* "Nails & Spa" settles underneath it */
+.hero-glass .mk-serif{
+  opacity:0;
+  animation:hgSettle .9s var(--ease) 1.5s both;
+}
+
+/* ONE gloss sweep — light off a fresh top coat, clipped to the lettering */
+.hero-glass .mk-gloss{
+  position:absolute;inset:0;
+  pointer-events:none;
+  -webkit-mask:url(images/claude-mark.png) center / 100% 100% no-repeat;
+          mask:url(images/claude-mark.png) center / 100% 100% no-repeat;
+  background:linear-gradient(102deg,
+      rgba(255,246,251,0)   40%,
+      rgba(255,250,253,.55) 47%,
+      rgba(255,255,255,.96) 50.5%,
+      rgba(255,250,253,.55) 54%,
+      rgba(255,246,251,0)   61%);
+  background-size:280% 100%;
+  background-repeat:no-repeat;
+  background-position:170% 0;
+  opacity:0;
+  animation:hgGloss 1.25s cubic-bezier(.36,.08,.24,1) 2.1s both;
+}
+
+/* ---- the two buttons, and nothing else ------------------------------ */
+.hero-glass .hg-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;
+  animation:hgSettle .75s var(--ease) 2.55s both;
+}
+.hero-glass .btn-outline{
+  background:rgba(252,247,242,.5);
+  border-color:color-mix(in srgb,var(--ink) 55%,transparent);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.hero-glass .btn-outline:hover{background:var(--ink);color:var(--bg)}
+.hero-glass .btn-primary{box-shadow:0 16px 34px -16px rgba(142,52,128,.55)}
+
+/* ============================ keyframes ============================== */
+@keyframes hgGround{from{opacity:0}to{opacity:1}}
+@keyframes hgDrift{
+  from{transform:scale(1.06) translate3d(0,0,0)}
+  to  {transform:scale(1.115) translate3d(-1.1%,-0.8%,0)}
+}
+@keyframes hgBreathe{from{opacity:1}to{opacity:.8}}
+@keyframes hgWrite{
+  from{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0}
+  to  {opacity:1;-webkit-mask-position:0% 0;  mask-position:0% 0}
+}
+@keyframes hgSettle{
+  from{opacity:0;transform:translateY(14px);filter:blur(5px)}
+  to  {opacity:1;transform:translateY(0);   filter:blur(0)}
+}
+@keyframes hgGloss{
+  0%  {opacity:0;   background-position:170% 0}
+  18% {opacity:1}
+  82% {opacity:1}
+  100%{opacity:0;   background-position:-70% 0}
+}
+
+/* ============================ phone ================================== */
+@media (max-width:900px){
+  .hero-glass .hg-mark{width:min(88vw,470px)}
+  .hero-glass .hg-inner{padding:clamp(24px,5vh,48px) var(--pad)}
+}
+@media (max-width:420px){
+  .hero-glass .hg-mark{width:90vw;margin-bottom:clamp(26px,5vh,40px)}
+  .hero-glass .hg-actions .btn{padding:13px 20px;font-size:15px}
+}
+
+/* ==================== reduced motion: the last frame ================= */
+@media (prefers-reduced-motion:reduce){
+  .hero-glass .hg-bg img,
+  .hero-glass .hg-bloom,
+  .hero-glass .mk-star,
+  .hero-glass .mk-serif,
+  .hero-glass .hg-actions{animation:none;opacity:1;transform:none;filter:none}
+  .hero-glass .hg-bg img{transform:scale(1.06)}
+  .hero-glass .mk-star{-webkit-mask-position:0 0;mask-position:0 0}
+  .hero-glass .mk-gloss{animation:none;opacity:0}
+}

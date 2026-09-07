@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Log Cabin Pub — bar &amp; grill, beer garden and games, Sumner WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Log Cabin Pub on E Valley Hwy in Sumner, Washington — eats, drinks, games and a covered beer garden. Pool, shuffleboard, ping pong and a stage out back. Breakfast served until 2 pm daily, open seven days until 2 am.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Bevan (display, heavy wood-type slab — matches their own circular logo lettering)
+     + Barlow (body). Must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Bevan&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="hero-codex.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="The Log Cabin Pub — home">
+      <img src="images/logo.png" alt="" width="50" height="39">
+      <span class="wm">Log Cabin Pub<small>Sumner, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#rooms">The rooms</a>
+        <a href="#menu">Menu</a>
+        <a href="#signature">Games</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       Their real roadside sign on E Valley Hwy, photographed from the lot.
+       Nothing on the photo but the headline block. The headline is their
+       own words — the Linktree bio and the tin sign on the wall inside
+       both read "what happens here / at the cabin, stays here". -->
+  <section class="hero codex-log-cabin-pub-sumner" id="hero" aria-label="The Log Cabin Pub">
+  <div class="codex-scene" aria-hidden="true"><img src="images/codex-pool-room.jpg" alt="" fetchpriority="high" width="1920" height="1440"></div>
+  <div class="codex-content">
+    <h1 class="codex-sr">The Log Cabin Pub</h1>
+    <div class="codex-mark"><img src="images/logo.png" alt="Log Cabin Pub" width="520" height="402" fetchpriority="high"></div>
+    <div class="codex-actions">
+      <a href="#menu" class="btn btn-primary">See the menu</a>
+      <a href="#signature" class="btn btn-cream">What's out back</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===================== #hours =====================
+       Hours live HERE and nowhere else on the page (NEVER TWICE).
+       All seven rows; today lights up; the dot is green open / red closed.
+       Rows match the HOURS config in js/site.js. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Open early, <em>closing at 2 am</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          2719 E Valley Hwy E, Sumner, WA 98390<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Log+Cabin+Pub+2719+E+Valley+Hwy+E+Sumner+WA+98390" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.1 on Google (958 reviews)</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="0"><span class="day">Sunday</span><span class="time">8:00 am – 2:00 am</span></li>
+        <li data-days="1"><span class="day">Monday</span><span class="time">10:00 am – 2:00 am</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">10:00 am – 2:00 am</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">10:00 am – 2:00 am</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">10:00 am – 2:00 am</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:00 am – 2:00 am</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">8:00 am – 2:00 am</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #rooms =====================
+       WARM CREAM band. The walk-in: the dark bar inside, and the big
+       covered beer garden out back that their sign advertises.
+       Every print is a real photo with a plain caption. -->
+  <section class="section section-cream" id="rooms">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Inside and out back</p>
+        <h2>Two rooms, <em>one pub</em></h2>
+        <p>Their sign out on the highway sells it in five words: <strong>eats, drinks, games</strong> — and underneath, <strong>entertainment, beer garden</strong>. Inside is the dark bar with the TVs on. Out back is a covered beer garden big enough for pool tables, a stage and a long row of picnic tables.</p>
+      </div>
+      <div class="prints">
+        <figure class="print reveal">
+          <img src="images/room-inside.jpg" alt="The bar room inside the Log Cabin Pub, with stools along the bar and a row of televisions above the bottles." loading="lazy">
+          <figcaption>Inside — the bar, and the TVs</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/beer-garden.jpg" alt="The Log Cabin Pub's covered beer garden, with pennant strings, a Cold Beer sign, chalkboards, bar stools and a pool table at the back." loading="lazy">
+          <figcaption>Out back — the covered beer garden</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/patio.jpg" alt="Under the beer garden roof at the Log Cabin Pub — a long run of bar stools and tables, painted murals along the back wall and a pool table at the far end." loading="lazy">
+          <figcaption>Under the roof, all the way down</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #menu =====================
+       DARK band on purpose — their own printed menu is white on black.
+       Every item and price transcribed verbatim from the Log Cabin Pub
+       ALL DAY MENU and BREAKFAST PDFs they publish on their own Linktree.
+       Groups unroll from the title card; the chevron flips up (ARROW LAW). -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The kitchen</p>
+        <h2>Wings, burgers <em>and a 12 oz New York strip</em></h2>
+        <p>Straight off the menu they hand you at the bar. Tap a heading to roll the list out.</p>
+      </div>
+
+      <div class="reveal">
+        <details class="unroll" open>
+          <summary><span>Famous Cabin Wings, and what else comes out of the fryer<span class="sm">Appetizers · 12 items</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="unroll-body">
+            <ul class="menu-list">
+              <li><span class="name">Famous Cabin Wings</span><span class="price">18</span><span class="desc">BBQ, buffalo, sweet &amp; spicy, garlic parmesan, honey jalapeño, sweet chili, volcanic</span></li>
+              <li><span class="name">Hand Made Pork Lumpia</span><span class="price">15</span></li>
+              <li><span class="name">Nachos</span><span class="price">17</span><span class="desc">Beef, chicken or pulled pork, shredded cheese, onion, tomato, olives, jalapeño's salsa, sour cream</span></li>
+              <li><span class="name">Chicken Strips &amp; Fries</span><span class="price">17</span></li>
+              <li><span class="name">Pork Potstickers</span><span class="price">14</span><span class="desc">9 per order</span></li>
+              <li><span class="name">Artichoke Dip</span><span class="price">14</span></li>
+              <li><span class="name">Pretzel Bites</span><span class="price">13</span><span class="desc">Savory: plain or garlic parmesan, with beer cheese</span></li>
+              <li><span class="name">Fries, Tots or Jo's</span><span class="price">12</span></li>
+              <li><span class="name">Mozzarella Sticks</span><span class="price">12</span></li>
+              <li><span class="name">Onion Rings</span><span class="price">12</span></li>
+              <li><span class="name">Mac &amp; Cheese Bites</span><span class="price">12</span></li>
+              <li><span class="name">Taquitos</span><span class="price">12</span></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="unroll">
+          <summary><span>Burgers, eight ways<span class="sm">Burgers · fries, tots or Jo's</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="unroll-body">
+            <ul class="menu-list">
+              <li><span class="name">Smash Burger</span><span class="price">17</span><span class="desc">Bacon patty, bacon, American, fried onion, bacon jam, mayo</span></li>
+              <li><span class="name">Jalapeño Bacon</span><span class="price">16</span><span class="desc">Jalapeño, bacon, lettuce, tomato, pepperjack, habanero jam</span></li>
+              <li><span class="name">Black &amp; Bleu</span><span class="price">16</span><span class="desc">Bacon, bleu cheese, lettuce, tomato, garlic aioli</span></li>
+              <li><span class="name">BBQ Bacon</span><span class="price">16</span><span class="desc">Bacon, cheddar, fried onion, pickle, BBQ sauce</span></li>
+              <li><span class="name">Mushroom Swiss</span><span class="price">15</span><span class="desc">Grilled shrooms, lettuce, swiss, mayo</span></li>
+              <li><span class="name">Nashville Hot Chicken</span><span class="price">15</span><span class="desc">Crispy chicken, lettuce, red onion, pickle, mayo</span></li>
+              <li><span class="name">Cali Chicken Burger</span><span class="price">15</span><span class="desc">Grilled chicken, swiss, lettuce, tomato, mayo</span></li>
+              <li><span class="name">Cabin Burger</span><span class="price">14</span><span class="desc">American, lettuce, tomato, onion, mayo, relish</span></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="unroll">
+          <summary><span>Sandwiches, and a Damn Good Grilled Cheese<span class="sm">Sandwiches · fries, tots or Jo's</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="unroll-body">
+            <ul class="menu-list">
+              <li><span class="name">Cabin Club</span><span class="price">17</span><span class="desc">Ham, turkey, bacon, lettuce, tomato, cheddar, mayo</span></li>
+              <li><span class="name">Prime Rib Dip</span><span class="price">16</span><span class="desc">Sliced prime rib, grilled onion, provolone, mayo on a hoagie roll, served with au jus</span></li>
+              <li><span class="name">Cubano</span><span class="price">16</span><span class="desc">Grilled ham, pulled pork, pickled red onion, pickle, garlic aioli, mustard, swiss on a telera bun</span></li>
+              <li><span class="name">Caprese Chicken Melt</span><span class="price">16</span><span class="desc">Grilled chicken, tomato, fresh mozzarella, garlic aioli, basil, balsamic drizzle</span></li>
+              <li><span class="name">Pulled Pork</span><span class="price">16</span><span class="desc">Sweet Baby Ray's pulled pork, fried onion, cheddar, coleslaw on a hoagie roll</span></li>
+              <li><span class="name">Patty Melt</span><span class="price">15</span><span class="desc">Bacon, grilled onion, swiss, served with au jus</span></li>
+              <li><span class="name">Reuben</span><span class="price">15</span><span class="desc">Grilled sliced corned beef, sauerkraut, 1000 island dressing, swiss on grilled rye</span></li>
+              <li><span class="name">2x B.L.T</span><span class="price">15</span><span class="desc">Double bacon, lettuce, tomato, mayo</span></li>
+              <li><span class="name">Damn Good Grilled Cheese</span><span class="price">14</span><span class="desc">Sourdough, wheat or white with American, cheddar or pepperjack · add ham, turkey or bacon 3</span></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="unroll">
+          <summary><span>Steaks and seafood<span class="sm">Steaks come with salad &amp; a loaded baked potato</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="unroll-body">
+            <ul class="menu-list">
+              <li><span class="name">12 oz New York Strip</span><span class="price">25</span></li>
+              <li><span class="name">8 oz Cabin Steak</span><span class="price">18</span></li>
+              <li><span class="name">Toppings</span><span class="price">2</span><span class="desc">Sautéed mushrooms, grilled onions, grilled peppers or bleu cheese</span></li>
+              <li><span class="name">3 Piece Fish &amp; Chips</span><span class="price">16</span></li>
+              <li><span class="name">Fish Tacos</span><span class="price">15</span><span class="desc">Three crispy fish tacos, cabbage, salsa, chipotle aioli</span></li>
+              <li><span class="name">Fish Sandwich</span><span class="price">15</span><span class="desc">Fried fish, coleslaw, tomato, red onion, tartar, served on a bun</span></li>
+              <li><span class="name">Coconut Prawns</span><span class="price">14</span></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="unroll">
+          <summary><span>Breakfast, served until 2 pm daily<span class="sm">Classics, favorites and omelets</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="unroll-body">
+            <ul class="menu-list">
+              <li><span class="name">Pub Steak &amp; Eggs</span><span class="price">18</span><span class="desc">8 oz Cabin steak, 3 eggs, hashbrowns or home fries, toast</span></li>
+              <li><span class="name">Country Fried Steak</span><span class="price">16</span><span class="desc">Two 4 oz patties topped with gravy, 3 eggs, hashbrowns or home fries, toast</span></li>
+              <li><span class="name">Breakfast Tacos</span><span class="price">16</span><span class="desc">Taco beef, scrambled eggs, tomato, onion, corn tortilla, cheese</span></li>
+              <li><span class="name">Denver Omelet</span><span class="price">15</span><span class="desc">Ham, green pepper, onion, cheese · hashbrowns &amp; toast</span></li>
+              <li><span class="name">Meatlovers Omelet</span><span class="price">15</span><span class="desc">Bacon, ham, sausage, cheese · hashbrowns &amp; toast</span></li>
+              <li><span class="name">Build Your Own Omelet</span><span class="price">15</span><span class="desc">Egg and cheese omelet with your choice of up to 3 fillings</span></li>
+              <li><span class="name">French Toast</span><span class="price">14</span><span class="desc">3 eggs, choice of bacon, ham or sausage</span></li>
+              <li><span class="name">Bad Ass Monte Cristo</span><span class="price">14</span><span class="desc">Ham, turkey, swiss, battered &amp; fried, berry jam</span></li>
+              <li><span class="name">Sourdough Sammy</span><span class="price">14</span><span class="desc">2 scrambled eggs, bacon, American</span></li>
+              <li><span class="name">Meat &amp; Eggs</span><span class="price">13</span><span class="desc">3 eggs, choice of bacon, ham or sausage, hashbrowns or home fries, toast</span></li>
+              <li><span class="name">Biscuits &amp; Gravy</span><span class="price">13</span><span class="desc">3 eggs, hashbrowns or home fries</span></li>
+              <li><span class="name">Veggie Omelet</span><span class="price">12</span><span class="desc">Green pepper, onion, tomato, olive, mushroom, cheese · hashbrowns &amp; toast</span></li>
+              <li><span class="name">English Muffin</span><span class="price">11</span><span class="desc">Fried egg, sausage patty, cheddar</span></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <div class="duo reveal" style="margin-top:clamp(26px,4vw,44px)">
+        <figure class="print">
+          <img src="images/food-wings.jpg" alt="Baskets of Famous Cabin Wings and fried appetizers spread across a dark wood table at the Log Cabin Pub." loading="lazy">
+          <figcaption>Famous Cabin Wings — seven sauces, up to volcanic</figcaption>
+        </figure>
+        <figure class="print">
+          <img src="images/food-burger.jpg" alt="A burger on a brioche bun beside a pile of seasoned fries at the Log Cabin Pub." loading="lazy">
+          <figcaption>A burger and Jo's</figcaption>
+        </figure>
+      </div>
+
+      <p class="menu-note">Prices from the Log Cabin Pub all-day and breakfast menus · order at the bar</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — PICK A GAME =====================
+       WARM CREAM band, section five. Their sign says "games" and
+       "entertainment" — so the signature is the four real things they
+       have. Tap a pill, the real photo swaps in above it. Toddler law:
+       one tap, instant payoff, no instructions. -->
+  <section class="section section-cream" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Games &amp; entertainment</p>
+        <h2>Pick a game, <em>see where it lives</em></h2>
+        <p>Four of them, all under the same roof. Tap one.</p>
+      </div>
+
+      <div class="games reveal">
+        <div class="game-stage-wrap">
+          <div class="game-shot">
+            <img data-game="pool" class="on" src="images/game-pool.jpg" alt="A pool table at the Log Cabin Pub with the balls racked and the cue ball set." loading="lazy">
+            <img data-game="shuffle" src="images/game-shuffleboard.jpg" alt="The long shuffleboard table at the Log Cabin Pub, beside an arcade cabinet." loading="lazy">
+            <img data-game="pingpong" src="images/game-pingpong.jpg" alt="The ping pong table set up in the covered beer garden at the Log Cabin Pub." loading="lazy">
+            <img data-game="stage" src="images/game-stage.jpg" alt="A band playing on the covered stage in the Log Cabin Pub's beer garden." loading="lazy">
+          </div>
+          <div class="game-cap">
+            <b id="gameName">Pool</b>
+            <span id="gameLine">Tables inside and more of them out in the beer garden.</span>
+          </div>
+        </div>
+        <div class="game-pills">
+          <button type="button" data-game="pool" aria-pressed="true"
+                  data-name="Pool" data-line="Tables inside and more of them out in the beer garden.">Pool</button>
+          <button type="button" data-game="shuffle" aria-pressed="false"
+                  data-name="Shuffleboard" data-line="A full-length table, tucked in beside the arcade cabinet.">Shuffleboard</button>
+          <button type="button" data-game="pingpong" aria-pressed="false"
+                  data-name="Ping pong" data-line="Set up out back under the beer garden roof.">Ping pong</button>
+          <button type="button" data-game="stage" aria-pressed="false"
+                  data-name="The stage" data-line="A covered stage out back — live bands plug in under the roof.">The stage</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about =====================
+       DARK band. Only sourced facts — no invented owner story.
+       The tin sign is theirs, photographed on their own wall; it is
+       where the headline at the top of this page comes from. -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/cabin-sign.jpg" alt="A vintage tin sign on the Log Cabin Pub's plank wall reading What happens at the Cabin stays at the Cabin, showing a man raising a can outside a lit-up cabin at night." loading="lazy">
+          <figcaption>The sign on their wall — where the line up top comes from</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The Cabin</p>
+          <h2>Up front, <em>and out back</em></h2>
+          <p class="lede">Two very different rooms, with the same kitchen behind both of them.</p>
+          <p>The pub sits on E Valley Highway between Sumner and Auburn, with a lit reader board out front and a lot big enough to find a spot in. Up front it's dark plank walls and a long bar, televisions running whatever's on, and neon down the wall.</p>
+          <p>Out the back it opens up. A covered beer garden runs the length of the building — bar stools and picnic tables, patio heaters for the cold months, painted murals down the back wall, and a stage at the end for when a band is in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       WARM CREAM band. Honest aggregate only — see the note in
+       css/style.css: no reviewer's name could be paired with that same
+       reviewer's published profile photo through the sources reachable
+       here, and the REVIEW ATTRIBUTION LAW forbids a stand-in face or an
+       anonymous quote strip. So: the real scores, and a link to the
+       live reviews. -->
+  <section class="section section-cream" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What people give it</p>
+        <h2>958 reviews, <em>4.1 stars</em></h2>
+      </div>
+      <div class="scores reveal">
+        <div class="score"><b class="tnum">4.1</b><span class="stars">★★★★☆</span><span>Google · 958 reviews</span></div>
+        <div class="score"><b class="tnum">4.4</b><span class="stars">★★★★☆</span><span>Food</span></div>
+        <div class="score"><b class="tnum">4.2</b><span class="stars">★★★★☆</span><span>Service</span></div>
+        <div class="score"><b class="tnum">4.0</b><span class="stars">★★★★☆</span><span>Atmosphere</span></div>
+      </div>
+      <p class="reviews-out reveal"><a class="btn btn-dark" href="https://www.google.com/search?q=Log+Cabin+Pub+Sumner+WA+reviews" target="_blank" rel="noopener">Read the reviews ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Come in</p>
+          <h2>Order at the bar, <em>grab a table</em></h2>
+          <ol class="steps">
+            <li><h3>Walk in</h3><p>Take the bar inside or head straight through to the beer garden out back.</p></li>
+            <li><h3>Order at the bar</h3><p>Food and drinks are ordered at the bar — that's how the kitchen runs.</p></li>
+            <li><h3>Rack up</h3><p>Pool, shuffleboard and ping pong are right there. So are the TVs.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12538632905">(253) 863-2905</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Log+Cabin+Pub+2719+E+Valley+Hwy+E+Sumner+WA+98390" target="_blank" rel="noopener">Directions ↗</a></span>
+            <span>📣 <a href="https://www.facebook.com/logcabinpub/events" target="_blank" rel="noopener">What's coming up ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
+               At go-live, pages-golive.sh fills this with a Web3Forms key created
+               against the OWNER's email and the form starts landing in their inbox. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about<select name="topic"><option>Booking the beer garden</option><option>A big group</option><option>Live music</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, and when were you thinking?"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — someone at the Cabin will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="cta-bg"><img src="images/night.jpg" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <p class="sign-strip">eats &nbsp;|&nbsp; drinks &nbsp;|&nbsp; games &nbsp;|&nbsp; entertainment &nbsp;|&nbsp; beer garden</p>
+      <div class="section-head reveal">
+        <h2>Pull off the highway <em>and come find out.</em></h2>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Log+Cabin+Pub+2719+E+Valley+Hwy+E+Sumner+WA+98390" class="btn btn-primary" target="_blank" rel="noopener">Get directions</a>
+        <a href="tel:+12538632905" class="btn btn-ghost">Call (253) 863-2905</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt=""></span>
+          <span class="wm">The Log Cabin Pub<small>Sumner, WA</small></span>
+        </div>
+        <p>Eats, drinks, games and a covered beer garden on E Valley Highway.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/logcabinpub" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://instagram.com/logcabinpub" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>2719 E Valley Hwy E<br>Sumner, WA 98390</p>
+        <p><a href="tel:+12538632905">(253) 863-2905</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#rooms">The rooms</a><br><a href="#menu">Menu</a><br><a href="#signature">Games</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> The Log Cabin Pub</span>
+      <span>Sumner, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>

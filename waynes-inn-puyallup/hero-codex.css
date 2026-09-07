@@ -1,0 +1,49 @@
+/* Codex hero alternative. Append after existing stylesheet. */
+.hero.codex-waynes-inn-puyallup{
+  --codex-paper:var(--ink);--codex-button-ink:var(--dark);
+  position:relative;isolation:isolate;display:grid;place-items:center;
+  height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));
+  width:100%;max-width:none;overflow:hidden;box-sizing:border-box;margin:0;padding:24px;
+  background:var(--dark);color:var(--codex-paper);
+}
+.hero.codex-waynes-inn-puyallup *,.hero.codex-waynes-inn-puyallup *::before,.hero.codex-waynes-inn-puyallup *::after{box-sizing:border-box}
+.hero.codex-waynes-inn-puyallup .codex-sr{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;animation:none!important;transform:none!important;opacity:1!important}
+.hero.codex-waynes-inn-puyallup .codex-scene{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.hero.codex-waynes-inn-puyallup .codex-scene img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;pointer-events:none}
+.hero.codex-waynes-inn-puyallup .codex-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:1000px;margin:0 auto;gap:clamp(22px,4svh,42px);text-align:center}
+.hero.codex-waynes-inn-puyallup .codex-mark{position:relative;display:block;margin:0;flex:none;pointer-events:none}
+.hero.codex-waynes-inn-puyallup .codex-mark img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.hero.codex-waynes-inn-puyallup .codex-actions{display:flex;justify-content:center;align-items:stretch;gap:12px;max-width:100%;margin:0;opacity:1;transform:none}
+.hero.codex-waynes-inn-puyallup .codex-actions a{display:flex;justify-content:center;align-items:center;min-height:50px;padding:14px 22px;border:1px solid transparent;border-radius:7px;white-space:nowrap;font-family:var(--body);font-size:15px;line-height:1.25;font-weight:700;letter-spacing:0;text-decoration:none;box-shadow:none;transform:none;animation:none;transition:background .2s,color .2s}
+.hero.codex-waynes-inn-puyallup .codex-actions .btn-primary{background:var(--brand);color:var(--codex-button-ink)}
+.hero.codex-waynes-inn-puyallup .codex-actions .btn-cream{background:var(--codex-paper);color:var(--dark);border-color:var(--codex-paper)}
+.hero.codex-waynes-inn-puyallup .codex-actions a:focus-visible{outline:3px solid var(--codex-paper);outline-offset:5px}
+.hero.codex-waynes-inn-puyallup .codex-actions a:hover{background:var(--brand-bright);color:var(--codex-button-ink);transform:none}
+@media(max-width:600px){
+  .hero.codex-waynes-inn-puyallup{padding:22px}
+  .hero.codex-waynes-inn-puyallup .codex-actions{gap:10px;width:100%}
+  .hero.codex-waynes-inn-puyallup .codex-actions a{flex:1;min-width:0;padding:14px 10px;font-size:13px;min-height:48px}
+}
+
+.hero.codex-waynes-inn-puyallup{perspective:1000px}
+.hero.codex-waynes-inn-puyallup::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,color-mix(in srgb,var(--bg) 30%,transparent),color-mix(in srgb,var(--dark) 86%,transparent) 88%),linear-gradient(0deg,var(--dark),transparent 55%)}
+.hero.codex-waynes-inn-puyallup .codex-scene img{object-position:45% 52%;filter:blur(14px) saturate(.66);transform:scale(1.08)}
+.hero.codex-waynes-inn-puyallup .codex-content{perspective:1000px}
+.hero.codex-waynes-inn-puyallup .codex-mark{width:min(650px,83vw,80svh);transform-origin:center 70%;box-shadow:0 28px 60px color-mix(in srgb,var(--dark) 70%,transparent);animation:codex-waynes-panel 1.9s cubic-bezier(.15,.75,.2,1) both}
+.hero.codex-waynes-inn-puyallup .codex-mark img{border-radius:2px}
+.hero.codex-waynes-inn-puyallup .codex-mark::before{content:"";position:absolute;z-index:-1;inset:12% -8% -15%;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--brand) 32%,transparent),transparent 68%);filter:blur(20px);opacity:.8;animation:codex-waynes-backlight 2.55s ease-out both}
+.hero.codex-waynes-inn-puyallup .codex-actions{animation:codex-waynes-buttons 1s .4s ease-out both}
+@keyframes codex-waynes-panel{0%{opacity:.5;transform:translateY(26px) rotateX(14deg) scale(.95)}70%{opacity:1;transform:translateY(-2px) rotateX(-1deg) scale(1)}100%{opacity:1;transform:none}}
+@keyframes codex-waynes-backlight{from{opacity:.1;transform:translateY(-16px) scale(.8)}to{opacity:.8;transform:none}}
+@keyframes codex-waynes-buttons{from{opacity:.6;transform:translateY(9px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.hero.codex-waynes-inn-puyallup .codex-mark{width:calc(100vw - 46px)}.hero.codex-waynes-inn-puyallup .codex-content{gap:30px}}
+
+@media(max-height:540px) and (min-width:601px){
+ .hero.codex-waynes-inn-puyallup{padding:16px 6vw}
+ .hero.codex-waynes-inn-puyallup .codex-content{flex-direction:row;justify-content:center;gap:40px}
+ .hero.codex-waynes-inn-puyallup .codex-mark{width:min(46vw,55svh)!important;max-height:70svh}
+ .hero.codex-waynes-inn-puyallup .codex-actions{flex-direction:column;min-width:180px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero.codex-waynes-inn-puyallup *,.hero.codex-waynes-inn-puyallup *::before,.hero.codex-waynes-inn-puyallup *::after{animation:none!important;transition:none!important}
+}

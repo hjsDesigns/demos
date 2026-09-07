@@ -1,0 +1,182 @@
+/* ============================================================
+   TK TOP NAILS & SPA — hero: "The lacquer settles"
+   Self-contained, everything namespaced under .hero.
+   Load AFTER css/style.css. No JS, no libraries.
+
+   Real assets only:
+     images/claude-room-blur.jpg  = their own pedicure room (harvest g6),
+                                    blurred + warmed. Nothing generated.
+     images/claude-mark-red.png   = "TK TOP" off their real banner sign
+     images/claude-mark-blue.png  = "NAILS & SPA" off the same sign
+     images/claude-mark-full.png  = both, used only as the gloss mask
+   The sign was cropped from harvest-0906/g15.jpg, levelled 1.23deg and
+   keyed to alpha by colour. Never redrawn (NEVER RECREATE).
+   ============================================================ */
+
+/* ---- ground: MIRROR LAW. Their room is butter-cream and lamp-lit, so the
+        hero is cream, not dark. Overrides the template's dark hero. ---- */
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:var(--bg);
+  color:var(--ink);
+  padding:clamp(24px,5vh,64px) var(--pad) clamp(30px,6vh,72px);
+  isolation:isolate;
+}
+
+/* the blurred room. Wrapper drifts (the quiet hold); the img does the intro. */
+.hero .hero-bg{
+  position:absolute;inset:0;z-index:0;
+  transform:scale(1.05);
+  will-change:transform;
+  animation:ch-drift 58s ease-in-out 1.4s infinite alternate both;
+}
+.hero .hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 46%;
+  animation:ch-bg-in 1.6s var(--ease) both;
+}
+/* the template paints a dark scrim + grain on the hero. Not here. */
+.hero .hero-bg::before,
+.hero .hero-bg::after{content:none}
+
+/* cream veil — pools light behind the mark, deepens at the base so the hero
+   hands off cleanly to the deep teal hours band underneath it. */
+.hero .hero-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(64% 34% at 50% 52%,
+      color-mix(in srgb,var(--paper) 72%,transparent) 0%,
+      color-mix(in srgb,var(--paper) 34%,transparent) 55%,
+      transparent 100%),
+    radial-gradient(118% 88% at 50% 44%,
+      transparent 0%,
+      color-mix(in srgb,var(--bg) 14%,transparent) 52%,
+      color-mix(in srgb,var(--bg-2) 44%,transparent) 100%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--bg) 62%,transparent) 0%,
+      transparent 20%,
+      transparent 62%,
+      color-mix(in srgb,var(--bg) 48%,transparent) 88%,
+      color-mix(in srgb,var(--tint) 30%,transparent) 100%);
+  animation:ch-veil 1.6s var(--ease) both;
+}
+/* a whisper of grain so the blur never reads like a gradient */
+.hero .hero-veil::after{
+  content:"";position:absolute;inset:0;opacity:.34;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+.hero .hero-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  padding:0;
+}
+
+/* ---- the mark IS the headline ---- */
+.hero .hero-mark{
+  position:relative;
+  width:min(88vw,700px);
+  aspect-ratio:1699 / 547;
+}
+.hero .mk{position:absolute;inset:0;display:block}
+.hero .mk-red {filter:drop-shadow(0 12px 22px color-mix(in srgb,var(--dark) 26%,transparent))}
+.hero .mk-blue{filter:drop-shadow(0 14px 26px color-mix(in srgb,var(--dark) 24%,transparent))}
+.hero .mk img{display:block;width:100%;height:100%;object-fit:contain}
+.hero .mk-red  img{animation:ch-red  1.15s cubic-bezier(.2,.86,.24,1) .30s both}
+.hero .mk-blue img{animation:ch-blue 1.15s cubic-bezier(.2,.86,.24,1) .62s both}
+
+/* one pass of light across the lettering — the polish gloss. Masked by the
+   mark's own alpha, so only the letters catch it. Runs once, then gone. */
+.hero .mk-gloss{
+  position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;
+  background:linear-gradient(104deg,
+    rgba(255,250,240,0) 28%,
+    rgba(255,250,240,.10) 41%,
+    rgba(255,252,244,.68) 50%,
+    rgba(255,250,240,.10) 59%,
+    rgba(255,250,240,0) 72%);
+  background-repeat:no-repeat;background-size:250% 100%;background-position:175% 0;
+  -webkit-mask-size:100% 100%;mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  animation:ch-gloss 1.75s cubic-bezier(.4,0,.22,1) 1.85s both;
+}
+
+/* ---- the two buttons, nothing else ---- */
+.hero .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  margin:clamp(26px,4.6vh,50px) 0 0;
+  animation:ch-rise .9s var(--ease) 2.45s both;
+}
+.hero .hero-actions .btn{box-shadow:0 14px 34px -18px color-mix(in srgb,var(--dark) 70%,transparent)}
+/* the cream button needs an edge on a cream ground */
+.hero .hero-actions .btn-cream{
+  background:var(--paper);color:var(--ink);border-color:color-mix(in srgb,var(--brand) 22%,var(--line));
+}
+.hero .hero-actions .btn-cream:hover{background:#fff;border-color:var(--brand)}
+
+/* ---- keyframes ---- */
+@keyframes ch-bg-in{from{opacity:0;transform:scale(1.10)}to{opacity:1;transform:scale(1)}}
+@keyframes ch-veil {from{opacity:0}to{opacity:1}}
+@keyframes ch-drift{
+  from{transform:scale(1.05) translate3d(0,0,0)}
+  to  {transform:scale(1.10) translate3d(-1.6%,-1.4%,0)}
+}
+@keyframes ch-red{
+  from{opacity:0;transform:translateY(-7%) scale(1.05);filter:blur(11px)}
+  to  {opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes ch-blue{
+  from{opacity:0;transform:translateY(9%) scale(1.03);filter:blur(11px)}
+  to  {opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes ch-gloss{
+  0%  {opacity:0;background-position:175% 0}
+  14% {opacity:1}
+  86% {opacity:1}
+  100%{opacity:0;background-position:-85% 0}
+}
+@keyframes ch-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ---- phone ---- */
+@media (max-width:760px){
+  .hero .hero-mark{width:min(90vw,520px)}
+  .hero .hero-actions{width:100%;flex-wrap:nowrap}
+  .hero .hero-actions .btn{flex:1 1 0;min-width:0;padding:14px 10px;font-size:14.5px}
+  .hero .hero-veil{
+    background:
+      radial-gradient(84% 26% at 50% 51%,
+        color-mix(in srgb,var(--paper) 76%,transparent) 0%,
+        color-mix(in srgb,var(--paper) 36%,transparent) 58%,
+        transparent 100%),
+      radial-gradient(132% 78% at 50% 44%,
+        transparent 0%,
+        color-mix(in srgb,var(--bg) 16%,transparent) 52%,
+        color-mix(in srgb,var(--bg-2) 46%,transparent) 100%),
+      linear-gradient(180deg,
+        color-mix(in srgb,var(--bg) 66%,transparent) 0%,
+        transparent 18%,
+        transparent 60%,
+        color-mix(in srgb,var(--bg) 50%,transparent) 88%,
+        color-mix(in srgb,var(--tint) 32%,transparent) 100%);
+  }
+}
+/* ---- desktop ---- */
+@media (min-width:900px){
+  .hero .hero-mark{width:min(56vw,780px)}
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-bg,
+  .hero .hero-bg img,
+  .hero .hero-veil,
+  .hero .mk img,
+  .hero .hero-actions{animation:none;opacity:1;transform:none;filter:none}
+  .hero .hero-bg{transform:scale(1.05)}
+  .hero .mk-gloss{animation:none;opacity:0}
+}

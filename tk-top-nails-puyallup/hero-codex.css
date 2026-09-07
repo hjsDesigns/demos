@@ -1,0 +1,40 @@
+/* Bounded Codex hero fragment. Append after the existing site stylesheet. */
+.hero.codex-tk-top-nails{position:relative;isolation:isolate;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:stretch;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));width:100%;max-width:none;margin:0;padding:0;overflow:hidden;background:var(--bg);color:var(--ink)}
+.hero.codex-tk-top-nails *{box-sizing:border-box}
+.hero.codex-tk-top-nails h1.codex-a11y{position:absolute;width:1px;height:1px;min-height:0;padding:0;margin:-1px;border:0;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;font-size:1px;line-height:1;animation:none;transform:none;opacity:1}
+.hero.codex-tk-top-nails .codex-content{position:relative;z-index:3;width:100%;margin:0 auto;min-width:0;text-align:center}
+.hero.codex-tk-top-nails .codex-actions{position:relative;z-index:4;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin:clamp(24px,4svh,40px) 0 0;padding:0;opacity:1;transform:none;animation:none}
+.hero.codex-tk-top-nails .codex-actions .btn{display:inline-flex;justify-content:center;align-items:center;min-height:50px;min-width:0;margin:0;padding:14px 23px;border-radius:6px;font-family:var(--body);font-size:15px;line-height:1.3;letter-spacing:0;font-weight:700;text-decoration:none;white-space:nowrap;transition:background-color .18s,color .18s;transform:none}
+.hero.codex-tk-top-nails .codex-actions .btn-primary{background:var(--brand);border:1px solid var(--brand);color:var(--paper)}
+.hero.codex-tk-top-nails .codex-actions .btn-cream,.hero.codex-tk-top-nails .codex-actions .btn-outline{background:var(--bg);border:1px solid color-mix(in srgb,var(--ink) 20%,transparent);color:var(--ink)}
+.hero.codex-tk-top-nails .codex-actions .btn:focus-visible{outline:3px solid var(--warm);outline-offset:5px}
+.hero.codex-tk-top-nails .codex-actions .btn-primary:hover{background:var(--brand-bright);border-color:var(--brand-bright)}
+.hero.codex-tk-top-nails .codex-decor{pointer-events:none;user-select:none}
+.hero.codex-tk-top-nails .codex-mark-image{display:block;width:100%;height:auto;max-width:none;object-fit:contain;object-position:center;margin:0;border:0;border-radius:0}
+@media(max-width:600px){.hero.codex-tk-top-nails .codex-actions{gap:10px;width:100%}.hero.codex-tk-top-nails .codex-actions .btn{flex:1 1 0;min-height:48px;padding:13px 10px;font-size:14px}}
+
+.hero.codex-tk-top-nails{background:var(--bg)}
+.hero.codex-tk-top-nails .codex-tk-room{position:absolute;inset:0 0 0 43%;overflow:hidden}
+.hero.codex-tk-top-nails .codex-tk-room img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 60%;filter:saturate(.9);animation:codex-tk-room-arrive 2.5s var(--ease) both}
+.hero.codex-tk-top-nails .codex-tk-daylight{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 28%,color-mix(in srgb,var(--bg) 96%,transparent) 40%,color-mix(in srgb,var(--bg) 76%,transparent) 48%,transparent 69%)}
+.hero.codex-tk-top-nails .codex-content{width:54%;margin:0;padding:0 3.8vw 0 4.5vw}
+.hero.codex-tk-top-nails .codex-tk-sign{position:relative;width:100%;aspect-ratio:1180/413;mix-blend-mode:multiply;filter:contrast(1.08);overflow:visible}
+.hero.codex-tk-top-nails .codex-tk-sign-top,.hero.codex-tk-top-nails .codex-tk-sign-bottom{position:absolute;inset:0}
+.hero.codex-tk-top-nails .codex-tk-sign-top{clip-path:inset(0 0 46% 0);animation:codex-tk-red-arrive 1.55s var(--ease) both}
+.hero.codex-tk-top-nails .codex-tk-sign-bottom{clip-path:inset(54% 0 0 0);animation:codex-tk-blue-arrive 1.55s var(--ease) .14s both}
+.hero.codex-tk-top-nails .codex-actions{margin-top:40px}
+@keyframes codex-tk-red-arrive{from{transform:translateX(-34px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes codex-tk-blue-arrive{from{transform:translateX(34px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes codex-tk-room-arrive{from{transform:scale(1.035);filter:saturate(.9) blur(5px)}to{transform:scale(1);filter:saturate(.9) blur(0)}}
+@media(max-width:760px){
+ .hero.codex-tk-top-nails{justify-content:flex-start}
+ .hero.codex-tk-top-nails .codex-tk-room{inset:23% 0 0}
+ .hero.codex-tk-top-nails .codex-tk-room img{object-position:center 62%}
+ .hero.codex-tk-top-nails .codex-tk-daylight{background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 15%,color-mix(in srgb,var(--bg) 96%,transparent) 26%,color-mix(in srgb,var(--bg) 78%,transparent) 37%,transparent 61%)}
+ .hero.codex-tk-top-nails .codex-content{width:100%;padding:clamp(32px,8svh,68px) 22px 0}
+ .hero.codex-tk-top-nails .codex-actions{margin-top:26px}
+}
+@media(max-height:540px) and (min-width:761px){.hero.codex-tk-top-nails .codex-content{width:51%;padding-left:3vw;padding-right:3vw}.hero.codex-tk-top-nails .codex-tk-sign{max-width:420px;margin:auto}.hero.codex-tk-top-nails .codex-actions{margin-top:22px}}
+@media(max-height:540px) and (max-width:760px){.hero.codex-tk-top-nails .codex-content{padding-top:20px}.hero.codex-tk-top-nails .codex-tk-sign{max-width:320px;margin:auto}.hero.codex-tk-top-nails .codex-actions{margin-top:18px}}
+
+@media(prefers-reduced-motion:reduce){.hero.codex-tk-top-nails *,.hero.codex-tk-top-nails *::before,.hero.codex-tk-top-nails *::after{animation:none!important;transition:none!important}}

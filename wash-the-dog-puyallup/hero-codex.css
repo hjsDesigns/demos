@@ -1,0 +1,27 @@
+
+.hero.codex-wash-sign{position:relative;height:calc(100svh - var(--header-h));min-height:460px;padding:0;display:grid;overflow:hidden;isolation:isolate;background:var(--dark)}
+.hero.codex-wash-sign .codex-scene{position:absolute;inset:0;z-index:-3;pointer-events:none}
+.hero.codex-wash-sign .codex-scene img{display:block;width:100%;height:100%;object-fit:cover}
+.hero.codex-wash-sign .codex-content{position:relative;z-index:2;width:min(1200px,100%);margin:auto;padding:clamp(26px,5vw,70px);text-align:center}
+.hero.codex-wash-sign .codex-title{margin:0;color:var(--on-dark,var(--paper));font-family:var(--display);font-weight:700;line-height:.94;letter-spacing:-.025em;opacity:1;transform:none;animation:none}
+.hero.codex-wash-sign .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;animation:none;opacity:1;transform:none}
+.hero.codex-wash-sign .codex-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+.hero.codex-wash-sign .codex-actions .btn{min-height:48px;position:relative;box-shadow:0 6px 22px color-mix(in srgb,var(--dark) 25%,transparent)}
+.hero.codex-wash-sign::after{content:"";position:absolute;inset:auto 0 0;height:17%;z-index:-1;background:linear-gradient(transparent,var(--dark));pointer-events:none}
+@media(max-width:600px){.hero.codex-wash-sign .codex-content{padding:28px 20px}.hero.codex-wash-sign .codex-actions{gap:9px;margin-top:26px}.hero.codex-wash-sign .codex-actions .btn{font-size:14px;padding:13px 15px}}
+
+.hero.codex-wash-sign{background:var(--bg)}
+.hero.codex-wash-sign .codex-scene img{object-position:50% 56%;filter:saturate(.95);transform:scale(1.02);animation:codexWashPhoto 2.5s ease-out both}
+.hero.codex-wash-sign::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 75%,transparent),color-mix(in srgb,var(--bg) 24%,transparent) 56%,color-mix(in srgb,var(--dark) 36%,transparent));pointer-events:none}
+.hero.codex-wash-sign::after{height:16%;background:linear-gradient(transparent,var(--dark))}
+.hero.codex-wash-sign .codex-content{padding-top:20px;padding-bottom:35px}
+.hero.codex-wash-sign .codex-title{font-family:var(--display);font-weight:700;font-size:clamp(90px,12vw,168px);line-height:.83;letter-spacing:-.035em;color:var(--brand);-webkit-text-stroke:2px var(--paper);text-shadow:0 4px 0 var(--dark),0 14px 35px color-mix(in srgb,var(--dark) 24%,transparent)}
+.hero.codex-wash-sign .codex-title span{display:block;width:fit-content;margin:0 auto;background:linear-gradient(180deg,var(--brand-bright,var(--brand)) 12%,var(--brand) 50%,var(--dark) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:codexWashInflate 1.4s cubic-bezier(.16,.8,.2,1) both}
+.hero.codex-wash-sign .codex-title .codex-wash-dog{animation-delay:.13s;margin-top:12px}.hero.codex-wash-sign .codex-title small{font-size:.4em;font-weight:600;vertical-align:middle;letter-spacing:-.04em;-webkit-text-stroke:1px var(--paper)}
+.hero.codex-wash-sign .codex-actions{margin-top:44px;animation:codexWashActions .7s .75s ease-out both}
+@keyframes codexWashInflate{0%{transform:translateY(24px) scale(.85);opacity:0}65%{transform:translateY(-3px) scale(1.025);opacity:1}100%{transform:none;opacity:1}}
+@keyframes codexWashActions{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes codexWashPhoto{from{transform:scale(1.055);filter:saturate(.8)}to{transform:scale(1.02);filter:saturate(.95)}}
+@media(max-width:600px){.hero.codex-wash-sign .codex-content{padding-inline:15px}.hero.codex-wash-sign .codex-title{font-size:clamp(82px,23vw,116px);-webkit-text-stroke:1.5px var(--paper)}.hero.codex-wash-sign .codex-actions{margin-top:40px}.hero.codex-wash-sign .codex-scene img{object-position:51% 60%}}
+
+@media(prefers-reduced-motion:reduce){.hero.codex-wash-sign *,.hero.codex-wash-sign *::before,.hero.codex-wash-sign *::after{animation:none!important}.hero.codex-wash-sign .codex-actions{opacity:1;transform:none}}

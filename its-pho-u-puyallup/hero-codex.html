@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>It's Phở U — Vietnamese noodle soup, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="It's Phở U on South Meridian in Puyallup — Vietnamese noodle soup, bánh mì, vermicelli bowls, rice plates, yakisoba and boba. Open 10:30 to 9:30, six days a week. 4.3 stars across 797 Google reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (display, soft warm serif) + Be Vietnam Pro (body, drawn for Vietnamese diacritics)
+     — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="hero-codex.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     The mark is their real exterior sign, cropped out of their own
+     storefront photo and keyed off the stucco — never redrawn. The sign
+     already says the name, so no wordmark repeats it beside it. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="It's Phở U — home">
+      <img src="images/logo.png" alt="It's Phở U" width="900" height="319">
+      <span class="wm"><small>Puyallup, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">Menu</a>
+        <a href="#signature">Dress a bowl</a>
+        <a href="#gallery">The room</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT: the building from outside with their real sign,
+       because the interiors appear further down the page. Desktop gets the
+       wide frame; phones get the vertical frame letterboxed into a blurred
+       echo of itself, so the sign is never cropped mid-letter.
+       Nothing sits on the photo but the headline block. -->
+  <section class="hero codex-its-pho-u" id="hero">
+  <div class="codex-phou-room codex-decor" aria-hidden="true"><img src="harvest-0906/g26.jpg" alt="" width="1920" height="864" fetchpriority="high"></div>
+  <div class="codex-phou-pool codex-decor" aria-hidden="true"></div>
+  <div class="codex-content">
+    <h1 class="sr-only codex-a11y">It's Pho U — Vietnamese noodle soup in Puyallup</h1>
+    <div class="codex-phou-mark codex-decor" aria-hidden="true"><img class="codex-mark-image" src="images/codex-sign-complete.png" alt="" width="1369" height="459" fetchpriority="high"><span class="codex-phou-warmth"></span></div>
+    <div class="codex-actions"><a href="#menu" class="btn btn-primary">See the menu</a><a href="#hours" class="btn btn-cream">Are they open?</a></div>
+  </div>
+</section>
+
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock, green when open and red when closed, address and
+       all seven days with today lit. Hours live HERE and nowhere else. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Six days a week, <em>Sundays off</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          3707 S Meridian, Puyallup, WA 98373<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=3707+S+Meridian%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.3 on Google · 797 reviews</span>
+          <span class="proof"><span class="ico">✓</span> Take-out &amp; delivery</span>
+          <span class="proof"><span class="ico">✓</span> Vegan &amp; vegetarian options</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">10:30 AM – 9:30 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">10:30 AM – 9:30 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">10:30 AM – 9:30 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">10:30 AM – 9:30 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:30 AM – 9:30 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">10:30 AM – 9:30 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">Closed</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — the board =====================
+       Prices transcribed verbatim off the printed menu page in their own
+       dining room. Dishes with no sourced price are shown as photographs
+       with their names only — never with a made-up number. -->
+  <section class="section section-alt" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Off the menu in the dining room</p>
+        <h2>The whole board is <em>under fifteen dollars</em></h2>
+        <p>Teriyaki, yakisoba, fried rice and char-broiled rice plates, priced exactly as they're printed on the menu at the table. Teriyaki and rice plates come with rice and salad.</p>
+      </div>
+
+      <div class="menu-groups reveal">
+        <div class="menu-group">
+          <h3>Teriyaki</h3>
+          <p class="group-note">Comes with rice &amp; salad · add spicy $2.95</p>
+          <ul class="menu-list">
+            <li><span class="no">T1</span><span class="name">Chicken Teriyaki</span><span class="price">$10.55</span></li>
+            <li><span class="no">T2</span><span class="name">Pork Teriyaki</span><span class="price">$11.55</span></li>
+            <li><span class="no">T3</span><span class="name">Beef Teriyaki</span><span class="price">$11.95</span></li>
+            <li><span class="no">T4</span><span class="name">Chicken w/ Pork</span><span class="price">$12.95</span></li>
+            <li><span class="no">T5</span><span class="name">Chicken w/ Beef</span><span class="price">$12.95</span></li>
+            <li><span class="no">T6</span><span class="name">Chicken w/ Gyoza</span><span class="price">$11.95</span></li>
+            <li><span class="no">T7</span><span class="name">Chicken w/ Egg Roll</span><span class="price">$11.95</span></li>
+            <li><span class="no">T8</span><span class="name">Pork w/ Beef</span><span class="price">$12.95</span></li>
+            <li><span class="no">T9</span><span class="name">Beef Short Ribs</span><span class="price">$14.95</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Yakisoba <span class="viet">Mì Xào</span></h3>
+          <ul class="menu-list">
+            <li><span class="no">Y1</span><span class="name">Chicken Yakisoba</span><span class="price">$10.95</span></li>
+            <li><span class="no">Y2</span><span class="name">Pork Yakisoba</span><span class="price">$11.55</span></li>
+            <li><span class="no">Y3</span><span class="name">Beef Yakisoba</span><span class="price">$11.55</span></li>
+            <li><span class="no">Y4</span><span class="name">Vegetable Yakisoba</span><span class="price">$11.55</span></li>
+            <li><span class="no">Y5</span><span class="name">Shrimp Yakisoba</span><span class="price">$11.95</span></li>
+            <li><span class="no">Y6</span><span class="name">Tofu Yakisoba</span><span class="price">$11.55</span></li>
+            <li><span class="no">Y7</span><span class="name">Combination Yakisoba</span><span class="price">$12.55</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Fried Rice <span class="viet">Cơm Chiên</span></h3>
+          <ul class="menu-list">
+            <li><span class="no">F1</span><span class="name">Chicken Fried Rice</span><span class="price">$10.55</span></li>
+            <li><span class="no">F2</span><span class="name">Pork Fried Rice</span><span class="price">$10.55</span></li>
+            <li><span class="no">F3</span><span class="name">Beef Fried Rice</span><span class="price">$10.95</span></li>
+            <li><span class="no">F4</span><span class="name">Shrimp Fried Rice</span><span class="price">$10.95</span></li>
+            <li><span class="no">F5</span><span class="name">Vegetable Fried Rice</span><span class="price">$10.55</span></li>
+            <li><span class="no">F6</span><span class="name">Combination Fried Rice</span><span class="price">$11.55</span><span class="desc">Chicken &amp; shrimp.</span></li>
+            <li><span class="no">F7</span><span class="name">Tofu Fried Rice</span><span class="price">$10.95</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Rice Plate</h3>
+          <p class="group-note">Comes with rice &amp; salad</p>
+          <ul class="menu-list">
+            <li><span class="no">R1</span><span class="name">Char-Broiled Pork Chop &amp; Fried Egg <b class="starred" title="Starred on their menu">★</b></span><span class="price">$11.75</span></li>
+            <li><span class="no">R2</span><span class="name">Char-Broiled Chicken &amp; Fried Tofu</span><span class="price">$10.75</span></li>
+            <li><span class="no">R3</span><span class="name">Char-Broiled Chicken &amp; Fried Roll</span><span class="price">$10.75</span></li>
+            <li><span class="no">R4</span><span class="name">Char-Broiled Pork Chop</span><span class="price">$11.95</span></li>
+            <li><span class="no">R5</span><span class="name">Char-Broiled Short Ribs</span><span class="price">$14.95</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-fine reveal">Prices exactly as printed on the menu at the table. Parties of five or more: 15% gratuity is added. Phở, bánh mì, vermicelli bowls and boba are on the full menu in the dining room — here's what they look like.</p>
+
+      <div class="dish-strip reveal">
+        <figure class="dish"><img src="images/dish-pho.jpg" alt="A bowl of phở with rice noodles, sliced beef, cilantro and Thai basil" loading="lazy"><figcaption>Phở</figcaption></figure>
+        <figure class="dish"><img src="images/dish-banhmi.jpg" alt="A bánh mì on a split baguette with pickled carrot, cucumber and cilantro in checkered paper" loading="lazy"><figcaption>Bánh mì</figcaption></figure>
+        <figure class="dish"><img src="images/dish-rolls.jpg" alt="Two fresh shrimp spring rolls on a white plate beside a black bowl of peanut sauce" loading="lazy"><figcaption>Fresh spring rolls</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — DRESS YOUR BOWL =====================
+       Their one real ritual: every bowl of phở arrives with a side plate of
+       Thai basil, bean sprouts, jalapeño and lime. Each garnish here is
+       cropped out of a photograph of THEIR side plate. One tap drops it in;
+       tap again and it lifts back out. No numbers, no reading, no prizes. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The part you do yourself</p>
+        <h2>Every bowl comes with <em>a plate on the side</em></h2>
+        <p>Thai basil, bean sprouts, jalapeño and lime, on their own plate. What goes in is up to you.</p>
+      </div>
+
+      <div class="bowl-wrap reveal">
+        <div class="bowl-stage">
+          <img class="bowl-img" src="images/bowl.jpg" alt="A bowl of phở at It's Phở U — clear broth, rice noodles, sliced beef, meatball and onion, with the side plate of basil, sprouts and jalapeño behind it" loading="lazy">
+          <div class="drops" id="drops" aria-hidden="true">
+            <span class="drop" data-g="basil"    style="--dx:-28%;--dy:4%"><img src="images/garnish-basil.png" alt=""></span>
+            <span class="drop" data-g="sprouts"  style="--dx:26%;--dy:8%"><img src="images/garnish-sprouts.png" alt=""></span>
+            <span class="drop" data-g="jalapeno" style="--dx:23%;--dy:-14%"><img src="images/garnish-jalapeno.png" alt=""></span>
+            <span class="drop" data-g="lime"     style="--dx:-23%;--dy:24%"><img src="images/garnish-lime.png" alt=""></span>
+          </div>
+        </div>
+
+        <div class="plate">
+          <p class="plate-hint">Tap one. Tap it again to take it out.</p>
+          <div class="garnishes" id="garnishes">
+            <button class="garnish" type="button" data-g="basil" aria-pressed="false">
+              <span class="gimg"><img src="images/garnish-basil.png" alt="" width="300" height="300"></span>
+              <span class="glabel">Thai basil</span>
+            </button>
+            <button class="garnish" type="button" data-g="sprouts" aria-pressed="false">
+              <span class="gimg"><img src="images/garnish-sprouts.png" alt="" width="300" height="300"></span>
+              <span class="glabel">Bean sprouts</span>
+            </button>
+            <button class="garnish" type="button" data-g="jalapeno" aria-pressed="false">
+              <span class="gimg"><img src="images/garnish-jalapeno.png" alt="" width="300" height="300"></span>
+              <span class="glabel">Jalapeño</span>
+            </button>
+            <button class="garnish" type="button" data-g="lime" aria-pressed="false">
+              <span class="gimg"><img src="images/garnish-lime.png" alt="" width="300" height="300"></span>
+              <span class="glabel">Lime</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Before you walk in</p>
+        <h2>Light wood, plants on the wall, <em>globe lights over the tables</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The dining room at It's Phở U in the evening — dark wood chairs, light plank floor and round glass pendant lights" loading="lazy"><figcaption>The room, after dark</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A tall cup of boba with tapioca pearls settled at the bottom on a dark wood table" loading="lazy"><figcaption>Boba</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A vermicelli bowl piled with grilled pork, shrimp, shredded carrot, lettuce and bean sprouts" loading="lazy"><figcaption>A vermicelli bowl</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Two fried egg rolls on a white rectangular plate" loading="lazy"><figcaption>Fried rolls</figcaption></figure>
+        <figure class="print reveal"><img src="images/dish-rice.jpg" alt="Combination fried rice with peas, carrot and corn on a white plate with an orange slice" loading="lazy"><figcaption>Cơm chiên</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="The It's Phở U menu cover — the name over a striped awning and a cartoon of someone kneeling to offer a steaming bowl of phở" loading="lazy">
+          <figcaption>Their own menu cover</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Why it's called that</p>
+          <h2>The name is the joke, <em>and they commit</em></h2>
+          <p class="lede">The phone number spells it out: 253-848-PHOU.</p>
+          <p>Open the menu and there's a cartoon on the cover — someone down on one knee holding out a steaming bowl, hearts in the air, a speech bubble reading <em>“It's Pho U!!”</em> — printed under a red-and-green striped awning. The same two characters are stuck to the window by the front door. That's the whole personality of the place, and they put it on everything they hand you.</p>
+          <p>Behind it is a bright room off South Meridian: light plank floors, a cedar wall with plants growing out of it, dark wood chairs, round glass lights over the tables. Phở, char-broiled rice plates and yakisoba all under fifteen dollars, vegan and vegetarian options through the menu, take-out and delivery if you'd rather eat at home.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW: no reviewer name + real profile photo pair
+       could be sourced (Google, Yelp and TripAdvisor are all bot-walled to
+       us). So: the honest aggregate, and a link straight to the live
+       reviews — never an invented name, a stock face or an anonymous quote. -->
+  <section class="section section-dark" id="reviews">
+    <div class="wrap">
+      <div class="score">
+        <div class="score-num reveal">
+          <b class="tnum">4.3</b>
+          <span class="stars" aria-label="4.3 out of 5 stars">★★★★<span class="half">★</span></span>
+          <span class="score-sub"><span class="count tnum" data-to="797">797</span> ratings on Google</span>
+        </div>
+        <div class="score-copy reveal">
+          <p class="eyebrow">What Puyallup thinks</p>
+          <h2>Seven hundred and ninety-seven people <em>have weighed in</em></h2>
+          <p>Rather than pick out a quote, here's the whole thing — every review, good and bad, straight from the source.</p>
+          <a class="btn btn-cream" href="https://www.google.com/maps/search/?api=1&amp;query=It%27s+Pho+U%2C+3707+S+Meridian%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read all 797 reviews on Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting here</p>
+          <h2>Walk in, <em>or call it in</em></h2>
+          <ol class="steps">
+            <li><h3>Just walk in</h3><p>No reservations — there's a big dining room and a counter at the back, and lunch moves fast.</p></li>
+            <li><h3>Or order it to go</h3><p>Call 253-848-PHOU and it'll be bagged and waiting. Delivery runs too.</p></li>
+            <li><h3>Bringing the whole crew?</h3><p>Five or more and a 15% gratuity gets added — worth a heads-up call so the kitchen can stagger it.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12538487468">(253) 848-7468</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=3707+S+Meridian%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A to-go order</option><option>A big group</option><option>Catering or something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, when, and anything the kitchen should know."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — someone at It's Phở U will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more thing</p>
+        <h2>Look for <em>the green sign</em></h2>
+        <p>South Meridian, in the strip, number 3707 on the glass.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=3707+S+Meridian%2C+Puyallup%2C+WA+98373" class="btn btn-primary" target="_blank" rel="noopener">Get directions</a>
+        <a href="tel:+12538487468" class="btn btn-ghost">Call 253-848-PHOU</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate-mark"><img src="images/logo.png" alt=""></span>
+          <span class="wm">It's Phở U<small>Vietnamese cuisine · Puyallup, WA</small></span>
+        </div>
+        <p>Vietnamese noodle soup, rice plates and boba on South Meridian.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>3707 S Meridian<br>Puyallup, WA 98373</p>
+        <p><a href="tel:+12538487468">(253) 848-7468</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#menu">Menu</a><br><a href="#signature">Dress a bowl</a><br><a href="#gallery">The room</a><br><a href="#about">The name</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> It's Phở U</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>

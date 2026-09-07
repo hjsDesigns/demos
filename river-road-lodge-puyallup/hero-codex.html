@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>River Road Lodge — bar, darts, pool &amp; a stage on River Road, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="River Road Lodge (the old R&amp;R Lounge) at 7824 River Rd E, Puyallup — full bar, two pool tables, darts, karaoke on weekends and live bands on the stage. Open seven days, 2 AM Wednesday through Saturday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Oswald (condensed display, matches the compressed lettering on their fascia)
+     + Barlow (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="hero-codex.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     The mark is a straight crop of the oval badge on their own building
+     fascia (harvest g19) — leveled, never redrawn. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="River Road Lodge — home">
+      <img src="images/logo.png" alt="" width="520" height="371">
+      <span class="wm">River Road Lodge<small>Puyallup, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#inside">Inside</a>
+        <a href="#stage">The stage</a>
+        <a href="#weekly">Every week</a>
+        <a href="#kitchen">Kitchen</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       g27 — their building at night, the sharpest frame in the harvest.
+       Vertical original, so the phone gets a true portrait crop and the
+       desktop a wide band cut from the same photograph. Headline block
+       only: no chips, no badges, no hours on the photo. -->
+  <section class="hero codex-river-road-lodge-puyallup" id="hero" aria-label="River Road Lodge">
+  <div class="codex-scene" aria-hidden="true"><picture><source media="(min-width:761px)" srcset="images/hero-wide.jpg"><img src="images/hero.jpg" alt="" fetchpriority="high" width="1300" height="2239"></picture></div>
+  <div class="codex-content">
+    <h1 class="codex-name"><span class="codex-river">River Road</span><span class="codex-lodge">Lodge</span></h1>
+    <div class="codex-actions">
+      <a href="#inside" class="btn btn-primary">Look inside</a>
+      <a href="#hours" class="btn btn-cream">Open right now?</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock + address + all seven days, today lit.
+       Hours live HERE and nowhere else on the page. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>Seven days, <em>and late</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          7824 River Rd E, Puyallup, WA 98371<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=7824+River+Rd+E%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.3 on Google · 228 reviews</span>
+          <span class="proof"><span class="ico">✓</span> Bikes park right out front</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">12:00 PM – 12:00 AM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">12:00 PM – 12:00 AM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">12:00 PM – 2:00 AM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">12:00 PM – 2:00 AM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">12:00 PM – 2:00 AM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">9:00 AM – 2:00 AM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">9:00 AM – 12:00 AM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #inside — the four things in the room ===================== -->
+  <section class="section" id="inside">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What's in there</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>One room, <em>four things going on</em></h2>
+        <p>The sign bolted to the front of the building lists it in three words — bar, darts, pool. It leaves out the stage.</p>
+      </div>
+      <div class="tiles">
+
+        <article class="tile reveal">
+          <div class="shot"><img src="images/inside-stage.jpg" alt="A five-piece band playing on the stage at River Road Lodge" loading="lazy" width="1500" height="1125"></div>
+          <div class="body">
+            <h3>The stage</h3>
+            <p>A real corner stage with a house drum riser, and bands loud enough to fill the whole room.</p>
+            <span class="cap">Band night, on the stage</span>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <div class="shot"><img src="images/inside-pool.jpg" alt="Two pool tables on the worn plank floor under red and blue neon" loading="lazy" width="1500" height="1125"></div>
+          <div class="body">
+            <h3>Pool &amp; darts</h3>
+            <p>Two tables on the plank floor, barrel-top seating around them, and the dart board the front sign brags about.</p>
+            <span class="cap">The back of the room</span>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <div class="shot"><img src="images/inside-karaoke.jpg" alt="A karaoke lyric screen glowing green under the red neon ceiling tube" loading="lazy" width="655" height="491"></div>
+          <div class="body">
+            <h3>Karaoke</h3>
+            <p>Weekends, with a DJ running it. Screens at both ends so you can read the words from the pool table.</p>
+            <span class="cap">Lyrics up, mid-song</span>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <div class="shot"><img src="images/inside-bar.jpg" alt="The long wooden bar with taps, a jukebox and a TV above it" loading="lazy" width="1800" height="875"></div>
+          <div class="body">
+            <h3>The bar</h3>
+            <p>Long wood counter, taps at the near end, jukebox against the wall and the game on above it.</p>
+            <span class="cap">Looking down the bar</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #stage — the one-of-one, in their own photographs ===================== -->
+  <section class="section section-alt" id="stage">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The stage</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>Somebody's <em>always plugging in</em></h2>
+        <p>Most bars this size have a jukebox and leave it there. This one has amps, a drum kit and Super Bowl banners strung over the players' heads.</p>
+      </div>
+      <div class="stage-strip">
+        <figure class="print reveal">
+          <img src="images/stage-1.jpg" alt="A guitarist in sunglasses playing a pink electric guitar on the stage" loading="lazy" width="1200" height="1600">
+          <figcaption>A pink guitar, under the tube</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/stage-2.jpg" alt="A full band on stage beneath rows of Seahawks championship banners" loading="lazy" width="1500" height="1125">
+          <figcaption>Full band, banners overhead</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/stage-3.jpg" alt="A bass player at the microphone with the drum kit behind him" loading="lazy" width="1200" height="1600">
+          <figcaption>Bass and a bare foot of floor</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/stage-4.jpg" alt="A keyboard player grinning over his keys in pink and green light" loading="lazy" width="1500" height="845">
+          <figcaption>Keys, and a grin about it</figcaption>
+        </figure>
+      </div>
+      <p class="stage-note reveal">There's no printed calendar for this — bands get booked, word goes round, and the room fills. <b>Call the bar and ask who's on this weekend.</b></p>
+    </div>
+  </section>
+
+  <!-- ===================== #weekly — only what is genuinely sourced =====================
+       Two items, both evidenced: the Busch poster hanging on their own wall
+       behind the stage, and karaoke, which every listing describes as a
+       weekend fixture. Nothing invented to pad a full week out. -->
+  <section class="section" id="weekly">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Every week</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>Two you can <em>count on</em></h2>
+      </div>
+      <div class="weekly">
+        <figure class="print reveal">
+          <img src="images/thursday.jpg" alt="The Thirsty Thursday poster on the wall — every Thursday, two dollar Busch drafts" loading="lazy" width="538" height="640">
+          <figcaption>Taped to the wall behind the stage</figcaption>
+        </figure>
+        <ul class="slate reveal">
+          <li>
+            <span class="when">Thursday</span>
+            <div>
+              <h3>Thirsty Thursday</h3>
+              <p>Two dollar Busch drafts, every Thursday. It's on the poster, in their own words, and it hasn't moved.</p>
+              <span class="tag">$2 Busch drafts</span>
+            </div>
+          </li>
+          <li>
+            <span class="when">Weekends</span>
+            <div>
+              <h3>Karaoke night</h3>
+              <p>Run by a DJ, and the regulars rate him. Start time moves with the crowd — the bar will tell you.</p>
+              <span class="tag">Mic's on both screens</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #kitchen ===================== -->
+  <section class="section section-alt" id="kitchen">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out of the kitchen</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>Pizza, wings, <em>and a basket of fries</em></h2>
+        <p>Bar food cooked behind the bar. These are the ones that get ordered most.</p>
+      </div>
+      <div class="kitchen">
+        <div class="kitchen-left">
+          <ul class="eats reveal">
+            <li>Fresh Pizza</li>
+            <li>Canadian Bacon and Pineapple Pizza</li>
+            <li>Hot Wings — 5 pieces</li>
+            <li>Chicken Strips &amp; Fries</li>
+            <li>Mozzarella Sticks — 5 pieces</li>
+            <li>Jalapeño Poppers — 6 pieces</li>
+            <li>Taquitos — 6 pieces</li>
+            <li>Onion Rings</li>
+            <li>French Fries</li>
+          </ul>
+          <figure class="print reveal">
+            <img src="images/food-snack.jpg" alt="A plate of pretzels and two drinks on the wooden bar top" loading="lazy" width="1400" height="788">
+            <figcaption>Pretzels land before you ask</figcaption>
+          </figure>
+        </div>
+        <figure class="print reveal">
+          <img src="images/food-pizza.jpg" alt="A pizza on a blue patterned plate at the bar" loading="lazy" width="1200" height="1200">
+          <figcaption>Pizza, straight out of their kitchen</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #room ===================== -->
+  <section class="section" id="room">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The room after dark</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>Neon, <em>worn wood</em>, and whoever's on the stool next to you</h2>
+        <p>A red tube runs the whole length of the ceiling. Underneath it: plank floor, whiskey-barrel tables, string lights over the counter and a back bar that goes blue once the sun's down.</p>
+      </div>
+      <div class="prints">
+        <figure class="print reveal">
+          <img src="images/room-floor.jpg" alt="The floor and tables under the red ceiling tube, with neon beer signs on the wall" loading="lazy" width="1100" height="1174">
+          <figcaption>The tube down the ceiling</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/room-lights.jpg" alt="String lights strung along the back bar above the bottles" loading="lazy" width="1600" height="778">
+          <figcaption>String lights over the bottles</figcaption>
+        </figure>
+        <figure class="print reveal">
+          <img src="images/drink.jpg" alt="A tall frozen strawberry drink with whipped cream on the bar" loading="lazy" width="1100" height="1467">
+          <figcaption>A frozen one, two straws in</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW-FACE LAW: monogram marks in the site's own type and palette,
+       never a scraped photo of the reviewer. Quotes verbatim, names and
+       dates as published. Star counts are not published on the mirror these
+       came from, so none are claimed. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What the regulars say</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>In their <em>own words</em></h2>
+      </div>
+      <div class="rating reveal">
+        <span class="big">4.3</span>
+        <span class="stars" aria-hidden="true">★★★★☆</span>
+        <span class="of">out of five, across 228 Google reviews</span>
+      </div>
+      <div class="quotes">
+        <article class="quote reveal">
+          <blockquote>“Not much to say. Fun little dive bar off river road. Drinks are cheap, bartenders are nice, and locals are warming if you're cool.”</blockquote>
+          <div class="who">
+            <span class="ini" aria-hidden="true">MB</span>
+            <div class="meta"><b>Michael B.</b><span>March 3, 2026</span></div>
+          </div>
+        </article>
+        <article class="quote reveal">
+          <blockquote>“Cool little dive bar. The bartender/waitress was funny and attentive. the food was surprisingly good. You can tell that the bar was full of regulars and they were all pretty friendly.”</blockquote>
+          <div class="who">
+            <span class="ini" aria-hidden="true">BO</span>
+            <div class="meta"><b>Bobby O.</b><span>September 23, 2024</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact — find us + the name change ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Getting there</p>
+        <span class="neon-rule" aria-hidden="true"></span>
+        <h2>Out on <em>River Road</em></h2>
+      </div>
+      <div class="find">
+        <div class="reveal">
+          <div class="rename">
+            <p><b>Half the internet still says R&amp;R Lounge.</b> Google, Yelp and most of the directories haven't caught up with the new name. Same building, same corner of River Road, same phone number — new sign out front.</p>
+          </div>
+          <div class="contact-lines">
+            <p><a href="tel:+12537700669">(253) 770-0669</a> — call the bar</p>
+            <p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=7824+River+Rd+E%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Directions on Google Maps ↗</a></p>
+          </div>
+          <form class="contact-form" style="margin-top:26px">
+            <input type="hidden" name="access_key" value="">
+            <label class="full">Your name
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label class="full">Phone or email
+              <input type="text" name="contact" autocomplete="tel" required>
+            </label>
+            <label class="full">What's up?
+              <textarea name="message" placeholder="Booking the room, asking about a band night, anything." required></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Send it</button>
+            <div class="form-success">Got it — someone behind the bar will get back to you.</div>
+            <p class="form-fine">In a hurry? Calling is faster than typing.</p>
+          </form>
+        </div>
+        <div class="find-shots">
+          <figure class="print reveal">
+            <img src="images/sign-road.jpg" alt="The tall roadside sign reading Lounge, River Road Lodge" loading="lazy" width="1500" height="1125">
+            <figcaption>The sign you're looking for, off River Road</figcaption>
+          </figure>
+          <figure class="print reveal">
+            <img src="images/sign-old.jpg" alt="The older green painted sign on the building reading R and R Lounge, Bar and Grill" loading="lazy" width="1500" height="456">
+            <figcaption>The old name, before the change</figcaption>
+          </figure>
+          <figure class="print reveal">
+            <img src="images/exterior-day.jpg" alt="The red-roofed building and its covered patio in daylight" loading="lazy" width="1500" height="1125">
+            <figcaption>Covered patio, red doors, daytime</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Pull in and <em>walk up</em></h2>
+      </div>
+      <div class="cta-actions">
+        <a href="tel:+12537700669" class="btn btn-primary">Call (253) 770-0669</a>
+        <a href="#hours" class="btn btn-ghost">Check tonight's hours</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt="River Road Lodge badge" width="520" height="371"></span>
+          <span class="wm">River Road Lodge<small>Est. 1985 · Puyallup</small></span>
+        </div>
+        <p>The dive bar out on River Road — full bar, two tables, a dart board and a stage.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/profile.php?id=100086200014378" target="_blank" rel="noopener">Facebook ↗</a>
+        </div>
+      </div>
+      <div>
+        <h4>Come by</h4>
+        <p>7824 River Rd E<br>Puyallup, WA 98371</p>
+        <p><a href="tel:+12537700669">(253) 770-0669</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#inside">What's in there</a></p>
+        <p><a href="#stage">Live music</a></p>
+        <p><a href="#kitchen">Food</a></p>
+        <p><a href="#contact">Getting there</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> River Road Lodge · Puyallup, Washington</span>
+      <span>Formerly R&amp;R Lounge</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>
