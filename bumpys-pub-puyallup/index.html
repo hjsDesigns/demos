@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Anton (display, condensed bar-sign weight) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=0907165330">
+<link rel="stylesheet" href="css/hero.css?v=0907165330">
 </head>
 <body>
 
@@ -46,17 +47,59 @@
        Association sponsor page — pulled directly, never redrawn) warms up
        over it like a tube catching. The mark IS the headline, so the h1 is
        sr-only and nothing else sits on the photo. -->
-  <section class="hero" id="hero">
-    <!-- Hayden, 9/7: "something fun with the sign… like Captain Jack's, blurry
-         background and the logo coming through the front." The real neon sign
-         box, cropped from their own night photo, wipes in through a blurred
-         red glow of that same shot. Nothing redrawn. -->
-    <div class="hero-bg">
-      <img class="shot" src="images/neon.jpg" alt="" aria-hidden="true" fetchpriority="high">
+  <!-- ================ #hero — variant: rack-lights-little ================
+       The three-way mix of tab-rack (5), chase-lights (8) and
+       biggest-little (3):
+         1. their real numbered pull-tab compartments strike in sequence as
+            the whole ground, like a scoreboard,
+         2. their real hand-drawn wordmark comes FORWARD out of the rack
+            inside a marquee frame of 36 amber bulbs that run one lap,
+         3. the line off their own trucker hats — THE BIGGEST little BAR IN
+            PUYALLUP — lands under the mark word by word, LITTLE set tiny in
+            the sign's red,
+       then everything holds on the slow warm breath. sr-only h1, the two
+       existing buttons, nothing else on the hero. CSS only, no JS. -->
+  <section class="hero v-rack-lights-little" id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <img class="shot" src="images/tab-rack-bg.jpg" alt="" fetchpriority="high" decoding="async">
     </div>
+
+    <div class="rll-rack" aria-hidden="true">
+      <span class="rll-cell" style="--i:0"><img src="images/tab-rack-t1.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:1"><img src="images/tab-rack-t2.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:2"><img src="images/tab-rack-t3.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:3"><img src="images/tab-rack-t4.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:4"><img src="images/tab-rack-t5.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:5"><img src="images/tab-rack-t6.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:6"><img src="images/tab-rack-t7.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:7"><img src="images/tab-rack-t8.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:8"><img src="images/tab-rack-t9.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+      <span class="rll-cell" style="--i:9"><img src="images/tab-rack-t10.jpg" alt="" width="420" height="501" loading="eager" decoding="async"><i class="rll-lit"></i></span>
+    </div>
+
     <div class="hero-inner">
       <h1 class="sr-only">Bumpy's Pub — a dive bar, kitchen and pull-tab counter at 116 E Main Ave, Puyallup, Washington</h1>
-      <div class="mark mark-sign"><img src="images/sign-neon.jpg" alt="The red BUMPY'S neon sign, lit" width="564" height="190"></div>
+
+      <div class="rll-frame" aria-hidden="true">
+        <span class="rll-edge rll-top">
+          <i style="--b:0"></i><i style="--b:1"></i><i style="--b:2"></i><i style="--b:3"></i><i style="--b:4"></i><i style="--b:5"></i><i style="--b:6"></i><i style="--b:7"></i><i style="--b:8"></i><i style="--b:9"></i><i style="--b:10"></i><i style="--b:11"></i><i style="--b:12"></i>
+        </span>
+        <span class="rll-edge rll-right">
+          <i style="--b:13"></i><i style="--b:14"></i><i style="--b:15"></i><i style="--b:16"></i><i style="--b:17"></i>
+        </span>
+        <span class="rll-edge rll-bottom">
+          <i style="--b:18"></i><i style="--b:19"></i><i style="--b:20"></i><i style="--b:21"></i><i style="--b:22"></i><i style="--b:23"></i><i style="--b:24"></i><i style="--b:25"></i><i style="--b:26"></i><i style="--b:27"></i><i style="--b:28"></i><i style="--b:29"></i><i style="--b:30"></i>
+        </span>
+        <span class="rll-edge rll-left">
+          <i style="--b:31"></i><i style="--b:32"></i><i style="--b:33"></i><i style="--b:34"></i><i style="--b:35"></i>
+        </span>
+        <div class="rll-mark">
+          <img src="images/chase-lights-wordmark.png" alt="Bumpy's Pub" width="954" height="233">
+        </div>
+      </div>
+
+      <p class="rll-hat" aria-hidden="true"><span style="--w:0">The</span><span style="--w:1">Biggest</span><span class="rll-tiny" style="--w:2">Little</span><span style="--w:3">Bar in</span><span style="--w:4">Puyallup</span></p>
+
       <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>
@@ -379,6 +422,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=0907165330"></script>
 </body>
 </html>

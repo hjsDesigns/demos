@@ -1,0 +1,261 @@
+/* variants/rack-lights-little hero take, applied 0907-1653 — source versions/variants/rack-lights-little-hero/ */
+/* ============================================================
+   BUMPY'S PUB — hero variant: RACK-LIGHTS-LITTLE (2026-09-07)
+   The three-way mix of tab-rack (5) + chase-lights (8) + biggest-little (3).
+   Real assets only:
+     images/tab-rack-t1..t10.jpg      — their own numbered pull-tab compartments,
+       cut out of images/backbar.jpg on the compartment lines (nothing redrawn)
+     images/tab-rack-bg.jpg           — the same back bar, blurred, behind the rack
+     images/chase-lights-wordmark.png — logo.png (their red hand-drawn wordmark)
+       trimmed to its bounding box and upscaled. Not redrawn.
+     the hat line                     — the words printed on their own trucker
+       hats (images/backbar.jpg shelf): "The Biggest Little Bar in Puyallup"
+   One deterministic intro:
+     0.28s → 1.7s   the compartments strike in sequence (scoreboard)
+     0.95s → 2.05s  the mark comes FORWARD out of the rack, in the marquee
+     0.95s → 2.55s  36 amber bulbs run ONE lap clockwise
+     1.95s → 2.97s  the hat line lands word by word, LITTLE tiny in the red
+     3.0s+          hold: every bulb lit, frame + mark on the slow warm breath
+   Namespaced under .hero.v-rack-lights-little, keyframes prefixed rll-. No JS.
+   Reduced motion lands on the final frame.
+   ============================================================ */
+
+.hero.v-rack-lights-little{
+  --rll-amber:var(--brand-text, #E8A33B);
+  --rll-red:var(--brand, #B74141);
+  --rll-step:.0445s;            /* delay between bulbs — one lap ends ~2.55s */
+  --rll-bulb:clamp(9px,1.5vw,13px);
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--dark,#080606);
+  isolation:isolate;
+}
+
+/* ---- behind everything: their own back bar, blurred ---- */
+.hero.v-rack-lights-little .hero-bg{position:absolute;inset:0;z-index:0}
+.hero.v-rack-lights-little .hero-bg .shot{
+  width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+  display:block;
+  transform:scale(1.08);
+  filter:blur(4px) saturate(.8) brightness(.45);
+  animation:rll-room 1.6s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+}
+
+/* ---- the ground: the rack itself, full-bleed ---- */
+.hero.v-rack-lights-little .rll-rack{
+  position:absolute;inset:0;z-index:1;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  grid-template-rows:repeat(2,1fr);
+  gap:clamp(3px,.55vw,8px);
+  padding:clamp(3px,.55vw,8px);
+  background:#0A0707;
+}
+.hero.v-rack-lights-little .rll-cell{
+  position:relative;display:block;overflow:hidden;border-radius:3px;
+  background:#0A0707;
+}
+.hero.v-rack-lights-little .rll-cell img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block;
+  filter:brightness(.16) saturate(.4);
+  animation:rll-cell .58s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+  animation-delay:calc(.28s + var(--i) * .095s);
+}
+/* the compartment light striking, then settling to a low warm keep-alive */
+.hero.v-rack-lights-little .rll-cell .rll-lit{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:
+    linear-gradient(180deg, rgba(232,163,59,.55), rgba(232,163,59,.06) 46%, transparent 70%),
+    radial-gradient(90% 60% at 50% 0%, rgba(255,214,150,.45), transparent 70%);
+  mix-blend-mode:screen;
+  animation:rll-strike .9s ease-out both;
+  animation-delay:calc(.28s + var(--i) * .095s);
+}
+/* the pool the mark and the hat line sit in, so the rack never fights them */
+.hero.v-rack-lights-little .rll-rack::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(62% 52% at 50% 50%, rgba(8,6,6,.92) 0%, rgba(8,6,6,.66) 54%, rgba(8,6,6,0) 84%),
+    linear-gradient(180deg, rgba(8,6,6,.60) 0%, rgba(8,6,6,.10) 30%, rgba(8,6,6,.74) 100%);
+}
+
+/* ---- the stack: marquee, hat line, buttons ---- */
+.hero.v-rack-lights-little .hero-inner{
+  position:relative;z-index:3;
+  width:100%;
+  padding:0 var(--pad,24px);
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(20px,3.4vh,34px);
+}
+
+.hero.v-rack-lights-little .rll-frame{
+  position:relative;
+  width:min(84vw,660px);
+  padding:clamp(28px,6vw,54px) clamp(24px,4.6vw,50px);
+  border-radius:6px;
+  background:rgba(8,6,6,.52);
+  box-shadow:inset 0 0 0 1px rgba(232,163,59,.16), 0 24px 60px rgba(0,0,0,.6);
+  opacity:0;
+  animation:
+    rll-forward 1.1s cubic-bezier(.2,.82,.24,1) .95s both,
+    rll-breathe 7s ease-in-out 3.2s infinite alternate;
+}
+
+/* ---- bulbs (13 top, 5 right, 13 bottom, 5 left = one clockwise lap) ---- */
+.hero.v-rack-lights-little .rll-edge{position:absolute;display:flex;pointer-events:none}
+.hero.v-rack-lights-little .rll-top,
+.hero.v-rack-lights-little .rll-bottom{left:0;right:0;justify-content:space-between}
+.hero.v-rack-lights-little .rll-top{top:0;transform:translateY(-50%)}
+.hero.v-rack-lights-little .rll-bottom{bottom:0;transform:translateY(50%);flex-direction:row-reverse}
+.hero.v-rack-lights-little .rll-left,
+.hero.v-rack-lights-little .rll-right{top:0;bottom:0;flex-direction:column;justify-content:space-around}
+.hero.v-rack-lights-little .rll-right{right:0;transform:translateX(50%)}
+.hero.v-rack-lights-little .rll-left{left:0;transform:translateX(-50%);flex-direction:column-reverse}
+
+.hero.v-rack-lights-little .rll-edge i{
+  width:var(--rll-bulb);height:var(--rll-bulb);
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, #6B532B, #241A0E 68%);
+  box-shadow:0 0 0 1px rgba(0,0,0,.5);
+  animation:rll-chase .62s var(--ease-2,cubic-bezier(.32,.9,.24,1)) both;
+  animation-delay:calc(.95s + var(--b) * var(--rll-step));
+}
+
+/* ---- their wordmark ---- */
+.hero.v-rack-lights-little .rll-mark{position:relative;display:flex;justify-content:center}
+.hero.v-rack-lights-little .rll-mark img{
+  display:block;width:100%;height:auto;max-width:100%;
+  filter:drop-shadow(0 0 24px rgba(183,65,65,.42)) drop-shadow(0 6px 16px rgba(0,0,0,.7));
+  animation:rll-mark-breathe 7s ease-in-out 3.2s infinite;
+}
+
+/* ---- the line off their hats, word by word ---- */
+.hero.v-rack-lights-little .rll-hat{
+  margin:0;
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;
+  gap:0 clamp(9px,1.5vw,18px);
+  font-family:var(--display);
+  text-transform:uppercase;
+  line-height:1;
+}
+.hero.v-rack-lights-little .rll-hat span{
+  display:inline-block;
+  font-size:clamp(17px,2.5vw,30px);
+  letter-spacing:.16em;
+  color:var(--ink,#F3EDE4);
+  opacity:0;
+  text-shadow:0 2px 18px rgba(0,0,0,.8);
+  animation:rll-word .5s cubic-bezier(.19,.9,.26,1) both;
+  animation-delay:calc(1.95s + var(--w) * .13s);
+}
+/* the joke: LITTLE, actually little — and in the sign's red */
+.hero.v-rack-lights-little .rll-hat .rll-tiny{
+  font-size:clamp(9px,1.05vw,13px);
+  letter-spacing:.40em;
+  color:var(--rll-red);
+  text-shadow:0 0 14px rgba(183,65,65,.6);
+  transform:translateY(-.06em);
+}
+
+/* ---- buttons (the two existing ones, same hrefs) ---- */
+.hero.v-rack-lights-little .hero-actions{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  animation:rll-rise .55s var(--ease,cubic-bezier(.22,.85,.3,1)) 2.45s both;
+}
+
+/* ---- keyframes ---- */
+@keyframes rll-room{
+  from{opacity:0;transform:scale(1.14)}
+  to{opacity:1;transform:scale(1.08)}
+}
+@keyframes rll-cell{
+  from{filter:brightness(.16) saturate(.4)}
+  55%{filter:brightness(1.5) saturate(1.15)}
+  to{filter:brightness(1.04) saturate(1)}
+}
+@keyframes rll-strike{
+  0%{opacity:0}
+  28%{opacity:.92}
+  to{opacity:.16}
+}
+@keyframes rll-forward{
+  from{opacity:0;transform:translateY(14px) scale(.62)}
+  to{opacity:1;transform:none}
+}
+@keyframes rll-chase{
+  0%{
+    background:radial-gradient(circle at 38% 34%, #6B532B, #241A0E 68%);
+    box-shadow:0 0 0 1px rgba(0,0,0,.5);
+    transform:scale(1);
+  }
+  30%{
+    background:radial-gradient(circle at 40% 34%, #FFF6E2, var(--rll-amber) 58%, #B9762A 100%);
+    box-shadow:0 0 6px 2px rgba(232,163,59,.95), 0 0 22px 8px rgba(232,163,59,.5), 0 0 0 1px rgba(0,0,0,.4);
+    transform:scale(1.28);
+  }
+  100%{
+    background:radial-gradient(circle at 40% 34%, #FFE9C4, var(--rll-amber) 62%, #8E5A20 100%);
+    box-shadow:0 0 5px 1px rgba(232,163,59,.6), 0 0 14px 4px rgba(232,163,59,.26), 0 0 0 1px rgba(0,0,0,.45);
+    transform:scale(1);
+  }
+}
+@keyframes rll-word{
+  from{opacity:0;transform:translateY(14px);filter:blur(8px)}
+  to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@keyframes rll-rise{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+@keyframes rll-breathe{
+  from{box-shadow:inset 0 0 0 1px rgba(232,163,59,.16), 0 24px 60px rgba(0,0,0,.6), 0 0 34px 2px rgba(232,163,59,.10)}
+  to{box-shadow:inset 0 0 0 1px rgba(232,163,59,.24), 0 24px 60px rgba(0,0,0,.6), 0 0 62px 8px rgba(232,163,59,.20)}
+}
+@keyframes rll-mark-breathe{
+  0%,100%{filter:drop-shadow(0 0 22px rgba(183,65,65,.36)) drop-shadow(0 6px 16px rgba(0,0,0,.7))}
+  50%{filter:drop-shadow(0 0 34px rgba(242,104,90,.54)) drop-shadow(0 6px 16px rgba(0,0,0,.7))}
+}
+
+/* ---- phone: the rack turns two-wide so the compartments still read ---- */
+@media (max-width:640px){
+  .hero.v-rack-lights-little{--rll-step:.040s}
+  .hero.v-rack-lights-little .rll-rack{
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows:repeat(5,1fr);
+  }
+  .hero.v-rack-lights-little .rll-frame{
+    width:min(88vw,400px);
+    padding:clamp(26px,6.5vw,40px) clamp(28px,8vw,44px);
+  }
+  .hero.v-rack-lights-little .rll-hat{gap:0 8px}
+  .hero.v-rack-lights-little .rll-hat span{font-size:clamp(15px,4.1vw,20px);letter-spacing:.12em}
+  .hero.v-rack-lights-little .rll-hat .rll-tiny{font-size:clamp(8px,1.9vw,10px);letter-spacing:.3em}
+  .hero.v-rack-lights-little .hero-actions .btn{flex:1 1 44%;text-align:center}
+}
+
+/* ---- reduced motion: the final frame, immediately ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-rack-lights-little .hero-bg .shot,
+  .hero.v-rack-lights-little .rll-cell img,
+  .hero.v-rack-lights-little .rll-cell .rll-lit,
+  .hero.v-rack-lights-little .rll-frame,
+  .hero.v-rack-lights-little .rll-mark img,
+  .hero.v-rack-lights-little .rll-edge i,
+  .hero.v-rack-lights-little .rll-hat span,
+  .hero.v-rack-lights-little .hero-actions{animation:none!important}
+  .hero.v-rack-lights-little .hero-bg .shot{opacity:1}
+  .hero.v-rack-lights-little .rll-cell img{filter:brightness(1.04) saturate(1)}
+  .hero.v-rack-lights-little .rll-cell .rll-lit{opacity:.16}
+  .hero.v-rack-lights-little .rll-frame{opacity:1;transform:none}
+  .hero.v-rack-lights-little .rll-edge i{
+    background:radial-gradient(circle at 40% 34%, #FFE9C4, var(--rll-amber) 62%, #8E5A20 100%);
+    box-shadow:0 0 5px 1px rgba(232,163,59,.6), 0 0 14px 4px rgba(232,163,59,.26), 0 0 0 1px rgba(0,0,0,.45);
+  }
+  .hero.v-rack-lights-little .rll-hat span{opacity:1;transform:none;filter:none}
+  .hero.v-rack-lights-little .rll-hat .rll-tiny{transform:translateY(-.06em)}
+  .hero.v-rack-lights-little .hero-actions{opacity:1;transform:none}
+}
