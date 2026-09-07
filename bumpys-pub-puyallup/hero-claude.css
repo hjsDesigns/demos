@@ -1,0 +1,196 @@
+/* ============================================================
+   BUMPY'S PUB — HERO: "THE TUBES CATCH"   (Claude hero pass, 2026-09-07)
+   Self-contained, namespaced under .hero. Load AFTER css/style.css.
+
+   Everything here is their own photography of 116 E Main:
+     images/claude-room-glow.jpg  — their own room (harvest g3), blurred to bokeh
+     images/claude-sign.jpg       — the neon panel cropped out of images/neon.jpg
+   Nothing is redrawn, generated or stock. The image URL for the lit letters
+   comes in on the .sign element (--sign) so this file has no path of its own
+   and drops into css/style.css unchanged.
+
+   Tokens borrowed from the site: --dark --bg --brand --warm --header-h --ease.
+
+   TIMELINE (deterministic, pure CSS, autoplays once)
+     0.00s  the room fades up out of black and eases back from a slow push-in
+     0.18s  the sign drops in and swings on its bracket, damping to level
+     0.95s  the tubes catch, one letter at a time (0.15s apart): B U M P Y 'S
+     1.95s  the whole box comes up, the halo blooms, the red bleeds into the room
+     2.35s  the two buttons rise
+     2.9s+  hold: a 0.5deg sway, a breathing glow, a 26s drift. Nothing else.
+   ============================================================ */
+
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;background:var(--dark);color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---------- the room: their own photo, blurred into atmosphere ---------- */
+.hero .hero-bg{position:absolute;inset:0;background:var(--dark);z-index:0}
+.hero .hero-bg .plate{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 44%;
+  transform:scale(1.14);opacity:0;
+  filter:blur(2px) saturate(1.06) brightness(.94);
+  animation:bpRoomIn 1.5s var(--ease) forwards,
+            bpRoomDrift 26s linear 1.5s forwards;
+}
+@keyframes bpRoomIn{
+  0%{opacity:0;transform:scale(1.14)}
+  100%{opacity:1;transform:scale(1.06)}
+}
+/* the hold: a 26s push-in, slow enough that you feel it rather than see it.
+   It never drops below scale(1.06) — the 2px CSS blur feathers the plate's own
+   edges to transparent, and the overscale keeps that feather off-screen. */
+@keyframes bpRoomDrift{
+  0%{transform:scale(1.06)}
+  100%{transform:scale(1.13)}
+}
+
+/* the red bleeding out of the sign into the room */
+.hero .hero-bg .bleed{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  mix-blend-mode:screen;opacity:0;
+  background:radial-gradient(54% 40% at 50% 47%,rgba(255,58,30,.44) 0%,rgba(255,44,22,.18) 48%,transparent 78%);
+  animation:bpBleed 2.7s var(--ease) 1.0s forwards;
+}
+@keyframes bpBleed{0%{opacity:0}38%{opacity:.32}100%{opacity:1}}
+
+/* the pool of dark under the mark + the fall into the hours band below */
+.hero .hero-bg::before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(56% 46% at 50% 46%,color-mix(in srgb,var(--dark) 52%,transparent) 0%,color-mix(in srgb,var(--dark) 24%,transparent) 58%,transparent 100%),
+    linear-gradient(180deg,color-mix(in srgb,var(--dark) 58%,transparent) 0%,transparent 26%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%);
+}
+/* the grain of a phone photo shot at night — keeps the blur from looking synthetic */
+.hero .hero-bg::after{
+  content:"";position:absolute;inset:0;z-index:3;opacity:.32;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+.hero .hero-inner{
+  position:relative;z-index:4;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:clamp(40px,8vh,90px) var(--pad);text-align:center;
+}
+
+/* ---------- the sign ---------- */
+.hero .mark-neon{
+  display:block;width:min(780px,88vw);
+  margin:0 auto clamp(30px,5vh,52px);
+}
+/* the bracket: the pivot sits above the box, so it swings like it hangs */
+.hero .mark-neon .hang{
+  transform-origin:50% -58%;
+  animation:bpSwingIn 1.75s ease-in-out .18s both;
+  will-change:transform;
+}
+@keyframes bpSwingIn{
+  0%{opacity:0;transform:translateY(-46px) rotate(-9deg)}
+  10%{opacity:1}
+  34%{transform:translateY(0) rotate(5.4deg)}
+  54%{transform:translateY(0) rotate(-3.1deg)}
+  71%{transform:rotate(1.8deg)}
+  84%{transform:rotate(-.95deg)}
+  93%{transform:rotate(.42deg)}
+  100%{opacity:1;transform:translateY(0) rotate(0deg)}
+}
+/* the hold: half a degree, eleven seconds — a sign in the air, not an animation */
+.hero .mark-neon .sway{
+  transform-origin:50% -58%;
+  animation:bpSway 11s ease-in-out 2.6s infinite;
+}
+@keyframes bpSway{0%,100%{transform:rotate(-.5deg)}50%{transform:rotate(.5deg)}}
+
+/* the lit-letter source. PATH NOTE: relative to THIS file in versions/claude-hero/.
+   Merging this block into css/style.css → change to url(../images/claude-sign.jpg). */
+.hero .mark-neon .sign{position:relative;display:block;line-height:0;
+  --sign:url(images/claude-sign.jpg)}
+
+/* the panel with the tubes cold */
+.hero .mark-neon .tubes-off{
+  position:relative;z-index:1;width:100%;height:auto;border-radius:5px;
+  filter:brightness(.34) saturate(.60) contrast(.96);
+  box-shadow:0 26px 54px -18px rgba(0,0,0,.9),0 2px 0 rgba(255,255,255,.05) inset;
+  animation:bpPanelOn 1s var(--ease) 1.95s forwards;
+}
+
+/* the whole box comes up once the last tube has caught — the final frame is
+   their photograph, unaltered */
+@keyframes bpPanelOn{
+  0%{filter:brightness(.34) saturate(.60) contrast(.96)}
+  34%{filter:brightness(.92) saturate(1.02) contrast(1)}
+  48%{filter:brightness(.60) saturate(.84) contrast(1)}
+  100%{filter:brightness(1.03) saturate(1.06) contrast(1.02)}
+}
+
+/* each letter = the same real crop, masked to that letter and lit.
+   Centres measured off the tube cores in images/claude-sign.jpg:
+     B 12.9%  U 26.7%  M 40.6%  P 58.9%  Y 71.6%  'S 88.4% */
+.hero .mark-neon .lit{
+  position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;
+  background-image:var(--sign);background-size:100% 100%;background-repeat:no-repeat;
+  border-radius:5px;
+  filter:brightness(1.5) saturate(1.14) drop-shadow(0 0 18px rgba(255,72,44,.72));
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  animation:bpStrike .34s steps(1,end) both;
+}
+.hero .mark-neon .l1{-webkit-mask-image:radial-gradient(ellipse 10% 34% at 12.9% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);mask-image:radial-gradient(ellipse 10% 34% at 12.9% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);animation-delay:.95s}
+.hero .mark-neon .l2{-webkit-mask-image:radial-gradient(ellipse 10% 34% at 26.7% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);mask-image:radial-gradient(ellipse 10% 34% at 26.7% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);animation-delay:1.10s}
+.hero .mark-neon .l3{-webkit-mask-image:radial-gradient(ellipse 11% 34% at 40.6% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);mask-image:radial-gradient(ellipse 11% 34% at 40.6% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);
+  animation-name:bpStrikeStutter;animation-duration:.55s;animation-delay:1.25s}
+.hero .mark-neon .l4{-webkit-mask-image:radial-gradient(ellipse 9.5% 34% at 58.9% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);mask-image:radial-gradient(ellipse 9.5% 34% at 58.9% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);animation-delay:1.42s}
+.hero .mark-neon .l5{-webkit-mask-image:radial-gradient(ellipse 10% 34% at 71.6% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);mask-image:radial-gradient(ellipse 10% 34% at 71.6% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);animation-delay:1.57s}
+.hero .mark-neon .l6{-webkit-mask-image:radial-gradient(ellipse 12% 34% at 88.4% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);mask-image:radial-gradient(ellipse 12% 34% at 88.4% 45%,#000 0 44%,rgba(0,0,0,.5) 72%,transparent 100%);animation-delay:1.72s}
+
+/* a tube catching: two hard blinks, then it holds */
+@keyframes bpStrike{
+  0%{opacity:0}10%{opacity:.85}22%{opacity:.35}40%{opacity:1}56%{opacity:.6}70%{opacity:1}100%{opacity:1}
+}
+@keyframes bpStrikeStutter{
+  0%{opacity:0}8%{opacity:.8}18%{opacity:.25}30%{opacity:.95}42%{opacity:.3}54%{opacity:1}66%{opacity:.55}78%{opacity:1}100%{opacity:1}
+}
+
+/* the halo the whole box throws once every tube is lit */
+.hero .mark-neon .halo{
+  position:absolute;z-index:0;inset:-34% -11%;pointer-events:none;opacity:0;
+  background:radial-gradient(closest-side,rgba(255,62,38,.58),rgba(255,40,22,.18) 58%,transparent 76%);
+  filter:blur(10px);
+  animation:bpHalo 1.15s var(--ease) 1.95s forwards,
+            bpHaloBreathe 9s ease-in-out 3.3s infinite;
+}
+@keyframes bpHalo{0%{opacity:0}100%{opacity:.62}}
+@keyframes bpHaloBreathe{0%,100%{opacity:.62}50%{opacity:.78}}
+
+/* ---------- the two buttons, last ---------- */
+.hero .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;transform:translateY(14px);animation:bpRise .8s var(--ease) 2.35s forwards}
+@keyframes bpRise{to{opacity:1;transform:none}}
+
+/* ---------- phones: 390x844 ---------- */
+@media (max-aspect-ratio:6/5){
+  .hero{justify-content:center}
+  .hero .hero-bg .plate{object-position:50% 52%}
+  .hero .hero-inner{padding:clamp(36px,7vh,80px) var(--pad)}
+  .hero .mark-neon{width:92vw;margin-bottom:clamp(26px,4vh,40px)}
+  .hero .mark-neon .tubes-off{box-shadow:0 18px 38px -14px rgba(0,0,0,.9)}
+}
+@media (max-width:520px){
+  .hero .hero-actions{gap:10px;width:100%}
+  .hero .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-bg .plate{animation:none;opacity:1;transform:scale(1.06)}
+  .hero .hero-bg .bleed{animation:none;opacity:1}
+  .hero .mark-neon .hang,
+  .hero .mark-neon .sway{animation:none;transform:none;opacity:1}
+  .hero .mark-neon .lit{animation:none;opacity:1}
+  .hero .mark-neon .halo{animation:none;opacity:.62}
+  .hero .mark-neon .tubes-off{animation:none;filter:brightness(1.03) saturate(1.06) contrast(1.02)}
+  .hero .hero-actions{animation:none;opacity:1;transform:none}
+}

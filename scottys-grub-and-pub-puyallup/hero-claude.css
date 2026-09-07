@@ -1,0 +1,156 @@
+/* ============================================================
+   SCOTTY'S GRUB AND PUB — HERO: "the lights come up"
+   Claude hero pass, 2026-09-07. Self-contained, everything under .hero.
+   Loads AFTER css/style.css and overrides the live hero rules.
+
+   The move: the frame starts dark, the room's own light strikes on in two
+   stutters (the way bar neon warms up), and as it comes up the real round
+   SCOTTY'S sign blooms open from the middle with a warm sweep across it.
+   Then everything stops: a 34s settle on the ground and an 11s breath on
+   the halo, nothing else. Deterministic, pure CSS, autoplay once, no JS.
+
+   Tokens only — --dark for scrims, --warm / --brand for the light,
+   --tint at the foot so the frame melts into the hours band below it.
+   ============================================================ */
+
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  overflow:hidden;background:var(--dark);color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---------- the ground: their own room, out of focus ---------- */
+.hero .hero-bg{position:absolute;inset:0;z-index:0}
+.hero .hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 46%;
+  filter:none;animation:none;
+}
+.js .hero .hero-bg img{animation:scottySettle 34s cubic-bezier(.16,.7,.24,1) forwards}
+@keyframes scottySettle{from{transform:scale(1.075)}to{transform:scale(1)}}
+
+/* resting scrim — a light top, a deep pool at the foot that lands on the
+   hours band's own ground so the two sections read as one piece */
+.hero .hero-bg::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 40%,transparent) 0%,
+      transparent 24%,
+      transparent 52%,
+      color-mix(in srgb,var(--dark) 62%,transparent) 86%,
+      var(--tint) 100%);
+}
+/* film grain, so the blur never reads as a flat CSS gradient */
+.hero .hero-bg::after{
+  content:"";position:absolute;inset:0;z-index:2;opacity:.30;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+/* ---------- vignette (static) ---------- */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(54% 46% at 50% 47%,color-mix(in srgb,var(--warm) 13%,transparent) 0%,transparent 72%),
+    radial-gradient(122% 96% at 50% 46%,transparent 52%,color-mix(in srgb,var(--dark) 46%,transparent) 100%);
+}
+
+/* ---------- the lights, coming on ---------- */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:var(--dark);opacity:0;
+}
+.js .hero::after{opacity:1;animation:scottyLights 1.75s cubic-bezier(.3,.8,.3,1) .12s forwards}
+@keyframes scottyLights{
+  0%{opacity:1}
+  11%{opacity:.32}
+  17%{opacity:.88}
+  28%{opacity:.14}
+  35%{opacity:.60}
+  58%{opacity:.05}
+  100%{opacity:0}
+}
+
+/* ---------- the mark IS the headline ---------- */
+.hero .hero-inner{
+  position:relative;z-index:3;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:clamp(28px,6vh,72px) var(--pad);text-align:center;
+}
+.hero h1,.js .hero h1{animation:none;opacity:1;transform:none}
+
+.hero .mark{
+  position:relative;display:block;width:clamp(238px,29vw,428px);
+  margin:0 auto clamp(30px,5vh,44px);
+}
+.hero .mark img{
+  position:relative;z-index:1;width:100%;height:auto;
+  filter:drop-shadow(0 26px 48px rgba(0,0,0,.72)) brightness(1.04) contrast(1.03) saturate(1.06);
+}
+/* the warm halo the room throws behind the sign */
+.hero .mark::before{
+  content:"";position:absolute;z-index:0;inset:-24%;border-radius:50%;pointer-events:none;
+  opacity:.62;
+  background:radial-gradient(closest-side,
+    color-mix(in srgb,var(--warm) 38%,transparent) 0%,
+    color-mix(in srgb,var(--brand) 22%,transparent) 48%,
+    transparent 78%);
+}
+/* the sweep of light travelling across the face of the sign */
+.hero .mark::after{
+  content:"";position:absolute;z-index:2;inset:0;border-radius:50%;pointer-events:none;opacity:0;
+  background:linear-gradient(102deg,
+    transparent 36%,
+    color-mix(in srgb,var(--warm) 52%,transparent) 50%,
+    transparent 64%);
+  background-size:250% 100%;background-position:130% 0;
+  mix-blend-mode:screen;clip-path:circle(7% at 50% 47%);
+}
+
+.js .hero .mark img{
+  clip-path:circle(7% at 50% 47%);opacity:0;
+  animation:scottyBloom 1.4s cubic-bezier(.32,.9,.24,1) .52s forwards;
+}
+.js .hero .mark::before{opacity:0;animation:scottyHalo 1.6s ease 1.05s forwards,scottyBreathe 11s ease-in-out 2.8s infinite}
+.js .hero .mark::after{animation:scottySweep 1.4s cubic-bezier(.32,.9,.24,1) .52s forwards}
+
+@keyframes scottyBloom{
+  0%{clip-path:circle(7% at 50% 47%);opacity:0;transform:scale(.9)}
+  16%{opacity:1}
+  100%{clip-path:circle(82% at 50% 50%);opacity:1;transform:scale(1)}
+}
+/* the sweep rides the same expanding circle as the bloom, so the light
+   never spills off the face of the sign */
+@keyframes scottySweep{
+  0%{opacity:0;background-position:130% 0;clip-path:circle(7% at 50% 47%)}
+  14%{opacity:.92}
+  76%{opacity:.5}
+  100%{opacity:0;background-position:-45% 0;clip-path:circle(82% at 50% 50%)}
+}
+@keyframes scottyHalo{from{opacity:0}to{opacity:.62}}
+@keyframes scottyBreathe{0%,100%{opacity:.56}50%{opacity:.70}}
+
+/* ---------- the two buttons, and nothing else ---------- */
+.hero .hero-actions{display:flex;gap:13px;flex-wrap:wrap;justify-content:center}
+.js .hero .hero-actions{opacity:0;transform:translateY(15px);animation:scottyRise .85s cubic-bezier(.22,.85,.3,1) 1.7s forwards}
+@keyframes scottyRise{to{opacity:1;transform:none}}
+
+/* ---------- phones ---------- */
+@media (max-width:640px){
+  .hero .mark{width:min(272px,70vw);margin-bottom:clamp(26px,4.5vh,38px)}
+  .hero .hero-actions{gap:10px;width:100%}
+  .hero .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+@media (max-width:360px){
+  .hero .mark{width:66vw}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .js .hero .hero-bg img{animation:none;transform:none}
+  .js .hero::after{animation:none;opacity:0}
+  .js .hero .mark img{animation:none;clip-path:none;opacity:1;transform:none}
+  .js .hero .mark::before{animation:none;opacity:.62}
+  .js .hero .mark::after{animation:none;opacity:0;clip-path:none}
+  .js .hero .hero-actions{animation:none;opacity:1;transform:none}
+}

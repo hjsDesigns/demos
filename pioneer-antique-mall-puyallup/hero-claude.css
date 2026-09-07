@@ -1,0 +1,215 @@
+/* ============================================================
+   PIONEER ANTIQUE MALL — CLAUDE HERO PASS, 2026-09-07
+   "Objects placed on a shelf."
+
+   Everything here is namespaced under .hero-shelf and loaded AFTER
+   css/style.css, so it overrides the live hero rules and touches
+   nothing below the hero.
+
+   Real assets behind it
+     background  harvest-0906/g16.jpg — their own wall of hand-painted
+                 Western Washington Fair boards over the glass-case aisle,
+                 cropped to images/claude-signwall-wide.jpg (desktop) and
+                 images/claude-signwall-tall.jpg (phone). Not used anywhere
+                 else on the page — NEVER TWICE holds.
+     the name    set, not drawn: Roboto Serif condensed 700, the face of the
+                 red ANTIQUES letters painted on the front of the building
+                 (SIGN-FONT LAW). Colour sampled off those letters.
+     the shelf   the painted white shelf that runs under the fair signs in
+                 that same photograph.
+
+   Motion: one deterministic intro (~2.9s), then a 26s settle-out drift and
+   a still frame. No loop that asks for attention, nothing interactive.
+   ============================================================ */
+
+/* ---- local tokens ---- */
+.hero-shelf{
+  --sign-red:#CE3F39;      /* the ANTIQUES letters on the building */
+  --sign-cream:#FBF0DC;    /* the painted shelf + the fair-board grounds */
+  --shelf-brass:#D8A75B;   /* --warm: the brass in their cases */
+}
+
+/* ---- the frame ---- */
+.hero-shelf{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  text-align:left;
+  overflow:hidden;
+  background:var(--dark);
+  color:var(--on-dark);
+  isolation:isolate;
+}
+
+/* ---- the room, lighting up ---- */
+.hero-shelf .hero-bg{position:absolute;inset:0;z-index:0}
+.hero-shelf .hero-bg picture{display:block;width:100%;height:100%}
+.hero-shelf .hero-bg img.shot{
+  width:100%;height:100%;
+  object-fit:cover;object-position:72% 48%;
+  filter:brightness(.96) saturate(1.06) contrast(1.02);
+  transform:scale(1.065) translate3d(0,0,0);
+  transform-origin:72% 40%;
+  animation:none;
+}
+.js .hero-shelf .hero-bg img.shot{
+  animation:pamLightsOn 1.25s cubic-bezier(.32,.9,.24,1) both,
+            pamDrift 26s cubic-bezier(.22,.85,.3,1) both;
+}
+@keyframes pamLightsOn{
+  from{filter:brightness(.48) saturate(.72) contrast(1.02)}
+  to{filter:brightness(.96) saturate(1.06) contrast(1.02)}
+}
+@keyframes pamDrift{
+  from{transform:scale(1.065)}
+  to{transform:scale(1)}
+}
+
+/* ---- the pool of walnut the name sits in.
+       Bottom-heavy and a touch heavier on the left, so the fair boards on
+       the upper right stay lit and legible and nothing is ever cropped out
+       of meaning. --dark, per the site's own token. ---- */
+.hero-shelf .hero-bg::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 42%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 12%,transparent) 22%,
+      color-mix(in srgb,var(--dark) 20%,transparent) 42%,
+      color-mix(in srgb,var(--dark) 79%,transparent) 68%,
+      color-mix(in srgb,var(--dark) 95%,transparent) 100%),
+    linear-gradient(96deg,
+      color-mix(in srgb,var(--dark) 50%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 20%,transparent) 40%,
+      transparent 68%);
+}
+/* the film grain from the base sheet stays (.hero-bg::after, z-index 2) */
+
+/* ---- the bulb over the aisle, breathing very slightly ---- */
+.hero-shelf .hero-lamp{
+  position:absolute;z-index:2;inset:0;pointer-events:none;opacity:.11;
+  background:radial-gradient(38% 34% at 7% 40%,
+    rgba(255,214,150,.95) 0%,rgba(255,198,120,.34) 42%,transparent 74%);
+  mix-blend-mode:screen;
+}
+.js .hero-shelf .hero-lamp{animation:pamBulb 11s ease-in-out 1.4s infinite alternate}
+@keyframes pamBulb{from{opacity:.07}to{opacity:.15}}
+
+/* ---- the block ---- */
+.hero-shelf .hero-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(34px,7vh,80px) var(--pad) clamp(46px,9vh,92px);
+  display:block;
+}
+
+/* the name is the headline; the h1 is sr-only and must not animate */
+.js .hero-shelf h1.sr-only{opacity:1;transform:none;animation:none}
+
+.hero-shelf .shelf-mark{
+  display:inline-block;
+  margin:0 0 clamp(24px,3.4vh,36px);
+  font-family:var(--display);
+  font-weight:700;font-stretch:62.5%;
+  text-transform:uppercase;
+  line-height:.92;
+}
+
+/* ---- line one: PIONEER, in the sign's red ---- */
+.hero-shelf .line{display:block;white-space:nowrap}
+.hero-shelf .l1{
+  font-size:clamp(58px,16.5vw,124px);
+  letter-spacing:.015em;
+  color:var(--sign-red);
+}
+/* ---- line two: ANTIQUE MALL, tracked out under the shelf ---- */
+.hero-shelf .l2{
+  font-size:clamp(34px,9.6vw,72px);
+  letter-spacing:.085em;
+  color:var(--sign-cream);
+  margin-top:.16em;
+}
+.hero-shelf .sp{display:inline-block;width:.34em}
+
+/* ---- one object at a time, placed and set down ---- */
+.hero-shelf .ch{
+  display:inline-block;
+  transform-origin:50% 100%;
+  text-shadow:0 2px 0 rgba(58,14,12,.42),0 16px 44px rgba(20,12,6,.72);
+  will-change:transform,opacity;
+}
+.hero-shelf .l2 .ch{text-shadow:0 2px 0 rgba(30,18,12,.4),0 14px 38px rgba(20,12,6,.7)}
+
+.js .hero-shelf .ch{
+  opacity:0;
+  transform:translate3d(var(--dx,0),-.42em,0) rotate(var(--r,0deg)) scale(1.06);
+  filter:blur(5px);
+}
+.js .hero-shelf .l1 .ch{
+  animation:pamPlace .62s cubic-bezier(.2,1.02,.3,1) calc(.28s + var(--i) * .062s) forwards;
+}
+.js .hero-shelf .l2 .ch{
+  animation:pamPlace .55s cubic-bezier(.2,1.02,.3,1) calc(1.30s + var(--i) * .045s) forwards;
+}
+@keyframes pamPlace{
+  0%  {opacity:0;filter:blur(5px);transform:translate3d(var(--dx,0),-.42em,0) rotate(var(--r,0deg)) scale(1.06)}
+  55% {opacity:1;filter:blur(0)}
+  72% {transform:translate3d(0,.045em,0) rotate(0deg) scale(1)}
+  100%{opacity:1;filter:blur(0);transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+}
+
+/* ---- the shelf the letters land on ---- */
+.hero-shelf .shelf{
+  display:block;height:3px;margin:.20em 0 0;
+  border-radius:2px;
+  background:linear-gradient(90deg,
+    var(--shelf-brass) 0%,
+    color-mix(in srgb,var(--shelf-brass) 88%,#fff) 22%,
+    var(--shelf-brass) 58%,
+    color-mix(in srgb,var(--shelf-brass) 22%,transparent) 100%);
+  box-shadow:0 6px 22px rgba(216,167,91,.28);
+}
+.js .hero-shelf .shelf{
+  transform:scaleX(0);transform-origin:left center;
+  animation:pamShelf .78s cubic-bezier(.22,.85,.3,1) 1.02s forwards;
+}
+@keyframes pamShelf{to{transform:scaleX(1)}}
+
+/* ---- the two buttons, last ---- */
+.hero-shelf .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start}
+.js .hero-shelf .hero-actions{
+  opacity:0;transform:translateY(16px);
+  animation:pamRise .72s cubic-bezier(.22,.85,.3,1) 2.20s forwards;
+}
+@keyframes pamRise{to{opacity:1;transform:none}}
+
+/* ---- phone ---- */
+@media (max-width:760px){
+  .hero-shelf .hero-bg img.shot{object-position:52% 34%}
+  /* the phone crop puts the name over the lit case aisle — pool it deeper */
+  .hero-shelf .hero-bg::before{
+    background:
+      linear-gradient(180deg,
+        color-mix(in srgb,var(--dark) 34%,transparent) 0%,
+        color-mix(in srgb,var(--dark) 8%,transparent) 20%,
+        color-mix(in srgb,var(--dark) 26%,transparent) 46%,
+        color-mix(in srgb,var(--dark) 84%,transparent) 72%,
+        color-mix(in srgb,var(--dark) 96%,transparent) 100%);
+  }
+  .hero-shelf .hero-lamp{background:radial-gradient(52% 26% at 16% 30%,
+    rgba(255,214,150,.9) 0%,rgba(255,198,120,.3) 44%,transparent 76%)}
+  .hero-shelf .hero-inner{padding-bottom:clamp(38px,7vh,64px)}
+  .hero-shelf .shelf-mark{margin-bottom:24px}
+  .hero-shelf .hero-actions{gap:10px;width:100%}
+  .hero-shelf .hero-actions .btn{flex:1 1 auto;padding:13px 10px;font-size:14px}
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .js .hero-shelf .hero-bg img.shot{animation:none;transform:scale(1);
+    filter:brightness(.96) saturate(1.06) contrast(1.02)}
+  .js .hero-shelf .hero-lamp{animation:none;opacity:.11}
+  .js .hero-shelf .ch{opacity:1;filter:none;transform:none;animation:none}
+  .js .hero-shelf .shelf{transform:scaleX(1);animation:none}
+  .js .hero-shelf .hero-actions{opacity:1;transform:none;animation:none}
+}
