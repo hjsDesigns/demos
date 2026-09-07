@@ -36,21 +36,21 @@
      of the "fresh Sushi" window banner stays in the photos only.
      Ground is one warm rice-paper cream — the room is bright (light walls,
      wood, daylight through a glass storefront), so no dark ground. */
-  --brand:#0E8FA6;          /* roof teal, darkened — buttons, links, prices, chevrons */
-  --brand-text:#0A6B7D;     /* same hue, darker, for small type on cream */
+  --brand:#0A8CA6;          /* roof teal, darkened — buttons, links, prices, chevrons */
+  --brand-text:#066274;     /* same hue, darker, for small type on cream */
   --brand-bright:#14A9C4;   /* hover of --brand */
   --accent:#0E8FA6;         /* checkmarks / success — same teal family */
   --accent-soft:#6FD0E2;    /* teal for dark grounds */
   --ink:#152229;            /* near-black, cooled toward the storefront shadow */
-  --bg:#F4ECDC;             /* TRUE CREAM page ground — rice paper, never white */
-  --bg-2:#EADFC9;           /* deeper cream, alternating bands */
-  --paper:#FBF5E9;          /* cards — a hair lighter than --bg, never white */
+  --bg:#F6E7CB;             /* TRUE CREAM page ground — rice paper, never white */
+  --bg-2:#E7D2A8;           /* deeper cream, alternating bands */
+  --paper:#FFF8E8;          /* cards — a hair lighter than --bg, never white */
   --muted:#6B655B;          /* secondary text */
-  --line:#DFD3BB;           /* hairlines, borders */
-  --dark:#11313B;           /* dark teal panels (hero scrim, closing CTA band) */
-  --dark-2:#19434F;         /* dark hover */
-  --warm:#FEE916;           /* the sign's channel-letter yellow */
-  --tint:#DCEFF3;           /* pale teal wash — the hours/status band */
+  --line:#D8C39A;           /* hairlines, borders */
+  --dark:#0A3B47;           /* dark teal panels (hero scrim, closing CTA band) */
+  --dark-2:#0F4F5E;         /* dark hover */
+  --warm:#F6CF12;           /* the sign's channel-letter yellow */
+  --tint:#CFE7EC;           /* pale teal wash — the hours/status band */
   --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
   --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
 
