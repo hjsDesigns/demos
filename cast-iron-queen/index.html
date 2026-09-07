@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>The Cast Iron Queen — comfort food from a silver Airstream, Enumclaw WA</title>
+<title>The Cast Iron Queen — down home comfort food from a silver Airstream, Enumclaw WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Fried chicken sandwiches, made-from-scratch cinnamon rolls and loaded fries out of a silver Airstream at 45667 268th Ave SE, Enumclaw — 5.0 on Google.">
+<meta name="description" content="Fried chicken sandwiches, made-from-scratch cinnamon rolls and loaded fries out of a silver Airstream at 45667 268th Ave SE, Enumclaw — picnic tables under red umbrellas, 5.0 on Google.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Rye (display — closest real face to her own engraved wood-type label) + Karla (body) -->
@@ -39,32 +39,38 @@
 <main id="main-content">
 
   <!-- ===================== #hero =====================
-       The Airstream IS the storefront, so it opens the page. Her only public
-       photo of the truck is 740px square — it is shown WHOLE inside a blurred
-       warm echo of itself rather than cropped to fill. Nothing sits on the
-       photo but the headline block. -->
+       THE PLACE, not just the trailer: her whole spot off 268th shot from above
+       the lawn — red umbrellas over the picnic tables, the silver Airstream with
+       the OPEN window, the teal '64 Ford beside it, the foothills behind.
+       Cropped above the seated customers so no identifiable faces front the
+       business (Hayden's hero-face law). Phones get the vertical frame of the
+       Ford towing the Airstream. Nothing on the photo but the headline block.
+       The headline is HER OWN PAINTED WORDS off the side of the trailer. -->
   <section class="hero" id="hero">
-    <div class="hero-bg hero-echo">
-      <img class="echo" src="images/truck-airstream.jpg" alt="" aria-hidden="true" width="740" height="745">
-      <img class="real" src="images/truck-airstream.jpg" fetchpriority="high"
-           alt="The Cast Iron Queen's polished silver Airstream trailer, red gingham lettering down the side, parked under a blue sky in Enumclaw." width="740" height="745">
+    <div class="hero-bg">
+      <picture>
+        <source media="(max-width:900px)" srcset="images/hero-truck.jpg" width="1920" height="1600">
+        <img src="images/hero-the-spot.jpg" fetchpriority="high" width="1920" height="625"
+             alt="The Cast Iron Queen's yard off 268th Ave SE — red umbrellas over black picnic tables on the grass, her polished silver Airstream with the service window open, a vintage teal Ford pickup beside it and the foothills behind.">
+      </picture>
     </div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
       <p class="hero-eyebrow">Enumclaw, WA · 268th Ave SE</p>
-      <h1>Comfort food out of a silver <em>Airstream</em></h1>
-      <p class="hero-sub"><span class="sub-long">Fried chicken sandwiches, made-from-scratch cinnamon rolls and homemade sauces, handed out the window.</span><span class="sub-short">Fried chicken. Cinnamon rolls.</span></p>
+      <h1>Down home <em>comfort food</em></h1>
+      <p class="hero-sub"><span class="sub-long">Painted right on the side of the Airstream. Fried chicken sandwiches, made-from-scratch cinnamon rolls and homemade sauces, handed out the window.</span><span class="sub-short">Fried chicken. Cinnamon rolls.</span></p>
       <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the menu</a>
-        <a href="#yard" class="btn btn-cream">Where she parks</a>
+        <a href="#menu" class="btn btn-primary">See the whole menu</a>
+        <a href="#hours" class="btn btn-cream">Is she open?</a>
       </div>
     </div>
   </section>
 
   <!-- ===================== #hours =====================
-       Hours live HERE and nowhere else on the page (NEVER TWICE).
-       All seven days as rows; the dot is green open / red closed. -->
-  <section class="status-band" id="hours">
+       DEEP BAND ONE. Hours live HERE and nowhere else on the page (NEVER TWICE).
+       All seven days as rows; the dot is green open / red closed (STATUS LIGHT LAW). -->
+  <section class="status-band section-dark" id="hours">
+    <span class="gingham-strip" aria-hidden="true"></span>
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
@@ -76,7 +82,7 @@
         </p>
         <div class="proof-row">
           <span class="proof"><span class="star">★</span> 5.0 on Google</span>
-          <span class="proof"><span class="ico">✓</span> Outdoor seating</span>
+          <span class="proof"><span class="ico">✓</span> Picnic tables in the yard</span>
           <span class="proof"><span class="ico">✓</span> Takeaway · cards accepted</span>
         </div>
       </div>
@@ -91,99 +97,87 @@
         <li class="note"><span class="day">Events &amp; holidays</span><span class="time">Published weekly schedule. Call the truck to confirm event and holiday changes.</span></li>
       </ul>
     </div>
+    <span class="gingham-strip" aria-hidden="true"></span>
   </section>
 
   <!-- ===================== #menu =====================
-       TITLE CARDS UNROLL: the category name is the tap target, a downward
-       chevron flips up, the real items roll out in place. Every name, price
-       and description is verbatim from her own FoodTruck.pub pickup page. -->
+       Inline with prices, like a real board. Every name, price and description
+       is verbatim from her own FoodTruck.pub pickup page, checked 6 Sept 2026. -->
   <section class="section" id="menu">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">The menu</p>
-        <h2>Tap a course, see <em>the whole list</em></h2>
-        <p>Her published menu, in her own words and at her own prices. Check the pickup page for today’s availability.</p>
+        <p class="eyebrow">The whole board</p>
+        <h2>Eighteen things, <em>every price</em></h2>
+        <p>Her published menu, in her own words and at her own prices — nothing rounded, nothing invented. Check the pickup page for what she's got going today.</p>
       </div>
 
-      <div class="menu-cards reveal">
+      <figure class="print print-wide reveal">
+        <img src="images/table-spread.jpg" alt="Three orders open on a black picnic table in the sun — a fried chicken sandwich and a second sandwich in red-checkered-lined clamshells, and loaded fries under shredded cheese and green onion." loading="lazy" width="1920" height="1081">
+        <figcaption>Two sammies and the loaded fries, out at the tables</figcaption>
+      </figure>
 
-        <article class="mcard">
-          <button class="mcard-head" type="button" aria-expanded="true" aria-controls="mc-breakfast">
-            <img class="mcard-thumb" src="images/monster-cinnamon-roll-box.jpg" alt="A Monster Cinnamon Roll boxed up under The Cast Iron Queen's gingham label." loading="lazy" width="1800" height="1792">
-            <span class="mcard-title"><b>Breakfast</b><span>5 items · $6.95 – $15.95</span></span>
-            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-          </button>
-          <div class="mcard-body" id="mc-breakfast"><div><ul>
+      <div class="menu-groups reveal">
+
+        <div class="menu-group">
+          <h3>Lunch</h3>
+          <ul class="menu-list">
+            <li><span class="name">The Crispy Cluck</span><span class="price">$15.95</span><span class="desc">Our coveted fried chicken breast wedged between a buttered and grilled brioche bun with melty cheese, pickle, secret sauce, lettuce, tomato and onion.</span></li>
+            <li><span class="name">Nashville Hot Chicken Sammy</span><span class="price">$15.95</span><span class="desc">A plump, juicy deep fried crispy chicken breast smothered in our homemade sweet ‘n spicy Nashville Hot sauce, seated on a grilled Brioche bun. Topped with spicy slaw and pickles. This thing is BEHEMOTH!!!</span></li>
+            <li><span class="name">Loaded Fries</span><span class="price">$15.95</span><span class="desc">Our perfectly seasoned crispy fries topped with chopped fried chicken strips, bacon bits, cheese, green onion and smothered in our Loaded Fry sauce.</span></li>
+            <li><span class="name">Nashville Hot Tot Box</span><span class="price">$15.95</span><span class="desc">A heaping pile of seasoned crisp tots smothered with shredded cheese, and topped with drenched Nashville Hot Chicken strips, a side of spicy slaw and crunchy dill pickle.</span></li>
+            <li><span class="name">The Queen’s Chicken Slider Trio</span><span class="price">$15.95</span><span class="desc">Three brioche slider buns topped with golden fried chicken strips, cheese, Queen Sauce and a pickle! Scrumptious!</span></li>
+            <li><span class="name">Smoked Brisket Sliders</span><span class="price">$15.95</span><span class="desc">Three mini buttered and grilled brioche buns, layered with sliced smoked beef brisket, cheese, creamy bbq sauce and pickles.</span></li>
+            <li><span class="name">Chicken Strip Basket</span><span class="price">$15.95</span><span class="desc">Plump, juicy chicken breast strips deep fried to a golden crisp served alongside our perfectly seasoned crinkle fries. Comes with ONE choice of dipping sauce… but you’ll want to get extra!!</span></li>
+            <li><span class="name">Side ‘o Tots</span><span class="price">$7.95</span><span class="desc">Crispy golden tots seasoned with Cast Iron Queen seasoning, served with a side of dipping sauce.</span></li>
+            <li><span class="name">Side ‘o Fries</span><span class="price">$7.95</span><span class="desc">Crispy deep fried to a golden brown crinkle fries, perfectly seasoned! Comes with your choice of dipping sauce!</span></li>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3>Breakfast</h3>
+          <ul class="menu-list">
             <li><span class="name">Chicken ‘n Waffle</span><span class="price">$15.95</span><span class="desc">A crispy Belgian waffle with a plump, juicy fried chicken breast nestled on top… side of syrup or hot honey.</span></li>
             <li><span class="name">Bacon Breakfast Sammy</span><span class="price">$14.95</span><span class="desc">Buttered and grilled Brioche Bun with oven roasted Applewood smoked, topped with custard egg and melted colbyjack cheese.</span></li>
             <li><span class="name">Sausage Breakfast Sammy</span><span class="price">$14.95</span><span class="desc">Confirm the ingredients when ordering; the source description needs clarification.</span></li>
             <li><span class="name">Mini Cinnie Roll</span><span class="price">$6.95</span><span class="desc">A soft gooey cinnamon roll that’s perfect for one person! Cream cheese frosting served on the side.</span></li>
             <li><span class="name">Monster Cinnamon Roll</span><span class="price">$12.95</span><span class="desc">A 6”, made from scratch, cinnamon roll smothered in cream cheese frosting… it’s as big as your head! Enough for four people!</span></li>
-          </ul></div></div>
-        </article>
-
-        <article class="mcard open">
-          <button class="mcard-head" type="button" aria-expanded="true" aria-controls="mc-lunch">
-            <img class="mcard-thumb" src="images/the-crispy-cluck.jpg" alt="The Crispy Cluck — a fried chicken breast on a grilled brioche bun." loading="lazy" width="1800" height="1441">
-            <span class="mcard-title"><b>Lunch</b><span>9 items · $7.95 – $15.95</span></span>
-            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-          </button>
-          <div class="mcard-body" id="mc-lunch"><div><ul>
-            <li><span class="name">Loaded Fries</span><span class="price">$15.95</span><span class="desc">Our perfectly seasoned crispy fries topped with chopped fried chicken strips, bacon bits, cheese, green onion and smothered in our Loaded Fry sauce.</span></li>
-            <li><span class="name">Nashville Hot Tot Box</span><span class="price">$15.95</span><span class="desc">A heaping pile of seasoned crisp tots smothered with shredded cheese, and topped with drenched Nashville Hot Chicken strips, a side of spicy slaw and crunchy dill pickle.</span></li>
-            <li><span class="name">The Queen’s Chicken Slider Trio</span><span class="price">$15.95</span><span class="desc">Three brioche slider buns topped with golden fried chicken strips, cheese, Queen Sauce and a pickle! Scrumptious!</span></li>
-            <li><span class="name">Chicken Strip Basket</span><span class="price">$15.95</span><span class="desc">Plump, juicy chicken breast strips deep fried to a golden crisp served alongside our perfectly seasoned crinkle fries. Comes with ONE choice of dipping sauce… but you’ll want to get extra!!</span></li>
-            <li><span class="name">Smoked Brisket Sliders</span><span class="price">$15.95</span><span class="desc">Three mini buttered and grilled brioche buns, layered with sliced smoked beef brisket, cheese, creamy bbq sauce and pickles.</span></li>
-            <li><span class="name">Nashville Hot Chicken Sammy</span><span class="price">$15.95</span><span class="desc">A plump, juicy deep fried crispy chicken breast smothered in our homemade sweet ‘n spicy Nashville Hot sauce, seated on a grilled Brioche bun. Topped with spicy slaw and pickles. This thing is BEHEMOTH!!!</span></li>
-            <li><span class="name">The Crispy Cluck</span><span class="price">$15.95</span><span class="desc">Our coveted fried chicken breast wedged between a buttered and grilled brioche bun with melty cheese, pickle, secret sauce, lettuce, tomato and onion.</span></li>
-            <li><span class="name">Side ‘o Tots</span><span class="price">$7.95</span><span class="desc">Crispy golden tots seasoned with Cast Iron Queen seasoning, served with a side of dipping sauce.</span></li>
-            <li><span class="name">Side ‘o Fries</span><span class="price">$7.95</span><span class="desc">Crispy deep fried to a golden brown crinkle fries, perfectly seasoned! Comes with your choice of dipping sauce!</span></li>
-          </ul></div></div>
-        </article>
-
-        <article class="mcard">
-          <button class="mcard-head" type="button" aria-expanded="true" aria-controls="mc-drinks">
-            <img class="mcard-thumb" src="images/blackberry-lemonade.jpg" alt="A 24 oz blackberry lemonade on a gingham cloth." loading="lazy" width="1350" height="1800">
-            <span class="mcard-title"><b>Beverages</b><span>2 items · $2.95 – $4.95</span></span>
-            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-          </button>
-          <div class="mcard-body" id="mc-drinks"><div><ul>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3>Beverages</h3>
+          <ul class="menu-list">
             <li><span class="name">Blackberry Lemonade / 24 oz</span><span class="price">$4.95</span><span class="desc">Locally sourced blackberries paired with delicious lemonade! Delish!</span></li>
             <li><span class="name">Sodas</span><span class="price">$2.95</span><span class="desc">Iced and cold!</span></li>
-          </ul></div></div>
-        </article>
-
-        <article class="mcard">
-          <button class="mcard-head" type="button" aria-expanded="true" aria-controls="mc-sides">
-            <img class="mcard-thumb" src="images/dipping-sauce.jpg" alt="A cup of house-made dipping sauce on red gingham paper." loading="lazy" width="846" height="653">
-            <span class="mcard-title"><b>Sides</b><span>1 item · $1.00</span></span>
-            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-          </button>
-          <div class="mcard-body" id="mc-sides"><div><ul>
-            <li><span class="name">Dipping Sauce</span><span class="price">$1.00</span><span class="desc">All our dipping sauces are 100% homemade!</span></li>
-          </ul></div></div>
-        </article>
-
-        <article class="mcard">
-          <button class="mcard-head" type="button" aria-expanded="true" aria-controls="mc-desserts">
-            <span class="mcard-thumb gingham" aria-hidden="true"></span>
-            <span class="mcard-title"><b>Desserts</b><span>1 item · $6.95</span></span>
-            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-          </button>
-          <div class="mcard-body" id="mc-desserts"><div><ul>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3>Desserts</h3>
+          <ul class="menu-list">
             <li><span class="name">Better than a S’more</span><span class="price">$6.95</span><span class="desc">Golden Oreo cookie crust, chocolate ganache, toasted marshmallow with more cookie crumble on top! You’ll want S’more!!!</span></li>
-          </ul></div></div>
-        </article>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3>Sides</h3>
+          <ul class="menu-list">
+            <li><span class="name">Dipping Sauce</span><span class="price">$1.00</span><span class="desc">All our dipping sauces are 100% homemade!</span></li>
+          </ul>
+        </div>
 
       </div>
 
       <p class="menu-fine reveal">Straight off her own pickup page, checked 6 September 2026. Order ahead and pick a time at <a href="https://foodtruck.pub/order/menu.aspx?busid=6133" target="_blank" rel="noopener">foodtruck.pub</a>, or just walk up to the window.</p>
+
+      <div class="dish-strip reveal">
+        <figure class="dish"><img src="images/the-crispy-cluck.jpg" alt="The Crispy Cluck — a fried chicken breast on a buttered brioche bun with melted cheese, lettuce, tomato and pickle." loading="lazy" width="1800" height="1441"><figcaption>Fried chicken, melty cheese, secret sauce</figcaption></figure>
+        <figure class="dish"><img src="images/monster-cinnamon-roll-box.jpg" alt="The Monster Cinnamon Roll — a six-inch cinnamon roll under cream cheese frosting, boxed with her gingham label." loading="lazy" width="1800" height="1792"><figcaption>Her label, on the cinnamon roll box</figcaption></figure>
+        <figure class="dish"><img src="images/nashville-hot-tot-box.jpg" alt="The Nashville Hot Tot Box — tots under melted cheese and Nashville hot chicken strips, with spicy slaw and a pickle." loading="lazy" width="1800" height="1276"><figcaption>Tots under cheese, hot chicken and slaw</figcaption></figure>
+      </div>
     </div>
   </section>
 
   <!-- ===================== #signature =====================
-       One tap on a picture, the plate changes. No numbers, no modes, no
-       instructions — and no price here: prices live once, in #menu. -->
+       Section 4 (INTERACTIVE = SECTION 4 OR LOWER). One tap on a picture, the
+       plate changes. No numbers, no modes, no instructions — and no price here:
+       prices live once, in #menu. -->
   <section class="section section-alt" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
@@ -194,10 +188,6 @@
       <div class="hungry reveal">
         <figure class="hungry-frame">
           <div class="hungry-plate" id="hungryPlate">
-            <img class="echo on" data-k="sammy" src="images/nashville-hot-chicken-sammy.jpg" alt="" aria-hidden="true" width="1350" height="1800">
-            <img class="echo" data-k="fries" src="images/loaded-fries.jpg" alt="" aria-hidden="true" width="1800" height="1174">
-            <img class="echo" data-k="waffle" src="images/chicken-n-waffle.jpg" alt="" aria-hidden="true" width="1800" height="906">
-            <img class="echo" data-k="sliders" src="images/queens-chicken-slider-trio.jpg" alt="" aria-hidden="true" width="1800" height="756">
             <img class="real on" data-k="sammy" src="images/nashville-hot-chicken-sammy.jpg" alt="The Nashville Hot Chicken Sammy — a fried chicken breast with slaw and pickles on a grilled brioche bun." width="1350" height="1800">
             <img class="real" aria-hidden="true" data-k="fries" src="images/loaded-fries.jpg" alt="Loaded Fries — crinkle fries under chopped fried chicken, bacon, cheese and green onion." width="1800" height="1174">
             <img class="real" aria-hidden="true" data-k="waffle" src="images/chicken-n-waffle.jpg" alt="Chicken ‘n Waffle — fried chicken breast on a Belgian waffle with a cup of syrup." width="1800" height="906">
@@ -240,18 +230,19 @@
       <div class="yard">
         <div class="yard-copy reveal">
           <p class="eyebrow">The yard</p>
-          <h2>Eat it <em>outside</em></h2>
-          <p>The truck sits off 268th with the fence line on one side and a field of sunflowers on the other. You order at the window and eat it at the tables.</p>
+          <h2>Eat it <em>on the grass</em></h2>
+          <p>She parks on the lawn off 268th — black picnic tables under red umbrellas, a mown field on one side and the foothills straight ahead. You order at the window and eat it out there.</p>
           <ul class="facts">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5"/></svg><span>Outdoor seating in the yard — no dining room, no waiting list.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5"/></svg><span>Picnic tables under umbrellas — no dining room, no waiting list.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.4"/><circle cx="15.5" cy="10" r="1.4"/><circle cx="12" cy="15" r="1.4"/></svg><span>Lawn games out on the grass while you wait.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><path d="M6 18v2M18 18v2"/></svg><span>Parking on site, and it is wheelchair accessible.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V5H4v7"/><path d="M2 12h20l-2 8H4z"/></svg><span>Takeaway if you would rather eat it at home — cards accepted at the window.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V5H4v7"/><path d="M2 12h20l-2 8H4z"/></svg><span>Takeaway if you would rather eat it at home — cards at the window.</span></li>
           </ul>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=45667+268th+Ave+SE+Enumclaw+WA+98022" class="btn btn-primary" target="_blank" rel="noopener">Get directions ↗</a>
         </div>
         <div class="yard-prints">
-          <figure class="print reveal"><img src="images/yard-sunflowers.jpg" alt="A stand of sunflowers in the field beside the food truck." loading="lazy" width="750" height="1000"><figcaption>The field beside the truck</figcaption></figure>
-          <figure class="print reveal"><img src="images/yard-the-spot.jpg" alt="A chicken sandwich in a box sealed with The Cast Iron Queen's label, a white fence and a red barn behind it." loading="lazy" width="750" height="1000"><figcaption>Where you eat it</figcaption></figure>
+          <figure class="print reveal"><img src="images/yard-tent.jpg" alt="Under a white event tent in her yard — round tables and folding chairs, looking out at the red umbrellas, the teal pickup and the Airstream." loading="lazy" width="1920" height="1446"><figcaption>Under the tent, looking out at the yard</figcaption></figure>
+          <figure class="print reveal"><img src="images/yard-drink.jpg" alt="A tall clear cup of a thick berry-coloured drink with a blue straw, on the black picnic table with the white fence and lawn behind it." loading="lazy" width="1680" height="1900"><figcaption>Something cold, out at the table</figcaption></figure>
         </div>
       </div>
     </div>
@@ -262,15 +253,15 @@
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/nashville-hot-tot-box.jpg" alt="The Nashville Hot Tot Box — tots under melted cheese and Nashville hot chicken strips, with slaw and a pickle." loading="lazy" width="1800" height="1276">
-          <figcaption>Tots, cheese, hot chicken, slaw</figcaption>
+          <img src="images/smoked-brisket-sliders.jpg" alt="Smoked Brisket Sliders — three mini brioche buns layered with sliced smoked brisket, cheese, creamy bbq sauce and pickles." loading="lazy" width="1800" height="1007">
+          <figcaption>Smoked brisket sliders, three to a box</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Meet the Queen</p>
           <h2>Melissa runs <em>the window</em></h2>
           <p class="lede">Made from scratch, sauced by hand, handed to you in a gingham-lined box.</p>
-          <p>The Monster Cinnamon Roll is a six-inch, made-from-scratch roll smothered in cream cheese frosting — “it’s as big as your head,” her menu says. “Enough for four people!”</p>
-          <p>Every dipping sauce is 100% homemade, and the Nashville hot is her own sweet-‘n-spicy recipe. The chicken strip basket comes with one sauce, and, as she puts it, “you’ll want to get extra!!”</p>
+          <p>There is no building. The whole kitchen is one polished vintage Airstream with a service window cut into its flank, towed in behind a teal Ford pickup that carries her crown-and-skillet badge on the door.</p>
+          <p>Six of the seven lunch plates on her board are fried chicken; the seventh is smoked brisket. The sauces are hers too — the Queen Sauce, the Loaded Fry sauce, the sweet-‘n-spicy Nashville hot.</p>
         </div>
       </div>
     </div>
@@ -343,9 +334,10 @@
     </div>
   </section>
 
-  <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta — DEEP BAND TWO ===================== -->
   <section class="section section-dark cta-band" id="cta">
-    <div class="cta-bg" aria-hidden="true"><img src="images/smoked-brisket-sliders.jpg" alt="" loading="lazy" width="1800" height="1007"></div>
+    <span class="gingham-strip" aria-hidden="true"></span>
+    <div class="cta-bg" aria-hidden="true"><img src="images/chicken-strip-basket.jpg" alt="" loading="lazy" width="1800" height="1406"></div>
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The window</p>
@@ -370,7 +362,7 @@
           <span class="plate"><img src="images/logo.png" alt="" width="900" height="526"></span>
           <span class="wm">The Cast Iron Queen<small>Food Truck</small></span>
         </div>
-        <p>Comfort food out of a silver Airstream in Enumclaw.</p>
+        <p>Down home comfort food out of a silver Airstream in Enumclaw.</p>
         <div class="soc">
           <a href="https://www.instagram.com/the.castironqueen/" target="_blank" rel="noopener">Instagram</a>
         </div>

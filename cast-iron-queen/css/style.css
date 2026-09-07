@@ -26,23 +26,32 @@
 :root{
   /* ---- palette — every hex sampled out of THE CAST IRON QUEEN's own photos.
          Sources are in HANDOFF-CODEX.md; the sampled file is named on each line. ---- */
-  --brand:#CC2B24;          /* gingham red off her own branded box   [monster-cinnamon-roll-box.jpg #CA2B24] */
-  --brand-text:#99201B;     /* same hue, darkened to pass AA on cream for small type */
-  --brand-bright:var(--brand-text); /* darker gingham red keeps white button text legible on hover */
-  --accent:#5F7038;         /* the field the truck sits in           [nashville-hot-chicken-sammy.jpg #63703B] */
-  --accent-soft:#90A268;    /* lighter accent for dark grounds */
+  /* MIRROR LAW: her "room" is a sunny mown yard — green lawn, red umbrellas over
+     black picnic tables, a polished silver Airstream with a RED GINGHAM stripe
+     painted along its flank, and "DOWN HOME COMFORT FOOD" lettered on the side.
+     So: a warm gingham-cream ground with real band contrast, anchored by two
+     DEEP bands (hours + closing) pulled straight out of that yard. */
+  --brand:#CC2B24;          /* gingham red — her box liner AND the stripe on the trailer  [harvest-0906/g3.jpg, monster-cinnamon-roll-box.jpg #CA2B24] */
+  --brand-text:#9C1F19;     /* same hue, darkened to pass AA on the warm cream */
+  --brand-bright:#B3241E;   /* hover */
+  --accent:#5F7038;         /* the mown field behind the truck       [harvest-0906/g3.jpg] */
+  --accent-soft:#93A56A;    /* lighter accent on the deep bands */
   --ink:#2A1710;            /* warm near-black, the fry crust        [the-crispy-cluck.jpg #3C1812] */
-  --bg:#F4EBD9;             /* TRUE CREAM ground — the wrapper/brioche cream lifted  [dipping-sauce.jpg #E0D8B8] */
-  --bg-2:#EADFC7;           /* deeper cream, alternating bands */
-  --paper:#FBF5E8;          /* cards — a hair lighter than --bg, never white */
-  --muted:#6E6152;          /* secondary text */
-  --line:#E0D3BA;           /* hairlines, borders */
-  --dark:#26150F;           /* dark panels (hero fallback, closing band) — the skillet */
+  --bg:#F8F0DE;             /* WARM gingham-cream ground — one cream, never white */
+  --bg-2:#EEDFC0;           /* a real step down, not cream-on-cream — alternating bands */
+  --paper:#FFFAEF;          /* cards / print mounts — a hair lighter than --bg */
+  --muted:#6B5B48;          /* secondary text */
+  --line:#DECDAA;           /* hairlines, borders */
+  --dark:#26150F;           /* the skillet — closing-band scrim, hero fallback */
   --dark-2:#3A241B;         /* dark hover */
-  --warm:#F7D946;           /* the sunflowers in the field beside her  [yard-sunflowers.jpg #F7D946] */
-  --tint:#DDE5E4;           /* the hours band — the Airstream's brushed aluminum [truck-airstream.jpg #E6E8E2/#BFC1C1] */
-  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
-  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
+  --deep:#3B100C;           /* DEEP BAND ONE — gingham red cooked down to near-black (hours) */
+  --deep-card:#4E1913;      /* the hours card, one step off that ground */
+  --deep-line:#6B2A21;      /* hairlines on the deep band */
+  --deep-2:#22301A;         /* DEEP BAND TWO — the mown field cooked down (closing) */
+  --warm:#F2C230;           /* sunflower gold — reads on cream AND on the deep bands */
+  --tint:#DDE5E4;           /* the Airstream's brushed aluminum — small chips only */
+  --status-open:#22C55E;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
+  --status-closed:#EF4444;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
 
   /* ---- type: two faces max, loaded in index.html <head>
          Rye = closest real Google face to the engraved Victorian wood type on her
@@ -352,85 +361,149 @@ p{margin:0 0 1em}
    ============================================================================ */
 
 /* ---- Rye is a single-weight (400) display face: retune every place the
-        shared sheet asked for 800 + negative tracking ---- */
+        shared sheet asked for 800 + negative tracking. Scale is set to the
+        Captain Jack's bar — the display face gets to be the loudest thing
+        on the page. ---- */
 .logo .wm,.foot .wm,.steps li::before,.face .ini,.num b{font-weight:400;letter-spacing:0}
 .logo .wm{font-size:18px;line-height:1.05}
 .foot .wm{font-size:19px}
-.hero h1{font-size:clamp(34px,min(4.9vw,7.6vh),62px);max-width:14ch;line-height:1.1}
-.section-head h2{font-size:clamp(28px,3.6vw,46px)}
-.status-head h2,.story-copy h2,.contact h2{font-size:clamp(27px,3.4vw,42px)}
+.hero h1{font-size:clamp(40px,min(6.2vw,9.4vh),76px);max-width:11ch;line-height:1.04}
+.section-head h2{font-size:clamp(32px,4.4vw,54px)}
+.status-head h2,.story-copy h2,.contact h2,.yard-copy h2{font-size:clamp(30px,4vw,48px)}
+.yard-copy h2{margin:0 0 16px}
 .card h3,.steps h3{font-size:19px}
 h2 em,.hero h1 em{font-style:normal}
 
-/* ---- HERO: her Airstream is only 740px square (it is the only real photo of
-        the truck anywhere public), so it is shown WHOLE — contained at its own
-        aspect — inside a blurred warm echo of itself. Nothing is cropped. ---- */
-.hero-echo .echo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:blur(46px) saturate(1.25) brightness(.66);transform:scale(1.25);animation:echoDrift 34s var(--ease) infinite alternate}
-/* the real photo sits in the TOP of the frame so the headline block lands on the
-   blurred pool below it instead of across her lettering */
-.hero-echo .real{position:absolute;left:0;right:0;top:0;width:100%;height:68%;
-  object-fit:contain;object-position:center center;animation:none;
-  /* feather the frame into its own blur so it reads as a letterbox, not a pasted rectangle */
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 8%,#000 76%,transparent 100%),linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 8%,#000 76%,transparent 100%),linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
-  -webkit-mask-composite:source-in;mask-composite:intersect}
-@keyframes echoDrift{from{transform:scale(1.25) translate3d(0,0,0)}to{transform:scale(1.4) translate3d(-2%,-2%,0)}}
-/* one symmetric bottom-heavy scrim at every width — the template's desktop scrim is
-   left-heavy for a subject-right photo, which is wrong for a centred contained one */
-.hero-echo::before{background:linear-gradient(180deg,
-  color-mix(in srgb,var(--dark) 34%,transparent) 0%,
-  color-mix(in srgb,var(--dark) 6%,transparent) 20%,
-  color-mix(in srgb,var(--dark) 10%,transparent) 44%,
-  color-mix(in srgb,var(--dark) 74%,transparent) 76%,
-  color-mix(in srgb,var(--dark) 93%,transparent) 100%)}
-@media (max-width:760px){.hero-echo .real{top:3%;height:52%}}
-@media (prefers-reduced-motion:reduce){.hero-echo .echo{animation:none}}
+/* ---- EYEBROW SPECIFICITY FIX (rose-spa-bonney-lake bug, 2026-09-06).
+        The shared sheet's `.section-head p` / `.story-copy p` rules are (0,1,1)
+        and outrank `.eyebrow` (0,1,0), so every eyebrow inside them was
+        rendering as 18px --muted body text instead of a small tracked label.
+        Restated here at (0,2,0) so it wins wherever it sits. ---- */
+.section-head .eyebrow,.story-copy .eyebrow,.status-head .eyebrow,
+.yard-copy .eyebrow,.contact .eyebrow{
+  font-family:var(--mono);font-size:12px;line-height:1.5;letter-spacing:.22em;
+  text-transform:uppercase;font-weight:600;color:var(--brand-text);margin:0 0 14px}
+.status-band .status-head .eyebrow,.cta-band .section-head .eyebrow{color:var(--warm)}
 
-/* ---- MENU: title cards that unroll (ARROW LAW: a downward chevron that flips up) ---- */
-.menu-cards{display:flex;flex-direction:column;gap:14px}
-.mcard{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;
-  box-shadow:0 30px 60px -48px color-mix(in srgb,var(--dark) 60%,transparent)}
-.mcard-head{display:flex;align-items:center;gap:16px;width:100%;min-height:88px;padding:14px 20px 14px 14px;
-  background:none;border:0;cursor:pointer;text-align:left;font-family:var(--body);color:var(--ink);
-  transition:background .25s var(--ease)}
-.mcard-head:hover{background:color-mix(in srgb,var(--brand) 7%,transparent)}
-.mcard-thumb{width:60px;height:60px;border-radius:12px;object-fit:cover;flex:none;border:1px solid var(--line)}
-.mcard-thumb.gingham{background:
-  repeating-conic-gradient(var(--brand) 0% 25%,color-mix(in srgb,var(--brand) 22%,var(--paper)) 0% 50%) 0 0/22px 22px}
-.mcard-title{flex:1 1 auto;min-width:0}
-.mcard-title b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(19px,2.4vw,26px);line-height:1.15}
-.mcard-title span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
-.chev{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;
-  background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--brand-text);
-  transition:transform .32s var(--ease),background .25s}
-.chev svg{width:20px;height:20px}
-.mcard.open .chev{transform:rotate(180deg);background:var(--brand);color:#fff}
-.mcard-body{display:grid;grid-template-rows:1fr;}
-.js .mcard-body{grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
-.js .mcard.open .mcard-body{grid-template-rows:1fr}
-.mcard-body > div{min-height:0}
-.js .mcard-body > div{overflow:hidden}
-.mcard-body ul{list-style:none;margin:0;padding:0 20px 8px}
-.mcard-body li{display:grid;grid-template-columns:1fr auto;gap:3px 18px;padding:15px 0;border-top:var(--rule)}
-.mcard-body .name{font-weight:800;font-size:16.5px}
-.mcard-body .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
-.mcard-body .desc{grid-column:1 / -1;font-size:14.5px;color:var(--muted);line-height:1.55;margin-top:2px}
-@media (prefers-reduced-motion:reduce){.mcard-body{transition:none}.chev{transition:none}}
-@media (max-width:520px){.mcard-head{gap:12px;padding:12px 14px 12px 12px}.mcard-thumb{width:52px;height:52px}}
+/* ---- THE GINGHAM STRIP — the one recurring signature device.
+        Pulled off the red-and-white check painted along the flank of her real
+        Airstream and repeated in the liner of every takeout box she hands out.
+        It edges the header and both deep bands, and nowhere else. ---- */
+.gingham-strip{display:block;height:11px;width:100%;
+  background:
+    repeating-linear-gradient(90deg,var(--brand) 0 14px,transparent 14px 28px),
+    repeating-linear-gradient(0deg,color-mix(in srgb,var(--brand) 62%,transparent) 0 14px,transparent 14px 28px),
+    color-mix(in srgb,var(--brand) 22%,var(--paper))}
+.status-band .gingham-strip,.cta-band .gingham-strip{position:absolute;left:0;right:0;z-index:2}
+.status-band .gingham-strip:first-child,.cta-band .gingham-strip{top:0}
+.status-band .gingham-strip:last-child{bottom:0}
+.site-header{border-bottom:0;box-shadow:inset 0 -4px 0 0 transparent}
+.site-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+  background:repeating-linear-gradient(90deg,var(--brand) 0 9px,color-mix(in srgb,var(--brand) 26%,var(--paper)) 9px 18px)}
+
+/* ---- HERO: the whole spot, shot from above the lawn. Desktop gets the
+        panorama (umbrellas, Airstream, the '64 Ford, the foothills), cropped
+        above the seated customers so no identifiable face fronts the business.
+        Phones get the vertical frame of the Ford towing the trailer. The photo
+        carries nothing but the headline block. ---- */
+.hero{background:var(--deep)}
+.hero-bg picture{display:block;position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 46%;
+  animation:kenburns 26s var(--ease) forwards}
+/* bright opener, dark pool only where the type lands (HERO BRIGHT AND VIBRANT) */
+.hero-bg::before{background:
+  linear-gradient(180deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,transparent 22%,transparent 42%,
+    color-mix(in srgb,var(--dark) 62%,transparent) 74%,color-mix(in srgb,var(--dark) 92%,transparent) 100%),
+  linear-gradient(90deg,color-mix(in srgb,var(--dark) 46%,transparent) 0%,color-mix(in srgb,var(--dark) 12%,transparent) 46%,transparent 78%)}
+@media (max-width:900px){
+  .hero-bg img{object-position:52% 50%}
+  .hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 44%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 6%,transparent) 26%,color-mix(in srgb,var(--dark) 52%,transparent) 64%,
+    color-mix(in srgb,var(--dark) 93%,transparent) 100%)}
+}
+.hero-eyebrow{color:var(--warm)}
+.hero h1 em{color:var(--warm)}
+
+/* ---- DEEP BAND ONE: the hours, on the gingham red cooked down to near-black.
+        The pale aluminium band this replaced was cream-on-cream and vanished. ---- */
+.status-band{position:relative;background:var(--deep);color:var(--bg);border-bottom:0;overflow:hidden}
+.status-band::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.09;
+  background:
+    repeating-linear-gradient(90deg,var(--brand) 0 30px,transparent 30px 60px),
+    repeating-linear-gradient(0deg,var(--brand) 0 30px,transparent 30px 60px)}
+.status-band .wrap{position:relative;z-index:1;padding-top:clamp(56px,7vw,86px);padding-bottom:clamp(56px,7vw,86px)}
+.status-band h2{color:var(--bg)}
+.status-band h2 em{color:var(--warm)}
+.status-band .eyebrow{color:var(--warm)}
+.status-band .live-line{color:var(--bg);font-size:16px}
+.status-addr{color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.status-addr a{color:var(--warm);border-bottom-color:color-mix(in srgb,var(--warm) 45%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--warm)}
+.hours-list{background:var(--deep-card);border:1px solid var(--deep-line);
+  box-shadow:0 34px 64px -34px rgba(0,0,0,.7)}
+.hours-list li{border-bottom:1px solid var(--deep-line);color:var(--bg)}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 17%,transparent)}
+.hours-list li.today .day::after{color:var(--warm)}
+.hours-list .time{color:color-mix(in srgb,var(--bg) 62%,transparent)}
+.hours-list li.today .time{color:var(--bg)}
+.hours-list li.closed .time{color:color-mix(in srgb,var(--status-closed) 80%,var(--bg))}
+.hours-list li.note .time{color:color-mix(in srgb,var(--bg) 58%,transparent)}
+.proof{background:color-mix(in srgb,var(--bg) 10%,transparent);border-color:var(--deep-line);color:var(--bg)}
+.proof .ico{color:var(--accent-soft)}
+.proof .star{color:var(--warm)}
+.status-band :focus-visible{outline-color:var(--warm)}
+
+/* ---- MENU: inline, priced, like the board she actually posts.
+        Multi-column rather than a 2-up grid: her Lunch list is nine items and
+        the others are one or two, so a grid left a hole the height of a screen
+        under Breakfast. Columns balance and keep every group whole. ---- */
+.menu-groups{display:block;column-count:2;column-gap:clamp(28px,4.6vw,64px);
+  margin-top:clamp(28px,4vw,44px)}
+.menu-group{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 clamp(30px,3.6vw,46px)}
+.menu-group:last-child{margin-bottom:0}
+.menu-group h3{font-size:clamp(24px,2.8vw,30px);border-bottom:3px solid var(--brand);
+  padding-bottom:11px;margin-bottom:6px}
+@media (max-width:760px){.menu-groups{column-count:1}}
+.menu-list li{padding:14px 0}
+.menu-list .name{font-size:17px}
+.menu-list .price{font-size:16px;font-weight:700}
+.menu-list .desc{margin-top:3px}
+
+/* ---- the wide print that opens the menu, and the three-up dish strip that
+        closes it — real photos, real captions, one appearance each ---- */
+.print-wide{margin:0 0 clamp(30px,4vw,48px);transform:rotate(-.7deg)}
+.print-wide img{width:100%;height:auto}
+.dish-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,28px);
+  margin-top:clamp(32px,4.4vw,56px)}
+.dish{background:var(--paper);border:var(--rule);padding:13px 13px 34px;margin:0;
+  box-shadow:0 34px 66px -42px color-mix(in srgb,var(--dark) 62%,transparent);transition:transform .5s var(--ease)}
+.dish img{width:100%;height:250px;object-fit:cover;display:block}
+.dish figcaption{font-size:12px;line-height:1.5;letter-spacing:.08em;color:var(--muted);margin-top:13px;text-align:center}
+.dish:nth-child(1){transform:rotate(-1.1deg)}
+.dish:nth-child(2){transform:rotate(.8deg)}
+.dish:nth-child(3){transform:rotate(-.5deg)}
+.dish:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:760px){.dish-strip{grid-template-columns:1fr}.dish{transform:none}.dish img{height:auto}}
 
 /* ---- SIGNATURE: "what are you hungry for" — tap a picture, the plate changes ---- */
 .hungry{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,3.5vw,44px);align-items:center}
 .hungry-frame{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:14px 14px 20px;
   box-shadow:0 44px 80px -46px color-mix(in srgb,var(--dark) 62%,transparent)}
-/* Same blurred-echo letterbox as the hero — it is this site's one recurring photo
-   device, and it means her plates are never cropped no matter the aspect ratio. */
-.hungry-plate{position:relative;border-radius:calc(var(--r) - 6px);overflow:hidden;background:var(--bg-2);aspect-ratio:4/3}
+/* The plate sits on a RED GINGHAM mount — the same check that lines every box
+   she hands out the window and stripes the flank of the Airstream. It replaced
+   a blurred-echo letterbox that smeared colour down both sides of a portrait
+   photo; the check is her own material, and every plate still shows WHOLE,
+   never cropped, whatever its aspect. */
+.hungry-plate{position:relative;border-radius:calc(var(--r) - 6px);overflow:hidden;aspect-ratio:4/3;
+  background:
+    repeating-linear-gradient(90deg,color-mix(in srgb,var(--brand) 40%,transparent) 0 17px,transparent 17px 34px),
+    repeating-linear-gradient(0deg,color-mix(in srgb,var(--brand) 28%,transparent) 0 17px,transparent 17px 34px),
+    color-mix(in srgb,var(--brand) 8%,var(--paper));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--brand) 40%,transparent)}
 .hungry-plate img{position:absolute;inset:0;width:100%;height:100%;opacity:0;
-  transition:opacity .34s var(--ease)}
-.hungry-plate img.echo{object-fit:cover;filter:blur(26px) saturate(1.2) brightness(.94);transform:scale(1.22)}
-.hungry-plate img.real{object-fit:contain;object-position:center}
+  object-fit:contain;object-position:center;transition:opacity .34s var(--ease);
+  filter:drop-shadow(0 14px 26px rgba(0,0,0,.34))}
 .hungry-plate img.on{opacity:1}
 .hungry-cap{margin:16px 4px 0}
 .hungry-cap b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(20px,2.6vw,28px);line-height:1.15}
@@ -454,7 +527,7 @@ h2 em,.hero h1 em{font-style:normal}
 
 /* ---- THE YARD ---- */
 .yard{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:clamp(26px,4.5vw,56px);align-items:center}
-.yard-prints{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.2vw,24px)}
+.yard-prints{display:grid;grid-template-columns:1.16fr .84fr;gap:clamp(14px,2.2vw,24px);align-items:start}
 .yard-prints .print:nth-child(1){transform:rotate(-1.4deg)}
 .yard-prints .print:nth-child(2){transform:rotate(1deg)}
 .yard-prints .print:hover{transform:rotate(0) scale(1.02)}
@@ -462,6 +535,7 @@ h2 em,.hero h1 em{font-style:normal}
 .yard-copy .facts li{display:flex;gap:12px;align-items:flex-start;font-size:16px}
 .yard-copy .facts svg{width:21px;height:21px;flex:none;margin-top:2px;color:var(--brand)}
 @media (max-width:900px){.yard{grid-template-columns:1fr}.yard-prints .print{transform:none}}
+@media (max-width:640px){.yard-prints{grid-template-columns:1fr}}
 
 /* ---- REVIEWS: initial discs only, never a scraped face (REVIEW-FACE LAW) ---- */
 .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.6vw,26px)}
@@ -475,13 +549,20 @@ h2 em,.hero h1 em{font-style:normal}
 .rev blockquote{margin:0;font-size:16.5px;line-height:1.6}
 @media (max-width:900px){.revs{grid-template-columns:1fr}}
 
-/* ---- CLOSING BAND over a real photo ---- */
-.cta-band{position:relative;overflow:hidden;isolation:isolate}
+/* ---- DEEP BAND TWO: the closing band, on the mown field cooked down, over a
+        real photo. Green here so the two deep anchors aren't the same colour. ---- */
+/* The scrim is the same red-black as the hours band, not the field green: green
+   over golden fried chicken turned the photo to olive mud. Flat deep band at the
+   top of the page, deep band OVER a photo at the bottom — bookends. */
+.cta-band{position:relative;overflow:hidden;isolation:isolate;background:var(--deep)}
 .cta-band .cta-bg{position:absolute;inset:0;z-index:-2}
-.cta-band .cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center 58%}
+.cta-band .cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
 .cta-band::before{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 88%,transparent),color-mix(in srgb,var(--dark) 74%,transparent))}
+  background:linear-gradient(180deg,color-mix(in srgb,var(--deep) 84%,transparent),color-mix(in srgb,var(--deep) 70%,transparent))}
 .cta-band .section-head{margin-bottom:clamp(22px,3vw,34px)}
+.cta-band .eyebrow{color:var(--warm)}
+.cta-band h2 em{color:var(--warm)}
+.cta-band .btn-ghost{border-color:color-mix(in srgb,#fff 72%,transparent)}
 
 /* ---- odds and ends ---- */
 .menu-fine{max-width:62ch}

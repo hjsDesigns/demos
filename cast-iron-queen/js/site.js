@@ -160,14 +160,8 @@ function customClose(p, close){ return close; }
     });
   }
 
-  /* ---------- MENU: title cards unroll ----------
-     The category name IS the tap target; the chevron flips up (ARROW LAW). */
-  $$('.mcard-head').forEach(function(head){
-    var card=head.closest('.mcard'),panel=document.getElementById(head.getAttribute('aria-controls'));
-    function setOpen(open){card.classList.toggle('open',open);head.setAttribute('aria-expanded',String(open));panel.setAttribute('aria-hidden',String(!open));panel.inert=!open;}
-    setOpen(card.classList.contains('open'));
-    head.addEventListener('click',function(){setOpen(!card.classList.contains('open'))});
-  });
+  /* The menu is inline and priced (like the board she posts) — no disclosure
+     widget to wire up. The page's one interactive is the picture-picker below. */
 
   /* ---------- SIGNATURE GADGET: "what are you hungry for" ----------
      One tap on a picture swaps the plate. No modes, no cycling, no numbers to
