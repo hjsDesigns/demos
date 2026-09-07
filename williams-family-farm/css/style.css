@@ -24,30 +24,37 @@
    Hayden to catch it.
    ============================================================ */
 :root{
-  /* ---- palette — WILLIAMS FAMILY FARM (every hex traced to a real asset) ----
-     --brand      barn red, sampled from the barn outline in the farm's OWN logo
-                  mark on their Pumpkin Palooza poster (raw #863036 / #842C32)
-     --accent     pumpkin orange, sampled off the pumpkin row in their own
-                  Rainier photo (raw #CC5A00 / #C65400)
-     --ink/--dark the dark green of the logo's field lines (raw #252C1C exact)
+  /* ---- palette — WILLIAMS FAMILY FARM (every hex traced to a real photo) ----
+     MIRROR LAW: this farm is a bright place — a pumpkin field at noon under a
+     blue sky — so the ground stays CREAM, warmed to the straw and the hay in
+     their own frames. The contrast comes from TWO DEEP BANDS cut straight out
+     of the barn: --dark is their barn-red-black, sampled from the shaded
+     boards of the red barn in their own photos (raw #320E10 / #361A16).
+     --brand      barn red in the sun, sampled off the barn wall (raw #8D2E34)
+     --accent     pumpkin orange, off the pumpkin rows (raw #C65400 / #823101)
+     --ink        the dark green of the logo's field lines (raw #252C1C exact)
      --warm       the gold of the logo's sun rays
-     --tint       the pumpkin field's green, washed back for the hours band
-     --bg         one cream, warmed to the light in their sunset field photo */
-  --brand:#8C2F35;          /* barn red — logo mark */
+     --field      the corn green inside the maze rows (raw #263121)
+     --bg/--bg-2  one warm cream and one straw, both off their hay and light */
+  --brand:#8C2F35;          /* barn red — the sunlit barn wall */
   --brand-text:#7A272D;     /* same hue, darkened to pass AA on cream */
   --brand-bright:#A63A41;   /* hover state of --brand */
-  --accent:#C4541A;         /* pumpkin orange — their own pumpkin row */
-  --accent-soft:#E08A45;    /* lighter accent for dark grounds */
+  --accent:#C4541A;         /* pumpkin orange — their own pumpkin rows */
+  --accent-soft:#E3924C;    /* lighter accent for dark grounds */
   --ink:#252C1C;            /* logo field-line dark green */
-  --bg:#F4EBDA;             /* TRUE CREAM page ground — never white (factory law) */
-  --bg-2:#EADFC8;           /* deeper cream, alternating bands */
-  --paper:#FBF5E9;          /* cards — a hair lighter than --bg, never white */
-  --muted:#6B6653;          /* secondary text */
-  --line:#DFD2B8;           /* hairlines, borders */
-  --dark:#252C1C;           /* dark panels (hero fallback, closing CTA band) */
-  --dark-2:#333C27;         /* dark hover */
-  --warm:#D9A441;           /* logo sun gold — highlighted word on dark grounds */
-  --tint:#E4E7D8;           /* pale field green (the hours/status band) */
+  --bg:#F7EBD4;             /* ONE WARM CREAM page ground — never white (factory law) */
+  --bg-2:#EEDCBA;           /* straw — the alternating band, real contrast against --bg */
+  --paper:#FDF7EA;          /* cards — a hair lighter than --bg, never white */
+  --muted:#6E6450;          /* secondary text */
+  --line:#DECDA9;           /* hairlines, borders */
+  --dark:#331214;           /* BARN-RED-BLACK — the two deep bands, scrims, shadows */
+  --dark-2:#4A1D1E;         /* lighter barn red — panels inside the deep bands */
+  --dark-3:#230B0D;         /* deepest — the footer */
+  --cream-on-dark:#FBEFD9;  /* type on the deep bands */
+  --field:#2C3722;          /* corn green — the launcher's ground */
+  --sky:#7FA8DC;            /* the blue over their own field (raw #5885C9, lifted) */
+  --warm:#E0AE4C;           /* logo sun gold — highlighted word on dark grounds */
+  --tint:#EBE1C8;           /* warm straw for chips and icon plates (the pale green band is gone) */
   --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
   --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
 
@@ -347,87 +354,160 @@ p{margin:0 0 1em}
 .foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
 
+
 /* ============================================================================
-   WILLIAMS FAMILY FARM — site-specific block
-   Everything below is this build only. Tokens only, no raw hex.
+   WILLIAMS FAMILY FARM — site-specific block   (atmosphere pass, 2026-09-06)
+   Tokens only, no raw hex except the two rgba scrims noted inline.
+
+   GROUND: warm cream (MIRROR LAW — a pumpkin field at noon is a bright place),
+   with TWO DEEP BANDS in the barn's own barn-red-black: the season/hours band
+   under the hero, and the closing band before the footer. The old pale field-
+   green band is gone; the alternating band is real straw, not cream-on-cream.
    ============================================================================ */
 
-/* ---------- type tuning for Fraunces (serif display, not the template grotesque) ---------- */
-h1,h2,h3,h4{font-weight:700;letter-spacing:-.01em;font-variation-settings:'SOFT' 22,'WONK' 0}
-.hero h1{font-weight:700;letter-spacing:-.012em}
-.section-head h2,.status-head h2,.story-copy h2,.contact h2{font-weight:700}
+/* ---------- eyebrows keep their own type and colour ----------
+   The shared template's `.section-head p` / `.story-copy p` rules (0,1,1)
+   outrank `.eyebrow` (0,1,0) and repaint every eyebrow --muted at body size
+   (the rose-spa-bonney-lake bug, 2026-09-06). Matched specificity here. */
+.section-head p.eyebrow,.story-copy p.eyebrow,.status-head p.eyebrow,.contact p.eyebrow{
+  font-family:var(--mono);font-size:12px;line-height:1.5;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;color:var(--brand-text);margin:0 0 14px}
+.section-dark .section-head p.eyebrow,.status-head p.eyebrow{color:var(--warm)}
 
-/* ---------- HERO: whole photo, never cropped ----------
-   The one hi-res frame the harvest produced is 750×1000 (portrait). Cover-fitting
-   it into a wide hero would cut either the mountain or the pumpkin row, so the
-   photo is shown WHOLE (contain) and the empty ground is a blurred, darkened echo
-   of the same frame — the letterbox-blur move, not a second photo. */
-.hero-bg .hero-echo{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;object-position:center;
-  filter:blur(34px) saturate(1.2) brightness(.62);animation:kenburns 28s var(--ease) forwards}
-.hero-bg .hero-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:86% center;animation:none}
-@media (max-width:900px){
-  .hero-bg .hero-shot{object-position:center 4%}
-  .hero{min-height:calc(100svh - var(--header-h))}
-}
-/* the wide-screen scrim leans left, where the headline sits; the photo side stays clean */
+/* ---------- type: Fraunces (display) + Karla (body), at Jack's scale ---------- */
+h1,h2,h3,h4{font-weight:800;letter-spacing:-.015em;font-variation-settings:'opsz' 120,'SOFT' 34,'WONK' 1}
+.hero h1{font-weight:800;letter-spacing:-.024em;line-height:.98}
+.section-head h2,.status-head h2,.story-copy h2,.contact h2{font-weight:800}
+.section-head h2{font-size:clamp(34px,4.8vw,58px)}
+h3{font-variation-settings:'opsz' 40,'SOFT' 30,'WONK' 0;letter-spacing:-.01em}
+
+/* ============================================================ HERO
+   g10 — their pumpkin field with the barn and Mount Rainier, 1920×1440, their
+   own frame, brought in whole at 1440 and cover-fitted so only empty sky is
+   ever cut. Headline block only: no chips, no badges, no hours on the photo. */
+.hero{min-height:calc(100svh - var(--header-h))}
+.hero-bg img{object-position:50% 68%}                 /* protects the pumpkins + the mountain; trims sky */
+.hero h1{max-width:15ch;font-size:clamp(40px,min(6.4vw,10vh),76px)}
+.hero-sub{font-weight:600;max-width:42ch}
+/* the scrim pools UNDER the headline instead of washing the left third — the
+   mountain, the barn and the pumpkins all stay bright (HERO BRIGHT AND VIBRANT) */
 @media (min-width:901px){
-  .hero-bg::before{background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 82%,transparent) 0%,color-mix(in srgb,var(--dark) 55%,transparent) 40%,color-mix(in srgb,var(--dark) 10%,transparent) 66%,transparent 100%),
-    linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent) 0%,transparent 34%,transparent 62%,color-mix(in srgb,var(--dark) 52%,transparent) 100%)}
+  .hero-bg::before{background:
+    linear-gradient(180deg,color-mix(in srgb,var(--dark) 26%,transparent) 0%,transparent 24%,transparent 44%,color-mix(in srgb,var(--dark) 52%,transparent) 74%,color-mix(in srgb,var(--dark) 84%,transparent) 100%),
+    linear-gradient(90deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,color-mix(in srgb,var(--dark) 12%,transparent) 45%,transparent 76%)}
 }
-.hero h1{max-width:14ch}
+@media (max-width:900px){
+  .hero-bg img{object-position:52% 62%}
+  .hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 34%,transparent) 0%,color-mix(in srgb,var(--dark) 4%,transparent) 26%,color-mix(in srgb,var(--dark) 52%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}
+}
+@media (max-width:520px){.hero h1{font-size:clamp(36px,11vw,44px);max-width:13ch}}
 
-/* ---------- HOURS band extras ---------- */
-.hours-cap{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:600}
-/* season line with no 2026 dates published: neutral, NO green/red light
-   (STATUS LIGHT LAW still governs — a light only ever appears when it can be true) */
-.live-line.is-pending .dot{display:none}
-.live-line.is-pending{color:var(--brand-text);font-weight:700}
-.status-addr{padding-left:0}
+/* ============================================================ DEEP BAND 1 — SEASON + HOURS
+   Barn-red-black out of their own barn boards. Every light-ground rule the
+   shared template applies inside .status-band is swept here. */
+.status-band{background:var(--dark);color:var(--cream-on-dark);border-bottom:0;position:relative}
+.status-band::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--dark-3) 60%,transparent) 0%,transparent 38%)}
+.status-band .wrap{position:relative;z-index:1}
+.status-band .eyebrow{color:var(--warm)}
+.status-head h2{color:var(--cream-on-dark);font-size:clamp(32px,4.2vw,50px)}
+.status-head h2 em{color:var(--warm)}
+.live-line{color:var(--cream-on-dark)}
+.live-line.is-pending{color:var(--warm);font-weight:700;letter-spacing:.04em}
+.live-line.is-pending .dot{display:none}               /* no light until a date can make it true (STATUS LIGHT LAW) */
+.status-addr{padding-left:0;color:color-mix(in srgb,var(--cream-on-dark) 74%,transparent)}
+.status-addr a{color:var(--warm);border-bottom:1px solid color-mix(in srgb,var(--warm) 45%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--warm)}
+.proof{background:color-mix(in srgb,var(--cream-on-dark) 8%,transparent);border-color:color-mix(in srgb,var(--cream-on-dark) 20%,transparent);color:var(--cream-on-dark)}
+.proof .star{color:var(--warm)}
+.proof .ico{color:var(--accent-soft)}
+.hours-cap{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  color:color-mix(in srgb,var(--cream-on-dark) 55%,transparent);margin:0 0 10px}
+.hours-list{background:color-mix(in srgb,var(--cream-on-dark) 6%,var(--dark));border:1px solid color-mix(in srgb,var(--cream-on-dark) 16%,transparent);
+  box-shadow:0 40px 70px -44px var(--dark-3)}
+.hours-list li{border-bottom:1px solid color-mix(in srgb,var(--cream-on-dark) 12%,transparent)}
+.hours-list .day{color:var(--cream-on-dark)}
+.hours-list .time{color:color-mix(in srgb,var(--cream-on-dark) 62%,transparent)}
+.hours-list li.closed .time{color:color-mix(in srgb,var(--cream-on-dark) 40%,transparent)}   /* out of season this is information, not an alarm */
+.hours-list li.note .time{color:color-mix(in srgb,var(--cream-on-dark) 62%,transparent)}
 .hours-list li.note .day{font-size:14px}
+@media (max-width:700px){
+  .hours-list li.note{flex-direction:column;align-items:flex-start;gap:5px}
+  .hours-list li.note .time{text-align:left;max-width:none}
+}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 16%,transparent)}
+.hours-list li.today .day::after{color:var(--warm)}
+.hours-list li.today .time{color:var(--cream-on-dark)}
+.status-band :focus-visible{outline-color:var(--warm)}
 
-/* ---------- the exterior plate that opens the offerings section ---------- */
-.plate{margin:0 0 clamp(28px,4vw,48px);background:var(--paper);border:var(--rule);border-radius:var(--r);padding:12px;
-  box-shadow:0 40px 80px -50px color-mix(in srgb,var(--dark) 60%,transparent)}
-.plate img{width:100%;height:auto;border-radius:calc(var(--r) - 8px)}
+/* ============================================================ SECTION RHYTHM
+   cream → straw → cream → straw, with the two deep bands top and tail. */
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark)}
 
-/* ---------- UNROLL LIST (title cards that roll out) ----------
-   Every row is the tap target. Downward chevron that flips up. No plus signs. */
-.unroll{list-style:none;margin:0;padding:0;border:var(--rule);border-radius:var(--r);overflow:hidden;background:var(--paper)}
-.ur + .ur{border-top:var(--rule)}
-.ur-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  background:none;border:0;cursor:pointer;text-align:left;padding:20px clamp(16px,3vw,28px);min-height:64px;
-  font-family:var(--display);font-weight:700;font-size:clamp(19px,2.2vw,25px);color:var(--ink);letter-spacing:-.01em;
-  transition:background .22s var(--ease),color .22s var(--ease)}
-.ur-head:hover{background:color-mix(in srgb,var(--warm) 14%,transparent)}
-.ur.open > .ur-head{color:var(--brand-text);background:color-mix(in srgb,var(--warm) 18%,transparent)}
-.ur-chev{width:24px;height:24px;flex:none;color:var(--brand);transition:transform .3s var(--ease)}
-.ur.open .ur-chev{transform:rotate(180deg)}
-.ur-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows .38s var(--ease)}
-.js .ur-body{grid-template-rows:0fr}
-.js .ur.open .ur-body{grid-template-rows:1fr}
-.ur-in{overflow:hidden}
-.ur-in > *{padding-left:clamp(16px,3vw,28px);padding-right:clamp(16px,3vw,28px)}
-.ur-in p{font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:62ch}
-.ur-in .ur-shot{margin:0 0 22px}
-.ur-shot img{width:100%;height:auto;border-radius:calc(var(--r) - 8px);border:var(--rule)}
-.ur-shot figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
-@media (prefers-reduced-motion:reduce){.ur-body,.ur-chev{transition:none}}
+/* ---------- the arrival plate that opens the offerings (STOREFRONT BELOW THE HOURS) ---------- */
+.plate{margin:0 auto clamp(30px,4vw,52px);max-width:960px;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:14px 14px 16px;box-shadow:0 50px 90px -56px color-mix(in srgb,var(--dark) 62%,transparent)}
+.plate img{width:100%;height:auto;border-radius:calc(var(--r) - 9px)}
+.plate figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  text-align:center;margin-top:14px}
 
-/* ---------- SIGNATURE: THE PUMPKIN LAUNCHER ---------- */
-.launcher{max-width:1000px}
-.stage{position:relative;height:clamp(300px,40vw,440px);border-radius:var(--r);overflow:hidden;border:var(--rule);
-  box-shadow:0 40px 80px -50px color-mix(in srgb,var(--dark) 65%,transparent);touch-action:manipulation}
+/* ============================================================ THE WALL OF PRINTS
+   Every attraction is a framed print of the real thing with a plain caption.
+   Masonry columns so NOTHING is cropped — portrait and landscape frames each
+   keep their own aspect (NEVER CROP THE IMPORTANT PART). */
+.wall{columns:3;column-gap:clamp(16px,2.2vw,28px);margin:0;padding:0;list-style:none}
+.tile{break-inside:avoid;display:inline-block;width:100%;margin:0 0 clamp(16px,2.2vw,28px);
+  background:var(--paper);border:var(--rule);border-radius:var(--r);padding:13px 13px 2px;
+  box-shadow:0 46px 80px -58px color-mix(in srgb,var(--dark) 66%,transparent);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.tile:hover{transform:translateY(-4px);box-shadow:0 52px 84px -50px color-mix(in srgb,var(--dark) 58%,transparent)}
+.tile img{width:100%;height:auto;border-radius:calc(var(--r) - 9px);border:1px solid color-mix(in srgb,var(--dark) 12%,transparent)}
+.tile .cap{padding:17px 5px 20px}
+.tile h3{font-size:clamp(19px,2vw,23px);margin:0 0 7px;color:var(--ink)}
+.tile p{font-size:15px;line-height:1.55;color:var(--muted);margin:0}
+@media (max-width:980px){.wall{columns:2}}
+@media (max-width:620px){.wall{columns:1}}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+
+/* ---------- the market board (their own chalkboard, read out in plain type) ---------- */
+.board{margin-top:clamp(30px,4vw,54px);background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(16px,2.4vw,26px);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(22px,3.4vw,44px);align-items:center;
+  box-shadow:0 46px 84px -58px color-mix(in srgb,var(--dark) 60%,transparent)}
+.board img{width:100%;height:auto;border-radius:calc(var(--r) - 9px);border:1px solid color-mix(in srgb,var(--dark) 12%,transparent)}
+.board figure{margin:0}
+.board figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.board h3{font-size:clamp(24px,2.8vw,32px);margin:0 0 4px}
+.board .board-sub{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 16px}
+.board-list{list-style:none;margin:0 0 16px;padding:0;columns:2;column-gap:26px}
+.board-list li{padding:9px 0;border-bottom:var(--rule);font-weight:700;font-size:16px;break-inside:avoid}
+.board-fine{font-size:14px;color:var(--muted);margin:0}
+@media (max-width:820px){.board{grid-template-columns:1fr}}
+@media (max-width:420px){.board-list{columns:1}}
+
+/* ============================================================ SIGNATURE — THE PUMPKIN LAUNCHER
+   Their one-of-one, named first in a real review. One tap, one pumpkin, it
+   lands and stays. Deterministic: six preset shots in a fixed repeating order.
+   The real field sits beside the toy so it points at something that exists. */
+.launch-grid{display:grid;grid-template-columns:1fr .86fr;gap:clamp(22px,3vw,40px);align-items:start}
+@media (max-width:900px){.launch-grid{grid-template-columns:1fr}}
+.launcher{max-width:none}
+.stage{position:relative;height:clamp(270px,33vw,380px);border-radius:var(--r);overflow:hidden;border:var(--rule);
+  box-shadow:0 46px 84px -54px color-mix(in srgb,var(--dark) 70%,transparent);touch-action:manipulation}
+/* the stage sits in THEIR weather — blue over the field, hay-gold at the horizon,
+   so the toy belongs to the same page as the photographs (COHESION) */
 .sky{position:absolute;inset:0;background:linear-gradient(180deg,
-  color-mix(in srgb,var(--warm) 34%,var(--bg)) 0%,
-  color-mix(in srgb,var(--accent-soft) 46%,var(--bg)) 52%,
-  color-mix(in srgb,var(--accent) 34%,var(--bg)) 100%)}
-.ridge{position:absolute;left:0;right:0;bottom:22%;width:100%;height:26%;fill:color-mix(in srgb,var(--dark) 60%,transparent)}
-.ground{position:absolute;left:0;right:0;bottom:0;height:22%;background:var(--dark);
-  border-top:3px solid var(--dark-2)}
+  color-mix(in srgb,var(--sky) 92%,transparent) 0%,
+  color-mix(in srgb,var(--sky) 58%,var(--bg)) 58%,
+  color-mix(in srgb,var(--warm) 42%,var(--bg)) 100%)}
+.ridge{position:absolute;left:0;right:0;bottom:25%;width:100%;height:24%;fill:color-mix(in srgb,var(--field) 72%,transparent)}
+.ground{position:absolute;left:0;right:0;bottom:0;height:25%;background:var(--field);border-top:3px solid color-mix(in srgb,var(--dark) 70%,var(--field))}
 .pumpkins,.flyer{position:absolute;inset:0;pointer-events:none}
-.pumpkins span{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;
-  background:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--dark) 70%,transparent) inset;
-  transform:scale(0);animation:landed .42s var(--ease) forwards}
+.pumpkins span{position:absolute;width:26px;height:21px;margin:-14px 0 0 -13px;border-radius:50%;
+  background:var(--accent);transform:scale(0);animation:landed .42s var(--ease) forwards;
+  box-shadow:inset -4px 0 0 -1px color-mix(in srgb,var(--dark) 26%,transparent),
+             inset 4px 0 0 -1px color-mix(in srgb,var(--dark) 26%,transparent)}
+.pumpkins span::before{content:"";position:absolute;left:50%;top:-6px;width:3px;height:8px;margin-left:-1.5px;border-radius:2px;background:var(--field)}
 @keyframes landed{0%{transform:scale(0)}62%{transform:scale(1.28)}100%{transform:scale(1)}}
 .puff{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;
   background:color-mix(in srgb,var(--bg) 80%,transparent);opacity:.9;transform:scale(.2);animation:puff .5s var(--ease) forwards}
@@ -437,11 +517,10 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-.01em;font-variation-settings:'SOFT'
 .flyer svg{position:absolute;width:34px;height:34px;left:0;top:0;margin:-17px 0 0 -17px;overflow:visible}
 .flyer ellipse{fill:var(--accent)}
 .flyer .rib{fill:none;stroke:color-mix(in srgb,var(--dark) 55%,var(--accent));stroke-width:1.6;stroke-linecap:round}
-.flyer .stem{fill:none;stroke:var(--dark-2);stroke-width:3.4;stroke-linecap:round}
-.cannon{position:absolute;left:3%;bottom:14%;background:none;border:0;padding:0;cursor:pointer;
+.flyer .stem{fill:none;stroke:var(--field);stroke-width:3.4;stroke-linecap:round}
+.cannon{position:absolute;left:4%;bottom:16%;background:none;border:0;padding:0;cursor:pointer;
   display:flex;flex-direction:column;align-items:center;gap:8px;min-width:44px}
-.cannon-art{width:clamp(108px,15vw,150px);height:auto;transform-origin:22% 78%;
-  transition:transform .18s var(--ease)}
+.cannon-art{width:clamp(126px,17vw,178px);height:auto;transform-origin:22% 78%;transition:transform .18s var(--ease)}
 .cannon:hover .cannon-art{transform:translate(2px,-2px)}
 .cannon.fire .cannon-art{animation:recoil .34s var(--ease)}
 @keyframes recoil{0%{transform:none}22%{transform:translate(-9px,5px) rotate(4deg)}100%{transform:none}}
@@ -453,93 +532,86 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-.01em;font-variation-settings:'SOFT'
   background:var(--paper);color:var(--ink);border:var(--rule);border-radius:999px;padding:9px 14px;white-space:nowrap;
   box-shadow:0 10px 24px -14px color-mix(in srgb,var(--dark) 70%,transparent)}
 .cannon:hover .cannon-label{background:var(--warm)}
-.launcher-fine{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:16px 0 0;text-align:right}
+.cannon:focus-visible{outline-color:var(--brand);outline-offset:6px}
+.launcher-fine{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:16px 0 0}
 @media (max-width:560px){
-  .cannon{left:2%;bottom:12%}
+  .cannon{left:3%;bottom:14%}
   .cannon-label{font-size:10px;padding:8px 11px}
-  .launcher-fine{text-align:left}
 }
 @media (prefers-reduced-motion:reduce){
-  .pumpkins span,.puff{animation:none;transform:none;opacity:1}
-  .pumpkins span{transform:scale(1)}
+  .pumpkins span,.puff{animation:none;opacity:1;transform:scale(1)}
   .cannon.fire .cannon-art{animation:none}
 }
 
-/* ---------- REVIEWS (initial discs, never a scraped face) ---------- */
+/* ---------- framed prints used beside the gadget and in the story ---------- */
+.print{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:13px 13px 2px;margin:0;
+  box-shadow:0 46px 84px -58px color-mix(in srgb,var(--dark) 64%,transparent);transform:none}
+.print img{width:100%;height:auto;border-radius:calc(var(--r) - 9px);border:1px solid color-mix(in srgb,var(--dark) 12%,transparent)}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  text-align:center;margin:14px 0 18px}
+.print:hover{transform:none}
+
+/* ============================================================ THE FARM (story) */
+.story{align-items:center}
+.story .print{transform:none}
+.story-copy h2{font-size:clamp(34px,4.4vw,54px)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--ink)}
+
+/* ============================================================ REVIEWS
+   Initial discs in the site's own type and palette — never a scraped face. */
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,32px)}
-.quote{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(24px,3vw,34px);
-  box-shadow:0 40px 80px -56px color-mix(in srgb,var(--dark) 60%,transparent)}
+.quote{margin:0;display:flex;flex-direction:column;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(24px,3vw,34px);box-shadow:0 46px 84px -60px color-mix(in srgb,var(--dark) 62%,transparent)}
 .quote .stars{color:var(--warm);font-size:17px;letter-spacing:.16em;margin-bottom:14px}
-.quote blockquote{margin:0 0 22px;font-family:var(--display);font-weight:500;font-size:clamp(19px,2.1vw,23px);line-height:1.35;color:var(--ink)}
+.quote blockquote{flex:1;margin:0 0 22px;font-family:var(--display);font-weight:600;font-size:clamp(19px,2.1vw,23px);
+  line-height:1.34;color:var(--ink);font-variation-settings:'opsz' 60,'SOFT' 30,'WONK' 0}
 .quote figcaption{display:flex;align-items:center;gap:13px}
 .quote .ini{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;
-  background:color-mix(in srgb,var(--brand) 14%,var(--bg-2));color:var(--brand-text);
-  font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.02em}
+  background:color-mix(in srgb,var(--brand) 15%,var(--bg-2));color:var(--brand-text);
+  font-family:var(--display);font-weight:800;font-size:16px}
 .quote .who{font-weight:800;font-size:15px}
-.quote .who small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;color:var(--muted);margin-top:3px}
+.quote .who small{display:block;font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.03em;color:var(--muted);margin-top:3px}
 @media (max-width:760px){.quotes{grid-template-columns:1fr}}
 
-/* ---------- footer logo plate (renamed so .plate stays the section opener) ---------- */
-.foot .plate-ico{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
-.foot .plate-ico img{height:44px;width:auto}
+/* ============================================================ DEEP BAND 2 — THE CLOSING BAND */
+.cta-band{background:var(--dark);color:var(--cream-on-dark);position:relative}
+.cta-band .section-head{max-width:none}
+.cta-band h2{color:var(--cream-on-dark);font-size:clamp(34px,4.6vw,56px)}
+.cta-band h2 em{color:var(--warm)}
+.cta-band .eyebrow{color:var(--warm)}
+.cta-band .section-head p{color:color-mix(in srgb,var(--cream-on-dark) 78%,transparent)}
+.cta-band .btn-ghost{color:var(--cream-on-dark)}
+.cta-band :focus-visible{outline-color:var(--warm)}
 
-/* ---------- logo mark sizing (their real mark, cropped from their own poster) ---------- */
-.logo img{height:42px}
-@media (max-width:560px){.logo img{height:36px}}
+/* ============================================================ FOOTER (deepest barn black) */
+.site-footer{background:var(--dark-3);color:color-mix(in srgb,var(--cream-on-dark) 78%,transparent)}
+.foot h4{color:var(--warm)}
+.foot .wm{color:var(--cream-on-dark)}
+.foot .plate-ico{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none;padding:0;border:0;box-shadow:none}
+.foot .plate-ico img{height:44px;width:auto;border:0;border-radius:0}
+.site-footer :focus-visible{outline-color:var(--warm)}
 
-/* ---------- phone hero: photo whole, ABOVE the type (no overlap, no crop) ----------
-   Contained-in-a-box on a tall phone left the pumpkin row sitting behind the
-   headline block. On phones the photo drops into normal flow at its own aspect
-   and the headline block sits on the dark ground beneath it. */
-@media (max-width:620px){
-  .hero{min-height:0}
-  .hero-bg{position:relative;inset:auto;height:auto}
-  .hero-bg .hero-echo{display:none}
-  .hero-bg::before,.hero-bg::after{display:none}
-  .hero-bg .hero-shot{position:relative;inset:auto;width:100%;height:auto;object-fit:contain;object-position:center}
-  .hero-spacer{display:none}
-  .hero-inner{padding-top:clamp(22px,5vw,34px)}
-}
-
-/* out of season there is no live clock, so the weekday rows are plain information,
-   not a red "closed now" alarm — the red is reserved for a real closed state */
-.hours-list li.closed .time{color:var(--muted)}
-
-/* keep the exterior plate at its own resolution rather than upscaling it */
-.plate{max-width:760px;margin-left:auto;margin-right:auto}
-
-/* ---------- launcher stage: less empty sky, a launcher you can actually see ---------- */
-.stage{height:clamp(270px,33vw,370px)}
-.ridge{bottom:25%;height:24%}
-.ground{height:25%}
-.cannon{left:4%;bottom:16%}
-.cannon-art{width:clamp(126px,17vw,178px)}
-
-/* landed pumpkins read as pumpkins, not dots — they pile up in the field as you tap */
-.pumpkins span{width:26px;height:21px;margin:-14px 0 0 -13px;border-radius:50%;
-  box-shadow:inset -4px 0 0 -1px color-mix(in srgb,var(--dark) 26%,transparent),
-             inset 4px 0 0 -1px color-mix(in srgb,var(--dark) 26%,transparent)}
-.pumpkins span::before{content:"";position:absolute;left:50%;top:-6px;width:3px;height:8px;margin-left:-1.5px;
-  border-radius:2px;background:var(--dark-2)}
-
-/* Codex finish: clear reading, keyboard paths and honest contact behavior. */
-.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
-.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
-.hero :focus-visible,.section-dark :focus-visible,.site-footer :focus-visible{outline-color:var(--warm)}
-.story .print{margin:0;align-self:center}
-.contact-lines a,.foot a{text-underline-offset:.2em}
-.contact-lines a:hover,.foot a:hover{text-decoration:underline}
-.status-addr{padding-left:0}
-@media (max-width:520px){.hero-sub{white-space:normal;text-wrap:balance;max-width:32ch}.hero-actions .btn{min-width:0}}
-@media (max-width:900px){html:not(.js) .site-header{height:auto}html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}html:not(.js) .nav-wrap{width:100%}html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}html:not(.js) .nav-toggle{display:none}}
-
-.ur-head:focus-visible{outline-offset:-5px}
-.ur-shot{max-width:680px}
-.ur-shot figcaption{font-family:var(--body);font-size:13px;line-height:1.45;letter-spacing:.02em;text-transform:none}
-.quote{display:flex;flex-direction:column}
-.quote blockquote{flex:1}
-.quote .who small{font-family:var(--body);font-size:13px;letter-spacing:.03em}
+/* ============================================================ CONTACT + FORM */
+.contact-form{background:var(--paper)}
+.contact-form input,.contact-form select,.contact-form textarea{background:var(--bg)}
 .project-note[hidden]{display:none}
 .project-note textarea{min-height:190px}
 .form-fine a{font-weight:700;color:var(--brand-text);text-decoration:underline;text-underline-offset:.2em}
-.cannon:focus-visible{outline-color:var(--warm);outline-offset:6px}
+.contact-lines a,.foot a{text-underline-offset:.2em}
+.contact-lines a:hover,.foot a:hover{text-decoration:underline}
+
+/* ============================================================ HEADER / MISC */
+.logo img{height:42px}
+@media (max-width:560px){.logo img{height:36px}}
+.skip-link{position:fixed;top:12px;left:12px;z-index:60;transform:translateY(-200%);background:var(--paper);color:var(--ink);
+  padding:12px 18px;border:2px solid var(--brand);border-radius:10px;font-weight:700}
+.skip-link:focus{top:calc(var(--header-h) + 8px);transform:none}
+.hero :focus-visible{outline-color:var(--warm)}
+@media (max-width:900px){
+  html:not(.js) .site-header{height:auto}
+  html:not(.js) .header-inner{flex-wrap:wrap;padding-top:14px}
+  html:not(.js) .nav-wrap{width:100%}
+  html:not(.js) .main-nav{display:flex;position:static;flex-flow:row wrap;justify-content:center;width:100%;border:0;box-shadow:none;padding:0}
+  html:not(.js) .main-nav a{min-height:44px;padding:10px 12px}
+  html:not(.js) .nav-toggle{display:none}
+}

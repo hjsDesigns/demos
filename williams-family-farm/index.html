@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Williams Family Farm — pumpkin patch &amp; corn maze, Enumclaw WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Williams Family Farm is a family-run pumpkin patch on SE 464th in Enumclaw, WA — pumpkins by the field, a four-acre corn maze, the pumpkin launcher, hay pyramid and slides. Call for current season dates and admission.">
+<meta name="description" content="Williams Family Farm is a family-run pumpkin patch on SE 464th in Enumclaw, WA — pumpkins by the field, a four-acre corn maze, the pumpkin launcher, pyramid slides and the Palooza Market. Season opens late September; call for this year's dates.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fraunces (display) + Karla (body) — matches --display / --body in css/style.css -->
@@ -15,8 +15,10 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- ===================== HEADER / NAV =====================
-     No live open/closed pill here: the farm is seasonal and the 2026 dates
-     are not published, so the ONE season line lives in #hours and nowhere else. -->
+     The mark is THEIR mark, pulled directly — the barn-mountain-sun drawing
+     off their own Pumpkin Palooza sign and poster. Nothing redrawn.
+     No live pill here: the farm is seasonal and the ONE season line lives
+     in #hours and nowhere else. -->
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="Williams Family Farm — home">
@@ -40,20 +42,17 @@
 <main id="main-content">
 
   <!-- ===================== #hero =====================
-       The farm from outside: their pumpkin row along the pipe gate, the patch
-       behind it, Mount Rainier over the top. Source photo is 750×1000, so it is
-       shown WHOLE (object-fit:contain) inside a blurred warm echo of itself —
-       nothing is cropped at any width. Only the headline block sits on it. -->
+       Their own frame: the pumpkin field, the barn and Mount Rainier in one
+       shot (harvest g10, 1920×1440). Cover-fitted low so only empty sky is
+       ever trimmed. Headline block only — no chips, no hours, no badges. -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <img class="hero-echo" src="images/hero.jpg" alt="" aria-hidden="true" width="750" height="1000">
-      <img class="hero-shot" src="images/hero.jpg" alt="Pumpkins lined along the pipe gate at Williams Family Farm, the pumpkin field behind them and Mount Rainier on the horizon" fetchpriority="high" width="750" height="1000">
+      <img src="images/hero.jpg" alt="Rows of orange and white pumpkins across the field at Williams Family Farm, the long red barn behind them and Mount Rainier on the horizon" fetchpriority="high" width="1920" height="1440">
     </div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
-      <p class="hero-eyebrow">Enumclaw, WA · Pumpkin patch &amp; corn maze<span class="eb-long"> · Family run</span></p>
       <h1>A family pumpkin farm <em>under Mount Rainier</em></h1>
-      <p class="hero-sub"><span class="sub-long">Pick your pumpkin, get lost in the four-acre corn maze, and watch one fly out of the pumpkin launcher.</span><span class="sub-short">Pumpkins, corn maze, launcher.</span></p>
+      <p class="hero-sub"><span class="sub-long">Pick your own out of the field, get lost in four acres of corn, and watch one fly out of the launcher.</span><span class="sub-short">Pumpkins, corn maze, launcher.</span></p>
       <div class="hero-actions">
         <a href="#services" class="btn btn-primary">See what&rsquo;s here</a>
         <a href="tel:+15099483246" class="btn btn-cream">Call the farm</a>
@@ -61,23 +60,24 @@
     </div>
   </section>
 
-  <!-- ===================== #hours =====================
-       The one status on the page. 2026 dates are NOT published, so there is no
-       green/red light — a neutral season line instead (js/site.js SEASON config).
+  <!-- ===================== #hours — DEEP BAND 1 =====================
+       Barn-red-black, out of their own barn boards. The one status on the
+       page. 2026 dates are NOT published, so there is NO green/red light —
+       only the honest line "Season opens late September." (js/site.js SEASON).
        Day rows are last season's posted gate hours, labelled as such. -->
-  <section class="status-band" id="hours">
+  <section class="status-band section-dark" id="hours">
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
-        <h2>Plan your <em>fall visit</em></h2>
-        <p class="live-line is-pending" id="statusLine"><span class="dot"></span><span id="statusText">2026 dates have not been announced.</span></p>
+        <h2>Weekends only, <em>late September on</em></h2>
+        <p class="live-line is-pending" id="statusLine"><span class="dot"></span><span id="statusText">Season opens late September.</span></p>
         <p class="status-addr">
           23131 SE 464th St, Enumclaw, WA 98022<br>
           <a href="https://maps.google.com/?q=23131+SE+464th+St,+Enumclaw,+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
         <div class="proof-row">
           <span class="proof"><span class="star">★</span> 5.0 on Google · 71 reviews</span>
-          <span class="proof"><span class="ico">✓</span> Family run</span>
+          <span class="proof"><span class="ico">✓</span> Pumpkins grown on the place</span>
         </div>
       </div>
       <div class="hours-col">
@@ -90,158 +90,178 @@
           <li data-days="5"><span class="day">Friday</span><span class="time">10 am – sunset</span></li>
           <li data-days="6"><span class="day">Saturday</span><span class="time">10 am – sunset</span></li>
           <li data-days="0"><span class="day">Sunday</span><span class="time">10 am – 4 pm</span></li>
-          <li class="note"><span class="day">This year&rsquo;s dates</span><span class="time">Call the farm or check its Instagram for the current announcement.</span></li>
+          <li class="note"><span class="day">This year&rsquo;s dates</span><span class="time">Posted here the day the family sets them. Call or check their Instagram in the meantime.</span></li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- ===================== #services =====================
-       The offerings section, opened by an exterior plate of the farm (the
-       storefront-below-the-hours rule). Every row is a title card that unrolls
-       its real detail on tap — downward chevron, flips up. Only attractions
-       named in the farm's own poster / their Google + Yelp listing appear here. -->
-  <section class="section section-alt" id="services">
+       Opens with the arrival — the red barn and their hand-painted Pumpkin
+       Palooza sign (STOREFRONT BELOW THE HOURS). Then a wall of framed prints:
+       every attraction is a real photo of the real thing with a plain caption.
+       Masonry columns, so no frame is ever cropped to fit a box. Every
+       attraction here is one the farm has actually run. -->
+  <section class="section" id="services">
     <div class="wrap">
       <figure class="plate reveal">
-        <img src="images/farm-name-banner.jpg" alt="The Williams Family Farm fields with Mount Rainier behind them" loading="lazy" width="648" height="408">
+        <img src="images/plate-arrival.jpg" alt="The hand-painted Pumpkin Palooza sign leaning on the pipe gate in front of the long red barn, pumpkins lined up along the grass" loading="lazy" width="1600" height="1200">
+        <figcaption>The sign at the gate</figcaption>
       </figure>
+
       <div class="section-head reveal">
         <p class="eyebrow">What&rsquo;s here</p>
-        <h2>Everything on the farm, <em>one tap at a time</em></h2>
-        <p>Explore attractions from the farm&rsquo;s recent seasons. Confirm this year&rsquo;s lineup and admission before visiting.</p>
+        <h2>A working farm, <em>open for the fall</em></h2>
+        <p>Everything below is theirs, photographed on the place. Call to confirm which of it is running this year before you drive out.</p>
       </div>
-      <ul class="unroll reveal" id="unroll">
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-1">
-            <span class="ur-title">The pumpkin patch</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-1"><div class="ur-in">
-            <p>Twenty-plus varieties out in the field — orange, white, warty, tiny. Walk the rows, pick the one you want, and pay by its size on the way out.</p>
-          </div></div>
+
+      <ul class="wall">
+        <li class="tile reveal">
+          <img src="images/patch.jpg" alt="A pale white pumpkin held up over the picked rows of the pumpkin patch, with Mount Rainier on the horizon" loading="lazy" width="1080" height="1440">
+          <div class="cap">
+            <h3>Pick your own</h3>
+            <p>Rows of them still on the vine — orange, white, warty, tiny. Walk out, pick the one you want, pay for it on the way back.</p>
+          </div>
         </li>
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-2">
-            <span class="ur-title">The four-acre corn maze</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-2"><div class="ur-in">
-            <p>Four acres cut fresh into the standing corn every season. The aerial below shows its 2024 design.</p>
-            <figure class="ur-shot"><img src="images/corn-maze.jpg" alt="The four-acre corn maze from above, cut in the shape of the farm's barn, mountain and sun mark" loading="lazy" width="576" height="566"><figcaption>The 2024 maze, cut as the farm&rsquo;s own barn-and-mountain mark</figcaption></figure>
-          </div></div>
+        <li class="tile reveal">
+          <img src="images/corn-maze.jpg" alt="Looking down a narrow path between two walls of standing corn inside the maze" loading="lazy" width="1080" height="1440">
+          <div class="cap">
+            <h3>The four-acre corn maze</h3>
+            <p>Cut fresh into their own corn every season. Rules and a riddle board hang at the gate before you go in.</p>
+          </div>
         </li>
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-3">
-            <span class="ur-title">Hay pyramid &amp; slides</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-3"><div class="ur-in">
-            <p>A towering stack of bales to climb, with the tube slide running down the side of it.</p>
-            <figure class="ur-shot"><img src="images/hay-pyramid-slides.jpg" alt="The tube slide and climbing structure at the farm, fields and Mount Rainier on the horizon behind" loading="lazy" width="480" height="360"><figcaption>The slide and climb, with Rainier on the horizon</figcaption></figure>
-          </div></div>
+        <li class="tile reveal">
+          <img src="images/pyramid-slides.jpg" alt="Straw bales stacked into wide steps with a tall wooden slide tower on top under a hand-painted Pyramid Slides sign" loading="lazy" width="1500" height="1125">
+          <div class="cap">
+            <h3>Pyramid slides</h3>
+            <p>Straw bales stacked into steps, a tower at the top and two tube slides down the front. The sign over it is hand-painted like everything else.</p>
+          </div>
         </li>
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-4">
-            <span class="ur-title">Giant pumpkin bounce house</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-4"><div class="ur-in">
-            <p>A pumpkin the size of a shed, and it bounces. Shoes off at the edge.</p>
-          </div></div>
+        <li class="tile reveal">
+          <img src="images/red-barn.jpg" alt="A giant inflatable jack-o-lantern bounce house parked inside the open red barn" loading="lazy" width="1080" height="1440">
+          <div class="cap">
+            <h3>The Red Barn</h3>
+            <p>A jack-o&rsquo;-lantern the size of a shed, parked in the barn out of the rain. Yard games and the sports barn are in there too.</p>
+          </div>
         </li>
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-5">
-            <span class="ur-title">Sports barn &amp; yard games</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-5"><div class="ur-in">
-            <p>Football, baseball and basketball inside the barn. Corn hole and giant Jenga out on the grass.</p>
-          </div></div>
+        <li class="tile reveal">
+          <img src="images/pumpkin-snatchers.jpg" alt="A wooden stocks board painted Pumpkin Snatchers with three head holes and Williams Family Farm across the front" loading="lazy" width="1400" height="1050">
+          <div class="cap">
+            <h3>Pumpkin Snatchers</h3>
+            <p>Three holes in a board, their name across the front. That&rsquo;s the picture everybody takes home.</p>
+          </div>
         </li>
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-6">
-            <span class="ur-title">Giant bubbles</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-6"><div class="ur-in">
-            <p>Bubbles the size of a person, pulled up off the truck bed when the light goes gold.</p>
-            <figure class="ur-shot"><img src="images/giant-bubbles.jpg" alt="Giant bubbles floating over the flower field at Williams Family Farm at sunset" loading="lazy" width="750" height="1000"><figcaption>Giant bubbles over the field at sunset</figcaption></figure>
-          </div></div>
+        <li class="tile reveal">
+          <img src="images/fire-pit.jpg" alt="A stone fire ring burning beside a wooden bench marked Williams Family Farm, at the edge of the standing corn" loading="lazy" width="1080" height="1440">
+          <div class="cap">
+            <h3>A fire by the corn</h3>
+            <p>A stone ring, a farm bench with their name on it, and a wagon parked beside it, right up against the corn.</p>
+          </div>
         </li>
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-7">
-            <span class="ur-title">Kettle corn &amp; local honey</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-7"><div class="ur-in">
-            <p>Kettle corn popped on site and honey from local hives, both at the stand. Fall decor is out for sale beside them.</p>
-          </div></div>
+        <li class="tile reveal">
+          <img src="images/gourds.jpg" alt="Crates packed with striped and warty gourds in orange, white and green" loading="lazy" width="1080" height="1620">
+          <div class="cap">
+            <h3>Gourds and fall decor</h3>
+            <p>Bins of them by the crate — striped, warty, knuckled. Mums and corn stalks sit out front beside the market.</p>
+          </div>
         </li>
-        <li class="ur">
-          <button class="ur-head" type="button" aria-expanded="true" aria-controls="attraction-8">
-            <span class="ur-title">Somewhere to take the photo</span>
-            <svg class="ur-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="ur-body" id="attraction-8"><div class="ur-in">
-            <p>The farm sets up photo spots through the season — pumpkins, corn stalks and the mountain doing most of the work.</p>
-          </div></div>
+        <li class="tile reveal">
+          <img src="images/wagon.jpg" alt="A farm wagon on the pavement loaded with seven pumpkins — orange, white, pale green and pink" loading="lazy" width="1400" height="1054">
+          <div class="cap">
+            <h3>Take a wagon</h3>
+            <p>They&rsquo;re parked by the gate and out at the fire ring. The big ones are not carrying themselves back.</p>
+          </div>
+        </li>
+        <li class="tile reveal">
+          <img src="images/signpost.jpg" alt="A white post on the corner of the red barn covered in hand-painted black arrow signs reading Pumpkin Shop, Restrooms, Corn Maze, Pyramid Slides, Market, Red Barn Fun and Pick Your Own Pumpkin Patch" loading="lazy" width="1000" height="1333">
+          <div class="cap">
+            <h3>Finding your way</h3>
+            <p>Every arrow on the barn corner is hand-lettered: pumpkin shop, restrooms, corn maze, pyramid slides, market, red barn fun, pick-your-own patch.</p>
+          </div>
         </li>
       </ul>
+
+      <!-- their own market board, read out in plain type -->
+      <div class="board reveal">
+        <figure>
+          <img src="images/market.jpg" alt="The Palooza Market stand under the barn overhang — a chalkboard menu, corn stalks, mums in a barrel and pumpkins along the front" loading="lazy" width="1600" height="1200">
+          <figcaption>The market, under the barn overhang</figcaption>
+        </figure>
+        <div>
+          <h3>Palooza Market</h3>
+          <p class="board-sub">What&rsquo;s on their board</p>
+          <ul class="board-list">
+            <li>Hot cider</li>
+            <li>Soda</li>
+            <li>Kettle corn</li>
+            <li>Snacks</li>
+            <li>Local honey</li>
+            <li>Caramel apple</li>
+          </ul>
+          <p class="board-fine">Written on the board in their own hand. Prices aren&rsquo;t posted online — ask at the counter.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===================== #signature =====================
-       THE PUMPKIN LAUNCHER — the farm's own one-of-one attraction, turned into
-       the toy. One tap on the launcher, a pumpkin flies, it lands and stays in
-       the field. No inputs, no numbers to read, no modes. Deterministic: six
-       preset shots in a fixed order, then it repeats. -->
-  <section class="section" id="signature">
+       THE PUMPKIN LAUNCHER — their one-of-one, and the first thing a real
+       reviewer lists. One tap on the launcher, a pumpkin flies, it lands in
+       the field and stays. No inputs, no numbers, no modes. Deterministic:
+       six preset shots in a fixed order that repeats.
+       The real field sits beside the toy so it points at somewhere that exists. -->
+  <section class="section section-alt" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The pumpkin launcher</p>
         <h2>Tap it. <em>Launch one.</em></h2>
-        <p>There is a launcher out in the field that throws a pumpkin clean across it. This is the small version.</p>
+        <p>There is a launcher out past the corn that throws a pumpkin clean across the field. This is the small version.</p>
       </div>
-      <div class="launcher reveal">
-        <div class="stage" id="stage">
-          <div class="sky"></div>
-          <svg class="ridge" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 L0 96 L140 62 L215 92 L330 40 L400 74 L470 46 L560 88 L700 58 L820 96 L960 66 L1080 100 L1200 78 L1200 150 Z"/></svg>
-          <div class="ground"></div>
-          <div class="pumpkins" id="pumpkins" aria-hidden="true"></div>
-          <div class="flyer" id="flyer" aria-hidden="true">
-            <svg viewBox="0 0 40 40"><ellipse cx="20" cy="23" rx="15" ry="13"/><path class="rib" d="M20 11 v24 M12 13 q-3 10 0 20 M28 13 q3 10 0 20" /><path class="stem" d="M20 11 q1-6 5-8"/></svg>
+      <div class="launch-grid">
+        <div class="launcher reveal">
+          <div class="stage" id="stage">
+            <div class="sky"></div>
+            <svg class="ridge" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 L0 96 L140 62 L215 92 L330 40 L400 74 L470 46 L560 88 L700 58 L820 96 L960 66 L1080 100 L1200 78 L1200 150 Z"/></svg>
+            <div class="ground"></div>
+            <div class="pumpkins" id="pumpkins" aria-hidden="true"></div>
+            <div class="flyer" id="flyer" aria-hidden="true">
+              <svg viewBox="0 0 40 40"><ellipse cx="20" cy="23" rx="15" ry="13"/><path class="rib" d="M20 11 v24 M12 13 q-3 10 0 20 M28 13 q3 10 0 20" /><path class="stem" d="M20 11 q1-6 5-8"/></svg>
+            </div>
+            <button class="cannon" id="cannon" type="button" aria-label="Launch a pumpkin" aria-describedby="launch-status">
+              <svg class="cannon-art" viewBox="0 0 120 90" aria-hidden="true">
+                <path class="barrel" d="M16 60 L92 26" />
+                <circle class="muzzle" cx="94" cy="25" r="7"/>
+                <path class="legs" d="M22 58 L14 84 M22 58 L44 84 M14 84 L52 84"/>
+                <rect class="base" x="8" y="82" width="52" height="6" rx="3"/>
+              </svg>
+              <span class="cannon-label">Tap to launch</span>
+            </button>
           </div>
-          <button class="cannon" id="cannon" type="button" aria-label="Launch a pumpkin" aria-describedby="launch-status">
-            <svg class="cannon-art" viewBox="0 0 120 90" aria-hidden="true">
-              <path class="barrel" d="M16 60 L92 26" />
-              <circle class="muzzle" cx="94" cy="25" r="7"/>
-              <path class="legs" d="M22 58 L14 84 M22 58 L44 84 M14 84 L52 84"/>
-              <rect class="base" x="8" y="82" width="52" height="6" rx="3"/>
-            </svg>
-            <span class="cannon-label">Tap to launch</span>
-          </button>
+          <p class="launcher-fine">The real one is a lot louder.</p>
+          <p class="sr-only" id="launch-status" aria-live="polite"></p>
         </div>
-        <p class="launcher-fine">The real one is a lot louder.</p>
-        <p class="sr-only" id="launch-status" aria-live="polite"></p>
+        <figure class="print reveal">
+          <img src="images/field.jpg" alt="Their old red flatbed truck loaded with pumpkins out in the open field, standing corn behind it and the foothills on the horizon" loading="lazy" width="1500" height="1125">
+          <figcaption>The open field, out past the corn</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
   <!-- ===================== #about ===================== -->
-  <section class="section section-alt" id="about">
+  <section class="section" id="about">
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/about.jpg" alt="Williams Family Farm from above — the climbing structure and slide, the fields and the neighbouring farms beyond" loading="lazy" width="480" height="360">
-          <figcaption>The farm from above, end of a season</figcaption>
+          <img src="images/pyramid.jpg" alt="Wooden crates stacked into a pyramid against the red barn wall, one pumpkin or gourd sitting in every crate" loading="lazy" width="1600" height="1200">
+          <figcaption>Their pumpkin pyramid, on the barn wall</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">The farm</p>
           <h2>Run by the <em>Williams family</em></h2>
-          <p class="lede">A family farm on SE 464th that opens its fields to the rest of Enumclaw every fall.</p>
-          <p>The pumpkins are grown here, the maze is cut into their own corn, and the launcher, the hay pyramid and the bounce house go up for the season and come down again when the last pumpkin leaves.</p>
-          <p>Visitors have shared stories of family outings and birthday parties here, with the fields and Mount Rainier behind them.</p>
+          <p class="lede">A working farm on SE 464th that opens its fields to the rest of Enumclaw every fall.</p>
+          <p>The pumpkins are grown here. The maze is cut into their own corn. The slides, the fire ring and the big inflatable pumpkin go up for the season and come down again when the last pumpkin leaves.</p>
+          <p>Their name is on the sign at the gate, on the bench by the fire and on the photo board in the grass — and every one of those signs was painted by hand.</p>
         </div>
       </div>
     </div>
@@ -250,7 +270,7 @@
   <!-- ===================== #reviews =====================
        Verbatim from the farm's public listing. Initial discs in the site's own
        type and palette — never a scraped photo of a real reviewer. -->
-  <section class="section" id="reviews">
+  <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">What visitors say</p>
@@ -272,16 +292,16 @@
   </section>
 
   <!-- ===================== #contact ===================== -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Plan your visit</p>
           <h2>How to <em>find the farm</em></h2>
           <ol class="steps">
-            <li><h3>Confirm your day</h3><p>Call for this year&rsquo;s opening dates, gate hours and arrival details before driving out.</p></li>
-            <li><h3>Ask about admission</h3><p>Check current prices, which attractions are included and how pumpkins are priced.</p></li>
-            <li><h3>Bring the wagon</h3><p>Wear boots you don&rsquo;t mind. It is a working field, and it is usually wet by mid-October.</p></li>
+            <li><h3>Confirm the day</h3><p>Call for this year&rsquo;s opening dates and gate hours before you drive out — they run weekends only, and the season is short.</p></li>
+            <li><h3>Ask what it costs</h3><p>Admission and pumpkin pricing are set at the gate each year. Ask what&rsquo;s included while you have them on the phone.</p></li>
+            <li><h3>Wear boots</h3><p>It&rsquo;s a working field, and it is usually wet by mid-October. Wagons are there for the heavy ones.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📞 <a href="tel:+15099483246">(509) 948-3246</a></span>
@@ -308,17 +328,17 @@
     </div>
   </section>
 
-  <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta — DEEP BAND 2 ===================== -->
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">A day at the farm</p>
-        <h2>Make room for <em>a fall afternoon</em></h2>
-        <p>Check with the family for this year&rsquo;s dates before planning your visit.</p>
+        <p class="eyebrow">Before you go</p>
+        <h2>23131 SE 464th St, <em>Enumclaw</em></h2>
+        <p>Out past the corn, with the mountain behind it. Call for this year&rsquo;s dates before you make the drive.</p>
       </div>
       <div class="cta-actions reveal">
         <a href="tel:+15099483246" class="btn btn-primary">Call (509) 948-3246</a>
-        <a href="#contact" class="btn btn-ghost">Prepare your questions</a>
+        <a href="https://maps.google.com/?q=23131+SE+464th+St,+Enumclaw,+WA+98022" target="_blank" rel="noopener" class="btn btn-ghost">Get directions ↗</a>
       </div>
     </div>
   </section>

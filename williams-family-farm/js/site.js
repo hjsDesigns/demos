@@ -38,7 +38,7 @@ var HOURS = {
    ------------------------------------------------------------ */
 var SEASON = {
   year: 2026,
-  openingLine: '2026 dates have not been announced.',
+  openingLine: 'Season opens late September.',
   hoursVerified: false,                // Do not activate a clock using last year's approximate sunset hours.
   dates: []                           // e.g. ['2026-09-25','2026-09-26','2026-09-27', …]
 };
@@ -198,8 +198,11 @@ function customClose(p, close){ return close; }
   }
 
   /* ---------- TITLE CARDS THAT UNROLL ----------
-     Every row header is the tap target; the chevron flips. Rows are
-     independent (opening one never closes another — no hidden modes). */
+     Retired in the 2026-09-06 atmosphere pass: the attractions are now a wall
+     of framed prints with their captions visible, so nothing is hidden behind
+     a tap. Kept here (a no-op while #unroll is absent) in case a future
+     section needs the pattern back — same rules: the row header is the tap
+     target, the chevron flips, rows are independent, no hidden modes. */
   $$('#unroll .ur-head').forEach(function(btn){
     var li=btn.parentNode, panel=document.getElementById(btn.getAttribute('aria-controls'));
     function setOpen(open){li.classList.toggle('open',open);btn.setAttribute('aria-expanded',String(open));panel.setAttribute('aria-hidden',String(!open));panel.inert=!open;}
