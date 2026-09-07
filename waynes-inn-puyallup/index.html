@@ -10,6 +10,7 @@
 <!-- Oswald (display, sturdy condensed) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -43,20 +44,26 @@
        lit against the sky. Interiors live below. Headline block only — no chips,
        no badges, no address on the photo (that lives in the hours band).
        The headline is the sign's own promise, word for word off the panel. -->
+  <!-- ===================== #hero — "the lights come on" =====================
+       Their own pole-sign panel (real crop, deskewed, never redrawn) hanging in
+       their own room (g4, blurred to atmosphere: the green ceiling LED, the beer
+       neon, the wood floor). The box sign strikes on like a real fluorescent
+       sign at open — two stutters, then full — and the room lights with it.
+       The mark IS the headline: sr-only h1, nothing on the photo but the sign
+       and the two buttons. Hours / address / status stay in the band below. -->
   <section class="hero" id="hero">
-    <div class="hero-bg">
+    <div class="hero-bg" aria-hidden="true">
       <picture>
-        <source media="(max-width:640px)" srcset="images/hero-tall.jpg" width="1146" height="1529">
-        <img src="images/hero.jpg" alt="Wayne's Inn on its pole sign above E Main Avenue in Puyallup, the reader board underneath reading FOOTBALL HERE" width="1864" height="1168" fetchpriority="high">
+        <source media="(max-width:640px)" srcset="images/claude-room-blur-tall.jpg" width="1100" height="1466">
+        <img src="images/claude-room-blur.jpg" alt="" width="1800" height="1125" fetchpriority="high">
       </picture>
     </div>
-    <div class="hero-spacer"></div>
     <div class="hero-inner">
-      <h1>Pizza · Sandwiches <em>Lunch · Dinner</em></h1>
-      <p class="hero-sub">
-        <span class="sub-long">Straight off the sign on the pole out on East Main. Inside it's a full bar with a kitchen behind it.</span>
-        <span class="sub-short">A full bar with a kitchen.</span>
-      </p>
+      <h1 class="sr-only">Wayne's Inn Bar &amp; Grill — pizza, sandwiches, lunch and dinner on E Main Avenue in Puyallup, Washington</h1>
+      <div class="signbox">
+        <img class="signbox-panel" src="images/claude-sign.png" width="1486" height="941"
+             alt="Wayne's Inn — pizza, sandwiches, lunch, dinner. Their pole sign on E Main Avenue.">
+      </div>
       <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>

@@ -1,0 +1,132 @@
+/* ============================================================
+   FOX HOLLOW COFFEE — hero: "First light on 112th."
+   Self-contained, namespaced under .hero. Load AFTER css/style.css.
+
+   One deterministic intro, pure CSS, no JS, autoplay once:
+     0.00s  the stand is there, blurred, the warm light still low
+     0.20s  first light — a warm pool blooms where the window is
+     0.35s  their FH oval CONDENSES out of it (blur 30px -> 0)
+     1.15s  "Fox Hollow Coffee" wipes up under the mark
+     1.75s  the two buttons rise
+     then   a quiet hold: the light breathes (28s), three soft steam
+            plumes drift up (24-31s), the photo creeps (44s). Nothing
+            asks to be looked at.
+   Reduced motion lands on the final frame.
+   Ground: MIRROR LAW — the stand's own world, fir green and teal,
+   pooled warm in the middle and melting into var(--tint) at the
+   bottom edge so it hands off to the hours band with no seam.
+   ============================================================ */
+
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;isolation:isolate;
+  background:var(--dark);
+  color:#fff;
+  padding:clamp(28px,6vh,72px) var(--pad) clamp(58px,13vh,142px);
+}
+
+/* ---- 0 · the ground: their stand on 112th, blurred to colour ---- */
+.hero .hero-plate{position:absolute;inset:-2%;z-index:0;animation:fhBreathe 44s var(--ease) 2.6s infinite alternate}
+.hero .hero-plate img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 38%;
+  animation:fhSettle 2.8s cubic-bezier(.18,.75,.25,1) forwards;
+}
+
+/* ---- 1 · the wash: warms the whole frame, pools the bottom into the hours band ---- */
+.hero .hero-wash{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 62%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 10%,transparent) 24%,
+      color-mix(in srgb,var(--tint) 26%,transparent) 60%,
+      color-mix(in srgb,var(--tint) 82%,transparent) 86%,
+      var(--tint) 100%),
+    linear-gradient(0deg, color-mix(in srgb,var(--warm) 10%,transparent), transparent 55%);
+}
+
+/* ---- 2 · first light: the warm pool the mark lands in ---- */
+.hero .hero-glow{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;
+  background:
+    radial-gradient(46% 34% at 50% 42%, rgba(255,229,186,.50), rgba(255,197,126,.20) 46%, transparent 74%),
+    radial-gradient(24% 17% at 50% 43%, rgba(255,246,228,.36), transparent 72%);
+  animation:fhDawn 1.5s var(--ease) .18s forwards, fhBreathGlow 28s ease-in-out 2.2s infinite alternate;
+}
+
+/* ---- 3 · steam: three soft plumes, always drifting, never insistent ---- */
+.hero .hero-steam{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;opacity:.85}
+.hero .hero-steam i{position:absolute;display:block;border-radius:50%;filter:blur(46px);opacity:0;
+  background:radial-gradient(closest-side, rgba(255,244,226,.42), rgba(255,232,200,.13) 58%, transparent 76%)}
+.hero .hero-steam i:nth-child(1){left:26%;bottom:-24%;width:38vmin;height:52vmin;animation:fhSteam 26s linear -4s infinite}
+.hero .hero-steam i:nth-child(2){left:48%;bottom:-30%;width:30vmin;height:44vmin;animation:fhSteam 31s linear -17s infinite}
+.hero .hero-steam i:nth-child(3){left:66%;bottom:-22%;width:34vmin;height:48vmin;animation:fhSteam 24s linear -10s infinite}
+
+/* ---- 4 · the mark IS the headline ---- */
+.hero .hero-inner{position:relative;z-index:4;width:100%;max-width:var(--maxw);margin:0 auto;padding:0;text-align:center}
+
+.hero .hero-mark{margin:0 auto;width:min(500px,74vw)}
+.hero .hero-mark img{width:100%;height:auto;opacity:0;
+  filter:blur(30px) saturate(.35) brightness(1.25);
+  transform:scale(1.15);
+  animation:fhCondense 1.55s cubic-bezier(.2,.82,.24,1) .35s forwards;
+}
+
+.hero .hero-name{
+  margin:clamp(10px,1.6vh,20px) 0 0;
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(26px,min(4.6vw,6.4vh),56px);
+  line-height:1.04;letter-spacing:.012em;color:#F8EFE0;
+  text-shadow:0 2px 26px rgba(11,26,24,.55);
+  clip-path:inset(100% 0 0 0);opacity:0;transform:translateY(12px);
+  animation:fhNameUp .9s cubic-bezier(.2,.82,.24,1) 1.15s forwards;
+}
+
+.hero .hero-inner .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  margin:clamp(26px,4.2vh,44px) 0 0;
+  opacity:0;transform:translateY(16px);
+  animation:fhRise .8s var(--ease) 1.75s forwards;
+}
+.hero .hero-inner .hero-actions .btn{box-shadow:0 16px 40px -22px rgba(0,0,0,.9)}
+
+/* ---- keyframes (all deterministic, all fill-mode forwards where they matter) ---- */
+@keyframes fhSettle{from{transform:scale(1.085)}to{transform:scale(1.008)}}
+@keyframes fhBreathe{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.035) translate3d(0,-.9%,0)}}
+@keyframes fhDawn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes fhBreathGlow{from{opacity:1}to{opacity:.78}}
+@keyframes fhSteam{
+  0%  {opacity:0;transform:translate3d(0,0,0) scale(.9)}
+  14% {opacity:.9}
+  70% {opacity:.55}
+  100%{opacity:0;transform:translate3d(4vmin,-165%,0) scale(1.5)}
+}
+@keyframes fhCondense{
+  0%  {opacity:0;filter:blur(30px) saturate(.35) brightness(1.25);transform:scale(1.15)}
+  24% {opacity:.55}
+  100%{opacity:1;filter:blur(0) saturate(1) brightness(1);transform:scale(1)}
+}
+@keyframes fhNameUp{to{clip-path:inset(0 0 0 0);opacity:1;transform:none}}
+@keyframes fhRise{to{opacity:1;transform:none}}
+
+/* ---- phone ---- */
+@media (max-width:760px){
+  .hero{padding-bottom:clamp(64px,13vh,120px)}
+  .hero .hero-plate img{object-position:54% 40%}
+  .hero .hero-mark{width:min(360px,78vw)}
+  .hero .hero-name{font-size:clamp(25px,8.4vw,36px)}
+  .hero .hero-inner .hero-actions{gap:10px;width:100%}
+  .hero .hero-inner .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+  .hero .hero-steam i{filter:blur(34px)}
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-plate{animation:none;transform:none}
+  .hero .hero-plate img{animation:none;transform:scale(1.008)}
+  .hero .hero-glow{animation:none;opacity:1;transform:none}
+  .hero .hero-steam i{animation:none;opacity:.5;transform:translate3d(0,-70%,0) scale(1.2)}
+  .hero .hero-mark img{animation:none;opacity:1;filter:none;transform:none}
+  .hero .hero-name{animation:none;clip-path:none;opacity:1;transform:none}
+  .hero .hero-inner .hero-actions{animation:none;opacity:1;transform:none}
+}

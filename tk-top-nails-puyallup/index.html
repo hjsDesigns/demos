@@ -10,6 +10,7 @@
 <!-- DM Serif Display (display, 400 only — the face has no other weight) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -46,28 +47,18 @@
        so the opener is the real building from the road with the sign
        legible. Headline block only — no chips, no badges, no status pill.
        Phones get the HERO STACK (three real photos, no crop, no gaps). -->
-  <section class="hero" id="hero">
-    <div class="hero-bg hero-stack">
-      <div class="hero-stack-track">
-        <img src="images/hero-stack-1.jpg" alt="TK Top Nails &amp; Spa on East Main Avenue in Puyallup — the red-and-blue banner sign over the shopfront, neon in the windows" fetchpriority="high">
-        <img src="images/hero-stack-2.jpg" alt="The row of spa pedicure chairs inside TK Top Nails &amp; Spa under warm pendant lamps">
-        <img src="images/hero-stack-3.jpg" alt="The Polish Center rack by the door, filled with hundreds of bottles of colour">
-        <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true">
-        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true">
-        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true">
-      </div>
+  <section class="hero codex-tk-top-nails" id="hero">
+  <div class="codex-tk-room codex-decor" aria-hidden="true"><img src="images/hero-stack-2.jpg" alt="" width="1650" height="2200" fetchpriority="high"></div>
+  <div class="codex-tk-daylight codex-decor" aria-hidden="true"></div>
+  <div class="codex-content">
+    <h1 class="sr-only codex-a11y">TK Top Nails &amp; Spa — nails and spa pedicures in Puyallup</h1>
+    <div class="codex-tk-sign codex-decor" aria-hidden="true">
+      <img class="codex-mark-image codex-tk-sign-top" src="images/logo.png" alt="" width="1180" height="413" fetchpriority="high">
+      <img class="codex-mark-image codex-tk-sign-bottom" src="images/logo.png" alt="" width="1180" height="413">
     </div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <p class="hero-eyebrow">Puyallup, WA<span class="eb-long"> · Walk-ins welcome</span></p>
-      <h1>Nails and spa pedicures, <em>seven days a week</em></h1>
-      <p class="hero-sub"><span class="sub-long">The little shop with the neon in the window on East Main — full sets, shellac, ombré, dipping powder, waxing and lashes. No appointment needed.</span><span class="sub-short">On East Main. No appointment needed.</span></p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the services</a>
-        <a href="#work" class="btn btn-cream">See the work</a>
-      </div>
-    </div>
-  </section>
+    <div class="codex-actions"><a href="#menu" class="btn btn-primary">See the services</a><a href="#work" class="btn btn-cream">See the work</a></div>
+  </div>
+</section>
 
   <!-- ===================== #hours — THE DEEP BAND =====================
        Live Pacific clock, address and all seven day rows with today lit.

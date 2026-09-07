@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -42,20 +43,21 @@
 <main>
 
   <!-- ============ HERO — the stand itself, from 112th. Nothing on the photo but the headline block. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <img src="images/hero.jpg" alt="The Fox Hollow Coffee stand on 112th Street East — a small building with a green metal roof, a red OPEN sign in the window and a board along the fascia reading latte, mocha, americano, coffee, granita, espresso" fetchpriority="high">
+  <section class="hero codex-fox" id="hero">
+  <div class="codex-fox-scene" aria-hidden="true"><img src="images/hero.jpg" alt="" width="1206" height="1920" fetchpriority="high"></div>
+  <div class="codex-fox-veil" aria-hidden="true"></div>
+  <div class="codex-fox-content">
+    <h1 class="codex-a11y">Fox Hollow Coffee — drive-thru coffee in Puyallup</h1>
+    <div class="codex-fox-identity" aria-hidden="true">
+      <img class="codex-fox-emblem" src="images/codex-cup-emblem.png" alt="" width="600" height="352">
+      <img class="codex-fox-wordmark" src="images/codex-fascia-wordmark.png" alt="" width="1182" height="219">
     </div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1>The little green coffee stand on <em>112th</em></h1>
-      <p class="hero-sub"><span class="sub-long">Fox Hollow Coffee, poured at the window on the corner of 112th and Woodland. Seven days a week.</span><span class="sub-short">Fox Hollow Coffee. Open seven days.</span></p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#menu">See the drinks</a>
-        <a class="btn btn-cream" href="#hours">Are they open?</a>
-      </div>
+    <div class="codex-actions">
+      <a class="btn btn-primary" href="#menu">See the drinks</a>
+      <a class="btn btn-cream" href="#hours">Are they open?</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ============ HOURS — one band, all seven days, live green/red light -->
   <section class="status-band" id="hours">

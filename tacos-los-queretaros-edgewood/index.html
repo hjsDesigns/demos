@@ -10,6 +10,7 @@
 <!-- Alfa Slab One (display, one weight only) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -45,18 +46,17 @@
        the blue trailer and the tent. Exterior-hero default — the building is
        in frame, the interiors of the operation live below. Nothing sits on
        the photo but the headline block: no eyebrow, no chips, no badges. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="A paper plate of tacos with lime, radish and a roasted jalapeño held up in front of the blue Tacos los Queretaros trailer and its white tent" fetchpriority="high" width="1730" height="2550"></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1>Birria, mulitas and asada fries, <em>off the blue trailer</em>.</h1>
-      <p class="hero-sub"><span class="sub-long">Order at the window. Eat under the tent, at a red-check table on the grass.</span><span class="sub-short">Order at the window. Eat outside.</span></p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the whole board</a>
-        <a href="#hours" class="btn btn-cream">Are they open?</a>
-      </div>
+  <section class="hero codex-tacos-los-queretaros-edgewood" id="hero" aria-label="Tacos los Queretaros">
+  <div class="codex-scene" aria-hidden="true"><img class="codex-atmosphere" src="images/hero.jpg" alt="" width="1730" height="2550"><img src="images/hero.jpg" alt="" fetchpriority="high" width="1730" height="2550"></div>
+  <div class="codex-content">
+    <h1 class="codex-sr">Tacos los Queretaros</h1>
+    <div class="codex-mark"><img src="images/logo.png" alt="Taquería Los Queretaros" width="680" height="428" fetchpriority="high"></div>
+    <div class="codex-actions">
+      <a href="#menu" class="btn btn-primary">See the whole board</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        Live Pacific clock, the address, and all seven days with today lit.

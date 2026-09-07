@@ -11,6 +11,7 @@
      Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -45,17 +46,39 @@
        EXTERIOR HERO DEFAULT: their own stand from the lot, their hexagon
        sign lit, shot before sunrise — which is exactly when they open.
        Nothing on the photo but the headline block. Source: harvest g44. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="The Bean Tree drive-thru coffee stand on River Road before sunrise, its lit hexagon sign and warm windows glowing against a blue sky" fetchpriority="high" width="1290" height="2281"></div>
-    <div class="hero-inner">
-      <h1>Coffee before <em>the sun</em>.</h1>
-      <p class="sub">The Bean Tree Coffee Co — a drive-thru stand on River Road, Puyallup. The window opens at 4:30 in the morning.</p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the board</a>
-        <a href="#hours" class="btn btn-cream">Are they open?</a>
-      </div>
+  <!-- ===================== #hero — "FIRST LIGHT" =====================
+     The lot at opening: their own stand on River Road (harvest g49),
+     graded to first light and pulled out of focus, while their own
+     painted lockup — the leaf glyph and BEAN TREE, keyed straight off
+     their menu board (harvest g1) — settles into place and one warm
+     light passes across it. Nothing on the photo but the mark and the
+     two buttons; hours, status and address stay in the band below. -->
+<section class="hero" id="hero">
+  <h1 class="sr-only">The Bean Tree Coffee Co — drive-thru coffee on River Road in Puyallup, open at 4:30 in the morning</h1>
+
+  <div class="hero-bg">
+    <img class="bt-plate bt-plate-sharp" src="images/claude-bt-ground.jpg"
+         alt="The Bean Tree drive-thru stand on River Road in Puyallup at first light, its hexagon sign and leaf mark on the dark brown wall above the red maple"
+         fetchpriority="high" width="1680" height="1304">
+    <img class="bt-plate bt-plate-soft" src="images/claude-bt-ground-blur.jpg" alt="" aria-hidden="true"
+         width="1680" height="1304">
+    <span class="bt-steam bt-steam-a" aria-hidden="true"></span>
+    <span class="bt-steam bt-steam-b" aria-hidden="true"></span>
+  </div>
+
+  <div class="bt-scrim" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="bt-lockup" role="img" aria-label="The Bean Tree Coffee Co">
+      <span class="bt-glyph"></span>
+      <span class="bt-word"></span>
     </div>
-  </section>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">See the board</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
+    </div>
+  </div>
+</section>
 
   <!-- ===================== #hours — THE BOARD =====================
        Live Pacific clock + address + all seven days, today lit.

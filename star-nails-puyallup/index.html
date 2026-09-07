@@ -10,6 +10,7 @@
 <!-- Fraunces (display, sturdy elegant serif) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -47,31 +48,17 @@
        Phone uses the factory HERO STACK: exactly three real photos,
        height:auto + contain (no crop, no gaps), doubled track on a linear
        infinite conveyor. Desktop shows the first frame only. -->
-  <section class="hero hero-split" id="hero">
-    <div class="hero-photo">
-      <div class="hero-bg hero-stack">
-        <div class="hero-stack-track">
-          <img src="images/hero-stack-1.jpg" alt="Long lilac coffin acrylics on both hands, done at Star Nails" fetchpriority="high" width="1920" height="1957">
-          <img src="images/hero-stack-2.jpg" alt="Hot pink and gold coffin set with hand-painted art" width="1920" height="1920">
-          <img src="images/hero-stack-3.jpg" alt="Deep teal glitter stiletto nails" width="1500" height="2000">
-          <img src="images/hero-stack-1.jpg" alt="" aria-hidden="true" width="1920" height="1957">
-          <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true" width="1920" height="1920">
-          <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true" width="1500" height="2000">
-        </div>
-      </div>
-    </div>
-    <div class="hero-panel">
-      <div class="hero-inner">
-        <img class="hero-mark" src="images/wordmark.jpg" alt="Star Nails &amp; Spa" width="1686" height="609">
-        <h1>Acrylics, gel and <em>hand-painted art</em> on East Main.</h1>
-        <p class="hero-sub"><span class="sub-long">Professional nail, skin care, &amp; waxing for ladies &amp; gentlemen. Walk-ins welcome.</span><span class="sub-short">Walk-ins welcome on East Main.</span></p>
-        <div class="hero-actions">
-          <a href="#work" class="btn btn-primary">See the work</a>
-          <a href="#book" class="btn btn-outline">Book a time</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section class="hero codex-star-nails" id="hero">
+  <div class="codex-star-photo codex-decor" aria-hidden="true">
+    <img class="codex-star-echo" src="images/hero-stack-1.jpg" alt="" width="1920" height="1957">
+    <div class="codex-star-print"><img src="images/hero-stack-1.jpg" alt="" width="1920" height="1957" fetchpriority="high"></div>
+  </div>
+  <div class="codex-content">
+    <h1 class="sr-only codex-a11y">Star Nails &amp; Spa — acrylics, gel and hand-painted nail art in Puyallup</h1>
+    <div class="codex-star-card codex-decor" aria-hidden="true"><img class="codex-mark-image" src="images/wordmark.jpg" alt="" width="1686" height="609" fetchpriority="high"></div>
+    <div class="codex-actions"><a href="#work" class="btn btn-primary">See the work</a><a href="#book" class="btn btn-outline">Book a time</a></div>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        Deep charcoal-plum band: live Pacific clock, the address, and all

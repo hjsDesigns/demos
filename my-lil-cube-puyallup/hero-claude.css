@@ -1,0 +1,164 @@
+/* ============================================================
+   MY LIL' CUBE — hero: "Through the steam"
+   Self-contained, everything namespaced under .hero. Loads AFTER
+   css/style.css. No JS. Palette comes entirely from the site tokens
+   (--dark / --bg / --ink / --brand-text), so the last frame sits still
+   and pours straight into the near-black hours band underneath.
+
+   z-index inside .hero
+     5  .mlc-steam--front   two wisps that pass IN FRONT of the letters
+     4  .mlc-inner          the sign + the two buttons
+     3  .mlc-steam--back    the body of the steam
+     2  .mlc-lamp           the warm pool the sign hangs in
+     1  .mlc-bg img         their bowl, out of focus
+   ============================================================ */
+
+.hero{
+  position:relative;
+  height:calc(100svh - var(--header-h));
+  min-height:clamp(520px,calc(100svh - var(--header-h)),1100px);
+  display:flex;
+  overflow:hidden;
+  background:var(--dark);
+  isolation:isolate;
+}
+
+/* ---------- the ground: their own bowl, thrown out of focus ---------- */
+.hero .mlc-bg{position:absolute;inset:0;z-index:1;overflow:hidden}
+.hero .mlc-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 52%;
+  opacity:0;transform:scale(1.075);
+  animation:mlcGround 1.5s cubic-bezier(.3,.7,.3,1) .05s forwards,
+            mlcSettle 26s cubic-bezier(.16,.7,.3,1) .05s forwards;
+}
+@keyframes mlcGround{from{opacity:0}to{opacity:1}}
+@keyframes mlcSettle{from{transform:scale(1.075)}to{transform:scale(1)}}
+
+/* the pendant-lamp pool the sign hangs in — also the contrast guarantee */
+.hero .mlc-lamp{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(46% 40% at 50% 44%, rgba(232,163,61,.14), rgba(232,163,61,0) 72%),
+    radial-gradient(86% 70% at 50% 46%, rgba(16,27,33,0) 34%, rgba(16,27,33,.30) 70%, rgba(16,27,33,.62) 100%),
+    linear-gradient(180deg, rgba(16,27,33,.66) 0%, rgba(16,27,33,.06) 22%, rgba(16,27,33,0) 46%, rgba(16,27,33,.42) 72%, rgba(16,27,33,.80) 88%, rgba(16,27,33,1) 100%);
+  opacity:1;
+}
+
+/* ---------- the steam ---------- */
+.hero .mlc-steam{position:absolute;inset:-8% 0 -12%;pointer-events:none;overflow:hidden}
+.hero .mlc-steam--back{z-index:3}
+.hero .mlc-steam--front{z-index:5}
+.hero .mlc-steam i{
+  position:absolute;bottom:0;left:var(--x);
+  width:min(46vw,540px);aspect-ratio:1/2.4;
+  margin-left:calc(min(46vw,540px) / -2);
+  border-radius:50%;
+  background:radial-gradient(closest-side,
+      rgba(244,236,222,.62), rgba(244,236,222,.26) 44%, rgba(240,231,215,0) 74%);
+  filter:blur(26px);
+  mix-blend-mode:screen;
+  opacity:0;
+  will-change:transform,opacity;
+  animation:mlcSteam var(--t) linear var(--d) infinite;
+}
+.hero .mlc-steam--front i{
+  width:min(34vw,420px);margin-left:calc(min(34vw,420px) / -2);
+  filter:blur(34px);
+}
+@keyframes mlcSteam{
+  0%   {transform:translate3d(0,14%,0) scale(.72);opacity:0}
+  16%  {opacity:.34}
+  62%  {opacity:.22}
+  100% {transform:translate3d(3%,-92%,0) scale(1.45);opacity:0}
+}
+.hero .mlc-steam--front i{animation-name:mlcSteamFront}
+@keyframes mlcSteamFront{
+  0%   {transform:translate3d(0,16%,0) scale(.7);opacity:0}
+  20%  {opacity:.20}
+  64%  {opacity:.13}
+  100% {transform:translate3d(-4%,-96%,0) scale(1.5);opacity:0}
+}
+
+/* ---------- the mark = the headline ---------- */
+.hero .mlc-inner{
+  position:relative;z-index:4;flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(26px,4.2vh,52px);
+  padding:calc(var(--pad) * .8) var(--pad) clamp(38px,7vh,74px);
+  text-align:center;
+}
+
+.hero .mlc-markwrap{
+  width:min(93%,940px);
+  filter:drop-shadow(0 26px 46px rgba(6,12,16,.62)) drop-shadow(0 3px 10px rgba(6,12,16,.5));
+  animation:mlcBreath 9.5s ease-in-out 3.1s infinite;
+}
+.hero .mlc-mark{position:relative;overflow:hidden;border-radius:3px;line-height:0}
+.hero .mlc-mark img{
+  width:100%;height:auto;display:block;
+  opacity:0;transform:translateY(20px) scale(1.035);filter:blur(24px) saturate(.85);
+  animation:mlcResolve 1.5s cubic-bezier(.22,.85,.3,1) .34s forwards;
+}
+@keyframes mlcResolve{
+  0%  {opacity:0;transform:translateY(20px) scale(1.035);filter:blur(24px) saturate(.85)}
+  55% {opacity:1}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0) saturate(1)}
+}
+/* one pass of lamp-gold across the cream field, then gone for good */
+.hero .mlc-sweep{
+  position:absolute;top:-30%;bottom:-30%;left:0;width:180%;
+  background:linear-gradient(104deg,
+    rgba(255,240,206,0) 34%,
+    rgba(255,240,206,.30) 45%,
+    rgba(255,247,226,.72) 50%,
+    rgba(232,163,61,.34) 55%,
+    rgba(232,163,61,0) 66%);
+  mix-blend-mode:screen;pointer-events:none;
+  transform:translateX(-115%);opacity:0;
+  animation:mlcSweep 1.5s cubic-bezier(.4,.1,.35,1) 1.78s forwards;
+}
+@keyframes mlcSweep{
+  0%  {transform:translateX(-115%);opacity:0}
+  12% {opacity:1}
+  82% {opacity:1}
+  100%{transform:translateX(58%);opacity:0}
+}
+/* the quiet hold — a warm breath, nothing that asks to be looked at */
+@keyframes mlcBreath{
+  0%,100%{filter:drop-shadow(0 26px 46px rgba(6,12,16,.62)) drop-shadow(0 3px 10px rgba(6,12,16,.5))}
+  50%    {filter:drop-shadow(0 26px 52px rgba(6,12,16,.62)) drop-shadow(0 0 22px rgba(232,163,61,.20))}
+}
+
+/* ---------- the two buttons, unchanged ---------- */
+.hero .hero-actions,
+.js .hero .hero-actions{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  opacity:0;transform:translateY(14px);
+  animation:mlcRise .8s cubic-bezier(.22,.85,.3,1) 2.15s forwards;
+}
+@keyframes mlcRise{to{opacity:1;transform:none}}
+
+/* ---------- phone ---------- */
+@media (max-width:640px){
+  .hero .mlc-inner{gap:clamp(22px,3.6vh,40px);padding-bottom:clamp(34px,6vh,60px)}
+  .hero .mlc-markwrap{width:96%}
+  .hero .mlc-bg img{object-position:50% 33%}
+  .hero .hero-actions .btn{flex:1 1 44%;padding:14px 12px;font-size:15px}
+  .hero .mlc-lamp{
+    background:
+      radial-gradient(72% 30% at 50% 44%, rgba(232,163,61,.15), rgba(232,163,61,0) 74%),
+      radial-gradient(120% 62% at 50% 46%, rgba(16,27,33,.16) 26%, rgba(16,27,33,.40) 66%, rgba(16,27,33,.70) 100%),
+      linear-gradient(180deg, rgba(16,27,33,.70) 0%, rgba(16,27,33,.06) 20%, rgba(16,27,33,0) 44%, rgba(16,27,33,.46) 68%, rgba(16,27,33,.84) 86%, rgba(16,27,33,1) 100%);
+  }
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero .mlc-bg img{opacity:1;transform:none;animation:none}
+  .hero .mlc-lamp{opacity:1}
+  .hero .mlc-mark img{opacity:1;transform:none;filter:none;animation:none}
+  .hero .mlc-markwrap{animation:none}
+  .hero .mlc-sweep{display:none}
+  .hero .hero-actions,.js .hero .hero-actions{opacity:1;transform:none;animation:none}
+  .hero .mlc-steam i{animation:none;opacity:.06;transform:translate3d(0,-40%,0) scale(1.15)}
+}

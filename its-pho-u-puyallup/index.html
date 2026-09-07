@@ -11,6 +11,7 @@
      — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -47,21 +48,42 @@
        wide frame; phones get the vertical frame letterboxed into a blurred
        echo of itself, so the sign is never cropped mid-letter.
        Nothing sits on the photo but the headline block. -->
+  <!-- ===================== #hero — "the u arrives last" =====================
+       The ground is their OWN bowl of phở (images/bowl.jpg), pre-blurred into a
+       warm cream-and-broth surface, with barely-there steam drifting off it.
+       The mark is their REAL exterior sign, cut along the physical gap between
+       the "Phở" panel and the "u" panel (images/claude-mark-itspho.png +
+       images/claude-mark-u.png — cropped from images/logo.png, never redrawn).
+       "It's Phở" rises out of the steam, then the yellow "u" drops in last and
+       lights up: the punchline of the pun. The mark IS the headline. -->
   <section class="hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(max-width:760px)" srcset="images/hero-tall.jpg">
-        <img src="images/hero.jpg" alt="The It's Phở U storefront on South Meridian — the green sign over the door and photographs of the food in the windows" fetchpriority="high">
-      </picture>
+    <div class="hero-bg" aria-hidden="true">
+      <img class="broth" src="images/claude-broth.jpg" alt="" width="2000" height="1213" fetchpriority="high" decoding="async">
+      <div class="broth-wash"></div>
+      <div class="steam">
+        <span class="plume p1"></span>
+        <span class="plume p2"></span>
+        <span class="plume p3"></span>
+        <span class="plume p4"></span>
+      </div>
     </div>
+
     <div class="hero-inner">
-      <h1>Vietnamese noodle soup<em>on South Meridian</em></h1>
-      <p class="hero-sub">Phở, bánh mì, vermicelli bowls, rice plates and boba. Six days a week.</p>
+      <h1 class="sr-only">It's Phở U — Vietnamese noodle soup on South Meridian in Puyallup</h1>
+
+      <div class="hero-mark" aria-hidden="true">
+        <span class="mark-glow"></span>
+        <img class="mk mk-a" src="images/claude-mark-itspho.png" alt="" width="1126" height="456" decoding="async">
+        <img class="mk mk-u" src="images/claude-mark-u.png" alt="" width="246" height="261" decoding="async">
+      </div>
+
       <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>
       </div>
     </div>
+
+    <div class="hero-fade" aria-hidden="true"></div>
   </section>
 
   <!-- ===================== #hours =====================

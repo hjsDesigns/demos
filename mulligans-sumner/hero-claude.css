@@ -1,0 +1,193 @@
+/* ============================================================
+   MULLIGANS — HERO: "WRITTEN IN GREEN"
+   Self-contained, namespaced under .hero. Loads AFTER css/style.css.
+
+   One point of light writes their own wordmark (images/mark.png — the
+   real script, keyed to alpha, never redrawn), stroke by stroke; the
+   club swoosh is drawn last underneath; one ball rolls once into the
+   ball their mark already carries; everything settles and holds.
+
+   Ground follows MIRROR LAW: the room at 15716 Main St E is a night
+   room — dark wood, concrete, Edison strings, a back bar lit blue and
+   green. The real photo of that back bar sits behind, held soft, and
+   pulls into focus as the mark finishes writing.
+
+   Motion: deterministic, plays once, fill-mode forwards. The only thing
+   still moving after 3.4s is a 26s ken-burns settle and a 16s bloom
+   breathe behind the mark. prefers-reduced-motion lands on the final
+   frame. Nothing here is interactive.
+   ============================================================ */
+
+/* ---------- shell ---------- */
+.hero{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  overflow:hidden;background:var(--dark);color:#fff;
+  isolation:isolate;
+}
+
+/* ---------- the room, held soft ---------- */
+.hero .hero-bg{position:absolute;inset:0;z-index:0}
+.hero .hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 46%;
+  transform:scale(1.045);filter:blur(8px) brightness(.68) saturate(1.26) contrast(1.06);
+  animation:none;
+}
+.hero.mg-arm .hero-bg img{
+  transform:scale(1.16);filter:blur(30px) brightness(.46) saturate(1.32) contrast(1.02);
+  animation:mgFocus 2.2s cubic-bezier(.3,.7,.25,1) 0s forwards,
+            mgSettle 26s cubic-bezier(.22,.85,.3,1) 0s forwards;
+}
+@keyframes mgFocus{
+  to{filter:blur(8px) brightness(.68) saturate(1.26) contrast(1.06)}
+}
+@keyframes mgSettle{
+  from{transform:scale(1.16)}
+  to{transform:scale(1.045)}
+}
+
+/* pool of dark under the mark so the greens carry, neon left lit at the
+   edges (bright-opener law). Overrides the site's left-weighted scrim. */
+.hero .hero-bg::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(58% 46% at 50% 47%,
+      color-mix(in srgb,var(--dark) 84%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 56%,transparent) 55%,
+      color-mix(in srgb,var(--dark) 12%,transparent) 100%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 62%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 10%,transparent) 26%,
+      color-mix(in srgb,var(--dark) 22%,transparent) 62%,
+      color-mix(in srgb,var(--dark) 88%,transparent) 100%);
+}
+
+/* ---------- content ---------- */
+.hero .hero-inner{
+  position:relative;z-index:3;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:clamp(28px,6vh,72px) var(--pad);
+  text-align:center;display:flex;flex-direction:column;align-items:center;
+}
+
+/* ---------- the mark ---------- */
+.hero .mg-mark{
+  position:relative;width:min(760px,100%);max-width:100%;margin:0 auto clamp(26px,4.6vh,44px);
+}
+/* the Edison warmth behind the letters — fades up once, then breathes */
+.hero .mg-mark::before{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  left:-10%;right:-10%;top:-34%;bottom:-30%;border-radius:50%;
+  background:radial-gradient(closest-side,
+    color-mix(in srgb,var(--warm) 26%,transparent) 0%,
+    color-mix(in srgb,var(--brand) 20%,transparent) 46%,
+    transparent 74%);
+  opacity:.46;
+}
+.hero.mg-arm .mg-mark::before{
+  opacity:0;
+  animation:mgBloomIn 1.3s var(--ease) 1.15s forwards,
+            mgBreathe 16s ease-in-out 2.9s infinite alternate;
+}
+@keyframes mgBloomIn{to{opacity:.46}}
+@keyframes mgBreathe{from{opacity:.46}to{opacity:.60}}
+
+.hero .mg-svg{
+  position:relative;z-index:1;display:block;width:100%;height:auto;overflow:visible;
+  filter:drop-shadow(0 20px 44px rgba(0,0,0,.78)) drop-shadow(0 0 2px rgba(0,0,0,.55));
+}
+.hero .mg-layer{transform-box:view-box}
+
+/* --- the three writing strokes + the swoosh (mask geometry) --- */
+.hero .mg-s{stroke-dashoffset:0}
+.hero .mg-s1{stroke-dasharray:330}
+.hero .mg-s2{stroke-dasharray:280}
+.hero .mg-s3{stroke-dasharray:552}
+.hero .mg-sw{stroke-dasharray:840}
+
+.hero.mg-arm .mg-s1{stroke-dashoffset:330;animation:mgD330 .46s cubic-bezier(.42,.03,.52,.98) 0s forwards}
+.hero.mg-arm .mg-s2{stroke-dashoffset:280;animation:mgD280 .48s cubic-bezier(.42,.03,.52,.98) .42s forwards}
+.hero.mg-arm .mg-s3{stroke-dashoffset:552;animation:mgD552 .58s cubic-bezier(.42,.03,.52,.98) .86s forwards}
+.hero.mg-arm .mg-sw{stroke-dashoffset:840;animation:mgD840 .54s cubic-bezier(.24,.72,.3,1) 1.38s forwards}
+@keyframes mgD330{to{stroke-dashoffset:0}}
+@keyframes mgD280{to{stroke-dashoffset:0}}
+@keyframes mgD552{to{stroke-dashoffset:0}}
+@keyframes mgD840{to{stroke-dashoffset:0}}
+
+/* --- the point of light doing the writing --- */
+.hero .mg-nib,.hero .mg-ball,.hero .mg-flare{transform-box:view-box;transform-origin:0 0;opacity:0}
+.hero.mg-arm .mg-nib{
+  animation:mgNibMove 1.44s cubic-bezier(.42,.03,.52,.98) 0s forwards,
+            mgNibFade 1.44s linear 0s forwards;
+}
+@keyframes mgNibMove{
+  0%    {transform:translate(-10px,246px)}
+  31.9% {transform:translate(255px,258px)}
+  62.5% {transform:translate(520px,266px)}
+  100%  {transform:translate(1002px,256px)}
+}
+@keyframes mgNibFade{0%{opacity:0}5%{opacity:1}88%{opacity:1}100%{opacity:0}}
+
+/* --- one ball, rolling once along the swoosh into their own ball --- */
+.hero.mg-arm .mg-ball{
+  animation:mgBallRoll .52s cubic-bezier(.18,.68,.3,1) 1.88s forwards,
+            mgBallFade .52s linear 1.88s forwards;
+}
+@keyframes mgBallRoll{
+  0%   {transform:translate(120px,332px)}
+  30%  {transform:translate(250px,314px)}
+  60%  {transform:translate(372px,296px)}
+  100% {transform:translate(560px,278px)}
+}
+@keyframes mgBallFade{0%{opacity:0}14%{opacity:.95}72%{opacity:.95}100%{opacity:0}}
+
+.hero.mg-arm .mg-flare{animation:mgFlare .52s cubic-bezier(.2,.7,.3,1) 2.28s forwards}
+@keyframes mgFlare{
+  0%  {opacity:0;transform:scale(.35)}
+  36% {opacity:.8;transform:scale(1.02)}
+  100%{opacity:0;transform:scale(1.22)}
+}
+.hero .mg-flare{transform-origin:560px 278px}
+
+/* ---------- buttons ---------- */
+.hero .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.js .hero .hero-actions{opacity:0;transform:translateY(16px);animation:mgRise .85s var(--ease) 1.92s forwards}
+.hero.mg-arm .hero-actions{opacity:0;transform:translateY(16px);animation:mgRise .85s var(--ease) 1.92s forwards}
+@keyframes mgRise{to{opacity:1;transform:none}}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  .hero .hero-bg img{object-position:52% 44%}
+}
+@media (max-width:520px){
+  /* trim the gutter so the mark gets the whole phone screen without
+     overflowing it — the mark is the headline, it should fill the width */
+  .hero .hero-inner{padding-left:14px;padding-right:14px}
+  .hero .mg-mark{width:100%;margin-bottom:clamp(24px,4.4vh,38px)}
+  .hero .hero-actions{gap:10px;width:100%}
+  .hero .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+/* ---------- hidden tab: hold everything where it is ---------- */
+.hero.mg-hold .hero-bg img,
+.hero.mg-hold .mg-mark::before,
+.hero.mg-hold .mg-s,
+.hero.mg-hold .mg-nib,
+.hero.mg-hold .mg-ball,
+.hero.mg-hold .mg-flare,
+.hero.mg-hold .hero-actions{animation-play-state:paused}
+
+/* ---------- reduced motion: the final frame, immediately ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.mg-arm .hero-bg img{
+    animation:none;transform:scale(1.045);
+    filter:blur(8px) brightness(.68) saturate(1.26) contrast(1.06);
+  }
+  .hero.mg-arm .mg-mark::before{animation:none;opacity:.46}
+  .hero.mg-arm .mg-s{animation:none;stroke-dashoffset:0}
+  .hero.mg-arm .mg-nib,
+  .hero.mg-arm .mg-ball,
+  .hero.mg-arm .mg-flare{animation:none;opacity:0}
+  .js .hero .hero-actions,
+  .hero.mg-arm .hero-actions{animation:none;opacity:1;transform:none}
+}

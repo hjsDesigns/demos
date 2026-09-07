@@ -10,6 +10,7 @@
 <!-- Fraunces (display) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -45,24 +46,17 @@
        Nothing sits on the photo but the headline block. The frame survives a
        portrait crop with the sign intact, so no hero stack is needed here —
        object-position keeps the sign board in shot on a phone. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(max-width:760px)" srcset="images/hero-phone.jpg">
-        <img src="images/hero.jpg" alt="" aria-hidden="true" fetchpriority="high">
-      </picture>
+  <section class="hero codex-spoon" id="hero">
+  <div class="codex-spoon-photo" aria-hidden="true"><img src="images/hero.jpg" alt="" width="2200" height="1650" fetchpriority="high"></div>
+  <div class="codex-spoon-content">
+    <h1 class="codex-a11y">A Spoonful of Sugar — cafe and espresso in Milton</h1>
+    <div class="codex-spoon-mark" aria-hidden="true"><img src="images/logo.png" alt="" width="1236" height="996"></div>
+    <div class="codex-actions">
+      <a href="#menu" class="btn btn-primary">See the board</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
     </div>
-    <div class="hero-inner">
-      <div class="hero-block">
-        <h1>The lights are on <em>at five.</em></h1>
-        <p class="sub">A little white cafe on Milton Way. Espresso, breakfast all day, and sandwiches made behind the counter.</p>
-        <div class="hero-actions">
-          <a href="#menu" class="btn btn-primary">See the board</a>
-          <a href="#hours" class="btn btn-cream">Are they open?</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        The deep band. Live Pacific clock + address + all seven days, today lit.

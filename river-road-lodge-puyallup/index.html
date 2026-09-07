@@ -11,6 +11,7 @@
      + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -46,23 +47,16 @@
        Vertical original, so the phone gets a true portrait crop and the
        desktop a wide band cut from the same photograph. Headline block
        only: no chips, no badges, no hours on the photo. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(min-width:761px)" srcset="images/hero-wide.jpg">
-        <img src="images/hero.jpg" alt="" aria-hidden="true" fetchpriority="high" width="1300" height="2239">
-      </picture>
+  <section class="hero codex-river-road-lodge-puyallup" id="hero" aria-label="River Road Lodge">
+  <div class="codex-scene" aria-hidden="true"><picture><source media="(min-width:761px)" srcset="images/hero-wide.jpg"><img src="images/hero.jpg" alt="" fetchpriority="high" width="1300" height="2239"></picture></div>
+  <div class="codex-content">
+    <h1 class="codex-name"><span class="codex-river">River Road</span><span class="codex-lodge">Lodge</span></h1>
+    <div class="codex-actions">
+      <a href="#inside" class="btn btn-primary">Look inside</a>
+      <a href="#hours" class="btn btn-cream">Open right now?</a>
     </div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1>River Road Lodge</h1>
-      <p class="hero-sub"><span class="sub-long">Bar, darts, pool and a stage — the dive on River Road that everybody still calls <b>R&amp;R</b>.</span><span class="sub-short">Bar, darts, pool and a stage.</span></p>
-      <div class="hero-actions">
-        <a href="#inside" class="btn btn-primary">Look inside</a>
-        <a href="#hours" class="btn btn-cream">Open right now?</a>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        Live Pacific clock + address + all seven days, today lit.

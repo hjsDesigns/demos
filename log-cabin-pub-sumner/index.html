@@ -11,6 +11,7 @@
      + Barlow (body). Must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Bevan&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -43,18 +44,17 @@
        Nothing on the photo but the headline block. The headline is their
        own words — the Linktree bio and the tin sign on the wall inside
        both read "what happens here / at the cabin, stays here". -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="The Log Cabin Pub's roadside sign on E Valley Highway in Sumner, reading eats, drinks, games above the pub's circular logo and entertainment, beer garden below it."></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1>What happens here, <em>stays here.</em></h1>
-      <p class="hero-sub"><span class="sub-long">A bar &amp; grill on E Valley Highway in Sumner — eats, drinks, games and a covered beer garden out back.</span><span class="sub-short">Eats, drinks, games, beer garden.</span></p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the menu</a>
-        <a href="#signature" class="btn btn-cream">What's out back</a>
-      </div>
+  <section class="hero codex-log-cabin-pub-sumner" id="hero" aria-label="The Log Cabin Pub">
+  <div class="codex-scene" aria-hidden="true"><img src="images/codex-pool-room.jpg" alt="" fetchpriority="high" width="1920" height="1440"></div>
+  <div class="codex-content">
+    <h1 class="codex-sr">The Log Cabin Pub</h1>
+    <div class="codex-mark"><img src="images/logo.png" alt="Log Cabin Pub" width="520" height="402" fetchpriority="high"></div>
+    <div class="codex-actions">
+      <a href="#menu" class="btn btn-primary">See the menu</a>
+      <a href="#signature" class="btn btn-cream">What's out back</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        Hours live HERE and nowhere else on the page (NEVER TWICE).

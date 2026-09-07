@@ -1,0 +1,28 @@
+/* codex hero take, applied 0907-1414 — source versions/codex-hero/ */
+/* Append after the existing CSS. Only this alternative's hero is affected. */
+.hero.codex-spoon{position:relative;isolation:isolate;display:block;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));max-height:none;margin:0;padding:0;overflow:hidden;background:var(--dark);color:var(--bg);box-sizing:border-box}
+.hero.codex-spoon *,.hero.codex-spoon *::before,.hero.codex-spoon *::after{box-sizing:border-box}
+.hero.codex-spoon img{display:block;max-width:100%}
+.hero.codex-spoon .codex-a11y{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0;animation:none;transform:none;opacity:1}
+.hero.codex-spoon .codex-actions{position:relative;z-index:5;display:flex;justify-content:center;flex-wrap:nowrap;gap:12px;width:100%;margin:0;opacity:1;transform:none;animation:none}
+.hero.codex-spoon .codex-actions .btn{min-width:0;min-height:48px;display:inline-flex;justify-content:center;align-items:center;flex:0 1 auto;font-family:var(--body);font-size:15px;font-weight:700;line-height:1.25;padding:15px 23px;white-space:nowrap;text-decoration:none;transition:background .2s,color .2s;border:1px solid transparent;transform:none;box-shadow:none;letter-spacing:0}
+.hero.codex-spoon .codex-actions .btn-primary{background:var(--brand);color:var(--paper)}
+.hero.codex-spoon .codex-actions .btn-primary:hover{background:var(--brand-bright);transform:none;box-shadow:none}
+.hero.codex-spoon .codex-actions .btn:focus-visible{outline:3px solid var(--warm);outline-offset:5px}
+@media(max-width:600px){.hero.codex-spoon .codex-actions{gap:10px}.hero.codex-spoon .codex-actions .btn{padding:14px 12px;font-size:14px;flex:1 1 0}}
+
+/* SUN ON THE PORCH. A bright, printed-menu identity beside its real little cafe. */
+.hero.codex-spoon{background:var(--bg);color:var(--ink)}
+.hero.codex-spoon .codex-spoon-photo{position:absolute;right:0;top:0;width:64%;height:100%;z-index:0;pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 24%);animation:codex-spoon-morning 2.55s cubic-bezier(.16,.65,.25,1) both}
+.hero.codex-spoon .codex-spoon-photo img{width:100%;height:100%;object-fit:cover;object-position:54% 54%}
+.hero.codex-spoon .codex-spoon-content{position:relative;z-index:2;height:100%;width:48%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px clamp(24px,4vw,66px)}
+.hero.codex-spoon .codex-spoon-mark{width:min(430px,100%);margin-bottom:36px;transform-origin:57% 21%;animation:codex-spoon-stir 2.35s cubic-bezier(.17,.74,.27,1) both;pointer-events:none}
+.hero.codex-spoon .codex-spoon-mark img{width:100%;height:auto}
+.hero.codex-spoon .codex-actions .btn-cream{background:transparent;color:var(--dark);border-color:color-mix(in srgb,var(--dark) 28%,transparent)}
+.hero.codex-spoon .codex-actions .btn-cream:hover{background:var(--bg-2)}
+@keyframes codex-spoon-morning{from{opacity:.65;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes codex-spoon-stir{0%{opacity:.55;transform:rotate(-4deg) translateY(12px)}58%{opacity:1;transform:rotate(1deg)}100%{opacity:1;transform:none}}
+@media(max-width:760px){.hero.codex-spoon .codex-spoon-photo{top:auto;bottom:0;right:0;width:100%;height:52%;mask-image:linear-gradient(180deg,transparent,#000 13%)}.hero.codex-spoon .codex-spoon-photo img{object-position:50% 62%}.hero.codex-spoon .codex-spoon-content{height:54%;width:100%;justify-content:center;padding:20px}.hero.codex-spoon .codex-spoon-mark{width:min(255px,65vw);max-height:calc(100% - 83px);margin-bottom:24px}.hero.codex-spoon .codex-spoon-mark img{width:100%;height:auto;max-height:100%;object-fit:contain}}
+@media(max-height:580px) and (min-width:761px){.hero.codex-spoon .codex-spoon-mark{width:min(270px,75%);margin-bottom:22px}.hero.codex-spoon .codex-spoon-content{padding:20px}.hero.codex-spoon .codex-actions .btn{padding:14px 13px;font-size:14px}}
+@media(max-height:580px) and (max-width:760px){.hero.codex-spoon .codex-spoon-content{width:53%;height:100%;padding:18px}.hero.codex-spoon .codex-spoon-photo{width:55%;height:100%;mask-image:linear-gradient(90deg,transparent,#000 20%)}.hero.codex-spoon .codex-spoon-mark{width:210px;max-width:100%;max-height:60%;margin-bottom:20px}.hero.codex-spoon .codex-actions{flex-wrap:wrap}.hero.codex-spoon .codex-actions .btn{padding:10px 9px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){.hero.codex-spoon *{animation:none!important;transition:none!important}}

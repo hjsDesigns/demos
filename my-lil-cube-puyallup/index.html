@@ -10,6 +10,7 @@
 <!-- Young Serif (display, sturdy warm slab-serif) + Archivo (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -46,19 +47,18 @@
        NEVER TWICE. The building's own sign does the wordmark job; the headline
        block is one line saying what they are. The cropped sign still carries
        the header and the footer. Headline block only — nothing else on the photo. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="" aria-hidden="true" fetchpriority="high"></div>
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <h1>A little ramen room <em>on North Meridian</em></h1>
-        <p class="hero-sub">Tonkotsu broth, soup dumplings, katsu curry — and the chili oil people write reviews about.</p>
-      </div>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See what they make</a>
-        <a href="#hours" class="btn btn-cream">Are they open?</a>
-      </div>
+  <section class="hero codex-cube" id="hero">
+  <div class="codex-cube-atmosphere" aria-hidden="true"><img src="images/codex-ramen-table.jpg" alt="" width="1079" height="1440" fetchpriority="high"></div>
+  <div class="codex-cube-food" aria-hidden="true"><img src="images/codex-ramen-table.jpg" alt="" width="1079" height="1440"></div>
+  <div class="codex-cube-content">
+    <h1 class="codex-a11y">My Lil’ Cube — ramen and Asian cuisine in Puyallup</h1>
+    <div class="codex-cube-plaque" aria-hidden="true"><img src="images/codex-sign-plaque.png" alt="" width="1563" height="440"></div>
+    <div class="codex-actions">
+      <a href="#menu" class="btn btn-primary">See what they make</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        Live Pacific clock + address + all seven days, today lit.

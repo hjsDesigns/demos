@@ -1,0 +1,63 @@
+/* codex hero take, applied 0907-1414 — source versions/codex-hero/ */
+/* Codex hero alternative. Append after existing stylesheet. */
+.hero.codex-tacos-los-queretaros-edgewood{
+  --codex-paper:var(--bg);--codex-button-ink:var(--bg);
+  position:relative;isolation:isolate;display:grid;place-items:center;
+  height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));
+  width:100%;max-width:none;overflow:hidden;box-sizing:border-box;margin:0;padding:24px;
+  background:var(--dark);color:var(--codex-paper);
+}
+.hero.codex-tacos-los-queretaros-edgewood *,.hero.codex-tacos-los-queretaros-edgewood *::before,.hero.codex-tacos-los-queretaros-edgewood *::after{box-sizing:border-box}
+.hero.codex-tacos-los-queretaros-edgewood .codex-sr{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;animation:none!important;transform:none!important;opacity:1!important}
+.hero.codex-tacos-los-queretaros-edgewood .codex-scene{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.hero.codex-tacos-los-queretaros-edgewood .codex-scene img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;pointer-events:none}
+.hero.codex-tacos-los-queretaros-edgewood .codex-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:1000px;margin:0 auto;gap:clamp(22px,4svh,42px);text-align:center}
+.hero.codex-tacos-los-queretaros-edgewood .codex-mark{position:relative;display:block;margin:0;flex:none;pointer-events:none}
+.hero.codex-tacos-los-queretaros-edgewood .codex-mark img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions{display:flex;justify-content:center;align-items:stretch;gap:12px;max-width:100%;margin:0;opacity:1;transform:none}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions a{display:flex;justify-content:center;align-items:center;min-height:50px;padding:14px 22px;border:1px solid transparent;border-radius:7px;white-space:nowrap;font-family:var(--body);font-size:15px;line-height:1.25;font-weight:700;letter-spacing:0;text-decoration:none;box-shadow:none;transform:none;animation:none;transition:background .2s,color .2s}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions .btn-primary{background:var(--brand);color:var(--codex-button-ink)}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions .btn-cream{background:var(--codex-paper);color:var(--dark);border-color:var(--codex-paper)}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions a:focus-visible{outline:3px solid var(--codex-paper);outline-offset:5px}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions a:hover{background:var(--brand-bright);color:var(--codex-button-ink);transform:none}
+@media(max-width:600px){
+  .hero.codex-tacos-los-queretaros-edgewood{padding:22px}
+  .hero.codex-tacos-los-queretaros-edgewood .codex-actions{gap:10px;width:100%}
+  .hero.codex-tacos-los-queretaros-edgewood .codex-actions a{flex:1;min-width:0;padding:14px 10px;font-size:13px;min-height:48px}
+}
+
+.hero.codex-tacos-los-queretaros-edgewood{padding-top:clamp(28px,6svh,70px);align-items:start}
+.hero.codex-tacos-los-queretaros-edgewood::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 70%,transparent),color-mix(in srgb,var(--dark) 45%,transparent) 40%,transparent 67%,color-mix(in srgb,var(--dark) 16%,transparent))}
+.hero.codex-tacos-los-queretaros-edgewood .codex-scene{background:var(--blue)}
+.hero.codex-tacos-los-queretaros-edgewood .codex-scene img.codex-atmosphere{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);margin:0;object-fit:cover;object-position:center 53%;filter:blur(24px);opacity:.7;transform:none;animation:none}
+.hero.codex-tacos-los-queretaros-edgewood .codex-scene img{position:relative;object-fit:contain;object-position:center 58%;transform:scale(1.035);animation:codex-tacos-plate 2s cubic-bezier(.15,.75,.25,1) both}
+.hero.codex-tacos-los-queretaros-edgewood .codex-content{gap:18px;max-width:900px}
+.hero.codex-tacos-los-queretaros-edgewood .codex-mark{width:min(500px,69vw,44svh);filter:drop-shadow(0 9px 18px color-mix(in srgb,var(--dark) 80%,transparent));animation:codex-tacos-set 1.35s cubic-bezier(.16,.9,.3,1) both}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions{animation:codex-tacos-buttons 1s .2s ease-out both}
+.hero.codex-tacos-los-queretaros-edgewood .codex-actions a{border-radius:7px}
+@keyframes codex-tacos-set{0%{opacity:.45;transform:translateY(-22px) rotate(-3deg) scale(.95)}70%{opacity:1;transform:translateY(3px) rotate(.3deg) scale(1.01)}100%{opacity:1;transform:none}}
+@keyframes codex-tacos-plate{from{transform:translateY(22px) scale(1.035);filter:blur(2px)}to{transform:translateY(0) scale(1.035);filter:blur(0)}}
+@keyframes codex-tacos-buttons{from{opacity:.65;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media(min-width:760px){
+ .hero.codex-tacos-los-queretaros-edgewood{place-items:center start;padding-left:max(7vw,calc((100vw - 1180px)/2))}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-content{width:45%;margin:0;max-width:540px}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-mark{width:min(500px,39vw,58svh)}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-scene img{width:60%;margin-left:40%;object-fit:contain;object-position:center}
+ .hero.codex-tacos-los-queretaros-edgewood::before{background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 74%,transparent),color-mix(in srgb,var(--dark) 36%,transparent) 46%,transparent 70%),linear-gradient(0deg,color-mix(in srgb,var(--dark) 30%,transparent),transparent 40%)}
+}
+@media(max-width:600px){
+ .hero.codex-tacos-los-queretaros-edgewood .codex-scene img{object-fit:cover;object-position:50% 63%;transform:scale(1.035)}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-content{gap:16px}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-mark{width:min(290px,76vw,40svh)}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-actions a{padding-inline:9px;font-size:12px}
+}
+
+@media(max-height:540px) and (min-width:601px){
+ .hero.codex-tacos-los-queretaros-edgewood{padding:16px 6vw}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-content{flex-direction:row;justify-content:center;gap:40px}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-mark{width:min(46vw,55svh)!important;max-height:70svh}
+ .hero.codex-tacos-los-queretaros-edgewood .codex-actions{flex-direction:column;min-width:180px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero.codex-tacos-los-queretaros-edgewood *,.hero.codex-tacos-los-queretaros-edgewood *::before,.hero.codex-tacos-los-queretaros-edgewood *::after{animation:none!important;transition:none!important}
+}

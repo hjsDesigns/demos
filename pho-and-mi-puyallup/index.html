@@ -10,6 +10,7 @@
 <!-- Archivo Black (display, closest match to their storefront sign) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
@@ -45,11 +46,46 @@
        the sign — just the headline block underneath it.
        The line is theirs: it is hand-lettered at the bottom of their own
        printed menu, under a drawing of two hands making a heart. -->
+  <!-- ===================== #hero — "the sign comes on" =====================
+       The room is the ground: their own palm-mural wall, hanging fern and
+       pothos planter, thrown far out of focus so it reads as light and air.
+       Over it hangs their REAL storefront sign — the PHO&MI channel letters
+       keyed straight out of their own photo of 727 River Rd, never redrawn —
+       unlit for a beat, then the tubes strike one letter at a time and a
+       warm bloom settles behind them.
+       Under the mark, the line they hand-lettered on their own printed menu
+       writes itself in left to right: ALL I NEED IS LOVE AND PHO!
+       Nothing else sits on the hero. Hours, status and address stay in the
+       band directly below. Not interactive — it plays once and holds. -->
+  <!-- the mark's two states are handed to the CSS as custom properties so the
+       paths stay relative to the PAGE (images/…), wherever hero.css lives -->
   <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="The PHO&amp;MI storefront at 727 River Road, the illuminated sign lit over the windows with the OPEN and BUBBLE TEA neon inside" fetchpriority="high" width="1600" height="2133"></div>
+    <div class="hero-bg">
+      <picture>
+        <source media="(max-width:720px)" srcset="images/claude-hero-room-tall.jpg">
+        <img src="images/claude-hero-room.jpg" alt="" aria-hidden="true" fetchpriority="high" width="1600" height="982">
+      </picture>
+    </div>
+
     <div class="hero-inner">
-      <h1>All I need is <em>love and pho</em></h1>
-      <p class="sub">Their line, hand-lettered on their own menu. A Vietnamese kitchen on River Road in Puyallup — bowls, bánh mì and bubble tea, six days a week.</p>
+      <h1 class="sr-only">PHO&amp;MI — a Vietnamese kitchen on River Road in Puyallup, Washington</h1>
+
+      <div class="mark" aria-hidden="true">
+        <img class="mark-off" src="images/claude-mark-off.png" alt="" width="1440" height="370">
+        <span class="lit l1"></span>
+        <span class="lit l2"></span>
+        <span class="lit l3"></span>
+        <span class="lit l4"></span>
+        <span class="lit l5"></span>
+        <span class="lit l6"></span>
+        <span class="mark-bloom"></span>
+      </div>
+
+      <p class="hero-line">
+        <img src="images/claude-menu-line.png" width="648" height="359"
+             alt="All I need is love and pho — hand-lettered on PHO&amp;MI's own printed menu">
+      </p>
+
       <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>
