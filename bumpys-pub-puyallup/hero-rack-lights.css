@@ -1,0 +1,219 @@
+/* ============================================================
+   BUMPY'S PUB — hero variant: RACK-LIGHTS (2026-09-07)
+   The mix of tab-rack (8) + chase-lights (4).
+   Real assets only:
+     images/tab-rack-t1..t10.jpg      — their own numbered pull-tab compartments,
+       cut out of images/backbar.jpg on the compartment lines (nothing redrawn)
+     images/tab-rack-bg.jpg           — the same back bar, blurred, behind the rack
+     images/chase-lights-wordmark.png — logo.png (their red hand-drawn wordmark)
+       trimmed to its bounding box and upscaled. Not redrawn.
+   One deterministic intro:
+     0.32s → 1.9s   the compartments strike in sequence (scoreboard)
+     1.15s → 2.25s  the mark comes FORWARD out of the rack, inside the marquee
+     1.15s → 3.0s   36 amber bulbs run ONE lap clockwise as the mark settles
+     3.0s+          hold: every bulb lit, the frame and the mark breathe slowly
+   Namespaced under .hero.v-rack-lights, unique keyframe names. No JS.
+   Reduced motion lands on the final frame.
+   ============================================================ */
+
+.hero.v-rack-lights{
+  --rl-amber:var(--brand-text, #E8A33B);
+  --rl-red:var(--brand, #B74141);
+  --rl-step:.035s;              /* delay between bulbs — one lap ends at ~3.0s */
+  --rl-bulb:clamp(9px,1.5vw,13px);
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--dark,#080606);
+  isolation:isolate;
+}
+
+/* ---- behind everything: their own back bar, blurred ---- */
+.hero.v-rack-lights .hero-bg{position:absolute;inset:0;z-index:0}
+.hero.v-rack-lights .hero-bg .shot{
+  width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+  display:block;
+  transform:scale(1.08);
+  filter:blur(4px) saturate(.8) brightness(.45);
+  animation:rl-room 1.6s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+}
+
+/* ---- the ground: the rack itself, full-bleed ---- */
+.hero.v-rack-lights .rl-rack{
+  position:absolute;inset:0;z-index:1;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  grid-template-rows:repeat(2,1fr);
+  gap:clamp(3px,.55vw,8px);
+  padding:clamp(3px,.55vw,8px);
+  background:#0A0707;
+}
+.hero.v-rack-lights .rl-cell{
+  position:relative;display:block;overflow:hidden;border-radius:3px;
+  background:#0A0707;
+}
+.hero.v-rack-lights .rl-cell img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block;
+  filter:brightness(.16) saturate(.4);
+  animation:rl-cell .58s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+  animation-delay:calc(.32s + var(--i) * .11s);
+}
+/* the compartment light striking, then settling to a low warm keep-alive */
+.hero.v-rack-lights .rl-cell .rl-lit{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:
+    linear-gradient(180deg, rgba(232,163,59,.55), rgba(232,163,59,.06) 46%, transparent 70%),
+    radial-gradient(90% 60% at 50% 0%, rgba(255,214,150,.45), transparent 70%);
+  mix-blend-mode:screen;
+  animation:rl-strike .9s ease-out both;
+  animation-delay:calc(.32s + var(--i) * .11s);
+}
+/* the pool the mark sits in, so the rack never fights the wordmark */
+.hero.v-rack-lights .rl-rack::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(58% 44% at 50% 47%, rgba(8,6,6,.90) 0%, rgba(8,6,6,.62) 52%, rgba(8,6,6,0) 82%),
+    linear-gradient(180deg, rgba(8,6,6,.60) 0%, rgba(8,6,6,.10) 34%, rgba(8,6,6,.72) 100%);
+}
+
+/* ---- the marquee, coming forward out of the rack ---- */
+.hero.v-rack-lights .hero-inner{
+  position:relative;z-index:3;
+  width:100%;
+  padding:0 var(--pad,24px);
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(26px,4.5vh,46px);
+}
+
+.hero.v-rack-lights .rl-frame{
+  position:relative;
+  width:min(84vw,700px);
+  padding:clamp(30px,6.5vw,58px) clamp(26px,5vw,54px);
+  border-radius:6px;
+  background:rgba(8,6,6,.52);
+  box-shadow:inset 0 0 0 1px rgba(232,163,59,.16), 0 24px 60px rgba(0,0,0,.6);
+  opacity:0;
+  animation:
+    rl-forward 1.1s cubic-bezier(.2,.82,.24,1) 1.15s both,
+    rl-breathe 7s ease-in-out 3.4s infinite alternate;
+}
+
+/* ---- bulbs (13 top, 5 right, 13 bottom, 5 left = one clockwise lap) ---- */
+.hero.v-rack-lights .rl-edge{position:absolute;display:flex;pointer-events:none}
+.hero.v-rack-lights .rl-top,
+.hero.v-rack-lights .rl-bottom{left:0;right:0;justify-content:space-between}
+.hero.v-rack-lights .rl-top{top:0;transform:translateY(-50%)}
+.hero.v-rack-lights .rl-bottom{bottom:0;transform:translateY(50%);flex-direction:row-reverse}
+.hero.v-rack-lights .rl-left,
+.hero.v-rack-lights .rl-right{top:0;bottom:0;flex-direction:column;justify-content:space-around}
+.hero.v-rack-lights .rl-right{right:0;transform:translateX(50%)}
+.hero.v-rack-lights .rl-left{left:0;transform:translateX(-50%);flex-direction:column-reverse}
+
+.hero.v-rack-lights .rl-edge i{
+  width:var(--rl-bulb);height:var(--rl-bulb);
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, #6B532B, #241A0E 68%);
+  box-shadow:0 0 0 1px rgba(0,0,0,.5);
+  animation:rl-chase .62s var(--ease-2,cubic-bezier(.32,.9,.24,1)) both;
+  animation-delay:calc(1.15s + var(--b) * var(--rl-step));
+}
+
+/* ---- their wordmark ---- */
+.hero.v-rack-lights .rl-mark{position:relative;display:flex;justify-content:center}
+.hero.v-rack-lights .rl-mark img{
+  display:block;width:100%;height:auto;max-width:100%;
+  filter:drop-shadow(0 0 24px rgba(183,65,65,.42)) drop-shadow(0 6px 16px rgba(0,0,0,.7));
+  animation:rl-mark-breathe 7s ease-in-out 3.4s infinite;
+}
+
+/* ---- buttons (the two existing ones, same hrefs) ---- */
+.hero.v-rack-lights .hero-actions{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  animation:rl-rise .8s var(--ease,cubic-bezier(.22,.85,.3,1)) 2.6s both;
+}
+
+/* ---- keyframes ---- */
+@keyframes rl-room{
+  from{opacity:0;transform:scale(1.14)}
+  to{opacity:1;transform:scale(1.08)}
+}
+@keyframes rl-cell{
+  from{filter:brightness(.16) saturate(.4)}
+  55%{filter:brightness(1.5) saturate(1.15)}
+  to{filter:brightness(1.04) saturate(1)}
+}
+@keyframes rl-strike{
+  0%{opacity:0}
+  28%{opacity:.92}
+  to{opacity:.16}
+}
+@keyframes rl-forward{
+  from{opacity:0;transform:translateY(14px) scale(.62)}
+  to{opacity:1;transform:none}
+}
+@keyframes rl-chase{
+  0%{
+    background:radial-gradient(circle at 38% 34%, #6B532B, #241A0E 68%);
+    box-shadow:0 0 0 1px rgba(0,0,0,.5);
+    transform:scale(1);
+  }
+  30%{
+    background:radial-gradient(circle at 40% 34%, #FFF6E2, var(--rl-amber) 58%, #B9762A 100%);
+    box-shadow:0 0 6px 2px rgba(232,163,59,.95), 0 0 22px 8px rgba(232,163,59,.5), 0 0 0 1px rgba(0,0,0,.4);
+    transform:scale(1.28);
+  }
+  100%{
+    background:radial-gradient(circle at 40% 34%, #FFE9C4, var(--rl-amber) 62%, #8E5A20 100%);
+    box-shadow:0 0 5px 1px rgba(232,163,59,.6), 0 0 14px 4px rgba(232,163,59,.26), 0 0 0 1px rgba(0,0,0,.45);
+    transform:scale(1);
+  }
+}
+@keyframes rl-rise{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+@keyframes rl-breathe{
+  from{box-shadow:inset 0 0 0 1px rgba(232,163,59,.16), 0 24px 60px rgba(0,0,0,.6), 0 0 34px 2px rgba(232,163,59,.10)}
+  to{box-shadow:inset 0 0 0 1px rgba(232,163,59,.24), 0 24px 60px rgba(0,0,0,.6), 0 0 62px 8px rgba(232,163,59,.20)}
+}
+@keyframes rl-mark-breathe{
+  0%,100%{filter:drop-shadow(0 0 22px rgba(183,65,65,.36)) drop-shadow(0 6px 16px rgba(0,0,0,.7))}
+  50%{filter:drop-shadow(0 0 34px rgba(242,104,90,.54)) drop-shadow(0 6px 16px rgba(0,0,0,.7))}
+}
+
+/* ---- phone: the rack turns two-wide so the compartments still read ---- */
+@media (max-width:640px){
+  .hero.v-rack-lights{--rl-step:.032s}
+  .hero.v-rack-lights .rl-rack{
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows:repeat(5,1fr);
+  }
+  .hero.v-rack-lights .rl-frame{
+    width:min(88vw,420px);
+    padding:clamp(28px,7vw,44px) clamp(30px,8.5vw,46px);
+  }
+  .hero.v-rack-lights .hero-actions .btn{flex:1 1 44%;text-align:center}
+}
+
+/* ---- reduced motion: the final frame, immediately ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-rack-lights .hero-bg .shot,
+  .hero.v-rack-lights .rl-cell img,
+  .hero.v-rack-lights .rl-cell .rl-lit,
+  .hero.v-rack-lights .rl-frame,
+  .hero.v-rack-lights .rl-mark img,
+  .hero.v-rack-lights .rl-edge i,
+  .hero.v-rack-lights .hero-actions{animation:none!important}
+  .hero.v-rack-lights .hero-bg .shot{opacity:1}
+  .hero.v-rack-lights .rl-cell img{filter:brightness(1.04) saturate(1)}
+  .hero.v-rack-lights .rl-cell .rl-lit{opacity:.16}
+  .hero.v-rack-lights .rl-frame{opacity:1;transform:none}
+  .hero.v-rack-lights .rl-edge i{
+    background:radial-gradient(circle at 40% 34%, #FFE9C4, var(--rl-amber) 62%, #8E5A20 100%);
+    box-shadow:0 0 5px 1px rgba(232,163,59,.6), 0 0 14px 4px rgba(232,163,59,.26), 0 0 0 1px rgba(0,0,0,.45);
+  }
+  .hero.v-rack-lights .hero-actions{opacity:1;transform:none}
+}
