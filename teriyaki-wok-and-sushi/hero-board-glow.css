@@ -1,0 +1,160 @@
+/* ============================================================
+   HERO VARIANT — board-glow  (Teriyaki Wok & Sushi, Bonney Lake)
+   Self-contained, namespaced under .hero.v-board-glow so it wins
+   over css/style.css without touching it. No JS.
+
+   Real assets only:
+     images/board-glow-wide.jpg / -phone.jpg   crops of harvest-0906/g6.jpg
+                                               (their own dining room, the
+                                               wall of ten lit menu boards)
+     images/board-glow-*-lights.jpg            the SAME crop, the extra light
+                                               on the boards only, on black —
+                                               screen-blended, so the glow
+                                               registers pixel-exact at any
+                                               viewport. Nothing painted in.
+     images/sign-mark.png                      their real channel letters.
+
+   One deterministic intro (~2.9s), then a quiet hold: the boards keep a
+   near-imperceptible 14s breath and nothing else moves.
+   ============================================================ */
+
+.hero.v-board-glow{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+  background:var(--dark);color:var(--ink);
+}
+
+/* ---------- the photograph ---------- */
+.hero.v-board-glow .hero-bg{position:absolute;inset:0;z-index:0}
+.hero.v-board-glow .hero-bg::before,
+.hero.v-board-glow .hero-bg::after{content:none}
+
+.hero.v-board-glow .bg-base,
+.hero.v-board-glow .bg-lights{position:absolute;inset:0;display:block}
+
+.hero.v-board-glow .bg-base img,
+.hero.v-board-glow .bg-lights img{
+  width:100%;height:100%;object-fit:cover;object-position:0% 50%;
+  display:block;
+}
+
+.hero.v-board-glow .bg-base img{
+  z-index:0;
+  filter:brightness(.66) saturate(.86) contrast(1.03);
+  transform:scale(1.045);
+  animation:bg-room-settle 2.2s cubic-bezier(.2,.72,.2,1) both;
+}
+
+/* the extra light on the boards, screen-blended over the same pixels */
+.hero.v-board-glow .bg-lights{z-index:1;mix-blend-mode:screen;opacity:0;
+  animation:bg-boards-breathe 2.6s cubic-bezier(.3,.7,.25,1) .25s both,
+            bg-boards-hold 14s ease-in-out 2.85s infinite;
+}
+.hero.v-board-glow .bg-lights img{filter:saturate(1.12)}
+
+/* warm ambient spill off the board wall — swells with the boards, then rests */
+.hero.v-board-glow .bg-bloom{
+  position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;
+  background:radial-gradient(105% 92% at 10% 26%,
+      rgba(255,203,92,.17) 0%,
+      rgba(255,170,66,.09) 34%,
+      transparent 78%);
+  animation:bg-bloom-swell 2.6s cubic-bezier(.3,.7,.25,1) .25s both;
+}
+
+/* the pool of dark the mark and buttons sit in (bottom-left) */
+.hero.v-board-glow .bg-pool{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:
+    radial-gradient(120% 72% at 16% 108%,
+      color-mix(in srgb,var(--dark) 94%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 58%,transparent) 42%,
+      transparent 76%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+      transparent 26%,
+      transparent 46%,
+      color-mix(in srgb,var(--dark) 52%,transparent) 72%,
+      color-mix(in srgb,var(--dark) 90%,transparent) 100%);
+}
+
+/* ---------- the headline block: their mark, small, in the corner ---------- */
+.hero.v-board-glow .hero-inner{
+  position:relative;z-index:4;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(40px,7.5vh,80px);
+  display:flex;flex-direction:column;align-items:flex-start;
+  animation:none;opacity:1;transform:none;
+}
+
+.hero.v-board-glow .corner-mark{
+  width:clamp(196px,27vw,318px);height:auto;display:block;
+  margin:0 0 clamp(18px,2.6vh,28px);
+  opacity:0;transform:translateY(12px);
+  filter:drop-shadow(0 10px 26px rgba(0,0,0,.72));
+  animation:bg-mark-in 1s cubic-bezier(.22,.85,.3,1) 1.55s both;
+}
+
+.hero.v-board-glow .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;
+  opacity:0;transform:translateY(12px);
+  animation:bg-mark-in .9s cubic-bezier(.22,.85,.3,1) 2.05s both;
+}
+
+/* ---------- keyframes (unique names) ---------- */
+@keyframes bg-room-settle{
+  from{transform:scale(1.045);filter:brightness(.40) saturate(.66) contrast(1.03)}
+  to  {transform:scale(1);     filter:brightness(.66) saturate(.86) contrast(1.03)}
+}
+@keyframes bg-boards-breathe{
+  0%  {opacity:0}
+  42% {opacity:.98}
+  100%{opacity:.46}
+}
+@keyframes bg-boards-hold{
+  0%,100%{opacity:.46}
+  50%    {opacity:.53}
+}
+@keyframes bg-bloom-swell{
+  0%  {opacity:0}
+  42% {opacity:1}
+  100%{opacity:.52}
+}
+@keyframes bg-mark-in{
+  to{opacity:1;transform:none}
+}
+
+/* ---------- phone ---------- */
+@media (max-width:719px){
+  .hero.v-board-glow{min-height:calc(100svh - var(--header-h));display:flex;background:var(--dark)}
+  .hero.v-board-glow .hero-bg{position:absolute;inset:auto 0 0 0;top:0}
+  .hero.v-board-glow .bg-base img,
+  .hero.v-board-glow .bg-lights img{height:100%;object-fit:cover;object-position:12% 22%}
+  .hero.v-board-glow .bg-pool{
+    background:
+      radial-gradient(140% 56% at 30% 106%,
+        color-mix(in srgb,var(--dark) 95%,transparent) 0%,
+        color-mix(in srgb,var(--dark) 60%,transparent) 46%,
+        transparent 80%),
+      linear-gradient(180deg,
+        color-mix(in srgb,var(--dark) 40%,transparent) 0%,
+        transparent 22%,
+        color-mix(in srgb,var(--dark) 62%,transparent) 68%,
+        color-mix(in srgb,var(--dark) 94%,transparent) 100%);
+  }
+  .hero.v-board-glow .hero-inner{padding-bottom:clamp(30px,5.5vh,52px)}
+  .hero.v-board-glow .corner-mark{width:min(72vw,300px)}
+  .hero.v-board-glow .hero-actions{gap:10px;width:100%}
+  .hero.v-board-glow .hero-actions .btn{flex:1 1 auto;padding:13px 10px;font-size:14px}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-board-glow .bg-base img{animation:none;transform:none;filter:brightness(.66) saturate(.86) contrast(1.03)}
+  .hero.v-board-glow .bg-lights{animation:none;opacity:.46}
+  .hero.v-board-glow .bg-bloom{animation:none;opacity:.52}
+  .hero.v-board-glow .corner-mark,
+  .hero.v-board-glow .hero-actions{animation:none;opacity:1;transform:none}
+}

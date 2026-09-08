@@ -1,0 +1,148 @@
+/* ============================================================
+   HERO VARIANT — daylight-still
+   Restraint. The real storefront held still; one bloom; then quiet.
+   Namespaced under .hero.v-daylight-still so it can't leak.
+   Yellow = #FDE518, sampled straight off the real channel letters
+   in images/sign-mark.png (their sign, not a guess).
+   ============================================================ */
+
+.hero.v-daylight-still{
+  --ds-yellow:#FDE518;
+  --ds-yellow-deep:#E2C300;
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+  background:var(--dark);
+  color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---- the frame: a still photograph inside a blurred warm echo of itself */
+.hero.v-daylight-still .ds-frame{position:absolute;inset:0;z-index:1;overflow:hidden}
+
+/* the warm blurred echo of their own storefront — never a flat black ground */
+.hero.v-daylight-still .ds-echo{
+  position:absolute;inset:-8%;width:116%;height:116%;z-index:0;
+  object-fit:cover;object-position:50% 40%;
+  filter:blur(42px) saturate(1.2) brightness(.42);
+  transform:scale(1.06);
+}
+
+.hero.v-daylight-still .ds-shot{position:absolute;inset:0;display:block}
+.hero.v-daylight-still .ds-shot img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:50% 38%;
+  filter:saturate(1.05) contrast(1.02);
+  /* held still — no transform animation on the photograph itself */
+}
+
+/* ---- ONE bloom: a soft daylight flare crosses the sign band once, then rests */
+.hero.v-daylight-still .ds-bloom{
+  position:absolute;left:0;right:0;top:8%;height:46%;z-index:2;pointer-events:none;
+  background:linear-gradient(100deg,
+    transparent 0%,
+    color-mix(in srgb,#FFF6C9 30%,transparent) 42%,
+    color-mix(in srgb,#FFFBE4 52%,transparent) 50%,
+    color-mix(in srgb,#FFF6C9 30%,transparent) 58%,
+    transparent 100%);
+  mix-blend-mode:screen;
+  opacity:0;
+  transform:translate3d(-60%,0,0);
+  animation:ds-bloom-pass 2.5s cubic-bezier(.22,.61,.36,1) .45s 1 forwards;
+}
+@keyframes ds-bloom-pass{
+  0%   {opacity:0;   transform:translate3d(-60%,0,0)}
+  35%  {opacity:.85; transform:translate3d(-8%,0,0)}
+  70%  {opacity:.55; transform:translate3d(38%,0,0)}
+  100% {opacity:0;   transform:translate3d(80%,0,0)}
+}
+
+/* ---- the pool of dark, bottom only: the sign, the roof and the sky stay lit */
+.hero.v-daylight-still .ds-pool{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:
+    radial-gradient(120% 62% at 22% 106%,
+      color-mix(in srgb,var(--dark) 94%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 58%,transparent) 46%,
+      transparent 76%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 26%,transparent) 0%,
+      transparent 16%,
+      transparent 40%,
+      color-mix(in srgb,var(--dark) 44%,transparent) 62%,
+      color-mix(in srgb,var(--dark) 84%,transparent) 86%,
+      color-mix(in srgb,var(--dark) 96%,transparent) 100%);
+}
+
+/* ---- the headline block, low in the frame, in the letters' own yellow */
+.hero.v-daylight-still .ds-inner{
+  position:relative;z-index:4;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(40px,8vh,86px);
+}
+.hero.v-daylight-still .ds-h1{
+  margin:0 0 clamp(20px,3.4vh,32px);
+  font-family:var(--display);
+  font-weight:400;
+  color:var(--ds-yellow);
+  font-size:clamp(31px,5.4vw,62px);
+  line-height:1.03;
+  letter-spacing:-.012em;
+  max-width:15ch;
+  text-wrap:balance;
+  text-shadow:0 2px 0 color-mix(in srgb,var(--ds-yellow-deep) 55%,transparent),
+              0 10px 40px rgba(0,0,0,.9),
+              0 3px 12px rgba(0,0,0,.7);
+}
+.hero.v-daylight-still .ds-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* one rise, once, then still */
+.hero.v-daylight-still .ds-h1,
+.hero.v-daylight-still .ds-actions{
+  opacity:0;transform:translateY(16px);
+  animation:ds-settle .95s cubic-bezier(.22,.61,.36,1) forwards;
+}
+.hero.v-daylight-still .ds-h1{animation-delay:.18s}
+.hero.v-daylight-still .ds-actions{animation-delay:.46s}
+@keyframes ds-settle{to{opacity:1;transform:none}}
+
+/* ---- PHONE: never crop the sign. The photograph runs whole, full width,
+   at its natural aspect, sitting inside the blurred echo; the headline sits
+   under it on the warm dark. Still one screen, still nothing on the photo. */
+@media (max-width:640px){
+  .hero.v-daylight-still{justify-content:flex-start}
+  .hero.v-daylight-still .ds-frame{
+    position:relative;inset:auto;flex:none;
+    width:100%;aspect-ratio:1045/1330;
+    border-bottom:3px solid var(--brand);
+  }
+  .hero.v-daylight-still .ds-shot img{object-fit:contain;object-position:50% 50%}
+  .hero.v-daylight-still .ds-bloom{top:14%;height:52%}
+  .hero.v-daylight-still .ds-pool{
+    background:linear-gradient(180deg,transparent 66%,color-mix(in srgb,var(--dark) 40%,transparent) 100%);
+  }
+  .hero.v-daylight-still .ds-inner{
+    flex:1 1 auto;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:clamp(26px,5vh,44px) var(--pad) clamp(34px,6vh,54px);
+  }
+  /* the echo pools warm under the photograph instead of a flat black */
+  .hero.v-daylight-still .ds-echo{filter:blur(46px) saturate(1.25) brightness(.34)}
+  .hero.v-daylight-still::after{
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,transparent 34%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 80%,transparent) 100%);
+  }
+  .hero.v-daylight-still .ds-h1{
+    max-width:none;font-size:clamp(29px,8.2vw,38px);
+    text-shadow:0 2px 0 color-mix(in srgb,var(--ds-yellow-deep) 55%,transparent);
+  }
+  .hero.v-daylight-still .ds-actions{gap:10px;width:100%}
+  .hero.v-daylight-still .ds-actions .btn{flex:1 1 auto;padding:13px 10px;font-size:14px;text-align:center}
+}
+
+/* ---- reduced motion: land on the final frame immediately */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-daylight-still .ds-bloom{animation:none;opacity:0}
+  .hero.v-daylight-still .ds-h1,
+  .hero.v-daylight-still .ds-actions{animation:none;opacity:1;transform:none}
+}

@@ -1,0 +1,133 @@
+/* ============================================================
+   HERO VARIANT — lantern-room  (Teriyaki Wok & Sushi, Bonney Lake)
+   Everything namespaced under .hero.v-lantern-room. Unique keyframes
+   prefixed lr-. Uses the site's own tokens (--dark, --warm, --ink,
+   --header-h, --display) — no new brand colours invented.
+
+   The move: their room held SHARP and full-bleed, pushed in slowly
+   over 30 seconds (one pass, forwards, then it just sits). Their real
+   channel-letter mark fades up out of the lantern light, drifts a few
+   pixels down into place, and holds. That's the whole intro.
+   ============================================================ */
+
+.hero.v-lantern-room{
+  position:relative;
+  height:calc(100svh - var(--header-h));
+  min-height:520px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;      /* headline block sits low — the room reads above it */
+  align-items:stretch;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--dark);        /* MIRROR LAW: the walnut room is dark */
+}
+
+/* ---- the room ------------------------------------------------ */
+.hero.v-lantern-room .lr-bg{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+}
+.hero.v-lantern-room .lr-photo{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:46% 42%;       /* holds the boards, the red lantern and the post */
+  display:block;
+  transform-origin:48% 44%;
+  will-change:transform;
+  animation:lr-push 30s linear .15s 1 both;
+}
+
+/* ---- grade: a warm lacquer veil so the cream type reads ------- */
+.hero.v-lantern-room .lr-veil{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    radial-gradient(118% 76% at 50% 36%, color-mix(in srgb,var(--dark) 14%,transparent) 0%, color-mix(in srgb,var(--dark) 54%,transparent) 60%, color-mix(in srgb,var(--dark) 86%,transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb,var(--dark) 64%,transparent) 0%, transparent 26%);
+}
+/* the pool the mark and buttons sit in */
+.hero.v-lantern-room .lr-pool{
+  position:absolute; left:0; right:0; bottom:0; height:72%; z-index:2; pointer-events:none;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    color-mix(in srgb,var(--dark) 34%,transparent) 34%,
+    color-mix(in srgb,var(--dark) 76%,transparent) 66%,
+    var(--dark) 100%);
+}
+
+/* ---- the headline block -------------------------------------- */
+.hero.v-lantern-room .lr-inner{
+  position:relative; z-index:3;
+  width:100%;
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 var(--pad) clamp(38px,7vh,84px);
+  display:flex; flex-direction:column; align-items:center; gap:clamp(22px,4vh,38px);
+  text-align:center;
+}
+
+.hero.v-lantern-room .lr-stage{
+  position:relative;
+  width:min(660px,84vw);
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* the lantern light behind the letters — breathes very slowly, never demands the eye */
+.hero.v-lantern-room .lr-lantern{
+  position:absolute; left:50%; top:50%; translate:-50% -50%;
+  width:132%; aspect-ratio:2.4/1;
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,
+    color-mix(in srgb,var(--warm) 26%,transparent) 0%,
+    color-mix(in srgb,var(--warm) 9%,transparent) 42%,
+    transparent 72%);
+  filter:blur(26px);
+  opacity:0;
+  animation:lr-glow-in 2.2s var(--ease,ease-out) .30s 1 both,
+            lr-breathe 11s ease-in-out 2.9s infinite;
+}
+
+.hero.v-lantern-room .lr-mark{
+  position:relative;
+  display:block;
+  width:100%; height:auto;
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.62));
+  opacity:0;
+  animation:lr-mark-up 2.0s cubic-bezier(.19,.86,.28,1) .45s 1 both;
+}
+
+.hero.v-lantern-room .lr-actions{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px;
+  opacity:0;
+  animation:lr-rise 1.0s cubic-bezier(.22,.85,.3,1) 1.85s 1 both;
+}
+
+/* ---- keyframes ----------------------------------------------- */
+@keyframes lr-push{
+  from{transform:scale(1.015)}
+  to  {transform:scale(1.155)}
+}
+@keyframes lr-mark-up{
+  0%  {opacity:0; transform:translateY(26px) scale(.965); filter:drop-shadow(0 18px 34px rgba(0,0,0,.62)) blur(9px)}
+  55% {opacity:1}
+  100%{opacity:1; transform:none; filter:drop-shadow(0 18px 34px rgba(0,0,0,.62)) blur(0)}
+}
+@keyframes lr-glow-in{ from{opacity:0} to{opacity:1} }
+@keyframes lr-breathe{ 0%,100%{opacity:1} 50%{opacity:.66} }
+@keyframes lr-rise{ from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none} }
+
+/* ---- phone ---------------------------------------------------- */
+@media (max-width:640px){
+  .hero.v-lantern-room .lr-photo{ object-position:44% 40%; transform-origin:46% 42%; }
+  .hero.v-lantern-room .lr-stage{ width:min(420px,86vw) }
+  .hero.v-lantern-room .lr-pool{ height:66% }
+  .hero.v-lantern-room .lr-actions{ width:100%; flex-wrap:nowrap }
+  .hero.v-lantern-room .lr-actions .btn{ flex:1 1 0; min-width:0; padding-inline:12px; white-space:nowrap; font-size:15px }
+}
+
+/* ---- reduced motion: land on the final frame ------------------ */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-lantern-room .lr-photo{ animation:none; transform:scale(1.155) }
+  .hero.v-lantern-room .lr-mark{ animation:none; opacity:1; transform:none; filter:drop-shadow(0 18px 34px rgba(0,0,0,.62)) }
+  .hero.v-lantern-room .lr-lantern{ animation:none; opacity:1 }
+  .hero.v-lantern-room .lr-actions{ animation:none; opacity:1; transform:none }
+}

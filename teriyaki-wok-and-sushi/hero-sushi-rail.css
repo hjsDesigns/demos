@@ -1,0 +1,129 @@
+/* ============================================================
+   HERO VARIANT — sushi-rail   (Teriyaki Wok & Sushi, Bonney Lake)
+   Namespaced under .hero.v-sushi-rail. All keyframes prefixed srl-.
+   Ground = their own dining room, blurred, on the walnut-charcoal
+   token ground (MIRROR LAW). Mark = the real channel letters.
+   Plates = crops of their own sushi photos. One pass, then quiet.
+   ============================================================ */
+
+.hero.v-sushi-rail{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  overflow:hidden;background:var(--bg);color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---- ground: the room, thrown out of focus, pooled dark ---- */
+.hero.v-sushi-rail .sr-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero.v-sushi-rail .sr-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 46%;
+  filter:blur(24px) saturate(1.02) brightness(.62);
+  transform:scale(1.16);
+  animation:srl-settle 34s var(--ease) forwards;
+}
+@keyframes srl-settle{from{transform:scale(1.16)}to{transform:scale(1.08)}}
+.hero.v-sushi-rail .sr-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 78% at 50% 46%,transparent 0%,color-mix(in srgb,var(--dark) 26%,transparent) 58%,color-mix(in srgb,var(--dark) 74%,transparent) 100%),
+    linear-gradient(180deg,color-mix(in srgb,var(--dark) 62%,transparent) 0%,transparent 26%,transparent 62%,color-mix(in srgb,var(--dark) 78%,transparent) 100%);
+}
+
+.hero.v-sushi-rail .sr-inner{
+  position:relative;z-index:3;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:clamp(28px,6vh,60px) var(--pad);
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(20px,3.4vh,38px);
+}
+
+/* ---- the mark IS the headline ---- */
+.hero.v-sushi-rail .sr-mark{
+  width:clamp(280px,46vw,600px);height:auto;
+  filter:drop-shadow(0 14px 40px rgba(0,0,0,.75)) drop-shadow(0 0 26px color-mix(in srgb,var(--warm) 22%,transparent));
+  opacity:0;transform:translateY(14px);
+  animation:srl-mark 1s var(--ease) .12s forwards;
+}
+@keyframes srl-mark{to{opacity:1;transform:none}}
+
+/* ---- the rail ---- */
+.hero.v-sushi-rail .sr-rail{
+  position:relative;width:100%;
+  padding-bottom:clamp(16px,2.6vh,26px);
+}
+.hero.v-sushi-rail .sr-rail-line{
+  position:absolute;left:50%;bottom:0;width:200vw;height:2px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--warm) 46%,transparent) 24%,color-mix(in srgb,var(--warm) 76%,transparent) 50%,color-mix(in srgb,var(--warm) 46%,transparent) 76%,transparent 100%);
+  opacity:0;animation:srl-rail 1s var(--ease) .5s forwards, srl-breathe 7s ease-in-out 4s infinite;
+  box-shadow:0 0 18px color-mix(in srgb,var(--warm) 26%,transparent);
+}
+@keyframes srl-rail{to{opacity:.9}}
+@keyframes srl-breathe{0%,100%{opacity:.9}50%{opacity:.62}}
+
+.hero.v-sushi-rail .sr-track{
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(10px,1.6vw,20px);
+  width:100%;
+}
+
+.hero.v-sushi-rail .sr-plate{
+  display:block;flex:0 0 auto;
+  width:clamp(132px,20vw,246px);aspect-ratio:3/2;
+  border-radius:12px;overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--warm) 26%,transparent);
+  box-shadow:0 18px 34px -18px rgba(0,0,0,.92),0 2px 0 0 color-mix(in srgb,var(--warm) 18%,transparent);
+  background:var(--paper);
+  opacity:0;transform:translateX(118vw);
+  animation:srl-glide 1.35s cubic-bezier(.16,.72,.24,1) forwards;
+}
+.hero.v-sushi-rail .sr-plate img{width:100%;height:100%;object-fit:cover;display:block}
+.hero.v-sushi-rail .sr-p1{animation-delay:.70s}
+.hero.v-sushi-rail .sr-p2{animation-delay:.92s}
+.hero.v-sushi-rail .sr-p3{animation-delay:1.14s}
+.hero.v-sushi-rail .sr-p4{animation-delay:1.36s}
+@keyframes srl-glide{
+  0%  {opacity:0;transform:translateX(118vw)}
+  6%  {opacity:1}
+  100%{opacity:1;transform:translateX(0)}
+}
+
+/* ---- buttons: after the last plate lands ---- */
+.hero.v-sushi-rail .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;transform:translateY(14px);
+  animation:srl-mark .8s var(--ease) 2.6s forwards;
+}
+/* beat the site's generic .js .hero-actions rise */
+.js .hero.v-sushi-rail .hero-actions{
+  opacity:0;transform:translateY(14px);
+  animation:srl-mark .8s var(--ease) 2.6s forwards;
+}
+
+/* ---- phones: three whole plates, nothing cropped by the viewport ---- */
+@media (max-width:640px){
+  .hero.v-sushi-rail{min-height:calc(100svh - var(--header-h));display:flex;background:var(--bg)}
+  .hero.v-sushi-rail .sr-bg{position:absolute;inset:0;flex:none;border:0}
+  .hero.v-sushi-rail .sr-bg img{height:100%;object-fit:cover}
+  .hero.v-sushi-rail .sr-inner{
+    flex:1 1 auto;justify-content:center;
+    padding:clamp(24px,5vh,44px) 14px;gap:clamp(22px,4.4vh,40px);
+  }
+  .hero.v-sushi-rail .sr-mark{width:min(80vw,306px)}
+  .hero.v-sushi-rail .sr-track{gap:8px}
+  .hero.v-sushi-rail .sr-plate{width:min(31vw,116px);border-radius:9px}
+  .hero.v-sushi-rail .sr-p4{display:none}
+  .hero.v-sushi-rail .hero-actions{width:100%;gap:10px;flex-wrap:nowrap}
+  .hero.v-sushi-rail .hero-actions .btn{flex:1 1 0;padding:13px 8px;font-size:14px}
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-sushi-rail .sr-bg img,
+  .hero.v-sushi-rail .sr-mark,
+  .hero.v-sushi-rail .sr-rail-line,
+  .hero.v-sushi-rail .sr-plate,
+  .hero.v-sushi-rail .hero-actions,
+  .js .hero.v-sushi-rail .hero-actions{animation:none;opacity:1;transform:none}
+  .hero.v-sushi-rail .sr-bg img{transform:scale(1.08)}
+  .hero.v-sushi-rail .sr-rail-line{opacity:.9;transform:translateX(-50%)}
+}
