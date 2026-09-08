@@ -1,0 +1,32 @@
+/* ============================================================================
+   HERO CANDIDATE — "MARQUEE"
+   One idea from one real object: their own storefront under the cedar arbor.
+   The shop wakes up — the frame comes up out of a dim, low-saturation state to
+   full daylight over 2.2s while a single warm sheen crosses the sign band once.
+   Then it is still. Deterministic (no randomness, no loop). Reduced motion
+   lands on the final frame.
+   ============================================================================ */
+.hero{background:var(--dark)}
+.hero-bg img{object-position:50% 42%;animation:none;transform:none;
+  filter:brightness(.66) saturate(.78) contrast(1.02)}
+.js .hero-bg img{animation:shnWake 2200ms var(--ease-2) 120ms forwards}
+@keyframes shnWake{
+  from{filter:brightness(.66) saturate(.78) contrast(1.02);transform:scale(1.045)}
+  to  {filter:brightness(1) saturate(1.04) contrast(1);transform:scale(1)}
+}
+/* the sheen: one pass across the sign band, then gone for good */
+.hero-sheen{position:absolute;left:-40%;top:22%;width:34%;height:26%;z-index:2;pointer-events:none;opacity:0;
+  background:linear-gradient(100deg,transparent 0%,color-mix(in srgb,var(--warm) 62%,transparent) 50%,transparent 100%);
+  filter:blur(16px);mix-blend-mode:screen}
+.js .hero-sheen{animation:shnSheen 1500ms var(--ease) 620ms forwards}
+@keyframes shnSheen{
+  0%{opacity:0;transform:translateX(0)}
+  22%{opacity:.95}
+  78%{opacity:.85}
+  100%{opacity:0;transform:translateX(400%)}
+}
+.hero-iris{display:none}
+@media (prefers-reduced-motion:reduce){
+  .js .hero-bg img{animation:none;filter:brightness(1) saturate(1.04) contrast(1);transform:none}
+  .js .hero-sheen{animation:none;opacity:0}
+}
