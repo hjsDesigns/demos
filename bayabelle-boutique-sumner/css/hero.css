@@ -1,0 +1,162 @@
+/* ============================================================
+   BAYABELLE BOUTIQUE — hero candidates.
+
+   Two were built and judged at 390px first (see versions/variants/NOTE.md).
+   Both are exterior (EXTERIOR HERO DEFAULT, 2026-09-04) because every
+   interior photograph appears further down the page.
+
+     .v-open-door        ← APPLIED. Their own doorway on Main St, arriving
+                           out of focus; their real bouquet mark and the
+                           name wipe on in the sign's face, then the door
+                           pulls sharp and everything stops. 2.6s, once.
+     .v-under-the-clock  ← runner-up, kept whole. The blade sign hanging
+                           off the Sumner town clock, one warm light
+                           passing across the oval face, then still.
+
+   Shared rules first, then each variant.
+   ============================================================ */
+
+.hero{position:relative;min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--dark);color:#FBF5EC}
+.hero-shot{position:absolute;inset:0;z-index:0}
+.hero-shot img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.3;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-inner{position:relative;z-index:4;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(34px,7vh,80px)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:640px){
+  .hero-actions{gap:10px;width:100%}
+  .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+/* ============================================================
+   VARIANT — .v-open-door   (APPLIED)
+
+   The one idea: their front door, opening. You arrive the way you arrive
+   on the sidewalk — the glass out of focus, the greens on the doors and
+   the round OPEN sign still soft. Their own bouquet (cut straight out of
+   their own logo file, never redrawn) settles in, the name wipes across
+   in the blade sign's face as live crisp type, and on the last beat the
+   whole door pulls sharp. 2.6 seconds, once, then nothing moves again.
+   Nothing sits on the photograph but that mark block and two buttons.
+   ============================================================ */
+.v-open-door .hero-shot img{
+  object-position:50% 42%;
+  filter:blur(15px) saturate(.94) brightness(.96);
+  transform:scale(1.09)}
+/* the dark pools at the FOOT of the frame only — the wreaths, the glass and
+   the OPEN sign at the top stay lit (HERO BRIGHT AND VIBRANT) */
+.v-open-door .hero-scrim{
+  background:
+    radial-gradient(120% 62% at 50% 108%,rgba(34,24,19,.86) 0%,rgba(34,24,19,.52) 42%,transparent 72%),
+    linear-gradient(180deg,rgba(46,34,28,.3) 0%,rgba(46,34,28,.04) 24%,rgba(44,32,26,.16) 46%,rgba(38,27,22,.62) 78%,rgba(32,23,18,.88) 100%)}
+
+.v-open-door .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding-bottom:clamp(30px,6vh,68px)}
+.v-open-door .hero-mark{margin:0 0 clamp(20px,3.4vh,34px);width:100%}
+.v-open-door .mark-sprig{width:clamp(122px,23vw,190px);height:auto;margin:0 auto clamp(16px,2.4vh,26px);
+  filter:drop-shadow(0 8px 22px rgba(24,16,12,.7));opacity:1}
+/* the wordmark, set as LIVE type in the sign's face — CRISP RULE */
+.v-open-door .mark-name{display:block;font-family:var(--display);font-weight:500;
+  font-size:clamp(38px,10.4vw,104px);line-height:.98;letter-spacing:.15em;text-indent:.15em;
+  text-transform:uppercase;color:#FDF7EE;text-shadow:0 8px 34px rgba(28,19,15,.62);margin:0}
+.v-open-door .mark-sub{display:block;font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:clamp(19px,4.4vw,40px);line-height:1.1;letter-spacing:.05em;color:#F6E7D6;
+  text-shadow:0 6px 24px rgba(28,19,15,.6);margin:clamp(4px,.9vh,12px) 0 0}
+.v-open-door .hero-line{font-family:var(--body);font-size:clamp(14.5px,1.7vw,18px);font-weight:600;
+  letter-spacing:.02em;color:#F7ECDF;margin:0 0 clamp(18px,3vh,28px);
+  text-shadow:0 2px 6px rgba(24,16,12,.85),0 4px 22px rgba(24,16,12,.75)}
+.v-open-door .hero-actions{justify-content:center}
+
+/* --- the arrival. Deterministic: one run, fill both, no JS timing. --- */
+.js .v-open-door .hero-shot img{animation:bbFocus 2.6s var(--ease) both}
+.js .v-open-door .mark-sprig{animation:bbBloom 1s var(--ease-2) .18s both}
+.js .v-open-door .mark-name,
+.js .v-open-door .mark-sub{clip-path:inset(0 100% 0 -14%);animation:bbWipe .95s var(--ease) both}
+.js .v-open-door .mark-name{animation-delay:.62s}
+.js .v-open-door .mark-sub{animation-delay:.92s}
+.js .v-open-door .hero-line,
+.js .v-open-door .hero-actions{animation:bbRise .8s var(--ease) both}
+.js .v-open-door .hero-line{animation-delay:1.5s}
+.js .v-open-door .hero-actions{animation-delay:1.66s}
+/* the light that travels with the wipe */
+.js .v-open-door .hero-mark::after{content:"";position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,246,232,.5) 50%,transparent 58%);
+  opacity:0;animation:bbShine 1.25s var(--ease) .52s both}
+.v-open-door .hero-mark{position:relative}
+
+@keyframes bbFocus{
+  0%{filter:blur(15px) saturate(.94) brightness(.96);transform:scale(1.09)}
+  62%{filter:blur(7px) saturate(.98) brightness(1)}
+  100%{filter:blur(0) saturate(1.04) brightness(1.03);transform:scale(1)}}
+@keyframes bbBloom{
+  0%{opacity:0;transform:scale(.55) translateY(16px)}
+  70%{opacity:1;transform:scale(1.04) translateY(0)}
+  100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes bbWipe{
+  0%{clip-path:inset(0 100% 0 -14%)}
+  100%{clip-path:inset(0 -14% 0 -14%)}}
+@keyframes bbShine{
+  0%{opacity:0;transform:translateX(-58%)}
+  22%{opacity:1}
+  100%{opacity:0;transform:translateX(62%)}}
+@keyframes bbRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* reduced motion lands on the final frame — no exceptions */
+@media (prefers-reduced-motion:reduce){
+  .js .v-open-door .hero-shot img,
+  .js .v-open-door .mark-sprig,
+  .js .v-open-door .mark-name,
+  .js .v-open-door .mark-sub,
+  .js .v-open-door .hero-line,
+  .js .v-open-door .hero-actions,
+  .js .v-open-door .hero-mark::after{animation:none}
+  .js .v-open-door .hero-shot img{filter:blur(0) saturate(1.04) brightness(1.03);transform:none}
+  .js .v-open-door .mark-name,
+  .js .v-open-door .mark-sub{clip-path:none}
+  .js .v-open-door .hero-mark::after{opacity:0}
+}
+/* phones: keep the whole doorway in frame, keep the name on one line */
+@media (max-width:640px){
+  .v-open-door .hero-shot img{object-position:50% 40%}
+  .v-open-door .mark-name{font-size:clamp(34px,10.2vw,50px);letter-spacing:.11em;text-indent:.11em}
+  .v-open-door .hero-line{max-width:26ch;margin-left:auto;margin-right:auto}
+}
+
+/* ============================================================
+   VARIANT — .v-under-the-clock   (runner-up, kept whole)
+
+   Their blade sign hangs off the green Sumner town clock on Main St. The
+   sign IS the mark and IS the headline, so no type competes with it — one
+   warm light walks across the white oval, the frame settles, and a single
+   line of copy and two buttons sit in the bottom corner. Quiet wins when
+   the exterior photo is this strong.
+   ============================================================ */
+.v-under-the-clock .hero-shot img{object-position:88% 62%;transform:scale(1.05)}
+.v-under-the-clock .hero-scrim{
+  background:linear-gradient(180deg,rgba(30,38,34,.18) 0%,transparent 30%,transparent 46%,rgba(28,34,30,.76) 88%,rgba(24,30,26,.92) 100%)}
+.v-under-the-clock .hero-scrim::after{content:"";position:absolute;inset:-30% -60%;
+  background:linear-gradient(102deg,transparent 44%,rgba(255,247,232,.42) 50%,transparent 56%);opacity:0}
+.v-under-the-clock .hero-line{font-family:var(--display);font-weight:500;
+  font-size:clamp(26px,4.6vw,52px);line-height:1.1;letter-spacing:.005em;color:#FDF7EE;max-width:17ch;
+  margin:0 0 clamp(18px,3vh,28px);text-shadow:0 8px 30px rgba(20,26,22,.7)}
+.v-under-the-clock .hero-line em{font-style:italic;color:#F0D9A8}
+.js .v-under-the-clock .hero-shot img{animation:bbSettle 2.4s var(--ease) both}
+.js .v-under-the-clock .hero-scrim::after{animation:bbPass 2.1s var(--ease) .3s both}
+.js .v-under-the-clock .hero-line,
+.js .v-under-the-clock .hero-actions{animation:bbRise .85s var(--ease) both}
+.js .v-under-the-clock .hero-line{animation-delay:.9s}
+.js .v-under-the-clock .hero-actions{animation-delay:1.1s}
+@keyframes bbSettle{from{transform:scale(1.05)}to{transform:scale(1)}}
+@keyframes bbPass{0%{opacity:0;transform:translateX(-44%)}20%{opacity:1}100%{opacity:0;transform:translateX(48%)}}
+@media (prefers-reduced-motion:reduce){
+  .js .v-under-the-clock .hero-shot img,
+  .js .v-under-the-clock .hero-scrim::after,
+  .js .v-under-the-clock .hero-line,
+  .js .v-under-the-clock .hero-actions{animation:none}
+  .js .v-under-the-clock .hero-shot img{transform:none}
+  .js .v-under-the-clock .hero-scrim::after{opacity:0}
+}
+@media (max-width:640px){.v-under-the-clock .hero-shot img{object-position:92% 66%}}

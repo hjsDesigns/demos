@@ -1,0 +1,350 @@
+/* ============================================================
+   BAYABELLE BOUTIQUE — 926 Main St #101, Sumner, WA
+   Built on the website-factory one-page template.
+
+   MIRROR LAW — INTERIOR FIRST. Standing in this room: cream walls with a
+   blush wash carried up onto the ceiling, raw pine tables and benches,
+   white-and-brass pendants, a navy floral rug on grey concrete, daylight
+   through a whole wall of windows. So: ONE CREAM ground, blush for the
+   hours band, and the navy off their own rug and their own polka-dot
+   throws for the one dark band and the footer.
+
+   ZONED COLOUR (Hayden, 2026-09-02). Two brand colours, each with a job:
+     --brand      terracotta-rose  = everything FUNCTIONAL (buttons, links,
+                  chevrons, today's row, the lit pill, the em in a headline)
+     --sage       = decorative only (rules, frames, the mark's echo)
+   Both are sampled straight out of THEIR OWN logo bouquet
+   (cdn.shopify.com/.../bayabelle_flat_logo.jpg): coral #F38756, sage
+   #A5CEB0, gold #F3B440, ochre #B1842E — deepened only far enough to hold
+   contrast on cream.
+
+   STATUS LIGHT LAW: --accent green / --closed red, never brand-coloured.
+   ============================================================ */
+:root{
+  /* ---- palette — their own mark, their own room ---- */
+  --brand:#B65546;          /* the coral flower in their bouquet, deepened for cream */
+  --brand-text:#91402F;     /* eyebrows + small type */
+  --brand-bright:#CE6A56;   /* hover */
+  --sage:#7C9C80;           /* the leaves in their bouquet + the green trim on the clock tower */
+  --gold:#B4862C;           /* the yellow flower + the ochre stems */
+  --blush:#E9D2C8;          /* the pink wash on their ceiling */
+
+  --accent:#10B981;         /* true green — "open" (STATUS LIGHT LAW) */
+  --accent-soft:#34D399;
+  --closed:#DC2626;         /* true red — "closed" (STATUS LIGHT LAW) */
+
+  --ink:#2E2A28;            /* the letterforms on their blade sign */
+  --bg:#F7EFE4;             /* ONE CREAM, never white — their own seed-paper hangtag */
+  --bg-2:#EFE4D5;           /* deeper cream, alternating bands */
+  --paper:#FCF7EF;          /* cards — a hair lighter, never white */
+  --muted:#7A6B60;
+  --line:#E1D3C2;
+  --dark:#333A4E;           /* the navy in their rug and their dot throws */
+  --dark-2:#3E4560;
+  --warm:#D2A64F;           /* the gold in their mark — the highlighted word on the navy band */
+  --tint:#F1E1D8;           /* the hours band = the blush on their ceiling */
+
+  /* ---- type: two faces, real fallbacks ----
+     SIGN-FONT LAW. The blade sign hanging under the Sumner town clock sets
+     BAYABELLE as a high-contrast serif, all caps, widely tracked, with a
+     light serif italic "boutique" beneath it (crop + 4x upscale in
+     harvest/sign-crop-4x.png). Playfair Display is the closest Google face
+     and it is set as LIVE type at hero size — never a blown-up raster crop
+     of the sign itself (CRISP RULE, 2026-09-07). Karla carries the body:
+     humanist, warm, a little quirky, nothing like a system default. */
+  --display:'Playfair Display','Iowan Old Style','Hoefler Text',Georgia,'Times New Roman',serif;
+  --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+
+  /* ---- metrics ---- */
+  --header-h:74px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.32,.9,.24,1);
+  --r:14px;
+}
+
+/* ============================================================
+   Z-INDEX MAP
+     60  .site-header
+     40  #main-nav (mobile drop)
+      4  .hero-mark / .hero-copy
+      2  .hero-grain
+      1  .hero-scrim
+      0  .hero-shot img
+   Nothing else above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;line-height:1.06;margin:0;text-wrap:balance;letter-spacing:.002em}
+h2 em,h1 em,h3 em{font-style:italic;color:var(--brand)}
+p{margin:0 0 1em}
+b,strong{font-weight:700}
+figure,blockquote{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 26%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:700;font-size:15px;letter-spacing:.02em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#FDF6EC}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--paper);color:var(--ink);border-color:color-mix(in srgb,var(--ink) 16%,transparent)}
+.btn-cream:hover{background:#FFF;transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.3) blur(12px);-webkit-backdrop-filter:saturate(1.3) blur(12px);
+  border-bottom:1px solid var(--line)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+/* their own bouquet, cut from their own logo file — never redrawn */
+.logo img{height:40px;width:auto}
+.logo .wm{font-family:var(--display);font-weight:500;font-size:21px;letter-spacing:.13em;line-height:1;color:var(--ink);text-transform:uppercase}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:19px;font-size:14.5px;font-weight:600}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#FDF6EC;padding:10px 17px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#FDF6EC}
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.hdr-live.is-open .dot{background:var(--accent);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed{border-color:color-mix(in srgb,var(--closed) 45%,transparent)}
+.hdr-live.is-closed .dot{background:var(--closed)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1180px){.hdr-live .txt-long{display:none}}
+@media (max-width:980px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--paper);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(60,44,34,.32)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:34px}}
+@media (max-width:430px){.hdr-live{display:none}}
+
+/* ============================================================ HOURS / STATUS BAND
+   The Bridget's "When to find us" pattern. Hours, live status and the
+   address live HERE and nowhere else on the page (NEVER TWICE). Ground is
+   the blush wash off their own ceiling. */
+.status-band{background:var(--tint);border-top:2px solid color-mix(in srgb,var(--brand) 45%,transparent);border-bottom:1px solid var(--line)}
+.status-band .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,78px) var(--pad)}
+.status-head h2{font-size:clamp(30px,4vw,48px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 20%,transparent)}
+.live-line.is-closed .dot{background:var(--closed);box-shadow:0 0 0 5px color-mix(in srgb,var(--closed) 18%,transparent)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px rgba(70,50,38,.45)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--brand) 13%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:13.5px;text-align:right;font-variant-numeric:tabular-nums}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-note{font-size:13.5px;color:var(--muted);margin:14px 0 0}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:var(--rule);border-radius:999px;padding:8px 14px}
+.proof .ico{color:var(--sage)}
+.proof .star{color:var(--gold)}
+@media (max-width:860px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,110px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#F3EDE3}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.6vw,56px);margin:0 0 16px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-head p.eyebrow{font-size:11.5px;color:var(--brand-text);margin:0 0 14px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hdr-live.is-open .dot{animation:none}
+}
+
+/* ============================================================ FRAMED PRINTS
+   PHOTOS LIVE IN PURPOSE-BUILT OBJECTS. Every photograph on this page sits
+   inside something with a job: a print frame, the viewer, the story plate. */
+.print{background:var(--paper);padding:12px 12px 34px;border:var(--rule);margin:0;
+  box-shadow:0 40px 80px -46px rgba(70,50,38,.55);transition:transform .5s var(--ease)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:13px;text-align:center}
+
+/* ============================================================ #shop — the exterior, then the boards
+   STOREFRONT BELOW THE HOURS (2026-09-02): the opener is their doorway, so
+   the offerings section leads with the OTHER exterior — the blade sign
+   hanging off the Sumner town clock. */
+.shop-top{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,5vw,64px);align-items:center;margin-bottom:clamp(30px,4.5vw,56px)}
+.shop-top .section-head{margin-bottom:0}
+.shop-top .print{transform:rotate(-1.3deg)}
+.shop-top .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.shop-top{grid-template-columns:1fr;gap:28px}.shop-top .print{transform:none}}
+
+.boards{display:grid;gap:clamp(12px,1.8vw,18px)}
+.board{background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(18px,2.6vw,28px);box-shadow:0 26px 50px -44px rgba(70,50,38,.5)}
+.board h3{font-size:clamp(21px,2.5vw,29px);margin:0}
+.board .when{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);margin:10px 0 0}
+/* TITLE CARDS UNROLL — the headline itself is the tap target. ARROW LAW:
+   a downward chevron that flips up. Never a plus sign. */
+.unroll{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;min-height:44px;
+  background:none;border:0;padding:0;margin:0;cursor:pointer;color:inherit;text-align:left;font:inherit}
+.unroll .chev{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand);transition:transform .3s var(--ease),background .2s}
+.unroll .chev svg{width:18px;height:18px}
+.unroll:hover .chev{background:color-mix(in srgb,var(--brand) 26%,transparent)}
+.unroll[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.rolled[data-open="1"]{grid-template-rows:1fr}
+.rolled > ul{overflow:hidden;list-style:none;margin:0;padding:0}
+.rolled li{font-size:15.5px;color:var(--ink);padding:10px 0 10px 22px;border-top:var(--rule);position:relative}
+.rolled li:first-child{margin-top:14px}
+.rolled li::before{content:"";position:absolute;left:2px;top:19px;width:7px;height:7px;border-radius:50%;background:var(--sage)}
+.rolled li small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+@media (prefers-reduced-motion:reduce){.rolled{transition:none}.unroll .chev{transition:none}}
+
+/* ============================================================ #signature — LOOK AROUND
+   Section 5 (INTERACTIVE = SECTION 4 OR LOWER). Four real photographs of
+   their own room behind four labelled pills. One tap and you're standing
+   somewhere else in the shop; tap the lit pill again and you're back in
+   the middle of the floor. Nothing to read, nothing to win, no modes.
+   TODDLER LAW. On phones the frame sits ABOVE the pills. */
+.viewer{background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(16px,2.4vw,26px);box-shadow:0 40px 80px -50px rgba(70,50,38,.6)}
+.viewer-hint{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.viewer-frame{position:relative;border-radius:10px;overflow:hidden;background:var(--bg-2);
+  aspect-ratio:4 / 3;box-shadow:inset 0 0 0 1px var(--line)}
+.viewer-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;
+  opacity:0;transition:opacity .42s var(--ease);will-change:opacity}
+.viewer-frame img.on{opacity:1}
+.viewer-cap{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin:16px 2px 0}
+.viewer-cap b{font-family:var(--display);font-weight:500;font-size:clamp(21px,2.6vw,28px);color:var(--ink);line-height:1.1}
+.viewer-cap span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);flex:none}
+.spots{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0;padding:0;list-style:none}
+.spots li{margin:0;flex:1 1 0;min-width:130px}
+.spot{display:flex;align-items:center;gap:10px;width:100%;min-height:56px;padding:8px 16px 8px 8px;cursor:pointer;
+  background:var(--bg);border:2px solid var(--line);border-radius:999px;font:inherit;color:var(--ink);
+  transition:border-color .2s var(--ease),background .2s,transform .2s var(--ease)}
+.spot .thumb{flex:none;width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--line)}
+.spot .lbl{font-family:var(--body);font-weight:700;font-size:14.5px;letter-spacing:.01em}
+.spot:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+.spot[aria-pressed="true"]{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 11%,transparent)}
+@media (prefers-reduced-motion:reduce){.viewer-frame img{transition:none}.spot{transition:none}}
+@media (max-width:560px){
+  .spots li{flex:1 1 100%}
+  .viewer-frame{aspect-ratio:3 / 4}
+  .viewer-cap{flex-direction:column;align-items:flex-start;gap:6px}
+}
+
+/* ============================================================ #reviews — the honest aggregate
+   REVIEW ATTRIBUTION LAW (2026-09-06): a quote ships only with the real
+   reviewer's name AND their real profile image from the same source.
+   Google's panel serves a degraded "limited view" for this place and Yelp
+   returns 403 to everything without a login, so nothing carried a
+   name+photo pair. This band shows the real score, claims NO review count
+   (none was verifiable), and sends people to the live reviews rather than
+   shipping an anonymous quote strip or a manufactured face. */
+.score{display:grid;grid-template-columns:auto 1fr;gap:clamp(22px,4vw,54px);align-items:center;
+  background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(26px,4vw,44px)}
+.score-num{text-align:center}
+.score-num b{display:block;font-family:var(--display);font-size:clamp(58px,9vw,104px);line-height:.9;color:var(--brand);font-weight:500;font-variant-numeric:tabular-nums}
+.score-stars{color:var(--gold);font-size:20px;letter-spacing:.16em;margin:8px 0 0}
+.score-copy h2{font-size:clamp(26px,3.4vw,42px);margin:0 0 12px}
+.score-copy p{font-size:17px;color:var(--muted);margin:0 0 18px}
+@media (max-width:700px){.score{grid-template-columns:1fr;text-align:center}.score-copy .btn{width:100%}}
+
+/* ============================================================ #about — the story + the tag */
+.story{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.4deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.4vw,52px);margin:0 0 18px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy p.eyebrow{font-size:11.5px;color:var(--brand-text);margin:0 0 14px}
+/* their own words, lifted verbatim off their own storefront page */
+.from-shop{border-left:4px solid var(--sage);padding:4px 0 4px 20px;margin:0 0 20px}
+.from-shop p{font-family:var(--display);font-style:italic;font-size:clamp(19px,2.2vw,23px);line-height:1.45;color:var(--ink);margin:0 0 10px}
+.from-shop cite{font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ #contact */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.4vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:11px;background:var(--brand);color:#FDF6EC;display:grid;place-items:center;font-family:var(--display);font-size:18px;font-weight:500}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:700;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 16%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent) 16%,transparent);border:1px solid var(--accent);border-radius:11px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ #cta — the navy band
+   The one dark band on the page, and it is a real navy out of their own
+   room: the floral rug under the pine bench and the dot throws folded on
+   the table. */
+.cta-band .section-head{max-width:none}
+.cta-band .section-head p{color:#C9C2D2}
+.cta-band h2 em{color:var(--warm);font-style:italic}
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:clamp(28px,4vw,46px)}
+.num{border:1px solid color-mix(in srgb,#F3EDE3 22%,transparent);border-radius:var(--r);padding:22px 20px;background:rgba(243,237,227,.045)}
+.num b{display:block;font-family:var(--display);font-size:clamp(38px,4.8vw,58px);line-height:1;color:var(--warm);font-variant-numeric:tabular-nums;font-weight:500}
+.num > span{display:block;font-size:13.5px;color:#C9C2D2;margin-top:8px;line-height:1.45}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:760px){.numbers{grid-template-columns:1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--dark-2);color:#C9C2D2;padding:clamp(40px,6vw,64px) 0 28px;border-top:1px solid color-mix(in srgb,#F3EDE3 16%,transparent)}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .plate{flex:none}
+.foot .plate img{height:52px;width:auto}
+.foot .wm{font-family:var(--display);font-size:20px;color:#F3EDE3;line-height:1.2;letter-spacing:.1em;text-transform:uppercase}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#A9A2B6;margin-top:6px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#F3EDE3}
+.foot .soc{display:flex;gap:10px;margin-top:10px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid color-mix(in srgb,#F3EDE3 22%,transparent);border-radius:999px;padding:7px 15px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid color-mix(in srgb,#F3EDE3 16%,transparent);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:#A9A2B6}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}

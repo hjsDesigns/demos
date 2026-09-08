@@ -1,0 +1,214 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Batman 10 — night of Sept 8</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#F1F0EA;--card:#FFFFFF;--line:#D8D6CC;--ink:#1B1E1A;--mute:#5F665D;--acc:#2A4D6E;--ok:#1F6B3A;--ok-bg:#E1EFE4;--warn:#9A6A16;--warn-bg:#F5EAD3;--bad:#B3372B;--bad-bg:#F4E1DD;--bezel:#15171A;--disp:'Barlow Condensed','Arial Narrow',Impact,sans-serif;--body:'Source Sans 3','Helvetica Neue',Arial,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15181A;--card:#1E2226;--line:#2D3338;--ink:#ECEDE8;--mute:#9BA39C;--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F;--bad:#E5776A;--bad-bg:#3A221E;--bezel:#0B0C0E}}
+:root[data-theme="dark"]{--bg:#15181A;--card:#1E2226;--line:#2D3338;--ink:#ECEDE8;--mute:#9BA39C;--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F;--bad:#E5776A;--bad-bg:#3A221E;--bezel:#0B0C0E}
+*{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 var(--body);padding:14px 10px 70px;-webkit-text-size-adjust:100%}
+main{max-width:640px;margin:0 auto}
+h1{font:700 38px/0.95 var(--disp);text-transform:uppercase;margin:2px 0 4px}
+.stamp{color:var(--mute);font-size:13px;margin:0 0 12px}
+h2{font:600 13.5px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:26px 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+h2 small{font:600 12px/1 var(--body);letter-spacing:0;text-transform:none;color:var(--mute)}
+h3{font:600 21px/1.05 var(--disp);margin:0 0 4px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tot{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:0 0 14px}
+.tot div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 4px;text-align:center}
+.tot b{display:block;font:700 24px/1 var(--disp);color:var(--acc)}
+.tot span{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px 14px;justify-items:center}
+.phone{margin:0;width:100%;max-width:390px}
+figcaption{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 6px;padding:0 2px}
+.pname{font:600 18px/1 var(--disp);flex:1 1 auto;min-width:0}
+.frame{background:var(--bezel);border-radius:38px;padding:10px;box-shadow:0 10px 26px rgba(0,0,0,.22)}
+iframe{display:block;width:100%;aspect-ratio:390/844;border:0;border-radius:28px;background:#fff}
+.ph{display:flex;align-items:center;justify-content:center;aspect-ratio:390/844;border-radius:28px;background:var(--card);color:var(--mute);font:600 15px var(--body)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 10px}
+.card.building{border-style:dashed}
+.where{color:var(--mute);font-size:13.5px;margin:0 0 2px;overflow-wrap:anywhere}
+.btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+a.go{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;border-radius:8px;background:var(--acc);color:var(--bg);font-weight:700;text-decoration:none;font-size:14px}
+a.go.small{min-height:32px;padding:0 10px;font-size:13px;background:transparent;color:var(--acc);border:1px solid var(--line)}
+a.tel{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);font-weight:600;text-decoration:none;font-size:13.5px}
+.ask{font:700 18px/1 var(--disp);margin-left:auto}
+.row{font-size:14px;margin:5px 0;overflow-wrap:anywhere}
+.row b{font:600 11px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-right:6px}
+.mut{color:var(--mute)}
+.unv{color:var(--bad);font-weight:600}
+.tag{display:inline-block;font:700 10px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;border-radius:5px}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}.tag.warn{background:var(--warn-bg);color:var(--warn)}.tag.bad{background:var(--bad-bg);color:var(--bad)}
+.asks{margin:8px 0 0;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.asks summary{font:600 11px/1.4 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--acc);cursor:pointer}
+.asks ol{margin:8px 0 0;padding-left:20px;font-size:13.5px;display:grid;gap:5px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13.5px;table-layout:fixed}
+td{padding:8px;border-top:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}tr:first-child td{border-top:0}
+td:first-child{font:600 16px/1.1 var(--disp);width:34%}
+.foot{color:var(--mute);font-size:12.5px;margin:18px 0 0}
+.next{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:10px 12px;font-size:14.5px;margin-top:14px}
+</style>
+<main>
+<h1>Batman 10 — Sept 8</h1>
+<p class="stamp">Written Sep 8, 5:30 AM · re-run the script any time; anything still building says so.</p>
+<div class="tot">
+<div><b>133</b><span>hunted</span></div>
+<div><b>18</b><span>qualified</span></div>
+<div><b>6</b><span>built</span></div>
+<div><b>8</b><span>dossier</span></div>
+<div><b>115</b><span>skipped</span></div>
+</div>
+
+<h2>All ten in hand <small>scroll inside a phone</small></h2>
+<div class="grid">
+<figure class="phone"><figcaption><span class="pname">1. Top Auto Body</span><a class="go small" href="https://hjsdesigns.github.io/demos/top-auto-body-fife/">Open</a></figcaption><div class="frame"><iframe src="../top-auto-body-fife/index.html" title="Top Auto Body" loading="lazy"></iframe></div></figure>
+<figure class="phone"><figcaption><span class="pname">2. Sapporo &amp; Sushi Restaurant</span><a class="go small" href="https://hjsdesigns.github.io/demos/sapporo-and-sushi-restaurant-fife/">Open</a></figcaption><div class="frame"><iframe src="../sapporo-and-sushi-restaurant-fife/index.html" title="Sapporo &amp; Sushi Restaurant" loading="lazy"></iframe></div></figure>
+<figure class="phone"><figcaption><span class="pname">3. Wendy&#x27;s Dog&#x27;gone Good Groomers</span><a class="go small" href="https://hjsdesigns.github.io/demos/wendys-doggone-good-groomers/">Open</a></figcaption><div class="frame"><iframe src="../wendys-doggone-good-groomers/index.html" title="Wendy&#x27;s Dog&#x27;gone Good Groomers" loading="lazy"></iframe></div></figure>
+<figure class="phone"><figcaption><span class="pname">4. South Hill Nails</span><a class="go small" href="https://hjsdesigns.github.io/demos/south-hill-nails/">Open</a></figcaption><div class="frame"><iframe src="../south-hill-nails/index.html" title="South Hill Nails" loading="lazy"></iframe></div></figure>
+<figure class="phone"><figcaption><span class="pname">5. Ink&#x27;d Ink.</span><a class="go small" href="https://hjsdesigns.github.io/demos/inkd-ink-sumner/">Open</a></figcaption><div class="frame"><iframe src="../inkd-ink-sumner/index.html" title="Ink&#x27;d Ink." loading="lazy"></iframe></div></figure>
+<figure class="phone"><figcaption><span class="pname">6. Kissed By Chloe</span><span class="tag bad">building</span></figcaption><div class="frame"><div class="ph">building…</div></div></figure>
+<figure class="phone"><figcaption><span class="pname">7. Bayabelle Boutique</span><a class="go small" href="https://hjsdesigns.github.io/demos/bayabelle-boutique-sumner/">Open</a></figcaption><div class="frame"><iframe src="../bayabelle-boutique-sumner/index.html" title="Bayabelle Boutique" loading="lazy"></iframe></div></figure>
+<figure class="phone"><figcaption><span class="pname">8. Sumner Nails</span><span class="tag bad">building</span></figcaption><div class="frame"><div class="ph">building…</div></div></figure>
+<figure class="phone"><figcaption><span class="pname">9. Teriyaki Town</span><span class="tag bad">building</span></figcaption><div class="frame"><div class="ph">building…</div></div></figure>
+<figure class="phone"><figcaption><span class="pname">10. Yoko Teriyaki</span><span class="tag bad">building</span></figcaption><div class="frame"><div class="ph">building…</div></div></figure>
+</div>
+
+<h2>Sumner <small>10 min from Lake Tapps</small></h2><article class="card">
+<h3>Wendy&#x27;s Dog&#x27;gone Good Groomers <span class="tag ok">HIGH ticket</span></h3>
+<p class="where">16202 64th St E, Suite 105 · Sumner, WA 98390</p>
+<p class="where">Open Tuesday <b>9 am – 5 pm</b> · (253) 750-4792</p>
+<div class="btns"><a class="go" href="https://hjsdesigns.github.io/demos/wendys-doggone-good-groomers/">Open the demo</a><a class="tel" href="tel:2537504792">Call</a><span class="ask">$1,200</span></div>
+<p class="row"><b>What</b> <span>picked <b>inked</b> · runner-up <b>under-the-sign</b> · interactive: Sixteen dogs Wendy sent home  (section #wall)</span></p>
+<p class="row"><b>Why</b> <span>41 finished-groom photos and a reputation for calming fearful rescue dogs, all trapped in a Facebook feed.</span></p>
+<p class="row"><b>Photos</b> <span>own photos — <span class="mut">All 41 originals curl&#x27;d at =w1920-k-no from the business&#x27;s own Google listing (URLs in the dossier).</span></span></p>
+<p class="row"><b>Reviews</b> <span>3 faces (Google) — <span class="mut">Tracie Kendall — Google — 5★ — 7 months ago — real published avatar (images/rev-1.jpg) · melissa Byk — Google Local Guide — 5★ — 2 years ago — real published avatar…</span></span></p>
+<p class="row"><b>Revenue read</b> <span>ticket HIGH · tier 3 · <span class="mut">hunt note: Tuesday 9 AM–5 PM confirmed on the live Google panel.</span></span></p>
+<p class="row"><b>QA</b> <span>green×2</span></p>
+<details class="asks"><summary>Ask the owner — 2 <span class="mut">(facts.json + Clients.md)</span></summary><ol><li>Two of her own Google photos (harvest-0908/g27.jpg and g30.jpg) are a handwritten cardboard sign reading &#x27;OPEN 7 DAYS A WEEK 9a – 4p&#x27;. The photos are undated and conflict with Google on BOTH the days (7 vs 6) and the closing time (4 pm vs 5 pm). The page publishes the Google hours because that is what a customer sees today. CONFIRM AT THE DOOR before this goes live.</li><li>6 items — full list on the board row and in the build report</li></ol></details>
+</article><article class="card">
+<h3>Ink&#x27;d Ink. <span class="tag ok">HIGH ticket</span></h3>
+<p class="where">909 Alder Ave, Suite 202, Sumner, WA 98390</p>
+<p class="where">Open Tuesday <b>12 – 9 pm</b> · (360) 250-0632</p>
+<div class="btns"><a class="go" href="https://hjsdesigns.github.io/demos/inkd-ink-sumner/">Open the demo</a><a class="tel" href="tel:3602500632">Call</a><span class="ask">$1,500</span></div>
+<p class="row"><b>What</b> <span>picked <b>drip</b> · runner-up <b>quiet-suite</b> · interactive: Tap a style. See the work.  (section #work)</span></p>
+<p class="row"><b>Why</b> <span>Everything they sell is visual — glitter realism tattoos and hyper-real permanent makeup — and it all lives behind a Milkshake link-in-bio with no gallery, no artist page and no before/after.</span></p>
+<p class="row"><b>Photos</b> <span>own photos — <span class="mut">ledger: photos=20 real (17 portfolio + suite + owner + the 909 doorway)</span></span></p>
+<p class="row"><b>Reviews</b> <span>link-out (4.6 on Google; no name+face pair sourceable — Maps panel degraded, Yelp blocked to curl/WebFetch/headless)</span></p>
+<p class="row"><b>Revenue read</b> <span>ticket HIGH · tier 1 · <span class="mut">hunt note: All 7 days pulled from the live Google panel.</span></span></p>
+<p class="row"><b>QA</b> <span>green×2</span></p>
+<details class="asks"><summary>Ask the owner — 1 <span class="mut">(Clients.md)</span></summary><ol><li>9 items — full list on the board row and in the build report</li></ol></details>
+</article><article class="card building">
+<h3>Kissed By Chloe <span class="tag bad">building</span><span class="tag ok">MED-HIGH ticket</span><span class="tag warn">photo source unverified</span></h3>
+<p class="where">1018 Main St, Sumner, WA 98390</p>
+<p class="where">Open Tuesday <b>10:00 AM – 5 PM</b> · (253) 447-7389</p>
+<div class="btns"><span class="tag bad">no link yet — still building</span><a class="tel" href="tel:2534477389">Call</a><span class="ask">$1,000</span></div>
+<p class="row"><b>What</b> <span>hero NOT RECORDED YET — no NOTE.md and no ledger row · <span class="unv">interactive NOT RECORDED</span></span></p>
+<p class="row"><b>Why</b> <span>A ten-year-old western boutique with a strong, specific look and 42 photos of it — and nothing but a Facebook feed to shop from.</span></p>
+<p class="row"><b>Photos</b> <span class="unv">photo source NOT RECORDED — verify before pitching</span></p>
+<p class="row"><b>Reviews</b> <span>not recorded yet</span></p>
+<p class="row"><b>Revenue read</b> <span>ticket MED-HIGH · tier 3 · <span class="mut">hunt note: Tuesday 10 AM–5 PM confirmed on the live Google panel; the rest of the week from their published hours (Mon–Sat 10–5, Sun 11–4) — confirm at the door.</span></span></p>
+<p class="row"><b>QA</b> <span class="unv">not logged yet</span></p>
+<p class="row"><b>Ask</b> <span class="unv">none recorded yet</span></p>
+</article><article class="card">
+<h3>Bayabelle Boutique <span class="tag ok">MED-HIGH ticket</span></h3>
+<p class="where">926 Main St #101, Sumner, WA 98390</p>
+<p class="where">Open Tuesday <b>10:00 AM – 6:00 PM</b> · (253) 447-8530</p>
+<div class="btns"><a class="go" href="https://hjsdesigns.github.io/demos/bayabelle-boutique-sumner/">Open the demo</a><a class="tel" href="tel:2534478530">Call</a><span class="ask">$1,200</span></div>
+<p class="row"><b>What</b> <span>picked <b>open-door</b> · runner-up <b>under-the-clock</b> · interactive: LOOK AROUND — four real photographs of their own room behind four labelled pills. One tap, the frame swaps, tap the lit one again and you&#x27;re back in the middle of the room. No numbers to read, no modes.</span></p>
+<p class="row"><b>Why</b> <span>Google has no website for them at all, and their own store URL is a locked Shopify password screen.</span></p>
+<p class="row"><b>Photos</b> <span>own photos — <span class="mut">All seven Google photos appear to have been shot in a November — cedar wreaths on the doors, a flocked tree, a letterboard reading NOVEMBER 1ST.</span></span></p>
+<p class="row"><b>Reviews</b> <span>link-out — no name+face pair sourceable — <span class="mut">No name+profile-image pair was sourceable.</span></span></p>
+<p class="row"><b>Revenue read</b> <span>ticket MED-HIGH · tier 2 · 5.0★ (count not published) (facts.json) · <span class="mut">hunt note: Tuesday 10 AM–6 PM confirmed on the live Google panel; the rest (Mon–Sat 10–6, Sun 11–4) from their published hours — confirm at the door.</span></span></p>
+<p class="row"><b>QA</b> <span>green×2</span></p>
+<p class="row"><b>Ask</b> <span class="unv">none recorded yet</span></p>
+</article><article class="card building">
+<h3>Sumner Nails <span class="tag bad">building</span><span class="tag ok">MED ticket</span><span class="tag warn">photo source unverified</span></h3>
+<p class="where">1111 Main St, Sumner, WA 98390</p>
+<p class="where">Open Tuesday <b>9:00 AM – 5 PM</b> · (253) 862-4214</p>
+<div class="btns"><span class="tag bad">no link yet — still building</span><a class="tel" href="tel:2538624214">Call</a><span class="ask">$750</span></div>
+<p class="row"><b>What</b> <span>hero NOT RECORDED YET — no NOTE.md and no ledger row · <span class="unv">interactive NOT RECORDED</span></span></p>
+<p class="row"><b>Why</b> <span>Tony and Tina are the whole product — customers write about them by name — and there is nothing online but a phone number.</span></p>
+<p class="row"><b>Photos</b> <span class="unv">photo source NOT RECORDED — verify before pitching</span></p>
+<p class="row"><b>Reviews</b> <span>not recorded yet</span></p>
+<p class="row"><b>Revenue read</b> <span>ticket MED · tier 3 · <span class="mut">hunt note: All 7 days pulled directly from the live Google panel and independently matched by the directory listings.</span></span></p>
+<p class="row"><b>QA</b> <span class="unv">not logged yet</span></p>
+<p class="row"><b>Ask</b> <span class="unv">none recorded yet</span></p>
+</article><h2>Puyallup / South Hill <small>15–20 min</small></h2><article class="card">
+<h3>South Hill Nails <span class="tag ok">HIGH ticket</span></h3>
+<p class="where">11910 Meridian E, Puyallup, WA 98373</p>
+<p class="where">Open Tuesday <b>9:30 AM – 7:00 PM</b> · (253) 848-9885</p>
+<div class="btns"><a class="go" href="https://hjsdesigns.github.io/demos/south-hill-nails/">Open the demo</a><a class="tel" href="tel:2538489885">Call</a><span class="ask">$1,200</span></div>
+<p class="row"><b>What</b> <span>picked <b>marquee</b> · runner-up <b>spotlight</b> · interactive: Tap a set to see it up close  (section #signature)</span></p>
+<p class="row"><b>Why</b> <span>265 Google reviews, 188 on Yelp, and no website at all — every one of those searchers lands on a Google card with no menu, no price list, no way to see the work.</span></p>
+<p class="row"><b>Photos</b> <span>own photos — <span class="mut">ledger: photos=9 real (2 exterior, sign legible)</span></span></p>
+<p class="row"><b>Reviews</b> <span>link-out (no name+face pair sourceable — Maps panel degraded, Yelp DataDome-walled)</span></p>
+<p class="row"><b>Revenue read</b> <span>ticket HIGH · tier TIER 3 · <span class="mut">hunt note: Best of the batch: 265 Google + 188 Yelp reviews, zero site.</span></span></p>
+<p class="row"><b>QA</b> <span>green×2</span></p>
+<details class="asks"><summary>Ask the owner — 6 <span class="mut">(facts.json + Clients.md)</span></summary><ol><li>not published anywhere: owner name / founding year / owner story</li><li>not published anywhere: any price list (belliata: &#x27;No services and prices added yet&#x27;)</li><li>not published anywhere: email address</li><li>not published anywhere: Instagram</li><li>not published anywhere: individual reviewer name + profile-photo pairs (Google Maps is degraded to signed-out headless; Yelp is DataDome-walled to curl, WebFetch and headless Playwright)</li><li>5 items — full list on the board row and in the build report</li></ol></details>
+</article><article class="card building">
+<h3>Teriyaki Town <span class="tag bad">building</span><span class="tag ok">MED ticket</span></h3>
+<p class="where">5605 112th St E, Ste 100, Puyallup, WA 98373</p>
+<p class="where">Open Tuesday <b>10:30 AM – 9:00 PM</b> · (253) 445-2443</p>
+<div class="btns"><span class="tag bad">no link yet — still building</span><a class="tel" href="tel:2534452443">Call</a><span class="ask">$750</span></div>
+<p class="row"><b>What</b> <span>hero NOT RECORDED YET — no NOTE.md and no ledger row · interactive: ORDER BY NUMBER — five plates cropped from their own printed board, each with its real code chip. Tap one, its code flips up big with the dish name. No prices, no hours, no address restated.</span></p>
+<p class="row"><b>Why</b> <span>Their only &#x27;site&#x27; is a Menu11 order page that takes a cut and shows none of the shop.</span></p>
+<p class="row"><b>Photos</b> <span>own photos — <span class="mut">storefront-tall.jpg / storefront-wide.jpg: harvest g15 — the real building on 112th, the 3-D channel-letter sign, OPEN neon lit.</span></span></p>
+<p class="row"><b>Reviews</b> <span>link-out — no name+face pair sourceable — <span class="mut">No reviewer name + profile-image pair could be sourced.</span></span></p>
+<p class="row"><b>Revenue read</b> <span>ticket MED · tier TIER 1 · 4.1★ from 255 reviews (facts.json) · <span class="mut">hunt note: TIER 1: website button = Menu11 order page.</span></span></p>
+<p class="row"><b>QA</b> <span class="unv">not logged yet</span></p>
+<p class="row"><b>Ask</b> <span class="unv">none recorded yet</span></p>
+</article><h2>Milton / Edgewood <small>18 min</small></h2><article class="card building">
+<h3>Yoko Teriyaki <span class="tag bad">building</span><span class="tag ok">MED ticket</span><span class="tag warn">photo source unverified</span></h3>
+<p class="where">2800 Milton Way #18, Milton, WA 98354 (Milton Plaza)</p>
+<p class="where">Open Tuesday <b>11:00 AM – 9:00 PM</b> · (253) 952-3266</p>
+<div class="btns"><span class="tag bad">no link yet — still building</span><a class="tel" href="tel:2539523266">Call</a><span class="ask">$750</span></div>
+<p class="row"><b>What</b> <span>hero NOT RECORDED YET — no NOTE.md and no ledger row · <span class="unv">interactive NOT RECORDED</span></span></p>
+<p class="row"><b>Why</b> <span>Everything a customer finds is somebody else&#x27;s platform — Menu11 takes the order, DoorDash takes a cut, and neither shows the shop.</span></p>
+<p class="row"><b>Photos</b> <span class="unv">photo source NOT RECORDED — verify before pitching</span></p>
+<p class="row"><b>Reviews</b> <span>not recorded yet</span></p>
+<p class="row"><b>Revenue read</b> <span>ticket MED · tier 1 · <span class="mut">hunt note: Full 7-day hours confirmed, Sunday CLOSED.</span></span></p>
+<p class="row"><b>QA</b> <span class="unv">not logged yet</span></p>
+<p class="row"><b>Ask</b> <span class="unv">none recorded yet</span></p>
+</article><h2>Fife <small>25 min</small></h2><article class="card">
+<h3>Top Auto Body <span class="tag ok">HIGH ticket</span></h3>
+<p class="where">5717 Pacific Hwy E, Fife, WA 98424</p>
+<p class="where">Open Tuesday <b>8:00 AM – 5:00 PM</b> · (253) 922-8822</p>
+<div class="btns"><a class="go" href="https://hjsdesigns.github.io/demos/top-auto-body-fife/">Open the demo</a><a class="tel" href="tel:2539228822">Call</a><span class="ask">$1,500</span></div>
+<p class="row"><b>What</b> <span>picked <b>rollup</b> · runner-up <b>pylon</b> · interactive: One corner. Both ends of the job.  (section #signature)</span></p>
+<p class="row"><b>Why</b> <span>A 4.9-rated collision shop with no website at all — every customer comparing body shops after a wreck finds Yelp&#x27;s version of them, not theirs.</span></p>
+<p class="row"><b>Photos</b> <span>own photos — <span class="mut">Google Business Profile photo set, harvested at =w1920-k-no on 2026-09-08 (14 originals; 1 rejected at 586x478 for the photo-size floor, kept only as the header/footer badge where it is crisp).</span></span></p>
+<p class="row"><b>Reviews</b> <span>3 real name+face pairs — <span class="mut">Kim D, Ronny 2k20, Issac Beagle</span></span></p>
+<p class="row"><b>Revenue read</b> <span>ticket HIGH · tier 3 · 4.9★ from 107 reviews (facts.json) · <span class="mut">hunt note: Best lead of the night.</span></span></p>
+<p class="row"><b>QA</b> <span>green×2</span></p>
+<details class="asks"><summary>Ask the owner — 7 <span class="mut">(facts.json)</span></summary><ol><li>Cesar&#x27;s surname (not published anywhere).</li><li>The correct spelling of the second name in the reviews — &#x27;Tyrell&#x27; or &#x27;Terrell&#x27;.</li><li>Do they still do AUTO GLASS? The previous owner&#x27;s sign advertised &#x27;GLASS &amp; SALES&#x27;; the current sign does not, so the page claims neither.</li><li>Which insurers they&#x27;re a direct-repair shop for — two customer reviews say they &#x27;work with all major and minor insurance companies&#x27;, but that is the customers&#x27; wording, not the shop&#x27;s, so the page only carries it inside the quote.</li><li>Holiday hours (nothing published).</li><li>A shop email address — there is none anywhere; the demo form is wired to the owner&#x27;s inbox at go-live.</li><li>Whether Top Auto Body is happy running Issac Beagle&#x27;s real Google avatar (his dog) on a review card.</li></ol></details>
+</article><article class="card">
+<h3>Sapporo &amp; Sushi Restaurant <span class="tag ok">HIGH ticket</span></h3>
+<p class="where">4803 Pacific Hwy E, Fife, WA 98424</p>
+<p class="where">Open Tuesday <b>10:30 AM – 9:00 PM</b> · (253) 922-5656</p>
+<div class="btns"><a class="go" href="https://hjsdesigns.github.io/demos/sapporo-and-sushi-restaurant-fife/">Open the demo</a><a class="tel" href="tel:2539225656">Call</a><span class="ask">$1,500</span></div>
+<p class="row"><b>What</b> <span>picked <b>sign-lights</b> · runner-up <b>walk-in</b> · interactive: Five words you&#x27;ll want at the counter  (section #signature)</span></p>
+<p class="row"><b>Why</b> <span>Four separate platforms take their orders — Menu11, DoorDash, Postmates, order.online — and not one of them shows the room, the sushi bar or the chef.</span></p>
+<p class="row"><b>Photos</b> <span>own photos — <span class="mut">ledger: photos=18 real (exterior YES, sign legible)</span></span></p>
+<p class="row"><b>Reviews</b> <span>4 name+face pairs from Google</span></p>
+<p class="row"><b>Revenue read</b> <span>ticket HIGH · tier 1 · <span class="mut">hunt note: Highest ticket.</span></span></p>
+<p class="row"><b>QA</b> <span>green×2</span></p>
+<details class="asks"><summary>Ask the owner — 5 <span class="mut">(Clients.md)</span></summary><ol><li>owner&#x27;s name</li><li>year opened</li><li>the logo file</li><li>whether Sat 11–9 / Sun closed is still right</li><li>and whether they want online ordering wired in</li></ol></details>
+</article>
+
+<h2>Ready to build <small>8 dossiers · no site yet</small></h2>
+<table>
+<tr><td>Dew Point Coffee Company</td><td>2908 Meridian Ave E, Edgewood, WA 98371 · 5:00 AM – 7:00 PM · MED ticket<br><span class="mut">Their entire web presence is a Facebook page — a customer who Googles them gets no menu, no hours page, no way to see the drinks before pulling in.</span></td></tr>
+<tr><td>Brew Box Coffee House</td><td>2425 Meridian Ave E, Edgewood, WA 98371 · 4:30 AM – 5:30 PM (Google) / 5:00 PM (listings) — conflict · MED ticket<br><span class="mut">Their Google listing is UNCLAIMED — no website, no phone number, Google is asking strangers to fill it in.</span></td></tr>
+<tr><td>Salon Edge</td><td>2504 Milton Way, Milton, WA 98354 · 9:00 AM – 7:00 PM (Google) / 8:00 PM (listings) — conflict · MED ticket<br><span class="mut">Their two direct competitors on the same road (Salon Perfection, Divine Style) both have real websites; Salon Edge has an unclaimed Google listing and an Instagram.</span></td></tr>
+<tr><td>Joy Teriyaki</td><td>13105 Meridian E, Ste 106, Puyallup, WA 98373 · 11:00 AM – 8:30 PM · MED ticket<br><span class="mut">No site at all, so the menu only exists on Zmenu and UberEats — both of which take a cut or bury them.</span></td></tr>
+<tr><td>Hello Pho</td><td>16116 Meridian E, Ste L, Puyallup, WA 98375 · 10:00 AM – 9:00 PM · MED ticket<br><span class="mut">Their &#x27;website&#x27; is a Clover ordering page — no hours, no story, no photos of the room, and a platform fee on every order.</span></td></tr>
+<tr><td>Sunrise Nails &amp; Spa</td><td>16116 Meridian E, Ste K, Puyallup, WA 98375 · 9:00 AM – 7:00 PM · MED ticket<br><span class="mut">209 reviews and nothing to send anyone to — no price list, no gallery of the work, no way to see the room.</span></td></tr>
+<tr><td>Beauty Nails</td><td>5605 112th St E, #50, Puyallup, WA 98373 · 9:00 AM – 7:00 PM · MED ticket<br><span class="mut">115 reviews, open seven days a week, and nothing online but a Google pin — no prices, no gallery, no booking.</span></td></tr>
+<tr><td>Main Street Tattoo</td><td>1011 Main St Ste B, Sumner, WA 98390 · 10:00 AM – 6 PM · HIGH ticket<br><span class="mut">They renamed the whole shop and moved towns, and the only thing on the internet is a Facebook page still living at the old Clever Rebel URL.</span></td></tr>
+</table>
+
+<div class="next"><b>Next:</b> say <b>"create a shareable link for &lt;business&gt;"</b> per site after revisions.</div>
+<p class="foot">Every line is read off a file: hunt-*.json (angle, ticket, Tuesday hours), each build's facts.json and versions/variants/NOTE.md (hero, photos, reviews, asks), batman/2026-09-08/ledger.md (QA, photo counts), the built page itself (the interactive's own heading) and Clients.md (tier, pitch number). Anything a source didn't cover is printed in red as NOT RECORDED — nothing is filled in from memory. Phone frames load the local copies in demos-pages/; the Open buttons go to the live GitHub Pages URLs, which need tonight's push first.</p>
+</main>

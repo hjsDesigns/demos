@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bayabelle Boutique — women's clothing and gifts, 926 Main St, downtown Sumner WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Bayabelle Boutique on Main Street in downtown Sumner — dresses, floral midi skirts, knits, denim, hats, jewellery and gifts, with new arrivals every week. Open seven days. Too far to drive? Call and they'll ship it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Playfair Display (display — SIGN-FONT LAW, their blade sign) + Karla (body).
+     Must match --display / --body in css/style.css. -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=0908052604">
+<link rel="stylesheet" href="css/hero.css?v=0908052604">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Bayabelle Boutique — home">
+      <img src="images/mark.png" alt="" width="720" height="473">
+      <span class="wm">Bayabelle<small>Sumner, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hours">Hours</a>
+        <a href="#shop">In the shop</a>
+        <a href="#signature">Look around</a>
+        <a href="#about">The shop</a>
+        <a href="#contact" class="nav-cta">Visit</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero — VARIANT: open-door =====================
+       EXTERIOR HERO DEFAULT (2026-09-04): every interior shot appears
+       further down the page, so the opener is the outside of the store —
+       their own two glass doors on Main Street.
+
+       The idea: the door, opening. You arrive out of focus the way you do
+       on the sidewalk; their real bouquet (cut from their own logo file,
+       never redrawn) settles in, the name wipes across in the blade sign's
+       face as live crisp type (SIGN-FONT + CRISP RULE), and on the last
+       beat the whole doorway pulls sharp. 2.6s, once, then nothing moves.
+       Nothing sits on the photograph but the mark block and two buttons.
+       Runner-up kept whole in versions/variants/ — see NOTE.md.
+       ==================================================================== -->
+  <section class="hero v-open-door" id="hero">
+    <h1 class="sr-only">Bayabelle Boutique — women's clothing, accessories and gifts at 926 Main St in downtown Sumner, Washington</h1>
+
+    <div class="hero-shot">
+      <picture>
+        <source media="(max-width:760px)" srcset="images/hero-tall.jpg" width="1902" height="2200">
+        <img src="images/hero-wide.jpg"
+             alt="The front doors of Bayabelle Boutique on Main Street in Sumner — cedar and fir wreaths hung on both glass doors, a round OPEN sign, brass door pulls, and a mannequin on the sidewalk in a cream sweater and a floral midi skirt"
+             fetchpriority="high" width="2200" height="1375">
+      </picture>
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-mark" aria-hidden="true">
+        <img class="mark-sprig" src="images/mark.png" alt="" width="720" height="473">
+        <span class="mark-name">Bayabelle</span>
+        <span class="mark-sub">boutique</span>
+      </div>
+      <p class="hero-line">Women's clothing, accessories and gifts on Main Street in Sumner.</p>
+      <div class="hero-actions">
+        <a href="#shop" class="btn btn-primary">See what's in the shop</a>
+        <a href="tel:+12534478530" class="btn btn-cream">Call the shop</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       The Bridget's "When to find us" band. Live Pacific clock, all seven
+       days with today lit, and the address. Hours, live status and the
+       address live HERE and nowhere else on the page (NEVER TWICE). -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Open <em>every day</em> on Main Street</h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          926 Main St #101, Sumner, WA 98390<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=926+Main+St+%23101%2C+Sumner%2C+WA+98390" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 5.0 on Google</span>
+          <span class="proof"><span class="ico">✓</span> New arrivals every week</span>
+          <span class="proof"><span class="ico">✓</span> They'll ship it if you call</span>
+        </div>
+        <p class="hours-note">Holiday hours aren't posted anywhere — worth a quick call before you drive over.</p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">10:00 AM – 6:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">10:00 AM – 6:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">10:00 AM – 6:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">10:00 AM – 6:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:00 AM – 6:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">10:00 AM – 6:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 4:00 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #shop =====================
+       STOREFRONT BELOW THE HOURS (2026-09-02): the opener is the doorway,
+       so this section leads with the other exterior — their blade sign
+       hanging off the Sumner town clock.
+       TITLE CARDS UNROLL (2026-08-27): each headline is itself the tap
+       target and rolls the real items out in place, behind a downward
+       chevron (ARROW LAW). Every item below was read off their own
+       photographs. Nothing is invented and nothing is priced, because no
+       prices are published anywhere. -->
+  <section class="section" id="shop">
+    <div class="wrap">
+      <div class="shop-top">
+        <figure class="print reveal">
+          <img src="images/storefront.jpg" alt="The Bayabelle Boutique blade sign — a white oval reading BAYABELLE boutique with a painted flower bouquet and est '13 — hanging from the green Sumner town clock tower against a blue sky" loading="lazy" width="1847" height="2200">
+          <figcaption>The white oval, under the Sumner clock</figcaption>
+        </figure>
+        <div class="section-head reveal">
+          <p class="eyebrow">Inside the shop</p>
+          <h2>What's <em>on the floor</em></h2>
+          <p>One big daylit room, and it turns over fast — new things land every week. So this isn't a catalogue, it's the shape of the place: what hangs on the racks, what's folded on the tables, and what's laid out by the till.</p>
+        </div>
+      </div>
+
+      <div class="boards">
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-racks">
+            <h3>On the racks</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Read off their own photographs</p>
+          <div class="rolled" id="roll-racks">
+            <ul>
+              <li>Floral midi skirts<small>The print that's on the mannequin out front</small></li>
+              <li>Printed cotton dresses</li>
+              <li>A teal smocked sundress</li>
+              <li>Cable knits and cotton sweaters</li>
+              <li>Cream pullovers with tie hems</li>
+              <li>Ribbed thermals and long sleeves</li>
+              <li>Denim</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-tables">
+            <h3>Folded on the tables</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">The long pine table in the middle</p>
+          <div class="rolled" id="roll-tables">
+            <ul>
+              <li>Navy throw blankets, white dots</li>
+              <li>Fringed knit throws</li>
+              <li>Waffle knits and ribbed tees</li>
+              <li>Felt wide-brim hats</li>
+              <li>Ball caps</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-little">
+            <h3>The little things</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Laid out in baskets by the till</p>
+          <div class="rolled" id="roll-little">
+            <ul>
+              <li>Claw clips and hair ties</li>
+              <li>Earrings</li>
+              <li>Candle tins</li>
+              <li>Little zip pouches</li>
+              <li>Greeting cards</li>
+              <li>Temporary tattoos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-gifts">
+            <h3>Gifts, ready to hand over</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">The shelves along the back wall</p>
+          <div class="rolled" id="roll-gifts">
+            <ul>
+              <li>Jigsaw puzzles</li>
+              <li>Gift tins</li>
+              <li>Books and a cookbook shelf</li>
+              <li>Small canvases and prints</li>
+              <li>Fresh and dried flower bunches</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — LOOK AROUND =====================
+       Section 5 (INTERACTIVE = SECTION 4 OR LOWER, 2026-09-02). Four real
+       photographs of their own room behind four labelled pills. One tap and
+       you're standing somewhere else in the shop; tap the lit pill again
+       and you're back in the middle of the floor. Nothing to read, nothing
+       to win, no modes, no numbers to work out. TODDLER LAW.
+       On phones the frame sits ABOVE the pills.
+       These four photographs live HERE and nowhere else on the page — the
+       viewer is the gallery, not a second one. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Standing in the middle of it</p>
+        <h2>Look <em>around</em></h2>
+        <p>Four corners of the shop, four taps. This is the actual room — their photographs, nothing staged for a website.</p>
+      </div>
+
+      <div class="viewer reveal">
+        <p class="viewer-hint" id="viewerHint">Tap a spot. You're standing there.</p>
+
+        <div class="viewer-frame" id="viewerFrame">
+          <img class="on" data-spot="room"  src="images/room.jpg"  alt="The main floor of Bayabelle Boutique — a long raw pine table stacked with folded jeans, cream knits and navy dot blankets, a pine bench in front of it on a navy floral rug, white and brass pendant lights, a blush-washed ceiling and a wall of windows onto Main Street" width="1650" height="2200">
+          <img data-spot="racks" src="images/racks.jpg" alt="Racks at Bayabelle Boutique — a teal smocked dress and cream floral-print dresses on wooden hangers, and a rail of navy floral midi skirts, with an earring display on the back wall" loading="lazy" width="1760" height="2200">
+          <img data-spot="knits" src="images/knits.jpg" alt="A window rack at Bayabelle Boutique hung with cream cotton knit sweaters with pink tie hems, dark denim, and grey and burgundy ribbed long sleeves" loading="lazy" width="1650" height="2200">
+          <img data-spot="table" src="images/table.jpg" alt="The display table at Bayabelle Boutique — folded cream knits and navy dot blankets, a basket of black and cream claw clips, gold candle tins, a pink pot of greenery and a grey letterboard" loading="lazy" width="1650" height="2200">
+        </div>
+
+        <div class="viewer-cap">
+          <b id="viewerLabel">The middle of the floor</b>
+          <span>Their photograph</span>
+        </div>
+
+        <ul class="spots" id="spots">
+          <li><button class="spot" type="button" data-spot="room" data-label="The middle of the floor" aria-pressed="true">
+            <img class="thumb" src="images/room.jpg" alt="" loading="lazy" width="1650" height="2200"><span class="lbl">The room</span></button></li>
+          <li><button class="spot" type="button" data-spot="racks" data-label="Dresses and skirts" aria-pressed="false">
+            <img class="thumb" src="images/racks.jpg" alt="" loading="lazy" width="1760" height="2200"><span class="lbl">The racks</span></button></li>
+          <li><button class="spot" type="button" data-spot="knits" data-label="Sweaters by the window" aria-pressed="false">
+            <img class="thumb" src="images/knits.jpg" alt="" loading="lazy" width="1650" height="2200"><span class="lbl">Knits</span></button></li>
+          <li><button class="spot" type="button" data-spot="table" data-label="The big pine table" aria-pressed="false">
+            <img class="thumb" src="images/table.jpg" alt="" loading="lazy" width="1650" height="2200"><span class="lbl">The table</span></button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews — the honest aggregate =====================
+       REVIEW ATTRIBUTION LAW (2026-09-06): a quote ships only with the real
+       reviewer's name AND their real profile image from the same source.
+       Google serves a degraded "limited view" for this listing (no reviews
+       tab, no avatars) and Yelp returns 403 to everything without a login,
+       so no name+photo pair was sourceable tonight. This band shows the
+       real score, claims NO review count because none was verifiable, and
+       links out to the live reviews. No anonymous quotes, no stock faces. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="score reveal">
+        <div class="score-num">
+          <b class="tnum">5.0</b>
+          <p class="score-stars" aria-label="5.0 out of 5 stars">★★★★★</p>
+        </div>
+        <div class="score-copy">
+          <h2>Five out of five <em>on Google</em></h2>
+          <p>That's the live score on their Google listing. Read what people actually said in their own words.</p>
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Bayabelle+Boutique%2C+926+Main+St%2C+Sumner%2C+WA+98390" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/tag.jpg" alt="A Bayabelle Boutique hangtag on a folded cream and black striped sweater — the tag is seed paper printed with the shop's name and the line about planting it to grow wildflowers, tied beside a cream satin bow" loading="lazy" width="1650" height="2200">
+          <figcaption>The tag that comes home with you</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The shop</p>
+          <h2>On Main Street <em>since '13</em></h2>
+
+          <blockquote class="from-shop">
+            <p>“We'll still have weekly new arrivals in store and if you are a customer from afar (hi you guys!) and see something you love posted on socials, please don't hesitate to give us a call and we'll be happy to ship to you!”</p>
+            <cite>Bayabelle Boutique, in their own words</cite>
+          </blockquote>
+
+          <p>The white oval hanging off the Sumner town clock says it plainly enough — <b>est '13</b>. It has been the same corner of Main Street ever since.</p>
+          <p>Inside it's one big daylit room. Cream walls with a blush wash carried up over the ceiling, raw pine tables and benches, white-and-brass pendants, a navy floral rug and a whole wall of windows onto the street. Dresses and skirts down one side, knits and denim by the windows, and the small stuff — clips, earrings, candles, cards — laid out on the long table in the middle.</p>
+          <p>And nothing leaves in a plain bag. Every tag is printed on seed paper: <em>“Plant this seed paper tag to grow wildflowers!”</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting here</p>
+          <h2>Come and see it <em>in person</em></h2>
+          <ol class="steps">
+            <li><h3>Just walk in</h3><p>No appointment, nothing to book. Three-hour street parking is signed right at the corner, under the clock.</p></li>
+            <li><h3>Too far to drive? Ring them</h3><p>Saw something on their page and you're out of town? Call the shop, say which one, and they'll ship it to you.</p></li>
+            <li><h3>Or send a message</h3><p>hello@bayabelle.com goes straight to the shop — sizes, holds, whether something's still on the rack.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12534478530">(253) 447-8530</a></span>
+            <span>✉️ <a href="mailto:hello@bayabelle.com">hello@bayabelle.com</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=926+Main+St+%23101%2C+Sumner%2C+WA+98390" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>Something I saw on your page</option><option>Sizes or a hold</option><option>Shipping it to me</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="What you're after, and the best way to reach you."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the shop</button>
+          <p class="form-success">Thanks — someone at Bayabelle will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more thing</p>
+        <h2>Look up for the <em>white oval</em></h2>
+        <p>It hangs off the town clock. If you can see the clock, you're already there.</p>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b class="tnum">5.0</b><span>on Google, straight fives</span></div>
+        <div class="num"><b class="tnum">2013</b><span>the year painted on the sign out front</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-primary">Get directions</a>
+        <a href="tel:+12534478530" class="btn btn-ghost">Call (253) 447-8530</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/mark.png" alt="" width="720" height="473"></span>
+          <span class="wm">Bayabelle Boutique<small>Sumner, Washington</small></span>
+        </div>
+        <p>A daylit room full of good things, on Main Street.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/p/Sumner-Bayabelle-Boutique-61566875711505/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>926 Main St #101<br>Sumner, WA 98390</p>
+        <p><a href="tel:+12534478530">(253) 447-8530</a></p>
+        <p><a href="mailto:hello@bayabelle.com">hello@bayabelle.com</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#hours">Hours</a><br><a href="#shop">In the shop</a><br><a href="#signature">Look around</a><br><a href="#about">The shop</a><br><a href="#contact">Visit</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Bayabelle Boutique</span>
+      <span>Downtown Sumner, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=0908052604"></script>
+</body>
+</html>
