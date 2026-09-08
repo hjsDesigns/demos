@@ -1,0 +1,120 @@
+/* ============================================================
+   ALL STAR AUTO BODY — hero variant 4: plain-type
+   Typographic opener, no photograph. Exactly the two things printed on their
+   own vinyl banner — ALL STAR AUTO BODY and 206.928.1600 — set in the site's
+   own display face (Archivo Black, already loaded) on the graphite ground of
+   their concrete-block bay. One shop lamp glows overhead so the ground is a
+   room, never flat black (MIRROR LAW). Four words land one at a time, the red
+   rule draws, the number fades up, and the frame then sits still except for a
+   very slow lamp breath. Plays once, deterministic, not interactive.
+   Namespaced .hero.v-plain-type — unique kf- keyframes.
+   ============================================================ */
+
+.hero.v-plain-type{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:var(--bg);
+  color:var(--ink);
+  isolation:isolate;
+}
+
+/* ---------- the ground: a lit shop, not a black card ---------- */
+.hero.v-plain-type .pt-ground{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(120% 78% at 50% 6%, #23272C 0%, #191C20 42%, #101316 78%, #0B0D0F 100%);
+}
+/* the overhead lamp pool — the only motion after the intro settles */
+.hero.v-plain-type .pt-lamp{position:absolute;left:50%;top:-16%;transform:translateX(-50%);
+  width:min(1200px,150%);height:78%;
+  background:radial-gradient(60% 60% at 50% 32%,
+    color-mix(in srgb,var(--warm) 24%,transparent) 0%,
+    color-mix(in srgb,var(--warm) 10%,transparent) 40%,
+    transparent 72%);
+  filter:blur(8px);
+  opacity:0;
+  animation:kf-pt-lamp-in 1.5s var(--ease) .05s forwards, kf-pt-breathe 11s ease-in-out 2.6s infinite;
+}
+/* the bay floor line — one hairline of graphite, keeps the frame grounded */
+.hero.v-plain-type .pt-floor{position:absolute;left:0;right:0;bottom:0;height:34%;
+  background:linear-gradient(180deg,transparent 0%,color-mix(in srgb,var(--dark) 72%,transparent) 100%);
+}
+
+/* ---------- the mark ---------- */
+.hero.v-plain-type .hero-inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);
+  padding:calc(var(--pad) + 12px) var(--pad) var(--pad);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(26px,5vh,52px)}
+
+.hero.v-plain-type .pt-mark{display:flex;flex-direction:column;align-items:center;width:100%}
+
+.hero.v-plain-type .pt-line{display:flex;justify-content:center;
+  gap:clamp(10px,2.6vw,34px);flex-wrap:nowrap;width:100%;white-space:nowrap}
+
+.hero.v-plain-type .pt-word{
+  display:block;
+  font-family:var(--display);
+  font-weight:400;
+  font-size:clamp(2.6rem,13.2vw,9.5rem);
+  line-height:.94;
+  letter-spacing:-.015em;
+  color:var(--ink);
+  text-shadow:0 2px 0 rgba(0,0,0,.34), 0 18px 42px rgba(0,0,0,.42);
+  opacity:0;
+  transform:translateY(26px) scale(1.045);
+  animation:kf-pt-land .58s var(--ease-2) forwards;
+  animation-delay:calc(.22s + var(--i) * .2s);
+  will-change:transform,opacity;
+}
+/* the STAR in their name carries the banner's barn red — the one accent */
+.hero.v-plain-type .pt-word--red{color:var(--brand-bright)}
+
+/* the rule under the name — the banner's red bar, drawn once */
+.hero.v-plain-type .pt-rule{display:block;height:5px;width:min(560px,74%);
+  margin:clamp(18px,3.2vh,34px) 0 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--brand) 0%,var(--brand-bright) 52%,var(--brand) 100%);
+  transform:scaleX(0);transform-origin:50% 50%;
+  animation:kf-pt-rule .66s var(--ease) 1.14s forwards}
+
+.hero.v-plain-type .pt-phone{display:block;
+  margin-top:clamp(14px,2.4vh,24px);
+  font-family:var(--display);
+  font-size:clamp(1.05rem,3.5vw,2rem);
+  letter-spacing:.16em;
+  color:var(--brand-text);
+  opacity:0;transform:translateY(10px);
+  animation:kf-pt-phone .7s var(--ease) 1.5s forwards}
+
+.hero.v-plain-type .hero-actions{display:flex;flex-wrap:wrap;justify-content:center;
+  gap:14px;opacity:0;animation:kf-pt-phone .7s var(--ease) 1.86s forwards}
+
+/* ---------- keyframes (unique to this variant) ---------- */
+@keyframes kf-pt-land{
+  0%{opacity:0;transform:translateY(26px) scale(1.045)}
+  62%{opacity:1;transform:translateY(-3px) scale(.996)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes kf-pt-rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes kf-pt-phone{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes kf-pt-lamp-in{from{opacity:0}to{opacity:1}}
+@keyframes kf-pt-breathe{0%,100%{opacity:1}50%{opacity:.78}}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  .hero.v-plain-type .hero-inner{gap:clamp(22px,4.5vh,40px)}
+  .hero.v-plain-type .pt-word{font-size:clamp(2.1rem,11.4vw,4.6rem);letter-spacing:-.025em}
+  .hero.v-plain-type .pt-rule{width:78%}
+  .hero.v-plain-type .hero-actions .btn{flex:0 1 auto}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-plain-type .pt-word,
+  .hero.v-plain-type .pt-phone,
+  .hero.v-plain-type .hero-actions,
+  .hero.v-plain-type .pt-lamp{animation:none;opacity:1;transform:none}
+  .hero.v-plain-type .pt-rule{animation:none;transform:scaleX(1)}
+}

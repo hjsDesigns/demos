@@ -1,0 +1,209 @@
+/* ============================================================
+   HERO VARIANT — panel-stack (All Star Auto Body, Puyallup)
+   Three of their OWN finished cars deal in like paint chips off a fan
+   deck — red, black, blue — and their real banner sign lands on top.
+   One deterministic intro, then it holds. No loop. Not interactive.
+   Real assets: images/panel-stack-chip-red.jpg (ba-after.jpg, the
+   repaired red Altima quarter), -black.jpg (about.jpg, the finished
+   BMW), -blue.jpg (gallery-4.jpg, the finished Mustang),
+   panel-stack-mark.jpg (their vinyl banner), hero-stack-1.jpg (the red
+   barn shop, blurred as the ground).
+   ============================================================ */
+
+.hero.v-panel-stack{
+  --ps-chip-w:clamp(150px,20.5vw,268px);
+  --ps-chip-h:calc(var(--ps-chip-w) * 1.25);
+  --ps-fan-x:clamp(74px,10.5vw,164px);
+  --ps-fan-y:clamp(14px,2.2vw,30px);
+  --ps-fan-r:9deg;
+  --ps-mark-w:clamp(280px,38vw,520px);
+
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--bg);
+  isolation:isolate;
+}
+
+/* ---- ground: their own barn, blurred to an atmosphere ---- */
+.hero.v-panel-stack .hero-bg{
+  position:absolute;
+  inset:-8%;
+  z-index:0;
+}
+.hero.v-panel-stack .hero-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:blur(38px) saturate(.92) brightness(.62);
+  transform:scale(1.06);
+  animation:ps-ground-in 2600ms cubic-bezier(.22,.85,.3,1) both;
+}
+.hero.v-panel-stack .hero-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(122% 80% at 50% 36%, rgba(11,13,15,.04) 0%, rgba(11,13,15,.46) 60%, rgba(11,13,15,.80) 100%),
+    linear-gradient(to bottom, rgba(11,13,15,.46) 0%, rgba(11,13,15,.04) 36%, rgba(11,13,15,.70) 100%);
+}
+
+@keyframes ps-ground-in{
+  from{opacity:0;transform:scale(1.14)}
+  to  {opacity:1;transform:scale(1.06)}
+}
+
+/* ---- layout ---- */
+.hero.v-panel-stack .hero-inner{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:calc(var(--pad) * .8) var(--pad);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:clamp(22px,3.4vw,40px);
+  text-align:center;
+}
+
+.hero.v-panel-stack .ps-stage{
+  display:flex;
+  flex-direction:column-reverse;   /* the mark renders above the fan */
+  align-items:center;
+  width:100%;
+}
+
+/* ---- the mark: their real vinyl banner, on top ---- */
+.hero.v-panel-stack .ps-mark{
+  position:relative;
+  z-index:3;
+  width:var(--ps-mark-w);
+  margin-bottom:clamp(-30px,-2.4vw,-14px);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 22px 46px rgba(0,0,0,.62), 0 0 0 1px rgba(239,232,220,.14);
+  animation:ps-mark-land 900ms cubic-bezier(.22,.85,.3,1) 1180ms both;
+}
+.hero.v-panel-stack .ps-mark img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+@keyframes ps-mark-land{
+  from{opacity:0;transform:translateY(-26px) scale(.965)}
+  to  {opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* ---- the fan of finished-work chips ---- */
+.hero.v-panel-stack .ps-fan{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:calc(var(--ps-chip-h) + var(--ps-fan-y) + clamp(18px,2.6vw,34px));
+}
+
+.hero.v-panel-stack .ps-chip{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:var(--ps-chip-w);
+  height:var(--ps-chip-h);
+  margin:0 0 0 calc(var(--ps-chip-w) / -2);
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--dark);
+  box-shadow:0 26px 52px rgba(0,0,0,.66), 0 0 0 1px rgba(239,232,220,.13);
+  will-change:transform,opacity;
+}
+.hero.v-panel-stack .ps-chip img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero.v-panel-stack .ps-chip::after{      /* one thin guide-coat amber edge, the site's accent role */
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:2px;
+  background:var(--warm);
+  opacity:.72;
+}
+
+/* resting transforms = the final frame (what reduced motion lands on) */
+.hero.v-panel-stack .ps-chip-1{
+  z-index:1;
+  transform:translate(calc(var(--ps-fan-x) * -1), var(--ps-fan-y)) rotate(calc(var(--ps-fan-r) * -1));
+  animation:ps-deal-left 760ms cubic-bezier(.2,.9,.28,1) 180ms both;
+}
+.hero.v-panel-stack .ps-chip-3{
+  z-index:1;
+  transform:translate(var(--ps-fan-x), var(--ps-fan-y)) rotate(var(--ps-fan-r));
+  animation:ps-deal-right 760ms cubic-bezier(.2,.9,.28,1) 480ms both;
+}
+.hero.v-panel-stack .ps-chip-2{
+  z-index:2;
+  transform:translate(0,0) rotate(0deg) scale(1.045);
+  animation:ps-deal-centre 780ms cubic-bezier(.2,.9,.28,1) 780ms both;
+}
+
+@keyframes ps-deal-left{
+  from{opacity:0;transform:translate(0, 84px) rotate(0deg) scale(.9)}
+  60% {opacity:1}
+  to  {opacity:1;transform:translate(calc(var(--ps-fan-x) * -1), var(--ps-fan-y)) rotate(calc(var(--ps-fan-r) * -1))}
+}
+@keyframes ps-deal-right{
+  from{opacity:0;transform:translate(0, 84px) rotate(0deg) scale(.9)}
+  60% {opacity:1}
+  to  {opacity:1;transform:translate(var(--ps-fan-x), var(--ps-fan-y)) rotate(var(--ps-fan-r))}
+}
+@keyframes ps-deal-centre{
+  from{opacity:0;transform:translate(0, 92px) rotate(0deg) scale(.9)}
+  60% {opacity:1}
+  to  {opacity:1;transform:translate(0,0) rotate(0deg) scale(1.045)}
+}
+
+/* ---- the two existing buttons, unchanged ---- */
+.hero.v-panel-stack .hero-actions{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  animation:ps-actions-in 700ms cubic-bezier(.22,.85,.3,1) 1620ms both;
+}
+
+@keyframes ps-actions-in{
+  from{opacity:0;transform:translateY(12px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+
+/* ---- phone ---- */
+@media (max-width:640px){
+  .hero.v-panel-stack{
+    --ps-chip-w:min(158px,40vw);
+    --ps-fan-x:min(70px,18.5vw);
+    --ps-fan-r:8deg;
+    --ps-mark-w:min(320px,80vw);
+  }
+  .hero.v-panel-stack .hero-inner{gap:26px}
+  .hero.v-panel-stack .hero-actions{width:100%}
+  .hero.v-panel-stack .hero-actions .btn{flex:1 1 auto;min-width:150px}
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-panel-stack .hero-bg img,
+  .hero.v-panel-stack .ps-mark,
+  .hero.v-panel-stack .ps-chip,
+  .hero.v-panel-stack .hero-actions{
+    animation:none !important;
+  }
+}

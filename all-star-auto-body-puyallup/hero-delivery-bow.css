@@ -1,0 +1,164 @@
+/* ============================================================
+   ALL STAR AUTO BODY — hero variant 6: DELIVERY BOW
+   Pride of work. Their own photo of a finished car wearing the red
+   delivery bows, parked against their own red barn siding and stone
+   veneer (harvest g24). Their real banner mark lands over it, then one
+   gloss sweep crosses the paint like a fresh clear coat, and it holds.
+
+   Real assets, nothing drawn:
+     images/delivery-bow-car.jpg       — g24, cropped level, car whole (desktop)
+     images/delivery-bow-car-tall.jpg  — g24, taller crop, car whole (phone)
+     images/delivery-bow-echo.jpg      — the same frame, blurred + dimmed, as ground
+     images/claude-sign.jpg            — their real vinyl banner, perspective-corrected
+
+   Namespaced to .hero.v-delivery-bow. Keyframes prefixed db-.
+   CSS only — no JS. One intro, then quiet.
+   ============================================================ */
+
+.hero.v-delivery-bow{
+  justify-content:stretch;
+  background:var(--dark);
+}
+
+/* ---- ground: the same photo, blurred, so the frame sits in its own world ---- */
+.hero.v-delivery-bow .hero-bg img.db-echo{
+  object-position:50% 50%;
+  filter:saturate(.9) contrast(1.02);
+}
+.hero.v-delivery-bow .hero-bg::before{
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 78%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 44%,transparent) 36%,
+    color-mix(in srgb,var(--dark) 50%,transparent) 64%,
+    color-mix(in srgb,var(--dark) 88%,transparent) 100%);
+}
+@media (min-width:761px){
+  .hero.v-delivery-bow .hero-bg::before{
+    background:linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 76%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 40%,transparent) 38%,
+      color-mix(in srgb,var(--dark) 46%,transparent) 64%,
+      color-mix(in srgb,var(--dark) 88%,transparent) 100%);
+  }
+}
+
+/* ---- the stack: mark, the print, the two buttons ---- */
+.hero.v-delivery-bow .hero-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(16px,2.6vh,26px);
+  min-height:calc(100svh - var(--header-h));
+  padding-top:clamp(22px,4vh,48px);
+  padding-bottom:clamp(26px,4.6vh,56px);
+  text-align:center;
+}
+
+/* ---- their real banner, the headline ---- */
+.hero.v-delivery-bow .db-mark{
+  width:min(80vw,420px);
+  flex:0 0 auto;
+  filter:drop-shadow(0 22px 46px rgba(0,0,0,.72));
+  opacity:0;
+  transform:translateY(-16px) scale(1.06);
+  animation:db-mark-land .95s .25s cubic-bezier(.2,.9,.25,1) forwards;
+}
+.hero.v-delivery-bow .db-mark img{
+  width:100%;height:auto;display:block;border-radius:3px;
+}
+@keyframes db-mark-land{
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* ---- the print: their finished car, whole, never cropped through ---- */
+.hero.v-delivery-bow .db-frame{
+  position:relative;
+  margin:0;
+  flex:0 1 auto;
+  width:94vw;
+  aspect-ratio:1440/1150;
+  max-height:46svh;
+  overflow:hidden;
+  border-radius:var(--r);
+  border:1px solid color-mix(in srgb,var(--ink) 16%,transparent);
+  box-shadow:0 30px 70px -26px rgba(0,0,0,.9),0 2px 0 0 color-mix(in srgb,var(--ink) 7%,transparent) inset;
+  background:var(--bg-2);
+  opacity:0;
+  transform:translateY(16px) scale(.985);
+  animation:db-frame-in 1s .5s var(--ease) forwards;
+}
+@media (min-width:701px){
+  .hero.v-delivery-bow .db-frame{
+    width:auto;
+    height:min(46svh,calc(84vw * .5624));
+    max-height:none;
+    aspect-ratio:1700/956;
+    max-width:min(1080px,90vw);
+  }
+}
+.hero.v-delivery-bow .db-frame img.db-car{
+  width:100%;height:100%;
+  object-fit:cover;object-position:50% 52%;
+  filter:saturate(1.06) contrast(1.03);
+  transform:scale(1.045);
+  animation:db-settle 26s 1.4s var(--ease) forwards;
+}
+@keyframes db-frame-in{
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes db-settle{
+  to{transform:scale(1)}
+}
+
+/* ---- one gloss sweep across the paint, like a fresh clear coat ---- */
+.hero.v-delivery-bow .db-gloss{
+  position:absolute;
+  top:-24%;bottom:-24%;
+  left:-46%;
+  width:34%;
+  pointer-events:none;
+  mix-blend-mode:screen;
+  opacity:0;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.10) 34%,
+    rgba(255,255,255,.52) 50%,
+    rgba(255,255,255,.10) 66%,
+    rgba(255,255,255,0) 100%);
+  transform:translateX(0) skewX(-15deg);
+  animation:db-gloss-run 1.85s 1.05s cubic-bezier(.4,0,.3,1) forwards;
+}
+@keyframes db-gloss-run{
+  0%{opacity:0;transform:translateX(0) skewX(-15deg)}
+  14%{opacity:1}
+  86%{opacity:1}
+  100%{opacity:0;transform:translateX(340%) skewX(-15deg)}
+}
+
+/* ---- the two existing buttons, unchanged ---- */
+.hero.v-delivery-bow .hero-actions{
+  justify-content:center;
+  flex:0 0 auto;
+}
+.js .hero.v-delivery-bow .hero-actions{
+  opacity:0;transform:translateY(16px);
+  animation:db-actions-in .8s 1.5s var(--ease) forwards;
+}
+@keyframes db-actions-in{
+  to{opacity:1;transform:none}
+}
+
+/* ---- reduced motion: land on the final frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-delivery-bow .hero-bg img.db-echo,
+  .hero.v-delivery-bow .db-mark,
+  .hero.v-delivery-bow .db-frame,
+  .hero.v-delivery-bow .db-frame img.db-car,
+  .js .hero.v-delivery-bow .hero-actions{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
+  .hero.v-delivery-bow .db-gloss{animation:none;opacity:0}
+}

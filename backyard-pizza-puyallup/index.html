@@ -10,8 +10,8 @@
 <!-- Fredoka (display — sturdy rounded, matches the rounded neon lettering on their own sign)
      + Barlow (body). Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907164944">
-<link rel="stylesheet" href="css/hero.css?v=0907164944">
+<link rel="stylesheet" href="css/style.css?v=0907172725">
+<link rel="stylesheet" href="css/hero.css?v=0907172725">
 </head>
 <body>
 
@@ -50,24 +50,45 @@
        Background: harvest-0906/g6.jpg (their own mural wall at the order window),
        blurred into a colour field. Mark: harvest-0906/g2.jpg, their real lit sign,
        perspective-rectified and levelled — never redrawn. -->
-  <section class="hero" id="hero">
+  <!-- HERO variant: TRAILER-MOUNT (stand-still × mural-wall).
+       Ground: images/stand-still-stand.jpg (desktop) / -tall.jpg (phone) — the
+       real painted trailer in full daylight, held perfectly still.
+       Lockup: their own lit sign, taken apart and re-stacked in its real order —
+       stand-still-mark.png (the BACKYARD arch), skate-in-burger.png and
+       skate-in-pizza.png (the two real skateboarding mascots) and
+       trailer-mount-script.png ("Pizza & Burgers", keyed off claude-sign.jpg).
+       Every piece is a straight crop of their own sign. Nothing redrawn.
+       Move: one soft bloom on load, then the lockup settles DOWN onto the scene
+       like it is being mounted, its shadow growing in under it. Then it holds. -->
+  <section class="hero v-trailer-mount" id="hero">
     <h1 class="sr-only">Backyard Pizza &amp; Burgers — Indian-fusion and classic pizza, burgers and wings at 1824 S Meridian, Puyallup</h1>
 
-    <div class="ch-bg" aria-hidden="true">
-      <img src="images/claude-hero-blur.jpg" alt="" width="1500" height="1560" fetchpriority="high" decoding="async">
+    <div class="tm-bg" aria-hidden="true">
+      <picture>
+        <source media="(max-width:719px)" srcset="images/stand-still-stand-tall.jpg" width="770" height="1100">
+        <img src="images/stand-still-stand.jpg" alt="" width="1580" height="1440" fetchpriority="high" decoding="async">
+      </picture>
     </div>
-    <div class="ch-veil" aria-hidden="true"></div>
+    <div class="tm-scrim" aria-hidden="true"></div>
+    <div class="tm-bloom" aria-hidden="true"></div>
 
-    <div class="ch-inner">
-      <div class="ch-mark">
-        <span class="ch-glow" aria-hidden="true"></span>
-        <span class="ch-frame">
-          <img src="images/claude-sign.jpg" alt="The lit sign on the Backyard Pizza &amp; Burgers trailer: a skateboarding burger and a skateboarding pizza slice in neon" width="1000" height="969" fetchpriority="high">
-          <span class="ch-sweep" aria-hidden="true"></span>
-        </span>
+    <div class="tm-inner">
+      <div class="tm-lockup">
+        <img class="tm-arch" src="images/stand-still-mark.png"
+             alt="BACKYARD, arched in the neon lettering of the sign on their trailer"
+             width="1642" height="567" fetchpriority="high" decoding="async">
+        <div class="tm-riders" aria-hidden="true">
+          <img class="tm-rider tm-burger" src="images/skate-in-burger.png"
+               alt="" width="350" height="464" fetchpriority="high" decoding="async">
+          <img class="tm-rider tm-pizza" src="images/skate-in-pizza.png"
+               alt="" width="382" height="464" fetchpriority="high" decoding="async">
+        </div>
+        <img class="tm-script" src="images/trailer-mount-script.png"
+             alt="Pizza &amp; Burgers, in the script from the same sign"
+             width="880" height="160" decoding="async">
       </div>
 
-      <div class="hero-actions ch-actions">
+      <div class="hero-actions tm-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
         <a href="#hours" class="btn btn-cream">Are they open?</a>
       </div>
@@ -441,6 +462,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907164944"></script>
+<script src="js/site.js?v=0907172725"></script>
 </body>
 </html>

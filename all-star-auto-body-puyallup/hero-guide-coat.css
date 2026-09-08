@@ -1,0 +1,149 @@
+/* ============================================================
+   HERO VARIANT — guide-coat  (All Star Auto Body, Puyallup)
+   Namespaced under .hero.v-guide-coat. Self-contained: nothing here
+   touches the live hero or anything below the fold.
+
+   The whole opener is ONE real photograph of theirs (harvest g21 — a
+   finished red panel, water-beaded, inside their bay). It starts in a
+   flat grey guide-coat grade of that same frame; one sanding pass
+   crosses once, left to right, and the real colour and gloss come up
+   behind it. Then it sits still, with a very slow gloss breath.
+   ============================================================ */
+
+.hero.v-guide-coat{
+  position:relative;
+  height:calc(100svh - var(--header-h));
+  min-height:520px;
+  overflow:hidden;
+  background:var(--bg);
+  display:flex;
+  align-items:flex-end;
+  isolation:isolate;
+}
+
+/* ---- the photograph ------------------------------------------------ */
+.hero.v-guide-coat .gc-frame{ position:absolute; inset:0; z-index:0; }
+
+.hero.v-guide-coat .gc-photo,
+.hero.v-guide-coat .gc-coat{ position:absolute; inset:0; display:block; }
+
+.hero.v-guide-coat .gc-photo img,
+.hero.v-guide-coat .gc-coat img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:38% 46%;
+  display:block;
+}
+
+/* the guide-coat state: the SAME frame, graded flat and grey */
+.hero.v-guide-coat .gc-coat{
+  filter:grayscale(1) contrast(.78) brightness(1.02) sepia(.14);
+  clip-path:inset(0 0 0 0);
+  animation:gcCoatOff 1500ms cubic-bezier(.4,.02,.2,1) 420ms both;
+}
+/* a hair of dust sitting on the grey half, so it reads matte not just grey */
+.hero.v-guide-coat .gc-coat::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(120% 90% at 30% 40%, rgba(214,208,196,.10), transparent 70%),
+    linear-gradient(180deg, rgba(150,146,138,.16), rgba(120,117,110,.20));
+  mix-blend-mode:screen;
+}
+
+/* ---- the sanding pass --------------------------------------------- */
+.hero.v-guide-coat .gc-sand{
+  position:absolute; top:-12%; bottom:-12%;
+  left:0; width:26%;
+  transform:translateX(-140%) rotate(6deg);
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(229,180,95,.18) 34%,
+      rgba(255,246,232,.62) 52%,
+      rgba(229,180,95,.16) 68%,
+      rgba(255,255,255,0) 100%);
+  filter:blur(6px);
+  opacity:0;
+  pointer-events:none;
+  animation:gcSand 1620ms cubic-bezier(.4,.02,.2,1) 380ms both;
+}
+
+/* ---- the quiet hold: one slow gloss breath ------------------------- */
+.hero.v-guide-coat .gc-gloss{
+  position:absolute; inset:0;
+  background:linear-gradient(104deg, rgba(255,255,255,0) 38%, rgba(255,255,255,.14) 52%, rgba(255,255,255,0) 66%);
+  opacity:0; pointer-events:none;
+  animation:gcBreathe 11s ease-in-out 2400ms infinite;
+}
+
+/* the pool the type sits in — bottom-weighted, so the panel stays lit */
+.hero.v-guide-coat .gc-pool{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(11,13,15,.34) 0%,
+    rgba(11,13,15,0) 26%,
+    rgba(11,13,15,.06) 48%,
+    rgba(11,13,15,.62) 82%,
+    rgba(11,13,15,.88) 100%);
+}
+
+/* ---- the mark + the two buttons ------------------------------------ */
+.hero.v-guide-coat .hero-inner{
+  position:relative; z-index:2;
+  width:100%;
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 var(--pad) clamp(30px,6vh,64px);
+}
+
+.hero.v-guide-coat .gc-mark{
+  width:min(342px,62vw);
+  margin:0 0 clamp(18px,3.2vh,30px);
+  opacity:0;
+  animation:gcRise 900ms cubic-bezier(.22,.85,.3,1) 1500ms both;
+}
+.hero.v-guide-coat .gc-mark img{
+  width:100%; height:auto; display:block;
+  border-radius:6px;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);
+}
+
+.hero.v-guide-coat .hero-actions{
+  display:flex; flex-wrap:wrap; gap:12px;
+  opacity:0;
+  animation:gcRise 900ms cubic-bezier(.22,.85,.3,1) 1780ms both;
+}
+
+@media (min-width:760px){
+  .hero.v-guide-coat .gc-mark{ width:min(404px,33vw); }
+  .hero.v-guide-coat .hero-inner{ padding-bottom:clamp(40px,8vh,84px); }
+}
+
+/* ---- keyframes ----------------------------------------------------- */
+@keyframes gcCoatOff{
+  from{ clip-path:inset(0 0 0 0); }
+  to  { clip-path:inset(0 0 0 100%); }
+}
+@keyframes gcSand{
+  0%  { transform:translateX(-140%) rotate(6deg); opacity:0; }
+  12% { opacity:1; }
+  86% { opacity:1; }
+  100%{ transform:translateX(430%) rotate(6deg); opacity:0; }
+}
+@keyframes gcRise{
+  from{ opacity:0; transform:translateY(14px); }
+  to  { opacity:1; transform:none; }
+}
+@keyframes gcBreathe{
+  0%,100%{ opacity:0; }
+  50%    { opacity:.55; }
+}
+
+/* ---- reduced motion: land on the final frame ----------------------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-guide-coat .gc-coat{ animation:none; clip-path:inset(0 0 0 100%); }
+  .hero.v-guide-coat .gc-sand{ animation:none; opacity:0; }
+  .hero.v-guide-coat .gc-gloss{ animation:none; opacity:0; }
+  .hero.v-guide-coat .gc-mark,
+  .hero.v-guide-coat .hero-actions{ animation:none; opacity:1; transform:none; }
+}

@@ -1,0 +1,125 @@
+/* ============================================================
+   HERO VARIANT — dusk-barn (All Star Auto Body)
+   Namespaced under .hero.v-dusk-barn. Unique keyframes: db-*.
+   Ground is the site's graphite; the hero's world is the dusk photo itself.
+   ============================================================ */
+
+.hero.v-dusk-barn{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  height:calc(100svh - var(--header-h));
+  display:flex;
+  overflow:hidden;
+  background:#0A0C11;                 /* the photo's own darkest sky */
+  isolation:isolate;
+}
+
+/* --- the blurred dusk echo behind, so the photo is never cropped --- */
+.hero.v-dusk-barn .db-echo{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+}
+.hero.v-dusk-barn .db-echo img{
+  width:100%; height:100%; object-fit:cover;
+  transform:scale(1.22);
+  filter:blur(44px) brightness(.78) saturate(.95);
+}
+.hero.v-dusk-barn .db-echo::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(130% 90% at 50% 42%, rgba(0,0,0,0) 46%, rgba(11,13,15,.55) 100%),
+    linear-gradient(180deg, rgba(11,13,15,.22) 0%, rgba(11,13,15,0) 30%, rgba(11,13,15,.38) 100%);
+}
+
+/* --- layout --- */
+.hero.v-dusk-barn .hero-inner{
+  position:relative; z-index:1;
+  flex:1; min-height:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:clamp(18px,3.2vh,34px);
+  padding:clamp(16px,3vh,34px) var(--pad) clamp(22px,4vh,44px);
+  width:100%; max-width:none;
+}
+
+/* --- the photograph, contained, never cropped --- */
+.hero.v-dusk-barn .db-frame{
+  position:relative;
+  flex:1 1 auto; min-height:0;
+  width:100%; max-width:1180px;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* the plate hugs the contained photo so the bloom never leaks past its edges */
+.hero.v-dusk-barn .db-plate{
+  position:relative;
+  display:flex;
+  max-width:100%; max-height:100%;
+  border-radius:4px; overflow:hidden;
+  box-shadow:0 34px 90px rgba(0,0,0,.62), 0 2px 0 rgba(255,255,255,.05);
+}
+.hero.v-dusk-barn .db-plate picture{ display:flex; max-width:100%; max-height:100%; }
+.hero.v-dusk-barn .db-photo{
+  display:block;
+  max-width:100%; max-height:100%;
+  width:auto; height:auto;
+  object-fit:contain;
+  filter:brightness(1) saturate(1);
+  animation:db-wake 2600ms cubic-bezier(.22,.85,.3,1) both;
+}
+
+/* the cold pre-dawn wash that lifts away as the lamp warms */
+.hero.v-dusk-barn .db-cool{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(18,24,44,.75), rgba(8,10,18,.85));
+  mix-blend-mode:multiply;
+  animation:db-cool-off 2600ms cubic-bezier(.22,.85,.3,1) both;
+}
+
+/* the lamp bloom — sits over the real fixture at ~94% / 46% of the frame */
+.hero.v-dusk-barn .db-glow{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(26% 30% at 94% 46%, rgba(255,186,102,.42), rgba(255,186,102,0) 70%),
+    radial-gradient(52% 60% at 84% 66%, rgba(255,158,74,.20), rgba(255,158,74,0) 72%),
+    radial-gradient(30% 22% at 74% 70%, rgba(255,206,150,.13), rgba(255,206,150,0) 76%);
+  mix-blend-mode:screen;
+  opacity:0;
+  animation:db-bloom 2600ms cubic-bezier(.22,.85,.3,1) both,
+            db-breath 16s ease-in-out 2600ms infinite;
+}
+
+/* --- buttons: the only other thing on the hero --- */
+.hero.v-dusk-barn .hero-actions{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+  flex:0 0 auto;
+  animation:db-rise 900ms cubic-bezier(.22,.85,.3,1) 1500ms both;
+}
+.hero.v-dusk-barn .hero-actions .btn{ min-width:11.5rem; text-align:center; }
+
+/* --- keyframes --- */
+@keyframes db-wake{
+  from{ filter:brightness(.58) saturate(.62) contrast(1.04); transform:scale(1.014); }
+  to  { filter:brightness(1)   saturate(1)   contrast(1);    transform:scale(1); }
+}
+@keyframes db-cool-off{ from{opacity:1;} to{opacity:0;} }
+@keyframes db-bloom{ from{opacity:0;} to{opacity:1;} }
+@keyframes db-breath{ 0%,100%{opacity:1;} 50%{opacity:.88;} }
+@keyframes db-rise{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
+
+/* --- phone --- */
+@media (max-width:640px){
+  .hero.v-dusk-barn .db-plate{ box-shadow:0 20px 54px rgba(0,0,0,.6); }
+  .hero.v-dusk-barn .hero-actions .btn{ min-width:0; flex:1 1 auto; }
+}
+
+/* --- reduced motion: land on the lit final frame --- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-dusk-barn .db-photo,
+  .hero.v-dusk-barn .db-cool,
+  .hero.v-dusk-barn .db-glow,
+  .hero.v-dusk-barn .hero-actions{ animation:none; }
+  .hero.v-dusk-barn .db-photo{ filter:none; transform:none; }
+  .hero.v-dusk-barn .db-cool{ opacity:0; }
+  .hero.v-dusk-barn .db-glow{ opacity:1; }
+  .hero.v-dusk-barn .hero-actions{ opacity:1; transform:none; }
+}

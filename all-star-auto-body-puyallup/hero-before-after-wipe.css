@@ -1,0 +1,119 @@
+/* ============================================================
+   VARIANT 1 — before-after-wipe        (namespaced .hero.v-before-after-wipe)
+
+   Everything here is scoped to .v-before-after-wipe and every keyframe name
+   is prefixed baw* so this file can sit beside any other variant without
+   colliding. It touches nothing below the hero.
+
+   Timeline (deterministic, runs once, no JS, no interaction):
+     0.00 – 0.55s   the wrecked panel holds
+     0.55 – 2.05s   one straight edge crosses left → right, the repair behind it
+     1.90 – 2.70s   the banner mark and the two buttons rise
+     2.05s →        quiet
+   prefers-reduced-motion: every element lands on its final frame at 0s.
+   ============================================================ */
+
+.hero.v-before-after-wipe{
+  --baw-hold:.55s;          /* how long the damage sits there first */
+  --baw-wipe:1.5s;          /* the crossing */
+  --baw-ease:cubic-bezier(.62,.02,.24,1);
+  background:var(--bg-2);
+  color:var(--ink);
+  justify-content:flex-end;
+}
+
+/* ---- the stage --------------------------------------------------------
+   Desktop: the pair is full-bleed behind everything.
+   Phone (below 820px): the pair becomes its own 4:3 band in the flow, shown
+   whole — the torn panel sits in the left third of the frame and a cover
+   crop on a 390px screen would slice it straight off. NEVER CROP THE
+   IMPORTANT PART, so the phone letterboxes onto the graphite ground. */
+.v-before-after-wipe .baw-stage{position:absolute;inset:0;z-index:0}
+.v-before-after-wipe .baw-shots{position:absolute;inset:0;overflow:hidden;isolation:isolate}
+
+.v-before-after-wipe .baw-shot{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:48% 54%;
+  filter:saturate(1.06) contrast(1.03);
+}
+
+/* the repaired frame is stacked exactly on the wrecked one and revealed
+   left → right by a straight vertical cut */
+.v-before-after-wipe .baw-after{
+  z-index:2;
+  clip-path:inset(0 100% 0 0);
+  animation:bawWipe var(--baw-wipe) var(--baw-ease) var(--baw-hold) both;
+}
+
+/* the shop light riding the cut. Its width tracks the clip inset exactly —
+   same duration, same delay, same easing, both interpolating a length across
+   the same box — so the light and the repair never separate. */
+.v-before-after-wipe .baw-edge{
+  position:absolute;top:0;bottom:0;left:0;width:0;z-index:3;
+  pointer-events:none;
+  border-right:2px solid #FFE9D2;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    transparent calc(100% - 190px),
+    color-mix(in srgb,var(--warm) 16%,transparent) calc(100% - 62px),
+    color-mix(in srgb,#FFE9D2 46%,transparent) 100%);
+  box-shadow:0 0 26px 3px color-mix(in srgb,var(--warm) 55%,transparent),
+             0 0 90px 12px color-mix(in srgb,var(--brand) 34%,transparent);
+  animation:bawEdge var(--baw-wipe) var(--baw-ease) var(--baw-hold) both;
+}
+
+/* the ground the type sits on — pooled under the foot, off the panel itself */
+.v-before-after-wipe .baw-stage::after{
+  content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:
+    linear-gradient(180deg,color-mix(in srgb,var(--dark) 46%,transparent) 0%,transparent 26%),
+    linear-gradient(0deg,var(--dark) 0%,color-mix(in srgb,var(--dark) 82%,transparent) 20%,transparent 54%);
+}
+
+/* ---- the foot: their own banner, then their two buttons ---- */
+.v-before-after-wipe .baw-foot{
+  position:relative;z-index:5;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(30px,6vh,72px) var(--pad) clamp(34px,7vh,80px);
+}
+.v-before-after-wipe .baw-mark{
+  display:block;width:min(430px,74vw);height:auto;
+  margin:0 0 clamp(20px,3.4vh,30px);
+  filter:drop-shadow(0 16px 34px rgba(0,0,0,.62));
+  opacity:0;transform:translateY(16px);
+  animation:bawRise .8s var(--ease) 1.9s both;
+}
+.v-before-after-wipe .hero-actions{
+  opacity:0;transform:translateY(16px);
+  animation:bawRise .8s var(--ease) 2.06s both;
+}
+
+@keyframes bawWipe{from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0 0 0 0)}}
+@keyframes bawEdge{from{width:0} to{width:100%}}
+@keyframes bawRise{to{opacity:1;transform:none}}
+
+/* ---- phone: the photograph shown whole, mark above, buttons below ---- */
+@media (max-width:819px){
+  .v-before-after-wipe{display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3.8vh,34px)}
+  /* the foot dissolves so the mark, the photograph and the buttons become
+     one vertical stack: their sign, then the car, then the two ways in */
+  .v-before-after-wipe .baw-foot{display:contents}
+  .v-before-after-wipe .baw-mark{
+    order:1;width:min(320px,76vw);margin:0 auto;padding:0 var(--pad)}
+  .v-before-after-wipe .baw-stage{position:relative;inset:auto;width:100%;order:2}
+  .v-before-after-wipe .baw-shots{position:relative;inset:auto;aspect-ratio:4/3;width:100%;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .v-before-after-wipe .baw-shot{object-fit:cover;object-position:50% 50%}
+  .v-before-after-wipe .baw-stage::after{
+    background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 26%,transparent) 0%,transparent 20%,transparent 80%,color-mix(in srgb,var(--dark) 26%,transparent) 100%)}
+  .v-before-after-wipe .hero-actions{order:3;margin:0;padding:0 var(--pad)}
+  .v-before-after-wipe .hero-actions .btn{flex:1 1 0;min-width:0;padding-inline:14px;text-align:center}
+}
+
+/* ---- reduced motion: the final frame, immediately ---- */
+@media (prefers-reduced-motion:reduce){
+  .v-before-after-wipe .baw-after{animation:none;clip-path:inset(0 0 0 0)}
+  .v-before-after-wipe .baw-edge{animation:none;display:none}
+  .v-before-after-wipe .baw-mark,
+  .v-before-after-wipe .hero-actions{animation:none;opacity:1;transform:none}
+}
