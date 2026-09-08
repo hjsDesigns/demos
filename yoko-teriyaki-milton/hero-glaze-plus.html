@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1788871294">
 <link rel="stylesheet" href="css/site.css?v=1788871294">
-<link rel="stylesheet" href="hero-plate-drop.css">
+<link rel="stylesheet" href="hero-glaze-plus.css">
 </head>
 <body>
 
@@ -41,32 +41,49 @@
        with the sign's construction (hollow face, dark outline, hard dark
        return). The single arrival event is the red glaze pouring down into
        the letters. Nothing on the photo but the headline block. -->
-    <!-- ===================== #hero — "plate-drop" =====================
-       One idea, one real object: their own combo plate (images/pick-1.jpg,
-       the shop's own photo, cropped square to the plate). The single
-       arrival event is the plate dropping onto the cream ground with one
-       small settle while its shadow spreads underneath; the name lands
-       beside it, set live in Reggae One in the sign's own construction
-       (ink "Yoko", red TERIYAKI on a hard dark return). Then it is still. -->
-  <section class="hero v-plate-drop" id="hero">
+    <!-- ===================== #hero — "glaze-plus" =====================
+       The approved "glaze" upgraded into a layered signature.
+       GROUND: their own daytime storefront (images/hero.jpg) thrown out of
+       focus and graded to dusk — the cream fascia, the royal-blue awning and
+       the lit windows all still read, so you know the building.
+       MARK: the name set live in Reggae One in the sign's own construction —
+       hollow faces, dark outline, the hard dark return the channel letters
+       cast on the wall (CRISP RULE: the real lettering is only ~470 px wide
+       in the photo, so it is set as type in the sign's face, not blown up).
+       EVENT: the red glaze pours down into the hollow TERIYAKI letters, then
+       one shine flash crosses both words left to right.
+       FLOURISH: steam off their own combination plate (images/pick-1.jpg,
+       blurred low in the frame) rises behind the mark and thins out.
+       Then it is still. Nothing else sits on the hero. -->
+  <section class="hero v-glaze-plus" id="hero">
     <h1 class="sr-only">Yoko Teriyaki — grilled teriyaki and Chinese wok at 2800 Milton Way #18, Milton, Washington</h1>
+
+    <div class="gp-ground" aria-hidden="true">
+      <img src="images/glaze-plus-ground.jpg" width="1632" height="918" fetchpriority="high"
+           alt="">
+    </div>
+
+    <div class="gp-plate" aria-hidden="true">
+      <img src="images/glaze-plus-plate.jpg" width="1920" height="940" alt="">
+    </div>
+
+    <div class="gp-steam" aria-hidden="true">
+      <span class="pl pl-1"></span>
+      <span class="pl pl-2"></span>
+      <span class="pl pl-3"></span>
+      <span class="pl pl-4"></span>
+    </div>
+
+    <div class="gp-scrim" aria-hidden="true"></div>
+
     <div class="hero-inner">
-      <div class="pd-stage">
-        <div class="pd-plate">
-          <span class="pd-shadow" aria-hidden="true"></span>
-          <img src="images/plate-drop-plate.jpg" width="1000" height="1000" fetchpriority="high"
-               alt="A Yoko Teriyaki combination plate — grilled teriyaki chicken with steamed rice, prawn and vegetable tempura and a calamari ring, on a white plate">
-        </div>
-      </div>
-      <div class="pd-say">
-        <p class="mark" aria-hidden="true">
-          <span class="mk-yoko">Yoko</span>
-          <span class="mk-ter">TERIYAKI</span>
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="tel:2539523266">Call (253) 952-3266</a>
-          <a class="btn btn-cream" href="#menu">See the menu</a>
-        </div>
+      <p class="mark" aria-hidden="true">
+        <span class="mk-yoko" data-mark="Yoko">Yoko</span>
+        <span class="mk-ter" data-mark="TERIYAKI">TERIYAKI</span>
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:2539523266">Call (253) 952-3266</a>
+        <a class="btn btn-cream" href="#menu">See the menu</a>
       </div>
     </div>
   </section>

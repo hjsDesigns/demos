@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1788871294">
 <link rel="stylesheet" href="css/site.css?v=1788871294">
-<link rel="stylesheet" href="hero-room-lights.css">
+<link rel="stylesheet" href="hero-awning-roll.css">
 </head>
 <body>
 
@@ -41,31 +41,46 @@
        with the sign's construction (hollow face, dark outline, hard dark
        return). The single arrival event is the red glaze pouring down into
        the letters. Nothing on the photo but the headline block. -->
-  <!-- ===================== #hero — variant: room-lights =====================
-     One real object: their own dining room (images/about.jpg, their Google
-     photo — the red booths, the cherry-blossom window screen, the pendant
-     lamps, the teal carpet). The frame opens dark, the lamps bloom once and
-     the room comes up around them in 1.4s, the mark fades up beneath, then a
-     25s push-in holds it quietly. The walk-in feeling. Nothing on the photo
-     but the mark and the two buttons; the name lives in the sr-only h1. -->
-<section class="hero v-room-lights" id="hero">
+  <!-- ===================== #hero — "awning-roll" =====================
+     The object is the royal-blue standing-seam awning over their door.
+     The frame OPENS on that awning — a real crop of it (images/hero.jpg,
+     the pure seam field, y 322-438) filling the screen edge to edge —
+     holds one beat, then the whole sheet ROLLS UP off the top with its own
+     dark front edge leading, exactly like a shop shutter going up in the
+     morning. Behind it: their storefront after dark, the red YOKO TERIYAKI
+     channel letters and the OPEN neon striking on with a two-beat catch as
+     the daylight veil drains away (day -> dusk as it rolls). The name then
+     STAMPS in Reggae One — the sign's own face, hollow cream Yoko over red
+     TERIYAKI with the hard dark return — inside one warm halo. Then still.
+     Nothing on the hero but the mark and the two buttons. -->
+<section class="hero v-awning-roll" id="hero">
   <h1 class="sr-only">Yoko Teriyaki — grilled teriyaki and Chinese wok at 2800 Milton Way #18, Milton, Washington</h1>
 
-  <div class="rl-shot">
-    <picture>
-      <source media="(max-width:760px)" srcset="images/room-lights-room-phone.jpg" width="792" height="1440">
-      <img class="rl-room" src="images/room-lights-room.jpg" width="1860" height="1380" fetchpriority="high"
-           alt="The dining room at Yoko Teriyaki — red vinyl booths and wood-top tables under scalloped pendant lamps, beside a window screen painted with cherry blossom branches">
-    </picture>
-    <span class="rl-bloom" aria-hidden="true"></span>
-    <span class="rl-veil" aria-hidden="true"></span>
-    <span class="rl-scrim" aria-hidden="true"></span>
+  <!-- ---------- what the awning is hiding: their own shop after dark ---------- -->
+  <div class="ar-ground">
+    <img class="ar-front" src="images/awning-roll-front.jpg" width="1800" height="1720"
+         fetchpriority="high" decoding="async"
+         alt="Yoko Teriyaki after dark at 2800 Milton Way — the red YOKO TERIYAKI channel letters lit on the cream fascia above the royal-blue awning, the red OPEN neon in the door and the menu posters glowing in the windows">
+    <img class="ar-glow" src="images/awning-roll-glow.png" width="1800" height="1720"
+         decoding="async" alt="" aria-hidden="true">
+    <span class="ar-day" aria-hidden="true"></span>
+    <span class="ar-scrim" aria-hidden="true"></span>
   </div>
 
-  <div class="rl-inner">
-    <p class="rl-mark" aria-hidden="true">
-      <span class="rl-yoko">Yoko</span>
-      <span class="rl-ter">TERIYAKI</span>
+  <!-- ---------- the awning itself, and the roll ---------- -->
+  <div class="ar-shutter" aria-hidden="true">
+    <img class="ar-sheet" src="images/awning-roll-awning.jpg" width="1360" height="1180"
+         fetchpriority="high" decoding="async" alt="">
+    <span class="ar-roller"></span>
+    <img class="ar-hem" src="images/awning-roll-hem.jpg" width="1360" height="64"
+         decoding="async" alt="">
+  </div>
+
+  <!-- ---------- the mark ---------- -->
+  <div class="ar-inner">
+    <p class="ar-mark" aria-hidden="true">
+      <span class="ar-yoko">Yoko</span>
+      <span class="ar-ter">TERIYAKI</span>
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="tel:2539523266">Call (253) 952-3266</a>

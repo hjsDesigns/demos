@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1788871294">
 <link rel="stylesheet" href="css/site.css?v=1788871294">
-<link rel="stylesheet" href="hero-awning-blue.css">
+<link rel="stylesheet" href="hero-plate-park.css">
 </head>
 <body>
 
@@ -41,39 +41,45 @@
        with the sign's construction (hollow face, dark outline, hard dark
        return). The single arrival event is the red glaze pouring down into
        the letters. Nothing on the photo but the headline block. -->
-  <!-- ===================== #hero — "awning-blue" =====================
-     One idea, one real object: the royal-blue standing-seam awning over
-     Yoko's door. Their own daytime storefront (images/hero.jpg) is held
-     STILL and WHOLE inside a blurred echo of itself, and the single
-     arrival event is a band of daylight sliding once along the awning —
-     masked to the awning's own band of the photo, so the light travels
-     the metal and nothing else. Then it is still.
-     The name is set live in Reggae One in the channel letters' red,
-     low in the frame. Nothing else sits on the hero. -->
-<section class="hero v-awning-blue" id="hero">
-  <h1 class="sr-only">Yoko Teriyaki — grilled teriyaki and Chinese wok at 2800 Milton Way #18, Milton, Washington</h1>
+    <!-- ===================== #hero — "plate-park" =====================
+       Out & About energy, on the food. Their own combination plate (a disc
+       cut from images/pick-2.jpg — short rib, chicken teriyaki, fried rice)
+       slides in from the right, overshoots and parks; then their REAL lit
+       sign — cut out of their own night photo (images/storefront-night.jpg,
+       deskewed and keyed to alpha, never redrawn) — strikes on above it with
+       an LED stutter and a warm halo; a chopstick-thin red rule snaps in
+       between them. Ground is the same storefront at night, thrown out of
+       focus. Then it is still. The mark IS the headline: the h1 is sr-only
+       and nothing else sits on the hero. -->
+  <section class="hero v-plate-park" id="hero">
+    <h1 class="sr-only">Yoko Teriyaki — grilled teriyaki and Chinese wok at 2800 Milton Way #18, Milton, Washington</h1>
 
-  <div class="aw-ground" aria-hidden="true"></div>
-
-  <div class="aw-stage">
-    <figure class="aw-shot">
-      <img src="images/hero.jpg" width="1360" height="765" fetchpriority="high" decoding="async"
-           alt="The front of Yoko Teriyaki in Milton Plaza — a cream stucco fascia with red Yoko Teriyaki channel letters above a royal-blue standing-seam awning, orange menu posters in the windows and a red OPEN sign in the door">
-      <span class="aw-sweep" aria-hidden="true"></span>
-    </figure>
-  </div>
-
-  <div class="aw-inner">
-    <p class="aw-mark" aria-hidden="true">
-      <span class="aw-yoko">Yoko</span>
-      <span class="aw-ter">TERIYAKI</span>
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="tel:2539523266">Call (253) 952-3266</a>
-      <a class="btn btn-cream" href="#menu">See the menu</a>
+    <!-- their storefront at night, out of focus (awning, soffit, lit windows) -->
+    <div class="pp-ground" aria-hidden="true">
+      <img src="images/plate-park-ground.jpg" width="1400" height="794" alt="" decoding="async">
+      <span class="pp-shade"></span>
     </div>
-  </div>
-</section>
+
+    <div class="hero-inner">
+      <div class="pp-sign">
+        <img src="images/plate-park-sign.png" width="857" height="162" alt="" aria-hidden="true"
+             fetchpriority="high" decoding="async">
+      </div>
+
+      <span class="pp-rule" aria-hidden="true"></span>
+
+      <div class="pp-plate">
+        <span class="pp-shadow" aria-hidden="true"></span>
+        <img src="images/plate-park-plate.jpg" width="1000" height="1000" fetchpriority="high"
+             alt="A Yoko Teriyaki combination straight out of the shop's takeout tray — grilled chicken teriyaki and short ribs beside vegetable fried rice, with two cups of sauce">
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:2539523266">Call (253) 952-3266</a>
+        <a class="btn btn-cream" href="#menu">See the menu</a>
+      </div>
+    </div>
+  </section>
 
 
   <!-- ===================== #hours =====================

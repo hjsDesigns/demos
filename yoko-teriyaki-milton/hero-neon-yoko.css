@@ -1,0 +1,229 @@
+/* ============================================================
+   YOKO TERIYAKI — HERO VARIANT "neon-yoko"
+   Everything namespaced under .hero.v-neon-yoko, unique keyframes (ny*).
+
+   The layers, all cut from images/storefront-night.jpg — their own shop
+   after dark, nothing invented:
+     1  .ny-ground      that frame blurred and graded down to night
+     2  .ny-veil        a pool so the buttons sit on something
+     3  .ny-yoko        "Yoko" set live in Reggae One, the sign's face.
+                        The lit script on the building is blown out in the
+                        photograph and turns to mush at hero size, so the
+                        CRISP RULE says set it, not blow it up. Colour and
+                        glow sampled off the lit letters (218,254,253).
+     4  .ny-mark        the REAL lit TERIYAKI letters, keyed off the fascia
+                        by red dominance and levelled 22.3° — never redrawn
+     5  .ny-hot         the same letters blown out; the strike CROSS-FADES to
+                        this instead of running a CSS filter, so every frame
+                        of the flicker is opacity only
+     6  .ny-glow        the red those letters throw back, baked into a PNG
+     7  .ny-awning      the blue edge of their standing-seam awning, tracing
+                        in left to right
+
+   Timeline (once, deterministic, no JS, done at 2.75s, then still):
+     0.00–2.60  the night comes up and settles out of a 1.06 push
+     0.30–0.88  "Yoko" strikes, stutters twice, holds
+     0.72–1.40  TERIYAKI strikes with four flicker beats
+     0.72–2.02  the red glow blooms up to rest
+     1.45–2.40  the awning edge traces in
+     2.05–2.75  the two buttons rise
+     3.10–      one slow breathe on the glow, 9s — the sign just running
+   ============================================================ */
+
+.hero.v-neon-yoko{
+  --ny-w:min(86vw,430px);      /* the mark's width — everything scales off it */
+  --ny-blue:#8FBEFF;
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:clamp(26px,5vh,60px) 0;
+  overflow:hidden;isolation:isolate;
+  background:#070A12;                       /* the night sky in their own frame */
+  color:#F3EEE3;
+}
+
+/* ---------- 1. the ground ---------- */
+.hero.v-neon-yoko .ny-ground{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero.v-neon-yoko .ny-ground-img{
+  position:absolute;inset:-4%;display:block;
+  background:var(--ny-ground,url("images/neon-yoko-ground.jpg")) center 42%/cover no-repeat;
+  transform-origin:52% 40%;
+}
+
+/* ---------- 2. the pool under the buttons ---------- */
+.hero.v-neon-yoko .ny-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 70% at 50% 40%,rgba(7,10,18,0) 34%,rgba(7,10,18,.55) 78%,rgba(7,10,18,.86) 100%),
+    linear-gradient(to bottom,rgba(7,10,18,.55) 0%,rgba(7,10,18,.10) 26%,rgba(7,10,18,.42) 68%,rgba(7,10,18,.9) 100%);
+}
+
+/* ---------- the lockup ---------- */
+.hero.v-neon-yoko .ny-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 clamp(12px,3vw,64px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.hero.v-neon-yoko .ny-lockup{
+  margin:0;display:flex;flex-direction:column;align-items:center;width:var(--ny-w);
+}
+
+/* ---------- 3. "Yoko", live in the sign's face ---------- */
+.hero.v-neon-yoko .ny-yoko{
+  font-family:var(--display);font-weight:400;
+  font-size:calc(var(--ny-w) * .128);
+  line-height:.92;letter-spacing:.006em;
+  color:#F4FAFF;
+  margin:0 0 calc(var(--ny-w) * .012);
+  text-shadow:
+    0 0 6px rgba(214,236,255,.95),
+    0 0 20px rgba(126,178,255,.8),
+    0 0 54px rgba(52,110,220,.6);
+}
+
+/* ---------- 4-6. the real letters ----------
+   Paint order is set with z-index rather than left to compositing: the halo
+   BEHIND the letters, the blown-out copy in front. (An earlier pass screened
+   the halo over the top; whether it washed the letters pink then depended on
+   whether the browser had promoted it to its own layer, so the reduced-motion
+   frame and the animated one did not match. Explicit order, no blend mode.) */
+.hero.v-neon-yoko .ny-sign{position:relative;display:block;width:100%;line-height:0}
+.hero.v-neon-yoko .ny-glow{
+  position:absolute;left:-7.82%;top:-30.51%;width:115.64%;height:161.02%;z-index:0;
+  max-width:none;                       /* style.css caps every img at 100% — that
+                                           squashed the halo and slid it off the letters */
+  opacity:0;transform:scale(1.1);transform-origin:50% 50%;pointer-events:none;
+}
+.hero.v-neon-yoko .ny-mark{position:relative;z-index:1;display:block;width:100%;height:auto}
+.hero.v-neon-yoko .ny-hot{
+  position:absolute;left:0;top:0;z-index:2;width:100%;height:auto;opacity:0;
+}
+
+/* ---------- 7. the awning's edge ---------- */
+.hero.v-neon-yoko .ny-awning{
+  display:block;width:84%;height:3px;margin:calc(var(--ny-w) * .04) auto 0;
+}
+.hero.v-neon-yoko .ny-awning i{
+  display:block;width:100%;height:100%;border-radius:3px;
+  background:linear-gradient(90deg,transparent 0%,#3F5F94 10%,var(--ny-blue) 50%,#3F5F94 90%,transparent 100%);
+  box-shadow:0 0 14px rgba(143,190,255,.55),0 0 40px rgba(63,95,148,.5);
+}
+
+/* ---------- buttons ---------- */
+.hero.v-neon-yoko .hero-actions{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;width:100%;
+  margin-top:clamp(26px,4.6vh,52px);
+  opacity:1;transform:none;
+}
+.hero.v-neon-yoko .hero-actions .btn{min-width:208px;justify-content:center;
+  box-shadow:0 16px 36px -18px rgba(0,0,0,.95)}
+.hero.v-neon-yoko .hero-actions .btn-cream{border-color:var(--bg)}
+.hero.v-neon-yoko .hero-actions .btn-primary{box-shadow:0 18px 42px -18px rgba(206,66,52,.9)}
+
+/* ============================================================
+   THE ONE ARRIVAL — only runs with JS on, so no-JS shows the last frame
+   ============================================================ */
+.js .hero.v-neon-yoko .ny-ground-img{animation:nyNightUp 2.6s cubic-bezier(.2,.7,.25,1) both}
+.js .hero.v-neon-yoko .ny-yoko     {animation:nyYokoStrike .58s steps(1,end) .30s both}
+.js .hero.v-neon-yoko .ny-mark     {animation:nyMarkStrike .68s steps(1,end) .72s both}
+.js .hero.v-neon-yoko .ny-hot      {animation:nyHotFlash   .68s steps(1,end) .72s both}
+.js .hero.v-neon-yoko .ny-glow     {animation:nyGlowUp 1.30s cubic-bezier(.3,.8,.3,1) .72s both,
+                                              nyGlowBreathe 9s ease-in-out 3.1s infinite}
+.js .hero.v-neon-yoko .ny-awning i {
+  -webkit-mask-image:linear-gradient(90deg,#000 0 40%,rgba(0,0,0,.35) 47%,transparent 56% 100%);
+          mask-image:linear-gradient(90deg,#000 0 40%,rgba(0,0,0,.35) 47%,transparent 56% 100%);
+  -webkit-mask-size:260% 100%;mask-size:260% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:0% 0;mask-position:0% 0;
+  animation:nyTrace 1.0s cubic-bezier(.6,.06,.34,1) 1.45s both;
+}
+.js .hero.v-neon-yoko .hero-actions{animation:nyRise .70s var(--ease) 2.05s backwards}
+
+@keyframes nyNightUp{
+  0%  {opacity:0;transform:scale(1.06)}
+  30% {opacity:.55}
+  100%{opacity:1;transform:scale(1)}
+}
+/* a channel letter warming up: catches, drops out, catches, holds */
+@keyframes nyYokoStrike{
+  0%  {opacity:0}
+  9%  {opacity:1}
+  17% {opacity:.06}
+  31% {opacity:1}
+  40% {opacity:.14}
+  56% {opacity:1}
+  66% {opacity:.5}
+  76% {opacity:1}
+  100%{opacity:1}
+}
+@keyframes nyMarkStrike{
+  0%  {opacity:0}
+  6%  {opacity:1}
+  12% {opacity:.05}
+  21% {opacity:1}
+  27% {opacity:.12}
+  37% {opacity:1}
+  45% {opacity:.55}
+  55% {opacity:1}
+  100%{opacity:1}
+}
+/* the blown-out copy, spiked on the beats the letters catch — this is the
+   "bling", and it is a cross-fade, never a filter */
+@keyframes nyHotFlash{
+  0%  {opacity:0}
+  6%  {opacity:.95}
+  12% {opacity:0}
+  21% {opacity:.85}
+  27% {opacity:0}
+  37% {opacity:.7}
+  45% {opacity:0}
+  55% {opacity:.45}
+  70% {opacity:0}
+  100%{opacity:0}
+}
+@keyframes nyGlowUp{
+  0%  {opacity:0;transform:scale(1.1)}
+  100%{opacity:.88;transform:scale(1)}
+}
+@keyframes nyGlowBreathe{
+  0%,100%{opacity:.88}
+  50%    {opacity:.76}
+}
+/* the awning edge draws in from the left. The mask itself is static (set on
+   the .js rule below) — only its position animates, which is what actually
+   interpolates; declaring mask-image inside the keyframes does not. */
+@keyframes nyTrace{
+  from{-webkit-mask-position:100% 0;mask-position:100% 0}
+  to  {-webkit-mask-position:0% 0;mask-position:0% 0}
+}
+@keyframes nyRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ---------- desktop ---------- */
+@media (min-width:761px){
+  .hero.v-neon-yoko{--ny-w:min(68vw,860px)}
+  .hero.v-neon-yoko .ny-ground-img{background-position:center 46%}
+}
+
+/* ---------- phones ---------- */
+@media (max-width:760px){
+  .hero.v-neon-yoko .ny-inner{margin:0 auto;padding:0 var(--pad)}
+  .hero.v-neon-yoko .hero-actions .btn{flex:1 1 46%;min-width:148px}
+}
+@media (max-width:400px){
+  .hero.v-neon-yoko .hero-actions .btn{flex:1 1 100%}
+}
+
+/* ---------- reduced motion: the final frame, straight away ---------- */
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-neon-yoko .ny-ground-img,
+  .js .hero.v-neon-yoko .ny-yoko,
+  .js .hero.v-neon-yoko .ny-mark,
+  .js .hero.v-neon-yoko .ny-hot,
+  .js .hero.v-neon-yoko .ny-glow,
+  .js .hero.v-neon-yoko .ny-awning i,
+  .js .hero.v-neon-yoko .hero-actions{animation:none !important}
+  .hero.v-neon-yoko .ny-ground-img{opacity:1;transform:scale(1)}
+  .hero.v-neon-yoko .ny-glow{opacity:.88;transform:scale(1)}
+  .hero.v-neon-yoko .ny-hot{opacity:0}
+}

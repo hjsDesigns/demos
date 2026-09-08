@@ -1,0 +1,242 @@
+/* ============================================================
+   YOKO TERIYAKI — hero variant "glaze-plus"
+   Loaded AFTER css/style.css and css/site.css. Every rule is
+   namespaced under .hero.v-glaze-plus, every keyframe is prefixed
+   gp*, so nothing else on the page is touched. Tokens only, no hex.
+
+   A LAYERED SIGNATURE, four parts:
+     1. GROUND  their own daytime storefront (images/hero.jpg) thrown
+                out of focus and graded to dusk, baked into
+                images/glaze-plus-ground.jpg so no filter runs at
+                runtime — the cream fascia, the royal-blue awning and
+                the lit windows still read as their building.
+     2. MARK    the name set live in Reggae One in the sign's own
+                construction: hollow faces, dark outline, the hard dark
+                return the channel letters cast on the wall. CRISP RULE
+                — the real lettering is only ~470 px wide in the photo,
+                so it is type in the sign's face, never a blown-up crop.
+     3. EVENT   the red glaze pours down into the hollow TERIYAKI
+                letters (the approved "glaze" move, kept), then ONE
+                shine flash crosses both words left to right.
+     4. FLOURISH steam off their own combination plate (pick-1.jpg,
+                blurred low in the frame) rises behind the mark, thins,
+                and is gone.
+   Everything is finished and motionless by 2.85 s. Deterministic,
+   CSS only, no JS, no random, nothing loops. prefers-reduced-motion
+   lands on the final frame.
+   ============================================================ */
+
+.hero.v-glaze-plus{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  background:var(--dark);color:var(--bg);
+  overflow:hidden;isolation:isolate;
+}
+
+/* ---------------- 1. the ground: their building, out of focus ---------------- */
+.hero.v-glaze-plus .gp-ground{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero.v-glaze-plus .gp-ground img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block;
+  will-change:transform,opacity;
+}
+
+/* a scrim so the mark always has a floor, whatever the crop does at a width */
+.hero.v-glaze-plus .gp-scrim{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 34%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 6%,transparent) 20%,
+      color-mix(in srgb,var(--dark) 30%,transparent) 46%,
+      color-mix(in srgb,var(--dark) 62%,transparent) 62%,
+      color-mix(in srgb,var(--dark) 66%,transparent) 74%,
+      color-mix(in srgb,var(--dark) 34%,transparent) 100%);
+}
+
+/* ---------------- 2. the plate, blurred, low in the frame ---------------- */
+.hero.v-glaze-plus .gp-plate{
+  position:absolute;left:0;right:0;bottom:0;z-index:1;height:42%;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.5) 22%,#000 52%);
+          mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.5) 22%,#000 52%);
+}
+.hero.v-glaze-plus .gp-plate img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 34%;display:block;
+  will-change:transform,opacity;
+}
+.hero.v-glaze-plus .gp-plate::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 58%,
+    color-mix(in srgb,var(--dark) 20%,transparent) 100%);
+}
+
+/* ---------------- 4. the steam off it ----------------
+   Four soft plumes lifting off the plate's top edge and thinning out
+   behind the mark. Pure CSS gradients — nothing to load, nothing random. */
+.hero.v-glaze-plus .gp-steam{
+  position:absolute;left:50%;bottom:36%;z-index:3;
+  width:min(88vw,760px);height:1px;transform:translateX(-50%);
+  pointer-events:none;
+}
+.hero.v-glaze-plus .gp-steam .pl{
+  position:absolute;bottom:0;display:block;border-radius:50%;
+  opacity:0;
+  background:radial-gradient(closest-side,
+    color-mix(in srgb,var(--bg) 100%,transparent) 0%,
+    color-mix(in srgb,var(--bg) 74%,transparent) 32%,
+    color-mix(in srgb,var(--bg) 26%,transparent) 60%,
+    transparent 78%);
+  filter:blur(9px);
+  will-change:transform,opacity;
+}
+.hero.v-glaze-plus .gp-steam .pl-1{left:13%;width:min(26vw,165px);height:min(40vw,250px)}
+.hero.v-glaze-plus .gp-steam .pl-2{left:38%;width:min(30vw,190px);height:min(46vw,290px)}
+.hero.v-glaze-plus .gp-steam .pl-3{left:63%;width:min(24vw,150px);height:min(37vw,230px)}
+.hero.v-glaze-plus .gp-steam .pl-4{left:27%;width:min(21vw,135px);height:min(32vw,200px)}
+
+/* ---------------- 3. the mark ---------------- */
+.hero.v-glaze-plus .hero-inner{
+  position:relative;z-index:4;
+  width:100%;max-width:var(--maxw);margin:0 auto;overflow:visible;
+  padding:clamp(24px,5vh,64px) var(--pad) calc(32svh + clamp(10px,2vh,26px));
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+
+.hero.v-glaze-plus .mark{
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(2px,.5vh,8px);margin:0 0 clamp(20px,3.4vh,38px);
+  font-family:var(--display);font-weight:400;line-height:.92;max-width:100%;
+  filter:drop-shadow(0 14px 34px color-mix(in srgb,var(--dark) 82%,transparent));
+}
+.hero.v-glaze-plus .mk-yoko,
+.hero.v-glaze-plus .mk-ter{
+  position:relative;display:block;white-space:nowrap;
+}
+/* Yoko — the cream face in its box on the real sign */
+.hero.v-glaze-plus .mk-yoko{
+  font-size:clamp(30px,7.4vw,76px);letter-spacing:.012em;
+  color:var(--bg);
+  -webkit-text-stroke:2px var(--ink);paint-order:stroke fill;
+  text-shadow:.048em .058em 0 var(--ink);
+}
+/* TERIYAKI — hollow, waiting for the glaze */
+.hero.v-glaze-plus .mk-ter{
+  font-size:clamp(52px,13.6vw,156px);letter-spacing:.005em;
+  color:transparent;
+  -webkit-text-stroke:2.5px var(--ink);
+  text-shadow:.036em .046em 0 var(--ink);
+}
+/* the glaze: a second copy of the word, clipped from the top down */
+.hero.v-glaze-plus .mk-ter::after{
+  content:attr(data-mark);position:absolute;left:0;top:0;white-space:nowrap;z-index:1;
+  color:var(--brand);-webkit-text-stroke:0;text-shadow:none;
+  clip-path:inset(0 0 0 0);
+}
+/* the shine: a third copy, clipped to the letterforms, swept across once */
+.hero.v-glaze-plus .mk-yoko::before,
+.hero.v-glaze-plus .mk-ter::before{
+  content:attr(data-mark);position:absolute;left:0;top:0;white-space:nowrap;z-index:2;
+  pointer-events:none;color:transparent;-webkit-text-stroke:0;text-shadow:none;
+  background-image:linear-gradient(104deg,
+    transparent 0%,transparent 40%,
+    color-mix(in srgb,var(--bg) 30%,transparent) 45%,
+    color-mix(in srgb,var(--bg) 98%,transparent) 50%,
+    color-mix(in srgb,var(--bg) 30%,transparent) 55%,
+    transparent 60%,transparent 100%);
+  background-size:280% 100%;background-repeat:no-repeat;
+  background-position:112% 0;
+  -webkit-background-clip:text;background-clip:text;
+  opacity:0;
+}
+
+.hero.v-glaze-plus .hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.hero.v-glaze-plus .hero-actions .btn{min-width:min(100%,214px);justify-content:center}
+.hero.v-glaze-plus .hero-actions .btn-cream{border-color:var(--ink)}
+
+/* ============================================================
+   THE RUN — ground wakes, plate arrives, letters land, glaze pours,
+   steam lifts and thins, one shine crosses. Still at 2.85 s.
+   ============================================================ */
+.js .hero.v-glaze-plus .gp-ground img{animation:gpGroundWake 1.15s var(--ease) both}
+.js .hero.v-glaze-plus .gp-plate img  {animation:gpPlateUp .95s .18s var(--ease) both}
+.js .hero.v-glaze-plus .mk-yoko       {animation:gpMarkIn .58s .22s var(--ease) both}
+.js .hero.v-glaze-plus .mk-ter        {animation:gpMarkIn .58s .34s var(--ease) both}
+.js .hero.v-glaze-plus .mk-ter::after {animation:gpPour 1.18s .72s cubic-bezier(.48,.04,.38,.98) both}
+.js .hero.v-glaze-plus .mk-yoko::before{animation:gpShine .72s 1.98s linear both}
+.js .hero.v-glaze-plus .mk-ter::before {animation:gpShine .72s 2.10s linear both}
+.js .hero.v-glaze-plus .hero-actions  {animation:gpMarkIn .56s 1.62s var(--ease) both}
+.js .hero.v-glaze-plus .gp-steam .pl-1{animation:gpSteamA 1.42s .52s linear both}
+.js .hero.v-glaze-plus .gp-steam .pl-2{animation:gpSteamB 1.48s .82s linear both}
+.js .hero.v-glaze-plus .gp-steam .pl-3{animation:gpSteamA 1.38s 1.12s linear both}
+.js .hero.v-glaze-plus .gp-steam .pl-4{animation:gpSteamB 1.36s 1.44s linear both}
+
+@keyframes gpGroundWake{
+  0%  {opacity:.18;transform:scale(1.07)}
+  60% {opacity:.86}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes gpPlateUp{
+  0%  {opacity:0;transform:translate3d(0,16%,0) scale(1.05)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+@keyframes gpMarkIn{
+  from{opacity:0;transform:translate3d(0,18px,0)}
+  to  {opacity:1;transform:none}
+}
+/* the pour: quick over the flat of the letters, slowing as it fills the feet */
+@keyframes gpPour{
+  0%  {clip-path:inset(0 0 100% 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}
+/* one pass, left to right, and gone */
+@keyframes gpShine{
+  0%  {opacity:0;background-position:112% 0}
+  16% {opacity:1}
+  84% {opacity:1}
+  100%{opacity:0;background-position:-12% 0}
+}
+/* steam: up, out, thinner, gone */
+@keyframes gpSteamA{
+  0%  {opacity:0;transform:translate3d(0,16%,0) scale(.44)}
+  18% {opacity:.92}
+  56% {opacity:.56}
+  100%{opacity:0;transform:translate3d(-6%,-88%,0) scale(1.20)}
+}
+@keyframes gpSteamB{
+  0%  {opacity:0;transform:translate3d(0,16%,0) scale(.40)}
+  20% {opacity:.84}
+  58% {opacity:.48}
+  100%{opacity:0;transform:translate3d(7%,-96%,0) scale(1.26)}
+}
+
+/* reduced motion: the final frame, immediately */
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-glaze-plus .gp-ground img,
+  .js .hero.v-glaze-plus .gp-plate img,
+  .js .hero.v-glaze-plus .mk-yoko,
+  .js .hero.v-glaze-plus .mk-ter,
+  .js .hero.v-glaze-plus .hero-actions,
+  .js .hero.v-glaze-plus .gp-steam .pl{animation:none;opacity:1;transform:none}
+  .js .hero.v-glaze-plus .gp-steam .pl{opacity:0}
+  .js .hero.v-glaze-plus .mk-ter::after{animation:none;clip-path:inset(0 0 0 0)}
+  .js .hero.v-glaze-plus .mk-yoko::before,
+  .js .hero.v-glaze-plus .mk-ter::before{animation:none;opacity:0}
+}
+
+/* ---------------- phones ---------------- */
+@media (max-width:760px){
+  .hero.v-glaze-plus .gp-ground img{object-position:50% 40%}
+  .hero.v-glaze-plus .gp-plate{height:40%}
+  .hero.v-glaze-plus .gp-steam{bottom:34%;width:98vw}
+  .hero.v-glaze-plus .hero-inner{
+    padding:clamp(18px,3.4vh,32px) var(--pad) calc(24svh + clamp(8px,1.6vh,18px));
+  }
+  .hero.v-glaze-plus .mk-yoko{font-size:clamp(28px,8.4vw,44px);-webkit-text-stroke-width:1.6px}
+  .hero.v-glaze-plus .mk-ter{font-size:clamp(46px,14.4vw,72px);-webkit-text-stroke-width:2px}
+  .hero.v-glaze-plus .mark{margin:0 0 clamp(16px,2.6vh,26px)}
+  .hero.v-glaze-plus .hero-actions{gap:10px;width:100%}
+  .hero.v-glaze-plus .hero-actions .btn{flex:1 1 46%;min-width:150px;padding:13px 14px;font-size:14px}
+}
+@media (max-width:400px){
+  .hero.v-glaze-plus .hero-actions .btn{flex:1 1 100%}
+}
