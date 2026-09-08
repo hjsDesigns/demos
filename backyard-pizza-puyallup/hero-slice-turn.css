@@ -1,0 +1,101 @@
+/* ============================================================
+   HERO VARIANT — slice-turn
+   One move: their real top-down pie turns a quarter turn while the
+   real lit sign fades up over it, then everything stops dead.
+   Namespaced under .hero.v-slice-turn — keyframes prefixed st-.
+   ============================================================ */
+
+.hero.v-slice-turn{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+  background:var(--bg);
+  padding:clamp(18px,5vh,48px) var(--pad);
+  isolation:isolate;
+}
+
+/* ---- the turning pie ------------------------------------- */
+.hero.v-slice-turn .st-stage{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+  background:var(--bg-2);
+}
+.hero.v-slice-turn .st-pie{
+  position:absolute; top:50%; left:50%;
+  width:max(150vw,150svh); max-width:none; height:auto;
+  margin:0; border-radius:50%;
+  transform:translate(-50%,-50%) rotate(-90deg) scale(1.06);
+  transform-origin:50% 50%;
+  animation:st-turn 1700ms var(--ease,cubic-bezier(.22,.85,.3,1)) 120ms both;
+  filter:saturate(1.10) contrast(1.04) brightness(1.06);
+  will-change:transform;
+}
+@keyframes st-turn{
+  from{ transform:translate(-50%,-50%) rotate(-90deg) scale(1.06); }
+  to  { transform:translate(-50%,-50%) rotate(0deg)   scale(1);    }
+}
+
+/* warm scrim so the sign and the buttons read over the crust */
+.hero.v-slice-turn .st-veil{
+  position:absolute; inset:0; z-index:1; display:block;
+  background:
+    radial-gradient(78% 56% at 50% 47%, rgba(27,34,66,.42) 0%, rgba(27,34,66,.16) 58%, rgba(27,34,66,0) 78%),
+    radial-gradient(130% 92% at 50% 50%, rgba(43,26,14,0) 34%, rgba(43,26,14,.30) 72%, rgba(27,34,66,.58) 100%),
+    linear-gradient(180deg, rgba(27,34,66,.28) 0%, rgba(27,34,66,0) 30%, rgba(27,34,66,0) 62%, rgba(27,34,66,.46) 100%);
+}
+
+/* ---- the mark -------------------------------------------- */
+.hero.v-slice-turn .st-inner{
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center;
+  gap:clamp(20px,4vh,34px);
+  width:100%; max-width:var(--maxw);
+  text-align:center;
+}
+
+.hero.v-slice-turn .st-plate{
+  display:block;
+  width:min(480px,62vw);
+  padding:10px;
+  border-radius:20px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  box-shadow:0 26px 60px -18px rgba(0,0,0,.62), 0 4px 14px rgba(0,0,0,.28);
+  opacity:0; transform:translateY(16px) scale(.965);
+  animation:st-mark 900ms var(--ease,cubic-bezier(.22,.85,.3,1)) 700ms both;
+  will-change:opacity,transform;
+}
+.hero.v-slice-turn .st-plate img{
+  display:block; width:100%; height:auto; border-radius:12px;
+}
+@keyframes st-mark{
+  from{ opacity:0; transform:translateY(16px) scale(.965); }
+  to  { opacity:1; transform:translateY(0)    scale(1);    }
+}
+
+.hero.v-slice-turn .st-actions{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+  opacity:0;
+  animation:st-rise 700ms var(--ease,cubic-bezier(.22,.85,.3,1)) 1250ms both;
+}
+@keyframes st-rise{
+  from{ opacity:0; transform:translateY(10px); }
+  to  { opacity:1; transform:translateY(0);    }
+}
+
+/* ---- phone ------------------------------------------------ */
+@media (max-width:640px){
+  .hero.v-slice-turn .st-plate{ width:min(330px,72vw); padding:7px; border-radius:16px; }
+  .hero.v-slice-turn .st-actions{ width:100%; }
+  .hero.v-slice-turn .st-actions .btn{ flex:1 1 46%; }
+}
+
+/* ---- reduced motion: land on the final frame -------------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-slice-turn .st-pie,
+  .hero.v-slice-turn .st-plate,
+  .hero.v-slice-turn .st-actions{ animation:none; }
+  .hero.v-slice-turn .st-pie{ transform:translate(-50%,-50%) rotate(0deg) scale(1); }
+  .hero.v-slice-turn .st-plate{ opacity:1; transform:none; }
+  .hero.v-slice-turn .st-actions{ opacity:1; transform:none; }
+}

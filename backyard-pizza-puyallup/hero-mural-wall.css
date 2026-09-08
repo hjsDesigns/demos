@@ -1,0 +1,81 @@
+/* ============================================================
+   HERO VARIANT — "mural-wall"  (Backyard Pizza & Burgers, 2026-09-07)
+   Their own painted trailer wall, SHARP, is the ground; their real lit
+   sign settles onto it and its mounted shadow drops in. Then it holds.
+   Namespaced under .hero.v-mural-wall. Base rules below = the FINAL frame;
+   the whole intro lives inside prefers-reduced-motion:no-preference.
+   ============================================================ */
+.hero.v-mural-wall{
+  position:relative;display:flex;flex-direction:column;justify-content:center;
+  min-height:calc(100svh - var(--header-h));
+  overflow:hidden;background:var(--bg);color:var(--ink);
+  --mw-shadow:0 30px 46px -22px color-mix(in srgb,var(--dark) 62%,transparent),
+              0 8px 14px -6px color-mix(in srgb,var(--dark) 48%,transparent);
+}
+
+/* --- the wall (real photo, sharp, full bleed) --- */
+.v-mural-wall .mw-wall{position:absolute;inset:0;z-index:0}
+.v-mural-wall .mw-wall img{width:100%;height:100%;object-fit:cover;object-position:52% 52%;display:block}
+
+/* --- light on the wall: a warm pool where the sign hangs, a soft vignette,
+       and the bottom edge poured into the navy hours band below --- */
+.v-mural-wall .mw-light{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(58% 46% at 50% 44%, color-mix(in srgb,var(--warm) 20%,transparent) 0%, transparent 70%),
+    radial-gradient(120% 92% at 50% 42%, transparent 46%, color-mix(in srgb,var(--dark) 17%,transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb,var(--dark) 20%,transparent) 0%, transparent 22%, transparent 66%, color-mix(in srgb,var(--dark) 78%,transparent) 100%);
+}
+
+/* --- content --- */
+.v-mural-wall .mw-inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:clamp(20px,4vh,44px) var(--pad) clamp(30px,6vh,64px);
+  display:flex;flex-direction:column;align-items:center;gap:clamp(24px,4.4vh,44px)}
+
+/* the sign, mounted on the wall */
+.v-mural-wall .mw-plate{position:relative;display:block;line-height:0;
+  width:min(86vw,min(52vh,430px));border-radius:6px;
+  box-shadow:var(--mw-shadow)}
+.v-mural-wall .mw-plate::after{content:"";position:absolute;inset:-14% -12%;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side, color-mix(in srgb,var(--warm) 34%,transparent), transparent 78%);
+  filter:blur(16px);opacity:.62}
+.v-mural-wall .mw-plate img{width:100%;height:auto;display:block;border-radius:6px}
+
+.v-mural-wall .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:1;transform:none;animation:none}
+
+@media (min-width:900px){
+  .v-mural-wall .mw-plate{width:min(46vw,min(64vh,540px))}
+}
+@media (max-width:760px){
+  /* phone: hold the painted leaf-and-tomato half of the wall, not the vent bolt */
+  .v-mural-wall .mw-wall img{object-position:22% 62%}
+}
+@media (max-width:520px){
+  .v-mural-wall .hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ THE ONE RUN */
+@media (prefers-reduced-motion:no-preference){
+  .v-mural-wall .mw-wall img{
+    transform:scale(1.055);
+    animation:mw-wall-settle 2.6s cubic-bezier(.16,.72,.24,1) .05s forwards}
+  .v-mural-wall .mw-light{opacity:0;animation:mw-light-in 1.6s ease-out .5s forwards}
+  .v-mural-wall .mw-plate{
+    opacity:0;transform:translateY(-30px) scale(1.045);box-shadow:none;
+    animation:mw-plate-drop 1.15s cubic-bezier(.2,.78,.3,1) .35s forwards}
+  .v-mural-wall .mw-plate::after{opacity:0;
+    animation:mw-halo-in .9s ease-out 1.35s forwards, mw-halo-breathe 8s ease-in-out 2.4s infinite}
+  .v-mural-wall .hero-actions{opacity:0;transform:translateY(14px);
+    animation:mw-act-in .8s cubic-bezier(.2,.8,.3,1) 1.5s forwards}
+}
+
+@keyframes mw-wall-settle{to{transform:scale(1)}}
+@keyframes mw-light-in{from{opacity:0}to{opacity:1}}
+@keyframes mw-plate-drop{
+  0%{opacity:0;transform:translateY(-30px) scale(1.045);box-shadow:0 70px 90px -50px color-mix(in srgb,var(--dark) 0%,transparent)}
+  55%{opacity:1}
+  100%{opacity:1;transform:translateY(0) scale(1);box-shadow:var(--mw-shadow)}
+}
+@keyframes mw-halo-in{from{opacity:0}to{opacity:.62}}
+@keyframes mw-halo-breathe{0%,100%{opacity:.62}50%{opacity:.80}}
+@keyframes mw-act-in{to{opacity:1;transform:none}}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Backyard Pizza &amp; Burgers — Indian-fusion pizza, burgers &amp; wings, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Backyard Pizza &amp; Burgers — the painted trailer at 1824 S Meridian, Puyallup. Butter chicken, tandoori and palak pizzas, the classics, burgers, wings and fries. Open seven days, 11 AM to 10 PM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fredoka (display — sturdy rounded, matches the rounded neon lettering on their own sign)
+     + Barlow (body). Must match --display / --body in css/style.css. -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=0907164944">
+<link rel="stylesheet" href="hero-stand-still.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     The mark is a CROP of their own lit sign (images/logo.png, cut from
+     harvest g2.jpg) — the skateboarding burger and pizza slice. Never redrawn. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Backyard Pizza &amp; Burgers — home">
+      <span class="mark-plate"><img src="images/logo.png" alt="" width="560" height="299"></span>
+      <span class="wm">Backyard<small>Pizza &amp; Burgers</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">The food</a>
+        <a href="#gallery">The lot</a>
+        <a href="#signature">Sizes</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR HERO DEFAULT: the whole painted trailer, its own lit sign,
+       the string lights and the blue sky (harvest g26). Nothing sits on the
+       photo but the headline block. Phones get the three-frame stack — the
+       trailer shot is wide and would lose the sign to a portrait crop. -->
+  <!-- HERO — "the sign comes on".
+       Background: harvest-0906/g6.jpg (their own mural wall at the order window),
+       blurred into a colour field. Mark: harvest-0906/g2.jpg, their real lit sign,
+       perspective-rectified and levelled — never redrawn. -->
+  <section class="hero v-stand-still" id="hero">
+    <h1 class="sr-only">Backyard Pizza &amp; Burgers — Indian-fusion and classic pizza, burgers and wings at 1824 S Meridian, Puyallup</h1>
+
+    <div class="ss-bg" aria-hidden="true">
+      <picture>
+        <source media="(max-width:719px)" srcset="images/stand-still-stand-tall.jpg" width="770" height="1260">
+        <img src="images/stand-still-stand.jpg" alt="" width="1580" height="1440" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+    <div class="ss-scrim" aria-hidden="true"></div>
+    <div class="ss-bloom" aria-hidden="true"></div>
+
+    <div class="ss-inner">
+      <img class="ss-mark" src="images/stand-still-mark.png"
+           alt="The BACKYARD wordmark from the trailer's own lit sign"
+           width="1642" height="567" fetchpriority="high" decoding="async">
+
+      <div class="hero-actions ss-actions">
+        <a href="#menu" class="btn btn-primary">See the menu</a>
+        <a href="#hours" class="btn btn-cream">Are they open?</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== #hours =====================
+       Deep band, colour taken from the lot at night (harvest g18). Live
+       Pacific clock, green when open and red when closed, all seven days.
+       Hours live HERE and nowhere else on the page. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Seven days, <em>eleven till ten</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          1824 S Meridian, Puyallup, WA 98371<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=1824+S+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.7 on Google · 55 reviews</span>
+          <span class="proof"><span class="ico">✓</span> Food safety inspection: GREAT</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">11:00 AM – 10:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">11:00 AM – 10:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">11:00 AM – 10:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">11:00 AM – 10:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">11:00 AM – 10:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">11:00 AM – 10:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 10:00 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — the board =====================
+       Transcribed verbatim off the board bolted to the trailer wall
+       (harvest g21 + g22 + g9). Descriptions come from their printed
+       Indian-fusion sheet (harvest g12). Nothing invented. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Read the board at the window</p>
+        <h2>Nine fusion pies, <em>and all the classics</em></h2>
+        <p>Their board says it plainly: <b>“We have a dedicated oven for all of our vegetarian pizzas.”</b> Every pizza price below is a medium 12-inch, exactly as the board prints it.</p>
+      </div>
+
+      <div class="menu-groups reveal">
+        <div class="menu-group">
+          <h3><span class="board-bar">Indian Fusion Pizza's</span></h3>
+          <ul class="menu-list">
+            <li><span class="name">Butter Chicken Pizza</span><span class="price tnum">$16.95</span><span class="desc">Fresh homemade butter sauce, fresh mozzarella, tandoori chicken, mushrooms, red onions, green peppers, and fresh diced ginger, garlic and cilantro.</span></li>
+            <li><span class="name">Butter Paneer Pizza</span><span class="price tnum">$16.95</span><span class="desc">The same butter sauce, with tandoori paneer instead of the chicken.</span></li>
+            <li><span class="name">Tandoori Chicken Pizza</span><span class="price tnum">$16.95</span><span class="desc">Homemade tandoori sauce, fresh mozzarella, tandoori chicken, mushrooms, red onions, green peppers, ginger, garlic and cilantro.</span></li>
+            <li><span class="name">Tandoori Paneer Pizza</span><span class="price tnum">$16.95</span><span class="desc">Tandoori sauce and tandoori paneer, same build.</span></li>
+            <li><span class="name">Kadahi Chicken Pizza</span><span class="price tnum">$16.95</span><span class="desc">Homemade curry sauce, mozzarella, black olives, bell peppers, fresh onions and mushrooms, ginger, garlic, cilantro, chicken.</span></li>
+            <li><span class="name">Kadahi Paneer Pizza</span><span class="price tnum">$16.95</span><span class="desc">The curry-sauce version with paneer.</span></li>
+            <li><span class="name">Palak Chicken Pizza</span><span class="price tnum">$16.95</span><span class="desc">Fresh cooked spinach, fresh mozzarella, ginger, garlic, fresh onions, cilantro, topped with grilled chicken.</span></li>
+            <li><span class="name">Palak Paneer Pizza</span><span class="price tnum">$16.95</span><span class="desc">The spinach pie, topped with fresh paneer.</span></li>
+            <li><span class="name">Pesto Paneer Pizza</span><span class="price tnum">$16.95</span><span class="desc">Homemade creamy sauce and homemade pesto, fresh mozzarella and fresh paneer, bell peppers, onions, ginger, garlic, cilantro.</span></li>
+          </ul>
+        </div>
+        <div class="menu-group">
+          <h3><span class="board-bar">The Classics</span></h3>
+          <ul class="menu-list">
+            <li><span class="name">Cheese</span><span class="price tnum">$12.95</span></li>
+            <li><span class="name">Pepperoni</span><span class="price tnum">$14.95</span></li>
+            <li><span class="name">Backyard Veggie</span><span class="price tnum">$16.95</span></li>
+            <li><span class="name">Buffalo Chicken Pizza</span><span class="price tnum">$16.95</span></li>
+            <li><span class="name">Chicken Bacon Supreme</span><span class="price tnum">$16.95</span></li>
+            <li><span class="name">Hawaiian Pizza</span><span class="price tnum">$16.95</span></li>
+            <li><span class="name">Pesto Chicken Pizza</span><span class="price tnum">$16.95</span></li>
+            <li><span class="name">Backyard BBQ</span><span class="price tnum">$16.95</span></li>
+            <li><span class="name">Meat Lovers Special</span><span class="price tnum">$18.95</span></li>
+          </ul>
+          <h3 class="second"><span class="board-bar">Wings</span></h3>
+          <ul class="menu-list">
+            <li><span class="name">6 Pc.</span><span class="price tnum">$10.95</span></li>
+            <li><span class="name">12 Pc.</span><span class="price tnum">$19.95</span></li>
+            <li><span class="name">24 Pc.</span><span class="price tnum">$39.95</span></li>
+          </ul>
+          <p class="flavor-line"><b>Flavors on the board:</b> Curry · BBQ · Buffalo · Tandoori · Garlic Parmesan · Mango Habanero · Boneless Wings</p>
+        </div>
+      </div>
+
+      <div class="dish-strip reveal">
+        <figure class="dish"><img src="images/dish-fusion.jpg" alt="A whole Indian-fusion pizza in an open box — orange tandoori-marinated cubes, red onion, green pepper, mushrooms and fresh cilantro" loading="lazy"><figcaption>A fusion pie in the box</figcaption></figure>
+        <figure class="dish"><img src="images/dish-burger.jpg" alt="A double burger with red onion and tomato, unwrapped on its foil at a picnic table" loading="lazy"><figcaption>Burger, straight off the foil</figcaption></figure>
+        <figure class="dish"><img src="images/dish-wings.jpg" alt="A clamshell box of glazed wings on the counter by the painted trailer wall" loading="lazy"><figcaption>Wings, six to a box and up</figcaption></figure>
+        <figure class="dish"><img src="images/dish-white.jpg" alt="A pale cheese-and-herb pizza in its box with a cup of ranch" loading="lazy"><figcaption>Out of the oven, into the box</figcaption></figure>
+      </div>
+
+      <div class="section-head sub-head reveal">
+        <h3 class="rest-head">The rest of the board</h3>
+        <p>Tap any of these to roll it out.</p>
+      </div>
+
+      <div class="cards reveal">
+
+        <article class="card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-fusionburgers">
+            <h3>Indian Fusion Burgers</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Four of them, off the same board</p>
+          <div class="rolled" id="roll-fusionburgers">
+            <ul class="menu-list">
+              <li><span class="name">Aloo Tikki Burger</span><span class="price tnum">$8.99</span></li>
+              <li><span class="name">Paneer Patty Burger</span><span class="price tnum">$9.99</span></li>
+              <li><span class="name">Noodle Tikki Burger</span><span class="price tnum">$9.99</span></li>
+              <li><span class="name">Butter Chicken Burger</span><span class="price tnum">$9.99</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-burgers">
+            <h3>Burgers</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Eight, $7.99 and up</p>
+          <div class="rolled" id="roll-burgers">
+            <ul class="menu-list">
+              <li><span class="name">Cheeseburger</span><span class="price tnum">$7.99</span></li>
+              <li><span class="name">Crispy Chicken Burger</span><span class="price tnum">$7.99</span></li>
+              <li><span class="name">Veggie Burger</span><span class="price tnum">$7.99</span></li>
+              <li><span class="name">Double Cheeseburger</span><span class="price tnum">$8.99</span></li>
+              <li><span class="name">Bacon Cheese Burger</span><span class="price tnum">$8.99</span></li>
+              <li><span class="name">Mushroom Swiss Burger</span><span class="price tnum">$8.99</span></li>
+              <li><span class="name">Cowboy Burger</span><span class="price tnum">$8.99</span></li>
+              <li><span class="name">Grilled Chicken Burger</span><span class="price tnum">$8.99</span></li>
+            </ul>
+            <p class="roll-fine">Any burger as a combo with fries and a drink, add $3.99. With onion rings and a drink, add $4.99.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-sides">
+            <h3>Side Orders</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Gun powder fries live here</p>
+          <div class="rolled" id="roll-sides">
+            <ul class="menu-list">
+              <li><span class="name">Fries</span><span class="price tnum">$3.99</span></li>
+              <li><span class="name">Garlic Fries</span><span class="price tnum">$5.99</span></li>
+              <li><span class="name">Masala Queso Fries</span><span class="price tnum">$5.99</span></li>
+              <li><span class="name">Gun Powder Fries</span><span class="price tnum">$5.99</span></li>
+              <li><span class="name">Onion Rings</span><span class="price tnum">$6.99</span></li>
+              <li><span class="name">Mozzarella Sticks</span><span class="price tnum">$6.99</span></li>
+              <li><span class="name">3 Pc. Chicken Strips and Fries</span><span class="price tnum">$9.99</span></li>
+              <li><span class="name">5 Pc. Mozzarella Sticks and Fries</span><span class="price tnum">$9.99</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-salads">
+            <h3>Salads &amp; Extras</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Salads, breadsticks, sauces</p>
+          <div class="rolled" id="roll-salads">
+            <ul class="menu-list">
+              <li><span class="name">Caesar Salad</span><span class="price tnum">$9.99</span></li>
+              <li><span class="name">Chicken Caesar Salad</span><span class="price tnum">$12.99</span></li>
+              <li><span class="name">Garlic Breadsticks</span><span class="price tnum">$9.99</span></li>
+              <li><span class="name">Ranch</span><span class="price tnum">$0.99</span></li>
+              <li><span class="name">BBQ</span><span class="price tnum">$0.99</span></li>
+              <li><span class="name">Hot Sauce</span><span class="price tnum">$0.99</span></li>
+              <li><span class="name">Jalapeno</span><span class="price tnum">$0.99</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-kids">
+            <h3>Kids Menu</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Each with a small side of fries</p>
+          <div class="rolled" id="roll-kids">
+            <ul class="menu-list">
+              <li><span class="name">Cheeseburger</span><span class="price tnum">$8.99</span></li>
+              <li><span class="name">Mozzarella Sticks</span><span class="price tnum">$8.99</span></li>
+              <li><span class="name">Chicken Strips</span><span class="price tnum">$8.99</span></li>
+            </ul>
+            <p class="roll-fine">All kid's menu items served with a small side of fries.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-drinks">
+            <h3>Drinks</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Cold, out of the window</p>
+          <div class="rolled" id="roll-drinks">
+            <ul class="menu-list">
+              <li><span class="name">Can Soda</span><span class="price tnum">$1.50</span></li>
+              <li><span class="name">Water Bottle</span><span class="price tnum">$1.75</span></li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="menu-fine reveal">Every item and price on this page is transcribed from the board bolted to the trailer wall. No alcohol on the premises — that's on the notice in their window too.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery — the lot ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pull into the gravel</p>
+        <h2>It really is <em>a backyard</em></h2>
+        <p>The trailer sits on the Pind Kohala lot on South Meridian — picnic tables, a canopy, and string lights strung end to end over the whole yard.</p>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The lot at dusk with string lights and pennant flags strung across it, the trailers lit underneath" loading="lazy"><figcaption>String lights, end to end</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="The roadside sign reading Pind Kohala, with Backyard Pizza, Little India Puyallup and Mocha Stop listed underneath and the address 1824 S Meridian" loading="lazy"><figcaption>The sign on South Meridian</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="The whole gravel lot on an overcast afternoon — the trailers lined up beside the house, flags overhead" loading="lazy"><figcaption>Three counters, one yard</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Gravel, a white canopy tent and the painted side of the Backyard trailer" loading="lazy"><figcaption>The canopy out back</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — HOW BIG =====================
+       Their own board's upgrade rule, made tappable: medium 12", large 14"
+       (+$4.00), extra large 16" (+$7.00). One tap, the pizza grows to true
+       relative scale, the line under it changes. Nothing invented — the
+       three sizes and the two upgrade prices are printed on the board.
+       Section 5: interactives sit low on the page. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The fine print, made useful</p>
+        <h2>Tap a size. <em>Watch it grow.</em></h2>
+        <p>Every pizza price on this page is a medium 12-inch. Here's exactly what the board says the bigger ones cost.</p>
+      </div>
+
+      <div class="sizer reveal">
+        <div class="sizer-stage">
+          <div class="sizer-disc" id="sizerDisc" data-size="12">
+            <img src="images/size-pizza.jpg" alt="A whole pizza in its open box, shot from above">
+          </div>
+        </div>
+        <p class="sizer-read" id="sizerRead" role="status" aria-live="polite">
+          <b class="sizer-title">Medium · 12 inch</b>
+          <span class="sizer-note">The price on the menu</span>
+        </p>
+        <div class="sizer-pills" role="group" aria-label="Pizza size">
+          <button class="pill is-on" type="button" data-size="12" data-title="Medium · 12 inch" data-note="The price on the menu" aria-pressed="true">12″ Medium</button>
+          <button class="pill" type="button" data-size="14" data-title="Large · 14 inch" data-note="Add $4.00" aria-pressed="false">14″ Large</button>
+          <button class="pill" type="button" data-size="16" data-title="Extra large · 16 inch" data-note="Add $7.00" aria-pressed="false">16″ X-large</button>
+        </div>
+        <p class="sizer-hint">Tap a size.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       No named-plus-photographed reviewer pair could be sourced without a
+       logged-in scrape, so this is the honest aggregate with links out —
+       never an invented card, never a grey silhouette. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What Puyallup gives them</p>
+        <h2>4.7 stars, <em>and counting</em></h2>
+      </div>
+      <div class="rating-block reveal">
+        <div class="rating-big">
+          <b class="tnum">4.7</b>
+          <span class="stars" aria-label="4.7 out of 5 stars">★★★★★</span>
+          <span class="rating-src">on Google, across <span class="tnum">55</span> reviews</span>
+        </div>
+        <div class="rating-side">
+          <p>They also carry <b class="tnum">12</b> reviews on Yelp and a Tacoma-Pierce County food safety inspection rated <b>GREAT</b>, posted in the order window.</p>
+          <div class="rating-links">
+            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Backyard+Pizza+1824+S+Meridian+Puyallup+WA" target="_blank" rel="noopener">Read them on Google ↗</a>
+            <a class="btn btn-ghost" href="https://www.yelp.com/biz/backyard-pizza-and-burgers-puyallup-2" target="_blank" rel="noopener">Yelp ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting here</p>
+          <h2>Pull in, <em>walk up, order</em></h2>
+          <ol class="steps">
+            <li><h3>Turn into the lot</h3><p>1824 S Meridian, on the Pind Kohala lot. Gravel yard, big painted trailer, you can't miss it.</p></li>
+            <li><h3>Order at the window</h3><p>The board is bolted to the wall beside the window — everything on it is on this page. Card taps at the counter.</p></li>
+            <li><h3>Grab a picnic table</h3><p>Sit out under the string lights, or take it home. No alcohol on the premises.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12532680758">(253) 268-0758</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=1824+S+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A big order or a party</option><option>A question about the menu</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, when, and what you're after."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the trailer</button>
+          <p class="form-success">Thanks — someone at Backyard will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more slice</p>
+        <h2>The painted trailer <em>on South Meridian</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count tnum" data-to="9">9</span></b><span>Indian-fusion pies on the board</span></div>
+        <div class="num"><b><span class="count tnum" data-to="7">7</span></b><span>wing flavors, curry to mango habanero</span></div>
+        <div class="num"><b><span class="count tnum" data-to="3">3</span></b><span>counters sharing the Pind Kohala lot</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12532680758" class="btn btn-primary">Call (253) 268-0758</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=1824+S+Meridian%2C+Puyallup%2C+WA+98371" class="btn btn-ghost" target="_blank" rel="noopener">Get directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt=""></span>
+          <span class="wm">Backyard Pizza &amp; Burgers<small>Puyallup, Washington</small></span>
+        </div>
+        <p>Indian-fusion pizza, the classics, burgers and wings — off a trailer with string lights over the yard.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>1824 S Meridian<br>Puyallup, WA 98371</p>
+        <p><a href="tel:+12532680758">(253) 268-0758</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#menu">The food</a><br><a href="#gallery">The lot</a><br><a href="#signature">Sizes</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Backyard Pizza &amp; Burgers</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=0907164944"></script>
+
+</body>
+</html>

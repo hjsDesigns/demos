@@ -1,0 +1,84 @@
+/* HERO variant — SKATE-IN. Namespaced under .hero.v-skate-in. */
+.hero.v-skate-in{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:var(--dark);isolation:isolate;
+}
+.hero.v-skate-in .sk-bg{position:absolute;inset:0;z-index:0}
+.hero.v-skate-in .sk-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06)}
+.hero.v-skate-in .sk-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 78% at 50% 40%, rgba(0,0,0,0) 0%, rgba(27,34,66,.28) 62%, rgba(27,34,66,.62) 100%),
+    linear-gradient(180deg, rgba(27,34,66,.34) 0%, rgba(27,34,66,.06) 40%, rgba(27,34,66,.58) 100%);
+}
+.hero.v-skate-in .sk-inner{
+  position:relative;z-index:2;width:100%;max-width:var(--maxw,1180px);
+  margin:0 auto;padding:clamp(18px,5vw,44px) var(--pad,20px);
+  display:flex;flex-direction:column;align-items:center;gap:clamp(20px,4vh,40px);
+}
+.hero.v-skate-in .sk-stage{width:100%;display:flex;flex-direction:column;align-items:center;gap:clamp(2px,1.4vh,14px)}
+
+.hero.v-skate-in .sk-word{
+  width:min(86vw,760px);height:auto;display:block;
+  filter:drop-shadow(0 0 18px rgba(255,214,140,.35)) drop-shadow(0 8px 22px rgba(0,0,0,.45));
+  opacity:0;transform:translateY(-14px) scale(.985);
+  animation:skIn-word .72s cubic-bezier(.2,.75,.3,1) .10s 1 forwards;
+}
+.hero.v-skate-in .sk-riders{
+  width:min(92vw,780px);display:flex;justify-content:center;align-items:flex-end;
+  gap:clamp(0px,1vw,10px);
+}
+.hero.v-skate-in .sk-rider{
+  width:min(43vw,340px);height:auto;display:block;
+  filter:drop-shadow(0 0 22px rgba(255,190,110,.32)) drop-shadow(0 12px 26px rgba(0,0,0,.45));
+}
+.hero.v-skate-in .sk-burger{
+  transform:translateX(-135%);
+  animation:skIn-fromLeft 1.15s cubic-bezier(.22,.9,.24,1) .34s 1 forwards;
+}
+.hero.v-skate-in .sk-pizza{
+  transform:translateX(135%);
+  animation:skIn-fromRight 1.15s cubic-bezier(.22,.9,.24,1) .40s 1 forwards;
+}
+/* quiet hold: one very slow neon breath, nothing that asks for attention */
+.hero.v-skate-in .sk-stage{animation:skIn-breathe 9s ease-in-out 2.1s infinite}
+
+@keyframes skIn-word{
+  from{opacity:0;transform:translateY(-14px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes skIn-fromLeft{
+  0%{transform:translateX(-135%) rotate(-3deg)}
+  74%{transform:translateX(4%) rotate(1.2deg)}
+  88%{transform:translateX(-1.4%) rotate(-.6deg)}
+  100%{transform:translateX(0) rotate(0)}
+}
+@keyframes skIn-fromRight{
+  0%{transform:translateX(135%) rotate(3deg)}
+  74%{transform:translateX(-4%) rotate(-1.2deg)}
+  88%{transform:translateX(1.4%) rotate(.6deg)}
+  100%{transform:translateX(0) rotate(0)}
+}
+@keyframes skIn-breathe{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.055)}
+}
+
+.hero.v-skate-in .sk-actions{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
+  opacity:0;animation:skIn-word .6s ease-out 1.45s 1 forwards;
+}
+
+@media (max-width:520px){
+  .hero.v-skate-in .sk-rider{width:46vw}
+  .hero.v-skate-in .sk-riders{gap:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero.v-skate-in .sk-word,
+  .hero.v-skate-in .sk-actions{opacity:1;transform:none;animation:none}
+  .hero.v-skate-in .sk-burger,
+  .hero.v-skate-in .sk-pizza{transform:none;animation:none}
+  .hero.v-skate-in .sk-stage{animation:none}
+}

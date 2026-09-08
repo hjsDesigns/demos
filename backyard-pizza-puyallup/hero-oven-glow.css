@@ -1,0 +1,116 @@
+/* ============================================================
+   HERO VARIANT — "oven-glow"  (.hero.v-oven-glow)
+   Full-bleed real pie, one slow amber heat pulse, the real sign
+   small in the top corner. Self-contained, tokens only.
+   ============================================================ */
+
+.hero.v-oven-glow{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:flex-start;
+  gap:0;
+  padding:0;
+  overflow:hidden;
+  background:var(--dark);
+  isolation:isolate;
+}
+
+/* ---- the pie: full-bleed, settles from a hair wide ---- */
+.hero.v-oven-glow .og-bg{position:absolute;inset:0;z-index:0;}
+.hero.v-oven-glow .og-bg img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:50% 50%;
+  display:block;
+  transform:scale(1.04);
+  filter:brightness(.92) saturate(1.06) contrast(1.02);
+  animation:og-settle 2600ms var(--ease,cubic-bezier(.22,.85,.3,1)) 60ms both;
+}
+
+/* ---- one slow amber pulse — heat coming off the stone ---- */
+.hero.v-oven-glow .og-heat{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(88% 62% at 50% 58%, rgba(242,179,60,.42) 0%, rgba(206,68,41,.20) 42%, rgba(27,34,66,0) 74%);
+  mix-blend-mode:screen;
+  opacity:0;
+  animation:og-pulse 3200ms cubic-bezier(.3,.7,.3,1) 320ms both,
+            og-breathe 11s ease-in-out 3600ms infinite;
+}
+
+/* ---- scrim: warm at the top, deep navy at the foot so the hero
+        hands off cleanly to the navy hours band below ---- */
+.hero.v-oven-glow .og-scrim{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(110% 85% at 50% 52%, rgba(0,0,0,0) 38%, rgba(12,10,8,.42) 82%, rgba(12,10,8,.68) 100%),
+    linear-gradient(180deg, rgba(27,34,66,.46) 0%, rgba(27,34,66,0) 30%, rgba(27,34,66,.42) 76%, var(--dark) 100%);
+}
+
+/* ---- content ---- */
+.hero.v-oven-glow .og-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);
+  margin:0 auto;
+  padding:clamp(22px,4vh,40px) var(--pad) clamp(30px,6vh,56px);
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  min-height:calc(100svh - var(--header-h));
+  gap:24px;
+}
+
+/* the real sign, hung small in the top corner */
+.hero.v-oven-glow .og-plate{
+  align-self:flex-start;
+  display:block;
+  width:clamp(146px,20vw,224px);
+  border-radius:14px;
+  overflow:hidden;
+  border:2px solid rgba(244,236,218,.34);
+  box-shadow:0 18px 40px rgba(0,0,0,.48), 0 0 34px rgba(242,179,60,.22);
+  opacity:0;
+  animation:og-lift 1100ms var(--ease,cubic-bezier(.22,.85,.3,1)) 520ms both;
+}
+.hero.v-oven-glow .og-plate img{display:block;width:100%;height:auto;}
+
+.hero.v-oven-glow .og-actions{
+  display:flex;flex-wrap:wrap;gap:12px;
+  opacity:0;
+  animation:og-lift 900ms var(--ease,cubic-bezier(.22,.85,.3,1)) 1150ms both;
+}
+
+@keyframes og-settle{
+  from{transform:scale(1.11);filter:brightness(.46) saturate(.76);}
+  to  {transform:scale(1.04);filter:brightness(.92) saturate(1.06) contrast(1.02);}
+}
+@keyframes og-pulse{
+  0%  {opacity:0;}
+  46% {opacity:1;}
+  100%{opacity:.58;}
+}
+@keyframes og-breathe{
+  0%,100%{opacity:.58;}
+  50%    {opacity:.74;}
+}
+@keyframes og-lift{
+  from{opacity:0;transform:translateY(14px);}
+  to  {opacity:1;transform:none;}
+}
+
+/* phones: sign a touch smaller, buttons side by side when they fit */
+@media (max-width:520px){
+  .hero.v-oven-glow .og-inner{padding-bottom:clamp(26px,5vh,40px);}
+  .hero.v-oven-glow .og-actions .btn{flex:1 1 auto;text-align:center;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero.v-oven-glow .og-bg img,
+  .hero.v-oven-glow .og-heat,
+  .hero.v-oven-glow .og-plate,
+  .hero.v-oven-glow .og-actions{animation:none;}
+  .hero.v-oven-glow .og-heat{opacity:.58;}
+  .hero.v-oven-glow .og-plate,
+  .hero.v-oven-glow .og-actions{opacity:1;transform:none;}
+}

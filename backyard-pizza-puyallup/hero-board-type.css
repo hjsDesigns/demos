@@ -1,0 +1,128 @@
+/* ============================================================
+   HERO VARIANT — board-type  (Backyard Pizza & Burgers, 2026-09-07)
+   Typographic opener, no photographic ground: the business's own
+   category line set huge in the site display face (Fredoka) on the
+   trailer's cream, in the sign's own colours. Words land one by one,
+   the real neon sign lands LAST, then everything holds still with one
+   slow breath in the halo behind the sign.
+   All rules namespaced under .hero.v-board-type. Keyframes prefixed bt-.
+   ============================================================ */
+
+.hero.v-board-type{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--bg);
+  padding:clamp(18px,4.5vh,44px) var(--pad);
+  isolation:isolate;
+}
+
+/* warm wash — the lit-sign glow spilling onto the cream board */
+.hero.v-board-type .bt-wash{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(120% 70% at 50% 8%, rgba(242,179,60,.30) 0%, rgba(242,179,60,0) 60%),
+    radial-gradient(90% 60% at 12% 96%, rgba(206,68,41,.14) 0%, rgba(206,68,41,0) 62%),
+    radial-gradient(80% 55% at 92% 88%, rgba(62,139,73,.13) 0%, rgba(62,139,73,0) 60%),
+    var(--bg);
+}
+
+.hero.v-board-type .bt-inner{
+  position:relative; z-index:2;
+  width:100%; max-width:var(--maxw);
+  margin:0 auto;
+  display:flex; flex-direction:column; align-items:center;
+  text-align:center;
+  gap:clamp(16px,3.2vh,32px);
+}
+
+/* ---- the type ---- */
+.hero.v-board-type .bt-type{
+  margin:0;
+  font-family:var(--display);
+  font-weight:600;
+  text-transform:uppercase;
+  line-height:.92;
+  letter-spacing:-.015em;
+  color:var(--ink);
+  display:flex; flex-direction:column; align-items:center;
+  gap:.02em;
+}
+.hero.v-board-type .bt-w{
+  display:block;
+  font-size:clamp(2.45rem,11.4vw,7.1rem);
+  opacity:0;
+  transform:translateY(26px) scale(.965);
+  animation:bt-land .62s var(--ease-2) forwards;
+  will-change:transform,opacity;
+}
+.hero.v-board-type .bt-w1{
+  color:var(--brand-text);
+  font-size:clamp(1.72rem,7.6vw,4.7rem);
+  letter-spacing:.005em;
+  animation-delay:.12s;
+}
+.hero.v-board-type .bt-w2{ animation-delay:.30s; }
+.hero.v-board-type .bt-w3{ animation-delay:.48s; }
+.hero.v-board-type .bt-w4{ animation-delay:.66s; }
+.hero.v-board-type .bt-w4 em{
+  font-style:normal;
+  color:var(--accent);
+}
+
+/* ---- the real sign, last in ---- */
+.hero.v-board-type .bt-sign{
+  position:relative;
+  width:clamp(140px,29vw,232px);
+  aspect-ratio:1000/969;
+  opacity:0;
+  transform:scale(.94);
+  animation:bt-sign-in .72s var(--ease) .98s forwards;
+  will-change:transform,opacity;
+}
+.hero.v-board-type .bt-sign img{
+  position:relative; z-index:1;
+  display:block; width:100%; height:100%;
+  object-fit:contain;
+  border-radius:12px;
+}
+.hero.v-board-type .bt-halo{
+  position:absolute; inset:-16%; z-index:0;
+  border-radius:50%;
+  background:radial-gradient(closest-side, rgba(242,179,60,.55), rgba(242,179,60,0) 72%);
+  animation:bt-breathe 7.5s ease-in-out 1.9s infinite;
+}
+
+/* ---- buttons ---- */
+.hero.v-board-type .bt-actions{
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:12px;
+  opacity:0;
+  animation:bt-fade .6s var(--ease) 1.34s forwards;
+}
+
+@keyframes bt-land{
+  from{ opacity:0; transform:translateY(26px) scale(.965); }
+  to  { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes bt-sign-in{
+  from{ opacity:0; transform:scale(.94); }
+  to  { opacity:1; transform:scale(1); }
+}
+@keyframes bt-fade{ from{opacity:0} to{opacity:1} }
+@keyframes bt-breathe{
+  0%,100%{ opacity:.55; transform:scale(1); }
+  50%    { opacity:.95; transform:scale(1.06); }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero.v-board-type .bt-w,
+  .hero.v-board-type .bt-sign,
+  .hero.v-board-type .bt-actions{
+    animation:none; opacity:1; transform:none;
+  }
+  .hero.v-board-type .bt-halo{ animation:none; opacity:.7; }
+}

@@ -1,0 +1,125 @@
+/* ticket-rail — variant 8, Backyard Pizza & Burgers (2026-09-07)
+   Their own lit sign holds the top; three real dishes (wings, burger,
+   fusion pizza) slide onto a kitchen ticket rail one after another and
+   stop dead. No loop, no interaction, CSS only. */
+
+.hero.v-ticket-rail{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;
+  background:var(--dark);
+  color:#fff;
+  isolation:isolate;
+}
+
+/* ---- ground: their own painted mural, blurred, warm and dim ---- */
+.hero.v-ticket-rail .tr-bg{position:absolute;inset:0;z-index:0}
+.hero.v-ticket-rail .tr-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+  transform:scale(1.06);transform-origin:50% 45%;
+  animation:tr-drift 26s cubic-bezier(.2,.6,.2,1) .2s forwards;
+}
+.hero.v-ticket-rail .tr-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(118% 76% at 50% 30%, rgba(27,34,66,.10) 0%, rgba(27,34,66,.42) 60%, rgba(27,34,66,.66) 100%),
+    linear-gradient(to bottom, rgba(27,34,66,.30) 0%, rgba(27,34,66,.10) 40%, rgba(27,34,66,.62) 100%);
+}
+
+.hero.v-ticket-rail .tr-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(14px,3vh,30px) var(--pad) clamp(20px,4vh,38px);
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(14px,2.6vh,26px);
+}
+
+/* ---- the mark: their real sign ---- */
+.hero.v-ticket-rail .tr-mark{
+  width:min(60vw,250px);
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 18px 44px rgba(0,0,0,.45), 0 0 0 3px rgba(251,246,233,.88);
+  opacity:0;transform:translateY(12px) scale(.985);
+  animation:tr-mark-in .68s cubic-bezier(.22,.9,.28,1) .06s forwards;
+}
+.hero.v-ticket-rail .tr-mark img{display:block;width:100%;height:auto}
+
+/* ---- the rail ---- */
+.hero.v-ticket-rail .tr-rail{position:relative;width:max-content;max-width:100%;padding-top:12px}
+.hero.v-ticket-rail .tr-bar{
+  position:absolute;left:-20px;right:-20px;top:10px;height:7px;border-radius:6px;
+  background:linear-gradient(to bottom,#F3EEE2 0%,#CFC6B2 42%,#8C8474 100%);
+  box-shadow:0 3px 10px rgba(0,0,0,.45);
+  opacity:0;animation:tr-bar-in .5s ease-out .18s forwards;
+}
+.hero.v-ticket-rail .tr-bar::before,
+.hero.v-ticket-rail .tr-bar::after{
+  content:"";position:absolute;top:-4px;width:9px;height:15px;border-radius:3px;
+  background:linear-gradient(to bottom,#E8E1D2,#9A9282);
+}
+.hero.v-ticket-rail .tr-bar::before{left:-6px}
+.hero.v-ticket-rail .tr-bar::after{right:-6px}
+
+.hero.v-ticket-rail .tr-tickets{
+  display:flex;justify-content:center;align-items:flex-start;
+  gap:clamp(10px,2.6vw,22px);
+  padding-top:14px;
+}
+.hero.v-ticket-rail .tr-ticket{
+  position:relative;margin:0;
+  width:clamp(88px,25vw,168px);
+  background:#FBF6E9;
+  padding:7px 7px 12px;
+  border-radius:4px;
+  box-shadow:0 14px 26px rgba(0,0,0,.42);
+  opacity:0;
+  transform:translateX(58vw) translateY(-6px) rotate(6deg);
+}
+.hero.v-ticket-rail .tr-ticket img{
+  display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:2px;
+}
+.hero.v-ticket-rail .tr-clip{
+  position:absolute;left:50%;top:-11px;margin-left:-6px;
+  width:12px;height:20px;border-radius:3px;
+  background:linear-gradient(to bottom,#EFE8D8,#A79E8B);
+  box-shadow:0 2px 4px rgba(0,0,0,.4);
+}
+
+.hero.v-ticket-rail .tr-t1{animation:tr-slide-1 .62s cubic-bezier(.18,.86,.3,1) .40s forwards}
+.hero.v-ticket-rail .tr-t2{animation:tr-slide-2 .62s cubic-bezier(.18,.86,.3,1) .80s forwards}
+.hero.v-ticket-rail .tr-t3{animation:tr-slide-3 .62s cubic-bezier(.18,.86,.3,1) 1.20s forwards}
+
+.hero.v-ticket-rail .tr-actions{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
+  opacity:0;animation:tr-fade-up .6s ease-out 1.70s forwards;
+}
+
+@keyframes tr-mark-in{to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes tr-bar-in{to{opacity:1}}
+@keyframes tr-fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tr-drift{to{transform:scale(1.11)}}
+@keyframes tr-slide-1{to{opacity:1;transform:translateX(0) translateY(0) rotate(-1.6deg)}}
+@keyframes tr-slide-2{to{opacity:1;transform:translateX(0) translateY(0) rotate(1.1deg)}}
+@keyframes tr-slide-3{to{opacity:1;transform:translateX(0) translateY(0) rotate(-.7deg)}}
+
+@media (min-width:900px){
+  .hero.v-ticket-rail .tr-mark{width:min(30vw,280px)}
+  .hero.v-ticket-rail .tr-rail{padding-top:18px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero.v-ticket-rail .tr-bg img,
+  .hero.v-ticket-rail .tr-mark,
+  .hero.v-ticket-rail .tr-bar,
+  .hero.v-ticket-rail .tr-ticket,
+  .hero.v-ticket-rail .tr-actions{animation:none!important}
+  .hero.v-ticket-rail .tr-mark,
+  .hero.v-ticket-rail .tr-bar,
+  .hero.v-ticket-rail .tr-actions{opacity:1;transform:none}
+  .hero.v-ticket-rail .tr-bg img{transform:scale(1.11)}
+  .hero.v-ticket-rail .tr-ticket{opacity:1}
+  .hero.v-ticket-rail .tr-t1{transform:rotate(-1.6deg)}
+  .hero.v-ticket-rail .tr-t2{transform:rotate(1.1deg)}
+  .hero.v-ticket-rail .tr-t3{transform:rotate(-.7deg)}
+}
