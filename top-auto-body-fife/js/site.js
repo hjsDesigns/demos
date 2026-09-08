@@ -1,0 +1,183 @@
+/* ============================================================
+   TOP AUTO BODY — 5717 Pacific Hwy E, Fife, WA — site.js
+   Nav toggle · live open/closed clock (Pacific) · scroll-reveal ·
+   count-up · contact form · title-cards-unroll · before/after wipe
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HOURS — 0 = Sunday … 6 = Saturday. Decimal 24h (17 = 5:00 pm).
+     [open, close]  both known
+     null           confirmed closed
+     '?'            nothing published for that day
+
+   SOURCE (2026-09-08): the FULL seven-day table is published on Top Auto
+   Body's Google business panel — Monday to Friday 8 AM–5 PM, Saturday and
+   Sunday closed — and every independent directory listing that answers
+   (Yelp, Superpages, Yellowpages, Birdeye, Carwise) agrees exactly. No
+   conflict, nothing guessed, no '?' days on this build.
+   The clock runs on Pacific time wherever the visitor happens to be.
+   ------------------------------------------------------------ */
+var HOURS = {
+  tz: 'America/Los_Angeles',
+  days: {
+    0: null,       // Sunday    — closed
+    1: [8, 17],    // Monday    — 8:00 AM – 5:00 PM
+    2: [8, 17],    // Tuesday   — 8:00 AM – 5:00 PM
+    3: [8, 17],    // Wednesday — 8:00 AM – 5:00 PM
+    4: [8, 17],    // Thursday  — 8:00 AM – 5:00 PM
+    5: [8, 17],    // Friday    — 8:00 AM – 5:00 PM
+    6: null        // Saturday  — closed
+  },
+  phone: '(253) 922-8822',
+  tel: '+12539228822'
+};
+
+/* Holiday hook. Top publish no holiday hours anywhere, so nothing is claimed
+   here — the hook stays in place for the owner to fill in at go-live. */
+function customClosure(p){ return null; }
+function customClose(p, close){ return close; }
+
+
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var REDUCE=function(){return window.matchMedia('(prefers-reduced-motion:reduce)').matches};
+
+  /* ---------- mobile nav ---------- */
+  var toggle=$('.nav-toggle'), nav=$('#main-nav');
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  if(toggle&&nav){
+    toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
+    $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
+    document.addEventListener('click',function(e){if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==toggle)setNav(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setNav(false);toggle.focus()}});
+  }
+  var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
+
+  /* ---------- Pacific time, wherever the viewer is ---------- */
+  var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
+    var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'1',10);if(isNaN(h))return null;var o={day:d,h:h,y:2026,mo:8,d:14};
+    var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
+    return o}catch(e){return null}})();
+  function pacificNow(){
+    if(DEMO) return DEMO;
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    var o={};parts.forEach(function(p){o[p.type]=p.value});
+    var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var h=parseInt(o.hour,10)%24, m=parseInt(o.minute,10);
+    return {day:days[o.weekday], h:h+m/60, y:parseInt(o.year,10), mo:parseInt(o.month,10)-1, d:parseInt(o.day,10)};
+  }
+  function fmt(h){h=h%24;var ap=h>=12?'pm':'am';var hh=Math.floor(h)%12;if(hh===0)hh=12;var mm=Math.round((h%1)*60);if(mm===60){mm=0;hh=(hh%12)+1}return hh+(mm?':'+(mm<10?'0':'')+mm:'')+' '+ap}
+  function dayName(d){return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d]}
+  function hoursFor(day){var v=HOURS.days[day];return (v===undefined)?'?':v}
+
+  /* Three states, never a guess:
+       open:true   → GREEN   (we can prove they are open right now)
+       open:false  → RED     (we can prove they are closed right now)
+       unknown     → NEUTRAL (nothing is published — say so, hand over the phone) */
+  function computeStatus(){
+    var p=pacificNow(), d=p.day, h=p.h;
+    var holiday=customClosure(p);
+    if(holiday) return holiday.unknown ? {unknown:true,text:holiday.text} : {open:false,text:'Closed today for '+holiday};
+
+    var today=hoursFor(d);
+    if(today==='?') return {unknown:true,text:'Hours for '+dayName(d)+' aren’t published — call the shop'};
+    if(today===null) return {open:false,text:'Closed today'};
+
+    var openAt=today[0], close=customClose(p,today[1]);
+    if(h<openAt) return {open:false,text:'Closed · opens today at '+fmt(openAt)};
+    if(close===null) return {unknown:true,text:'Opened at '+fmt(openAt)+' — call to catch them before they close'};
+    if(h<close) return {open:true,text:'Open now · til '+fmt(close)};
+    return {open:false,text:'Closed for the day'};
+  }
+
+  function applyStatus(){
+    var s=computeStatus(), p=pacificNow();
+    var cls = s.unknown ? 'is-unknown' : (s.open ? 'is-open' : 'is-closed');
+    var short = s.unknown ? 'Call' : (s.open ? 'Open' : 'Closed');
+    var hp=$('#hdrLive'), ht=$('#hdrLiveText');
+    if(hp&&ht){hp.className='hdr-live '+cls;ht.textContent=short;}
+    var sl=$('#statusLine'), st=$('#statusText');
+    if(sl&&st){sl.className='live-line '+cls;st.textContent=s.text;}
+    $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
+  }
+  applyStatus(); setInterval(applyStatus,60000);
+  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS};
+
+  /* ---------- scroll-reveal + count-up ---------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      en.target.classList.add('in');
+      $$('.count',en.target).forEach(function(c){
+        if(c.dataset.done)return; c.dataset.done='1';
+        var to=parseFloat(c.getAttribute('data-to')), dec=parseInt(c.getAttribute('data-dec')||'0',10), t0=null;
+        var show=function(n){c.textContent=dec?n.toFixed(dec):Math.round(n).toLocaleString('en-US')};
+        if(REDUCE()){show(to);return}
+        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);show(to*e);if(k<1)requestAnimationFrame(step);else show(to)}
+        requestAnimationFrame(step);
+      });
+      io.unobserve(en.target);
+    });
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  $$('.reveal').forEach(function(el){io.observe(el)});
+
+  /* ---------- contact form (demo mode: access_key empty, nothing is sent) ---------- */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){form.addEventListener('submit',function(e){e.preventDefault();ok.classList.add('show');ok.setAttribute('role','status');form.querySelector('button[type=submit]').disabled=true})}
+
+  /* ---------- TITLE CARDS UNROLL — the headline is the tap target ---------- */
+  $$('.unroll').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
+
+  /* ---------- SIGNATURE — THE SAME CORNER, TWICE -----------------------------------
+     Two of Top's own photographs of ONE car — the same dark-grey Acura,
+     same rear quarter, same gravel — on the way in and on the way out.
+     Toddler law: one big grab handle that nudges itself until you touch it,
+     drag or tap anywhere on the photo, instant payoff, no instructions. */
+  var ba=$('#ba');
+  if(ba){
+    var grip=$('.ba-grip',ba), dragging=false;
+    function setSplit(pct,mark){
+      pct=Math.max(0,Math.min(100,pct));
+      ba.style.setProperty('--split',pct.toFixed(2)+'%');
+      if(grip) grip.setAttribute('aria-valuenow',Math.round(pct));
+      if(mark) ba.classList.add('touched');
+    }
+    function fromEvent(e){
+      var r=ba.getBoundingClientRect();
+      var x=(e.touches&&e.touches[0]?e.touches[0].clientX:e.clientX)-r.left;
+      setSplit(x/r.width*100,true);
+    }
+    function down(e){dragging=true;fromEvent(e);if(e.cancelable)e.preventDefault()}
+    function move(e){if(!dragging)return;fromEvent(e);if(e.cancelable)e.preventDefault()}
+    function up(){dragging=false}
+    ba.addEventListener('mousedown',down);
+    window.addEventListener('mousemove',move);
+    window.addEventListener('mouseup',up);
+    ba.addEventListener('touchstart',down,{passive:false});
+    window.addEventListener('touchmove',move,{passive:false});
+    window.addEventListener('touchend',up);
+    if(grip){
+      grip.addEventListener('click',function(e){e.stopPropagation()});
+      grip.addEventListener('keydown',function(e){
+        var cur=parseFloat(grip.getAttribute('aria-valuenow')||'50');
+        if(e.key==='ArrowLeft'){setSplit(cur-6,true);e.preventDefault()}
+        else if(e.key==='ArrowRight'){setSplit(cur+6,true);e.preventDefault()}
+        else if(e.key==='Home'){setSplit(0,true);e.preventDefault()}
+        else if(e.key==='End'){setSplit(100,true);e.preventDefault()}
+      });
+    }
+    setSplit(50,false);
+  }
+
+})();
