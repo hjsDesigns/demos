@@ -1,0 +1,267 @@
+/* ============================================================
+   HERO VARIANT — dusk-strike-stack (All Star Auto Body, Puyallup)
+   dusk-barn's graded barn is the still ground; star-light's two-stutter
+   fluorescent strike lights their REAL banner where it hangs in that
+   photograph; then panel-stack's three finished-car chips deal in under
+   it, one after another, and everything holds on the ballast breath.
+   Namespaced .hero.v-dusk-strike-stack; every keyframe prefixed dss-.
+   CSS only — no JS. Reuses existing crops; no new images.
+
+   TIMELINE (deterministic, once)
+     0.22s  strike begins   flash · dark · flash · dark
+     1.21s  light lands, wall + banner lit
+     1.30s  red chip deals   1.60s black   1.90s blue (last settles 2.60s)
+     2.20s  buttons rise (2.85s)
+     1.92s+ ballast breath only
+   ============================================================ */
+
+.hero.v-dusk-strike-stack{
+  --dss-dur:1.7s;
+  --dss-delay:.22s;
+  --dss-hold:calc(var(--dss-delay) + var(--dss-dur));   /* 1.92s */
+
+  --dss-photo-max:46svh;               /* definite cap -> the plate hugs the photo exactly */
+  --dss-chip-w:clamp(104px,9.6vw,142px);
+  --dss-chip-h:calc(var(--dss-chip-w) * 1.25);
+  --dss-fan-x:clamp(58px,7.6vw,116px);
+  --dss-fan-y:clamp(10px,1.5vw,22px);
+  --dss-fan-r:9deg;
+
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  height:calc(100svh - var(--header-h));
+  display:flex;
+  overflow:hidden;
+  background:#06070A;                 /* the shop before the light — never flat black */
+  isolation:isolate;
+}
+
+/* ---- the blurred dusk echo behind, so the banner is never cropped ---- */
+.hero.v-dusk-strike-stack .dss-echo{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+}
+.hero.v-dusk-strike-stack .dss-echo img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transform:scale(1.22);
+  filter:blur(46px) brightness(.52) saturate(.9);
+  animation:dss-echo-lift var(--dss-dur) linear var(--dss-delay) 1 both;
+}
+.hero.v-dusk-strike-stack .dss-echo::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(132% 92% at 50% 38%, rgba(0,0,0,0) 44%, rgba(6,8,13,.62) 100%),
+    linear-gradient(180deg, rgba(6,8,13,.30) 0%, rgba(6,8,13,0) 30%, rgba(6,8,13,.58) 100%);
+}
+
+/* ---- layout ---- */
+.hero.v-dusk-strike-stack .hero-inner{
+  position:relative; z-index:1;
+  flex:1; min-height:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:clamp(14px,2.4vh,28px);
+  padding:clamp(14px,2.6vh,30px) var(--pad) clamp(18px,3.4vh,40px);
+  width:100%; max-width:none;
+  text-align:center;
+}
+
+/* ---- the photograph, contained ---- */
+.hero.v-dusk-strike-stack .dss-frame{
+  position:relative;
+  flex:0 1 auto; min-height:0;
+  width:100%; max-width:1080px;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero.v-dusk-strike-stack .dss-plate{
+  position:relative;
+  display:flex;
+  max-width:100%; max-height:100%;
+  border-radius:4px; overflow:hidden;
+  box-shadow:0 34px 90px rgba(0,0,0,.66), 0 2px 0 rgba(255,255,255,.05);
+}
+.hero.v-dusk-strike-stack .dss-plate picture{ display:flex; max-width:100%; }
+.hero.v-dusk-strike-stack .dss-photo{
+  display:block;
+  width:auto; height:auto;
+  max-width:100%;
+  max-height:var(--dss-photo-max);
+  object-fit:contain;
+  filter:brightness(1) saturate(1);
+  animation:dss-wall var(--dss-dur) linear var(--dss-delay) 1 both;
+}
+
+/* the cold night wash that the strike burns off */
+.hero.v-dusk-strike-stack .dss-cool{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(16,22,42,.72), rgba(6,8,16,.86));
+  mix-blend-mode:multiply;
+  animation:dss-cool-off var(--dss-dur) linear var(--dss-delay) 1 both;
+}
+
+/* the light itself: the real fixture top-right, its cone falling left down
+   the boards, the wash on the wall and the pool on the stone veneer */
+.hero.v-dusk-strike-stack .dss-light{
+  position:absolute; inset:0; pointer-events:none;
+  mix-blend-mode:screen; opacity:0;
+  background:
+    radial-gradient(21% 25% at 94% 45%, rgba(255,214,150,.62), rgba(255,196,116,0) 72%),
+    radial-gradient(46% 40% at 85% 60%, rgba(255,178,98,.26), rgba(255,178,98,0) 76%),
+    radial-gradient(34% 20% at 80% 89%, rgba(255,206,150,.18), rgba(255,206,150,0) 78%);
+  animation:
+    dss-strike var(--dss-dur) linear var(--dss-delay) 1 both,
+    dss-ballast 7s ease-in-out var(--dss-hold) infinite;
+}
+
+/* the white vinyl banner takes the light and throws its own halo back —
+   this sits exactly over where their banner hangs in their own photo */
+.hero.v-dusk-strike-stack .dss-banner{
+  position:absolute; left:57%; top:54%; width:34%; height:32%;
+  pointer-events:none; mix-blend-mode:screen; opacity:0;
+  border-radius:6px;
+  background:radial-gradient(58% 66% at 50% 50%, rgba(255,228,178,.58), rgba(255,204,140,.18) 60%, rgba(255,200,132,0) 82%);
+  filter:blur(10px);
+  animation:
+    dss-strike var(--dss-dur) linear var(--dss-delay) 1 both,
+    dss-ballast 7s ease-in-out var(--dss-hold) infinite;
+}
+
+/* ---- the fan of finished-work chips, dealt under the banner ---- */
+.hero.v-dusk-strike-stack .dss-fan{
+  position:relative; z-index:2;
+  flex:0 0 auto;
+  width:100%;
+  height:calc(var(--dss-chip-h) + var(--dss-fan-y));
+}
+.hero.v-dusk-strike-stack .dss-chip{
+  position:absolute; top:0; left:50%;
+  width:var(--dss-chip-w); height:var(--dss-chip-h);
+  margin:0 0 0 calc(var(--dss-chip-w) / -2);
+  border-radius:12px; overflow:hidden;
+  background:var(--dark);
+  box-shadow:0 24px 48px rgba(0,0,0,.7), 0 0 0 1px rgba(239,232,220,.13);
+  will-change:transform,opacity;
+}
+.hero.v-dusk-strike-stack .dss-chip img{
+  display:block; width:100%; height:100%; object-fit:cover;
+}
+.hero.v-dusk-strike-stack .dss-chip::after{   /* one guide-coat amber edge */
+  content:""; position:absolute; inset:auto 0 0 0; height:2px;
+  background:var(--warm); opacity:.72;
+}
+
+/* resting transforms = the final frame (what reduced motion lands on) */
+.hero.v-dusk-strike-stack .dss-chip-1{
+  z-index:1;
+  transform:translate(calc(var(--dss-fan-x) * -1), var(--dss-fan-y)) rotate(calc(var(--dss-fan-r) * -1));
+  animation:dss-deal-left 700ms cubic-bezier(.2,.9,.28,1) 1300ms both;
+}
+.hero.v-dusk-strike-stack .dss-chip-3{
+  z-index:1;
+  transform:translate(var(--dss-fan-x), var(--dss-fan-y)) rotate(var(--dss-fan-r));
+  animation:dss-deal-right 700ms cubic-bezier(.2,.9,.28,1) 1600ms both;
+}
+.hero.v-dusk-strike-stack .dss-chip-2{
+  z-index:2;
+  transform:translate(0,0) rotate(0deg) scale(1.045);
+  animation:dss-deal-centre 700ms cubic-bezier(.2,.9,.28,1) 1900ms both;
+}
+
+/* ---- the two existing buttons, unchanged ---- */
+.hero.v-dusk-strike-stack .hero-actions{
+  position:relative; z-index:2;
+  flex:0 0 auto;
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+  animation:dss-rise 650ms cubic-bezier(.22,.85,.3,1) 2200ms both;
+}
+.hero.v-dusk-strike-stack .hero-actions .btn{ min-width:11.5rem; text-align:center; }
+
+/* ---- keyframes ---- */
+@keyframes dss-strike{
+  0%,11%   {opacity:0}
+  12%,16%  {opacity:.90}
+  17%,27%  {opacity:.03}
+  28%,33%  {opacity:.64}
+  34%,40%  {opacity:.07}
+  58%,100% {opacity:.94}
+}
+@keyframes dss-wall{
+  0%,11%   {filter:brightness(.14) saturate(.34) contrast(1.10)}
+  12%,16%  {filter:brightness(.56) saturate(.70) contrast(1.05)}
+  17%,27%  {filter:brightness(.16) saturate(.36) contrast(1.10)}
+  28%,33%  {filter:brightness(.66) saturate(.80) contrast(1.04)}
+  34%,40%  {filter:brightness(.20) saturate(.42) contrast(1.08)}
+  58%,100% {filter:brightness(1) saturate(1) contrast(1)}
+}
+@keyframes dss-echo-lift{
+  0%,11%   {filter:blur(46px) brightness(.14) saturate(.5)}
+  12%,16%  {filter:blur(46px) brightness(.38) saturate(.7)}
+  17%,27%  {filter:blur(46px) brightness(.15) saturate(.5)}
+  28%,33%  {filter:blur(46px) brightness(.42) saturate(.76)}
+  34%,40%  {filter:blur(46px) brightness(.18) saturate(.54)}
+  58%,100% {filter:blur(46px) brightness(.52) saturate(.9)}
+}
+@keyframes dss-cool-off{
+  0%,11%   {opacity:1}
+  12%,16%  {opacity:.34}
+  17%,27%  {opacity:.98}
+  28%,33%  {opacity:.26}
+  34%,40%  {opacity:.94}
+  58%,100% {opacity:0}
+}
+@keyframes dss-ballast{ 0%,100%{opacity:.94} 50%{opacity:.85} }
+
+@keyframes dss-deal-left{
+  from{opacity:0;transform:translate(0,84px) rotate(0deg) scale(.9)}
+  60% {opacity:1}
+  to  {opacity:1;transform:translate(calc(var(--dss-fan-x) * -1), var(--dss-fan-y)) rotate(calc(var(--dss-fan-r) * -1))}
+}
+@keyframes dss-deal-right{
+  from{opacity:0;transform:translate(0,84px) rotate(0deg) scale(.9)}
+  60% {opacity:1}
+  to  {opacity:1;transform:translate(var(--dss-fan-x), var(--dss-fan-y)) rotate(var(--dss-fan-r))}
+}
+@keyframes dss-deal-centre{
+  from{opacity:0;transform:translate(0,92px) rotate(0deg) scale(.9)}
+  60% {opacity:1}
+  to  {opacity:1;transform:translate(0,0) rotate(0deg) scale(1.045)}
+}
+@keyframes dss-rise{
+  from{opacity:0;transform:translateY(12px)}
+  to  {opacity:1;transform:none}
+}
+
+/* ---- phone: the tall crop puts the banner lower-left, so the light moves ---- */
+@media (max-width:640px){
+  .hero.v-dusk-strike-stack{
+    --dss-photo-max:48svh;
+    --dss-chip-w:min(116px,28vw);
+    --dss-fan-x:min(56px,15vw);
+    --dss-fan-r:8deg;
+  }
+  .hero.v-dusk-strike-stack .dss-plate{ box-shadow:0 20px 54px rgba(0,0,0,.64); }
+  .hero.v-dusk-strike-stack .dss-light{
+    background:
+      radial-gradient(20% 22% at 91% 43%, rgba(255,214,150,.62), rgba(255,196,116,0) 72%),
+      radial-gradient(50% 36% at 74% 60%, rgba(255,178,98,.26), rgba(255,178,98,0) 76%),
+      radial-gradient(40% 16% at 62% 90%, rgba(255,206,150,.18), rgba(255,206,150,0) 78%);
+  }
+  .hero.v-dusk-strike-stack .dss-banner{ left:34%; top:53%; width:50%; height:32%; }
+  .hero.v-dusk-strike-stack .hero-actions{ width:100%; gap:10px; }
+  .hero.v-dusk-strike-stack .hero-actions .btn{ flex:1 1 auto; min-width:0; }
+}
+
+/* ---- reduced motion: land on the final lit + dealt frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-dusk-strike-stack .dss-echo img,
+  .hero.v-dusk-strike-stack .dss-photo,
+  .hero.v-dusk-strike-stack .dss-cool,
+  .hero.v-dusk-strike-stack .dss-light,
+  .hero.v-dusk-strike-stack .dss-banner,
+  .hero.v-dusk-strike-stack .dss-chip,
+  .hero.v-dusk-strike-stack .hero-actions{ animation:none !important; }
+  .hero.v-dusk-strike-stack .dss-photo{ filter:none; }
+  .hero.v-dusk-strike-stack .dss-cool{ opacity:0; }
+  .hero.v-dusk-strike-stack .dss-light,
+  .hero.v-dusk-strike-stack .dss-banner{ opacity:.94; }
+  .hero.v-dusk-strike-stack .hero-actions{ opacity:1; transform:none; }
+}
