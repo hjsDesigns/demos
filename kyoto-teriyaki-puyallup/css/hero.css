@@ -64,17 +64,17 @@
 .s-gold{
   left:50%;top:40%;width:min(900px,86vw);height:min(430px,42vh);transform:translate(-50%,-50%);
   background:radial-gradient(closest-side,rgba(255,206,60,.20),rgba(255,206,60,.07) 55%,transparent 80%);
-  animation:spillIn .7s var(--ease,ease-out) .62s 1 backwards;
+  animation:spillIn .7s var(--ease,ease-out) 1.05s 1 backwards;
 }
 .s-red{
   left:50%;top:52%;width:min(1080px,96vw);height:min(560px,50vh);transform:translate(-50%,-50%);
   background:radial-gradient(closest-side,rgba(255,52,32,.21),rgba(255,52,32,.07) 55%,transparent 80%);
-  animation:spillIn .7s var(--ease,ease-out) .92s 1 backwards;
+  animation:spillIn .7s var(--ease,ease-out) 1.35s 1 backwards;
 }
 .s-green{
   left:50%;top:63%;width:min(1000px,92vw);height:min(400px,38vh);transform:translate(-50%,-50%);
   background:radial-gradient(closest-side,rgba(30,235,120,.17),rgba(30,235,120,.06) 55%,transparent 80%);
-  animation:spillIn .8s var(--ease,ease-out) 1.3s 1 backwards;
+  animation:spillIn .8s var(--ease,ease-out) 1.72s 1 backwards;
 }
 @keyframes spillIn{from{opacity:0}to{opacity:1}}
 
@@ -108,7 +108,7 @@
   -webkit-mask-size:250% 100%;mask-size:250% 100%;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-position:0% 0;mask-position:0% 0;
-  animation:toriiWipe .62s cubic-bezier(.3,.7,.25,1) .12s 1 backwards;
+  animation:toriiWipe 1.05s cubic-bezier(.3,.7,.25,1) .18s 1 backwards;
 }
 @keyframes toriiWipe{
   0%  {-webkit-mask-position:100% 0;mask-position:100% 0;opacity:.55}
@@ -117,8 +117,8 @@
 }
 
 /* the two word tubes strike, stutter, hold — a real tube warming up */
-.t-kyoto   {animation:blingBling .55s ease-out .62s 1 backwards}
-.t-teriyaki{animation:blingBling .55s ease-out .92s 1 backwards}
+.t-kyoto   {animation:blingBling .55s ease-out 1.05s 1 backwards}
+.t-teriyaki{animation:blingBling .55s ease-out 1.35s 1 backwards}
 @keyframes blingBling{
   0%  {opacity:0;filter:brightness(1)}
   12% {opacity:1;filter:brightness(2.1) saturate(.6)}
@@ -141,10 +141,10 @@
 }
 
 /* the script line writes itself in, left to right */
-.t-japanese{animation:tubeStrike .7s steps(1,end) 1.3s 1 backwards}
+.t-japanese{animation:tubeStrike .7s steps(1,end) 1.72s 1 backwards}
 
 /* ---------- 4. the quiet hold — the sign just breathing ---------- */
-.hero-sign{animation:signBreathe 7.5s ease-in-out 2.3s infinite}
+.hero-sign{animation:signBreathe 7.5s ease-in-out 2.7s infinite}
 @keyframes signBreathe{
   0%,100%{opacity:1}
   50%    {opacity:.955}
@@ -152,7 +152,7 @@
 
 /* ---------- 5. buttons ---------- */
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
-  animation:heroRise .7s var(--ease,ease-out) 1.9s 1 backwards}
+  animation:heroRise .7s var(--ease,ease-out) 2.3s 1 backwards}
 @keyframes heroRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .hero .btn-ghost{color:#F0E9DA;border-color:rgba(240,233,218,.5)}
 .hero .btn-ghost:hover{border-color:#F0E9DA;background:rgba(240,233,218,.08)}
