@@ -1,0 +1,124 @@
+/* ============================================================
+   HERO VARIANT — "swatch-fan"  ·  Sumner Nails
+   Namespaced under .hero.v-swatch-fan; every keyframe prefixed sf-.
+   Colours come from css/style.css tokens only. No JS.
+
+   THE OBJECT: the fan of polish swatches a nail tech spreads on the counter.
+   Each swatch is one of the shop's OWN five finish photos, pre-cut to 3:4 so
+   the nails are never clipped (the landscape rainbow pedicure is letterboxed
+   inside a blurred echo of itself rather than cropped through the toes).
+
+   THE EVENT (1.9 s, once, deterministic, no loop): the mark settles in the
+   window-vinyl magenta, then the five swatches deal out along the ring left to
+   right — 0.15 s apart, each swinging from the shared pivot below the fan —
+   and stop. Reduced motion lands straight on the final, open fan.
+
+   THE GROUND: cream. MIRROR LAW — the room is white towels under bright light,
+   and the cream hands straight off to the rose hours band underneath.
+   ============================================================ */
+
+.hero.v-swatch-fan{
+  --sw-w:clamp(118px,29vw,200px);
+  --sw-h:calc(var(--sw-w) * 1.3333);
+  --sf-a:40deg;                              /* half-spread of the fan */
+  --sf-t0:.62s;                              /* first swatch deals */
+  --sf-step:.15s;
+  color:var(--ink);
+  background:
+    radial-gradient(118% 76% at 50% 8%, var(--paper) 0%, var(--bg) 44%, var(--bg-2) 100%);
+  isolation:isolate;
+}
+
+/* the hero-inner is a centred column here, not a bottom-left text block */
+.hero.v-swatch-fan .hero-inner{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  padding-top:clamp(18px,3vh,40px); padding-bottom:clamp(18px,3vh,40px);
+}
+
+/* ---------- the mark: live type in the sign's face ----------
+   Their window vinyl is a heavy squared grotesque; Archivo Black is the site's
+   matched face. On cream it carries the vinyl's magenta straight, no keyline
+   needed and no blown-up photo crop (CRISP RULE). */
+.hero.v-swatch-fan .mark{
+  margin:0 0 clamp(18px,2.8vh,34px);
+  font-family:var(--display); font-weight:400; text-transform:uppercase;
+  font-size:clamp(50px,11.6vw,104px);
+  line-height:.84; letter-spacing:-.032em;
+  color:var(--brand);
+  animation:sf-mark .8s var(--ease) .1s 1 both;
+}
+.hero.v-swatch-fan .mark span{display:block}
+@keyframes sf-mark{
+  from{opacity:0; transform:translateY(16px) scale(.985)}
+  to  {opacity:1; transform:none}
+}
+
+/* ---------- the ring ---------- */
+.hero.v-swatch-fan .sf-fan{
+  position:relative;
+  width:100%;
+  height:calc(var(--sw-h) * 1.34);
+  margin-bottom:clamp(26px,4vh,48px);
+}
+.hero.v-swatch-fan .sf-sw{
+  position:absolute; left:50%; bottom:calc(var(--sw-h) * .32);
+  width:var(--sw-w); height:var(--sw-h);
+  margin:0 0 0 calc(var(--sw-w) / -2);
+  transform-origin:50% 130%;                 /* the shared pivot just under the fan */
+  border-radius:30% 30% 10px 10px / 19% 19% 10px 10px;   /* a swatch stick, domed like a nail tip */
+  overflow:hidden;
+  background:var(--paper);
+  box-shadow:
+    0 0 0 3px #fff,                          /* the white keyline off their window vinyl */
+    0 0 0 4px color-mix(in srgb,var(--ink) 14%,transparent),
+    0 16px 30px -16px color-mix(in srgb,var(--ink) 58%,transparent);
+  animation:sf-deal .66s cubic-bezier(.2,.86,.28,1.06) 1 both;
+}
+.hero.v-swatch-fan .sf-sw img{
+  display:block; width:100%; height:100%; object-fit:cover; object-position:50% 50%;
+}
+
+/* five seats on the ring, centre card on top like a real deck */
+.hero.v-swatch-fan .sf-sw-1{--a:calc(var(--sf-a) * -1);  z-index:1; animation-delay:var(--sf-t0)}
+.hero.v-swatch-fan .sf-sw-2{--a:calc(var(--sf-a) * -.5); z-index:2; animation-delay:calc(var(--sf-t0) + var(--sf-step))}
+.hero.v-swatch-fan .sf-sw-3{--a:0deg;                    z-index:3; animation-delay:calc(var(--sf-t0) + var(--sf-step) * 2)}
+.hero.v-swatch-fan .sf-sw-4{--a:calc(var(--sf-a) * .5);  z-index:2; animation-delay:calc(var(--sf-t0) + var(--sf-step) * 3)}
+.hero.v-swatch-fan .sf-sw-5{--a:var(--sf-a);             z-index:1; animation-delay:calc(var(--sf-t0) + var(--sf-step) * 4)}
+
+@keyframes sf-deal{
+  from{opacity:0; transform:rotate(0deg) scale(.84) translateY(20px)}
+  to  {opacity:1; transform:rotate(var(--a)) scale(1) translateY(0)}
+}
+
+/* ---------- the two buttons, after the fan has settled ---------- */
+.hero.v-swatch-fan .hero-actions{justify-content:center}
+.js .hero.v-swatch-fan .hero-actions{animation-delay:1.98s}
+.hero.v-swatch-fan .btn-cream{                       /* cream on cream would vanish */
+  background:transparent; color:var(--ink); border-color:var(--ink);
+}
+.hero.v-swatch-fan .btn-cream:hover{background:var(--ink); color:var(--bg)}
+
+/* ---------- widths ---------- */
+/* wide screens have room to open the ring properly — a deeper pivot spreads the
+   swatches by translation instead of rotation, so ~60% of every finish shows */
+@media (min-width:900px){
+  .hero.v-swatch-fan{--sf-a:34deg}
+  .hero.v-swatch-fan .sf-fan{height:calc(var(--sw-h) * 1.44)}
+  .hero.v-swatch-fan .sf-sw{transform-origin:50% 200%; bottom:calc(var(--sw-h) * .40)}
+}
+@media (max-width:520px){
+  .hero.v-swatch-fan{--sw-w:clamp(110px,29vw,150px); --sf-a:38deg}
+  .hero.v-swatch-fan .mark{font-size:clamp(52px,16vw,74px)}
+  .hero.v-swatch-fan .hero-actions{width:100%}
+}
+@media (max-height:660px){
+  .hero.v-swatch-fan{--sw-w:clamp(98px,20vw,150px)}
+  .hero.v-swatch-fan .mark{font-size:clamp(40px,8vw,64px)}
+}
+
+/* ---------- reduced motion: the fan already open ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-swatch-fan .mark{animation:none; opacity:1; transform:none}
+  .hero.v-swatch-fan .sf-sw{animation:none; opacity:1; transform:rotate(var(--a))}
+  .js .hero.v-swatch-fan .hero-actions{animation:none; opacity:1; transform:none}
+}

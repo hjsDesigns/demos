@@ -1,0 +1,149 @@
+/* ============================================================
+   SAPPORO & SUSHI RESTAURANT — hero variant "ROLL CALL"
+   Everything below is namespaced under .hero.v-roll-call.
+
+   The idea: no photograph. Their menu names four rolls after home —
+   Sea Hawks, Mariners, Sounder, Mountain Rainier (verbatim, their own
+   Menu11 ordering page). Those four names are called out one after
+   another, huge, flush-left, in the face and the red of the channel
+   letters on their own sign (Anton / #B51F38, SIGN-FONT LAW), on the
+   walnut of their dining room (MIRROR LAW: --bg #17110D, with the amber
+   pendant glow they actually have overhead). Then the house name settles
+   beneath the stack and the frame goes completely still at ~2.8s.
+
+   Each name is set to fill the column exactly: --f is that word's own
+   advance width in Anton, in em, so font-size = 100cqw / --f. The
+   different lengths give the stack its poster rhythm.
+
+   Deterministic: pure CSS, fixed delays, `forwards`, no JS, no random.
+   Reduced motion lands on the final frame with nothing moving.
+   ============================================================ */
+
+.hero.v-roll-call{
+  background:var(--bg);                 /* walnut #17110D — the room, not black */
+  justify-content:center;
+  isolation:isolate;
+}
+
+/* ---- the ground: walnut + the amber pendants + a vignette ---- */
+.hero.v-roll-call .rc-ground{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero.v-roll-call .rc-ground::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,#1D1510 0%,#17110D 46%,#100B08 100%);
+}
+/* the low amber lamp wash, up and left, where the pendants hang in their room */
+.hero.v-roll-call .rc-lamp{
+  position:absolute;left:8%;top:-14%;width:min(112vw,1120px);height:min(96vh,880px);
+  background:radial-gradient(closest-side,
+      color-mix(in srgb,var(--warm) 22%,transparent) 0%,
+      color-mix(in srgb,var(--warm) 9%,transparent) 44%,
+      transparent 76%);
+  filter:blur(6px);
+}
+.hero.v-roll-call .rc-vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(120% 92% at 44% 40%,transparent 40%,
+      color-mix(in srgb,var(--dark) 78%,transparent) 100%);
+}
+
+/* ---- the lockup ---- */
+.hero.v-roll-call .rc-inner{
+  position:relative;z-index:2;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:clamp(24px,6vh,60px) var(--pad) clamp(30px,7vh,72px);
+}
+
+.hero.v-roll-call .rc-stack{
+  container-type:inline-size;
+  display:block;
+  max-width:min(100%,680px);
+}
+
+.hero.v-roll-call .rc-name{
+  display:block;
+  font-family:var(--display);
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:0;
+  line-height:.86;
+  color:var(--brand);                    /* the sign red */
+  font-size:calc(100cqw / var(--f));
+  /* the spill the channel letters throw on a dark wall — lifts the red
+     off the walnut without changing the colour */
+  text-shadow:0 0 .32em color-mix(in srgb,var(--brand) 40%,transparent),
+              0 0 1.1em color-mix(in srgb,var(--brand) 16%,transparent);
+  white-space:nowrap;
+}
+.hero.v-roll-call .rc-name + .rc-name{margin-top:.06em}
+
+/* the hairline that closes the roll call */
+.hero.v-roll-call .rc-rule{
+  display:block;height:2px;width:min(100%,680px);
+  margin:clamp(18px,2.6vh,30px) 0 clamp(14px,2vh,22px);
+  background:linear-gradient(90deg,var(--brand) 0%,color-mix(in srgb,var(--brand) 22%,transparent) 100%);
+  transform-origin:0 50%;
+}
+
+/* the house name settling underneath */
+.hero.v-roll-call .rc-wordmark{
+  margin:0;
+  font-family:var(--display);
+  text-transform:uppercase;
+  color:var(--ink);
+  letter-spacing:.055em;
+  line-height:1;
+  font-size:clamp(21px,5.4vw,46px);
+}
+.hero.v-roll-call .rc-wordmark em{font-style:normal;color:var(--brand-text)}
+
+.hero.v-roll-call .rc-actions{
+  display:flex;gap:12px;flex-wrap:wrap;
+  margin-top:clamp(22px,3.4vh,36px);
+}
+
+/* ============================================================
+   THE INTRO — one pass, 0 → ~2.8s, then nothing moves again.
+   ============================================================ */
+@keyframes rcCall{
+  0%  {opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(.10em)}
+  62% {opacity:1}
+  100%{opacity:1;clip-path:inset(0 -12% 0 0);transform:translateY(0)}
+}
+@keyframes rcRule{
+  0%  {opacity:0;transform:scaleX(0)}
+  100%{opacity:1;transform:scaleX(1)}
+}
+@keyframes rcSettle{
+  0%  {opacity:0;transform:translateY(16px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+
+.hero.v-roll-call .rc-name,
+.hero.v-roll-call .rc-rule,
+.hero.v-roll-call .rc-wordmark,
+.hero.v-roll-call .rc-actions{opacity:0}
+
+.hero.v-roll-call .rc-name{animation:rcCall .60s var(--ease) forwards}
+.hero.v-roll-call .rc-1{animation-delay:.12s}
+.hero.v-roll-call .rc-2{animation-delay:.50s}
+.hero.v-roll-call .rc-3{animation-delay:.88s}
+.hero.v-roll-call .rc-4{animation-delay:1.26s}
+.hero.v-roll-call .rc-rule{animation:rcRule .52s var(--ease) 1.78s forwards}
+.hero.v-roll-call .rc-wordmark{animation:rcSettle .62s var(--ease-2) 2.00s forwards}
+.hero.v-roll-call .rc-actions{animation:rcSettle .58s var(--ease-2) 2.26s forwards}
+
+/* ---- phone: 390 is judged first ---- */
+@media (max-width:640px){
+  .hero.v-roll-call .rc-inner{padding-bottom:clamp(26px,5vh,44px)}
+  .hero.v-roll-call .rc-actions{width:100%;gap:10px}
+  .hero.v-roll-call .rc-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+/* ---- reduced motion: the final frame, immediately, no movement ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-roll-call .rc-name,
+  .hero.v-roll-call .rc-rule,
+  .hero.v-roll-call .rc-wordmark,
+  .hero.v-roll-call .rc-actions{
+    animation:none;opacity:1;transform:none;clip-path:none;
+  }
+}

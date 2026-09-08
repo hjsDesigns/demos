@@ -1,0 +1,157 @@
+/* ============================================================
+   HERO VARIANT 6 — "hands-grid"  ·  Sumner Nails
+   Namespaced under .hero.v-hands-grid; every keyframe prefixed hg-.
+   Colours come from css/style.css tokens only. No library, no JS.
+
+   THE OBJECTS: four real photographs of their own finished work
+   (images/hands-grid-1..4.jpg, cropped straight out of gallery-1,
+   finish-red-chrome, finish-catseye-purple and gallery-3 — cropped only at
+   the wrist, never through a nail). Every tile shows its photo WHOLE
+   (object-fit:contain) sitting inside a blurred, dimmed echo of itself, so
+   the grid fills any viewport without ever cutting the work in half.
+
+   THE EVENT (2.9s, once, deterministic, no loop): the four tiles arrive one
+   at a time, each sliding a few percent in from its own corner; when the
+   fourth lands the name drops onto the middle of the grid in the window-vinyl
+   magenta with its white keyline and settles. Then nothing moves.
+   Reduced motion lands straight on the final frame.
+   ============================================================ */
+
+.hero.v-hands-grid{
+  --hg-in:.60s;                 /* one tile's arrival */
+  --hg-step:.27s;               /* gap between tiles */
+  position:relative;
+  display:flex; flex-direction:row;
+  align-items:center; justify-content:center;
+  min-height:calc(100svh - var(--header-h));
+  overflow:hidden;
+  background:var(--dark);       /* the painted panel plum — never flat black */
+  isolation:isolate;
+}
+
+/* ---------- the 2x2 grid ----------
+   Full-bleed on a phone; on wide screens it is held to a portrait-ish block
+   so the cells stay close to the photos' own shape and the plum frames it. */
+.hero.v-hands-grid .hg-grid{
+  position:absolute; inset:0; z-index:0;
+  width:min(100%, calc((100svh - var(--header-h)) * .86));
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:3px;
+  background:var(--dark);
+}
+
+.hero.v-hands-grid .hg-tile{
+  position:relative; margin:0; overflow:hidden;
+  background:var(--dark-2);
+  --dx:0%; --dy:0%;
+}
+.hero.v-hands-grid .hg-t1{--dx:-6%;--dy:-6%}
+.hero.v-hands-grid .hg-t2{--dx: 6%;--dy:-6%}
+.hero.v-hands-grid .hg-t3{--dx:-6%;--dy: 6%}
+.hero.v-hands-grid .hg-t4{--dx: 6%;--dy: 6%}
+
+/* the whole photo — never cropped */
+.hero.v-hands-grid .hg-shot{
+  position:absolute; inset:0; z-index:2;
+  width:100%; height:100%;
+  object-fit:contain; object-position:50% 50%;
+}
+/* the blurred warm echo behind it (letterbox law) */
+.hero.v-hands-grid .hg-echo{
+  position:absolute; inset:-9%; z-index:1;
+  width:118%; height:118%;
+  object-fit:cover;
+  filter:blur(38px) saturate(1.45) brightness(.82);
+  transform:scale(1.04);
+}
+
+/* ---------- the arrival: one tile at a time, then still ---------- */
+.js .hero.v-hands-grid .hg-tile{
+  animation:hg-tile-in var(--hg-in) cubic-bezier(.22,.75,.24,1) both;
+}
+.js .hero.v-hands-grid .hg-t1{animation-delay:.18s}
+.js .hero.v-hands-grid .hg-t2{animation-delay:calc(.18s + var(--hg-step))}
+.js .hero.v-hands-grid .hg-t3{animation-delay:calc(.18s + var(--hg-step) * 2)}
+.js .hero.v-hands-grid .hg-t4{animation-delay:calc(.18s + var(--hg-step) * 3)}
+@keyframes hg-tile-in{
+  0%   {opacity:0; transform:translate(var(--dx),var(--dy)) scale(1.05)}
+  100% {opacity:1; transform:translate(0,0) scale(1)}
+}
+
+/* ---------- scrim: a soft pool under the name plus a corner vignette, so the
+     mark reads over any of the four photos and the grid edges settle ---------- */
+.hero.v-hands-grid .hg-scrim{
+  position:absolute; inset:0; z-index:3; pointer-events:none;
+  background:
+    radial-gradient(60% 42% at 50% 50%,
+      color-mix(in srgb,var(--dark) 74%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 46%,transparent) 46%,
+      transparent 78%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 34%,transparent) 0%,
+      transparent 26%,
+      transparent 70%,
+      color-mix(in srgb,var(--dark) 52%,transparent) 100%);
+}
+
+/* ---------- the block on top ---------- */
+.hero.v-hands-grid .hero-inner{
+  position:relative; z-index:4;
+  width:100%; max-width:var(--maxw); margin:0 auto;
+  padding:var(--pad);
+  text-align:center;
+}
+
+/* the mark: live type in the sign's face — heavy squared grotesque, magenta
+   with a white keyline, exactly the way the vinyl on their window is cut
+   (CRISP RULE: type, never a blown-up photo crop). */
+.hero.v-hands-grid .mark{
+  margin:0 0 clamp(20px,3.4vh,34px);
+  font-family:var(--display); font-weight:400; text-transform:uppercase;
+  font-size:clamp(52px,10.6vw,106px);
+  line-height:.84; letter-spacing:-.028em;
+  color:var(--brand-bright);
+  -webkit-text-stroke:.058em #fff;
+  paint-order:stroke fill;
+  filter:drop-shadow(0 14px 34px rgba(0,0,0,.62));
+}
+.hero.v-hands-grid .mark span{display:block}
+
+.js .hero.v-hands-grid .mark{
+  animation:hg-drop .72s cubic-bezier(.2,.82,.24,1) 1.52s both;
+}
+@keyframes hg-drop{
+  0%   {opacity:0; transform:translateY(-38px) scale(.965)}
+  64%  {opacity:1; transform:translateY(6px)   scale(1.006)}
+  100% {opacity:1; transform:translateY(0)     scale(1)}
+}
+
+.hero.v-hands-grid .hero-actions{justify-content:center}
+.js .hero.v-hands-grid .hero-actions{
+  opacity:0; transform:none;
+  animation:hg-rise .55s cubic-bezier(.22,.75,.24,1) 2.32s both;
+}
+@keyframes hg-rise{
+  0%   {opacity:0; transform:translateY(14px)}
+  100% {opacity:1; transform:translateY(0)}
+}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  .hero.v-hands-grid .hg-grid{gap:2px}
+  .hero.v-hands-grid .hg-echo{filter:blur(26px) saturate(1.45) brightness(.78)}
+  .hero.v-hands-grid .mark{font-size:clamp(50px,15.2vw,72px); letter-spacing:-.03em}
+  .hero.v-hands-grid .hero-actions .btn{flex:1 1 auto}
+}
+
+/* ---------- reduced motion: the final frame, immediately ---------- */
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-hands-grid .hg-tile,
+  .js .hero.v-hands-grid .mark,
+  .js .hero.v-hands-grid .hero-actions{
+    animation:none; opacity:1; transform:none;
+  }
+}

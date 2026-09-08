@@ -1,0 +1,134 @@
+/* ============================================================
+   TERIYAKI TOWN — HERO VARIANT "SPREAD-STILL"
+   Namespaced under .hero.v-spread-still. Drop-in: this file loads
+   AFTER css/hero.css and touches nothing else on the page.
+
+   The idea: appetite first. Their own spread photo full-bleed and
+   dead still; one slow warm bloom rises off the plates and settles;
+   the mark sits small in the corner. No pan, no crossfade, no
+   interaction, no second event.
+
+   Colour: tokens only (style.css :root). --ink (warm walnut) is the
+   scrim, not --dark, because the photograph is sunlit and warm —
+   MIRROR LAW: the ground stays in the room's own light.
+   ============================================================ */
+
+.hero.v-spread-still{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) clamp(30px,6.5vh,68px);
+  overflow:hidden;isolation:isolate;
+  background:var(--ink);
+}
+
+/* ---------- the photograph: full bleed, and it never moves ---------- */
+.v-spread-still .sp-stage{position:absolute;inset:0;z-index:0}
+.v-spread-still .sp-shot{
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:50% 52%;
+  /* honest grade only: the shot is sunlit through a window and the quartz
+     reads cold blue-white. Warmed and enriched so the hero sits in the same
+     cream light as the rest of the page (COHESION). No recolouring, no
+     retouching, nothing added or removed. */
+  filter:saturate(1.18) contrast(1.05) sepia(.14) brightness(.985);
+}
+
+/* ---------- THE ONE EVENT: heat off the plates ----------
+   A warm bloom centred on the plates rises once and settles (2.8 s),
+   then breathes at 16 s and ±3% opacity — below the threshold where
+   anything looks like it's moving. */
+.v-spread-still .sp-warm{
+  position:absolute;inset:0;pointer-events:none;z-index:1;
+  /* multiply, not soft-light: the quartz counter is close to white and
+     soft-light does nothing to highlights — multiply is what actually puts
+     warmth into the frame. */
+  mix-blend-mode:multiply;
+  background:radial-gradient(124% 86% at 50% 82%,
+    color-mix(in srgb, var(--brand) 30%, var(--bg)) 0%,
+    color-mix(in srgb, var(--brand) 13%, var(--bg)) 42%,
+    transparent 76%);
+  opacity:0;transform:translateY(7%) scale(1.07);
+  animation:spHeatRise 2.8s var(--ease) .15s forwards,
+            spHeatHold 16s ease-in-out 3.25s infinite;
+}
+@keyframes spHeatRise{
+  0%  {opacity:0;   transform:translateY(7%) scale(1.07)}
+  40% {opacity:.62; transform:translateY(2.4%) scale(1.02)}
+  100%{opacity:.20; transform:none}
+}
+@keyframes spHeatHold{
+  0%,100%{opacity:.20}
+  50%    {opacity:.25}
+}
+
+/* ---------- legibility: one warm pool in the bottom-left corner ---------- */
+.v-spread-still .sp-scrim{
+  position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:
+    linear-gradient(to top,
+      color-mix(in srgb, var(--ink) 90%, transparent) 0%,
+      color-mix(in srgb, var(--ink) 66%, transparent) 14%,
+      color-mix(in srgb, var(--ink) 30%, transparent) 32%,
+      transparent 54%),
+    radial-gradient(86% 60% at 4% 104%,
+      color-mix(in srgb, var(--ink) 74%, transparent) 0%,
+      color-mix(in srgb, var(--ink) 28%, transparent) 46%,
+      transparent 78%),
+    linear-gradient(to bottom,
+      color-mix(in srgb, var(--ink) 26%, transparent) 0%,
+      transparent 22%);
+}
+
+/* ---------- the corner lockup ---------- */
+.v-spread-still .sp-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;color:var(--paper);
+}
+
+.v-spread-still .sp-mark{
+  margin:0 0 1.05rem;font-family:var(--display);text-transform:uppercase;
+  line-height:.94;letter-spacing:.005em;
+  font-size:clamp(2.1rem,7.4vw,3.5rem);
+  display:flex;flex-wrap:wrap;align-items:center;gap:.16em;
+  animation:spMarkIn .72s var(--ease) .22s both;
+}
+.v-spread-still .sp-teri{
+  color:var(--brand);
+  -webkit-text-stroke:.014em var(--paper);
+  text-shadow:0 .035em 0 color-mix(in srgb, var(--paper) 74%, transparent),
+              0 .09em .24em color-mix(in srgb, var(--dark) 62%, transparent);
+}
+.v-spread-still .sp-box{
+  color:var(--paper);background:var(--accent);
+  padding:.1em .2em .14em;border-radius:.06em;
+  box-shadow:inset 0 -.1em 0 color-mix(in srgb, var(--dark) 34%, transparent),
+             0 .06em .22em color-mix(in srgb, var(--dark) 52%, transparent);
+}
+
+.v-spread-still .sp-actions{
+  display:flex;flex-wrap:wrap;gap:.7rem;
+  animation:spMarkIn .6s var(--ease) .46s both;
+}
+
+@keyframes spMarkIn{
+  from{opacity:0;transform:translateY(14px)}
+  to  {opacity:1;transform:none}
+}
+
+/* ---------- reduced motion: land on the settled frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .v-spread-still .sp-mark,
+  .v-spread-still .sp-actions{animation:none;opacity:1;transform:none}
+  .v-spread-still .sp-warm{animation:none;opacity:.20;transform:none}
+}
+
+/* ---------- phone: the tall crop, corner lockup sits a little tighter ---------- */
+@media (max-width:820px){
+  .v-spread-still .sp-shot{object-position:50% 56%}
+  .v-spread-still .sp-mark{margin-bottom:.9rem}
+  .v-spread-still .sp-actions .btn{flex:1 1 100%;text-align:center}
+}
+@media (min-width:430px) and (max-width:820px){
+  .v-spread-still .sp-actions .btn{flex:0 1 auto}
+}

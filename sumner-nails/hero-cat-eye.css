@@ -1,0 +1,134 @@
+/* ============================================================
+   HERO VARIANT 5 — "cat-eye"  ·  Sumner Nails
+   Namespaced under .hero.v-cat-eye; every keyframe prefixed ce-.
+   Colours come from css/style.css tokens only. Nothing drawn, nothing redrawn.
+
+   THE OBJECT: images/finish-catseye-plum.jpg — a real plum cat-eye set done at
+   this shop (their own Google photo). The product is the opener. It is shown
+   WHOLE: the plate is sized to the photo's exact 975x1300 frame so no nail is
+   ever cropped, and the space around it is the SAME photograph blurred and
+   dimmed, so the letterbox is the picture's own world rather than a dead ground.
+
+   THE EVENT (2.4 s, once, deterministic, no JS): the plate opens a touch
+   under-exposed, then a single cat-eye shimmer band sweeps across the nails —
+   tilted to the same angle as the real chatoyant lines in the polish, the way
+   the magnet pulls the line through — and the finish lifts to full colour as it
+   passes. Then it exits and the frame holds perfectly still. No loop.
+   Reduced motion lands straight on the final, lit frame.
+   ============================================================ */
+
+.hero.v-cat-eye{
+  --ce-dur:2.1s;               /* the sweep */
+  --ce-delay:.25s;             /* the beat before it */
+  background:#1A1017;          /* the photo's own darkest corner — never flat black */
+  isolation:isolate;           /* keeps the sheen's screen blend inside the hero */
+}
+
+/* ---------- the letterbox: the same frame, blurred back into a ground ---------- */
+.hero.v-cat-eye .hero-bg img{
+  animation:none;                             /* no ken burns behind a still object */
+  object-position:50% 52%;
+  transform:scale(1.3);                       /* hides the blur's soft edges */
+  filter:blur(48px) brightness(.46) saturate(1.3);
+}
+.hero.v-cat-eye .hero-bg::before{
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 52%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 24%,transparent) 34%,
+      color-mix(in srgb,var(--dark) 48%,transparent) 66%,
+      color-mix(in srgb,var(--dark) 92%,transparent) 100%);
+}
+
+/* ---------- the plate: the photo at its true aspect, always whole ----------
+   width = min(available width, hero height x 975/1300) guarantees the frame
+   never exceeds either axis, so the nails are never cropped at any width. */
+.hero.v-cat-eye .ce-stage{
+  position:absolute; inset:0; z-index:2;
+  display:flex; justify-content:center; align-items:flex-start;
+  pointer-events:none;
+}
+.hero.v-cat-eye .ce-plate{
+  position:relative; margin:0; overflow:hidden;
+  width:min(100%, calc((100svh - var(--header-h)) * 0.75));
+  aspect-ratio:975 / 1300;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.72);
+}
+.hero.v-cat-eye .ce-photo{
+  display:block; width:100%; height:100%; object-fit:cover;   /* aspect matches exactly — no crop */
+  animation:ce-lift 2.2s var(--ease) .2s 1 both;
+}
+@keyframes ce-lift{
+  0%   {filter:brightness(.84) saturate(.86) contrast(1.03)}
+  56%  {filter:brightness(1.03) saturate(1.14) contrast(1.01)}
+  100% {filter:brightness(1) saturate(1.06) contrast(1)}
+}
+
+/* ---------- the shimmer band ----------
+   A real object, not a wash: a narrow band raked 20 degrees off vertical (the
+   angle the magnet is held at) that crosses the plate once, drawn from the wrist
+   out toward the fingertips, so the nails catch it one after another the way a
+   cat-eye line does. It reaches the nails at the middle of the pass. */
+.hero.v-cat-eye .ce-sheen{
+  position:absolute; pointer-events:none;
+  left:-60%; width:30%; top:-40%; height:180%;
+  transform-origin:50% 50%;
+  mix-blend-mode:screen; opacity:0;
+  filter:blur(5px);
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0)     0%,
+    rgba(255,206,236,.07)  30%,
+    rgba(255,226,246,.30)  43%,
+    rgba(255,255,255,.66)  50%,
+    rgba(255,226,246,.30)  57%,
+    rgba(255,206,236,.07)  70%,
+    rgba(255,255,255,0)   100%);
+  /* monotonic control points — a magnet is drawn at a steady, human pace */
+  animation:ce-sweep var(--ce-dur) cubic-bezier(.35,.12,.62,.9) var(--ce-delay) 1 both;
+}
+@keyframes ce-sweep{
+  0%   {opacity:0; transform:rotate(20deg) translateX(540%)}
+  8%   {opacity:1}
+  88%  {opacity:1}
+  100% {opacity:0; transform:rotate(20deg) translateX(0)}
+}
+
+/* ---------- the mark: small, in the corner. The product is the opener. ----------
+   Live type in the sign's face (SIGN-FONT LAW / CRISP RULE) — Archivo Black,
+   window magenta with the white keyline their vinyl is cut with. */
+.hero.v-cat-eye .mark{
+  margin:0 0 clamp(14px,2.2vh,22px);
+  font-family:var(--display); font-weight:400; text-transform:uppercase;
+  font-size:clamp(19px,2vw,27px); line-height:1; letter-spacing:.015em;
+  color:var(--brand-bright);
+  -webkit-text-stroke:.042em #fff;
+  paint-order:stroke fill;
+  filter:drop-shadow(0 8px 22px rgba(0,0,0,.7));
+  animation:ce-mark .85s var(--ease) .58s 1 both;
+}
+@keyframes ce-mark{
+  from{opacity:0; transform:translateY(12px)}
+  to  {opacity:1; transform:none}
+}
+
+/* the buttons arrive after the band has left */
+.js .hero.v-cat-eye .hero-actions{animation-delay:1.4s}
+
+/* ---------- phones: the plate sits to the top so the mark and the buttons get
+     their own clean band of the blurred ground underneath ---------- */
+@media (max-width:760px){
+  .hero.v-cat-eye .hero-bg img{filter:blur(38px) brightness(.48) saturate(1.32)}
+  .hero.v-cat-eye .ce-plate{box-shadow:0 26px 60px -26px rgba(0,0,0,.75)}
+  .hero.v-cat-eye .hero-inner{padding-bottom:clamp(28px,5vh,48px)}
+}
+@media (max-width:520px){
+  .hero.v-cat-eye .mark{font-size:21px}
+}
+
+/* ---------- reduced motion: the final, lit frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-cat-eye .ce-photo{animation:none; filter:brightness(1) saturate(1.06)}
+  .hero.v-cat-eye .ce-sheen{animation:none; opacity:0}
+  .hero.v-cat-eye .mark{animation:none; opacity:1; transform:none}
+  .js .hero.v-cat-eye .hero-actions{animation:none; opacity:1; transform:none}
+}

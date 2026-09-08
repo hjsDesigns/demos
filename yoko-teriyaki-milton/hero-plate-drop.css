@@ -1,0 +1,149 @@
+/* ============================================================
+   YOKO TERIYAKI — hero variant "plate-drop"
+   Loaded AFTER css/style.css and css/site.css; every rule is
+   namespaced under .hero.v-plate-drop so nothing below the hero
+   is touched. No hex values — tokens only.
+
+   ONE idea, ONE real object: their own combination plate
+   (images/pick-1.jpg, the shop's own photo, cropped square to the
+   plate as images/plate-drop-plate.jpg). ONE arrival event: the
+   plate falls onto the cream ground, settles once, its shadow
+   spreading underneath; the name lands beside it, set live in
+   Reggae One in the sign's own red with the dark return the
+   channel letters cast on the building. Then it is still.
+   MIRROR LAW: a bright counter-service shop -> cream ground.
+   ============================================================ */
+
+.hero.v-plate-drop{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  background:var(--bg);color:var(--ink);
+  overflow:hidden;isolation:isolate;
+}
+
+/* a very soft warm pool behind the plate so the disc has somewhere to sit */
+.hero.v-plate-drop::before{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  right:-14%;top:50%;width:min(92vw,1000px);aspect-ratio:1;transform:translateY(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,
+    color-mix(in srgb,var(--bg-2) 88%,transparent) 0%,
+    color-mix(in srgb,var(--bg-2) 40%,transparent) 55%,
+    transparent 72%);
+}
+
+.hero.v-plate-drop .hero-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:var(--maxw);margin:0 auto;overflow:visible;
+  padding:clamp(28px,6vh,72px) var(--pad);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);
+  align-items:center;align-content:center;gap:clamp(24px,4vw,56px);
+}
+.hero.v-plate-drop .pd-say{grid-column:1;grid-row:1;min-width:0}
+.hero.v-plate-drop .pd-stage{grid-column:2;grid-row:1;min-width:0}
+
+/* ---------------- the plate ---------------- */
+.hero.v-plate-drop .pd-plate{
+  position:relative;
+  width:min(100%,clamp(300px,42vw,556px));
+  margin-left:auto;aspect-ratio:1;
+}
+.hero.v-plate-drop .pd-plate img{
+  position:relative;z-index:2;
+  width:100%;height:100%;border-radius:50%;object-fit:cover;
+  box-shadow:0 26px 60px -30px color-mix(in srgb,var(--ink) 62%,transparent);
+  will-change:transform;
+}
+.hero.v-plate-drop .pd-shadow{
+  position:absolute;z-index:1;left:6%;right:6%;bottom:-3.5%;height:12%;
+  border-radius:50%;opacity:.38;
+  background:radial-gradient(ellipse at 50% 50%,
+    color-mix(in srgb,var(--ink) 58%,transparent) 0%,
+    color-mix(in srgb,var(--ink) 26%,transparent) 46%,
+    transparent 72%);
+  filter:blur(10px);will-change:transform,opacity;
+}
+
+/* ---------------- the name, in the sign's face ---------------- */
+.hero.v-plate-drop .mark{
+  display:flex;flex-direction:column;align-items:flex-start;
+  gap:clamp(2px,.6vh,8px);margin:0 0 clamp(20px,3.4vh,34px);
+  font-family:var(--display);font-weight:400;line-height:.92;filter:none;max-width:100%;
+}
+.hero.v-plate-drop .mk-yoko,
+.hero.v-plate-drop .mk-ter{
+  display:block;position:static;
+  color:var(--brand);-webkit-text-stroke:0;
+  text-shadow:.036em .046em 0 var(--ink);
+}
+.hero.v-plate-drop .mk-yoko{font-size:clamp(34px,4.4vw,62px);letter-spacing:.01em}
+.hero.v-plate-drop .mk-ter{font-size:clamp(48px,7.2vw,104px);letter-spacing:.005em}
+.hero.v-plate-drop .mk-ter::after{content:none;display:none}
+
+.hero.v-plate-drop .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero.v-plate-drop .hero-actions .btn{min-width:min(100%,214px);justify-content:center}
+.hero.v-plate-drop .hero-actions .btn-cream{border-color:var(--ink);background:var(--paper)}
+
+/* ============================================================
+   THE ONE EVENT — a drop, one settle, then still. Everything is
+   finished and motionless by 1.05 s.
+   ============================================================ */
+.js .hero.v-plate-drop .pd-plate img{animation:pdDrop .92s both}
+.js .hero.v-plate-drop .pd-shadow{animation:pdShadow .92s both}
+.js .hero.v-plate-drop .mark{animation:pdLand .5s .42s var(--ease) both}
+.js .hero.v-plate-drop .hero-actions{animation:pdLand .5s .54s var(--ease) both}
+
+@keyframes pdDrop{
+  0%{opacity:0;transform:translate3d(0,-46vh,0) scale(.94);animation-timing-function:cubic-bezier(.5,0,.78,.62)}
+  8%{opacity:1}
+  46%{transform:translate3d(0,0,0) scale(1);animation-timing-function:cubic-bezier(.2,.62,.35,1)}
+  64%{transform:translate3d(0,-5%,0) scale(1)}
+  82%{transform:translate3d(0,0,0) scale(1)}
+  92%{transform:translate3d(0,-1.2%,0) scale(1)}
+  100%{transform:translate3d(0,0,0) scale(1)}
+}
+@keyframes pdShadow{
+  0%{opacity:0;transform:scale(.5,.55);animation-timing-function:cubic-bezier(.5,0,.78,.62)}
+  38%{opacity:.14;transform:scale(.66,.66)}
+  46%{opacity:.44;transform:scale(1.03,1.08);animation-timing-function:cubic-bezier(.2,.62,.35,1)}
+  64%{opacity:.27;transform:scale(.9,.86)}
+  82%{opacity:.4;transform:scale(1,1)}
+  100%{opacity:.38;transform:scale(1,1)}
+}
+@keyframes pdLand{
+  from{opacity:0;transform:translate3d(0,18px,0)}
+  to{opacity:1;transform:none}
+}
+
+/* reduced motion lands on the final frame */
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-plate-drop .pd-plate img,
+  .js .hero.v-plate-drop .pd-shadow,
+  .js .hero.v-plate-drop .mark,
+  .js .hero.v-plate-drop .hero-actions{animation:none;opacity:1;transform:none}
+  .js .hero.v-plate-drop .pd-shadow{opacity:.38}
+}
+
+/* ---------------- phones: the plate first, the name under it ---------------- */
+@media (max-width:760px){
+  .hero.v-plate-drop{align-items:center}
+  .hero.v-plate-drop::before{right:auto;left:50%;top:34%;
+    width:min(124vw,560px);transform:translate(-50%,-50%)}
+  .hero.v-plate-drop .hero-inner{
+    flex:0 0 auto;grid-template-columns:1fr;gap:clamp(14px,2.6vh,26px);
+    padding:clamp(20px,3.6vh,34px) var(--pad) clamp(24px,4vh,40px);
+    justify-items:center;text-align:center;
+  }
+  .hero.v-plate-drop .pd-stage{grid-column:1;grid-row:1;width:100%}
+  .hero.v-plate-drop .pd-say{grid-column:1;grid-row:2;width:100%}
+  .hero.v-plate-drop .pd-plate{width:min(82vw,338px);margin:0 auto}
+  .hero.v-plate-drop .mark{align-items:center;margin:0 0 clamp(16px,2.6vh,26px)}
+  .hero.v-plate-drop .mk-yoko{font-size:clamp(30px,9vw,42px)}
+  .hero.v-plate-drop .mk-ter{font-size:clamp(42px,14.6vw,66px)}
+  .hero.v-plate-drop .hero-actions{justify-content:center;gap:10px;width:100%}
+  .hero.v-plate-drop .hero-actions .btn{flex:1 1 46%;min-width:150px;padding:13px 14px;font-size:14px}
+}
+@media (max-width:400px){
+  .hero.v-plate-drop .hero-actions .btn{flex:1 1 100%}
+}

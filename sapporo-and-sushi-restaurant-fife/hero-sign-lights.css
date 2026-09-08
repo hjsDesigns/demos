@@ -1,0 +1,118 @@
+/* ============================================================
+   HERO VARIANT — "SIGN LIGHTS"
+   One object: the sign band over their own door. The frame arrives
+   dim and washed out, and over 2.2s the red channel letters come on —
+   a two-beat flicker, a warm bloom behind them — while the whole
+   picture lifts to full daylight. Then nothing moves again.
+   Deterministic: fixed durations, `forwards`, no JS, no randomness.
+   prefers-reduced-motion lands straight on the final lit frame.
+
+   NEVER CROP THE IMPORTANT PART: on phones the storefront drops out of
+   the absolute stage into normal flow and is shown WHOLE (contain),
+   floating in a blurred warm echo of itself, so the sign stays legible
+   at 390px. Desktop cover-fits and holds the sign band in frame.
+   Nothing sits on the photo — the copy lives on the dark ground.
+
+   Z-INDEX inside the hero: shot 0 · scrim 1 · grain 2 · copy 3.
+   (On phones the shot goes to 3 so it sits in flow with the copy.)
+   ============================================================ */
+
+.hero.v-sign{
+  position:relative;min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;background:var(--dark);color:var(--ink)}
+
+.sg-stage{position:absolute;inset:0;overflow:hidden}
+.sg-echo{position:absolute;inset:0;background:url("../images/storefront-echo.jpg") center/cover no-repeat;
+  transform:scale(1.12);opacity:0}
+
+.sg-shot{position:absolute;inset:0;z-index:0}
+.sg-shot img{width:100%;height:100%;object-fit:cover;object-position:50% 34%;
+  filter:brightness(.34) saturate(.42) contrast(.94);
+  animation:sgDay 2.2s cubic-bezier(.3,.7,.25,1) .18s forwards}
+@keyframes sgDay{
+  0%{filter:brightness(.34) saturate(.42) contrast(.94)}
+  32%{filter:brightness(.46) saturate(.55) contrast(.96)}
+  46%{filter:brightness(.82) saturate(.92) contrast(1.01)}
+  54%{filter:brightness(.60) saturate(.70) contrast(.99)}
+  100%{filter:brightness(1) saturate(1.06) contrast(1.02)}
+}
+
+/* the bloom behind the red letters — flickers on, twice, then holds */
+.sg-glow{position:absolute;left:50%;top:34%;width:min(78vw,760px);height:min(34vw,300px);
+  transform:translate(-50%,-50%);pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse at center,
+    color-mix(in srgb,var(--brand) 78%,transparent) 0%,
+    color-mix(in srgb,var(--brand) 32%,transparent) 38%,
+    transparent 68%);
+  mix-blend-mode:screen;filter:blur(18px);
+  animation:sgOn 2.2s cubic-bezier(.3,.7,.25,1) .18s forwards}
+@keyframes sgOn{
+  0%,30%{opacity:0}
+  38%{opacity:.9}
+  50%{opacity:.12}
+  62%{opacity:.78}
+  100%{opacity:.34}
+}
+
+/* the pool of dark sits at the FOOT of the frame, under the copy only —
+   the sign and the sky at the top stay lit (bright-opener law) */
+.sg-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 34%,transparent) 0%,
+    transparent 20%,transparent 40%,
+    color-mix(in srgb,var(--dark) 84%,transparent) 84%,var(--dark) 100%)}
+.sg-grain{position:absolute;inset:0;z-index:2;opacity:.34;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+
+.sg-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(38px,8vh,86px)}
+.sg-line{font-family:var(--display);text-transform:uppercase;letter-spacing:.02em;
+  font-size:clamp(32px,5.6vw,66px);line-height:1.02;margin:0 0 22px;max-width:13ch;
+  text-shadow:0 6px 30px rgba(0,0,0,.78)}
+.sg-line em{font-style:normal;color:var(--warm)}
+.sg-actions{display:flex;gap:12px;flex-wrap:wrap}
+.js .sg-line,.js .sg-actions{opacity:0;transform:translateY(20px);animation:sgRise .9s var(--ease) forwards}
+.js .sg-line{animation-delay:1.35s}
+.js .sg-actions{animation-delay:1.55s}
+@keyframes sgRise{to{opacity:1;transform:none}}
+
+/* ---- PHONES: the whole storefront, never a crop of it ----
+   The picture leaves the absolute stage and joins the flex column, so it and
+   the copy sit together as one centred group; the blurred warm echo of the
+   same photo fills the space around them instead of dead black. ---- */
+@media (max-width:760px){
+  .hero.v-sign{justify-content:center;padding:clamp(14px,3vh,34px) 0 0}
+  .sg-echo{opacity:.72;filter:saturate(1.45) brightness(.72) blur(2px)}
+  .sg-shot{position:relative;inset:auto;z-index:3;
+    margin:0 0 clamp(24px,4.5vh,46px);flex:none}
+  .sg-shot img{height:auto;object-fit:contain;object-position:50% 50%;
+    animation-name:sgDayFlat;
+    box-shadow:0 26px 50px -22px rgba(0,0,0,.92)}
+  .sg-glow{top:auto;bottom:-6%;left:50%;width:90vw;height:36vw;
+    transform:translate(-50%,0);filter:blur(16px)}
+  .sg-scrim{background:linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 18%,transparent) 24%,
+    color-mix(in srgb,var(--dark) 40%,transparent) 56%,
+    color-mix(in srgb,var(--dark) 80%,transparent) 78%,
+    color-mix(in srgb,var(--dark) 92%,transparent) 100%)}
+  .sg-inner{flex:none;padding-bottom:clamp(30px,6vh,60px)}
+  .sg-line{font-size:clamp(30px,8.6vw,42px);max-width:none;margin-bottom:20px}
+  .sg-actions{gap:10px;width:100%}
+  .sg-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+/* the phone photo carries the same 2.2s day-break, minus the contrast curve */
+@keyframes sgDayFlat{
+  0%{filter:brightness(.38) saturate(.45)}
+  32%{filter:brightness(.50) saturate(.58)}
+  46%{filter:brightness(.86) saturate(.95)}
+  54%{filter:brightness(.64) saturate(.72)}
+  100%{filter:brightness(1) saturate(1.06)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .sg-shot img{animation:none;filter:brightness(1) saturate(1.06) contrast(1.02)}
+  .sg-glow{animation:none;opacity:.34}
+  .js .sg-line,.js .sg-actions{animation:none;opacity:1;transform:none}
+}

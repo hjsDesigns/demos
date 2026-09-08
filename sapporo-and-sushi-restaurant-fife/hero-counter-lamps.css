@@ -1,0 +1,137 @@
+/* ============================================================
+   HERO VARIANT — "COUNTER LAMPS"
+   Sapporo & Sushi Restaurant · 4803 Pacific Hwy E, Fife WA
+
+   ONE OBJECT: their sushi counter. The room arrives dark and cold;
+   over 2.2s the lamps on the beam come up — a single warm bloom
+   spilling across the carved masks and down onto the neta case —
+   and the picture lifts to full light. That is the whole event.
+   A 25s push-in then carries you in and ends completely still.
+
+   The mark is the headline: SAPPORO set live in the sign's own face
+   (Anton) and the sign's own red, JAPANESE RESTAURANT letterspaced
+   beneath it, laid out the way the band over their door is laid out.
+   sr-only h1 in the markup. Nothing else on the photo but the mark
+   block and the two buttons that were already there.
+
+   Deterministic: fixed durations, `forwards`, no JS, no randomness.
+   prefers-reduced-motion lands straight on the final lit frame.
+
+   Z-INDEX inside the hero: shot 0 · bloom 1 · scrim 2 · grain 3 · copy 4.
+   ============================================================ */
+
+.hero.v-counter{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+  background:var(--dark);color:var(--ink)}
+
+/* ---- the photograph ---- */
+.hero.v-counter .cl-stage{position:absolute;inset:0;overflow:hidden}
+.hero.v-counter .cl-shot{display:block;position:absolute;inset:0}
+.hero.v-counter .cl-shot img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:50% 52%;
+  transform-origin:52% 56%;
+  filter:brightness(.22) saturate(.46) contrast(1.08);
+  animation:clLamps 2.4s cubic-bezier(.45,.05,.35,1) .12s forwards,
+            clPush 25s cubic-bezier(.18,.72,.26,1) forwards}
+
+@keyframes clLamps{
+  0%  {filter:brightness(.22) saturate(.46) contrast(1.08)}
+  20% {filter:brightness(.30) saturate(.56) contrast(1.07)}
+  58% {filter:brightness(.84) saturate(.92) contrast(1.02)}
+  100%{filter:brightness(1.14) saturate(1.08) contrast(.99)}
+}
+@keyframes clPush{from{transform:scale(1.07)}to{transform:scale(1)}}
+
+/* ---- the lamps coming up: one warm bloom over the beam ---- */
+.hero.v-counter .cl-bloom{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+  mix-blend-mode:screen;
+  background:
+    radial-gradient(78% 46% at 50% 27%,
+      rgba(255,199,116,.40) 0%, rgba(255,176,88,.16) 46%, transparent 74%),
+    radial-gradient(120% 62% at 50% 52%,
+      rgba(255,168,84,.14) 0%, transparent 68%);
+  animation:clBloom 2.4s cubic-bezier(.45,.05,.35,1) .12s forwards}
+@keyframes clBloom{0%{opacity:0}22%{opacity:.10}62%{opacity:1}100%{opacity:.78}}
+
+/* ---- the dark pool the type sits in, flowing into the hours band ---- */
+.hero.v-counter .cl-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 44%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 10%,transparent) 20%,
+      transparent 42%,
+      transparent 62%,
+      color-mix(in srgb,var(--dark) 40%,transparent) 80%,
+      color-mix(in srgb,var(--dark) 82%,transparent) 93%,
+      var(--bg) 100%),
+    linear-gradient(96deg,
+      color-mix(in srgb,var(--dark) 58%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 22%,transparent) 34%,
+      transparent 58%)}
+.hero.v-counter .cl-grain{position:absolute;inset:0;z-index:3;opacity:.30;
+  mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+
+/* ---- the mark, low in the frame ---- */
+.hero.v-counter .cl-inner{position:relative;z-index:4;width:100%;
+  max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(40px,8.5vh,92px)}
+.hero.v-counter .cl-mark{margin:0 0 26px}
+.hero.v-counter .cl-mark b{
+  display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(60px,13.2vw,152px);line-height:.86;letter-spacing:.005em;
+  color:var(--brand);
+  text-shadow:0 3px 0 rgba(0,0,0,.42),0 16px 44px rgba(0,0,0,.78)}
+.hero.v-counter .cl-mark span{
+  display:block;margin-top:11px;font-family:var(--body);font-weight:700;
+  font-size:clamp(12px,2.1vw,19px);letter-spacing:.34em;text-transform:uppercase;
+  color:var(--ink);text-shadow:0 3px 16px rgba(0,0,0,.85)}
+.hero.v-counter .cl-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.js .hero.v-counter .cl-mark,
+.js .hero.v-counter .cl-actions{opacity:0;transform:translateY(20px);
+  animation:clRise .9s var(--ease) forwards}
+.js .hero.v-counter .cl-mark{animation-delay:1.55s}
+.js .hero.v-counter .cl-actions{animation-delay:1.76s}
+@keyframes clRise{to{opacity:1;transform:none}}
+
+/* ---- phone: the tall cut of the same counter ---- */
+@media (max-width:760px){
+  .hero.v-counter .cl-shot img{object-position:50% 50%;transform-origin:50% 54%}
+  .hero.v-counter .cl-bloom{
+    background:
+      radial-gradient(86% 30% at 44% 24%,
+        rgba(255,199,116,.40) 0%, rgba(255,176,88,.16) 48%, transparent 76%),
+      radial-gradient(130% 46% at 50% 50%,
+        rgba(255,168,84,.13) 0%, transparent 70%)}
+  .hero.v-counter .cl-scrim{
+    background:
+      linear-gradient(180deg,
+        color-mix(in srgb,var(--dark) 40%,transparent) 0%,
+        color-mix(in srgb,var(--dark) 8%,transparent) 18%,
+        transparent 40%,
+        transparent 58%,
+        color-mix(in srgb,var(--dark) 38%,transparent) 72%,
+        color-mix(in srgb,var(--dark) 76%,transparent) 86%,
+        color-mix(in srgb,var(--dark) 93%,transparent) 95%,
+        var(--bg) 100%)}
+  .hero.v-counter .cl-inner{padding-bottom:clamp(30px,6vh,92px)}
+  .hero.v-counter .cl-mark{margin-bottom:20px}
+  .hero.v-counter .cl-mark b{font-size:clamp(50px,12.4vw,152px)}
+  .hero.v-counter .cl-mark span{letter-spacing:.26em;margin-top:9px}
+  .hero.v-counter .cl-actions{gap:10px;width:100%}
+  .hero.v-counter .cl-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero.v-counter .cl-shot img{animation:none;transform:none;
+    filter:brightness(1.14) saturate(1.08) contrast(.99)}
+  .hero.v-counter .cl-bloom{animation:none;opacity:.78}
+  .js .hero.v-counter .cl-mark,
+  .js .hero.v-counter .cl-actions{animation:none;opacity:1;transform:none}
+}

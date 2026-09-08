@@ -1,0 +1,36 @@
+== build: /Users/haydenstevenson/website-factory/sites/mimis-nails-black-diamond
+wrote assets/contact-sheet.html (20 images)
+PASS  index.html present
+PASS  css/style.css present
+PASS  js/site.js present
+== verify
+PASS  console clean during load
+PASS  cumulative layout shift = 0.000 (< 0.1)
+PASS  images load (14 <img>)
+PASS  hero/gallery background-images resolve (0)
+PASS  phone matches facts — (360) 886-5532
+PASS  address matches facts — 30741 3rd Ave #130
+PASS  hours match facts (3 strings)
+PASS  expected section ids exist (6)
+PASS  internal #anchors resolve (8)
+PASS  relative hrefs/srcs exist on disk (16)
+PASS  no adjacent / same-parent duplicate text
+PASS  page-wide repeated lines (NEVER TWICE)
+PASS  prices — no facts.prices given — skipped
+PASS  nothing overlaps the header (5 scroll positions)
+FAIL  header z-index (60) >= other fixed/sticky — a.skip-link z=100
+PASS  display font not a banned default
+PASS  dark ground (if any) isn't the generic default
+PASS  no horizontal overflow @ 390x844 — shot: shots/mimis-nails-black-diamond-390.png
+PASS  no horizontal overflow @ 768x1024 — shot: shots/mimis-nails-black-diamond-768.png
+PASS  no horizontal overflow @ 1440x900 — shot: shots/mimis-nails-black-diamond-1440.png
+QA: 19 passed, 1 failed, 0 warnings
+== hash
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LC_ALL = "C.UTF-8",
+	LC_CTYPE = "C.UTF-8",
+	LANG = "C.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+1867df2b5df1b47b8961d9d5a8b3141e07dc613b42910985a050d2577d7a4156  /Users/haydenstevenson/website-factory/sites/mimis-nails-black-diamond/index.html

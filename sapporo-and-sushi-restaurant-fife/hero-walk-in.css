@@ -1,0 +1,60 @@
+/* ============================================================
+   HERO VARIANT — "WALK-IN"  (runner-up idea)
+   One object: their sushi counter. The frame is the room you'd see
+   from the door — the neta case, the two chefs working, the paper
+   lanterns and the carved masks on the beam. It pushes in once,
+   slowly, for 22s; the lamps come up over the first 2.4s and the
+   mark settles. Then still.
+   Here the mark IS the headline: SAPPORO in the sign's own face and
+   red, JAPANESE RESTAURANT letterspaced beneath it, laid out exactly
+   the way the sign over their door is laid out. sr-only h1.
+   ============================================================ */
+
+.hero.v-walk{
+  position:relative;min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;background:var(--dark);color:var(--ink)}
+
+.wi-stage{position:absolute;inset:0;overflow:hidden}
+.wi-stage img{width:100%;height:100%;object-fit:cover;object-position:50% 46%;
+  filter:brightness(.30) saturate(.6);
+  animation:wiLamps 2.4s cubic-bezier(.3,.7,.25,1) .15s forwards,
+            wiPush 22s cubic-bezier(.22,.85,.3,1) forwards}
+@keyframes wiLamps{
+  0%{filter:brightness(.30) saturate(.60)}
+  100%{filter:brightness(1) saturate(1.05)}
+}
+@keyframes wiPush{from{transform:scale(1.10)}to{transform:scale(1)}}
+
+.wi-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+    transparent 24%,transparent 44%,
+    color-mix(in srgb,var(--dark) 86%,transparent) 84%,var(--dark) 100%)}
+.wi-grain{position:absolute;inset:0;z-index:2;opacity:.34;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+
+.wi-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(38px,8vh,86px)}
+.wi-mark{margin:0 0 24px}
+.wi-mark b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(58px,13vw,150px);line-height:.86;letter-spacing:.005em;color:var(--brand);
+  text-shadow:0 4px 0 rgba(0,0,0,.45),0 18px 46px rgba(0,0,0,.75)}
+.wi-mark span{display:block;margin-top:10px;font-family:var(--body);font-weight:700;
+  font-size:clamp(12px,2.1vw,19px);letter-spacing:.34em;text-transform:uppercase;color:var(--ink);
+  text-shadow:0 3px 16px rgba(0,0,0,.8)}
+.wi-actions{display:flex;gap:12px;flex-wrap:wrap}
+.js .wi-mark,.js .wi-actions{opacity:0;transform:translateY(22px);animation:wiRise .95s var(--ease) forwards}
+.js .wi-mark{animation-delay:1.5s}
+.js .wi-actions{animation-delay:1.72s}
+@keyframes wiRise{to{opacity:1;transform:none}}
+
+@media (max-width:640px){
+  .wi-actions{gap:10px;width:100%}
+  .wi-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+  .wi-mark span{letter-spacing:.26em}
+}
+@media (prefers-reduced-motion:reduce){
+  .wi-stage img{animation:none;filter:brightness(1) saturate(1.05);transform:none}
+  .js .wi-mark,.js .wi-actions{animation:none;opacity:1;transform:none}
+}

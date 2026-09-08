@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sapporo &amp; Sushi Restaurant — sushi and teriyaki at 4803 Pacific Hwy E, Fife WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sapporo &amp; Sushi Restaurant on Pacific Highway East in Fife — a sit-down Japanese room doing nigiri, forty-odd rolls, teriyaki, udon and bento. Open 10:30 to 9, Monday through Saturday. (253) 922-5656.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Anton (display, = the SAPPORO channel letters on their sign) + Karla (body)
+     — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1788868346">
+<link rel="stylesheet" href="hero-walk-in.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     Type-only lockup. Their two real marks — the diamond tile beside SAPPORO
+     on the sign over the door, and the red fish stamp on the chopstick sleeve
+     — exist only inside photographs, at about 70px across; blown up to header
+     size either one goes to mush, so per the CRISP RULE neither is used as
+     raster art. The name is set live instead, in the sign's own face (Anton)
+     and the sign's own red. Getting the logo file off the owner is on the ask
+     list — it's a five-minute swap once it exists. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Sapporo &amp; Sushi Restaurant — home">
+      <span class="wm">Sapporo<small>Sushi &amp; Teriyaki · Fife</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hours">Hours</a>
+        <a href="#menu">The menu</a>
+        <a href="#signature">Sushi bar</a>
+        <a href="#gallery">The room</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero — "SIGN LIGHTS" =====================
+       EXTERIOR HERO DEFAULT (2026-09-04): the room, the counter and the food
+       all appear further down this page, so the opener is the actual building
+       — 4803 Pacific Hwy E, with the red SAPPORO channel letters over the door
+       and the OPEN neon in the window. One event: the letters come on, a
+       two-beat flicker with a bloom behind them, while the whole picture lifts
+       to full daylight. 2.2 seconds, then nothing moves again.
+       The sign in the photograph IS the mark, so no wordmark is set over it
+       (NEVER TWICE) — one line of copy and two buttons, and those sit on the
+       dark ground, never on the photo.
+       Photo: harvest ext-02 (RestaurantGuru CDN original, watermark cropped).
+       ================================================================== -->
+    <!-- ===================== #hero — "WALK-IN" (runner-up) =====================
+       The view from just inside the door: their sushi counter, the neta case,
+       the two chefs working, Gekkeikan lanterns and the carved masks on the
+       beam. One event — the lamps come up over 2.4s — then a 22s push-in that
+       ends still. The mark is set live in the sign's own face and red, laid
+       out the way the sign over their door is laid out. sr-only h1.
+       Photo: harvest cand-13 (same beam and masks as g09 — verified this room).
+       ====================================================================== -->
+  <section class="hero v-walk" id="hero">
+    <h1 class="sr-only">Sapporo &amp; Sushi Restaurant — an authentic Japanese restaurant at 4803 Pacific Hwy E, Fife, Washington</h1>
+
+    <div class="wi-stage" aria-hidden="true">
+      <img src="images/sushi-bar.jpg"
+           alt="The sushi counter at Sapporo — two chefs working behind the neta case, white plates stacked on the shelves, paper lanterns and carved wooden masks on the beam above"
+           fetchpriority="high" width="1920" height="1080">
+      <div class="wi-scrim"></div>
+      <div class="wi-grain"></div>
+    </div>
+
+    <div class="wi-inner">
+      <p class="wi-mark"><b>Sapporo</b><span>Japanese Restaurant</span></p>
+      <div class="wi-actions">
+        <a href="#menu" class="btn btn-primary">See the board</a>
+        <a href="#hours" class="btn btn-cream">Find the door</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock + address + all seven days, today lit. Hours live
+       HERE and nowhere else on the page (NEVER TWICE).
+       Source: their own NetWaiter listing (sapporosushiroll.netwaiter.com/fife),
+       which agrees with the Google panel on Monday–Friday 10:30–9. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Six days, <em>lunch through dinner</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          4803 Pacific Hwy E, Fife, WA 98424<br>
+          In the Fife Business Park, private lot out front.<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=4803+Pacific+Hwy+E%2C+Fife%2C+WA+98424" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="ico">✓</span> Sit down, takeout or delivery</span>
+          <span class="proof"><span class="ico">✓</span> Beer &amp; wine</span>
+          <span class="proof"><span class="ico">✓</span> Private lot, no meter</span>
+        </div>
+        <p class="hours-note">Walk-ins only — the listings say no reservations taken. Holiday hours aren't posted anywhere, so it's worth a call before a long drive.</p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">10:30 AM – 9:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">10:30 AM – 9:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">10:30 AM – 9:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">10:30 AM – 9:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:30 AM – 9:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">11:00 AM – 9:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">Closed</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — the offerings =====================
+       CREAM BAND: the ground here is the white paper of their own chopstick
+       sleeve, with the red doing the accent work.
+       EVERY item name, description and price below is verbatim from their own
+       ordering page (sapporojapaneserestaurant.menu11.com/fife/order, read
+       2026-09-08). Nothing is invented, nothing is rounded.
+       The nigiri list is deliberately NOT here — it lives once, in the sushi
+       bar gadget below (NEVER TWICE). -->
+  <section class="section section-cream" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">On the board</p>
+        <h2>Forty-two rolls, <em>and a whole kitchen behind them</em></h2>
+        <p>This is a full Japanese kitchen, not a sushi counter with a fryer bolted on. Nigiri and rolls from the bar; teriyaki, udon, yakisoba, katsu, sukiyaki and donburi out of the kitchen. Tap any board to roll it open.</p>
+      </div>
+
+      <div class="dish-strip">
+        <figure class="dish reveal"><img src="images/dish-1.jpg" alt="A wooden geta board of nigiri and cut rolls at Sapporo — salmon, tuna and white fish over rice beside two long topped rolls, with a bowl of ponzu" loading="lazy"><figcaption>Off the sushi bar</figcaption></figure>
+        <figure class="dish reveal"><img src="images/dish-2.jpg" alt="A long eel roll glazed dark with unagi sauce on a white plate, brushed with sauce calligraphy, wasabi and pickled ginger alongside" loading="lazy"><figcaption>Unagi, sauced</figcaption></figure>
+        <figure class="dish reveal"><img src="images/dish-3.jpg" alt="A red lacquer bento tray at Sapporo — sliced katsu, sweet and sour chicken, gyoza, salad, greens, orange and a scoop of rice" loading="lazy"><figcaption>The bento tray</figcaption></figure>
+        <figure class="dish reveal"><img src="images/dish-4.jpg" alt="A row of salmon-topped roll pieces on a long white plate, finished with sauce, wasabi and ginger" loading="lazy"><figcaption>Salmon on top</figcaption></figure>
+      </div>
+
+      <!-- TITLE CARDS UNROLL — the headline is the tap target, chevron flips -->
+      <div class="boards">
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-nw">
+            <h3>Rolls named for around here</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Six off their roll board</p>
+          <div class="rolled" id="roll-nw">
+            <ul>
+              <li><span class="it">Sea Hawks Roll</span><span class="pr">$17.50</span><small>Shrimp tempura roll with spicy tuna and cucumber topped off with hamachi and avocados</small></li>
+              <li><span class="it">Mariners Roll</span><span class="pr">$17.50</span><small>Shrimp tempura roll topped off with avocado and spicy salmon</small></li>
+              <li><span class="it">Sounder Roll</span><span class="pr">$14.50</span><small>Yamagobo, jalapeño, cucumber, ebi and kaiware sprouts topped off with red snapper</small></li>
+              <li><span class="it">Bellevue Roll</span><span class="pr">$17.50</span><small>Unagi roll topped off with tuna, tobiko and imitation crab</small></li>
+              <li><span class="it">Coral Island Roll</span><span class="pr">$13.50</span><small>Cucumber, avocado and shrimp tempura topped off with spicy imitation crab</small></li>
+              <li><span class="it">Mountain Rainier</span><span class="pr">$11.99</span><small>Special tuna, avocado with special sauce — off the deep-fried roll list</small></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-rolls">
+            <h3>The rest of the roll board</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Ten of the other thirty-two</p>
+          <div class="rolled" id="roll-rolls">
+            <ul>
+              <li><span class="it">Dragon Roll</span><span class="pr">$23.50</span><small>California roll covered with large portions of eel</small></li>
+              <li><span class="it">Rainbow Roll</span><span class="pr">$16.80</span><small>California roll topped off with tuna, salmon, white tuna, tamago, eel, avocado and shrimp</small></li>
+              <li><span class="it">Volcano Roll</span><span class="pr">$16.50</span><small>California roll covered with spicy scallops and shrimp, topped off with a hot sauce</small></li>
+              <li><span class="it">Lion King Roll</span><span class="pr">$16.50</span><small>California roll covered with tuna and a mozzarella-type sauce, torched and topped with hot sauce</small></li>
+              <li><span class="it">Caterpillar Roll</span><span class="pr">$16.25</span><small>Unagi, cucumber, cream cheese and imitation crab topped off with avocado</small></li>
+              <li><span class="it">Spider Roll</span><span class="pr">$15.70</span><small>Deep-fried soft-shell crab, cucumber and avocado, topped off with masago</small></li>
+              <li><span class="it">Philadelphia Roll</span><span class="pr">$14.00</span><small>Cream cheese, avocado and cucumber topped off with smoked salmon</small></li>
+              <li><span class="it">Spicy Tuna Roll</span><span class="pr">$12.50</span><small>Spicy tuna, cucumber and daikon radish</small></li>
+              <li><span class="it">Shrimp Tempura Roll</span><span class="pr">$12.25</span><small>Shrimp, cucumber and avocado with tempura crumbs, spicy mayo and unagi sauce</small></li>
+              <li><span class="it">California Roll</span><span class="pr">$9.50</span><small>Avocado, imitation crab, sweet egg and cucumber</small></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-teri">
+            <h3>Teriyaki &amp; donburi</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Served with salad and rice</p>
+          <div class="rolled" id="roll-teri">
+            <ul>
+              <li><span class="it">Chicken Teriyaki</span><span class="pr">$13.99</span></li>
+              <li><span class="it">Spicy Chicken Teriyaki</span><span class="pr">$16.99</span></li>
+              <li><span class="it">Beef Teriyaki</span><span class="pr">$17.99</span></li>
+              <li><span class="it">Salmon Teriyaki</span><span class="pr">$19.99</span></li>
+              <li><span class="it">Beef Short Ribs</span><span class="pr">$25.99</span></li>
+              <li><span class="it">Oyako Donburi</span><span class="pr">$17.99</span><small>Chicken, vegetables and egg served over rice with special sauce</small></li>
+              <li><span class="it">Unagi Donburi</span><span class="pr">$24.99</span><small>BBQ fresh water eel served over rice with thinly sliced ginger</small></li>
+              <li><span class="it">Tofu Teriyaki</span><span class="pr">$15.99</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-noodle">
+            <h3>Noodles, in a bowl or on the grill</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Udon in dashi · yakisoba off the flat top</p>
+          <div class="rolled" id="roll-noodle">
+            <ul>
+              <li><span class="it">Chicken Yakisoba</span><span class="pr">$15.99</span><small>Chicken, noodles and fresh vegetables stir-fried with special sauce</small></li>
+              <li><span class="it">Beef Yakisoba</span><span class="pr">$17.99</span><small>Beef, noodles and fresh vegetables stir-fried with special sauce</small></li>
+              <li><span class="it">Nabeyaki Udon</span><span class="pr">$17.99</span><small>Noodles with vegetables, chicken, fish cake, egg and two prawns in dashi soup</small></li>
+              <li><span class="it">Tempura Udon</span><span class="pr">$17.99</span><small>Noodles with two pieces of tempura prawn and vegetables in dashi soup</small></li>
+              <li><span class="it">Beef Udon</span><span class="pr">$19.99</span><small>Noodles with beef and fish cake in dashi soup</small></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-start">
+            <h3>Things to start with</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Off the appetiser list</p>
+          <div class="rolled" id="roll-start">
+            <ul>
+              <li><span class="it">Gyoza</span><span class="pr">$8.99</span><small>Pork and vegetables, eight pieces</small></li>
+              <li><span class="it">Edamame</span><span class="pr">$6.99</span><small>Steamed green soybeans in a pod</small></li>
+              <li><span class="it">Agedash Tofu</span><span class="pr">$8.99</span><small>Deep-fried tofu with special sauce</small></li>
+              <li><span class="it">Yakitori</span><span class="pr">$7.99</span><small>Chicken skewer dipped in teriyaki sauce, grilled over hot charcoals</small></li>
+              <li><span class="it">Green Shell Mussels</span><span class="pr">$10.99</span><small>Creamy or hot</small></li>
+              <li><span class="it">Soft Shell Crab Tempura</span><span class="pr">$9.99</span><small>Battered and deep-fried, with ponzu sauce</small></li>
+              <li><span class="it">Ahi Tower</span><span class="pr">$22.99</span><small>Fresh tuna, rice, avocado, cucumber, imitation crab, furikake and three kinds of tobiko</small></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="board reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-combo">
+            <h3>Bento boxes &amp; combinations</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">The trays and the shared plates</p>
+          <div class="rolled" id="roll-combo">
+            <ul>
+              <li><span class="it">Lunch Bento Box</span><span class="pr">$19.99</span></li>
+              <li><span class="it">Dinner Bento Box</span><span class="pr">$23.99</span></li>
+              <li><span class="it">House Sushi Combo #1</span><span class="pr">$24.99</span><small>Fresh salmon nigiri 2pc, tuna nigiri 2pc, California roll</small></li>
+              <li><span class="it">House Roll Combo #1</span><span class="pr">$29.99</span><small>Shrimp tempura roll, Philadelphia roll, rainbow roll</small></li>
+              <li><span class="it">Chirashi</span><span class="pr">$28.00</span></li>
+              <li><span class="it">Tuna Poke Bowl</span><span class="pr">$26.70</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="menu-fine">Prices as published on their own ordering page, read 8 September 2026. The full board runs to twenty sections — this is the short version.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — SAY IT AT THE BAR =====================
+       Section 4 (INTERACTIVE = SECTION 4 OR LOWER). The one thing that stops
+       people ordering nigiri is that the board is in Japanese. So: five pieces
+       of sushi on the counter. Tap one, it lifts onto the plate and tells you
+       what fish it is and what it costs. Tap the same one again and it goes
+       back down. Nothing to read first, nothing to type, nothing to add up.
+       These five prices are the ONLY nigiri prices on the page (NEVER TWICE) —
+       all verbatim off their own ordering page. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="sig-top">
+        <div class="section-head reveal">
+          <p class="eyebrow">At the sushi bar</p>
+          <h2>Five words <em>you'll want at the counter</em></h2>
+          <p>Their nigiri list is written the way a sushi bar writes it. Tap a piece — it'll tell you what fish that is.</p>
+        </div>
+        <figure class="print reveal">
+          <img src="images/sushi-bar.jpg" alt="The sushi counter at Sapporo — two chefs working behind the neta case, stacks of white plates on the shelves, paper lanterns and carved wooden masks on the beam above" loading="lazy">
+          <figcaption>The counter, mid-service</figcaption>
+        </figure>
+      </div>
+
+      <div class="neta-wrap reveal">
+        <p class="neta-hint" id="netaHint">Tap a piece of sushi.</p>
+
+        <div class="neta-plate">
+          <div class="neta-shown" id="netaShown" data-on="0">
+            <svg class="neta-big" viewBox="0 0 200 120" aria-hidden="true">
+              <ellipse cx="100" cy="96" rx="72" ry="13" class="neta-shadow"/>
+              <rect x="34" y="52" width="132" height="46" rx="22" class="neta-rice"/>
+              <path d="M28 58c0-13 16-22 72-22s72 9 72 22c0 9-14 13-72 13S28 67 28 58Z" class="neta-fish"/>
+              <path d="M28 58c0-13 16-22 72-22s72 9 72 22" class="neta-fish-line"/>
+            </svg>
+            <p class="neta-en" id="netaEn">—</p>
+            <p class="neta-price"><span class="pr" id="netaPrice">—</span></p>
+          </div>
+          <p class="neta-empty" id="netaEmpty">The plate's empty.</p>
+        </div>
+
+        <ul class="neta-row" id="neta">
+          <li><button class="neta" type="button" aria-pressed="false" data-en="Salmon" data-price="$8.95" data-tone="salmon">
+            <span class="neta-piece" aria-hidden="true">
+              <svg viewBox="0 0 100 62"><rect x="16" y="26" width="68" height="24" rx="11" class="neta-rice"/><path d="M12 30c0-7 9-12 38-12s38 5 38 12c0 5-8 7-38 7s-38-2-38-7Z" class="neta-fish"/></svg>
+            </span>
+            <span class="neta-jp">Sake</span>
+          </button></li>
+          <li><button class="neta" type="button" aria-pressed="false" data-en="Tuna" data-price="$10.20" data-tone="tuna">
+            <span class="neta-piece" aria-hidden="true">
+              <svg viewBox="0 0 100 62"><rect x="16" y="26" width="68" height="24" rx="11" class="neta-rice"/><path d="M12 30c0-7 9-12 38-12s38 5 38 12c0 5-8 7-38 7s-38-2-38-7Z" class="neta-fish"/></svg>
+            </span>
+            <span class="neta-jp">Maguro</span>
+          </button></li>
+          <li><button class="neta" type="button" aria-pressed="false" data-en="Yellowtail" data-price="$10.20" data-tone="hamachi">
+            <span class="neta-piece" aria-hidden="true">
+              <svg viewBox="0 0 100 62"><rect x="16" y="26" width="68" height="24" rx="11" class="neta-rice"/><path d="M12 30c0-7 9-12 38-12s38 5 38 12c0 5-8 7-38 7s-38-2-38-7Z" class="neta-fish"/></svg>
+            </span>
+            <span class="neta-jp">Hamachi</span>
+          </button></li>
+          <li><button class="neta" type="button" aria-pressed="false" data-en="Barbecued eel" data-price="$8.50" data-tone="unagi">
+            <span class="neta-piece" aria-hidden="true">
+              <svg viewBox="0 0 100 62"><rect x="16" y="26" width="68" height="24" rx="11" class="neta-rice"/><path d="M12 30c0-7 9-12 38-12s38 5 38 12c0 5-8 7-38 7s-38-2-38-7Z" class="neta-fish"/></svg>
+            </span>
+            <span class="neta-jp">Unagi</span>
+          </button></li>
+          <li><button class="neta" type="button" aria-pressed="false" data-en="Sweet egg" data-price="$6.25" data-tone="tamago">
+            <span class="neta-piece" aria-hidden="true">
+              <svg viewBox="0 0 100 62"><rect x="16" y="26" width="68" height="24" rx="11" class="neta-rice"/><path d="M12 30c0-7 9-12 38-12s38 5 38 12c0 5-8 7-38 7s-38-2-38-7Z" class="neta-fish"/></svg>
+            </span>
+            <span class="neta-jp">Tamago</span>
+          </button></li>
+        </ul>
+
+        <p class="neta-note">Five off the nigiri board</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery — the room ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Before you walk in</p>
+        <h2>Dark wood, <em>low lamps, red chairs</em></h2>
+        <p>A proper dining room off Pacific Highway — beams and panelling, hardwood underfoot, and the light kept low over every table.</p>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The dining room at Sapporo — dark wood panelling, framed prints and chalkboards on the wall, and a long table set under warm picture lights" loading="lazy"><figcaption>Down the wall</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Tables and oxblood chairs under a hanging amber lantern at Sapporo, daylight coming in through the front windows" loading="lazy"><figcaption>Toward the front</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A long roll on a slate plate at Sapporo, fanned out and glazed with sauce, with a dish of soy alongside" loading="lazy"><figcaption>On the slate</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Three cut rolls plated on a long white dish at Sapporo, sauced and topped, under the dining room's coloured light" loading="lazy"><figcaption>Three across</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A bento tray at Sapporo with salmon and tuna nigiri, grilled fish, salad and rice, next to a bottle of Kirin Ichiban and a glass" loading="lazy"><figcaption>Tray and a Kirin</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="A pot of green tea and a cup on the lacquered table at Sapporo, next to a chopstick sleeve printed in red with a fish, the katakana for Sapporo, and the words Sapporo Sushi and Teriyaki, Authentic Japanese Restaurant" loading="lazy"><figcaption>Tea, and their own sleeve</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about =====================
+       Only what is actually published. No owner is named anywhere online, no
+       founding year is published, so neither is claimed here. -->
+  <section class="section section-cream" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="The dining room at Sapporo — panelled walls hung with framed prints and chalkboards, oxblood chairs at set tables, hardwood underfoot and an amber pendant lamp overhead" loading="lazy">
+          <figcaption>The dining room</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The room on Pacific Highway</p>
+          <h2>Sizable portions, <em>in a cozy, low-key setting</em></h2>
+          <p class="lede">That line is Google's own description of this place — and it's about the most accurate sentence written about it anywhere.</p>
+          <p>Sapporo sits in the Fife Business Park, set back off Pacific Highway East with its own lot. Inside it's a full dining room: dark panelling and beams, hardwood, oxblood chairs, framed prints and chalkboards down one wall, and pendant lamps kept low over the tables. Beer and wine, no reservations, walk in and sit down.</p>
+          <p>Their own printed chopstick sleeve calls it an <b>authentic Japanese restaurant</b>, and the board backs that up — twenty sections deep, from nigiri and forty-two named rolls to sukiyaki, katsu, udon and donburi.</p>
+          <p>Nobody has ever put the owner's name, or the year this place opened, anywhere online. Those belong on this page — they're the two things worth asking about at the host stand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews — real names, real faces =====================
+       REVIEW ATTRIBUTION LAW (2026-09-06). Four reviewers off the Google Maps
+       reviews panel for this place: their published name, their own published
+       profile image (saved locally, never hot-linked), the quote verbatim and
+       untruncated, the real star rating and the date Google shows. Nothing is
+       invented, no initials discs, no stock faces. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="score reveal">
+        <div class="score-num">
+          <b class="tnum">4.6</b>
+          <p class="score-stars" aria-label="4.6 out of 5 stars">★★★★★</p>
+        </div>
+        <div class="score-copy">
+          <h2>926 people <em>have written it down</em></h2>
+          <p>That's the live count on Google, on top of another 445 on Yelp and 592 photos customers took themselves. Here are four of them, word for word.</p>
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Sapporo+%26+Sushi+Restaurant%2C+4803+Pacific+Hwy+E%2C+Fife%2C+WA+98424" target="_blank" rel="noopener">Read them all on Google ↗</a>
+        </div>
+      </div>
+
+      <div class="says">
+        <figure class="say reveal">
+          <div class="say-who">
+            <img src="images/reviewer-mira.jpg" alt="Mira Laiho's profile photo on Google" loading="lazy" width="52" height="52">
+            <div>
+              <p class="say-name">Mira Laiho</p>
+              <span class="say-meta"><span class="say-stars" aria-label="5 out of 5">★★★★★</span> · 5 months ago · Google</span>
+            </div>
+          </div>
+          <blockquote>Great sushi and wonderful service at this restaurant! Staff is super friendly and they gave us miso soup and salad before our entrees came out. Their green tea was delicious! Will definitely be coming back.</blockquote>
+        </figure>
+
+        <figure class="say reveal">
+          <div class="say-who">
+            <img src="images/reviewer-nadia.jpg" alt="Nadia Adnan's profile photo on Google" loading="lazy" width="52" height="52">
+            <div>
+              <p class="say-name">Nadia Adnan</p>
+              <span class="say-meta"><span class="say-stars" aria-label="5 out of 5">★★★★★</span> · 9 months ago · Google</span>
+            </div>
+          </div>
+          <blockquote>We love eating here. Used to eat here all the time when we lived in fife now we come from auburn to eat here. Food is always good. Decent portions for the price. Sushi is always fresh.</blockquote>
+        </figure>
+
+        <figure class="say reveal">
+          <div class="say-who">
+            <img src="images/reviewer-arwen.jpg" alt="Arwen G's profile photo on Google" loading="lazy" width="52" height="52">
+            <div>
+              <p class="say-name">Arwen G</p>
+              <span class="say-meta"><span class="say-stars" aria-label="5 out of 5">★★★★★</span> · a year ago · Google</span>
+            </div>
+          </div>
+          <blockquote>They were so kind to us even though we showed to so close to closing. The food came out quick and it was delicious. We didn't know there to get dinner. We picked this place based off their high star reviews. We learned first hand why they are rated so well. If we're ever back in the area, we know where to go.</blockquote>
+        </figure>
+
+        <figure class="say reveal">
+          <div class="say-who">
+            <img src="images/reviewer-jenna.jpg" alt="Jenna's profile photo on Google" loading="lazy" width="52" height="52">
+            <div>
+              <p class="say-name">Jenna</p>
+              <span class="say-meta"><span class="say-stars" aria-label="5 out of 5">★★★★★</span> · a year ago · Google</span>
+            </div>
+          </div>
+          <blockquote>The service and food here is amazing! The menu has lots of variety and we were served quickly. The waitress who took our order was very sweet. The strawberry mochi dessert is very yummy!</blockquote>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-cream" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting here</p>
+          <h2>Pacific Highway East, <em>Fife Business Park</em></h2>
+          <ol class="steps">
+            <li><h3>Just walk in</h3><p>No reservations taken. There's a private lot right out front, so you're not hunting for a space on the highway.</p></li>
+            <li><h3>Or call it in</h3><p>Ring the restaurant and pick it up yourself — that's the version where the kitchen keeps what you paid.</p></li>
+            <li><h3>Bringing a group?</h3><p>Give them a heads-up on the phone before you bring six or more in, especially over a weekend.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12539225656">(253) 922-5656</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=4803+Pacific+Hwy+E%2C+Fife%2C+WA+98424" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A big table</option><option>A question about the menu</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, what night, and anything the kitchen should know."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the restaurant</button>
+          <p class="form-success">Thanks — someone at Sapporo will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">One more thing</p>
+        <h2>Set back off the highway, <em>with its own lot</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count tnum" data-to="42">42</span></b><span>rolls on the board</span></div>
+        <div class="num"><b><span class="count tnum" data-to="22">22</span></b><span>kinds of nigiri at the bar</span></div>
+        <div class="num"><b><span class="count tnum" data-to="20">20</span></b><span>sections on the full menu</span></div>
+        <div class="num"><b><span class="count tnum" data-to="6">6</span></b><span>days a week, closed Sundays</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-primary">Get directions</a>
+        <a href="tel:+12539225656" class="btn btn-ghost">Call the restaurant</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm">Sapporo &amp; Sushi Restaurant<small>Fife, Washington</small></span>
+        </div>
+        <p>Authentic Japanese restaurant — sushi, teriyaki and a full kitchen, off Pacific Highway East.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>4803 Pacific Hwy E<br>Fife, WA 98424</p>
+        <p><a href="tel:+12539225656">(253) 922-5656</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The menu</a><br><a href="#signature">Sushi bar</a><br><a href="#gallery">The room</a><br><a href="#about">About</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Sapporo &amp; Sushi Restaurant</span>
+      <span>4803 Pacific Hwy E · (253) 922-5656</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=1788868346"></script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+Expected image filenames (index.html points at these exactly):
+  logo.png        — client's logo, transparent PNG, ≥ 400px tall
+  hero.jpg        — the walk-in-feeling photo (interior atmosphere), ≥ 2000px wide
+  about.jpg       — owner / team / storefront photo for the story section
+  gallery-1.jpg … gallery-6.jpg — six more real photos (never repeat hero.jpg)
+  team-1.jpg      — optional headshot for a team chip
+Downsample everything to ≤ 2500px wide:  sips -Z 2500 images/*.jpg
+Regenerate the numbered picker:          sh assets/make-contact-sheet.sh

@@ -1,0 +1,19 @@
+{
+  "name": "Il Siciliano Ristorante Italiano",
+  "phone": "(360) 825-9463",
+  "address": "1118 Myrtle Ave, Enumclaw, WA 98022",
+  "hours": {
+    "Tue": "11:30 AM – 9:00 PM",
+    "Mon": "Chiuso — closed"
+  },
+  "header_selector": ".site-header",
+  "expected_sections": ["hero", "hours", "menu", "happier", "story", "vino", "reviews", "find", "cta"],
+  "allow_repeat": [
+    "1118 Myrtle Ave, Enumclaw, WA 98022",
+    "(360) 825-9463",
+    "11:30 AM – 9:00 PM",
+    "Call to book a table",
+    "Ristorante Italiano · Enumclaw",
+    "Il Siciliano"
+  ]
+}

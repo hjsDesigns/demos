@@ -1,0 +1,93 @@
+/* ============================================================
+   YOKO TERIYAKI — hero variant "quiet"  (polish pass, 2026-09-08)
+   Loaded AFTER css/site.css; every rule namespaced .hero.v-quiet.
+
+   The idea (unchanged): the real daytime storefront is the object, the
+   wordmark rises and settles beneath it. This pass fixes the three
+   things that were wrong — the phone had a lake of dead cream under a
+   small photo, the desktop mark was so large it fought the real channel
+   letters in the photograph, and a sub-line sat on the hero that the
+   hero rules don't allow. Nothing below the hero is touched.
+   ============================================================ */
+
+/* ---------- the photograph ---------- */
+.hero.v-quiet .hero-shot{background:var(--ink)}
+.hero.v-quiet .hero-shot img{width:100%;height:100%;display:block}
+.hero.v-quiet .hero-shot .hero-photo{position:relative;z-index:1;
+  object-fit:cover;object-position:50% 44%}
+/* a blurred warm echo of the same photograph, held behind it as a safety
+   net for phone frames the photograph can't fill edge to edge */
+.hero.v-quiet .hero-shot .hero-echo{position:absolute;inset:0;z-index:0;
+  object-fit:cover;object-position:50% 44%;
+  filter:blur(30px) saturate(1.08) brightness(.86);transform:scale(1.2)}
+
+/* the scrim: pooled a little lower and a little deeper now that only the
+   mark sits on it — it has to read over the orange window posters */
+.hero.v-quiet .hero-shot::after{z-index:2;
+  background:linear-gradient(to top,
+    color-mix(in srgb,var(--dark) 93%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 84%,transparent) 15%,
+    color-mix(in srgb,var(--dark) 52%,transparent) 34%,
+    color-mix(in srgb,var(--dark) 12%,transparent) 55%,
+    transparent 73%)}
+
+.hero.v-quiet .hero-inner{padding:clamp(40px,10vh,120px) var(--pad) clamp(34px,6vh,72px)}
+
+/* ---------- the mark, set live in the sign's face ---------- */
+/* smaller than it was: the real channel letters own the top of the frame,
+   the live mark answers them from the bottom instead of shouting over them */
+.hero.v-quiet .mark{margin:0 0 clamp(18px,2.6vh,30px);
+  filter:drop-shadow(0 10px 26px color-mix(in srgb,var(--dark) 62%,transparent));
+  text-rendering:optimizeLegibility}
+.hero.v-quiet .mk-yoko{font-size:min(6.1vw,64px);-webkit-text-stroke:2px var(--ink);
+  text-shadow:3px 4px 0 var(--ink)}
+.hero.v-quiet .mk-ter{font-size:min(9.1vw,102px);-webkit-text-stroke:2.5px var(--ink);
+  text-shadow:4px 5px 0 var(--ink)}
+
+.hero.v-quiet .hero-actions{gap:14px}
+
+/* ============================================================
+   THE ARRIVAL — one pass, deterministic, done at 1.50s, then still.
+   photo 0.00→0.90 · Yoko 0.42→0.98 · TERIYAKI 0.58→1.20 · buttons 0.96→1.50
+   ============================================================ */
+.js .hero.v-quiet .hero-photo{animation:qFrame .90s cubic-bezier(.22,.85,.3,1) both}
+.js .hero.v-quiet .mark{animation:none}          /* supersedes the old whole-mark rise */
+.js .hero.v-quiet .mk-yoko{animation:qSettle .56s .42s cubic-bezier(.22,.85,.3,1) both}
+.js .hero.v-quiet .mk-ter{animation:qSettle .62s .58s cubic-bezier(.22,.85,.3,1) both}
+.js .hero.v-quiet .hero-actions{animation:qFade .54s .96s ease-out both}
+
+@keyframes qFrame{from{opacity:0;transform:scale(1.028)}to{opacity:1;transform:none}}
+@keyframes qSettle{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
+@keyframes qFade{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-quiet .hero-photo,
+  .js .hero.v-quiet .mk-yoko,
+  .js .hero.v-quiet .mk-ter,
+  .js .hero.v-quiet .hero-actions{animation:none;opacity:1;transform:none}
+}
+
+/* ============================================================
+   PHONES — the storefront WHOLE and edge to edge.
+   The frame is sized so the shop's own bay fills it: the sign, the whole
+   blue awning, both window bays, the door and the poster row all survive
+   (measured off hero.jpg, x 129→986 of 1360 — object-position 26% puts
+   that window on screen). What leaves the frame is the neighbouring
+   unit on the left and a parked SUV on the right, neither of which is
+   Yoko. No dead cream lake under it any more.
+   ============================================================ */
+@media (max-width:760px){
+  .hero.v-quiet .hero-shot{position:relative;inset:auto;flex:0 0 auto;
+    aspect-ratio:auto;height:clamp(292px,41svh,348px);overflow:hidden}
+  .hero.v-quiet .hero-shot .hero-photo{object-fit:cover;object-position:26% 50%}
+  .hero.v-quiet .hero-shot .hero-echo{display:none}
+  .hero.v-quiet .hero-shot::after{background:linear-gradient(to top,
+    color-mix(in srgb,var(--dark) 30%,transparent) 0%,transparent 36%)}
+
+  .hero.v-quiet .hero-inner{padding:clamp(22px,4vh,38px) var(--pad) clamp(26px,4.6vh,42px)}
+  .hero.v-quiet .mark{filter:none;margin:0 0 clamp(18px,2.8vh,28px)}
+  .hero.v-quiet .mk-yoko{font-size:min(8.4vw,44px);-webkit-text-stroke:1.7px var(--ink);
+    text-shadow:2.5px 3px 0 var(--ink)}
+  .hero.v-quiet .mk-ter{font-size:min(12.4vw,64px);-webkit-text-stroke:2px var(--ink);
+    text-shadow:3px 3.5px 0 var(--ink)}
+}

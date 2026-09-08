@@ -1,0 +1,177 @@
+/* ============================================================
+   TERIYAKI TOWN — HERO VARIANT "STOREFRONT STILL"
+   Namespaced entirely under .hero.v-storefront-still. Tokens only.
+
+   The idea: restraint. Their real building on 112th, held completely
+   still — no drift, no push-in, no loop. One soft bloom on load (the
+   exposure lifts, the OPEN neon warms up once and settles), then the
+   hero is a photograph and stops asking for attention, so it hands off
+   quietly to the cream hours band underneath.
+
+   Asset: images/storefront-tall.jpg (their own storefront photograph,
+   1125x1500 — red channel letters, blue TOWN lightbox, OPEN neon lit).
+   ============================================================ */
+
+.hero.v-storefront-still{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) clamp(26px,6vh,60px);
+  overflow:hidden;isolation:isolate;
+  background:var(--dark);
+}
+
+/* ---- the stage --------------------------------------------------- */
+.hero.v-storefront-still .sf-stage{position:absolute;inset:0;z-index:0}
+
+/* blurred warm echo — only used when the frame is wider than the photo */
+.hero.v-storefront-still .sf-echo{
+  position:absolute;inset:-6%;width:112%;height:112%;
+  object-fit:cover;object-position:50% 42%;
+  display:none;
+  filter:blur(46px) saturate(.82) brightness(.5);
+  transform:scale(1.06);
+}
+
+/* the plate the photograph actually lives in */
+.hero.v-storefront-still .sf-plate{position:absolute;inset:0;overflow:hidden}
+.hero.v-storefront-still .sf-shot{
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:50% 44%;
+  filter:brightness(.82) saturate(.92) contrast(1.02);
+}
+
+/* the one event, part 2: a warm bloom around the OPEN neon in the glass.
+   Positioned in percentages of the PLATE, so it stays on the neon at both
+   the phone crop and the whole-photo landscape plate. */
+.hero.v-storefront-still .sf-glow{
+  position:absolute;left:64%;top:63%;width:64%;aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  pointer-events:none;opacity:0;
+  background:radial-gradient(circle,
+    color-mix(in srgb, var(--brand-bright) 46%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 22%, transparent) 26%,
+    transparent 62%);
+  mix-blend-mode:screen;
+}
+
+/* scrim: light at the top so the sky and the sign stay true, pooled at the
+   bottom so the wordmark reads on the door glass. Built from --dark, the one
+   token guaranteed dark in either ground mode. */
+.hero.v-storefront-still .sf-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,
+      color-mix(in srgb, var(--dark) 26%, transparent) 0%,
+      color-mix(in srgb, var(--dark) 2%,  transparent) 24%,
+      color-mix(in srgb, var(--dark) 8%,  transparent) 48%,
+      color-mix(in srgb, var(--dark) 52%, transparent) 68%,
+      color-mix(in srgb, var(--dark) 86%, transparent) 84%,
+      color-mix(in srgb, var(--dark) 96%, transparent) 100%);
+}
+
+/* ---- the headline block ------------------------------------------ */
+.hero.v-storefront-still .sf-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  color:var(--paper);text-align:center;
+}
+
+.hero.v-storefront-still .sf-mark{
+  margin:0 0 clamp(1rem,2.6vh,1.5rem);
+  font-family:var(--display);text-transform:uppercase;
+  line-height:.94;letter-spacing:.005em;
+  font-size:clamp(2.5rem,10.4vw,5.6rem);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:.14em .18em;
+}
+.hero.v-storefront-still .sf-teri{
+  color:var(--brand);
+  -webkit-text-stroke:.012em var(--paper);
+  text-shadow:0 .035em 0 color-mix(in srgb, var(--paper) 80%, transparent),
+              0 .085em .2em color-mix(in srgb, #000 58%, transparent);
+}
+.hero.v-storefront-still .sf-box{
+  color:var(--paper);background:var(--accent);
+  padding:.1em .2em .14em;border-radius:.06em;
+  box-shadow:inset 0 -.1em 0 color-mix(in srgb, #000 30%, transparent),
+             0 .06em .2em color-mix(in srgb, #000 48%, transparent);
+}
+
+/* phones: the two buttons don't fit side by side at 390, so stack them
+   at one width rather than leaving a ragged centred pair */
+.hero.v-storefront-still .sf-actions{
+  display:flex;flex-direction:column;align-items:stretch;gap:.6rem;
+  width:min(100%,19rem);margin:0 auto;
+}
+@media (min-width:520px){
+  .hero.v-storefront-still .sf-actions{
+    flex-direction:row;flex-wrap:wrap;justify-content:center;
+    width:auto;gap:.7rem;
+  }
+}
+
+/* =============================================================
+   THE ONE EVENT — one soft bloom on load. ~1.9 s, once, then still.
+   Nothing here loops and nothing moves after the last frame.
+   ============================================================= */
+.js .hero.v-storefront-still .sf-shot{animation:sfExpose 1.5s var(--ease) both}
+.js .hero.v-storefront-still .sf-glow{animation:sfBloom 1.9s var(--ease) both}
+.js .hero.v-storefront-still .sf-mark{animation:sfRise .62s var(--ease) .74s both}
+.js .hero.v-storefront-still .sf-actions{animation:sfRise .52s var(--ease) 1.02s both}
+
+@keyframes sfExpose{
+  0%  {filter:brightness(.62) saturate(.72) contrast(1.06)}
+  100%{filter:brightness(.82) saturate(.92) contrast(1.02)}
+}
+@keyframes sfBloom{
+  0%  {opacity:0}
+  46% {opacity:1}
+  100%{opacity:.52}
+}
+@keyframes sfRise{
+  from{opacity:0;transform:translateY(12px)}
+  to  {opacity:1;transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-storefront-still .sf-shot,
+  .js .hero.v-storefront-still .sf-glow,
+  .js .hero.v-storefront-still .sf-mark,
+  .js .hero.v-storefront-still .sf-actions{animation:none}
+  .hero.v-storefront-still .sf-glow{opacity:.52}
+}
+
+/* =============================================================
+   LANDSCAPE / DESKTOP — the frame is wider than the 3:4 photograph,
+   so cover would eat either the sign or the door. NEVER CROP THE
+   IMPORTANT PART: hold the whole photo as a centred plate inside a
+   blurred, warmed echo of itself.
+   ============================================================= */
+@media (min-aspect-ratio:7/10){
+  .hero.v-storefront-still .sf-echo{display:block}
+  .hero.v-storefront-still .sf-plate{
+    inset:0 auto 0 50%;
+    height:100%;aspect-ratio:3/4;width:auto;
+    transform:translateX(-50%);
+    box-shadow:0 0 0 1px color-mix(in srgb, var(--paper) 10%, transparent),
+               0 30px 90px color-mix(in srgb, #000 62%, transparent);
+  }
+  /* the plate is now exactly 3:4, so the photograph sits in it uncropped */
+  .hero.v-storefront-still .sf-glow{left:59.5%}
+  .hero.v-storefront-still .sf-scrim{
+    background:
+      linear-gradient(to bottom,
+        color-mix(in srgb, var(--dark) 22%, transparent) 0%,
+        color-mix(in srgb, var(--dark) 2%,  transparent) 26%,
+        color-mix(in srgb, var(--dark) 8%,  transparent) 54%,
+        color-mix(in srgb, var(--dark) 66%, transparent) 80%,
+        color-mix(in srgb, var(--dark) 93%, transparent) 100%);
+  }
+  /* the headline column is exactly the width of the plate, so the mark sits
+     ON the photograph instead of spilling onto the blurred echo */
+  .hero.v-storefront-still .sf-inner{
+    max-width:min(var(--maxw), calc((100svh - var(--header-h)) * .75 - 1.6rem));
+  }
+  .hero.v-storefront-still .sf-mark{font-size:clamp(2.4rem,7.6vh,4.3rem)}
+}

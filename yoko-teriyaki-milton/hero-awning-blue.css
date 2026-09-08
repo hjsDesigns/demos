@@ -1,0 +1,141 @@
+/* ============================================================
+   YOKO TERIYAKI — hero variant "awning-blue"
+   Self-contained, namespaced under .hero.v-awning-blue.
+   Loaded AFTER css/style.css and css/site.css.
+
+   The object: the royal-blue standing-seam awning on their building.
+   Their own daytime storefront (images/hero.jpg) is held WHOLE and level
+   — never cropped, never a crop of the sign — on a daylight ground built
+   from the site tokens (--tint sky over --bg cream). ONE event: a band of
+   daylight slides once along the awning, masked to the awning's own band
+   of the plate (y 35.2%-58.6%, measured off the photo), then it is still.
+   The ground lands on cream so it flows into the hours band below.
+   Every colour is a :root token; every token came off this storefront.
+   ============================================================ */
+
+.hero.v-awning-blue{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--bg);color:var(--ink);
+  overflow:hidden;isolation:isolate;
+  padding:clamp(12px,2.2vh,26px) 0 clamp(20px,3.4vh,44px);
+}
+
+/* ---- the ground: the overcast daylight of the plate, in tokens.
+   A blurred copy of this photo makes a muddy grey-and-salmon smear (its top
+   half is blown-out sky), so the ground is built instead from --tint (the
+   awning blue, washed out — the same token the hours band below uses) sitting
+   over --bg cream. Sky above, cream under the mark, one warm pool behind the
+   print. Nothing here is invented colour: both come from the storefront. ---- */
+.v-awning-blue .aw-ground{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(76% 52% at 50% 46%,
+      color-mix(in srgb,var(--warm) 20%,transparent) 0%,
+      transparent 74%),
+    linear-gradient(to bottom,
+      color-mix(in srgb,var(--tint) 66%,var(--paper)) 0%,
+      color-mix(in srgb,var(--tint) 74%,var(--bg)) 22%,
+      color-mix(in srgb,var(--tint) 24%,var(--bg)) 48%,
+      var(--bg) 68%,
+      var(--bg-2) 100%);
+}
+
+/* ---- the plate: their storefront, whole ---- */
+.v-awning-blue .aw-stage{
+  position:relative;z-index:2;width:100%;
+  padding:0 var(--pad);display:flex;justify-content:center;
+}
+.v-awning-blue .aw-shot{
+  position:relative;margin:0;line-height:0;width:100%;
+  max-width:min(100%, calc((100svh - var(--header-h)) * .615 * 1.77778));
+  border-radius:12px;overflow:hidden;
+  box-shadow:
+    0 34px 64px -36px color-mix(in srgb,var(--ink) 74%,transparent),
+    0 0 0 1px color-mix(in srgb,var(--ink) 14%,transparent);
+}
+.v-awning-blue .aw-shot img{width:100%;height:auto;display:block}
+
+/* ---- the one event: daylight travelling the awning ---- */
+.v-awning-blue .aw-sweep{
+  position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,
+    transparent 35.2%, #000 39.6%, #000 53.8%, transparent 58.6%);
+          mask-image:linear-gradient(to bottom,
+    transparent 35.2%, #000 39.6%, #000 53.8%, transparent 58.6%);
+}
+.v-awning-blue .aw-sweep::before{
+  content:"";position:absolute;top:-8%;bottom:-8%;left:-34%;width:34%;
+  background:linear-gradient(96deg,
+    transparent 0%,
+    color-mix(in srgb,#fff 20%,transparent) 24%,
+    color-mix(in srgb,#fff 92%,transparent) 50%,
+    color-mix(in srgb,#fff 20%,transparent) 76%,
+    transparent 100%);
+  filter:blur(9px);
+  mix-blend-mode:screen;
+  opacity:0;
+  transform:translate3d(0,0,0) skewX(-7deg);
+}
+/* left:-34% + 394% of its own 34% width = +134% → it exits the right edge */
+.js .v-awning-blue .aw-sweep::before{
+  animation:awSweep 2s .3s linear both;
+}
+@keyframes awSweep{
+  0%  {opacity:0;transform:translate3d(0,0,0) skewX(-7deg)}
+  7%  {opacity:1}
+  88% {opacity:1}
+  100%{opacity:0;transform:translate3d(394%,0,0) skewX(-7deg)}
+}
+
+/* ---- the mark, low in the frame, in the channel letters' red ---- */
+.v-awning-blue .aw-inner{
+  position:relative;z-index:4;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(16px,3.2vh,38px) var(--pad) 0;
+  text-align:center;
+}
+.v-awning-blue .aw-mark{
+  margin:0 0 clamp(16px,2.6vh,30px);
+  font-family:var(--display);font-weight:400;line-height:.94;
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
+  gap:0 clamp(10px,1.4vw,18px);
+  color:var(--brand);max-width:100%;
+}
+.v-awning-blue .aw-yoko{
+  font-size:min(7.2vw,60px);
+  text-shadow:2px 3px 0 color-mix(in srgb,var(--ink) 78%,transparent);
+}
+.v-awning-blue .aw-ter{
+  font-size:min(10.8vw,94px);letter-spacing:.012em;
+  text-shadow:3px 4px 0 color-mix(in srgb,var(--ink) 78%,transparent);
+}
+.js .v-awning-blue h1.sr-only{animation:none}   /* the template's .hero h1 rise has no job here */
+.js .v-awning-blue .aw-mark{animation:awMarkIn .8s .28s var(--ease) both}
+.js .v-awning-blue .hero-actions{animation:awMarkIn .8s .5s var(--ease) both}
+@keyframes awMarkIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.v-awning-blue .hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.v-awning-blue .hero-actions .btn{min-width:min(100%,208px);justify-content:center}
+.v-awning-blue .hero-actions .btn-cream{border-color:var(--ink)}
+
+/* ---- phones: the storefront still whole, the mark stacked like the sign ---- */
+@media (max-width:760px){
+  .v-awning-blue .aw-stage{padding:0}
+  .v-awning-blue .aw-shot{max-width:100%;border-radius:0;
+    box-shadow:0 22px 40px -30px color-mix(in srgb,var(--ink) 78%,transparent)}
+  .v-awning-blue .aw-mark{flex-direction:column;align-items:center;gap:2px}
+  .v-awning-blue .aw-yoko{font-size:min(11vw,52px)}
+  .v-awning-blue .aw-ter{font-size:min(14.4vw,72px)}
+  .v-awning-blue .hero-actions .btn{flex:1 1 46%;min-width:150px}
+}
+@media (max-width:400px){
+  .v-awning-blue .hero-actions .btn{flex:1 1 100%}
+}
+
+/* ---- reduced motion: land on the final, still frame ---- */
+@media (prefers-reduced-motion:reduce){
+  .js .v-awning-blue .aw-sweep::before{animation:none;opacity:0}
+  .js .v-awning-blue .aw-mark,
+  .js .v-awning-blue .hero-actions{animation:none;opacity:1;transform:none}
+}

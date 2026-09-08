@@ -1,0 +1,224 @@
+/* ============================================================
+   TERIYAKI TOWN — hero variant "ticket"
+   Namespaced .hero.v-ticket. Tokens only (style.css :root).
+
+   THE IDEA: their regulars order by number. So the opener is the
+   kitchen order ticket itself — cream ground, one paper slip, the
+   codes and dish names set VERBATIM from their OWN printed menu
+   board (images/board-teri.jpg): T1 Chicken Teriyaki, T3 Pork
+   Teriyaki, T6 Chicken Katsu, T10 Gyoza Plate, T11 Beef Short Ribs,
+   TC6 Chicken & Prawn Teriyaki, C1 Mongolian Beef, C8 Sesame
+   Chicken, C11 Sweet & Sour Chicken, C14 Chicken Chow Mein.
+   NO PRICES: facts.json carries prices only as a flat list never
+   tied to a code, and their board and their Menu11 page disagree —
+   so the ticket carries none rather than an invented one.
+
+   MOTION (one event, ~1.9 s, deterministic, then dead still):
+     0.10 → 0.98   the slip feeds out of the printer (mask wipe)
+     0.18 → 1.16   each line inks in behind the feed
+     1.52 → 1.86   TERIYAKI TOWN stamps across the BOTTOM of the
+                   slip in the sign red, the paper takes the thump,
+                   everything holds. The codes stay readable.
+   Reduced motion lands on the final frame.
+   ============================================================ */
+
+.hero.v-ticket{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  background:var(--bg);
+  color:var(--ink);
+  padding:clamp(10px,2vh,26px) var(--pad) clamp(18px,3.2vh,40px);
+}
+
+/* the ground: cream, warmed toward the middle, closed off at the edges.
+   No flat wash — a faint warm pool so the paper has somewhere to sit. */
+.hero.v-ticket::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(110% 72% at 50% 44%, color-mix(in srgb,var(--paper) 80%,transparent) 0%, transparent 64%),
+    radial-gradient(140% 100% at 50% 50%, transparent 48%, color-mix(in srgb,var(--bg-2) 92%,transparent) 100%);
+}
+/* fine paper tooth over the whole ground — CSS only, no invented asset */
+.hero.v-ticket::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.45;
+  background-image:
+    repeating-linear-gradient(0deg,  color-mix(in srgb,var(--ink) 4%,transparent) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, color-mix(in srgb,var(--ink) 3%,transparent) 0 1px, transparent 1px 4px);
+}
+
+.hero.v-ticket .tk-stage{
+  position:relative;z-index:2;
+  flex:1 1 auto;
+  display:flex;align-items:center;justify-content:center;
+  min-height:0;
+}
+.hero.v-ticket .tk-plate{position:relative;margin-bottom:clamp(46px,12vw,64px)}
+
+/* ---------- the slip ---------- */
+.hero.v-ticket .tk-slip{
+  position:relative;
+  width:clamp(296px,80vw,336px);
+  background:var(--paper);
+  box-shadow:
+    0 1px 0 color-mix(in srgb,var(--ink) 10%,transparent),
+    0 16px 28px -12px color-mix(in srgb,var(--ink) 32%,transparent),
+    0 52px 66px -38px color-mix(in srgb,var(--ink) 42%,transparent);
+  transform:rotate(-1.2deg);
+  /* the feed: masked from the top down, so the shadow emerges with it */
+  -webkit-mask-image:linear-gradient(#000,#000);
+          mask-image:linear-gradient(#000,#000);
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:top left; mask-position:top left;
+  -webkit-mask-size:100% 0%;      mask-size:100% 0%;
+  animation:tk-feed .88s cubic-bezier(.28,.72,.24,1) .10s forwards,
+            tk-thump .30s ease-out 1.52s;
+}
+/* the torn/perforated top edge of a real printer slip */
+.hero.v-ticket .tk-perf{
+  position:absolute;left:0;right:0;top:0;height:7px;
+  background:var(--paper);
+  -webkit-mask-image:repeating-conic-gradient(from -45deg at 50% 100%, #000 0 25%, transparent 0 50%);
+          mask-image:repeating-conic-gradient(from -45deg at 50% 100%, #000 0 25%, transparent 0 50%);
+  -webkit-mask-size:11px 7px; mask-size:11px 7px;
+  transform:translateY(-7px);
+}
+.hero.v-ticket .tk-paper{
+  padding:clamp(20px,3vw,26px) clamp(18px,2.8vw,24px) 0;
+}
+/* the empty foot of the ticket the stamp lands on */
+.hero.v-ticket .tk-drop{height:clamp(56px,9vw,76px)}
+
+.hero.v-ticket .tk-line{
+  margin:0;
+  font-family:var(--mono);
+  font-size:clamp(12.5px,3.35vw,14.5px);
+  line-height:1.98;
+  letter-spacing:.01em;
+  color:var(--ink);
+  opacity:0;
+  transform:translateY(5px);
+  animation:tk-ink .30s ease-out forwards;
+  animation-delay:calc(.18s + var(--i) * .065s);
+}
+.hero.v-ticket .tk-head{
+  font-size:clamp(9.5px,2.5vw,11px);
+  letter-spacing:.14em;
+  color:var(--muted);
+  line-height:1.8;
+  text-align:center;
+  margin-bottom:2px;
+}
+
+.hero.v-ticket .tk-sep{line-height:0;padding:10px 0}
+.hero.v-ticket .tk-sep span{
+  display:block;height:0;
+  border-top:1px dashed color-mix(in srgb,var(--ink) 30%,transparent);
+}
+
+.hero.v-ticket .tk-item{display:flex;align-items:baseline;gap:12px;white-space:nowrap}
+.hero.v-ticket .tk-item b{
+  flex:0 0 auto;min-width:3.3em;
+  font-weight:700;font-style:normal;
+  letter-spacing:.04em;
+}
+.hero.v-ticket .tk-item i{
+  font-style:normal;font-weight:500;
+  color:color-mix(in srgb,var(--ink) 82%,transparent);
+  overflow:hidden;text-overflow:ellipsis;
+}
+
+/* ---------- the stamp: the mark IS the headline ----------
+   Planted across the FOOT of the ticket, half on paper half on
+   cream, wider than the slip — so it dominates without covering
+   a single code. mix-blend multiply = real ink on both grounds. */
+.hero.v-ticket .tk-mark-pos{
+  position:absolute;left:50%;top:100%;
+  transform:translate(-50%,-58%);
+  z-index:3;pointer-events:none;
+}
+.hero.v-ticket .tk-mark{
+  margin:0;
+  display:flex;flex-direction:column;align-items:center;
+  gap:.02em;
+  padding:clamp(11px,2.2vw,16px) clamp(18px,3.4vw,28px) clamp(13px,2.5vw,19px);
+  border:3px solid var(--brand);
+  border-radius:6px;
+  box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--paper) 0%,transparent),
+             inset 0 0 0 4.5px var(--brand);
+  font-family:var(--display);
+  text-transform:uppercase;
+  color:var(--brand);
+  line-height:.94;
+  letter-spacing:.005em;
+  mix-blend-mode:multiply;
+  white-space:nowrap;
+  opacity:0;
+  transform:scale(1.5) rotate(-15deg);
+  animation:tk-stamp .34s cubic-bezier(.2,1.05,.32,1) 1.52s forwards;
+}
+.hero.v-ticket .tk-mark span:first-child{font-size:clamp(34px,9.4vw,44px)}
+.hero.v-ticket .tk-mark span:last-child {font-size:clamp(43px,11.8vw,55px)}
+
+/* ---------- the two buttons, nothing else ---------- */
+.hero.v-ticket .tk-actions{
+  position:relative;z-index:4;
+  flex:0 0 auto;
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  margin-top:clamp(30px,5vh,48px);
+  opacity:0;animation:tk-ink .4s ease-out 1.80s forwards;
+}
+
+/* ---------- keyframes (unique to this variant) ---------- */
+@keyframes tk-feed{
+  from{-webkit-mask-size:100% 0%;   mask-size:100% 0%}
+  to  {-webkit-mask-size:100% 101%; mask-size:100% 101%}
+}
+@keyframes tk-ink{
+  from{opacity:0;transform:translateY(5px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+@keyframes tk-stamp{
+  from{opacity:0;transform:scale(1.5)  rotate(-15deg);filter:blur(3px)}
+  60% {opacity:1;transform:scale(.965) rotate(-5.4deg);filter:blur(0)}
+  to  {opacity:1;transform:scale(1)    rotate(-6deg);  filter:blur(0)}
+}
+@keyframes tk-thump{
+  0%  {transform:rotate(-1.2deg) translateY(0)}
+  38% {transform:rotate(-1.2deg) translateY(4px)}
+  100%{transform:rotate(-1.2deg) translateY(0)}
+}
+
+/* ---------- desktop: the ticket grows to own the frame ---------- */
+@media (min-width:900px){
+  .hero.v-ticket .tk-slip{width:500px}
+  .hero.v-ticket .tk-paper{padding:30px 38px 0}
+  .hero.v-ticket .tk-drop{height:84px}
+  .hero.v-ticket .tk-line{font-size:18px;line-height:1.90}
+  .hero.v-ticket .tk-head{font-size:12.5px;line-height:1.9}
+  .hero.v-ticket .tk-mark{padding:18px 36px 22px}
+  .hero.v-ticket .tk-mark span:first-child{font-size:62px}
+  .hero.v-ticket .tk-mark span:last-child {font-size:78px}
+  /* the stamp hangs below the slip — pay for it in the centring
+     so the plate sits optically middle, not low, and clears the buttons */
+  .hero.v-ticket .tk-plate{margin-bottom:96px}
+  .hero.v-ticket .tk-actions{margin-top:20px}
+}
+
+/* ---------- short viewports: keep the whole slip in the fold ---------- */
+@media (max-height:740px){
+  .hero.v-ticket .tk-line{line-height:1.72}
+  .hero.v-ticket .tk-sep{padding:7px 0}
+  .hero.v-ticket .tk-paper{padding-top:16px}
+  .hero.v-ticket .tk-drop{height:52px}
+  .hero.v-ticket .tk-actions{margin-top:24px}
+}
+
+/* ---------- reduced motion: land on the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-ticket .tk-slip{animation:none;-webkit-mask-size:100% 101%;mask-size:100% 101%}
+  .hero.v-ticket .tk-line,
+  .hero.v-ticket .tk-actions{animation:none;opacity:1;transform:none}
+  .hero.v-ticket .tk-mark{animation:none;opacity:1;transform:rotate(-6deg)}
+}

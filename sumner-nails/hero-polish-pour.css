@@ -1,0 +1,196 @@
+/* ============================================================
+   HERO VARIANT 3 — "polish-pour"  ·  Sumner Nails
+   Namespaced under .hero.v-polish-pour; every keyframe prefixed pp-.
+   Colours come from css/style.css tokens only. No photo, no image file,
+   no drawn asset — the whole hero is their name in their colour on the
+   site's own cream, so it hands straight off to the hours band below.
+
+   Their window vinyl is a heavy squared grotesque in magenta with a white
+   keyline; on cream a white keyline disappears, so the keyline here is the
+   darker of their two magentas (--brand-text) and the fill is the vinyl
+   magenta itself (--brand / --brand-bright).
+
+   TIMELINE (once, deterministic, ends at 2.85s, then dead still)
+     0.00        hollow letters already on screen — never an empty frame
+     0.12–1.07   the pour: a stream of polish runs down into the first letter
+     0.68–1.93   SUMNER floods, NAILS follows 0.26s behind, wet crest on the edge
+     1.90        the two buttons rise
+     2.05–2.85   one shine crosses the filled letters and it settles
+   ============================================================ */
+
+.hero.v-polish-pour{
+  --pp-fill-dur:1.25s;
+  --pp-fill-delay:.68s;
+  --pp-fill-ease:cubic-bezier(.45,.05,.35,1);  /* a level rising, not a UI ease — var(--ease) front-loads and the pour was over before it read */
+  background:
+    radial-gradient(130% 78% at 50% 6%,
+      var(--paper) 0%,
+      var(--bg) 44%,
+      var(--bg-2) 100%);
+  color:var(--ink);
+  isolation:isolate;
+}
+
+/* a whisper of warmth in the lower corners so the cream isn't dead flat */
+.hero.v-polish-pour::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(58% 34% at 6% 100%, color-mix(in srgb,var(--tint) 78%,transparent), transparent 72%),
+    radial-gradient(52% 30% at 98% 96%, color-mix(in srgb,var(--warm) 22%,transparent), transparent 74%);
+}
+
+/* the same film grain the rest of the site's photography carries */
+.hero.v-polish-pour::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  opacity:.30; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+}
+
+/* the block sits lower-centre rather than on the floor: with no photo behind
+   it, an empty top half would read as a hole. The extra bottom padding lifts
+   it and leaves the pour its runway above. */
+.hero.v-polish-pour .hero-inner{padding-bottom:clamp(56px,16vh,170px)}
+
+/* ---------- the mark ---------- */
+.hero.v-polish-pour .mark{
+  position:relative; z-index:2;
+  margin:0 0 clamp(22px,3.4vh,36px);
+  font-family:var(--display); font-weight:400; text-transform:uppercase;
+  font-size:clamp(52px,18.6vw,210px);   /* SUMNER measures 4.64em in Archivo Black — this keeps it inside the padding at 320/390/768/1440 */
+  line-height:.86; letter-spacing:-.032em;
+  white-space:nowrap;
+  filter:drop-shadow(0 9px 16px color-mix(in srgb,var(--brand-text) 11%,transparent));
+}
+
+/* each word is one stacking context; .pp-hollow is in flow and sets the box,
+   the three liquid layers sit on top of it in exact register */
+.hero.v-polish-pour .pp-line{position:relative; display:block}
+.hero.v-polish-pour .pp-line > span{display:block}
+.hero.v-polish-pour .pp-fill,
+.hero.v-polish-pour .pp-crest,
+.hero.v-polish-pour .pp-gloss{
+  position:absolute; left:0; top:0; width:100%;
+  pointer-events:none;
+}
+
+/* --- 1. the empty glass: outline only --- */
+.hero.v-polish-pour .pp-hollow{
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:.024em color-mix(in srgb,var(--brand-text) 68%,transparent);
+}
+
+/* --- 2. the polish itself: light at the top, deep at the foot, like a
+       loaded brush stroke. Revealed top-down by a soft-edged mask that
+       slides; mask-position animates everywhere, no @property needed. --- */
+.hero.v-polish-pour .pp-fill{
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  background-image:linear-gradient(180deg,
+    var(--brand-bright) 0%,
+    var(--brand) 40%,
+    var(--brand-text) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-mask-image:linear-gradient(180deg,#000 0 46%,rgba(0,0,0,.55) 51%,transparent 55%);
+          mask-image:linear-gradient(180deg,#000 0 46%,rgba(0,0,0,.55) 51%,transparent 55%);
+  -webkit-mask-size:100% 240%;  mask-size:100% 240%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:0% 100%; mask-position:0% 100%;
+  animation:pp-flood var(--pp-fill-dur) var(--pp-fill-ease) var(--pp-fill-delay) 1 both;
+}
+
+/* --- 3. the wet crest riding the leading edge, gone once the word is full --- */
+.hero.v-polish-pour .pp-crest{
+  color:#FF8FC2;
+  -webkit-text-fill-color:#FF8FC2;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0 43%,rgba(0,0,0,.35) 46%,#000 50%,rgba(0,0,0,.5) 53%,transparent 57%);
+          mask-image:linear-gradient(180deg,transparent 0 43%,rgba(0,0,0,.35) 46%,#000 50%,rgba(0,0,0,.5) 53%,transparent 57%);
+  -webkit-mask-size:100% 240%;  mask-size:100% 240%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:0% 100%; mask-position:0% 100%;
+  animation:pp-flood var(--pp-fill-dur) var(--pp-fill-ease) var(--pp-fill-delay) 1 both;
+}
+
+/* NAILS fills a beat behind SUMNER — the polish is running down the block */
+.hero.v-polish-pour .pp-line-2 .pp-fill,
+.hero.v-polish-pour .pp-line-2 .pp-crest{
+  animation-delay:calc(var(--pp-fill-delay) + .26s);
+}
+
+@keyframes pp-flood{
+  from{-webkit-mask-position:0% 100%; mask-position:0% 100%}
+  to  {-webkit-mask-position:0% 0%;   mask-position:0% 0%}
+}
+
+/* --- 4. the settle: one shine crosses both words, then stops for good --- */
+.hero.v-polish-pour .pp-gloss{
+  color:#fff;
+  -webkit-text-fill-color:#fff;
+  opacity:0;
+  -webkit-mask-image:linear-gradient(100deg,transparent 42%,rgba(0,0,0,.85) 48.5%,#000 51%,rgba(0,0,0,.85) 53.5%,transparent 60%);
+          mask-image:linear-gradient(100deg,transparent 42%,rgba(0,0,0,.85) 48.5%,#000 51%,rgba(0,0,0,.85) 53.5%,transparent 60%);
+  -webkit-mask-size:260% 100%;  mask-size:260% 100%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:120% 0;  mask-position:120% 0;
+  animation:pp-gloss .70s var(--ease) 2.05s 1 both;
+}
+.hero.v-polish-pour .pp-line-2 .pp-gloss{animation-delay:2.15s}
+@keyframes pp-gloss{
+  0%   {opacity:0;   -webkit-mask-position:120% 0; mask-position:120% 0}
+  22%  {opacity:.34}
+  78%  {opacity:.34}
+  100% {opacity:0;   -webkit-mask-position:-30% 0; mask-position:-30% 0}
+}
+
+/* --- the pour: a stream of polish falling in from above the first letter --- */
+.hero.v-polish-pour .pp-stream{
+  position:absolute; left:.078em; bottom:100%;
+  width:.078em; height:min(40vh,320px);
+  border-radius:.05em .05em 50% 50%/.05em .05em .12em .12em;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--brand-bright) 0%,transparent) 0%,
+    color-mix(in srgb,var(--brand-bright) 78%,transparent) 16%,
+    var(--brand) 62%,
+    var(--brand-text) 100%);
+  transform-origin:50% 0%; transform:scaleY(0);
+  animation:pp-pour .95s cubic-bezier(.45,.05,.35,1) .12s 1 both;
+}
+@keyframes pp-pour{
+  0%   {transform:scaleY(0);   opacity:1}
+  62%  {transform:scaleY(1);   opacity:1}
+  78%  {transform:scaleY(1);   opacity:.85}
+  100% {transform:scaleY(1);   opacity:0}
+}
+
+/* the buttons arrive once both words are full */
+.js .hero.v-polish-pour .hero-actions{animation-delay:1.90s}
+
+/* the cream ground needs its own button treatment — .btn-cream is
+   background:var(--bg), which would be invisible here */
+.hero.v-polish-pour .btn-cream{
+  background:transparent; color:var(--ink);
+  border:2px solid color-mix(in srgb,var(--ink) 26%,transparent);
+}
+.hero.v-polish-pour .btn-cream:hover{
+  background:var(--paper); border-color:color-mix(in srgb,var(--ink) 42%,transparent);
+}
+
+/* ---------- phones (390 judged first) ---------- */
+@media (max-width:760px){
+  .hero.v-polish-pour .mark{letter-spacing:-.034em}
+  .hero.v-polish-pour .pp-stream{height:min(34vh,240px)}
+  .hero.v-polish-pour .hero-inner{padding-bottom:clamp(64px,23vh,210px)}
+}
+
+/* ---------- reduced motion: the filled, settled frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-polish-pour .pp-fill,
+  .hero.v-polish-pour .pp-crest{
+    animation:none;
+    -webkit-mask-position:0% 0%; mask-position:0% 0%;
+  }
+  .hero.v-polish-pour .pp-crest{opacity:0}
+  .hero.v-polish-pour .pp-gloss{animation:none; opacity:0}
+  .hero.v-polish-pour .pp-stream{animation:none; opacity:0; transform:scaleY(1)}
+  .js .hero.v-polish-pour .hero-actions{animation:none; opacity:1; transform:none}
+}
