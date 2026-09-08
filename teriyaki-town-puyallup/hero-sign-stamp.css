@@ -1,0 +1,171 @@
+/* ============================================================
+   TERIYAKI TOWN — HERO VARIANT "SIGN STAMP"
+   Namespaced entirely under .hero.v-sign-stamp. Tokens only.
+
+   Built off storefront-still (#4): the same real building on 112th, held
+   completely still and fully lit — no pan, no push-in, no exposure lift,
+   no loop. What is different is how the MARK arrives: it is stamped on in
+   two beats, TERIYAKI first in the sign's red, then the blue TOWN lightbox
+   beside it 0.4 s later, each landing hard with one small scale-settle.
+   Both land dead square, so the last frame is a still photograph with the
+   name set cleanly on it, and it hands off quietly to the cream hours band.
+
+   Assets (their own storefront photographs, untouched):
+     images/storefront-tall.jpg  1125x1500  — phones
+     images/storefront-wide.jpg  1800x1012  — landscape / desktop
+   ============================================================ */
+
+.hero.v-sign-stamp{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) clamp(26px,6vh,60px);
+  overflow:hidden;isolation:isolate;
+  background:var(--dark);
+}
+
+/* ---- the stage: one still photograph ------------------------------ */
+.hero.v-sign-stamp .ss-stage{position:absolute;inset:0;z-index:0}
+
+.hero.v-sign-stamp .ss-shot{
+  position:absolute;inset:0;
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:50% 44%;
+  filter:brightness(.86) saturate(.96) contrast(1.02);
+}
+
+/* the OPEN neon in the door glass, warmed so it reads as lit. Static —
+   it is part of "fully lit", not an event. Phone crop only; the landscape
+   photograph is the sign close-up and has no door glass in frame. */
+.hero.v-sign-stamp .ss-neon{
+  position:absolute;left:64%;top:63%;width:60%;aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  pointer-events:none;opacity:.5;
+  background:radial-gradient(circle,
+    color-mix(in srgb, var(--brand-bright) 44%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 20%, transparent) 26%,
+    transparent 62%);
+  mix-blend-mode:screen;
+}
+
+/* scrim: light at the top so the sky and the real sign stay true, pooled at
+   the bottom so the stamped wordmark reads. Built from --dark, the one token
+   guaranteed dark in either ground mode. */
+.hero.v-sign-stamp .ss-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,
+      color-mix(in srgb, var(--dark) 24%, transparent) 0%,
+      color-mix(in srgb, var(--dark) 2%,  transparent) 24%,
+      color-mix(in srgb, var(--dark) 8%,  transparent) 48%,
+      color-mix(in srgb, var(--dark) 54%, transparent) 68%,
+      color-mix(in srgb, var(--dark) 87%, transparent) 84%,
+      color-mix(in srgb, var(--dark) 96%, transparent) 100%);
+}
+
+/* ---- the headline block ------------------------------------------ */
+.hero.v-sign-stamp .ss-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  color:var(--paper);text-align:center;
+}
+
+.hero.v-sign-stamp .ss-mark{
+  margin:0 0 clamp(1rem,2.6vh,1.5rem);
+  font-family:var(--display);text-transform:uppercase;
+  line-height:.94;letter-spacing:.005em;
+  font-size:clamp(2.5rem,10.4vw,5.6rem);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:.14em .18em;
+}
+.hero.v-sign-stamp .ss-teri,
+.hero.v-sign-stamp .ss-box{
+  display:inline-block;
+  transform-origin:50% 62%;
+  backface-visibility:hidden;
+}
+.hero.v-sign-stamp .ss-teri{
+  color:var(--brand);
+  -webkit-text-stroke:.012em var(--paper);
+  text-shadow:0 .035em 0 color-mix(in srgb, var(--paper) 80%, transparent),
+              0 .085em .2em color-mix(in srgb, #000 58%, transparent);
+}
+.hero.v-sign-stamp .ss-box{
+  color:var(--paper);background:var(--accent);
+  padding:.1em .2em .14em;border-radius:.06em;
+  box-shadow:inset 0 -.1em 0 color-mix(in srgb, #000 30%, transparent),
+             0 .06em .2em color-mix(in srgb, #000 48%, transparent);
+}
+
+/* phones: the two buttons don't fit side by side at 390, so stack them at
+   one width rather than leaving a ragged centred pair */
+.hero.v-sign-stamp .ss-actions{
+  display:flex;flex-direction:column;align-items:stretch;gap:.6rem;
+  width:min(100%,19rem);margin:0 auto;
+}
+@media (min-width:520px){
+  .hero.v-sign-stamp .ss-actions{
+    flex-direction:row;flex-wrap:wrap;justify-content:center;
+    width:auto;gap:.7rem;
+  }
+}
+
+/* =============================================================
+   THE ONE EVENT — two stamps, 0.4 s apart, then the buttons.
+   Ends at 1.74 s. Nothing loops; nothing moves after the last frame.
+   Percentages carry the whole feel, so the timing function is linear
+   and the contact stays hard.
+   ============================================================= */
+.js .hero.v-sign-stamp .ss-teri{animation:ssStampA .38s linear .40s both}
+.js .hero.v-sign-stamp .ss-box {animation:ssStampB .38s linear .80s both}
+.js .hero.v-sign-stamp .ss-actions{animation:ssUnder .5s var(--ease) 1.24s both}
+
+@keyframes ssStampA{
+  0%  {opacity:0;transform:scale(1.62) rotate(-2.6deg);filter:blur(5px)}
+  16% {opacity:1;filter:blur(3px)}
+  42% {transform:scale(.942) rotate(.6deg);filter:blur(0)}
+  62% {transform:scale(1.03) rotate(-.4deg)}
+  80% {transform:scale(.988) rotate(.14deg)}
+  100%{opacity:1;transform:scale(1) rotate(0deg);filter:blur(0)}
+}
+@keyframes ssStampB{
+  0%  {opacity:0;transform:scale(1.62) rotate(2.6deg);filter:blur(5px)}
+  16% {opacity:1;filter:blur(3px)}
+  42% {transform:scale(.942) rotate(-.6deg);filter:blur(0)}
+  62% {transform:scale(1.03) rotate(.4deg)}
+  80% {transform:scale(.988) rotate(-.14deg)}
+  100%{opacity:1;transform:scale(1) rotate(0deg);filter:blur(0)}
+}
+@keyframes ssUnder{
+  from{opacity:0;transform:translateY(12px)}
+  to  {opacity:1;transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-sign-stamp .ss-teri,
+  .js .hero.v-sign-stamp .ss-box,
+  .js .hero.v-sign-stamp .ss-actions{animation:none}
+}
+
+/* =============================================================
+   LANDSCAPE / DESKTOP — the wide photograph (the sign close-up, full
+   daylight) is 1.78:1 against a ~1.74:1 frame, so it fills edge to edge
+   and only ~2% of sky-edge is trimmed: the sign is never cropped.
+   ============================================================= */
+@media (min-aspect-ratio:7/10){
+  .hero.v-sign-stamp .ss-shot{
+    object-position:50% 46%;
+    filter:brightness(.78) saturate(.94) contrast(1.03);
+  }
+  .hero.v-sign-stamp .ss-neon{display:none}
+  .hero.v-sign-stamp .ss-scrim{
+    background:
+      linear-gradient(to bottom,
+        color-mix(in srgb, var(--dark) 18%, transparent) 0%,
+        color-mix(in srgb, var(--dark) 2%,  transparent) 26%,
+        color-mix(in srgb, var(--dark) 14%, transparent) 52%,
+        color-mix(in srgb, var(--dark) 62%, transparent) 76%,
+        color-mix(in srgb, var(--dark) 92%, transparent) 100%);
+  }
+  .hero.v-sign-stamp .ss-mark{font-size:clamp(2.4rem,7.6vh,4.3rem)}
+}

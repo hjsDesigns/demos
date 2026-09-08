@@ -1,0 +1,251 @@
+/* ============================================================
+   TERIYAKI TOWN — HERO VARIANT "DUSK FRONT"
+   Namespaced entirely under .hero.v-dusk-front. Tokens only.
+
+   Variant 1 off #4 storefront-still: the SAME real photograph of their
+   building on 112th, graded to dusk. The sky cools to navy, the
+   corrugated fascia goes warm and dim, and a masked second pass of the
+   very same file holds the red channel letters, the blue TOWN lightbox
+   and the OPEN neon at full exposure — so those are the only lit things
+   in the frame. One warm bloom rises off the sign as the exposure
+   settles (~2.0 s), then nothing moves again.
+
+   Nothing is redrawn, nothing is generated: every pixel is their own
+   photo, only exposed differently.
+
+   Assets: images/storefront-tall.jpg (1125x1500, the whole building —
+   sign, door glass, OPEN neon, sky) on phones; images/storefront-wide.jpg
+   (1800x1012, the sign photograph) on landscape screens, matching the
+   site's own <picture> switch at 820px.
+   ============================================================ */
+
+.hero.v-dusk-front{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) clamp(26px,6vh,60px);
+  overflow:hidden;isolation:isolate;
+  background:var(--dark);
+
+  /* ---- the grade, derived from the sign's own two colours ---- */
+  --df-navy:color-mix(in srgb, var(--accent) 46%, var(--dark));   /* dusk sky */
+  --df-amber:color-mix(in srgb, var(--brand) 52%, var(--tint));   /* warm wall */
+}
+
+/* <picture> is a wrapper only — let the <img> be the positioned child */
+.hero.v-dusk-front picture{display:contents}
+
+/* ---- the stage --------------------------------------------------- */
+.hero.v-dusk-front .df-stage{position:absolute;inset:0;z-index:0}
+
+/* blurred, cooled echo — only visible in the letterbox at landscape sizes */
+.hero.v-dusk-front .df-echo{
+  position:absolute;inset:-6%;width:112%;height:112%;
+  object-fit:cover;object-position:50% 46%;
+  display:none;
+  filter:blur(52px) saturate(.5) brightness(.26);
+  transform:scale(1.06);
+}
+
+/* the plate the photograph lives in */
+.hero.v-dusk-front .df-plate{position:absolute;inset:0;overflow:hidden}
+
+.hero.v-dusk-front .df-shot,
+.hero.v-dusk-front .df-lit{
+  position:absolute;inset:0;
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:50% 44%;
+}
+
+/* 1 — the photograph, taken down to dusk */
+.hero.v-dusk-front .df-shot{
+  filter:brightness(.40) saturate(.58) contrast(1.08);
+}
+
+/* 2a — the sky cools to navy (top of the frame only) */
+.hero.v-dusk-front .df-cool{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,
+    color-mix(in srgb, var(--df-navy) 84%, transparent) 0%,
+    color-mix(in srgb, var(--df-navy) 58%, transparent) 20%,
+    color-mix(in srgb, var(--df-navy) 22%, transparent) 40%,
+    transparent 58%);
+}
+
+/* 2b — the corrugated fascia keeps a little warmth, pooled around the sign */
+.hero.v-dusk-front .df-warm{
+  position:absolute;inset:0;pointer-events:none;
+  mix-blend-mode:soft-light;opacity:.85;
+  background:radial-gradient(ellipse 62% 26% at 42% 36%,
+    color-mix(in srgb, var(--df-amber) 92%, transparent) 0%,
+    color-mix(in srgb, var(--df-amber) 44%, transparent) 46%,
+    transparent 78%);
+}
+
+/* 3 — the SAME file at full exposure, masked to the only lit things:
+       the red channel letters + blue TOWN box, and the OPEN neon.
+       Mask co-ordinates are read off the real photo; multiple mask layers
+       composite with `add` by default. */
+.hero.v-dusk-front .df-lit{
+  filter:brightness(1.06) saturate(1.78) contrast(1.02);
+  -webkit-mask-image:
+    radial-gradient(ellipse 43% 6.2% at 42.5% 34.6%, #000 0%, #000 62%, transparent 96%),
+    radial-gradient(ellipse 9% 4.2% at 65% 63%, #000 0%, #000 34%, transparent 90%);
+  mask-image:
+    radial-gradient(ellipse 43% 6.2% at 42.5% 34.6%, #000 0%, #000 62%, transparent 96%),
+    radial-gradient(ellipse 9% 4.2% at 65% 63%, #000 0%, #000 34%, transparent 90%);
+  -webkit-mask-composite:source-over;
+  mask-composite:add;
+}
+
+/* 4 — the one event: one warm bloom off the sign, then it holds low */
+.hero.v-dusk-front .df-bloom{
+  position:absolute;left:42.5%;top:34.5%;
+  width:96%;aspect-ratio:2.6;
+  transform:translate(-50%,-50%);
+  pointer-events:none;opacity:0;
+  mix-blend-mode:screen;
+  background:radial-gradient(ellipse closest-side,
+    color-mix(in srgb, var(--brand-bright) 40%, transparent) 0%,
+    color-mix(in srgb, var(--brand) 18%, transparent) 34%,
+    transparent 72%);
+}
+
+/* the scrim: the dusk sky stays true up top, the dark pools at the foot so
+   the wordmark reads on the door glass. Built from --dark. */
+.hero.v-dusk-front .df-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,
+      color-mix(in srgb, var(--dark) 20%, transparent) 0%,
+      color-mix(in srgb, var(--dark) 4%,  transparent) 26%,
+      color-mix(in srgb, var(--dark) 16%, transparent) 50%,
+      color-mix(in srgb, var(--dark) 58%, transparent) 70%,
+      color-mix(in srgb, var(--dark) 88%, transparent) 85%,
+      color-mix(in srgb, var(--dark) 97%, transparent) 100%);
+}
+
+/* ---- the headline block — sized exactly as #4 does it -------------- */
+.hero.v-dusk-front .df-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  color:var(--paper);text-align:center;
+}
+
+.hero.v-dusk-front .df-mark{
+  margin:0 0 clamp(1rem,2.6vh,1.5rem);
+  font-family:var(--display);text-transform:uppercase;
+  line-height:.94;letter-spacing:.005em;
+  font-size:clamp(2.5rem,10.4vw,5.6rem);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:.14em .18em;
+}
+.hero.v-dusk-front .df-teri{
+  color:var(--brand);
+  -webkit-text-stroke:.012em var(--paper);
+  text-shadow:0 .035em 0 color-mix(in srgb, var(--paper) 80%, transparent),
+              0 .085em .2em color-mix(in srgb, #000 62%, transparent);
+}
+.hero.v-dusk-front .df-box{
+  color:var(--paper);background:var(--accent);
+  padding:.1em .2em .14em;border-radius:.06em;
+  box-shadow:inset 0 -.1em 0 color-mix(in srgb, #000 30%, transparent),
+             0 .06em .2em color-mix(in srgb, #000 52%, transparent);
+}
+
+.hero.v-dusk-front .df-actions{
+  display:flex;flex-direction:column;align-items:stretch;gap:.6rem;
+  width:min(100%,19rem);margin:0 auto;
+}
+@media (min-width:520px){
+  .hero.v-dusk-front .df-actions{
+    flex-direction:row;flex-wrap:wrap;justify-content:center;
+    width:auto;gap:.7rem;
+  }
+}
+
+/* =============================================================
+   THE ONE EVENT — the exposure settles and one warm bloom rises off
+   the sign. ~2.0 s, once, then the picture stops moving for good.
+   ============================================================= */
+.js .hero.v-dusk-front .df-shot   {animation:dfExpose 1.6s var(--ease) both}
+.js .hero.v-dusk-front .df-lit    {animation:dfLight 1.15s var(--ease) .1s both}
+.js .hero.v-dusk-front .df-bloom  {animation:dfBloom 2s var(--ease) both}
+.js .hero.v-dusk-front .df-mark   {animation:dfRise .62s var(--ease) .86s both}
+.js .hero.v-dusk-front .df-actions{animation:dfRise .52s var(--ease) 1.14s both}
+
+@keyframes dfExpose{
+  0%  {filter:brightness(.18) saturate(.34) contrast(1.20)}
+  100%{filter:brightness(.40) saturate(.58) contrast(1.08)}
+}
+@keyframes dfLight{
+  0%  {opacity:0;filter:brightness(.55) saturate(1.0)  contrast(1.02)}
+  62% {opacity:1;filter:brightness(1.30) saturate(1.9)  contrast(1.02)}
+  100%{opacity:1;filter:brightness(1.06) saturate(1.78) contrast(1.02)}
+}
+@keyframes dfBloom{
+  0%  {opacity:0}
+  52% {opacity:1}
+  100%{opacity:.38}
+}
+@keyframes dfRise{
+  from{opacity:0;transform:translateY(12px)}
+  to  {opacity:1;transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-dusk-front .df-shot,
+  .js .hero.v-dusk-front .df-lit,
+  .js .hero.v-dusk-front .df-bloom,
+  .js .hero.v-dusk-front .df-mark,
+  .js .hero.v-dusk-front .df-actions{animation:none}
+  .hero.v-dusk-front .df-bloom{opacity:.38}
+}
+
+/* =============================================================
+   LANDSCAPE / DESKTOP (>=821px — the same breakpoint the site's own
+   <picture> switches on, so the mask always matches the file behind it).
+   The plate is given the wide photograph's exact 1800:1012 aspect and
+   centred, so the picture is held WHOLE — never cropped through the
+   sign — inside the blurred, cooled echo of itself.
+   ============================================================= */
+@media (min-width:821px){
+  .hero.v-dusk-front .df-echo{display:block}
+
+  .hero.v-dusk-front .df-plate{
+    inset:auto;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:min(100%, calc((100svh - var(--header-h)) * 1.77866));
+    aspect-ratio:1800 / 1012;height:auto;
+    box-shadow:0 0 0 1px color-mix(in srgb, var(--paper) 8%, transparent),
+               0 30px 90px color-mix(in srgb, #000 66%, transparent);
+  }
+
+  /* the plate is now exactly the photo's aspect, so these percentages land
+     on the real sign: the channel letters + the blue TOWN box. There is no
+     OPEN neon in this crop, so the sign is the only lit thing. */
+  .hero.v-dusk-front .df-lit{
+    -webkit-mask-image:
+      radial-gradient(ellipse 30% 9.6% at 45% 46%, #000 0%, #000 58%, transparent 96%);
+    mask-image:
+      radial-gradient(ellipse 30% 9.6% at 45% 46%, #000 0%, #000 58%, transparent 96%);
+  }
+  .hero.v-dusk-front .df-warm{
+    background:radial-gradient(ellipse 56% 34% at 45% 45%,
+      color-mix(in srgb, var(--df-amber) 92%, transparent) 0%,
+      color-mix(in srgb, var(--df-amber) 44%, transparent) 46%,
+      transparent 80%);
+  }
+  .hero.v-dusk-front .df-cool{
+    background:linear-gradient(to bottom,
+      color-mix(in srgb, var(--df-navy) 82%, transparent) 0%,
+      color-mix(in srgb, var(--df-navy) 52%, transparent) 18%,
+      color-mix(in srgb, var(--df-navy) 16%, transparent) 34%,
+      transparent 50%);
+  }
+  .hero.v-dusk-front .df-bloom{
+    left:45%;top:43%;width:82%;aspect-ratio:2.1;
+  }
+
+  .hero.v-dusk-front .df-mark{font-size:clamp(2.4rem,6.4vh,4.3rem)}
+}
