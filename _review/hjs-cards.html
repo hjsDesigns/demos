@@ -1,0 +1,62 @@
+<meta charset="utf-8"><title>HJS Designs Cards</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Karla:wght@400;500;700&family=Archivo+Black&family=Archivo:wght@400;500;600&family=Bevan&display=swap">
+<style>
+:root{--bg:#F1F0EA;--ink:#1B1E1A;--mute:#5F665D;--line:#D8D6CC}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 Karla,system-ui,sans-serif;padding:24px 18px 60px}
+main{max-width:1180px;margin:0 auto}h1{font:800 34px/1 Fraunces,serif;margin:0 0 6px}.lede{color:var(--mute);margin:0 0 24px}
+h2{font:700 13px/1 Karla;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:30px 0 12px}
+.pair{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+.card{width:3.5in;height:2in;border-radius:.09in;box-shadow:0 14px 34px rgba(0,0,0,.18);position:relative;overflow:hidden;box-sizing:border-box}
+.lbl{font-size:12px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;margin:8px 0 0}
+/* ---- 1. Timber & brass: earthy, the showroom mood ---- */
+.t{background:#1F1A16;color:#F3EADA}
+.t .f{padding:.3in .32in;display:flex;flex-direction:column;justify-content:space-between;height:100%;box-sizing:border-box}
+.t .wm{font:800 34px/1 Fraunces,serif;letter-spacing:-.01em}.t .wm em{font-style:normal;color:#D6A84F}
+.t .tag{font:500 11px/1.5 Karla;letter-spacing:.18em;text-transform:uppercase;color:#B9AE9C}
+.t .rule{position:absolute;left:.32in;right:.32in;top:1.02in;height:1px;background:linear-gradient(90deg,#D6A84F,transparent)}
+.t.back{background:#F3EADA;color:#1F1A16}
+.t.back .f{justify-content:center;gap:.06in}
+.t.back .li{display:flex;align-items:baseline;gap:.12in;font:600 16px/1.3 Fraunces,serif}.t.back .li small{font:500 10.5px/1 Karla;letter-spacing:.14em;text-transform:uppercase;color:#7A6E5C;min-width:.85in}
+.t.back .ph{margin-top:.1in;font:700 13px/1 Karla;letter-spacing:.06em;color:#8C6A22}
+/* ---- 2. Bold black: sign-painter directness ---- */
+.b{background:#F1F0EA;color:#141413}
+.b .f{padding:.28in .3in;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between}
+.b .wm{font:400 46px/.92 'Archivo Black',sans-serif;letter-spacing:-.02em}.b .wm span{display:block;font-size:20px;letter-spacing:.14em;margin-top:.04in;color:#B3372B}
+.b .tag{font:500 11.5px/1.45 Archivo,sans-serif;color:#5F665D}
+.b.back{background:#141413;color:#F1F0EA}
+.b.back .f{justify-content:center}
+.b.back .big{font:400 21px/1.25 'Archivo Black',sans-serif;letter-spacing:.01em}.b.back .big i{font-style:normal;color:#E9B44C}
+.b.back .ph{margin-top:.14in;font:600 12.5px/1 Archivo,sans-serif;letter-spacing:.1em;color:#B9B4A7}
+/* ---- 3. Monogram: quiet, premium ---- */
+.m{background:#0F1C28;color:#F1F0EA}
+.m .f{padding:.3in;height:100%;box-sizing:border-box;display:flex;align-items:center;gap:.28in}
+.m .mono{font:400 64px/1 Bevan,serif;color:#F1F0EA;letter-spacing:-.02em}
+.m .side{border-left:1px solid rgba(241,240,234,.35);padding-left:.26in}
+.m .name{font:700 15px/1 Karla;letter-spacing:.2em;text-transform:uppercase}.m .sub{font:400 11px/1.6 Karla;color:#9CB0C4;margin-top:.08in;letter-spacing:.04em}
+.m.back{background:#F1F0EA;color:#0F1C28}
+.m.back .f{flex-direction:column;align-items:flex-start;justify-content:center;gap:.05in;padding:.3in .34in}
+.m.back .row{font:600 15px/1.35 Karla}.m.back .row b{font:400 22px/1 Bevan,serif;color:#1E7BD8;margin-right:.1in}
+.m.back .ph{margin-top:.12in;font:700 12.5px/1 Karla;letter-spacing:.12em;color:#5F665D}
+</style>
+<main>
+<h1>HJS Designs, the card</h1>
+<p class="lede">Three directions, front and back, shown at true print size (3.5 × 2 in). Say the number and I'll export it print-ready with bleed. Phone is the only contact on it for now; the site line gets added when the site's up.</p>
+
+<h2>1 · Timber &amp; brass</h2>
+<div class="pair">
+<div><div class="card t"><div class="f"><div class="wm">HJS <em>Designs</em></div><div class="tag">Websites · Website care · Social media<br>Buckley, Washington</div></div><div class="rule"></div></div><p class="lbl">Front</p></div>
+<div><div class="card t back"><div class="f"><div class="li"><small>Websites</small>Built for your business, done in a week.</div><div class="li"><small>Care</small>Hours, photos, menus kept current.</div><div class="li"><small>Social</small>Three posts a week, your real photos.</div><div class="ph">HAYDEN · (253) 259-4558</div></div></div><p class="lbl">Back</p></div>
+</div>
+
+<h2>2 · Bold black</h2>
+<div class="pair">
+<div><div class="card b"><div class="f"><div class="wm">HJS<span>DESIGNS</span></div><div class="tag">Websites, website care and social media<br>for local businesses. Buckley, WA.</div></div></div><p class="lbl">Front</p></div>
+<div><div class="card b back"><div class="f"><div class="big">A website that looks like <i>your place</i>.<br>Kept current. Posted three times a week.</div><div class="ph">HAYDEN STEVENSON · (253) 259-4558</div></div></div><p class="lbl">Back</p></div>
+</div>
+
+<h2>3 · Monogram</h2>
+<div class="pair">
+<div><div class="card m"><div class="f"><div class="mono">HJS</div><div class="side"><div class="name">HJS Designs</div><div class="sub">Websites<br>Website care<br>Social media</div></div></div></div><p class="lbl">Front</p></div>
+<div><div class="card m back"><div class="f"><div class="row"><b>1</b>Website, built from your real photos</div><div class="row"><b>2</b>Kept current every month</div><div class="row"><b>3</b>Three posts a week on your pages</div><div class="ph">HAYDEN · (253) 259-4558 · BUCKLEY, WA</div></div></div><p class="lbl">Back</p></div>
+</div>
+</main>
