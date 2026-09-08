@@ -1,0 +1,113 @@
+/* ============================================================
+   HERO VARIANT 1 — "open-sign"  ·  Sumner Nails
+   Namespaced under .hero.v-open-sign; every keyframe prefixed os-.
+   Colours come from css/style.css tokens only.
+
+   THE OBJECT: their own storefront at 1111 Main at dusk (harvest g02) — buff
+   brick, grey awning, painted flower panel, and the window carrying an LED
+   "Nails & Spa" script, a blue-and-red neon OPEN, and a lit "Nails & Waxing"
+   oval. Nothing is drawn and nothing is redrawn.
+
+   THE EVENT (1.9s, once, deterministic): the block sits cold and under-exposed
+   for a beat, then the shop's own signs come on — a warm bloom rises out of the
+   window and lifts the whole front — and the wordmark strikes with the two-stutter
+   catch an LED sign makes before it holds. Then everything is still.
+   Reduced motion lands straight on the lit frame.
+   ============================================================ */
+
+.hero.v-open-sign{
+  --os-dur:1.9s; --os-delay:.25s;
+  background:#140E12;                       /* the street before the signs — never flat black */
+  isolation:isolate;
+}
+
+/* ---------- the photograph ---------- */
+.hero.v-open-sign .hero-bg img{
+  object-position:50% 68%;                  /* holds the whole window band on wide screens */
+  animation:os-expose var(--os-dur) var(--ease) var(--os-delay) 1 both;
+}
+@keyframes os-expose{
+  0%   {filter:brightness(.42) saturate(.55) contrast(1.06)}
+  46%  {filter:brightness(.78) saturate(.86) contrast(1.03)}
+  100% {filter:brightness(1) saturate(1.04) contrast(1)}
+}
+
+/* ---------- scrim: bottom-weighted on every width, so the signs in the upper
+     part of the frame stay readable and the mark still has a floor ---------- */
+.hero.v-open-sign .hero-bg::before{
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 6%,transparent) 26%,
+      color-mix(in srgb,var(--dark) 30%,transparent) 58%,
+      color-mix(in srgb,var(--dark) 88%,transparent) 100%);
+}
+
+/* ---------- the bloom the window throws once the signs catch ---------- */
+.hero.v-open-sign .sign-bloom{
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  mix-blend-mode:screen; opacity:0;
+  background:
+    radial-gradient(38% 22% at 63% 43%, rgba(255,164,204,.40), rgba(255,140,190,.09) 55%, rgba(255,120,175,0) 78%),
+    radial-gradient(52% 30% at 58% 47%, rgba(255,212,166,.24), rgba(255,196,140,.05) 58%, rgba(255,186,126,0) 82%);
+  animation:os-bloom var(--os-dur) var(--ease) var(--os-delay) 1 both;
+}
+@keyframes os-bloom{
+  0%   {opacity:0}
+  40%  {opacity:.42}
+  62%  {opacity:.26}
+  100% {opacity:.46}
+}
+
+/* ---------- the mark: live type in the sign's face ----------
+   Their window vinyl is a heavy squared grotesque, magenta with a white
+   keyline. Archivo Black + a stroke painted behind the fill reproduces it as
+   crisp type at any size — no blown-up photo crop (CRISP RULE). */
+.hero.v-open-sign .mark{
+  position:relative;
+  margin:0 0 clamp(20px,3.2vh,32px);
+  font-family:var(--display); font-weight:400; text-transform:uppercase;
+  font-size:clamp(54px,13.6vw,126px);
+  line-height:.84; letter-spacing:-.028em;
+  color:var(--brand-bright);
+  -webkit-text-stroke:.058em #fff;
+  paint-order:stroke fill;
+  filter:drop-shadow(0 12px 30px rgba(0,0,0,.6));
+}
+.hero.v-open-sign .mark span{
+  display:block;
+  animation:os-strike var(--os-dur) steps(1,end) var(--os-delay) 1 both;
+}
+.hero.v-open-sign .mark span:nth-child(2){animation-delay:calc(var(--os-delay) + .1s)}
+@keyframes os-strike{
+  0%,26%   {opacity:0}
+  27%,33%  {opacity:1}                       /* first catch */
+  34%,44%  {opacity:0}
+  45%,52%  {opacity:1}                       /* second catch */
+  53%,58%  {opacity:.18}
+  59%,100% {opacity:1}                       /* holds */
+}
+
+/* the buttons arrive after the sign has settled */
+.js .hero.v-open-sign .hero-actions{animation-delay:calc(var(--os-delay) + var(--os-dur) - .35s)}
+
+/* ---------- phones ---------- */
+@media (max-width:760px){
+  .hero.v-open-sign .hero-bg img{object-position:50% 61%}
+  .hero.v-open-sign .sign-bloom{
+    background:
+      radial-gradient(52% 15% at 58% 66%, rgba(255,164,204,.42), rgba(255,140,190,.09) 56%, rgba(255,120,175,0) 80%),
+      radial-gradient(70% 21% at 54% 69%, rgba(255,212,166,.24), rgba(255,196,140,.05) 58%, rgba(255,186,126,0) 84%);
+  }
+}
+@media (max-width:520px){
+  .hero.v-open-sign .mark{font-size:clamp(50px,15vw,70px);letter-spacing:-.03em}
+}
+
+/* ---------- reduced motion: the final, lit frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-open-sign .hero-bg img{animation:none;filter:brightness(1) saturate(1.04)}
+  .hero.v-open-sign .sign-bloom{animation:none;opacity:.46}
+  .hero.v-open-sign .mark span{animation:none;opacity:1}
+  .js .hero.v-open-sign .hero-actions{animation:none;opacity:1;transform:none}
+}

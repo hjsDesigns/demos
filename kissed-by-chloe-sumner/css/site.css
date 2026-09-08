@@ -1,0 +1,123 @@
+/* ============================================================
+   KISSED BY CHLOE — site-specific components, on top of css/style.css.
+   Nothing here sets a hex colour; every value is a :root token.
+
+   1. .print.wide        the storefront that opens the offerings
+   2. .boards / .board   TITLE CARDS UNROLL — the headline IS the tap target,
+                         a downward chevron flips up (ARROW LAW)
+   3. .score             the reviews link-out band
+   4. .rack              the signature gadget: five things on a rail
+   ============================================================ */
+
+/* ---------- 0. the gallery frames sit at their own height ---------- */
+.prints .print{align-self:start}
+
+/* ---------- 1. the storefront print above the offerings ---------- */
+.print.wide{max-width:820px;margin:0 auto clamp(34px,5vw,58px);transform:rotate(-.7deg)}
+.print.wide:hover{transform:rotate(0) scale(1.01)}
+
+/* ---------- 2. the unrolling boards ---------- */
+.boards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,36px);align-items:start}
+.board{background:var(--paper);border:var(--rule);border-radius:var(--r);
+  box-shadow:0 34px 68px -46px color-mix(in srgb,var(--dark) 55%,transparent);
+  padding:clamp(20px,2.6vw,30px)}
+.unroll{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;
+  background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left;color:inherit;min-height:48px}
+.unroll h3{font-size:clamp(21px,2.3vw,27px);margin:0;line-height:1.14}
+.unroll .chev{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  color:var(--brand);border:2px solid color-mix(in srgb,var(--brand) 38%,transparent);
+  transition:transform .35s var(--ease),background .25s,border-color .25s}
+.unroll .chev svg{width:19px;height:19px}
+.unroll:hover .chev{background:color-mix(in srgb,var(--brand) 12%,transparent);border-color:var(--brand)}
+.unroll[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--brand);color:var(--paper);border-color:var(--brand)}
+.board .when{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);margin:12px 0 0}
+.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s var(--ease)}
+.rolled>ul{overflow:hidden;margin:0;padding:0;list-style:none}
+.board.open .rolled{grid-template-rows:1fr}
+.rolled li{padding:12px 0;border-top:var(--rule);font-weight:700;font-size:16.5px}
+.rolled li:first-child{margin-top:16px}
+.rolled li small{display:block;font-weight:400;font-size:14.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+html:not(.js) .rolled{grid-template-rows:1fr}   /* no JS: the lists are simply open */
+html:not(.js) .unroll .chev{display:none}
+
+/* ---------- 3. the reviews band ---------- */
+.score{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,60px);align-items:center;
+  background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(28px,4vw,52px);box-shadow:0 40px 80px -50px color-mix(in srgb,var(--dark) 55%,transparent)}
+.score-num{text-align:center}
+.score-num b{display:block;font-family:var(--body);font-weight:700;font-size:clamp(58px,8vw,96px);line-height:.9;color:var(--brand-text)}
+.score-stars{margin:8px 0 0;font-size:20px;letter-spacing:.14em;color:var(--warm)}
+.score-copy h2{font-size:clamp(28px,3.6vw,44px);margin:0 0 12px}
+.score-copy p{color:var(--muted);margin:0 0 22px;max-width:48ch}
+
+/* ---------- 4. OFF THE RACK — the signature gadget ----------
+   Toddler Law: five real things hang on a rail, one tap drops the piece into
+   the frame, tapping it again puts it back. On phones the frame sits ABOVE
+   the rail so the thing that changes is never under your thumb. */
+.rack{display:grid;gap:clamp(22px,3.2vw,38px)}
+.rack-frame{display:grid;justify-items:center}
+.rack-shot{position:relative;width:100%;max-width:600px;height:clamp(320px,46vh,440px);overflow:hidden;
+  background:var(--bg);border:var(--rule);border-radius:var(--r);
+  box-shadow:inset 0 0 0 10px var(--paper),0 40px 80px -52px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rack-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 50%;
+  opacity:0;transform:translateY(-14px) scale(1.03);
+  transition:opacity .34s var(--ease-2),transform .46s var(--ease-2)}
+.rack-shot img.show{opacity:1;transform:none}
+.rack-rest{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  transition:opacity .28s var(--ease)}
+.rack-shot.has-pick .rack-rest{opacity:0}
+.rack-rest .hook{display:block;color:color-mix(in srgb,var(--brand) 55%,transparent)}
+.rack-rest .hook svg{width:56px;height:48px}
+.rack-label{min-height:34px;margin:16px 0 0;font-family:var(--display);font-size:30px;line-height:1.1;
+  color:var(--brand-text);text-align:center;opacity:0;transform:translateY(6px);
+  transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.rack-label.show{opacity:1;transform:none}
+
+.rail{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,1.6vw,20px);
+  padding-top:26px;max-width:820px;margin:0 auto;width:100%}
+.rail::before{content:"";position:absolute;left:0;right:0;top:10px;height:4px;border-radius:4px;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--brand) 55%,transparent),
+    color-mix(in srgb,var(--dark) 40%,transparent));
+  box-shadow:0 3px 10px -4px color-mix(in srgb,var(--dark) 70%,transparent)}
+.hanger{position:relative;background:var(--paper);border:2px solid var(--line);border-radius:12px;
+  padding:16px 18px 13px;min-height:56px;cursor:pointer;color:var(--ink);font-family:var(--body);
+  font-weight:700;font-size:15px;transform-origin:50% -18px;
+  transition:transform .34s var(--ease-2),border-color .22s,background .22s,box-shadow .22s}
+.hanger .hanger-wire{position:absolute;left:50%;top:-17px;width:2px;height:17px;
+  background:color-mix(in srgb,var(--dark) 55%,transparent);transform:translateX(-50%)}
+.hanger .hanger-wire::before{content:"";position:absolute;left:50%;top:-7px;width:13px;height:13px;
+  border:2px solid color-mix(in srgb,var(--dark) 55%,transparent);border-bottom-color:transparent;
+  border-radius:50%;transform:translateX(-50%) rotate(45deg)}
+.hanger:hover{border-color:color-mix(in srgb,var(--brand) 55%,transparent);transform:rotate(-2deg)}
+.hanger[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#FFF6E8;
+  transform:translateY(9px) rotate(3deg);
+  box-shadow:0 16px 30px -18px color-mix(in srgb,var(--brand) 80%,transparent)}
+.hanger[aria-pressed="true"] .hanger-wire,
+.hanger[aria-pressed="true"] .hanger-wire::before{border-color:color-mix(in srgb,var(--brand) 70%,transparent);
+  background:color-mix(in srgb,var(--brand) 70%,transparent)}
+.hanger[aria-pressed="true"] .hanger-wire::before{background:none;border-bottom-color:transparent}
+
+@media (prefers-reduced-motion:reduce){
+  .rack-shot img,.rack-label,.hanger,.rolled,.unroll .chev{transition:none}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .boards{grid-template-columns:1fr}
+  .score{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .score-copy p{margin-left:auto;margin-right:auto}
+}
+@media (max-width:760px){
+  .print.wide{transform:none}
+  .rack-shot{max-width:100%;height:clamp(300px,42vh,380px)}
+  .rack-label{font-size:26px}
+  .rail{gap:6px;flex-wrap:nowrap}
+  .hanger{padding:13px 4px 11px;font-size:12.5px;line-height:1.2;flex:1 1 0;min-width:0;text-align:center;border-radius:10px}
+  .unroll h3{font-size:20px}
+}
+
+/* the closing band and the footer are one continuous slate, not two darks */
+.site-footer{background:var(--dark)}

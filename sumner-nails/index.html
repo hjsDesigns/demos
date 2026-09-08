@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sumner Nails — nails, acrylic &amp; waxing on Main Street, Sumner WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sumner Nails, 1111 Main St, Sumner — Tony and Tina's nail shop on the downtown block. Nails, acrylic, pedicures and waxing, open seven days. Call (253) 862-4214.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- SIGN-FONT LAW: Archivo Black is the closest Google face to the heavy,
+     white-keylined window lettering at 1111 Main. Karla carries the body.
+     Must match --display / --body in css/style.css. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1788870934">
+<link rel="stylesheet" href="css/hero.css?v=1788870934">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     No logo file exists for this shop and nothing may be redrawn
+     (NEVER RECREATE), so the wordmark is live type in the sign's face. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Sumner Nails — home">
+      <span class="wm">Sumner Nails<small>Sumner, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#services">What they do</a>
+        <a href="#gallery">Their work</a>
+        <a href="#signature">Pick a colour</a>
+        <a href="#about">The shop</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Call</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       ONE real object: their own storefront at 1111 Main at dusk (harvest g02)
+       — buff brick, grey awning, the painted flower panel, and the window with
+       the LED and neon signs already burning. Nothing sits on the photo but the
+       mark and two buttons. The mark is not a crop: it is live type set in the
+       sign's face, magenta with a white keyline, exactly the way the vinyl on
+       their window is cut (CRISP RULE). The h1 is screen-reader only so the
+       mark is the headline. Hero take + runner-up documented in versions/NOTE.md. -->
+  <section class="hero v-open-sign" id="hero">
+    <div class="hero-bg">
+      <img src="images/hero-store.jpg" width="1400" height="3205" fetchpriority="high"
+           alt="Sumner Nails at 1111 Main Street at dusk — buff brick storefront, grey awning, and the lit Nails &amp; Spa, OPEN and Nails &amp; Waxing signs in the window.">
+    </div>
+    <div class="sign-bloom" aria-hidden="true"></div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <h1 class="sr-only">Sumner Nails — a nail salon on Main Street in Sumner, Washington</h1>
+      <p class="mark" aria-hidden="true"><span>Sumner</span><span>Nails</span></p>
+      <div class="hero-actions">
+        <a href="tel:+12538624214" class="btn btn-primary">Call (253) 862-4214</a>
+        <a href="#services" class="btn btn-cream">See what they do</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       All seven days as rows, today lit, green/red dot. Hours, live status and
+       the address live HERE and nowhere else on the page. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Seven days a week, <em>right on Main</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          1111 Main St, Sumner, WA 98390<br>
+          <a href="https://www.google.com/maps/place/Sumner+Nails/@47.2034041,-122.2404895,17z" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">9 AM – 5 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">9 AM – 5 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">9 AM – 5 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">9 AM – 5 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">9 AM – 5 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">9 AM – 5 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">11 AM – 3 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #services =====================
+       TITLE CARDS UNROLL. Every line below is sourced: the window vinyl
+       (NAILS · ACRYLIC · WAXING · WALK-INS WELCOME), the lit signs in the glass
+       (Nails & Spa, Nails & Waxing), their own Google photos, and their own
+       Google reviews. There is no published price list, so there are no prices. -->
+  <section class="section" id="services">
+    <div class="wrap split">
+      <div class="section-head reveal">
+        <p class="eyebrow">What they do</p>
+        <h2>Straight off <em>the window</em></h2>
+        <p>Tap a line to open it. There's no price list published anywhere for this shop — call and ask, and they'll tell you.</p>
+      </div>
+      <div class="unrolls">
+
+        <article class="unroll reveal">
+          <button class="unroll-head" type="button" aria-expanded="false" aria-controls="u-nails">
+            <span>Nails and acrylic</span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="unroll-body" id="u-nails">
+            <div class="unroll-inner"><div class="unroll-pad">
+              <ul>
+                <li>Acrylic full sets</li>
+                <li>Colour, glossed to a high shine</li>
+                <li>Cat-eye</li>
+                <li>Chrome and metallic finishes</li>
+              </ul>
+              <p class="src">Acrylic is painted on their window. The finishes are photographed on hands at this shop, and one of their Google reviews names the cat-eye by name.</p>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="unroll reveal">
+          <button class="unroll-head" type="button" aria-expanded="false" aria-controls="u-pedi">
+            <span>Pedicures</span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="unroll-body" id="u-pedi">
+            <div class="unroll-inner"><div class="unroll-pad">
+              <ul>
+                <li>Colour pedicures</li>
+                <li>A different shade on every toe if you want one</li>
+                <li>Designs for the season</li>
+              </ul>
+              <p class="src">From their own photos, and from a customer who wrote about her Christmas toes on Google.</p>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="unroll reveal">
+          <button class="unroll-head" type="button" aria-expanded="false" aria-controls="u-wax">
+            <span>Waxing</span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="unroll-body" id="u-wax">
+            <div class="unroll-inner"><div class="unroll-pad">
+              <p class="src">Both signs in the glass say it — the painted window and the lit oval behind it. What they wax and what it costs isn't published anywhere, so ring the shop and ask.</p>
+            </div></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery =====================
+       Three real sets photographed at this shop, framed as prints.
+       Never the hero photo, never the same photo twice on the page. -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Their work</p>
+        <h2>Hands that <em>walked back out</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A hand with hot pink nails and a small white design on the ring finger, photographed on the sidewalk outside the shop." loading="lazy" width="1050" height="1400"><figcaption>Pink, with one done differently</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A hand with long glossy pink almond-shaped nails, resting on a car door after an appointment." loading="lazy" width="1050" height="1400"><figcaption>Long almond, straight to the car</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A hand with lavender purple nails and a silver ring, photographed outdoors." loading="lazy" width="712" height="1400"><figcaption>Lavender, short and square</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW: a testimonial card needs the reviewer's real name
+       AND their real profile photo from the same source. Google Maps is serving
+       this listing in limited view and Yelp is bot-walled, so no name+photo pair
+       could be sourced tonight — the law's link-out form is used instead. No
+       quotes are shown. Rating and count are the real ones off the listing. -->
+  <section class="section" id="reviews">
+    <div class="wrap split">
+      <div class="section-head reveal">
+        <p class="eyebrow">What people say</p>
+        <h2>The reviews live <em>on Google</em></h2>
+        <p>Sumner Nails has never had a website, so everything customers have written about Tony and Tina is sitting on their Google listing. Read it there, in their own words.</p>
+      </div>
+      <div class="rating reveal">
+        <div class="score">4.3<small>out of 5</small></div>
+        <div>
+          <p class="stars" aria-hidden="true">★★★★★<span style="width:86%">★★★★★</span></p>
+          <p class="cnt">Rated by 34 people on Google.</p>
+          <a class="btn btn-primary" href="https://www.google.com/maps/place/Sumner+Nails/@47.2034041,-122.2404895,17z" target="_blank" rel="noopener">Read them on Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #signature =====================
+       The gadget, at section six. Five finishes this shop actually photographed,
+       one tap each. Tap a pill, the photo fills the frame; tap the same pill
+       again and the frame goes back to empty. No numbers to type, nothing to
+       read, nothing restated from the hours or the address. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap split">
+      <div class="section-head reveal">
+        <p class="eyebrow">Show them what you want</p>
+        <h2>Pick a colour, <em>see it done</em></h2>
+        <p>Every one of these was done at this shop. Tap one — tap it again to put it back.</p>
+      </div>
+      <div class="picker reveal">
+        <div class="picker-frame" id="pickFrame">
+          <p class="hint">Tap a colour</p>
+          <div class="shot" data-sw="a"><img src="images/finish-catseye-purple.jpg" alt="A hand with alternating purple and burnt-orange cat-eye nails on a white towel." loading="lazy" width="975" height="1300"></div>
+          <div class="shot" data-sw="b"><img src="images/finish-catseye-plum.jpg" alt="A hand with deep plum cat-eye nails, each with a bright shifting streak down the middle." loading="lazy" width="975" height="1300"></div>
+          <div class="shot" data-sw="c"><img src="images/finish-red-chrome.jpg" alt="A hand with mirror-bright red chrome nails on a white towel." loading="lazy" width="975" height="1300"></div>
+          <div class="shot" data-sw="d"><img src="images/finish-catseye-green.jpg" alt="A hand with dark green cat-eye nails, the light band curving across each one." loading="lazy" width="1300" height="1110"></div>
+          <div class="shot" data-sw="e"><img src="images/finish-rainbow-toes.jpg" alt="A pedicure with every toe a different colour — red, yellow, blue, green and orange — and a silver toe ring." loading="lazy" width="1400" height="589"></div>
+          <p class="picker-cap" id="pickCap"></p>
+        </div>
+        <div class="swatches" id="swatches">
+          <button class="sw" type="button" data-sw="a" data-cap="Purple and orange cat-eye" aria-pressed="false"><i style="background:linear-gradient(135deg,#8B3FBF 50%,#D2761C 50%)"></i>Purple &amp; orange cat-eye</button>
+          <button class="sw" type="button" data-sw="b" data-cap="Deep plum cat-eye" aria-pressed="false"><i style="background:#3E1B2E"></i>Deep plum cat-eye</button>
+          <button class="sw" type="button" data-sw="c" data-cap="Red chrome" aria-pressed="false"><i style="background:linear-gradient(135deg,#F0603A,#B21414)"></i>Red chrome</button>
+          <button class="sw" type="button" data-sw="d" data-cap="Green cat-eye" aria-pressed="false"><i style="background:#1E4A2E"></i>Green cat-eye</button>
+          <button class="sw" type="button" data-sw="e" data-cap="A different colour on every toe" aria-pressed="false"><i style="background:conic-gradient(#D22,#E9B10B,#1F7A3A,#1B5FAF,#D2761C,#D22)"></i>Every toe different</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about =====================
+       Only what is publicly on the record: two owners named by first name in
+       their own Google reviews, and the building anyone can stand in front of.
+       No invented history, no invented roles, no invented founding year. -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="A customer's hot pink nails held up at the counter inside Sumner Nails, with the shop's wall of tools and tips behind." loading="lazy" width="1129" height="1500">
+          <figcaption>Inside, at the counter</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The shop</p>
+          <h2>Tony and Tina, <em>two chairs on Main</em></h2>
+          <p class="lede">A husband-and-wife nail shop on the downtown block, and the kind of place where the customers know both owners by name.</p>
+          <p>Read their Google reviews and the same two first names come back over and over — people don't write about "the salon", they write about Tony and Tina. That is the whole business: two people who already know what you had done last time.</p>
+          <p>The front is easy to spot. Buff brick, a grey awning, a round clock on the wall, and a painted flower panel above the window. The glass does the advertising, and it has been doing it alone — there has never been a website behind it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Getting in</p>
+          <h2>Call the shop, <em>or just come by</em></h2>
+          <ol class="steps">
+            <li><h3>Ring them</h3><p>(253) 862-4214 goes straight to the shop — no booking app, no account.</p></li>
+            <li><h3>Say what you're after</h3><p>A set, a pedicure, or waxing. Ask what a shade or a finish would cost while you're on.</p></li>
+            <li><h3>Or don't ring at all</h3><p>Their window says walk-ins welcome, and a customer on Google says you can call the same day and come in.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12538624214">(253) 862-4214</a></span>
+            <span>📍 <a href="https://www.google.com/maps/place/Sumner+Nails/@47.2034041,-122.2404895,17z" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
+               At go-live, pages-golive.sh fills this with the owner's Web3Forms key. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What are you after?<select name="topic"><option>Nails or acrylic</option><option>A pedicure</option><option>Waxing</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="What you'd like done, and a day that works."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — Sumner Nails will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Sumner, Washington</p>
+        <h2>The door is open <em>every day of the week</em></h2>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#contact" class="btn btn-primary">Send a message</a>
+        <a href="tel:+12538624214" class="btn btn-ghost">Call (253) 862-4214</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm">Sumner Nails</span>
+        </div>
+        <p>Tony and Tina's shop, on the downtown block.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>1111 Main St<br>Sumner, WA 98390</p>
+        <p><a href="tel:+12538624214">(253) 862-4214</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">What they do</a><br><a href="#gallery">Their work</a><br><a href="#signature">Pick a colour</a><br><a href="#about">The shop</a><br><a href="#contact">Call</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Sumner Nails</span>
+      <span>Sumner, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=1788870934"></script>
+</body>
+</html>
