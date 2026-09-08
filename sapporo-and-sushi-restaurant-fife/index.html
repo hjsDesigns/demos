@@ -8,10 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Anton (display, = the SAPPORO channel letters on their sign) + Karla (body)
-     — must match --display / --body in css/style.css -->
+     — must match --display / --body in css/style.css?v=1788898018 -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788868346">
-<link rel="stylesheet" href="css/hero.css?v=1788868346">
+<link rel="stylesheet" href="css/style.css?v=1788898018">
+<link rel="stylesheet" href="css/hero.css?v=1788898018">
 </head>
 <body>
 
@@ -58,25 +58,28 @@
        dark ground, never on the photo.
        Photo: harvest ext-02 (RestaurantGuru CDN original, watermark cropped).
        ================================================================== -->
-  <section class="hero v-sign" id="hero">
+  <!-- ===================== #hero — "WALK-IN" (runner-up) =====================
+       The view from just inside the door: their sushi counter, the neta case,
+       the two chefs working, Gekkeikan lanterns and the carved masks on the
+       beam. One event — the lamps come up over 2.4s — then a 22s push-in that
+       ends still. The mark is set live in the sign's own face and red, laid
+       out the way the sign over their door is laid out. sr-only h1.
+       Photo: harvest cand-13 (same beam and masks as g09 — verified this room).
+       ====================================================================== -->
+  <section class="hero v-walk" id="hero">
     <h1 class="sr-only">Sapporo &amp; Sushi Restaurant — an authentic Japanese restaurant at 4803 Pacific Hwy E, Fife, Washington</h1>
 
-    <div class="sg-stage" aria-hidden="true">
-      <div class="sg-echo"></div>
-      <div class="sg-scrim"></div>
-      <div class="sg-grain"></div>
+    <div class="wi-stage" aria-hidden="true">
+      <img src="images/sushi-bar.jpg"
+           alt="The sushi counter at Sapporo — two chefs working behind the neta case, white plates stacked on the shelves, paper lanterns and carved wooden masks on the beam above"
+           fetchpriority="high" width="1920" height="1080">
+      <div class="wi-scrim"></div>
+      <div class="wi-grain"></div>
     </div>
 
-    <div class="sg-shot">
-      <img src="images/storefront-2x.jpg"
-           alt="The front of Sapporo &amp; Sushi Restaurant at 4803 Pacific Hwy E in Fife — cream stucco under a brown standing-seam roof, red channel letters reading SAPPORO above a dark band reading JAPANESE RESTAURANT, and the red OPEN neon in the window"
-           fetchpriority="high" width="1944" height="1200">
-      <div class="sg-glow" aria-hidden="true"></div>
-    </div>
-
-    <div class="sg-inner">
-      <p class="sg-line">Sushi bar and <em>Japanese kitchen</em></p>
-      <div class="sg-actions">
+    <div class="wi-inner">
+      <p class="wi-mark"><b>Sapporo</b><span>Japanese Restaurant</span></p>
+      <div class="wi-actions">
         <a href="#menu" class="btn btn-primary">See the board</a>
         <a href="#hours" class="btn btn-cream">Find the door</a>
       </div>
@@ -532,6 +535,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788868346"></script>
+<script src="js/site.js?v=1788898018"></script>
 </body>
 </html>
