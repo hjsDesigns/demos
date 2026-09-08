@@ -29,7 +29,7 @@
 
 .hero.v-neon-strike .ns-stage{
   position:relative; z-index:1;
-  width:min(100%, 820px);
+  width:min(100%, 620px);
   display:flex; flex-direction:column; align-items:center;
   gap:0;
 }
@@ -43,8 +43,8 @@
 }
 
 .hero.v-neon-strike .ns-word{ max-width:100%; }
-.hero.v-neon-strike .ns-mascots{ max-width:82%; margin-top:-6%; }
-.hero.v-neon-strike .ns-script{ max-width:96%; margin-top:-6%; }
+.hero.v-neon-strike .ns-mascots{ max-width:82%; margin-top:-1.5%; }
+.hero.v-neon-strike .ns-script{ max-width:96%; margin-top:-1.5%; }
 
 /* the three strikes, in order, each with a short tube flicker then hold */
 .hero.v-neon-strike .ns-word{    animation:ns-strike 900ms steps(1,end) .25s forwards, ns-hold-glow 6s ease-in-out 3.2s infinite; }
@@ -84,8 +84,8 @@
 @media (max-width:640px){
   .hero.v-neon-strike{ gap:1.1rem; }
   .hero.v-neon-strike .ns-stage{ gap:0; }
-  .hero.v-neon-strike .ns-mascots{ max-width:98%; margin-top:-8%; }
-  .hero.v-neon-strike .ns-script{ max-width:100%; margin-top:-8%; }
+  .hero.v-neon-strike .ns-mascots{ max-width:98%; margin-top:-2%; }
+  .hero.v-neon-strike .ns-script{ max-width:100%; margin-top:-2%; }
   .hero.v-neon-strike .ns-actions .btn{ flex:1 1 auto; }
 }
 
