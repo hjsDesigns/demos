@@ -1,113 +1,146 @@
+/* variants/vinyl-wipe hero take, applied 0908-1315 — source versions/variants/vinyl-wipe-hero/ */
 /* ============================================================
-   HERO VARIANT 1 — "open-sign"  ·  Sumner Nails
-   Namespaced under .hero.v-open-sign; every keyframe prefixed os-.
-   Colours come from css/style.css tokens only.
+   HERO VARIANT 2 — "vinyl-wipe"  ·  Sumner Nails   (POLISH PASS, 2026-09-08)
+   Namespaced under .hero.v-vinyl-wipe; every keyframe prefixed vw-.
+   Colours come from css/style.css tokens only. No url() — the two photos are
+   real <img> elements in hero.html so the paths stay `images/...` from root.
 
-   THE OBJECT: their own storefront at 1111 Main at dusk (harvest g02) — buff
-   brick, grey awning, painted flower panel, and the window carrying an LED
-   "Nails & Spa" script, a blue-and-red neon OPEN, and a lit "Nails & Waxing"
-   oval. Nothing is drawn and nothing is redrawn.
+   THE OBJECT: one real object — their storefront window at 1111 Main.
+   THE EVENT (~1.0 s, once, deterministic): the photograph is at full exposure
+   from the first frame, and the wordmark is APPLIED to it the way the shop's own
+   lettering was applied to that glass — a single squeegee blade crosses left to
+   right and the magenta vinyl with its white keyline is laid down behind it.
+   Then it stops. Reduced motion lands on the applied frame.
 
-   THE EVENT (1.9s, once, deterministic): the block sits cold and under-exposed
-   for a beat, then the shop's own signs come on — a warm bloom rises out of the
-   window and lifts the whole front — and the wordmark strikes with the two-stutter
-   catch an LED sign makes before it holds. Then everything is still.
-   Reduced motion lands straight on the lit frame.
+   POLISH (what changed from the first pass):
+   1. TIMING — one blade, one pass. The two lines no longer cascade out of sync
+      with the blade; both are revealed by the same edge, the blade is locked to
+      that edge (shared duration + easing), and the whole event now settles at
+      ~0.92 s instead of drifting past 1.4 s. Buttons land right behind it.
+   2. THE BLADE TRAVELLED TOO FAR — .mark was a full-width block, so the clip
+      box was the column, not the text: the blade kept sweeping empty air for
+      about a third of a second after the letters were down. .mark is now
+      width:fit-content, so the blade crosses exactly the width of the wordmark.
+   3. STOREFRONT WHOLE AT 390 — the front is a tall 1400x3205 frame; cover was
+      slicing the clock and the planter off the ends on phones. On phones the
+      photo is now object-fit:contain (whole building, clock to sidewalk) over a
+      blurred, darkened copy of itself, so there are no bars and nothing is cut.
+   4. CRISP TYPE — the 30 px drop-shadow was fuzzing the keyline. Tightened to a
+      short contact shadow, stroke opened to .06em, paint-order stroke fill kept,
+      geometricPrecision on, and the blade's blur cut from 6 px to 3 px.
    ============================================================ */
 
-.hero.v-open-sign{
-  --os-dur:1.9s; --os-delay:.25s;
-  background:#140E12;                       /* the street before the signs — never flat black */
+.hero.v-vinyl-wipe{
+  --vw-dur:.78s;                                  /* the blade's single pass */
+  --vw-delay:.14s;
+  --vw-ease:cubic-bezier(.42,.02,.28,1);          /* a hand pulling a squeegee: even, not flicked */
+  background:#140E12;                             /* the street, never flat black */
   isolation:isolate;
 }
 
-/* ---------- the photograph ---------- */
-.hero.v-open-sign .hero-bg img{
-  object-position:50% 68%;                  /* holds the whole window band on wide screens */
-  animation:os-expose var(--os-dur) var(--ease) var(--os-delay) 1 both;
+/* ---------- the photograph: no exposure move, no Ken Burns ---------- */
+.hero.v-vinyl-wipe .hero-bg{overflow:hidden}
+.hero.v-vinyl-wipe .hero-bg img{
+  position:absolute; inset:0; width:100%; height:100%;
+  animation:none;
 }
-@keyframes os-expose{
-  0%   {filter:brightness(.42) saturate(.55) contrast(1.06)}
-  46%  {filter:brightness(.78) saturate(.86) contrast(1.03)}
-  100% {filter:brightness(1) saturate(1.04) contrast(1)}
+.hero.v-vinyl-wipe .vw-front{
+  object-fit:cover; object-position:50% 66%;
+  filter:saturate(1.05) contrast(1.02);
 }
+.hero.v-vinyl-wipe .vw-echo{display:none}         /* desktop needs no echo */
 
-/* ---------- scrim: bottom-weighted on every width, so the signs in the upper
-     part of the frame stay readable and the mark still has a floor ---------- */
-.hero.v-open-sign .hero-bg::before{
+/* bottom-weighted scrim so the signs stay readable and the mark has a floor */
+.hero.v-vinyl-wipe .hero-bg::before{
   background:
     linear-gradient(180deg,
-      color-mix(in srgb,var(--dark) 46%,transparent) 0%,
-      color-mix(in srgb,var(--dark) 6%,transparent) 26%,
-      color-mix(in srgb,var(--dark) 30%,transparent) 58%,
-      color-mix(in srgb,var(--dark) 88%,transparent) 100%);
+      color-mix(in srgb,var(--dark) 44%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 4%,transparent) 26%,
+      color-mix(in srgb,var(--dark) 34%,transparent) 58%,
+      color-mix(in srgb,var(--dark) 92%,transparent) 100%);
 }
-
-/* ---------- the bloom the window throws once the signs catch ---------- */
-.hero.v-open-sign .sign-bloom{
-  position:absolute; inset:0; z-index:2; pointer-events:none;
-  mix-blend-mode:screen; opacity:0;
-  background:
-    radial-gradient(38% 22% at 63% 43%, rgba(255,164,204,.40), rgba(255,140,190,.09) 55%, rgba(255,120,175,0) 78%),
-    radial-gradient(52% 30% at 58% 47%, rgba(255,212,166,.24), rgba(255,196,140,.05) 58%, rgba(255,186,126,0) 82%);
-  animation:os-bloom var(--os-dur) var(--ease) var(--os-delay) 1 both;
-}
-@keyframes os-bloom{
-  0%   {opacity:0}
-  40%  {opacity:.42}
-  62%  {opacity:.26}
-  100% {opacity:.46}
-}
+.hero.v-vinyl-wipe .sign-bloom{display:none}
 
 /* ---------- the mark: live type in the sign's face ----------
    Their window vinyl is a heavy squared grotesque, magenta with a white
-   keyline. Archivo Black + a stroke painted behind the fill reproduces it as
+   keyline. Archivo Black + the stroke painted behind the fill reproduces it as
    crisp type at any size — no blown-up photo crop (CRISP RULE). */
-.hero.v-open-sign .mark{
+.hero.v-vinyl-wipe .mark{
   position:relative;
+  width:-moz-fit-content; width:fit-content;      /* the blade crosses the WORD, not the column */
   margin:0 0 clamp(20px,3.2vh,32px);
   font-family:var(--display); font-weight:400; text-transform:uppercase;
   font-size:clamp(54px,13.6vw,126px);
-  line-height:.84; letter-spacing:-.028em;
+  line-height:.86; letter-spacing:-.028em;
   color:var(--brand-bright);
-  -webkit-text-stroke:.058em #fff;
+  -webkit-text-stroke:.06em #fff;
   paint-order:stroke fill;
-  filter:drop-shadow(0 12px 30px rgba(0,0,0,.6));
+  text-rendering:geometricPrecision;
+  -webkit-font-smoothing:antialiased;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.62));  /* contact shadow, not a haze */
 }
-.hero.v-open-sign .mark span{
+.hero.v-vinyl-wipe .mark span{
   display:block;
-  animation:os-strike var(--os-dur) steps(1,end) var(--os-delay) 1 both;
+  clip-path:inset(-16% 100% -20% -4%);
+  animation:vw-lay var(--vw-dur) var(--vw-ease) var(--vw-delay) 1 both;
 }
-.hero.v-open-sign .mark span:nth-child(2){animation-delay:calc(var(--os-delay) + .1s)}
-@keyframes os-strike{
-  0%,26%   {opacity:0}
-  27%,33%  {opacity:1}                       /* first catch */
-  34%,44%  {opacity:0}
-  45%,52%  {opacity:1}                       /* second catch */
-  53%,58%  {opacity:.18}
-  59%,100% {opacity:1}                       /* holds */
+@keyframes vw-lay{
+  from{clip-path:inset(-16% 100% -20% -4%)}
+  to  {clip-path:inset(-16% -4% -20% -4%)}
 }
 
-/* the buttons arrive after the sign has settled */
-.js .hero.v-open-sign .hero-actions{animation-delay:calc(var(--os-delay) + var(--os-dur) - .35s)}
+/* the squeegee edge — one thin gloss locked to the clip edge, same clock */
+.hero.v-vinyl-wipe .mark::after{
+  content:""; position:absolute; top:-16%; bottom:-20%; left:0; right:0;
+  pointer-events:none; mix-blend-mode:screen; opacity:0;
+  background-repeat:no-repeat;
+  background-size:.44em 100%;
+  background-image:linear-gradient(90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.92) 46%,
+      rgba(255,206,232,.72) 62%,
+      rgba(255,255,255,0) 100%);
+  filter:blur(3px);
+  animation:vw-blade var(--vw-dur) var(--vw-ease) var(--vw-delay) 1 both;
+}
+@keyframes vw-blade{
+  0%   {background-position:0% 0;   opacity:0}
+  14%  {opacity:1}
+  88%  {opacity:.9}
+  100% {background-position:100% 0; opacity:0}
+}
 
-/* ---------- phones ---------- */
+/* the buttons arrive the moment the vinyl is down */
+.js .hero.v-vinyl-wipe .hero-actions{animation-delay:calc(var(--vw-delay) + var(--vw-dur) - .10s)}
+
+/* ---------- phones: the whole storefront, clock to sidewalk ---------- */
 @media (max-width:760px){
-  .hero.v-open-sign .hero-bg img{object-position:50% 61%}
-  .hero.v-open-sign .sign-bloom{
+  .hero.v-vinyl-wipe .vw-echo{
+    display:block;
+    object-fit:cover; object-position:50% 52%;
+    transform:scale(1.25);
+    filter:blur(26px) saturate(.85) brightness(.5);
+  }
+  .hero.v-vinyl-wipe .vw-front{
+    object-fit:contain; object-position:50% 50%;
+    filter:saturate(1.06) contrast(1.03);
+  }
+  .hero.v-vinyl-wipe .hero-bg::before{
     background:
-      radial-gradient(52% 15% at 58% 66%, rgba(255,164,204,.42), rgba(255,140,190,.09) 56%, rgba(255,120,175,0) 80%),
-      radial-gradient(70% 21% at 54% 69%, rgba(255,212,166,.24), rgba(255,196,140,.05) 58%, rgba(255,186,126,0) 84%);
+      linear-gradient(180deg,
+        color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+        color-mix(in srgb,var(--dark) 2%,transparent) 22%,
+        color-mix(in srgb,var(--dark) 30%,transparent) 52%,
+        color-mix(in srgb,var(--dark) 94%,transparent) 100%);
   }
 }
 @media (max-width:520px){
-  .hero.v-open-sign .mark{font-size:clamp(50px,15vw,70px);letter-spacing:-.03em}
+  .hero.v-vinyl-wipe .mark{font-size:clamp(50px,15.4vw,72px);letter-spacing:-.032em}
 }
 
-/* ---------- reduced motion: the final, lit frame ---------- */
+/* ---------- reduced motion: the applied frame ---------- */
 @media (prefers-reduced-motion:reduce){
-  .hero.v-open-sign .hero-bg img{animation:none;filter:brightness(1) saturate(1.04)}
-  .hero.v-open-sign .sign-bloom{animation:none;opacity:.46}
-  .hero.v-open-sign .mark span{animation:none;opacity:1}
-  .js .hero.v-open-sign .hero-actions{animation:none;opacity:1;transform:none}
+  .hero.v-vinyl-wipe .mark span{animation:none;clip-path:none}
+  .hero.v-vinyl-wipe .mark::after{animation:none;opacity:0}
+  .js .hero.v-vinyl-wipe .hero-actions{animation:none;opacity:1;transform:none}
 }

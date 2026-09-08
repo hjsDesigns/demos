@@ -9,10 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- SIGN-FONT LAW: Archivo Black is the closest Google face to the heavy,
      white-keylined window lettering at 1111 Main. Karla carries the body.
-     Must match --display / --body in css/style.css. -->
+     Must match --display / --body in css/style.css?v=1788898521. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788870934">
-<link rel="stylesheet" href="css/hero.css?v=1788870934">
+<link rel="stylesheet" href="css/style.css?v=1788898521">
+<link rel="stylesheet" href="css/hero.css?v=1788898521">
 </head>
 <body>
 
@@ -50,22 +50,35 @@
        sign's face, magenta with a white keyline, exactly the way the vinyl on
        their window is cut (CRISP RULE). The h1 is screen-reader only so the
        mark is the headline. Hero take + runner-up documented in versions/NOTE.md. -->
-  <section class="hero v-open-sign" id="hero">
-    <div class="hero-bg">
-      <img src="images/hero-store.jpg" width="1400" height="3205" fetchpriority="high"
-           alt="Sumner Nails at 1111 Main Street at dusk — buff brick storefront, grey awning, and the lit Nails &amp; Spa, OPEN and Nails &amp; Waxing signs in the window.">
+  <!-- ===================== #hero — VARIANT "vinyl-wipe" =====================
+     ONE real object: their own storefront at 1111 Main (harvest g02) — buff
+     brick, the painted dogwood panel over the awning, the round wall clock, and
+     the window carrying the LED "Nails & Spa" script, the blue-and-red neon
+     OPEN, the lit "Nails & Waxing" oval and the hand-cut magenta vinyl.
+     THE EVENT: the photo is at full exposure from frame one, and the wordmark is
+     APPLIED to it the way that lettering was applied to that glass — one squeegee
+     blade crosses left to right in a single pass and the magenta vinyl with its
+     white keyline is laid down behind it. ~1.0 s, once, then completely still.
+     The mark is live type in the sign's face (CRISP RULE), never a photo crop.
+     Nothing sits on the photograph but the mark and the two buttons. -->
+<section class="hero v-vinyl-wipe" id="hero">
+  <div class="hero-bg">
+    <!-- letterbox echo: the same real photo, blurred, so the storefront can be
+         shown WHOLE on phones without black bars (NEVER CROP THE IMPORTANT PART) -->
+    <img class="vw-echo" src="images/hero-store.jpg" width="1400" height="3205" alt="" aria-hidden="true">
+    <img class="vw-front" src="images/hero-store.jpg" width="1400" height="3205" fetchpriority="high"
+         alt="Sumner Nails at 1111 Main Street — buff brick storefront, grey awning, painted dogwood panel, and the lit Nails &amp; Spa, OPEN and Nails &amp; Waxing signs in the window.">
+  </div>
+  <div class="hero-spacer"></div>
+  <div class="hero-inner">
+    <h1 class="sr-only">Sumner Nails — a nail salon on Main Street in Sumner, Washington</h1>
+    <p class="mark" aria-hidden="true"><span>Sumner</span><span>Nails</span></p>
+    <div class="hero-actions">
+      <a href="tel:+12538624214" class="btn btn-primary">Call (253) 862-4214</a>
+      <a href="#services" class="btn btn-cream">See what they do</a>
     </div>
-    <div class="sign-bloom" aria-hidden="true"></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1 class="sr-only">Sumner Nails — a nail salon on Main Street in Sumner, Washington</h1>
-      <p class="mark" aria-hidden="true"><span>Sumner</span><span>Nails</span></p>
-      <div class="hero-actions">
-        <a href="tel:+12538624214" class="btn btn-primary">Call (253) 862-4214</a>
-        <a href="#services" class="btn btn-cream">See what they do</a>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        All seven days as rows, today lit, green/red dot. Hours, live status and
@@ -332,6 +345,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788870934"></script>
+<script src="js/site.js?v=1788898521"></script>
 </body>
 </html>
