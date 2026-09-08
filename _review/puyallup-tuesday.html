@@ -1,0 +1,125 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tuesday doors — Puyallup</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#F1F0EA;--card:#FFFFFF;--line:#D8D6CC;--ink:#1B1E1A;--mute:#5F665D;--acc:#2A4D6E;--ok:#1F6B3A;--ok-bg:#E1EFE4;--warn:#9A6A16;--warn-bg:#F5EAD3;--bad:#B3372B;--bad-bg:#F4E1DD;--fix:#5A2E8A;--fix-bg:#ECE3F6;--disp:'Barlow Condensed','Arial Narrow',Impact,sans-serif;--body:'Source Sans 3','Helvetica Neue',Arial,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15181A;--card:#1E2226;--line:#2D3338;--ink:#ECEDE8;--mute:#9BA39C;--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F;--bad:#E5776A;--bad-bg:#3A221E;--fix:#C9A8F0;--fix-bg:#2E2340}}
+:root[data-theme="dark"]{--bg:#15181A;--card:#1E2226;--line:#2D3338;--ink:#ECEDE8;--mute:#9BA39C;--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F;--bad:#E5776A;--bad-bg:#3A221E;--fix:#C9A8F0;--fix-bg:#2E2340}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.35 var(--body);padding:14px 10px 70px;-webkit-text-size-adjust:100%}
+main{max-width:600px;margin:0 auto}
+h1{font:700 38px/0.95 var(--disp);text-transform:uppercase;margin:2px 0 4px}
+.top{color:var(--mute);font-size:13.5px;margin:0 0 6px;font-weight:600;letter-spacing:.01em}
+.hint{color:var(--mute);font-size:13px;margin:0 0 12px}
+h2{font:600 13.5px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:20px 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+h2 small{font:600 12px/1 var(--body);letter-spacing:0;text-transform:none;color:var(--mute)}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px 9px 8px;display:grid;grid-template-columns:54px 1fr;gap:8px;align-items:start}
+li.done{opacity:.42}li.done .name{text-decoration:line-through}
+.t{appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--acc);border-radius:8px;font:700 17px/1 var(--disp);min-height:48px;width:54px;padding:4px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.t small{font:600 9.5px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+li.done .t{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.head{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.name{font:600 19px/1.05 var(--disp);margin:0}
+.sub{color:var(--mute);font-size:13px;margin:2px 0 0}.sub b{color:var(--ink);font-weight:600}
+.say{font-size:14px;margin:4px 0 0;line-height:1.3}
+.row{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+a.go{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border-radius:8px;background:var(--acc);color:var(--bg);font-weight:700;text-decoration:none;font-size:14px}
+a.tel{display:inline-flex;align-items:center;min-height:40px;padding:0 10px;border-radius:8px;border:1px solid var(--line);color:var(--ink);font-weight:600;text-decoration:none;font-size:13.5px}
+.ask{font:700 16px/1 var(--disp);color:var(--ink);margin-left:auto}
+.tag{display:inline-block;font:700 10px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;border-radius:5px}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}.tag.warn{background:var(--warn-bg);color:var(--warn)}.tag.bad{background:var(--bad-bg);color:var(--bad)}.tag.fix{background:var(--fix-bg);color:var(--fix)}
+.block{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--fix);border-radius:10px;padding:10px 12px;font-size:14.5px}
+.block b{font-family:var(--disp);font-size:18px;font-weight:600}
+.nap{border-left-color:var(--warn)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13.5px}
+td{padding:8px 8px;border-top:1px solid var(--line);vertical-align:top}tr:first-child td{border-top:0}
+td:first-child{font:600 16px/1.1 var(--disp);white-space:nowrap}td a{color:var(--acc);font-weight:700;text-decoration:none}
+.foot{color:var(--mute);font-size:12.5px;margin:18px 0 0}
+</style>
+<main>
+<h1>Tuesday doors — Puyallup</h1>
+<p class="top">Brief at home 7:15 · cards first · nap 1–3 · bed by midnight</p>
+<p class="hint">Tap a time when that door is done. Times are the arrive-by; the hours next to each name are theirs for Tuesday. Nobody wrote down who you met Monday, so every door is on here — skip the ones you already closed.</p>
+
+<h2>0 · Cards <small>pick one</small></h2>
+<ol>
+<li id="s-fedex"><button class="t" aria-label="done">8:00</button><div><div class="head"><p class="name">FedEx Office</p><span class="tag warn">only if ordered online tonight</span></div><p class="sub">101 37th Ave SE, South Hill · <b>opens 8 AM</b> · drive · skip if you didn't place the order</p><div class="row"><a class="go" href="https://maps.apple.com/?q=FedEx+Office+101+37th+Ave+SE+Puyallup">Map</a></div></div></li>
+<li id="s-ak"><button class="t" aria-label="done">9:00</button><div><div class="head"><p class="name">A‑K Printing &amp; Signs</p><span class="tag warn">call first</span></div><p class="sub">13724 Canyon Rd E · <b>opens 9 AM</b> · drive · same road as The Coffee Cabin (10418 Canyon Rd E, window open 4–5) if you want a bonus door</p><div class="row"><a class="tel" href="tel:+12533911784">(253) 391‑1784</a><a class="go" href="https://maps.apple.com/?q=13724+Canyon+Rd+E+Puyallup">Map</a></div></div></li>
+</ol>
+
+<h2>9:00–12:30 · Shops &amp; salons <small>5 doors · 11:00 is fixed</small></h2>
+<ol>
+<li id="s-tk"><button class="t" aria-label="done">9:15</button><div><div class="head"><p class="name">TK Top Nails &amp; Spa</p><span class="tag ok">walk A</span></div><p class="sub">1831 E Main Ave · <b>9 AM – 7 PM</b> · ask for Lilly · Wayne's Inn is on this block — come back at 3</p><p class="say">Your hours are read straight off your own window decal, and the pick‑a‑finish gallery is your work — nothing online shows your service board today.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/tk-top-nails-puyallup/">Demo</a><span class="ask">$750</span></div></div></li>
+<li id="s-star"><button class="t" aria-label="done">10:00</button><div><div class="head"><p class="name">Star Nails &amp; Spa</p><span class="tag ok">drive 3</span></div><p class="sub">716 E Main Ave · <b>10 AM – 7 PM</b></p><p class="say">You're on Fresha only — this one has a tap‑a‑shape picker (coffin, almond, square, stiletto) built from your own photos.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/star-nails-puyallup/">Demo</a><span class="ask">$750</span></div></div></li>
+<li id="s-bean"><button class="t" aria-label="done">10:20</button><div><div class="head"><p class="name">Bean Tree</p><span class="tag ok">drive 5 · window</span></div><p class="sub">745 River Rd · <b>4:30 AM – 6 PM</b> · drive‑thru, talk at the window</p><p class="say">beantreecoffee.com has said "Launching Soon" for two years; the page opens on your lit hut at 4:30 AM and your season cups.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/bean-tree-coffee-puyallup/">Demo</a><span class="ask">$750</span></div></div></li>
+<li id="s-cj"><button class="t" aria-label="done">11:00<small>fixed</small></button><div><div class="head"><p class="name">Captain Jack's</p><span class="tag fix">owner said Tue 11</span></div><p class="sub">13501 Valley Ave E, Sumner · <b>11 AM – 12 AM</b> · drive 12 · owner is there at open</p><p class="say">You bought captainjacksbarandgrill.shop and it goes nowhere — here's the site to put on it.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/captain-jacks-bar-and-grill/">Demo</a><a class="tel" href="tel:+12538260679">(253) 826‑0679</a><span class="ask">$1,000</span></div></div></li>
+<li id="s-pam"><button class="t" aria-label="done">11:45</button><div><div class="head"><p class="name">Pioneer Antique Mall</p><span class="tag warn">call first</span></div><p class="sub">113 S Meridian · <b>11 AM – 6 PM</b> · drive 10 from Sumner · door notes have said "closed Mon &amp; Tue" before</p><p class="say">You have no website at all — tap a piece on your own wall above the cases and it zooms in.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/pioneer-antique-mall-puyallup/">Demo</a><a class="tel" href="tel:+12533804021">(253) 380‑4021</a><span class="ask">$1,500</span></div></div></li>
+</ol>
+
+<h2>12:30 · Lunch <small>then the nap</small></h2>
+<div class="block nap"><b>12:30 eat · 1:00–3:00 NAP</b> — fixed. Don't pitch a kitchen during its rush; the food doors start at 3.</div>
+
+<h2>3:00–4:30 · Food &amp; bars <small>7 doors · train 4:30</small></h2>
+<ol>
+<li id="s-scotty"><button class="t" aria-label="done">3:00</button><div><div class="head"><p class="name">Scotty's Grub and Pub</p><span class="tag ok">walk B</span></div><p class="sub">215 N Meridian · <b>10 AM – 2 AM</b> · it's Tightwad Tuesday</p><p class="say">Facebook only — Tightwad Tuesday, happy hour 4–7 and the bottomless mimosas are all on the page, read off your own signs.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/scottys-grub-and-pub-puyallup/">Demo</a><span class="ask">$1,500</span></div></div></li>
+<li id="s-bumpy"><button class="t" aria-label="done">3:10</button><div><div class="head"><p class="name">Bumpy's Pub</p><span class="tag ok">walk B</span></div><p class="sub">116 E Main Ave · <b>9 AM – 12 AM</b> · Taco Tuesday</p><p class="say">Your printed domain is dead and Google sends people to a for‑sale page; the Tot Board is your four loaded tots word for word.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/bumpys-pub-puyallup/">Demo</a><span class="ask">$1,500</span></div></div></li>
+<li id="s-wpg"><button class="t" aria-label="done">3:20</button><div><div class="head"><p class="name">West Pioneer Grill</p><span class="tag ok">walk B</span></div><p class="sub">109 W Pioneer Ave · <b>10 AM – 7 PM</b></p><p class="say">No site at all — the shake board on the page is your real one, flavor for flavor.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/west-pioneer-grill-puyallup/">Demo</a><span class="ask">$1,000</span></div></div></li>
+<li id="s-cube"><button class="t" aria-label="done">3:30</button><div><div class="head"><p class="name">My Lil' Cube</p><span class="tag ok">walk B</span><span class="tag warn">closes seasonally</span></div><p class="sub">402 N Meridian · <b>11 AM – 9 PM</b> · closed Mondays, so this is a first visit</p><p class="say">4.7 on 1,649 reviews and only Facebook — and your sister room Cube Ramen in Lacey could run the same site.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/my-lil-cube-puyallup/">Demo</a><a class="tel" href="tel:+12538402158">(253) 840‑2158</a><span class="ask">$1,000</span></div></div></li>
+<li id="s-kyoto"><button class="t" aria-label="done">3:40</button><div><div class="head"><p class="name">Kyoto Teriyaki</p><span class="tag ok">walk B</span></div><p class="sub">513 S Meridian · <b>11 AM – 7:30 PM</b></p><p class="say">Your menu only exists on scraper sites — the page opens on your real neon window sign striking on, with your prices.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/kyoto-teriyaki-puyallup/">Demo</a><span class="ask">$750</span></div></div></li>
+<li id="s-wayne"><button class="t" aria-label="done">3:55</button><div><div class="head"><p class="name">Wayne's Inn</p><span class="tag ok">drive 4</span></div><p class="sub">1902 E Main Ave · <b>11 AM – 2 AM</b> · same block as TK Top Nails</p><p class="say">Your paid domain sits on a parking page; the reader board off your pole sign answers "is karaoke tonight?" live.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/waynes-inn-puyallup/">Demo</a><span class="ask">$1,500</span></div></div></li>
+<li id="s-bp"><button class="t" aria-label="done">4:10</button><div><div class="head"><p class="name">Backyard Pizza</p><span class="tag ok">drive 5</span></div><p class="sub">1824 S Meridian · <b>11 AM – 10 PM</b></p><p class="say">Your Squarespace site expired — "tap a size, watch it grow" uses the three sizes off your own board.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/backyard-pizza-puyallup/">Demo</a><span class="ask">$750</span></div></div></li>
+</ol>
+
+<h2>If the train runs late <small>open Tue · in drive order</small></h2>
+<table>
+<tr><td>Pho&amp;Mi</td><td>727 River Rd · 11–9 · drive 4 · renting a menu11 template, 714 reviews · <a href="https://hjsdesigns.github.io/demos/pho-and-mi-puyallup/">Demo</a></td></tr>
+<tr><td>It's Pho U</td><td>3707 S Meridian · 10:30–9:30 · drive 5 · Facebook only, 797 reviews · <a href="https://hjsdesigns.github.io/demos/its-pho-u-puyallup/">Demo</a></td></tr>
+<tr><td>River Road Lodge</td><td>7824 River Rd E · 12–12 · drive 8 · Facebook only, just renamed from R&amp;R · <a href="https://hjsdesigns.github.io/demos/river-road-lodge-puyallup/">Demo</a></td></tr>
+<tr><td>Log Cabin Pub</td><td>2719 E Valley Hwy E, Sumner · 10–2 AM · Linktree only, 49 prices off their PDFs · <a href="https://hjsdesigns.github.io/demos/log-cabin-pub-sumner/">Demo</a></td></tr>
+<tr><td>Tacos los Queretaros</td><td>3420 Meridian Ave E, Edgewood · 10–10 · ordering apps only · <a href="https://hjsdesigns.github.io/demos/tacos-los-queretaros-edgewood/">Demo</a></td></tr>
+<tr><td>Out &amp; About</td><td>14214 Meridian E, South Hill · 11–8 · drive‑thru, 2,193 reviews · <a href="https://hjsdesigns.github.io/demos/out-and-about-burgers-puyallup/">Demo</a></td></tr>
+<tr><td>Fox Hollow</td><td>6909 112th St E · 5:30–6 · window · the address on their cups is dead · <a href="https://hjsdesigns.github.io/demos/fox-hollow-coffee-puyallup/">Demo</a></td></tr>
+<tr><td>Spoonful of Sugar</td><td>2420 Milton Way, Milton · 5 AM–3 PM · closes before the nap ends — a morning door, next trip · <a href="https://hjsdesigns.github.io/demos/a-spoonful-of-sugar-milton/">Demo</a></td></tr>
+</table>
+
+<h2>Call first <small>Tuesday hours unknown · never a slot</small></h2>
+<table>
+<tr><td>All Star Auto Body</td><td>2906 E Main Ave · only Monday's 10 AM open is published · <a href="tel:+12069281600">(206) 928‑1600</a> · an AI lead‑gen site squats their name · <a href="https://hjsdesigns.github.io/demos/all-star-auto-body-puyallup/">Demo</a></td></tr>
+<tr><td>Mulligans</td><td>15716 Main St E, Sumner · no hours published · <a href="tel:+12533863174">(253) 386‑3174</a> group line · their parent site still calls this room the Water Hole Pub · 4 min from Captain Jack's if they pick up · <a href="https://hjsdesigns.github.io/demos/mulligans-sumner/">Demo</a></td></tr>
+</table>
+
+<h2>Not today <small>why</small></h2>
+<table>
+<tr><td>Wash The Dog</td><td>closed Tuesdays · Wed 11–5</td></tr>
+<tr><td>Rose Spa</td><td>owner in <b>Wed 12–3</b> only · Bonney Lake</td></tr>
+<tr><td>Pretty Nails</td><td>closed Tuesdays · emailed 9/7</td></tr>
+<tr><td>Water Hole Pub</td><td>closed for good · it's Mulligans now</td></tr>
+</table>
+
+<h2>On the drive home <small>optional · Bonney Lake</small></h2>
+<table>
+<tr><td>Nails 410</td><td>20820 WA‑410 E · 9:30–7 · a 30‑second storefront photo upgrades their hero · <a href="https://hjsdesigns.github.io/demos/nails-410/">Demo</a></td></tr>
+<tr><td>Teriyaki Wok &amp; Sushi</td><td>9925 214th Ave E · 11–8:30 · they have a live site — redesign pitch only · <a href="https://hjsdesigns.github.io/demos/teriyaki-wok-and-sushi/">Demo</a></td></tr>
+</table>
+
+<p class="foot">Hours are each site's own Tuesday row (facts.json + hours band, no re-scraping). Walk A = TK Top Nails / Wayne's Inn block. Walk B = downtown Meridian &amp; Main, six doors inside 0.4 mi. Asks are one notch under worth, same as Monday.</p>
+</main>
+<script>
+(function(){
+  var KEY='puyallup-tue-done';
+  var done={};
+  try{done=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){done={}}
+  var items=document.querySelectorAll('li[id]');
+  for(var i=0;i<items.length;i++){(function(li){
+    if(done[li.id])li.classList.add('done');
+    var b=li.querySelector('.t');
+    b.addEventListener('click',function(){
+      var on=li.classList.toggle('done');
+      done[li.id]=on?1:0;
+      try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}
+    });
+  })(items[i])}
+})();
+</script>
