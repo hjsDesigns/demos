@@ -11,7 +11,7 @@
      Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1788872041">
-<link rel="stylesheet" href="hero-sign-stamp.css">
+<link rel="stylesheet" href="hero-steam-sign.css">
 </head>
 <body>
 
@@ -57,58 +57,87 @@
        wide in the best photograph of it, so it is never blown up as a raster
        mark — the real sign stays in the photograph, uncropped, right above.
        ================================================================= -->
-    <!-- ===================== #hero — "SIGN STAMP" =====================
-       ONE IDEA: their building, held still and fully lit — and the name
-       arrives the way a sign gets made: it is STAMPED on, in two beats.
+    <!-- ===================== #hero — "STEAM SIGN" =====================
+       ONE IDEA: their sign comes up off a hot plate of their own food.
 
-       Same real photograph as storefront-still (5605 112th St E — the fat
-       red channel letters, the blue TOWN lightbox, the OPEN neon, real sky):
-       `images/storefront-tall.jpg` on phones, `images/storefront-wide.jpg`
-       on landscape screens. The picture never moves, never blooms, never
-       loops — it is fully lit from the first frame.
+       GROUND — their own studio photograph of the T1 chicken teriyaki plate
+       (images/dish-t1.jpg, the same photo the menu uses for T1) on the
+       crimson silk: warm-graded, darkened and blurred into the file, so the
+       whole opener costs one paint. Phones get images/steam-sign-plate-tall.jpg
+       (the frame centred on the chicken and the rice — one plate, never a
+       mirrored echo), landscape screens get images/steam-sign-plate-wide.jpg.
+       The T1 code badge that sits in the corner of the menu photo is cropped
+       out, so nothing on the hero is a menu graphic.
 
-       THE ONE EVENT (deterministic, ~1.7 s, then still):
-         0.40 s  TERIYAKI drops in and STAMPS — big and soft above the
-                 surface, hard contact, one small scale-settle.
-         0.80 s  the blue TOWN lightbox stamps beside it, same beat,
-                 mirrored settle.
-         1.24 s  the two buttons come up under it.
-       No slide, no cross-fade, no rotation left behind: both marks land
-       dead square, so the last frame is a still photograph with the name
-       set cleanly on it.
+       THE MARK — their REAL sign, cut from their own photograph of the
+       building (harvest/g15.jpg): the eight red channel letters with their
+       black returns and the separate blue TOWN lightbox, keyed to alpha and
+       rotated 5.6 degrees to take the camera's tilt out. Nothing is redrawn
+       and nothing is set in type — these are the actual letters bolted to
+       5605 112th St E. On landscape screens the two pieces sit in exactly
+       the spacing and drop they have on the real sign (75.72% / 0.80% gap /
+       23.48%, TOWN dropped 2.34%); on phones TOWN stacks under TERIYAKI so
+       the letters stay big.
 
-       NEVER CROP THE IMPORTANT PART: the phone frame is taller than the 3:4
-       photo, so it only trims empty parking lot at the sides; the landscape
-       frame is 1.74:1 against a 1.78:1 photograph, so it trims about 2% of
-       sky-edge and nothing of the sign.
+       THE EVENT (deterministic, done at 2.9 s, then still):
+         0.00  the plate comes up into the light
+         0.10  five columns of steam start rising off it — three behind the
+               mark, two in front of it
+         0.55  the mark LIFTS up through the steam: 54 px of rise, out of a
+               9 px blur, and settles
+         1.45  a warm glow blooms behind it and settles
+         1.90  the two buttons come up
+         2.90  the steam has thinned out; nothing moves again
+       Reduced motion lands on that last frame immediately.
 
-       SIGN-FONT LAW + CRISP RULE: the name is live Titan One (the closest
-       sturdy Google face to the brushed caps on the sign) in the sign's own
-       red, with TOWN reversed out of the sign's own blue lightbox. The real
-       lettering stays inside the photograph and is never blown up.
+       The mark IS the headline — the h1 is sr-only, and nothing else sits on
+       the hero but the two buttons the page already had.
        ================================================================= -->
-  <section class="hero v-sign-stamp" id="hero">
+  <section class="hero v-steam-sign" id="hero">
     <h1 class="sr-only">Teriyaki Town — teriyaki and Chinese, 5605 112th St E, Puyallup, Washington</h1>
 
-    <div class="ss-stage" aria-hidden="true">
+    <div class="ss3-ground" aria-hidden="true">
       <picture>
-        <source media="(min-aspect-ratio:7/10)" srcset="images/storefront-wide.jpg" width="1800" height="1012">
-        <img class="ss-shot" src="images/storefront-tall.jpg" alt=""
-             width="1125" height="1500" fetchpriority="high" decoding="async">
+        <source media="(min-aspect-ratio:7/10)" srcset="images/steam-sign-plate-wide.jpg" width="1600" height="900">
+        <img class="ss3-shot" src="images/steam-sign-plate-tall.jpg" alt=""
+             width="1170" height="1560" fetchpriority="high" decoding="async">
       </picture>
-      <span class="ss-neon"></span>
-      <div class="ss-scrim"></div>
+      <span class="ss3-heat"></span>
+      <span class="ss3-pool"></span>
     </div>
 
-    <div class="ss-inner">
-      <p class="ss-mark" aria-hidden="true">
-        <span class="ss-teri">Teriyaki</span><span class="ss-box">Town</span>
-      </p>
-      <div class="ss-actions">
+    <!-- three columns of steam BEHIND the mark -->
+    <div class="ss3-steam ss3-back" aria-hidden="true">
+      <i style="--x:24%;--w:24vw;--h:46vh;--dx:-4vw;--d:.10s;--dur:2.15s"></i>
+      <i style="--x:52%;--w:30vw;--h:54vh;--dx:3vw;--d:.44s;--dur:2.15s"></i>
+      <i style="--x:77%;--w:22vw;--h:42vh;--dx:5vw;--d:.76s;--dur:2.10s"></i>
+    </div>
+
+    <div class="ss3-inner">
+      <div class="ss3-mark"
+           role="img"
+           aria-label="The Teriyaki Town sign at 5605 112th St E: TERIYAKI in fat red channel letters beside a blue TOWN lightbox.">
+        <span class="ss3-halo" aria-hidden="true"></span>
+        <img class="ss3-teri" src="images/steam-sign-teriyaki.png" alt=""
+             width="1135" height="217" fetchpriority="high" decoding="async">
+        <img class="ss3-town" src="images/steam-sign-town.png" alt=""
+             width="352" height="181" fetchpriority="high" decoding="async">
+      </div>
+
+      <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the whole menu</a>
         <a href="tel:2534452443" class="btn btn-cream">Call (253) 445-2443</a>
       </div>
     </div>
+
+    <!-- two columns of steam IN FRONT of the mark — so it rises through them -->
+    <div class="ss3-steam ss3-front" aria-hidden="true">
+      <i style="--x:38%;--w:20vw;--h:44vh;--dx:4vw;--d:.28s;--dur:2.15s"></i>
+      <i style="--x:64%;--w:18vw;--h:40vh;--dx:-3.5vw;--d:.60s;--dur:2.15s"></i>
+      <i class="ss3-wisp" style="--x:47%;--w:26vw;--h:46vh;--dx:2vw"></i>
+    </div>
+
+    <span class="ss3-hem" aria-hidden="true"></span>
   </section>
 
 

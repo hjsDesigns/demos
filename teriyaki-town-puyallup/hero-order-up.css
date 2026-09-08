@@ -1,0 +1,257 @@
+/* ============================================================
+   TERIYAKI TOWN — hero variant: ORDER UP (2026-09-08)
+   The Bumpy's three-way mix, in Teriyaki Town's own material.
+
+   Real assets, every one of them:
+     images/storefront-tall.jpg / storefront-wide.jpg
+       — their own building at 5605 112th St E, blurred back and graded
+         to dusk in CSS. The ground, never the subject.
+     images/order-up-townbox.png
+       — the REAL blue TOWN lightbox, cut as a quad out of
+         storefront-wide.jpg and perspective-corrected to level.
+         Nothing redrawn.
+     images/order-up-chip-{t1,t11,tc6,c1,c11}.png
+       — their five REAL counter codes, cropped off their own printed
+         board (images/board-teri.jpg) at the coordinates measured for
+         the board-numbers variant. Nothing invented.
+     TERIYAKI — live type in Titan One (the face of the sign's fat
+       brushed caps) in the sign's red with the sign's white shine.
+       CRISP RULE: the channel letters cannot be keyed out of either
+       storefront frame — midday sun blows the corrugated fascia to the
+       same white as the letters' own specular, so every cut eats the
+       letters. Live type is sharp at any size and buys the per-letter
+       LED strike.
+
+   One deterministic pass, CSS only, never loops:
+     0.00 → 1.25 s   the dusk front wakes up out of black
+     0.40 → 1.41 s   TERIYAKI strikes on letter by letter, LED stutter
+     1.15 → 1.77 s   the real TOWN lightbox flickers on, blue halo
+     1.35 → 3.01 s   the five real order codes run ONE lap, 20 chips,
+                     each one flashing bright then holding lit
+     2.30 → 3.10 s   the red glow the lap leaves behind settles in
+     2.55 → 3.15 s   the two buttons rise
+     3.15 s +        quiet: the glow breathes, nothing else moves
+
+   Namespaced under .hero.v-order-up, keyframes prefixed ou-. No JS.
+   prefers-reduced-motion lands on the final frame.
+   ============================================================ */
+
+.hero.v-order-up{
+  --ou-red:var(--brand,#C4212B);
+  --ou-blue:var(--accent,#1A4F9C);
+  --ou-chip:clamp(30px,3.5vw,50px);
+  --ou-step:.058s;                       /* one lap ends at 2.45 s + .56 s */
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:var(--dark,#14100E);
+  isolation:isolate;
+}
+
+/* ---------- 1. the ground: their building, blurred, graded to dusk ------ */
+.hero.v-order-up .ou-ground{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero.v-order-up .ou-shot{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 42%;display:block;
+  transform:scale(1.10);
+  filter:blur(7px) saturate(.78) brightness(.58) contrast(1.04);
+  animation:ou-wake 1.25s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+}
+/* the sky cools to the sign's own blue, a warm pool sits where it hangs */
+.hero.v-order-up .ou-dusk{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(64% 46% at 50% 46%, rgba(196,33,43,.18), rgba(196,33,43,0) 74%),
+    linear-gradient(180deg,
+      rgba(10,22,54,.70) 0%,
+      rgba(12,20,44,.26) 30%,
+      rgba(9,7,7,.30) 62%,
+      rgba(9,7,7,.74) 100%);
+}
+.hero.v-order-up .ou-vig{
+  position:absolute;inset:0;
+  background:radial-gradient(76% 62% at 50% 50%, rgba(6,4,4,0) 26%, rgba(6,4,4,.66) 100%);
+}
+@keyframes ou-wake{
+  from{opacity:0;transform:scale(1.18)}
+  to  {opacity:1;transform:scale(1.10)}
+}
+
+/* ---------- 2. the stack ---------------------------------------------- */
+.hero.v-order-up .ou-inner{
+  position:relative;z-index:3;
+  width:100%;padding:0 var(--pad,24px);
+  display:flex;flex-direction:column;align-items:center;
+}
+
+.hero.v-order-up .ou-marquee{
+  position:relative;
+  width:min(88vw,720px);
+  padding:clamp(38px,6.4vw,72px) clamp(26px,4.2vw,54px);
+  border-radius:8px;
+}
+/* the panel the mark sits on, so the photo never fights the type */
+.hero.v-order-up .ou-marquee::before{
+  content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;
+  background:rgba(9,7,7,.42);
+  box-shadow:inset 0 0 0 1px rgba(196,33,43,.18), 0 26px 70px rgba(0,0,0,.62);
+}
+/* the flourish: the red glow the lap leaves behind */
+.hero.v-order-up .ou-halo{
+  position:absolute;inset:-18% -10%;z-index:1;pointer-events:none;
+  background:radial-gradient(56% 58% at 50% 50%,
+    rgba(196,33,43,.44), rgba(196,33,43,.15) 50%, rgba(196,33,43,0) 76%);
+  animation:ou-halo-in .85s ease-out 2.30s both,
+            ou-breathe 7.5s ease-in-out 3.20s infinite alternate;
+}
+
+/* ---------- 3. the mark ------------------------------------------------ */
+.hero.v-order-up .ou-mark{
+  position:relative;z-index:2;
+  margin:0;
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:.14em;
+  font-size:clamp(42px,11vw,86px);
+  line-height:1;
+}
+.hero.v-order-up .ou-teri{
+  font-family:var(--display,'Titan One',sans-serif);
+  font-size:1em;letter-spacing:.012em;line-height:.94;
+  filter:drop-shadow(0 3px 0 rgba(16,7,7,.55)) drop-shadow(0 12px 26px rgba(0,0,0,.72));
+}
+/* the sign's own letter shading: red, with the white shine across the middle */
+.hero.v-order-up .ou-teri span{
+  display:inline-block;
+  background:linear-gradient(176deg,
+    #E9333D 0%, #DB2833 30%, #F6C2BE 45%, #CC1E28 54%, #A5151D 78%, #8C1017 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  will-change:opacity,filter;
+  animation:ou-strike .52s ease-out both;
+  animation-delay:calc(.40s + var(--i) * .07s);
+}
+/* the REAL lightbox off their building */
+.hero.v-order-up .ou-box{
+  display:block;height:.78em;width:auto;
+  margin-bottom:.055em;border-radius:5px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.18),
+             0 10px 26px rgba(0,0,0,.6),
+             0 0 26px 5px rgba(26,79,156,.36);
+  animation:ou-boxlight .62s ease-out 1.15s both;
+}
+
+/* ---------- 4. the lap: their five real order codes -------------------- */
+.hero.v-order-up .ou-edge{position:absolute;z-index:4;display:flex;pointer-events:none}
+.hero.v-order-up .ou-top,
+.hero.v-order-up .ou-bottom{
+  left:clamp(14px,2.2vw,30px);right:clamp(14px,2.2vw,30px);
+  justify-content:space-between;align-items:center;
+}
+.hero.v-order-up .ou-top{top:0;transform:translateY(-50%)}
+.hero.v-order-up .ou-bottom{bottom:0;transform:translateY(50%);flex-direction:row-reverse}
+.hero.v-order-up .ou-left,
+.hero.v-order-up .ou-right{
+  top:clamp(12px,2vw,26px);bottom:clamp(12px,2vw,26px);
+  flex-direction:column;justify-content:space-between;align-items:center;
+}
+.hero.v-order-up .ou-right{right:0;transform:translateX(50%)}
+.hero.v-order-up .ou-left{left:0;transform:translateX(-50%);flex-direction:column-reverse}
+
+.hero.v-order-up .ou-chip{
+  display:block;width:var(--ou-chip);border-radius:4px;overflow:hidden;
+  line-height:0;font-style:normal;
+  animation:ou-chase .56s var(--ease-2,cubic-bezier(.22,.85,.3,1)) both;
+  animation-delay:calc(1.35s + var(--b) * var(--ou-step));
+}
+.hero.v-order-up .ou-chip img{display:block;width:100%;height:auto}
+
+/* ---------- 5. buttons ------------------------------------------------- */
+.hero.v-order-up .ou-actions{
+  position:relative;z-index:3;
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  margin-top:clamp(26px,4vh,44px);
+  animation:ou-rise .6s var(--ease,cubic-bezier(.22,.85,.3,1)) 2.55s both;
+}
+
+/* ---------- 6. the hem — the dusk pours into the hours band ------------ */
+.hero.v-order-up .ou-hem{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  height:9vh;max-height:96px;pointer-events:none;
+  background:linear-gradient(to bottom, rgba(241,232,214,0), var(--bg,#F1E8D6));
+}
+
+/* ---------- keyframes -------------------------------------------------- */
+@keyframes ou-strike{
+  0%  {opacity:0;filter:brightness(.45)}
+  8%  {opacity:1;filter:brightness(2.6)}
+  16% {opacity:.12;filter:brightness(.6)}
+  28% {opacity:1;filter:brightness(2.2)}
+  36% {opacity:.20;filter:brightness(.6)}
+  52% {opacity:1;filter:brightness(1.8)}
+  64% {opacity:.74;filter:brightness(1.2)}
+  100%{opacity:1;filter:brightness(1)}
+}
+@keyframes ou-boxlight{
+  0%  {opacity:0;filter:brightness(.30) saturate(.45);
+       box-shadow:0 0 0 1px rgba(255,255,255,.06), 0 10px 26px rgba(0,0,0,.6), 0 0 0 0 rgba(26,79,156,0)}
+  14% {opacity:1;filter:brightness(2.0) saturate(1.1)}
+  26% {opacity:.32;filter:brightness(.7) saturate(.6)}
+  46% {opacity:1;filter:brightness(1.75) saturate(1.1)}
+  62% {opacity:.82;filter:brightness(1.1)}
+  100%{opacity:1;filter:brightness(1.04) saturate(1);
+       box-shadow:0 0 0 1px rgba(255,255,255,.18), 0 10px 26px rgba(0,0,0,.6), 0 0 26px 5px rgba(26,79,156,.36)}
+}
+@keyframes ou-chase{
+  0%  {filter:brightness(.26) saturate(.34) contrast(.92);transform:scale(1);
+       box-shadow:0 0 0 1px rgba(0,0,0,.5)}
+  26% {filter:brightness(1.9) saturate(1.18) contrast(1);transform:scale(1.30);
+       box-shadow:0 0 12px 3px rgba(255,214,168,.9), 0 0 30px 11px rgba(196,33,43,.48), 0 0 0 1px rgba(0,0,0,.4)}
+  100%{filter:brightness(1.06) saturate(1.06) contrast(1);transform:scale(1);
+       box-shadow:0 0 7px 1px rgba(196,33,43,.52), 0 0 20px 6px rgba(196,33,43,.24), 0 0 0 1px rgba(0,0,0,.42)}
+}
+@keyframes ou-halo-in{from{opacity:0}to{opacity:1}}
+@keyframes ou-breathe{
+  from{opacity:1;transform:scale(1)}
+  to  {opacity:.72;transform:scale(1.05)}
+}
+@keyframes ou-rise{
+  from{opacity:0;transform:translateY(14px)}
+  to  {opacity:1;transform:none}
+}
+
+/* ---------- phones ----------------------------------------------------- */
+@media (max-width:640px){
+  .hero.v-order-up{--ou-step:.055s}
+  .hero.v-order-up .ou-marquee{
+    width:min(88vw,430px);
+    padding:clamp(34px,9vw,48px) clamp(22px,6vw,32px);
+  }
+  .hero.v-order-up .ou-actions{width:100%;gap:10px}
+  .hero.v-order-up .ou-actions .btn{flex:1 1 46%;padding:13px 10px;font-size:14px}
+  .hero.v-order-up .ou-hem{height:9vh}
+}
+/* small phones: keep the lockup off the chip columns */
+@media (max-width:390px){
+  .hero.v-order-up{--ou-chip:28px}
+  .hero.v-order-up .ou-mark{font-size:clamp(38px,10.4vw,86px)}
+}
+
+/* ---------- reduced motion: the final frame, immediately --------------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-order-up .ou-shot,
+  .hero.v-order-up .ou-halo,
+  .hero.v-order-up .ou-teri span,
+  .hero.v-order-up .ou-box,
+  .hero.v-order-up .ou-chip,
+  .hero.v-order-up .ou-actions{animation:none!important}
+  .hero.v-order-up .ou-shot{opacity:1;transform:scale(1.12)}
+  .hero.v-order-up .ou-halo{opacity:1}
+  .hero.v-order-up .ou-teri span{opacity:1;filter:brightness(1)}
+  .hero.v-order-up .ou-box{opacity:1;filter:brightness(1.04)}
+  .hero.v-order-up .ou-chip{
+    filter:brightness(1.06) saturate(1.06);transform:none;
+    box-shadow:0 0 7px 1px rgba(196,33,43,.52), 0 0 20px 6px rgba(196,33,43,.24), 0 0 0 1px rgba(0,0,0,.42);
+  }
+  .hero.v-order-up .ou-actions{opacity:1;transform:none}
+}

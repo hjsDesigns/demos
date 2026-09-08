@@ -1,0 +1,198 @@
+/* ============================================================
+   TERIYAKI TOWN — hero variant: STEAM-SIGN (2026-09-08)
+   Their real sign comes up off a hot plate of their own food.
+
+   Real assets only, no type standing in for the mark:
+     images/steam-sign-teriyaki.png  — the eight red channel letters with
+       their black returns, keyed to alpha out of harvest/g15.jpg (their own
+       photograph of 5605 112th St E) and rotated 5.6 deg to level the
+       camera tilt. Not redrawn.
+     images/steam-sign-town.png      — the separate blue TOWN lightbox from
+       the same photograph, same key, same rotation.
+     images/steam-sign-plate-tall.jpg / -wide.jpg — their own T1 chicken
+       teriyaki plate photo (images/dish-t1.jpg) on the crimson silk, warm-
+       graded, darkened, vignetted and blurred INTO THE FILE so nothing has
+       to be filtered at runtime. The T1 menu badge is cropped out.
+
+   Everything is namespaced under .hero.v-steam-sign; every keyframe is
+   prefixed ss3-. No JS. One deterministic pass, finished at 2.90 s:
+     0.00  the plate comes up into the light
+     0.10  five steam columns start rising off it (3 behind, 2 in front)
+     0.55  the mark lifts 54 px up through the steam, out of a 9 px blur
+     1.45  the warm glow blooms behind it and settles
+     1.90  the two buttons rise
+     2.90  the steam has thinned out — still, bar an 8 s breath on the glow
+   prefers-reduced-motion lands on that final frame immediately.
+   ============================================================ */
+
+.hero.v-steam-sign{
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  min-height:calc(100svh - var(--header-h));
+  overflow:hidden;
+  background:#170B08;                 /* the darkest corner of their own silk */
+  color:#F6ECD9;
+  isolation:isolate;
+}
+
+/* ---------- 1. the plate, blurred and warm, coming up into the light ---------- */
+.hero.v-steam-sign .ss3-ground{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero.v-steam-sign .ss3-shot{
+  width:100%; height:100%; display:block;
+  object-fit:cover; object-position:50% 56%;
+  transform:scale(1.045);
+  animation:ss3-wake 1.35s var(--ease,cubic-bezier(.22,.85,.3,1)) both;
+}
+@keyframes ss3-wake{
+  from{opacity:.45; transform:scale(1.10)}
+  to  {opacity:1;   transform:scale(1.045)}
+}
+
+/* the heat the plate throws up into the frame */
+.hero.v-steam-sign .ss3-heat{
+  position:absolute; left:50%; bottom:-14%; z-index:1;
+  width:min(150vw,1600px); height:78%;
+  transform:translateX(-50%);
+  pointer-events:none; mix-blend-mode:screen; opacity:0;
+  background:radial-gradient(closest-side,
+    rgba(255,178,92,.30), rgba(255,138,58,.11) 54%, rgba(255,130,50,0) 78%);
+  animation:ss3-heat 2.4s var(--ease,ease-out) .20s both;
+}
+@keyframes ss3-heat{from{opacity:0;transform:translateX(-50%) translateY(10%) scale(.86)}
+                    to  {opacity:1;transform:translateX(-50%) translateY(0)   scale(1)}}
+
+/* the pool the mark sits in, so the sign never fights the rice for the eye */
+.hero.v-steam-sign .ss3-pool{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    radial-gradient(64% 38% at 50% 47%, rgba(30,8,7,.76) 0%, rgba(30,8,7,.46) 46%, rgba(30,8,7,0) 78%),
+    linear-gradient(180deg, rgba(30,8,7,.52) 0%, rgba(30,8,7,.06) 34%, rgba(28,9,7,.22) 68%, rgba(23,11,8,.66) 100%);
+}
+
+/* ---------- 2. the steam ---------- */
+.hero.v-steam-sign .ss3-steam{position:absolute;inset:0;pointer-events:none}
+.hero.v-steam-sign .ss3-back {z-index:2}
+.hero.v-steam-sign .ss3-front{z-index:5}
+.hero.v-steam-sign .ss3-steam i{
+  position:absolute; display:block;
+  left:var(--x); bottom:-12%;
+  width:var(--w); height:var(--h);
+  margin-left:calc(var(--w) / -2);
+  border-radius:50%;
+  background:radial-gradient(closest-side,
+    rgba(255,249,238,.95), rgba(255,240,220,.38) 44%, rgba(255,234,210,0) 74%);
+  filter:blur(12px);
+  mix-blend-mode:screen;
+  opacity:0;
+  will-change:transform,opacity;
+  animation:ss3-rise var(--dur) cubic-bezier(.28,.62,.34,1) var(--d) both;
+}
+@keyframes ss3-rise{
+  0%  {opacity:0;   transform:translate3d(0,6vh,0)                 scale(.46)}
+  14% {opacity:1}
+  56% {opacity:.62}
+  100%{opacity:0;   transform:translate3d(var(--dx),-62vh,0)       scale(1.7)}
+}
+/* the one trace left after it has thinned — barely there, never asks for you */
+.hero.v-steam-sign .ss3-wisp{
+  animation:ss3-trace 11s ease-in-out 3.15s infinite both;
+}
+@keyframes ss3-trace{
+  0%  {opacity:0;   transform:translate3d(0,2vh,0)           scale(.7)}
+  35% {opacity:.13}
+  100%{opacity:0;   transform:translate3d(var(--dx),-52vh,0) scale(1.6)}
+}
+
+/* ---------- 3. the mark ---------- */
+.hero.v-steam-sign .ss3-inner{
+  position:relative; z-index:4;
+  width:100%; max-width:var(--maxw); padding:0 var(--pad);
+  display:flex; flex-direction:column; align-items:center;
+  gap:clamp(26px,5.2vh,52px);
+}
+
+/* the two pieces sit in the spacing they have on the real sign:
+   TERIYAKI 75.717% · gap 0.801% · TOWN 23.482%, TOWN dropped 2.335%
+   (percentage margins resolve against the container's width, so the drop
+   scales with the mark at every size) */
+.hero.v-steam-sign .ss3-mark{
+  position:relative;
+  width:min(92vw,980px);
+  display:flex; align-items:flex-start; justify-content:center;
+  gap:.801%;
+  animation:ss3-lift 1.25s cubic-bezier(.18,.78,.24,1) .55s both;
+}
+@keyframes ss3-lift{
+  0%  {opacity:0; transform:translateY(54px) scale(.955); filter:blur(9px)}
+  45% {opacity:.88}
+  100%{opacity:1; transform:none;                          filter:blur(0)}
+}
+.hero.v-steam-sign .ss3-teri{
+  width:75.717%; height:auto; display:block;
+  filter:drop-shadow(0 12px 26px rgba(0,0,0,.62)) drop-shadow(0 0 26px rgba(255,150,70,.20));
+}
+.hero.v-steam-sign .ss3-town{
+  width:23.482%; height:auto; display:block; margin-top:2.335%;
+  filter:drop-shadow(0 12px 26px rgba(0,0,0,.62)) drop-shadow(0 0 22px rgba(60,130,235,.24));
+}
+
+/* the warm glow it settles into */
+.hero.v-steam-sign .ss3-halo{
+  position:absolute; z-index:-1; inset:-150% -14%;
+  pointer-events:none; opacity:0;
+  background:radial-gradient(46% 50% at 50% 50%,
+    rgba(255,190,112,.50), rgba(255,138,62,.15) 54%, rgba(255,130,55,0) 78%);
+  filter:blur(16px);
+  animation:
+    ss3-halo 1.10s var(--ease,ease-out) 1.45s both,
+    ss3-breathe 8s ease-in-out 3.20s infinite;
+}
+@keyframes ss3-halo{from{opacity:0;transform:scale(.80)} to{opacity:1;transform:none}}
+@keyframes ss3-breathe{0%,100%{opacity:1} 50%{opacity:.86}}
+
+/* ---------- 4. the two buttons the page already had ---------- */
+.hero.v-steam-sign .hero-actions{
+  display:flex; flex-wrap:wrap; gap:13px; justify-content:center;
+  animation:ss3-up .60s var(--ease,cubic-bezier(.22,.85,.3,1)) 1.90s both;
+}
+@keyframes ss3-up{from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none}}
+.hero.v-steam-sign .btn-primary{box-shadow:0 18px 40px -18px rgba(196,33,43,.9)}
+.hero.v-steam-sign .btn-cream{box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
+
+/* ---------- 5. the hem — the frame closes down into the hours band ---------- */
+.hero.v-steam-sign .ss3-hem{
+  position:absolute; left:0; right:0; bottom:0; z-index:6;
+  height:20vh; max-height:170px; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(23,11,8,0), rgba(23,11,8,.72) 62%, rgba(23,11,8,.94));
+}
+
+/* ---------- phones: TOWN stacks under TERIYAKI so the letters stay big ---------- */
+@media (max-width:640px){
+  .hero.v-steam-sign .ss3-mark{
+    width:min(94vw,430px);
+    flex-direction:column; align-items:center;
+    gap:clamp(12px,2.4vh,20px);
+  }
+  .hero.v-steam-sign .ss3-teri{width:100%}
+  .hero.v-steam-sign .ss3-town{width:38%; margin-top:0}
+  .hero.v-steam-sign .ss3-halo{inset:-56% -16%}
+  .hero.v-steam-sign .hero-actions{gap:10px; width:100%}
+  .hero.v-steam-sign .hero-actions .btn{flex:1 1 auto; padding:13px 12px; font-size:14px}
+  .hero.v-steam-sign .ss3-hem{height:15vh}
+}
+
+/* ---------- reduced motion: the last frame, immediately ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-steam-sign .ss3-shot,
+  .hero.v-steam-sign .ss3-heat,
+  .hero.v-steam-sign .ss3-steam i,
+  .hero.v-steam-sign .ss3-mark,
+  .hero.v-steam-sign .ss3-halo,
+  .hero.v-steam-sign .hero-actions{animation:none !important}
+  .hero.v-steam-sign .ss3-shot{opacity:1; transform:scale(1.045)}
+  .hero.v-steam-sign .ss3-heat{opacity:1; transform:translateX(-50%)}
+  .hero.v-steam-sign .ss3-steam i{opacity:0}
+  .hero.v-steam-sign .ss3-mark{opacity:1; transform:none; filter:none}
+  .hero.v-steam-sign .ss3-halo{opacity:1; transform:none}
+  .hero.v-steam-sign .hero-actions{opacity:1; transform:none}
+}

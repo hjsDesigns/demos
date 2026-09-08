@@ -1,0 +1,328 @@
+/* ============================================================
+   TERIYAKI TOWN — HERO VARIANT "DRIVE-UP"   (2026-09-08)
+   Namespaced entirely under .hero.v-drive-up. Every keyframe is
+   prefixed du-. Every colour comes from css/style.css tokens
+   (--brand #C4212B = the red channel letters, --accent #1A4F9C =
+   the blue TOWN lightbox, --dark, --paper, --header-h, --pad, --maxw).
+
+   Out & About's park-in energy applied to the building: headlights
+   swing across the storefront, the sign lights in the wake, the mark
+   stamps as the light leaves, one glare, then still.
+
+   Layer / z map inside .du-stage
+     0  .du-plate   the photograph — .du-shot (night) + .du-lit (lit,
+                    masked to the sign / neon) + the halos
+     1  .du-night   the cool night air, deepest at the edges
+     2  .du-beamclip the two headlight cones + their spill  (screen),
+                    clipped to the building so no light lands in the sky
+     3  .du-hem     the pour into the hours band
+     4  .du-inner   the mark + the two buttons
+   ============================================================ */
+
+.hero.v-drive-up{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) clamp(26px,6vh,62px);
+  overflow:hidden;isolation:isolate;
+  background:#08070A;                 /* the lot before the lights — never flat black */
+  color:var(--paper);
+
+  --du-in:.12s;                       /* the beams enter */
+  --du-sweep:1.30s;                   /* how long the swing takes */
+  --du-curve:cubic-bezier(.25,.55,.35,1);   /* in fast, settling as it crosses */
+  --du-navy:color-mix(in srgb, var(--accent) 52%, #05070C);
+}
+
+/* <picture> is a wrapper only — the <img> is the positioned child */
+.hero.v-drive-up picture{display:contents}
+
+.hero.v-drive-up .du-stage{position:absolute;inset:0;z-index:0}
+.hero.v-drive-up .du-plate{position:absolute;inset:0;overflow:hidden;
+  display:grid;place-items:center}
+
+/* THE PHOTOGRAPH'S OWN BOX. aspect-ratio + min-width/min-height grows it to
+   cover the hero and the grid centres it — the same result object-fit:cover
+   gives, except the box itself is now the picture, so every overlay inside
+   can be positioned in IMAGE percentages and stays registered at any size.
+   (object-fit alone shifts the picture inside a differently-shaped element,
+   which slid the sign mask ~8% off at tablet widths.) */
+.hero.v-drive-up .du-frame{
+  position:relative;
+  aspect-ratio:1800 / 1012;
+  min-width:100%;min-height:100%;
+  width:auto;height:auto;
+}
+.hero.v-drive-up .du-shot,
+.hero.v-drive-up .du-lit{
+  position:absolute;inset:0;
+  width:100%;height:100%;display:block;
+  object-fit:fill;
+}
+
+/* ---- 1. the lot after dark ------------------------------------------ */
+.hero.v-drive-up .du-shot{
+  filter:brightness(.32) saturate(.52) contrast(1.10);
+  animation:duLot 1.40s var(--du-curve) var(--du-in) 1 both;
+}
+@keyframes duLot{
+  0%  {filter:brightness(.17) saturate(.36) contrast(1.16)}
+  55% {filter:brightness(.28) saturate(.47) contrast(1.11)}
+  100%{filter:brightness(.32) saturate(.52) contrast(1.10)}
+}
+
+/* ---- 2. the wake: the same photo at full exposure, masked to the sign
+          (plus the OPEN neon on phones) and wiped in behind the beam --- */
+/* the sky never lights: the lit copy is clipped to the BUILDING, along the
+   real roofline measured off the photograph itself (19.0% at the left edge
+   falling to 42.4% at the right on storefront-wide.jpg) */
+.hero.v-drive-up .du-litwrap{
+  position:absolute;inset:0;
+  clip-path:polygon(0% 19.0%, 100% 42.4%, 100% 100%, 0% 100%);
+  /* THE WAKE — a soft-edged wipe travelling left → right just behind the
+     beam, so the light doesn't leave a hard seam on the wall */
+  -webkit-mask-image:linear-gradient(90deg,#000 0 42%, rgba(0,0,0,.45) 50%, transparent 58%);
+          mask-image:linear-gradient(90deg,#000 0 42%, rgba(0,0,0,.45) 50%, transparent 58%);
+  -webkit-mask-size:220% 100%;mask-size:220% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:0% 0;mask-position:0% 0;
+  animation:duWake .78s cubic-bezier(.2,.7,.35,1) .28s 1 both;
+}
+.hero.v-drive-up .du-lit{
+  filter:brightness(1.14) saturate(1.16) contrast(1.02);
+  /* landscape frame = storefront-wide.jpg: the sign sits at 45.5% / 46% */
+  -webkit-mask-image:radial-gradient(ellipse 34% 18% at 45.5% 46%, #000 0 56%, transparent 100%);
+          mask-image:radial-gradient(ellipse 34% 18% at 45.5% 46%, #000 0 56%, transparent 100%);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+}
+@keyframes duWake{
+  from{-webkit-mask-position:100% 0;mask-position:100% 0}
+  to  {-webkit-mask-position:0% 0;mask-position:0% 0}
+}
+
+/* the halo the white-and-red sign throws back once the light is on it */
+.hero.v-drive-up .du-signglow{
+  position:absolute;left:45.5%;top:45%;width:74%;height:42%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;mix-blend-mode:screen;opacity:0;
+  background:radial-gradient(closest-side,
+     color-mix(in srgb, var(--brand) 34%, transparent),
+     color-mix(in srgb, var(--brand) 11%, transparent) 52%,
+     transparent 78%);
+  animation:duHalo .95s ease-out .58s 1 both;
+}
+@keyframes duHalo{
+  0%  {opacity:0}
+  45% {opacity:.95}
+  100%{opacity:.62}
+}
+
+/* the OPEN neon in the door glass — phones only (the door is only in the
+   phone frame; the landscape photograph is the sign alone) */
+.hero.v-drive-up .du-neon{display:none}
+
+/* ---- 3. the cool night air ------------------------------------------ */
+.hero.v-drive-up .du-night{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 82% at 50% 34%, transparent 0%,
+       color-mix(in srgb, var(--du-navy) 28%, transparent) 58%,
+       color-mix(in srgb, var(--du-navy) 74%, transparent) 100%),
+    linear-gradient(180deg,
+       color-mix(in srgb, var(--du-navy) 62%, transparent) 0%,
+       color-mix(in srgb, var(--du-navy) 16%, transparent) 34%,
+       transparent 52%,
+       color-mix(in srgb, #05060A 74%, transparent) 100%);
+}
+
+/* ---- 4. the headlights ---------------------------------------------- */
+/* the beams only exist where they'd really land — on the building, along
+   the same measured roofline as the lit copy. No searchlights in the sky. */
+.hero.v-drive-up .du-beamclip{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  clip-path:polygon(0% 19.0%, 100% 42.4%, 100% 100%, 0% 100%);
+}
+.hero.v-drive-up .du-beams{
+  position:absolute;inset:0;pointer-events:none;
+  mix-blend-mode:screen;will-change:transform;
+  animation:duSweep var(--du-sweep) var(--du-curve) var(--du-in) 1 both;
+}
+@keyframes duSweep{
+  from{transform:translate3d(-90%,0,0)}
+  to  {transform:translate3d(70%,0,0)}
+}
+
+/* the wide warm wash the pair throws across the whole front */
+.hero.v-drive-up .du-spill{
+  position:absolute;left:19%;top:14%;width:72%;height:92%;
+  background:radial-gradient(closest-side,
+     rgba(255,238,206,.34), rgba(255,224,168,.12) 46%, transparent 76%);
+}
+
+/* the two low beams — wide, shallow pools of light on the wall, leaning the
+   way a car's beams lean as it swings in; the right one a touch ahead */
+.hero.v-drive-up .du-beam{
+  position:absolute;height:52%;width:30%;
+  transform:skewX(-7deg);
+  background:
+    radial-gradient(closest-side, rgba(255,252,240,.80), rgba(255,236,192,.30) 44%, transparent 76%);
+}
+.hero.v-drive-up .du-beam::after{
+  content:"";position:absolute;left:50%;top:50%;width:52%;height:44%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side, rgba(255,255,255,.88), rgba(255,246,220,.38) 48%, transparent 80%);
+}
+.hero.v-drive-up .du-beam-l{left:30%;top:40%;opacity:.90}
+.hero.v-drive-up .du-beam-r{left:48%;top:34%;opacity:1}
+
+/* ---- 5. the hem — the hero pours into the hours band ---------------- */
+.hero.v-drive-up .du-hem{
+  position:absolute;left:0;right:0;bottom:0;height:46%;z-index:3;pointer-events:none;
+  background:linear-gradient(to bottom, transparent 0%,
+     color-mix(in srgb, #05060A 46%, transparent) 46%,
+     color-mix(in srgb, #05060A 86%, transparent) 100%);
+}
+
+/* ---- 6. the mark — live Titan One in the sign's own colours --------- */
+.hero.v-drive-up .du-inner{
+  position:relative;z-index:4;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+}
+.hero.v-drive-up .du-mark{
+  position:relative;
+  margin:0 0 clamp(16px,2.6vh,26px);
+  font-family:var(--display);text-transform:uppercase;
+  line-height:.92;letter-spacing:.005em;
+  font-size:clamp(2.9rem,11.5vw,6.4rem);
+  display:flex;flex-wrap:wrap;align-items:center;gap:.16em;
+}
+.hero.v-drive-up .du-teri{
+  color:var(--brand);
+  -webkit-text-stroke:.012em var(--paper);
+  text-shadow:0 .035em 0 color-mix(in srgb, var(--paper) 80%, transparent),
+              0 .10em .26em color-mix(in srgb, #000 62%, transparent);
+}
+.hero.v-drive-up .du-box{
+  color:var(--paper);background:var(--accent);
+  padding:.1em .2em .14em;border-radius:.06em;
+  box-shadow:inset 0 -.1em 0 color-mix(in srgb, #000 32%, transparent),
+             0 .06em .24em color-mix(in srgb, #000 52%, transparent);
+}
+.hero.v-drive-up .du-teri,
+.hero.v-drive-up .du-box{
+  animation:duStamp .46s cubic-bezier(.2,.92,.28,1.02) 1.42s 1 both;
+}
+.hero.v-drive-up .du-box{animation-delay:1.50s}
+@keyframes duStamp{
+  0%  {opacity:0;transform:scale(1.5) translateY(-.10em);filter:blur(9px)}
+  55% {opacity:1;transform:scale(.965) translateY(0);filter:blur(0)}
+  78% {transform:scale(1.012)}
+  100%{opacity:1;transform:none;filter:blur(0)}
+}
+
+/* ONE flourish: the last of the headlights rakes across the name */
+.hero.v-drive-up .du-glare{
+  position:absolute;left:0;top:-8%;width:100%;height:116%;
+  pointer-events:none;mix-blend-mode:screen;opacity:0;
+  background:linear-gradient(104deg, transparent 34%,
+     rgba(255,247,226,.72) 46%, rgba(255,255,255,.9) 50%,
+     rgba(255,247,226,.72) 54%, transparent 66%);
+  background-size:260% 100%;background-repeat:no-repeat;
+  animation:duGlare .58s ease-in-out 1.88s 1 both;
+}
+@keyframes duGlare{
+  0%  {opacity:0;background-position:-130% 0}
+  18% {opacity:1}
+  82% {opacity:1}
+  100%{opacity:0;background-position:130% 0}
+}
+
+/* ---- 7. the two buttons, unchanged --------------------------------- */
+.hero.v-drive-up .du-actions{
+  display:flex;flex-wrap:wrap;gap:.7rem;
+  animation:duUp .5s var(--ease) 2.00s 1 both;
+}
+@keyframes duUp{from{opacity:0;transform:translateY(11px)}to{opacity:1;transform:none}}
+.hero.v-drive-up .btn-cream{background:var(--paper);color:var(--ink)}
+
+/* ============================================================
+   PHONES / PORTRAIT — the whole building is in frame, so the
+   crop, the mask and the neon all move to the taller photograph.
+   ============================================================ */
+@media (max-width:820px){
+  .hero.v-drive-up .du-frame{aspect-ratio:758 / 1500}
+
+  /* the phone crop's own roofline: 25.6% at the left edge to 32.4% at the right */
+  .hero.v-drive-up .du-litwrap,
+  .hero.v-drive-up .du-beamclip{
+    clip-path:polygon(0% 25.6%, 100% 32.4%, 100% 100%, 0% 100%);
+  }
+  /* the sign sits at 52% / 36% of the phone crop, the neon at 73% / 63% */
+  .hero.v-drive-up .du-lit{
+    -webkit-mask-image:
+      radial-gradient(ellipse 46% 9% at 52% 36%, #000 0 56%, transparent 100%),
+      radial-gradient(ellipse 11% 5.2% at 73% 63%, #000 0 48%, transparent 100%);
+            mask-image:
+      radial-gradient(ellipse 46% 9% at 52% 36%, #000 0 56%, transparent 100%),
+      radial-gradient(ellipse 11% 5.2% at 73% 63%, #000 0 48%, transparent 100%);
+  }
+  .hero.v-drive-up .du-signglow{left:52%;top:36%;width:104%;height:24%}
+  .hero.v-drive-up .du-beam{height:36%;width:34%}
+  .hero.v-drive-up .du-beam-l{left:27%;top:46%}
+  .hero.v-drive-up .du-beam-r{left:48%;top:38%}
+  .hero.v-drive-up .du-spill{left:15%;top:22%;width:82%;height:74%}
+
+  .hero.v-drive-up .du-neon{
+    display:block;position:absolute;left:73%;top:63%;
+    width:40%;height:15%;transform:translate(-50%,-50%);
+    pointer-events:none;mix-blend-mode:screen;opacity:0;
+    background:
+      radial-gradient(closest-side, rgba(255,120,96,.86), rgba(255,64,48,.30) 40%, transparent 72%),
+      radial-gradient(closest-side at 50% 50%, rgba(150,200,255,.34), transparent 62%);
+    animation:duNeon .50s steps(1,end) 1.15s 1 both,
+              duBreath 7.5s ease-in-out 2.55s infinite;
+  }
+  @keyframes duNeon{
+    0%  {opacity:0}
+    16% {opacity:.95}
+    30% {opacity:.10}
+    48% {opacity:1}
+    60% {opacity:.36}
+    100%{opacity:1}
+  }
+  @keyframes duBreath{0%,100%{opacity:1} 50%{opacity:.80}}
+
+  .hero.v-drive-up .du-hem{height:40%}
+  .hero.v-drive-up .du-mark{font-size:clamp(2.7rem,12.4vw,3.6rem)}
+  .hero.v-drive-up .du-actions{gap:.6rem;width:100%}
+  .hero.v-drive-up .du-actions .btn{flex:1 1 46%;min-width:0;padding:13px 12px;font-size:14px}
+}
+
+/* short landscape phones: keep the sign clear of the mark */
+@media (max-height:520px){
+  .hero.v-drive-up .du-mark{font-size:clamp(2.2rem,7vw,3rem)}
+}
+
+/* ============================================================
+   REDUCED MOTION — land on the final frame, immediately.
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-drive-up .du-shot,
+  .hero.v-drive-up .du-lit,
+  .hero.v-drive-up .du-signglow,
+  .hero.v-drive-up .du-neon,
+  .hero.v-drive-up .du-beams,
+  .hero.v-drive-up .du-teri,
+  .hero.v-drive-up .du-box,
+  .hero.v-drive-up .du-glare,
+  .hero.v-drive-up .du-actions{animation:none !important}
+  .hero.v-drive-up .du-litwrap{animation:none !important;
+    -webkit-mask-position:0% 0;mask-position:0% 0}
+  .hero.v-drive-up .du-signglow{opacity:.62}
+  .hero.v-drive-up .du-neon{opacity:1}
+  .hero.v-drive-up .du-beams{opacity:0}
+  .hero.v-drive-up .du-glare{opacity:0}
+  .hero.v-drive-up .du-teri,
+  .hero.v-drive-up .du-box,
+  .hero.v-drive-up .du-actions{opacity:1;transform:none;filter:none}
+}
