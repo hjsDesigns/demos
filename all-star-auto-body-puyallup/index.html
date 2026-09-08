@@ -10,8 +10,8 @@
 <!-- Archivo Black (display — the squared, heavy sign lettering on their banner)
      + Barlow (body). Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907164944">
-<link rel="stylesheet" href="css/hero.css?v=0907164944">
+<link rel="stylesheet" href="css/style.css?v=0907174334">
+<link rel="stylesheet" href="css/hero.css?v=0907174334">
 </head>
 <body>
 
@@ -61,21 +61,35 @@
        is pulled straight. The repaired half is the sign's OWN perfect half
        reflected across the divider line the sign painter drew; no new artwork.
        It settles on a whole car and holds. -->
-  <section class="hero" id="hero">
+  <!-- ===================== #hero — variant 8: "star-light" =====================
+       The "star" in All Star, read literally: their shop after dark, and the
+       bay light striking on. Nothing is drawn or invented. The wall is their
+       own red barn siding + stone veneer at 2906 E Main (images/claude-hero-wall.jpg,
+       cropped from harvest hero-stack-1), graded down to night. The mark is
+       their own vinyl banner, cropped and deskewed out of their own photograph
+       (images/claude-sign.jpg) — the white banner is what the light lands on.
+
+       One deterministic intro, once, no interaction: black shop, then an old
+       fluorescent tube strikes with two stutters, catches, and floods the wall
+       and the banner warm. After that the only motion is the ballast breathing
+       in the tube. Reduced motion lands on the lit frame. -->
+  <section class="hero v-star-light" id="hero">
     <div class="hero-bg">
       <img src="images/claude-hero-wall.jpg" alt="" width="1800" height="1620" fetchpriority="high">
     </div>
 
+    <span class="sl-night" aria-hidden="true"></span>
+    <span class="sl-cone"  aria-hidden="true"></span>
+    <span class="sl-pool"  aria-hidden="true"></span>
+
     <div class="hero-inner">
       <h1 class="sr-only">All Star Auto Body — collision, paint and panel work at 2906 E Main Ave, Puyallup, Washington. Call 206-928-1600.</h1>
 
-      <div class="as-stage">
-        <div class="as-sign" role="img"
+      <div class="sl-stage">
+        <div class="sl-sign" role="img"
              aria-label="All Star Auto Body's banner sign: a red car wrecked down its left half and perfect down its right, over the phone number 206.928.1600">
-          <img class="as-sign-base"  src="images/claude-sign.jpg"       alt="" width="1380" height="642" fetchpriority="high">
-          <img class="as-sign-fixed" src="images/claude-sign-fixed.jpg" alt="" width="1380" height="642" aria-hidden="true">
-          <span class="as-dim"   aria-hidden="true"></span>
-          <span class="as-sweep" aria-hidden="true"></span>
+          <span class="sl-glow" aria-hidden="true"></span>
+          <img src="images/claude-sign.jpg" alt="" width="1380" height="642" fetchpriority="high">
         </div>
       </div>
 
@@ -360,6 +374,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907164944"></script>
+<script src="js/site.js?v=0907174334"></script>
 </body>
 </html>
