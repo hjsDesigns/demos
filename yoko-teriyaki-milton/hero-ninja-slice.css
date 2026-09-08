@@ -1,0 +1,271 @@
+/* ============================================================
+   YOKO TERIYAKI — HERO VARIANT "ninja-slice"
+   Namespaced under .hero.v-ninja-slice, unique keyframes (ns*).
+
+   Built on neon-yoko's skeleton and its exact assets — nothing re-harvested:
+     images/neon-yoko-ground.jpg    their night storefront, out of focus
+     images/neon-yoko-mark.png      the REAL lit TERIYAKI letters, cut off the
+                                    fascia and levelled — never redrawn
+     images/neon-yoko-mark-hot.png  the same crop blown out (the shine)
+     images/neon-yoko-glow.png      the red those letters throw back (baked)
+
+   The idea: eight red ninja slashes come through, and each one CUTS IN one
+   letter. The mark is a single PNG, so each letter is that same PNG under its
+   own clip-path window — the 8 x-ranges were measured off the alpha channel
+   with PIL (flood-fill components + the density valleys inside the merged
+   YAK blob), in px on the 1151-wide original:
+     T 0–208 · E 208–400 · R 400–570 · I 570–660 ·
+     Y 660–780 · A 780–895 · K 895–1012 · I 1012–1151
+
+   Timeline (once, deterministic, CSS only, rest at 3.05s):
+     0.00–0.60  the night comes up
+     0.25       slash 1 … 1.23 slash 8, every 0.14s, each a 0.12s swipe
+     +0.055     each letter snaps in behind its own slash with a 3px jolt
+     1.30–2.10  the red halo blooms to rest
+     1.50–1.70  "Yoko" snaps on
+     1.78–2.06  Yoko blinks twice
+     2.10–2.38  the red letters blink twice
+     2.42–2.92  one shine sweeps across both
+     2.35–3.05  the two buttons rise
+   ============================================================ */
+
+.hero.v-ninja-slice{
+  --ns-w:min(86vw,430px);        /* the mark's width — everything scales off it */
+  --ns-red:#FF3B30;              /* the blade */
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:clamp(26px,5vh,60px) 0;
+  overflow:hidden;isolation:isolate;
+  background:#070A12;
+  color:#F3EEE3;
+}
+
+/* ---------- the ground ---------- */
+.hero.v-ninja-slice .ns-ground{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero.v-ninja-slice .ns-ground-img{
+  position:absolute;inset:-4%;display:block;
+  background:url("images/neon-yoko-ground.jpg") center 42%/cover no-repeat;
+  transform-origin:52% 40%;
+}
+.hero.v-ninja-slice .ns-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 70% at 50% 40%,rgba(7,10,18,0) 34%,rgba(7,10,18,.55) 78%,rgba(7,10,18,.86) 100%),
+    linear-gradient(to bottom,rgba(7,10,18,.55) 0%,rgba(7,10,18,.10) 26%,rgba(7,10,18,.42) 68%,rgba(7,10,18,.9) 100%);
+}
+
+/* ---------- the lockup ---------- */
+.hero.v-ninja-slice .ns-inner{
+  position:relative;z-index:3;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 clamp(12px,3vw,64px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.hero.v-ninja-slice .ns-lockup{
+  margin:0;display:flex;flex-direction:column;align-items:center;width:var(--ns-w);
+}
+
+/* ---------- "Yoko", live in the sign's face (CRISP RULE) ---------- */
+.hero.v-ninja-slice .ns-yoko{
+  font-family:var(--display);font-weight:400;
+  font-size:calc(var(--ns-w) * .128);
+  line-height:.92;letter-spacing:.006em;
+  color:#F4FAFF;
+  margin:0 0 calc(var(--ns-w) * .012);
+  text-shadow:
+    0 0 6px rgba(214,236,255,.95),
+    0 0 20px rgba(126,178,255,.8),
+    0 0 54px rgba(52,110,220,.6);
+}
+
+/* ---------- the sign box ---------- */
+.hero.v-ninja-slice .ns-sign{position:relative;display:block;width:100%;line-height:0}
+.hero.v-ninja-slice .ns-glow{
+  position:absolute;left:-7.82%;top:-30.51%;width:115.64%;height:161.02%;z-index:0;
+  max-width:none;                    /* style.css caps every img at 100% — that
+                                        squashed the halo off the letters */
+  opacity:.88;transform:scale(1);transform-origin:50% 50%;pointer-events:none;
+}
+/* the sizer holds the box and carries the alt text; it never shows */
+.hero.v-ninja-slice .ns-sizer{position:relative;z-index:1;display:block;width:100%;height:auto;visibility:hidden}
+
+/* ---------- the eight letters: one clipped copy of the same PNG each ---------- */
+.hero.v-ninja-slice .ns-letters{position:absolute;inset:0;z-index:2;display:block}
+.hero.v-ninja-slice .ns-l{position:absolute;inset:0;display:block;overflow:hidden}
+.hero.v-ninja-slice .ns-l img{display:block;width:100%;height:auto;max-width:none}
+.hero.v-ninja-slice .ns-l1{clip-path:inset(0 81.93% 0 0)}
+.hero.v-ninja-slice .ns-l2{clip-path:inset(0 65.25% 0 18.07%)}
+.hero.v-ninja-slice .ns-l3{clip-path:inset(0 50.48% 0 34.75%)}
+.hero.v-ninja-slice .ns-l4{clip-path:inset(0 42.66% 0 49.52%)}
+.hero.v-ninja-slice .ns-l5{clip-path:inset(0 32.23% 0 57.34%)}
+.hero.v-ninja-slice .ns-l6{clip-path:inset(0 22.24% 0 67.77%)}
+.hero.v-ninja-slice .ns-l7{clip-path:inset(0 12.08% 0 77.76%)}
+.hero.v-ninja-slice .ns-l8{clip-path:inset(0 0 0 87.92%)}
+
+/* ---------- the shine: the blown-out copy, swept once ---------- */
+.hero.v-ninja-slice .ns-shine{
+  position:absolute;left:0;top:0;z-index:3;width:100%;height:auto;max-width:none;
+  opacity:0;pointer-events:none;
+}
+
+/* ---------- the blades ---------- */
+.hero.v-ninja-slice .ns-blades{position:absolute;inset:-46% 0;z-index:4;display:block;pointer-events:none}
+.hero.v-ninja-slice .ns-slash{
+  position:absolute;top:50%;width:calc(var(--ns-w) * .020);height:150%;
+  display:block;opacity:0;
+  transform:translate(-50%,-50%) rotate(-22deg);
+}
+.hero.v-ninja-slice .ns-slash i{
+  display:block;width:100%;height:100%;border-radius:99px;
+  background:linear-gradient(180deg,
+    rgba(255,59,48,0) 0%,rgba(255,59,48,.35) 22%,var(--ns-red) 46%,
+    #FFF1EF 56%,var(--ns-red) 66%,rgba(255,59,48,.3) 88%,rgba(255,59,48,0) 100%);
+  box-shadow:0 0 10px rgba(255,59,48,.95),0 0 30px rgba(255,59,48,.6);
+}
+.hero.v-ninja-slice .ns-s1{left:9.0%}
+.hero.v-ninja-slice .ns-s2{left:26.4%}
+.hero.v-ninja-slice .ns-s3{left:42.1%}
+.hero.v-ninja-slice .ns-s4{left:53.4%}
+.hero.v-ninja-slice .ns-s5{left:62.6%}
+.hero.v-ninja-slice .ns-s6{left:72.8%}
+.hero.v-ninja-slice .ns-s7{left:82.8%}
+.hero.v-ninja-slice .ns-s8{left:94.0%}
+
+/* ---------- buttons ---------- */
+.hero.v-ninja-slice .hero-actions{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;width:100%;
+  margin-top:clamp(26px,4.6vh,52px);
+  opacity:1;transform:none;
+}
+.hero.v-ninja-slice .hero-actions .btn{min-width:208px;justify-content:center;
+  box-shadow:0 16px 36px -18px rgba(0,0,0,.95)}
+.hero.v-ninja-slice .hero-actions .btn-cream{border-color:var(--bg)}
+.hero.v-ninja-slice .hero-actions .btn-primary{box-shadow:0 18px 42px -18px rgba(206,66,52,.9)}
+
+/* ============================================================
+   THE ONE ARRIVAL — gated on .js, so no-JS shows the last frame
+   ============================================================ */
+.js .hero.v-ninja-slice .ns-ground-img{animation:nsNightUp .60s cubic-bezier(.2,.7,.25,1) both}
+.js .hero.v-ninja-slice .ns-glow{animation:nsGlowUp .80s cubic-bezier(.3,.8,.3,1) 1.30s both}
+
+/* Yoko: snaps on, then blinks twice, then takes the shine flash */
+.js .hero.v-ninja-slice .ns-yoko{animation:nsYokoIn .20s steps(1,end) 1.50s both,
+                                            nsBlink2 .28s steps(1,end) 1.78s forwards,
+                                            nsFlash  .50s ease-out    2.42s forwards}
+/* the red letters: blink twice together after Yoko */
+.js .hero.v-ninja-slice .ns-letters{animation:nsBlink2 .28s steps(1,end) 2.10s both}
+/* the shine sweeps left to right across the real letters */
+.js .hero.v-ninja-slice .ns-shine{
+  -webkit-mask-image:linear-gradient(100deg,transparent 0 40%,#000 48% 52%,transparent 60% 100%);
+          mask-image:linear-gradient(100deg,transparent 0 40%,#000 48% 52%,transparent 60% 100%);
+  -webkit-mask-size:260% 100%;mask-size:260% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:100% 0;mask-position:100% 0;
+  animation:nsShine .50s cubic-bezier(.5,.05,.4,1) 2.42s both;
+}
+.js .hero.v-ninja-slice .hero-actions{animation:nsRise .70s var(--ease) 2.35s backwards}
+
+/* each letter hides until its blade goes through, then jolts in */
+.js .hero.v-ninja-slice .ns-l{opacity:0}
+.js .hero.v-ninja-slice .ns-l1{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) .305s both}
+.js .hero.v-ninja-slice .ns-l2{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) .445s both}
+.js .hero.v-ninja-slice .ns-l3{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) .585s both}
+.js .hero.v-ninja-slice .ns-l4{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) .725s both}
+.js .hero.v-ninja-slice .ns-l5{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) .865s both}
+.js .hero.v-ninja-slice .ns-l6{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) 1.005s both}
+.js .hero.v-ninja-slice .ns-l7{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) 1.145s both}
+.js .hero.v-ninja-slice .ns-l8{animation:nsCut .20s cubic-bezier(.2,1.6,.4,1) 1.285s both}
+
+/* the blades — shing, shing, shing, 0.14s apart */
+.js .hero.v-ninja-slice .ns-s1{animation:nsSwipe .12s linear .25s both}
+.js .hero.v-ninja-slice .ns-s2{animation:nsSwipe .12s linear .39s both}
+.js .hero.v-ninja-slice .ns-s3{animation:nsSwipe .12s linear .53s both}
+.js .hero.v-ninja-slice .ns-s4{animation:nsSwipe .12s linear .67s both}
+.js .hero.v-ninja-slice .ns-s5{animation:nsSwipe .12s linear .81s both}
+.js .hero.v-ninja-slice .ns-s6{animation:nsSwipe .12s linear .95s both}
+.js .hero.v-ninja-slice .ns-s7{animation:nsSwipe .12s linear 1.09s both}
+.js .hero.v-ninja-slice .ns-s8{animation:nsSwipe .12s linear 1.23s both}
+
+@keyframes nsNightUp{
+  0%  {opacity:0;transform:scale(1.04)}
+  100%{opacity:1;transform:scale(1)}
+}
+/* a blade through the letter: down and across, dragging its own blur */
+@keyframes nsSwipe{
+  0%  {opacity:0;transform:translate(-50%,-88%) rotate(-22deg) scaleY(.55)}
+  15% {opacity:1}
+  75% {opacity:1}
+  100%{opacity:0;transform:translate(-50%,-12%) rotate(-22deg) scaleY(1.2)}
+}
+/* the letter is there the instant the blade passes, with a 3px jolt */
+@keyframes nsCut{
+  0%  {opacity:0;transform:translate(3px,-2px) scale(1.05)}
+  1%  {opacity:1}
+  55% {transform:translate(-1px,1px) scale(1)}
+  100%{opacity:1;transform:none}
+}
+@keyframes nsYokoIn{
+  0%  {opacity:0}
+  40% {opacity:1}
+  55% {opacity:.15}
+  70% {opacity:1}
+  100%{opacity:1}
+}
+@keyframes nsBlink2{
+  0%  {opacity:1}
+  14% {opacity:.08}
+  30% {opacity:1}
+  55% {opacity:.08}
+  72% {opacity:1}
+  100%{opacity:1}
+}
+@keyframes nsGlowUp{
+  0%  {opacity:0;transform:scale(1.1)}
+  100%{opacity:.88;transform:scale(1)}
+}
+/* the mask is static — only its position animates; mask-image declared inside
+   keyframes does not interpolate (learned on neon-yoko) */
+@keyframes nsShine{
+  0%  {opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}
+  12% {opacity:1}
+  88% {opacity:1}
+  100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}
+}
+@keyframes nsFlash{
+  0%,100%{text-shadow:0 0 6px rgba(214,236,255,.95),0 0 20px rgba(126,178,255,.8),0 0 54px rgba(52,110,220,.6)}
+  45%    {text-shadow:0 0 10px rgba(255,255,255,1),0 0 34px rgba(190,222,255,.95),0 0 74px rgba(52,110,220,.75)}
+}
+@keyframes nsRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ---------- desktop ---------- */
+@media (min-width:761px){
+  .hero.v-ninja-slice{--ns-w:min(68vw,860px)}
+  .hero.v-ninja-slice .ns-ground-img{background-position:center 46%}
+}
+
+/* ---------- phones ---------- */
+@media (max-width:760px){
+  .hero.v-ninja-slice .ns-inner{margin:0 auto;padding:0 var(--pad)}
+  .hero.v-ninja-slice .hero-actions .btn{flex:1 1 46%;min-width:148px}
+}
+@media (max-width:400px){
+  .hero.v-ninja-slice .hero-actions .btn{flex:1 1 100%}
+}
+
+/* ---------- reduced motion: the final frame, straight away ---------- */
+@media (prefers-reduced-motion:reduce){
+  .js .hero.v-ninja-slice .ns-ground-img,
+  .js .hero.v-ninja-slice .ns-glow,
+  .js .hero.v-ninja-slice .ns-yoko,
+  .js .hero.v-ninja-slice .ns-letters,
+  .js .hero.v-ninja-slice .ns-l,
+  .js .hero.v-ninja-slice .ns-shine,
+  .js .hero.v-ninja-slice .ns-slash,
+  .js .hero.v-ninja-slice .hero-actions{animation:none !important}
+  .js .hero.v-ninja-slice .ns-l{opacity:1;transform:none}
+  .hero.v-ninja-slice .ns-ground-img{opacity:1;transform:scale(1)}
+  .hero.v-ninja-slice .ns-glow{opacity:.88;transform:scale(1)}
+  .hero.v-ninja-slice .ns-shine{opacity:0}
+  .hero.v-ninja-slice .ns-slash{opacity:0}
+}
