@@ -535,3 +535,108 @@ h1,h2,h3,.logo .wm{font-weight:700;letter-spacing:.005em}
 .hero h1{background:linear-gradient(180deg,#EAF7FF 0%,#7FD6FF 38%,#1E7BD8 78%,#155FAF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
   filter:drop-shadow(0 3px 0 rgba(10,40,80,.55)) drop-shadow(0 10px 26px rgba(0,0,0,.5))}
 .hero h1 em{-webkit-text-fill-color:var(--warm);color:var(--warm);background:none}
+
+
+/* ============================================================
+   REFINE PASS — 2026-09-08 (to the Purdy's / The Local / Captain Jack's bar)
+   Everything below is site-local. The hero (css/hero.css) is approved and
+   locked; nothing here touches it.
+   ============================================================ */
+
+/* ---------- COHESION: the suds device ----------
+   Three bubbles ahead of every eyebrow, in whatever colour that eyebrow
+   already is (sign blue on cream, wall lime on the dark bands). One
+   recurring mark carries the hero's world through every section. */
+.section-head .eyebrow::before,
+.story-copy .eyebrow::before,
+.status-head .eyebrow::before{
+  content:"";display:inline-block;width:4px;height:4px;border-radius:50%;
+  margin-right:32px;vertical-align:1px;background:currentColor;opacity:.92;
+  box-shadow:8px -3px 0 1px currentColor, 19px -7px 0 2.5px currentColor;
+}
+
+/* ---------- pacing: the desktop bands were leaving near-empty screens ---------- */
+.section{padding:clamp(52px,6.6vw,92px) 0}
+.status-band .wrap{align-items:start}
+
+/* ---------- #outside — the storefront under the hours band ---------- */
+.shopfront{transform:rotate(-1deg);max-width:480px}
+.shopfront:hover{transform:rotate(0) scale(1.01)}
+#outside .story-copy .lede{font-size:19px;font-weight:600;color:var(--dark);margin:0 0 14px}
+#outside .story-copy > p:not(.eyebrow):not(.lede){color:var(--muted);margin:0 0 12px}
+@media (max-width:900px){.shopfront{transform:none;max-width:none}}
+
+/* ---------- #doors — head beside the room photo ---------- */
+.doors-top{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(28px,5vw,64px);
+  align-items:center;margin-bottom:clamp(26px,4vw,44px)}
+.doors-top .section-head{margin-bottom:0}
+.doors-photo{transform:rotate(1.1deg);max-width:340px;justify-self:end}
+.doors-photo:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:900px){
+  .doors-top{grid-template-columns:1fr}
+  .doors-photo{transform:none;max-width:520px;margin:0 auto}
+}
+
+/* ---------- TITLE CARDS UNROLL + ARROW LAW ----------
+   The descriptor line is the tap target, a downward chevron is the whole
+   affordance, and the real items roll out in place. Tap again closes it. */
+.unroll{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
+  margin:0 0 4px;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;
+  background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;font-weight:800;
+  text-align:left;cursor:pointer;min-height:52px;transition:border-color .25s var(--ease),background .25s var(--ease)}
+.unroll:hover{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 7%,var(--bg))}
+.unroll .chev{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;
+  background:var(--tint);color:var(--brand-text);transition:transform .32s var(--ease)}
+.unroll .chev svg{width:15px;height:15px}
+.unroll[aria-expanded="true"]{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 9%,var(--bg))}
+.unroll[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--brand);color:#fff}
+.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.rolled > *{overflow:hidden;min-height:0}
+.rolled.open{grid-template-rows:1fr}
+.rolled .door-list{margin:0}
+.rolled .door-list li:first-child{padding-top:14px}
+@media (prefers-reduced-motion:reduce){.rolled{transition:none}.unroll .chev{transition:none}}
+.door .unroll{margin-bottom:0}
+.door .rolled{margin-bottom:22px}
+
+/* ---------- #room — the walk-in panorama ----------
+   Their own wide shot of the wash room, doubled end to end and drifting
+   sideways: the whole room passes without a single crop. ---------- */
+.pano{position:relative;overflow:hidden;border-radius:var(--r);border:var(--rule);
+  background:var(--dark);height:clamp(210px,29vw,370px);
+  box-shadow:0 44px 84px -46px color-mix(in srgb,var(--dark) 62%,transparent)}
+.pano-track{display:flex;width:max-content;height:100%;animation:panodrift 52s linear infinite}
+.pano-track img{height:100%;width:auto;max-width:none;flex:none;display:block}
+@keyframes panodrift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.pano-track{animation:none;transform:translateX(-26%)}}
+.pano-cap{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);text-align:center;margin:14px 0 clamp(24px,3.4vw,38px)}
+
+/* ---------- #reviews — the link-out tile ----------
+   REVIEW ATTRIBUTION LAW (9/6): no name+photo pair could be sourced for these
+   reviewers (Google's review pane refuses headless twice over — logged in
+   review/review-faces.txt), so the page carries the real published name, source
+   and date, and sends people to the live listing where the faces are. No
+   invented names, no stock faces, no fabricated initials. ---------- */
+.quote-out{display:flex;flex-direction:column;justify-content:center;gap:10px;text-align:left;
+  background:var(--dark);border:0;border-left:4px solid var(--warm);color:#fff;
+  padding:clamp(22px,3vw,30px);border-radius:var(--r);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.quote-out:hover{transform:translateY(-3px);box-shadow:0 30px 54px -34px color-mix(in srgb,var(--dark) 75%,transparent)}
+.qo-n{font-family:var(--display);font-weight:700;font-size:40px;line-height:1;color:var(--warm)}
+.qo-t{font-size:16.5px;line-height:1.5;color:rgba(255,255,255,.86)}
+.qo-go{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:600;color:var(--warm)}
+
+/* ---------- closing band ---------- */
+.cta-band .section-head p{max-width:52ch}
+.cta-band .cta-actions{margin-top:clamp(22px,3vw,32px)}
+
+/* prints sized to their own photo — a portrait next to two landscapes was
+   stretching the short frames and leaving dead cream under them */
+.prints{align-items:start}
+.doors-photo{max-width:310px}
+.doors-top .fineprint{margin-top:18px}
+.quote-out{grid-column:1 / -1;flex-direction:row;align-items:center;gap:22px;flex-wrap:wrap}
+.quote-out .qo-t{flex:1 1 260px}
+@media (max-width:760px){.quote-out{flex-direction:column;align-items:flex-start;gap:10px}}

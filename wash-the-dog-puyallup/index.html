@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Display: Baloo 2 (friendly sturdy rounded — echoes the bubbly window lettering). Body: Karla. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907165527">
-<link rel="stylesheet" href="css/hero.css?v=0907165527">
+<link rel="stylesheet" href="css/style.css?v=1788925417">
+<link rel="stylesheet" href="css/hero.css?v=1788925417">
 </head>
 <body>
 
@@ -99,10 +99,6 @@
           115 W Meeker, Puyallup, WA 98371<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=115+W+Meeker%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
-        <div class="proof-row">
-          <span class="proof"><span class="star">★</span> 4.6 on Google · 337 reviews</span>
-          <span class="proof"><span class="ico">✓</span> By the Post Office, across from Pioneer Park</span>
-        </div>
       </div>
       <ul class="hours-list" id="hoursList">
         <li data-days="1"><span class="day">Monday</span><span class="time">11:00 am – 5:00 pm</span></li>
@@ -116,40 +112,79 @@
     </div>
   </section>
 
+  <!-- ===================== #outside — the storefront =====================
+       STOREFRONT BELOW THE HOURS: the hero is their animated mark, so the
+       real building goes directly under the hours band. Their own awning,
+       shown whole — never cropped — with the locator in their own words. -->
+  <section class="section section-alt" id="outside">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print shopfront reveal">
+          <img src="images/storefront.jpg" alt="The Wash The Dog storefront at 115 W Meeker in downtown Puyallup — blue awning with the bubble lettering, the phone number across the front and the service list on the window" loading="lazy" width="1080" height="1080">
+          <figcaption>115 W Meeker — the front, on a clear day</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The door you're looking for</p>
+          <h2>Blue awning, <em>bubbles on the glass</em></h2>
+          <p class="lede">In their own words: “We are located by the Post Office and across the street from Pioneer Park.”</p>
+          <p>Middle of the downtown block, between 2nd St SW and S Meridian. The phone number is painted across the front three feet tall, and the window lists what's inside before you're through the door.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== #doors — two ways in ===================== -->
   <section class="section" id="doors">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Two ways in</p>
-        <h2>Wash your own, <em>or hand us the leash</em></h2>
-        <p>In their own words: “Wash the Dog offers self service dog bathing in the heart of downtown Puyallup on a first come first serve basis. We also offer full service grooming by appt.”</p>
+      <div class="doors-top">
+        <div class="section-head reveal">
+          <p class="eyebrow">Two ways in</p>
+          <h2>Wash your own, <em>or hand us the leash</em></h2>
+          <p>In their own words: “Wash the Dog offers self service dog bathing in the heart of downtown Puyallup on a first come first serve basis. We also offer full service grooming by appt.”</p>
+          <p class="fineprint">Rates are posted in the shop, not online — give them a ring for today's pricing.</p>
+        </div>
+        <figure class="print doors-photo reveal">
+          <img src="images/staff-1.jpg" alt="A man leaning over one of the tubs at Wash The Dog with his arms around a soapy German shepherd, shampoo bottles lined up on the shelf behind him" loading="lazy" width="1920" height="2560">
+          <figcaption>Somebody's own dog, mid-wash in one of the bays</figcaption>
+        </figure>
       </div>
       <div class="doors reveal">
         <article class="door">
           <p class="door-tag">No appointment</p>
           <h3>Wash your own</h3>
-          <p>Walk in and take an open tub. They're waist-high and wood-clad, so nobody's kneeling on a bathroom floor. Shampoo and conditioner are supplied, aprons are provided, and there are tables for brushing and blow drying at the far end of the room.</p>
-          <ul class="door-list">
-            <li>First come, first serve — no booking</li>
-            <li>Shampoo &amp; conditioner supplied</li>
-            <li>Aprons provided</li>
-            <li>Brushing and blow-dry tables</li>
-          </ul>
+          <p>Walk in and take an open tub. They're waist-high and wood-clad, so nobody's kneeling on a bathroom floor, and the drying tables are at the far end of the room.</p>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-self">
+            <span class="unroll-t">What's already in the tub room</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-self">
+            <ul class="door-list">
+              <li>First come, first serve — no booking</li>
+              <li>Shampoo &amp; conditioner supplied</li>
+              <li>Aprons provided</li>
+              <li>Brushing and blow-dry tables</li>
+            </ul>
+          </div>
           <a href="#signature" class="btn btn-primary">See the seven steps</a>
         </article>
         <article class="door">
           <p class="door-tag">By appointment</p>
           <h3>We'll do it</h3>
           <p>Full service grooming runs by appointment only. Call first and they'll talk the dog through with you — their words: “it's important to chat with you about your dog to make sure we are a good fit and provide a positive experience.”</p>
-          <ul class="door-list">
-            <li>Full service grooming, appointment only</li>
-            <li>Nail trims on a walk-in, while groomers are available</li>
-            <li>Big dogs and small dogs both</li>
-          </ul>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-groom">
+            <span class="unroll-t">What the groomers take on</span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-groom">
+            <ul class="door-list">
+              <li>Full service grooming, appointment only</li>
+              <li>Nail trims on a walk-in, while groomers are available</li>
+              <li>Big dogs and small dogs both</li>
+            </ul>
+          </div>
           <a href="tel:2538419988" class="btn btn-dark">Call (253) 841-9988</a>
         </article>
       </div>
-      <p class="fineprint">Self serve and grooming rates aren't published anywhere online — call for today's pricing.</p>
     </div>
   </section>
 
@@ -159,7 +194,19 @@
       <div class="section-head reveal">
         <p class="eyebrow">The room</p>
         <h2>Lime walls, wood tubs, <em>a hose at every bay</em></h2>
+        <p>This is the whole room in one shot — it drifts past on its own, the way it looks from just inside the door.</p>
       </div>
+
+      <!-- WALK-IN PANORAMA: their own wide shot of the wash room, doubled and
+           drifting sideways so the whole room passes without a single crop. -->
+      <div class="pano reveal">
+        <div class="pano-track">
+          <img src="images/panorama.jpg" alt="The full wash room at Wash The Dog — lime green and sky blue walls, a row of wood-clad tubs down each side, drying tables and the front door at the end" loading="lazy" width="1920" height="960">
+          <img src="images/panorama.jpg" alt="" aria-hidden="true" loading="lazy" width="1920" height="960">
+        </div>
+      </div>
+      <p class="pano-cap reveal">Wall to wall, front door to drying tables</p>
+
       <div class="prints two reveal">
         <figure class="print">
           <img src="images/room-1.jpg" alt="A row of wood-clad self serve dog wash tubs against a lime green wall inside Wash The Dog" loading="lazy" width="1920" height="1272">
@@ -234,7 +281,7 @@
       <div class="section-head reveal">
         <p class="eyebrow">In their words</p>
         <h2>4.6 from <em>337 neighbors</em></h2>
-        <p>Every quote below is verbatim from the reviewer, with their name and date as published.</p>
+        <p>Every quote below is word for word from the person who wrote it, with their published name and date. The names and faces sit on the live listings — tap through and they're all there.</p>
       </div>
       <blockquote class="lead-quote reveal">
         <p>“This self-serve dog wash is the best! The owner is so friendly and it has a cheerful, down-to-earth vibe. You can bring your own towels to save a few bucks but, frankly, I like leaving all the dog hair behind :)”</p>
@@ -257,8 +304,12 @@
           <p>“Great experience with this local business - we brought our two bullies in to wash and dry them - very clean facility and friendly staff - thank you for making our experience great”</p>
           <cite>Debbie J. <span>· Yelp · 12/21/25</span></cite>
         </blockquote>
+        <a class="quote quote-out" href="https://www.google.com/maps/search/?api=1&amp;query=Wash+The+Dog%2C+115+W+Meeker%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">
+          <span class="qo-n" aria-hidden="true">★</span>
+          <span class="qo-t">Every one of them — names, faces, dates — sits on their Google listing</span>
+          <span class="qo-go">Read them all ↗</span>
+        </a>
       </div>
-      <p class="review-out"><a href="https://www.google.com/maps/search/?api=1&amp;query=Wash+The+Dog%2C+115+W+Meeker%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Read all 337 reviews on Google ↗</a></p>
     </div>
   </section>
 
@@ -269,7 +320,7 @@
         <div class="reveal">
           <p class="eyebrow">Getting here</p>
           <h2>Find us <em>on Meeker</em></h2>
-          <p>Their directions, word for word: “We are located by the Post Office and across the street from Pioneer Park.” Between 2nd St SW and E Meeker / S Meridian, in the middle of the downtown block.</p>
+          <p>Questions about a groom, or want a tub time that's usually quiet? Send it here and someone will come back to you — or just ring the shop.</p>
           <div class="contact-lines">
             <span>Call or text <a href="tel:2538419988">(253) 841-9988</a></span>
             <span>115 W Meeker, Puyallup, WA 98371</span>
@@ -315,15 +366,10 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Before you load the dog up</p>
-        <h2>Six days a week, <em>a tub with your name on it</em></h2>
+        <h2>Bring the dog. <em>They'll bring the water.</em></h2>
+        <p>The tubs need nothing but you turning up. Grooming's the one that wants a phone call first.</p>
       </div>
-      <div class="numbers reveal">
-        <div class="num"><b><i>4.6</i></b><span>Google rating</span></div>
-        <div class="num"><b class="count" data-to="337">0</b><span>Google reviews</span></div>
-        <div class="num"><b class="count" data-to="7">0</b><span>steps, tub to dryer</span></div>
-        <div class="num"><b class="count" data-to="6">0</b><span>days a week open</span></div>
-      </div>
-      <div class="cta-actions">
+      <div class="cta-actions reveal">
         <a href="tel:2538419988" class="btn btn-primary">Call (253) 841-9988</a>
         <a href="https://www.google.com/maps/search/?api=1&amp;query=115+W+Meeker%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener" class="btn btn-ghost">Get directions ↗</a>
       </div>
@@ -338,7 +384,7 @@
       <div>
         <div class="brand">
           <span class="plate"><img src="images/logo.png" alt="" width="149" height="166"></span>
-          <span class="wm">Wash The Dog<small>Grooming &amp; Self Serve Bathing</small></span>
+          <span class="wm">Wash The Dog</span>
         </div>
         <p>Self serve dog bathing in the heart of downtown Puyallup, on a first come first serve basis. Full service grooming by appointment.</p>
       </div>
@@ -357,12 +403,12 @@
     </div>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Wash The Dog · Puyallup, Washington</span>
-      <span>Open six days a week · Closed Tuesdays</span>
+      <span>Downtown Puyallup, on Meeker</span>
     </div>
   </div>
 </footer>
 
-<script src="js/site.js?v=0907165527"></script>
-<script src="js/hero.js?v=0907165527"></script>
+<script src="js/site.js?v=1788925417"></script>
+<script src="js/hero.js?v=1788925417"></script>
 </body>
 </html>

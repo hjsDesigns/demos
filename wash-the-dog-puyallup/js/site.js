@@ -177,6 +177,20 @@ function customClose(p, close){ return close; }
     go.addEventListener('click',run);
   })();
 
+  /* ---------- TITLE CARDS UNROLL (ARROW LAW) ----------
+     The descriptor line is the tap target; the downward chevron flips up and
+     the real items roll out in place. Tap again and it closes. Nothing to
+     read before you can use it, nothing hidden behind a second gesture. */
+  $$('.unroll').forEach(function(btn){
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click', function(){
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.classList.toggle('open', !open);
+    });
+  });
+
   /* ---------- (template note) SIGNATURE GADGET ----------
      Per-client interactive code goes below this line (EA: day timeline +
      rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
