@@ -6,31 +6,21 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   HOURS CONFIG — read off TK Top Nails & Spa's OWN window decal,
-   photographed on their storefront (harvest-0906/g15.jpg):
-
-       TK TOP NAILS & SPA — BUSINESS HOURS
-       MON-FRI    9AM-7PM
-       SATURDAY   9AM-6PM
-       SUNDAY    10AM-5PM
-
-   Their own glass is the primary source. Yahoo Local / BestProsInTown
-   independently list Monday 9a–7p, which agrees.
-
-   LABOR DAY (Mon Sept 7, 2026): no source publishes holiday hours for
-   this shop, so the regular Monday row stands. Flagged in the handoff —
-   confirm with the owner before the pitch. Do NOT invent a closure.
+   HOURS CONFIG  — fill from the client's Google listing.
+   Days are 0=Sunday … 6=Saturday. Each day is [open, close] in
+   decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
+   null = closed that day. Closing past midnight: use 26 for 2 am.
    ------------------------------------------------------------ */
 var HOURS = {
   tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
   days: {
-    0: [10, 17],                      // Sunday    10:00 AM – 5:00 PM
-    1: [9, 19],                       // Monday     9:00 AM – 7:00 PM
-    2: [9, 19],                       // Tuesday
-    3: [9, 19],                       // Wednesday
-    4: [9, 19],                       // Thursday
-    5: [9, 19],                       // Friday
-    6: [9, 18]                        // Saturday   9:00 AM – 6:00 PM
+    0: [10, 17],                      // Sunday      10:00 am - 5:00 pm
+    1: [9.5, 19],                     // Monday       9:30 am - 7:00 pm
+    2: [9.5, 19],                     // Tuesday      9:30 am - 7:00 pm
+    3: [9.5, 19],                     // Wednesday    9:30 am - 7:00 pm
+    4: [9.5, 19],                     // Thursday     9:30 am - 7:00 pm
+    5: [9.5, 19],                     // Friday       9:30 am - 7:00 pm
+    6: [9, 19]                        // Saturday     9:00 am - 7:00 pm
   }
 };
 
@@ -119,48 +109,23 @@ function customClose(p, close){ return close; }
   applyStatus(); setInterval(applyStatus,60000);
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
 
-  /* ---------- scroll-reveal + count-up ----------
-     Three safety valves, all of them earned: (1) the .js gate in the stylesheet means a
-     dead script leaves the page fully visible rather than blank; (2) anything already at
-     or above the fold on load — an #anchor jump, a restored scroll position — is revealed
-     outright, because it has no intersection left to observe; (3) a scroll sweep catches
-     short elements at the very bottom of the document, which is where the old
-     threshold .06 + -6% bottom margin used to strand the closing band. */
-  function fire(el){
-    if(el.classList.contains('in'))return;
-    el.classList.add('in');
-    $$('.count',el).forEach(function(c){
-      if(c.dataset.done)return; c.dataset.done='1';
-      var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
-      var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-      if(reduce){c.textContent=to;return}
-      function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
-      requestAnimationFrame(step);
-    });
-  }
-  var io=('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+  /* ---------- scroll-reveal + count-up ---------- */
+  var io=new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(!en.isIntersecting)return;
-      fire(en.target); io.unobserve(en.target);
+      en.target.classList.add('in');
+      $$('.count',en.target).forEach(function(c){
+        if(c.dataset.done)return; c.dataset.done='1';
+        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
+        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(reduce){c.textContent=to;return}
+        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
+        requestAnimationFrame(step);
+      });
+      io.unobserve(en.target);
     });
-  },{threshold:0,rootMargin:'0px 0px -40px 0px'}) : null;
-  var pending=$$('.reveal');
-  pending.forEach(function(el){
-    if(!io||el.getBoundingClientRect().top < window.innerHeight){fire(el);return}
-    io.observe(el);
-  });
-  function sweep(){
-    var left=false;
-    pending.forEach(function(el){
-      if(el.classList.contains('in'))return;
-      if(el.getBoundingClientRect().top < window.innerHeight - 24){fire(el);if(io)io.unobserve(el)}
-      else left=true;
-    });
-    if(!left){window.removeEventListener('scroll',sweep);window.removeEventListener('resize',sweep)}
-  }
-  window.addEventListener('scroll',sweep,{passive:true});
-  window.addEventListener('resize',sweep);
-  window.addEventListener('load',sweep);
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  $$('.reveal').forEach(function(el){io.observe(el)});
 
   /* ---------- contact form ----------
      Demo mode (hidden access_key empty): show the thank-you, send nothing.
@@ -180,45 +145,56 @@ function customClose(p, close){ return close; }
       .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
   })}
 
-  /* ---------- TITLE CARDS UNROLL ----------
-     The category headline itself is the tap target; the chevron flips up and
-     the real items roll out in place. No measuring — the stylesheet animates
-     grid-template-rows 0fr -> 1fr. Cards are independent: opening one never
-     shuts another, so nothing the visitor opened disappears on them. */
-  $$('.roll-btn').forEach(function(btn){
-    var panel=document.getElementById(btn.getAttribute('aria-controls'));
-    if(!panel)return;
-    btn.addEventListener('click',function(){
-      var open=btn.getAttribute('aria-expanded')==='true';
-      btn.setAttribute('aria-expanded',open?'false':'true');
-      panel.setAttribute('data-open',open?'0':'1');
-    });
-  });
+  /* ---------- SIGNATURE GADGET ----------
+     Per-client interactive code goes below this line (EA: day timeline +
+     rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
 
-  /* ---------- SIGNATURE GADGET — PICK A FINISH ----------
-     Four labelled pills, one framed print. Tap a pill, the photo swaps.
-     TODDLER LAW: one obvious tap target, instant visible payoff, the thing
-     that changes sits directly above the things you tap, no readback
-     sentence, no hidden modes, four chips (≤5). Every image is a real set
-     from this shop; every label is a finish visible in that photo. */
+  /* ---------- SIGNATURE GADGET — THE POLISH WALL ----------
+     Tap a bottle: it lifts off the rack and that real set fills the frame.
+     Tap the lit bottle again: it clears. No narration, nothing to read
+     first, and the picture is the whole payoff. */
   (function(){
-    var pills=$('#finishPills'), stage=$('#finishStage'), img=$('#finishImg'), cap=$('#finishCap');
-    if(!pills||!stage||!img||!cap)return;
-    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    // preload so the swap is instant, not a flash of nothing
-    $$('button',pills).forEach(function(b){var p=new Image();p.src=b.getAttribute('data-img')});
-    function pick(btn){
-      if(btn.getAttribute('aria-pressed')==='true')return;
-      $$('button',pills).forEach(function(b){b.setAttribute('aria-pressed', b===btn?'true':'false')});
-      var src=btn.getAttribute('data-img'), alt=btn.getAttribute('data-alt'), label=btn.getAttribute('data-cap');
-      function swap(){img.src=src;img.alt=alt;cap.textContent=label;stage.classList.remove('swapping')}
-      if(reduce){swap();return}
-      stage.classList.add('swapping');
-      setTimeout(swap,150);
+    var rack=$('.rack'); if(!rack) return;
+    var bottles=$$('.bottle',rack), frame=$('.picker-frame'), img=$('#pickImg'),
+        cap=$('#pickCap'), empty=$('#pickEmpty');
+    if(!frame||!img||!cap) return;
+    var IDLE='Six sets, six colors. Tap a bottle.';
+    empty.textContent='Tap a bottle.';
+
+    function clear(){
+      bottles.forEach(function(b){b.classList.remove('on');b.setAttribute('aria-pressed','false')});
+      frame.classList.add('clear'); cap.textContent=IDLE;
     }
-    pills.addEventListener('click',function(e){
-      var b=e.target.closest('button.pill'); if(b)pick(b);
+    function show(b){
+      if(b.classList.contains('on')){clear();return}
+      bottles.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false')});
+      b.classList.add('on'); b.setAttribute('aria-pressed','true');
+      frame.classList.remove('clear'); frame.classList.add('swapping');
+      var src=b.getAttribute('data-img');
+      var pre=new Image();
+      pre.onload=pre.onerror=function(){
+        img.src=src; img.alt=b.getAttribute('data-alt')||'';
+        cap.textContent=b.getAttribute('data-cap')||'';
+        frame.classList.remove('swapping');
+      };
+      pre.src=src;
+    }
+    bottles.forEach(function(b){b.addEventListener('click',function(){show(b)})});
+  })();
+
+  /* ---------- TITLE CARDS UNROLL ----------
+     The heading is the tap target; the chevron flips up; the real items roll
+     out in place. One open at a time keeps the section short on a phone. */
+  (function(){
+    var heads=$$('.unroll-head'); if(!heads.length) return;
+    heads.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var card=btn.closest('.unroll'), open=card.classList.contains('open');
+        heads.forEach(function(b){b.setAttribute('aria-expanded','false');b.closest('.unroll').classList.remove('open')});
+        if(!open){card.classList.add('open');btn.setAttribute('aria-expanded','true')}
+      });
     });
   })();
+
 
 })();

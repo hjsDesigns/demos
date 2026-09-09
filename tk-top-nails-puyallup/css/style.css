@@ -222,10 +222,30 @@ b,strong{font-weight:800}
 .section-head .eyebrow,.room-copy .eyebrow,.status-head .eyebrow{font-size:12px;color:var(--brand-text);margin:0 0 14px;line-height:1.5}
 .section-dark .section-head .eyebrow,.section-dark .status-head .eyebrow{color:var(--warm)}
 .section-dark .section-head p{color:rgba(255,255,255,.8)}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal.in{opacity:1;transform:none}
+/* Gated on html.js: if the script never runs, nothing is ever hidden. */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- THE SIGNATURE DEVICE — the sign's own two colours ----------
+   Their banner reads TK TOP in red over NAILS & SPA in blue. That red-into-
+   blue hairline is the one device carried through the whole page: it sits
+   under every eyebrow and strikes on left-to-right as its section arrives,
+   so each section is stamped by the same object the hero opens with.
+   (COHESION LAW — one recurring signature device, not a set of decorations.) */
+.sign-rule{position:relative;display:block;width:68px;height:2px;margin:0 0 18px;border-radius:2px;
+  background:color-mix(in srgb,var(--brand-text) 20%,transparent)}
+.sign-rule::after{content:"";position:absolute;inset:0;border-radius:2px;
+  background:linear-gradient(90deg,var(--brand-text) 0%,var(--brand-text) 44%,var(--brand) 56%,var(--brand) 100%);
+  transform-origin:left;transform:scaleX(0);transition:transform .75s var(--ease-2) .08s}
+.reveal.in .sign-rule::after,.section-head.in .sign-rule::after,.in>.sign-rule::after{transform:scaleX(1)}
+.section-dark .sign-rule,.status-band .sign-rule{background:color-mix(in srgb,var(--warm) 22%,transparent)}
+.section-dark .sign-rule::after,.status-band .sign-rule::after{
+  background:linear-gradient(90deg,var(--warm) 0%,var(--warm) 44%,#F6EADA 56%,#F6EADA 100%)}
+html:not(.js) .sign-rule::after{transform:scaleX(1)}
+
 @media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .sign-rule::after{transform:scaleX(1);transition:none}
   .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
 }
 
@@ -248,9 +268,13 @@ b,strong{font-weight:800}
 
 /* ============================================================ SERVICES / THE BOARD */
 .board-split{display:grid;grid-template-columns:1fr 1.55fr;gap:clamp(28px,4.5vw,60px);align-items:start}
-.board-split .print{transform:rotate(-1.4deg);position:sticky;top:calc(var(--header-h) + 26px)}
+/* REFINE 9/8 — the board and the caveat it explains travel together, and the
+   pair sticks so the sign stays beside whichever card the visitor has open. */
+.board-col{position:sticky;top:calc(var(--header-h) + 26px)}
+.board-split .print{transform:rotate(-1.4deg)}
 .board-split .print:hover{transform:rotate(0) scale(1.01)}
-@media (max-width:900px){.board-split{grid-template-columns:1fr}.board-split .print{transform:none;position:static;max-width:420px;margin:0 auto}}
+.board-split .menu-fine{margin:26px 4px 0}
+@media (max-width:900px){.board-split{grid-template-columns:1fr}.board-col{position:static}.board-split .print{transform:none;max-width:420px;margin:0 auto}.board-split .menu-fine{max-width:70ch;margin-left:auto;margin-right:auto}}
 .menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3.4vw,44px)}
 .menu-group h3{font-size:23px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid color-mix(in srgb,var(--brand-text) 55%,transparent)}
 .menu-list{list-style:none;margin:0;padding:0}
@@ -266,14 +290,20 @@ b,strong{font-weight:800}
    instantly. Every photo is a real set done in this shop; the four names
    are the four finishes visible in the harvest — nothing is invented and
    nothing is narrated back at the visitor (TODDLER LAW). */
-.finish{display:grid;grid-template-columns:minmax(0,420px) minmax(0,300px);gap:clamp(24px,4vw,56px);
-  align-items:center;justify-content:start}
-.finish-stage{width:100%;position:relative}
+/* REFINE 9/8 — the stage sits ABOVE the pills at every width, both centred in
+   the section. The old two-column version pinned the print hard left and left
+   ~45% of the desktop section as empty cream; and it broke the rule that the
+   thing you tap sits next to the thing that changes. The whole section is
+   centred — head included — so the centring reads as the design, not a slip. */
+#finish .section-head{max-width:56ch;margin-left:auto;margin-right:auto;text-align:center}
+#finish .section-head .sign-rule{margin-left:auto;margin-right:auto}
+.finish{display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3vw,28px)}
+.finish-stage{width:100%;max-width:420px;position:relative}
 .finish-stage .print{transform:rotate(-1deg)}
 .finish-stage .print:hover{transform:rotate(-1deg)}
 .finish-stage img{width:100%;height:clamp(330px,44vh,460px);object-fit:contain;background:var(--paper);transition:opacity .28s var(--ease)}
 .finish-stage.swapping img{opacity:.15}
-.finish-pills{display:flex;flex-wrap:wrap;gap:10px}
+.finish-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:100%;max-width:660px}
 @media (max-width:760px){
   .finish{grid-template-columns:1fr;justify-items:center;gap:20px}
   .finish-stage{max-width:400px}
@@ -295,7 +325,11 @@ b,strong{font-weight:800}
 .room-copy .lede{font-size:19.5px;font-weight:700;color:var(--ink)}
 .room .print{transform:rotate(-1.2deg)}
 @media (max-width:900px){.room{grid-template-columns:1fr}.room .print{transform:none}}
-.room-strip{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.6vw,30px)}
+/* REFINE 9/8 — the couch shot is 4:3 and the polish rack is 3:4, so equal
+   columns left a ~300px hole under the shorter mat. Weighting the columns to
+   the photos' own ratios lands the two prints within ~80px of each other with
+   nothing cropped. */
+.room-strip{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(16px,2.6vw,30px)}
 .room-strip .print:nth-child(1){transform:rotate(.7deg)}
 .room-strip .print:nth-child(2){transform:rotate(-.8deg)}
 @media (max-width:640px){.room-strip{grid-template-columns:1fr}.room-strip .print{transform:none}}
@@ -360,3 +394,92 @@ b,strong{font-weight:800}
 .foot a:hover{color:#fff;border-bottom-color:rgba(255,255,255,.4)}
 .foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.55)}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================================
+   REFINE PASS — 2026-09-08
+   Everything below was added to bring the page to the Captain Jack's / Purdy's /
+   The Local bar. Tokens only; no new brand colours were invented.
+   ============================================================================ */
+
+/* ---------- THE STOREFRONT BAND (STOREFRONT BELOW THE HOURS) ----------
+   The hero is the sign over the pedicure row, so the building itself has to
+   open the offerings. One wide daylight print of 1831 E Main, hung straight,
+   sitting between the hours band and the work wall. */
+.storefront{padding:clamp(38px,5vw,64px) 0 0}
+.storefront .print{transform:none;max-width:900px;margin:0 auto;padding:14px 14px 38px}
+.storefront .print:hover{transform:none}
+/* NEVER CROP THE IMPORTANT PART — the banner runs across the top of this
+   frame, so the photo is shown whole at its own ratio rather than cropped
+   into a letterbox. */
+.storefront .print img{width:100%;height:auto}
+.storefront .front-line{max-width:900px;margin:20px auto 0;text-align:center;font-size:16.5px;color:var(--muted)}
+.storefront .front-line em{font-style:italic;color:var(--ink)}
+
+/* ---------- TITLE CARDS UNROLL ----------
+   Every category headline on the service board is itself the tap target and
+   rolls its real items out in place. Downward chevron that flips up (ARROW
+   LAW) — never a plus. grid-template-rows 0fr -> 1fr animates to auto height
+   with no JS measuring. Nails ships open so the board never reads as a stack
+   of dead bars. */
+.menu-stack{display:grid;gap:13px}
+.roll{border:var(--rule);border-radius:var(--r);background:var(--paper);overflow:hidden;
+  box-shadow:0 26px 50px -44px rgba(36,27,23,.6)}
+.roll-btn{appearance:none;-webkit-appearance:none;width:100%;cursor:pointer;background:none;border:0;color:var(--ink);
+  font-family:var(--body);display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px clamp(16px,2.4vw,24px);text-align:left;min-height:62px;transition:background .2s}
+.roll-btn:hover{background:color-mix(in srgb,var(--warm) 9%,transparent)}
+.roll-btn h3{font-size:clamp(20px,2.4vw,26px);margin:0;line-height:1.15}
+.roll-btn .cnt{display:block;margin-top:5px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted)}
+.roll-btn .chev{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  color:var(--brand);background:color-mix(in srgb,var(--brand) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--brand) 26%,transparent);
+  transition:transform .32s var(--ease-2),background .2s}
+.roll-btn .chev svg{width:16px;height:16px}
+.roll-btn:hover .chev{background:color-mix(in srgb,var(--brand) 20%,transparent)}
+.roll-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.rolled[data-open="1"]{grid-template-rows:1fr}
+.rolled>.rolled-in{overflow:hidden;min-height:0}
+.rolled .menu-list{padding:0 clamp(16px,2.4vw,24px) 14px;border-top:1px dashed var(--line);margin-top:2px}
+.rolled .menu-list li:first-child{padding-top:14px}
+@media (prefers-reduced-motion:reduce){.rolled{transition:none}.roll-btn .chev{transition:none}}
+
+/* ---------- THE WORK WALL, CLOSED PROPERLY ----------
+   The masonry used to just stop with a hole bottom-right. This closes the
+   section with one real instruction the shop actually gives at the desk. */
+.work-note{max-width:760px;margin:clamp(26px,4vw,44px) auto 0;text-align:center;
+  border-top:var(--rule);padding-top:clamp(20px,3vw,30px);font-size:17px;color:var(--muted)}
+.work-note b{color:var(--ink);font-weight:800}
+
+/* ---------- ROOM STRIP: prints must self-size ----------
+   Grid stretch was matching the shorter print's mat to the taller one and
+   leaving a dead cream box under the photo. */
+.room-strip{align-items:start}
+.room-strip .print{align-self:start}
+
+/* ---------- REAL REVIEW CARDS ----------
+   REVIEW ATTRIBUTION LAW (9/6): every card carries the reviewer's real
+   published name AND their own real Google profile photo, pulled from the
+   same listing as the quote. Verbatim text, real stars, real date. No
+   monograms, no stock faces, no invented names. */
+.revs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,22px);
+  margin-bottom:clamp(26px,4vw,44px)}
+.rev{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,2.6vw,28px);
+  box-shadow:0 30px 56px -46px rgba(36,27,23,.6)}
+.rev-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+.rev-face{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line),0 8px 18px -10px rgba(36,27,23,.5)}
+.rev-who{display:flex;flex-direction:column;font-weight:800;font-size:15.5px;line-height:1.2;min-width:0}
+.rev-who small{font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-top:5px}
+.rev-stars{margin-left:auto;flex:none;color:var(--warm);font-size:14px;letter-spacing:1.5px}
+.rev p{margin:0;font-size:16.5px;line-height:1.62}
+@media (max-width:800px){.revs{grid-template-columns:1fr}}
+
+/* ---------- BOOKING: the night print closes the section ----------
+   Same object as the daylight print under the hours band, hung the same way —
+   the page opens and closes on the same doorway. */
+.book-print{max-width:900px;margin:clamp(34px,5vw,58px) auto 0;transform:none;padding:14px 14px 38px}
+.book-print:hover{transform:none}
+.book-print img{width:100%;height:auto}

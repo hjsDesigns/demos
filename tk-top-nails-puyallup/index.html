@@ -9,8 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- DM Serif Display (display, 400 only — the face has no other weight) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1757390000">
+<link rel="stylesheet" href="css/hero.css?v=1757390000">
+<script>document.documentElement.className+=' js';</script>
 </head>
 <body>
 
@@ -32,7 +33,7 @@
         <a href="#menu">Services</a>
         <a href="#finish">Pick a finish</a>
         <a href="#room">Inside</a>
-        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
         <a href="#book" class="nav-cta">Book a chair</a>
       </nav>
     </div>
@@ -43,10 +44,16 @@
 <main>
 
   <!-- ===================== #hero =====================
-       EXTERIOR HERO DEFAULT (9/4): interiors appear further down the page,
-       so the opener is the real building from the road with the sign
-       legible. Headline block only — no chips, no badges, no status pill.
-       Phones get the HERO STACK (three real photos, no crop, no gaps). -->
+       LOCKED — this is Codex's take, picked by Hayden 9/7. The idea is their
+       own banner sign (a straight crop of the real vinyl, never redrawn)
+       arriving in two halves out of a wash of daylight, with the pedicure row
+       emerging on the right. Do not change the idea.
+       9/8 defect fixes only: the photo's left edge is feathered and the
+       daylight wash carried further right so the room no longer butts against
+       a hard cream seam, and the mark is capped so it stops clear of the
+       photo. The daylight EXTERIOR of the building sits in #storefront,
+       directly under the hours band (STOREFRONT BELOW THE HOURS).
+       Headline block only — no chips, no badges, no status pill. -->
   <section class="hero codex-tk-top-nails" id="hero">
   <div class="codex-tk-room codex-decor" aria-hidden="true"><img src="images/hero-stack-2.jpg" alt="" width="1650" height="2200" fetchpriority="high"></div>
   <div class="codex-tk-daylight codex-decor" aria-hidden="true"></div>
@@ -67,8 +74,9 @@
        storefront) and agree with the Monday 9 AM opening on Yahoo Local. -->
   <section class="status-band section-dark" id="hours">
     <div class="wrap">
-      <div class="status-head">
+      <div class="status-head reveal">
         <p class="eyebrow">When to find us</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>Open every day, <em>right off East Main</em></h2>
         <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
@@ -91,6 +99,22 @@
     </div>
   </section>
 
+  <!-- ===================== #storefront =====================
+       STOREFRONT BELOW THE HOURS (9/2 law): the hero is their banner sign
+       over the pedicure row, so the building itself opens the offerings.
+       One wide daylight print of 1831 E Main — the same frame the sign crop
+       and the hours were read off. Hung straight; no address repeated here
+       (NEVER TWICE — the address lives in the band above). -->
+  <section class="section storefront" id="storefront" aria-label="The shop from East Main">
+    <div class="wrap">
+      <figure class="print reveal">
+        <img src="images/hero-stack-1.jpg" alt="TK Top Nails &amp; Spa from East Main Avenue in daylight — the blue-and-cream storefront with the TK Top Nails &amp; Spa banner across the top, neon NAIL SPA and OPEN signs in the windows and cars parked at the steps" loading="lazy" width="2200" height="1650">
+        <figcaption>1831 East Main, in daylight</figcaption>
+      </figure>
+      <p class="front-line reveal">The low blue-and-cream building on East Main, between the trees and the barber pole. <em>Look for the OPEN sign in the glass.</em></p>
+    </div>
+  </section>
+
   <!-- ===================== #work — THE WORK WALL =====================
        Nine real sets done in this shop, each in its own framed print at its
        own aspect ratio so nothing is cropped. Captions name the style and
@@ -99,20 +123,22 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The work</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>Nine sets that <em>walked out of here</em></h2>
         <p>Every photo below came out of this shop. Solid colour, French, ombré, hand-painted art, and a spa pedicure finished with daisies.</p>
       </div>
       <div class="work-wall">
-        <figure class="print reveal"><img src="images/work-1.jpg" alt="A short square set painted in glossy lilac" loading="lazy"><figcaption>Lilac gel</figcaption></figure>
-        <figure class="print reveal"><img src="images/work-2.jpg" alt="A deep plum almond-shaped set" loading="lazy"><figcaption>Plum almond</figcaption></figure>
-        <figure class="print reveal"><img src="images/work-3.jpg" alt="A matte black set with a fine white line painted on the accent nail" loading="lazy"><figcaption>Matte black, painted line</figcaption></figure>
-        <figure class="print reveal"><img src="images/work-4.jpg" alt="Long nails fading from pale pink into a white glitter tip" loading="lazy"><figcaption>Pink glitter ombré</figcaption></figure>
         <figure class="print reveal"><img src="images/work-5.jpg" alt="A dark burgundy almond set on a white towel" loading="lazy"><figcaption>Burgundy almond</figcaption></figure>
-        <figure class="print reveal"><img src="images/work-6.jpg" alt="A black almond set with a small red heart painted on one nail" loading="lazy"><figcaption>Black, with a painted heart</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-1.jpg" alt="A short square set painted in glossy lilac" loading="lazy"><figcaption>Lilac gel</figcaption></figure>
         <figure class="print reveal"><img src="images/work-7.jpg" alt="A spa pedicure in progress in the salon — hot pink toes with white daisies painted on by hand" loading="lazy"><figcaption>Hand-painted daisies</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-6.jpg" alt="A black almond set with a small red heart painted on one nail" loading="lazy"><figcaption>Black, with a painted heart</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-2.jpg" alt="A deep plum almond-shaped set" loading="lazy"><figcaption>Plum almond</figcaption></figure>
         <figure class="print reveal"><img src="images/work-8.jpg" alt="A black glitter set catching the light" loading="lazy"><figcaption>Black glitter</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-4.jpg" alt="Long nails fading from pale pink into a white glitter tip" loading="lazy"><figcaption>Pink glitter ombré</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-3.jpg" alt="A matte black set with a fine white line painted on the accent nail" loading="lazy"><figcaption>Matte black, painted line</figcaption></figure>
         <figure class="print reveal"><img src="images/work-9.jpg" alt="A long nude coffin set with a soft white tip" loading="lazy"><figcaption>Nude coffin</figcaption></figure>
       </div>
+      <p class="work-note reveal">Seen one you want? <b>Bring the photo in.</b> Point at the shade on the rack by the door and they will match it at the chair.</p>
     </div>
   </section>
 
@@ -125,64 +151,92 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Straight off their own boards</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>Everything on <em>the service list</em></h2>
-        <p>Exactly as it reads on the board inside the shop and the sign at the driveway. Nothing added, nothing dressed up.</p>
+        <p>Exactly as it reads on the board inside the shop and the sign at the driveway. Nothing added, nothing dressed up. Tap a heading to open it.</p>
       </div>
       <div class="board-split">
+        <div class="board-col">
         <figure class="print reveal">
           <img src="images/board.jpg" alt="The white A-frame sign at the driveway reading TK Top Nails — Spa Pedicure, Shellac Mani, Full Set, Dipping Powder, Nails Ombre, Waxing, Eyelash Extensions, Walk-Ins Welcome, 253-268-0000" loading="lazy">
           <figcaption>The board at the driveway</figcaption>
         </figure>
+        <p class="menu-fine reveal">Waxing prices are as printed on the shop's own service board. Nail prices aren't printed on it — call and ask what today's is; the sign at the driveway has said <em>fair prices</em> for a while now.</p>
+        </div>
         <div class="reveal">
-          <div class="menu-groups">
-            <div class="menu-group">
-              <h3>Nails</h3>
-              <ul class="menu-list">
-                <li><span class="name">Acrylic Full Set</span></li>
-                <li><span class="name">Acrylic Gel Full Set</span></li>
-                <li><span class="name">Pink &amp; White Full Set</span></li>
-                <li><span class="name">Silk Wrap Full Set</span></li>
-                <li><span class="name">Manicure</span></li>
-                <li><span class="name">Shellac Manicure</span></li>
-                <li><span class="name">Shellac Color Change</span></li>
-                <li><span class="name">Regular Color Change</span></li>
-                <li><span class="name">Nail Repair</span></li>
-                <li><span class="name">Nail Art Design</span></li>
-              </ul>
+          <!-- TITLE CARDS UNROLL (8/27 law): the category headline IS the tap
+               target and rolls the real items out in place. Downward chevron
+               that flips up (ARROW LAW) — never a plus. Nails ships open so the
+               board is never a stack of dead bars. Every line is read off one
+               of their own two signs; nothing here is invented. -->
+          <div class="menu-stack">
+            <div class="roll">
+              <button class="roll-btn" type="button" aria-expanded="true" aria-controls="rollNails">
+                <span><h3>Nails</h3><span class="cnt">Ten off the board inside</span></span>
+                <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+              </button>
+              <div class="rolled" id="rollNails" data-open="1"><div class="rolled-in">
+                <ul class="menu-list">
+                  <li><span class="name">Acrylic Full Set</span></li>
+                  <li><span class="name">Acrylic Gel Full Set</span></li>
+                  <li><span class="name">Pink &amp; White Full Set</span></li>
+                  <li><span class="name">Silk Wrap Full Set</span></li>
+                  <li><span class="name">Manicure</span></li>
+                  <li><span class="name">Shellac Manicure</span></li>
+                  <li><span class="name">Shellac Color Change</span></li>
+                  <li><span class="name">Regular Color Change</span></li>
+                  <li><span class="name">Nail Repair</span></li>
+                  <li><span class="name">Nail Art Design</span></li>
+                </ul>
+              </div></div>
             </div>
-            <div class="menu-group">
-              <h3>Pedicures</h3>
-              <ul class="menu-list">
-                <li><span class="name">Spa Pedicure</span></li>
-                <li><span class="name">Deluxe Pedicure</span></li>
-                <li><span class="name">Basic Pedicure</span></li>
-                <li><span class="name">Pedicure &amp; Manicure</span></li>
-                <li><span class="name">Nu Skin Pedicure</span></li>
-                <li><span class="name">Toenail Cut Down</span></li>
-              </ul>
+            <div class="roll">
+              <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollPedis">
+                <span><h3>Pedicures</h3><span class="cnt">Six, down the wall of spa chairs</span></span>
+                <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+              </button>
+              <div class="rolled" id="rollPedis" data-open="0"><div class="rolled-in">
+                <ul class="menu-list">
+                  <li><span class="name">Spa Pedicure</span></li>
+                  <li><span class="name">Deluxe Pedicure</span></li>
+                  <li><span class="name">Basic Pedicure</span></li>
+                  <li><span class="name">Pedicure &amp; Manicure</span></li>
+                  <li><span class="name">Nu Skin Pedicure</span></li>
+                  <li><span class="name">Toenail Cut Down</span></li>
+                </ul>
+              </div></div>
             </div>
-            <div class="menu-group">
-              <h3>Waxing</h3>
-              <ul class="menu-list">
-                <li><span class="name">Facial</span><span class="price">$45</span></li>
-                <li><span class="name">Bikini</span><span class="price">$25–$35</span></li>
-                <li><span class="name">Full Face</span><span class="price">$25</span></li>
-                <li><span class="name">Full Leg</span><span class="price">$25</span></li>
-                <li><span class="name">Back</span><span class="price">$15–$25</span></li>
-                <li><span class="name">Chest</span><span class="price">$15</span></li>
-                <li><span class="name">Full Arm</span><span class="price">$15</span></li>
-              </ul>
+            <div class="roll">
+              <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollWax">
+                <span><h3>Waxing</h3><span class="cnt">The only prices they print</span></span>
+                <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+              </button>
+              <div class="rolled" id="rollWax" data-open="0"><div class="rolled-in">
+                <ul class="menu-list">
+                  <li><span class="name">Facial</span><span class="price">$45</span></li>
+                  <li><span class="name">Bikini</span><span class="price">$25–$35</span></li>
+                  <li><span class="name">Full Face</span><span class="price">$25</span></li>
+                  <li><span class="name">Full Leg</span><span class="price">$25</span></li>
+                  <li><span class="name">Back</span><span class="price">$15–$25</span></li>
+                  <li><span class="name">Chest</span><span class="price">$15</span></li>
+                  <li><span class="name">Full Arm</span><span class="price">$15</span></li>
+                </ul>
+              </div></div>
             </div>
-            <div class="menu-group">
-              <h3>Out front, too</h3>
-              <ul class="menu-list">
-                <li><span class="name">Dipping Powder</span></li>
-                <li><span class="name">Nails Ombré</span></li>
-                <li><span class="name">Eyelash Extensions</span></li>
-              </ul>
+            <div class="roll">
+              <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollOut">
+                <span><h3>Out front, too</h3><span class="cnt">Three more, only on the driveway sign</span></span>
+                <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+              </button>
+              <div class="rolled" id="rollOut" data-open="0"><div class="rolled-in">
+                <ul class="menu-list">
+                  <li><span class="name">Dipping Powder</span></li>
+                  <li><span class="name">Nails Ombré</span></li>
+                  <li><span class="name">Eyelash Extensions</span></li>
+                </ul>
+              </div></div>
             </div>
           </div>
-          <p class="menu-fine">Waxing prices are as printed on the shop's own service board. Nail prices aren't printed on it — call and ask what today's is; the sign at the driveway has said <em>fair prices</em> for a while now.</p>
         </div>
       </div>
     </div>
@@ -197,6 +251,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Not sure what to ask for?</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>Pick a finish, <em>see it done</em></h2>
         <p>Four of the finishes they do, each shown on a real set from this shop. Tap one.</p>
       </div>
@@ -235,6 +290,7 @@
         </figure>
         <div class="room-copy reveal">
           <p class="eyebrow">Inside</p>
+          <span class="sign-rule" aria-hidden="true"></span>
           <h2>A wall of colour <em>by the door</em></h2>
           <p class="lede">It's a small shop, and it's set up the way a small shop should be.</p>
           <p>Spa pedicure chairs down one wall under warm pendant lamps, manicure stations down the other, a couch by the window and the TV on. Cream walls, tile floor, plants in the corner.</p>
@@ -249,15 +305,57 @@
   </section>
 
   <!-- ===================== #reviews =====================
-       The honest aggregate. No named Google review with a matching
-       published profile photo could be sourced for this listing, so the
-       template's law applies: show the real number and link out to the
-       live reviews rather than ship an invented card. -->
+       REVIEW ATTRIBUTION LAW (9/6). Four reviewers off TK Top Nails' own
+       Google listing (place cid 7976721463417677705, scraped 2026-09-08 with
+       scrape-reviews.py; raw at harvest-0906/greviews-pw.json). Each card
+       carries that person's REAL published name and their REAL Google profile
+       photo from the same listing (harvest-0906/avatars/), their real star
+       count and the date Google prints. Quotes are verbatim and complete —
+       no card here was truncated by a "See more". Six more complete
+       name+face pairs were sourced and are in the harvest if any of these
+       need swapping. The honest 4.0 / 128 aggregate and the link to every
+       review, good and bad, sit directly underneath. -->
   <section class="section" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">On Google</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>What people <em>have said</em></h2>
+        <p>Their words, their names, their faces — copied off the listing, not written by us.</p>
+      </div>
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-monica-lui.jpg" alt="Monica Lui's Google profile photo" width="200" height="200" loading="lazy">
+            <span class="rev-who">Monica Lui<small>2 years ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;I had a great experience getting a manicure with Kim. On top of doing a nice job, she was so sweet and friendly!&rdquo;</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-michele-delp.jpg" alt="Michele Delp's Google profile photo" width="200" height="200" loading="lazy">
+            <span class="rev-who">Michele Delp<small>6 years ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;Timmy and co worker treated me like gold very clean and friendly. Very prompt service. Love my fingers and toes perfect job well done. I will return again and again. See you soon!&rdquo;</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-barbara.jpg" alt="Barbara's Google profile photo" width="200" height="200" loading="lazy">
+            <span class="rev-who">Barbara<small>9 years ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;Lily, the owner is top notch on service! Had gel nails done many times and lasted over 2 weeks without any chips! Love their pedicures! Clean, nice, busy because they are good at what they do and care!&rdquo;</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-m-newell.jpg" alt="M Newell's Google profile photo" width="200" height="200" loading="lazy">
+            <span class="rev-who">M Newell<small>7 years ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;Had an awesome experience. Made an appointment the same day for four of us to have pedicures. Great customer service, no rush, and went above and beyond to make us feel comfortable. We forgot a jacket inside and the owner ran it out to us and gave my mom a hug. Such a great place.&rdquo;</p>
+        </article>
       </div>
       <div class="score reveal">
         <div>
@@ -266,7 +364,7 @@
         </div>
         <div class="score-copy">
           <h3>128 ratings, from people who live here</h3>
-          <p>Regulars in Puyallup and Sumner have been rating this shop for years. Read them yourself — every word is theirs, not ours.</p>
+          <p>Those four aren&rsquo;t the only ones. Puyallup has been rating this shop for years — the glowing and the grumpy both. Read the lot.</p>
           <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=TK+Top+Nails+%26+Spa%2C+1831+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Read all 128 reviews on Google ↗</a>
         </div>
       </div>
@@ -279,6 +377,7 @@
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Booking</p>
+          <span class="sign-rule" aria-hidden="true"></span>
           <h2>Walk in, or <em>call ahead</em></h2>
           <ol class="steps">
             <li><h3>Just walk in</h3><p>The window says <em>Walk-Ins Welcome</em> and so does the sign at the driveway. No appointment needed for a manicure or a spa pedicure.</p></li>
@@ -289,11 +388,8 @@
             <span>📞 <a href="tel:+12532680000">(253) 268-0000</a></span>
             <span>💬 <a href="sms:+12532680000">Text the shop</a></span>
           </div>
-          <figure class="print reveal" style="margin-top:32px;max-width:460px">
-            <img src="images/book.jpg" alt="TK Top Nails &amp; Spa after dark — the banner sign and the window neon lit up over the shopfront" loading="lazy">
-            <figcaption>The same shop, after dark</figcaption>
-          </figure>
         </div>
+        <div>
         <form class="contact-form reveal">
           <input type="hidden" name="access_key" value="">
           <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off">
@@ -312,7 +408,15 @@
           <p class="form-success">Thanks — someone at TK Top Nails will get back to you.</p>
           <p class="form-fine">We'll only use this to reply to you.</p>
         </form>
+        </div>
       </div>
+      <!-- The bookend. The daylight print of this building opens the page
+           under the hours band; this is the same doorway at closing time,
+           hung the same way, closing the section the same print opened. -->
+      <figure class="print book-print reveal">
+        <img src="images/book.jpg" alt="TK Top Nails &amp; Spa after dark — the banner sign lit over the shopfront and the pink and green neon burning in the windows" loading="lazy" width="2200" height="1650">
+        <figcaption>The same doorway, after dark</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -321,9 +425,10 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">One more thing</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>The neon's on. <em>Come in.</em></h2>
       </div>
-      <p class="cta-lede reveal">Between the barber pole and the trees on East Main, set back off the road. Park out front and walk up the steps.</p>
+      <p class="cta-lede reveal">No appointment, no app, no deposit. A chair, a wall of colour and someone who has been doing this on East Main for years.</p>
       <div class="cta-actions reveal">
         <a href="tel:+12532680000" class="btn btn-primary">Call the shop</a>
         <a href="https://www.google.com/maps/search/?api=1&amp;query=1831+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener" class="btn btn-ghost">Get directions ↗</a>
@@ -349,7 +454,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#work">The work</a><br><a href="#menu">Services</a><br><a href="#finish">Pick a finish</a><br><a href="#room">Inside</a><br><a href="#book">Book a chair</a></p>
+        <p><a href="#hours">Hours</a><br><a href="#work">The work</a><br><a href="#menu">Services</a><br><a href="#finish">Pick a finish</a><br><a href="#room">Inside</a><br><a href="#reviews">Reviews</a><br><a href="#book">Book a chair</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -359,6 +464,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1757390000"></script>
 </body>
 </html>

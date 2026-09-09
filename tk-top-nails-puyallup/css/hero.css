@@ -15,11 +15,21 @@
 @media(max-width:600px){.hero.codex-tk-top-nails .codex-actions{gap:10px;width:100%}.hero.codex-tk-top-nails .codex-actions .btn{flex:1 1 0;min-height:48px;padding:13px 10px;font-size:14px}}
 
 .hero.codex-tk-top-nails{background:var(--bg)}
-.hero.codex-tk-top-nails .codex-tk-room{position:absolute;inset:0 0 0 43%;overflow:hidden}
+/* DEFECT FIX 2026-09-08 (idea untouched): the photo used to start at a hard
+   vertical cut at 43% while the daylight wash was still ~85% cream there, so
+   the opener read as a photo pasted onto a cream rectangle. The photo now
+   starts further left and its own left edge is feathered with a mask, and the
+   wash reaches full transparency later — so the room emerges out of the
+   daylight instead of being butted against it. */
+.hero.codex-tk-top-nails .codex-tk-room{position:absolute;inset:0 0 0 40%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.28) 13%,#000 32%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.28) 13%,#000 32%,#000 100%)}
 .hero.codex-tk-top-nails .codex-tk-room img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 60%;filter:saturate(.9);animation:codex-tk-room-arrive 2.5s var(--ease) both}
-.hero.codex-tk-top-nails .codex-tk-daylight{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 28%,color-mix(in srgb,var(--bg) 96%,transparent) 40%,color-mix(in srgb,var(--bg) 76%,transparent) 48%,transparent 69%)}
+.hero.codex-tk-top-nails .codex-tk-daylight{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 30%,color-mix(in srgb,var(--bg) 92%,transparent) 42%,color-mix(in srgb,var(--bg) 58%,transparent) 54%,color-mix(in srgb,var(--bg) 20%,transparent) 64%,transparent 74%)}
 .hero.codex-tk-top-nails .codex-content{width:54%;margin:0;padding:0 3.8vw 0 4.5vw}
-.hero.codex-tk-top-nails .codex-tk-sign{position:relative;width:100%;aspect-ratio:1180/413;mix-blend-mode:multiply;filter:contrast(1.08);overflow:visible}
+/* The sign is capped so its right end lands inside the feathered edge of the
+   photo rather than multiplying onto the solid room — the mark stays clean. */
+.hero.codex-tk-top-nails .codex-tk-sign{position:relative;width:min(100%,39vw);max-width:660px;margin:0 auto;aspect-ratio:1180/413;mix-blend-mode:multiply;filter:contrast(1.08);overflow:visible}
 .hero.codex-tk-top-nails .codex-tk-sign-top,.hero.codex-tk-top-nails .codex-tk-sign-bottom{position:absolute;inset:0}
 .hero.codex-tk-top-nails .codex-tk-sign-top{clip-path:inset(0 0 46% 0);animation:codex-tk-red-arrive 1.55s var(--ease) both}
 .hero.codex-tk-top-nails .codex-tk-sign-bottom{clip-path:inset(54% 0 0 0);animation:codex-tk-blue-arrive 1.55s var(--ease) .14s both}
@@ -33,6 +43,7 @@
  .hero.codex-tk-top-nails .codex-tk-room img{object-position:center 62%}
  .hero.codex-tk-top-nails .codex-tk-daylight{background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 15%,color-mix(in srgb,var(--bg) 96%,transparent) 26%,color-mix(in srgb,var(--bg) 78%,transparent) 37%,transparent 61%)}
  .hero.codex-tk-top-nails .codex-content{width:100%;padding:clamp(32px,8svh,68px) 22px 0}
+ .hero.codex-tk-top-nails .codex-tk-sign{width:100%;max-width:none}
  .hero.codex-tk-top-nails .codex-actions{margin-top:26px}
 }
 @media(max-height:540px) and (min-width:761px){.hero.codex-tk-top-nails .codex-content{width:51%;padding-left:3vw;padding-right:3vw}.hero.codex-tk-top-nails .codex-tk-sign{max-width:420px;margin:auto}.hero.codex-tk-top-nails .codex-actions{margin-top:22px}}
