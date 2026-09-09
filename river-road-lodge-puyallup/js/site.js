@@ -150,8 +150,111 @@ function customClose(p, close){ return close; }
       .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
   })}
 
-  /* ---------- SIGNATURE GADGET ----------
-     Per-client interactive code goes below this line (EA: day timeline +
-     rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+  /* ---------- SIGNATURE GADGET: THE DART BOARD ----------
+     Their fascia sign reads BAR - DARTS - POOL. Bar and pool each have a
+     photograph on this page; no frame in the harvest shows the board, so the
+     board is built here instead. One gesture: tap it. A dart sticks where you
+     tapped, the wedge lights, the number reads out. Three darts shows the
+     total; the next tap clears. Nothing typed, no legend, no prize. */
+  (function(){
+    var svg=$('#dartBoard'); if(!svg) return;
+    var numEl=$('#dartNum'), lblEl=$('#dartLbl'), pipEl=$('#dartPips');
+    var NS='http://www.w3.org/2000/svg';
+    var ORDER=[20,1,18,4,13,6,10,15,2,17,3,19,7,16,8,11,14,9,12,5];
+    var C=200, R_OUT=176, R_NUM=186, R_DBL_O=170, R_DBL_I=158,
+        R_TRP_O=104, R_TRP_I=92, R_BULL_O=17, R_BULL_I=7;
+    var css=getComputedStyle(document.documentElement);
+    function tok(n,f){var v=css.getPropertyValue(n).trim(); return v||f}
+    var DARK=tok('--bg-2','#100C0A'), BONE=tok('--ink','#F3E9DE'),
+        ORANGE=tok('--brand','#E9611F'), NEON=tok('--neon','#FF2E4C'),
+        LINE=tok('--line','#3A2C25');
+
+    function pt(r,deg){var a=(deg-90)*Math.PI/180; return [C+r*Math.cos(a), C+r*Math.sin(a)]}
+    function ring(r0,r1,a0,a1){
+      var p0=pt(r1,a0),p1=pt(r1,a1),p2=pt(r0,a1),p3=pt(r0,a0);
+      return 'M'+p0+'A'+r1+' '+r1+' 0 0 1 '+p1+'L'+p2+'A'+r0+' '+r0+' 0 0 0 '+p3+'Z';
+    }
+    function add(tag,attrs,cls){
+      var e=document.createElementNS(NS,tag);
+      for(var k in attrs) e.setAttribute(k,attrs[k]);
+      if(cls) e.setAttribute('class',cls);
+      svg.appendChild(e); return e;
+    }
+    function seg(g,a0,a1,r0,r1,fill){
+      var e=document.createElementNS(NS,'path');
+      e.setAttribute('d',ring(r0,r1,a0,a1)); e.setAttribute('fill',fill);
+      g.appendChild(e); return e;
+    }
+    add('circle',{cx:C,cy:C,r:198,fill:DARK,stroke:LINE});
+    var segs={};
+    for(var i=0;i<20;i++){
+      var a0=i*18-9, a1=i*18+9, n=ORDER[i], odd=(i%2===1);
+      var body=odd?BONE:DARK, ringc=odd?ORANGE:NEON;
+      var g=add('g',{},'wedge');
+      seg(g,a0,a1,R_TRP_O,R_DBL_I,body); seg(g,a0,a1,R_BULL_O,R_TRP_I,body);
+      seg(g,a0,a1,R_DBL_I,R_DBL_O,ringc); seg(g,a0,a1,R_TRP_I,R_TRP_O,ringc);
+      segs[n]=g;
+      var np=pt(R_NUM,i*18);
+      add('text',{x:np[0],y:np[1]},'num').textContent=n;
+    }
+    add('circle',{cx:C,cy:C,r:R_BULL_O,fill:NEON});
+    add('circle',{cx:C,cy:C,r:R_BULL_I,fill:ORANGE});
+    add('circle',{cx:C,cy:C,r:R_DBL_O,fill:'none',stroke:LINE,'stroke-width':1});
+
+    var darts=[], scores=[], lit=null;
+    function clear(){
+      darts.forEach(function(d){d.parentNode&&d.parentNode.removeChild(d)});
+      darts=[]; scores=[]; pipEl.innerHTML='';
+      if(lit){lit.classList.remove('lit'); lit=null}
+      numEl.textContent='—'; numEl.classList.remove('is-miss');
+      lblEl.textContent='Tap the board. That’s your dart.';
+    }
+    function stick(x,y){
+      var g=document.createElementNS(NS,'g');
+      g.setAttribute('transform','translate('+x.toFixed(1)+','+y.toFixed(1)+')');
+      g.innerHTML='<g class="dart">'+
+        '<line x1="0" y1="0" x2="20" y2="-29" stroke="'+DARK+'" stroke-width="7" stroke-linecap="round"/>'+
+        '<line x1="0" y1="0" x2="20" y2="-29" stroke="'+BONE+'" stroke-width="4" stroke-linecap="round"/>'+
+        '<polygon points="20,-29 36,-35 29,-48 15,-38" fill="'+ORANGE+'" stroke="'+DARK+'" stroke-width="2" stroke-linejoin="round"/>'+
+        '<circle cx="0" cy="0" r="4.4" fill="'+NEON+'" stroke="'+DARK+'" stroke-width="1.6"/></g>';
+      svg.appendChild(g); darts.push(g);
+    }
+    function throwAt(x,y){
+      if(scores.length>=3){clear(); return}
+      var dx=x-C, dy=y-C, r=Math.sqrt(dx*dx+dy*dy);
+      var a=(Math.atan2(dy,dx)*180/Math.PI+90+360)%360;
+      var n=ORDER[Math.floor((a+9)/18)%20], score=0, label='Missed the board';
+      if(r<=R_BULL_I){score=50; label='Bullseye'}
+      else if(r<=R_BULL_O){score=25; label='Outer bull'}
+      else if(r>R_OUT){score=0; label='Off the board'}
+      else if(r>=R_DBL_I&&r<=R_DBL_O){score=n*2; label='Double '+n}
+      else if(r>=R_TRP_I&&r<=R_TRP_O){score=n*3; label='Treble '+n}
+      else {score=n; label=String(n)}
+      stick(x,y);
+      if(lit) lit.classList.remove('lit');
+      if(score&&r<=R_OUT&&r>R_BULL_O){lit=segs[n]; lit.classList.add('lit')} else {lit=null}
+      scores.push(score);
+      var pip=document.createElement('i'); pip.textContent=score; pipEl.appendChild(pip);
+      numEl.textContent=score; numEl.classList.toggle('is-miss',score===0);
+      lblEl.textContent=label;
+      if(scores.length===3){
+        var t=scores.reduce(function(a,b){return a+b},0);
+        numEl.textContent=t; numEl.classList.remove('is-miss');
+        lblEl.textContent='Three darts · tap to clear';
+      }
+    }
+    function local(ev){
+      var b=svg.getBoundingClientRect(), s=400/b.width;
+      return [(ev.clientX-b.left)*s, (ev.clientY-b.top)*s];
+    }
+    svg.addEventListener('click',function(ev){var p=local(ev); throwAt(p[0],p[1])});
+    svg.addEventListener('keydown',function(ev){
+      if(ev.key!=='Enter'&&ev.key!==' ') return;
+      ev.preventDefault();
+      var a=Math.random()*360, r=Math.random()*R_DBL_O, p=pt(r,a);
+      throwAt(p[0],p[1]);
+    });
+    clear();
+  })();
 
 })();
