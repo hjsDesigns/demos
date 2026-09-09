@@ -154,7 +154,9 @@ function customClose(p, close){ return close; }
   $$('.roll-btn').forEach(function(btn){
     var item=btn.parentNode, panel=btn.nextElementSibling;
     var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    panel.setAttribute('aria-hidden','true'); panel.inert=true;
+    var startOpen=item.classList.contains('open');
+    panel.setAttribute('aria-hidden',startOpen?'false':'true'); panel.inert=!startOpen;
+    if(startOpen){btn.setAttribute('aria-expanded','true');panel.style.height='auto'}
     btn.addEventListener('click',function(){
       var open=item.classList.toggle('open');
       btn.setAttribute('aria-expanded',open?'true':'false');
@@ -200,6 +202,10 @@ function customClose(p, close){ return close; }
     hurtIdle.style.display='none';
     hurtCard.classList.remove('show'); void hurtCard.offsetWidth; hurtCard.classList.add('show');
   }
+  /* Open with a spot already picked, so the answer panel is never an empty
+     box waiting to be discovered — tap another spot to change it, tap the lit
+     one again to clear back to the prompt (TODDLER LAW). */
+  if(hurtCard&&hurtZones.length)setHurt('shoulders');
   hurtZones.forEach(function(z){
     function hit(){var k=z.getAttribute('data-hurt');setHurt(hurtCurrent===k?null:k)}
     z.addEventListener('click',hit);

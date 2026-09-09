@@ -11,7 +11,7 @@
      CSS actually sets are requested, and every weight the CSS sets is here —
      nothing is left for the browser to fake. Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=1788928623">
 </head>
 <body>
 
@@ -33,7 +33,7 @@
         <a href="#services">Massages</a>
         <a href="#rooms">The rooms</a>
         <a href="#signature">Where it hurts</a>
-        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
         <a href="#contact" class="nav-cta">Book by phone</a>
       </nav>
     </div>
@@ -104,17 +104,26 @@
        board are not legible at source resolution, so they stay off the page. -->
   <section class="section section-alt" id="services">
     <div class="wrap">
+
+      <!-- STOREFRONT BELOW THE HOURS (9/2): the hero is a room, so the building
+           itself opens the offerings, directly under the hours band. -->
+      <figure class="storefront reveal">
+        <img src="images/storefront.jpg" alt="The Rose Spa storefront in the Highway 410 plaza — the lit red ROSE SPA sign with the amber MASSAGE box under it, above the glass door of Suite 302" loading="lazy" width="1920" height="1080">
+        <figcaption><b>Suite 302, in the plaza on the north side of Highway 410.</b> Red letters, amber box under them, between the dental office and the glass shop. Park right out front.</figcaption>
+      </figure>
+
       <div class="section-head reveal">
         <p class="eyebrow">What they do</p>
         <h2>Two hands, <em>however long you have</em></h2>
         <p>Tap a line to see what the session is.</p>
       </div>
-      <div class="with-print">
+      <div>
         <div class="roll reveal">
 
-          <div class="roll-item">
-            <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-1">
-              Traditional body massage
+          <div class="roll-item open">
+            <button class="roll-btn" type="button" aria-expanded="true" aria-controls="roll-1">
+              <span class="roll-t">Traditional body massage
+                <small>Half an hour or a full hour, face down, door shut.</small></span>
               <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
             </button>
             <div class="roll-panel" id="roll-1">
@@ -127,7 +136,8 @@
 
           <div class="roll-item">
             <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-2">
-              Foot reflexology
+              <span class="roll-t">Foot reflexology
+                <small>The other half of what they do — feet only, shoes off, sitting up.</small></span>
               <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
             </button>
             <div class="roll-panel" id="roll-2">
@@ -140,7 +150,8 @@
 
           <div class="roll-item">
             <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-3">
-              Body and foot in one visit
+              <span class="roll-t">Body and foot in one visit
+                <small>Half the hour on the body, half on the feet, one room.</small></span>
               <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
             </button>
             <div class="roll-panel" id="roll-3">
@@ -153,7 +164,8 @@
 
           <div class="roll-item">
             <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-4">
-              Add on when you book
+              <span class="roll-t">Add on when you book
+                <small>Four extras on their board — deep pressure, hot stone, oil, cupping.</small></span>
               <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
             </button>
             <div class="roll-panel" id="roll-4">
@@ -165,10 +177,6 @@
           </div>
 
         </div>
-        <figure class="print reveal">
-          <img src="images/storefront.jpg" alt="The Rose Spa storefront in the Highway 410 plaza, the lit ROSE SPA MASSAGE sign above the door" loading="lazy" width="1000" height="450">
-          <figcaption>Suite 302, in the plaza on 410. Look for the red sign.</figcaption>
-        </figure>
       </div>
       <p class="menu-fine reveal">Rates are posted on the framed board at the front desk — call and they'll tell you today's pricing.</p>
     </div>
@@ -185,7 +193,7 @@
         <h2>Small, warm, <em>and quiet</em></h2>
         <p>Four rooms off one hallway, a desk at the front, and somewhere to sit while you wait.</p>
       </div>
-      <div class="prints">
+      <div class="prints prints-2">
         <figure class="print reveal">
           <img src="images/room-desk.jpg" alt="The front desk at Rose Spa — a slate counter with a jade lamp, a brass clock on the wall and the framed rate board propped against it" loading="lazy" width="1440" height="1080">
           <figcaption>The front desk, and the framed board the rates are on.</figcaption>
@@ -198,6 +206,31 @@
           <img src="images/room-sofa.jpg" alt="The sofa side of the waiting room at Rose Spa, under a framed painting of five musicians with a red knot hanging either side of it" loading="lazy" width="2500" height="1875">
           <figcaption>The sofa side of the same room, under the musicians.</figcaption>
         </figure>
+        <figure class="print reveal">
+          <img src="images/room-hallway.jpg" alt="The hallway at Rose Spa — a red patterned runner down the middle, framed pictures on both walls and the private room doors standing open" loading="lazy" width="1440" height="1080">
+          <figcaption>The hallway the four rooms come off. Every one is behind its own door.</figcaption>
+        </figure>
+      </div>
+
+      <!-- The visit, in guests' own words. Three separate reviewers, quoted
+           verbatim off the live Google listing, each named. Nothing here is
+           stated anywhere else on the page. -->
+      <div class="mentions reveal">
+        <p class="mentions-lede">Three things guests keep mentioning that nobody puts on a sign:</p>
+        <ul>
+          <li>
+            <span class="m-q">“the table was heated which was very nice”</span>
+            <span class="m-who">lorna Willard · Google</span>
+          </li>
+          <li>
+            <span class="m-q">“you pay after you are finished”</span>
+            <span class="m-who">Johnny Baker · Google</span>
+          </li>
+          <li>
+            <span class="m-q">“Clean and super friendly!”</span>
+            <span class="m-who">Stephanie Peterson · Google</span>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -217,7 +250,7 @@
       </div>
       <div class="hurt reveal">
         <div class="hurt-out">
-          <p class="idle" id="hurtIdle">Tap yourself on the shoulder.</p>
+          <p class="idle" id="hurtIdle">Tap wherever it’s sore.</p>
           <div class="hurt-card" id="hurtCard">
             <p class="eyebrow">Ask for</p>
             <h3 id="hurtName"></h3>
@@ -252,30 +285,67 @@
             <rect class="hurt-zone" data-hurt="all" x="46" y="432" width="208" height="48" rx="24" tabindex="0" role="button" aria-pressed="false" aria-label="All over"/>
             <text class="hurt-label" x="150" y="460" text-anchor="middle">All over</text>
           </svg>
-          <p class="hurt-hint">Tap again to clear</p>
+          <p class="hurt-hint">Tap a lit spot again to clear</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #guests =====================
-       One guest note, fully sourced: name, star rating, date and where it
-       was written, quoted verbatim including her own spelling of "message".
-       REVIEW-FACE LAW: the mark is an initials disc in this site's own
-       type and palette — never a scraped photo of the real reviewer. -->
-  <section class="section" id="guests">
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (9/6): every quote carries the REAL published
+       name of the person who said it AND that person's REAL published Google
+       profile photo, pulled from the same source (place cid 5956468374149768932,
+       scraped 2026-09-08) and served locally so nothing hotlinks. Reviewers
+       whose Google avatar is only a generated letter disc were left out
+       rather than shipped with a manufactured face. Quotes are verbatim;
+       long ones are cut with an ellipsis, never reworded. -->
+  <section class="section" id="reviews">
     <div class="wrap">
-      <div class="with-print">
-        <div class="note-quote reveal">
-          <span class="ini" aria-hidden="true">AR</span>
-          <blockquote>“My mom and I had a 1hr message at Rose Spa. The message was great from head to toe. Highly recommend it. Thanks ladies!”</blockquote>
-          <p class="note-meta"><b>Analia R.</b> <span class="stars" aria-label="5 out of 5 stars">★★★★★</span> <span class="src">Yelp · February 23, 2024</span></p>
-        </div>
-        <figure class="print reveal">
-          <img src="images/room-hallway.jpg" alt="The hallway at Rose Spa — a red patterned runner down the middle, framed pictures on both walls and the private room doors standing open" loading="lazy" width="1440" height="1080">
-          <figcaption>The hallway. Every room is behind its own door.</figcaption>
-        </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">On their Google listing</p>
+        <h2>Sixty-one people <em>have rated them</em></h2>
+        <p>Guests here name the therapist they had — Iris, Liya, Tina, Yoyo and Grace all get thanked by name in the reviews.</p>
       </div>
+      <div class="revs">
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img src="images/reviewers/randi-urban.jpg" alt="Randi Urban" width="200" height="200" loading="lazy">
+            <span class="rev-who">Randi Urban<small>Google · 4 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“I have been going to Rose Spa for a couple years now and they always give the best massages, perfect blend of deep tissue and relaxing… I had a massage with Iris today and she found all my tight trouble areas, and made sure to put extra time where needed.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img src="images/reviewers/anthony.jpg" alt="Anthony" width="200" height="200" loading="lazy">
+            <span class="rev-who">Anthony<small>Google · 2 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Without any instructions she found my problem spots and worked some kind of magic because my shoulder and neck pain are totally gone from my right side after months of pain. Thank you!”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img src="images/reviewers/omar-portillo.jpg" alt="Omar Portillo" width="200" height="200" loading="lazy">
+            <span class="rev-who">Omar Portillo<small>Google · 3 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“I called a day ahead to make a reservation for my wife &amp; I and had no issues getting a spot. We arrived on time and they were ready for us. They even remembered the occasion (birthday gift).”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img src="images/reviewers/melody-sawyer.jpg" alt="Melody Sawyer" width="200" height="200" loading="lazy">
+            <span class="rev-who">Melody Sawyer<small>Google · 4 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Just finished an hour long massage and it was amazing! My massager did everything perfect! I did not want the hour to be over! I would hands down say it was the best massage I've ever gotten.”</p>
+        </article>
+
+      </div>
+      <p class="revs-link reveal"><a href="https://www.google.com/maps?cid=5956468374149768932" target="_blank" rel="noopener">Read all 61 on Google ↗</a></p>
     </div>
   </section>
 
@@ -324,7 +394,7 @@
         <p class="eyebrow">Bonney Lake</p>
         <h2>Come and <em>get the knot out</em></h2>
       </div>
-      <p class="cta-copy reveal">One of their guests put it better than we could: great from head to toe. The sign out front says massage, the door shuts behind you, and you have the room for an hour.</p>
+      <p class="cta-copy reveal">Nobody books a massage in advance when their neck has been locked up since Tuesday. Ring the desk, say how long you've got and where it's tight, and there's a room with your name on it before the plaza lights come on.</p>
       <div class="cta-actions reveal">
         <a href="tel:+12534478676" class="btn btn-primary">Call (253) 447-8676</a>
         <a href="https://maps.google.com/?q=20631+WA-410+E+%23302,+Bonney+Lake,+WA+98391" target="_blank" rel="noopener" class="btn btn-ghost">Get directions</a>
@@ -351,7 +421,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">Massages</a><br><a href="#rooms">The rooms</a><br><a href="#signature">Where it hurts</a><br><a href="#hours">Hours</a><br><a href="#contact">Book by phone</a></p>
+        <p><a href="#services">Massages</a><br><a href="#rooms">The rooms</a><br><a href="#signature">Where it hurts</a><br><a href="#reviews">Reviews</a><br><a href="#hours">Hours</a><br><a href="#contact">Book by phone</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -361,6 +431,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788928623"></script>
 </body>
 </html>
