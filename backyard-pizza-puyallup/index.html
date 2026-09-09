@@ -10,8 +10,8 @@
 <!-- Fredoka (display — sturdy rounded, matches the rounded neon lettering on their own sign)
      + Barlow (body). Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907172725">
-<link rel="stylesheet" href="css/hero.css?v=0907172725">
+<link rel="stylesheet" href="css/style.css?v=1788924854">
+<link rel="stylesheet" href="css/hero.css?v=1788924854">
 </head>
 <body>
 
@@ -109,10 +109,6 @@
           1824 S Meridian, Puyallup, WA 98371<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=1824+S+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
-        <div class="proof-row">
-          <span class="proof"><span class="star">★</span> 4.7 on Google · 55 reviews</span>
-          <span class="proof"><span class="ico">✓</span> Food safety inspection: GREAT</span>
-        </div>
       </div>
       <ul class="hours-list" id="hoursList">
         <li data-days="1"><span class="day">Monday</span><span class="time">11:00 AM – 10:00 PM</span></li>
@@ -137,6 +133,15 @@
         <h2>Nine fusion pies, <em>and all the classics</em></h2>
         <p>Their board says it plainly: <b>“We have a dedicated oven for all of our vegetarian pizzas.”</b> Every pizza price below is a medium 12-inch, exactly as the board prints it.</p>
       </div>
+
+      <!-- The board itself, bolted to the painted wall (harvest g22). The section
+           kept saying "read the board" and never showed it. Framed as a real
+           object, shown whole, nothing cropped off the edges. -->
+      <figure class="board-print reveal">
+        <img src="images/board.jpg" width="1800" height="1350" loading="lazy"
+             alt="The menu board bolted to the painted wall of the trailer — The Classics, Indian Fusion Pizza's, Wings, Wings Flavors, Kids Menu and Extras, each under an orange header bar">
+        <figcaption>Bolted to the wall by the window — everything below is off this board</figcaption>
+      </figure>
 
       <div class="menu-groups reveal">
         <div class="menu-group">
@@ -298,22 +303,35 @@
 
       </div>
 
-      <p class="menu-fine reveal">Every item and price on this page is transcribed from the board bolted to the trailer wall. No alcohol on the premises — that's on the notice in their window too.</p>
+      <p class="menu-fine reveal">Every item and price on this page is transcribed from that board, exactly as it prints them.</p>
     </div>
   </section>
 
-  <!-- ===================== #gallery — the lot ===================== -->
+  <!-- ===================== #gallery — the lot =====================
+       The human beat the build was missing. Lead frame is their own order
+       window (harvest g6) — the painted mural wall, the lit sign, and the two
+       notices actually taped inside the glass. Every sentence here is off a
+       photo or their roadside sign; nothing invented, no owner story claimed. -->
   <section class="section section-alt" id="gallery">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Pull into the gravel</p>
-        <h2>It really is <em>a backyard</em></h2>
-        <p>The trailer sits on the Pind Kohala lot on South Meridian — picnic tables, a canopy, and string lights strung end to end over the whole yard.</p>
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/window.jpg" width="1350" height="1800" loading="lazy"
+               alt="The order window in the painted mural wall of the trailer, their lit BACKYARD sign beside it with the skateboarding burger and pizza slice">
+          <figcaption>The window you walk up to</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Pull into the gravel</p>
+          <h2>It really is <em>a backyard</em></h2>
+          <p class="lede">There's no dining room. There's a gravel yard off South Meridian, a trailer painted end to end, and a window you walk up to.</p>
+          <p>The sign at the road says <b>PIND KOHALA</b>. The trailer with the skateboarding burger and pizza slice glowing on its sign is Backyard. Order at that window, then take a picnic table under the lights that run the length of the yard, or carry the box home.</p>
+          <p>Two things are taped inside the glass, and they tell you most of what the place is: the Tacoma-Pierce County food-safety placard, rated <b>GREAT</b>, and the house notice — no smoking, no alcoholic beverages, no drugs on the premises.</p>
+        </div>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The lot at dusk with string lights and pennant flags strung across it, the trailers lit underneath" loading="lazy"><figcaption>String lights, end to end</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The lot at dusk with string lights and pennant flags strung across it, the trailers lit underneath" loading="lazy"><figcaption>The lot after dark</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="The roadside sign reading Pind Kohala, with Backyard Pizza, Little India Puyallup and Mocha Stop listed underneath and the address 1824 S Meridian" loading="lazy"><figcaption>The sign on South Meridian</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="The whole gravel lot on an overcast afternoon — the trailers lined up beside the house, flags overhead" loading="lazy"><figcaption>Three counters, one yard</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="The whole gravel lot on an overcast afternoon — the trailers lined up beside the house, flags overhead" loading="lazy"><figcaption>The yard on a grey afternoon</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Gravel, a white canopy tent and the painted side of the Backyard trailer" loading="lazy"><figcaption>The canopy out back</figcaption></figure>
       </div>
     </div>
@@ -354,28 +372,52 @@
   </section>
 
   <!-- ===================== #reviews =====================
-       No named-plus-photographed reviewer pair could be sourced without a
-       logged-in scrape, so this is the honest aggregate with links out —
-       never an invented card, never a grey silhouette. -->
+       REVIEW ATTRIBUTION LAW (9/6): every quote carries the reviewer's REAL
+       published name AND their REAL profile image from the SAME source.
+       Pulled 2026-09-08 from the Google Maps listing for Backyard Pizza,
+       1824 S Meridian (reviews.json in this folder holds the raw scrape).
+       Two more 5-star reviews were left off because Google publishes only a
+       default letter-disc for those accounts — no real face, no card. -->
   <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">What Puyallup gives them</p>
         <h2>4.7 stars, <em>and counting</em></h2>
+        <p>Word for word off their Google listing — <span class="tnum">55</span> reviews, plus <span class="tnum">12</span> more on Yelp.</p>
       </div>
-      <div class="rating-block reveal">
-        <div class="rating-big">
-          <b class="tnum">4.7</b>
-          <span class="stars" aria-label="4.7 out of 5 stars">★★★★★</span>
-          <span class="rating-src">on Google, across <span class="tnum">55</span> reviews</span>
-        </div>
-        <div class="rating-side">
-          <p>They also carry <b class="tnum">12</b> reviews on Yelp and a Tacoma-Pierce County food safety inspection rated <b>GREAT</b>, posted in the order window.</p>
-          <div class="rating-links">
-            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Backyard+Pizza+1824+S+Meridian+Puyallup+WA" target="_blank" rel="noopener">Read them on Google ↗</a>
-            <a class="btn btn-ghost" href="https://www.yelp.com/biz/backyard-pizza-and-burgers-puyallup-2" target="_blank" rel="noopener">Yelp ↗</a>
+
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-robert.png" width="160" height="160" loading="lazy" alt="Robert Biddle's Google profile photo">
+            <span class="rev-who">Robert Biddle<small>Google · 2 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
           </div>
-        </div>
+          <p>“If you take the best part of every pizza joint you know, put them all together in one pizza, then ask for it to be crunchy on the edges, and you get Backyard Pizza from the food truck in Puyallup, Washington! It was absolutely amazing!!”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-sonia.png" width="160" height="160" loading="lazy" alt="Sonia Ortiz's Google profile photo">
+            <span class="rev-who">Sonia Ortiz<small>Google · 3 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Hands down amazing! I went on a whim because I was craving pizza &amp; got the Buffalo chicken pizza &amp; garlic Parmesan wings &amp; neither disappointed! So excited to go back &amp; try the butter chicken pizza!”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-kathleen.png" width="160" height="160" loading="lazy" alt="Kathleen Adams's Google profile photo">
+            <span class="rev-who">Kathleen Adams<small>Google · a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“My husband and I went there for the first time and wow we were totally impressed!!! I ordered the mushroom Swiss burger and I'm telling you it was amazing.”</p>
+        </article>
+      </div>
+
+      <div class="rev-foot reveal">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Backyard+Pizza+1824+S+Meridian+Puyallup+WA" target="_blank" rel="noopener">Read all 55 on Google ↗</a>
+        <a class="btn btn-ghost" href="https://www.yelp.com/biz/backyard-pizza-and-burgers-puyallup-2" target="_blank" rel="noopener">Yelp ↗</a>
       </div>
     </div>
   </section>
@@ -390,7 +432,7 @@
           <ol class="steps">
             <li><h3>Turn into the lot</h3><p>1824 S Meridian, on the Pind Kohala lot. Gravel yard, big painted trailer, you can't miss it.</p></li>
             <li><h3>Order at the window</h3><p>The board is bolted to the wall beside the window — everything on it is on this page. Card taps at the counter.</p></li>
-            <li><h3>Grab a picnic table</h3><p>Sit out under the string lights, or take it home. No alcohol on the premises.</p></li>
+            <li><h3>Grab a picnic table</h3><p>Eat in the yard or carry the box out — it comes off the same window either way.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📞 <a href="tel:+12532680758">(253) 268-0758</a></span>
@@ -421,7 +463,7 @@
         <h2>The painted trailer <em>on South Meridian</em></h2>
       </div>
       <div class="numbers reveal">
-        <div class="num"><b><span class="count tnum" data-to="9">9</span></b><span>Indian-fusion pies on the board</span></div>
+        <div class="num"><b><span class="count tnum" data-to="53">53</span></b><span>items priced on the board, all of them on this page</span></div>
         <div class="num"><b><span class="count tnum" data-to="7">7</span></b><span>wing flavors, curry to mango habanero</span></div>
         <div class="num"><b><span class="count tnum" data-to="3">3</span></b><span>counters sharing the Pind Kohala lot</span></div>
       </div>
@@ -462,6 +504,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907172725"></script>
+<script src="js/site.js?v=1788924854"></script>
 </body>
 </html>
