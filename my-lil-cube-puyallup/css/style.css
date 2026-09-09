@@ -368,15 +368,8 @@ ul{margin:0;padding:0}
 /* ---------------- cta band ---------------- */
 .cta-band{background:var(--dark);padding:clamp(52px,8vw,96px) 0;border-top:1px solid var(--line)}
 .cta-band h2{font-size:clamp(30px,4.8vw,52px);margin:0 0 34px;max-width:620px}
-.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.6vw,30px);margin:0 0 34px}
-.num{border-left:2px solid var(--brand);padding-left:16px}
-.num .v{font-family:var(--display);font-size:clamp(30px,4.4vw,46px);line-height:1;color:var(--brand-text);
-  font-variant-numeric:tabular-nums;display:block}
-.num .u{font-size:.55em;margin-left:.12em;color:var(--muted)}
-.num .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-  display:block;margin-top:9px;line-height:1.5}
+.cta-line{max-width:52ch;color:var(--muted);font-size:17.5px;margin:0 0 30px}
 .cta-actions{display:flex;flex-wrap:wrap;gap:12px}
-@media (max-width:700px){.nums{grid-template-columns:repeat(2,1fr);gap:24px 18px}}
 
 /* ---------------- footer ---------------- */
 .site-footer{background:var(--dark-2);border-top:1px solid var(--line);padding:clamp(40px,6vw,64px) 0 30px;flex:none}
@@ -391,3 +384,83 @@ ul{margin:0;padding:0}
 .foot-bar{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);
   display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;color:var(--muted);font-size:13.5px}
 .foot-bar a:hover{color:var(--brand-text)}
+
+/* ============================================================
+   REFINE 2026-09-08 — flow, the street, real reviews
+   COHESION LAW: the hero's object is a PLAQUE — a cream field on a dark
+   slate ground, hung under a cream awning. That object is now the page's
+   recurring device: every eyebrow carries the awning's honey-wood tick,
+   and every place a person's voice lands (the street quote, the chili-oil
+   quote, the review cards, the score) is built as the same plaque —
+   cream-lifted card, wood rule under it. Nothing here hardcodes a colour;
+   it all comes off the :root tokens at the top of this file.
+   ============================================================ */
+
+/* the recurring tick — the awning edge, under every eyebrow */
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';flex:none;width:22px;height:2px;border-radius:2px;background:var(--wood)}
+
+/* ---------------- #street — the building, right under the hours ---------------- */
+.street{background:var(--bg-2);padding:clamp(56px,9vw,110px) 0}
+.street .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center}
+.street-print{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:0 18px 46px rgba(0,0,0,.34);border-top:4px solid var(--wood)}
+.street-print img{width:100%;height:auto}
+.street-print figcaption{padding:13px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand-text);border-top:1px solid var(--line)}
+.street-copy h2{font-size:clamp(29px,4.2vw,48px);margin:0 0 18px}
+.street-copy>p:not(.eyebrow){color:var(--muted);font-size:17.5px;margin:0 0 26px}
+@media (max-width:820px){.street .wrap{grid-template-columns:1fr}}
+
+/* ---------------- the plaque: a real person's voice ----------------
+   REVIEW ATTRIBUTION LAW (9/6) — every one of these carries the real
+   published name and that person's own published profile image. */
+.pull{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--wood);
+  border-radius:var(--r);padding:20px 22px}
+.pull blockquote{font-family:var(--display);font-size:clamp(18px,2vw,21px);line-height:1.42;
+  color:var(--ink);margin:0 0 16px;text-wrap:pretty}
+.pull-wide{max-width:760px;margin:clamp(28px,4vw,44px) auto 0}
+.who{display:flex;align-items:center;gap:12px}
+.who img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid var(--wood);background:var(--dark-2)}
+.who>span{display:flex;flex-direction:column;line-height:1.35;min-width:0}
+.who b{font-size:15.5px;font-weight:700;color:var(--ink)}
+.who>span>span{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+/* ---------------- #reviews ---------------- */
+.score{display:grid;grid-template-columns:auto 1fr;gap:clamp(22px,4vw,48px);align-items:center;
+  margin:0 0 clamp(30px,4vw,50px)}
+.score-num{text-align:center;background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--wood);
+  border-radius:var(--r);padding:20px 26px 16px;box-shadow:0 14px 38px rgba(0,0,0,.3)}
+.score-num b{display:block;font-family:var(--display);font-size:clamp(46px,6vw,64px);line-height:1;
+  color:var(--brand-text);font-variant-numeric:tabular-nums}
+.score-stars{margin:8px 0 0;font-size:15px;letter-spacing:.16em;color:var(--brand-text)}
+.score-copy h2{font-size:clamp(29px,4.4vw,50px);margin:0 0 16px}
+.score-copy>p:not(.eyebrow){color:var(--muted);font-size:17.5px;margin:0 0 22px;max-width:56ch}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,26px)}
+.review{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--wood);
+  border-radius:var(--r);padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px}
+.review .rate{margin:0;font-size:14px;letter-spacing:.18em;color:var(--brand-text)}
+.review blockquote{flex:1;margin:0;font-size:16.5px;line-height:1.58;color:var(--ink);text-wrap:pretty}
+@media (max-width:900px){
+  .score{grid-template-columns:1fr;justify-items:start}
+  .score-num{justify-self:start}
+  .review-grid{grid-template-columns:1fr}
+}
+
+/* ---------------- contact: the pole sign gets its own frame ---------------- */
+.print-wide{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--wood);
+  border-radius:var(--r);overflow:hidden;box-shadow:0 14px 38px rgba(0,0,0,.3);margin:0 0 28px}
+.print-wide img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:50% 34%}
+.print-wide figcaption{padding:12px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand-text);border-top:1px solid var(--line)}
+
+/* ---------------- #room: story print sits above its four prints ---------------- */
+#room .story{margin:0 0 clamp(30px,4.5vw,56px)}
+#room .prints{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1000px){#room .prints{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){#room .prints{grid-template-columns:1fr}}
+.contact-right{display:flex;flex-direction:column;gap:0}
+.contact-right .reach{margin:0 0 18px}
+.review .rate,.pull .rate{margin:0 0 12px;font-size:14px;letter-spacing:.18em;color:var(--brand-text)}
+#room .print figcaption{min-height:44px;display:flex;align-items:center}

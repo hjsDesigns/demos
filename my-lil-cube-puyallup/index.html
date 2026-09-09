@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Young Serif (display, sturdy warm slab-serif) + Archivo (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788926831">
+<link rel="stylesheet" href="css/hero.css?v=1788926831">
 </head>
 <body>
 
@@ -21,13 +21,13 @@
       <img src="images/logo.png" alt="My Lil' Cube — Ramen &amp; Asian Cuisine" width="1600" height="569">
     </a>
     <div class="nav-wrap">
-      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <a class="hdr-live" id="hdrLive" href="#hours" aria-label="Today's hours"><span class="dot"></span><span id="hdrLiveText">checking…</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#menu">What they make</a>
+        <a href="#room">The room</a>
         <a href="#signature">The chili oil</a>
-        <a href="#gallery">The room</a>
-        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
         <a href="#contact" class="nav-cta">Find it</a>
       </nav>
     </div>
@@ -76,8 +76,7 @@
           <a href="https://www.google.com/maps/search/?api=1&amp;query=My+Lil%27+Cube%2C+402+N+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
         <div class="proof-row">
-          <span class="proof"><span class="star">★</span> 4.7 on Google</span>
-          <span class="proof"><span class="ico">✓</span> Dine in or take out</span>
+          <span class="proof"><span class="ico">✓</span> Dine in, take out or delivery</span>
           <span class="proof"><span class="ico">✓</span> Kids' menu · vegan options</span>
         </div>
       </div>
@@ -92,6 +91,34 @@
           <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 8:00 PM</span></li>
         </ul>
         <p class="hours-note">Exactly as posted on the card in their front window.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #street — the building =====================
+       STOREFRONT BELOW THE HOURS (9/2 law). The hero is the plaque over a
+       ramen portrait, not the building, so the actual storefront on N Meridian
+       opens the offerings — one wide street print, shown whole, with the one
+       thing every review says about finding it. The quote carries the
+       reviewer's real published name and her own Google profile photo. -->
+  <section class="street" id="street">
+    <div class="wrap">
+      <figure class="street-print reveal">
+        <img src="images/storefront.jpg" alt="My Lil' Cube from North Meridian — a low blue-green building with a cream awning and the black-and-cream sign above it, cars parked at the front" width="1800" height="1237" loading="lazy">
+        <figcaption>402 N Meridian — blue siding, cream awning</figcaption>
+      </figure>
+      <div class="street-copy reveal">
+        <p class="eyebrow">The building</p>
+        <h2>It really is <em>that little</em></h2>
+        <p>One low blue-green storefront a block up from downtown Puyallup, a cream awning, and the sign over the door. Everything happens in the one room behind it.</p>
+        <figure class="pull">
+          <p class="rate" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“My Lil Cube is tucked away in a little shop in downtown Puyallup. Blink and you might miss it.”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-brook.jpg" alt="Brook Butler" width="46" height="46" loading="lazy">
+            <span><b>Brook Butler</b><span>Google · 3 months ago</span></span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -188,20 +215,34 @@
     </div>
   </section>
 
-  <!-- ===================== #gallery ===================== -->
-  <section class="section section-alt" id="gallery">
+  <!-- ===================== #room =====================
+       ONE section about the room, not two. The old build had a "gallery"
+       headed "A small room on Meridian" showing five food photos, and a
+       separate #about headed "Wood tables, big windows" — the same subject,
+       split. Merged: the story sits beside the tables-by-the-window print,
+       and the four prints below walk you in from the door to the table.
+       Every photograph here is the room, the street or something on the
+       table — the food lives in the menu cards and the chili-oil gadget. -->
+  <section class="section section-alt" id="room">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Before you walk in</p>
-        <h2>A small room <em>on Meridian</em></h2>
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="The dining room at My Lil' Cube — honey-wood tables and black chairs against slate walls, wood blinds and Meridian Avenue through the windows" loading="lazy">
+          <figcaption>Tables by the window</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The room</p>
+          <h2>Wood tables, big windows, <em>Meridian out front</em></h2>
+          <p class="lede">It's a little room. That's the whole idea — it's called My Lil' Cube.</p>
+          <p>Slate walls, honey-wood tables, black chairs, wood blinds, and a couple of pendant lamps over the counter. RAMEN and RICE are spelled out in metal letters on the back wall, with a Hokusai wave and a Sapporo poster beside them. From the tables in front you're looking straight out at N Meridian.</p>
+          <p>It sits a short walk from the fairgrounds, with a Pierce Transit stop at the pole sign out front — the 402 and the 425 both pull up there.</p>
+        </div>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Inside My Lil' Cube — the counter under a warm pendant lamp, RAMEN and RICE spelled in metal letters on the wood-framed wall, a Hokusai wave print behind" loading="lazy"><figcaption>Ramen. Rice. That's the wall.</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A steamer of xiao long bao seen from above with a dish of dark dipping sauce beside it" loading="lazy"><figcaption>Soup dumplings, lid off</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Takoyaki under a drift of bonito flakes, mayo and sauce on a black plate" loading="lazy"><figcaption>Takoyaki, flakes still moving</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Six pan-fried gyoza lined up on a white plate with a wedge of tomato" loading="lazy"><figcaption>Gyoza, six to a plate</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A katsu don rice bowl with egg and pickled red ginger, edamame in the background" loading="lazy"><figcaption>Katsu over rice</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="A bowl of tonkotsu ramen with nori, a halved soft egg and chashu on the honey-wood table" loading="lazy"><figcaption>The table it lands on</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-door.jpg" alt="The My Lil' Cube sign on the front of the building above the cream awning, with the dark front door and window below" loading="lazy"><figcaption>The door on Meridian</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-dining.jpg" alt="Inside My Lil' Cube — pendant lamps over the tables, a noren curtain on the slate wall and tolix chairs on the tiled floor" loading="lazy"><figcaption>Lamps over the tables</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The counter under a warm pendant lamp, RAMEN and RICE spelled in metal letters on the wood-framed wall behind it" loading="lazy"><figcaption>Ramen. Rice. The wall.</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-tea.jpg" alt="A cup of green tea with the spoon still in it, held over the honey-wood table" loading="lazy"><figcaption>Tea, first thing down</figcaption></figure>
       </div>
     </div>
   </section>
@@ -216,8 +257,17 @@
       <div class="section-head reveal">
         <p class="eyebrow">The one thing everybody mentions</p>
         <h2>The <em>chili oil</em></h2>
-        <p>Restaurantji's round-up of the reviews singles it out above everything else on the menu: one customer said it <b>“changed them as a person”</b> and asked whether they could get it shipped by the case.</p>
+        <p>It isn't on any list. You ask, and it comes to the table in a little white bowl — red, loaded with sesame, and hotter than it looks. It's the thing people write about.</p>
       </div>
+
+      <figure class="pull pull-wide reveal">
+        <p class="rate" aria-label="5 out of 5 stars">★★★★★</p>
+        <blockquote>“Lately they seem to have upped their chashu game… and don't sleep on the chili oil (though it is extremely hot)!”</blockquote>
+        <figcaption class="who">
+          <img src="images/reviewer-patrick.jpg" alt="Patrick Nance" width="46" height="46" loading="lazy">
+          <span><b>Patrick Nance</b><span>Google · 6 months ago</span></span>
+        </figcaption>
+      </figure>
 
       <div class="chili reveal" id="chili">
         <div>
@@ -248,22 +298,53 @@
     </div>
   </section>
 
-  <!-- ===================== #about ===================== -->
-  <section class="section" id="about">
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (9/6): every quote carries the reviewer's real
+       published name AND their own published Google profile photo, from the
+       same listing as the quote, with the real rating and date. Harvested
+       2026-09-08 off the Google Maps place panel through a warmed persistent
+       profile; the raw pull is reviews.json in this folder. Quotes are
+       verbatim, trimmed only with an ellipsis where marked. This is the ONE
+       place on the page the 4.7 / 1,649 figure appears. -->
+  <section class="section" id="reviews">
     <div class="wrap">
-      <div class="story">
-        <figure class="print reveal">
-          <img src="images/about.jpg" alt="The dining room at My Lil' Cube — honey-wood tables and black chairs against slate walls, wood blinds and Meridian Avenue through the windows" loading="lazy">
-          <figcaption>Tables by the window</figcaption>
-        </figure>
-        <div class="story-copy reveal">
-          <p class="eyebrow">The room</p>
-          <h2>Wood tables, big windows, <em>Meridian out front</em></h2>
-          <p class="lede">It's a little room. That's the whole idea — it's called My Lil' Cube.</p>
-          <p>Slate walls, honey-wood tables, black chairs, wood blinds, and a couple of pendant lamps over the counter. RAMEN and RICE are spelled out in metal letters on the back wall, with a Hokusai wave and a Sapporo poster beside them. From the tables in front you're looking straight out at N Meridian.</p>
-          <p>It sits a block up from downtown Puyallup and a short walk from the fairgrounds, with a Pierce Transit stop at the pole sign out front. Four and a half stars would be a good restaurant. They're carrying a <b>4.7 across more than sixteen hundred Google reviews</b> — for a room this size, that's a lot of people going out of their way.</p>
-          <a class="out" href="https://www.google.com/maps/search/?api=1&amp;query=My+Lil%27+Cube%2C+402+N+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+      <div class="score reveal">
+        <div class="score-num">
+          <b class="tnum">4.7</b>
+          <p class="score-stars" aria-label="4.7 out of 5 stars">★★★★★</p>
         </div>
+        <div class="score-copy">
+          <p class="eyebrow">Word of mouth</p>
+          <h2>1,649 people <em>have weighed in</em></h2>
+          <p>Four and a half stars would be a good restaurant. For a room this size, that's a lot of people going out of their way. A few of them, word for word:</p>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=My+Lil%27+Cube%2C+402+N+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        </div>
+      </div>
+      <div class="review-grid">
+        <figure class="review reveal">
+          <p class="rate" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“I had the Black Garlic Tonkotsu Ramen, their signature dish. It was excellent and substantial… The service is quick yet attentive &amp; the atmosphere is pleasant and a cut above the average.”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-russ.jpg" alt="Russ Adams" width="46" height="46" loading="lazy">
+            <span><b>Russ Adams</b><span>Google · 5 months ago</span></span>
+          </figcaption>
+        </figure>
+        <figure class="review reveal">
+          <p class="rate" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“This is our favorite spot, amazing perfect ramen, their xiao long bao is excellent, I’m obsessed with the scallion pancakes and the milk tea. We’ve been regulars since they opened years ago.”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-brooke.jpg" alt="Brooke Carpenter" width="46" height="46" loading="lazy">
+            <span><b>Brooke Carpenter</b><span>Google · 7 months ago</span></span>
+          </figcaption>
+        </figure>
+        <figure class="review reveal">
+          <p class="rate" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“Pulled right up to the door and walked right in and was sat immediately with a party of two on a busy Friday. Super friendly efficient service! Best Ramen I've ever had!”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-thomas.jpg" alt="Thomas Blevens" width="46" height="46" loading="lazy">
+            <span><b>Thomas Blevens</b><span>Google · 3 months ago</span></span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -277,21 +358,22 @@
       </div>
       <div class="contact-grid">
         <div class="reveal">
+          <figure class="print print-wide">
+            <img src="images/pole-sign.jpg" alt="The white My Lil' Cube pole sign at the curb on North Meridian, above the Pierce Transit route flags for the 402 and the 425" width="1440" height="900" loading="lazy">
+            <figcaption>The pole sign on Meridian</figcaption>
+          </figure>
           <ol class="steps">
             <li><span class="n">1</span><div><h3>Watch for the white sign on the pole</h3><p>It stands at the curb on Meridian, right above the bus flags for the 402 and the 425.</p></div></li>
             <li><span class="n">2</span><div><h3>Parking is tight — regulars say so</h3><p>The green DOWNTOWN PARKING sign at the light points you to the city lots a block off.</p></div></li>
             <li><span class="n">3</span><div><h3>Walk in, or call it in</h3><p>They don't take reservations. Order at the table, or have the whole thing boxed to go.</p></div></li>
           </ol>
-          <div class="reach">
-            <a href="tel:2538402158"><span><span class="lbl">Call the shop</span><span class="val">(253) 840-2158</span></span></a>
-            <a href="https://www.facebook.com/mylilcube" target="_blank" rel="noopener"><span><span class="lbl">Where they post</span><span class="val">facebook.com/mylilcube ↗</span></span></a>
-          </div>
-          <figure class="print">
-            <img src="images/sign.jpg" alt="The white My Lil' Cube pole sign at the curb on North Meridian, above the Pierce Transit route flags" loading="lazy">
-            <figcaption>The pole sign on Meridian</figcaption>
-          </figure>
         </div>
 
+        <div class="contact-right">
+        <div class="reach reveal">
+          <a href="tel:2538402158"><span><span class="lbl">Call the shop</span><span class="val">(253) 840-2158</span></span></a>
+          <a href="https://www.facebook.com/mylilcube" target="_blank" rel="noopener"><span><span class="lbl">Where they post</span><span class="val">facebook.com/mylilcube ↗</span></span></a>
+        </div>
         <form class="contact-form reveal" novalidate>
           <input type="hidden" name="access_key" value="">
           <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off">
@@ -318,21 +400,22 @@
           <button class="btn btn-primary" type="submit">Send it</button>
           <p class="form-success">Got it — thanks. They'll get back to you.</p>
         </form>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta =====================
+       The four-counter metrics grid that used to sit here was cut: three of
+       its four numbers (6 days a week / 11 AM / 402 N Meridian) restated the
+       hours band and the address, and the fourth (1,649 reviews) now lives
+       once, in #reviews. A closing line and the two things a visitor
+       actually does next. -->
   <section class="cta-band" id="cta">
     <div class="wrap">
       <p class="eyebrow">Ramen &amp; Asian Cuisine</p>
-      <h2>Tuesday through Sunday, <em>from 11 in the morning</em></h2>
-      <div class="nums reveal">
-        <div class="num"><span class="v count" data-to="1649" data-from="1200">1649</span><span class="l">Google reviews</span></div>
-        <div class="num"><span class="v count" data-to="6">6</span><span class="l">days a week</span></div>
-        <div class="num"><span class="v count" data-to="11">11</span><span class="u">AM</span><span class="l">the door opens</span></div>
-        <div class="num"><span class="v count" data-to="402">402</span><span class="l">North Meridian</span></div>
-      </div>
+      <h2>Small room. <em>Go early.</em></h2>
+      <p class="cta-line">At the peak of lunch or dinner there's usually a wait at the door. Everybody who writes about this place says take it.</p>
       <div class="cta-actions">
         <a class="btn btn-primary" href="tel:2538402158">Call the shop</a>
         <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=My+Lil%27+Cube%2C+402+N+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Get directions ↗</a>
@@ -354,8 +437,9 @@
         <div class="foot-col">
           <h4>On the page</h4>
           <a href="#menu">What they make</a>
+          <a href="#room">The room</a>
           <a href="#signature">The chili oil</a>
-          <a href="#gallery">The room</a>
+          <a href="#reviews">Reviews</a>
           <a href="#hours">Hours</a>
         </div>
         <div class="foot-col">
@@ -372,6 +456,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788926831"></script>
 </body>
 </html>
