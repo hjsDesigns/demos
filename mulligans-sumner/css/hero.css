@@ -1,0 +1,186 @@
+/* variants/neon-strike hero take, applied 0909-0028 — source versions/variants/neon-strike/ */
+/* ============================================================
+   MULLIGANS — HERO VARIANT: "NEON-STRIKE"
+   One idea, from one real object: the back bar at 15716 Main St E lighting
+   up, with their own wordmark hung on it like the sign it is.
+
+   Real assets only
+     images/hero-backbar.jpg  — harvest-0907/room/gp-24.jpg, the WIDE frame of
+       their back bar (no people in it), resized to 2000px. Nothing composited,
+       nothing generated. It is blurred and graded here so it works as a ground,
+       never as a photograph you are asked to read.
+     images/mark.png          — the real Mulligans wordmark, pulled off
+       mulligansgc.com and keyed to alpha. Never redrawn.
+
+   The event (deterministic, pure CSS, one pass, no JS, no random):
+     0.00 → 1.40s  the room wakes out of the dark
+     0.35s         the BLUE LED strip under the shelves comes up
+     0.85s         the GREEN neon over the well comes up
+     1.15s         the Edison bulbs on the string come up
+     0.95 → 1.80s  the mark arrives, overshoots a hair, parks
+     1.60 → 2.45s  its own outline green strikes on — stutter, stutter, hold
+     2.45 → 3.35s  one shine crosses the letters
+     3.35s+        still: a 9s breath on the halo, nothing else moves
+   prefers-reduced-motion lands on the final frame.
+   Everything is namespaced under .hero.v-neon-strike; keyframes prefixed ns-.
+   ============================================================ */
+
+.hero.v-neon-strike{
+  --ns-green:#A8CC37;          /* the wordmark's own outline green */
+  --ns-blue:#1E6BFF;           /* the LED strip under the bottle shelves */
+  --ns-amber:#E0A63C;          /* the Edison bulbs on the string overhead */
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  overflow:hidden;
+  background:var(--dark,#070903);
+  isolation:isolate;
+}
+
+/* ---------- 1. the room, out of focus ---------- */
+.hero.v-neon-strike .ns-room{position:absolute;inset:0;z-index:0;pointer-events:none;
+  animation:ns-wake 1.4s var(--ease,cubic-bezier(.22,.85,.3,1)) .05s 1 backwards}
+.hero.v-neon-strike .ns-room-img{
+  position:absolute;inset:-5%;display:block;
+  background:var(--ns-room,url("../images/hero-backbar.jpg")) 58% 42%/cover no-repeat;
+  filter:blur(5px) saturate(1.18) brightness(.64);
+  transform:scale(1.03);
+}
+@keyframes ns-wake{
+  0%  {opacity:.10;transform:scale(1.05)}
+  55% {opacity:.62}
+  100%{opacity:1;transform:scale(1)}
+}
+/* the pool the mark sits in — dark gathered in the middle and at the foot,
+   so the blues and greens stay lit at the edges where the room is */
+.hero.v-neon-strike .ns-room::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(66% 52% at 50% 46%, rgba(7,9,3,.80) 0%, rgba(7,9,3,.42) 52%, rgba(7,9,3,0) 84%),
+    linear-gradient(180deg, rgba(7,9,3,.55) 0%, rgba(7,9,3,.06) 26%, rgba(7,9,3,.12) 58%, rgba(7,9,3,.66) 100%);
+}
+
+/* ---------- 2. the three real fixtures coming up, in order ---------- */
+.hero.v-neon-strike .ns-spill{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero.v-neon-strike .ns-s{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen}
+.hero.v-neon-strike .ns-blue{
+  left:50%;top:46%;width:min(1560px,152vw);height:min(1000px,98vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side, rgba(30,107,255,.30), rgba(30,107,255,.11) 52%, transparent 78%);
+  animation:ns-strike-blue .9s ease-out .35s 1 backwards;
+}
+.hero.v-neon-strike .ns-green{
+  left:50%;top:56%;width:min(1080px,98vw);height:min(560px,52vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side, rgba(120,232,90,.26), rgba(120,232,90,.09) 55%, transparent 80%);
+  animation:ns-strike-green .8s ease-out .85s 1 backwards;
+}
+.hero.v-neon-strike .ns-amber{
+  left:50%;top:16%;width:min(1240px,120vw);height:min(400px,38vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side, rgba(224,166,60,.22), rgba(224,166,60,.07) 55%, transparent 80%);
+  animation:ns-fade-in .9s ease-out 1.15s 1 backwards;
+}
+/* a tube does not fade up — it hits, drops out, hits again, holds */
+@keyframes ns-strike-blue{
+  0%{opacity:0}9%{opacity:.95}17%{opacity:.10}31%{opacity:.85}39%{opacity:.18}56%{opacity:1}100%{opacity:1}
+}
+@keyframes ns-strike-green{
+  0%{opacity:0}12%{opacity:1}22%{opacity:.12}38%{opacity:.9}48%{opacity:.22}64%{opacity:1}100%{opacity:1}
+}
+@keyframes ns-fade-in{from{opacity:0}to{opacity:1}}
+
+/* ---------- 3. the mark, mounted ---------- */
+.hero.v-neon-strike .ns-inner{
+  position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(24px,4vh,48px) var(--pad) clamp(30px,6vh,64px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.hero.v-neon-strike .ns-mark{
+  position:relative;display:block;width:min(700px,94%);margin:0 0 clamp(20px,3.4vh,32px);
+  animation:ns-arrive 1.05s cubic-bezier(.2,.86,.24,1) .95s 1 backwards;
+}
+.hero.v-neon-strike .ns-mark img{width:100%;height:auto;display:block}
+.hero.v-neon-strike .ns-art{
+  position:relative;z-index:2;
+  filter:drop-shadow(0 18px 40px rgba(0,0,0,.75)) drop-shadow(0 0 1px rgba(0,0,0,.9));
+}
+/* the halo is a second copy of their own mark, blown out behind the first —
+   the outline green striking on like a tube, then holding on a slow breath */
+.hero.v-neon-strike .ns-glow{
+  position:absolute;left:0;top:0;z-index:1;pointer-events:none;opacity:0;
+  filter:brightness(1.7) saturate(1.5)
+         drop-shadow(0 0 16px rgba(168,204,55,.85))
+         drop-shadow(0 0 44px rgba(168,204,55,.55));
+  animation:
+    ns-tube .85s steps(1,end) 1.60s 1 backwards,
+    ns-breathe 9s ease-in-out 2.45s infinite alternate;
+}
+@keyframes ns-tube{
+  0%{opacity:0}10%{opacity:.9}18%{opacity:.05}34%{opacity:.75}44%{opacity:.10}62%{opacity:1}76%{opacity:.55}100%{opacity:1}
+}
+@keyframes ns-breathe{
+  from{opacity:.80;filter:brightness(1.6) saturate(1.4) drop-shadow(0 0 14px rgba(168,204,55,.72)) drop-shadow(0 0 36px rgba(168,204,55,.42))}
+  to  {opacity:1;  filter:brightness(1.8) saturate(1.6) drop-shadow(0 0 20px rgba(168,204,55,.95)) drop-shadow(0 0 56px rgba(168,204,55,.62))}
+}
+/* the flourish: one shine, clipped to a diagonal band (clip-path, not a CSS
+   mask — a mask image is blocked over file:// by CORS) */
+.hero.v-neon-strike .ns-shine{
+  position:absolute;left:0;top:0;z-index:3;pointer-events:none;opacity:0;
+  filter:brightness(3) saturate(.4);
+  clip-path:polygon(-26% 0%,-12% 0%,-2% 100%,-16% 100%);
+  animation:ns-shine .9s cubic-bezier(.4,0,.5,1) 2.45s 1 forwards;
+}
+@keyframes ns-shine{
+  0%  {opacity:0;clip-path:polygon(-26% 0%,-12% 0%,-2% 100%,-16% 100%)}
+  14% {opacity:1}
+  86% {opacity:1}
+  100%{opacity:0;clip-path:polygon(106% 0%,120% 0%,130% 100%,116% 100%)}
+}
+@keyframes ns-arrive{
+  0%  {opacity:0;transform:translateY(20px) scale(.88)}
+  62% {opacity:1;transform:translateY(0) scale(1.035)}
+  100%{opacity:1;transform:none}
+}
+
+/* ---------- 4. the line and the buttons, after the sign ---------- */
+.hero.v-neon-strike .hero-sub{
+  font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 clamp(22px,3vh,30px);
+  color:rgba(255,255,255,.94);font-weight:500;text-shadow:0 2px 18px rgba(0,0,0,.85);
+}
+.hero.v-neon-strike .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.js .hero.v-neon-strike .hero-sub{animation-delay:2.30s}
+.js .hero.v-neon-strike .hero-actions{animation-delay:2.46s}
+
+/* ---------- 5. the hem — the hero pours into the hours band ---------- */
+.hero.v-neon-strike .ns-hem{
+  position:absolute;left:0;right:0;bottom:0;height:14vh;max-height:120px;z-index:2;pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--tint,#0E1209));
+}
+
+/* ---------- phones ---------- */
+@media (max-width:560px){
+  .hero.v-neon-strike .ns-room-img{background-position:62% 44%;filter:blur(4px) saturate(1.18) brightness(.62)}
+  .hero.v-neon-strike .ns-mark{width:100%;margin-bottom:20px}
+  .hero.v-neon-strike .hero-sub{font-size:16px;max-width:none;white-space:nowrap}
+  .hero.v-neon-strike .hero-actions{gap:10px;width:100%}
+  .hero.v-neon-strike .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+  .hero.v-neon-strike .ns-hem{height:15vh}
+}
+
+/* ---------- reduced motion: the final frame, immediately ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-neon-strike .ns-room,
+  .hero.v-neon-strike .ns-s,
+  .hero.v-neon-strike .ns-mark,
+  .hero.v-neon-strike .ns-glow,
+  .hero.v-neon-strike .ns-shine,
+  .js .hero.v-neon-strike .hero-sub,
+  .js .hero.v-neon-strike .hero-actions{animation:none!important}
+  .hero.v-neon-strike .ns-room,
+  .hero.v-neon-strike .ns-s{opacity:1;transform:translate(-50%,-50%)}
+  .hero.v-neon-strike .ns-room{transform:none}
+  .hero.v-neon-strike .ns-mark{opacity:1;transform:none}
+  .hero.v-neon-strike .ns-glow{opacity:1}
+  .hero.v-neon-strike .ns-shine{opacity:0}
+  .js .hero.v-neon-strike .hero-sub,
+  .js .hero.v-neon-strike .hero-actions{opacity:1;transform:none}
+}

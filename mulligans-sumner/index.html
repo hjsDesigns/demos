@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- two faces: Bevan (display — vintage slab, sits with their painted script mark) + Archivo (body) -->
 <link href="https://fonts.googleapis.com/css2?family=Bevan&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788929128">
+<link rel="stylesheet" href="css/style.css?v=1788938921">
+<link rel="stylesheet" href="css/hero.css?v=1788938921">
 </head>
 <body>
 
@@ -43,14 +44,28 @@
        mulligansgc.com, keyed to alpha — never redrawn) is the headline,
        over the actual back bar at 15716 Main St E. Nothing else on the
        photo. Plays once; reduced-motion lands on the final frame. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" alt="The back bar at 15716 Main St E — bottles on shelves lit blue and green, TVs above the counter" fetchpriority="high"></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
+  <section class="hero v-neon-strike" id="hero">
+    <!-- GROUND: their own back bar (harvest-0907/room/gp-24.jpg — the wide frame,
+         no people in it), blurred and graded down to closing time. It is a stage,
+         not a photograph: nothing in it has to be read. -->
+    <div class="ns-room" aria-hidden="true"><span class="ns-room-img"></span></div>
+    <!-- THE STRIKE: the room's three real light sources come up in the order they
+         actually sit in that photograph — the blue LED strip under the shelves,
+         the green neon tree over the well, then the Edison bulbs on the string. -->
+    <div class="ns-spill" aria-hidden="true">
+      <span class="ns-s ns-blue"></span>
+      <span class="ns-s ns-green"></span>
+      <span class="ns-s ns-amber"></span>
+    </div>
+    <div class="ns-inner hero-inner">
       <h1 class="sr-only">Mulligans — the bar on Main Street in Sumner, Washington</h1>
-      <div class="mark-intro" aria-hidden="true">
-        <img class="mark-art" src="images/mark.png" alt="" aria-hidden="true">
-        <img class="mark-shine" src="images/mark.png" alt="" aria-hidden="true">
+      <!-- THE MARK IS THE HEADLINE: their real wordmark off mulligansgc.com,
+           keyed to alpha, never redrawn. It lands, its own outline green strikes
+           on like a tube warming, and one shine crosses the letters. -->
+      <div class="ns-mark" aria-hidden="true">
+        <img class="ns-art" src="images/mark.png" alt="" aria-hidden="true">
+        <img class="ns-glow" src="images/mark.png" alt="" aria-hidden="true">
+        <img class="ns-shine" src="images/mark.png" alt="" aria-hidden="true">
       </div>
       <p class="hero-sub">
         <span class="sub-long">New name, same room: the bar at 15716 Main St E is Mulligans now.</span>
@@ -61,6 +76,7 @@
         <a href="#hours" class="btn btn-cream">Are they open?</a>
       </div>
     </div>
+    <div class="ns-hem" aria-hidden="true"></div>
   </section>
 
   <!-- ===================== #hours =====================

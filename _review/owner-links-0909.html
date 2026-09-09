@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Owner links — 9/9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F0EA;--card:#FFFFFF;--line:#D8D6CC;--ink:#1B1E1A;--mute:#5F665D;--acc:#2A4D6E;
+--ok:#1F6B3A;--ok-bg:#E1EFE4;--warn:#9A6A16;--warn-bg:#F5EAD3;
+--disp:'Barlow Condensed','Arial Narrow',Impact,sans-serif;--body:'Source Sans 3','Helvetica Neue',Arial,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15181A;--card:#1E2226;--line:#2D3338;
+--ink:#ECEDE8;--mute:#9BA39C;--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F}}
+:root[data-theme="dark"]{--bg:#15181A;--card:#1E2226;--line:#2D3338;--ink:#ECEDE8;--mute:#9BA39C;
+--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 var(--body);padding:0 0 64px;overflow-x:hidden}
+main{max-width:640px;margin:0 auto;padding:0 12px}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 12px 8px;margin-bottom:14px}
+.top-in{max-width:640px;margin:0 auto;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h1{font:700 28px/0.95 var(--disp);text-transform:uppercase;margin:0;flex:1 1 auto}
+.count{font:700 13px/1 var(--body);color:var(--ok);background:var(--ok-bg);padding:6px 8px;border-radius:6px;white-space:nowrap}
+.reset{font:600 12px/1 var(--body);color:var(--mute);background:none;border:1px solid var(--line);border-radius:6px;padding:8px 10px;cursor:pointer;min-height:32px}
+.lede{color:var(--mute);font-size:14px;margin:0 0 14px;max-width:62ch}
+.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 14px;overflow:hidden}
+.c.done{opacity:.42}
+.hd{display:flex;align-items:flex-start;gap:10px}
+.num{font:700 20px/1 var(--disp);background:var(--ink);color:var(--bg);border-radius:8px;min-width:32px;height:30px;
+display:flex;align-items:center;justify-content:center;padding:0 6px;flex:0 0 auto}
+.nm{font:700 22px/1.05 var(--disp);text-transform:uppercase;flex:1 1 auto;margin-top:1px}
+.c.done .nm{text-decoration:line-through}
+.tick{flex:0 0 auto;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:none;
+color:var(--mute);font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:-4px}
+.c.done .tick{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
+.meta{color:var(--mute);font-size:13.5px;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:4px 9px;white-space:nowrap}
+.chip.when{color:var(--ink);font-weight:600}
+.chip.slot{background:var(--warn-bg);color:var(--warn);border-color:transparent;font-weight:600}
+.linkrow{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.url{font:600 13px/1.3 var(--body);color:var(--acc);word-break:break-all;text-decoration:none;
+border:1px dashed var(--line);border-radius:8px;padding:9px 10px;min-height:44px;display:flex;align-items:center;flex:1 1 100%}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;border-radius:9px;
+border:1px solid var(--acc);background:none;color:var(--acc);font:700 14px/1 var(--body);cursor:pointer;text-decoration:none}
+.btn.solid{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.btn.ghost{border-color:var(--line);color:var(--mute)}
+h3{font:700 11px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:15px 0 6px}
+.line{font-size:16px;line-height:1.45;border-left:3px solid var(--acc);padding-left:11px;margin:0}
+.ask{font-size:15px;font-weight:600;margin:8px 0 0}
+footer{max-width:640px;margin:20px auto 0;padding:0 12px;color:var(--mute);font-size:13px}
+@media (min-width:760px){.c{padding:18px}.url{flex:1 1 auto}}
+</style>
+</head>
+<body>
+<div class="top"><div class="top-in"><h1>Owner links &mdash; 9/9</h1>
+<span class="count" id="count">0 / 30 sent</span>
+<button class="reset" id="reset" type="button">Reset</button></div></div>
+<main>
+<p class="lede">One page per business, written to the owner: their site, what I do, what it costs, how to go live.
+Say <b>&ldquo;I'll just text you the link&rdquo;</b> &mdash; then ask for the number. Copy puts the link on the clipboard;
+Text it opens Messages with the message already typed, and you pick who it goes to. Tap the check once it's sent.</p>
+<article class="c" data-n="1">
+  <div class="hd"><span class="num">1</span><span class="nm">Wendy&#x27;s Dog&#x27;gone Good Groomers</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9 AM – 5 PM</span><span class="chip slot">Thursday, with cards held on purpose — the higher-ticket doors</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/wendys-doggone-good-groomers/">hjsdesigns.github.io/demos/for/wendys-doggone-good-groomers/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/wendys-doggone-good-groomers/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Wendy%27s%20Dog%27gone%20Good%20Groomers%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fwendys-doggone-good-groomers%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/wendys-doggone-good-groomers/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google listing has no website on it at all — no button, no domain, never has been. What I actually do is run your Facebook and Instagram, three posts a week off photos like the 41 you already have, and keep your Google current — two-fifty a month, cancel whenever. I built you a site to go with it, it&#x27;s on my phone.</p>
+  <p class="ask">$1,200 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="2">
+  <div class="hd"><span class="num">2</span><span class="nm">Bayabelle Boutique</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10 AM – 6 PM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/bayabelle-boutique-sumner/">hjsdesigns.github.io/demos/for/bayabelle-boutique-sumner/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/bayabelle-boutique-sumner/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Bayabelle%20Boutique%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fbayabelle-boutique-sumner%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/bayabelle-boutique-sumner/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Google has no website on file for you at all, and the one address you own — bayabelle.com — is a Shopify password screen, so anybody who looks you up finds a locked door. What I do is keep your Facebook and Instagram posted three times a week and your Google listing current, two-fifty a month, cancel whenever. I built you a front door to go with it — not a store, just the shop — it&#x27;s on my phone.</p>
+  <p class="ask">$1,200 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="3">
+  <div class="hd"><span class="num">3</span><span class="nm">Kissed By Chloe</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10 AM – 5 PM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/kissed-by-chloe-sumner/">hjsdesigns.github.io/demos/for/kissed-by-chloe-sumner/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/kissed-by-chloe-sumner/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Kissed%20By%20Chloe%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fkissed-by-chloe-sumner%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/kissed-by-chloe-sumner/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google listing has no website button at all — ten years on Main, 42 photos in there, and nowhere to send anybody. What I run is your Facebook and Instagram three times a week plus your Google listing, two-fifty a month, cancel whenever. The site I built to go with it is on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="4">
+  <div class="hd"><span class="num">4</span><span class="nm">Sumner Nails</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9 AM – 5 PM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/sumner-nails/">hjsdesigns.github.io/demos/for/sumner-nails/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/sumner-nails/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Sumner%20Nails%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fsumner-nails%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/sumner-nails/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">There&#x27;s no website button on your Google at all — a phone number is the whole internet for this shop, and you&#x27;ve got 34 people saying nice things with nowhere to send them. What I do is post your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. I built the site too, it&#x27;s on my phone.</p>
+  <p class="ask">$800 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="5">
+  <div class="hd"><span class="num">5</span><span class="nm">Ink&#x27;d Ink.</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 12 PM – 9 PM</span><span class="chip slot">Thursday, with cards held on purpose — the higher-ticket doors</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/inkd-ink-sumner/">hjsdesigns.github.io/demos/for/inkd-ink-sumner/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/inkd-ink-sumner/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Ink%27d%20Ink.%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Finkd-ink-sumner%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/inkd-ink-sumner/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Book Now button on Linktree points at a Vagaro page that doesn&#x27;t exist — everybody who taps it right now hits a dead end. What I run is your Facebook and Instagram three times a week plus your Google, two-fifty a month, cancel whenever. I built you a real site with your portfolio on it, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="6">
+  <div class="hd"><span class="num">6</span><span class="nm">Captain Jack&#x27;s Bar &amp; Grill</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 11 AM – 12 AM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/captain-jacks-bar-and-grill/">hjsdesigns.github.io/demos/for/captain-jacks-bar-and-grill/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/captain-jacks-bar-and-grill/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Captain%20Jack%27s%20Bar%20%26%20Grill%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fcaptain-jacks-bar-and-grill%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/captain-jacks-bar-and-grill/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">You bought captainjacksbarandgrill.shop and it goes nowhere — no DNS, dead link, and the .com on your Facebook cover is still unregistered. What I do is keep your Facebook and Instagram posted three times a week and your Google listing current, two-fifty a month, cancel whenever. The site to put on that .shop is already built, it&#x27;s on my phone.</p>
+  <p class="ask">Standard band $500–$1,000 — pick your number before you walk in. $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="7">
+  <div class="hd"><span class="num">7</span><span class="nm">The Log Cabin Pub</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10 AM – 2 AM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/log-cabin-pub-sumner/">hjsdesigns.github.io/demos/for/log-cabin-pub-sumner/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/log-cabin-pub-sumner/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20The%20Log%20Cabin%20Pub%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Flog-cabin-pub-sumner%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/log-cabin-pub-sumner/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google sends people to a Linktree — that&#x27;s a list of links, not your pub. What I run is your Facebook and Instagram three posts a week and your Google listing, two-fifty a month, cancel whenever. Built you the site to go with it, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="8">
+  <div class="hd"><span class="num">8</span><span class="nm">Mulligans</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed Call first — no hours published under the new name</span><span class="chip slot">Call first · no confirmed door</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/mulligans-sumner/">hjsdesigns.github.io/demos/for/mulligans-sumner/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/mulligans-sumner/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Mulligans%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fmulligans-sumner%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/mulligans-sumner/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Google still has this address down as the Water Hole — your hours, your reviews, all of it sitting under the old name. What I do is run your Facebook and Instagram three times a week and get the Google profile claimed and current under Mulligans, two-fifty a month, cancel whenever. I already built Mulligans its own site, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site — pitch the group, not just this room</p>
+</article>
+<article class="c" data-n="9">
+  <div class="hd"><span class="num">9</span><span class="nm">The Bean Tree Coffee Co</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 4:30 AM – 6 PM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/bean-tree-coffee-puyallup/">hjsdesigns.github.io/demos/for/bean-tree-coffee-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/bean-tree-coffee-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20The%20Bean%20Tree%20Coffee%20Co%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fbean-tree-coffee-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/bean-tree-coffee-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">beantreecoffee.com has said &#x27;launching soon&#x27; for two years — that&#x27;s your own name pointing at a GoDaddy parking page. What I actually do is post your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. The real site&#x27;s already built, it&#x27;s on my phone.</p>
+  <p class="ask">$750 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="10">
+  <div class="hd"><span class="num">10</span><span class="nm">West Pioneer Grill</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10 AM – 7 PM (owner in at 8 AM)</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/west-pioneer-grill-puyallup/">hjsdesigns.github.io/demos/for/west-pioneer-grill-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/west-pioneer-grill-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20West%20Pioneer%20Grill%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fwest-pioneer-grill-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/west-pioneer-grill-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">I came by Sunday evening and they told me you&#x27;re in at eight, so I figured I&#x27;d catch you on the phone. What I do is run your Facebook and Instagram three times a week and keep your Google listing current, two-fifty a month, cancel whenever — and I already built you a site to go with it. I can text you the link right now.</p>
+  <p class="ask">$1,000 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="11">
+  <div class="hd"><span class="num">11</span><span class="nm">Fox Hollow Coffee at Woodland Espresso</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 5:30 AM – 6 PM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/fox-hollow-coffee-puyallup/">hjsdesigns.github.io/demos/for/fox-hollow-coffee-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/fox-hollow-coffee-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Fox%20Hollow%20Coffee%20at%20Woodland%20Espresso%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Ffox-hollow-coffee-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/fox-hollow-coffee-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">The web address printed on your own cups, foxhollowcoffee.com, is dead — it times out, and Google shows no website button at all. What I do is keep your Facebook and Instagram posted three times a week and your Google current, two-fifty a month, cancel whenever. I built the site that address should point at, it&#x27;s on my phone.</p>
+  <p class="ask">$750 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="12">
+  <div class="hd"><span class="num">12</span><span class="nm">Scotty&#x27;s Grub and Pub</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10 AM – 2 AM</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/scottys-grub-and-pub-puyallup/">hjsdesigns.github.io/demos/for/scottys-grub-and-pub-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/scottys-grub-and-pub-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Scotty%27s%20Grub%20and%20Pub%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fscottys-grub-and-pub-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/scottys-grub-and-pub-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website button goes to Facebook — scottysgrubandpub.com doesn&#x27;t even exist. What I run is your Facebook and Instagram three posts a week plus your Google listing, two-fifty a month, cancel whenever. The site&#x27;s built, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="13">
+  <div class="hd"><span class="num">13</span><span class="nm">Bumpy&#x27;s Pub</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9 AM – 12 AM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/bumpys-pub-puyallup/">hjsdesigns.github.io/demos/for/bumpys-pub-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/bumpys-pub-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Bumpy%27s%20Pub%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fbumpys-pub-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/bumpys-pub-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">bumpyswa.net — the link behind your logo on the Puyallup Main Street page — is dead, no DNS at all. What I do is keep your Facebook and Instagram posted three times a week and your Google listing current, two-fifty a month, cancel whenever. The site&#x27;s already built, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="14">
+  <div class="hd"><span class="num">14</span><span class="nm">My Lil&#x27; Cube</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 11 AM – 9 PM</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/my-lil-cube-puyallup/">hjsdesigns.github.io/demos/for/my-lil-cube-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/my-lil-cube-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20My%20Lil%27%20Cube%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fmy-lil-cube-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/my-lil-cube-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website button goes to Facebook only — 4.7 from 1,649 people and no page of your own anywhere. What I run is your Facebook and Instagram three times a week plus your Google listing, two-fifty a month, cancel whenever. I built the site to go with it, it&#x27;s on my phone.</p>
+  <p class="ask">$1,000 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="16">
+  <div class="hd"><span class="num">16</span><span class="nm">Pioneer Antique Mall</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 11 AM – 6 PM (call first)</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/pioneer-antique-mall-puyallup/">hjsdesigns.github.io/demos/for/pioneer-antique-mall-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/pioneer-antique-mall-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Pioneer%20Antique%20Mall%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fpioneer-antique-mall-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/pioneer-antique-mall-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">You&#x27;ve got no website and no button on Google at all — and three of your one-star reviews are people who drove out on hours that showed open and found the door shut. What I do is keep your Facebook and Instagram posted three times a week and your Google hours actually current, two-fifty a month, cancel whenever. The site&#x27;s already built, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500–$2,500 for the site — pick your number before you walk in. $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="17">
+  <div class="hd"><span class="num">17</span><span class="nm">TK Top Nails &amp; Spa</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9 AM – 7 PM</span><span class="chip slot">Morning · west loop</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/tk-top-nails-puyallup/">hjsdesigns.github.io/demos/for/tk-top-nails-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/tk-top-nails-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20TK%20Top%20Nails%20%26%20Spa%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Ftk-top-nails-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/tk-top-nails-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website button points at bare facebook.com — not even a page, just facebook. What I do is run your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. I built you a real site, it&#x27;s on my phone.</p>
+  <p class="ask">Standard band $500–$1,000 — pick your number before you walk in. $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="18">
+  <div class="hd"><span class="num">18</span><span class="nm">Star Nails &amp; Spa</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10 AM – 7 PM</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/star-nails-puyallup/">hjsdesigns.github.io/demos/for/star-nails-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/star-nails-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Star%20Nails%20%26%20Spa%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fstar-nails-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/star-nails-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Google&#x27;s got no website button on you at all — just a Fresha booking page that isn&#x27;t yours. What I do is post your Facebook and Instagram three times a week and keep your Google listing current, two-fifty a month, cancel whenever. I built you a site, it&#x27;s on my phone.</p>
+  <p class="ask">Standard band $500–$1,000 — pick your number before you walk in. $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="21">
+  <div class="hd"><span class="num">21</span><span class="nm">Out &amp; About Burgers</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 11 AM – 8 PM</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/out-and-about-burgers-puyallup/">hjsdesigns.github.io/demos/for/out-and-about-burgers-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/out-and-about-burgers-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Out%20%26%20About%20Burgers%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fout-and-about-burgers-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/out-and-about-burgers-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website button goes to Facebook only — 2,193 people have rated you and there&#x27;s no page of yours to send them to. What I do is run your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. The site&#x27;s built, it&#x27;s on my phone.</p>
+  <p class="ask">$1,000 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="22">
+  <div class="hd"><span class="num">22</span><span class="nm">Wayne&#x27;s Inn Bar &amp; Grill</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 11 AM – 2 AM</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/waynes-inn-puyallup/">hjsdesigns.github.io/demos/for/waynes-inn-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/waynes-inn-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Wayne%27s%20Inn%20Bar%20%26%20Grill%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fwaynes-inn-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/waynes-inn-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">You&#x27;re paying for waynesinn.com and it&#x27;s a 114-byte GoDaddy parking page — a domain that shows nothing. What I run is your Facebook and Instagram three posts a week plus your Google listing, two-fifty a month, cancel whenever. The site to put on that domain is on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="23">
+  <div class="hd"><span class="num">23</span><span class="nm">River Road Lodge</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 12 PM – 2 AM</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/river-road-lodge-puyallup/">hjsdesigns.github.io/demos/for/river-road-lodge-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/river-road-lodge-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20River%20Road%20Lodge%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Friver-road-lodge-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/river-road-lodge-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website button goes to facebook.com, and rrrlounge.com and riverroadlodge.com both don&#x27;t resolve. What I do is keep your Facebook and Instagram posted three times a week and your Google listing current, two-fifty a month, cancel whenever. I built you a site, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="25">
+  <div class="hd"><span class="num">25</span><span class="nm">South Hill Nails</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9:30 AM – 7 PM</span><span class="chip slot">Thursday, with cards held on purpose — the higher-ticket doors</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/south-hill-nails/">hjsdesigns.github.io/demos/for/south-hill-nails/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/south-hill-nails/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20South%20Hill%20Nails%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fsouth-hill-nails%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/south-hill-nails/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">You&#x27;ve got no website button on Google at all — 265 Google reviews plus 188 on Yelp, and not one of those pages shows the work or the service list. What I do is post your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. I built you a site, it&#x27;s on my phone.</p>
+  <p class="ask">$1,200 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="26">
+  <div class="hd"><span class="num">26</span><span class="nm">Teriyaki Town</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10:30 AM – 9 PM</span><span class="chip slot">Afternoon · only if you double back</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/teriyaki-town-puyallup/">hjsdesigns.github.io/demos/for/teriyaki-town-puyallup/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/teriyaki-town-puyallup/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Teriyaki%20Town%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fteriyaki-town-puyallup%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/teriyaki-town-puyallup/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website button goes to teriyakitown1.menu11.com — that&#x27;s someone else&#x27;s page with your name on it, and it shows none of the shop. What I do is run your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. The real site&#x27;s built, it&#x27;s on my phone.</p>
+  <p class="ask">$1,000 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="29">
+  <div class="hd"><span class="num">29</span><span class="nm">Tacos los Queretaros</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10 AM – 10 PM</span><span class="chip slot">Fife &amp; Milton · its own morning</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/tacos-los-queretaros-edgewood/">hjsdesigns.github.io/demos/for/tacos-los-queretaros-edgewood/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/tacos-los-queretaros-edgewood/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Tacos%20los%20Queretaros%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Ftacos-los-queretaros-edgewood%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/tacos-los-queretaros-edgewood/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website buttons point at orderdindin.com and skytab — rented ordering platforms, and no domain of your own resolves. What I run is your Facebook and Instagram three times a week plus your Google listing, two-fifty a month, cancel whenever. I built you a site, it&#x27;s on my phone.</p>
+  <p class="ask">$500–$750 for the site — pick your number before you walk in. $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="30">
+  <div class="hd"><span class="num">30</span><span class="nm">A Spoonful of Sugar</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 5 AM – 3 PM</span><span class="chip slot">Fife &amp; Milton · its own morning</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/a-spoonful-of-sugar-milton/">hjsdesigns.github.io/demos/for/a-spoonful-of-sugar-milton/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/a-spoonful-of-sugar-milton/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20A%20Spoonful%20of%20Sugar%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fa-spoonful-of-sugar-milton%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/a-spoonful-of-sugar-milton/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">aspoonfulofsugarcafe.com has been parked since 2016 — you own the name and it shows nothing. What I do is keep your Facebook and Instagram posted three times a week and your Google listing current, two-fifty a month, cancel whenever. The real site&#x27;s built, it&#x27;s on my phone.</p>
+  <p class="ask">$750 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="32">
+  <div class="hd"><span class="num">32</span><span class="nm">Sapporo &amp; Sushi Restaurant</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 10:30 AM – 9 PM</span><span class="chip slot">Thursday, with cards held on purpose — the higher-ticket doors</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/sapporo-and-sushi-restaurant-fife/">hjsdesigns.github.io/demos/for/sapporo-and-sushi-restaurant-fife/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/sapporo-and-sushi-restaurant-fife/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Sapporo%20%26%20Sushi%20Restaurant%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fsapporo-and-sushi-restaurant-fife%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/sapporo-and-sushi-restaurant-fife/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your Google website button goes to a rented Menu11 stub, and you&#x27;re on Menu11, DoorDash, Postmates and order.online — four platforms, you own none of them, and not one shows the room. What I do is keep your Facebook and Instagram posted three times a week and your Google current, two-fifty a month, cancel whenever. The real site&#x27;s built, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="33">
+  <div class="hd"><span class="num">33</span><span class="nm">Top Auto Body</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 8 AM – 5 PM</span><span class="chip slot">Thursday, with cards held on purpose — the higher-ticket doors</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/top-auto-body-fife/">hjsdesigns.github.io/demos/for/top-auto-body-fife/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/top-auto-body-fife/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Top%20Auto%20Body%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Ftop-auto-body-fife%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/top-auto-body-fife/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">You&#x27;ve got zero web presence of your own — no website button on Google, no domain, no Facebook, no Instagram — so everybody comparison-shopping after a wreck is finding Yelp&#x27;s version of you. What I do is run your Facebook and Instagram three times a week and get your Google listing built out, two-fifty a month, cancel whenever. The site&#x27;s on my phone.</p>
+  <p class="ask">Premium band $1,000–$3,000 — pick your number before you walk in. $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="34">
+  <div class="hd"><span class="num">34</span><span class="nm">Rose Spa</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9:30 AM – 10 PM</span><span class="chip slot">Rose Spa · 12:00 fixed</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/rose-spa-bonney-lake/">hjsdesigns.github.io/demos/for/rose-spa-bonney-lake/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/rose-spa-bonney-lake/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Rose%20Spa%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Frose-spa-bonney-lake%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/rose-spa-bonney-lake/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">Your staff saw this on Saturday and said to come back when you&#x27;re in — so here I am. What I actually do is run your Facebook and Instagram three times a week and keep your Google listing current, two-fifty a month, cancel whenever, and the site comes with it. It&#x27;s on my phone.</p>
+  <p class="ask">$1,500 + tax for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="35">
+  <div class="hd"><span class="num">35</span><span class="nm">Nails 410</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9:30 AM – 7 PM</span><span class="chip slot">Rose Spa · 12:00 fixed</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/nails-410/">hjsdesigns.github.io/demos/for/nails-410/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/nails-410/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Nails%20410%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fnails-410%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/nails-410/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">You&#x27;ve got no site of your own — 117 people have reviewed you and there&#x27;s nowhere to send any of them. What I do is post your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. I built you a site, it&#x27;s on my phone.</p>
+  <p class="ask">$500 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="36">
+  <div class="hd"><span class="num">36</span><span class="nm">Pretty Nails</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 9:30 AM – 7 PM</span><span class="chip slot">Rose Spa · 12:00 fixed</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/pretty-nails-bonney-lake/">hjsdesigns.github.io/demos/for/pretty-nails-bonney-lake/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/pretty-nails-bonney-lake/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Pretty%20Nails%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fpretty-nails-bonney-lake%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/pretty-nails-bonney-lake/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">prettynailbonneylake.com is throwing a builder error — a 503, straight up broken — and your Google button sends people to a booking site instead. What I do is run your Facebook and Instagram three times a week and keep your Google current, two-fifty a month, cancel whenever. I built you a working site, it&#x27;s on my phone.</p>
+  <p class="ask">$1,000 for the site, $200 down · $250/mo social with the site</p>
+</article>
+<article class="c" data-n="37">
+  <div class="hd"><span class="num">37</span><span class="nm">Teriyaki Wok &amp; Sushi</span>
+    <button class="tick" type="button" aria-label="Mark link sent">&#10003;</button></div>
+  <p class="meta"><span class="chip when">Wed 11 AM – 8:30 PM</span><span class="chip slot">Rose Spa · 12:00 fixed</span></p>
+  <div class="linkrow">
+    <a class="url" href="https://hjsdesigns.github.io/demos/for/teriyaki-wok-and-sushi/">hjsdesigns.github.io/demos/for/teriyaki-wok-and-sushi/</a>
+    <button class="btn copy" type="button" data-url="https://hjsdesigns.github.io/demos/for/teriyaki-wok-and-sushi/">Copy</button>
+    <a class="btn solid" href="sms:?&amp;body=Hey%20it%27s%20Hayden%20from%20HJS%20Designs%2C%20here%27s%20that%20link%20with%20the%20site%20I%20built%20for%20Teriyaki%20Wok%20%26%20Sushi%20and%20what%20I%20do%3A%20https%3A%2F%2Fhjsdesigns.github.io%2Fdemos%2Ffor%2Fteriyaki-wok-and-sushi%2F">Text it</a>
+    <a class="btn ghost" href="https://hjsdesigns.github.io/demos/teriyaki-wok-and-sushi/">Demo</a>
+  </div>
+  <h3>The line</h3>
+  <p class="line">You&#x27;ve actually got a site, which most places round here don&#x27;t — but it&#x27;s four photos and a menu, and it&#x27;s doing nothing for you. What I do is run your Facebook and Instagram three times a week and keep your Google listing current, two-fifty a month, cancel whenever. I rebuilt the site to go with it, it&#x27;s on my phone.</p>
+  <p class="ask">$1,500 + tax for the site — redesign pitch, $200 down · $250/mo social with the site</p>
+</article>
+</main>
+<footer>Same numbering as all-30. Pages are noindex &mdash; they only exist if you send them.</footer>
+<script>
+(function(){
+  var KEY='hjs-owner-links-0909';
+  var state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){state={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  var cards=[].slice.call(document.querySelectorAll('.c'));
+  var count=document.getElementById('count');
+  function paint(){
+    var done=0;
+    cards.forEach(function(c){
+      var n=c.getAttribute('data-n');
+      if(state[n]){c.classList.add('done');done++;}else{c.classList.remove('done');}
+    });
+    count.textContent=done+' / '+cards.length+' sent';
+  }
+  cards.forEach(function(c){
+    c.querySelector('.tick').addEventListener('click',function(){
+      var n=c.getAttribute('data-n');
+      state[n]=!state[n];save();paint();
+    });
+  });
+  document.getElementById('reset').addEventListener('click',function(){
+    state={};save();paint();
+  });
+  [].slice.call(document.querySelectorAll('.copy')).forEach(function(b){
+    b.addEventListener('click',function(){
+      var url=b.getAttribute('data-url');
+      var done=function(){var t=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=t;},1200);};
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(done,function(){fallback(url,done);});
+      }else{fallback(url,done);}
+    });
+  });
+  function fallback(url,done){
+    try{
+      var ta=document.createElement('textarea');ta.value=url;ta.setAttribute('readonly','');
+      ta.style.position='absolute';ta.style.left='-9999px';document.body.appendChild(ta);
+      ta.select();document.execCommand('copy');document.body.removeChild(ta);done();
+    }catch(e){}
+  }
+  paint();
+})();
+</script>
+</body>
+</html>

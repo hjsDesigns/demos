@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>South Hill Nails — your site, and what I do | HJS Designs</title>
+<meta name="description" content="The website I built for South Hill Nails, what I do, what it costs, and what it takes to go live.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f0f0f; --panel:#171717; --paper:#f1f0ea; --muted:#a7a9a4;
+  --accent:#8db4da; --line:#2b2b2b;
+  --display:"Archivo Black","Arial Black",Impact,system-ui,sans-serif;
+  --body:"Karla","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --maxw:760px; --pad:22px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--paper);font:17px/1.6 var(--body);overflow-x:hidden}
+img,svg{max-width:100%}
+main{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 64px}
+p{margin:0 0 14px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:4px}
+
+header{max-width:var(--maxw);margin:0 auto;padding:28px var(--pad) 0}
+.sig-top{font-family:var(--display);font-size:12px;letter-spacing:.2em;color:var(--muted);margin:0 0 14px}
+.sig-top b{color:var(--accent);font-weight:400}
+.wordmark{font-family:var(--display);font-size:clamp(28px,9vw,46px);line-height:1;letter-spacing:-.01em;margin:0}
+.wordmark .b{color:var(--accent)}
+.rule{height:4px;background:var(--accent);width:64px;margin:14px 0 18px;border-radius:2px}
+.lede{font-size:clamp(17px,4.4vw,20px);line-height:1.45;margin:0 0 20px}
+.shot{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;
+  border-radius:10px;border:1px solid var(--line);background:var(--panel);margin:0 0 20px}
+.shot-note{color:var(--muted);font-size:13px;margin:-12px 0 20px}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;
+  min-height:58px;padding:14px 20px;border-radius:10px;background:var(--accent);
+  color:#0f0f0f;font-weight:700;font-size:18px;text-decoration:none;margin:0 0 8px}
+.cta-note{color:var(--muted);font-size:14px;margin:0 0 4px}
+.divider{height:1px;background:var(--line);border:0;margin:28px 0 0}
+
+section{padding-top:38px}
+.eyebrow{font-family:var(--display);font-size:12px;letter-spacing:.2em;color:var(--accent);
+  margin:0 0 8px;text-transform:uppercase}
+h2{font-family:var(--display);font-size:clamp(25px,7.4vw,38px);line-height:1.05;margin:0 0 18px;letter-spacing:-.01em}
+h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;margin:26px 0 10px}
+.block{border-left:2px solid var(--line);padding-left:16px}
+
+ul.gets{margin:0;padding:0;list-style:none}
+ul.gets li{position:relative;padding-left:20px;margin-bottom:12px}
+ul.gets li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;
+  border-radius:2px;background:var(--accent)}
+
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:step}
+ol.steps li{counter-increment:step;position:relative;padding:0 0 0 40px;margin:0 0 14px;min-height:30px}
+ol.steps li::before{content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--accent);color:#0f0f0f;font-family:var(--display);font-size:13px;
+  display:flex;align-items:center;justify-content:center}
+
+.cards{display:grid;gap:16px;margin:0}
+.card{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:18px 18px 16px}
+.card h4{font-family:var(--display);font-size:20px;line-height:1.1;margin:0 0 10px;letter-spacing:-.01em}
+.card p{font-size:16px;margin:0 0 10px}
+.card .amount{font-family:var(--display);font-size:17px;line-height:1.3;margin:14px 0 4px;
+  padding-top:13px;border-top:1px solid var(--line);letter-spacing:-.01em}
+.card .note{color:var(--muted);font-size:14px;margin:0}
+.tag{display:inline-block;vertical-align:middle;margin-left:6px;font-family:var(--body);font-size:10px;
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0f0f0f;background:var(--accent);
+  border-radius:999px;padding:4px 9px}
+
+.promise{margin-top:34px;border:1px solid var(--accent);border-radius:10px;padding:20px;background:#13181e}
+.promise h3{margin-top:0}
+blockquote{margin:0 0 12px;padding-left:14px;border-left:3px solid var(--accent);font-size:16px;line-height:1.55}
+.promise .src{margin:0;color:var(--muted);font-size:14px}
+
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:22px}
+footer p{color:var(--muted);font-size:14px}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px;padding:0;list-style:none}
+.contact a{display:flex;align-items:center;min-height:52px;padding:12px 18px;border:1px solid var(--line);
+  border-radius:999px;background:var(--panel);color:var(--paper);text-decoration:none;font-weight:700;
+  font-size:15px;word-break:break-word}
+.contact a.call{background:var(--accent);color:#0f0f0f;border-color:var(--accent)}
+.sig{font-family:var(--display);font-size:13px;letter-spacing:.18em;color:var(--muted);margin-top:24px}
+
+@media (min-width:720px){
+  body{font-size:18px}
+  header{padding-top:52px}
+  .rule{width:88px}
+  section{padding-top:52px}
+  .cards{grid-template-columns:1fr;gap:18px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="sig-top">HJS <b>DESIGNS</b> · HAYDEN STEVENSON</p>
+  <h1 class="wordmark">Built for<br><span class="b">South Hill Nails</span></h1>
+  <div class="rule"></div>
+  <p class="lede">You&#x27;ve got no website button on Google at all — 265 Google reviews plus 188 on Yelp, and not one of those pages shows the work or the service list.</p>
+</header>
+
+<main>
+
+  <section id="site" aria-labelledby="h-site">
+  <img class="shot" src="../../south-hill-nails/images/hero.jpg" alt="A photo of South Hill Nails, off their own site" width="1200" height="675">
+    <a class="cta" href="https://hjsdesigns.github.io/demos/south-hill-nails/">See your site &rarr;</a>
+    <p class="cta-note">It's a real page, already built. Nothing is live to the public yet — this is yours to look at.</p>
+
+    <h3>Three things it already gets right</h3>
+    <div class="block">
+      <ul class="gets">
+        <li>The six services painted in gold on your own front window, rolled out of cards you tap</li>
+        <li>A polish wall — six real finished sets from your own photos; tap one and it fills the frame</li>
+        <li>Four real Google reviewers with names and profile photos — Autumn Cleveland, Kimberly Moreno, Dannielle Vorak, Janell Mattson — and the About page built on Vincent, Ruby and Linda</li>
+      </ul>
+    </div>
+    <hr class="divider">
+  </section>
+
+  <section id="what" aria-labelledby="h-what">
+    <p class="eyebrow">What I do</p>
+    <h2 id="h-what">Three things</h2>
+    <p>Take one, take all three, or take none — the site stands on its own.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Website</h4>
+        <p>I build you a real site — your photos, your hours, your prices, your story. Not a template with your name dropped in.</p>
+        <p>It works on a phone first, because that's where nearly everyone will see it. Tap-to-call, directions, and a form that lands on your phone.</p>
+        <p>I host it and I own none of it. The domain and the site are yours.</p>
+        <p class="amount">$1,200 for your site</p>
+        <p class="note">One time. $200 down to start, the rest at go-live. Plus tax.</p>
+      </div>
+
+      <div class="card">
+        <h4>Social media</h4>
+        <p>Three posts a week on your Facebook and Instagram, off real photos of your place and your work, written the way you talk.</p>
+        <p>I answer comments and messages on those posts within a day, and keep your Google listing current — hours, photos, website link, review replies.</p>
+        <p>Once a month you get one page: what went out, how many people saw it, how many reached out.</p>
+        <p class="amount">$250/mo with the site</p>
+        <p class="note">$350/mo on its own. Site care up to $100 included with the bundle. Month to month, cancel anytime, plus tax.</p>
+      </div>
+
+      <div class="card">
+        <h4>Google Ads</h4>
+        <p>I set up and run your ads so you come up at the top when somebody nearby searches for what you sell.</p>
+        <p>I write the ads, pick the search terms, set the area around you, and check them weekly — cutting what wastes money.</p>
+        <p>Same monthly page: what was spent, what people searched, how many called or wrote in.</p>
+        <p class="amount">$250/mo with the site<span class="tag">Intro pricing</span></p>
+        <p class="note">$350/mo on its own. That's management only — your ad spend is separate, on your own card, and Google bills you directly (at least $300/mo). Plus tax.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="live" aria-labelledby="h-live">
+    <p class="eyebrow">Your part</p>
+    <h2 id="h-live">To go live</h2>
+    <div class="block">
+      <ol class="steps">
+        <li><b>Say yes.</b> We agree the pages and one exact price first.</li>
+        <li><b>$200 down by Zelle</b> to hold the spot. The rest when it goes live.</li>
+        <li><b>Send 10&ndash;15 of your own photos</b> from your phone, plus your real hours.</li>
+        <li><b>Pick your domain name.</b> I check what's available and buy it in your name.</li>
+        <li><b>Look it over and say go.</b> Live within 48 hours of that.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="gets" aria-labelledby="h-gets">
+    <p class="eyebrow">Straight</p>
+    <h2 id="h-gets">What it gets you</h2>
+    <div class="block">
+      <ul class="gets">
+        <li>A place to send people — on your card, your Facebook, your window, in a text.</li>
+        <li>Somebody searching your name at 9 PM finds your hours instead of guessing.</li>
+        <li>A tap-to-call button and a contact form, so inquiries land on your phone.</li>
+        <li>You stop looking smaller online than you actually are.</li>
+      </ul>
+    </div>
+    <p style="margin-top:16px;color:var(--muted);font-size:15px">I'm not going to tell you a website makes your phone ring off the hook. It makes you findable and it makes you look like what you are. The monthly plans are where I put a number on it:</p>
+
+    <div class="promise">
+      <h3>The promise on the monthly plans</h3>
+      <blockquote>&ldquo;counted LEADS (never revenue) in 6 months, tracked via site/page only; miss → monthly pauses until hit; build never refunded&rdquo;</blockquote>
+      <p class="src">We write the number down before any work starts and count it the same way every month. It's a lead target — people reaching out — not a promise about your sales.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Any question at all, call or text me. There's no decision needed today.</p>
+    <ul class="contact">
+      <li><a class="call" href="tel:+12532594558">Call (253) 259-4558</a></li>
+      <li><a href="sms:+12532594558">Text me</a></li>
+      <li><a href="mailto:haydenliveshere@gmail.com">haydenliveshere@gmail.com</a></li>
+    </ul>
+    <ul class="contact">
+      <li><a href="https://hjsdesigns.github.io/demos/what-we-do/">The full rundown of what I do</a></li>
+      <li><a href="https://hjsdesigns.github.io/demos/pricing/">Every price on one page</a></li>
+    </ul>
+    <p>Everything monthly is month to month, cancel anytime, quoted plus tax.</p>
+    <p class="sig">HAYDEN STEVENSON · HJS DESIGNS · PUYALLUP &amp; THE PLATEAU</p>
+  </footer>
+
+</main>
+</body>
+</html>
