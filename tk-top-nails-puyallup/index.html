@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- DM Serif Display (display, 400 only — the face has no other weight) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1757390000">
-<link rel="stylesheet" href="css/hero.css?v=1757390000">
+<link rel="stylesheet" href="css/style.css?v=1788939577">
+<link rel="stylesheet" href="css/hero.css?v=1788939577">
 <script>document.documentElement.className+=' js';</script>
 </head>
 <body>
@@ -43,29 +43,65 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero =====================
-       LOCKED — this is Codex's take, picked by Hayden 9/7. The idea is their
-       own banner sign (a straight crop of the real vinyl, never redrawn)
-       arriving in two halves out of a wash of daylight, with the pedicure row
-       emerging on the right. Do not change the idea.
-       9/8 defect fixes only: the photo's left edge is feathered and the
-       daylight wash carried further right so the room no longer butts against
-       a hard cream seam, and the mark is capped so it stops clear of the
-       photo. The daylight EXTERIOR of the building sits in #storefront,
-       directly under the hours band (STOREFRONT BELOW THE HOURS).
-       Headline block only — no chips, no badges, no status pill. -->
-  <section class="hero codex-tk-top-nails" id="hero">
-  <div class="codex-tk-room codex-decor" aria-hidden="true"><img src="images/hero-stack-2.jpg" alt="" width="1650" height="2200" fetchpriority="high"></div>
-  <div class="codex-tk-daylight codex-decor" aria-hidden="true"></div>
-  <div class="codex-content">
-    <h1 class="sr-only codex-a11y">TK Top Nails &amp; Spa — nails and spa pedicures in Puyallup</h1>
-    <div class="codex-tk-sign codex-decor" aria-hidden="true">
-      <img class="codex-mark-image codex-tk-sign-top" src="images/logo.png" alt="" width="1180" height="413" fetchpriority="high">
-      <img class="codex-mark-image codex-tk-sign-bottom" src="images/logo.png" alt="" width="1180" height="413">
+  <!-- ================ #hero — variant: POLISH STATION ================
+       ONE idea, from ONE real object of theirs: the wall you actually walk
+       into — their own routed "Polish Station" rack, ten shelves deep,
+       every bottle numbered in their own handwriting. The shop turns its
+       lights on down the wall, shelf by shelf, and their real banner sign
+       drops in front of it.
+
+         ground   images/rack-wall.jpg      — their Polish Station rack (g7
+                  frame), whole, never cropped through the routed header
+         behind   images/rack-wall-blur.jpg — the same wall, blurred and
+                  dimmed, so the rack is a lit panel in its own room
+         event    ten dark bands lift off the wall in sequence, top to
+                  bottom, each with a warm strike — the light coming down
+                  the shelves. The band edges are the REAL shelf lines,
+                  measured off the photo, not guessed.
+         mark     images/banner-panel.jpg   — their REAL banner sign, cut
+                  from the storefront photo (g15) and levelled 1.23deg.
+                  Nothing redrawn. It drops in and settles like a hung
+                  banner.
+         flourish ONE gloss runs across the banner.
+       Then it holds. ~3.3s, deterministic, no loop, no JS.
+       sr-only h1, the two existing buttons, nothing else on the hero. -->
+  <section class="hero v-polish-station" id="hero">
+    <div class="ps-far" aria-hidden="true">
+      <img src="images/rack-wall-blur.jpg" alt="" width="700" height="933" decoding="async">
     </div>
-    <div class="codex-actions"><a href="#menu" class="btn btn-primary">See the services</a><a href="#work" class="btn btn-cream">See the work</a></div>
-  </div>
-</section>
+
+    <div class="ps-stage" aria-hidden="true">
+      <img class="ps-wall" src="images/rack-wall.jpg" alt="" width="1200" height="1600" fetchpriority="high" decoding="async">
+      <i class="ps-band" style="--t:0%;--h:10.9%;--i:0"></i>
+      <i class="ps-band" style="--t:10.9%;--h:9.7%;--i:1"></i>
+      <i class="ps-band" style="--t:20.6%;--h:10.4%;--i:2"></i>
+      <i class="ps-band" style="--t:31%;--h:9.8%;--i:3"></i>
+      <i class="ps-band" style="--t:40.8%;--h:9.5%;--i:4"></i>
+      <i class="ps-band" style="--t:50.3%;--h:9%;--i:5"></i>
+      <i class="ps-band" style="--t:59.3%;--h:12.1%;--i:6"></i>
+      <i class="ps-band" style="--t:71.4%;--h:9.8%;--i:7"></i>
+      <i class="ps-band" style="--t:81.2%;--h:9.4%;--i:8"></i>
+      <i class="ps-band" style="--t:90.6%;--h:9.4%;--i:9"></i>
+    </div>
+
+    <span class="ps-veil" aria-hidden="true"></span>
+
+    <h1 class="sr-only">TK Top Nails &amp; Spa — nails, spa pedicures, waxing and lashes on East Main in Puyallup, WA</h1>
+
+    <div class="hero-inner">
+      <div class="ps-banner" role="img" aria-label="TK Top Nails &amp; Spa">
+        <img src="images/banner-panel.jpg" alt="" width="1712" height="564" fetchpriority="high" decoding="async">
+        <span class="ps-gloss"></span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">See the services</a>
+        <a href="#work" class="btn btn-cream">See the work</a>
+      </div>
+    </div>
+
+    <span class="ps-hem" aria-hidden="true"></span>
+  </section>
 
   <!-- ===================== #hours — THE DEEP BAND =====================
        Live Pacific clock, address and all seven day rows with today lit.
@@ -299,7 +335,7 @@
       </div>
       <div class="room-strip">
         <figure class="print reveal"><img src="images/room-2.jpg" alt="The waiting couch by the window with the manicure tables and the TV in the background" loading="lazy"><figcaption>The couch by the window</figcaption></figure>
-        <figure class="print reveal"><img src="images/room-3.jpg" alt="The Polish Station rack, filled row by row with dipping powders and treatments" loading="lazy"><figcaption>The Polish Station</figcaption></figure>
+        <figure class="print reveal"><img src="images/hero-stack-2.jpg" alt="The pedicure row at TK Top Nails — six tan massage chairs under warm pendant lamps, towels laid out and bowls lined up ready" loading="lazy"><figcaption>The pedicure row</figcaption></figure>
       </div>
     </div>
   </section>
@@ -464,6 +500,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1757390000"></script>
+<script src="js/site.js?v=1788939577"></script>
 </body>
 </html>

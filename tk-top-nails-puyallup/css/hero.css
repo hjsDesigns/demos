@@ -1,52 +1,194 @@
-/* codex hero take, applied 0907-1414 — source versions/codex-hero/ */
-/* Bounded Codex hero fragment. Append after the existing site stylesheet. */
-.hero.codex-tk-top-nails{position:relative;isolation:isolate;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:stretch;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));width:100%;max-width:none;margin:0;padding:0;overflow:hidden;background:var(--bg);color:var(--ink)}
-.hero.codex-tk-top-nails *{box-sizing:border-box}
-.hero.codex-tk-top-nails h1.codex-a11y{position:absolute;width:1px;height:1px;min-height:0;padding:0;margin:-1px;border:0;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;font-size:1px;line-height:1;animation:none;transform:none;opacity:1}
-.hero.codex-tk-top-nails .codex-content{position:relative;z-index:3;width:100%;margin:0 auto;min-width:0;text-align:center}
-.hero.codex-tk-top-nails .codex-actions{position:relative;z-index:4;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin:clamp(24px,4svh,40px) 0 0;padding:0;opacity:1;transform:none;animation:none}
-.hero.codex-tk-top-nails .codex-actions .btn{display:inline-flex;justify-content:center;align-items:center;min-height:50px;min-width:0;margin:0;padding:14px 23px;border-radius:6px;font-family:var(--body);font-size:15px;line-height:1.3;letter-spacing:0;font-weight:700;text-decoration:none;white-space:nowrap;transition:background-color .18s,color .18s;transform:none}
-.hero.codex-tk-top-nails .codex-actions .btn-primary{background:var(--brand);border:1px solid var(--brand);color:var(--paper)}
-.hero.codex-tk-top-nails .codex-actions .btn-cream,.hero.codex-tk-top-nails .codex-actions .btn-outline{background:var(--bg);border:1px solid color-mix(in srgb,var(--ink) 20%,transparent);color:var(--ink)}
-.hero.codex-tk-top-nails .codex-actions .btn:focus-visible{outline:3px solid var(--warm);outline-offset:5px}
-.hero.codex-tk-top-nails .codex-actions .btn-primary:hover{background:var(--brand-bright);border-color:var(--brand-bright)}
-.hero.codex-tk-top-nails .codex-decor{pointer-events:none;user-select:none}
-.hero.codex-tk-top-nails .codex-mark-image{display:block;width:100%;height:auto;max-width:none;object-fit:contain;object-position:center;margin:0;border:0;border-radius:0}
-@media(max-width:600px){.hero.codex-tk-top-nails .codex-actions{gap:10px;width:100%}.hero.codex-tk-top-nails .codex-actions .btn{flex:1 1 0;min-height:48px;padding:13px 10px;font-size:14px}}
+/* variants/polish-station hero take, applied 0909-0037 — source versions/variants/polish-station-hero/ */
+/* ============================================================
+   TK TOP NAILS & SPA — hero variant: POLISH STATION (2026-09-09)
 
-.hero.codex-tk-top-nails{background:var(--bg)}
-/* DEFECT FIX 2026-09-08 (idea untouched): the photo used to start at a hard
-   vertical cut at 43% while the daylight wash was still ~85% cream there, so
-   the opener read as a photo pasted onto a cream rectangle. The photo now
-   starts further left and its own left edge is feathered with a mask, and the
-   wash reaches full transparency later — so the room emerges out of the
-   daylight instead of being butted against it. */
-.hero.codex-tk-top-nails .codex-tk-room{position:absolute;inset:0 0 0 40%;overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.28) 13%,#000 32%,#000 100%);
-  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.28) 13%,#000 32%,#000 100%)}
-.hero.codex-tk-top-nails .codex-tk-room img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 60%;filter:saturate(.9);animation:codex-tk-room-arrive 2.5s var(--ease) both}
-.hero.codex-tk-top-nails .codex-tk-daylight{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 30%,color-mix(in srgb,var(--bg) 92%,transparent) 42%,color-mix(in srgb,var(--bg) 58%,transparent) 54%,color-mix(in srgb,var(--bg) 20%,transparent) 64%,transparent 74%)}
-.hero.codex-tk-top-nails .codex-content{width:54%;margin:0;padding:0 3.8vw 0 4.5vw}
-/* The sign is capped so its right end lands inside the feathered edge of the
-   photo rather than multiplying onto the solid room — the mark stays clean. */
-.hero.codex-tk-top-nails .codex-tk-sign{position:relative;width:min(100%,39vw);max-width:660px;margin:0 auto;aspect-ratio:1180/413;mix-blend-mode:multiply;filter:contrast(1.08);overflow:visible}
-.hero.codex-tk-top-nails .codex-tk-sign-top,.hero.codex-tk-top-nails .codex-tk-sign-bottom{position:absolute;inset:0}
-.hero.codex-tk-top-nails .codex-tk-sign-top{clip-path:inset(0 0 46% 0);animation:codex-tk-red-arrive 1.55s var(--ease) both}
-.hero.codex-tk-top-nails .codex-tk-sign-bottom{clip-path:inset(54% 0 0 0);animation:codex-tk-blue-arrive 1.55s var(--ease) .14s both}
-.hero.codex-tk-top-nails .codex-actions{margin-top:40px}
-@keyframes codex-tk-red-arrive{from{transform:translateX(-34px);opacity:.3}to{transform:none;opacity:1}}
-@keyframes codex-tk-blue-arrive{from{transform:translateX(34px);opacity:.3}to{transform:none;opacity:1}}
-@keyframes codex-tk-room-arrive{from{transform:scale(1.035);filter:saturate(.9) blur(5px)}to{transform:scale(1);filter:saturate(.9) blur(0)}}
-@media(max-width:760px){
- .hero.codex-tk-top-nails{justify-content:flex-start}
- .hero.codex-tk-top-nails .codex-tk-room{inset:23% 0 0}
- .hero.codex-tk-top-nails .codex-tk-room img{object-position:center 62%}
- .hero.codex-tk-top-nails .codex-tk-daylight{background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 15%,color-mix(in srgb,var(--bg) 96%,transparent) 26%,color-mix(in srgb,var(--bg) 78%,transparent) 37%,transparent 61%)}
- .hero.codex-tk-top-nails .codex-content{width:100%;padding:clamp(32px,8svh,68px) 22px 0}
- .hero.codex-tk-top-nails .codex-tk-sign{width:100%;max-width:none}
- .hero.codex-tk-top-nails .codex-actions{margin-top:26px}
+   Their own wall of colour, lit shelf by shelf, with their real
+   banner sign hung in front of it.
+
+   Layers, all real:
+     .ps-far     the same wall blurred + dimmed, so the rack reads as a
+                 lit panel standing in its own room
+     .ps-stage   the rack whole — sized so the routed "Polish Station"
+                 header is NEVER cropped, at any width
+     .ps-band    ten dark bands, one per real shelf (edges measured off
+                 the photo), lifting top to bottom with a warm strike
+     .ps-banner  their REAL banner sign, levelled, dropping in and settling
+     .ps-gloss   ONE gloss across it
+
+   Timeline (deterministic, no JS, ends at 3.25s and holds):
+     0.05 → 1.60  the room behind comes up
+     0.30 → 2.00  the ten shelves light, top to bottom (0.11s apart)
+     1.10 → 2.05  the banner drops and settles
+     2.10 → 2.70  the buttons rise
+     2.35 → 3.25  the gloss runs across the banner
+     3.25+        still; only the banner's warm keep-light breathes
+
+   Namespaced .hero.v-polish-station, every keyframe prefixed ps-.
+   Reduced motion lands on the final frame.
+   ============================================================ */
+
+.hero.v-polish-station{
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:#120D08;
+  isolation:isolate;
 }
-@media(max-height:540px) and (min-width:761px){.hero.codex-tk-top-nails .codex-content{width:51%;padding-left:3vw;padding-right:3vw}.hero.codex-tk-top-nails .codex-tk-sign{max-width:420px;margin:auto}.hero.codex-tk-top-nails .codex-actions{margin-top:22px}}
-@media(max-height:540px) and (max-width:760px){.hero.codex-tk-top-nails .codex-content{padding-top:20px}.hero.codex-tk-top-nails .codex-tk-sign{max-width:320px;margin:auto}.hero.codex-tk-top-nails .codex-actions{margin-top:18px}}
 
-@media(prefers-reduced-motion:reduce){.hero.codex-tk-top-nails *,.hero.codex-tk-top-nails *::before,.hero.codex-tk-top-nails *::after{animation:none!important;transition:none!important}}
+/* ---------- 1. the room behind the rack ---------- */
+.hero.v-polish-station .ps-far{position:absolute;inset:0;z-index:0}
+.hero.v-polish-station .ps-far img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block;
+  transform:scale(1.08);
+  animation:ps-far-wake 1.55s var(--ease,cubic-bezier(.22,.85,.3,1)) .05s both;
+}
+
+/* ---------- 2. the rack, whole at every width ----------
+   Width is the smaller of the viewport and what the hero's own height can
+   carry at the photo's aspect, so the routed header always survives. */
+.hero.v-polish-station .ps-stage{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  z-index:1;
+  aspect-ratio:1200 / 1600;
+  width:min(100%, calc((100svh - var(--header-h)) * .75));
+  box-shadow:0 40px 90px rgba(0,0,0,.6);
+}
+.hero.v-polish-station .ps-wall{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+}
+/* one band per real shelf: a dark veil that lifts, with a warm strike */
+.hero.v-polish-station .ps-band{
+  position:absolute;left:0;right:0;
+  top:var(--t);height:var(--h);
+  display:block;pointer-events:none;
+  background:rgba(10,12,18,.93);
+  animation:ps-lift .8s cubic-bezier(.25,.8,.3,1) both;
+  animation-delay:calc(.30s + var(--i) * .11s);
+}
+.hero.v-polish-station .ps-band::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(255,214,150,.80), rgba(255,196,120,.18) 55%, transparent 88%);
+  mix-blend-mode:screen;opacity:0;
+  animation:ps-strike .85s ease-out both;
+  animation-delay:calc(.30s + var(--i) * .11s);
+}
+
+/* the pool the banner hangs in — the rack never fights the lettering */
+.hero.v-polish-station .ps-veil{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(78% 46% at 50% 52%, rgba(10,8,6,.78) 0%, rgba(10,8,6,.44) 54%, rgba(10,8,6,.02) 88%),
+    linear-gradient(180deg, rgba(10,8,6,.46) 0%, rgba(10,8,6,.04) 22%, rgba(10,8,6,.30) 62%, rgba(10,8,6,.72) 100%);
+}
+
+/* ---------- 3. the stack ---------- */
+.hero.v-polish-station .hero-inner{
+  position:relative;z-index:4;
+  width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(22px,4vh,40px);
+}
+
+/* ---------- 4. their real banner, hung ---------- */
+.hero.v-polish-station .ps-banner{
+  position:relative;
+  width:min(84vw,560px);
+  aspect-ratio:1712 / 564;
+  transform-origin:50% 0%;
+  animation:
+    ps-hang 1.05s cubic-bezier(.2,.9,.24,1.02) 1.10s both,
+    ps-keeplight 8s ease-in-out 3.4s infinite;
+  box-shadow:0 30px 62px rgba(0,0,0,.70), 0 2px 0 rgba(255,255,255,.14);
+  rotate:-.55deg;
+}
+.hero.v-polish-station .ps-banner img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.hero.v-polish-station .ps-gloss{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(104deg,
+    transparent 0 38%,
+    rgba(255,255,255,.10) 44%,
+    rgba(255,255,255,.62) 50%,
+    rgba(255,255,255,.10) 56%,
+    transparent 62% 100%);
+  background-size:280% 100%;background-repeat:no-repeat;
+  mix-blend-mode:screen;opacity:0;
+  animation:ps-gloss .9s cubic-bezier(.4,.1,.3,1) 2.35s both;
+}
+
+/* ---------- 5. buttons ---------- */
+.hero.v-polish-station .hero-actions{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  animation:ps-rise .6s var(--ease,cubic-bezier(.22,.85,.3,1)) 2.10s both;
+}
+.hero.v-polish-station .hero-actions .btn{min-height:50px;display:inline-flex;align-items:center;justify-content:center}
+
+/* ---------- 6. the hem into the deep hours band ---------- */
+.hero.v-polish-station .ps-hem{
+  position:absolute;left:0;right:0;bottom:0;height:20vh;max-height:170px;z-index:3;
+  pointer-events:none;
+  background:linear-gradient(to bottom, transparent, var(--tint,#0D3A55));
+}
+
+/* ---------- keyframes ---------- */
+@keyframes ps-far-wake{
+  0%  {opacity:.05;transform:scale(1.15)}
+  100%{opacity:1;transform:scale(1.08)}
+}
+@keyframes ps-lift{
+  0%  {opacity:1}
+  55% {opacity:.30}
+  100%{opacity:0}
+}
+@keyframes ps-strike{
+  0%  {opacity:0}
+  24% {opacity:.85}
+  100%{opacity:0}
+}
+@keyframes ps-hang{
+  0%  {opacity:0;transform:translateY(-46px) rotate(-1.6deg)}
+  62% {opacity:1;transform:translateY(6px) rotate(.5deg)}
+  100%{opacity:1;transform:none}
+}
+@keyframes ps-gloss{
+  0%  {opacity:0;background-position:118% 0}
+  12% {opacity:1}
+  88% {opacity:1}
+  100%{opacity:0;background-position:-18% 0}
+}
+@keyframes ps-rise{
+  from{opacity:0;transform:translateY(14px)}
+  to  {opacity:1;transform:none}
+}
+@keyframes ps-keeplight{
+  0%,100%{box-shadow:0 30px 62px rgba(0,0,0,.70), 0 2px 0 rgba(255,255,255,.14), 0 0 26px 2px rgba(255,206,150,.10)}
+  50%    {box-shadow:0 30px 62px rgba(0,0,0,.70), 0 2px 0 rgba(255,255,255,.14), 0 0 46px 6px rgba(255,206,150,.24)}
+}
+
+/* ---------- phones ---------- */
+@media (max-width:600px){
+  .hero.v-polish-station .ps-stage{width:min(154%, calc((100svh - var(--header-h)) * .75))}
+  .hero.v-polish-station .ps-banner{width:92vw}
+  .hero.v-polish-station .hero-inner{gap:clamp(20px,3.4vh,30px)}
+  .hero.v-polish-station .hero-actions{width:100%;gap:10px}
+  .hero.v-polish-station .hero-actions .btn{flex:1 1 0;min-width:0;padding:13px 10px;font-size:14px;white-space:nowrap}
+  .hero.v-polish-station .ps-hem{height:15vh}
+}
+
+/* ---------- reduced motion: the final frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-polish-station .ps-far img,
+  .hero.v-polish-station .ps-band,
+  .hero.v-polish-station .ps-band::after,
+  .hero.v-polish-station .ps-banner,
+  .hero.v-polish-station .ps-gloss,
+  .hero.v-polish-station .hero-actions{animation:none!important}
+  .hero.v-polish-station .ps-far img{opacity:1;transform:scale(1.08)}
+  .hero.v-polish-station .ps-band{opacity:0}
+  .hero.v-polish-station .ps-banner{opacity:1;transform:none}
+  .hero.v-polish-station .ps-gloss{opacity:0}
+  .hero.v-polish-station .hero-actions{opacity:1;transform:none}
+}
