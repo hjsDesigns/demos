@@ -12,8 +12,8 @@
      Barlow (body) shares the squared skeleton. Must match --display / --body
      in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,700;0,800;1,800;1,900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788868309">
-<link rel="stylesheet" href="css/hero-rollup.css?v=1788868309">
+<link rel="stylesheet" href="css/style.css?v=1788924624">
+<link rel="stylesheet" href="css/hero-rollup.css?v=1788924624">
 </head>
 <body>
 
@@ -34,6 +34,7 @@
       <nav class="main-nav" id="main-nav">
         <a href="#services">The work</a>
         <a href="#signature">Before / after</a>
+        <a href="#reviews">Reviews</a>
         <a href="#gallery">Out front</a>
         <a href="#about">The shop</a>
         <a href="#hours">Hours</a>
@@ -97,6 +98,13 @@
           5717 Pacific Hwy E, Fife, WA 98424<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=5717+Pacific+Hwy+E%2C+Fife%2C+WA+98424" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
+        <!-- PROOF ROW — the one fact worth knowing before you scroll: 107 people
+             have rated this shop 4.9 on Google. Stated once, here, at the top;
+             the reviews section quotes three of them and links out to the rest. -->
+        <div class="proof-row">
+          <span class="proof"><span class="star" aria-hidden="true">★</span> 4.9 from 107 on Google</span>
+          <span class="proof"><span class="ico" aria-hidden="true">✓</span> Under new ownership</span>
+        </div>
       </div>
       <ul class="hours-list" id="hoursList">
         <li data-days="1"><span class="day">Monday</span><span class="time">8:00 AM – 5:00 PM</span></li>
@@ -118,23 +126,32 @@
   <section class="section" id="services">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">From their own photographs</p>
+        <p class="eyebrow">Collision · paint · panel</p>
         <h2>What goes through <em>that door</em></h2>
-        <p>Everything below is something you can see in Top's own pictures of their own jobs. Tap a heading.</p>
+        <p>None of it is guesswork — every line below is something standing in one of Top's own photographs. Tap a heading to open it.</p>
       </div>
+
+      <!-- STOREFRONT OPENS THE OFFERINGS SECTION (taste law, 2026-09-02). It used
+           to trail the cards with nothing to do; here it is the thing the headline
+           points at — the door, the stripe and the neon OPEN you actually pull up to. -->
+      <figure class="print print-wide reveal">
+        <img src="images/storefront.jpg" alt="The side of Top Auto Body's building on Pacific Highway: charcoal siding with a blue stripe, the electric-blue roll-up bay door, and a red and blue neon OPEN sign glowing in the office window" loading="lazy" width="1500" height="1125">
+        <figcaption>The door you pull up to</figcaption>
+      </figure>
+
       <div class="cards">
 
         <article class="card reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l1.6-4.4A2 2 0 0 1 6.5 7h11a2 2 0 0 1 1.9 1.6L21 13v5h-3v-2H6v2H3z"/><path d="M7 16h.01M17 16h.01"/><path d="m13.5 3.5-2 3.5 3 1-2 3"/></svg></div>
-          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-collision">
+          <button class="unroll" type="button" aria-expanded="true" aria-controls="roll-collision">
             <h3>Collision repair</h3>
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
           <p class="when">What comes in bent</p>
-          <p>Most of their album is one thing: a panel that met something solid.</p>
-          <div class="rolled" id="roll-collision">
+          <p>The bulk of the work — a panel that met something solid, pulled back straight.</p>
+          <div class="rolled" id="roll-collision" data-open="1"><!-- opened on load so the pattern is obvious; tap to close -->
             <ul>
-              <li>Rear quarter panels creased and gouged</li>
+              <li>Quarter panels creased and gouged</li>
               <li>Paint scraped back past the primer</li>
               <li>Body lines put back where they started</li>
             </ul>
@@ -148,7 +165,7 @@
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
           <p class="when">Filler, block, gloss</p>
-          <p>The same corner shows up twice in their pictures — once scraped, once shining.</p>
+          <p>Colour matched and laid back on, so the panel leaves in paint rather than primer.</p>
           <div class="rolled" id="roll-paint">
             <ul>
               <li>Body filler skimmed over the damage</li>
@@ -165,11 +182,11 @@
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
           <p class="when">Ordinary cars, mostly</p>
-          <p>Not exotics. What's parked out front is what's parked on your street.</p>
+          <p>Not exotics. What's on the gravel out front is what's parked on your street.</p>
           <div class="rolled" id="roll-lot">
             <ul>
-              <li>A Jeep and a Cadillac nose to tail under the sign</li>
-              <li>A black full-size Chevy alongside the office</li>
+              <li>Jeeps and Cadillacs nose to tail under the sign</li>
+              <li>A full-size Chevy alongside the office</li>
               <li>A white Nissan Rogue, finished, pulled out front</li>
             </ul>
           </div>
@@ -182,22 +199,17 @@
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
           <p class="when">Not all late-model plastic</p>
-          <p>There's a lifted square-body Chevy sitting in their photographs, out in the sun with everything else.</p>
+          <p>A lifted square-body Chevy sits out in the sun alongside the daily drivers.</p>
           <div class="rolled" id="roll-steel">
             <ul>
               <li>A white 1980s Chevy pickup, lifted, on 33s</li>
               <li>Chrome grille guard and bumper, straight</li>
-              <li>Parked in the same lot as the daily drivers</li>
+              <li>Same gravel, same day, as everything else</li>
             </ul>
           </div>
         </article>
 
       </div>
-
-      <figure class="print print-wide reveal">
-        <img src="images/storefront.jpg" alt="The side of Top Auto Body's building on Pacific Highway: charcoal siding with a blue stripe, the electric-blue roll-up bay door, and a red and blue neon OPEN sign glowing in the office window" loading="lazy" width="1500" height="1125">
-        <figcaption>The door you pull up to</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -236,46 +248,11 @@
     </div>
   </section>
 
-  <!-- ===================== #gallery ===================== -->
-  <section class="section" id="gallery">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Out on the gravel</p>
-        <h2>Parked out <em>front</em></h2>
-      </div>
-      <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Top Auto Body's blue badge sign on its pole above a lot full of customer cars — a Jeep, a Cadillac and a row of others waiting their turn" loading="lazy" width="1300" height="777"><figcaption>The sign off Pacific Highway</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A finished white Nissan Rogue pulled out in front of the open bay, the shop's charcoal wall and blue stripe behind it" loading="lazy" width="975" height="1300"><figcaption>Finished, pulled out front</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A lifted white 1980s Chevrolet pickup with a chrome grille guard parked out on the lot in the sun" loading="lazy" width="601" height="1300"><figcaption>Older steel, same lot</figcaption></figure>
-      </div>
-    </div>
-  </section>
+  <!-- ===================== #reviews — the proof band =====================
+       Moved up to sit directly under the before/after slider (2026-09-08 refine):
+       the photographic evidence and the human evidence now read as one argument,
+       instead of the reviews arriving seven sections down inside a CTA block.
 
-  <!-- ===================== #about =====================
-       PUBLIC FACTS ONLY. Recent Google reviews state the shop is under new
-       ownership and name the owner as Cesar; his surname is not published
-       anywhere and is deliberately not invented here. No founding year, no
-       family story, no "since 19xx". The building and the room are described
-       only as they appear in their own photographs. -->
-  <section class="section section-alt" id="about">
-    <div class="wrap">
-      <div class="story">
-        <figure class="print reveal">
-          <img src="images/about.jpg" alt="Top Auto Body's front office: a long reclaimed-timber counter, polished concrete floor, job tickets racked on the wall behind the desk, and someone working at the counter" loading="lazy" width="1500" height="844">
-          <figcaption>The front counter</figcaption>
-        </figure>
-        <div class="story-copy reveal">
-          <p class="eyebrow">Who's behind the counter</p>
-          <h2>Under <em>new ownership</em></h2>
-          <p class="lede">The reviews left since the change name the new owner as Cesar.</p>
-          <p>That matters more here than it would somewhere else. A body shop is a business you use once, in a bad week, on somebody else's schedule — and the only thing you have to go on is whether the last hundred people came out of it happy.</p>
-          <p>The building says something too. Charcoal siding, one blue stripe carried the whole way round it, a bay door painted to match the sign, and a neon OPEN in the window. Inside there's a front office rather than a parts window: polished concrete, a long counter built out of weathered timber, a couch, and the job tickets racked on the wall behind the desk where you can see them.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #cta — the proof band =====================
        REVIEW ATTRIBUTION LAW (2026-09-06). Every card below carries the
        reviewer's REAL published name and that same account's REAL published
        Google profile picture, pulled from the same source as the quote
@@ -290,12 +267,16 @@
        his real published image so the law is satisfied, and his is the single
        most on-message quote on the whole listing — but if you'd rather not run
        a dog on a review card, three alternates with real names (and monogram-
-       only avatars) are saved in harvest/reviews.json. -->
-  <section class="section section-dark cta-band" id="cta">
+       only avatars) are saved in harvest/reviews.json.
+
+       The 4.9 / 107 score is NOT repeated here (NEVER TWICE) — it is stated once,
+       in the proof row at the top of the page, next to the hours. -->
+  <section class="section section-dark cta-band" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Straight off their Google listing</p>
-        <h2>Ask the hundred people <em>who've been</em></h2>
+        <h2>The people who <em>got their car back</em></h2>
+        <p>Word for word, under the names and the faces they posted them with.</p>
       </div>
 
       <div class="reviews reveal">
@@ -336,13 +317,48 @@
         </article>
       </div>
 
-      <div class="numbers reveal">
-        <div class="num"><b><span class="tnum">4.9</span><span class="stars">★★★★★</span></b><span>average rating on Google</span></div>
-        <div class="num"><b><span class="count tnum" data-to="107">107</span></b><span>reviews people left themselves</span></div>
-      </div>
       <div class="cta-actions reveal">
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Top+Auto+Body%2C+5717+Pacific+Hwy+E%2C+Fife%2C+WA+98424" class="btn btn-primary" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Top+Auto+Body%2C+5717+Pacific+Hwy+E%2C+Fife%2C+WA+98424" class="btn btn-primary" target="_blank" rel="noopener">Read all of them on Google ↗</a>
         <a href="tel:+12539228822" class="btn btn-ghost">Call the shop</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out on the gravel</p>
+        <h2>Parked out <em>front</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Top Auto Body's blue badge sign on its pole above a lot full of customer cars — a Jeep, a Cadillac and a row of others waiting their turn" loading="lazy" width="1300" height="777"><figcaption>The sign off Pacific Highway</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A finished white Nissan Rogue pulled out in front of the open bay, the shop's charcoal wall and blue stripe behind it" loading="lazy" width="975" height="1300"><figcaption>Finished, pulled out front</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A lifted white 1980s Chevrolet pickup with a chrome grille guard parked out on the lot in the sun" loading="lazy" width="601" height="1300"><figcaption>Older steel, same lot</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about =====================
+       PUBLIC FACTS ONLY. Recent Google reviews state the shop is under new
+       ownership and name the owner as Cesar; his surname is not published
+       anywhere and is deliberately not invented here. No founding year, no
+       family story, no "since 19xx". The building and the room are described
+       only as they appear in their own photographs. -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="Top Auto Body's front office: a long reclaimed-timber counter, polished concrete floor, job tickets racked on the wall behind the desk, and someone working at the counter" loading="lazy" width="1500" height="844">
+          <figcaption>The front counter</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Who's behind the counter</p>
+          <h2>Under <em>new ownership</em></h2>
+          <p class="lede">The reviews written since the shop changed hands name the new owner as Cesar.</p>
+          <p>That matters more here than it would somewhere else. A body shop is a business you use once, in a bad week, on somebody else's schedule — and the only thing you have to go on is whether the last hundred people came out of it happy.</p>
+          <p>The building says something too. Charcoal siding, one blue stripe carried the whole way round it, a bay door painted to match the sign, and a neon OPEN in the window. Inside there's a front office rather than a parts window: polished concrete, a long counter built out of weathered timber, a couch, and the job tickets racked on the wall behind the desk where you can see them.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -402,7 +418,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">The work</a><br><a href="#signature">Before / after</a><br><a href="#gallery">Out front</a><br><a href="#about">The shop</a><br><a href="#contact">Pull in</a></p>
+        <p><a href="#services">The work</a><br><a href="#signature">Before / after</a><br><a href="#reviews">Reviews</a><br><a href="#gallery">Out front</a><br><a href="#about">The shop</a><br><a href="#contact">Pull in</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -412,6 +428,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788868309"></script>
+<script src="js/site.js?v=1788924624"></script>
 </body>
 </html>

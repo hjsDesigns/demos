@@ -98,6 +98,13 @@ p{margin:0 0 1em}
 b,strong{font-weight:700}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+/* THE STRIPE — the one recurring signature device (cohesion law). Top's building
+   carries a single electric-blue stripe the whole way round it, above the bay
+   door and past the office window; it is the only thing that makes that wall
+   theirs. Every section on this page opens with the same stripe in the same
+   sampled door blue, so the opener's world runs to the footer. */
+.eyebrow::before{content:"";display:block;width:46px;height:4px;border-radius:2px;background:var(--door);margin:0 0 13px}
+@media (max-width:560px){.eyebrow::before{width:38px;height:3px;margin-bottom:11px}}
 :focus-visible{outline:3px solid var(--brand);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 26%,transparent);border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .tnum{font-variant-numeric:tabular-nums}
@@ -189,6 +196,13 @@ b,strong{font-weight:700}
 .status-addr{margin:14px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
 .status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand-text) 40%,transparent)}
 .status-addr a:hover{border-bottom-color:var(--brand-text)}
+/* proof row — the score and the ownership change, once, at the top of the page */
+.proof-row{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding-left:22px}
+.proof{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:var(--rule);border-radius:999px;
+  padding:8px 15px;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.2}
+.proof .star{color:var(--warm);font-size:14px}
+.proof .ico{color:var(--brand-text);font-weight:800}
+@media (max-width:560px){.proof{font-size:12.5px;padding:7px 13px}.proof-row{padding-left:0}}
 .hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 26px 50px -34px rgba(23,27,34,.5)}
 .hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 20px;border-bottom:var(--rule);font-size:15.5px}
 .hours-list li:last-child{border-bottom:0}
@@ -254,6 +268,9 @@ b,strong{font-weight:700}
 .print img{width:100%;height:auto;display:block}
 .print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:13px;text-align:center}
 .print-wide{max-width:560px;margin:clamp(30px,5vw,52px) auto 0;transform:rotate(-1deg)}
+/* when the wide print OPENS a section (storefront under the offerings headline)
+   the section-head already owns the space above it — flip the margin downward */
+.section-head + .print-wide{margin:0 auto clamp(34px,5vw,56px)}
 .print-wide:hover{transform:rotate(0) scale(1.01)}
 .prints{column-count:3;column-gap:clamp(16px,2.6vw,28px)}
 .prints .print{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 clamp(16px,2.6vw,28px)}
@@ -279,8 +296,12 @@ b,strong{font-weight:700}
 .ba .ba-after{clip-path:inset(0 0 0 var(--split,50%))}
 .ba-tag{position:absolute;bottom:12px;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   font-weight:600;padding:7px 12px;border-radius:6px;pointer-events:none;backdrop-filter:blur(4px)}
-.ba-tag-before{left:12px;background:color-mix(in srgb,var(--closed) 88%,transparent);color:#fff}
-.ba-tag-after{right:12px;background:color-mix(in srgb,var(--accent) 90%,transparent);color:#04210F}
+/* the two tags stay inside the site's own blue/charcoal language. Green and red
+   are reserved for one job on this page — the live open/closed light (STATUS
+   LIGHT LAW) — so a damaged panel is never a "red light" and a finished one is
+   never a "green light". */
+.ba-tag-before{left:12px;background:color-mix(in srgb,var(--dark) 88%,transparent);color:#EFEBE3}
+.ba-tag-after{right:12px;background:color-mix(in srgb,var(--door) 92%,transparent);color:#FFFFFF}
 .ba-line{position:absolute;top:0;bottom:0;z-index:2;left:var(--split,50%);width:4px;margin-left:-2px;
   background:#F4F1EA;box-shadow:0 0 22px rgba(0,0,0,.85);pointer-events:none}
 .ba-grip{position:absolute;top:50%;left:var(--split,50%);z-index:4;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;
