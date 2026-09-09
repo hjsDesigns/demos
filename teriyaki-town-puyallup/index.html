@@ -10,8 +10,8 @@
 <!-- Titan One (display — the fat brushed caps on their outside sign) + Barlow (body).
      Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788872041">
-<link rel="stylesheet" href="css/hero.css?v=1788872041">
+<link rel="stylesheet" href="css/style.css?v=1788924181">
+<link rel="stylesheet" href="css/hero.css?v=1788924181">
 </head>
 <body>
 
@@ -96,10 +96,9 @@
         </p>
         <div class="proof-row">
           <span class="proof"><span class="ico">✓</span> Dine in or take out</span>
-          <span class="proof"><span class="ico">✓</span> Catering and party orders</span>
           <span class="proof"><span class="ico">✓</span> Free wifi</span>
         </div>
-        <p class="hours-note">Holiday hours aren't posted anywhere — worth a quick call before you drive over.</p>
+        <p class="hours-note">Holidays can move these — worth a quick call before you drive over.</p>
       </div>
       <ul class="hours-list" id="hoursList">
         <li data-days="1"><span class="day">Monday</span><span class="time">10:30 AM – 9:00 PM</span></li>
@@ -127,10 +126,16 @@
         <p>Everything on the wall behind the counter, in the order it hangs there. Tap a heading to roll it out.</p>
       </div>
 
-      <div class="board-shots reveal">
-        <figure><img src="images/board-teri.jpg" alt="Teriyaki Town's own printed menu board — teriyaki, teri combo, chinese wok and wok combo, with a photograph of each plate" loading="lazy" width="1400" height="1082"><figcaption>Their board, teriyaki side</figcaption></figure>
-        <figure><img src="images/board-rice.jpg" alt="Teriyaki Town's own printed menu board — fried rice, family dinner, starters and sides, yakisoba, teriyaki bowls and soup" loading="lazy" width="1400" height="1082"><figcaption>Their board, rice and noodle side</figcaption></figure>
-      </div>
+      <!-- The purpose-built object for this band: the actual counter, under the
+           actual boards. The two full board photographs that used to sit here
+           were cut — every counter code, every board price, the phone number
+           and the wordmark are legible-ish inside them, which restated the whole
+           page two sections early (NEVER TWICE), and at display size nobody
+           could read them anyway. -->
+      <figure class="counter-print reveal">
+        <img src="images/counter.jpg" alt="The order counter at Teriyaki Town under the lit menu boards, a drinks cooler to one side and a red booth in the foreground" loading="lazy" width="1400" height="787">
+        <figcaption>This is the whole board, in the order it hangs on that wall.</figcaption>
+      </figure>
 
       <div class="boards">
         <div class="board reveal">
@@ -325,7 +330,15 @@
         </div>
       </div>
 
-      <p class="menu-fine">Every name and price above is read straight off their own ordering page on 8 September 2026. Their board says it best: “The price is subject to change without notice due to market fluctuation.”</p>
+      <p class="menu-fine">Their fine print, not ours: “The price is subject to change without notice due to market fluctuation.”</p>
+
+      <!-- The food photographs used to be a second strip inside #room, under a
+           head about red booths and blue carpet. They belong to the board. -->
+      <div class="plates-out">
+        <figure class="reveal"><img src="images/spread.jpg" alt="A table covered in Teriyaki Town takeout containers mid-meal — rice, yakisoba, salad, soup and dipping sauce" loading="lazy" width="1400" height="1050"><figcaption>An order, opened up</figcaption></figure>
+        <figure class="reveal"><img src="images/fried-rice.jpg" alt="House fried rice in a white clamshell takeout container" loading="lazy" width="1050" height="1400"><figcaption>Fried rice, to go</figcaption></figure>
+        <figure class="reveal"><img src="images/soup.jpg" alt="A bowl of egg flower soup with a white spoon" loading="lazy" width="1400" height="680"><figcaption>Egg flower soup</figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -352,6 +365,7 @@
            reviewer — their published name, their own published profile image
            pulled from the same source, the quote verbatim, with the real star
            rating and the date Google shows. Nothing written, nothing stock. -->
+      <p class="wall-bridge reveal">The ones who didn't have a pen on them left theirs on Google instead.</p>
       <ul class="revs reveal">
         <li class="rev">
           <div class="rev-who">
@@ -408,7 +422,7 @@
         <p>The regulars don't read the board. They say the number. Tap a plate and you'll have one too.</p>
       </div>
 
-      <div class="num-wrap reveal">
+      <div class="plate-wrap reveal">
         <div class="plate-shown" id="plateShown" data-on="0">
           <span class="plate-chip" id="plateChip">?</span>
           <p class="plate-name" id="plateName">Tap a plate.</p>
@@ -440,22 +454,16 @@
        The walk-in. Three real photographs of the room, in the order you meet
        it: through the door, at the counter, then sat down. No owner story is
        published anywhere, so none is written here. -->
-  <section class="section section-cream" id="room">
+  <section class="section section-alt" id="room">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Inside</p>
         <h2>Red booths, <em>blue carpet</em></h2>
-        <p>A counter, a board, and somewhere to sit down with it. Free wifi, and they'll do a party order if you ask.</p>
+        <p>Butter-yellow walls, walnut wainscot, plants along the divider and a paper parasol over the far tables. Somewhere to sit down with it, not just a counter to stand at.</p>
       </div>
-      <div class="room-strip">
+      <div class="room-strip room-pair">
         <figure class="reveal"><img src="images/room-wide.jpg" alt="Teriyaki Town's dining room — a row of red vinyl booths down one side, blue carpet, the lit menu boards on the back wall" loading="lazy" width="1400" height="1050"><figcaption>The room, from the door</figcaption></figure>
-        <figure class="reveal"><img src="images/counter.jpg" alt="The order counter at Teriyaki Town under the lit menu boards, a drinks cooler to one side and a red booth in the foreground" loading="lazy" width="1400" height="787"><figcaption>The counter, under the board</figcaption></figure>
         <figure class="reveal"><img src="images/dining.jpg" alt="The dining side of Teriyaki Town — wood wainscot, potted plants on the divider, a paper parasol hanging from the ceiling" loading="lazy" width="787" height="1400"><figcaption>The far side, with the parasol</figcaption></figure>
-      </div>
-      <div class="room-strip room-food">
-        <figure class="reveal"><img src="images/fried-rice.jpg" alt="House fried rice in a white clamshell takeout container" loading="lazy" width="1050" height="1400"><figcaption>Fried rice, to go</figcaption></figure>
-        <figure class="reveal"><img src="images/spread.jpg" alt="A table covered in Teriyaki Town takeout containers mid-meal — rice, yakisoba, salad, soup and dipping sauce" loading="lazy" width="1400" height="1050"><figcaption>A takeout order, opened up</figcaption></figure>
-        <figure class="reveal"><img src="images/soup.jpg" alt="A bowl of egg flower soup with a white spoon" loading="lazy" width="1400" height="680"><figcaption>Egg flower soup</figcaption></figure>
       </div>
     </div>
   </section>
@@ -493,17 +501,18 @@
   </section>
 
   <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta =====================
+       The static number grid that used to sit here restated the hours ("6 ·
+       days a week") and the h2 restated them a third time. One number, in a
+       sentence, and the two things a visitor actually does. -->
   <section class="cta-band" id="cta">
     <div class="wrap">
       <p class="eyebrow">Teriyaki Town</p>
-      <h2>On 112th, <em>six days a week</em></h2>
-      <div class="cta-nums reveal">
-        <div><span class="count" data-to="119">0</span><small>things on the board</small></div>
-        <div><span class="count" data-to="6">0</span><small>days a week</small></div>
-      </div>
+      <h2>Come find <em>your number</em></h2>
+      <p class="cta-line">A hundred and nineteen things on that board, and every regular walking in already knows which one is theirs.</p>
       <div class="cta-actions">
         <a href="tel:2534452443" class="btn btn-primary">Call (253) 445-2443</a>
-        <a href="#menu" class="btn btn-cream">Back to the menu</a>
+        <a href="#menu" class="btn btn-cream">Back to the board</a>
       </div>
     </div>
   </section>
@@ -518,6 +527,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788872041"></script>
+<script src="js/site.js?v=1788924181"></script>
 </body>
 </html>
