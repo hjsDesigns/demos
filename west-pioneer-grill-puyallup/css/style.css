@@ -380,25 +380,24 @@ h1,h2,h3,h4{letter-spacing:-.005em}
 .foot .plate{width:auto;height:auto;padding:9px 12px;border-radius:12px}
 .foot .plate img{height:auto;width:200px}
 
-/* ---- hero: the storefront. Hold the awning + sign in frame on desktop. */
+/* ---- hero (LOCKED, Hayden 9/7): the dining room still. Hold the arched
+        windows and the WPG sign in frame at every width. */
 .hero-bg img{object-position:center 40%}
 
-/* ---- HERO STACK (standing rule): no vertical exterior exists, so phones
-        scroll a conveyor of three real photos at their natural aspect —
-        the building, then the room, then the plates. Desktop is untouched:
-        display:contents drops the track out of layout and only the first
-        image renders, full-bleed cover. */
-.hero-stack-track{display:contents}
-.hero-stack img{display:none}
-.hero-stack img:first-child{display:block}
-@media (max-width:760px){
-  .hero-stack{overflow:hidden;background:var(--dark)}
-  .hero-stack-track{display:block;position:relative;animation:heroReel 52s linear infinite}
-  .hero-stack img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;
-    animation:none;transform:none;will-change:transform}
-}
-@keyframes heroReel{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-@media (max-width:760px) and (prefers-reduced-motion:reduce){.hero-stack-track{animation:none}}
+/* ---- THE RECURRING DEVICE: the arched window.
+        The room's tall arched windows (and the arches in the building's own
+        brick facade) drawn as a small open arch above every section label, so
+        the same shape runs from the hours band to the footer. COHESION LAW. */
+.eyebrow,.deal-k,.board-h{position:relative}
+.eyebrow{padding-top:19px}
+.deal-k{padding-top:22px}
+.eyebrow::before,.deal-k::before{content:"";position:absolute;left:1px;top:0;
+  width:30px;height:15px;border:2px solid currentColor;border-bottom:0;
+  border-radius:16px 16px 0 0;opacity:.5}
+.board-h{padding-left:40px}
+.board-h::before{content:"";position:absolute;left:1px;top:50%;transform:translateY(-42%);
+  width:28px;height:14px;border:2px solid var(--warm);border-bottom:0;
+  border-radius:15px 15px 0 0;opacity:.75}
 
 /* ---- HOURS BAND on the deep navy of the awning: the one deep band right
         under the hero, with the cream hours card sitting on it. The live
@@ -434,18 +433,79 @@ h1,h2,h3,h4{letter-spacing:-.005em}
 .deal li b{font-family:var(--mono);font-weight:700;color:var(--warm);white-space:nowrap;font-variant-numeric:tabular-nums}
 @media (max-width:700px){.deal-row{grid-template-columns:1fr}}
 
-.menu-group h3{border-bottom-color:var(--brand)}
-.menu-group h3.mt{margin-top:clamp(34px,4vw,46px)}
 .group-note{font-size:13.5px;color:var(--muted);margin:0 0 12px;line-height:1.5}
 .menu-list + .group-note{margin:14px 0 0}
 .menu-list .name{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+
+/* ---- TITLE CARDS UNROLL (law): the category headline IS the tap target,
+        downward chevron flips up. The first card ships open so the section
+        never reads as a row of shut bars. */
+.rolls{display:grid;gap:14px}
+.roll{background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:0 clamp(18px,2.6vw,28px);transition:border-color .25s var(--ease),box-shadow .25s}
+.roll:hover{border-color:color-mix(in srgb,var(--brand) 45%,var(--line))}
+.roll:has(.unroll[aria-expanded="true"]){box-shadow:0 30px 60px -46px color-mix(in srgb,var(--dark) 70%,transparent)}
+.unroll{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;
+  min-height:74px;padding:18px 0;background:none;border:0;margin:0;cursor:pointer;
+  color:inherit;text-align:left;font:inherit}
+.roll-t{display:block}
+.unroll h3{font-size:clamp(20px,2.4vw,25px);margin:0;border:0;padding:0}
+.roll-n{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand-text);margin-top:8px;font-weight:600}
+.unroll .chev{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--brand-text);
+  transition:transform .35s var(--ease),background .2s}
+.unroll .chev svg{width:19px;height:19px}
+.unroll:hover .chev{background:color-mix(in srgb,var(--brand) 24%,transparent)}
+.unroll[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.rolled[data-open="1"]{grid-template-rows:1fr}
+.rolled-in{overflow:hidden;min-height:0}
+.rolled-in > :first-child{padding-top:4px}
+.rolled-in > :last-child{padding-bottom:24px}
+.menu-list.two-up{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(28px,4vw,56px);align-items:start}
+.menu-list.two-up li{align-content:start}
+@media (max-width:760px){.menu-list.two-up{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.rolled{transition:none}.unroll .chev{transition:none}}
 .tag-new{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
   font-weight:600;color:#fff;background:var(--accent);border-radius:999px;padding:3px 8px;position:relative;top:-2px}
 
-/* ---- ABOUT --------------------------------------------------------------- */
-.review-line{margin:26px 0 0}
+/* ---- ABOUT: the two rooms the story describes — the brick and the tall
+        window, then the counter with the specials board over it. */
+.story-prints{display:grid;gap:clamp(16px,2.4vw,26px)}
+.story-prints .print:nth-child(1){transform:rotate(-1.4deg)}
+.story-prints .print:nth-child(2){transform:rotate(1deg);margin-left:auto;max-width:80%}
+.story-prints .print:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:900px){.story-prints .print{transform:none;margin-left:0}}
+
+/* ---- REVIEWS: real name + real published Google profile photo, always
+        together, phone and desktop alike (REVIEW ATTRIBUTION LAW). */
+.revs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,26px)}
+.rev{background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(20px,2.8vw,28px);transition:transform .3s var(--ease),box-shadow .3s}
+.rev:hover{transform:translateY(-3px);box-shadow:0 30px 55px -40px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;margin-bottom:16px}
+.rev-face{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid var(--bg-2);background:var(--bg-2)}
+.rev-who{font-family:var(--display);font-weight:400;font-size:16.5px;line-height:1.2;letter-spacing:-.005em}
+.rev-who small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);margin-top:6px;font-weight:600}
+.rev-stars{color:var(--warm);font-size:14px;letter-spacing:.06em;align-self:start;margin-top:4px;white-space:nowrap}
+.rev p{font-size:16px;color:var(--ink);margin:0;line-height:1.6}
+.review-line{margin:clamp(22px,3vw,30px) 0 0}
 .review-line a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
 .review-line a:hover{border-bottom-color:var(--brand)}
+@media (max-width:820px){.revs{grid-template-columns:1fr}}
+
+/* ---- CLOSING BAND: the block from across Pioneer, so the last thing on the
+        page is what to look for. (The four count-up trivia tiles were cut —
+        every one of them restated the shake board, the hours or the address.) */
+.block-print{background:var(--paper);max-width:720px;margin:0 auto clamp(30px,4vw,44px);transform:rotate(-.8deg)}
+.block-print:hover{transform:rotate(0) scale(1.005)}
+.cta-band .cta-actions{justify-content:center}
+.cta-band .section-head{text-align:center;margin-left:auto;margin-right:auto;max-width:none}
+.cta-band .section-head .eyebrow::before{left:50%;transform:translateX(-50%)}
+@media (max-width:560px){.block-print{transform:none}}
 
 /* ---- CONTACT ------------------------------------------------------------- */
 .contact-print{margin-top:clamp(28px,4vw,40px);transform:rotate(-1deg)}
@@ -464,7 +524,7 @@ h1,h2,h3,h4{letter-spacing:-.005em}
 .shake-rig{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,4.5vw,60px);align-items:start}
 .shake-stage{display:grid;gap:22px;justify-items:center}
 
-.glass{width:100%;max-width:280px;text-align:center}
+.glass{width:100%;max-width:340px;text-align:center}
 .glass-svg{width:100%;height:auto;display:block;overflow:visible}
 .fill-body{fill:var(--shake,#7E8794);transition:fill .45s var(--ease)}
 /* the "empty" wash slides down out of the cup as a flavor is poured in */
@@ -589,3 +649,46 @@ h1,h2,h3,h4{letter-spacing:-.005em}
 .shake-stage{align-self:center}
 /* the empty glass should still read as GLASS on the navy ground */
 .fill-empty{fill:#2C3F59}
+
+/* ============================================================================
+   REFINE PASS — 2026-09-08 (to the Purdy's / The Local / Captain Jack's bar)
+   ============================================================================ */
+
+/* 1. The shake rig opened as a small wireframe glass floating in a quarter-
+      screen of empty navy, with nothing happening until you tapped. It now
+      pours a flavour on load (no dead box), the glass is bigger, and the two
+      halves are locked to the same height so neither leaves a void. */
+.shake-rig{grid-template-columns:1fr 1.05fr;align-items:stretch}
+.shake-stage{align-self:stretch;align-content:center;background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:clamp(22px,3vw,34px) 18px}
+.glass-label{margin-top:22px}
+.glass-hint{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin:10px 0 0}
+@media (max-width:900px){
+  .shake-rig{grid-template-columns:1fr}
+  .shake-stage{align-content:start;padding:clamp(18px,3vw,26px) 16px}
+}
+
+/* 2. Hero (idea LOCKED): the left pool ran to 92% dark and read the bright,
+      arched-window room as a dim one. Pull it back to what the headline
+      actually needs — the photo stays a bright room. */
+.hero-bg::before{
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb,var(--dark) 82%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 58%,transparent) 34%,
+      color-mix(in srgb,var(--dark) 20%,transparent) 66%,
+      color-mix(in srgb,var(--dark) 6%,transparent) 100%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 32%,transparent) 0%,
+      transparent 26%,
+      color-mix(in srgb,var(--dark) 38%,transparent) 62%,
+      color-mix(in srgb,var(--dark) 82%,transparent) 100%)}
+@media (max-width:760px){
+  .hero-bg::before{background:linear-gradient(180deg,
+    color-mix(in srgb,var(--dark) 42%,transparent) 0%,
+    color-mix(in srgb,var(--dark) 6%,transparent) 26%,
+    color-mix(in srgb,var(--dark) 52%,transparent) 56%,
+    color-mix(in srgb,var(--dark) 90%,transparent) 78%,
+    color-mix(in srgb,var(--dark) 95%,transparent) 100%)}
+}

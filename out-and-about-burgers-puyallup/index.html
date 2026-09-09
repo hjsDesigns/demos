@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Alfa Slab One (display, roadside-diner slab) + Archivo (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907153611">
+<link rel="stylesheet" href="css/style.css?v=20260908204726">
 </head>
 <body>
 
@@ -79,9 +79,11 @@
           14214 Meridian E, Puyallup, WA 98373<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=Out+%26+About+Burgers%2C+14214+Meridian+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
+        <!-- The Google rating and the 2,193 count live ONCE on this page, in the
+             closing band. They are deliberately not repeated here. -->
         <div class="proof-row">
-          <span class="proof"><span class="star">★</span> 4.5 on Google · 2,193 reviews</span>
           <span class="proof"><span class="ico">✓</span> Drive thru only — no walk-up window</span>
+          <span class="proof"><span class="ico">✓</span> Visa and Mastercard on the window</span>
         </div>
       </div>
       <ul class="hours-list" id="hoursList">
@@ -97,13 +99,15 @@
   </section>
 
   <!-- ===================== #services — the wagon =====================
-       STOREFRONT LAW: the offerings open with a real exterior print. Four things
-       that are true of this specific stand, none of them repeating a price. -->
+       STOREFRONT LAW: the offerings open with a real exterior print. The hero is
+       the lot from the road, so this one is the SAME place from inside the car —
+       a different frame, never the hero photo again (harvest-0906/g11.jpg).
+       Four things that are true of this specific stand, none repeating a price. -->
   <section class="section section-alt" id="services">
     <div class="wrap">
       <figure class="print wide-print reveal">
-        <img src="images/storefront.jpg" alt="The Out &amp; About Burgers wagon from the road on a clear day, its ORDER HERE arrow facing the lane, cars waiting alongside." loading="lazy">
-        <figcaption>From Meridian East — the lane runs down the side of the wagon</figcaption>
+        <img src="images/lane.jpg" alt="The view from the driver's seat in the Out &amp; About Burgers drive-thru lane: one car ahead at the order window, the ORDER HERE arrow on the wagon, and the reader board on the grass." loading="lazy" width="1440" height="698">
+        <figcaption>One car ahead of you, off Meridian East</figcaption>
       </figure>
       <div class="section-head reveal">
         <p class="eyebrow">What you're pulling into</p>
@@ -153,8 +157,8 @@
       </div>
 
       <figure class="print board-shot reveal">
-        <img src="images/menu-board.jpg" alt="The order window on the Out &amp; About Burgers wagon: a red neon OPEN sign, an ORDER HERE arrow, and three printed menu panels listing burgers, grilled cheeses, sides, drinks and milkshakes with prices." loading="lazy">
-        <figcaption>The board every price on this page was read from</figcaption>
+        <img src="images/menu-board.jpg" alt="The order window on the Out &amp; About Burgers wagon: a red neon OPEN sign, an ORDER HERE arrow, and three printed menu panels listing burgers, grilled cheeses, sides, drinks and milkshakes with prices." loading="lazy" width="1500" height="1690">
+        <figcaption>Three panels under the sill — every price below came off them</figcaption>
       </figure>
 
       <p class="menu-legend reveal">* Has Lettuce, Tomato, Grilled Onions, &amp; Our Cagney Sauce</p>
@@ -223,12 +227,20 @@
       </div>
 
       <p class="menu-fine reveal">Read straight off the printed board on the wagon, September 2026. Prices on a hand-run stand move — call the window if you're counting to the dollar.</p>
+
+      <!-- EVEN-SPREAD: the sides panel is the longest text run on the page, so the
+           three side orders sit right under it instead of piling into the gallery. -->
+      <div class="dish-strip reveal">
+        <figure class="dish"><img src="images/gallery-5.jpg" alt="A full basket of dark, skin-on hand-cut fries." loading="lazy"><figcaption>Regular fries, skin on</figcaption></figure>
+        <figure class="dish"><img src="images/gallery-2.jpg" alt="A cheeseburger in white paper next to a stack of onion rings and a cup of fry sauce." loading="lazy"><figcaption>Onion rings, sauce cup included</figcaption></figure>
+        <figure class="dish"><img src="images/gallery-3.jpg" alt="Two burgers in paper wrappers beside a pile of orange sweet potato fries." loading="lazy"><figcaption>Sweet potato fries, a dollar up</figcaption></figure>
+      </div>
     </div>
   </section>
 
   <!-- ===================== #gallery ===================== -->
   <!-- ===================== #shakes — the five flavours, plainly (Hayden 9/7: no gadget) ===================== -->
-  <section class="section flavors-band" id="shakes">
+  <section class="section section-alt flavors-band" id="shakes">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Twenty ounces, five ways</p>
@@ -241,46 +253,90 @@
     </div>
   </section>
 
-  <section class="section section-alt" id="gallery">
+  <section class="section" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">What comes out the window</p>
         <h2>Handed over the sill, <em>in paper</em></h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A double cheeseburger with lettuce and tomato beside a heaped basket of skin-on fries." loading="lazy"><figcaption>Double cheeseburger and a basket of regular fries</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A cheeseburger in white paper next to a stack of onion rings and a cup of fry sauce." loading="lazy"><figcaption>Onion rings, and the sauce cup that comes with them</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Two burgers in paper wrappers beside a pile of orange sweet potato fries." loading="lazy"><figcaption>Sweet potato fries, the ninety-five-cent upgrade</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A double cheeseburger with lettuce and tomato beside a heaped basket of skin-on fries." loading="lazy"><figcaption>Double cheeseburger, and the basket it comes beside</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A pink milkshake with a red straw held up in a car next to a burger and fries." loading="lazy"><figcaption>A twenty-ounce shake, riding shotgun</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A full basket of dark, skin-on hand-cut fries." loading="lazy"><figcaption>Cut with the skin on, fried dark</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Fries buried under melted cheese and sauce in a paper tray." loading="lazy"><figcaption>Fries, loaded, going out to the lane</figcaption></figure>
       </div>
     </div>
   </section>
 
 
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (2026-09-06). Every one of these is a real Google
+       review of THIS place: the reviewer's published name, their own published
+       Google profile photo (pulled from the same listing into images/reviews/),
+       their star rating and the age Google prints on the card. Quotes verbatim,
+       trimmed only with an ellipsis. Harvested 2026-09-08 — re-pull the relative
+       dates on any care update. Two other reviews on the listing were left off:
+       one has no profile photo (Google's letter disc), one is lukewarm. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">In their words, on Google</p>
+        <h2>People who <em>ate in the lot</em></h2>
+      </div>
+      <div class="revs">
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/sara-j.png" alt="Sara J, Google reviewer" width="160" height="160" loading="lazy">
+            <span class="rev-who">Sara J<small>Google · 6 months ago</small></span>
+          </div>
+          <p class="rev-stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>We ordered the double cheeseburgers with normal fries and sweet potato fries, onion rings, an extra Cagney sauce on the side. The food had no chance to last longer than 5 minutes — we absolutely KILLED IT!</blockquote>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/joshua-myers.png" alt="Joshua Myers, Google reviewer" width="160" height="160" loading="lazy">
+            <span class="rev-who">Joshua Myers<small>Google · 2 months ago</small></span>
+          </div>
+          <p class="rev-stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>Awesome little burger stand. You want a grilled full flavorful cheeseburger look no further… With skin on fries and their yummy dipping sauce you will have yourself an incredible combo that compliments your cheeseburger!</blockquote>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/tim-martin.png" alt="Tim Martin, Google reviewer" width="160" height="160" loading="lazy">
+            <span class="rev-who">Tim Martin<small>Google · 2 months ago</small></span>
+          </div>
+          <p class="rev-stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>A burger that was surprisingly good. I had a double cheeseburger with bacon and it was delicious. I was also surprised by the sweet potato fries. They were good and there was a lot of them. Enough for lunch and dinner.</blockquote>
+        </article>
+
+      </div>
+      <p class="revs-out reveal"><a class="review-out" href="https://www.google.com/maps/search/?api=1&amp;query=Out+%26+About+Burgers%2C+14214+Meridian+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read every review on Google ↗</a></p>
+    </div>
+  </section>
+
   <!-- ===================== #about ===================== -->
-  <section class="section section-alt" id="about">
+  <section class="section" id="about">
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/about.jpg" alt="The white Out &amp; About Burgers wagon parked on the gravel lot beside U-Haul trucks, with cars pulled up alongside it." loading="lazy">
-          <figcaption>The lot on Meridian East, U-Haul trucks and all</figcaption>
+          <img src="images/about.jpg" alt="The back side of the white Out &amp; About Burgers wagon on its gravel lot, ORDER OTHER SIDE painted on the wall and Visa and Mastercard decals beside the door." loading="lazy" width="1700" height="956">
+          <figcaption>The back of the wagon — “Order other side”, and the card decals by the door</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Meridian East, near 144th</p>
           <h2>One window, <em>one lane</em>, no walking up</h2>
           <p class="lede">Out &amp; About Burgers works out of a white catering wagon on a gravel lot in South Hill — not a building, not a franchise pad, a trailer with wheels still under it.</p>
           <p>The whole operation is bolted to the side of it. A neon OPEN in the sliding window, an ORDER HERE arrow pointing at the sill, three printed panels with the menu, and a hand-painted oval — a red marker script inside a gold car outline — big enough to read from the road.</p>
-          <p>Pull in off Meridian, roll down the window, and eat wherever you parked. That's the entire format, and 2,193 people have rated it.</p>
-          <a class="review-out" href="https://www.google.com/maps/search/?api=1&amp;query=Out+%26+About+Burgers%2C+14214+Meridian+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+          <p>Pull in off Meridian, roll down the window, and eat wherever you parked. That's the entire format — a wagon, a sauce and a line of cars, and it has been enough.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== #contact ===================== -->
-  <section class="section" id="contact">
+  <section class="section section-alt" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
@@ -355,7 +411,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">The wagon</a><br><a href="#menu">The board</a><br><a href="#gallery">The food</a><br><a href="#shakes">Shakes</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#services">The wagon</a><br><a href="#menu">The board</a><br><a href="#gallery">The food</a><br><a href="#shakes">Shakes</a><br><a href="#reviews">Reviews</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -365,6 +421,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907153611"></script>
+<script src="js/site.js?v=20260908204726"></script>
 </body>
 </html>

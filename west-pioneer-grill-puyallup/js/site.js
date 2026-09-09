@@ -153,6 +153,19 @@ function customClose(p, close){ return close; }
       .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
   })}
 
+  /* ---------- TITLE CARDS UNROLL — the headline is the tap target ----------
+     Every menu category headline rolls its real items out in place, downward
+     chevron flipping up. The burritos card ships open (data-open="1"). */
+  $$('.unroll').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
+
   /* ---------- SIGNATURE GADGET — THE SHAKE BOARD ----------
      Their real flavor board, twenty flavors read verbatim off the chalkboard
      in the dining room. Toddler law: the flavor name IS the tap target; one
@@ -187,7 +200,9 @@ function customClose(p, close){ return close; }
       b.setAttribute('aria-pressed','false');
       b.addEventListener('click',function(){pour(b)});
     });
-    clear();
+    // Opens already poured — the glass is never a dead empty box (9/8 refine).
+    // Tapping that flavour again empties it, exactly like every other one.
+    if(buttons.length) pour(buttons[0]); else clear();
   })();
 
 })();

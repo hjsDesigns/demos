@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Archivo Black (display, 400 is its only weight — matches the painted awning lettering) + Karla (body) -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=1788926651">
 </head>
 <body>
 
@@ -25,8 +25,8 @@
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#menu">Breakfast</a>
-        <a href="#gallery">The food</a>
         <a href="#signature">Shakes</a>
+        <a href="#reviews">Reviews</a>
         <a href="#about">The room</a>
         <a href="#hours">Hours</a>
         <a href="tel:+12536044507" class="nav-cta">Call</a>
@@ -99,16 +99,19 @@
        the two deals painted on the banners under their awning. -->
   <section class="section" id="menu">
     <div class="wrap">
+      <!-- STOREFRONT BELOW THE HOURS (law): the hero is the room, so the
+           building opens the offerings — and it's the same photo the two
+           banner deals below are read off. -->
+      <figure class="print wide-print reveal">
+        <img src="images/hero-stack-1.jpg" alt="The West Pioneer Grill storefront at 109 W Pioneer Ave — navy awning with the painted name, brick and cream stucco, the specials banners hung under the awning" loading="lazy" width="1920" height="1440">
+        <figcaption>109 W Pioneer — the deals are painted on the banners under the awning</figcaption>
+      </figure>
+
       <div class="section-head reveal">
         <p class="eyebrow">Off the griddle</p>
         <h2>The breakfast <em>menu</em>.</h2>
-        <p>Eggs any style, benedicts, burritos rolled in a grilled flour tortilla, and the sides board. Lunch and burgers run all day alongside it.</p>
+        <p>Eggs any style, benedicts, burritos rolled in a grilled flour tortilla, and the sides board. Lunch and burgers run all day alongside it. Tap a heading to open it.</p>
       </div>
-
-      <figure class="print wide-print reveal">
-        <img src="images/counter.jpg" alt="The counter at West Pioneer Grill — the specials chalkboard on the blue wall, bottles on the shelf, pendant lights over the tables" loading="lazy" width="1920" height="1440">
-        <figcaption>The specials board hangs over the counter — it changes</figcaption>
-      </figure>
 
       <div class="deal-row reveal">
         <article class="deal">
@@ -128,10 +131,18 @@
         </article>
       </div>
 
-      <div class="menu-lead menu-group reveal">
-          <h3>Breakfast burritos</h3>
+      <!-- TITLE CARDS UNROLL (law): each category headline IS the tap target,
+           downward chevron flips up. The burritos card opens on load so the
+           section never reads as three shut bars. -->
+      <div class="rolls reveal">
+      <article class="roll is-open">
+        <button class="unroll" type="button" aria-expanded="true" aria-controls="roll-burritos">
+          <span class="roll-t"><h3>Breakfast burritos</h3><span class="roll-n">Six, rolled in a grilled flour tortilla</span></span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="rolled" id="roll-burritos" data-open="1"><div class="rolled-in">
           <p class="group-note">Comes with a side of sour cream &amp; house made salsas.</p>
-          <ul class="menu-list">
+          <ul class="menu-list two-up">
             <li><span class="name">Mexican Burrito</span><span class="price">$16.65</span><span class="desc">Scrambled eggs, home fried potatoes, chorizo, onion, red &amp; green peppers, black beans, &amp; monterey jack cheese in a grilled flour tortilla.</span></li>
             <li><span class="name">Carne Uno Burrito</span><span class="price">$15.99</span><span class="desc">Scrambled eggs, home fried potatoes, cheddar cheese, and choice of ham, bacon, sausage, or chorizo in a grilled flour tortilla.</span></li>
             <li><span class="name">Veggie Burrito</span><span class="price">$15.25</span><span class="desc">Scrambled eggs, home fried potatoes, onion, red &amp; green peppers, spinach, mushrooms, and monterey jack cheese in a grilled flour tortilla.</span></li>
@@ -140,12 +151,16 @@
             <li><span class="name">Avocado Toast <i class="tag-new">new</i></span><span class="price">$15.99</span><span class="desc">Toasted sourdough topped with avocado, crispy bacon, egg, and a sprinkle of everything bagel seasoning. Drizzled with garlic chili sauce and balsamic glaze. Served with a salad of mixed greens, radishes, and balsamic vinaigrette.</span></li>
           </ul>
           <p class="group-note">Add ons — avocado $2.19 · kielbasa $3.99 · bacon, sausage, or chorizo $1.19 · jalapeño $0.89 · spinach $1.00</p>
-      </div>
+        </div></div>
+      </article>
 
-      <div class="menu-groups reveal">
-        <div class="menu-group">
-          <h3>Sides</h3>
-          <ul class="menu-list">
+      <article class="roll">
+        <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-sides">
+          <span class="roll-t"><h3>Sides</h3><span class="roll-n">Eight off the sides board</span></span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="rolled" id="roll-sides" data-open="0"><div class="rolled-in">
+          <ul class="menu-list two-up">
             <li><span class="name">Ham Steak</span><span class="price">$6.25</span></li>
             <li><span class="name">Sausage Gravy</span><span class="price">$5.19</span></li>
             <li><span class="name">Hash Browns</span><span class="price">$5.19</span></li>
@@ -155,18 +170,24 @@
             <li><span class="name">French Toast (1 slice)</span><span class="price">$4.15</span></li>
             <li><span class="name">Toast (2 slices)</span><span class="price">$2.99</span></li>
           </ul>
-        </div>
+        </div></div>
+      </article>
 
-        <div class="menu-group">
-          <h3>Kids breakfast</h3>
-          <ul class="menu-list">
+      <article class="roll">
+        <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-kids">
+          <span class="roll-t"><h3>Kids breakfast</h3><span class="roll-n">Four, for the small end of the table</span></span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="rolled" id="roll-kids" data-open="0"><div class="rolled-in">
+          <ul class="menu-list two-up">
             <li><span class="name">Just A Bit</span><span class="price">$10.25</span><span class="desc">1 pancake, 1 egg scrambled or fried, and choice of 1 slice of bacon or 1 sausage link.</span></li>
             <li><span class="name">French Toast Strips</span><span class="price">$9.79</span><span class="desc">2 slices of French toast cut into strips with choice of 2 slices of bacon or 2 links of sausage.</span></li>
             <li><span class="name">Silver Dollar Pancakes</span><span class="price">$9.79</span><span class="desc">5 silver dollar size pancakes with choice of 2 slices of bacon or 2 sausage links.</span></li>
             <li><span class="name">Pigs In A Blanket</span><span class="price">$9.29</span><span class="desc">3 sausage links wrapped in fluffy pancakes and sprinkled with powdered sugar.</span></li>
           </ul>
           <p class="group-note">Add strawberries, blueberries, or chocolate chips &amp; whip cream $1.99</p>
-        </div>
+        </div></div>
+      </article>
       </div>
 
       <p class="menu-fine reveal">Prices read off West Pioneer Grill's own posted breakfast menu and the specials banners under the awning. The chalkboard by the counter changes — ask what's on it today.</p>
@@ -182,7 +203,7 @@
       </div>
       <div class="prints">
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="French toast dusted with powdered sugar, thick cut bacon, scrambled eggs and syrup cups" loading="lazy" width="1332" height="1920"><figcaption>French toast, bacon, eggs</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A burger stacked with cheddar, bacon and crispy onion straws with a side of wedge fries" loading="lazy" width="1280" height="720"><figcaption>Onion straws on the burger</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A bacon cheeseburger on a toasted bun with a basket of fries, the red WPG sign on the wall behind it" loading="lazy" width="1920" height="1209"><figcaption>A burger under the WPG sign</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A croissant club sandwich cut in quarters over a garden salad with cheddar and croutons" loading="lazy" width="1920" height="1843"><figcaption>The croissant club</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A Bloody Mary garnished with a strip of bacon, celery and olives on a wood table" loading="lazy" width="1440" height="1920"><figcaption>Bloody Mary, bacon on top</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A glass of red sangria with an orange slice beside a mimosa with a lime wheel" loading="lazy" width="1440" height="1920"><figcaption>Sangria and a mimosa</figcaption></figure>
@@ -235,6 +256,7 @@
               <path class="straw" d="M126 92 L146 24"/>
             </svg>
             <p class="glass-label" id="glassLabel" aria-live="polite">Tap a flavor</p>
+            <p class="glass-hint">Tap any flavor on the board</p>
           </div>
         </div>
 
@@ -276,26 +298,80 @@
   <section class="section" id="about">
     <div class="wrap">
       <div class="story">
-        <figure class="print reveal">
-          <img src="images/hero-stack-1.jpg" alt="The West Pioneer Grill storefront at 109 W Pioneer Ave — navy awning with the painted name, brick and cream stucco, sidewalk tables" loading="lazy" width="1920" height="1440">
-          <figcaption>109 W Pioneer, under the navy awning</figcaption>
-        </figure>
+        <div class="story-prints">
+          <figure class="print reveal">
+            <img src="images/about.jpg" alt="A corner of the West Pioneer Grill dining room — exposed brick, a tall window, blue wall and a wood table set for two" loading="lazy" width="1604" height="1920">
+            <figcaption>The original brick, and one of the tall windows</figcaption>
+          </figure>
+          <figure class="print reveal">
+            <img src="images/counter.jpg" alt="The counter at West Pioneer Grill — the specials chalkboard on the blue wall above it, bottles on the shelf, pendant lights over the tables" loading="lazy" width="1920" height="1440">
+            <figcaption>The counter, and the specials board above it</figcaption>
+          </figure>
+        </div>
         <div class="story-copy reveal">
           <p class="eyebrow">The room</p>
           <h2>A brick room on <em>Pioneer Ave</em>.</h2>
           <p class="lede">109 W Pioneer, in the row of old storefronts in the middle of downtown Puyallup.</p>
           <p>The dining room is the original brick — tall arched windows onto the street, blue walls, black pendant lights hanging over long wood tables, dark wood floors. The counter runs along the back with the specials board above it and the shake flavors on a board leaning against the front of it.</p>
           <p>Breakfast is the heart of it: eggs any style, benedicts, burritos, French toast and biscuits with sausage gravy. Burgers, sandwiches and salads run alongside all day, and the brunch glass — Bloody Marys with bacon on top, mimosas, sangria — comes out most mornings. There are a few tables on the sidewalk out front when the weather holds, and take-out and delivery both go out the door.</p>
-          <p class="review-line">
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=West+Pioneer+Grill+109+W+Pioneer+Ave+Puyallup+WA+98371" target="_blank" rel="noopener">Read what people say on Google ↗</a>
-          </p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (9/6): every quote carries the reviewer's real
+       published name AND their real published Google profile photo, pulled
+       from the same source as the quote. Verbatim, with the real star count
+       and the date Google shows. Scraped 2026-09-08. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">On their Google page</p>
+        <h2>Regulars, in <em>their own words</em>.</h2>
+      </div>
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/chad-pearson.png" alt="Chad Pearson" loading="lazy" width="200" height="200">
+            <span class="rev-who">Chad Pearson<small>Google · 4 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“I eat here frequently and have never had a bad meal. The staff is great and the prices are reasonable. I definitely recommend the burgers. Don’t forget to try the fry sauce!”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/brionna-barabe-maynard.png" alt="Brionna Barabe Maynard" loading="lazy" width="200" height="200">
+            <span class="rev-who">Brionna Barabe Maynard<small>Google · 5 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“My husband and I loved this place and will definitely come back! Highly recommend the Gouda bacon and egg burger, turkey pesto sandwich, and the boozy peach milkshake!”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/lincoln-ward.png" alt="Lincoln Ward" loading="lazy" width="200" height="200">
+            <span class="rev-who">Lincoln Ward<small>Google · 10 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Great place to grab a burger, Cajun fries and a shake! If you are wandering around downtown Puyallup highly recommend. Veronica provides great service!!”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/joshyddog.png" alt="Joshyddog" loading="lazy" width="200" height="200">
+            <span class="rev-who">Joshyddog<small>Google · 5 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Breakfast was very delicious! Good amount of food for the price! Restaurant was clean, service was excellent! Will be back again!”</p>
+        </article>
+      </div>
+      <p class="review-line reveal">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=West+Pioneer+Grill+109+W+Pioneer+Ave+Puyallup+WA+98371" target="_blank" rel="noopener">Read the rest on Google ↗</a>
+      </p>
+    </div>
+  </section>
+
   <!-- ===================== #contact ===================== -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
@@ -338,12 +414,10 @@
         <p class="eyebrow">Pioneer Ave, Puyallup</p>
         <h2>Come get <em>breakfast</em>.</h2>
       </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count" data-to="20">20</span></b><span>flavors on the shake board</span></div>
-        <div class="num"><b><span class="count" data-to="7">7</span></b><span>days a week</span></div>
-        <div class="num"><b><span class="count" data-to="6">6</span></b><span>breakfast burritos on the menu</span></div>
-        <div class="num"><b><span class="count" data-to="109">109</span></b><span>W Pioneer Ave, downtown</span></div>
-      </div>
+      <figure class="print block-print reveal">
+        <img src="images/block.jpg" alt="The block of old brick storefronts on W Pioneer Ave from across the street, West Pioneer Grill's navy awning in the middle of the row" loading="lazy" width="1920" height="1446">
+        <figcaption>Middle of the row, from across the street</figcaption>
+      </figure>
       <div class="cta-actions reveal">
         <a href="tel:+12536044507" class="btn btn-primary">Call (253) 604-4507</a>
         <a href="#menu" class="btn btn-ghost">See the menu</a>
@@ -370,7 +444,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#menu">Breakfast</a><br><a href="#gallery">The food</a><br><a href="#signature">Shakes</a><br><a href="#about">The room</a><br><a href="#hours">Hours</a></p>
+        <p><a href="#menu">Breakfast</a><br><a href="#gallery">The food</a><br><a href="#signature">Shakes</a><br><a href="#reviews">Reviews</a><br><a href="#about">The room</a><br><a href="#hours">Hours</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -380,6 +454,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788926651"></script>
 </body>
 </html>

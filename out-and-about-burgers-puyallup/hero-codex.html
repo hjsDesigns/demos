@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Alfa Slab One (display, roadside-diner slab) + Archivo (body) — must match --display / --body in css/style.css -->
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=0907153611">
 <link rel="stylesheet" href="hero-codex.css">
 </head>
 <body>
@@ -30,7 +30,7 @@
         <a href="#services">The wagon</a>
         <a href="#menu">The board</a>
         <a href="#gallery">The food</a>
-        <a href="#signature">Shakes</a>
+        <a href="#shakes">Shakes</a>
         <a href="#hours">Hours</a>
         <a href="#contact" class="nav-cta">Find us</a>
       </nav>
@@ -224,6 +224,20 @@
   </section>
 
   <!-- ===================== #gallery ===================== -->
+  <!-- ===================== #shakes — the five flavours, plainly (Hayden 9/7: no gadget) ===================== -->
+  <section class="section flavors-band" id="shakes">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Twenty ounces, five ways</p>
+        <h2>Milkshake <em>flavors</em></h2>
+      </div>
+      <ul class="flavor-chips flavor-chips-big reveal" aria-label="Milkshake flavors">
+        <li>Chocolate</li><li>Vanilla</li><li>Strawberry</li><li>Orange Creamsicle</li><li>Black Raspberry</li>
+      </ul>
+      <p class="menu-fine reveal">The five printed on the shake panel of their board. Malts too — same flavors, a dollar more.</p>
+    </div>
+  </section>
+
   <section class="section section-alt" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
@@ -241,37 +255,6 @@
     </div>
   </section>
 
-  <!-- ===================== #signature — the shake machine =====================
-       Section five, well below the fold. Their board lists exactly five milkshake
-       flavours and prints nothing else about them. Tap a flavour, the cup fills;
-       tap it again, it empties. One gesture, an instant payoff, no reading, and no
-       fact from anywhere else on the page restated. -->
-  <section class="section section-dark" id="signature">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Twenty ounces, five ways</p>
-        <h2>Fill the cup <em>before you pull in</em></h2>
-        <p>These are the five flavours printed on the panel, and there is no sixth. Pick the one you're getting.</p>
-      </div>
-      <div class="shakes reveal">
-        <div class="shake-stage">
-          <div class="cup" id="cup">
-            <span class="straw" aria-hidden="true"></span>
-            <span class="cup-body"><span class="fill" id="cupFill"></span></span>
-          </div>
-          <p class="shake-name empty" id="shakeName" aria-live="polite">Empty cup</p>
-        </div>
-        <div class="flavors" id="flavors">
-          <button class="flav" type="button" aria-pressed="false" data-n="Chocolate" style="--sw:var(--f-choc)"><span class="sw" aria-hidden="true"></span>Chocolate</button>
-          <button class="flav" type="button" aria-pressed="false" data-n="Vanilla" style="--sw:var(--f-van)"><span class="sw" aria-hidden="true"></span>Vanilla</button>
-          <button class="flav" type="button" aria-pressed="false" data-n="Strawberry" style="--sw:var(--f-straw)"><span class="sw" aria-hidden="true"></span>Strawberry</button>
-          <button class="flav" type="button" aria-pressed="false" data-n="Orange Creamsicle" style="--sw:var(--f-orange)"><span class="sw" aria-hidden="true"></span>Orange Creamsicle</button>
-          <button class="flav" type="button" aria-pressed="false" data-n="Black Raspberry" style="--sw:var(--f-raspberry)"><span class="sw" aria-hidden="true"></span>Black Raspberry</button>
-          <p class="shake-hint">Tap a flavour — tap it again to empty it</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===================== #about ===================== -->
   <section class="section section-alt" id="about">
@@ -369,7 +352,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">The wagon</a><br><a href="#menu">The board</a><br><a href="#gallery">The food</a><br><a href="#signature">Shakes</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#services">The wagon</a><br><a href="#menu">The board</a><br><a href="#gallery">The food</a><br><a href="#shakes">Shakes</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -379,7 +362,7 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=0907153611"></script>
 
 </body>
 </html>
