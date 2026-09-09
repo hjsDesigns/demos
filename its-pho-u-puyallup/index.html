@@ -10,8 +10,8 @@
 <!-- Fraunces (display, soft warm serif) + Be Vietnam Pro (body, drawn for Vietnamese diacritics)
      — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788927472">
+<link rel="stylesheet" href="css/hero.css?v=1788927472">
 </head>
 <body>
 
@@ -93,6 +93,7 @@
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
+        <span class="steam-rule" aria-hidden="true"></span>
         <h2>Six days a week, <em>Sundays off</em></h2>
         <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
@@ -123,73 +124,108 @@
        with their names only — never with a made-up number. -->
   <section class="section section-alt" id="menu">
     <div class="wrap">
-      <div class="section-head reveal">
+
+      <!-- STOREFRONT BELOW THE HOURS: the hero is the sign on a broth ground,
+           not the building, so the real building opens the offerings. Their own
+           night photo (harvest g24) — sign lit, string lights on, the two
+           cartoon characters in the window, 3707 on the door. -->
+      <figure class="storefront reveal">
+        <img src="images/storefront.jpg" width="1920" height="1260" loading="lazy"
+             alt="It's Phở U at night on South Meridian — the green sign lit above the storefront, string lights along the roofline, and the two cartoon characters stuck to the window beside the OPEN sign">
+        <figcaption><span>3707 S Meridian, in the Willows</span><b>Look for the green sign</b></figcaption>
+      </figure>
+
+      <div class="section-head section-head--center reveal">
         <p class="eyebrow">Off the menu in the dining room</p>
+        <span class="steam-rule" aria-hidden="true"></span>
         <h2>The whole board is <em>under fifteen dollars</em></h2>
-        <p>Teriyaki, yakisoba, fried rice and char-broiled rice plates, priced exactly as they're printed on the menu at the table. Teriyaki and rice plates come with rice and salad.</p>
+        <p>Priced exactly as they're printed on the menu at the table. Tap a board to open it.</p>
       </div>
 
-      <div class="menu-groups reveal">
-        <div class="menu-group">
-          <h3>Teriyaki</h3>
-          <p class="group-note">Comes with rice &amp; salad · add spicy $2.95</p>
-          <ul class="menu-list">
-            <li><span class="no">T1</span><span class="name">Chicken Teriyaki</span><span class="price">$10.55</span></li>
-            <li><span class="no">T2</span><span class="name">Pork Teriyaki</span><span class="price">$11.55</span></li>
-            <li><span class="no">T3</span><span class="name">Beef Teriyaki</span><span class="price">$11.95</span></li>
-            <li><span class="no">T4</span><span class="name">Chicken w/ Pork</span><span class="price">$12.95</span></li>
-            <li><span class="no">T5</span><span class="name">Chicken w/ Beef</span><span class="price">$12.95</span></li>
-            <li><span class="no">T6</span><span class="name">Chicken w/ Gyoza</span><span class="price">$11.95</span></li>
-            <li><span class="no">T7</span><span class="name">Chicken w/ Egg Roll</span><span class="price">$11.95</span></li>
-            <li><span class="no">T8</span><span class="name">Pork w/ Beef</span><span class="price">$12.95</span></li>
-            <li><span class="no">T9</span><span class="name">Beef Short Ribs</span><span class="price">$14.95</span></li>
-          </ul>
+      <!-- TITLE CARDS UNROLL — the category heading IS the tap target. Prices
+           transcribed verbatim off the printed page photographed in their own
+           dining room (harvest g5). Nothing here is estimated. -->
+      <div class="menu-stack reveal">
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="true" aria-controls="rollTeri">
+            <span><h3>Teriyaki</h3><span class="cnt">9 plates · $10.55 – $14.95 · rice &amp; salad · add spicy $2.95</span></span>
+            <span class="chev" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollTeri" data-open="1"><div><div class="roll-inner">
+            <ul class="menu-list">
+              <li><span class="no">T1</span><span class="name">Chicken Teriyaki</span><span class="price">$10.55</span></li>
+              <li><span class="no">T2</span><span class="name">Pork Teriyaki</span><span class="price">$11.55</span></li>
+              <li><span class="no">T3</span><span class="name">Beef Teriyaki</span><span class="price">$11.95</span></li>
+              <li><span class="no">T4</span><span class="name">Chicken w/ Pork</span><span class="price">$12.95</span></li>
+              <li><span class="no">T5</span><span class="name">Chicken w/ Beef</span><span class="price">$12.95</span></li>
+              <li><span class="no">T6</span><span class="name">Chicken w/ Gyoza</span><span class="price">$11.95</span></li>
+              <li><span class="no">T7</span><span class="name">Chicken w/ Egg Roll</span><span class="price">$11.95</span></li>
+              <li><span class="no">T8</span><span class="name">Pork w/ Beef</span><span class="price">$12.95</span></li>
+              <li><span class="no">T9</span><span class="name">Beef Short Ribs</span><span class="price">$14.95</span></li>
+            </ul>
+          </div></div></div>
         </div>
 
-        <div class="menu-group">
-          <h3>Yakisoba <span class="viet">Mì Xào</span></h3>
-          <ul class="menu-list">
-            <li><span class="no">Y1</span><span class="name">Chicken Yakisoba</span><span class="price">$10.95</span></li>
-            <li><span class="no">Y2</span><span class="name">Pork Yakisoba</span><span class="price">$11.55</span></li>
-            <li><span class="no">Y3</span><span class="name">Beef Yakisoba</span><span class="price">$11.55</span></li>
-            <li><span class="no">Y4</span><span class="name">Vegetable Yakisoba</span><span class="price">$11.55</span></li>
-            <li><span class="no">Y5</span><span class="name">Shrimp Yakisoba</span><span class="price">$11.95</span></li>
-            <li><span class="no">Y6</span><span class="name">Tofu Yakisoba</span><span class="price">$11.55</span></li>
-            <li><span class="no">Y7</span><span class="name">Combination Yakisoba</span><span class="price">$12.55</span></li>
-          </ul>
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollYaki">
+            <span><h3>Yakisoba <span class="viet">Mì Xào</span></h3><span class="cnt">7 noodle plates · $10.95 – $12.55</span></span>
+            <span class="chev" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollYaki" data-open="0"><div><div class="roll-inner">
+            <ul class="menu-list">
+              <li><span class="no">Y1</span><span class="name">Chicken Yakisoba</span><span class="price">$10.95</span></li>
+              <li><span class="no">Y2</span><span class="name">Pork Yakisoba</span><span class="price">$11.55</span></li>
+              <li><span class="no">Y3</span><span class="name">Beef Yakisoba</span><span class="price">$11.55</span></li>
+              <li><span class="no">Y4</span><span class="name">Vegetable Yakisoba</span><span class="price">$11.55</span></li>
+              <li><span class="no">Y5</span><span class="name">Shrimp Yakisoba</span><span class="price">$11.95</span></li>
+              <li><span class="no">Y6</span><span class="name">Tofu Yakisoba</span><span class="price">$11.55</span></li>
+              <li><span class="no">Y7</span><span class="name">Combination Yakisoba</span><span class="price">$12.55</span></li>
+            </ul>
+          </div></div></div>
         </div>
 
-        <div class="menu-group">
-          <h3>Fried Rice <span class="viet">Cơm Chiên</span></h3>
-          <ul class="menu-list">
-            <li><span class="no">F1</span><span class="name">Chicken Fried Rice</span><span class="price">$10.55</span></li>
-            <li><span class="no">F2</span><span class="name">Pork Fried Rice</span><span class="price">$10.55</span></li>
-            <li><span class="no">F3</span><span class="name">Beef Fried Rice</span><span class="price">$10.95</span></li>
-            <li><span class="no">F4</span><span class="name">Shrimp Fried Rice</span><span class="price">$10.95</span></li>
-            <li><span class="no">F5</span><span class="name">Vegetable Fried Rice</span><span class="price">$10.55</span></li>
-            <li><span class="no">F6</span><span class="name">Combination Fried Rice</span><span class="price">$11.55</span><span class="desc">Chicken &amp; shrimp.</span></li>
-            <li><span class="no">F7</span><span class="name">Tofu Fried Rice</span><span class="price">$10.95</span></li>
-          </ul>
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollRice">
+            <span><h3>Fried Rice <span class="viet">Cơm Chiên</span></h3><span class="cnt">7 plates · $10.55 – $11.55</span></span>
+            <span class="chev" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollRice" data-open="0"><div><div class="roll-inner">
+            <ul class="menu-list">
+              <li><span class="no">F1</span><span class="name">Chicken Fried Rice</span><span class="price">$10.55</span></li>
+              <li><span class="no">F2</span><span class="name">Pork Fried Rice</span><span class="price">$10.55</span></li>
+              <li><span class="no">F3</span><span class="name">Beef Fried Rice</span><span class="price">$10.95</span></li>
+              <li><span class="no">F4</span><span class="name">Shrimp Fried Rice</span><span class="price">$10.95</span></li>
+              <li><span class="no">F5</span><span class="name">Vegetable Fried Rice</span><span class="price">$10.55</span></li>
+              <li><span class="no">F6</span><span class="name">Combination Fried Rice</span><span class="price">$11.55</span><span class="desc">Chicken &amp; shrimp.</span></li>
+              <li><span class="no">F7</span><span class="name">Tofu Fried Rice</span><span class="price">$10.95</span></li>
+            </ul>
+          </div></div></div>
         </div>
 
-        <div class="menu-group">
-          <h3>Rice Plate</h3>
-          <p class="group-note">Comes with rice &amp; salad</p>
-          <ul class="menu-list">
-            <li><span class="no">R1</span><span class="name">Char-Broiled Pork Chop &amp; Fried Egg <b class="starred" title="Starred on their menu">★</b></span><span class="price">$11.75</span></li>
-            <li><span class="no">R2</span><span class="name">Char-Broiled Chicken &amp; Fried Tofu</span><span class="price">$10.75</span></li>
-            <li><span class="no">R3</span><span class="name">Char-Broiled Chicken &amp; Fried Roll</span><span class="price">$10.75</span></li>
-            <li><span class="no">R4</span><span class="name">Char-Broiled Pork Chop</span><span class="price">$11.95</span></li>
-            <li><span class="no">R5</span><span class="name">Char-Broiled Short Ribs</span><span class="price">$14.95</span></li>
-          </ul>
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollPlate">
+            <span><h3>Rice Plate</h3><span class="cnt">5 char-broiled plates · $10.75 – $14.95 · rice &amp; salad</span></span>
+            <span class="chev" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollPlate" data-open="0"><div><div class="roll-inner">
+            <ul class="menu-list">
+              <li><span class="no">R1</span><span class="name">Char-Broiled Pork Chop &amp; Fried Egg <b class="starred" title="Starred on their menu">★</b></span><span class="price">$11.75</span></li>
+              <li><span class="no">R2</span><span class="name">Char-Broiled Chicken &amp; Fried Tofu</span><span class="price">$10.75</span></li>
+              <li><span class="no">R3</span><span class="name">Char-Broiled Chicken &amp; Fried Roll</span><span class="price">$10.75</span></li>
+              <li><span class="no">R4</span><span class="name">Char-Broiled Pork Chop</span><span class="price">$11.95</span></li>
+              <li><span class="no">R5</span><span class="name">Char-Broiled Short Ribs</span><span class="price">$14.95</span></li>
+            </ul>
+          </div></div></div>
         </div>
       </div>
-      <p class="menu-fine reveal">Prices exactly as printed on the menu at the table. Parties of five or more: 15% gratuity is added. Phở, bánh mì, vermicelli bowls and boba are on the full menu in the dining room — here's what they look like.</p>
+
+      <p class="menu-fine reveal">Parties of five or more: 15% gratuity is added. Phở, bánh mì, vermicelli bowls and boba are on the full menu in the dining room — here's what they look like.</p>
 
       <div class="dish-strip reveal">
         <figure class="dish"><img src="images/dish-pho.jpg" alt="A bowl of phở with rice noodles, sliced beef, cilantro and Thai basil" loading="lazy"><figcaption>Phở</figcaption></figure>
         <figure class="dish"><img src="images/dish-banhmi.jpg" alt="A bánh mì on a split baguette with pickled carrot, cucumber and cilantro in checkered paper" loading="lazy"><figcaption>Bánh mì</figcaption></figure>
         <figure class="dish"><img src="images/dish-rolls.jpg" alt="Two fresh shrimp spring rolls on a white plate beside a black bowl of peanut sauce" loading="lazy"><figcaption>Fresh spring rolls</figcaption></figure>
+        <figure class="dish"><img src="images/gallery-4.jpg" alt="A tall cup of boba with tapioca pearls settled at the bottom on a dark wood table" loading="lazy"><figcaption>Boba</figcaption></figure>
       </div>
     </div>
   </section>
@@ -201,8 +237,9 @@
        tap again and it lifts back out. No numbers, no reading, no prizes. -->
   <section class="section" id="signature">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head section-head--center reveal">
         <p class="eyebrow">The part you do yourself</p>
+        <span class="steam-rule" aria-hidden="true"></span>
         <h2>Every bowl comes with <em>a plate on the side</em></h2>
         <p>Thai basil, bean sprouts, jalapeño and lime, on their own plate. What goes in is up to you.</p>
       </div>
@@ -246,13 +283,13 @@
   <!-- ===================== #gallery ===================== -->
   <section class="section section-alt" id="gallery">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head section-head--center reveal">
         <p class="eyebrow">Before you walk in</p>
+        <span class="steam-rule" aria-hidden="true"></span>
         <h2>Light wood, plants on the wall, <em>globe lights over the tables</em></h2>
       </div>
       <div class="prints">
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The dining room at It's Phở U in the evening — dark wood chairs, light plank floor and round glass pendant lights" loading="lazy"><figcaption>The room, after dark</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A tall cup of boba with tapioca pearls settled at the bottom on a dark wood table" loading="lazy"><figcaption>Boba</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A vermicelli bowl piled with grilled pork, shrimp, shredded carrot, lettuce and bean sprouts" loading="lazy"><figcaption>A vermicelli bowl</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Two fried egg rolls on a white rectangular plate" loading="lazy"><figcaption>Fried rolls</figcaption></figure>
         <figure class="print reveal"><img src="images/dish-rice.jpg" alt="Combination fried rice with peas, carrot and corn on a white plate with an orange slice" loading="lazy"><figcaption>Cơm chiên</figcaption></figure>
@@ -270,8 +307,8 @@
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Why it's called that</p>
+          <span class="steam-rule" aria-hidden="true"></span>
           <h2>The name is the joke, <em>and they commit</em></h2>
-          <p class="lede">The phone number spells it out: 253-848-PHOU.</p>
           <p>Open the menu and there's a cartoon on the cover — someone down on one knee holding out a steaming bowl, hearts in the air, a speech bubble reading <em>“It's Pho U!!”</em> — printed under a red-and-green striped awning. The same two characters are stuck to the window by the front door. That's the whole personality of the place, and they put it on everything they hand you.</p>
           <p>Behind it is a bright room off South Meridian: light plank floors, a cedar wall with plants growing out of it, dark wood chairs, round glass lights over the tables. Phở, char-broiled rice plates and yakisoba all under fifteen dollars, vegan and vegetarian options through the menu, take-out and delivery if you'd rather eat at home.</p>
         </div>
@@ -280,10 +317,11 @@
   </section>
 
   <!-- ===================== #reviews =====================
-       REVIEW ATTRIBUTION LAW: no reviewer name + real profile photo pair
-       could be sourced (Google, Yelp and TripAdvisor are all bot-walled to
-       us). So: the honest aggregate, and a link straight to the live
-       reviews — never an invented name, a stock face or an anonymous quote. -->
+       REVIEW ATTRIBUTION LAW (9/6): every quote below is verbatim from Google
+       Maps, carrying that reviewer's REAL published name, their REAL published
+       profile photo from the same source, their real star rating and their real
+       date. Harvested 2026-09-08 into harvest-0906/greviews-pw.json (60 unique
+       reviews). No invented names, no stock faces, no initials discs. -->
   <section class="section section-dark" id="reviews">
     <div class="wrap">
       <div class="score">
@@ -294,11 +332,53 @@
         </div>
         <div class="score-copy reveal">
           <p class="eyebrow">What Puyallup thinks</p>
+          <span class="steam-rule" aria-hidden="true"></span>
           <h2>Seven hundred and ninety-seven people <em>have weighed in</em></h2>
-          <p>Rather than pick out a quote, here's the whole thing — every review, good and bad, straight from the source.</p>
-          <a class="btn btn-cream" href="https://www.google.com/maps/search/?api=1&amp;query=It%27s+Pho+U%2C+3707+S+Meridian%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read all 797 reviews on Google ↗</a>
+          <p>Four of them, in their own words, with their own names and faces — straight off Google.</p>
         </div>
       </div>
+
+      <div class="revs">
+        <figure class="rev reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>One of the best pho I had! Full of flavor, fresh and well balanced. I'm not a fun of sweet broth and theirs is absolutely delicious. The cashier but could be the owner was super nice, friendly and very welcoming. The prices are also very reasonable. Lots of parking too!</blockquote>
+          <figcaption>
+            <img src="images/reviews/ricky-m.jpg" width="256" height="256" loading="lazy" alt="Ricky M, Google reviewer">
+            <span class="who"><b>Ricky M</b><span>Google · 3 months ago</span></span>
+          </figcaption>
+        </figure>
+
+        <figure class="rev reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>My family's go to spot for short ribs. You can't beat the value and I wish I didn't eat it too quickly because you would have a pic to drool over. It was just too good to wait. Highly recommend the rice plates that includes the pork chops! Yakisoba on point as well.</blockquote>
+          <figcaption>
+            <img src="images/reviews/val-jesus-virgen.jpg" width="256" height="256" loading="lazy" alt="Val Jesus Virgen, Google reviewer">
+            <span class="who"><b>Val Jesus Virgen</b><span>Google · 5 months ago</span></span>
+          </figcaption>
+        </figure>
+
+        <figure class="rev reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>Brought the family here and we had a wonderful experience from the moment we walked in. We were greeted right away — no awkward waiting around — and water was on the table almost before we even sat down.</blockquote>
+          <figcaption>
+            <img src="images/reviews/malayna-abad.jpg" width="256" height="256" loading="lazy" alt="Malayna Abad, Google reviewer">
+            <span class="who"><b>Malayna Abad</b><span>Google · 5 months ago</span></span>
+          </figcaption>
+        </figure>
+
+        <figure class="rev reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>Amazing Broth, the pho was delicious and comforting, quick and kind service will be back</blockquote>
+          <figcaption>
+            <img src="images/reviews/mikayla-williams.jpg" width="256" height="256" loading="lazy" alt="Mikayla Williams, Google reviewer">
+            <span class="who"><b>Mikayla Williams</b><span>Google · 3 months ago</span></span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="revs-foot reveal">
+        <a class="btn btn-cream" href="https://www.google.com/maps/search/?api=1&amp;query=It%27s+Pho+U%2C+3707+S+Meridian%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read all 797 reviews on Google ↗</a>
+      </p>
     </div>
   </section>
 
@@ -308,10 +388,11 @@
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting here</p>
+          <span class="steam-rule" aria-hidden="true"></span>
           <h2>Walk in, <em>or call it in</em></h2>
           <ol class="steps">
             <li><h3>Just walk in</h3><p>No reservations — there's a big dining room and a counter at the back, and lunch moves fast.</p></li>
-            <li><h3>Or order it to go</h3><p>Call 253-848-PHOU and it'll be bagged and waiting. Delivery runs too.</p></li>
+            <li><h3>Or order it to go</h3><p>Call ahead and it'll be bagged and waiting. Delivery runs too.</p></li>
             <li><h3>Bringing the whole crew?</h3><p>Five or more and a 15% gratuity gets added — worth a heads-up call so the kitchen can stagger it.</p></li>
           </ol>
           <div class="contact-lines">
@@ -335,17 +416,21 @@
     </div>
   </section>
 
-  <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta — the closing band =====================
+       Closes on the joke the whole place is built around rather than repeating
+       the address a fourth time. The phone number IS the punchline. -->
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head section-head--center reveal">
         <p class="eyebrow">One more thing</p>
-        <h2>Look for <em>the green sign</em></h2>
-        <p>South Meridian, in the strip, number 3707 on the glass.</p>
+        <span class="steam-rule" aria-hidden="true"></span>
+        <h2>They named the whole place <em>after a pickup line</em></h2>
+        <p>So the phone number had to finish it.</p>
       </div>
+      <p class="phou-line reveal"><a href="tel:+12538487468"><span>253-848-</span><b>PHOU</b></a></p>
       <div class="cta-actions reveal">
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=3707+S+Meridian%2C+Puyallup%2C+WA+98373" class="btn btn-primary" target="_blank" rel="noopener">Get directions</a>
-        <a href="tel:+12538487468" class="btn btn-ghost">Call 253-848-PHOU</a>
+        <a href="tel:+12538487468" class="btn btn-primary">Call it in</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=3707+S+Meridian%2C+Puyallup%2C+WA+98373" class="btn btn-ghost" target="_blank" rel="noopener">Get directions</a>
       </div>
     </div>
   </section>
@@ -380,6 +465,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788927472"></script>
 </body>
 </html>

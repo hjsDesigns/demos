@@ -70,8 +70,14 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* overflow-x:CLIP, never hidden. `hidden` on one axis forces the other to
+   `auto`, which made <body> its own scroll container: the document reported
+   15,028px but window.scrollY capped at 12,666 and the last ~1,500px (the
+   closing band and the whole footer) could not be reached on a phone — which
+   also meant those .reveal blocks never intersected and rendered blank.
+   `clip` is allowed to pair with `visible`, so no scroll box is created. */
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;
-  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:clip}
 main{flex:1 0 auto}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
@@ -89,6 +95,27 @@ b,strong{font-weight:700}
   font-family:var(--mono);font-size:12px;line-height:1.5;letter-spacing:.22em;text-transform:uppercase;
   color:var(--brand-text);font-weight:600;margin:0 0 14px}
 .section-dark .eyebrow,.section-dark .section-head .eyebrow,.section-dark .score-copy .eyebrow{color:var(--warm)}
+
+/* ---------- THE STEAM RULE — the one device that carries the hero ----------
+   The hero is a lit green sign coming up through steam. Every section head on
+   the page opens with the same object: a short pine bar under the eyebrow that
+   STRIKES ON left-to-right the moment its section reveals, with a warm bloom
+   above it — the sign lighting, once per section. Unlit it still shows at 22%
+   so it never looks broken; on the pine bands it lights yellow, exactly as the
+   sign's lettering is yellow only on green. One <span>, no JS. */
+.steam-rule{position:relative;display:block;width:64px;height:2px;margin:0 0 20px;border-radius:2px;
+  background:color-mix(in srgb,var(--brand) 22%,transparent)}
+.steam-rule::after{content:"";position:absolute;inset:0;border-radius:2px;background:var(--brand);
+  box-shadow:0 0 10px color-mix(in srgb,var(--brand) 70%,transparent),0 -6px 20px color-mix(in srgb,var(--brand) 34%,transparent);
+  transform-origin:left;transform:scaleX(0);transition:transform .75s var(--ease-2) .12s}
+.reveal.in .steam-rule::after,.section-head.in .steam-rule::after,.status-head .steam-rule::after{transform:scaleX(1)}
+.section-dark .steam-rule{background:color-mix(in srgb,var(--warm) 24%,transparent)}
+.section-dark .steam-rule::after{background:var(--warm);
+  box-shadow:0 0 10px color-mix(in srgb,var(--warm) 70%,transparent),0 -6px 20px color-mix(in srgb,var(--warm) 34%,transparent)}
+.section-head--center .steam-rule,.status-head .steam-rule{margin-left:0}
+.section-head--center{text-align:center;margin-left:auto;margin-right:auto}
+.section-head--center .steam-rule{margin-left:auto;margin-right:auto}
+@media (prefers-reduced-motion:reduce){.steam-rule::after{transform:scaleX(1);transition:none}}
 :focus-visible{outline:3px solid var(--brand);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 26%,transparent);border-radius:6px}
 .section-dark :focus-visible{outline-color:var(--warm)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -216,7 +243,47 @@ b,strong{font-weight:700}
   .hdr-live.is-open .dot{animation:none}
 }
 
+/* ============================================================ STOREFRONT PLATE
+   STOREFRONT-BELOW-THE-HOURS: the hero is the sign on a broth ground, not the
+   building, so the real building opens the offerings section. Their own night
+   photo (harvest g24) — the sign lit, the string lights on, the two cartoon
+   characters in the window and 3707 on the door — mounted in the same paper mat
+   the rest of the page uses, with the address stamped into the bottom margin. */
+.storefront{max-width:940px;margin:0 auto clamp(40px,6vw,72px);background:var(--paper);border:var(--rule);
+  padding:14px 14px 0;box-shadow:0 50px 90px -52px rgba(18,56,51,.7);transform:rotate(-.5deg)}
+.storefront img{width:100%;height:auto;display:block}
+.storefront figcaption{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:15px 4px 18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.storefront figcaption b{color:var(--brand-text);font-weight:600}
+@media (max-width:560px){.storefront{transform:none;padding:10px 10px 0}
+  .storefront figcaption{justify-content:center;text-align:center;font-size:10.5px;letter-spacing:.1em}}
+
 /* ============================================================ MENU (the board) */
+/* TITLE CARDS UNROLL — each category heading IS the tap target and rolls its
+   real items out in place. Downward chevron flipping up, never a plus. The
+   first card ships open so the section is never a wall of closed doors. */
+/* the board reads as a board: one centred column, not a 1180px sprawl with a
+   canyon between each dish and its price */
+.menu-stack{display:grid;gap:14px;max-width:940px;margin:0 auto}
+.roll{border:var(--rule);border-radius:var(--r);background:var(--paper);overflow:hidden;
+  box-shadow:0 30px 60px -50px rgba(18,56,51,.55)}
+.roll-btn{appearance:none;width:100%;cursor:pointer;background:none;border:0;color:var(--ink);font-family:var(--body);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;text-align:left;min-height:64px;
+  padding:18px clamp(16px,3vw,26px);transition:background .2s}
+.roll-btn:hover{background:color-mix(in srgb,var(--brand) 7%,transparent)}
+.roll-btn h3{font-size:clamp(20px,2.5vw,26px);margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.roll-btn .viet{font-family:var(--body);font-size:14px;font-weight:500;color:var(--muted)}
+.roll-btn .cnt{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);margin-top:7px}
+.roll-btn .chev{flex:none;width:36px;height:36px;border-radius:50%;border:var(--rule);display:grid;place-items:center;
+  color:var(--brand-text);background:var(--bg);transition:transform .32s var(--ease-2),background .2s,border-color .2s}
+.roll-btn[aria-expanded="true"] .chev{transform:rotate(180deg);border-color:var(--brand);
+  background:color-mix(in srgb,var(--brand) 15%,transparent)}
+.roll-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease-2)}
+.roll-panel[data-open="1"]{grid-template-rows:1fr}
+.roll-panel>div{overflow:hidden}
+.roll-inner{padding:2px clamp(16px,3vw,26px) 10px;border-top:1px dashed var(--line)}
+@media (prefers-reduced-motion:reduce){.roll-panel{transition:none}.roll-btn .chev{transition:none}}
 .menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,54px)}
 .menu-group h3{font-size:23px;margin:0 0 6px;padding-bottom:10px;border-bottom:2px solid color-mix(in srgb,var(--brand) 55%,transparent);color:var(--ink);
   display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
@@ -231,8 +298,8 @@ b,strong{font-weight:700}
 .menu-list .starred{color:var(--red);font-size:12px;vertical-align:2px}
 .menu-list .price{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
 .menu-list .desc{grid-column:2 / -1;font-size:14px;color:var(--muted);line-height:1.5}
-.menu-fine{font-size:13.5px;color:var(--muted);margin:28px 0 0;max-width:74ch}
-.dish-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,26px);margin-top:clamp(30px,4vw,52px)}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:30px auto 0;max-width:74ch;text-align:center}
+.dish-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.2vw,22px);margin-top:clamp(30px,4vw,52px)}
 .dish{background:var(--paper);border:var(--rule);padding:12px 12px 30px;margin:0;
   box-shadow:0 30px 60px -40px rgba(18,56,51,.6);transition:transform .5s var(--ease)}
 .dish img{width:100%;height:260px;object-fit:cover}
@@ -240,8 +307,11 @@ b,strong{font-weight:700}
 .dish:nth-child(1){transform:rotate(-1.1deg)}
 .dish:nth-child(2){transform:rotate(.7deg)}
 .dish:nth-child(3){transform:rotate(-.5deg)}
+.dish:nth-child(4){transform:rotate(.9deg)}
 .dish:hover{transform:rotate(0) scale(1.02)}
-@media (max-width:760px){.menu-groups{grid-template-columns:1fr}.dish-strip{grid-template-columns:1fr}.dish{transform:none}.dish img{height:230px}}
+@media (max-width:980px){.dish-strip{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}.dish{transform:none}.dish img{height:190px}}
+@media (max-width:520px){.dish-strip{grid-template-columns:1fr}.dish img{height:230px}}
 
 /* ============================================================ SIGNATURE — DRESS YOUR BOWL
    Their real side plate, their real bowl. One tap drops a garnish in with a
@@ -274,8 +344,12 @@ b,strong{font-weight:700}
 .garnish{display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 10px;cursor:pointer;
   background:var(--bg);border:2px solid var(--line);border-radius:var(--r);font:inherit;color:inherit;min-height:48px;
   transition:transform .2s var(--ease),border-color .2s,background .2s,box-shadow .2s}
-.garnish .gimg{width:76px;height:76px;border-radius:50%;overflow:hidden;flex:none;
-  box-shadow:0 6px 16px -8px rgba(18,56,51,.6);transition:transform .25s var(--ease)}
+/* the swatches are small crops of their side plate — a light ring and a touch
+   of contrast keeps basil / sprouts / jalapeño telling apart at a glance */
+.garnish .gimg{width:76px;height:76px;border-radius:50%;overflow:hidden;flex:none;background:var(--paper);
+  box-shadow:0 6px 16px -8px rgba(18,56,51,.6),inset 0 0 0 2px rgba(255,250,238,.9);
+  transition:transform .25s var(--ease)}
+.garnish .gimg img{filter:saturate(1.18) contrast(1.1)}
 .garnish .gimg img{width:100%;height:100%;object-fit:cover}
 .garnish .glabel{font-size:14px;font-weight:700;letter-spacing:.01em}
 .garnish:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--brand) 45%,transparent)}
@@ -323,11 +397,28 @@ b,strong{font-weight:700}
 .story-copy .lede{font-size:19px;font-weight:700;color:var(--red);font-family:var(--body)}
 @media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
 
-/* ============================================================ REVIEWS — the honest aggregate
-   REVIEW ATTRIBUTION LAW: no reviewer name + real profile photo pair could be
-   sourced, so there are no review cards here at all — the score and a link
-   to the live reviews, never an invented name or a stock face. */
+/* ============================================================ REVIEWS
+   REVIEW ATTRIBUTION LAW (9/6): every quote below is verbatim from Google, tied
+   to that reviewer's REAL published name and their REAL published profile
+   photo from the same source, with their real star rating and date. Nothing is
+   manufactured — no initials disc, no stock face, no anonymous strip. Harvest:
+   harvest-0906/greviews-pw.json (60 unique reviews, 2026-09-08). */
 .score{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,232px),1fr));gap:clamp(16px,2.2vw,24px);
+  margin-top:clamp(34px,5vw,56px)}
+.rev{display:flex;flex-direction:column;gap:14px;margin:0;padding:clamp(20px,2.6vw,28px);
+  background:rgba(244,238,221,.055);border:1px solid color-mix(in srgb,var(--warm) 26%,transparent);border-radius:var(--r)}
+.rev .stars{color:var(--warm);font-size:14px;letter-spacing:.16em;line-height:1}
+.rev blockquote{margin:0;font-size:15.5px;line-height:1.6;color:#EDE7D6}
+.rev blockquote::before{content:"\201C";font-family:var(--display);color:var(--warm);font-size:32px;
+  line-height:0;position:relative;top:11px;margin-right:3px}
+.rev figcaption{display:flex;align-items:center;gap:12px;margin-top:auto}
+.rev img{width:46px;height:46px;flex:none;border-radius:50%;object-fit:cover;
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--warm) 46%,transparent)}
+.rev .who{display:flex;flex-direction:column;min-width:0}
+.rev .who b{font-size:14.5px;color:#F4EEDD;font-weight:700;line-height:1.25}
+.rev .who span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#A8A493;margin-top:4px}
+.revs-foot{margin:clamp(26px,3.4vw,36px) 0 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .score-num{text-align:center;border:1px solid color-mix(in srgb,var(--warm) 34%,transparent);border-radius:var(--r);
   padding:clamp(24px,3vw,36px) clamp(28px,4vw,48px);background:rgba(244,238,221,.05)}
 .score-num b{display:block;font-family:var(--display);font-weight:700;font-size:clamp(60px,8vw,96px);line-height:.9;color:var(--warm)}
@@ -364,9 +455,18 @@ b,strong{font-weight:700}
 @media (max-width:900px){.contact{grid-template-columns:1fr}}
 @media (max-width:560px){.contact-form{grid-template-columns:1fr}}
 
-/* ============================================================ CTA BAND */
+/* ============================================================ CTA BAND
+   The number is the punchline, so it is set as the biggest thing in the band —
+   the dialled digits quiet, PHOU in the sign's own yellow. */
+.cta-band{text-align:center}
 .cta-band .section-head{max-width:none}
-.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+.phou-line{margin:clamp(6px,1.4vw,14px) 0 clamp(28px,4vw,42px)}
+.phou-line a{display:inline-flex;align-items:baseline;gap:.06em;font-family:var(--display);font-weight:700;
+  font-size:clamp(38px,7vw,86px);line-height:1;letter-spacing:-.02em;color:#EDE7D6;
+  transition:transform .25s var(--ease),text-shadow .25s}
+.phou-line b{color:var(--warm);text-shadow:0 0 26px color-mix(in srgb,var(--warm) 42%,transparent)}
+.phou-line a:hover{transform:translateY(-2px);text-shadow:0 0 30px color-mix(in srgb,var(--warm) 26%,transparent)}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 @media (max-width:480px){.cta-actions{width:100%}.cta-actions .btn{flex:1 1 100%}}
 
 /* ============================================================ FOOTER */

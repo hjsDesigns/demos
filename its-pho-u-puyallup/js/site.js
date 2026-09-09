@@ -130,7 +130,27 @@ function customClose(p, close){ return close; }
       io.unobserve(en.target);
     });
   },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
-  $$('.reveal').forEach(function(el){io.observe(el)});
+  /* anything already on screen at load (anchor jump, restored scroll position,
+     a deep link) is shown outright — an observer that never intersects would
+     leave it invisible forever. */
+  $$('.reveal').forEach(function(el){
+    if(el.getBoundingClientRect().top < window.innerHeight){el.classList.add('in');return}
+    io.observe(el);
+  });
+
+  /* ---------- TITLE CARDS UNROLL — the menu boards ----------
+     The category heading IS the tap target; the chevron flips up; the panel
+     animates grid-template-rows 0fr -> 1fr so nothing has to guess a height.
+     Teriyaki ships open so the section is never a wall of closed doors. */
+  $$('.roll-btn').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
 
   /* ---------- contact form ----------
      Demo mode (hidden access_key empty): show the thank-you, send nothing.
