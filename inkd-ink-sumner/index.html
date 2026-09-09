@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Big Shoulders Display = the condensed face of Staci's own logo lettering (SIGN-FONT LAW). Jost = body. -->
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788868948">
+<link rel="stylesheet" href="css/style.css?v=1788923715">
 </head>
 <body>
 
@@ -94,7 +94,7 @@
     <div class="wrap">
       <div class="door reveal">
         <figure class="print">
-          <img src="images/storefront.jpg" alt="The double glass doors at 909 Alder Avenue in downtown Sumner, house number 909 above them, string lights across the awning" loading="lazy">
+          <img width="1100" height="1518" src="images/storefront.jpg" alt="The double glass doors at 909 Alder Avenue in downtown Sumner, house number 909 above them, string lights across the awning" loading="lazy">
           <figcaption>909 Alder Ave — Suite 202, upstairs</figcaption>
         </figure>
         <div class="door-copy">
@@ -107,8 +107,8 @@
       </div>
 
       <div class="rolls reveal">
-        <div class="roll">
-          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-tattoos">
+        <div class="roll open">
+          <button class="roll-btn" type="button" aria-expanded="true" aria-controls="roll-tattoos">
             <span class="t"><b>Tattoos</b><span>What she is known for</span></span>
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
@@ -170,31 +170,6 @@
     </div>
   </section>
 
-  <!-- ===================== #proof — real rating, real Google attributes.
-       No review cards: no reviewer name + profile photo pair could be
-       sourced (Google's review panel and Yelp are both walled), so this
-       links out to the live reviews instead. REVIEW ATTRIBUTION LAW. -->
-  <section class="proof-band" id="proof">
-    <div class="wrap">
-      <div class="proof-in reveal">
-        <div class="rating">
-          <b class="tnum">4.6</b>
-          <div>
-            <span class="stars" aria-hidden="true">★★★★★</span>
-            <small>on Google · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ink%27d%20Ink.%20909%20Alder%20Ave%20Sumner%20WA%2098390" target="_blank" rel="noopener">read the reviews ↗</a></small>
-          </div>
-        </div>
-        <div class="attrs">
-          <span>Women-owned</span>
-          <span>Veteran-owned</span>
-          <span>Indigenous-owned</span>
-          <span>LGBTQ+ friendly</span>
-          <span class="src">Listed on her Google profile</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== #work — the signature interactive.
        Her portfolio is the product, so the gadget is the portfolio: five big
        labelled chips, one tap, the wall rebuilds instantly and the count
@@ -217,27 +192,93 @@
         </div>
         <p class="tally" id="workTally" aria-live="polite">17 pieces showing</p>
         <div class="works" id="works">
-          <figure class="work" data-cat="glitter"><span class="ph"><img src="images/work-01.jpg" alt="Glitter-realism tattoo of a stitched rag-doll character with a pink bow, sparkling under the skin" loading="lazy"></span><figcaption><b>Glitter realism</b>Rag doll, glitter body, pink bow</figcaption></figure>
-          <figure class="work" data-cat="glitter"><span class="ph"><img src="images/work-02.jpg" alt="Colour tattoo of a glittering potion bottle with a tooth inside, surrounded by a purple flower and gold sparkles" loading="lazy"></span><figcaption><b>Glitter realism</b>Potion bottle and flower</figcaption></figure>
-          <figure class="work" data-cat="glitter"><span class="ph"><img src="images/work-03.jpg" alt="Sticker-style tattoo of a cartoon cat wearing a hockey mask and holding a knife, with a white keyline border" loading="lazy"></span><figcaption><b>Sticker realism</b>Horror-movie cat, white keyline</figcaption></figure>
-          <figure class="work" data-cat="glitter"><span class="ph"><img src="images/work-04.jpg" alt="Small blue glitter smiley-face tattoo on a forearm" loading="lazy"></span><figcaption><b>Glitter realism</b>Blue glitter smiley</figcaption></figure>
-          <figure class="work" data-cat="glitter"><span class="ph"><img src="images/work-05.jpg" alt="Leg covered in sticker-style tattoos of candy hearts and valentine wrappers" loading="lazy"></span><figcaption><b>Sticker realism</b>Candy-heart leg, piece by piece</figcaption></figure>
+          <figure class="work" data-cat="glitter"><span class="ph"><img width="768" height="1024" src="images/work-01.jpg" alt="Glitter-realism tattoo of a stitched rag-doll character with a pink bow, sparkling under the skin" loading="lazy"></span><figcaption><b>Glitter realism</b>Rag doll, glitter body, pink bow</figcaption></figure>
+          <figure class="work" data-cat="glitter"><span class="ph"><img width="570" height="629" src="images/work-02.jpg" alt="Colour tattoo of a glittering potion bottle with a tooth inside, surrounded by a purple flower and gold sparkles" loading="lazy"></span><figcaption><b>Glitter realism</b>Potion bottle and flower</figcaption></figure>
+          <figure class="work" data-cat="glitter"><span class="ph"><img width="960" height="558" src="images/work-03.jpg" alt="Sticker-style tattoo of a cartoon cat wearing a hockey mask and holding a knife, with a white keyline border" loading="lazy"></span><figcaption><b>Sticker realism</b>Horror-movie cat, white keyline</figcaption></figure>
+          <figure class="work" data-cat="glitter"><span class="ph"><img width="1200" height="900" src="images/work-04.jpg" alt="Small blue glitter smiley-face tattoo on a forearm" loading="lazy"></span><figcaption><b>Glitter realism</b>Blue glitter smiley</figcaption></figure>
+          <figure class="work" data-cat="glitter"><span class="ph"><img width="1200" height="1200" src="images/work-05.jpg" alt="Leg covered in sticker-style tattoos of candy hearts and valentine wrappers" loading="lazy"></span><figcaption><b>Sticker realism</b>Candy-heart leg, piece by piece</figcaption></figure>
 
-          <figure class="work" data-cat="fine"><span class="ph"><img src="images/work-06.jpg" alt="Fine line tattoo of two heart lockets engraved with initials, on the back of a shoulder" loading="lazy"></span><figcaption><b>Fine line</b>Two engraved lockets</figcaption></figure>
-          <figure class="work" data-cat="fine"><span class="ph"><img src="images/work-07.jpg" alt="Fine line tattoo of a baby elephant sitting, on the inside of a wrist" loading="lazy"></span><figcaption><b>Fine line</b>Baby elephant, wrist</figcaption></figure>
-          <figure class="work" data-cat="fine"><span class="ph"><img src="images/work-08.jpg" alt="Fine line floral tattoo running down a forearm" loading="lazy"></span><figcaption><b>Fine line</b>Florals down the forearm</figcaption></figure>
-          <figure class="work" data-cat="fine"><span class="ph"><img src="images/work-09.jpg" alt="Botanical shoulder and chest tattoo of stems and blossoms in single-needle line work" loading="lazy"></span><figcaption><b>Fine line</b>Blossoms across the shoulder</figcaption></figure>
-          <figure class="work" data-cat="fine"><span class="ph"><img src="images/work-10.jpg" alt="Dotwork and mandala pattern tattooed across a thigh" loading="lazy"></span><figcaption><b>Fine line</b>Dotwork thigh panel</figcaption></figure>
+          <figure class="work" data-cat="fine"><span class="ph"><img width="1200" height="1200" src="images/work-06.jpg" alt="Fine line tattoo of two heart lockets engraved with initials, on the back of a shoulder" loading="lazy"></span><figcaption><b>Fine line</b>Two engraved lockets</figcaption></figure>
+          <figure class="work" data-cat="fine"><span class="ph"><img width="1200" height="1600" src="images/work-07.jpg" alt="Fine line tattoo of a baby elephant sitting, on the inside of a wrist" loading="lazy"></span><figcaption><b>Fine line</b>Baby elephant, wrist</figcaption></figure>
+          <figure class="work" data-cat="fine"><span class="ph"><img width="1200" height="1600" src="images/work-08.jpg" alt="Fine line floral tattoo running down a forearm" loading="lazy"></span><figcaption><b>Fine line</b>Florals down the forearm</figcaption></figure>
+          <figure class="work" data-cat="fine"><span class="ph"><img width="1200" height="1600" src="images/work-09.jpg" alt="Botanical shoulder and chest tattoo of stems and blossoms in single-needle line work" loading="lazy"></span><figcaption><b>Fine line</b>Blossoms across the shoulder</figcaption></figure>
+          <figure class="work" data-cat="fine"><span class="ph"><img width="1200" height="2133" src="images/work-10.jpg" alt="Dotwork and mandala pattern tattooed across a thigh" loading="lazy"></span><figcaption><b>Fine line</b>Dotwork thigh panel</figcaption></figure>
 
-          <figure class="work" data-cat="script"><span class="ph"><img src="images/work-11.jpg" alt="Tattoo of the handwritten words 'w/ love from Grandpa' on an inner forearm" loading="lazy"></span><figcaption><b>Script</b>Traced handwriting, "w/ love from Grandpa"</figcaption></figure>
-          <figure class="work" data-cat="script"><span class="ph"><img src="images/work-12.jpg" alt="Script name tattoo running down the outside of an upper arm" loading="lazy"></span><figcaption><b>Script</b>Names down the arm</figcaption></figure>
+          <figure class="work" data-cat="script"><span class="ph"><img width="1200" height="1600" src="images/work-11.jpg" alt="Tattoo of the handwritten words 'w/ love from Grandpa' on an inner forearm" loading="lazy"></span><figcaption><b>Script</b>Traced handwriting, "w/ love from Grandpa"</figcaption></figure>
+          <figure class="work" data-cat="script"><span class="ph"><img width="1200" height="900" src="images/work-12.jpg" alt="Script name tattoo running down the outside of an upper arm" loading="lazy"></span><figcaption><b>Script</b>Names down the arm</figcaption></figure>
 
-          <figure class="work" data-cat="pmu"><span class="ph"><img src="images/work-13.jpg" alt="Close-up of a healed hyper-realistic fusion brow in profile" loading="lazy"></span><figcaption><b>Permanent makeup</b>Fusion brow, healed</figcaption></figure>
-          <figure class="work" data-cat="pmu"><span class="ph"><img src="images/work-14.jpg" alt="Client facing the camera after brow work, both brows shaped and mapped" loading="lazy"></span><figcaption><b>Permanent makeup</b>Mapped to her bone structure</figcaption></figure>
-          <figure class="work" data-cat="pmu"><span class="ph"><img src="images/work-15.jpg" alt="Close-up of lips after a deep red lip blush treatment" loading="lazy"></span><figcaption><b>Permanent makeup</b>Deep red pout</figcaption></figure>
-          <figure class="work" data-cat="pmu"><span class="ph"><img src="images/work-16.jpg" alt="Close-up of lips after a soft pink watercolour lip blush" loading="lazy"></span><figcaption><b>Permanent makeup</b>Soft pink pout</figcaption></figure>
-          <figure class="work" data-cat="pmu"><span class="ph"><img src="images/work-17.jpg" alt="Client resting in the chair with freshly finished brows" loading="lazy"></span><figcaption><b>Permanent makeup</b>Straight out of the chair</figcaption></figure>
+          <figure class="work" data-cat="pmu"><span class="ph"><img width="1200" height="1600" src="images/work-13.jpg" alt="Close-up of a healed hyper-realistic fusion brow in profile" loading="lazy"></span><figcaption><b>Permanent makeup</b>Fusion brow, healed</figcaption></figure>
+          <figure class="work" data-cat="pmu"><span class="ph"><img width="1200" height="1600" src="images/work-14.jpg" alt="Client facing the camera after brow work, both brows shaped and mapped" loading="lazy"></span><figcaption><b>Permanent makeup</b>Mapped to her bone structure</figcaption></figure>
+          <figure class="work" data-cat="pmu"><span class="ph"><img width="1170" height="1081" src="images/work-15.jpg" alt="Close-up of lips after a deep red lip blush treatment" loading="lazy"></span><figcaption><b>Permanent makeup</b>Deep red pout</figcaption></figure>
+          <figure class="work" data-cat="pmu"><span class="ph"><img width="1170" height="1178" src="images/work-16.jpg" alt="Close-up of lips after a soft pink watercolour lip blush" loading="lazy"></span><figcaption><b>Permanent makeup</b>Soft pink pout</figcaption></figure>
+          <figure class="work" data-cat="pmu"><span class="ph"><img width="1200" height="900" src="images/work-17.jpg" alt="Client resting in the chair with freshly finished brows" loading="lazy"></span><figcaption><b>Permanent makeup</b>Straight out of the chair</figcaption></figure>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #proof — her rating, her Google attributes and four
+       REAL reviews. Every card carries the reviewer's published name AND their
+       published Google profile photo, saved locally (REVIEW ATTRIBUTION LAW,
+       2026-09-06); quotes are verbatim off her Google listing, ellipsis only
+       where a longer review is trimmed. The dark ground brings the hero's world
+       back into the middle of the page. -->
+  <section class="proof-band section-dark" id="proof">
+    <div class="wrap">
+      <div class="section-head proof-head reveal">
+        <p class="eyebrow">Straight off her Google listing</p>
+        <h2>Her clients <em>keep coming back</em></h2>
+      </div>
+      <div class="proof-in reveal">
+        <div class="rating">
+          <b class="tnum">4.6</b>
+          <div>
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <small>on Google · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ink%27d%20Ink.%20909%20Alder%20Ave%20Sumner%20WA%2098390" target="_blank" rel="noopener">read every review ↗</a></small>
+          </div>
+        </div>
+        <div class="attrs">
+          <span>Women-owned</span>
+          <span>Veteran-owned</span>
+          <span>Indigenous-owned</span>
+          <span>LGBTQ+ friendly</span>
+          <span class="src">Listed on her Google profile</span>
+        </div>
+      </div>
+
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" width="200" height="200" src="images/reviewer-angela.jpg" alt="Angela Shira" loading="lazy">
+            <span class="rev-who">Angela Shira<small>Google · a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Staci did both my kids tattoos. I will be returning to have her do my tattoos as well. Her line work is superb…”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" width="200" height="200" src="images/reviewer-gabbi.jpg" alt="Gabbi" loading="lazy">
+            <span class="rev-who">Gabbi<small>Google · a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Omg idk where to start, Staci is such a sweetheart- she killed it for my tattoos! She added 3 to my leg and then fixed a blew out tattoo of mine! So grateful for her”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" width="200" height="200" src="images/reviewer-olivia.jpg" alt="Olivia Sandoval" loading="lazy">
+            <span class="rev-who">Olivia Sandoval<small>Google · 2 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Had the most amazing experience. I was even able to take a nap during the session. She was so kind and caring and gentle. Loved this experience!”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" width="200" height="200" src="images/reviewer-joni.jpg" alt="Joni Suttles" loading="lazy">
+            <span class="rev-who">Joni Suttles<small>Google · a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Staci takes the time to get to know you and she gets the details spot on. I've done two flash with her so far and I couldn't be more pleased.”</p>
+        </article>
       </div>
     </div>
   </section>
@@ -247,7 +288,7 @@
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/about.jpg" alt="Staci Shantel, owner and artist of Ink'd Ink., in a pink blazer" loading="lazy">
+          <img width="1100" height="1262" src="images/about.jpg" alt="Staci Shantel, owner and artist of Ink'd Ink., in a pink blazer" loading="lazy">
           <figcaption>Staci Shantel — owner &amp; artist</figcaption>
         </figure>
         <div class="story-copy reveal">
@@ -304,8 +345,8 @@
         <h2>Can't wait to <em>meet ya</em></h2>
       </div>
       <div class="cta-actions reveal">
-        <a href="#contact" class="btn btn-primary">Book with Stace</a>
-        <a href="tel:+13602500632" class="btn btn-ghost">Call (360) 250-0632</a>
+        <a href="tel:+13602500632" class="btn btn-primary">Call (360) 250-0632</a>
+        <a href="https://instagram.com/inkdbystacishantel" class="btn btn-ghost" target="_blank" rel="noopener">Her newest work on Instagram ↗</a>
       </div>
     </div>
   </section>
@@ -335,7 +376,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">What she does</a><br><a href="#work">The work</a><br><a href="#about">About Stace</a><br><a href="#hours">Hours</a><br><a href="#contact">Book with Stace</a></p>
+        <p><a href="#services">What she does</a><br><a href="#work">The work</a><br><a href="#proof">Reviews</a><br><a href="#about">About Stace</a><br><a href="#hours">Hours</a><br><a href="#contact">Book with Stace</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -345,6 +386,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788868948"></script>
+<script src="js/site.js?v=1788923715"></script>
 </body>
 </html>

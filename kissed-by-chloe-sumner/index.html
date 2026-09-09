@@ -10,9 +10,9 @@
 <!-- Kaushan Script (the hand-painted name on their front window — SIGN-FONT LAW)
      + Bitter (body and section headlines). Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Bitter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788870647">
-<link rel="stylesheet" href="css/site.css?v=1788870647">
-<link rel="stylesheet" href="css/hero.css?v=1788870647">
+<link rel="stylesheet" href="css/style.css?v=1788923655">
+<link rel="stylesheet" href="css/site.css?v=1788923655">
+<link rel="stylesheet" href="css/hero.css?v=1788923655">
 </head>
 <body>
 
@@ -106,7 +106,7 @@
         <li data-days="5"><span class="day">Friday</span><span class="time">10:00 AM – 5:00 PM</span></li>
         <li data-days="6"><span class="day">Saturday</span><span class="time">10:00 AM – 5:00 PM</span></li>
         <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 4:00 PM</span></li>
-        <li class="note"><span class="day">Holidays</span><span class="time">Not posted — call first</span></li>
+        <li class="note"><span class="day">Holidays</span><span class="time">Call ahead</span></li>
       </ul>
     </div>
   </section>
@@ -131,6 +131,9 @@
 
       <div class="boards">
         <div class="board reveal">
+          <figure class="board-shot">
+            <img src="images/gallery-3.jpg" alt="A painted dresser at Kissed By Chloe hung with hand-lettered graphic tees, straw hats and boots, a carved welcome sign on the shelf behind" loading="lazy">
+          </figure>
           <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-wear">
             <h3>Everything you'd wear out west</h3>
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
@@ -152,6 +155,9 @@
         </div>
 
         <div class="board reveal">
+          <figure class="board-shot">
+            <img src="images/gallery-6.jpg" alt="Architectural salvage stacked inside Kissed By Chloe — an iron garden arch, old wooden window grids, a mossy stone rabbit and an armillary sphere" loading="lazy">
+          </figure>
           <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-junk">
             <h3>Heirlooms, decor and funky junk</h3>
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
@@ -183,10 +189,8 @@
       <div class="prints">
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A styled corner at Kissed By Chloe — a mannequin in a leopard skirt and rodeo tee, leopard coats on a rack, a black settee piled with printed cushions and a gold sunburst mirror" loading="lazy"><figcaption>Leopard, rodeo and a settee</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A carved wooden sideboard used as a display — jeans, a suede jacket, felt hats and boots arranged across it under an old wooden barrel and a wall clock" loading="lazy"><figcaption>The sideboard, doing the work</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A dresser hung with hand-lettered graphic tees, straw hats, boots and a carved welcome sign on the shelf behind" loading="lazy"><figcaption>Tees on the dresser</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A sequined jacket and a cream sequined coat hanging either side of a table of boots, a black felt hat and a wide cream hat on top" loading="lazy"><figcaption>Sequins and two hats</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A studded tan suede jacket on a hanger beside a pair of tooled cowboy boots with turquoise stitching, denim on the rack behind" loading="lazy"><figcaption>Studded suede, tooled boots</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Architectural salvage inside the shop — an iron garden arch, old wooden window grids, a mossy stone rabbit and an armillary sphere" loading="lazy"><figcaption>Salvage, stacked deep</figcaption></figure>
       </div>
     </div>
   </section>
@@ -207,6 +211,7 @@
       <div class="rack reveal">
         <div class="rack-frame">
           <div class="rack-shot" id="rackShot">
+            <img class="rack-idle" src="images/rack-rest.jpg" alt="A rack inside Kissed By Chloe — a cowhide-print top, a tan dress form, a hot-pink fringe outfit, felt hats above and boots lined up underneath" loading="lazy">
             <img src="images/rack-boots.jpg" alt="" id="rackImg" hidden>
             <p class="rack-rest" id="rackRest"><span class="hook" aria-hidden="true"><svg viewBox="0 0 40 34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10V7a3.5 3.5 0 1 1 3.5 3.5"/><path d="M20 10 4 25h32L20 10z"/></svg></span>Tap a hanger</p>
           </div>
@@ -215,40 +220,75 @@
 
         <div class="rail" role="group" aria-label="Five things on the rail">
           <button class="hanger" type="button" aria-pressed="false" data-img="images/rack-boots.jpg" data-label="Boots" data-alt="Cowboy boots on a painted trunk at Kissed By Chloe — tooled brown leather and turquoise-topped pairs, with folded jeans, cowhide bags and hats on the iron gate behind">
-          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-tag">Boots</span></button>
+          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-pic"><img src="images/thumbs/boots.jpg" alt="" width="220" height="220" loading="lazy"></span><span class="hanger-tag">Boots</span></button>
           <button class="hanger" type="button" aria-pressed="false" data-img="images/rack-hats.jpg" data-label="Hats" data-alt="A wall of felt and straw hats above the racks at Kissed By Chloe, with a fringed jacket and a tulle skirt on the mannequins below">
-          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-tag">Hats</span></button>
+          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-pic"><img src="images/thumbs/hats.jpg" alt="" width="220" height="220" loading="lazy"></span><span class="hanger-tag">Hats</span></button>
           <button class="hanger" type="button" aria-pressed="false" data-img="images/rack-denim.jpg" data-label="Denim" data-alt="Light-wash distressed jeans hung above a cream graphic hoodie and a pair of red glitter boots on a weathered wooden crate">
-          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-tag">Denim</span></button>
+          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-pic"><img src="images/thumbs/denim.jpg" alt="" width="220" height="220" loading="lazy"></span><span class="hanger-tag">Denim</span></button>
           <button class="hanger" type="button" aria-pressed="false" data-img="images/rack-fringe.jpg" data-label="Fringe" data-alt="A sage suede fringe jacket on a mannequin with a wide cream hat and a printed silk scarf, more fringe jackets on the rack behind">
-          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-tag">Fringe</span></button>
+          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-pic"><img src="images/thumbs/fringe.jpg" alt="" width="220" height="220" loading="lazy"></span><span class="hanger-tag">Fringe</span></button>
           <button class="hanger" type="button" aria-pressed="false" data-img="images/rack-junk.jpg" data-label="Funky junk" data-alt="A life-size filigree metal cow standing on the shop's wood floor beside an old Green Grocer sign, painted ladders and a rack of floral dresses">
-          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-tag">Funky junk</span></button>
+          <span class="hanger-wire" aria-hidden="true"></span><span class="hanger-pic"><img src="images/thumbs/junk.jpg" alt="" width="220" height="220" loading="lazy"></span><span class="hanger-tag">Funky junk</span></button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== #reviews =====================
-       REVIEW ATTRIBUTION LAW (2026-09-06): a quote needs the reviewer's real
-       published name AND their real profile image from the same source.
-       Google's review panel would not open (degraded place card, no reviews
-       tab) and Yelp blocked every route tonight, so no name+photo pair could
-       be sourced. The band shows the real rating and links out to the live
-       reviews rather than shipping an anonymous strip or a made-up face. -->
+       REVIEW ATTRIBUTION LAW (2026-09-06). Every quote below is verbatim from
+       this shop's own Google listing (cid 3197531298225413731, harvested
+       2026-09-08 → harvest/reviews.json), and every face is that reviewer's
+       OWN published Google profile photo, pulled from the same card at
+       =w200 into images/reviews/. No initials, no stock faces, nothing
+       manufactured. Trimmed quotes end at a sentence boundary; nothing is
+       reworded. -->
   <section class="section" id="reviews">
     <div class="wrap">
-      <div class="score reveal">
-        <div class="score-num">
-          <b class="tnum">4.5</b>
-          <p class="score-stars" aria-label="4.5 out of 5 stars on Google">★★★★☆</p>
-        </div>
-        <div class="score-copy">
-          <h2>Four and a half <em>on Google</em></h2>
-          <p>Shoppers keep saying the same two things: everything in here is hand-picked, and somebody actually helps you. Read them yourself.</p>
-          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Kissed+By+Chloe%2C+1018+Main+St%2C+Sumner%2C+WA+98390" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
-        </div>
+      <div class="section-head reveal">
+        <p class="eyebrow">In their words, on Google</p>
+        <h2>What the <em>regulars say</em></h2>
+        <p>Four and a half stars across their Google reviews. These four are theirs, word for word.</p>
       </div>
+
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/stephie-marie.png" alt="Stephie Marie, who reviewed Kissed By Chloe on Google" width="200" height="200" loading="lazy">
+            <span class="rev-who">Stephie Marie<small>Google review</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“The clothing is handpicked and so extremely cute and unique. The ladies in there are always so nice and inviting and the atmosphere is just super cool. The displays are always so gorgeous. They definitely put a lot of thought and effort into the decor and their style.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/rachel-milanesi.png" alt="Rachel Milanesi, who reviewed Kissed By Chloe on Google" width="200" height="200" loading="lazy">
+            <span class="rev-who">Rachel Milanesi<small>Google review</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Great selection of clothes and antiques. Fun to shop....wide variety of items and great boot selection.... In a small town shop...unbelievable!”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/kari-lee-adams.png" alt="Kari Lee Adams, who reviewed Kissed By Chloe on Google" width="200" height="200" loading="lazy">
+            <span class="rev-who">Kari Lee Adams<small>Google review</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“The woman who work and own the shop are so very kind and genuine. Hands down my top favorite shop to visit at Christmas time! The ornaments and decorations are unique, always on trend with colors and textures and are still reasonably priced.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/ronda-huff.png" alt="Ronda Huff, who reviewed Kissed By Chloe on Google" width="200" height="200" loading="lazy">
+            <span class="rev-who">Ronda Huff<small>Google review</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Best store ever!! I love this place from the employees to the clothes and accessories, the atmosphere, and the owner. She is super nice.”</p>
+        </article>
+      </div>
+
+      <p class="revs-more reveal"><a href="https://www.google.com/maps/search/?api=1&amp;query=Kissed+By+Chloe%2C+1018+Main+St%2C+Sumner%2C+WA+98390" target="_blank" rel="noopener">Read all of them on Google ↗</a></p>
     </div>
   </section>
 
@@ -265,8 +305,7 @@
           <h2>On Main Street <em>since 2016</em></h2>
           <p class="lede">“Brick &amp; Mortar boutique in the heart of Sumner where Boho &amp; Western collide.” — their own line in the Sumner Main Street Association directory.</p>
           <p>It's a western shop with the edges knocked off — boots and hats and denim, but hung off iron gates and painted dressers instead of chrome rails, with a splash of prairie in the dresses. The furniture holding the clothes is usually for sale too.</p>
-          <p>Look up when you get there. The name over the door is spelled out in salvaged marquee letters bolted to a strip of old corrugated tin — a cream K, a red i, a galvanised S, a big red S — and the shop name is hand-painted across the front window in white brush script. That window is where the whole look of this page comes from.</p>
-          <p>Everything on this page — the hours, the racks, the room, the letters over the door — came out of their own photographs, their Facebook and Instagram, and the Sumner Main Street directory.</p>
+          <p>Look up when you get there. The name over the door is spelled out in salvaged marquee letters bolted to a strip of old corrugated tin — a cream K, a red i, a galvanised S, a big red S — and the shop name is hand-painted across the front window in white brush script.</p>
         </div>
       </div>
     </div>
@@ -280,7 +319,7 @@
           <p class="eyebrow">Come see it</p>
           <h2>Park on <em>Main Street</em></h2>
           <ol class="steps">
-            <li><h3>Look for the letters</h3><p>Number 1018, the slate storefront with the flag out over the sidewalk and the salvaged K-i-s-S-e-d letters bolted above the door.</p></li>
+            <li><h3>Number 1018</h3><p>Halfway down the block, on the slate shopfront. Street parking runs right past the door.</p></li>
             <li><h3>Give it two passes</h3><p>Every surface is a display, and the good stuff is layered — most people miss half of it the first time down the aisle.</p></li>
             <li><h3>Ask about anything</h3><p>Nothing is listed online, so the shop is the catalogue. Call, or send a note and someone will get back to you.</p></li>
           </ol>
@@ -306,17 +345,25 @@
     </div>
   </section>
 
-  <!-- ===================== #cta ===================== -->
+  <!-- ===================== #cta =====================
+       The bookend: the hero opens with the name painted on live, and the page
+       closes on the real paint on the real glass (their own photo). The dark
+       band carries an object now instead of being an empty slate slab. -->
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Downtown Sumner</p>
-        <h2>The window with <em>the writing on it</em></h2>
-        <p>Half a block of Main Street, a flag over the sidewalk, and four salvaged letters over the door.</p>
-      </div>
-      <div class="cta-actions reveal">
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Kissed+By+Chloe%2C+1018+Main+St%2C+Sumner%2C+WA+98390" class="btn btn-primary" target="_blank" rel="noopener">Get directions</a>
-        <a href="tel:+12534477389" class="btn btn-ghost">Call (253) 447-7389</a>
+      <div class="cta-split">
+        <figure class="cta-shot reveal">
+          <img src="images/hero-window.jpg" alt="The hand-painted name on the front window of Kissed By Chloe, with downtown Sumner reflected back off the glass" loading="lazy">
+        </figure>
+        <div class="cta-copy reveal">
+          <p class="eyebrow">Downtown Sumner</p>
+          <h2>The window with <em>the writing on it</em></h2>
+          <p>You'll know it by the paint on the glass. What's on the racks turns over week to week, so no two trips down this aisle look the same.</p>
+          <div class="cta-actions">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Kissed+By+Chloe%2C+1018+Main+St%2C+Sumner%2C+WA+98390" class="btn btn-primary" target="_blank" rel="noopener">Get directions</a>
+            <a href="tel:+12534477389" class="btn btn-ghost">Call (253) 447-7389</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -355,6 +402,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788870647"></script>
+<script src="js/site.js?v=1788923655"></script>
 </body>
 </html>

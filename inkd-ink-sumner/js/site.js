@@ -172,20 +172,64 @@ function customClose(p, close){ return close; }
     var items = $$('.work', wall);
     var tally = $('#workTally');
     var current = 'all';
+    var lastCols = 0;
     var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+    /* Each piece's shape, straight off the <img> width/height attributes, so the
+       layout is pure arithmetic — no measuring, no race with image loading. */
+    items.forEach(function(fig, i){
+      var im = fig.querySelector('img');
+      var w = parseFloat(im && im.getAttribute('width')) || 4;
+      var h = parseFloat(im && im.getAttribute('height')) || 5;
+      fig._ratio = (h / w) + 0.18;        /* + the caption's share of the card */
+      fig._i = i;
+    });
+
     function label(n){ return n + (n === 1 ? ' piece showing' : ' pieces showing'); }
+    function colCount(n){
+      var w = window.innerWidth;
+      var max = w >= 900 ? 3 : 2;
+      return Math.max(1, Math.min(max, n));
+    }
+
+    /* Deal the visible pieces into the shortest column, tallest first (that's
+       what keeps the columns level — filling in source order left a half-empty
+       third column on the small filters). Each column is then put back into
+       source order, so the wall still reads top-to-bottom the way it's written.
+       Result: even columns, no dead space, and a two-piece filter fills the row
+       instead of stacking in one corner (which is what CSS column-count did). */
+    function layout(visible){
+      var cols = colCount(visible.length);
+      lastCols = cols;
+      var boxes = [], heights = [], packs = [], i;
+      wall.textContent = '';
+      for(i = 0; i < cols; i++){
+        var d = document.createElement('div');
+        d.className = 'wcol';
+        wall.appendChild(d); boxes.push(d); heights.push(0); packs.push([]);
+      }
+      visible.slice().sort(function(a, b){ return b._ratio - a._ratio || a._i - b._i; })
+        .forEach(function(fig){
+          var k = 0;
+          for(i = 1; i < cols; i++){ if(heights[i] < heights[k] - 0.0001) k = i; }
+          packs[k].push(fig);
+          heights[k] += fig._ratio;
+        });
+      packs.forEach(function(pack, c){
+        pack.sort(function(a, b){ return a._i - b._i; })
+            .forEach(function(fig){ boxes[c].appendChild(fig); });
+      });
+    }
 
     function apply(cat){
       current = cat;
-      var n = 0;
-      items.forEach(function(fig){
-        var show = (cat === 'all' || fig.getAttribute('data-cat') === cat);
-        fig.hidden = !show;
-        if(show) n++;
+      var visible = items.filter(function(fig){
+        return cat === 'all' || fig.getAttribute('data-cat') === cat;
       });
+      items.forEach(function(fig){ fig.hidden = visible.indexOf(fig) === -1; });
+      layout(visible);
       chips.forEach(function(c){ c.setAttribute('aria-pressed', c.getAttribute('data-cat') === cat ? 'true' : 'false'); });
-      if(tally) tally.textContent = label(n);
+      if(tally) tally.textContent = label(visible.length);
       if(!reduce){
         wall.classList.remove('is-filtering');
         void wall.offsetWidth;            /* restart the stagger */
@@ -198,6 +242,15 @@ function customClose(p, close){ return close; }
         var cat = c.getAttribute('data-cat');
         apply(cat === current && cat !== 'all' ? 'all' : cat);
       });
+    });
+
+    var rt;
+    window.addEventListener('resize', function(){
+      clearTimeout(rt);
+      rt = setTimeout(function(){
+        var visible = items.filter(function(f){ return !f.hidden; });
+        if(colCount(visible.length) !== lastCols) layout(visible);
+      }, 180);
     });
 
     apply('all');
