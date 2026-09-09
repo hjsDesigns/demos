@@ -10,8 +10,8 @@
 <!-- Archivo Black (display — the heavy grotesque of their real channel letters,
      one weight only, pinned at 400) + Barlow (body). Must match --display / --body. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907174514">
-<link rel="stylesheet" href="css/hero.css?v=0907174514">
+<link rel="stylesheet" href="css/style.css?v=1788925197">
+<link rel="stylesheet" href="css/hero.css?v=1788925197">
 </head>
 <body>
 
@@ -81,6 +81,7 @@
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>Six days a week, <em>till 8:30</em>.</h2>
         <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
@@ -88,7 +89,7 @@
           <a href="https://www.google.com/maps/search/?api=1&amp;query=9925%20214th%20Ave%20E%20Unit%20L%20Bonney%20Lake%20WA%2098391" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
         <div class="proof-row">
-          <span class="proof"><span class="star">★</span> 4.4 on Google · 646 reviews</span>
+          <span class="proof"><span class="star">★</span> 4.4 on Google · 649 reviews</span>
           <span class="proof"><span class="ico">✓</span> Dine in, take out &amp; delivery</span>
         </div>
       </div>
@@ -108,12 +109,17 @@
   <section class="section section-alt" id="about">
     <div class="wrap">
       <div class="story">
+        <!-- The room itself — the one whole-room photo they publish, uncropped
+             of its walls. The storefront belongs to the hero and is never
+             shown twice (NEVER TWICE); the other room files in images/ are
+             crops of this same frame, so only this one ships. -->
         <figure class="print reveal">
-          <img src="images/hero-exterior.jpg" alt="The Teriyaki Wok &amp; Sushi storefront on 214th Ave E — yellow channel letters and a fresh Sushi banner under a teal roof, menu photos filling the windows" loading="lazy" width="1920" height="1440">
-          <figcaption>Unit L, from the parking lot</figcaption>
+          <img src="images/lantern-room-room.jpg" alt="Inside Teriyaki Wok &amp; Sushi — live-edge walnut tables and cream chairs under a timber pillar, the lit menu boards along the left wall and the counter with its stools at the back" loading="lazy" width="1920" height="1440">
+          <figcaption>The room, from the front door</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Inside Unit L</p>
+          <span class="sign-rule" aria-hidden="true"></span>
           <h2>One room, <em>three stations</em>.</h2>
           <p class="lede">A sit-down teriyaki house with its own sushi bar, in the plaza on 214th Ave E.</p>
           <p>Most teriyaki places pick a lane. This one runs a grill, a wok and a sushi bar out of the same kitchen — so one table can order a chicken teriyaki plate, a Mongolian beef and a sashimi deluxe and have it all land at once.</p>
@@ -135,14 +141,11 @@
   <section class="section" id="menu">
     <div class="wrap">
       <div class="menu-lead">
-        <figure class="print reveal">
-          <img src="images/menu-page.jpg" alt="A page of the printed in-house menu — the Tartare &amp; Tataki list above a photograph of tuna tataki, and the Carpaccio menu below" loading="lazy" width="816" height="1056">
-          <figcaption>Their printed menu, on the table</figcaption>
-        </figure>
         <div class="section-head reveal">
           <p class="eyebrow">The whole menu</p>
+          <span class="sign-rule" aria-hidden="true"></span>
           <h2>Two hundred and one dishes, <em>every price</em>.</h2>
-          <p>Ten categories. Tap a heading and it rolls open where it stands — no second page, no PDF to pinch at.</p>
+          <p>Eleven headings. Tap one and it rolls open where it stands — no second page, no PDF to pinch at.</p>
         </div>
       </div>
       <div class="menu-search" hidden>
@@ -488,14 +491,20 @@
             </ul>
           </div>
         </article>
-      </div>
-      <p class="menu-fine reveal">Names and prices exactly as the restaurant writes them — the ten cards above from their own ordering page, the tataki and carpaccio lists below from the printed menu on the table, September 2026. Prices change; the kitchen has the last word.</p>
-
-      <!-- The printed in-house menu carries ten dishes the online ordering
-           page does not list at all. Transcribed verbatim from the photo. -->
-      <div class="printed reveal">
-        <h3>Only on the printed menu</h3>
-        <p class="src">Photographed at the table — not on the ordering page</p>
+        <!-- The printed in-house menu carries ten dishes the online ordering
+             page does not list at all. Transcribed verbatim from the photo,
+             and shipped as the eleventh title card so the whole menu opens
+             with one gesture (TITLE CARDS UNROLL). -->
+        <article class="card-roll reveal">
+          <button class="roll-head" type="button" aria-expanded="false">
+            <span class="roll-title">
+              <span class="roll-name">Only on the printed menu</span>
+              <span class="roll-meta"><span class="roll-count">10 items</span><span class="roll-range">$16 – $45</span></span>
+            </span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="roll-body">
+            <p class="roll-intro">Tartare, tataki and carpaccio — photographed at the table, not on the ordering page.</p>
         <div class="printed-cols">
           <div>
             <h4>Tartare &amp; Tataki</h4>
@@ -519,7 +528,14 @@
             </ul>
           </div>
         </div>
+            <figure class="print printed-shot">
+              <img src="images/menu-page.jpg" alt="A page of the printed in-house menu — the Tartare &amp; Tataki list above a photograph of tuna tataki, and the Carpaccio menu below" loading="lazy" width="816" height="1056">
+              <figcaption>Photographed at the table</figcaption>
+            </figure>
+          </div>
+        </article>
       </div>
+      <p class="menu-fine reveal">Names and prices exactly as the restaurant writes them — the ten browsable cards from their own ordering page, the tartare and carpaccio card from the printed menu on the table, September 2026. Prices change; the kitchen has the last word.</p>
 
       <div class="dish-strip reveal">
         <figure class="dish"><img src="images/dish-wok.jpg" alt="Glazed teriyaki chicken pieces in a black cast-iron wok" loading="lazy" width="1400" height="788"><figcaption>Chicken teriyaki, out of the wok</figcaption></figure>
@@ -538,6 +554,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The bento box</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>Build your <em>bento</em>.</h2>
         <p>Tap a main. Everything else in the box stays the same.</p>
       </div>
@@ -574,6 +591,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Off the sushi bar</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>What lands on the <em>walnut</em>.</h2>
       </div>
       <div class="prints">
@@ -592,23 +610,47 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">In their words</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>What people <em>write down</em>.</h2>
       </div>
       <div class="quotes">
-        <blockquote class="quote reveal">
-          <p>“Great food and service every time!!”</p>
-          <cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>Customer review · May 2026</cite>
-        </blockquote>
-        <blockquote class="quote reveal">
-          <p>“MUST try their Sushi!! deliciously fresh”</p>
-          <cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>Customer review · March 2024</cite>
-        </blockquote>
-        <blockquote class="quote reveal">
-          <p>“Tried your lunch special for the first time. The sweet and sour chicken was probably the best I've ever had. I had the #4 combo.”</p>
-          <cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>Customer review · April 2022</cite>
-        </blockquote>
+        <figure class="quote reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“Some of the best teriyaki I have ever had in my life! First time coming here and I'm sitting in the parking lot writing this review and thinking about what I'm gonna order next time.”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-jacob.jpg" alt="jacob smith" loading="lazy" width="48" height="48">
+            <span><b>jacob smith</b><span>Google · a month ago</span></span>
+          </figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“Great food today. We had Orange chicken, s-9 teriyaki chicken with breaded almond chicken and teriyaki chicken with vegetable chow mein. Waiter was really nice and quick. We also had the miso soup. It was also awesome. We will eat here again.”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-kevin.jpg" alt="Kevin Martin" loading="lazy" width="48" height="48">
+            <span><b>Kevin Martin</b><span>Google · 10 months ago</span></span>
+          </figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“Delicious teriyaki! Plus I get to order yummy sushi! Definitely a must try. Clean inside and the staff is very kind”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-nicole.jpg" alt="Nicole Fifield" loading="lazy" width="48" height="48">
+            <span><b>Nicole Fifield</b><span>Google · 5 months ago</span></span>
+          </figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>“If you’re getting a tire patched at Les Schwab walk next door - so good! … The fish was fresh and had the thicker cut that I enjoy. The hot tea was refilled regularly and the service from “Phoebe” was truly excellent.”</blockquote>
+          <figcaption class="who">
+            <img src="images/reviewer-jay.jpg" alt="Jay Freeman" loading="lazy" width="48" height="48">
+            <span><b>Jay Freeman</b><span>Google · 7 months ago</span></span>
+          </figcaption>
+        </figure>
       </div>
-      <p class="quotes-fine reveal">Quoted as written. Names are not published with these reviews.</p>
+      <div class="quotes-foot reveal">
+        <p class="quotes-fine">Quoted as written, with each reviewer's own Google name and profile photo.</p>
+        <a class="btn btn-ghost" href="https://www.google.com/maps?cid=9468896444782640707" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+      </div>
     </div>
   </section>
 
@@ -618,6 +660,7 @@
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Come get it</p>
+          <span class="sign-rule" aria-hidden="true"></span>
           <h2>Three ways to <em>eat</em>.</h2>
           <ol class="steps">
             <li><h3>Sit down</h3><p>Walk in and take a table — no reservations needed.</p></li>
@@ -625,9 +668,9 @@
             <li><h3>Order online</h3><p>Their ordering page takes pick-up and delivery orders straight to the kitchen.</p></li>
           </ol>
           <div class="contact-lines">
-            <span>📞 <a href="tel:+12538911980">(253) 891-1980</a></span>
-            <span>🥡 <a href="https://teriyakiwoksushi.menu11.com/bonneylake/order" target="_blank" rel="noopener">Order online ↗</a></span>
-            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=9925%20214th%20Ave%20E%20Unit%20L%20Bonney%20Lake%20WA%2098391" target="_blank" rel="noopener">Directions ↗</a></span>
+            <span><i class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 3.5h3l1.5 3.8-2 1.3a12 12 0 0 0 5.3 5.3l1.3-2 3.8 1.5v3a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 4.8 5.5a1.8 1.8 0 0 1 1.8-2Z"/></svg></i><a href="tel:+12538911980">(253) 891-1980</a></span>
+            <span><i class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5h14l-1.2 11a1.6 1.6 0 0 1-1.6 1.5H7.8a1.6 1.6 0 0 1-1.6-1.5Z"/><path d="M9 8.5V6a3 3 0 0 1 6 0v2.5"/></svg></i><a href="https://teriyakiwoksushi.menu11.com/bonneylake/order" target="_blank" rel="noopener">Order online ↗</a></span>
+            <span><i class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></i><a href="https://www.google.com/maps/search/?api=1&amp;query=9925%20214th%20Ave%20E%20Unit%20L%20Bonney%20Lake%20WA%2098391" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
         </div>
         <form class="contact-form reveal">
@@ -653,6 +696,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">One menu, all of it</p>
+        <span class="sign-rule" aria-hidden="true"></span>
         <h2>Grilled, wok-fired or <em>cut to order</em>.</h2>
       </div>
       <div class="numbers reveal">
@@ -700,6 +744,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907174514"></script>
+<script src="js/site.js?v=1788925197"></script>
 </body>
 </html>
