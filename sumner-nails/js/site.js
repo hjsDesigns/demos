@@ -161,8 +161,9 @@ function customClose(p, close){ return close; }
   });
 
   /* ---------- SIGNATURE GADGET: "Pick a colour" ----------
-     Five real finishes photographed at this shop. One tap fills the frame,
-     tapping the same pill again empties it. No state to decode, no numbers. */
+     Five real finishes photographed at this shop. The frame opens on the first
+     one; one tap swaps it, tapping the lit pill empties the frame. No state to
+     decode, no numbers. */
   (function(){
     var frame=$('#pickFrame'), cap=$('#pickCap'), pills=$$('#swatches .sw');
     if(!frame||!pills.length) return;
@@ -180,7 +181,9 @@ function customClose(p, close){ return close; }
         show(current===key ? null : key);
       });
     });
-    show(null);
+    // Opens ALREADY SHOWING the first finish — the section never starts as an
+    // empty box (2026-09-08 refine). Tapping the lit pill still clears it.
+    show(pills[0].getAttribute('data-sw'));
   })();
 
 })();

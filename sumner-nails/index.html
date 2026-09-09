@@ -9,10 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- SIGN-FONT LAW: Archivo Black is the closest Google face to the heavy,
      white-keylined window lettering at 1111 Main. Karla carries the body.
-     Must match --display / --body in css/style.css?v=1788898521. -->
+     Must match --display / --body in css/style.css?v=1788923262. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788898521">
-<link rel="stylesheet" href="css/hero.css?v=1788898521">
+<link rel="stylesheet" href="css/style.css?v=1788923262">
+<link rel="stylesheet" href="css/hero.css?v=1788923262">
 </head>
 <body>
 
@@ -29,8 +29,7 @@
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#services">What they do</a>
-        <a href="#gallery">Their work</a>
-        <a href="#signature">Pick a colour</a>
+        <a href="#work">Their work</a>
         <a href="#about">The shop</a>
         <a href="#hours">Hours</a>
         <a href="#contact" class="nav-cta">Call</a>
@@ -118,22 +117,36 @@
         <h2>Straight off <em>the window</em></h2>
         <p>Tap a line to open it. There's no price list published anywhere for this shop — call and ask, and they'll tell you.</p>
       </div>
+
+      <!-- The window panel: the four lines actually cut into the glass at 1111
+           Main, set as live vinyl type in the sign's face (SIGN-FONT LAW /
+           CRISP RULE) — the source of this whole section, never a photo crop. -->
+      <aside class="window-panel reveal" aria-label="What is painted on the shop window">
+        <ul class="vinyl">
+          <li>Nails</li>
+          <li>Acrylic</li>
+          <li>Waxing</li>
+          <li>Walk-ins welcome</li>
+        </ul>
+        <p class="wp-cap">Cut into the glass at 1111 Main</p>
+      </aside>
       <div class="unrolls">
 
         <article class="unroll reveal">
           <button class="unroll-head" type="button" aria-expanded="false" aria-controls="u-nails">
-            <span>Nails and acrylic</span>
+            <span>Full sets, fills and dip</span>
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="unroll-body" id="u-nails">
             <div class="unroll-inner"><div class="unroll-pad">
               <ul>
-                <li>Acrylic full sets</li>
-                <li>Colour, glossed to a high shine</li>
+                <li>Acrylic full sets and fills</li>
+                <li>Dip powder</li>
+                <li>Gel colour, glossed to a high shine</li>
                 <li>Cat-eye</li>
                 <li>Chrome and metallic finishes</li>
               </ul>
-              <p class="src">Acrylic is painted on their window. The finishes are photographed on hands at this shop, and one of their Google reviews names the cat-eye by name.</p>
+              <p class="src">Every line here is on the public record: acrylic is cut into their window, and their own Google reviewers name the fills, the dip powder, the gel and the cat-eye. The finishes are photographed on hands at this shop.</p>
             </div></div>
           </div>
         </article>
@@ -157,12 +170,12 @@
 
         <article class="unroll reveal">
           <button class="unroll-head" type="button" aria-expanded="false" aria-controls="u-wax">
-            <span>Waxing</span>
+            <span>Waxing and brows</span>
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="unroll-body" id="u-wax">
             <div class="unroll-inner"><div class="unroll-pad">
-              <p class="src">Both signs in the glass say it — the painted window and the lit oval behind it. What they wax and what it costs isn't published anywhere, so ring the shop and ask.</p>
+              <p class="src">Both signs in the glass say it — the hand-cut vinyl and the lit oval behind it — and a reviewer on Google thanks them for her brows in the same breath as her gel set. What else they wax, and what any of it costs, isn't published anywhere: ring the shop and ask.</p>
             </div></div>
           </div>
         </article>
@@ -171,63 +184,25 @@
     </div>
   </section>
 
-  <!-- ===================== #gallery =====================
-       Three real sets photographed at this shop, framed as prints.
-       Never the hero photo, never the same photo twice on the page. -->
-  <section class="section section-alt" id="gallery">
-    <div class="wrap">
+  <!-- ===================== #work — THEIR WORK, and the gadget =====================
+       NEVER TWICE (sections): the build shipped a #gallery of finished nails AND
+       a picker of finished nails — the same idea twice, 1½ screens apart. They
+       are now ONE section, at section four. Five finishes this shop actually
+       photographed, one tap each. The frame opens ALREADY SHOWING the first
+       finish (no dead box), a second pill swaps it, and tapping the lit pill
+       clears the frame. Nothing to read, no numbers, nothing restated from the
+       hours band or the address. -->
+  <section class="section section-alt" id="work">
+    <div class="wrap split">
       <div class="section-head reveal">
         <p class="eyebrow">Their work</p>
-        <h2>Hands that <em>walked back out</em></h2>
-      </div>
-      <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A hand with hot pink nails and a small white design on the ring finger, photographed on the sidewalk outside the shop." loading="lazy" width="1050" height="1400"><figcaption>Pink, with one done differently</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A hand with long glossy pink almond-shaped nails, resting on a car door after an appointment." loading="lazy" width="1050" height="1400"><figcaption>Long almond, straight to the car</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A hand with lavender purple nails and a silver ring, photographed outdoors." loading="lazy" width="712" height="1400"><figcaption>Lavender, short and square</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #reviews =====================
-       REVIEW ATTRIBUTION LAW: a testimonial card needs the reviewer's real name
-       AND their real profile photo from the same source. Google Maps is serving
-       this listing in limited view and Yelp is bot-walled, so no name+photo pair
-       could be sourced tonight — the law's link-out form is used instead. No
-       quotes are shown. Rating and count are the real ones off the listing. -->
-  <section class="section" id="reviews">
-    <div class="wrap split">
-      <div class="section-head reveal">
-        <p class="eyebrow">What people say</p>
-        <h2>The reviews live <em>on Google</em></h2>
-        <p>Sumner Nails has never had a website, so everything customers have written about Tony and Tina is sitting on their Google listing. Read it there, in their own words.</p>
-      </div>
-      <div class="rating reveal">
-        <div class="score">4.3<small>out of 5</small></div>
-        <div>
-          <p class="stars" aria-hidden="true">★★★★★<span style="width:86%">★★★★★</span></p>
-          <p class="cnt">Rated by 34 people on Google.</p>
-          <a class="btn btn-primary" href="https://www.google.com/maps/place/Sumner+Nails/@47.2034041,-122.2404895,17z" target="_blank" rel="noopener">Read them on Google ↗</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #signature =====================
-       The gadget, at section six. Five finishes this shop actually photographed,
-       one tap each. Tap a pill, the photo fills the frame; tap the same pill
-       again and the frame goes back to empty. No numbers to type, nothing to
-       read, nothing restated from the hours or the address. -->
-  <section class="section section-alt" id="signature">
-    <div class="wrap split">
-      <div class="section-head reveal">
-        <p class="eyebrow">Show them what you want</p>
         <h2>Pick a colour, <em>see it done</em></h2>
-        <p>Every one of these was done at this shop. Tap one — tap it again to put it back.</p>
+        <p>Every one of these walked out of this shop. Tap a colour to see it — tap the same one again to empty the frame.</p>
       </div>
       <div class="picker reveal">
         <div class="picker-frame" id="pickFrame">
           <p class="hint">Tap a colour</p>
-          <div class="shot" data-sw="a"><img src="images/finish-catseye-purple.jpg" alt="A hand with alternating purple and burnt-orange cat-eye nails on a white towel." loading="lazy" width="975" height="1300"></div>
+          <div class="shot" data-sw="a"><img src="images/finish-catseye-purple.jpg" alt="A hand with alternating purple and burnt-orange cat-eye nails on a white towel." width="975" height="1300"></div>
           <div class="shot" data-sw="b"><img src="images/finish-catseye-plum.jpg" alt="A hand with deep plum cat-eye nails, each with a bright shifting streak down the middle." loading="lazy" width="975" height="1300"></div>
           <div class="shot" data-sw="c"><img src="images/finish-red-chrome.jpg" alt="A hand with mirror-bright red chrome nails on a white towel." loading="lazy" width="975" height="1300"></div>
           <div class="shot" data-sw="d"><img src="images/finish-catseye-green.jpg" alt="A hand with dark green cat-eye nails, the light band curving across each one." loading="lazy" width="1300" height="1110"></div>
@@ -245,11 +220,83 @@
     </div>
   </section>
 
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW: every card carries the reviewer's REAL published
+       name AND their REAL profile image, both pulled from the SAME source — the
+       shop's own Google listing (harvest/reviews-live.json, scraped 2026-09-08
+       through a warmed profile; the plain /maps/place panel serves a degraded
+       view that never renders the cards). Quotes are verbatim, contiguous, and
+       trimmed only at sentence ends. Nothing here is invented, no avatar is
+       manufactured, and the rating and count are the listing's own. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What people say</p>
+        <h2>Twenty-odd years of <em>regulars</em></h2>
+        <p>Sumner Nails has never had a website, so everything anyone has written about Tony and Tina is sitting on their Google listing. These are theirs, word for word.</p>
+      </div>
+
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-kaylie.jpg" alt="Kaylie Paul's Google profile photo" width="240" height="240">
+            <span class="rev-who">Kaylie Paul<small>10 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;Always so sweet, can call the day of to make an appointment or walk on in. Small family owned business that really does great work and is so kind!&rdquo;</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-jo.png" alt="Jo Aysian's Google profile photo" width="240" height="240">
+            <span class="rev-who">Jo Aysian<small>A year ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;Cute little place in a quaint lil area. Went on a Sunday morning. I neglected to ask for her name, but she got me started right away. Made sure I was comfortable.&rdquo;</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-camille.jpg" alt="Camille Saunders' Google profile photo" width="240" height="240">
+            <span class="rev-who">Camille Saunders<small>2 years ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;Great experience. They were able to take me as a walk in immediately. I got a pedicure and manicure and was done in about an hour. Very happy with the color.&rdquo;</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-desie.jpg" alt="Desie La Ra's Google profile photo" width="240" height="240">
+            <span class="rev-who">Desie La Ra<small>Edited 3 years ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;They stayed open late for me and my nails lasted 4 weeks! Super nice people and will listen to your wants rather than just doing whatever! I think I found my permanent nail salon!&rdquo;</p>
+        </article>
+      </div>
+
+      <div class="rating reveal">
+        <div class="score">4.3<small>out of 5</small></div>
+        <div>
+          <p class="stars" aria-hidden="true">★★★★★<span style="width:86%">★★★★★</span></p>
+          <p class="cnt">Rated by 34 people on Google — the good and the bad, none of it edited by us.</p>
+          <a class="btn btn-primary" href="https://www.google.com/maps/place/Sumner+Nails/@47.2034041,-122.2404895,17z" target="_blank" rel="noopener">Read them all on Google ↗</a>
+        </div>
+      </div>
+
+      <p class="strip-cap reveal">And three of the photos on the same listing</p>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A hand with hot pink nails and a small white flower on the ring finger, photographed on the sidewalk outside the shop." loading="lazy" width="1050" height="1400"><figcaption>Pink, with one done differently</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A hand with lavender purple nails and a silver ring, photographed outdoors." loading="lazy" width="712" height="1400"><figcaption>Lavender, short and square</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A hand with long glossy pink almond-shaped nails, resting on a car door after an appointment." loading="lazy" width="1050" height="1400"><figcaption>Long almond, straight to the car</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== #about =====================
        Only what is publicly on the record: two owners named by first name in
        their own Google reviews, and the building anyone can stand in front of.
        No invented history, no invented roles, no invented founding year. -->
-  <section class="section" id="about">
+  <section class="section section-alt" id="about">
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
@@ -268,16 +315,16 @@
   </section>
 
   <!-- ===================== #contact ===================== -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting in</p>
           <h2>Call the shop, <em>or just come by</em></h2>
           <ol class="steps">
-            <li><h3>Ring them</h3><p>(253) 862-4214 goes straight to the shop — no booking app, no account.</p></li>
+            <li><h3>Ring them</h3><p>(253) 862-4214 goes straight to the shop, and Tony or Tina is the one who picks it up.</p></li>
             <li><h3>Say what you're after</h3><p>A set, a pedicure, or waxing. Ask what a shade or a finish would cost while you're on.</p></li>
-            <li><h3>Or don't ring at all</h3><p>Their window says walk-ins welcome, and a customer on Google says you can call the same day and come in.</p></li>
+            <li><h3>Or don't ring at all</h3><p>A customer on Google says you can phone in the morning and be in the chair the same day — and the door is open either way.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📞 <a href="tel:+12538624214">(253) 862-4214</a></span>
@@ -307,7 +354,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Sumner, Washington</p>
-        <h2>The door is open <em>every day of the week</em></h2>
+        <h2>No app. <em>Just the door.</em></h2>
+        <p>No booking site, no account, no deposit — there never has been. Ring the shop, or push the door and see who's free.</p>
       </div>
       <div class="cta-actions reveal">
         <a href="#contact" class="btn btn-primary">Send a message</a>
@@ -335,7 +383,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">What they do</a><br><a href="#gallery">Their work</a><br><a href="#signature">Pick a colour</a><br><a href="#about">The shop</a><br><a href="#contact">Call</a></p>
+        <p><a href="#services">What they do</a><br><a href="#work">Their work</a><br><a href="#reviews">What people say</a><br><a href="#about">The shop</a><br><a href="#contact">Call</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -345,6 +393,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788898521"></script>
+<script src="js/site.js?v=1788923262"></script>
 </body>
 </html>

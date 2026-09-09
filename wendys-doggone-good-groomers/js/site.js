@@ -182,12 +182,23 @@ function customClose(p, close){ return close; }
     // images nobody asked for.
     function bigFor(i){
       if(!bigs[i]){
-        var im=document.createElement('img');
-        im.src=$('img',picks[i]).getAttribute('data-full');
+        var src=$('img',picks[i]).getAttribute('data-full');
+        // the photo whole, never cropped, sitting in a blurred warm echo of
+        // itself so a portrait frame doesn't leave two dead bands of paper
+        var shot=document.createElement('div');
+        shot.className='shot';
+        var echo=document.createElement('i');
+        echo.className='echo';
+        echo.setAttribute('aria-hidden','true');
+        echo.style.backgroundImage='url("'+src+'")';   // set here, not in CSS: a url()
+        shot.appendChild(echo);                        // inside a custom property resolves
+        var im=document.createElement('img');          // against the stylesheet, not the page
+        im.src=src;
         im.alt='';                      // the thumbnail button already carries the alt text
-        stage.appendChild(im);
-        void im.offsetWidth;            // reflow, so .on always animates from the start state
-        bigs[i]=im;
+        shot.appendChild(im);
+        stage.appendChild(shot);
+        void shot.offsetWidth;          // reflow, so .on always animates from the start state
+        bigs[i]=shot;
       }
       return bigs[i];
     }
@@ -221,6 +232,11 @@ function customClose(p, close){ return close; }
       wio.observe(wall);
     }
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&current>-1)clear()});
+
+    // The frame never opens empty: the first dog is already in it when the
+    // section loads. Tap another and it swaps; tap the lit one and it goes
+    // back to the "tap a dog" card. Same one gesture either way.
+    if(total) pick(0);
   })();
 
 })();
