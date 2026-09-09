@@ -132,6 +132,20 @@ function customClose(p, close){ return close; }
   },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
   $$('.reveal').forEach(function(el){io.observe(el)});
 
+  /* ---------- TITLE CARDS UNROLL — the headline is the tap target ----------
+     One tap opens it, one tap closes it. Downward chevron flips up. No modes,
+     no legend, nothing to read first. */
+  $$('.unroll').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    if(btn.getAttribute('aria-expanded')==='true') panel.setAttribute('data-open','1');
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
+
   /* ---------- contact form ----------
      Demo mode (hidden access_key empty): show the thank-you, send nothing.
      Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms from the visitor's

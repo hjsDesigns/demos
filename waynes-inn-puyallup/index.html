@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Oswald (display, sturdy condensed) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788928844">
+<link rel="stylesheet" href="css/hero.css?v=1788928844">
 </head>
 <body>
 
@@ -98,6 +98,15 @@
         <li data-days="6"><span class="day">Saturday</span><span class="time">9:00 AM – 2:00 AM</span></li>
         <li data-days="0"><span class="day">Sunday</span><span class="time">9:00 AM – 2:00 AM</span></li>
       </ul>
+
+      <!-- STOREFRONT BELOW THE HOURS: the hero is the sign inside the room, so the
+           building itself opens the offerings — their own photo of 1902 E Main at
+           night, the 12 painted on the end wall and the pole sign lit behind it. -->
+      <figure class="storefront reveal">
+        <img src="images/storefront.jpg" width="1600" height="1200" loading="lazy"
+             alt="Wayne's Inn from E Main Avenue at night — the long low building with a Seahawks 12 painted on the end wall, lights strung along the roofline and the pole sign lit behind it">
+        <figcaption>This is the building. Pull in off E Main, under the lit sign.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -107,40 +116,64 @@
       <div class="section-head reveal">
         <p class="eyebrow">Under the sign</p>
         <h2>A bar you can <em>spend the night in</em></h2>
-        <p>Tables to play on, a yard to sit in, and a kitchen that stays on while you do.</p>
+        <p>Tables to play on, a yard to sit in, and a kitchen that stays on while you do. Tap a heading and the rest of it rolls out.</p>
       </div>
       <div class="cards">
 
         <article class="card reveal">
           <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.4"/><circle cx="15" cy="14" r="1.4"/><path d="M6 16h1.5"/></svg></div>
-          <h3>Pool, darts &amp; cornhole</h3>
-          <p>Pool tables and dart boards inside, cornhole boards out back. Regulars say the tables are kept up.</p>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-games">
+            <h3>Pool, darts &amp; cornhole</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Five things, whenever you're in</p>
+          <p>Regulars say the tables are kept up — Kammi Oderin's words on Google: <em>“Darts and pool are always kept up.”</em></p>
+          <div class="rolled" id="roll-games">
+            <ul>
+              <li>Pool tables</li>
+              <li>Dart boards</li>
+              <li>Cornhole boards out back</li>
+              <li>The claw machine — <em>“a personal fav”</em> (Mel G)</li>
+              <li>Room to dance when there's a DJ on</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card reveal">
           <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div>
           <h3>Karaoke Friday &amp; Saturday</h3>
-          <p>It's painted on the banner strung over the stage: <b>every Friday &amp; Saturday night</b>. The board below tells you if it's tonight.</p>
+          <p class="when">Off the banner over the stage</p>
+          <p>It's painted up there in two lines: <b>every Friday &amp; Saturday night</b>. The board further down tells you whether it's tonight.</p>
         </article>
 
         <article class="card reveal">
           <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11"/><path d="M6 11v8M18 11v8M9 15h6"/></svg></div>
-          <h3>The beer garden</h3>
-          <p>A big fenced yard behind the building — picnic tables, umbrellas up, food carried straight out to you.</p>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-yard">
+            <h3>The beer garden</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Out back, year round</p>
+          <p>A fenced yard behind the building, and it stays usable when the weather turns.</p>
+          <div class="rolled" id="roll-yard">
+            <ul>
+              <li>Long picnic tables, some of them covered</li>
+              <li>Umbrellas up through the summer</li>
+              <li>Heaters going on cold nights (Mel G)</li>
+              <li>A TV out there for the game (Jaquan Satchel)</li>
+              <li>Food carried straight out to you</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card reveal">
           <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M8.5 21h7"/><path d="M5 7h14v4a7 7 0 0 1-14 0z"/><path d="M12 18v3"/></svg></div>
-          <h3>Trivia nights</h3>
-          <p>Trivia runs here too, and every screen in the place is on for the game — their sign out on Main has read <b>FOOTBALL HERE</b> all season.</p>
+          <h3>Trivia &amp; the game</h3>
+          <p class="when">Every screen in the place</p>
+          <p>Trivia runs here too, and the reader board out on Main has read <b>FOOTBALL HERE</b> all season.</p>
         </article>
 
       </div>
 
-      <figure class="print wide reveal">
-        <img src="images/gallery-1.jpg" alt="A taco in a red basket on a wooden picnic table in Wayne's Inn's beer garden, yellow umbrellas open behind it" loading="lazy">
-        <figcaption>Out back — picnic tables, umbrellas up</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -152,20 +185,22 @@
       <div class="section-head reveal">
         <p class="eyebrow">Off the menu on the table</p>
         <h2>The kitchen is the <em>real reason people come</em></h2>
-        <p>Their own line above the steaks: <em>“This is the one you heard about all around town!”</em> Sandwiches and burgers come with fries or salad.</p>
+        <p>Their own line above the steaks: <em>“This is the one you heard about all around town!”</em> Tap a heading and the real list rolls out — every item and price read off the menu on the table.</p>
       </div>
 
       <div class="menu-shots reveal">
-        <figure class="print"><img src="images/gallery-2.jpg" alt="A double-patty burger with lettuce, tomato, onion and cheese beside a basket of crinkle fries" loading="lazy"><figcaption>Half-pound patties, fries alongside</figcaption></figure>
-        <figure class="print"><img src="images/gallery-3.jpg" alt="A New York strip steak on a white plate with a loaded baked potato and two slices of garlic bread" loading="lazy"><figcaption>New York strip, loaded potato, garlic bread</figcaption></figure>
-        <figure class="print"><img src="images/gallery-4.jpg" alt="A basket of golden tater tots on red checked paper with a cup of ranch" loading="lazy"><figcaption>Tater tots — the $3 substitution</figcaption></figure>
+        <figure class="print"><img src="images/gallery-2.jpg" width="1800" height="1452" alt="A double-patty burger with lettuce, tomato, onion and cheese beside a basket of crinkle fries" loading="lazy"><figcaption>Half-pound patties, fries alongside</figcaption></figure>
+        <figure class="print"><img src="images/gallery-3.jpg" width="1800" height="2391" alt="A New York strip steak on a white plate with a loaded baked potato and two slices of garlic bread" loading="lazy"><figcaption>New York strip, loaded potato, garlic bread</figcaption></figure>
+        <figure class="print"><img src="images/dish-pizza.jpg" width="1600" height="2133" alt="A twelve-inch supreme pizza in an open box, loaded with sausage, peppers, olives, mushrooms and tomato" loading="lazy"><figcaption>Twelve inches, piled — the Ultra Supreme</figcaption></figure>
       </div>
 
       <div class="menu-groups">
-        <div>
-          <div class="menu-group reveal">
-            <h3>Sandwiches</h3>
-            <p class="group-note">Served with your choice of fries or salad</p>
+        <div class="menu-group reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-sandwiches">
+            <span><h3>Sandwiches</h3><span class="cnt">14 of them · fries or salad with each</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-sandwiches">
             <ul class="menu-list">
               <li><span class="name">Hot Sicilian</span><span class="price">$15.00</span><span class="desc">Ham, pepperoni, tomatoes, onions and green peppers all grilled to perfection and topped with loads of Swiss cheese on a toasted French roll</span></li>
               <li><span class="name">Hot Pastrami</span><span class="price">$13.99</span><span class="desc">Hot smoked pastrami with melted Swiss cheese served on a toasted French roll with mustard</span></li>
@@ -183,13 +218,30 @@
               <li><span class="name">Bratwurst Sandwich</span><span class="price">$7.00</span><span class="desc">Grilled bratwurst topped with sauerkraut served on a toasted hoagie roll with mustard</span></li>
             </ul>
           </div>
-
         </div>
 
-        <div>
-          <div class="menu-group reveal">
-            <h3>Burgers</h3>
-            <p class="group-note">Cooked to order · all burgers come with fries or salad</p>
+        <div class="menu-group reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-pizza">
+            <span><h3>Pizza</h3><span class="cnt">5 · all of them 12 inches</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-pizza">
+            <ul class="menu-list">
+              <li><span class="name">“Classic Cheese” Pizza</span><span class="price">$14.00</span></li>
+              <li><span class="name">Wayne's Ultra Supreme</span><span class="price">$20.00</span><span class="desc">Piled high with all the meats and veggies. “WOW” This one has it ALL!</span></li>
+              <li><span class="name">Meat Lovers Supreme</span><span class="price">$18.00</span><span class="desc">ALL the MEAT and NO VEGGIES</span></li>
+              <li><span class="name">Maui Zaui</span><span class="price">$18.00</span><span class="desc">Ham, crisp bacon, pineapple, and tomato</span></li>
+              <li><span class="name">Cheese Garlic Bread</span><span class="price">$9.00</span><span class="desc">French roll covered in pizza sauce and garlic, topped with melted cheese. Add pepperoni $2.00</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu-group reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-burgers">
+            <span><h3>Burgers</h3><span class="cnt">7 · half-pound patties, cooked to order</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-burgers">
             <ul class="menu-list">
               <li><span class="name">Wayne's Burger</span><span class="price">$15.00</span><span class="desc">Thick and juicy ½ pound burger, topped with lettuce, tomato, onions, pickles and mayo served on a fresh toasted bun</span></li>
               <li><span class="name">Perfect Pounder</span><span class="price">$20.00</span><span class="desc">Two ½ pound patties topped with all the burger toppings and served on a freshly toasted bun</span></li>
@@ -200,30 +252,53 @@
               <li><span class="name">Porky Pig</span><span class="price">$19.00</span><span class="desc">½ lb beef and deli ham topped with 2 kinds of melted cheese, 2 strips of bacon, fried egg and drizzled with BBQ sauce</span></li>
             </ul>
           </div>
+        </div>
 
-          <div class="menu-group reveal">
-            <h3>Steak</h3>
-            <p class="group-note">All our steaks come with a house salad · cooked to order</p>
+        <div class="menu-group reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-breakfast">
+            <span><h3>Breakfast</h3><span class="cnt">Saturday &amp; Sunday, 9 AM – noon</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-breakfast">
+            <ul class="menu-list">
+              <li><span class="name">Denver Omelet</span><span class="price">$13.99</span><span class="desc">Chopped ham grilled together with cheddar cheese, green peppers and onions</span></li>
+              <li><span class="name">House Omelet</span><span class="price">$15.00</span><span class="desc">This one is loaded with bacon, ham, mushrooms, green peppers, onions and cheddar cheese</span></li>
+              <li><span class="name">Cheese Omelet</span><span class="price">$14.00</span></li>
+              <li><span class="name">“Build Your Own” Basic Omelet</span><span class="price">$12.00</span><span class="desc">Start with 2 toppings. Each additional item $2.00 — bacon, ham, sausage, cheese, onions, tomatoes, mushrooms, black olives, jalapenos</span></li>
+              <li><span class="name">Breakfast Sandwich</span><span class="price">$11.00</span><span class="desc">2 eggs cooked to order with your choice of bacon, ham, or sausage. Served with bread of choice. Add hash browns for $2.50</span></li>
+              <li><span class="name">Wayne's Special</span><span class="price">$12.00</span><span class="desc">2 eggs, 2 slices of toast, 2 pieces of bacon or sausage</span></li>
+              <li><span class="name">Biscuits and Gravy</span><span class="price">$12.00</span><span class="desc">2 open-faced biscuits smothered in country gravy served with a side of hash browns</span></li>
+              <li><span class="name">Breakfast Ham and Eggs</span><span class="price">$14.00</span><span class="desc">Thick slice of ham, 3 eggs, hash browns and toast</span></li>
+              <li><span class="name">Corned Beef Hash</span><span class="price">$14.00</span><span class="desc">Crispy corned beef hash, hash browns, 3 eggs &amp; toast</span></li>
+              <li><span class="name">Chicken Fried Steak and Eggs</span><span class="price">$16.00</span><span class="desc">Chicken fried steak, 3 eggs, hash browns, and toast</span></li>
+              <li><span class="name">Country Scrambled</span><span class="price">$15.00</span><span class="desc">Ham, green peppers, onions, home fries &amp; egg — topped with melted cheese and served with toast</span></li>
+              <li><span class="name">Steak and Eggs</span><span class="price">$18.00</span><span class="desc">8oz. New York steak, 3 eggs, hash browns, and toast</span></li>
+              <li><span class="name">Waffle Breakfast</span><span class="price">$13.99</span><span class="desc">One waffle with two eggs and choice of bacon, ham, or sausage</span></li>
+              <li><span class="name">Pancake Breakfast</span><span class="price">$13.99</span><span class="desc">Two buttermilk pancakes with two eggs and choice of bacon, ham, or sausage</span></li>
+              <li><span class="name">Country Benedict</span><span class="price">$13.99</span><span class="desc">Two halved biscuits with two sausage patties, two eggs, topped with country gravy. Served with hash browns</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu-group reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-steak">
+            <span><h3>Steak</h3><span class="cnt">2 · house salad and garlic bread with both</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-steak">
             <ul class="menu-list">
               <li><span class="name">8oz. New York Strip Dinner</span><span class="price">$20.00</span><span class="desc">Served with green salad, garlic bread, and your choice of French fries or baked potato</span></li>
               <li><span class="name">Bourbon Steak</span><span class="price">$21.00</span><span class="desc">8oz. New York Strip marinated in bourbon sauce and topped off with sautéed onions and mushrooms. Served with green salad, garlic bread, and your choice of French fries or baked potato</span></li>
             </ul>
           </div>
+        </div>
 
-          <div class="menu-group reveal">
-            <h3>Pizza</h3>
-            <p class="group-note">All pizzas are 12&Prime; · each extra item $2.00</p>
-            <ul class="menu-list">
-              <li><span class="name">“Classic Cheese” Pizza</span><span class="price">$14.00</span></li>
-              <li><span class="name">Wayne's Ultra Supreme</span><span class="price">$20.00</span><span class="desc">Piled high with all the meats and veggies. “WOW” This one has it ALL!</span></li>
-              <li><span class="name">Meat Lovers Supreme</span><span class="price">$18.00</span><span class="desc">ALL the MEAT and NO VEGGIES</span></li>
-              <li><span class="name">Maui Zaui</span><span class="price">$18.00</span><span class="desc">Ham, crisp bacon, pineapple, and tomato</span></li>
-              <li><span class="name">Cheese Garlic Bread</span><span class="price">$9.00</span><span class="desc">French roll covered in pizza sauce and garlic, topped with melted cheese. Add pepperoni $2.00</span></li>
-            </ul>
-          </div>
-
-          <div class="menu-group reveal">
-            <h3>Sides</h3>
+        <div class="menu-group reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-sides">
+            <span><h3>Sides</h3><span class="cnt">The one they list on its own</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-sides">
             <ul class="menu-list">
               <li><span class="name">Loaded Baked Potato</span><span class="price">$6.00</span></li>
             </ul>
@@ -269,56 +344,88 @@
       <div class="section-head reveal">
         <p class="eyebrow">Inside</p>
         <h2>Green light, dark wood, <em>and a full bar</em></h2>
-        <p>Green LED runs the length of the ceiling, a disco ball over the floor, the taps behind the bar and the TVs on. This is what walking in looks like.</p>
+        <p>Green LED runs the length of the ceiling, a disco ball over the floor, the taps behind the bar and every TV on. This is what walking in looks like — four of their own photos, nothing staged.</p>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/about.jpg" alt="Inside Wayne's Inn at night — green LED strip along the ceiling, a disco ball, bar stools at the counter and a wood floor" loading="lazy"><figcaption>The floor, on a karaoke night</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A house salad in a white bowl with dressing on the side and a pint of beer, on the bar in front of the tap handles" loading="lazy"><figcaption>House salad at the taps</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="A cold pint glass and a frosted mug of beer on the bar under a neon sign" loading="lazy"><figcaption>Two cold ones on the bar</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-7.jpg" alt="A basket of crinkle-cut fries on red checked paper at a table in the back room" loading="lazy"><figcaption>Crinkle fries, back of the room</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-wide.jpg" width="1600" height="1200" alt="The main room at Wayne's Inn — wood floor, high tables and chairs, TVs along the wall and pink and green light across the ceiling" loading="lazy"><figcaption>Straight in the door — the main floor</figcaption></figure>
+        <figure class="print reveal"><img src="images/about.jpg" width="1800" height="1350" alt="Inside Wayne's Inn at night — green LED strip along the ceiling, a disco ball, bar stools at the counter and a wood floor" loading="lazy"><figcaption>The floor, on a karaoke night</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-out.jpg" width="1600" height="1200" alt="The back of the room at Wayne's Inn, tables by the windows looking out to the covered beer garden" loading="lazy"><figcaption>The back tables, looking out to the yard</figcaption></figure>
+        <figure class="print reveal"><img src="images/neon-puyallup.jpg" width="1600" height="1200" alt="A white neon sign reading PUYALLUP mounted on the wall above the bar" loading="lazy"><figcaption>PUYALLUP, in neon, over the bar</figcaption></figure>
       </div>
     </div>
   </section>
 
   <!-- ===================== #reviews =====================
-       Aggregate only. No named Google reviewer was reachable through a source
-       tonight, so no quote is attributed to a person — the ratings are the record. -->
+       REVIEW ATTRIBUTION LAW (2026-09-06): every quote below is verbatim off the
+       Google listing, with that reviewer's real published name and their own
+       published profile picture, pulled from the same source on 2026-09-08
+       (place cid 13629777111836389513 — see scrape-reviews.py). The aggregate
+       score is NOT repeated here; it lives once, in the hours band. -->
   <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">The record</p>
-        <h2>Rated on <em>two listings, hundreds of times</em></h2>
-        <p>Restaurantji's own write-up of them, in its words: <em>“a welcoming dive bar with a friendly staff.”</em></p>
+        <p class="eyebrow">In their own words, on Google</p>
+        <h2>The regulars <em>already told you</em></h2>
+        <p>Six of them, word for word off the listing. Names and profile pictures are theirs.</p>
       </div>
-      <div class="ratings">
-        <div class="rating-card reveal">
-          <span class="rc-src">Google</span>
-          <b class="rc-num tnum">4.0</b>
-          <span class="rc-stars" aria-hidden="true">★★★★<span class="half">★</span></span>
-          <span class="rc-count tnum">482 reviews</span>
-        </div>
-        <div class="rating-card reveal">
-          <span class="rc-src">Restaurantji</span>
-          <b class="rc-num tnum">4.3</b>
-          <span class="rc-stars" aria-hidden="true">★★★★<span class="half">★</span></span>
-          <span class="rc-count tnum">162 ratings</span>
-        </div>
-        <div class="rating-bars reveal">
-          <h3>How those 162 land</h3>
-          <ul class="bars">
-            <li><span class="bl">5 star</span><span class="bar"><i style="--w:62%"></i></span><span class="bv tnum">62%</span></li>
-            <li><span class="bl">4 star</span><span class="bar"><i style="--w:24%"></i></span><span class="bv tnum">24%</span></li>
-            <li><span class="bl">3 star</span><span class="bar"><i style="--w:2%"></i></span><span class="bv tnum">2%</span></li>
-            <li><span class="bl">2 star</span><span class="bar"><i style="--w:4%"></i></span><span class="bv tnum">4%</span></li>
-            <li><span class="bl">1 star</span><span class="bar"><i style="--w:8%"></i></span><span class="bv tnum">8%</span></li>
-          </ul>
-          <div class="subscores">
-            <span><b class="tnum">4.4</b> Food</span>
-            <span><b class="tnum">4.6</b> Atmosphere</span>
-            <span><b class="tnum">4.6</b> Service</span>
+      <div class="revs">
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-beattie.jpg" alt="Nicole Beattie's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Nicole Beattie<small>4 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
           </div>
-        </div>
+          <p>“Anyone old enough to remember the show Cheers? That's what this bar reminds me of. You only have to stop in once or twice and the bartenders and staff remember your name, your drink and treat you like gold.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-barber.jpg" alt="Samantha Barber's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Samantha Barber<small>4 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“The staff are AMAZING the bartenders, cooks, security and bar backs are always happy, friendly and helpful! The owner always says hello asking if you are ok and need anything when he comes in. Great place for karaoke and trivia!”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-theth.jpg" alt="Kun Ponleu Theth's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Kun Ponleu Theth<small>4 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Amazing service, Terese was such a pleasant bartender. All of my drinks were phenomenal and the atmosphere here is great! Definitely coming back”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-smiley.jpg" alt="Jennifer Smiley's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Jennifer Smiley<small>A year ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“I have been coming here for 5 years… I had the best French dip ever! Great new chef. H8ghly recommend.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-satchel.jpg" alt="Jaquan Satchel's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Jaquan Satchel<small>A year ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“The food is great and their chef, jeff pays close attention to detail when you request something special for your meal. If you ask for medium rare you get meadium rare… altho it's nice to sit inside I love to sit outside with the tv and heat lamps.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-jfrost.jpg" alt="J Frost's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">J Frost<small>11 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="4 out of 5 stars">★★★★☆</span>
+          </div>
+          <p>“I'm Surprised this place Hasn't been flooded with Karaoke SIngers yet! Outstanding, very Attentive staff, Friendly atmosphere, and Security to keep things Civil. Looking for a New venue to Kickback with friends, This is it!”</p>
+        </article>
+
       </div>
+      <p class="revs-foot reveal"><a href="https://www.google.com/maps?cid=13629777111836389513" target="_blank" rel="noopener">Read the rest on Google ↗</a></p>
     </div>
   </section>
 
@@ -399,6 +506,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788928844"></script>
 </body>
 </html>
