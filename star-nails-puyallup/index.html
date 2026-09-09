@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fraunces (display, sturdy elegant serif) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788927258">
+<link rel="stylesheet" href="css/hero.css?v=1788927258">
 </head>
 <body>
 
@@ -31,6 +31,7 @@
         <a href="#work">The work</a>
         <a href="#services">Services</a>
         <a href="#signature">Shapes</a>
+        <a href="#reviews">Reviews</a>
         <a href="#hours">Hours</a>
         <a href="#book" class="nav-cta">Book</a>
       </nav>
@@ -66,7 +67,7 @@
   <section class="status-band section-dark" id="hours">
     <div class="wrap">
       <div class="status-head">
-        <p class="eyebrow">When to find them</p>
+        <p class="eyebrow">When to find her</p>
         <h2>Open <em>seven days</em></h2>
         <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
@@ -74,6 +75,7 @@
           <a href="https://www.google.com/maps/search/?api=1&amp;query=716+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
         <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.5 from 114 Google reviews</span>
           <span class="proof"><span class="ico">✓</span> Walk-ins welcome</span>
           <span class="proof"><span class="ico">✓</span> Gift certificates available</span>
         </div>
@@ -88,7 +90,7 @@
           <li data-days="6"><span class="day">Saturday</span><span class="time">10:00 AM – 6:00 PM</span></li>
           <li data-days="0"><span class="day">Sunday</span><span class="time">11:00 AM – 5:00 PM</span></li>
         </ul>
-        <p class="hours-note">Holidays can run short — give them a ring before you drive down.</p>
+        <p class="hours-note">Holidays can run short — give her a ring before you drive down.</p>
       </div>
     </div>
   </section>
@@ -99,10 +101,18 @@
        never the client. Masonry so nothing is cropped to fit a grid cell. -->
   <section class="section" id="work">
     <div class="wrap">
+      <!-- STOREFRONT BELOW THE HOURS: the hero is her work, so the building
+           opens the offerings. No exterior or interior exists in the 39-photo
+           Google harvest, so this is a Google Street View frame of the real
+           block, captioned as such — it is replaced by Hayden's drive-by shot. -->
+      <figure class="print storefront reveal">
+        <img src="images/storefront.jpg" alt="The shopfront row on East Main Avenue — Star Nails under a yellow awning with a star on the sign, between the bistro and the cleaners" width="1600" height="575" loading="lazy">
+        <figcaption>716 E Main Ave — the yellow awning, between the bistro and the cleaners · Google Street View</figcaption>
+      </figure>
       <div class="section-head reveal">
-        <p class="eyebrow">Their own work</p>
+        <p class="eyebrow">Her own work</p>
         <h2>The wall of <em>finished sets</em></h2>
-        <p>Every set here was done at 716 E Main and posted to their own listing. Nothing on this wall is stock.</p>
+        <p>Every set here was done at that table on East Main and posted to her own listing. Nothing on this wall is stock.</p>
       </div>
       <div class="prints prints-masonry">
         <figure class="print reveal"><img src="images/work-1.jpg" alt="Deep wine gel nails, glossy squoval shape" width="1500" height="2000" loading="lazy"><figcaption>Deep wine gel</figcaption></figure>
@@ -119,47 +129,76 @@
   </section>
 
   <!-- ===================== #services =====================
-       Names only. Their Fresha booking page publishes the service list and
-       no prices; the two extra lines come off their own card. Nothing here
-       is invented and nothing carries a made-up number. -->
+       TITLE CARDS UNROLL: each category headline is itself the tap target,
+       a downward chevron is the affordance, and the real items roll out in
+       place. Every item is verbatim off her Fresha booking page; the skin
+       and waxing lines come off her own printed card. No prices are
+       published anywhere online, so none are shown. -->
   <section class="section section-alt" id="services">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">On the list</p>
-        <h2>What they <em>do</em></h2>
-        <p>Straight off their booking page and their card. Prices aren't published anywhere online — call and ask for yours.</p>
+        <h2>What she <em>does</em></h2>
+        <p>Straight off her booking page and her card. Tap a heading to see everything in it. Prices aren't published anywhere online — call and ask for yours.</p>
       </div>
-      <div class="svc-groups">
-        <div class="svc-group svc-group-wide reveal">
-          <h3>Hands</h3>
-          <ul class="svc-list">
-            <li>Manicure</li>
-            <li>Russian manicure</li>
-            <li>Gel nails</li>
-            <li>Acrylic nails</li>
-            <li>Dip powder nails</li>
-            <li>Nail extensions</li>
-            <li>Gel nail extensions</li>
-            <li>Nail polish</li>
-            <li>Nail art</li>
-          </ul>
-        </div>
-        <div class="svc-group reveal">
-          <h3>Feet</h3>
-          <ul class="svc-list">
-            <li>Pedicure</li>
-            <li>Spa pedicure</li>
-            <li>Manicure and pedicure</li>
-          </ul>
-        </div>
-        <div class="svc-group reveal">
-          <h3>Skin &amp; waxing</h3>
-          <ul class="svc-list">
-            <li>Skin care</li>
-            <li>Waxing</li>
-          </ul>
-          <p class="svc-note">“Professional nail, skin care, &amp; waxing for ladies &amp; gentlemen” — their own card.</p>
-        </div>
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12V4.5a1.5 1.5 0 0 1 3 0V11"/><path d="M12 11V3.5a1.5 1.5 0 0 1 3 0V11"/><path d="M15 11V5.5a1.5 1.5 0 0 1 3 0V13a7 7 0 0 1-7 7h-1a6 6 0 0 1-5.2-3l-1.6-2.8a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg></div>
+          <button class="unroll" type="button" aria-expanded="true" aria-controls="roll-hands">
+            <h3>Hands</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Nine on the booking page</p>
+          <p>Everything on the wall above was done at this table — acrylic, gel, dip, and freehand art.</p>
+          <div class="rolled" id="roll-hands" data-open="1">
+            <ul>
+              <li>Manicure</li>
+              <li>Russian manicure</li>
+              <li>Gel nails</li>
+              <li>Acrylic nails</li>
+              <li>Dip powder nails</li>
+              <li>Nail extensions</li>
+              <li>Gel nail extensions</li>
+              <li>Nail polish</li>
+              <li>Nail art</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20c-2 0-3.5-1.6-3.2-3.6.3-2 1.3-3 1.3-5.4a6 6 0 0 1 12 0c0 2.4 1 3.4 1.3 5.4.3 2-1.2 3.6-3.2 3.6z"/><path d="M8.5 7.5h.01M12 6.2h.01M15.5 7.5h.01"/></svg></div>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-feet">
+            <h3>Feet</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Three on the booking page</p>
+          <p>Book the pedicure on its own, or with a manicure in the same sitting.</p>
+          <div class="rolled" id="roll-feet">
+            <ul>
+              <li>Pedicure</li>
+              <li>Spa pedicure</li>
+              <li>Manicure and pedicure</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4.4 3.6-8 8-8s8 3.6 8 8"/><path d="M4 15a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3"/><path d="M12 7V3.5M8 8.2 6.4 5.4M16 8.2l1.6-2.8"/></svg></div>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-skin">
+            <h3>Skin &amp; waxing</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <p class="when">Two, and they're printed on the card</p>
+          <p>“Professional nail, skin care, &amp; waxing for ladies &amp; gentlemen” — word for word off her own card.</p>
+          <div class="rolled" id="roll-skin">
+            <ul>
+              <li>Skin care</li>
+              <li>Waxing</li>
+            </ul>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -173,7 +212,7 @@
       <div class="section-head reveal">
         <p class="eyebrow">Pick one</p>
         <h2>What <em>shape</em> are you getting?</h2>
-        <p>Tap a shape — that's a real set of theirs, not a drawing.</p>
+        <p>Tap a shape — that's a real set of hers, not a drawing.</p>
       </div>
       <div class="shaper reveal">
         <figure class="print shape-frame">
@@ -204,48 +243,94 @@
     </div>
   </section>
 
+  <!-- ===================== #about — WHOSE CHAIR IT IS =====================
+       Every fact and every quote in this band is lifted verbatim from her
+       public Google reviews (45 pulled 2026-09-08). Nothing here is invented;
+       the named + faced testimonials live in #reviews below. -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/her-table.jpg" alt="Hands resting on the salon's own work mat, nails painted with blue and gold hand-painted tile artwork" width="1920" height="1920" loading="lazy">
+          <figcaption>Her table, and a set of freehand tile work</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Whose chair it is</p>
+          <h2>Everyone in Puyallup just says <em>“ask for Chita”</em></h2>
+          <p class="lede">Read the Google reviews and one name comes back twenty-six times in the first forty-five. Customers spell it Chita, Chi, once even Cheetah. It's one woman, and this is her shop.</p>
+          <p>She works on her own. “She said that she works by herself, and she's been doing nails for 20 years,” one customer wrote two years ago. Another calls the place “a one woman show.” A third likes “the privacy of being the only customer.” One older review simply names her “Chita (owner).”</p>
+          <p>So the reference picture on your phone goes straight to the person holding the brush — no front desk, no hand-off. “I showed her a reference picture and she matched it perfectly.”</p>
+          <p class="story-src">Quotes verbatim from her Google reviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW: each card carries the reviewer's real published
+       name AND their real published Google profile photo, from the same
+       source, with their real rating and how long ago it was posted. Pulled
+       2026-09-08 from the Google listing (cid 46602734172695548) through a
+       warmed persistent profile; avatars are served locally from the same
+       lh3 originals. Nothing here is fabricated and the live reviews are
+       linked underneath. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">In their words</p>
+        <h2>Four of the <em>hundred and fourteen</em></h2>
+        <p>Word for word off her Google listing, with the people who wrote them.</p>
+      </div>
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-brittany.jpg" alt="Brittany, Google reviewer" width="160" height="160" loading="lazy">
+            <span class="rev-who">Brittany (Britt)<small>8 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Will never go anywhere else! Chi is AMAZING!”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-denise.jpg" alt="Denise Seabrook-Garcia, Google reviewer" width="160" height="160" loading="lazy">
+            <span class="rev-who">Denise Seabrook-Garcia<small>A year ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Got a last minute appointment last Friday and I was extremely happy with the friendly and professional service! Best manicure and my nails look Amazing!!! I will definitely be returning.”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-stephanie.jpg" alt="Stephanie Viken, Google reviewer" width="160" height="160" loading="lazy">
+            <span class="rev-who">Stephanie Viken<small>A year ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Chita did amazing work tonight. Facial wax very pleased with my eyebrows! Pedicure great! Nails beautifully done with free style art design. White &amp; gold for all white event ❤️ I been coming to Chita for her quality work. I am a hard working woman, I work with my hands, and by FAR her quality and attention to detail out shine others! My nails stay intact. I am loyal to Chita at Star Nails in Puyallup!”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-shawna.jpg" alt="Shawna Gonzales-Lloyd, Google reviewer" width="160" height="160" loading="lazy">
+            <span class="rev-who">Shawna Gonzales-Lloyd<small>2 years ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Chita is my girl! Any time I get my nails done elsewhere I'm always reminded of why I should never go to anyone else. She takes her time, is thorough, and gives amazing recommendations! She truly makes your inspiration actually come to life. Gave me the best birthday nails I could have asked for and is incredibly sweet! 100/10 recommend!”</p>
+        </article>
+      </div>
+      <p class="quotes-src reveal"><a href="https://www.google.com/maps?cid=46602734172695548" target="_blank" rel="noopener">Read every review on Google ↗</a></p>
+    </div>
+  </section>
+
   <!-- ===================== #book ===================== -->
   <section class="section section-tint" id="book">
     <div class="wrap book-band">
       <div class="reveal">
         <p class="eyebrow">Two ways in</p>
         <h2>Book a time, or <em>just walk in</em></h2>
-        <p>Their appointments already run through Fresha — pick a slot and you're done. No account, no deposit. If you'd rather ring the shop, the phone's right here.</p>
+        <p>Her appointments already run through Fresha — pick a slot and you're done. No account, no deposit. If you'd rather ring the shop, the phone's right here.</p>
       </div>
       <div class="book-actions reveal">
-        <a class="btn btn-primary" href="https://www.fresha.com/lvp/star-nails-east-main-avenue-puyallup-gn21n7" target="_blank" rel="noopener">Open their booking page ↗</a>
+        <a class="btn btn-primary" href="https://www.fresha.com/lvp/star-nails-east-main-avenue-puyallup-gn21n7" target="_blank" rel="noopener">Open her booking page ↗</a>
         <a class="btn btn-outline" href="tel:2534455093">Call (253) 445-5093</a>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== #reviews =====================
-       Verbatim, with the reviewer's published name and how long ago it was
-       posted. No profile photos are published anywhere we can reach, so
-       these cards carry no avatar at all rather than a fabricated one —
-       and the live reviews are linked underneath. -->
-  <section class="section" id="reviews">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">In their words</p>
-        <h2><em>4.5</em> out of 5, across 114 reviews</h2>
-        <p>Three of them, word for word. The same nail tech keeps getting named.</p>
-      </div>
-      <div class="quotes">
-        <figure class="quote reveal">
-          <blockquote>“Chita is incredibly talented and does an amazing job every single time. She is the only person I will see for my nails! I can always count on her for perfect results.”</blockquote>
-          <figcaption><b>S. N.</b><span>6 months ago</span></figcaption>
-        </figure>
-        <figure class="quote reveal">
-          <blockquote>“Chi is the best! She always knows what will look best and her attention to detail is top notch. I've always had issues of my nails lifting prior to seeing her, but with her work, I can go 3 weeks without a fill.”</blockquote>
-          <figcaption><b>Michelle Backman</b><span>6 months ago</span></figcaption>
-        </figure>
-        <figure class="quote reveal">
-          <blockquote>“Chita is amazing. She takes her time and makes sure everything looks perfect. She wants you happy with the job she does! I was able to get a last minute appointment for a repair and a fill and it turned out awesome!”</blockquote>
-          <figcaption><b>AJ B.</b><span>3 months ago</span></figcaption>
-        </figure>
-      </div>
-      <p class="quotes-src reveal"><a href="https://www.google.com/search?q=Star+Nails+716+E+Main+Ave+Puyallup+WA+reviews" target="_blank" rel="noopener">Read every review on Google ↗</a></p>
     </div>
   </section>
 
@@ -256,9 +341,9 @@
         <p class="eyebrow">Getting there</p>
         <h2>Downtown Puyallup,<br><em>on East Main</em></h2>
         <ol class="steps">
-          <li><h3>Park on Main</h3><p>They're in the row of shopfronts on the north side of East Main Ave.</p></li>
-          <li><h3>Bring a picture</h3><p>Screenshot anything off the wall above — the art on this page is all theirs to redo.</p></li>
-          <li><h3>Ask about a gift certificate</h3><p>Their card says they keep them on hand.</p></li>
+          <li><h3>Park on Main</h3><p>The row of shopfronts with the yellow awning, north side of East Main Ave. Park in front.</p></li>
+          <li><h3>Bring a picture</h3><p>Screenshot anything off the wall above — every set on this page is hers to do again.</p></li>
+          <li><h3>Ask about a gift certificate</h3><p>Her card says she keeps them on hand.</p></li>
         </ol>
         <div class="contact-lines">
           <span>Phone · <a href="tel:2534455093">(253) 445-5093</a></span>
@@ -292,12 +377,13 @@
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Star Nails &amp; Spa · Puyallup</p>
+        <p class="eyebrow">Star Nails &amp; Spa</p>
         <h2><em><span class="nb">Walk-ins</span> welcome.</em></h2>
-        <p>It's printed right on their card. Come down to East Main and pick a colour.</p>
+        <p>It's printed right on her card. Come down to East Main and pick a colour.</p>
       </div>
       <div class="cta-actions reveal">
         <a class="btn btn-cream" href="https://www.google.com/maps/search/?api=1&amp;query=Star+Nails+716+E+Main+Ave+Puyallup+WA" target="_blank" rel="noopener">Get directions ↗</a>
+        <a class="btn btn-ghost" href="tel:2534455093">Call (253) 445-5093</a>
       </div>
     </div>
   </section>
@@ -311,7 +397,7 @@
         <span class="plate"><img src="images/wordmark.jpg" alt="" width="1686" height="609"></span>
         <span class="wm">Star Nails &amp; Spa<small>Puyallup, WA</small></span>
       </div>
-      <p>Acrylics, gel, dip powder, pedicures and hand-painted art on East Main.</p>
+      <p>Acrylics, gel, dip powder, pedicures and hand-painted art on East Main. Ask for Chita.</p>
     </div>
     <div>
       <h4>Come in</h4>
@@ -323,6 +409,8 @@
       <p><a href="#work">The work</a></p>
       <p><a href="#services">Services</a></p>
       <p><a href="#signature">Shapes</a></p>
+      <p><a href="#about">Whose chair it is</a></p>
+      <p><a href="#reviews">Reviews</a></p>
       <p><a href="#book">Book</a></p>
     </div>
   </div>
@@ -332,6 +420,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788927258"></script>
 </body>
 </html>

@@ -149,6 +149,20 @@ function customClose(p, close){ return close; }
       .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
   })}
 
+  /* ---------- TITLE CARDS UNROLL (2026-09-08 refine) ----------
+     The category headline IS the tap target; the chevron flips up; the real
+     items roll out in place. Hands opens on load so the band is never a row
+     of empty bars. */
+  $$('.unroll').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
+
   /* ---------- SIGNATURE GADGET ----------
      Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
 

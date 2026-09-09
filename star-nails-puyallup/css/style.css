@@ -518,3 +518,91 @@ p{margin:0 0 1em}
 .cta-band h2{hyphens:none;overflow-wrap:normal}
 .cta-band .section-head p:not(.eyebrow){font-size:18px}
 .nb{white-space:nowrap}
+
+/* ============================================================================
+   REFINE PASS — 2026-09-08 (to the Purdy's / The Local / Captain Jack's bar)
+   Hero untouched. Everything below it: the recurring star device, the
+   title-cards-unroll offerings, the storefront print, the owner band and the
+   named-and-faced review cards.
+   ============================================================================ */
+
+/* ---------- THE RECURRING DEVICE ----------
+   Their own mark is a script "Star" with a four-point sparkle in it. Every
+   section label on the page now opens with that sparkle, drawn in CSS (never
+   a redraw of their logo — it's a typographic node, not their wordmark), so
+   the hero's world carries down the page. */
+.eyebrow{display:flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";flex:none;width:12px;height:12px;background:currentColor;
+  clip-path:polygon(50% 0%,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0% 50%,39% 39%)}
+.eyebrow::after{content:"";flex:none;width:24px;height:1px;background:currentColor;opacity:.4}
+
+/* ---------- STOREFRONT PRINT (opens the offerings, under the hours band) ---------- */
+.storefront{transform:rotate(-.5deg);margin:0 0 clamp(30px,4.5vw,56px);padding:12px 12px 34px;border-radius:4px}
+.storefront:hover{transform:rotate(0) scale(1.005)}
+.storefront figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brand-text);margin-top:14px;text-align:center}
+@media (max-width:560px){.storefront{transform:none}}
+
+/* ---------- OFFERINGS: TITLE CARDS UNROLL ----------
+   The category headline is itself the tap target; a downward chevron flips up
+   (ARROW LAW — never a plus); the real items roll out in place. */
+#services .cards{grid-template-columns:repeat(3,1fr);align-items:stretch}
+#services .card{padding:26px 24px 24px}
+.card .ico{color:var(--brand-text);background:var(--tint)}
+.unroll{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;
+  background:none;border:0;padding:0;margin:0;cursor:pointer;color:inherit;text-align:left;font:inherit}
+.unroll h3{font-size:22px;margin:0}
+.unroll .chev{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);
+  transition:transform .3s var(--ease),background .2s}
+.unroll .chev svg{width:16px;height:16px}
+.unroll:hover .chev{background:color-mix(in srgb,var(--accent) 32%,transparent)}
+.unroll[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.card .when{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brand-text);margin:10px 0 8px;font-variant-numeric:tabular-nums}
+.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.rolled[data-open="1"]{grid-template-rows:1fr}
+.rolled > ul{overflow:hidden;list-style:none;margin:0;padding:0}
+.rolled li{font-size:15.5px;font-weight:500;color:var(--ink);padding:10px 0 10px 20px;border-top:var(--rule);position:relative}
+.rolled li:first-child{margin-top:14px}
+.rolled li::before{content:"";position:absolute;left:2px;top:18px;width:7px;height:7px;background:var(--brand);
+  clip-path:polygon(50% 0%,59% 41%,100% 50%,59% 59%,50% 100%,41% 59%,0% 50%,41% 41%)}
+@media (prefers-reduced-motion:reduce){.rolled{transition:none}.unroll .chev{transition:none}}
+@media (max-width:900px){#services .cards{grid-template-columns:1fr}}
+
+/* ---------- WHOSE CHAIR IT IS (the owner band) ---------- */
+#about .story{grid-template-columns:.92fr 1.08fr}
+#about .print{padding:14px 14px 40px;border-radius:4px}
+.story-src{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);opacity:.85;margin:22px 0 0}
+@media (max-width:900px){#about .story{grid-template-columns:1fr}}
+
+/* ---------- REVIEWS: real name + real face, same source ---------- */
+.revs{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,26px);align-items:start}
+.rev{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:24px 24px 22px;
+  border-top:4px solid var(--accent)}
+.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;margin-bottom:14px}
+.rev-face{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2);
+  background:var(--bg-2);flex:none}
+.rev-who{font-family:var(--display);font-weight:700;font-size:17.5px;line-height:1.2;min-width:0}
+.rev-who small{display:block;font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);margin-top:5px}
+.rev-stars{color:var(--brand);font-size:14px;letter-spacing:.06em;white-space:nowrap;align-self:start;margin-top:4px}
+.rev p{font-size:16.5px;line-height:1.62;margin:0;color:var(--ink)}
+@media (max-width:760px){.revs{grid-template-columns:1fr}.rev-face{width:48px;height:48px}}
+
+/* ---------- SHAPE PICKER: the pills sit right beside the print ----------
+   Was a 2x2 block floating in the middle of a half-empty column; now one
+   column of four rows, roughly the height of the frame it drives. */
+@media (min-width:821px){
+  .shaper{grid-template-columns:1fr 1fr;align-items:center}
+  .shape-frame{max-width:100%;justify-self:end}
+  .shape-pills{grid-template-columns:1fr;gap:14px;max-width:420px}
+  .shape-pill{min-height:80px}
+}
+
+/* ---------- CLOSING BAND: centred, so the right half isn't dead cream ---------- */
+.cta-band .wrap{text-align:center}
+.cta-band .section-head{max-width:24ch;margin-left:auto;margin-right:auto}
+.cta-band .eyebrow{justify-content:center;white-space:nowrap}
+.cta-band .cta-actions{justify-content:center}
