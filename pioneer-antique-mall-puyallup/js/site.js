@@ -115,6 +115,21 @@ function customClose(p, close){ return close; }
   var form=$('.contact-form'), ok=$('.form-success');
   if(form&&ok){form.addEventListener('submit',function(e){e.preventDefault();ok.classList.add('show');ok.setAttribute('role','status');form.querySelector('button[type=submit]').disabled=true})}
 
+  /* ---------- TITLE CARDS UNROLL ----------------------------------
+     The room name is the button. One tap rolls the real items out in
+     place, the chevron flips up, tap again rolls them back. The panel
+     animates grid-template-rows 0fr → 1fr, so no height is measured
+     and nothing jumps if the text wraps differently. ---------------- */
+  $$('.unroll').forEach(function(btn){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    if(!panel) return;
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      panel.setAttribute('data-open',open?'0':'1');
+    });
+  });
+
   /* ---------- SIGNATURE — THE WALL --------------------------------
      One real photograph of the wall above their cases. Tap a name and
      the wall moves in on that piece; tap the same name again and it

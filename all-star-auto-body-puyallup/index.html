@@ -10,8 +10,8 @@
 <!-- Archivo Black (display — the squared, heavy sign lettering on their banner)
      + Barlow (body). Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907174334">
-<link rel="stylesheet" href="css/hero.css?v=0907174334">
+<link rel="stylesheet" href="css/style.css?v=0908205226">
+<link rel="stylesheet" href="css/hero.css?v=0908205226">
 </head>
 <body>
 
@@ -30,10 +30,10 @@
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#services">What they do</a>
-        <a href="#signature">Before / after</a>
+        <a href="#signature">A real repair</a>
         <a href="#gallery">Their work</a>
         <a href="#about">The shop</a>
-        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
         <a href="#contact" class="nav-cta">Call the shop</a>
       </nav>
     </div>
@@ -43,24 +43,6 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero =====================
-       EXTERIOR HERO: the actual building at 2906 E Main — red barn siding,
-       stone veneer, their banner over the door. Nothing sits on the photo but
-       the headline block. On phones the wide frame would lose the building, so
-       the documented HERO STACK runs three real photos in walk-up order:
-       outside → a car in guide coat in their bay → a finished car with the bow. -->
-  <!-- ===================== #hero — "IT GOES IN BENT. IT COMES OUT STRAIGHT." =====================
-       The mark IS the headline. Nothing here is drawn: the plate is All Star's
-       own vinyl banner, cropped out of their own photograph (harvest g19) and
-       deskewed; the wall behind it is their own red barn at 2906 E Main
-       (hero-stack-1), blurred back so the sign is the only thing in focus.
-
-       One deterministic intro, once, no interaction: the sign hangs dark, then
-       a single shop-light sweep crosses it left to right. Behind that light the
-       sign lights up — and the car painted on it, wrecked down its left half,
-       is pulled straight. The repaired half is the sign's OWN perfect half
-       reflected across the divider line the sign painter drew; no new artwork.
-       It settles on a whole car and holds. -->
   <!-- ===================== #hero — variant 8: "star-light" =====================
        The "star" in All Star, read literally: their shop after dark, and the
        bay light striking on. Nothing is drawn or invented. The wall is their
@@ -102,28 +84,35 @@
 
   <!-- ===================== #hours =====================
        Live Pacific clock, all seven days, today lit. Hours live HERE and
-       nowhere else on the page. Only Monday's opening time is published
-       anywhere — the other six days say so instead of guessing, and the light
-       stays neutral rather than showing a false green or a false red. -->
+       nowhere else on the page. The table is All Star's own, off their Google
+       Maps place page (read 2026-09-08): Mon–Fri 10–7, Saturday 11–5, closed
+       Sunday. The proof chips carry the two numbers that matter — their rating
+       and how many people left it — so those facts sit where a visitor is
+       already deciding whether to drive over. -->
   <section class="status-band" id="hours">
     <div class="wrap">
-      <div class="status-head">
+      <div class="status-head reveal">
         <p class="eyebrow">When to bring it in</p>
+        <span class="split-rule" aria-hidden="true"></span>
         <h2>The red barn on <em>East Main</em></h2>
         <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
           2906 E Main Ave, Puyallup, WA 98372<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=2906+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star" aria-hidden="true">★</span> 4.9 on Google · 101 reviews</span>
+          <span class="proof"><span class="ico" aria-hidden="true">✓</span> 66 photos of their own work</span>
+        </div>
       </div>
       <ul class="hours-list" id="hoursList">
-        <li data-days="1"><span class="day">Monday</span><span class="time">Opens 10:00 AM</span></li>
-        <li data-days="2"><span class="day">Tuesday</span><span class="time"><a href="tel:+12069281600">Call for hours</a></span></li>
-        <li data-days="3"><span class="day">Wednesday</span><span class="time"><a href="tel:+12069281600">Call for hours</a></span></li>
-        <li data-days="4"><span class="day">Thursday</span><span class="time"><a href="tel:+12069281600">Call for hours</a></span></li>
-        <li data-days="5"><span class="day">Friday</span><span class="time"><a href="tel:+12069281600">Call for hours</a></span></li>
-        <li data-days="6"><span class="day">Saturday</span><span class="time"><a href="tel:+12069281600">Call for hours</a></span></li>
-        <li data-days="0"><span class="day">Sunday</span><span class="time"><a href="tel:+12069281600">Call for hours</a></span></li>
+        <li data-days="1"><span class="day">Monday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:00 AM – 7:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">11:00 AM – 5:00 PM</span></li>
+        <li data-days="0" class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
       </ul>
     </div>
   </section>
@@ -133,10 +122,20 @@
        Nothing is a service list copied off another body shop. -->
   <section class="section section-cream" id="services">
     <div class="wrap">
+      <!-- STOREFRONT BELOW THE HOURS: the hero is the banner at night, so the
+           building itself opens the offerings band in daylight — their own
+           photo of 2906 E Main, red barn siding, stone veneer, that same
+           banner over the door. -->
+      <figure class="storefront reveal">
+        <img src="images/storefront.jpg" alt="All Star Auto Body at 2906 E Main Ave — a red barn-sided building with a stone veneer base, their white banner sign mounted beside the front door" loading="lazy" width="1800" height="1350">
+        <figcaption>2906 East Main — the door under the banner</figcaption>
+      </figure>
+
       <div class="section-head reveal">
         <p class="eyebrow">From their own photos</p>
+        <span class="split-rule" aria-hidden="true"></span>
         <h2>What comes through <em>the bay door</em></h2>
-        <p>All Star photograph their own work, job by job, and post it. Everything below is something you can see in those pictures. Tap a heading.</p>
+        <p>All Star photograph their own work, job by job, and post it. Everything below is something you can see in those pictures. Tap a heading to see it.</p>
       </div>
       <div class="cards">
 
@@ -149,11 +148,16 @@
           <p class="when">Hit hard, not written off</p>
           <p>Cars turn up on their lot with the front clip gone and the engine sitting in the open air.</p>
           <div class="rolled" id="roll-collision">
-            <ul>
-              <li>Front ends taken off at the rails</li>
-              <li>Rear quarter panels torn open to the inner structure</li>
-              <li>Crushed rockers and folded door skins</li>
-            </ul>
+            <div class="roll-in">
+              <figure class="roll-shot">
+                <img src="images/svc-collision.jpg" alt="A black BMW sedan on a driveway with its whole front end torn off, hood peeled back and the bumper bar hanging loose" loading="lazy" width="1200" height="900">
+              </figure>
+              <ul>
+                <li>Front ends taken off at the rails</li>
+                <li>Rear quarter panels torn open to the inner structure</li>
+                <li>Crushed rockers and folded door skins</li>
+              </ul>
+            </div>
           </div>
         </article>
 
@@ -164,13 +168,18 @@
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
           <p class="when">Guide coat to gloss</p>
-          <p>Their bay shots show panels in yellow guide coat and grey primer, then the same panels back in colour.</p>
+          <p>Their bay shots show cars masked off in tape, panels in yellow guide coat and grey primer, then the same panels back in colour.</p>
           <div class="rolled" id="roll-paint">
-            <ul>
-              <li>Yellow guide coat blocked back by hand</li>
-              <li>Grey primer over bare and filled panels</li>
-              <li>Half-primed bumper covers returned in full gloss</li>
-            </ul>
+            <div class="roll-in">
+              <figure class="roll-shot">
+                <img src="images/svc-paint.jpg" alt="A black BMW masked off in yellow tape along the headlights and bumper, parked at All Star's open bay door" loading="lazy" width="1200" height="900">
+              </figure>
+              <ul>
+                <li>Panels masked off by hand before a drop of paint moves</li>
+                <li>Yellow guide coat and grey primer over filled metal</li>
+                <li>Half-primed bumper covers returned in full gloss</li>
+              </ul>
+            </div>
           </div>
         </article>
 
@@ -183,11 +192,16 @@
           <p class="when">The parking-lot stuff too</p>
           <p>Not every car on their camera roll was in a wreck. Plenty just got creased.</p>
           <div class="rolled" id="roll-panels">
-            <ul>
-              <li>Bumper covers off, repaired and refitted</li>
-              <li>Creased door skins and dented rear quarters</li>
-              <li>Smashed headlight and lamp assemblies</li>
-            </ul>
+            <div class="roll-in">
+              <figure class="roll-shot">
+                <img src="images/svc-panels.jpg" alt="The front corner of a blue car with the bumper scuffed through the paint, part of it taped off ready for repair" loading="lazy" width="1200" height="900">
+              </figure>
+              <ul>
+                <li>Bumper covers off, repaired and refitted</li>
+                <li>Creased door skins and dented rear quarters</li>
+                <li>Smashed headlight and lamp assemblies</li>
+              </ul>
+            </div>
           </div>
         </article>
 
@@ -200,20 +214,20 @@
           <p class="when">On the bay floor</p>
           <p>The work photographs badly halfway through, and they post it anyway.</p>
           <div class="rolled" id="roll-strip">
-            <ul>
-              <li>Front ends off and laid out on the floor</li>
-              <li>Bumper bars, lights and grilles pulled</li>
-              <li>Hoods up, wheels off, tools where they were set down</li>
-            </ul>
+            <div class="roll-in">
+              <figure class="roll-shot">
+                <img src="images/svc-strip.jpg" alt="A silver Toyota Camry with its front bumper cover removed and laid on the ground in front of it, the car's front structure exposed" loading="lazy" width="1200" height="900">
+              </figure>
+              <ul>
+                <li>Front ends off and laid out on the floor</li>
+                <li>Bumper bars, lights and grilles pulled</li>
+                <li>Hoods up, wheels off, tools where they were set down</li>
+              </ul>
+            </div>
           </div>
         </article>
 
       </div>
-
-      <figure class="print print-wide reveal">
-        <img src="images/work-teardown.jpg" alt="A convertible stripped to bare metal at the front, hood raised, tools and hand tools laid out on cardboard on the shop bay floor" loading="lazy" width="1400" height="1867">
-        <figcaption>Stripped down in their bay</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -227,6 +241,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The line on their own sign</p>
+        <span class="split-rule" aria-hidden="true"></span>
         <h2>One car. <em>Two halves.</em></h2>
         <p>Look at the banner over the door: a single red car, wrecked down the left of the picture and perfect down the right, split by one straight line. Here is that line on a car they actually fixed — same red Nissan, same driver's side, before and after. Drag it.</p>
       </div>
@@ -256,11 +271,14 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Their own camera roll</p>
+        <span class="split-rule" aria-hidden="true"></span>
         <h2>What a week <em>looks like</em></h2>
+        <p>Five frames off their listing, in the order a car goes through the barn.</p>
       </div>
       <div class="prints">
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A silver car with its entire front end destroyed, engine and wiring exposed to the air, a tarp thrown over the windscreen" loading="lazy" width="1600" height="900"><figcaption>What comes in</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Close-up of a dark blue car's headlight assembly smashed inward, the lens and housing broken open" loading="lazy" width="1600" height="1205"><figcaption>A headlight, afterwards</figcaption></figure>
+        <figure class="print reveal"><img src="images/work-teardown.jpg" alt="A convertible stripped to bare metal at the front, hood raised, tools and hand tools laid out on cardboard on the shop bay floor" loading="lazy" width="1400" height="1867"><figcaption>Halfway through, on the bay floor</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-3.jpg" alt="The front bumper corner of a blue Dodge Charger back in full gloss paint, fog lamp bezels refitted, parked against the shop's stone wall" loading="lazy" width="1600" height="1200"><figcaption>Back in gloss</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A finished dark blue Ford Mustang on the lot, front end straight and clean under a blue sky" loading="lazy" width="1600" height="1201"><figcaption>What goes out</figcaption></figure>
       </div>
@@ -272,38 +290,68 @@
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/about.jpg" alt="A finished black BMW sedan parked alongside the shop's grey concrete-block wall" loading="lazy" width="1600" height="1200">
-          <figcaption>Out front, done</figcaption>
+          <img src="images/about-bow.jpg" alt="A finished white Range Rover Evoque parked against the shop's red barn siding and stone veneer wall, with red ribbon bows tied to the bonnet and the rear door" loading="lazy" width="1500" height="1125">
+          <figcaption>Handed back, ribbons and all</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Who's in the barn</p>
+          <span class="split-rule" aria-hidden="true"></span>
           <h2>They hand it back <em>with a bow on it</em></h2>
           <p class="lede">That is not a figure of speech.</p>
-          <p>Scroll their photographs and the same frame keeps coming round: a finished car parked against the stone wall at 2906 East Main with a fat red bow across the hood and ribbons down the fenders. A Mazda. A Range Rover. Whoever's turn it was that week.</p>
+          <p>Scroll their photographs and the same frame keeps coming round: a finished car parked against the stone wall at 2906 East Main with a fat red bow across the hood and ribbons down the fenders. A Mazda. A Range Rover. Whoever's turn it was that week. One of their reviewers writes about it herself — "seeing my car beautifully restored with a big red bow on top was the cherry on the cake."</p>
           <p>The shop is the red barn-sided building on East Main — stone veneer along the bottom, one banner over the door with a wrecked car on the left of it and a finished one on the right. Behind that is a plain concrete-block bay: a car up on the floor in guide coat, tools left where they were set down. Nothing about it is a showroom. The work is the showroom, which is presumably why they photograph all of it.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #cta — the proof band =====================
-       No review cards on this page: All Star's Google reviews could not be
-       pulled with a name AND that reviewer's own profile picture together, and
-       a card without both is not going up. The honest aggregate and a link to
-       the live reviews stand in their place. -->
-  <section class="section section-dark cta-band" id="cta">
+  <!-- ===================== #reviews — real people, real faces =====================
+       REVIEW ATTRIBUTION LAW: every card carries the reviewer's real published
+       name AND that same reviewer's real Google profile picture, pulled from
+       the same place page as the quote (2026-09-08). Quotes are verbatim,
+       trimmed only with an ellipsis. Five more reviewers were read and NOT used
+       because Google only serves a default monogram tile for them — no real
+       face, no card. The link goes to the live listing for the other 98. -->
+  <section class="section section-dark" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Straight off their listing</p>
-        <h2>Ask the people <em>who've been</em></h2>
+        <p class="eyebrow">Straight off their Google listing</p>
+        <span class="split-rule" aria-hidden="true"></span>
+        <h2>101 people, <em>4.9 stars</em></h2>
+        <p>Three of them, in their own words — names and pictures as they publish them.</p>
       </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count tnum" data-to="4.9" data-dec="1">4.9</span><span class="stars">★★★★★</span></b><span>average rating on Google</span></div>
-        <div class="num"><b><span class="count tnum" data-to="101">101</span></b><span>reviews people left themselves</span></div>
-        <div class="num"><b><span class="count tnum" data-to="66">66</span></b><span>photos of their own work on that listing</span></div>
+
+      <div class="reviews">
+        <article class="rev reveal">
+          <p class="rev-stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>Allstar autobody did a fantastic repair on our Lexus 350. Cost was very competitive. Service, communication and turnaround time was superb. Amazing detailing inside and out was a nice surprise. Well done</blockquote>
+          <div class="rev-who">
+            <img class="rev-face" src="images/rev-1.jpg" alt="Andrew McIntyre" loading="lazy" width="160" height="160">
+            <span class="rev-meta"><b>Andrew McIntyre</b><span>Google · 5 months ago</span></span>
+          </div>
+        </article>
+
+        <article class="rev reveal">
+          <p class="rev-stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>My friend at work referred All Star Auto Body, for my damaged front end. The owner, and his son, were so accommodating, professional, and KIND. They worked with me on the price, because I had to pay out of pocket. They were fast and caring. True pros!</blockquote>
+          <div class="rev-who">
+            <img class="rev-face" src="images/rev-2.jpg" alt="Kerri Foster" loading="lazy" width="160" height="160">
+            <span class="rev-meta"><b>Kerri Foster</b><span>Google · 9 months ago</span></span>
+          </div>
+        </article>
+
+        <article class="rev reveal">
+          <p class="rev-stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>When I first brought it in, it was in rough shape, but their skilled team worked their magic and made it look brand new again… Seeing my car beautifully restored with a big red bow on top was the cherry on the cake!</blockquote>
+          <div class="rev-who">
+            <img class="rev-face" src="images/rev-3.jpg" alt="Zahraa Mohammed" loading="lazy" width="160" height="160">
+            <span class="rev-meta"><b>Zahraa Mohammed</b><span>Google · a year ago</span></span>
+          </div>
+        </article>
       </div>
+
       <div class="cta-actions reveal">
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=All+Star+Auto+Body%2C+2906+E+Main+Ave%2C+Puyallup%2C+WA+98372" class="btn btn-primary" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=All+Star+Auto+Body%2C+2906+E+Main+Ave%2C+Puyallup%2C+WA+98372" class="btn btn-primary" target="_blank" rel="noopener">Read all 101 on Google ↗</a>
         <a href="tel:+12069281600" class="btn btn-ghost">Call the shop</a>
       </div>
     </div>
@@ -315,6 +363,7 @@
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting it looked at</p>
+          <span class="split-rule" aria-hidden="true"></span>
           <h2>Bring it by <em>East Main</em></h2>
           <ol class="steps">
             <li><h3>Call first</h3><p>The number is printed across the bottom of the banner out front. Ring it before you drive over so someone's there to walk round the car with you.</p></li>
@@ -364,7 +413,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">What they do</a><br><a href="#signature">Before / after</a><br><a href="#gallery">Their work</a><br><a href="#about">The shop</a><br><a href="#contact">Bring it by</a></p>
+        <p><a href="#services">What they do</a><br><a href="#signature">A real repair</a><br><a href="#gallery">Their work</a><br><a href="#about">The shop</a><br><a href="#reviews">Reviews</a><br><a href="#contact">Bring it by</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -374,6 +423,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907174334"></script>
+<script src="js/site.js?v=0908205226"></script>
 </body>
 </html>

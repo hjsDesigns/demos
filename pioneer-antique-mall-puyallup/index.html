@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Young Serif (400 — the only weight it ships) + Karla 400/500/700 -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,62.5..80,600..800&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788925825">
+<link rel="stylesheet" href="css/hero.css?v=1788925825">
 </head>
 <body>
 
@@ -115,24 +115,71 @@
         <h2>Booth after booth, <em>and then a staircase</em>.</h2>
         <p>A vendor mall: booths on two floors, glass cases down the aisles, a comics case collectors come in for, and a wall of old Puyallup signs hung over the top of it all.</p>
       </div>
+      <!-- STOREFRONT BELOW THE HOURS: the hero is the sign wall inside, so the
+           real building opens the offerings. Their own door, photographed from
+           the sidewalk — the 113, the yellow WE BUY card, the lamp-repair card
+           and one of the handwritten estate notes, all in frame. -->
+      <figure class="storefront reveal">
+        <img src="images/storefront.jpg" alt="The shop's glass door at 113 South Meridian from the sidewalk, the yellow We Buy Gold and Coins card in the next window, a lamps rewired and restored card, theatre posters, and a handwritten note reading Away today working on an estate" loading="lazy" width="1600" height="1417">
+        <figcaption>
+          <b>113 S Meridian.</b> Everything they do is taped to this glass — the yellow <em>We Buy</em> card,
+          a hand-lettered <em>“Away today, working on an Estate”</em> note, and their own card for lamps
+          rewired and restored on site, thirty years of it.
+        </figcaption>
+      </figure>
+      <!-- TITLE CARDS UNROLL: the room name IS the tap target. Everything that
+           rolls out was read off their own photographs — nothing invented. -->
       <div class="rooms">
         <figure class="room reveal">
-          <img src="images/hero-stack-1.jpg" alt="The ANTIQUES building on South Meridian in downtown Puyallup, the red letters high on the cream wall, a grey vintage pickup parked out front" loading="lazy" width="1800" height="1087">
+          <img src="images/inside-1.jpg" alt="The stairway inside the shop, with the shop's orange More Antiques Up Stairs sign hanging over a landing of red and amber glass, table lamps and a copper ship model" loading="lazy" width="1800" height="1012">
           <figcaption class="cap">Their own sign, at the stairway</figcaption>
-          <h3>Up the stairs</h3>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-stairs">
+            <h3>Up the stairs</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
           <p>The sign on the post says it plainly — more antiques up stairs. The second floor keeps going.</p>
+          <div class="rolled" id="roll-stairs">
+            <ul>
+              <li>Their orange stairway sign, and a hand-painted “More Treasures upstairs” board under it</li>
+              <li>Ruby and amber pressed glass on the landing table</li>
+              <li>A copper ship model up on the china cabinet</li>
+              <li>Walnut cabinets, shaded lamps and framed prints on the way up</li>
+            </ul>
+          </div>
         </figure>
         <figure class="room reveal">
           <img src="images/inside-2.jpg" alt="A long run of lit glass display cases along the wall, packed with small collectibles" loading="lazy" width="1800" height="1012">
           <figcaption class="cap">Cases along the wall</figcaption>
-          <h3>The glass cases</h3>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-cases">
+            <h3>The glass cases</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
           <p>Small things behind glass, booth by booth down the room — the kind you have to lean in to see properly.</p>
+          <div class="rolled" id="roll-cases">
+            <ul>
+              <li>A slabbed <b>Spider-Man #1</b> — Marvel, 8/1990, gold variant, graded CBCS 9.8</li>
+              <li>Pocket watches, small clocks and mantel pieces</li>
+              <li>Costume jewellery, figurines and painted china</li>
+              <li>A teapot still carrying its old Tacoma Antique Center tag</li>
+            </ul>
+          </div>
         </figure>
         <figure class="room reveal">
           <img src="images/inside-3.jpg" alt="Open shelving of glass lamp shades, tins and bottles with Puyallup Fair pennants strung above" loading="lazy" width="1800" height="1012">
           <figcaption class="cap">Shelves you can reach</figcaption>
-          <h3>Shades and shelves</h3>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-shelves">
+            <h3>Shades and shelves</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
           <p>Glass shades, lamp parts, tins and bottles on open shelving, with Puyallup Fair pennants strung above them.</p>
+          <div class="rolled" id="roll-shelves">
+            <ul>
+              <li>Glass lamp shades, matched pairs and odd ones</li>
+              <li>Lamp bases, fittings and spare parts</li>
+              <li>Old tins, bottles and stoneware</li>
+              <li>Puyallup Fair pennants strung along the top shelf</li>
+            </ul>
+          </div>
         </figure>
       </div>
       <p class="inside-fine reveal">Their own card on the door: <em>“All sales final.”</em> Square, Visa, Mastercard, American Express and Discover are all on the glass.</p>
@@ -148,6 +195,7 @@
         <p>Stock turns over and booths change hands, so take this as a sample rather than a catalogue.</p>
       </div>
       <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A graded Spider-Man number one gold variant comic sealed in a CBCS slab, standing in a glass case with other comics behind it" loading="lazy" width="1080" height="1440"><figcaption>Spider-Man #1, gold variant — sealed in a CBCS 9.8 slab</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A room with framed movie posters on the wall above crates of records and a bookcase" loading="lazy" width="1800" height="2400"><figcaption>Movie posters over the record bins</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="A vintage popcorn machine with a red Popcorn sign across the glass" loading="lazy" width="1800" height="2400"><figcaption>A vintage popcorn machine on the floor</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Close view of the worn brass arm and screws of an old balance scale" loading="lazy" width="1800" height="2400"><figcaption>Brass on an old balance scale</figcaption></figure>
@@ -195,7 +243,7 @@
     <div class="wrap">
       <div class="buy">
         <figure class="print reveal">
-          <img src="images/buy.jpg" alt="Looking out the front door of the shop, with the yellow We Buy card hanging in the window" loading="lazy" width="1800" height="2400">
+          <img src="images/buy.jpg" alt="Looking out the front door of the shop, with the yellow We Buy card hanging in the window" loading="lazy" width="1800" height="1603">
           <figcaption>The window card, from inside the shop</figcaption>
         </figure>
         <div class="reveal">
@@ -216,10 +264,11 @@
   </section>
 
   <!-- ===================== #reviews =====================
-       No review card ships without the reviewer's real name AND their real
-       profile image from the same source (factory law, 2026-09-06). Google
-       reviews are not reachable from this build's toolchain, so the honest
-       aggregate stands in and links out to the live reviews. -->
+       REVIEW ATTRIBUTION LAW (2026-09-06): every card carries the reviewer's
+       REAL published name and their REAL Google profile image, pulled from the
+       same source on 2026-09-08 (Maps place page, reviews deep-link; raw files
+       + verbatim text in harvest-0908-reviews/). Quotes are verbatim, trimmed
+       only at sentence boundaries — nothing reworded, nothing invented. -->
   <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
@@ -230,9 +279,35 @@
         <div class="score-num tnum">4.1<small>out of 5 · Google</small></div>
         <div>
           <p class="score-stars" aria-hidden="true">★★★★☆</p>
-          <p>Forty-nine people have rated Pioneer Antique Mall on Google. Better to read them in their own words than have us pick out the flattering ones.</p>
+          <p>Forty-nine people have rated Pioneer Antique Mall on Google. Three of them, in their own words:</p>
           <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Pioneer+Antique+Mall%2C+113+S+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Read all 49 on Google ↗</a>
         </div>
+      </div>
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-david-spencer.jpg" alt="David Spencer's Google profile photo" loading="lazy" width="128" height="128">
+            <span class="rev-who">David Spencer<small>Google · a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <blockquote>I love a good antique mall… especially one where you can go in on a rainy day and browse through the various booths without pressure from sales clerks… We spent hours oohing and ahhing and came away with a few “finds” that we're quite happy with.</blockquote>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-randall-friesen.jpg" alt="Randall Friesen's Google profile photo" loading="lazy" width="128" height="128">
+            <span class="rev-who">Randall Friesen<small>Google · 2 years ago</small></span>
+            <span class="rev-stars" aria-label="4 out of 5 stars">★★★★☆</span>
+          </div>
+          <blockquote>We snoop and look and ponder and there are always “New” old things to look at… So many surprises from our childhood. It's especially fun for date night! Yes really.</blockquote>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-shelley-sprague.jpg" alt="Shelley Sprague's Google profile image" loading="lazy" width="128" height="128">
+            <span class="rev-who">Shelley Sprague<small>Google · 2 weeks ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <blockquote>Always stop here for a couple hours when visiting my friend in Kent Wa. The store is a short drive from Kent and has so much merch to choose from.</blockquote>
+        </article>
       </div>
     </div>
   </section>
@@ -316,6 +391,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788925825"></script>
 </body>
 </html>

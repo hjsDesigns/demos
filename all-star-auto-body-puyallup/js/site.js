@@ -11,39 +11,33 @@
      null           confirmed closed
      '?'            nothing published for that day
 
-   SOURCE, and the honest state of it (2026-09-06):
-   The ONLY hours fact published anywhere for this shop is Google Maps'
-   "Opens 10 AM Mon", read off the place page on 2026-09-06. No 7-day table
-   exists on Google, Yelp, BBB, MapQuest, Bing, Brave or any directory mirror
-   that answers to curl — every one of them was checked. Nothing else is
-   invented here: the six unpublished days say so and hand the visitor the
-   phone number instead, and the live light stays NEUTRAL (never a false green
-   or a false red) on any day whose hours we cannot prove.
-   ASK THE OWNER FOR THE REAL SEVEN-DAY TABLE — it is the #1 gap on this build.
+   SOURCE (2026-09-08): the full seven-day table off All Star's own Google
+   Maps place page, read out of the rendered hours table (headless Chromium —
+   curl and every directory mirror are Cloudflare-walled, which is why the
+   2026-09-06 recon could only see "Opens 10 AM Mon"). Mon–Fri 10 AM – 7 PM,
+   Saturday 11 AM – 5 PM, Sunday closed. Nothing here is invented; if the shop
+   tells Hayden different at the counter, change these seven lines and nothing
+   else. The live light is GREEN only when provably open and RED only when
+   provably closed — a day with no published hours would go NEUTRAL grey.
    ------------------------------------------------------------ */
 var HOURS = {
   tz: 'America/Los_Angeles',
   days: {
-    0: '?',            // Sunday     — not published
-    1: [10, null],     // Monday     — opens 10:00 AM (Google Maps, 2026-09-06); close not published
-    2: '?',            // Tuesday    — not published
-    3: '?',            // Wednesday  — not published
-    4: '?',            // Thursday   — not published
-    5: '?',            // Friday     — not published
-    6: '?'             // Saturday   — not published
+    0: null,           // Sunday     — closed
+    1: [10, 19],       // Monday     — 10:00 AM – 7:00 PM
+    2: [10, 19],       // Tuesday
+    3: [10, 19],       // Wednesday
+    4: [10, 19],       // Thursday
+    5: [10, 19],       // Friday
+    6: [11, 17]        // Saturday   — 11:00 AM – 5:00 PM
   },
   phone: '(206) 928-1600',
   tel: '+12069281600'
 };
 
-/* Holiday hook. Labor Day 2026 falls on Monday 7 September — the one day this
-   demo is being walked in. Google publishes no holiday hours for this shop, so
-   rather than claim the regular 10 AM open we hand the day back as UNKNOWN and
-   point at the phone. Remove this once the owner confirms. */
+/* Holiday hook — nothing published for this shop, so nothing is claimed.
+   Return {unknown:true,text:'…'} for a date to hand the day back as NEUTRAL. */
 function customClosure(p){
-  if (p.mo === 8 && p.d === 7 && p.y === 2026) {
-    return { unknown: true, text: 'Labor Day — holiday hours not published. Call the shop.' };
-  }
   return null;
 }
 function customClose(p, close){ return close; }
@@ -133,7 +127,13 @@ function customClose(p, close){ return close; }
       io.unobserve(en.target);
     });
   },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
-  $$('.reveal').forEach(function(el){io.observe(el)});
+  $$('.reveal').forEach(function(el){
+    /* Anything already at or above the fold on load — an #anchor jump, a
+       restored scroll position, a deep link — has no intersection left to
+       observe and would stay invisible for good. Show it outright. */
+    if(el.getBoundingClientRect().top < window.innerHeight){el.classList.add('in');return}
+    io.observe(el);
+  });
 
   /* ---------- contact form (demo mode: access_key empty, nothing is sent) ---------- */
   var form=$('.contact-form'), ok=$('.form-success');

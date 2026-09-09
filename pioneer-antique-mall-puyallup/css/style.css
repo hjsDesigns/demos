@@ -80,8 +80,19 @@ b,strong{font-weight:700}
 figure{margin:0}
 blockquote{margin:0}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+/* COHESION — the one recurring device. Every eyebrow on the page carries a
+   short brass rule that draws itself in when the section arrives: the brass
+   shelf rule under the hero name, restated ten times down the page. */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px;
+  display:flex;align-items:center;gap:12px}
+.eyebrow::after{content:"";flex:0 0 46px;height:2px;background:var(--brass);opacity:.85;
+  transform:scaleX(1);transform-origin:left;transition:transform .7s var(--ease-2) .12s}
+.reveal .eyebrow::after,.reveal.eyebrow::after{transform:scaleX(0)}
+.reveal.in .eyebrow::after,.reveal.in.eyebrow::after{transform:scaleX(1)}
 .section-dark .eyebrow,.section-brand .eyebrow{color:var(--warm)}
+.section-dark .eyebrow::after{background:var(--warm)}
+.section-brand .eyebrow::after{background:#F6E7D5;opacity:.7}
+@media (prefers-reduced-motion:reduce){.eyebrow::after{transition:none;transform:scaleX(1)}}
 :focus-visible{outline:3px solid var(--brand);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--warm) 45%,transparent);border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .tnum{font-variant-numeric:tabular-nums}
@@ -239,6 +250,20 @@ blockquote{margin:0}
 
 /* ============================================================ WHAT'S INSIDE
    Three real rooms, each a framed print with a plain caption. */
+/* The storefront, in the same paper mat every other photo on this page sits in —
+   wide, whole, nothing cropped off the door. */
+.storefront{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,3vw,38px);align-items:center;
+  background:var(--paper);border:var(--rule);padding:clamp(14px,1.6vw,18px);margin:0 0 clamp(32px,5vw,56px);
+  box-shadow:0 40px 76px -46px rgba(42,30,22,.55)}
+.storefront img{width:100%;height:auto;border-radius:2px}
+.storefront figcaption{font-size:15.5px;line-height:1.62;color:var(--muted);padding:0 clamp(6px,1.4vw,20px) 0 0}
+.storefront figcaption b{color:var(--ink);font-family:var(--display);font-size:19px;display:block;margin-bottom:9px}
+.storefront figcaption em{font-style:italic;color:var(--ink)}
+@media (max-width:860px){
+  .storefront{grid-template-columns:1fr;gap:16px;padding:12px 12px 22px}
+  .storefront figcaption{padding:0 4px;font-size:14.5px}
+}
+
 .rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,34px);align-items:start}
 .room{background:var(--paper);border:var(--rule);padding:13px 13px 26px;box-shadow:0 34px 62px -42px rgba(42,30,22,.55);
   transition:transform .45s var(--ease),box-shadow .45s}
@@ -250,8 +275,31 @@ blockquote{margin:0}
 .room:nth-child(3){transform:rotate(-.5deg)}
 .room:hover{transform:rotate(0) translateY(-4px);box-shadow:0 44px 74px -42px rgba(42,30,22,.6)}
 .room .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:14px 4px 0;text-align:center}
-.room h3{font-size:22px;margin:14px 4px 8px;text-align:center}
+.room h3{font-size:22px;margin:0;text-align:center}
 .room p{font-size:15px;color:var(--muted);margin:0 4px;text-align:center}
+
+/* ---- TITLE CARDS UNROLL — the room name IS the tap target.
+   One downward chevron, it flips up, the real items roll out in place.
+   (ARROW LAW: a chevron, never a plus.) ---- */
+.unroll{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;min-height:48px;
+  background:none;border:0;padding:0;margin:14px 0 8px;cursor:pointer;color:inherit;font:inherit;text-align:center}
+.unroll .chev{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--brand-text);
+  border:1.5px solid color-mix(in srgb,var(--brand) 26%,transparent);
+  transition:transform .32s var(--ease),background .25s,border-color .25s}
+.unroll .chev svg{width:16px;height:16px;display:block}
+.unroll:hover .chev{background:color-mix(in srgb,var(--brand) 20%,transparent);border-color:var(--brand)}
+.unroll[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--brand);color:#FDF6E8;border-color:var(--brand)}
+/* 0fr → 1fr animates to auto height with no measured pixels. */
+.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.rolled[data-open="1"]{grid-template-rows:1fr}
+.rolled > ul{overflow:hidden;list-style:none;margin:0;padding:0}
+.rolled li{position:relative;text-align:left;font-size:14.5px;line-height:1.5;color:var(--muted);
+  padding:9px 4px 9px 22px;border-top:1px dashed var(--line)}
+.rolled li:first-child{margin-top:14px}
+.rolled li::before{content:"";position:absolute;left:4px;top:17px;width:6px;height:6px;border-radius:50%;background:var(--brass)}
+.rolled li b{color:var(--ink);font-weight:700}
+@media (prefers-reduced-motion:reduce){.rolled{transition:none}.unroll .chev{transition:none}}
 .inside-fine{font-size:14.5px;color:var(--muted);margin:clamp(28px,4vw,44px) 0 0;max-width:66ch}
 .inside-fine em{font-style:italic;color:var(--ink)}
 @media (max-width:900px){.rooms{grid-template-columns:1fr}.room{transform:none}}
@@ -280,11 +328,14 @@ blockquote{margin:0}
 .wall-frame.zoomed img{transform:scale(2.6) translate(var(--tx,0),var(--ty,0))}
 /* The caption sits UNDER the photo, never over it — min-height is reserved
    so naming a piece never shifts the page. */
-.wall-caption{margin:16px 0 0;min-height:92px;padding:14px 18px;border-left:3px solid var(--warm);
-  background:rgba(216,167,91,.09);border-radius:0 8px 8px 0;color:var(--on-dark);
+/* At rest the reserved space is invisible — no empty bordered box sitting
+   there before the first tap. The height is still reserved, so naming a
+   piece never shifts the page. */
+.wall-caption{margin:16px 0 0;min-height:92px;padding:14px 18px;border-left:3px solid transparent;
+  background:transparent;border-radius:0 8px 8px 0;color:var(--on-dark);
   font-size:clamp(15px,1.5vw,17px);font-weight:500;line-height:1.55;
-  opacity:.35;transition:opacity .4s var(--ease)}
-.wall-caption.on{opacity:1}
+  opacity:0;transition:opacity .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease)}
+.wall-caption.on{opacity:1;background:rgba(216,167,91,.09);border-left-color:var(--warm)}
 .wall-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;justify-content:center}
 .wall-pill{font-family:var(--body);font-size:14.5px;font-weight:700;min-height:48px;padding:12px 20px;border-radius:999px;cursor:pointer;
   background:rgba(241,230,210,.07);color:var(--on-dark);border:1.5px solid var(--line-dark);
@@ -322,6 +373,19 @@ blockquote{margin:0}
 .score p{font-size:17px;color:var(--muted);margin:0 0 16px;max-width:52ch}
 .score a.btn{margin-top:2px}
 @media (max-width:640px){.score{grid-template-columns:1fr;text-align:left}}
+/* Real name + real face, from the same source. */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,26px);margin-top:clamp(20px,3vw,30px)}
+.rev{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,2.6vw,28px);
+  display:flex;flex-direction:column;gap:14px;position:relative;box-shadow:0 30px 60px -48px rgba(42,30,22,.6)}
+.rev-head{display:flex;align-items:center;gap:13px}
+.rev-face{width:48px;height:48px;border-radius:50%;flex:none;object-fit:cover;
+  box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px color-mix(in srgb,var(--brass) 60%,transparent)}
+.rev-who{font-weight:700;font-size:15px;line-height:1.2;color:var(--ink)}
+.rev-who small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:5px}
+.rev-stars{margin-left:auto;color:var(--warm);font-size:14px;letter-spacing:.09em;white-space:nowrap}
+.rev blockquote{font-size:15.5px;line-height:1.6;color:var(--muted);font-style:italic}
+.rev blockquote::before{content:"\201C";font-family:var(--display);color:var(--brand-text);font-size:32px;line-height:0;position:relative;top:11px;margin-right:3px}
+@media (max-width:900px){.revs{grid-template-columns:1fr}}
 
 /* ============================================================ VISIT / CONTACT */
 .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
@@ -367,27 +431,9 @@ blockquote{margin:0}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
 
 
-/* ============================================================ THE NAME, IN THE SIGN'S FACE (hero, 9/7)
-   Blurred case aisle behind; the business name set condensed and heavy like
-   the red ANTIQUES letters on the front of the building, wiping in. */
+/* ============================================================ SIGN-FONT LAW (9/7)
+   Roboto Serif condensed 700 everywhere a headline runs, so the type on the
+   page reads like the red ANTIQUES letters painted on the front of the
+   building. (The retired blurred-sign hero's CSS was removed 9/8 — the live
+   hero is the shelf mark in css/hero.css.) */
 h1,h2,h3,.logo .wm,.hero h1{font-stretch:66%;font-weight:700}
-.hero-blur{justify-content:center;text-align:center}
-.hero-blur .hero-bg .shot{object-fit:cover;object-position:50% 40%;filter:blur(16px) saturate(1.2) brightness(.62);transform:scale(1.15);animation:none}
-.hero-blur .hero-bg::before{background:
-  radial-gradient(56% 50% at 50% 42%,rgba(20,12,6,.55) 0%,rgba(20,12,6,.25) 60%,transparent 100%),
-  linear-gradient(180deg,rgba(20,12,6,.55) 0%,transparent 26%,transparent 62%,rgba(20,12,6,.86) 100%)}
-.hero-blur .hero-inner{display:flex;flex-direction:column;align-items:center}
-.hero-blur .hero-sub{text-align:center;margin-left:auto;margin-right:auto}
-.hero-blur .hero-actions{justify-content:center}
-.hero h1.sign-title{position:relative;display:inline-block;font-family:var(--display);font-stretch:62.5%;font-weight:700;letter-spacing:.02em;text-transform:uppercase;line-height:.92;
-  font-size:clamp(52px,9.5vw,120px);color:#C8373A;max-width:none;margin:0 0 20px;
-  text-shadow:0 2px 0 rgba(90,20,20,.55),0 12px 34px rgba(20,12,6,.6)}
-.sign-title .t1,.sign-title .t2{display:block}
-.sign-title .t2{font-size:.62em;letter-spacing:.08em;color:#F3E6CF;margin-top:.12em}
-.hero h1.sign-title::after{content:"";position:absolute;z-index:2;top:-8%;bottom:-8%;left:0;width:11%;opacity:0;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(255,240,220,.95),transparent);filter:blur(7px)}
-.js .hero h1.sign-title{opacity:0;clip-path:inset(0 100% 0 0);animation:signWipe 1.05s var(--ease) .2s forwards;transform:none}
-.js .hero h1.sign-title::after{animation:markSweep 1.05s var(--ease) .2s forwards}
-@keyframes signWipe{0%{clip-path:inset(0 100% 0 0);opacity:0}10%{opacity:1}100%{clip-path:inset(0 0 0 0);opacity:1}}
-@keyframes markSweep{0%{transform:translateX(-45%);opacity:0}8%{opacity:.95}88%{opacity:.7}100%{transform:translateX(870%);opacity:0}}
-@media (prefers-reduced-motion:reduce){.js .sign-title{animation:none;opacity:1;clip-path:none}.js .sign-title::after{animation:none}}
