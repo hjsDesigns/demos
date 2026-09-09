@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Alfa Slab One (display, one weight only) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788929508">
+<link rel="stylesheet" href="css/hero.css?v=1788929508">
 </head>
 <body>
 
@@ -30,7 +30,7 @@
         <a href="#hours">Hours</a>
         <a href="#menu">The board</a>
         <a href="#signature">What to get</a>
-        <a href="#gallery">The tent</a>
+        <a href="#saturday">Saturdays</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact" class="nav-cta">Find us</a>
       </nav>
@@ -85,12 +85,34 @@
     </div>
   </section>
 
+  <!-- ===================== #street — THE STOREFRONT =====================
+       STOREFRONT-BELOW-HOURS: the hero has the trailer soft behind the plate,
+       so the sharp exterior opens the offerings right under the hours band.
+       This is their own banner, bolted to the trailer, with their own address
+       and phone painted on it — the whole restaurant, from the road. -->
+  <section class="section street" id="street">
+    <div class="wrap">
+      <div class="street-grid">
+        <div class="street-copy reveal">
+          <p class="eyebrow">From the road</p>
+          <h2>The whole restaurant <em>is the trailer</em></h2>
+          <p class="lede">A blue trailer on the grass off Meridian, a white tent beside it, and picnic tables under the tent.</p>
+          <p>Their banner is bolted to the side with the address and the phone number painted right on it, and the board is fixed in the service window a few feet away. There's no door to find and nothing to figure out — everything you need is on the outside of the truck.</p>
+        </div>
+        <figure class="print street-shot reveal">
+          <img src="images/trailer.jpg" alt="The Tacos los Queretaros banner bolted to the side of the blue trailer, showing photos of taquitos, queso birrias, pizza birria, mulitas, sopes, torta and burrito above the phone number and 3420 Meridian Ave E" loading="lazy" width="1800" height="1641">
+          <figcaption>Their banner — phone and address painted on</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== #menu — THE FOOD =====================
        Every line below is transcribed from the board bolted to the trailer
        window and the green marker sign taped beside it (harvest g11, g4, g35).
        Nothing here is invented; anything that couldn't be read off the board
        is left off the page and listed in HANDOFF-CODEX.md instead. -->
-  <section class="section" id="menu">
+  <section class="section section-alt" id="menu">
     <div class="wrap">
       <div class="board">
         <div class="board-copy reveal">
@@ -107,7 +129,11 @@
 
       <div class="menu-groups reveal">
         <div class="menu-group">
-          <h3>Tacos, burritos &amp; handhelds</h3>
+          <button class="unroll" type="button" aria-expanded="true" aria-controls="roll-hand">
+            <h3>Tacos, burritos &amp; handhelds</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-hand" data-open="1"><div>
           <ul class="menu-list">
             <li><span class="no">2</span><span class="name">Tacos</span><span class="price">$2.90</span></li>
             <li><span class="no">3</span><span class="name">Quesatacos</span><span class="price">$4.99</span></li>
@@ -121,9 +147,14 @@
             <li><span class="no">11</span><span class="name">Sopes</span><span class="price">$4.99</span></li>
             <li class="star-item"><span class="no">12</span><span class="name">Mulitas</span><span class="price">$4.99</span></li>
           </ul>
+          </div></div>
         </div>
         <div class="menu-group">
-          <h3>Quesabirria, plates &amp; tamales</h3>
+          <button class="unroll" type="button" aria-expanded="true" aria-controls="roll-plates">
+            <h3>Quesabirria, plates &amp; tamales</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-plates" data-open="1"><div>
           <ul class="menu-list">
             <li class="star-item"><span class="no">13</span><span class="name">Mega Quesabirria</span><span class="price">$15.99</span></li>
             <li><span class="no">14</span><span class="name">Super Quesadilla</span><span class="price">$12.99</span></li>
@@ -138,6 +169,7 @@
             <li><span class="no">+</span><span class="name">Veggie Burrito</span><span class="price">$14.99</span></li>
           </ul>
           <p class="menu-fine">The last two are written on the board in marker, under the printed list.</p>
+          </div></div>
         </div>
       </div>
 
@@ -231,7 +263,7 @@
        lands above it — the name and the board price, nothing else to read.
        Tap it again and it clears. On phones the answer sits ABOVE the photos
        so the thing that changes is never off-screen. -->
-  <section class="section section-alt" id="signature">
+  <section class="section" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Pick a picture</p>
@@ -267,19 +299,41 @@
     </div>
   </section>
 
+  <!-- ===================== #saturday — THE ONE-OF-ONE =====================
+       Not a claim of theirs and not invented: four separate people volunteer
+       the same thing in their Google reviews without being asked — the
+       carnitas get made fresh on Saturday. Reported as exactly that, and the
+       band's live element counts the days to the next one. No hours live here
+       (STORE HOURS NEVER IN A GADGET); the countdown is to a recurring day. -->
+  <section class="section section-dark sat-band" id="saturday">
+    <div class="wrap">
+      <div class="sat">
+        <div class="sat-copy reveal">
+          <p class="eyebrow">The thing the regulars keep saying</p>
+          <h2>Saturday is <em>carnitas day</em></h2>
+          <p>Nobody advertises it. It isn't on the board, it isn't on the banner, and it isn't on the green sign taped up beside them. It is just the thing four different people volunteered in their Google reviews without being asked: the carnitas get made fresh on Saturday, and that is the day to come for them.</p>
+          <p class="sat-fine">Carnitas is on the board every day of the week too — number 20, the plate, and as a meat on anything else.</p>
+        </div>
+        <div class="sat-clock reveal">
+          <p class="sat-label">Next carnitas Saturday</p>
+          <p class="sat-num"><span class="tnum" id="satNum">–</span><span class="sat-unit" id="satUnit">days</span></p>
+          <p class="sat-sub" id="satSub">&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== #gallery — THE TENT ===================== -->
   <section class="section" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Before you pull in</p>
-        <h2>A trailer, a tent, <em>and a lawn</em></h2>
-        <p>No dining room. A covered tent of picnic tables on the grass, string lights overhead, and salsa already on the table.</p>
+        <p class="eyebrow">Where you eat it</p>
+        <h2>Under the tent, <em>on a check tablecloth</em></h2>
+        <p>No dining room. A covered tent of picnic tables on the grass, and the salsa is already out when you sit down.</p>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/trailer.jpg" alt="The Tacos los Queretaros banner on the side of the trailer, showing photos of taquitos, queso birrias, pizza birria, mulitas, sopes, torta and burrito" loading="lazy" width="1800" height="1641"><figcaption>The banner on the trailer</figcaption></figure>
-        <figure class="print reveal"><img src="images/tent-1.jpg" alt="Looking out from under the white tent past red-check tables to the blue trailer's service window" loading="lazy" width="1180" height="1200"><figcaption>Under the tent</figcaption></figure>
-        <figure class="print reveal"><img src="images/tent-2.jpg" alt="Wooden picnic tables on the grass beside Meridian Avenue East with the taquería feather flag up" loading="lazy" width="1600" height="1205"><figcaption>The lawn, off Meridian</figcaption></figure>
-        <figure class="print reveal"><img src="images/tent-3.jpg" alt="A red-check picnic table with a stone molcajete of salsa, a plate of tacos and lime wedges" loading="lazy" width="1400" height="1867"><figcaption>Salsa on the table</figcaption></figure>
+        <figure class="print reveal"><img src="images/tent-1.jpg" alt="Looking out from under the white tent past red-check tables to the blue trailer's service window" loading="lazy" width="1180" height="1200"><figcaption>Out from under the tent</figcaption></figure>
+        <figure class="print reveal"><img src="images/tent-3.jpg" alt="A red-check picnic table with a stone molcajete of salsa, a plate of tacos and lime wedges" loading="lazy" width="1400" height="1867"><figcaption>The molcajete, already on the table</figcaption></figure>
         <figure class="print reveal"><img src="images/tent-4.jpg" alt="A large party tray of tacos ringed with cups of consommé on a red-check tablecloth" loading="lazy" width="1400" height="1867"><figcaption>A tray for the whole table</figcaption></figure>
         <figure class="print reveal"><img src="images/counter.jpg" alt="A row of quesabirria pizzas boxed and lined up on the counter inside the trailer window" loading="lazy" width="900" height="1600"><figcaption>Boxed at the window</figcaption></figure>
       </div>
@@ -287,33 +341,86 @@
   </section>
 
   <!-- ===================== #reviews =====================
-       The honest aggregate only. No review text is printed because none could
-       be pulled with a reviewer's name attached — the factory never writes one. -->
+       REVIEW ATTRIBUTION LAW: every quote below is verbatim from this
+       business's own Google reviews, with that reviewer's real published name
+       and their real published profile photo, pulled together from the same
+       source (place cid 6102753114022338375, harvested 2026-09-08 with a warmed
+       Chromium profile; raw in harvest-0906/greviews-pw.json). Nothing here is
+       written, restyled or stood in for. Reviewers whose Google avatar is a
+       letter monogram were passed over rather than dressed up as a photo. -->
   <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">What people rate it</p>
-        <h2>Five stars, <em>eighty-five percent</em> of the time</h2>
+        <p class="eyebrow">On Google, in their own words</p>
+        <h2>Twenty-eight of thirty-two <em>gave it five stars</em></h2>
       </div>
+
       <div class="score reveal">
         <div class="score-big">
           <b class="tnum">4.8</b>
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <small>30 Google reviews</small>
+          <small>32 Google reviews</small>
         </div>
-        <ul class="subscores">
-          <li><span>Food</span><span class="bar"><i style="--w:94%"></i></span><span class="val">4.7</span></li>
-          <li><span>Service</span><span class="bar"><i style="--w:96%"></i></span><span class="val">4.8</span></li>
-          <li><span>Atmosphere</span><span class="bar"><i style="--w:92%"></i></span><span class="val">4.6</span></li>
+        <ul class="dist">
+          <li><span class="lab">5 <i aria-hidden="true">★</i></span><span class="bar"><i style="--w:87.5%"></i></span><span class="val tnum">28</span></li>
+          <li><span class="lab">4 <i aria-hidden="true">★</i></span><span class="bar"><i style="--w:9.4%"></i></span><span class="val tnum">3</span></li>
+          <li><span class="lab">3 <i aria-hidden="true">★</i></span><span class="bar"><i style="--w:0%"></i></span><span class="val tnum">0</span></li>
+          <li><span class="lab">2 <i aria-hidden="true">★</i></span><span class="bar"><i style="--w:0%"></i></span><span class="val tnum">0</span></li>
+          <li><span class="lab">1 <i aria-hidden="true">★</i></span><span class="bar"><i style="--w:3.1%"></i></span><span class="val tnum">1</span></li>
         </ul>
       </div>
-      <p class="score-note reveal">Google rating as listed on their profile. The three breakdowns and the five-star share are from Restaurantji, across 21 ratings.</p>
+
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/faces/jeni.png" alt="Jeni Haas" width="220" height="220" loading="lazy">
+            <span class="rev-who">Jeni Haas<small>Google · a month ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“The tacos here are soooo delicious!! We always get the chicken or beef street tacos plate and it’s the perfect amount of food. The tacos have a great amount of meat, so much flavor and the refried beans are really good. I’ve also had the birria tacos which have awesome consume and really hit the spot.”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/faces/rose.png" alt="rose Lasick" width="220" height="220" loading="lazy">
+            <span class="rev-who">rose Lasick<small>Google · 2 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Food was amazing, taste and texture of food was perfect. 3 different orders and all tasted and looked great. My kids are picky about the Asada fries and they had no complaints. The gentlemen taking the order was respectful and patient.”</p>
+        </article>
+        <!-- Schuyler Summers' review is two paragraphs; the first is quoted in full and
+             verbatim, and the ellipsis marks the second (a note about the open sign
+             beeping) rather than hiding it — the link under this block goes straight
+             to the whole thing on Google. -->
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/faces/schuyler.png" alt="Schuyler Summers" width="220" height="220" loading="lazy">
+            <span class="rev-who">Schuyler Summers<small>Google · 4 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Great food. We ordered carnitas, chicken, asada, and queso birria tacos. Everything was well seasoned and nothing was dry. We also ordered a tamal but my daughter devoured it before I could get a picture. Because we were eating there, he brought out some other sauces for us to try…”</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/faces/justin.png" alt="Justin Hernandez" width="220" height="220" loading="lazy">
+            <span class="rev-who">Justin Hernandez<small>Google · a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Solid Mexican food. I use to have to go to Renton for some solid tacos but I’m going to start going here as it’s a lot closer. Prices are average too but the meat they use is very tender and above average.”</p>
+        </article>
+      </div>
+
+      <p class="score-note reveal">Quoted word for word from Google, with each reviewer's own name and profile photo.
+        <a href="https://www.google.com/maps?cid=6102753114022338375" target="_blank" rel="noopener">Read all 32 on Google ↗</a></p>
     </div>
   </section>
 
   <!-- ===================== #contact ===================== -->
   <section class="section" id="contact">
     <div class="wrap">
+      <figure class="print contact-shot reveal">
+        <img src="images/tent-2.jpg" alt="Wooden picnic tables on the grass beside Meridian Avenue East with the taquería feather flag up by the road" loading="lazy" width="1600" height="1205">
+        <figcaption>This is what you're looking for off Meridian</figcaption>
+      </figure>
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting there</p>
@@ -347,17 +454,13 @@
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">One more thing</p>
-        <h2>It's a bigger board <em>than it looks</em></h2>
-      </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count tnum" data-to="34">34</span></b><span>numbered items on the board, 2 through 35</span></div>
-        <div class="num"><b><span class="count tnum" data-to="10">10</span></b><span>meats you can build any of them with</span></div>
-        <div class="num"><b><span class="count tnum" data-to="7">7</span></b><span>dishes they put on the banner themselves</span></div>
+        <p class="eyebrow">For a table of people</p>
+        <h2>They'll build you <em>a whole tray</em></h2>
+        <p>The big trays come out ringed with cups of consommé, and the tent is right there to eat them under. Call the trailer, or send them the day and the head count.</p>
       </div>
       <div class="cta-actions reveal">
         <a href="tel:+12063089792" class="btn btn-primary">Call the trailer</a>
-        <a href="#contact" class="btn btn-ghost">Get directions</a>
+        <a href="#contact" class="btn btn-ghost">Send them a message</a>
       </div>
     </div>
   </section>
@@ -382,7 +485,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#signature">What to get</a><br><a href="#gallery">The tent</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#signature">What to get</a><br><a href="#saturday">Saturdays</a><br><a href="#gallery">The tent</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -392,6 +495,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788929508"></script>
 </body>
 </html>

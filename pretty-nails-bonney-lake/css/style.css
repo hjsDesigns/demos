@@ -24,44 +24,47 @@
    Hayden to catch it.
    ============================================================ */
 :root{
-  /* ---- palette — sampled off their own stand, their roof and the FH oval on the cup ---- */
-  --brand:#A63A2C;          /* the FH oval brick red, off the printed cup (images/logo.png) */
-  --brand-text:#8A2C20;     /* same hue, darkened for small type on warm cream */
-  --brand-bright:#C24B37;   /* hover of --brand */
-  --accent:#3F6B58;         /* fir — the awning and the metal roof */
-  --accent-soft:#7FA894;    /* the accent, lightened for dark grounds */
-  --ink:#1E2B29;            /* near-black with the green in it */
-  --bg:#F4EADA;             /* WARM cream — never white */
-  --bg-2:#E9DAC1;           /* deeper warm cream, alternating bands */
-  --paper:#FBF4E8;          /* cards, a hair lighter than the ground */
-  --muted:#6B6558;          /* secondary type */
-  --line:#DCCDB2;           /* hairlines */
-  --dark:#16262B;           /* the teal-black wainscot and the mural wall */
-  --dark-2:#22383E;         /* dark hover */
-  --warm:#D6A85E;           /* brass — highlighted words on the dark bands */
-  --tint:#2C3E38;           /* THE DEEP BAND — the fir green off the roof (hours band) */
-  --status-open:#10B981;    /* always green   [STATUS LIGHT LAW] */
-  --status-closed:#DC2626;  /* always red     [STATUS LIGHT LAW] */
+  /* ---- palette — every hex PIL-sampled off Pretty Nails' OWN photographs
+     (MIRROR LAW, interior first: their outside sign is yellow + hot pink and
+     the room is terracotta + gold — sign and room disagree, so the ROOM wins
+     the UI and the sign keeps its own moment, in the header mark and the
+     storefront band. 2026-09-08). ZONED COLOR: terracotta owns every
+     functional thing (buttons, links, dots, chevrons); the column gold owns
+     eyebrows, rules and the arch device; burgundy is the dark ground. ---- */
+  --brand:#C0532A;          /* terracotta — between the aisle wall #A54934 and the lit wall #DE7935 */
+  --brand-text:#9E3F1C;     /* same hue darkened to pass AA on cream for small type */
+  --brand-bright:#DE7935;   /* the sunlit stretch of their terracotta wall (yelp-17) — hover */
+  --accent:#B07B22;         /* plaster-column gold, darkened for cream grounds (#F89E2E raw) */
+  --accent-soft:#F0B45C;    /* the column highlight itself, for dark grounds (#FFB95A raw) */
+  --ink:#2A1114;            /* burgundy-black, lifted off the pedicure leather (#11000B / #5C0025) */
+  --bg:#F7EBDB;             /* TRUE CREAM — their travertine floor tile (#EAD7AD), lightened */
+  --bg-2:#EFDFC9;           /* the floor tile itself, alternating bands */
+  --paper:#FCF4E8;          /* cards — a hair lighter than --bg, never white */
+  --muted:#7A5A50;          /* secondary text */
+  --line:#E2CDB4;           /* hairlines, borders */
+  --dark:#4A0F1E;           /* burgundy pedicure leather — dark panels + hero scrim */
+  --dark-2:#61172A;         /* dark hover */
+  --warm:#F0B45C;           /* highlighted word inside headlines on dark grounds — column gold */
+  --tint:#F6E3C6;           /* the hours band — pale plaster gold */
+  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
+  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
 
-  /* ---- type: TWO faces, and only two. [SIGN-FONT LAW, 9/7]
-     The name on their fascia is a high-contrast transitional serif with a very
-     large x-height and sharp hairline serifs (read off a 3x crop of harvest
-     g4.jpg — see review/REFINE-2026-09-08.md). Playfair Display at 700-900 is
-     the closest Google face and is sturdy, not a hairline didone. Karla carries
-     everything else, INCLUDING the small letter-spaced labels that used to be
-     set in system ui-monospace — that was a silent third typeface. ---- */
-  --display:'Playfair Display','Hoefler Text','Iowan Old Style',Georgia,'Times New Roman',serif;
-  --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
-  --mono:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
+  /* ---- type: two faces max, loaded in index.html <head> ---- */
+  --display:'Amiri','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --body:'Rosario','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
 
   /* ---- metrics ---- */
-  --header-h:74px;
+  --header-h:72px;
   --pad:clamp(20px,5vw,64px);
   --maxw:1180px;
   --rule:1px solid var(--line);
-  --ease:cubic-bezier(.22,.85,.3,1);
-  --ease-2:cubic-bezier(.3,.9,.25,1);       /* the flavor wall: quick open, soft settle */
-  --r:16px;
+  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
+  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
+                                                (mechanical → steeper start; confident → slower settle;
+                                                elastic → overshoot past 1). Leave equal to --ease if
+                                                the build doesn't need a second feel. */
+  --r:18px;
 }
 
 /* ============================================================
@@ -82,7 +85,6 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font
   display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 main{flex:1 0 auto}
 img{max-width:100%;height:auto;display:block}
-figure,blockquote{margin:0} /* UA default 1em 40px shrank .print frames ~80px inside their column (cast-iron-queen, 2026-09-06) */
 a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
 h2 em{font-style:normal;color:var(--brand)}
@@ -218,13 +220,6 @@ p{margin:0 0 1em}
 .section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
 .section-head p{font-size:18px;color:var(--muted);margin:0}
 .section-dark .section-head p{color:rgba(255,255,255,.78)}
-/* Eyebrow labels sit inside blocks whose own `X p` rule (0,1,1) outranks
-   `.eyebrow` (0,1,0): `.section-head p` and `.story-copy p` were repainting
-   them muted/ink at body size with no bottom margin, on light AND dark
-   grounds (caught on rose-spa-bonney-lake, 2026-09-06). Re-assert the label
-   at higher weight; qa/verify.py checks the computed color vs --brand-text. */
-.section-head .eyebrow,.story-copy .eyebrow{font-size:12px;color:var(--brand-text);margin:0 0 14px}
-.section-dark .section-head .eyebrow,.section-dark .story-copy .eyebrow{color:var(--warm)}
 /* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.in{opacity:1;transform:none}
@@ -350,222 +345,292 @@ p{margin:0 0 1em}
 @media (max-width:760px){.foot{grid-template-columns:1fr}}
 
 /* ============================================================================
-   FOX HOLLOW COFFEE AT WOODLAND ESPRESSO — site block
-   Ground: WARM CREAM (Mirror Law — this is a bright roadside stand under open
-   sky; there is no dark room to mirror). Contrast comes from ONE deep fir band
-   (the hours) plus the dark closing band, so the page is never cream-on-cream.
+   PRETTY NAILS — SITE BLOCK (2026-09-04)
+   Everything below is this build's own. Tokens only, no stray hexes except
+   inside the SIGNATURE gadget's locally-declared toy tokens.
+   Recurring device: THE ARCH — their three arched doorways, drawn as a
+   hairline gold arch under every eyebrow and repeated in the header mark,
+   the roll cards' shoulders and the counter print.
    ============================================================================ */
 
-/* Playfair Display — pin the weights we actually load. */
-h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
-.hero h1,.section-head h2,.story-copy h2,.contact h2,.status-head h2{font-weight:900}
-.logo .wm,.foot .wm,.num b{font-weight:900}
-/* the labels that were system-mono are now Karla — hold them together with weight + tracking */
-.eyebrow,.hdr-live,.live-line,.hours-list .time,.print figcaption,.foot h4,.logo .wm small,.foot .wm small,
-.lead-note,.bagel-lead,.spec-list .name .sf,.rev-meta{font-weight:700}
+/* Amiri ships 400/700 and Rosario 300–700 — the shared template asks for 800
+   in a dozen places, which would synthesise a fake bold and mush both faces.
+   Pin everything that asked for 800 down to 700. (Gloock lesson, 2026-09-03.) */
+h1,h2,h3,h4,.logo .wm,.foot .wm,.face .ini,.steps li::before,.num b,
+.btn,.main-nav,.menu-list .name,.proof,.hours-list .day,.contact-form label,
+.face,.contact-lines a,.status-addr a,.foot .soc a,.hero-sub,.story-copy .lede,
+.card .chips span,.roll-btn h3,.rv-meta b,.rv-ini{font-weight:700}
 
-/* ---------- THE SIGNATURE DEVICE: their roof ----------
-   The stand wears a green standing-seam metal roof with a dark fascia board
-   bolted under it. That edge — seamed green over one dark line — is set above
-   every eyebrow on the page, so the opener's world runs to the footer. */
-.eyebrow{position:relative;padding-top:15px}
-.eyebrow::before{content:"";position:absolute;left:0;top:0;width:44px;height:9px;border-radius:2px 2px 0 0;
-  background:
-    linear-gradient(180deg,transparent 0 6px,var(--dark) 6px 9px),
-    repeating-linear-gradient(90deg,var(--accent) 0 9px,color-mix(in srgb,var(--accent) 58%,var(--dark)) 9px 11px)}
-.section-dark .eyebrow::before,.status-band .eyebrow::before,.rev-band .eyebrow::before{
-  background:
-    linear-gradient(180deg,transparent 0 6px,rgba(255,255,255,.5) 6px 9px),
-    repeating-linear-gradient(90deg,var(--accent-soft) 0 9px,color-mix(in srgb,var(--accent-soft) 55%,var(--dark)) 9px 11px)}
+:root{
+  --accent-deep:#8A5E14;   /* the column gold darkened until 12px uppercase passes AA on cream */
+  --ease-2:cubic-bezier(.16,.84,.28,1);   /* the chair's own settle — confident, no overshoot */
+}
 
-/* ---------- header: the real FH oval, cropped off their cup, never redrawn ---------- */
-.logo img{height:42px;width:auto;border-radius:7px;box-shadow:0 2px 10px -4px rgba(0,0,0,.45)}
-.logo .wm{font-size:19px;line-height:1.05}
-.logo .wm small{letter-spacing:.16em;font-size:10px;margin-top:5px}
-@media (max-width:560px){.logo img{height:36px}.logo .wm{font-size:16.5px}}
+/* Amiri runs narrow with a small x-height: give the display face more room. */
+h1,h2,h3{letter-spacing:0}
+.hero h1{max-width:15ch;font-size:clamp(40px,min(6.2vw,9.6vh),80px)}
+.section-head h2{font-size:clamp(34px,4.6vw,56px)}
+.hero-bg img{object-position:50% 42%}
 
-/* ---------- hero: bright photo, type pooled at the bottom ---------- */
-.hero-bg img{object-position:58% 72%}
-@media (max-width:760px){.hero-bg img{object-position:52% 62%}}
-.hero h1{max-width:14ch;font-size:clamp(38px,min(6vw,9vh),76px);text-shadow:0 3px 34px rgba(0,0,0,.55)}
-.hero-sub{font-weight:500}
+/* eyebrows take the gold (ZONED COLOR); everything functional stays terracotta */
+.eyebrow{color:var(--accent-deep);margin:0 0 10px}
+.section-dark .eyebrow{color:var(--warm)}
 
-/* ---------- HOURS: the one deep band. Dark fir ground, cream card inside. ---------- */
-.status-band{background:var(--tint);color:#fff;border-bottom:0}
-.status-band .eyebrow{color:var(--warm)}
-.status-band h2{color:#fff}
-.status-band h2 em{color:var(--warm)}
-.status-band .live-line{color:#fff}
-.status-addr{color:rgba(255,255,255,.82)}
-.status-addr a{color:var(--warm);border-bottom-color:color-mix(in srgb,var(--warm) 45%,transparent)}
-.status-addr a:hover{border-bottom-color:var(--warm)}
-.status-band .proof{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
-.status-band .proof .ico{color:var(--accent-soft)}
-.status-band .proof .star{color:var(--warm)}
-/* the band paints everything white; the cream hours card must claw its text back
-   (the exact dark-ground trap the template README warns about) */
-.status-band .hours-list{color:var(--ink)}
-.status-band .hours-list .day{color:var(--ink)}
-.status-band .hours-list .time{color:var(--muted)}
-.status-band .hours-list li.today .time{color:var(--ink)}
-.hours-list li.today{background:color-mix(in srgb,var(--warm) 24%,transparent)}
-.hours-list li.today .day::after{color:var(--brand-text)}
+/* ---------- THE ARCH (recurring device) ---------- */
+.arch{display:block;width:44px;height:19px;margin:0 0 18px;
+  border:2px solid var(--accent);border-bottom:0;border-radius:999px 999px 0 0}
+.section-dark .arch{border-color:var(--warm)}
+/* (the drawn-arch header ornament was retired 2026-09-08 — the header and
+   footer now carry a crop of their REAL sign, images/sign.jpg.) */
 
-/* ---------- DRINKS ---------- */
-/* the six words that are actually painted along the front of the building */
-.fascia{display:flex;flex-wrap:wrap;gap:8px 10px;margin:0 0 clamp(28px,4vw,44px);padding:16px 18px;
-  background:var(--dark);border-radius:var(--r);justify-content:center}
-.fascia span{font-family:var(--display);font-weight:700;font-size:clamp(15px,2.4vw,25px);color:#F0E4CE;
-  letter-spacing:.06em;text-transform:uppercase;padding:0 4px}
-.fascia span+span{border-left:1px solid rgba(255,255,255,.18);padding-left:14px}
+/* ---------- radii: not one uniform corner anywhere (818 hygiene) ---------- */
+.hours-list{border-radius:22px 22px 8px 8px}
+.card{border-radius:26px 26px 8px 8px}
+.contact-form{border-radius:20px 20px 8px 8px}
+.print{border-radius:10px 10px 3px 3px}
 
-.drinks-lead{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,4vw,56px);align-items:start}
-.drinks-copy h3{font-size:clamp(24px,3vw,32px);margin:0 0 10px}
-.lead-note{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--brand-text);font-weight:600;margin:0 0 18px}
-.spec-list li{grid-template-columns:1fr}
-.spec-list .name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.01em}
-.spec-list .name .sf{font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 13%,transparent);
-  border-radius:999px;padding:3px 8px;margin-left:8px;vertical-align:2px;font-style:normal}
-.spec-list .desc{margin-top:2px}
+/* ---------- the wide room print that opens #services
+     (no exterior photograph of the building exists in any harvest —
+      STOREFRONT-BELOW-THE-HOURS gets the widest interior instead) ---------- */
+.wide-print{margin:0 0 clamp(34px,5vw,60px);background:var(--paper);border:var(--rule);
+  padding:14px 14px 34px;box-shadow:0 46px 90px -50px color-mix(in srgb,var(--dark) 55%,transparent);
+  border-radius:10px 10px 3px 3px}
+.wide-print img{width:100%;height:auto;display:block}
+.wide-print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:14px;text-align:center}
 
-/* the specialties are a printed sheet taped inside their glass — so they sit on one */
-.sheet{position:relative;background:var(--paper);border:var(--rule);border-radius:4px;
-  padding:clamp(26px,3vw,38px) clamp(22px,3vw,34px);
-  box-shadow:0 40px 70px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
-.sheet::before,.sheet::after{content:"";position:absolute;top:-11px;width:74px;height:23px;
-  background:color-mix(in srgb,var(--warm) 34%,var(--paper));border:1px solid color-mix(in srgb,var(--warm) 45%,transparent);
-  opacity:.85}
-.sheet::before{left:22px;transform:rotate(-3.5deg)}
-.sheet::after{right:22px;transform:rotate(2.5deg)}
-@media (prefers-reduced-motion:reduce){.sheet::before,.sheet::after{transform:none}}
+/* ---------- TITLE CARDS UNROLL (#services) — chevron down, flips up ---------- */
+.menu-stack{display:grid;gap:14px}
+.roll{background:var(--paper);border:var(--rule);border-radius:24px 24px 8px 8px;overflow:hidden}
+.roll-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  background:none;border:0;cursor:pointer;padding:20px clamp(18px,3vw,26px);text-align:left;
+  font-family:var(--body);color:var(--ink);min-height:68px}
+.roll-btn h3{font-size:clamp(21px,2.5vw,28px);margin:0}
+.roll-btn .cnt{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.4}
+.roll-btn .chev{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:var(--tint);color:var(--brand-text);transition:transform .4s var(--ease),background .25s,color .25s}
+.roll-btn .chev svg{width:21px;height:21px}
+.roll-btn:hover .chev{background:color-mix(in srgb,var(--accent-soft) 70%,transparent)}
+.roll-btn[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--brand);color:#fff}
+.roll-panel{overflow:hidden;max-height:0;transition:max-height .45s var(--ease)}
+.roll-panel.open{max-height:700px}
+.roll-panel .menu-list{padding:0 clamp(18px,3vw,26px) 22px}
+.roll-panel .menu-list li{border-bottom:var(--rule)}
+.roll-panel .menu-list li:last-child{border-bottom:0}
 
-.drinks-tail{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,3vw,36px);
-  align-items:start;margin-top:clamp(34px,5vw,64px)}
-.bagels{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px}
-.bagels h3{font-size:24px;margin:0 0 12px}
-.bagel-lead{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--brand-text);font-weight:600;margin:0 0 12px}
-.bagel-list{list-style:none;margin:0 0 14px;padding:0}
-.bagel-list li{font-family:var(--display);font-weight:700;font-size:18px;padding:9px 0;border-bottom:var(--rule)}
-.bagel-list li:last-child{border-bottom:0}
-.bagel-fine{font-size:14px;color:var(--muted);margin:0}
-@media (max-width:900px){.drinks-lead{grid-template-columns:1fr}.drinks-tail{grid-template-columns:1fr}}
+/* ---------- REVIEWS ---------- */
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{background:var(--paper);border:var(--rule);border-radius:24px 24px 8px 8px;
+  padding:28px 24px 24px;display:flex;flex-direction:column;gap:18px}
+.review blockquote{margin:0;font-size:16.5px;line-height:1.62;color:var(--ink)}
+.review blockquote::before{content:"“";display:block;font-family:var(--display);font-size:52px;
+  line-height:.6;color:var(--accent);margin-bottom:10px}
+.rv-who{display:flex;align-items:center;gap:13px;margin-top:auto}
+.rv-ini{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--display);font-size:20px;color:#fff;background:var(--brand)}
+.rv-ini.g2{background:var(--dark)}
+.rv-ini.g3{background:color-mix(in srgb,var(--accent) 78%,var(--ink))}
+.rv-meta b{display:block;font-size:15.5px}
+.rv-meta span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-top:3px}
+@media (max-width:1000px){.review-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.review-grid{grid-template-columns:1fr}}
 
-/* ---------- SIGNATURE: THE FLAVOR WALL ----------
-   Their real printed list. One tap on a card rolls the real names out; the
-   chevron flips down→up (ARROW LAW). "Pick one for me" lights one real syrup.  */
-/* the real taped sheet and the cup sit side by side; the flavors run full width
-   underneath, so neither column is left holding a column of dead cream */
-.wall-top{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,52px);align-items:stretch;
-  margin-bottom:clamp(28px,4vw,48px)}
-.wall-print{max-width:340px;justify-self:center;align-self:center}
+/* ============================================================================
+   SIGNATURE — TAKE A SEAT
+   One tap target: the chair. Tap → the basin fills, bubbles, steams and the
+   glass on the arm pours. Tap again → it all drains. No chips, no numbers,
+   no hours or prices restated. Their own free-wine sign is the content.
+   ============================================================================ */
+.chair-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(24px,4vw,54px);align-items:center}
+.chair-stage{background:var(--paper);border:var(--rule);border-radius:170px 170px 12px 12px;
+  padding:clamp(26px,4vw,44px) clamp(18px,3vw,32px) 26px;
+  box-shadow:0 44px 90px -54px color-mix(in srgb,var(--dark) 60%,transparent)}
+.chair{display:block;width:100%;max-width:400px;margin:0 auto;background:none;border:0;padding:0;
+  cursor:pointer;border-radius:24px;-webkit-tap-highlight-color:transparent}
+.chair .scene{display:block;width:100%;height:auto;overflow:visible;
+  --leather:#7A2033; --cushion:#D8A87C; --timber:#7C3E24; --tub-line:rgba(42,17,20,.20);
+  --steam:rgba(255,255,255,.9)}
 
-/* THE CUP. It is never empty — it opens holding a real flavor off their sheet.
-   Result sits ABOVE the swatches on every width; one tap on any flavor moves it up
-   here, tapping the lit one again puts the opening flavor back. */
-.cupbox{background:var(--dark);border-radius:var(--r);padding:clamp(22px,3vw,38px) clamp(20px,3vw,34px);
-  display:flex;flex-direction:column;justify-content:center;
-  box-shadow:0 40px 70px -50px color-mix(in srgb,var(--dark) 70%,transparent)}
-.cupbox .pick{align-self:flex-start}
-.cupbox .pick-out{color:#fff}
-.cupbox .pick-hint{font-size:13.5px;color:rgba(255,255,255,.66);margin:14px 0 0}
-.pick{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:14px 28px;border:0;cursor:pointer;
-  border-radius:999px;background:var(--brand);color:#fff;font-family:var(--body);font-weight:800;font-size:16px;
-  letter-spacing:.01em;transition:transform .18s var(--ease),background .18s,box-shadow .18s}
-.pick::before{content:"☕";font-size:17px}
-.pick:hover{background:var(--brand-bright);transform:translateY(-2px);
-  box-shadow:0 16px 34px -14px color-mix(in srgb,var(--brand) 70%,transparent)}
-.pick:active{transform:translateY(0)}
-.pick-out{font-family:var(--display);font-weight:900;font-size:clamp(30px,5.4vw,50px);line-height:1.05;
-  color:var(--warm);margin:0 0 18px;transition:opacity .3s var(--ease-2),transform .3s var(--ease-2)}
-.pick-out.show{opacity:1;transform:none}
+.chair .cshadow{fill:color-mix(in srgb,var(--ink) 13%,transparent)}
+.chair .cback{fill:url(#pnLeather)}
+.chair .cpad{fill:url(#pnCushion)}
+.chair .cpad.soft{opacity:.55}
+.chair .cbackg{transform-box:view-box;transform-origin:118px 250px;
+  transition:transform .75s var(--ease-2)}
+.chair .cseat{fill:url(#pnCushion)}
+.chair .cseatlip{fill:var(--timber)}
+.chair .carm,.chair .carmpost{fill:var(--timber)}
+.chair .ccol{fill:#3F0F1B}
+.chair .cbase{fill:#2A0810}
 
-.roll{border-bottom:var(--rule)}
-.roll:first-of-type{border-top:var(--rule)}
-.roll-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  background:none;border:0;cursor:pointer;padding:20px 4px;min-height:56px;text-align:left;color:var(--ink);
-  font-family:var(--display);font-weight:700;font-size:clamp(19px,2.5vw,26px);letter-spacing:-.01em}
-.roll-btn:hover{color:var(--brand-text)}
-.roll-btn .chev{width:26px;height:26px;flex:none;color:var(--brand);transition:transform .32s var(--ease-2)}
-.roll-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
-.rolled{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease-2)}
-.rolled > *{overflow:hidden;min-height:0}
-.roll.open .rolled{grid-template-rows:1fr}
-/* padding lives INSIDE the clipped box (a flex line), or a 0fr row still leaks it */
-.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.chips::after{content:"";flex:0 0 100%;height:14px}
-.chips li{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 16px;min-height:40px;
-  display:inline-flex;align-items:center;cursor:pointer;
-  font-size:14.5px;font-weight:700;color:var(--ink);transition:background .25s,color .25s,border-color .25s,transform .25s}
-.chips li:hover{border-color:var(--brand);color:var(--brand-text)}
-.chips li.lit{background:var(--brand);border-color:var(--brand);color:#fff;transform:scale(1.06)}
-.chips li.lit:hover{color:#fff}
-@media (max-width:900px){.wall-top{grid-template-columns:1fr;gap:26px}}
+.chair .ctub{fill:url(#pnTub);stroke:var(--tub-line);stroke-width:2.5}
+.chair .ctubrim{stroke:var(--tub-line);stroke-width:3;fill:none;stroke-linecap:round}
+.chair .ctowel{fill:#FFFDF8;stroke:var(--tub-line);stroke-width:1.5}
+.chair .cfaucet{fill:none;stroke:#A9A29A;stroke-width:5;stroke-linecap:round}
+.chair .cwater{fill:url(#pnWater);transform-box:fill-box;transform-origin:50% 100%;
+  transform:scaleY(0);transition:transform 1s var(--ease-2)}
+.chair .cbub{fill:rgba(255,255,255,.7);opacity:0}
+
+.chair .csteam{fill:none;stroke:var(--steam);stroke-width:5;stroke-linecap:round;opacity:0;
+  filter:blur(1.5px)}
+
+.chair .cglassline{fill:color-mix(in srgb,var(--ink) 22%,transparent)}
+.chair .cbowl{fill:rgba(255,255,255,.45)}
+.chair .cbowloutline{fill:none;stroke:color-mix(in srgb,var(--ink) 30%,transparent);stroke-width:2}
+.chair .cwine{fill:url(#pnWine);transform-box:fill-box;transform-origin:50% 100%;
+  transform:scaleY(0);transition:transform .75s var(--ease-2) .5s}
+
+/* ---- ON ---- */
+.chair.is-on .cwater{transform:scaleY(1)}
+.chair.is-on .cwine{transform:scaleY(1)}
+.chair.is-on .cbackg{transform:rotate(-4deg)}
+.chair.is-on .cbub{animation:pnBub 2.4s linear infinite}
+.chair.is-on .b2{animation-delay:.5s}.chair.is-on .b3{animation-delay:1s}
+.chair.is-on .b4{animation-delay:1.5s}.chair.is-on .b5{animation-delay:2s}
+.chair.is-on .csteam{animation:pnSteam 3.4s ease-in-out infinite}
+.chair.is-on .s2{animation-delay:.9s}.chair.is-on .s3{animation-delay:1.8s}
+@keyframes pnBub{
+  0%{opacity:0;transform:translateY(0) scale(.6)}
+  15%{opacity:.85}
+  75%{opacity:.55}
+  100%{opacity:0;transform:translateY(-58px) scale(1.1)}}
+@keyframes pnSteam{
+  0%{opacity:0;transform:translateY(10px) scale(.85)}
+  40%{opacity:.8}
+  100%{opacity:0;transform:translateY(-34px) scale(1.15)}}
+
+.chair-hint{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);text-align:center;margin:18px 0 0}
+.counter-print{transform:rotate(1.4deg);padding:13px 13px 34px;border-radius:999px 999px 6px 6px}
+.counter-print img{border-radius:999px 999px 4px 4px}
+.counter-print:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:880px){
+  .chair-wrap{grid-template-columns:1fr}
+  .counter-print{transform:none;max-width:420px;margin:0 auto}
+}
+
+/* reduced motion: no autoplay, no drift — the tap still works and lands
+   straight on the final frame. */
 @media (prefers-reduced-motion:reduce){
-  .rolled,.roll-btn .chev,.pick-out,.chips li{transition:none}
+  .chair .cbackg,.chair .cwater,.chair .cwine{transition:none}
+  .chair.is-on .cbub{animation:none;opacity:.65}
+  .chair.is-on .csteam{animation:none;opacity:.55}
+  .roll-panel{transition:none}
+  .chair .scene *{filter:none}
+  .roll-btn .chev{transition:none}
+  .wide-print,.print{box-shadow:none}
 }
 
-/* ---------- REVIEWS: four real Google reviewers, real names, real published
-     profile photos, scraped 2026-09-08 through a warmed profile. Reviewers Google
-     serves only a generated letter disc for were skipped, not faked.
-     The score itself is stated ONCE on the page, up in the hours band. ---------- */
-.rev-band{background:var(--dark);color:#fff}
-.rev-band .section-head h2{color:#fff}
-.rev-band .section-head h2 em{color:var(--warm)}
-.rev-band .section-head .eyebrow{color:var(--warm)}
-.revs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,26px)}
-.rev{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);
-  padding:clamp(22px,2.6vw,30px)}
-.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;margin-bottom:16px}
-.rev-face{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
-  border:2px solid color-mix(in srgb,var(--accent-soft) 60%,transparent)}
-.rev-who{font-family:var(--display);font-weight:700;font-size:18.5px;line-height:1.15;color:#fff}
-.rev-who small{display:block;font-family:var(--body);font-weight:700;font-size:10.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
-.rev-stars{color:var(--warm);font-size:14px;letter-spacing:.06em;white-space:nowrap;align-self:start;margin-top:3px}
-.rev p{margin:0;font-size:16px;line-height:1.65;color:rgba(255,255,255,.9)}
-.revs-out{margin:clamp(26px,3.5vw,40px) 0 0}
-.revs-out .btn-dark{background:var(--bg);color:var(--ink)}
-.revs-out .btn-dark:hover{background:#fff;color:var(--ink)}
-@media (max-width:760px){.revs{grid-template-columns:1fr}.rev-head{grid-template-columns:auto 1fr;row-gap:6px}
-  .rev-stars{grid-column:2;margin-top:0}}
-
-/* ---------- ABOUT: two frames, not one — the whole stand, then the roof-and-name
-     detail the copy actually talks about ---------- */
-.story-frames{display:grid;gap:clamp(16px,2.2vw,24px)}
-.story-frames .print:nth-child(1){transform:rotate(-1.2deg)}
-.story-frames .print:nth-child(2){transform:rotate(.9deg)}
-.story-frames .print:hover{transform:rotate(0) scale(1.01)}
-@media (max-width:900px){.story-frames .print{transform:none}}
-
-/* ---------- GALLERY: four distinct cups, four across on desktop, and a swipe
-     rail on phones instead of four full-screen photos stacked in a column ---------- */
-#gallery .prints{grid-template-columns:repeat(4,1fr)}
-#gallery .prints .print:nth-child(4n+1){transform:rotate(-1.2deg)}
-#gallery .prints .print:nth-child(4n+2){transform:rotate(.9deg)}
-#gallery .prints .print:nth-child(4n+3){transform:rotate(-.7deg)}
-#gallery .prints .print:nth-child(4n){transform:rotate(1.1deg)}
-#gallery .prints .print:hover{transform:rotate(0) scale(1.02)}
-@media (max-width:900px){#gallery .prints{grid-template-columns:1fr 1fr}}
-@media (max-width:700px){
-  #gallery .prints{display:flex;grid-template-columns:none;gap:14px;overflow-x:auto;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-    margin:0 calc(var(--pad) * -1);padding:6px var(--pad) 18px;scrollbar-width:none}
-  #gallery .prints::-webkit-scrollbar{display:none}
-  #gallery .prints .print{flex:0 0 76%;scroll-snap-align:center;transform:none}
-  /* the cards off the right edge of the rail never intersect the viewport
-     vertically, so the scroll-reveal would leave them blank until swiped —
-     the rail is its own reveal */
-  #gallery .prints .print.reveal{opacity:1;transform:none;transition:none}
+/* Their room is already warm and lit; the template scrim built from a burgundy
+   --dark over it read heavy and muddy on desktop. Lighter left-to-right wash,
+   same vertical pool under the headline — HERO BRIGHT AND VIBRANT. */
+.hero-bg::before{
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 76%,transparent) 0%,color-mix(in srgb,var(--dark) 46%,transparent) 40%,color-mix(in srgb,var(--dark) 10%,transparent) 74%,transparent 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 26%,transparent) 0%,transparent 32%,transparent 58%,color-mix(in srgb,var(--dark) 66%,transparent) 100%)}
+@media (max-width:760px){
+  .hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 34%,transparent) 0%,color-mix(in srgb,var(--dark) 4%,transparent) 28%,color-mix(in srgb,var(--dark) 48%,transparent) 60%,color-mix(in srgb,var(--dark) 90%,transparent) 100%)}
 }
 
-/* ---------- closing band ---------- */
-.cta-band .section-head p{max-width:46ch}
+/* framed prints hug their own photo — a stretched grid row left tall empty
+   mats under the shorter shots. */
+.prints .print{align-self:start}
 
-/* the landmark print closes #contact across the full width — the stand as you
-   actually meet it, from the road at the Woodland Ave light */
-.landmark{grid-column:1 / -1;margin-top:clamp(28px,4vw,48px);transform:rotate(-.5deg)}
-.landmark:hover{transform:rotate(0) scale(1.005)}
-@media (max-width:900px){.landmark{transform:none}}
+/* ============================================================================
+   REFINE PASS 2026-09-08 — everything below this line is the bring-it-to-the-bar
+   pass. Same tokens, same arch device; no new fonts, no new hexes.
+   ============================================================================ */
+
+/* ---------- base resets the template never made ----------
+     figure/blockquote carry a browser-default `margin:1em 40px`, which was
+     eating 80px out of every framed print's grid column. ---------- */
+figure,blockquote{margin:0}
+
+/* ---------- eyebrows: `.section-head p` (0,1,1) was outranking `.eyebrow`
+     (0,1,0) and repainting five of them muted grey at 18px. Same shape as the
+     rose-spa-bonney-lake bug, 2026-09-06. ---------- */
+.section-head .eyebrow,.story-copy .eyebrow,.status-head .eyebrow,.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;color:var(--accent-deep);margin:0 0 10px}
+.section-dark .eyebrow{color:var(--warm)}
+
+/* ---------- no-JS guard: without the observer the page must still be readable.
+     .reveal only hides itself once site.js has stamped html.js. ---------- */
+.reveal{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(22px)}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}}
+
+/* ---------- the REAL sign in the header + footer (cropped off their own
+     storefront photograph — never redrawn) ---------- */
+.logo img{height:40px;width:auto;border-radius:7px;
+  box-shadow:0 2px 0 color-mix(in srgb,var(--line) 90%,transparent)}
+@media (max-width:560px){.logo img{height:34px}}
+.foot .plate{width:auto;padding:9px 12px;border-radius:12px;background:var(--bg)}
+.foot .plate img{height:34px;width:auto;display:block}
+
+/* ---------- STOREFRONT BELOW THE HOURS — their building, whole ---------- */
+.storefront{margin:0 0 clamp(34px,5vw,60px);display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(18px,3.5vw,40px);align-items:stretch}
+.storefront img{width:100%;border-radius:14px 14px 4px 4px;
+  box-shadow:0 46px 90px -50px color-mix(in srgb,var(--dark) 60%,transparent)}
+.storefront .sf-day{height:100%;object-fit:cover;object-position:50% 34%}
+.sf-side{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(16px,2.5vw,26px)}
+.storefront .sf-night{height:auto}
+.storefront figcaption{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;line-height:1.7;
+  text-transform:uppercase;color:var(--muted);padding-top:12px;border-top:2px solid var(--accent)}
+@media (max-width:820px){
+  .storefront{grid-template-columns:1fr;gap:14px}
+  .storefront .sf-day{height:auto}
+}
+
+/* ---------- roll panels now carry the real work ---------- */
+.roll-panel.open{max-height:1600px}
+.roll-body{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  gap:clamp(16px,3vw,34px);align-items:start;padding:0 clamp(18px,3vw,26px) 24px}
+.roll-body .menu-list{padding:0}
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.work img{width:100%;height:150px;object-fit:cover;border-radius:12px 12px 3px 3px;
+  border:1px solid var(--line);background:var(--bg-2)}
+@media (max-width:820px){
+  .roll-body{grid-template-columns:1fr;gap:18px}
+  .work img{height:120px}
+}
+@media (max-width:420px){.work img{height:100px}}
+
+/* ---------- the roll headings' sub-labels read as words, not code ---------- */
+.roll-btn .cnt{font-family:var(--body);font-size:14.5px;letter-spacing:.01em;
+  text-transform:none;color:var(--muted);margin-top:6px}
+
+/* ---------- REVIEWS — real name, real face, real stars (9/6 law) ---------- */
+.review{gap:14px}
+.review blockquote::before{content:none}
+.rv-stars{margin:0;font-size:15px;letter-spacing:.16em;color:var(--accent);line-height:1}
+.rv-face{width:48px;height:48px;flex:none;border-radius:50%;object-fit:cover;
+  border:2px solid var(--tint);background:var(--tint)}
+.rv-more{margin:26px 0 0;text-align:center}
+.rv-more a{font-weight:700;color:var(--brand-text);
+  border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+.rv-more a:hover{border-bottom-color:var(--brand)}
+
+/* ---------- the counter print stops cropping their sign ---------- */
+.counter-print{border-radius:12px 12px 4px 4px}
+.counter-print img{border-radius:8px 8px 3px 3px}
+.chair-hint{font-family:var(--body);font-size:14px;letter-spacing:.02em;text-transform:none}
+
+/* ---------- ABOUT: two real facts off their own door, not initial discs ---------- */
+.shop-facts{list-style:none;margin:clamp(26px,4vw,38px) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:12px}
+.shop-facts li{flex:1 1 190px;background:var(--paper);border:var(--rule);
+  border-radius:16px 16px 5px 5px;padding:16px 18px}
+.shop-facts b{display:block;font-family:var(--display);font-weight:700;font-size:18px;line-height:1.1}
+.shop-facts span{display:block;font-size:14px;color:var(--muted);margin-top:5px}
+
+/* ---------- hero: let their room stay lit (HERO BRIGHT AND VIBRANT) ---------- */
+.hero-bg::before{
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 66%,transparent) 0%,color-mix(in srgb,var(--dark) 34%,transparent) 42%,color-mix(in srgb,var(--dark) 6%,transparent) 76%,transparent 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 22%,transparent) 0%,transparent 34%,transparent 58%,color-mix(in srgb,var(--dark) 62%,transparent) 100%)}
+@media (max-width:760px){
+  .hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent) 0%,color-mix(in srgb,var(--dark) 2%,transparent) 24%,color-mix(in srgb,var(--dark) 58%,transparent) 58%,color-mix(in srgb,var(--dark) 94%,transparent) 100%)}
+}

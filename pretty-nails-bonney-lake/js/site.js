@@ -13,14 +13,14 @@
    ------------------------------------------------------------ */
 var HOURS = {
   tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
-  days: {                             // Restaurantji, updated 2026-07-11: 10 AM - 10 PM, all seven days
-    0: [10, 22],                      // Sunday
-    1: [10, 22],                      // Monday
-    2: [10, 22],                      // Tuesday
-    3: [10, 22],                      // Wednesday
-    4: [10, 22],                      // Thursday
-    5: [10, 22],                      // Friday
-    6: [10, 22]                       // Saturday
+  days: {
+    0: [10, 17],                      // Sunday      10:00 AM – 5:00 PM
+    1: [9.5, 19],                     // Monday       9:30 AM – 7:00 PM
+    2: null,                          // Tuesday      CLOSED
+    3: [9.5, 19],                     // Wednesday    9:30 AM – 7:00 PM
+    4: [9.5, 19],                     // Thursday     9:30 AM – 7:00 PM
+    5: [9.5, 19],                     // Friday       9:30 AM – 7:00 PM
+    6: [9, 19]                        // Saturday     9:00 AM – 7:00 PM
   }
 };
 
@@ -149,72 +149,28 @@ function customClose(p, close){ return close; }
      Per-client interactive code goes below this line (EA: day timeline +
      rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
 
-  /* UNROLL — the group title is the tap target; the chevron flips.
-     Height is animated with grid-template-rows so nothing is measured in JS. */
-  $$('.unroll').forEach(function(btn){
-    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+  /* ---------- TITLE CARDS UNROLL (#services) ---------- */
+  $$('.roll-btn').forEach(function(btn){
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
     if(!panel) return;
     btn.addEventListener('click', function(){
-      var open = btn.getAttribute('aria-expanded')==='true';
-      btn.setAttribute('aria-expanded', open?'false':'true');
-      if(open){panel.removeAttribute('data-open')}else{panel.setAttribute('data-open','1')}
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.classList.toggle('open', !open);
     });
   });
 
-  /* CARNITAS SATURDAY — a live count of the days to the next Saturday, in
-     Pacific time like the rest of the clock. Nothing to tap and nothing to
-     read first: a number and the date it lands on. No open/close hours here. */
-  (function(){
-    var numEl=$('#satNum'); if(!numEl) return;
-    var unitEl=$('#satUnit'), subEl=$('#satSub'), wrap=numEl.parentNode;
-    var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    function paint(){
-      var p=pacificNow(), left=(6-p.day+7)%7;
-      if(left===0){
-        wrap.classList.add('is-today');
-        numEl.textContent='Today'; unitEl.textContent='';
-        if(subEl) subEl.textContent='It’s Saturday';
-        return;
-      }
-      wrap.classList.remove('is-today');
-      numEl.textContent=left; unitEl.textContent=left===1?'day':'days';
-      if(subEl){
-        // p.y/p.mo/p.d are only present on the demo clock; build the date from the real one otherwise
-        var base;
-        if(p.y!==undefined){ base=new Date(p.y,p.mo,p.d); }
-        else {
-          var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date()),o={};
-          parts.forEach(function(q){o[q.type]=q.value});
-          base=new Date(parseInt(o.year,10),parseInt(o.month,10)-1,parseInt(o.day,10));
-        }
-        base.setDate(base.getDate()+left);
-        subEl.textContent='Saturday, '+MON[base.getMonth()]+' '+base.getDate();
-      }
-    }
-    paint(); setInterval(paint,60000);
-  })();
-
-  /* WHAT ARE YOU HUNGRY FOR — tap one of four real plates, the name and the
-     board price land above it. Tap the same plate again and it clears. One
-     gesture, one payoff, nothing to read first. */
-  (function(){
-    var box=$('#hungry'); if(!box) return;
-    var name=$('#pickName'), price=$('#pickPrice'), plates=$$('.pick',box), current=null;
-    function clear(){
-      current=null; box.classList.remove('has');
-      plates.forEach(function(b){b.setAttribute('aria-pressed','false')});
-      name.innerHTML='&nbsp;'; price.innerHTML='&nbsp;';
-    }
-    plates.forEach(function(b){
-      b.addEventListener('click', function(){
-        if(current===b){clear(); return;}
-        current=b;
-        plates.forEach(function(o){o.setAttribute('aria-pressed', o===b?'true':'false')});
-        name.textContent=b.getAttribute('data-name');
-        price.textContent=b.getAttribute('data-price');
-        box.classList.add('has');
-      });
+  /* ---------- SIGNATURE GADGET — TAKE A SEAT ----------
+     One tap target, the chair itself. On: the basin fills, bubbles and
+     steams, and the glass on the arm pours. Off: it all drains back.
+     Nothing to read, nothing to type, no state to decode. */
+  var chair = $('#chairBtn'), chairHint = $('.chair-hint');
+  if(chair){
+    chair.addEventListener('click', function(){
+      var on = chair.classList.toggle('is-on');
+      chair.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if(chairHint) chairHint.textContent = on ? 'Tap again to drain' : 'Tap the chair';
     });
-  })();
+  }
 
 })();
