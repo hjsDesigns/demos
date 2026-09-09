@@ -1,7 +1,7 @@
 /* ============================================================
    KYOTO TERIYAKI RESTAURANT — site.js
    Nav toggle · live open/closed clock (Pacific) · scroll-reveal ·
-   count-up · contact form · PICK YOUR PLATE (the price stamp)
+   count-up · contact form · the board title-cards · THE WHITEBOARD
    ============================================================ */
 
 /* ------------------------------------------------------------
@@ -115,14 +115,35 @@ function customClose(p, close){ return close; }
   var form=$('.contact-form'), ok=$('.form-success');
   if(form&&ok){form.addEventListener('submit',function(e){e.preventDefault();ok.classList.add('show');ok.setAttribute('role','status');form.querySelector('button[type=submit]').disabled=true})}
 
-  /* ---------- SIGNATURE — PICK YOUR PLATE ------------------------
-     One tap on the photo of the food; the board price stamps onto it.
-     Tap the same plate again to clear it. Nothing to read to start. */
-  $$('.plate').forEach(function(btn){
+  /* ---------- THE BOARD — title cards unroll -----------------------
+     The heading IS the tap target; the chevron flips up. Combination
+     starts open so the section never reads as a row of shut drawers. */
+  $$('.board-card .unroll').forEach(function(btn){
+    var card = btn.parentNode;
+    btn.addEventListener('click',function(){
+      var open = !card.classList.contains('is-open');
+      card.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  /* ---------- SIGNATURE — STRAIGHT OFF THE WHITEBOARD --------------
+     Tap a marker line; it strikes onto the screen over the counter the
+     way it really did. Tap the same one again and it goes out.
+     One target, one instant payoff, nothing to read first. */
+  var wbScreen=$('#wbScreen'), wbItem=$('#wbItem');
+  $$('.wb-chip').forEach(function(btn){
     btn.addEventListener('click',function(){
       var on = btn.getAttribute('aria-pressed')==='true';
-      $$('.plate').forEach(function(o){o.setAttribute('aria-pressed','false')});
-      btn.setAttribute('aria-pressed', on ? 'false' : 'true');
+      $$('.wb-chip').forEach(function(o){o.setAttribute('aria-pressed','false')});
+      if(on){
+        if(wbScreen) wbScreen.classList.remove('lit');
+        if(wbItem) wbItem.textContent='';
+      }else{
+        btn.setAttribute('aria-pressed','true');
+        if(wbItem) wbItem.textContent = btn.getAttribute('data-item');
+        if(wbScreen){ wbScreen.classList.remove('lit'); void wbScreen.offsetWidth; wbScreen.classList.add('lit'); }
+      }
     });
   });
 

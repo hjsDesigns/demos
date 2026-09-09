@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Oswald (display, condensed signage) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907170515">
-<link rel="stylesheet" href="css/hero.css?v=0907170515">
+<link rel="stylesheet" href="css/style.css?v=1788925753">
+<link rel="stylesheet" href="css/hero.css?v=1788925753">
 </head>
 <body>
 
@@ -27,8 +27,9 @@
       <nav class="main-nav" id="main-nav">
         <a href="#hours">Hours</a>
         <a href="#menu">The board</a>
-        <a href="#signature">Plates</a>
+        <a href="#signature">The whiteboard</a>
         <a href="#about">The room</a>
+        <a href="#reviews">Reviews</a>
         <a href="#contact" class="nav-cta">Find us</a>
       </nav>
     </div>
@@ -102,11 +103,10 @@
         <h2>Six days, <em>11 to 7:30</em></h2>
         <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
-          513 S Meridian, Puyallup, WA 98371 — Village Fair Shopping Center<br>
+          513 S Meridian, Puyallup, WA 98371<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=513+S+Meridian%2C+Puyallup%2C+WA+98371" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
         <div class="proof-row">
-          <span class="proof"><span class="star">★</span> 3.8 from 229 Google ratings</span>
           <span class="proof"><span class="ico">✓</span> Dine in · take-out · delivery</span>
         </div>
         <p class="hours-note">Holiday hours aren't posted anywhere — worth a call before a holiday Monday.</p>
@@ -123,10 +123,33 @@
     </div>
   </section>
 
+
+  <!-- ===================== #front — THE DOOR =====================
+       STOREFRONT BELOW THE HOURS. Their own building on South Meridian:
+       the red Kyoto Teriyaki sign on the strip-mall fascia, the OPEN light
+       and the LUNCH SPECIAL banner in the window. Google Street View frame,
+       summer 2024 — DEMO ONLY until Hayden shoots the front himself. -->
+  <section class="section front-band" id="front">
+    <div class="wrap">
+      <div class="front">
+        <figure class="print reveal front-shot">
+          <img src="images/storefront.jpg" alt="The front of Kyoto Teriyaki on South Meridian — a red Kyoto Teriyaki sign on the strip-mall fascia, an OPEN light and a LUNCH SPECIAL banner in the window, cars parked at the door" loading="lazy" width="1352" height="922">
+          <figcaption>513 S Meridian, from the parking lot</figcaption>
+        </figure>
+        <div class="front-copy reveal">
+          <p class="eyebrow">Finding the door</p>
+          <h2>Red sign, <em>OPEN light</em></h2>
+          <p>It's the middle of the Village Fair strip on South Meridian, two doors down from Lendmark. Look for the red <b>Kyoto Teriyaki</b> up on the fascia and the LUNCH SPECIAL banner in the glass — you park right in front of it.</p>
+          <p class="front-fine">You order at the counter, under the screens. Everything below is what's on them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== #menu — the board =====================
        Every line and every price read off the six lit screens over the
        counter, photographed 2026-09-06. Nothing invented, nothing rounded. -->
-  <section class="section" id="menu">
+  <section class="section section-alt" id="menu">
     <div class="wrap">
       <figure class="wide-print reveal">
         <img src="images/board.jpg" alt="The lit menu screens over the counter at Kyoto Teriyaki — the Combination, Yakisoba and Tempura columns with their prices, under a heavy wood beam" loading="lazy" width="1800" height="947">
@@ -136,158 +159,208 @@
       <div class="section-head reveal">
         <p class="eyebrow">Off the screens over the counter</p>
         <h2>Any two teriyakis, <em>one price</em></h2>
-        <p>Almost every combination on the board lands on the same number — $14.99 — so picking is about what you feel like, not what it costs. Short ribs are the one that steps up.</p>
+        <p>Almost every combination lands on the same number, so picking is about what you feel like, not what it costs. Short ribs are the one that steps up. Tap a heading to roll the column out.</p>
       </div>
 
-      <div class="menu-groups reveal">
+      <div class="board-cards reveal">
 
-        <div class="menu-group">
-          <h3>Combination</h3>
-          <p class="grp-note">Served with rice and vegetables.</p>
-          <ul class="menu-list">
-            <li><span class="name">Beef with Pork Teriyaki</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken with Beef Teriyaki</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken with Pork Teriyaki</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken with Chicken Katsu</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken with Beef Short Ribs</span><span class="price">$20.99</span></li>
-            <li><span class="name">Beef Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
-            <li><span class="name">Pork Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
-            <li><span class="name">Beef Teriyaki with Tempura</span><span class="price">$14.99</span></li>
-            <li><span class="name">Pork Teriyaki with Tempura</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken Katsu with Tempura</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken Teriyaki with Tempura</span><span class="price">$14.99</span></li>
-            <li><span class="name">Beef Short Ribs with Tempura</span><span class="price">$20.99</span></li>
-          </ul>
-        </div>
+        <article class="board-card is-open">
+          <button class="unroll" type="button" aria-expanded="true" aria-controls="roll-combination">
+            <span class="bc-h"><h3>Combination</h3><small>Any two off the board, on rice with vegetables — thirteen of them</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-combination">
+            <ul class="menu-list">
+              <li><span class="name">Beef with Pork Teriyaki</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken with Beef Teriyaki</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken with Pork Teriyaki</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken with Chicken Katsu</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken with Beef Short Ribs</span><span class="price">$20.99</span></li>
+              <li><span class="name">Beef Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
+              <li><span class="name">Pork Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken Teriyaki with Gyoza</span><span class="price">$14.99</span></li>
+              <li><span class="name">Beef Teriyaki with Tempura</span><span class="price">$14.99</span></li>
+              <li><span class="name">Pork Teriyaki with Tempura</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken Katsu with Tempura</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken Teriyaki with Tempura</span><span class="price">$14.99</span></li>
+              <li><span class="name">Beef Short Ribs with Tempura</span><span class="price">$20.99</span></li>
+            </ul>
+          </div>
+        </article>
 
-        <div class="menu-group">
-          <h3>Yakisoba</h3>
-          <p class="grp-note">Six ways, all the same money.</p>
-          <ul class="menu-list">
-            <li><span class="name">Beef Yakisoba</span><span class="price">$14.99</span></li>
-            <li><span class="name">Tofu Yakisoba</span><span class="price">$14.99</span></li>
-            <li><span class="name">Pork Yakisoba</span><span class="price">$14.99</span></li>
-            <li><span class="name">Shrimp Yakisoba</span><span class="price">$14.99</span></li>
-            <li><span class="name">Chicken Yakisoba</span><span class="price">$14.99</span></li>
-            <li><span class="name">Vegetable Yakisoba</span><span class="price">$14.99</span></li>
-          </ul>
+        <article class="board-card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-yakisoba">
+            <span class="bc-h"><h3>Yakisoba</h3><small>Pan-fried noodles, six ways, all the same money</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-yakisoba">
+            <ul class="menu-list">
+              <li><span class="name">Beef Yakisoba</span><span class="price">$14.99</span></li>
+              <li><span class="name">Tofu Yakisoba</span><span class="price">$14.99</span></li>
+              <li><span class="name">Pork Yakisoba</span><span class="price">$14.99</span></li>
+              <li><span class="name">Shrimp Yakisoba</span><span class="price">$14.99</span></li>
+              <li><span class="name">Chicken Yakisoba</span><span class="price">$14.99</span></li>
+              <li><span class="name">Vegetable Yakisoba</span><span class="price">$14.99</span></li>
+            </ul>
+          </div>
+        </article>
 
-          <h3 class="stack">Tempura</h3>
-          <ul class="menu-list">
-            <li><span class="name">Chicken Katsu</span><span class="price">$14.99</span></li>
-            <li><span class="name">Tempura Combo</span><span class="price">$13.99</span></li>
-            <li><span class="name">Vegetable Tempura plate</span><span class="price">$12.99</span></li>
-          </ul>
-        </div>
+        <article class="board-card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-tempura">
+            <span class="bc-h"><h3>Tempura</h3><small>Battered and fried — katsu, the combo, the vegetable plate</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-tempura">
+            <ul class="menu-list">
+              <li><span class="name">Chicken Katsu</span><span class="price">$14.99</span></li>
+              <li><span class="name">Tempura Combo</span><span class="price">$13.99</span></li>
+              <li><span class="name">Vegetable Tempura plate</span><span class="price">$12.99</span></li>
+            </ul>
+          </div>
+        </article>
 
-        <div class="menu-group">
-          <h3>Fried Rice</h3>
-          <ul class="menu-list">
-            <li><span class="name">Chicken Fried Rice</span><span class="price">$13.99</span></li>
-            <li><span class="name">Beef Fried Rice</span><span class="price">$13.99</span></li>
-            <li><span class="name">Pork Fried Rice</span><span class="price">$13.99</span></li>
-            <li><span class="name">Shrimp Fried Rice</span><span class="price">$14.99</span></li>
-            <li><span class="name">House Fried Rice</span><span class="price">$19.99</span></li>
-          </ul>
+        <article class="board-card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-friedrice">
+            <span class="bc-h"><h3>Fried Rice</h3><small>Five, from plain chicken up to the house version</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-friedrice">
+            <ul class="menu-list">
+              <li><span class="name">Chicken Fried Rice</span><span class="price">$13.99</span></li>
+              <li><span class="name">Beef Fried Rice</span><span class="price">$13.99</span></li>
+              <li><span class="name">Pork Fried Rice</span><span class="price">$13.99</span></li>
+              <li><span class="name">Shrimp Fried Rice</span><span class="price">$14.99</span></li>
+              <li><span class="name">House Fried Rice</span><span class="price">$19.99</span></li>
+            </ul>
+          </div>
+        </article>
 
-          <h3 class="stack">Wok</h3>
-          <ul class="menu-list">
-            <li><span class="name">Sweet &amp; Sour Chicken</span><span class="price">$14.99</span></li>
-            <li><span class="name">General Tsao Chicken</span><span class="price">$14.99</span></li>
-            <li><span class="name">Orange Chicken</span><span class="price">$14.99</span></li>
-            <li><span class="name">Mongolian Beef</span><span class="price">$15.99</span></li>
-          </ul>
-        </div>
+        <article class="board-card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-wok">
+            <span class="bc-h"><h3>Wok</h3><small>The stir-fry column — sweet and sour through Mongolian</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-wok">
+            <ul class="menu-list">
+              <li><span class="name">Sweet &amp; Sour Chicken</span><span class="price">$14.99</span></li>
+              <li><span class="name">General Tsao Chicken</span><span class="price">$14.99</span></li>
+              <li><span class="name">Orange Chicken</span><span class="price">$14.99</span></li>
+              <li><span class="name">Mongolian Beef</span><span class="price">$15.99</span></li>
+            </ul>
+          </div>
+        </article>
 
-        <div class="menu-group">
-          <h3>Special Combo</h3>
-          <ul class="menu-list">
-            <li><span class="name">Kyoto Special</span><span class="price">$34.99</span><span class="desc">Their words, off the screen: “Our largest platter of rice chicken teriyaki, beef teriyaki chicken katsu, yakisoba, Gyoza prawn tempura, vegetables.”</span></li>
-            <li><span class="name">Kyoto Combo 1</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · beef teriyaki · tempura</span></li>
-            <li><span class="name">Kyoto Combo 2</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · yakisoba · gyoza</span></li>
-            <li><span class="name">Kyoto Combo 3</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · chicken katsu · yakisoba</span></li>
-          </ul>
-        </div>
+        <article class="board-card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-special">
+            <span class="bc-h"><h3>Special Combo</h3><small>The platters, including the one they built the shop around</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-special">
+            <ul class="menu-list">
+              <li><span class="name">Kyoto Special</span><span class="price">$34.99</span><span class="desc">Their words, off the screen: “Our largest platter of rice chicken teriyaki, beef teriyaki chicken katsu, yakisoba, Gyoza prawn tempura, vegetables.”</span></li>
+              <li><span class="name">Kyoto Combo 1</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · beef teriyaki · tempura</span></li>
+              <li><span class="name">Kyoto Combo 2</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · yakisoba · gyoza</span></li>
+              <li><span class="name">Kyoto Combo 3</span><span class="price">$20.99</span><span class="desc">Chicken teriyaki · chicken katsu · yakisoba</span></li>
+            </ul>
+          </div>
+        </article>
 
-        <div class="menu-group">
-          <h3>Appetizer</h3>
-          <ul class="menu-list">
-            <li><span class="name">Gyoza (7 ps)</span><span class="price">$5.99</span></li>
-            <li><span class="name">Egg Roll (2 ps)</span><span class="price">$4.99</span></li>
-            <li><span class="name">B.B.Q Pork</span><span class="price">$6.99</span></li>
-            <li><span class="name">Spring Roll (3 ps)</span><span class="price">$5.99</span></li>
-            <li><span class="name">Prawn Tempura</span><span class="price">$7.99</span></li>
-            <li><span class="name">Vegetable Tempura</span><span class="price">$7.99</span></li>
-          </ul>
-        </div>
+        <article class="board-card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-appetizer">
+            <span class="bc-h"><h3>Appetizer</h3><small>Gyoza, egg rolls, spring rolls, BBQ pork, two tempuras</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-appetizer">
+            <ul class="menu-list">
+              <li><span class="name">Gyoza (7 ps)</span><span class="price">$5.99</span></li>
+              <li><span class="name">Egg Roll (2 ps)</span><span class="price">$4.99</span></li>
+              <li><span class="name">B.B.Q Pork</span><span class="price">$6.99</span></li>
+              <li><span class="name">Spring Roll (3 ps)</span><span class="price">$5.99</span></li>
+              <li><span class="name">Prawn Tempura</span><span class="price">$7.99</span></li>
+              <li><span class="name">Vegetable Tempura</span><span class="price">$7.99</span></li>
+            </ul>
+          </div>
+        </article>
 
-        <div class="menu-group">
-          <h3>Side Order</h3>
-          <ul class="menu-list">
-            <li><span class="name">Rice</span><span class="price">$4.00</span></li>
-            <li><span class="name">Noodle</span><span class="price">$5.00</span></li>
-            <li><span class="name">Stir Vegetables</span><span class="price">$4.00</span></li>
-          </ul>
-        </div>
+        <article class="board-card">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-side">
+            <span class="bc-h"><h3>Side Order</h3><small>Rice, noodles or stir vegetables on their own</small></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-side">
+            <ul class="menu-list">
+              <li><span class="name">Rice</span><span class="price">$4.00</span></li>
+              <li><span class="name">Noodle</span><span class="price">$5.00</span></li>
+              <li><span class="name">Stir Vegetables</span><span class="price">$4.00</span></li>
+            </ul>
+          </div>
+        </article>
 
       </div>
+
       <p class="menu-fine reveal">Read off the screens over the counter on September 6, 2026. Single teriyaki plates — chicken, spicy chicken, beef, spicy beef, pork, tofu, short rib, gyoza plate and the stir-fried plates — are on the same screens; their prices are posted at the counter.</p>
     </div>
   </section>
 
-  <!-- ===================== #signature — PICK YOUR PLATE =====================
-       Toddler law: one tap on the picture of the food, the price stamps
-       on. Nothing to read first, nothing to decode, tap again to clear.
-       Every plate is a real photo of their food and every number is
-       verbatim off the board. -->
-  <section class="section section-alt" id="signature">
+  <!-- ===================== #signature — STRAIGHT OFF THE WHITEBOARD =====================
+       Their one-of-one. There is a small whiteboard on the wall beside the
+       register headed "Additional Items" in marker — House Fried Rice, Tofu
+       Teriyaki, Spring Rolls. All three are now printed on the lit screens
+       over the counter. That is how everything new gets in here.
+       TODDLER LAW: three big marker lines, tap one, it strikes onto the
+       screen the way it really did. Tap again and it goes out. No prices,
+       no hours, no address — nothing this gadget says is said anywhere else. -->
+  <section class="section" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">What $14.99 actually looks like</p>
-        <h2>Pick <em>your plate</em></h2>
-        <p>Tap a plate. The price stamps on.</p>
+        <p class="eyebrow">On the wall beside the register</p>
+        <h2>Everything new <em>starts in marker</em></h2>
+        <p>Tap a line off the whiteboard. It lights up on the board over the counter — which is exactly where all three of these ended up.</p>
       </div>
 
-      <div class="plates reveal">
-        <button class="plate" type="button" aria-pressed="false">
-          <span class="plate-pic"><img src="images/plate-1.jpg" alt="Chicken teriyaki with six gyoza, steamed rice, broccoli and cabbage on a white oval plate with a cup of dipping sauce" loading="lazy" width="1800" height="1350"></span>
-          <span class="plate-stamp" aria-hidden="true">$14.99</span>
-          <span class="plate-name">Chicken Teriyaki with Gyoza<small>Combination</small></span>
-        </button>
-        <button class="plate" type="button" aria-pressed="false">
-          <span class="plate-pic"><img src="images/plate-2.jpg" alt="A full container of yakisoba noodles tossed with cabbage, carrot, zucchini and grilled meat" loading="lazy" width="1800" height="2400"></span>
-          <span class="plate-stamp" aria-hidden="true">$14.99</span>
-          <span class="plate-name">Yakisoba<small>Beef, tofu, pork, shrimp, chicken or vegetable</small></span>
-        </button>
-        <button class="plate" type="button" aria-pressed="false">
-          <span class="plate-pic"><img src="images/plate-3.jpg" alt="A take-out box with two teriyakis side by side over steamed rice, with broccoli and cabbage in the corner" loading="lazy" width="1080" height="1920"></span>
-          <span class="plate-stamp" aria-hidden="true">$14.99</span>
-          <span class="plate-name">Two teriyakis, one box<small>Combination</small></span>
-        </button>
+      <div class="wb reveal">
+        <figure class="wb-note">
+          <img src="images/whiteboard-note.jpg" alt="The whiteboard beside the register at Kyoto Teriyaki, headed Additional Items in marker, listing House Fried Rice, Tofu Teriyaki and Spring Rolls" loading="lazy" width="1281" height="849">
+          <figcaption>The whiteboard, 6 September 2026</figcaption>
+        </figure>
+
+        <div class="wb-side">
+          <div class="wb-screen" id="wbScreen">
+            <span class="wb-screen-label">The lit board</span>
+            <span class="wb-screen-item" id="wbItem" role="status" aria-live="polite"></span>
+            <span class="wb-screen-idle">tap a marker line →</span>
+          </div>
+          <div class="wb-chips">
+            <button class="wb-chip" type="button" aria-pressed="false" data-item="House Fried Rice">House Fried Rice</button>
+            <button class="wb-chip" type="button" aria-pressed="false" data-item="Tofu Teriyaki">Tofu Teriyaki</button>
+            <button class="wb-chip" type="button" aria-pressed="false" data-item="Spring Rolls">Spring Rolls</button>
+          </div>
+          <p class="wb-fine">Three things that were handwriting a while ago. All three are on the screens now.</p>
+        </div>
       </div>
-      <p class="plates-fine reveal">Short ribs are the exception on the board — $20.99 either way.</p>
     </div>
   </section>
 
-  <!-- ===================== #gallery — the plates ===================== -->
-  <section class="section" id="gallery">
+  <!-- ===================== #gallery — what comes out =====================
+       Four DIFFERENT things, not four photographs of the same plate:
+       the plate with gyoza, the sit-down plate, the yakisoba, the box. -->
+  <section class="section section-alt" id="gallery">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Photographed by customers, not by us</p>
         <h2>What actually <em>comes out</em></h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Chicken teriyaki sliced over steamed rice with cabbage, carrot and broccoli in a take-out tray" loading="lazy" width="1656" height="1243"><figcaption>Chicken teriyaki, out the door</figcaption></figure>
+        <figure class="print reveal"><img src="images/plate-1.jpg" alt="Chicken teriyaki with six gyoza, steamed rice, broccoli and cabbage on a white oval plate with a cup of dipping sauce" loading="lazy" width="1800" height="1350"><figcaption>Chicken teriyaki with gyoza</figcaption></figure>
+        <figure class="print reveal"><img src="images/plate-2.jpg" alt="A full container of yakisoba noodles tossed with cabbage, carrot, zucchini and grilled meat" loading="lazy" width="1800" height="2400"><figcaption>Yakisoba, out the door</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Thin-sliced teriyaki in sauce beside a mound of steamed rice and cabbage, carrot and broccoli on a white plate" loading="lazy" width="1800" height="1351"><figcaption>Sit-down plate, dining room</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A teriyaki plate on a diner table with rice, broccoli and a fork resting on the rim" loading="lazy" width="720" height="960"><figcaption>Lunch on the table</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A hinged take-out box open on a table with teriyaki, rice and steamed vegetables inside" loading="lazy" width="1800" height="2400"><figcaption>The to-go box</figcaption></figure>
       </div>
     </div>
   </section>
 
   <!-- ===================== #about — the room ===================== -->
-  <section class="section section-alt" id="about">
+  <section class="section" id="about">
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
@@ -299,36 +372,74 @@
           <h2>A counter, a dining room, <em>and no pretending</em></h2>
           <p class="lede">White walls, wood trim, paper lanterns, a shoji screen behind the register and enough tables to sit a shift change.</p>
           <p>It is a strip-mall teriyaki shop on South Meridian and it does not pretend otherwise. You order at the counter under the screens, you sit down or you take it with you, and the plate that comes out is the size people write reviews about.</p>
-          <p>New things turn up on the whiteboard by the register before they make the screens — House Fried Rice, Tofu Teriyaki and Spring Rolls all started there in marker, and all three are on the board now.</p>
+          <p>The same family has been behind that counter a long time. Reviewers keep saying the same thing about it without being asked — “the same owners/family for years,” “I've been coming here for well over a decade,” “the lady behind the front counter always remembers us.”</p>
         </div>
       </div>
-      <figure class="wide-print reveal room-2">
-        <img src="images/room-2.jpg" alt="Looking toward the counter from a table — the lit menu board, a hanging paper lantern and a painted shoji screen" loading="lazy" width="1800" height="1012">
-        <figcaption>From a table, looking at the board</figcaption>
-      </figure>
     </div>
   </section>
 
   <!-- ===================== #reviews =====================
-       No Google review in the harvest carries both a published name and a
-       profile photo, so no review card is faked here — the honest
-       aggregate stands on its own and the link goes to the real list. -->
-  <section class="section" id="reviews">
+       REVIEW ATTRIBUTION LAW (9/6). Four reviews pulled from this shop's own
+       Google listing on 2026-09-08, quoted word for word, each shown with the
+       reviewer's real published name and the real profile image Google serves
+       for that account (saved locally as images/rev-*.jpg). Nothing invented,
+       no stock faces, no initials. The aggregate and the link to all 229 are
+       here and nowhere else on the page. -->
+  <section class="section section-alt" id="reviews">
     <div class="wrap">
-      <div class="score reveal">
-        <div class="score-num"><b class="tnum">3.8</b><span class="stars" aria-label="3.8 out of 5">★★★★<span class="half">★</span></span></div>
-        <div class="score-copy">
-          <p class="eyebrow">On Google</p>
-          <h2><span class="tnum">229</span> people have <em>rated it</em></h2>
-          <p>Read them yourself — the long ones are the useful ones.</p>
-          <a class="btn btn-cream" href="https://www.google.com/search?q=Kyoto+Teriyaki+Restaurant+513+S+Meridian+Puyallup+WA+reviews" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
-        </div>
+      <div class="section-head reveal">
+        <p class="eyebrow">On Google · 3.8 from 229 ratings</p>
+        <h2>What people <em>actually wrote</em></h2>
+        <p>Four of them word for word, under the names and photos they posted with.</p>
       </div>
+
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-jeff.jpg" alt="Jeff Evans" width="160" height="160" loading="lazy">
+            <span class="rev-who">Jeff Evans<small>Google · 3 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Best teriyaki in Puyallup. Small mom and pop shop with a focus on freshness. You won't be disappointed.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-jesse.jpg" alt="Jesse Lincicome" width="160" height="160" loading="lazy">
+            <span class="rev-who">Jesse Lincicome<small>Google · 8 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Great food, very consistent, very clean! A Puyallup essential, in my personal top 2 Teriyaki places in Puyallup”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-lexi.jpg" alt="Lexi Nault" width="160" height="160" loading="lazy">
+            <span class="rev-who">Lexi Nault<small>Google · about a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Pick up order was ready quickly, and super tasty food- love the way they prepare the cabbage, chicken had a great char and gyozas were perfectly crisp. Yakisoba had more veggies than other restaurants around the area.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/rev-amber.jpg" alt="Amber Sargent" width="160" height="160" loading="lazy">
+            <span class="rev-who">Amber Sargent<small>Google · 3 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Ready in less than 10 minutes. Reasonable price, deliciously perfect meals, clearly made by a gramma and grampa that run the place. Great value”</p>
+        </article>
+      </div>
+
+      <p class="revs-fine reveal">
+        <a class="btn btn-cream" href="https://www.google.com/search?q=Kyoto+Teriyaki+Restaurant+513+S+Meridian+Puyallup+WA+reviews" target="_blank" rel="noopener">Read all 229 on Google ↗</a>
+        <span>The one-stars are in there too — read the long ones.</span>
+      </p>
     </div>
   </section>
 
   <!-- ===================== #contact ===================== -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
@@ -365,12 +476,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">South Meridian, in the Village Fair</p>
-        <h2>The light's on <em>till 7:30</em></h2>
-      </div>
-      <div class="numbers reveal">
-        <div class="num"><b>$<span class="count tnum" data-to="14">14</span>.99</b><span>almost every combination plate on the board</span></div>
-        <div class="num"><b><span class="count tnum" data-to="44">44</span></b><span>priced items on the screens over the counter</span></div>
-        <div class="num"><b><span class="count tnum" data-to="6">6</span></b><span>days a week, Monday through Saturday</span></div>
+        <h2>Come get <em>a plate</em></h2>
+        <p>Order at the counter, or ring it in and give them ten minutes.</p>
       </div>
       <div class="cta-actions reveal">
         <a href="tel:+12534351599" class="btn btn-primary">Call the shop</a>
@@ -398,7 +505,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#signature">Plates</a><br><a href="#about">The room</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#hours">Hours</a><br><a href="#front">Finding the door</a><br><a href="#menu">The board</a><br><a href="#signature">The whiteboard</a><br><a href="#about">The room</a><br><a href="#reviews">Reviews</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -408,6 +515,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907170131"></script>
+<script src="js/site.js?v=1788925753"></script>
 </body>
 </html>
