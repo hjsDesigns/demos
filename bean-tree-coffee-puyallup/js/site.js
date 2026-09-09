@@ -117,6 +117,17 @@ function customClose(p, close){ return close; }
   },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
   $$('.reveal').forEach(function(el){io.observe(el)});
 
+  /* ---------- TITLE CARDS UNROLL ------------------------------------
+     Every heading painted on their board is the tap target. The chevron
+     flips down-to-up, the real items roll out in place. Independent
+     cards — opening one never closes another, so there are no modes. */
+  $$('.bcard .unroll').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
   /* ---------- contact form ---------- */
   var form=$('.contact-form');
   if(form){form.addEventListener('submit',function(e){

@@ -10,8 +10,8 @@
 <!-- DM Serif Display (display, 400 — the only weight it ships) + Jost (body).
      Must match --display / --body in css/style.css. -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788927466">
+<link rel="stylesheet" href="css/hero.css?v=1788927466">
 </head>
 <body>
 
@@ -22,7 +22,7 @@
       <!-- The mark is a straight crop of the real leaf glyph off their own
            menu board (harvest-0906/g1.jpg), cleaned to alpha. Never redrawn. -->
       <img src="images/logo.png" alt="" width="152" height="320">
-      <span class="wm">The Bean Tree<small>Puyallup, WA</small></span>
+      <span class="wm"><span class="wm-mark" aria-hidden="true"></span><small>Puyallup, WA</small></span>
     </a>
     <div class="nav-wrap">
       <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
@@ -111,21 +111,35 @@
   </section>
 
   <!-- ===================== #menu — THE BOARD =====================
-       Transcribed verbatim off the photograph of their own menu board
-       (harvest-0906/g1.jpg, read at 3x). Their board carries no prices,
-       so this page carries none either. -->
+       STOREFRONT BELOW THE HOURS: the hero is the stand out of focus, so
+       the first sharp look at the building opens this section — their own
+       photo of the stand at dusk with the lights up.
+       TITLE CARDS UNROLL: every heading on their painted board is the tap
+       target; a downward chevron flips and the real items roll out in
+       place. Transcribed verbatim off harvest-0906/g1.jpg, read at 3x.
+       Their board carries no prices, so this page carries none. -->
   <section class="section on-board section-dark" id="menu">
     <div class="wrap">
+
+      <figure class="print storefront reveal">
+        <img src="images/hero.jpg" alt="The Bean Tree's brown drive-thru stand at dusk, its hexagon sign lit over the door, coloured lights strung along the roofline and a wreath on the wall" loading="lazy" width="1290" height="2281">
+        <figcaption>The stand itself &mdash; River Road Plaza, December</figcaption>
+      </figure>
+
       <div class="section-head reveal">
         <p class="eyebrow">Everything on the window</p>
         <h2>The <em>whole board</em>, word for word</h2>
-        <p>This is their board, exactly as it's painted on the side of the stand — hot, iced or blended, any of it.</p>
+        <p>This is their board, exactly as it&rsquo;s painted on the side of the stand &mdash; hot, iced or blended, any of it. Tap a heading to roll it out.</p>
       </div>
 
-      <div class="menu-board reveal">
-        <div class="menu-col">
-          <div>
-            <h3 class="board-h">Espresso <span class="scr">Drinks</span></h3>
+      <div class="board-cards">
+
+        <article class="bcard reveal">
+          <button class="unroll" type="button" aria-expanded="true" aria-controls="roll-espresso">
+            <span class="bh"><h3 class="board-h">Espresso <span class="scr">Drinks</span></h3><span class="cnt">6 on the board</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-espresso"><div class="roll-in">
             <ul class="board-list">
               <li>Espresso</li>
               <li>Americano</li>
@@ -133,10 +147,16 @@
               <li>Mocha</li>
               <li>White Mocha</li>
               <li>Caramel Macchiato</li>
-            </ul>
+            </ul></div>
           </div>
-          <div>
-            <h3 class="board-h">Something <span class="scr">Different</span></h3>
+        </article>
+
+        <article class="bcard reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-diff">
+            <span class="bh"><h3 class="board-h">Something <span class="scr">Different</span></h3><span class="cnt">6 on the board</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-diff"><div class="roll-in">
             <ul class="board-list">
               <li>Chai<span class="qual">spiced, vanilla, chocolate, SF</span></li>
               <li>Hot Cocoa</li>
@@ -144,44 +164,47 @@
               <li>Steamer</li>
               <li>Tea</li>
               <li>Juice<span class="qual">apple, orange</span></li>
-            </ul>
+            </ul></div>
           </div>
-          <div>
-            <h3 class="board-h">Fruit <span class="scr">Smoothies</span></h3>
+        </article>
+
+        <article class="bcard reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-smoothies">
+            <span class="bh"><h3 class="board-h">Fruit <span class="scr">Smoothies</span></h3><span class="cnt">5 on the board</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-smoothies"><div class="roll-in">
             <ul class="board-list">
               <li>Strawberry</li>
               <li>Banana</li>
               <li>Peach</li>
               <li>Mango</li>
               <li>Raspberry</li>
-            </ul>
+            </ul></div>
           </div>
-          <div>
-            <h3 class="board-h">Bean Tree <span class="scr">Specialties</span></h3>
+        </article>
+
+        <article class="bcard reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-specialties">
+            <span class="bh"><h3 class="board-h">Bean Tree <span class="scr">Specialties</span></h3><span class="cnt">4 on the board</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-specialties"><div class="roll-in">
             <ul class="board-list">
               <li>Orange Creamsicle</li>
               <li>Muddy Monkey</li>
               <li>Rocket<span class="qual">Rockstar Recovery + fruit puree (32 oz only)</span></li>
               <li>Energy Spritzer<span class="qual">red, blue or SF lotus energy drink + flavors, topped with lemonade or OJ + cream (24 &amp; 32 oz only)</span></li>
-            </ul>
+            </ul></div>
           </div>
-          <figure class="print">
-            <img src="images/board.jpg" alt="The Bean Tree's painted menu board on the side of the stand, listing espresso drinks, smoothies, specialties, kids' drinks, bakery goodies and add-ons" loading="lazy" width="1800" height="1444">
-            <figcaption>The board, on the side of the stand</figcaption>
-          </figure>
-        </div>
+        </article>
 
-        <div class="menu-col">
-          <div>
-            <h3 class="board-h">Kids <span class="scr">10 &amp; younger</span></h3>
-            <ul class="board-list">
-              <li>Hot Cocoa</li>
-              <li>Cider</li>
-              <li>Steamer</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="board-h">Bakery <span class="scr">Goodies</span></h3>
+        <article class="bcard reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-bakery">
+            <span class="bh"><h3 class="board-h">Bakery <span class="scr">Goodies</span></h3><span class="cnt">8 on the board</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-bakery"><div class="roll-in">
             <ul class="board-list">
               <li>Muffins</li>
               <li>Cookies</li>
@@ -191,10 +214,30 @@
               <li>Oatmeal</li>
               <li>Sandwiches</li>
               <li>Seasonal</li>
-            </ul>
+            </ul></div>
           </div>
-          <div>
-            <h3 class="board-h">Add-<span class="scr">ons</span></h3>
+        </article>
+
+        <article class="bcard reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-kids">
+            <span class="bh"><h3 class="board-h">Kids <span class="scr">10 &amp; younger</span></h3><span class="cnt">3 on the board</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-kids"><div class="roll-in">
+            <ul class="board-list">
+              <li>Hot Cocoa</li>
+              <li>Cider</li>
+              <li>Steamer</li>
+            </ul></div>
+          </div>
+        </article>
+
+        <article class="bcard reveal">
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-addons">
+            <span class="bh"><h3 class="board-h">Add-<span class="scr">ons</span></h3><span class="cnt">9 on the board</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <div class="rolled" id="roll-addons"><div class="roll-in">
             <ul class="board-list">
               <li>Breve or milk alternatives</li>
               <li>Extra shot</li>
@@ -205,29 +248,36 @@
               <li>Rockstar Recovery</li>
               <li>Redbull XS Energy</li>
               <li>Extra toppings</li>
-            </ul>
+            </ul></div>
           </div>
-        </div>
+        </article>
+
       </div>
+
+      <!-- the Specialties list, made real: their own counter, one morning -->
+      <figure class="counter-strip reveal">
+        <img src="images/colors.jpg" alt="A row of a dozen iced energy spritzers lined up along the counter inside the stand in red, orange, yellow, green, blue and purple" loading="lazy" width="1800" height="1350">
+        <figcaption>One morning&rsquo;s energy spritzers, lined up on the counter</figcaption>
+      </figure>
 
       <div class="menu-sizes reveal">
         <b>Available sizes</b>
-        <span class="tnum">12 oz · 16 oz · 20 oz · 24 oz · 32 oz</span>
+        <span class="tnum">12 oz &middot; 16 oz &middot; 20 oz &middot; 24 oz &middot; 32 oz</span>
       </div>
-      <p class="menu-note reveal">Their board doesn't print prices — ask at the window, and ask what the daily special is while you're there.</p>
+      <p class="menu-note reveal">Their board doesn&rsquo;t print prices &mdash; ask at the window.</p>
     </div>
   </section>
 
   <!-- ===================== #specials =====================
-       Their two hand-made boards, photographed: the printed Sweet
-       Specials sheet in the window and the chalkboard A-frame. Names and
-       lists are read straight off those photos. -->
+       The part of the board that changes: the printed Sweet Specials sheet
+       taped in the window and the hand-lettered chalkboard out front. Names
+       and lists read straight off the photographs of both. -->
   <section class="section" id="specials">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">The part that changes</p>
         <h2>New boards go up <em>all year</em></h2>
-        <p>Two boards run alongside the painted one: a printed Sweet Specials sheet taped in the window, and a chalkboard out front that gets rewritten by hand. Here's a strawberry-season run of each — worth asking what's on them today.</p>
+        <p>Two more boards run alongside the painted one: a printed Sweet Specials sheet taped in the window, and a chalkboard out front that gets rewritten by hand. This is a strawberry-season run of each &mdash; worth asking what&rsquo;s up today.</p>
       </div>
 
       <div class="spec-grid">
@@ -247,18 +297,18 @@
             </li>
             <li>
               <h3>Strawberry Sally</h3>
-              <p>Lemonade drizzled with strawberry purée — and, the sheet promises, a special surprise.</p>
+              <p>Lemonade drizzled with strawberry pur&eacute;e &mdash; and, the sheet promises, a special surprise.</p>
             </li>
           </ul>
         </div>
         <div class="spec-prints">
           <figure class="print reveal">
-            <img src="images/specials.jpg" alt="The Bean Tree's printed Sweet Specials sheet taped in the window, listing Strawberry Shortcake, Dipped Berry, Berry Dreamsicle and Strawberry Sally" loading="lazy" width="1300" height="1571">
-            <figcaption>Sweet Specials, in the window</figcaption>
+            <img src="images/wordmark.jpg" alt="A strawberry-topped blended drink held up in front of the stand's painted the Bean Tree lettering" loading="lazy" width="1400" height="1867">
+            <figcaption>A strawberry one, out the window</figcaption>
           </figure>
           <figure class="print reveal">
             <img src="images/donuts.jpg" alt="A hand-lettered chalkboard outside the stand reading Fresh Happy Donuts Today, with apple fritters, maple bars, old fashion and donut holes, and the day's baristas written at the bottom" loading="lazy" width="900" height="1140">
-            <figcaption>Apple fritters · maple bars · old fashion · donut holes</figcaption>
+            <figcaption>Apple fritters &middot; maple bars &middot; old fashion &middot; donut holes</figcaption>
           </figure>
         </div>
       </div>
@@ -279,7 +329,6 @@
       </div>
 
       <div class="cup-stage reveal">
-        <p class="cup-hint">Tap a season.</p>
         <div class="cup-frame">
           <div class="shot" id="cupShot">
             <img src="images/cup-valentines.jpg" alt="A pink strawberry drink under whipped cream in a Bean Tree cup printed with LOVE, the O made from their leaf mark" data-season="valentines" class="on" width="1100" height="1467">
@@ -288,11 +337,12 @@
             <img src="images/cup-thanksgiving.jpg" alt="An iced coffee in a Happy Thanksgiving Bean Tree cup, set among gourds and pumpkins" data-season="thanksgiving" loading="lazy" width="1100" height="1467">
             <img src="images/cup-christmas.jpg" alt="An iced latte with whipped cream in a Bean Tree cup whose logo wears a Santa hat, held in front of white Christmas trees" data-season="christmas" loading="lazy" width="1100" height="1467">
           </div>
-          <p class="cup-cap" id="cupCap" role="status" aria-live="polite"><b>Valentine's</b>the LOVE cup</p>
+          <p class="cup-cap" id="cupCap" role="status" aria-live="polite"><b>Valentine&rsquo;s</b>the LOVE cup</p>
         </div>
+        <p class="cup-hint">Tap a season</p>
         <div class="cup-pills" id="cupPills">
-          <button class="cup-pill" type="button" data-season="valentines" aria-pressed="true" data-title="Valentine's" data-cap="the LOVE cup">Valentine's</button>
-          <button class="cup-pill" type="button" data-season="strawberry" aria-pressed="false" data-title="Strawberry season" data-cap="whipped cream and a fresh berry on top">Strawberry season</button>
+          <button class="cup-pill" type="button" data-season="valentines" aria-pressed="true" data-title="Valentine&rsquo;s" data-cap="the LOVE cup">Valentine&rsquo;s</button>
+          <button class="cup-pill" type="button" data-season="strawberry" aria-pressed="false" data-title="Strawberry season" data-cap="whipped cream and a fresh berry on top">Strawberry</button>
           <button class="cup-pill" type="button" data-season="summer" aria-pressed="false" data-title="Summer" data-cap="pineapples in the window">Summer</button>
           <button class="cup-pill" type="button" data-season="thanksgiving" aria-pressed="false" data-title="Thanksgiving" data-cap="out among the gourds">Thanksgiving</button>
           <button class="cup-pill" type="button" data-season="christmas" aria-pressed="false" data-title="Christmas" data-cap="the logo puts a hat on">Christmas</button>
@@ -301,37 +351,13 @@
     </div>
   </section>
 
-  <!-- ===================== #gallery ===================== -->
-  <section class="section" id="gallery">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Out the window</p>
-        <h2>What the <em>lane looks like</em></h2>
-      </div>
-      <div class="prints">
-        <figure class="print reveal">
-          <img src="images/colors.jpg" alt="A row of a dozen iced energy spritzers lined up on the counter in red, orange, yellow, green, blue and purple" loading="lazy" width="1800" height="1350">
-          <figcaption>A morning's worth of energy spritzers</figcaption>
-        </figure>
-        <figure class="print reveal">
-          <img src="images/rainier.jpg" alt="Mount Rainier lit pink at sunrise above a rooftop, seen from the lot on River Road" loading="lazy" width="1800" height="1013">
-          <figcaption>Mount Rainier at sunrise, from River Road</figcaption>
-        </figure>
-        <figure class="print reveal">
-          <img src="images/syrups.jpg" alt="Two Bean Tree drinks on the counter in front of the shelf of flavour syrup bottles" loading="lazy" width="1500" height="2000">
-          <figcaption>The syrup shelf</figcaption>
-        </figure>
-        <figure class="print reveal">
-          <img src="images/burrito.jpg" alt="A breakfast burrito filled with egg, potato and sausage, wrapped and cut open on red checkered paper" loading="lazy" width="1400" height="1867">
-          <figcaption>Breakfast, out the same window</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== #about ===================== -->
-  <section class="section section-alt" id="about">
+  <section class="section" id="about">
     <div class="wrap">
+      <figure class="print first-light reveal">
+        <img src="images/rainier.jpg" alt="Mount Rainier lit pink at sunrise above the rooftops, seen from the lot on River Road" loading="lazy" width="1800" height="1013">
+        <figcaption>First light on Rainier, from the lot &mdash; about two hours after they open</figcaption>
+      </figure>
       <div class="story">
         <figure class="print reveal">
           <img src="images/about.jpg" alt="Three Bean Tree baristas in matching brown Thankful sweatshirts inside the stand, autumn leaves strung above the counter" loading="lazy" width="1600" height="1200">
@@ -339,39 +365,68 @@
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Twenty-odd years on River Road</p>
-          <h2>Est. 2003 — <em>and still a hut</em></h2>
-          <p class="lede">It's printed right on the cup: <b>the Bean Tree, Est. 2003</b>. Same small brown stucco box in the River Road Plaza lot, more than twenty years on.</p>
-          <p>Two windows, a red neon strip along the roofline and an espresso machine pulling Dillanos — the Sumner roaster whose truck backs up to the stand on delivery mornings. Everything else on the board comes out of the same twelve feet: the smoothies, the spritzers, the bagels, the fritters on the chalkboard.</p>
-          <p>The chalkboard out front is the tell. Under the donut list, in a different colour, they write the names of the baristas working that day. Regulars put the rest plainly in a review this July: <b>“There is no better coffee stand. Fight me about it.”</b></p>
+          <h2>Est. 2003 &mdash; <em>and still a hut</em></h2>
+          <p class="lede">It&rsquo;s printed right on the cup: <b>the Bean Tree, Est. 2003</b>. Same small brown stucco box in the River Road Plaza lot, more than twenty years on.</p>
+          <p>Two windows, a red neon strip along the roofline and an espresso machine pulling Dillanos &mdash; the Sumner roaster whose truck backs up to the stand on delivery mornings. Everything else on the board comes out of the same twelve feet: the smoothies, the spritzers, the bagels, the fritters on the chalkboard.</p>
+          <p>The chalkboard is the tell. Under the donut list, in a different colour, they write the names of whoever is working that day &mdash; which is why so many of the reviews below are about people rather than coffee.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #ratings =====================
-       REVIEW ATTRIBUTION LAW: no name + profile-image pair could be
-       sourced by curl for any individual reviewer, so this band carries
-       the honest aggregate and links to the live reviews instead of
-       inventing a face or running an anonymous quote strip. -->
-  <section class="section" id="ratings">
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (9/6): every quote carries the reviewer's real
+       published name AND their real Google profile image, pulled from the
+       same listing the quote came from (place cid 5966653690748631973,
+       scraped 2026-09-08 — harvest-0906/greviews-pw.json). Verbatim, with
+       the rating and the date Google prints. -->
+  <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">What people give them</p>
-        <h2><em class="tnum">399 ratings</em>, two listings</h2>
+        <p class="eyebrow">What people write on Google</p>
+        <h2>Almost every review is about <em>the ladies</em></h2>
+        <p>Not the espresso, not the prices &mdash; the people at the window. Four of them, word for word.</p>
       </div>
-      <div class="rate-row">
-        <div class="rate reveal">
-          <b class="tnum">4.4</b>
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span class="lbl">245 ratings on Google</span>
-        </div>
-        <div class="rate reveal">
-          <b class="tnum">4.2</b>
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span class="lbl">154 ratings on Restaurantji</span>
-        </div>
+
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/kassara.jpg" alt="Kassara Bernth&rsquo;s Google profile photo" loading="lazy" width="240" height="240">
+            <span class="rev-who">Kassara Bernth<small>Google &middot; 2 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p>&ldquo;Hands down the best coffee, customer service, and ladies in town! It&rsquo;s my daily guilty pleasure &amp; the experience never wavers! 10/10 recommend!&rdquo;</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/christina.jpg" alt="Christina Morganthaler&rsquo;s Google profile photo" loading="lazy" width="240" height="240">
+            <span class="rev-who">Christina Morganthaler<small>Google &middot; a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p>&ldquo;BEST Coffee stand in Puyallup! The Ladies that work here are all so amazing, they are always so happy and cheerful and fun to talk to. Definitely always try one of their seasonal coffees or spritzer!&rdquo;</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/patrick.jpg" alt="Patrick McGroder&rsquo;s Google profile photo" loading="lazy" width="240" height="240">
+            <span class="rev-who">Patrick McGroder<small>Google &middot; a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p>&ldquo;First time going today. Iced dirty chai is so good and the pizza bagel with cream cheese was amazing.&rdquo;</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/charlotte.jpg" alt="Charlotte Grenard&rsquo;s Google profile photo" loading="lazy" width="240" height="240">
+            <span class="rev-who">Charlotte Grenard<small>Google &middot; 11 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p>&ldquo;My few experiences going here have always been really great. Fast, friendly, and delicious experiences.&rdquo;</p>
+        </article>
       </div>
-      <p class="rate-note reveal"><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Bean+Tree+745+River+Rd+Puyallup+WA" target="_blank" rel="noopener">Read the reviews on Google ↗</a></p>
+
+      <p class="rate-note reveal"><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Bean+Tree+745+River+Rd+Puyallup+WA" target="_blank" rel="noopener">Read the rest on Google &#8599;</a></p>
     </div>
   </section>
 
@@ -428,7 +483,7 @@
       <div>
         <div class="brand">
           <img src="images/logo-light.png" alt="" width="152" height="320">
-          <span class="wm">The Bean Tree Coffee Co<small>Puyallup, Washington</small></span>
+          <span class="wm"><span class="wm-mark" aria-hidden="true"></span><small>Puyallup, Washington</small></span>
         </div>
         <p>A drive-thru coffee stand on River Road. Est. 2003.</p>
         <div class="soc">
@@ -442,7 +497,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#specials">Specials</a><br><a href="#signature">The season cup</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#specials">Specials</a><br><a href="#signature">The season cup</a><br><a href="#reviews">Reviews</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -452,6 +507,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788927466"></script>
 </body>
 </html>
