@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- two faces: Bevan (display — vintage slab, sits with their painted script mark) + Archivo (body) -->
 <link href="https://fonts.googleapis.com/css2?family=Bevan&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=1788929128">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="Mulligans — home">
-      <img src="images/mark.png" alt="" width="150" height="61">
+      <img src="images/mark.png" alt="" aria-hidden="true" width="150" height="61">
       <span class="wm sr-only">Mulligans</span>
       <span class="wm-sub">Sumner</span>
     </a>
@@ -49,8 +49,8 @@
     <div class="hero-inner">
       <h1 class="sr-only">Mulligans — the bar on Main Street in Sumner, Washington</h1>
       <div class="mark-intro" aria-hidden="true">
-        <img class="mark-art" src="images/mark.png" alt="">
-        <img class="mark-shine" src="images/mark.png" alt="">
+        <img class="mark-art" src="images/mark.png" alt="" aria-hidden="true">
+        <img class="mark-shine" src="images/mark.png" alt="" aria-hidden="true">
       </div>
       <p class="hero-sub">
         <span class="sub-long">New name, same room: the bar at 15716 Main St E is Mulligans now.</span>
@@ -78,35 +78,59 @@
           <a href="https://www.google.com/maps/search/?api=1&amp;query=15716+Main+St+E+Sumner+WA+98390" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
         <div class="proof-row">
-          <span class="proof"><span class="ico">✓</span> Same room, new name</span>
+          <span class="proof"><span class="ico">✓</span> Full bar, kitchen out back</span>
           <span class="proof"><span class="ico">✓</span> Run by Mulligans LLC, Buckley</span>
-          <span class="proof"><span class="star">★</span> One of three Mulligans rooms</span>
+          <span class="proof"><span class="star">★</span> A bar on Main Street since 1974</span>
+        </div>
+        <a class="btn btn-primary status-call" href="tel:+12533863174">Call (253) 386-3174</a>
+      </div>
+      <div class="hours-holder">
+        <ul class="hours-list" id="hoursList">
+          <li data-days="1"><span class="day">Monday</span><span class="time">Call for hours</span></li>
+          <li data-days="2"><span class="day">Tuesday</span><span class="time">Call for hours</span></li>
+          <li data-days="3"><span class="day">Wednesday</span><span class="time">Call for hours</span></li>
+          <li data-days="4"><span class="day">Thursday</span><span class="time">Call for hours</span></li>
+          <li data-days="5"><span class="day">Friday</span><span class="time">Call for hours</span></li>
+          <li data-days="6"><span class="day">Saturday</span><span class="time">Call for hours</span></li>
+          <li data-days="0"><span class="day">Sunday</span><span class="time">Call for hours</span></li>
+        </ul>
+        <p class="hours-why">The room changed hands and hasn't posted its new hours yet. Ring the bar before you drive out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #door =====================
+       STOREFRONT LAW: the hero is the room, so the building itself comes
+       straight after the hours band. It sits in a purpose-built object —
+       a framed print at its real size beside the orientation note — so the
+       previous owner's banner stays a fact of the photograph instead of
+       becoming a headline across the page. Nothing is cropped out. -->
+  <section class="section section-alt" id="door">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Finding the door</p>
+        <h2>Grey siding, <em>chairs out front</em></h2>
+      </div>
+      <div class="doorway">
+        <figure class="print door-print reveal">
+          <img src="images/storefront.jpg" alt="The single-storey storefront at 15716 Main St E in Sumner, wooden chairs and a bar stool out front under a deep awning" loading="lazy" width="2200" height="1240">
+          <figcaption>15716 Main St E, under the awning</figcaption>
+        </figure>
+        <div class="doorway-copy reveal">
+          <p>A single-storey strip on Main Street with a deep awning over the walk. Wooden chairs and a bar stool sit out front, and the number over the glass reads <b>15716</b>. That's the one.</p>
+          <p class="doorway-note">Photographed before the changeover — the banner in this frame is the room's previous name. Mulligans is on the door now.</p>
         </div>
       </div>
-      <ul class="hours-list" id="hoursList">
-        <li data-days="1"><span class="day">Monday</span><span class="time">Call for hours</span></li>
-        <li data-days="2"><span class="day">Tuesday</span><span class="time">Call for hours</span></li>
-        <li data-days="3"><span class="day">Wednesday</span><span class="time">Call for hours</span></li>
-        <li data-days="4"><span class="day">Thursday</span><span class="time">Call for hours</span></li>
-        <li data-days="5"><span class="day">Friday</span><span class="time">Call for hours</span></li>
-        <li data-days="6"><span class="day">Saturday</span><span class="time">Call for hours</span></li>
-        <li data-days="0"><span class="day">Sunday</span><span class="time">Call for hours</span></li>
-        <li class="note"><span class="day">Why</span><span class="time">The room changed hands and hasn't posted its new hours yet. Ring the bar before you drive out.</span></li>
-      </ul>
     </div>
   </section>
 
   <!-- ===================== #room =====================
-       STOREFRONT LAW: the hero isn't the building, so the offerings open
-       with a real exterior photo of the building, captioned honestly —
-       it was shot under the previous sign. TITLE CARDS UNROLL: each card
-       headline is the tap target with a downward chevron. -->
+       TITLE CARDS UNROLL: every card headline is the tap target and the
+       affordance is a DOWNWARD chevron that flips up — all four, so the
+       gesture is the same everywhere. Every item under a chevron is a
+       thing visible in the room's own listing photographs. -->
   <section class="section" id="room">
     <div class="wrap">
-      <figure class="print band-print reveal">
-        <img src="images/storefront.jpg" alt="The single-storey storefront at 15716 Main St E in Sumner, chairs out front under the awning" loading="lazy">
-        <figcaption>15716 Main St E — photographed under the previous sign. Mulligans is on the door now.</figcaption>
-      </figure>
       <div class="section-head reveal">
         <p class="eyebrow">What's actually in there</p>
         <h2>A long bar, <em>a loud room</em></h2>
@@ -133,9 +157,19 @@
 
         <article class="card reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg></div>
-          <h3>Screens on every wall</h3>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-screens">
+            <h3>Screens on every wall</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
           <p class="when">Games are on</p>
-          <p>TVs over the bar and around the floor, a 12 flag on the back wall. It is that kind of room.</p>
+          <p>TVs over the bar and around the floor. It is that kind of room.</p>
+          <div class="rolled" id="roll-screens">
+            <ul>
+              <li>Screens above the back bar and along the floor</li>
+              <li>A 12 flag hung on the back wall</li>
+              <li>Pennants and string lights over the tables</li>
+            </ul>
+          </div>
         </article>
 
         <article class="card reveal">
@@ -157,9 +191,20 @@
 
         <article class="card reveal">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a8 8 0 0 1-16 0z"/><path d="M6 19h12"/><path d="M9 8c0-2 2-2 2-4M14 8c0-2 2-2 2-4"/></svg></div>
-          <h3>A kitchen, running</h3>
+          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-kitchen">
+            <h3>A kitchen, running</h3>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
           <p class="when">Ask for today's menu</p>
           <p>Burgers and tots come out of it — the plate further down this page is theirs, off the room's own listing.</p>
+          <div class="rolled" id="roll-kitchen">
+            <ul>
+              <li>Burgers, cooked to order</li>
+              <li>Tater tots, with sauces on the side</li>
+              <li>An ORDER HERE board hung over the pass</li>
+              <li class="ask">The current menu isn't published anywhere — ring the bar</li>
+            </ul>
+          </div>
         </article>
 
       </div>
@@ -187,7 +232,7 @@
             <p>Your favorite place to drink and drive (golf balls.)</p>
             <cite>Mulligans, on mulligansgc.com</cite>
           </blockquote>
-          <p class="coming-note">Three rooms, one company: Buckley open with two bays, Sumner getting one, Enumclaw opening with two.</p>
+          <p class="coming-note">A bay in here means the thing this room already is — screens, a counter, a kitchen — with somewhere to swing at the back of it.</p>
         </div>
 
         <div class="coming-card reveal">
@@ -214,7 +259,7 @@
       <div class="section-head reveal">
         <p class="eyebrow">The name, out loud</p>
         <h2>Take a <em>mulligan</em></h2>
-        <p>A mulligan is the shot you get to hit again. Tap the ball.</p>
+        <p>A mulligan is the shot you get to hit again — the one golf lets you take back.</p>
       </div>
       <div class="tee reveal">
         <p class="tee-count"><span class="tnum" id="teeCount">0</span> <span>mulligans taken</span></p>
@@ -226,7 +271,7 @@
           <span class="tee-peg" aria-hidden="true"></span>
           <button class="tee-ball" id="teeBall" type="button" aria-label="Hit the ball"><span class="dimples" aria-hidden="true"></span></button>
         </div>
-        <p class="tee-hint" id="teeHint">Tap it again — that's the whole point.</p>
+        <p class="tee-hint" id="teeHint">Tap the ball</p>
       </div>
     </div>
   </section>
@@ -250,17 +295,58 @@
   <section class="section" id="story">
     <div class="wrap">
       <div class="story">
-        <figure class="print mark-plate reveal">
-          <span class="plate-field"><img src="images/mark.png" alt="The Mulligans wordmark — a green script with a golf club through it, over a fairway sweep"></span>
-          <figcaption>The group's own mark, off mulligansgc.com</figcaption>
-        </figure>
+        <!-- THE THREE ROOMS — a functional object carrying real content, in
+             place of a second printing of the mark (NEVER TWICE). Every line
+             is off mulligansgc.com's own locations block. -->
+        <div class="rooms-card reveal">
+          <p class="rooms-head">Mulligans, on the plateau</p>
+          <ol class="rooms-list">
+            <li class="is-open">
+              <span class="rm-dot" aria-hidden="true"></span>
+              <span class="rm-name">Buckley <small>Unit A8, 28120 State Route 410</small></span>
+              <span class="rm-state">Open · 2 bays</span>
+            </li>
+            <li class="is-here">
+              <span class="rm-dot" aria-hidden="true"></span>
+              <span class="rm-name">Sumner <small>15716 Main St E — this room</small></span>
+              <span class="rm-state">1 bay coming</span>
+            </li>
+            <li class="is-soon">
+              <span class="rm-dot" aria-hidden="true"></span>
+              <span class="rm-name">Enumclaw <small>Opening</small></span>
+              <span class="rm-state">2 bays coming</span>
+            </li>
+          </ol>
+          <p class="rooms-fine">As published on mulligansgc.com, captured 7 September 2026.</p>
+        </div>
         <div class="story-copy reveal">
           <p class="eyebrow">Who's behind the bar now</p>
           <h2>A golf company <em>bought a bar</em></h2>
           <p class="lede">Mulligans is an indoor golf club out of Buckley. In 2025 it took over this room on Main Street, and the sign on the door caught up in 2026.</p>
-          <p>The company runs three rooms on the plateau: the club at Unit A8, 28120 State Route 410 in Buckley, this bar in Sumner, and a third opening in Enumclaw. The Buckley club has two simulator bays you can book by the hour; the plan they publish for Sumner is one bay in this building.</p>
+          <p>There has been a bar in this building since 1974 — most of that under one family. The Buckley club has two simulator bays you can book by the hour; the plan Mulligans publishes for Sumner is one bay, in here.</p>
           <p>Their line for the whole idea is <b>“Swing, Sip, and Socialize in Style.”</b> On the ground in Sumner that currently means the thing this room has always been — a full bar, screens on, pull tabs at the counter, a kitchen out back — with a bay on the way.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #listing =====================
+       REVIEW ATTRIBUTION LAW (9/6). Google's panel for 15716 Main St E
+       still resolves to the PREVIOUS business, so every review on it — and
+       every reviewer photo — belongs to that business, not to Mulligans.
+       Three were pulled on 8 Sept 2026 (harvest-0907/gplace.json) and none
+       can be shown here without misattributing them. The law's stated
+       fallback is taken instead: say so plainly and link out to the live
+       listing. No quote, no invented name, no manufactured face. -->
+  <section class="section-tight section-cream" id="listing">
+    <div class="wrap">
+      <div class="listing reveal">
+        <div>
+          <p class="eyebrow">If you go looking for reviews</p>
+          <h2>They're filed under <em>the old name</em></h2>
+          <p>Search this address and Google still returns the business that used to be here. Everything on that listing — the name, the phone, the star ratings — was written about the people who ran the room before. None of it is Mulligans', so none of it is quoted on this page.</p>
+        </div>
+        <a class="btn btn-dark listing-cta" href="https://www.google.com/maps/search/?api=1&amp;query=15716+Main+St+E+Sumner+WA+98390" target="_blank" rel="noopener">Open the listing ↗</a>
       </div>
     </div>
   </section>
@@ -278,8 +364,8 @@
             <li><h3>Come stand in it</h3><p>15716 Main St E, right on the Main Street strip.</p></li>
           </ol>
           <div class="contact-lines">
-            <span>📞 <a href="tel:+12533863174">(253) 386-3174</a></span>
-            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=15716+Main+St+E+Sumner+WA+98390" target="_blank" rel="noopener">Directions ↗</a></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L17 13l4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3.5 5.2 2 2 0 0 1 5.5 3z"/></svg> <a href="tel:+12533863174">(253) 386-3174</a></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> <a href="https://www.google.com/maps/search/?api=1&amp;query=15716+Main+St+E+Sumner+WA+98390" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
         </div>
         <form class="contact-form reveal">
@@ -302,18 +388,12 @@
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Where it stands</p>
-        <h2>One room, <em>three rooms, one company</em></h2>
-      </div>
-      <div class="numbers reveal">
-        <div class="num"><b><i>est.</i> <span class="count" data-to="1974" data-from="1950">1974</span></b><span>The year this room opened on Main Street</span></div>
-        <div class="num"><b><span class="count" data-to="3">3</span></b><span>Mulligans rooms on the plateau</span></div>
-        <div class="num"><b><span class="count" data-to="2">2</span></b><span>Simulator bays open in Buckley</span></div>
-        <div class="num"><b><span class="count" data-to="1">1</span></b><span>Bay listed as coming to Sumner</span></div>
+        <p class="eyebrow">Main Street, Sumner</p>
+        <h2>Pull up <em>a stool</em></h2>
       </div>
       <div class="cta-actions reveal">
-        <a href="#contact" class="btn btn-primary">Send a message</a>
-        <a href="tel:+12533863174" class="btn btn-ghost">Call (253) 386-3174</a>
+        <a href="tel:+12533863174" class="btn btn-primary">Call (253) 386-3174</a>
+        <a href="#contact" class="btn btn-ghost">Send a message</a>
       </div>
     </div>
   </section>
@@ -330,7 +410,7 @@
         </div>
         <p>The bar on Main Street in Sumner, run by Mulligans LLC of Buckley.</p>
         <div class="soc">
-          <a href="https://www.facebook.com/waterholepub" target="_blank" rel="noopener">The pub's Facebook</a>
+          <a href="https://www.facebook.com/waterholepub" target="_blank" rel="noopener">The room’s Facebook <small>(old name)</small></a>
           <a href="https://www.mulligansgc.com" target="_blank" rel="noopener">Mulligans golf club</a>
         </div>
       </div>
@@ -341,7 +421,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#room">The room</a><br><a href="#coming">What's coming</a><br><a href="#signature">Take a mulligan</a><br><a href="#story">The story</a><br><a href="#hours">Hours</a><br><a href="#contact">Call the bar</a></p>
+        <p><a href="#hours">Hours</a><br><a href="#door">Finding the door</a><br><a href="#room">The room</a><br><a href="#coming">What's coming</a><br><a href="#signature">Take a mulligan</a><br><a href="#story">The story</a><br><a href="#contact">Call the bar</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -351,6 +431,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788929128"></script>
 </body>
 </html>

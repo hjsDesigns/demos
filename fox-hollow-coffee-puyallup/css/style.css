@@ -43,10 +43,16 @@
   --status-open:#10B981;    /* always green   [STATUS LIGHT LAW] */
   --status-closed:#DC2626;  /* always red     [STATUS LIGHT LAW] */
 
-  /* ---- type: two faces. Fraunces for the sign-painted display, Karla for everything else ---- */
-  --display:'Fraunces','Hoefler Text','Iowan Old Style',Georgia,'Times New Roman',serif;
+  /* ---- type: TWO faces, and only two. [SIGN-FONT LAW, 9/7]
+     The name on their fascia is a high-contrast transitional serif with a very
+     large x-height and sharp hairline serifs (read off a 3x crop of harvest
+     g4.jpg — see review/REFINE-2026-09-08.md). Playfair Display at 700-900 is
+     the closest Google face and is sturdy, not a hairline didone. Karla carries
+     everything else, INCLUDING the small letter-spaced labels that used to be
+     set in system ui-monospace — that was a silent third typeface. ---- */
+  --display:'Playfair Display','Hoefler Text','Iowan Old Style',Georgia,'Times New Roman',serif;
   --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
-  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --mono:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
 
   /* ---- metrics ---- */
   --header-h:74px;
@@ -350,10 +356,27 @@ p{margin:0 0 1em}
    (the hours) plus the dark closing band, so the page is never cream-on-cream.
    ============================================================================ */
 
-/* Fraunces is a variable optical-size face — pin the weights we actually load. */
+/* Playfair Display — pin the weights we actually load. */
 h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
 .hero h1,.section-head h2,.story-copy h2,.contact h2,.status-head h2{font-weight:900}
 .logo .wm,.foot .wm,.num b{font-weight:900}
+/* the labels that were system-mono are now Karla — hold them together with weight + tracking */
+.eyebrow,.hdr-live,.live-line,.hours-list .time,.print figcaption,.foot h4,.logo .wm small,.foot .wm small,
+.lead-note,.bagel-lead,.spec-list .name .sf,.rev-meta{font-weight:700}
+
+/* ---------- THE SIGNATURE DEVICE: their roof ----------
+   The stand wears a green standing-seam metal roof with a dark fascia board
+   bolted under it. That edge — seamed green over one dark line — is set above
+   every eyebrow on the page, so the opener's world runs to the footer. */
+.eyebrow{position:relative;padding-top:15px}
+.eyebrow::before{content:"";position:absolute;left:0;top:0;width:44px;height:9px;border-radius:2px 2px 0 0;
+  background:
+    linear-gradient(180deg,transparent 0 6px,var(--dark) 6px 9px),
+    repeating-linear-gradient(90deg,var(--accent) 0 9px,color-mix(in srgb,var(--accent) 58%,var(--dark)) 9px 11px)}
+.section-dark .eyebrow::before,.status-band .eyebrow::before,.rev-band .eyebrow::before{
+  background:
+    linear-gradient(180deg,transparent 0 6px,rgba(255,255,255,.5) 6px 9px),
+    repeating-linear-gradient(90deg,var(--accent-soft) 0 9px,color-mix(in srgb,var(--accent-soft) 55%,var(--dark)) 9px 11px)}
 
 /* ---------- header: the real FH oval, cropped off their cup, never redrawn ---------- */
 .logo img{height:42px;width:auto;border-radius:7px;box-shadow:0 2px 10px -4px rgba(0,0,0,.45)}
@@ -407,7 +430,18 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
   border-radius:999px;padding:3px 8px;margin-left:8px;vertical-align:2px;font-style:normal}
 .spec-list .desc{margin-top:2px}
 
-.drinks-tail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(18px,3vw,36px);
+/* the specialties are a printed sheet taped inside their glass — so they sit on one */
+.sheet{position:relative;background:var(--paper);border:var(--rule);border-radius:4px;
+  padding:clamp(26px,3vw,38px) clamp(22px,3vw,34px);
+  box-shadow:0 40px 70px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
+.sheet::before,.sheet::after{content:"";position:absolute;top:-11px;width:74px;height:23px;
+  background:color-mix(in srgb,var(--warm) 34%,var(--paper));border:1px solid color-mix(in srgb,var(--warm) 45%,transparent);
+  opacity:.85}
+.sheet::before{left:22px;transform:rotate(-3.5deg)}
+.sheet::after{right:22px;transform:rotate(2.5deg)}
+@media (prefers-reduced-motion:reduce){.sheet::before,.sheet::after{transform:none}}
+
+.drinks-tail{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,3vw,36px);
   align-items:start;margin-top:clamp(34px,5vw,64px)}
 .bagels{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px}
 .bagels h3{font-size:24px;margin:0 0 12px}
@@ -422,9 +456,21 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
 /* ---------- SIGNATURE: THE FLAVOR WALL ----------
    Their real printed list. One tap on a card rolls the real names out; the
    chevron flips down→up (ARROW LAW). "Pick one for me" lights one real syrup.  */
-.wall{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(26px,4vw,56px);align-items:start}
-.wall-print{position:sticky;top:calc(var(--header-h) + 20px)}
+/* the real taped sheet and the cup sit side by side; the flavors run full width
+   underneath, so neither column is left holding a column of dead cream */
+.wall-top{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,52px);align-items:stretch;
+  margin-bottom:clamp(28px,4vw,48px)}
+.wall-print{max-width:340px;justify-self:center;align-self:center}
 
+/* THE CUP. It is never empty — it opens holding a real flavor off their sheet.
+   Result sits ABOVE the swatches on every width; one tap on any flavor moves it up
+   here, tapping the lit one again puts the opening flavor back. */
+.cupbox{background:var(--dark);border-radius:var(--r);padding:clamp(22px,3vw,38px) clamp(20px,3vw,34px);
+  display:flex;flex-direction:column;justify-content:center;
+  box-shadow:0 40px 70px -50px color-mix(in srgb,var(--dark) 70%,transparent)}
+.cupbox .pick{align-self:flex-start}
+.cupbox .pick-out{color:#fff}
+.cupbox .pick-hint{font-size:13.5px;color:rgba(255,255,255,.66);margin:14px 0 0}
 .pick{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:14px 28px;border:0;cursor:pointer;
   border-radius:999px;background:var(--brand);color:#fff;font-family:var(--body);font-weight:800;font-size:16px;
   letter-spacing:.01em;transition:transform .18s var(--ease),background .18s,box-shadow .18s}
@@ -432,13 +478,12 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
 .pick:hover{background:var(--brand-bright);transform:translateY(-2px);
   box-shadow:0 16px 34px -14px color-mix(in srgb,var(--brand) 70%,transparent)}
 .pick:active{transform:translateY(0)}
-.pick-out{font-family:var(--display);font-weight:900;font-size:clamp(26px,5vw,44px);line-height:1.1;
-  color:var(--brand-text);margin:14px 0 0;min-height:0;opacity:0;transform:translateY(8px);
-  transition:opacity .35s var(--ease-2),transform .35s var(--ease-2)}
-.pick-out.show{opacity:1;transform:none;margin:14px 0 4px}
+.pick-out{font-family:var(--display);font-weight:900;font-size:clamp(30px,5.4vw,50px);line-height:1.05;
+  color:var(--warm);margin:0 0 18px;transition:opacity .3s var(--ease-2),transform .3s var(--ease-2)}
+.pick-out.show{opacity:1;transform:none}
 
 .roll{border-bottom:var(--rule)}
-.roll:first-of-type{border-top:var(--rule);margin-top:26px}
+.roll:first-of-type{border-top:var(--rule)}
 .roll-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
   background:none;border:0;cursor:pointer;padding:20px 4px;min-height:56px;text-align:left;color:var(--ink);
   font-family:var(--display);font-weight:700;font-size:clamp(19px,2.5vw,26px);letter-spacing:-.01em}
@@ -451,29 +496,72 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
 /* padding lives INSIDE the clipped box (a flex line), or a 0fr row still leaks it */
 .chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .chips::after{content:"";flex:0 0 100%;height:14px}
-.chips li{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 15px;
+.chips li{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 16px;min-height:40px;
+  display:inline-flex;align-items:center;cursor:pointer;
   font-size:14.5px;font-weight:700;color:var(--ink);transition:background .25s,color .25s,border-color .25s,transform .25s}
+.chips li:hover{border-color:var(--brand);color:var(--brand-text)}
 .chips li.lit{background:var(--brand);border-color:var(--brand);color:#fff;transform:scale(1.06)}
-@media (max-width:900px){.wall{grid-template-columns:1fr}.wall-print{position:static;order:-1}}
+.chips li.lit:hover{color:#fff}
+@media (max-width:900px){.wall-top{grid-template-columns:1fr;gap:26px}}
 @media (prefers-reduced-motion:reduce){
   .rolled,.roll-btn .chev,.pick-out,.chips li{transition:none}
 }
 
-/* ---------- REVIEWS: the honest aggregate. No name+face pair was sourceable,
-     so no quote cards — the number, and a door out to the live reviews. ---------- */
-.rating{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(30px,5vw,54px);text-align:center;
-  box-shadow:0 40px 80px -50px color-mix(in srgb,var(--dark) 55%,transparent)}
-.rating-num{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 0 8px;flex-wrap:wrap}
-.rating-num b{font-family:var(--display);font-weight:900;font-size:clamp(56px,10vw,96px);line-height:1;
-  letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
-.rating-num .stars{font-size:clamp(20px,3.4vw,30px);color:var(--warm);letter-spacing:.08em}
-.rating-sub{font-size:17px;color:var(--muted);margin:0 0 26px}
-.rating-sub b{color:var(--ink);font-variant-numeric:tabular-nums}
+/* ---------- REVIEWS: four real Google reviewers, real names, real published
+     profile photos, scraped 2026-09-08 through a warmed profile. Reviewers Google
+     serves only a generated letter disc for were skipped, not faked.
+     The score itself is stated ONCE on the page, up in the hours band. ---------- */
+.rev-band{background:var(--dark);color:#fff}
+.rev-band .section-head h2{color:#fff}
+.rev-band .section-head h2 em{color:var(--warm)}
+.rev-band .section-head .eyebrow{color:var(--warm)}
+.revs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,26px)}
+.rev{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);
+  padding:clamp(22px,2.6vw,30px)}
+.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;margin-bottom:16px}
+.rev-face{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid color-mix(in srgb,var(--accent-soft) 60%,transparent)}
+.rev-who{font-family:var(--display);font-weight:700;font-size:18.5px;line-height:1.15;color:#fff}
+.rev-who small{display:block;font-family:var(--body);font-weight:700;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.rev-stars{color:var(--warm);font-size:14px;letter-spacing:.06em;white-space:nowrap;align-self:start;margin-top:3px}
+.rev p{margin:0;font-size:16px;line-height:1.65;color:rgba(255,255,255,.9)}
+.revs-out{margin:clamp(26px,3.5vw,40px) 0 0}
+.revs-out .btn-dark{background:var(--bg);color:var(--ink)}
+.revs-out .btn-dark:hover{background:#fff;color:var(--ink)}
+@media (max-width:760px){.revs{grid-template-columns:1fr}.rev-head{grid-template-columns:auto 1fr;row-gap:6px}
+  .rev-stars{grid-column:2;margin-top:0}}
+
+/* ---------- ABOUT: two frames, not one — the whole stand, then the roof-and-name
+     detail the copy actually talks about ---------- */
+.story-frames{display:grid;gap:clamp(16px,2.2vw,24px)}
+.story-frames .print:nth-child(1){transform:rotate(-1.2deg)}
+.story-frames .print:nth-child(2){transform:rotate(.9deg)}
+.story-frames .print:hover{transform:rotate(0) scale(1.01)}
+@media (max-width:900px){.story-frames .print{transform:none}}
+
+/* ---------- GALLERY: four distinct cups, four across on desktop, and a swipe
+     rail on phones instead of four full-screen photos stacked in a column ---------- */
+#gallery .prints{grid-template-columns:repeat(4,1fr)}
+#gallery .prints .print:nth-child(4n+1){transform:rotate(-1.2deg)}
+#gallery .prints .print:nth-child(4n+2){transform:rotate(.9deg)}
+#gallery .prints .print:nth-child(4n+3){transform:rotate(-.7deg)}
+#gallery .prints .print:nth-child(4n){transform:rotate(1.1deg)}
+#gallery .prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){#gallery .prints{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){
+  #gallery .prints{display:flex;grid-template-columns:none;gap:14px;overflow-x:auto;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin:0 calc(var(--pad) * -1);padding:6px var(--pad) 18px;scrollbar-width:none}
+  #gallery .prints::-webkit-scrollbar{display:none}
+  #gallery .prints .print{flex:0 0 76%;scroll-snap-align:center;transform:none}
+}
 
 /* ---------- closing band ---------- */
 .cta-band .section-head p{max-width:46ch}
 
-/* the landmark print in #contact — a drive-thru you have to spot from the road */
-.landmark{margin-top:clamp(24px,3vw,36px);transform:rotate(-.8deg)}
-.landmark:hover{transform:rotate(0) scale(1.01)}
+/* the landmark print closes #contact across the full width — the stand as you
+   actually meet it, from the road at the Woodland Ave light */
+.landmark{grid-column:1 / -1;margin-top:clamp(28px,4vw,48px);transform:rotate(-.5deg)}
+.landmark:hover{transform:rotate(0) scale(1.005)}
 @media (max-width:900px){.landmark{transform:none}}

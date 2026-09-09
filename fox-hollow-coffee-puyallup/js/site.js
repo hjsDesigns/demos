@@ -164,24 +164,47 @@ function customClose(p, close){ return close; }
     });
   });
 
+  /* The cup is never empty: it opens holding a real flavor off their sheet, so
+     there is no "nothing here yet" box. One tap on any flavor puts it in the cup;
+     tapping the lit one again clears it back to the opening flavor. */
   var pickBtn = $('#pickBtn'), pickOut = $('#pickOut'), syrupList = $('#syrupChips');
   if(pickBtn && pickOut && syrupList){
     var chips = $$('li', syrupList);
+    var START = 'Vanilla Bean';
     var last = -1;
+    function light(i){
+      last = i;
+      chips.forEach(function(c){ c.classList.remove('lit'); });
+      chips[i].classList.add('lit');
+      pickOut.textContent = chips[i].textContent;
+      pickOut.classList.add('show');
+    }
+    chips.forEach(function(c, i){
+      c.setAttribute('role','button');
+      c.setAttribute('tabindex','0');
+      function tap(){
+        if(c.classList.contains('lit')){
+          var s = chips.findIndex ? chips.findIndex(function(x){return x.textContent === START}) : 0;
+          light(s < 0 ? 0 : s);
+        } else { light(i); }
+      }
+      c.addEventListener('click', tap);
+      c.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); tap(); } });
+    });
     pickBtn.addEventListener('click', function(){
       var i = Math.floor(Math.random() * chips.length);
       if(chips.length > 1){ while(i === last){ i = Math.floor(Math.random() * chips.length); } }
-      last = i;
       var card = syrupList.closest('.roll');
       if(card && !card.classList.contains('open')){
         card.classList.add('open');
         $('.roll-btn', card).setAttribute('aria-expanded','true');
       }
-      chips.forEach(function(c){ c.classList.remove('lit'); });
-      chips[i].classList.add('lit');
-      pickOut.textContent = chips[i].textContent;
-      pickOut.classList.add('show');
+      light(i);
     });
+    (function(){
+      for(var i = 0; i < chips.length; i++){ if(chips[i].textContent === START){ light(i); return; } }
+      light(0);
+    })();
   }
 
 })();

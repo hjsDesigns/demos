@@ -185,13 +185,14 @@ function customClose(p, close){ return close; }
      are a fixed rotation, not random, so replay N is identical to
      replay N+4 at any width. */
   var strip=$('#teeStrip'), ball=$('#teeBall'), cup=$('.tee-cup',strip||document),
-      flag=$('#teeFlag'), out=$('#teeCount');
+      flag=$('#teeFlag'), out=$('#teeCount'), hint=$('#teeHint');
   if(strip&&ball&&cup&&out){
     var ARCS=[.62,.80,.52,.71], shots=0, flying=false, raf=null;
     var reduce=window.matchMedia('(prefers-reduced-motion:reduce)');
 
     function land(){
       out.textContent=String(shots);
+      if(hint) hint.textContent='Tap it again';
       if(flag&&!reduce.matches){flag.classList.remove('wave');void flag.offsetWidth;flag.classList.add('wave')}
       ball.classList.add('is-sunk');
       setTimeout(function(){

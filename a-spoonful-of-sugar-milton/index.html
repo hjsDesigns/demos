@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fraunces (display) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/style.css?v=1788928844">
+<link rel="stylesheet" href="css/hero.css?v=1788928844">
 </head>
 <body>
 
@@ -99,6 +99,15 @@
         <h2>Walk up, drive through, <em>or order it ahead</em></h2>
         <p>It's a small house with a counter, a handful of farmhouse tables and a window around the back. Whichever way you come at it, the same kitchen is making it.</p>
       </div>
+
+      <!-- The reader board is the object that answers all four questions at once —
+           DRIVE THRU OPEN, what's on this week, and which building it is. It sits
+           here beside the four ways in rather than loose in the gallery grid. -->
+      <figure class="board-shot reveal">
+        <img src="images/reader-board.jpg" alt="The lit reader board in the parking lot at dusk reading DRIVE THRU OPEN and June 26 BOGO on drinks, with the pink arrow sign above it" loading="lazy">
+        <figcaption><b>The reader board out front.</b> Whatever's on this week goes up on it in plastic letters — and it's the sign that tells you the window around the back is open.</figcaption>
+      </figure>
+
       <div class="cards">
 
         <article class="card reveal">
@@ -191,6 +200,13 @@
             <li><span class="name">Hot Dog</span><span class="price">$4.50</span><span class="desc">100% all-beef dog with your choice of toppings — ketchup, mustard, Dijon, mayo, pickled jalapeños, onions and cheese.</span></li>
           </ul>
           </div>
+
+          <div class="dish-strip reveal">
+            <figure class="dish"><img src="images/dish-1.jpg" alt="A turkey and cranberry sandwich on a croissant, cut in half, with lettuce and tomato" loading="lazy"><figcaption>Turkey and cranberry, on a croissant</figcaption></figure>
+            <figure class="dish"><img src="images/dish-2.jpg" alt="A breakfast sandwich on a croissant with egg, ham and melted cheese on a painted plate" loading="lazy"><figcaption>The breakfast sandwich</figcaption></figure>
+            <figure class="dish"><img src="images/dish-3.jpg" alt="A bowl of biscuits and gravy topped with cheddar cheese and chopped bacon" loading="lazy"><figcaption>Biscuits and gravy, deluxe</figcaption></figure>
+            <figure class="dish"><img src="images/dish-4.jpg" alt="A scramble bowl with eggs, spinach, cheddar and sliced avocado, sided with salsa, sour cream and a tortilla" loading="lazy"><figcaption>A scramble, sided with a tortilla</figcaption></figure>
+          </div>
         </div>
 
         <div class="menu-group">
@@ -235,20 +251,27 @@
             <li><span class="name">Blended lotus</span><span class="price">$4.00 / $5.00</span><span class="desc">The layered ones, 16 or 24 oz. Off the energy side of the board.</span></li>
             <li><span class="name">Smoothies</span><span class="price">$4.50 / $5.00</span><span class="desc">Wild berry, mango, strawberry, strawberry-banana, passionate sunrise, peach, banana and raspberry.</span></li>
             <li><span class="name">Protein shake</span><span class="price">$5.00 / $5.75</span><span class="desc">Chocolate banana, chocolate peanut butter, peanut butter banana chocolate, strawberry banana, wild berry banana.</span></li>
-            <li><span class="name">Fresh muffins</span><span class="price">$2.00</span></li>
-            <li><span class="name">Cookies</span><span class="price">$2.25</span></li>
           </ul>
+
+          <h3 style="margin-top:38px">Off the pastry board</h3>
+          <p class="grp-note">Chalked on the door — options vary daily</p>
+          <ul class="menu-list">
+            <li><span class="name">Muffin</span><span class="price">$2.00</span></li>
+            <li><span class="name">Cinnamon roll</span><span class="price">$3.25</span></li>
+            <li><span class="name">Scone</span><span class="price">$2.00</span></li>
+            <li><span class="name">Cookie</span><span class="price">$2.25</span></li>
+            <li><span class="name">Pastry bar</span><span class="price">$3.00</span></li>
+          </ul>
+
+          <aside class="menu-note">
+            <p class="eyebrow">Ask at the counter</p>
+            <p>Every price here is as printed on the board behind the counter. There's a monthly specials list up there too — seasonal lotus drinks and mochas that change with the calendar — so ask what's on this month.</p>
+          </aside>
+
         </div>
 
       </div>
-      <p class="menu-fine reveal">Prices are as printed on the board behind the counter. There's a monthly specials list up there too — seasonal lotus drinks and mochas that change with the calendar — so ask what's on this month. The grill closes thirty minutes before the doors.</p>
 
-      <div class="dish-strip reveal">
-        <figure class="dish"><img src="images/dish-1.jpg" alt="A turkey and cranberry sandwich on a croissant, cut in half, with lettuce and tomato" loading="lazy"><figcaption>Turkey and cranberry, on a croissant</figcaption></figure>
-        <figure class="dish"><img src="images/dish-2.jpg" alt="A breakfast sandwich on a croissant with egg, ham and melted cheese on a painted plate" loading="lazy"><figcaption>The breakfast sandwich</figcaption></figure>
-        <figure class="dish"><img src="images/dish-3.jpg" alt="A bowl of biscuits and gravy topped with cheddar cheese and chopped bacon" loading="lazy"><figcaption>Biscuits and gravy, deluxe</figcaption></figure>
-        <figure class="dish"><img src="images/dish-4.jpg" alt="A scramble bowl with eggs, spinach, cheddar and sliced avocado, sided with salsa, sour cream and a tortilla" loading="lazy"><figcaption>A scramble, sided with a tortilla</figcaption></figure>
-      </div>
     </div>
   </section>
 
@@ -257,13 +280,12 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Before you walk in</p>
-        <h2>White chairs, oak tables, <em>and a wall of Mary Poppins</em></h2>
+        <h2>White chairs, oak tables, <em>and chalk on every door</em></h2>
       </div>
       <div class="prints">
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Oak tables and white spindle-back chairs by the window, framed pictures covering the wall" loading="lazy"><figcaption>The window tables</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Rows of flavour syrup bottles on a shelf above the counter, chalkboards below them" loading="lazy"><figcaption>The syrup shelf</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A round oak table with five white spindle-back chairs pulled up to it" loading="lazy"><figcaption>The round table</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="The reader board and the lit sign in the parking lot at dusk with balloons tied to it" loading="lazy"><figcaption>The reader board out front</figcaption></figure>
+        <figure class="print reveal"><img src="images/pastry-board.jpg" alt="A chalkboard hung on the door reading Pastries — muffin 2.00, cinnamon roll 3.25, scone 2.00, cookie 2.25, pastry bar 3.00" loading="lazy"><figcaption>The pastry board by the door</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A long table under a pink cloth set with cookies, white chairs around it and picture frames behind" loading="lazy"><figcaption>Set up for a party</figcaption></figure>
       </div>
     </div>
@@ -379,13 +401,73 @@
     </div>
   </section>
 
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (2026-09-06). Four reviews pulled from the
+       business's own Google listing (place cid 2026-09-08). Every one carries
+       the reviewer's REAL published name and their REAL published profile
+       image from that same listing — nothing manufactured, nothing stock, no
+       initials. Quotes are verbatim; only complete reviews were used, so
+       nothing here is a truncated excerpt. Raw pull: harvest-0906/greviews-pw.json -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">On their Google listing</p>
+        <h2>Four hundred people <em>have said their piece</em></h2>
+        <p class="rating-line">
+          <span class="rate-stars" aria-hidden="true">★★★★★</span>
+          <b>4.7</b> out of 5, from 416 ratings on Google.
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=A+Spoonful+of+Sugar+2420+Milton+Way+Milton+WA" target="_blank" rel="noopener">Read them all ↗</a>
+        </p>
+      </div>
+      <div class="revs">
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewers/ashley-zuber.jpg" alt="Ashley Zuber" width="200" height="200" loading="lazy">
+            <span class="rev-who">Ashley Zuber<small>Google · a month ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Great coffee, great and fast service and the cutest Mary Poppins themed coffee shop. The breakfast sandwich I had was also so delicious.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewers/chayah-batyah.jpg" alt="ChaYah BatYah" width="200" height="200" loading="lazy">
+            <span class="rev-who">ChaYah BatYah<small>Google · 4 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“I've been here twice now while I'm visiting from another state and everything has been fantastic I also had a popular sandwich and it was so fresh and delicious. The coffee was so good I definitely recommend and will come back every time I visit”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewers/adriana-valdez.jpg" alt="Adriana Valdez" width="200" height="200" loading="lazy">
+            <span class="rev-who">Adriana Valdez<small>Google · 9 months ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“I got the Deluxe Biscuits and Gravy along with a Spoonful of Sugar iced coffee! They were both amazing from the warmth and freshness of the Biscuits and Gravy and the cold iced coffee! It’s so cozy inside and very welcoming, the people are so friendly and nice!”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewers/priscilla-wilson.jpg" alt="Priscilla Wilson" width="200" height="200" loading="lazy">
+            <span class="rev-who">Priscilla Wilson<small>Google · a year ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“Awesome coffee, friendly staff, and fantastic breakfast burritos! We love Dillanos coffee, which is what they serve here. And their food portions are a good price for the amount you get. They make all the breakfast items right there.”</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== #contact ===================== -->
-  <section class="section" id="contact">
+  <section class="section section-alt" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting here</p>
-          <h2>2420 Milton Way, <em>the white one</em></h2>
+          <h2>2420 Milton Way, <em>right on the corner</em></h2>
           <ol class="steps">
             <li><h3>Come in and read the wall</h3><p>The board is the whole menu, and it takes a minute — there's no reservation, no wait list, just the counter.</p></li>
             <li><h3>Or take the drive-thru</h3><p>Around the back of the building. Go slow through the lot, it's tight when there's a line.</p></li>
@@ -394,7 +476,6 @@
           <div class="contact-lines">
             <span>📞 <a href="tel:+12539271174">(253) 927-1174</a></span>
             <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=2420+Milton+Way%2C+Milton%2C+WA+98354" target="_blank" rel="noopener">Directions ↗</a></span>
-            <span>★ <a href="https://www.google.com/maps/search/?api=1&amp;query=A+Spoonful+of+Sugar+2420+Milton+Way+Milton+WA" target="_blank" rel="noopener">Read the reviews on Google ↗</a></span>
           </div>
         </div>
         <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
@@ -418,11 +499,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">One more thing</p>
-        <h2>Milton's been going here <em>a long time</em></h2>
-      </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count tnum" data-to="416">416</span></b><span>ratings on Google, averaging 4.7 stars</span></div>
-        <div class="num"><b><span class="count tnum" data-to="14">14</span></b><span>years, going by the “14% off in honor of 14 years” they printed on their own cups</span></div>
+        <h2>The white house on Milton Way, <em>with the lights already on</em></h2>
       </div>
       <div class="cta-actions reveal">
         <a href="tel:+12539271174" class="btn btn-primary">Call the cafe</a>
@@ -454,7 +531,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#gallery">The room</a><br><a href="#signature">House drinks</a><br><a href="#about">Our story</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The board</a><br><a href="#gallery">The room</a><br><a href="#signature">House drinks</a><br><a href="#about">Our story</a><br><a href="#reviews">Reviews</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -464,6 +541,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788928844"></script>
 </body>
 </html>

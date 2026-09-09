@@ -12,9 +12,9 @@
 <meta property="og:image" content="images/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/hero.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1788928643">
+<link rel="stylesheet" href="css/hero.css?v=1788928643">
 </head>
 <body>
 
@@ -31,6 +31,7 @@
         <a href="#menu">Drinks</a>
         <a href="#signature">Flavors</a>
         <a href="#about">The stand</a>
+        <a href="#reviews">Reviews</a>
         <a class="nav-cta" href="tel:2534469158">(253) 446-9158</a>
       </nav>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">☰</button>
@@ -50,7 +51,7 @@
     <h1 class="codex-a11y">Fox Hollow Coffee — drive-thru coffee in Puyallup</h1>
     <div class="codex-fox-identity" aria-hidden="true">
       <img class="codex-fox-emblem" src="images/codex-cup-emblem.png" alt="" width="600" height="352">
-      <img class="codex-fox-wordmark" src="images/codex-fascia-wordmark.png" alt="" width="1182" height="219">
+      <p class="codex-fox-wordmark">Fox Hollow Coffee</p>
     </div>
     <div class="codex-actions">
       <a class="btn btn-primary" href="#menu">See the drinks</a>
@@ -73,7 +74,6 @@
         <div class="proof-row">
           <span class="proof"><span class="star">★</span> 4.6 on Google · 221 reviews</span>
           <span class="proof"><span class="ico">✓</span> Drive-thru and walk-up window</span>
-          <span class="proof"><span class="ico">✓</span> Open daily</span>
         </div>
       </div>
       <ul class="hours-list" id="hoursList">
@@ -105,7 +105,7 @@
           <img src="images/window-wall.jpg" alt="The Woodland Espresso sign above the order window, with Red Bull, Lotus and specialty drink posters taped along the glass" loading="lazy">
           <figcaption>The order window</figcaption>
         </figure>
-        <div class="drinks-copy reveal">
+        <div class="drinks-copy sheet reveal">
           <h3>Rising Sun Specialties</h3>
           <p class="lead-note">Red Bull (Regular and Sugar Free) &amp; Pink and Blue Lotus available</p>
           <ul class="menu-list spec-list">
@@ -123,12 +123,8 @@
 
       <div class="drinks-tail">
         <figure class="print reveal">
-          <img src="images/board-cold.jpg" alt="The Cold Drinks board taped inside the window, listing the Rising Sun Specialties and a bagel list beside it" loading="lazy">
-          <figcaption>The cold drinks board</figcaption>
-        </figure>
-        <figure class="print reveal">
-          <img src="images/gallery-2.jpg" alt="An iced coffee and a bright blue lotus drink in a cardboard carrier" loading="lazy">
-          <figcaption>Iced coffee and a blue Lotus</figcaption>
+          <img src="images/gallery-2.jpg" alt="An iced coffee and a bright blue Lotus drink standing in a cardboard carrier on the counter" loading="lazy">
+          <figcaption>An iced coffee and a blue Lotus, out the window</figcaption>
         </figure>
         <div class="bagels reveal">
           <h3>And something to eat</h3>
@@ -139,10 +135,9 @@
             <li>Plain</li>
           </ul>
           <p class="bagel-fine">1 oz packs of cream cheese available. Cookies too &mdash; they&rsquo;re the thing people mention.</p>
+          <p class="menu-fine">Every drink above is transcribed word for word off the boards taped inside their window. The boards don&rsquo;t post prices &mdash; ask at the window.</p>
         </div>
       </div>
-
-      <p class="menu-fine">Every drink above is transcribed word for word off the boards taped inside their window. The boards don&rsquo;t post prices &mdash; ask at the window.</p>
     </div>
   </section>
 
@@ -156,12 +151,21 @@
       </div>
 
       <div class="wall">
-        <div class="wall-cards reveal">
-          <button class="pick" id="pickBtn" type="button">Pick one for me</button>
-          <p class="pick-out" id="pickOut" role="status" aria-live="polite"></p>
+        <div class="wall-top reveal">
+          <figure class="print wall-print">
+            <img src="images/board-syrups.jpg" alt="The printed syrup flavor list taped inside the stand's window, in two columns with a sugar-free column beside it" loading="lazy">
+            <figcaption>The list in their window</figcaption>
+          </figure>
+          <div class="cupbox">
+            <p class="pick-out" id="pickOut" role="status" aria-live="polite">Vanilla Bean</p>
+            <button class="pick" id="pickBtn" type="button">Pick one for me</button>
+            <p class="pick-hint">Or tap any flavor below. Tap it again to clear it.</p>
+          </div>
+        </div>
 
-          <div class="roll" data-roll>
-            <button class="roll-btn" type="button" aria-expanded="false" aria-controls="roll-syrups">
+        <div class="wall-cards reveal">
+          <div class="roll open" data-roll>
+            <button class="roll-btn" type="button" aria-expanded="true" aria-controls="roll-syrups">
               <span class="roll-title">38 syrup flavors</span>
               <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
@@ -208,11 +212,6 @@
             </div>
           </div>
         </div>
-
-        <figure class="print reveal wall-print">
-          <img src="images/board-syrups.jpg" alt="The printed syrup flavor list taped inside the stand's window, in two columns with a sugar-free column beside it" loading="lazy">
-          <figcaption>The list in their window</figcaption>
-        </figure>
       </div>
     </div>
   </section>
@@ -227,9 +226,7 @@
       <div class="prints">
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="A tall iced Lotus drink in a clear Fox Hollow Coffee cup, pale gold and fizzing" loading="lazy"><figcaption>A Lotus, over ice</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-3.jpg" alt="An iced latte in a clear cup with a pink straw on a stone counter" loading="lazy"><figcaption>Iced latte</figcaption></figure>
-        <figure class="print reveal"><img src="images/cup-mark.jpg" alt="The FH oval and the words Fox Hollow Coffee printed on the side of a hot cup" loading="lazy"><figcaption>The mark on the cup</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A hot cup with a printed sleeve, lid on, sitting on a wooden board" loading="lazy"><figcaption>Hot, lid on, to go</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="Two large cookies in a clear bag from the window case" loading="lazy"><figcaption>Cookies from the case</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="Two large cookies in a clear bag from the case at the window" loading="lazy"><figcaption>Cookies from the case</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-6.jpg" alt="An iced coffee held up in one hand, ice settling in the cup" loading="lazy"><figcaption>Iced, in hand</figcaption></figure>
       </div>
     </div>
@@ -239,31 +236,74 @@
   <section class="section section-alt" id="about">
     <div class="wrap">
       <div class="story">
-        <figure class="print reveal">
-          <img src="images/about.jpg" alt="The whole stand seen from across the street — green roof, Fox Hollow Coffee lettering on the dark fascia, the FH oval sign on the corner and a red OPEN sign in the window" loading="lazy">
-          <figcaption>The stand, from across 112th</figcaption>
-        </figure>
+        <div class="story-frames reveal">
+          <figure class="print">
+            <img src="images/about.jpg" alt="The whole stand seen from across the street — green roof, Fox Hollow Coffee lettering on the dark fascia, the FH oval sign on the corner and a red OPEN sign in the window" loading="lazy">
+            <figcaption>The stand, from across 112th</figcaption>
+          </figure>
+          <figure class="print">
+            <img src="images/open-window.jpg" alt="The walk-up window under a green awning with a red neon OPEN sign lit above it, notices taped inside the glass, and the FH oval reading OPEN DAILY on the mural wall alongside" loading="lazy">
+            <figcaption>The window, and the sign that&rsquo;s always on</figcaption>
+          </figure>
+        </div>
         <div class="story-copy reveal">
           <p class="eyebrow">The stand</p>
           <h2>One small building, <em>a green roof, a red OPEN sign</em></h2>
           <p class="lede">It sits on the corner of 112th and Woodland, and it has been doing one thing for a long time: handing coffee out a window.</p>
-          <p>The fascia along the front spells it out in six words &mdash; latte, mocha, americano, coffee, granita, espresso. Under it, the wall is a big black-and-white mural of an old cafe scene, and the FH oval hangs off the corner where you can read it from the road. The window says OPEN DAILY, and it means it.</p>
+          <p>The board along the roofline spells it out in six words &mdash; latte, mocha, americano, coffee, granita, espresso. Under it the fascia carries the name in white, wound through a painted vine, and the FH oval hangs off the corner where you can read it from the road. The side wall is a big black-and-white mural of an old cafe scene. The window says OPEN DAILY, and it means it.</p>
           <p>The coffee in the cup is Fox Hollow Coffee, a Washington roaster whose oval is printed on every lid, sleeve and cup that comes out the window. The stand itself trades as Woodland Espresso, L.L.C., out of Puyallup.</p>
-          <p>Two hundred and twenty-one people have rated it on Google. It averages 4.6.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ REVIEWS — honest aggregate + link out. No name-and-face pair could be sourced. -->
-  <section class="section" id="reviews">
+  <!-- ============ REVIEWS — four real Google reviewers: their published names AND their
+       published Google profile photos, scraped 2026-09-08 through a warmed profile.
+       Quotes verbatim. Reviewers whose Google avatar is only a generated letter disc
+       were skipped rather than shipped as a face. [REVIEW ATTRIBUTION LAW, 9/6] -->
+  <section class="section rev-band" id="reviews">
     <div class="wrap">
-      <div class="rating reveal">
-        <p class="eyebrow">What people give it</p>
-        <p class="rating-num"><b>4.6</b><span class="stars" aria-hidden="true">★★★★★</span></p>
-        <p class="rating-sub">out of 5, across <b>221</b> Google reviews</p>
-        <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Fox+Hollow+Coffee+at+Woodland+Espresso%2C+6909+112th+St+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read them on Google ↗</a>
+      <div class="section-head reveal">
+        <p class="eyebrow">In their words, on Google</p>
+        <h2>They remember <em>your drink</em></h2>
       </div>
+      <div class="revs">
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/r-tom.jpg" alt="Tom Davenport's Google profile photo" width="160" height="160" loading="lazy">
+            <span class="rev-who">Tom Davenport<small>Google · a month ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;Great service and good coffee, nice corner espresso when you are passing through the area.&rdquo;</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/r-autumn.jpg" alt="Autumn Labriola's Google profile photo" width="160" height="160" loading="lazy">
+            <span class="rev-who">Autumn Labriola<small>Google · 3 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;My absolute #1 coffee shop! The staff is amazing!&hellip;both AM and PM girls are awesome. They remember me and my drink(s) every time. They can get very busy and are efficient and quick while still making the best drinks!&rdquo;</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/r-brandon.jpg" alt="Brandon Merck's Google profile photo" width="160" height="160" loading="lazy">
+            <span class="rev-who">Brandon Merck<small>Google · 2 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;We think it&rsquo;s the best coffee in town. And everybody in the shack are awesome. They consistently get orders right even while chatting. Don&rsquo;t know how they do it. Lol&rdquo;</p>
+        </article>
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviews/r-cara.jpg" alt="Cara V's Google profile photo" width="160" height="160" loading="lazy">
+            <span class="rev-who">Cara V<small>Google · 2 years ago</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>&ldquo;I&rsquo;ll go out of my way to come here. Fantastic coffee, baristas are friendly &amp; sharp. The location and drive-thru are convenient. Best prices around... checks all the boxes! Plus this pumpkin loaf omg yum!&rdquo;</p>
+        </article>
+      </div>
+      <p class="revs-out reveal">
+        <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Fox+Hollow+Coffee+at+Woodland+Espresso%2C+6909+112th+St+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Read them all on Google ↗</a>
+      </p>
     </div>
   </section>
 
@@ -283,10 +323,6 @@
             <span>Call the stand: <a href="tel:2534469158">(253) 446-9158</a></span>
             <span><a href="https://www.google.com/maps/search/?api=1&amp;query=Fox+Hollow+Coffee+at+Woodland+Espresso%2C+6909+112th+St+E%2C+Puyallup%2C+WA+98373" target="_blank" rel="noopener">Directions on Google Maps ↗</a></span>
           </div>
-          <figure class="print reveal landmark">
-            <img src="images/storefront-wide.jpg" alt="The row of buildings on 112th Street East seen from across the road, with the Woodland Espresso storefront at the right-hand end" loading="lazy">
-            <figcaption>What to look for from the road</figcaption>
-          </figure>
         </div>
 
         <form class="contact-form reveal" novalidate>
@@ -307,6 +343,11 @@
           <p class="form-success">Got it &mdash; thanks. They&rsquo;ll get back to you.</p>
           <p class="form-fine">Or just call: <a href="tel:2534469158">(253) 446-9158</a></p>
         </form>
+
+        <figure class="print reveal landmark">
+          <img src="images/drive-thru.jpg" alt="The stand seen from the road at the Woodland Avenue light: the green pyramid roof, the FH oval and the Fox Hollow Coffee lettering on the dark fascia, with cars lined up at the window" loading="lazy">
+          <figcaption>What to look for from the road</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -315,9 +356,8 @@
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">One more thing</p>
-        <h2>Green roof, red OPEN sign, <em>corner of 112th</em></h2>
-        <p>They start pouring at half past five in the morning. You&rsquo;ll be fine.</p>
+        <p class="eyebrow">Before you go</p>
+        <h2>See you <em>at the window</em></h2>
       </div>
       <div class="cta-actions reveal">
         <a class="btn btn-primary" href="tel:2534469158">Call (253) 446-9158</a>
@@ -347,6 +387,7 @@
       <p><a href="#hours">Hours</a></p>
       <p><a href="#menu">Drinks</a></p>
       <p><a href="#signature">Flavors</a></p>
+      <p><a href="#reviews">Reviews</a></p>
       <p><a href="#contact">Contact</a></p>
     </div>
   </div>
@@ -356,6 +397,6 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1788928643"></script>
 </body>
 </html>
