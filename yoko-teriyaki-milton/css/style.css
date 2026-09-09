@@ -28,6 +28,7 @@
   --line:#DFD2B8;           /* hairlines */
   --dark:#1E2C48;           /* the awning in shadow — scrims, closing band, footer */
   --dark-2:#2A3C60;         /* dark hover */
+  --dark-3:#162034;         /* the awning at night — the footer under the closing band */
   --warm:#E4A8A2;           /* the sun-faded salmon on the letter faces */
   --tint:#DEE6F1;           /* the awning blue, washed out — the hours band */
   --status-open:#10B981;    /* STATUS LIGHT LAW — always green */
@@ -323,7 +324,7 @@ p{margin:0 0 1em}
 @media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
 
 /* ============================================================ FOOTER */
-.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.site-footer{background:var(--dark-3);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
 .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
 .foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}

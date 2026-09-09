@@ -504,3 +504,43 @@ h1,h2{line-height:1.06}
 }
 .hero-eyebrow{color:rgba(255,255,255,.92);text-shadow:0 2px 14px color-mix(in srgb,var(--dark) 80%,transparent)}
 .hero-sub{text-shadow:0 2px 16px color-mix(in srgb,var(--dark) 70%,transparent)}
+
+/* ---- REVIEWS — real name + real face, both pulled from the same Google
+        listing (REVIEW ATTRIBUTION LAW, 2026-09-06). Nothing drawn, nothing
+        substituted; the avatars are the images Google publishes. ---- */
+.revs{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,24px);align-items:start}
+.rev{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:24px 24px 26px;
+  box-shadow:0 34px 64px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;margin-bottom:16px}
+.rev-face{width:54px;height:54px;border-radius:50%;object-fit:cover;background:var(--bg-2);
+  border:2px solid var(--bg-2)}
+.rev-who{font-family:var(--display);font-weight:400;font-size:17px;line-height:1.15;letter-spacing:-.01em}
+.rev-who small{display:block;font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--brand-text);margin-top:6px}
+.rev-stars{color:var(--accent);font-size:14px;letter-spacing:.06em;white-space:nowrap;align-self:center}
+.rev p{margin:0;font-size:16px;line-height:1.62;color:var(--ink)}
+.rev-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,3vw,32px)}
+@media (max-width:860px){.revs{grid-template-columns:1fr}}
+@media (max-width:420px){
+  .rev{padding:20px 18px 22px}
+  .rev-head{gap:11px}
+  .rev-face{width:46px;height:46px}
+  .rev-stars{font-size:12.5px}
+}
+
+/* the CTA band carries the three real listing counts (they appear nowhere else) */
+.cta-band .numbers{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.cta-band .numbers{grid-template-columns:1fr}}
+
+/* the window print is landscape — top-align the two columns so neither floats
+   in dead space, and let the print run wider than the old portrait crop */
+.win{align-items:start}
+.win-prints .print{max-width:560px}
+
+/* six swatches wrapped 5+1 and left a hole beside the stage — on desktop lay
+   them out as a tidy 3x2 block, vertically centred against the frame */
+@media (min-width:860px){
+  .wall .swatches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;
+    max-width:430px;align-content:center;justify-content:start}
+  .wall .swatches .swatch{width:auto}
+}
