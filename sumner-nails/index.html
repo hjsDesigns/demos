@@ -9,10 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- SIGN-FONT LAW: Archivo Black is the closest Google face to the heavy,
      white-keylined window lettering at 1111 Main. Karla carries the body.
-     Must match --display / --body in css/style.css?v=1788923262. -->
+     Must match --display / --body in css/style.css?v=1788939741. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788923262">
-<link rel="stylesheet" href="css/hero.css?v=1788923262">
+<link rel="stylesheet" href="css/style.css?v=1788939741">
+<link rel="stylesheet" href="css/hero.css?v=1788939741">
 </head>
 <body>
 
@@ -60,14 +60,46 @@
      white keyline is laid down behind it. ~1.0 s, once, then completely still.
      The mark is live type in the sign's face (CRISP RULE), never a photo crop.
      Nothing sits on the photograph but the mark and the two buttons. -->
-<section class="hero v-vinyl-wipe" id="hero">
+<!-- ===================== #hero — VARIANT "neon-buzz" =====================
+     THE GROUND: their own storefront at 1111 Main (harvest g02), thrown right
+     out of focus and graded down to night — brick, awning and window become a
+     warm bokeh field. Nothing on it is asked to be read.
+     THE REAL MARKS: the shop's OWN signs, cut out of that same photograph —
+     images/hero-led-script.png (the LED "Nails & Spa" script in their window)
+     and their neon, split on colour into its two real parts,
+     images/hero-open-tube.png (the blue tube that frames it) and
+     images/hero-open-word.png (the red OPEN).
+     Nothing is drawn, nothing is redrawn; the sign runs off the right edge of
+     the screen exactly the way it runs off the right edge of the photograph.
+     THE EVENT (2.6 s, once, deterministic): the blue tube catches with two
+     stutters, the red letters sputter in four times the way cold neon does,
+     the glass throws red-and-blue light back onto the wall behind — and then
+     SUMNER NAILS is stamped on in the window's magenta vinyl and one squeegee
+     shine is drawn across it. Then everything is still.
+     The wordmark is live type in the sign's face (SIGN-FONT LAW / CRISP RULE),
+     never a blown-up photo crop. Nothing sits on the ground but the sign,
+     the mark and the two buttons. -->
+<section class="hero v-neon-buzz" id="hero">
   <div class="hero-bg">
-    <!-- letterbox echo: the same real photo, blurred, so the storefront can be
-         shown WHOLE on phones without black bars (NEVER CROP THE IMPORTANT PART) -->
-    <img class="vw-echo" src="images/hero-store.jpg" width="1400" height="3205" alt="" aria-hidden="true">
-    <img class="vw-front" src="images/hero-store.jpg" width="1400" height="3205" fetchpriority="high"
-         alt="Sumner Nails at 1111 Main Street — buff brick storefront, grey awning, painted dogwood panel, and the lit Nails &amp; Spa, OPEN and Nails &amp; Waxing signs in the window.">
+    <img class="nb-ground" src="images/hero-store.jpg" width="1400" height="3205" fetchpriority="high"
+         alt="The Sumner Nails storefront at 1111 Main Street at dusk, out of focus — buff brick, a grey awning and the lit shop window behind the neon.">
   </div>
+
+  <!-- the light the tubes throw back onto the wall -->
+  <div class="nb-spill" aria-hidden="true"></div>
+
+  <!-- their real LED window script, cut from the same photograph -->
+  <div class="nb-script" aria-hidden="true">
+    <img src="images/hero-led-script.png" width="486" height="266" alt="">
+  </div>
+
+  <!-- their real neon, cut from their own photograph -->
+  <div class="nb-sign" aria-hidden="true">
+    <span class="nb-glow"></span>
+    <img class="nb-tube" src="images/hero-open-tube.png" width="914" height="460" alt="">
+    <img class="nb-word" src="images/hero-open-word.png" width="914" height="460" alt="">
+  </div>
+
   <div class="hero-spacer"></div>
   <div class="hero-inner">
     <h1 class="sr-only">Sumner Nails — a nail salon on Main Street in Sumner, Washington</h1>
@@ -393,6 +425,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788923262"></script>
+<script src="js/site.js?v=1788939741"></script>
 </body>
 </html>

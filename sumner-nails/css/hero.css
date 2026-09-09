@@ -1,146 +1,244 @@
-/* variants/vinyl-wipe hero take, applied 0908-1315 — source versions/variants/vinyl-wipe-hero/ */
+/* variants/neon-buzz hero take, applied 0909-0041 — source versions/variants/neon-buzz-hero/ */
 /* ============================================================
-   HERO VARIANT 2 — "vinyl-wipe"  ·  Sumner Nails   (POLISH PASS, 2026-09-08)
-   Namespaced under .hero.v-vinyl-wipe; every keyframe prefixed vw-.
-   Colours come from css/style.css tokens only. No url() — the two photos are
-   real <img> elements in hero.html so the paths stay `images/...` from root.
+   HERO VARIANT — "neon-buzz"  ·  Sumner Nails  (2026-09-09)
+   Namespaced under .hero.v-neon-buzz; every keyframe prefixed nb-.
+   Every colour comes from css/style.css tokens or from the photograph itself.
 
-   THE OBJECT: one real object — their storefront window at 1111 Main.
-   THE EVENT (~1.0 s, once, deterministic): the photograph is at full exposure
-   from the first frame, and the wordmark is APPLIED to it the way the shop's own
-   lettering was applied to that glass — a single squeegee blade crosses left to
-   right and the magenta vinyl with its white keyline is laid down behind it.
-   Then it stops. Reduced motion lands on the applied frame.
-
-   POLISH (what changed from the first pass):
-   1. TIMING — one blade, one pass. The two lines no longer cascade out of sync
-      with the blade; both are revealed by the same edge, the blade is locked to
-      that edge (shared duration + easing), and the whole event now settles at
-      ~0.92 s instead of drifting past 1.4 s. Buttons land right behind it.
-   2. THE BLADE TRAVELLED TOO FAR — .mark was a full-width block, so the clip
-      box was the column, not the text: the blade kept sweeping empty air for
-      about a third of a second after the letters were down. .mark is now
-      width:fit-content, so the blade crosses exactly the width of the wordmark.
-   3. STOREFRONT WHOLE AT 390 — the front is a tall 1400x3205 frame; cover was
-      slicing the clock and the planter off the ends on phones. On phones the
-      photo is now object-fit:contain (whole building, clock to sidewalk) over a
-      blurred, darkened copy of itself, so there are no bars and nothing is cut.
-   4. CRISP TYPE — the 30 px drop-shadow was fuzzing the keyline. Tightened to a
-      short contact shadow, stroke opened to .06em, paint-order stroke fill kept,
-      geometricPrecision on, and the blade's blur cut from 6 px to 3 px.
+   THE GROUND   their storefront at 1111 Main, blurred right out and graded to
+                night, drifting in a single 1.2 s settle. It is atmosphere, not
+                information — nothing on it has to be read.
+   THE MARK     the shop's OWN neon, cut from that photograph and split on hue
+                into the blue tube and the red OPEN, so the two halves can
+                strike on separately. Nothing drawn, nothing redrawn. The sign
+                bleeds off the right edge because it bleeds off the right edge
+                of the source frame — that is the real sign, not a crop error.
+   THE EVENT    0.30-0.74  the blue tube catches, two stutters, holds
+                0.74-1.44  the red OPEN sputters four times and holds
+                0.40-1.60  red-and-blue light spills onto the wall behind
+                1.62-1.92  SUMNER NAILS stamps on in the window magenta
+                2.00-2.62  one squeegee shine is drawn across the letters
+                2.62+      still; the tubes keep one slow 7 s glow, nothing else
+   Deterministic, once, no JS, ~2.6 s. Reduced motion lands on the final frame.
    ============================================================ */
 
-.hero.v-vinyl-wipe{
-  --vw-dur:.78s;                                  /* the blade's single pass */
-  --vw-delay:.14s;
-  --vw-ease:cubic-bezier(.42,.02,.28,1);          /* a hand pulling a squeegee: even, not flicked */
-  background:#140E12;                             /* the street, never flat black */
+.hero.v-neon-buzz{
+  --nb-red:#FF3E6C;                  /* measured off their own red tube */
+  --nb-blue:#4FA8FF;                 /* measured off their own blue tube */
+  --nb-ease:cubic-bezier(.22,.85,.3,1);
+  background:#0E0910;                /* the street after dark — never flat black */
   isolation:isolate;
 }
 
-/* ---------- the photograph: no exposure move, no Ken Burns ---------- */
-.hero.v-vinyl-wipe .hero-bg{overflow:hidden}
-.hero.v-vinyl-wipe .hero-bg img{
+/* ---------- the ground: out of focus, on purpose ---------- */
+.hero.v-neon-buzz .hero-bg{overflow:hidden}
+.hero.v-neon-buzz .nb-ground{
   position:absolute; inset:0; width:100%; height:100%;
-  animation:none;
+  object-fit:cover; object-position:58% 66%;
+  transform:scale(1.16);
+  filter:blur(20px) saturate(1.55) brightness(.62) contrast(1.06);
+  animation:nb-settle 1.3s var(--nb-ease) .06s 1 both;
 }
-.hero.v-vinyl-wipe .vw-front{
-  object-fit:cover; object-position:50% 66%;
-  filter:saturate(1.05) contrast(1.02);
+@keyframes nb-settle{
+  from{opacity:0;transform:scale(1.24)}
+  to  {opacity:1;transform:scale(1.16)}
 }
-.hero.v-vinyl-wipe .vw-echo{display:none}         /* desktop needs no echo */
 
-/* bottom-weighted scrim so the signs stay readable and the mark has a floor */
-.hero.v-vinyl-wipe .hero-bg::before{
+/* the scrim: bottom-weighted so the mark has a floor and the neon has a night */
+.hero.v-neon-buzz .hero-bg::before{
   background:
+    radial-gradient(74% 46% at 62% 34%, transparent 0%, color-mix(in srgb,var(--dark) 34%,transparent) 72%),
     linear-gradient(180deg,
-      color-mix(in srgb,var(--dark) 44%,transparent) 0%,
-      color-mix(in srgb,var(--dark) 4%,transparent) 26%,
-      color-mix(in srgb,var(--dark) 34%,transparent) 58%,
-      color-mix(in srgb,var(--dark) 92%,transparent) 100%);
+      color-mix(in srgb,var(--dark) 58%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 26%,transparent) 30%,
+      color-mix(in srgb,var(--dark) 52%,transparent) 62%,
+      color-mix(in srgb,var(--dark) 94%,transparent) 100%);
 }
-.hero.v-vinyl-wipe .sign-bloom{display:none}
+
+/* ---------- the light the tubes throw back onto the wall ---------- */
+.hero.v-neon-buzz .nb-spill{
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  mix-blend-mode:screen; opacity:0;
+  background:
+    radial-gradient(40% 26% at 74% 26%, rgba(255,62,108,.50), rgba(255,62,108,.07) 58%, rgba(255,62,108,0) 80%),
+    radial-gradient(56% 34% at 68% 30%, rgba(79,168,255,.28), rgba(79,168,255,.04) 60%, rgba(79,168,255,0) 84%),
+    radial-gradient(16% 12% at 12% 20%, rgba(255,120,150,.30), rgba(255,120,150,0) 76%);
+  animation:nb-spill 2.4s linear .28s 1 both;
+}
+@keyframes nb-spill{
+  0%   {opacity:0}
+  14%  {opacity:.30}                  /* the tube catches */
+  20%  {opacity:.10}
+  26%  {opacity:.34}
+  46%  {opacity:.38}
+  50%  {opacity:.12}                  /* the letters sputtering */
+  56%  {opacity:.62}
+  60%  {opacity:.18}
+  68%  {opacity:.78}
+  100% {opacity:.72}
+}
+
+/* ---------- their LED window script, the first thing to catch ---------- */
+.hero.v-neon-buzz .nb-script{
+  position:absolute; z-index:3; pointer-events:none;
+  left:6%; top:15%;
+  width:min(17%,214px);
+  opacity:0;
+  filter:drop-shadow(0 0 12px rgba(255,90,120,.42)) drop-shadow(0 0 30px rgba(120,255,150,.20));
+  animation:nb-script .74s steps(1,end) .16s 1 both;
+}
+.hero.v-neon-buzz .nb-script img{display:block;width:100%;height:auto}
+@keyframes nb-script{
+  0%,10%  {opacity:0}
+  11%,20% {opacity:1}
+  21%,34% {opacity:.08}
+  35%,44% {opacity:1}
+  45%,50% {opacity:.14}
+  51%,100%{opacity:1}
+}
+
+/* ---------- their neon, hung on the wall, running off the right edge ---------- */
+.hero.v-neon-buzz .nb-sign{
+  position:absolute; z-index:3; pointer-events:none;
+  right:-5%; width:min(58%,780px);
+  top:clamp(40px,10vh,116px);
+  transform:rotate(-1.1deg);
+}
+.hero.v-neon-buzz .nb-sign img{
+  display:block; width:100%; height:auto;
+}
+.hero.v-neon-buzz .nb-sign .nb-word{position:absolute;inset:0}
+
+/* the blue tube: catches, stutters twice, holds */
+.hero.v-neon-buzz .nb-tube{
+  opacity:0;
+  filter:drop-shadow(0 0 10px rgba(79,168,255,.55)) drop-shadow(0 0 34px rgba(79,168,255,.32));
+  animation:nb-tube 1.05s steps(1,end) .30s 1 both;
+}
+@keyframes nb-tube{
+  0%,4%   {opacity:0}
+  5%,13%  {opacity:1}
+  14%,26% {opacity:.06}
+  27%,34% {opacity:1}
+  35%,40% {opacity:.10}
+  41%,100%{opacity:1}
+}
+
+/* the red OPEN: cold-neon sputter — four catches, then it holds */
+.hero.v-neon-buzz .nb-word{
+  opacity:0;
+  filter:drop-shadow(0 0 12px rgba(255,62,108,.66)) drop-shadow(0 0 40px rgba(255,62,108,.36));
+  animation:
+    nb-word 1.16s steps(1,end) .74s 1 both,
+    nb-hum 7s ease-in-out 2.7s infinite;
+}
+@keyframes nb-word{
+  0%,7%   {opacity:0}
+  8%,13%  {opacity:1}
+  14%,24% {opacity:0}
+  25%,31% {opacity:1}
+  32%,38% {opacity:.05}
+  39%,49% {opacity:1}
+  50%,55% {opacity:.12}
+  56%,100%{opacity:1}
+}
+@keyframes nb-hum{
+  0%,100%{filter:drop-shadow(0 0 12px rgba(255,62,108,.62)) drop-shadow(0 0 40px rgba(255,62,108,.32))}
+  50%    {filter:drop-shadow(0 0 16px rgba(255,62,108,.80)) drop-shadow(0 0 58px rgba(255,62,108,.46))}
+}
+
+/* the halo the glass sits in */
+.hero.v-neon-buzz .nb-glow{
+  position:absolute; left:-6%; right:-6%; top:-34%; bottom:-46%;
+  pointer-events:none; mix-blend-mode:screen; opacity:0;
+  background:radial-gradient(58% 52% at 50% 50%, rgba(255,90,130,.30), rgba(255,90,130,.05) 56%, rgba(255,90,130,0) 78%);
+  animation:nb-halo 1.5s var(--nb-ease) .84s 1 both;
+}
+@keyframes nb-halo{from{opacity:0}to{opacity:1}}
 
 /* ---------- the mark: live type in the sign's face ----------
    Their window vinyl is a heavy squared grotesque, magenta with a white
-   keyline. Archivo Black + the stroke painted behind the fill reproduces it as
-   crisp type at any size — no blown-up photo crop (CRISP RULE). */
-.hero.v-vinyl-wipe .mark{
+   keyline. Archivo Black with the stroke painted behind the fill reproduces it
+   crisp at any size — never a blown-up photo crop (CRISP RULE). */
+.hero.v-neon-buzz .mark{
   position:relative;
-  width:-moz-fit-content; width:fit-content;      /* the blade crosses the WORD, not the column */
+  width:-moz-fit-content; width:fit-content;
   margin:0 0 clamp(20px,3.2vh,32px);
   font-family:var(--display); font-weight:400; text-transform:uppercase;
-  font-size:clamp(54px,13.6vw,126px);
+  font-size:clamp(54px,13.4vw,124px);
   line-height:.86; letter-spacing:-.028em;
   color:var(--brand-bright);
   -webkit-text-stroke:.06em #fff;
   paint-order:stroke fill;
   text-rendering:geometricPrecision;
   -webkit-font-smoothing:antialiased;
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,.62));  /* contact shadow, not a haze */
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,.66));
 }
-.hero.v-vinyl-wipe .mark span{
-  display:block;
-  clip-path:inset(-16% 100% -20% -4%);
-  animation:vw-lay var(--vw-dur) var(--vw-ease) var(--vw-delay) 1 both;
+.hero.v-neon-buzz .mark span{
+  display:block; opacity:0;
+  animation:nb-stamp .30s cubic-bezier(.2,.86,.26,1) 1.62s 1 both;
 }
-@keyframes vw-lay{
-  from{clip-path:inset(-16% 100% -20% -4%)}
-  to  {clip-path:inset(-16% -4% -20% -4%)}
+.hero.v-neon-buzz .mark span:nth-child(2){animation-delay:1.74s}
+@keyframes nb-stamp{
+  from{opacity:0;transform:scale(1.08);filter:blur(9px)}
+  60% {opacity:1}
+  to  {opacity:1;transform:none;filter:blur(0)}
 }
 
-/* the squeegee edge — one thin gloss locked to the clip edge, same clock */
-.hero.v-vinyl-wipe .mark::after{
-  content:""; position:absolute; top:-16%; bottom:-20%; left:0; right:0;
+/* one squeegee shine drawn across the finished letters */
+.hero.v-neon-buzz .mark::after{
+  content:""; position:absolute; top:-14%; bottom:-18%; left:0; right:0;
   pointer-events:none; mix-blend-mode:screen; opacity:0;
-  background-repeat:no-repeat;
-  background-size:.44em 100%;
+  background-repeat:no-repeat; background-size:.42em 100%;
   background-image:linear-gradient(90deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,.92) 46%,
-      rgba(255,206,232,.72) 62%,
-      rgba(255,255,255,0) 100%);
+    rgba(255,255,255,0) 0%, rgba(255,255,255,.94) 46%,
+    rgba(255,206,232,.74) 62%, rgba(255,255,255,0) 100%);
   filter:blur(3px);
-  animation:vw-blade var(--vw-dur) var(--vw-ease) var(--vw-delay) 1 both;
+  animation:nb-shine .62s cubic-bezier(.42,.02,.28,1) 2.00s 1 both;
 }
-@keyframes vw-blade{
-  0%   {background-position:0% 0;   opacity:0}
-  14%  {opacity:1}
-  88%  {opacity:.9}
-  100% {background-position:100% 0; opacity:0}
+@keyframes nb-shine{
+  0%  {background-position:-6% 0;opacity:0}
+  16% {opacity:1}
+  86% {opacity:.9}
+  100%{background-position:106% 0;opacity:0}
 }
 
-/* the buttons arrive the moment the vinyl is down */
-.js .hero.v-vinyl-wipe .hero-actions{animation-delay:calc(var(--vw-delay) + var(--vw-dur) - .10s)}
+/* the buttons land once the shine is through */
+.js .hero.v-neon-buzz .hero-actions{animation-delay:2.30s}
 
-/* ---------- phones: the whole storefront, clock to sidewalk ---------- */
+/* ---------- phones ---------- */
 @media (max-width:760px){
-  .hero.v-vinyl-wipe .vw-echo{
-    display:block;
-    object-fit:cover; object-position:50% 52%;
-    transform:scale(1.25);
-    filter:blur(26px) saturate(.85) brightness(.5);
-  }
-  .hero.v-vinyl-wipe .vw-front{
-    object-fit:contain; object-position:50% 50%;
-    filter:saturate(1.06) contrast(1.03);
-  }
-  .hero.v-vinyl-wipe .hero-bg::before{
+  .hero.v-neon-buzz .nb-ground{object-position:60% 64%;filter:blur(16px) saturate(1.6) brightness(.64) contrast(1.07)}
+  .hero.v-neon-buzz .nb-script{left:5%;top:5.5%;width:44%}
+  .hero.v-neon-buzz .nb-sign{right:-9%;width:106%;top:23%;transform:rotate(-1.4deg)}
+  .hero.v-neon-buzz .hero-bg::before{
     background:
+      radial-gradient(84% 34% at 60% 26%, transparent 0%, color-mix(in srgb,var(--dark) 32%,transparent) 74%),
       linear-gradient(180deg,
-        color-mix(in srgb,var(--dark) 46%,transparent) 0%,
-        color-mix(in srgb,var(--dark) 2%,transparent) 22%,
-        color-mix(in srgb,var(--dark) 30%,transparent) 52%,
-        color-mix(in srgb,var(--dark) 94%,transparent) 100%);
+        color-mix(in srgb,var(--dark) 56%,transparent) 0%,
+        color-mix(in srgb,var(--dark) 20%,transparent) 26%,
+        color-mix(in srgb,var(--dark) 52%,transparent) 58%,
+        color-mix(in srgb,var(--dark) 95%,transparent) 100%);
+  }
+  .hero.v-neon-buzz .nb-spill{
+    background:
+      radial-gradient(62% 15% at 54% 33%, rgba(255,62,108,.50), rgba(255,62,108,.07) 60%, rgba(255,62,108,0) 82%),
+      radial-gradient(84% 20% at 50% 36%, rgba(79,168,255,.28), rgba(79,168,255,.04) 62%, rgba(79,168,255,0) 86%),
+      radial-gradient(26% 7% at 26% 10%, rgba(255,120,150,.34), rgba(255,120,150,0) 78%);
   }
 }
 @media (max-width:520px){
-  .hero.v-vinyl-wipe .mark{font-size:clamp(50px,15.4vw,72px);letter-spacing:-.032em}
+  .hero.v-neon-buzz .mark{font-size:clamp(50px,15.2vw,72px);letter-spacing:-.032em}
 }
 
-/* ---------- reduced motion: the applied frame ---------- */
+/* ---------- reduced motion: the lit, finished frame ---------- */
 @media (prefers-reduced-motion:reduce){
-  .hero.v-vinyl-wipe .mark span{animation:none;clip-path:none}
-  .hero.v-vinyl-wipe .mark::after{animation:none;opacity:0}
-  .js .hero.v-vinyl-wipe .hero-actions{animation:none;opacity:1;transform:none}
+  .hero.v-neon-buzz .nb-ground{animation:none;opacity:1;transform:scale(1.16)}
+  .hero.v-neon-buzz .nb-spill{animation:none;opacity:.72}
+  .hero.v-neon-buzz .nb-script{animation:none;opacity:1}
+  .hero.v-neon-buzz .nb-tube,
+  .hero.v-neon-buzz .nb-word{animation:none;opacity:1}
+  .hero.v-neon-buzz .nb-glow{animation:none;opacity:1}
+  .hero.v-neon-buzz .mark span{animation:none;opacity:1;transform:none;filter:none}
+  .hero.v-neon-buzz .mark::after{animation:none;opacity:0}
+  .js .hero.v-neon-buzz .hero-actions{animation:none;opacity:1;transform:none}
 }
