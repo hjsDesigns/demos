@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Anton (display, condensed bar-sign weight) + Barlow (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=0907165330">
-<link rel="stylesheet" href="css/hero.css?v=0907165330">
+<link rel="stylesheet" href="css/style.css?v=1788922643">
+<link rel="stylesheet" href="css/hero.css?v=1788922643">
 </head>
 <body>
 
@@ -29,6 +29,7 @@
         <a href="#signature">Loaded tots</a>
         <a href="#menu">Menu</a>
         <a href="#gallery">The room</a>
+        <a href="#reviews">Reviews</a>
         <a href="#hours">Hours</a>
         <a href="#contact" class="nav-cta">Find us</a>
       </nav>
@@ -141,9 +142,11 @@
        that has a real list behind it. -->
   <section class="section section-alt" id="services">
     <div class="wrap">
+      <!-- STOREFRONT BELOW THE HOURS: the hero is the tab rack, so the actual
+           building on E Main opens the offerings section, right under the band. -->
       <figure class="print lead-print reveal">
-        <img src="images/pizza-bar.jpg" alt="A pizza on red-and-white checked paper next to a frosted mug of beer on the dark wood bar, pull-tab flares pinned along the wall behind" loading="lazy">
-        <figcaption>A pizza and a cold one, on the bar</figcaption>
+        <img src="images/hero.jpg" alt="The Bumpy's Pub storefront at 116 E Main Ave — brick front, the black neon sign box out over the sidewalk, Rainier and Bud Light neon in the windows" loading="lazy">
+        <figcaption>116 E Main, from the sidewalk</figcaption>
       </figure>
       <div class="section-head reveal">
         <p class="eyebrow">A small room that does a lot</p>
@@ -160,10 +163,10 @@
         </article>
 
         <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.8"/><circle cx="12" cy="17.5" r="1"/><circle cx="12" cy="12" r="9"/></svg></div>
-          <h3>Trivia nights</h3>
-          <p class="when">Flyer's behind the bar</p>
-          <p>They run trivia — but the night isn't published anywhere online, so it's a question for whoever's pouring.</p>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div>
+          <h3>Karaoke &amp; trivia</h3>
+          <p class="when">Ask whoever's pouring</p>
+          <p>The mic is the thing people write about now — the room's been set up to eat, drink and sing. Trivia runs too. Neither night is posted online, so the bar is the only source.</p>
         </article>
 
         <article class="card reveal">
@@ -220,6 +223,7 @@
             <p class="read-name" id="readName">Tap a name below.</p>
             <p class="read-desc" id="readDesc">Every one of them starts as a basket of tots.</p>
             <p class="read-price tnum" id="readPrice"></p>
+            <p class="read-cue" aria-hidden="true"><span class="cue-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>Four names, right below</p>
           </div>
         </div>
         <div class="board-plates">
@@ -308,10 +312,11 @@
         <h2>Neon, plywood <em>and pull tabs</em></h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/hero.jpg" alt="The Bumpy's Pub storefront at 116 E Main Ave — brick front, the black neon sign box over the sidewalk, Rainier and Bud Light neon in the windows" loading="lazy"><figcaption>116 E Main, from the sidewalk</figcaption></figure>
+        <figure class="print reveal"><img src="images/pizza-bar.jpg" alt="A pizza on red-and-white checked paper next to a frosted mug of beer on the dark wood bar, pull-tab flares pinned along the wall behind" loading="lazy"><figcaption>A pizza and a cold one, on the bar</figcaption></figure>
         <figure class="print reveal"><img src="images/pulltabs.jpg" alt="Hawkeye and Coyote Moon pull-tab flares pinned to the wall under a shelf of cream Bumpy's trucker hats reading The Biggest Little Bar in Puyallup" loading="lazy"><figcaption>Hawkeye and Coyote Moon, under the hats</figcaption></figure>
         <figure class="print reveal"><img src="images/backbar.jpg" alt="The back bar at Bumpy's — a numbered pull-tab rack under a row of flares, bottles on the shelf below and hats along the top" loading="lazy"><figcaption>The back bar and the tab rack</figcaption></figure>
         <figure class="print reveal"><img src="images/coaster.jpg" alt="A coaster sitting on a wooden table carved all over with initials and names" loading="lazy"><figcaption>Every table's been signed</figcaption></figure>
+        <figure class="print reveal"><img src="images/beer.jpg" alt="A frosted glass of beer on the bar at Bumpy's, taps and menus behind it" loading="lazy"><figcaption>First one's on the counter</figcaption></figure>
       </div>
     </div>
   </section>
@@ -342,8 +347,66 @@
     </div>
   </section>
 
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW: every card carries the reviewer's real
+       published name AND their real Google profile image, pulled from the
+       same listing the quote came from (harvest 2026-09-08, reviews.json).
+       Quotes verbatim, real star rating, real relative date. Nothing here
+       is written for them, and nothing is invented. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">839 of these on Google</p>
+        <h2>Who's <em>been in lately</em></h2>
+        <p>Four of the most recent, word for word off the listing — names and profile pictures are theirs.</p>
+      </div>
+      <div class="revs">
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-wilson.jpg" alt="Wilson Mayfield's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Wilson Mayfield<small>2 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“A Puyallup staple for a reason! …and the breakfast burrito is 🔥🔥!”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-ronald.jpg" alt="Ronald Babb's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Ronald Babb<small>3 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“My ratings are based on my dive bar scale. Great service, the nachos are the best and the beer is cold. Clean for a dive bar and dark enough to be comfortable. My buddies and I really like the place.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-lawrence.jpg" alt="Lawrence Dillworth's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">Lawrence Dillworth<small>3 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>“The bartender Erin was fantastic 👌 attentive fun and a wonderful smile.”</p>
+        </article>
+
+        <article class="rev reveal">
+          <div class="rev-head">
+            <img class="rev-face" src="images/reviewer-jfrost.jpg" alt="J Frost's Google profile picture" width="52" height="52" loading="lazy">
+            <span class="rev-who">J Frost<small>4 months ago · Google</small></span>
+            <span class="rev-stars" aria-label="4 out of 5 stars">★★★★☆</span>
+          </div>
+          <p>“The Atmosphere has changed at Bumpy's to reflect an atmosphere set to eat, chill, and sing Karaoke. Go set the mic on fire with that hidden talent you're holding hostage inside!”</p>
+        </article>
+
+      </div>
+      <p class="revs-foot reveal">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Bumpy%27s+Pub%2C+116+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Read all 839 on Google ↗</a>
+      </p>
+    </div>
+  </section>
+
   <!-- ===================== #contact ===================== -->
-  <section class="section" id="contact">
+  <section class="section section-alt" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="reveal">
@@ -358,10 +421,6 @@
             <span>📞 <a href="tel:+12536979824">(253) 697-9824</a></span>
             <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=116+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
-          <figure class="print reveal">
-            <img src="images/beer.jpg" alt="A frosted glass of beer on the bar at Bumpy's, taps and menus behind it" loading="lazy">
-            <figcaption>First one's on the counter</figcaption>
-          </figure>
         </div>
         <form class="contact-form reveal">
           <label>Name<input type="text" name="name" autocomplete="name" required></label>
@@ -387,6 +446,7 @@
       <div class="numbers reveal">
         <div class="num"><b><span class="count tnum" data-to="839">839</span></b><span>Google reviews, averaging 4.3 out of 5</span></div>
         <div class="num"><b><span class="count tnum" data-to="7">7</span></b><span>mornings a week the doors open at nine</span></div>
+        <div class="num"><b><span class="count tnum" data-to="16">16</span></b><span>hours straight on a Friday or Saturday, nine to one</span></div>
       </div>
       <div class="cta-actions reveal">
         <a href="#contact" class="btn btn-primary">Get directions</a>
@@ -412,7 +472,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">What's here</a><br><a href="#signature">Loaded tots</a><br><a href="#menu">Menu</a><br><a href="#gallery">The room</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#services">What's here</a><br><a href="#signature">Loaded tots</a><br><a href="#menu">Menu</a><br><a href="#gallery">The room</a><br><a href="#reviews">Reviews</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -422,6 +482,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=0907165330"></script>
+<script src="js/site.js?v=1788922643"></script>
 </body>
 </html>

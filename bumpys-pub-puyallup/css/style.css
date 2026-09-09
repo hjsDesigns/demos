@@ -246,7 +246,10 @@ b,strong{font-weight:700}
 .lead-print img{width:100%;height:clamp(230px,34vw,420px);object-fit:cover}
 
 /* ============================================================ WHAT'S HERE (cards that unroll) */
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch;counter-reset:rack}
+.card{counter-increment:rack}
+.card::before{content:counter(rack,decimal-leading-zero);position:absolute;top:14px;right:16px;
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--brand-text);opacity:.5}
 .card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:24px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
 .card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -30px rgba(0,0,0,.9);border-color:color-mix(in srgb,var(--brand) 55%,transparent)}
 .card .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;
@@ -283,7 +286,7 @@ b,strong{font-weight:700}
 .board-top{display:grid;grid-template-columns:1fr 1.15fr;gap:0;align-items:stretch}
 /* the print is absolutely filled so the tall portrait frame can't drive the
    row height — the readout column sets it */
-.board-photo{margin:0;position:relative;background:var(--dark);min-height:clamp(320px,32vw,420px)}
+.board-photo{margin:0;position:relative;background:var(--dark);min-height:clamp(300px,29vw,380px)}
 .board-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
 .board-read{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;justify-content:center;
   background:linear-gradient(180deg,var(--bg-2),var(--paper))}
@@ -294,6 +297,14 @@ b,strong{font-weight:700}
 .read-price{font-family:var(--display);font-size:clamp(34px,4.6vw,56px);color:var(--warm);line-height:1;margin:16px 0 0;
   font-variant-numeric:tabular-nums;letter-spacing:.01em;transition:opacity .25s var(--ease),transform .35s var(--ease-2)}
 .read-price:empty{display:none}
+.read-cue{display:flex;align-items:center;gap:10px;margin:20px 0 0;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);transition:opacity .25s var(--ease)}
+.read-cue .cue-chev{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--brand) 32%,transparent);color:var(--warm);animation:cueBob 2.2s var(--ease) infinite}
+.read-cue .cue-chev svg{width:15px;height:15px}
+.board-read.is-set .read-cue{opacity:0;pointer-events:none}
+@keyframes cueBob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.read-cue .cue-chev{animation:none}}
 .board-read.is-set .read-price{animation:priceIn .4s var(--ease-2)}
 @keyframes priceIn{from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:none}}
 .board-plates{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:var(--rule)}
@@ -352,15 +363,20 @@ b,strong{font-weight:700}
 @media (max-width:760px){.dish-strip{grid-template-columns:1fr}.dish{transform:none}.dish img{height:auto}}
 
 /* ============================================================ GALLERY (framed prints) */
-.prints{column-count:2;column-gap:clamp(18px,3vw,34px)}
+.prints{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.8vw,20px);align-items:start}
 .print{background:var(--paper);padding:13px 13px 38px;border:var(--rule);box-shadow:0 40px 80px -40px rgba(0,0,0,.95);transition:transform .5s var(--ease)}
-.prints .print{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 clamp(18px,3vw,34px)}
+.prints .print{margin:0;display:flex;flex-direction:column;padding:10px 10px 26px}
 .print img{width:100%;height:auto;display:block}
+/* NEVER CROP THE IMPORTANT PART: tall portraits are scaled down whole and
+   matted inside the frame — never cropped to fit the column. */
+.prints .print img{height:clamp(190px,16.5vw,246px);width:100%;object-fit:contain}
 .print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:13px;text-align:center}
-.prints .print:nth-child(2n+1){transform:rotate(-1.2deg)}
-.prints .print:nth-child(2n){transform:rotate(.8deg)}
+.prints .print:nth-child(odd){transform:rotate(-1deg)}
+.prints .print:nth-child(even){transform:rotate(.7deg)}
 .prints .print:hover{transform:rotate(0) scale(1.02)}
-@media (max-width:560px){.prints{column-count:1}.prints .print{transform:none}}
+@media (max-width:1080px){.prints{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){.prints{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.prints{grid-template-columns:1fr}.prints .print{transform:none}.prints .print img{height:auto;object-fit:contain}}
 
 /* ============================================================ ABOUT (story + print) */
 .story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
@@ -401,17 +417,18 @@ b,strong{font-weight:700}
 .form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent) 16%,transparent);border:1px solid var(--accent);border-radius:11px;padding:14px 16px;font-weight:700;color:var(--ink)}
 .form-success.show{display:block}
 .form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
-@media (max-width:900px){.contact{grid-template-columns:1fr}.contact .print{transform:none}}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
 @media (max-width:560px){.contact-form{grid-template-columns:1fr}}
 
 /* ============================================================ CTA BAND */
 .cta-band .section-head{max-width:none}
-.numbers{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:clamp(28px,4vw,46px)}
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:clamp(28px,4vw,46px)}
 .num{border:1px solid color-mix(in srgb,var(--brand) 40%,transparent);border-radius:var(--r);padding:24px 22px;background:rgba(243,234,224,.035)}
 .num b{display:block;font-family:var(--display);font-size:clamp(40px,5.4vw,64px);line-height:1;letter-spacing:.01em;color:var(--warm);font-variant-numeric:tabular-nums;font-weight:400}
 .num > span{display:block;font-size:14px;color:var(--muted);margin-top:8px;line-height:1.4}
 .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
-@media (max-width:640px){.numbers{grid-template-columns:1fr}}
+@media (max-width:860px){.numbers{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.numbers{grid-template-columns:1fr}}
 
 /* ============================================================ FOOTER */
 .site-footer{background:var(--dark);color:var(--muted);padding:clamp(40px,6vw,64px) 0 28px;border-top:1px solid color-mix(in srgb,var(--brand) 34%,transparent)}
@@ -464,3 +481,34 @@ b,strong{font-weight:700}
   .hero-inner{padding:clamp(40px,8vh,90px) var(--pad)}
 }
 @media (prefers-reduced-motion:reduce){.js .mark-sign img{animation:none;opacity:1;clip-path:none}.js .mark-sign::after{animation:none}.js .mark-sign::before{animation:none;opacity:.55}}
+
+/* ============================================================ REVIEWS (9/8 refine)
+   REVIEW ATTRIBUTION LAW — real published name + the real Google profile
+   image from the same listing, on phone and desktop alike. Faces are curled
+   into images/reviewer-*.jpg so nothing hot-links, and the section links out
+   to the live listing for the other 835. */
+.revs{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,2vw,22px)}
+.rev{background:var(--paper);border:var(--rule);border-left:3px solid color-mix(in srgb,var(--brand) 70%,transparent);
+  border-radius:var(--r);padding:22px 24px;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.rev:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--brand) 60%,transparent);
+  box-shadow:0 30px 54px -32px rgba(0,0,0,.95)}
+.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;margin-bottom:14px}
+.rev-face{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid color-mix(in srgb,var(--brand) 55%,transparent);background:var(--bg-2)}
+.rev-who{display:flex;flex-direction:column;font-family:var(--display);font-size:19px;letter-spacing:.02em;
+  color:var(--ink);line-height:1.12}
+.rev-who small{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);margin-top:5px}
+.rev-stars{color:var(--warm);font-size:13.5px;letter-spacing:.12em;white-space:nowrap;align-self:start;margin-top:4px}
+.rev p{font-size:15.5px;color:var(--ink);margin:0;line-height:1.6}
+.revs-foot{margin:clamp(24px,3vw,34px) 0 0;text-align:center}
+.revs-foot a{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand-text) 45%,transparent);padding-bottom:3px}
+.revs-foot a:hover{color:var(--warm);border-bottom-color:var(--warm)}
+@media (prefers-reduced-motion:reduce){.rev{transition:none}}
+@media (max-width:820px){.revs{grid-template-columns:1fr}}
+@media (max-width:420px){
+  .rev{padding:20px}
+  .rev-head{grid-template-columns:auto 1fr;row-gap:8px}
+  .rev-stars{grid-column:2;margin-top:0}
+}
