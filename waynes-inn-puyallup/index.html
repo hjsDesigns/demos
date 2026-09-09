@@ -7,10 +7,10 @@
 <meta name="description" content="Wayne's Inn Bar &amp; Grill on E Main Ave in Puyallup — pool, darts, cornhole, a beer garden out back, karaoke every Friday and Saturday night, and a real kitchen. Open seven days, every one of them until 2 AM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Oswald (display, sturdy condensed) + Barlow (body) — must match --display / --body in css/style.css -->
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788928844">
-<link rel="stylesheet" href="css/hero.css?v=1788928844">
+<!-- Bevan (the hero mark — the pole sign's own slab, SIGN-FONT LAW) + Oswald (display, sturdy condensed) + Barlow (body) — Oswald/Barlow must match --display / --body in css/style.css?v=1788939414 -->
+<link href="https://fonts.googleapis.com/css2?family=Bevan&family=Oswald:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1788939414">
+<link rel="stylesheet" href="css/hero.css?v=1788939414">
 </head>
 <body>
 
@@ -51,25 +51,40 @@
        sign at open — two stutters, then full — and the room lights with it.
        The mark IS the headline: sr-only h1, nothing on the photo but the sign
        and the two buttons. Hours / address / status stay in the band below. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <picture>
-        <source media="(max-width:640px)" srcset="images/claude-room-blur-tall.jpg" width="1100" height="1466">
-        <img src="images/claude-room-blur.jpg" alt="" width="1800" height="1125" fetchpriority="high">
-      </picture>
+  <!-- ===================== HERO — variant NEON-TOWN =====================
+     Ground: their own room (green ceiling LED, beer neon, dark wood),
+     blurred to atmosphere, no faces. Mark: the PUYALLUP neon that hangs
+     over their bar, keyed straight out of their own photo and cut on the
+     gaps between tubes — P · U · YA · L · L · U · P — so each run strikes
+     on with its own starter stutter. The name above it is live type in
+     the pole sign's own two roles: white "Wayne's", salmon "INN".
+     Hours / live status / address stay in the band below. -->
+<section class="hero v-neon-town" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <picture>
+      <source media="(max-width:640px)" srcset="images/hero-room-glow-tall.jpg" width="1100" height="1200">
+      <img src="images/hero-room-glow.jpg" alt="" width="1800" height="1350" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="nt-red" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <h1 class="sr-only">Wayne's Inn Bar &amp; Grill — pizza, sandwiches, lunch and dinner on E Main Avenue in Puyallup, Washington</h1>
+    <p class="nt-title" aria-hidden="true"><span class="nt-w">Wayne's</span> <span class="nt-i">INN</span></p>
+    <div class="nt-neon" role="img" aria-label="The PUYALLUP neon that hangs over the bar at Wayne's Inn">
+      <span class="nt-l" style="--fw:182;--d:.82s"><img src="images/hero-neon-1.png" alt="" width="182" height="430"></span>
+      <span class="nt-l" style="--fw:161;--d:1.40s"><img src="images/hero-neon-2.png" alt="" width="161" height="430"></span>
+      <span class="nt-l" style="--fw:403;--d:.96s"><img src="images/hero-neon-3.png" alt="" width="403" height="430"></span>
+      <span class="nt-l" style="--fw:203;--d:1.70s"><img src="images/hero-neon-4.png" alt="" width="203" height="430"></span>
+      <span class="nt-l" style="--fw:187;--d:1.16s"><img src="images/hero-neon-5.png" alt="" width="187" height="430"></span>
+      <span class="nt-l" style="--fw:196;--d:2.00s"><img src="images/hero-neon-6.png" alt="" width="196" height="430"></span>
+      <span class="nt-l" style="--fw:184;--d:1.54s"><img src="images/hero-neon-7.png" alt="" width="184" height="430"></span>
     </div>
-    <div class="hero-inner">
-      <h1 class="sr-only">Wayne's Inn Bar &amp; Grill — pizza, sandwiches, lunch and dinner on E Main Avenue in Puyallup, Washington</h1>
-      <div class="signbox">
-        <img class="signbox-panel" src="images/claude-sign.png" width="1486" height="941"
-             alt="Wayne's Inn — pizza, sandwiches, lunch, dinner. Their pole sign on E Main Avenue.">
-      </div>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the menu</a>
-        <a href="#hours" class="btn btn-cream">Are they open?</a>
-      </div>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">See the menu</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===================== #hours =====================
        Live Pacific clock + address + all seven days, today lit.
@@ -350,7 +365,7 @@
         <figure class="print reveal"><img src="images/room-wide.jpg" width="1600" height="1200" alt="The main room at Wayne's Inn — wood floor, high tables and chairs, TVs along the wall and pink and green light across the ceiling" loading="lazy"><figcaption>Straight in the door — the main floor</figcaption></figure>
         <figure class="print reveal"><img src="images/about.jpg" width="1800" height="1350" alt="Inside Wayne's Inn at night — green LED strip along the ceiling, a disco ball, bar stools at the counter and a wood floor" loading="lazy"><figcaption>The floor, on a karaoke night</figcaption></figure>
         <figure class="print reveal"><img src="images/room-out.jpg" width="1600" height="1200" alt="The back of the room at Wayne's Inn, tables by the windows looking out to the covered beer garden" loading="lazy"><figcaption>The back tables, looking out to the yard</figcaption></figure>
-        <figure class="print reveal"><img src="images/neon-puyallup.jpg" width="1600" height="1200" alt="A white neon sign reading PUYALLUP mounted on the wall above the bar" loading="lazy"><figcaption>PUYALLUP, in neon, over the bar</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-out.jpg" width="1600" height="1200" alt="The back tables at Wayne's Inn looking out to the yard" loading="lazy"><figcaption>PUYALLUP, in neon, over the bar</figcaption></figure>
       </div>
     </div>
   </section>
@@ -506,6 +521,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788928844"></script>
+<script src="js/site.js?v=1788939414"></script>
 </body>
 </html>

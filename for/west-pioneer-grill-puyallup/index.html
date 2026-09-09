@@ -33,7 +33,8 @@ header{max-width:var(--maxw);margin:0 auto;padding:28px var(--pad) 0}
 .wordmark .b{color:var(--accent)}
 .rule{height:4px;background:var(--accent);width:64px;margin:14px 0 18px;border-radius:2px}
 .lede{font-size:clamp(17px,4.4vw,20px);line-height:1.45;margin:0 0 20px}
-.shot{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;
+/* whole photo, never cropped — contain inside a capped box */
+.shot{display:block;width:100%;height:auto;max-height:64vh;object-fit:contain;
   border-radius:10px;border:1px solid var(--line);background:var(--panel);margin:0 0 20px}
 .shot-note{color:var(--muted);font-size:13px;margin:-12px 0 20px}
 .cta{display:flex;align-items:center;justify-content:center;gap:10px;
@@ -107,7 +108,7 @@ footer p{color:var(--muted);font-size:14px}
 <main>
 
   <section id="site" aria-labelledby="h-site">
-  <img class="shot" src="../../west-pioneer-grill-puyallup/images/hero-stack-1.jpg" alt="A photo of West Pioneer Grill, off their own site" width="1200" height="675">
+  <img class="shot" src="../../west-pioneer-grill-puyallup/images/hero-stack-1.jpg" alt="West Pioneer Grill — a photo from your own site" width="1920" height="1440">
     <a class="cta" href="https://hjsdesigns.github.io/demos/west-pioneer-grill-puyallup/">See your site &rarr;</a>
     <p class="cta-note">It's a real page, already built. Nothing is live to the public yet — this is yours to look at.</p>
 

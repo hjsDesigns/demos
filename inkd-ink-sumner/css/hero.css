@@ -1,0 +1,248 @@
+/* variants/dealt hero take, applied 0909-0031 — source versions/variants/dealt-hero/ */
+/* ============================================================
+   INK'D INK. — hero variant: DEALT  (2026-09-09)
+   "The hand she deals."
+
+   ONE idea from her own things. A tattoo artist's product IS the picture,
+   so the hero deals it: six of her real pieces fly out of the middle of the
+   screen and fan across her own suite like a hand of cards, each wearing the
+   white keyline she puts on her sticker-realism work. Her real melting-smiley
+   mark then comes FORWARD out of the fan with the wordmark, and one glitter
+   shine runs across the hand — glitter realism is what she is known for, so
+   the flourish is her own medium.
+
+   Real assets only — nothing redrawn, nothing invented:
+     images/hero.jpg   her suite (black chair, crescent light), blurred to dusk
+     images/work-01    glitter realism — rag doll with the pink bow
+     images/work-02    glitter realism — potion bottle and flower
+     images/work-03    sticker realism — the horror-movie cat, white keyline
+     images/work-05    sticker realism — the candy-heart leg
+     images/work-06    fine line — the two engraved lockets
+     images/work-10    fine line — the dotwork thigh panel
+     images/logo.png   HER logo file, the melting smiley (alpha, not redrawn)
+   No client faces appear: all six cards are limbs and ink only.
+
+   One deterministic intro (no JS, no random):
+     0.00 → 1.60s  her suite wakes out of black, blurred and graded down
+     0.35 → 1.60s  the six cards deal from the centre outward, 0.13s apart,
+                   each with a one-shot highlight pop as it lands
+     1.45 → 2.45s  the mark comes forward out of the fan, overshooting
+     2.05 → 2.75s  sub line, then the two buttons
+     2.25 → 3.40s  ONE glitter shine sweeps across the hand
+     3.40s+        still — only a 7s breath on the mark
+   Everything is namespaced under .hero.v-dealt; keyframes prefixed dl-.
+   prefers-reduced-motion lands straight on the final frame.
+   ============================================================ */
+
+.hero.v-dealt{
+  --dl-w:clamp(126px,min(33vw,25vh),212px);   /* card width — 3:4, capped by height */
+  --dl-ease:cubic-bezier(.16,.9,.28,1);
+  position:relative;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;
+  background:var(--dark,#131316);
+  color:#fff;
+  isolation:isolate;
+}
+
+/* ---------- 1. the ground: her own room, out of focus ---------- */
+.hero.v-dealt .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero.v-dealt .hero-bg::before,
+.hero.v-dealt .hero-bg::after{content:none}
+.hero.v-dealt .hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:52% 46%;display:block;
+  transform:scale(1.1);
+  filter:blur(10px) saturate(.62) brightness(.24);
+  animation:dl-room 1.6s var(--dl-ease) both;
+}
+
+/* ---------- 2. the colour her mark throws into the room ---------- */
+.hero.v-dealt .dl-spill{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero.v-dealt .dl-spill i{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen}
+.hero.v-dealt .dl-spill .sp-pink{
+  left:50%;top:44%;width:min(1080px,118vw);height:min(700px,74vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(255,52,222,.30),rgba(255,52,222,.09) 50%,transparent 76%);
+  animation:dl-spill .9s ease-out .25s both;
+}
+.hero.v-dealt .dl-spill .sp-lime{
+  left:50%;top:70%;width:min(880px,102vw);height:min(430px,44vh);transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(155,254,67,.16),rgba(155,254,67,.05) 55%,transparent 80%);
+  animation:dl-spill .9s ease-out .55s both;
+}
+
+/* ---------- 3. the hand ---------- */
+.hero.v-dealt .dl-fan{position:absolute;inset:0;z-index:2;pointer-events:none}
+
+.hero.v-dealt .dl-card{
+  position:absolute;left:50%;top:36%;z-index:1;
+  margin:0;
+  width:var(--dl-w);aspect-ratio:3 / 4;
+  border-radius:9px;
+  overflow:hidden;
+  /* the white keyline she puts on her sticker-realism pieces */
+  box-shadow:0 0 0 3px #FFFFFF, 0 22px 46px rgba(0,0,0,.62), 0 4px 12px rgba(0,0,0,.5);
+  transform:translate(-50%,-50%) translate(var(--tx),var(--ty)) rotate(var(--rot));
+  animation:dl-deal .62s var(--dl-ease) both;
+  animation-delay:calc(.35s + var(--d) * .13s);
+}
+.hero.v-dealt .dl-card img{
+  width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%);display:block;
+}
+/* the one-shot highlight as each card lands */
+.hero.v-dealt .dl-card .pop{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.12) 46%,transparent 72%);
+  mix-blend-mode:screen;
+  animation:dl-pop .7s ease-out both;
+  animation-delay:calc(.35s + var(--d) * .13s);
+}
+
+/* the fan, left to right — the ends sit lower, the middle rides high.
+   Cards overlap by about a third, so every piece stays readable. */
+.hero.v-dealt .c0{--tx:-152%;--ty:11%;--rot:-23deg;--op:50% 45%}
+.hero.v-dealt .c1{--tx:-91%;--ty:-1%;--rot:-13.5deg;--op:50% 50%}
+.hero.v-dealt .c2{--tx:-30%;--ty:-8%;--rot:-4.5deg;--op:50% 42%}
+.hero.v-dealt .c3{--tx:30%;--ty:-8%;--rot:4.5deg;--op:46% 50%}
+.hero.v-dealt .c4{--tx:91%;--ty:-1%;--rot:13.5deg;--op:50% 30%}
+.hero.v-dealt .c5{--tx:152%;--ty:11%;--rot:23deg;--op:50% 46%}
+
+/* ---------- 4. the flourish: one glitter shine across the hand ---------- */
+.hero.v-dealt .dl-glit{
+  position:absolute;inset:-10% -20%;z-index:2;pointer-events:none;
+  mix-blend-mode:screen;opacity:0;
+  background:linear-gradient(104deg,
+    transparent 0 40%,
+    rgba(255,224,250,.10) 45%,
+    rgba(255,255,255,.62) 50%,
+    rgba(214,255,180,.14) 55%,
+    transparent 60% 100%);
+  background-size:260% 100%;background-repeat:no-repeat;
+  animation:dl-shine 1.15s cubic-bezier(.38,0,.28,1) 2.25s both;
+}
+
+/* ---------- 5. the pool the mark stands in ---------- */
+.hero.v-dealt .dl-pool{
+  position:absolute;inset:0;z-index:3;pointer-events:none;display:block;
+  background:
+    radial-gradient(60% 44% at 50% 76%, rgba(19,19,22,.97) 0%, rgba(19,19,22,.86) 40%, rgba(19,19,22,.44) 66%, rgba(19,19,22,0) 86%),
+    linear-gradient(180deg, rgba(19,19,22,.86) 0%, rgba(19,19,22,.26) 13%, rgba(19,19,22,0) 28%, rgba(19,19,22,.22) 52%, rgba(19,19,22,.95) 100%);
+}
+
+/* ---------- 6. the mark — it comes forward out of the fan ---------- */
+.hero.v-dealt .hero-inner{
+  position:relative;z-index:4;
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(20px,3vh,40px) var(--pad) clamp(30px,6vh,72px);
+  margin-top:auto;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+}
+.hero.v-dealt .dl-mark{
+  display:flex;flex-direction:column;align-items:center;gap:clamp(6px,1.2vh,14px);
+  margin:0 0 clamp(14px,2.4vh,24px);
+  animation:
+    dl-forward 1.0s cubic-bezier(.2,.82,.24,1) 1.45s both,
+    dl-breathe 7s ease-in-out 3.4s infinite alternate;
+}
+.hero.v-dealt .dl-smile{
+  display:block;width:clamp(74px,min(12vw,13vh),112px);height:auto;
+  filter:drop-shadow(0 0 26px rgba(255,52,222,.55)) drop-shadow(0 8px 20px rgba(0,0,0,.75));
+}
+.hero.v-dealt .dl-word{
+  font-family:var(--display);font-weight:800;
+  text-transform:uppercase;letter-spacing:-.005em;line-height:.84;
+  font-size:clamp(46px,min(10.4vw,9.6vh),104px);
+  color:#fff;
+  text-shadow:0 4px 34px rgba(0,0,0,.72);
+}
+.hero.v-dealt .dl-word i{font-style:normal;color:var(--brand,#FF34DE)}
+
+.hero.v-dealt .hero-sub{
+  font-family:var(--body);font-weight:500;letter-spacing:.01em;
+  font-size:clamp(15px,1.6vw,19px);
+  max-width:44ch;margin:0 0 clamp(18px,2.8vh,28px);
+  color:rgba(255,255,255,.93);
+  text-shadow:0 2px 18px rgba(0,0,0,.7);
+  white-space:normal;
+  animation:dl-rise .6s var(--dl-ease) 2.05s both;
+}
+.hero.v-dealt .hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  animation:dl-rise .6s var(--dl-ease) 2.2s both;
+}
+
+/* ---------- keyframes ---------- */
+@keyframes dl-room{
+  from{opacity:0;transform:scale(1.17)}
+  to{opacity:1;transform:scale(1.1)}
+}
+@keyframes dl-spill{from{opacity:0}to{opacity:1}}
+@keyframes dl-deal{
+  from{opacity:0;transform:translate(-50%,-50%) translate(0,4%) rotate(0deg) scale(.8)}
+  to{opacity:1;transform:translate(-50%,-50%) translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(1)}
+}
+@keyframes dl-pop{
+  0%{opacity:0}
+  26%{opacity:.85}
+  100%{opacity:0}
+}
+@keyframes dl-shine{
+  from{opacity:1;background-position:150% 0}
+  to{opacity:1;background-position:-70% 0}
+}
+@keyframes dl-forward{
+  from{opacity:0;transform:translateY(16px) scale(.66)}
+  to{opacity:1;transform:none}
+}
+@keyframes dl-breathe{
+  from{transform:none}
+  to{transform:translateY(-3px)}
+}
+@keyframes dl-rise{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:none}
+}
+
+/* ---------- phones ---------- */
+@media (max-width:560px){
+  /* five cards on a phone, not six — every piece has to stay readable */
+  .hero.v-dealt .dl-card{top:32%}
+  .hero.v-dealt .c0{--tx:-118%;--ty:12%;--rot:-22deg}
+  .hero.v-dealt .c1{--tx:-64%;--ty:-1%;--rot:-11deg}
+  .hero.v-dealt .c2{--tx:0%;--ty:-8%;--rot:0deg}
+  .hero.v-dealt .c3{--tx:64%;--ty:-1%;--rot:11deg}
+  .hero.v-dealt .c4{--tx:118%;--ty:12%;--rot:22deg}
+  .hero.v-dealt .c5{display:none}
+  .hero.v-dealt{--dl-w:clamp(126px,38vw,212px)}
+  .hero.v-dealt .dl-pool{
+    background:
+      radial-gradient(86% 34% at 50% 78%, rgba(19,19,22,.97) 0%, rgba(19,19,22,.84) 44%, rgba(19,19,22,0) 84%),
+      linear-gradient(180deg, rgba(19,19,22,.88) 0%, rgba(19,19,22,.18) 11%, rgba(19,19,22,0) 24%, rgba(19,19,22,.26) 50%, rgba(19,19,22,.97) 100%);
+  }
+  .hero.v-dealt .hero-sub{font-size:15.5px;max-width:none}
+  .hero.v-dealt .sub-long{display:none}
+  .hero.v-dealt .sub-short{display:inline}
+  .hero.v-dealt .hero-actions{gap:10px;width:100%}
+  .hero.v-dealt .hero-actions .btn{flex:1 1 auto;padding:13px 12px;font-size:14px}
+}
+
+/* ---------- reduced motion: the settled frame, immediately ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero.v-dealt .hero-bg img,
+  .hero.v-dealt .dl-spill i,
+  .hero.v-dealt .dl-card,
+  .hero.v-dealt .dl-card .pop,
+  .hero.v-dealt .dl-glit,
+  .hero.v-dealt .dl-mark,
+  .hero.v-dealt .hero-sub,
+  .hero.v-dealt .hero-actions{animation:none !important}
+  .hero.v-dealt .hero-bg img{opacity:1;transform:scale(1.1)}
+  .hero.v-dealt .dl-spill i{opacity:1}
+  .hero.v-dealt .dl-card{opacity:1}
+  .hero.v-dealt .dl-card .pop{opacity:0}
+  .hero.v-dealt .dl-glit{opacity:0}
+  .hero.v-dealt .dl-mark,
+  .hero.v-dealt .hero-sub,
+  .hero.v-dealt .hero-actions{opacity:1;transform:none}
+}

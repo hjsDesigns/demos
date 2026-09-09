@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Big Shoulders Display = the condensed face of Staci's own logo lettering (SIGN-FONT LAW). Jost = body. -->
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788923715">
+<link rel="stylesheet" href="css/style.css?v=1788939128">
+<link rel="stylesheet" href="css/hero.css?v=1788939128">
 </head>
 <body>
 
@@ -43,16 +44,36 @@
        under it, a lime rule draws. 2.1s, then still. The photo is her actual
        suite — the room a client walks into. Nothing on the photo but this
        block and two buttons. -->
-  <section class="hero" id="hero">
+  <!-- ===================== #hero — "dealt"
+       ONE idea from her own objects: her work is the product, so the site
+       DEALS IT. Six of her real pieces fly out of the middle of the screen
+       like a hand of cards and fan across her own suite, each one wearing the
+       white keyline she puts on her sticker-realism pieces. Her real melting
+       smiley + wordmark then come FORWARD out of the fan, and one glitter
+       shine runs across the hand — her medium, as the flourish. 3.4s, then
+       still. Nothing redrawn: every card is one of her photographed tattoos,
+       the mark is her own logo file. No faces. -->
+  <section class="hero v-dealt" id="hero">
     <div class="hero-bg"><img src="images/hero.jpg" alt="Inside the Ink'd Ink. suite — the black tattoo chair under a crescent studio light, Staci's permanent-makeup mark printed on the mirror" fetchpriority="high"></div>
-    <div class="hero-spacer"></div>
+    <div class="dl-spill" aria-hidden="true"><i class="sp-pink"></i><i class="sp-lime"></i></div>
+
+    <div class="dl-fan" aria-hidden="true">
+      <figure class="dl-card c0" style="--d:4"><img src="images/work-10.jpg" alt=""><span class="pop"></span></figure>
+      <figure class="dl-card c1" style="--d:2"><img src="images/work-02.jpg" alt=""><span class="pop"></span></figure>
+      <figure class="dl-card c2" style="--d:0"><img src="images/work-01.jpg" alt=""><span class="pop"></span></figure>
+      <figure class="dl-card c3" style="--d:1"><img src="images/work-03.jpg" alt=""><span class="pop"></span></figure>
+      <figure class="dl-card c4" style="--d:3"><img src="images/work-05.jpg" alt=""><span class="pop"></span></figure>
+      <figure class="dl-card c5" style="--d:5"><img src="images/work-06.jpg" alt=""><span class="pop"></span></figure>
+      <span class="dl-glit"></span>
+      <span class="dl-pool"></span>
+    </div>
+
     <div class="hero-inner">
       <h1 class="sr-only">Ink'd Ink. — glitter realism tattoos and permanent makeup by Staci Shantel in Sumner, Washington</h1>
-      <div class="hero-mark" aria-hidden="true">
-        <img class="drip" src="images/logo.png" alt="" width="160" height="214">
-        <span class="wordmark">Ink'd Ink<i>.</i></span>
+      <div class="dl-mark" aria-hidden="true">
+        <img class="dl-smile" src="images/logo.png" alt="" width="468" height="642">
+        <span class="dl-word">Ink'd Ink<i>.</i></span>
       </div>
-      <div class="hero-rule"></div>
       <p class="hero-sub"><span class="sub-long">Glitter realism tattoos and hyper-realistic permanent makeup, upstairs in downtown Sumner.</span><span class="sub-short">Tattoos &amp; permanent makeup, Sumner</span></p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Book with Stace</a>
@@ -386,6 +407,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788923715"></script>
+<script src="js/site.js?v=1788939128"></script>
 </body>
 </html>

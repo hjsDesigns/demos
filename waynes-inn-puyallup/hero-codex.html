@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wayne's Inn Bar &amp; Grill — dive bar, kitchen &amp; beer garden, Puyallup WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Wayne's Inn Bar &amp; Grill on E Main Ave in Puyallup — pool, darts, cornhole, a beer garden out back, karaoke every Friday and Saturday night, and a real kitchen. Open seven days, every one of them until 2 AM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Oswald (display, sturdy condensed) + Barlow (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="hero-codex.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Wayne's Inn Bar &amp; Grill — home">
+      <img src="images/logo.png" alt="" width="212" height="137">
+      <span class="wm">Wayne's Inn<small>Puyallup, WA</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#services">What's here</a>
+        <a href="#menu">Menu</a>
+        <a href="#signature">Tonight</a>
+        <a href="#gallery">The room</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Find us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero =====================
+       EXTERIOR-HERO DEFAULT: the building from E Main with their own pole sign
+       lit against the sky. Interiors live below. Headline block only — no chips,
+       no badges, no address on the photo (that lives in the hours band).
+       The headline is the sign's own promise, word for word off the panel. -->
+  <!-- ===================== #hero — "the lights come on" =====================
+       Their own pole-sign panel (real crop, deskewed, never redrawn) hanging in
+       their own room (g4, blurred to atmosphere: the green ceiling LED, the beer
+       neon, the wood floor). The box sign strikes on like a real fluorescent
+       sign at open — two stutters, then full — and the room lights with it.
+       The mark IS the headline: sr-only h1, nothing on the photo but the sign
+       and the two buttons. Hours / address / status stay in the band below. -->
+  <section class="hero codex-waynes-inn-puyallup" id="hero" aria-label="Wayne's Inn Bar & Grill">
+  <div class="codex-scene" aria-hidden="true"><img src="images/hero.jpg" alt="" fetchpriority="high" width="1864" height="1168"></div>
+  <div class="codex-content">
+    <h1 class="codex-sr">Wayne's Inn Bar &amp; Grill</h1>
+    <div class="codex-mark"><img src="images/logo.png" alt="Wayne’s Inn — Pizza, Sandwiches, Lunch, Dinner" width="1696" height="1096" fetchpriority="high"></div>
+    <div class="codex-actions">
+      <a href="#menu" class="btn btn-primary">See the menu</a>
+      <a href="#hours" class="btn btn-cream">Are they open?</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===================== #hours =====================
+       Live Pacific clock + address + all seven days, today lit.
+       Hours live HERE and nowhere else on the page. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Seven days, <em>and every one of them till 2 AM</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          1902 E Main Ave, Puyallup, WA 98372<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=1902+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 4.0 on Google · 482 reviews</span>
+          <span class="proof"><span class="star">★</span> 4.3 on Restaurantji · 162 ratings</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">3:00 PM – 2:00 AM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">11:00 AM – 2:00 AM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">11:00 AM – 2:00 AM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">11:00 AM – 2:00 AM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">11:00 AM – 2:00 AM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">9:00 AM – 2:00 AM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">9:00 AM – 2:00 AM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #services — what's here ===================== -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Under the sign</p>
+        <h2>A bar you can <em>spend the night in</em></h2>
+        <p>Tables to play on, a yard to sit in, and a kitchen that stays on while you do.</p>
+      </div>
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.4"/><circle cx="15" cy="14" r="1.4"/><path d="M6 16h1.5"/></svg></div>
+          <h3>Pool, darts &amp; cornhole</h3>
+          <p>Pool tables and dart boards inside, cornhole boards out back. Regulars say the tables are kept up.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div>
+          <h3>Karaoke Friday &amp; Saturday</h3>
+          <p>It's painted on the banner strung over the stage: <b>every Friday &amp; Saturday night</b>. The board below tells you if it's tonight.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11"/><path d="M6 11v8M18 11v8M9 15h6"/></svg></div>
+          <h3>The beer garden</h3>
+          <p>A big fenced yard behind the building — picnic tables, umbrellas up, food carried straight out to you.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M8.5 21h7"/><path d="M5 7h14v4a7 7 0 0 1-14 0z"/><path d="M12 18v3"/></svg></div>
+          <h3>Trivia nights</h3>
+          <p>Trivia runs here too, and every screen in the place is on for the game — their sign out on Main has read <b>FOOTBALL HERE</b> all season.</p>
+        </article>
+
+      </div>
+
+      <figure class="print wide reveal">
+        <img src="images/gallery-1.jpg" alt="A taco in a red basket on a wooden picnic table in Wayne's Inn's beer garden, yellow umbrellas open behind it" loading="lazy">
+        <figcaption>Out back — picnic tables, umbrellas up</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== #menu =====================
+       Read off the laminated menu photographed on the table (harvest g12),
+       verbatim, item for item. Prices are cited in facts.json. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Off the menu on the table</p>
+        <h2>The kitchen is the <em>real reason people come</em></h2>
+        <p>Their own line above the steaks: <em>“This is the one you heard about all around town!”</em> Sandwiches and burgers come with fries or salad.</p>
+      </div>
+
+      <div class="menu-shots reveal">
+        <figure class="print"><img src="images/gallery-2.jpg" alt="A double-patty burger with lettuce, tomato, onion and cheese beside a basket of crinkle fries" loading="lazy"><figcaption>Half-pound patties, fries alongside</figcaption></figure>
+        <figure class="print"><img src="images/gallery-3.jpg" alt="A New York strip steak on a white plate with a loaded baked potato and two slices of garlic bread" loading="lazy"><figcaption>New York strip, loaded potato, garlic bread</figcaption></figure>
+        <figure class="print"><img src="images/gallery-4.jpg" alt="A basket of golden tater tots on red checked paper with a cup of ranch" loading="lazy"><figcaption>Tater tots — the $3 substitution</figcaption></figure>
+      </div>
+
+      <div class="menu-groups">
+        <div>
+          <div class="menu-group reveal">
+            <h3>Sandwiches</h3>
+            <p class="group-note">Served with your choice of fries or salad</p>
+            <ul class="menu-list">
+              <li><span class="name">Hot Sicilian</span><span class="price">$15.00</span><span class="desc">Ham, pepperoni, tomatoes, onions and green peppers all grilled to perfection and topped with loads of Swiss cheese on a toasted French roll</span></li>
+              <li><span class="name">Hot Pastrami</span><span class="price">$13.99</span><span class="desc">Hot smoked pastrami with melted Swiss cheese served on a toasted French roll with mustard</span></li>
+              <li><span class="name">Reuben Sandwich</span><span class="price">$15.00</span><span class="desc">Mounds of corned beef topped with melted Swiss cheese and sauerkraut on a grilled rye bread</span></li>
+              <li><span class="name">French Dip</span><span class="price">$15.00</span><span class="desc">Roast beef topped with Swiss cheese served on a toasted French roll with a side of Au Jus</span></li>
+              <li><span class="name">Po Boy</span><span class="price">$17.00</span><span class="desc">French roll piled high with ham, turkey, roast beef, Swiss and cheddar cheese, lettuce, tomato, onion and mayo</span></li>
+              <li><span class="name">Beef Bomb</span><span class="price">$17.00</span><span class="desc">Sliced roast beef grilled with onions, green peppers and mushrooms. Served on toasted French roll topped with loads of Swiss cheese. Au Jus available upon request</span></li>
+              <li><span class="name">B.L.T.</span><span class="price">$14.00</span><span class="desc">Toasted sourdough bread with bacon, lettuce and tomato</span></li>
+              <li><span class="name">Classic Club</span><span class="price">$15.00</span><span class="desc">Classic triple-decker on toasted sourdough bread. Comes with turkey, ham, bacon, cheddar and Swiss cheese, lettuce, tomato and mayo</span></li>
+              <li><span class="name">Grilled Quesadilla</span><span class="price">$13.00</span><span class="desc">Grilled tortilla filled with a blend of cheese served with sour cream and salsa. Add taco meat or grilled chicken $2.50</span></li>
+              <li><span class="name">Patty Melt</span><span class="price">$15.00</span><span class="desc">½ burger with sautéed onions and melted Swiss cheese and mayo served on grilled rye</span></li>
+              <li><span class="name">Turkey Melt</span><span class="price">$13.99</span><span class="desc">Turkey, tomato, bacon, and melted cheddar cheese served on grilled sourdough</span></li>
+              <li><span class="name">Chicken Bacon Ranch Swiss</span><span class="price">$13.99</span><span class="desc">Deep-fried chicken strip topped with Swiss cheese, tomatoes, bacon, and ranch. Served on a toasted French roll</span></li>
+              <li><span class="name">Fish Sandwich</span><span class="price">$13.99</span><span class="desc">Two pieces of deep-fried cod topped with melted cheddar cheese and tomato. Served on a grilled hamburger bun with tartar sauce</span></li>
+              <li><span class="name">Bratwurst Sandwich</span><span class="price">$7.00</span><span class="desc">Grilled bratwurst topped with sauerkraut served on a toasted hoagie roll with mustard</span></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div>
+          <div class="menu-group reveal">
+            <h3>Burgers</h3>
+            <p class="group-note">Cooked to order · all burgers come with fries or salad</p>
+            <ul class="menu-list">
+              <li><span class="name">Wayne's Burger</span><span class="price">$15.00</span><span class="desc">Thick and juicy ½ pound burger, topped with lettuce, tomato, onions, pickles and mayo served on a fresh toasted bun</span></li>
+              <li><span class="name">Perfect Pounder</span><span class="price">$20.00</span><span class="desc">Two ½ pound patties topped with all the burger toppings and served on a freshly toasted bun</span></li>
+              <li><span class="name">Western Burger</span><span class="price">$17.00</span><span class="desc">½ lb patty piled with bacon, jalapenos, onion rings, melted Swiss, lettuce, tomato, pickles and BBQ sauce. Served on grilled Texas toast</span></li>
+              <li><span class="name">Maui Burger</span><span class="price">$17.00</span><span class="desc">Marinated in Hawaiian sauce, topped with a slice of pineapple and melted Swiss cheese. Optional BBQ sauce</span></li>
+              <li><span class="name">Burger Dip</span><span class="price">$15.00</span><span class="desc">A burger patty topped with Swiss and served on a French roll and a side of au jus</span></li>
+              <li><span class="name">Mushroom Burger</span><span class="price">$16.00</span><span class="desc">Basic ½ pound burger topped with loads of sautéed onions, mushrooms and melted Swiss cheese</span></li>
+              <li><span class="name">Porky Pig</span><span class="price">$19.00</span><span class="desc">½ lb beef and deli ham topped with 2 kinds of melted cheese, 2 strips of bacon, fried egg and drizzled with BBQ sauce</span></li>
+            </ul>
+          </div>
+
+          <div class="menu-group reveal">
+            <h3>Steak</h3>
+            <p class="group-note">All our steaks come with a house salad · cooked to order</p>
+            <ul class="menu-list">
+              <li><span class="name">8oz. New York Strip Dinner</span><span class="price">$20.00</span><span class="desc">Served with green salad, garlic bread, and your choice of French fries or baked potato</span></li>
+              <li><span class="name">Bourbon Steak</span><span class="price">$21.00</span><span class="desc">8oz. New York Strip marinated in bourbon sauce and topped off with sautéed onions and mushrooms. Served with green salad, garlic bread, and your choice of French fries or baked potato</span></li>
+            </ul>
+          </div>
+
+          <div class="menu-group reveal">
+            <h3>Pizza</h3>
+            <p class="group-note">All pizzas are 12&Prime; · each extra item $2.00</p>
+            <ul class="menu-list">
+              <li><span class="name">“Classic Cheese” Pizza</span><span class="price">$14.00</span></li>
+              <li><span class="name">Wayne's Ultra Supreme</span><span class="price">$20.00</span><span class="desc">Piled high with all the meats and veggies. “WOW” This one has it ALL!</span></li>
+              <li><span class="name">Meat Lovers Supreme</span><span class="price">$18.00</span><span class="desc">ALL the MEAT and NO VEGGIES</span></li>
+              <li><span class="name">Maui Zaui</span><span class="price">$18.00</span><span class="desc">Ham, crisp bacon, pineapple, and tomato</span></li>
+              <li><span class="name">Cheese Garlic Bread</span><span class="price">$9.00</span><span class="desc">French roll covered in pizza sauce and garlic, topped with melted cheese. Add pepperoni $2.00</span></li>
+            </ul>
+          </div>
+
+          <div class="menu-group reveal">
+            <h3>Sides</h3>
+            <ul class="menu-list">
+              <li><span class="name">Loaded Baked Potato</span><span class="price">$6.00</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="menu-fine reveal">Substitutions: soup or tater tots $3.00 · onion rings $4.50 · each extra topping $0.75 · extra sauces $0.75. Add cheese or bacon to any burger $1.50. On a steak: grilled mushrooms or onions $2.50 each, prawns $5.00, make the potato loaded for $3.00. Items marked with an asterisk on the printed menu are cooked to order. Read off the menu on the table in September 2026 — ask the bar about specials.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — the reader board =====================
+       Their real pole sign has a hand-set changeable letter board under the panel
+       (it currently reads FOOTBALL HERE). This is that board, and the only thing
+       it ever says is whether karaoke is tonight — the one recurring night the
+       banner over their stage actually names. Tap it, the lamps come on and the
+       letters clack in. Tap again, lights out. No hours in it, ever. -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The board out on Main</p>
+        <h2>Is it karaoke <em>tonight?</em></h2>
+        <p>Wayne's still sets its sign by hand, one plastic letter at a time. Tap the board to switch the lamps on.</p>
+      </div>
+
+      <div class="board-stage reveal">
+        <button type="button" class="readerboard" id="readerBoard" aria-pressed="false" aria-label="Turn the reader board's lamps on">
+          <span class="rb-lamps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="rb-face">
+            <span class="rb-line" id="rbLine1">KARAOKE</span>
+            <span class="rb-line rb-line-2" id="rbLine2">TONIGHT</span>
+          </span>
+          <span class="rb-hint">tap the sign</span>
+        </button>
+        <p class="board-note">Karaoke every Friday &amp; Saturday night — off the banner strung over the stage. Any other night, the board points at the next one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery — the room ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Inside</p>
+        <h2>Green light, dark wood, <em>and a full bar</em></h2>
+        <p>Green LED runs the length of the ceiling, a disco ball over the floor, the taps behind the bar and the TVs on. This is what walking in looks like.</p>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/about.jpg" alt="Inside Wayne's Inn at night — green LED strip along the ceiling, a disco ball, bar stools at the counter and a wood floor" loading="lazy"><figcaption>The floor, on a karaoke night</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A house salad in a white bowl with dressing on the side and a pint of beer, on the bar in front of the tap handles" loading="lazy"><figcaption>House salad at the taps</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="A cold pint glass and a frosted mug of beer on the bar under a neon sign" loading="lazy"><figcaption>Two cold ones on the bar</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-7.jpg" alt="A basket of crinkle-cut fries on red checked paper at a table in the back room" loading="lazy"><figcaption>Crinkle fries, back of the room</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       Aggregate only. No named Google reviewer was reachable through a source
+       tonight, so no quote is attributed to a person — the ratings are the record. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The record</p>
+        <h2>Rated on <em>two listings, hundreds of times</em></h2>
+        <p>Restaurantji's own write-up of them, in its words: <em>“a welcoming dive bar with a friendly staff.”</em></p>
+      </div>
+      <div class="ratings">
+        <div class="rating-card reveal">
+          <span class="rc-src">Google</span>
+          <b class="rc-num tnum">4.0</b>
+          <span class="rc-stars" aria-hidden="true">★★★★<span class="half">★</span></span>
+          <span class="rc-count tnum">482 reviews</span>
+        </div>
+        <div class="rating-card reveal">
+          <span class="rc-src">Restaurantji</span>
+          <b class="rc-num tnum">4.3</b>
+          <span class="rc-stars" aria-hidden="true">★★★★<span class="half">★</span></span>
+          <span class="rc-count tnum">162 ratings</span>
+        </div>
+        <div class="rating-bars reveal">
+          <h3>How those 162 land</h3>
+          <ul class="bars">
+            <li><span class="bl">5 star</span><span class="bar"><i style="--w:62%"></i></span><span class="bv tnum">62%</span></li>
+            <li><span class="bl">4 star</span><span class="bar"><i style="--w:24%"></i></span><span class="bv tnum">24%</span></li>
+            <li><span class="bl">3 star</span><span class="bar"><i style="--w:2%"></i></span><span class="bv tnum">2%</span></li>
+            <li><span class="bl">2 star</span><span class="bar"><i style="--w:4%"></i></span><span class="bv tnum">4%</span></li>
+            <li><span class="bl">1 star</span><span class="bar"><i style="--w:8%"></i></span><span class="bv tnum">8%</span></li>
+          </ul>
+          <div class="subscores">
+            <span><b class="tnum">4.4</b> Food</span>
+            <span><b class="tnum">4.6</b> Atmosphere</span>
+            <span><b class="tnum">4.6</b> Service</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact =====================
+       Address and hours are NOT repeated here — they live in #hours and the footer. -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Find us</p>
+          <h2>On E Main, <em>under the sign</em></h2>
+          <p>Call the bar for anything time-sensitive — a big group, a game night, whether the kitchen is still on. Somebody's behind the bar until close.</p>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12538483466">(253) 848-3466</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=1902+E+Main+Ave%2C+Puyallup%2C+WA+98372" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
+               At go-live, pages-golive.sh <slug> [domain] <web3forms-key> fills this. -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A question about the kitchen</option><option>Coming in with a group</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many of you, what night, anything we should know."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it to the bar</button>
+          <p class="form-success">Thanks — somebody at Wayne's will get back to you.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta — closing band ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Last call is late</p>
+        <h2>Come sit under the <em>green light</em></h2>
+        <p>Kitchen's on, the tables are open, and the board out front will tell you the rest.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12538483466" class="btn btn-primary">Call (253) 848-3466</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=1902+E+Main+Ave%2C+Puyallup%2C+WA+98372" class="btn btn-ghost" target="_blank" rel="noopener">Get directions ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt=""></span>
+          <span class="wm">Wayne's Inn Bar &amp; Grill<small>Puyallup, WA</small></span>
+        </div>
+        <p>A dive bar and grill on East Main — pool, karaoke, a beer garden and a kitchen that stays on.</p>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>1902 E Main Ave<br>Puyallup, WA 98372</p>
+        <p><a href="tel:+12538483466">(253) 848-3466</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">What's here</a><br><a href="#menu">Menu</a><br><a href="#signature">Tonight</a><br><a href="#gallery">The room</a><br><a href="#hours">Hours</a><br><a href="#contact">Find us</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Wayne's Inn Bar &amp; Grill</span>
+      <span>Puyallup, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>
