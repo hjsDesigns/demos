@@ -8,10 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Anton (display, = the SAPPORO channel letters on their sign) + Karla (body)
-     — must match --display / --body in css/style.css?v=1788898018 -->
+     — must match --display / --body in css/style.css?v=1788925199 -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788898018">
-<link rel="stylesheet" href="css/hero.css?v=1788898018">
+<link rel="stylesheet" href="css/style.css?v=1788925199">
+<link rel="stylesheet" href="css/hero.css?v=1788925199">
 </head>
 <body>
 
@@ -36,6 +36,7 @@
         <a href="#menu">The menu</a>
         <a href="#signature">Sushi bar</a>
         <a href="#gallery">The room</a>
+        <a href="#reviews">Reviews</a>
         <a href="#about">About</a>
         <a href="#contact" class="nav-cta">Find us</a>
       </nav>
@@ -46,19 +47,9 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero — "SIGN LIGHTS" =====================
-       EXTERIOR HERO DEFAULT (2026-09-04): the room, the counter and the food
-       all appear further down this page, so the opener is the actual building
-       — 4803 Pacific Hwy E, with the red SAPPORO channel letters over the door
-       and the OPEN neon in the window. One event: the letters come on, a
-       two-beat flicker with a bloom behind them, while the whole picture lifts
-       to full daylight. 2.2 seconds, then nothing moves again.
-       The sign in the photograph IS the mark, so no wordmark is set over it
-       (NEVER TWICE) — one line of copy and two buttons, and those sit on the
-       dark ground, never on the photo.
-       Photo: harvest ext-02 (RestaurantGuru CDN original, watermark cropped).
-       ================================================================== -->
-  <!-- ===================== #hero — "WALK-IN" (runner-up) =====================
+  <!-- ===================== #hero — "WALK-IN" — APPROVED BY HAYDEN 2026-09-08, LOCKED
+       (the earlier "sign lights" exterior opener is retired; its photograph now
+       opens the offerings section instead, under the hours band.)
        The view from just inside the door: their sushi counter, the neta case,
        the two chefs working, Gekkeikan lanterns and the carved masks on the
        beam. One event — the lamps come up over 2.4s — then a 22s push-in that
@@ -105,9 +96,9 @@
         <div class="proof-row">
           <span class="proof"><span class="ico">✓</span> Sit down, takeout or delivery</span>
           <span class="proof"><span class="ico">✓</span> Beer &amp; wine</span>
-          <span class="proof"><span class="ico">✓</span> Private lot, no meter</span>
+          <span class="proof"><span class="ico">✓</span> Walk-ins, no reservations</span>
         </div>
-        <p class="hours-note">Walk-ins only — the listings say no reservations taken. Holiday hours aren't posted anywhere, so it's worth a call before a long drive.</p>
+        <p class="hours-note">Holiday hours aren't posted anywhere, so it's worth a call before a long drive.</p>
       </div>
       <ul class="hours-list" id="hoursList">
         <li data-days="1"><span class="day">Monday</span><span class="time">10:30 AM – 9:00 PM</span></li>
@@ -131,6 +122,16 @@
        bar gadget below (NEVER TWICE). -->
   <section class="section section-cream" id="menu">
     <div class="wrap">
+      <!-- STOREFRONT BELOW THE HOURS (2026-09-02): the hero is the room, so the
+           building itself opens the offerings — whole frame, no crop, sign and
+           street number legible. Photo: harvest ext-02 (RestaurantGuru CDN
+           original, watermark cropped off the bottom edge). -->
+      <figure class="storefront reveal">
+        <img src="images/storefront-2x.jpg" width="1944" height="1200" loading="lazy"
+             alt="Sapporo & Sushi Restaurant from Pacific Highway East — red SAPPORO channel letters and JAPANESE RESTAURANT on the sign band over the door, the number 4803 on the wall, and windows running the length of the front">
+        <figcaption>4803 Pacific Hwy E — this is the door</figcaption>
+      </figure>
+
       <div class="section-head reveal">
         <p class="eyebrow">On the board</p>
         <h2>Forty-two rolls, <em>and a whole kitchen behind them</em></h2>
@@ -263,7 +264,7 @@
 
       </div>
 
-      <p class="menu-fine">Prices as published on their own ordering page, read 8 September 2026. The full board runs to twenty sections — this is the short version.</p>
+      <p class="menu-fine">Their full board runs twenty sections deep — this is the short version, at their own posted prices.</p>
     </div>
   </section>
 
@@ -277,16 +278,10 @@
        all verbatim off their own ordering page. -->
   <section class="section" id="signature">
     <div class="wrap">
-      <div class="sig-top">
-        <div class="section-head reveal">
-          <p class="eyebrow">At the sushi bar</p>
-          <h2>Five words <em>you'll want at the counter</em></h2>
-          <p>Their nigiri list is written the way a sushi bar writes it. Tap a piece — it'll tell you what fish that is.</p>
-        </div>
-        <figure class="print reveal">
-          <img src="images/sushi-bar.jpg" alt="The sushi counter at Sapporo — two chefs working behind the neta case, stacks of white plates on the shelves, paper lanterns and carved wooden masks on the beam above" loading="lazy">
-          <figcaption>The counter, mid-service</figcaption>
-        </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">At the sushi bar</p>
+        <h2>Five words <em>you'll want at the counter</em></h2>
+        <p>Their nigiri list is written the way a sushi bar writes it. Tap a piece — it'll tell you what fish that is.</p>
       </div>
 
       <div class="neta-wrap reveal">
@@ -303,7 +298,14 @@
             <p class="neta-en" id="netaEn">—</p>
             <p class="neta-price"><span class="pr" id="netaPrice">—</span></p>
           </div>
-          <p class="neta-empty" id="netaEmpty">The plate's empty.</p>
+          <!-- the cleared state: a ghost of a piece where one just was, never an empty box -->
+          <div class="neta-empty" id="netaEmpty" aria-hidden="true">
+            <svg class="neta-big" viewBox="0 0 200 120">
+              <ellipse cx="100" cy="96" rx="72" ry="13" class="neta-shadow"/>
+              <rect x="34" y="52" width="132" height="46" rx="22" class="neta-rice"/>
+              <path d="M28 58c0-13 16-22 72-22s72 9 72 22c0 9-14 13-72 13S28 67 28 58Z" class="neta-fish"/>
+            </svg>
+          </div>
         </div>
 
         <ul class="neta-row" id="neta">
@@ -353,7 +355,7 @@
         <p>A proper dining room off Pacific Highway — beams and panelling, hardwood underfoot, and the light kept low over every table.</p>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The dining room at Sapporo — dark wood panelling, framed prints and chalkboards on the wall, and a long table set under warm picture lights" loading="lazy"><figcaption>Down the wall</figcaption></figure>
+        <figure class="print reveal"><img src="images/masks-wall.jpg" alt="The wall at Sapporo — carved wooden masks lit by picture lights along the top of the panelling, framed prints and a green chalkboard of specials underneath" loading="lazy"><figcaption>Masks all down the wall</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Tables and oxblood chairs under a hanging amber lantern at Sapporo, daylight coming in through the front windows" loading="lazy"><figcaption>Toward the front</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A long roll on a slate plate at Sapporo, fanned out and glazed with sauce, with a dish of soy alongside" loading="lazy"><figcaption>On the slate</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Three cut rolls plated on a long white dish at Sapporo, sauced and topped, under the dining room's coloured light" loading="lazy"><figcaption>Three across</figcaption></figure>
@@ -377,9 +379,9 @@
           <p class="eyebrow">The room on Pacific Highway</p>
           <h2>Sizable portions, <em>in a cozy, low-key setting</em></h2>
           <p class="lede">That line is Google's own description of this place — and it's about the most accurate sentence written about it anywhere.</p>
-          <p>Sapporo sits in the Fife Business Park, set back off Pacific Highway East with its own lot. Inside it's a full dining room: dark panelling and beams, hardwood, oxblood chairs, framed prints and chalkboards down one wall, and pendant lamps kept low over the tables. Beer and wine, no reservations, walk in and sit down.</p>
-          <p>Their own printed chopstick sleeve calls it an <b>authentic Japanese restaurant</b>, and the board backs that up — twenty sections deep, from nigiri and forty-two named rolls to sukiyaki, katsu, udon and donburi.</p>
-          <p>Nobody has ever put the owner's name, or the year this place opened, anywhere online. Those belong on this page — they're the two things worth asking about at the host stand.</p>
+          <p>Sapporo sits in the Fife Business Park, one turn off Pacific Highway East — a sit-down Japanese dining room with the sushi bar down one end and a full kitchen behind it.</p>
+          <p>Their own printed chopstick sleeve calls this an <b>authentic Japanese restaurant</b>: the red fish stamp, the katakana box and the name, sitting on every table in the place.</p>
+          <p>Look up when you sit down. Carved masks and paper lanterns run the beam over the sushi counter, and the picture lights pick out more of them the whole length of the panelled wall, over the framed prints and the chalkboards.</p>
         </div>
       </div>
     </div>
@@ -400,7 +402,7 @@
         </div>
         <div class="score-copy">
           <h2>926 people <em>have written it down</em></h2>
-          <p>That's the live count on Google, on top of another 445 on Yelp and 592 photos customers took themselves. Here are four of them, word for word.</p>
+          <p>That's the live count on Google, at 4.6 stars. Here are four of them, word for word.</p>
           <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Sapporo+%26+Sushi+Restaurant%2C+4803+Pacific+Hwy+E%2C+Fife%2C+WA+98424" target="_blank" rel="noopener">Read them all on Google ↗</a>
         </div>
       </div>
@@ -461,7 +463,7 @@
           <p class="eyebrow">Getting here</p>
           <h2>Pacific Highway East, <em>Fife Business Park</em></h2>
           <ol class="steps">
-            <li><h3>Just walk in</h3><p>No reservations taken. There's a private lot right out front, so you're not hunting for a space on the highway.</p></li>
+            <li><h3>Sit at the counter</h3><p>The neta case is right in front of the stools — you can see what's laid out before you order any of it.</p></li>
             <li><h3>Or call it in</h3><p>Ring the restaurant and pick it up yourself — that's the version where the kitchen keeps what you paid.</p></li>
             <li><h3>Bringing a group?</h3><p>Give them a heads-up on the phone before you bring six or more in, especially over a weekend.</p></li>
           </ol>
@@ -491,13 +493,15 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">One more thing</p>
-        <h2>Set back off the highway, <em>with its own lot</em></h2>
+        <h2>Come hungry — <em>the board is long</em></h2>
       </div>
+      <!-- three numbers that are stated ONCE, here (NEVER TWICE): the nigiri count
+           off their own ordering page, and the Yelp review + photo counts off their
+           Yelp listing (stamped updated July 2026). -->
       <div class="numbers reveal">
-        <div class="num"><b><span class="count tnum" data-to="42">42</span></b><span>rolls on the board</span></div>
         <div class="num"><b><span class="count tnum" data-to="22">22</span></b><span>kinds of nigiri at the bar</span></div>
-        <div class="num"><b><span class="count tnum" data-to="20">20</span></b><span>sections on the full menu</span></div>
-        <div class="num"><b><span class="count tnum" data-to="6">6</span></b><span>days a week, closed Sundays</span></div>
+        <div class="num"><b><span class="count tnum" data-to="445">445</span></b><span>more reviews over on Yelp</span></div>
+        <div class="num"><b><span class="count tnum" data-to="592">592</span></b><span>photos customers took of the food</span></div>
       </div>
       <div class="cta-actions reveal">
         <a href="#contact" class="btn btn-primary">Get directions</a>
@@ -525,7 +529,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#hours">Hours</a><br><a href="#menu">The menu</a><br><a href="#signature">Sushi bar</a><br><a href="#gallery">The room</a><br><a href="#about">About</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#hours">Hours</a><br><a href="#menu">The menu</a><br><a href="#signature">Sushi bar</a><br><a href="#gallery">The room</a><br><a href="#reviews">Reviews</a><br><a href="#about">About</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -535,6 +539,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788898018"></script>
+<script src="js/site.js?v=1788925199"></script>
 </body>
 </html>

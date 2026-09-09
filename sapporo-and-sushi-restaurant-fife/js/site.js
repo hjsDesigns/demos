@@ -142,23 +142,28 @@ function customClose(p, close){ return close; }
       shown.removeAttribute('data-tone');
       empty.hidden=false;
     }
+    function put(b){
+      clearPlate();
+      b.setAttribute('aria-pressed','true');
+      en.textContent=b.getAttribute('data-en');
+      price.textContent=b.getAttribute('data-price');
+      shown.setAttribute('data-tone',b.getAttribute('data-tone'));
+      shown.setAttribute('data-on','1');
+      empty.hidden=true;
+    }
     netas.forEach(function(b){
       b.addEventListener('click',function(){
         var on=b.getAttribute('aria-pressed')==='true';
-        clearPlate();
-        if(on) return;
-        b.setAttribute('aria-pressed','true');
-        en.textContent=b.getAttribute('data-en');
-        price.textContent=b.getAttribute('data-price');
-        shown.setAttribute('data-tone',b.getAttribute('data-tone'));
-        shown.setAttribute('data-on','1');
-        empty.hidden=true;
+        if(on){clearPlate();return}
+        put(b);
         taps++;
         if(taps===1) nhint.textContent='Tap the same one again to put it back.';
         else if(taps===3) nhint.textContent='Five on the counter — try them all.';
       });
     });
-    clearPlate();
+    /* the plate is never empty at rest — the first piece is already on it, so the
+       payoff is visible before anyone touches anything (no dead box) */
+    if(netas.length) put(netas[0]);
   }
 
 })();
