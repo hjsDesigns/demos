@@ -1,0 +1,181 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Wednesday doors — 9/9</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#F1F0EA;--card:#FFFFFF;--line:#D8D6CC;--ink:#1B1E1A;--mute:#5F665D;--acc:#2A4D6E;--ok:#1F6B3A;--ok-bg:#E1EFE4;--warn:#9A6A16;--warn-bg:#F5EAD3;--bad:#B3372B;--bad-bg:#F4E1DD;--fix:#5A2E8A;--fix-bg:#ECE3F6;--disp:'Barlow Condensed','Arial Narrow',Impact,sans-serif;--body:'Source Sans 3','Helvetica Neue',Arial,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15181A;--card:#1E2226;--line:#2D3338;--ink:#ECEDE8;--mute:#9BA39C;--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F;--bad:#E5776A;--bad-bg:#3A221E;--fix:#C9A8F0;--fix-bg:#2E2340}}
+:root[data-theme="dark"]{--bg:#15181A;--card:#1E2226;--line:#2D3338;--ink:#ECEDE8;--mute:#9BA39C;--acc:#8DB4DA;--ok:#5BBE7C;--ok-bg:#1C3324;--warn:#D9A84A;--warn-bg:#36301F;--bad:#E5776A;--bad-bg:#3A221E;--fix:#C9A8F0;--fix-bg:#2E2340}
+*{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.35 var(--body);padding:14px 10px 70px;-webkit-text-size-adjust:100%}
+main{max-width:600px;margin:0 auto}
+h1{font:700 38px/0.95 var(--disp);text-transform:uppercase;margin:2px 0 4px}
+.top{color:var(--mute);font-size:13.5px;margin:0 0 8px;font-weight:600;letter-spacing:.01em}
+.hint{color:var(--mute);font-size:13px;margin:0 0 12px}
+.mut{color:var(--mute)}
+h2{font:600 13.5px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:20px 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+h2 small{font:600 12px/1 var(--body);letter-spacing:0;text-transform:none;color:var(--mute);text-align:right}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px 9px 8px;display:grid;grid-template-columns:54px minmax(0,1fr);gap:8px;align-items:start}
+li.done{opacity:.42}li.done .name{text-decoration:line-through}
+.t{appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--acc);border-radius:8px;font:700 17px/1 var(--disp);min-height:48px;width:54px;padding:4px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+li.done .t{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.head{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.name{font:600 19px/1.05 var(--disp);margin:0}
+.sub{color:var(--mute);font-size:13px;margin:2px 0 0;overflow-wrap:anywhere}.sub b{color:var(--ink);font-weight:600}
+.say{font-size:14px;margin:4px 0 0;line-height:1.3;overflow-wrap:anywhere}
+.row{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+a.go{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;border-radius:8px;background:var(--acc);color:var(--bg);font-weight:700;text-decoration:none;font-size:14px}
+a.tel{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;border-radius:8px;border:1px solid var(--line);color:var(--ink);font-weight:600;text-decoration:none;font-size:13.5px}
+.ask{font:700 16px/1 var(--disp);color:var(--ink);margin-left:auto}
+.tag{display:inline-block;font:700 10px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;border-radius:5px}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}.tag.warn{background:var(--warn-bg);color:var(--warn)}.tag.bad{background:var(--bad-bg);color:var(--bad)}.tag.fix{background:var(--fix-bg);color:var(--fix)}
+.block{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--fix);border-radius:10px;padding:10px 12px;font-size:14.5px;margin:0 0 10px}
+.block b{font-family:var(--disp);font-size:18px;font-weight:600}
+.block p{margin:6px 0}
+.block summary{cursor:pointer}
+.cards{border-left-color:var(--bad)}
+.rest{border-left-color:var(--warn)}
+.fork{border-left-color:var(--acc)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13.5px;table-layout:fixed}
+td{padding:8px 8px;border-top:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}tr:first-child td{border-top:0}
+td:first-child{font:600 16px/1.1 var(--disp);width:34%}
+td a{color:var(--acc);font-weight:700;text-decoration:none;display:inline-block;padding:7px 0;min-height:34px}
+.foot{color:var(--mute);font-size:12.5px;margin:18px 0 0}
+</style>
+<main>
+<h1>Wednesday doors — 9/9</h1>
+<p class="top">Up 7 · out 7:30 · doors 8–11:30 west out of Lake Tapps · Rose Spa 12 (fixed) · Colibri debrief 12:30–1:30 · home + lunch 1:45 · gym 2:30–4 · computer 4:30–7:30 · grind 7:30–11 · bed 12</p>
+
+<div class="block cards"><b>No cards yet</b>
+<p>The box isn’t picked up until tonight. So today the demo <b>is</b> the card: open it on the phone,
+then <b>ask for theirs</b> — &ldquo;you got a card, or a number I can send this to?&rdquo; — and
+voice-log the name and number before you start the car.</p></div>
+
+<details class="block" open><summary><b>The door, tonight&#39;s version — media first</b></summary>
+<p><b>Say:</b> &quot;I do websites and social media for businesses around here. I already built you guys a site just to show what it&#39;d look like, it&#39;s on my phone. Main thing I do is keep your Facebook and Instagram posted three times a week and your Google listing current, two-fifty a month, cancel whenever. Here&#39;s my card.&quot;</p>
+<p><b>Not the owner:</b> &quot;Who&#39;s the best person to talk to about that, and when are they usually in? Cool, I&#39;ll swing back then.&quot; → voice-log the NAME and the TIME before you start the car.</p>
+<p><b>Good reaction:</b> &quot;Two hundred down holds it and I put it live this week, Zelle works.&quot; Ask. Every time.</p>
+</details>
+
+<p class="hint">Tap a time when that door is done. Times are the arrive-by; the hours next to each name are that shop&rsquo;s own <b>Wednesday</b> row, read off its build. <b>Walk D</b> = downtown Puyallup Main Ave, two minutes apart. <b>Walk M</b> = Sumner Main St, three shops inside 0.2 mi (1111 &middot; 1018 &middot; 926).</p>
+
+<h2>8:00–11:50 · The morning <small>west out of Lake Tapps, then back east</small></h2>
+<ol>
+<li id="s-bean-tree-coffee-puyallup"><button class="t" aria-label="mark done">8:00</button><div><div class="head"><p class="name">The Bean Tree Coffee Co</p><span class="tag ok">drive-thru · open since 4:30</span></div><p class="sub">745 River Rd, Puyallup, WA 98371 · <b>4:30 AM – 6:00 PM</b> · first thing open anywhere on the route. Talk at the window; ask who owns it and when they are in</p><p class="say">beantreecoffee.com has been a GoDaddy “Launching Soon” page for two years — this is what could be behind it, with your seasonal cup on the front.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/bean-tree-coffee-puyallup/">Demo</a><a class="tel" href="tel:+12538418141">(253) 841-8141</a><a class="tel" href="https://maps.apple.com/?q=745%20River%20Rd%2C%20Puyallup%2C%20WA%2098371">Map</a><span class="ask">$750</span></div></div></li>
+<li id="s-west-pioneer-grill-puyallup"><button class="t" aria-label="mark done">8:20</button><div><div class="head"><p class="name">West Pioneer Grill</p><span class="tag fix">owner in at 8 AM</span></div><p class="sub">109 W Pioneer Ave, Puyallup, WA 98371 · <b>10:00 am – 7:00 pm</b> · door captured 9/7 6:07 PM — the owner is in at <b>8</b> even though the doors say 10. Email on file is pioneerg@gmail.com; this is a follow-up, not a cold door</p><p class="say">Your whole shake board is on here — every flavour read off the chalkboard by your counter — with the breakfast prices off your own printed menu.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/west-pioneer-grill-puyallup/">Demo</a><a class="tel" href="tel:+12536044507">(253) 604-4507</a><a class="tel" href="https://maps.apple.com/?q=109%20W%20Pioneer%20Ave%2C%20Puyallup%2C%20WA%2098371">Map</a><span class="ask">$1,000</span></div></div></li>
+<li id="s-fox-hollow-coffee-puyallup"><button class="t" aria-label="mark done">8:50</button><div><div class="head"><p class="name">Fox Hollow Coffee at Woodland Espresso</p><span class="tag ok">drive-thru · South Hill</span></div><p class="sub">6909 112th St E, Puyallup, WA 98373 · <b>5:30 AM – 6:00 PM</b> · open since 5:30, drive-thru only. Trades as Woodland Espresso LLC</p><p class="say">The web address printed on your cups, foxhollowcoffee.com, is dead. All 38 syrups are on this one instead.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/fox-hollow-coffee-puyallup/">Demo</a><a class="tel" href="tel:+12534469158">(253) 446-9158</a><a class="tel" href="https://maps.apple.com/?q=6909%20112th%20St%20E%2C%20Puyallup%2C%20WA%2098373">Map</a><span class="ask">$750</span></div></div></li>
+<li id="s-south-hill-nails"><button class="t" aria-label="mark done">9:30</button><div><div class="head"><p class="name">South Hill Nails</p><span class="tag ok">opens as you pull in</span><span class="tag warn">hero options pending — link is the same</span></div><p class="sub">11910 Meridian E, Puyallup, WA 98373 · <b>9:30 AM – 7:00 PM</b> · Meridian strip — the 9:30 open is why South Hill comes before downtown</p><p class="say">265 Google reviews and nowhere to send anybody. Tap a set on here and it opens up full size — the work is the pitch.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/south-hill-nails/">Demo</a><a class="tel" href="tel:+12538489885">(253) 848-9885</a><a class="tel" href="https://maps.apple.com/?q=11910%20Meridian%20E%2C%20Puyallup%2C%20WA%2098373">Map</a><span class="ask">$1,200</span></div></div></li>
+<li id="s-tk-top-nails-puyallup"><button class="t" aria-label="mark done">10:00</button><div><div class="head"><p class="name">TK Top Nails &amp; Spa</p><span class="tag ok">drive 12 · back downtown</span></div><p class="sub">1831 E Main Ave, Puyallup, WA 98372 · <b>9:00 AM – 7:00 PM</b> · ask for <b>Lilly</b></p><p class="say">Nine finished sets that walked out of your door, on a page people can actually open.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/tk-top-nails-puyallup/">Demo</a><a class="tel" href="tel:+12532680000">(253) 268-0000</a><a class="tel" href="https://maps.apple.com/?q=1831%20E%20Main%20Ave%2C%20Puyallup%2C%20WA%2098372">Map</a><span class="ask">$500</span></div></div></li>
+<li id="s-star-nails-puyallup"><button class="t" aria-label="mark done">10:10</button><div><div class="head"><p class="name">Star Nails &amp; Spa</p><span class="tag ok">drive 3</span></div><p class="sub">716 E Main Ave, Puyallup, WA 98372 · <b>10:00 AM – 7:00 PM (Mon-Fri)</b> · same road as TK Top, opens at 10 on the dot</p><p class="say">A wall of your finished sets, and the phone number is a tap instead of a squint at a Google card.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/star-nails-puyallup/">Demo</a><a class="tel" href="tel:+12534455093">(253) 445-5093</a><a class="tel" href="https://maps.apple.com/?q=716%20E%20Main%20Ave%2C%20Puyallup%2C%20WA%2098372">Map</a><span class="ask">$500</span></div></div></li>
+<li id="s-bumpys-pub-puyallup"><button class="t" aria-label="mark done">10:25</button><div><div class="head"><p class="name">Bumpy&#x27;s Pub</p><span class="tag ok">walk D</span></div><p class="sub">116 E Main Ave, Puyallup, WA 98372 · <b>9:00 AM – 12:00 AM</b> · hero approved 9/7 (rack-lights-little, locked)</p><p class="say">bumpyswa.net is dead — the link behind your logo on the Puyallup Main Street site goes nowhere. This is what to put there. Everything on tots, right on the front.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/bumpys-pub-puyallup/">Demo</a><a class="tel" href="tel:+12536979824">(253) 697-9824</a><a class="tel" href="https://maps.apple.com/?q=116%20E%20Main%20Ave%2C%20Puyallup%2C%20WA%2098372">Map</a><span class="ask">$1,500</span></div></div></li>
+<li id="s-scottys-grub-and-pub-puyallup"><button class="t" aria-label="mark done">10:35</button><div><div class="head"><p class="name">Scotty&#x27;s Grub and Pub</p><span class="tag ok">walk D</span></div><p class="sub">215 N Meridian, Puyallup, WA 98371 · <b>10:00 AM – 2:00 AM</b> · two minutes up from Bumpy’s · hero approved 9/7 (tap-wall, locked)</p><p class="say">Tightwad Tuesday and the 4–7 happy hour are on here word for word off your own posters, and the tap wall is your real handles.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/scottys-grub-and-pub-puyallup/">Demo</a><a class="tel" href="tel:+12532680246">(253) 268-0246</a><a class="tel" href="https://maps.apple.com/?q=215%20N%20Meridian%2C%20Puyallup%2C%20WA%2098371">Map</a><span class="ask">$1,500</span></div></div></li>
+<li id="s-log-cabin-pub-sumner"><button class="t" aria-label="mark done">10:50</button><div><div class="head"><p class="name">The Log Cabin Pub</p><span class="tag ok">drive 12 · on the way to Jack’s</span></div><p class="sub">2719 E Valley Hwy E, Sumner, WA 98390 · <b>10:00 am – 2:00 am</b> · sits between downtown Puyallup and Captain Jack’s, so it costs nothing to stop</p><p class="say">A Linktree is your whole website right now. This has all 49 priced items off your own menu PDFs and a board of what game is where.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/log-cabin-pub-sumner/">Demo</a><a class="tel" href="tel:+12538632905">(253) 863-2905</a><a class="tel" href="https://maps.apple.com/?q=2719%20E%20Valley%20Hwy%20E%2C%20Sumner%2C%20WA%2098390">Map</a><span class="ask">$1,500</span></div></div></li>
+<li id="s-captain-jacks-bar-and-grill"><button class="t" aria-label="mark done">11:00</button><div><div class="head"><p class="name">Captain Jack&#x27;s Bar &amp; Grill</p><span class="tag fix">owner is always in at open</span></div><p class="sub">13501 Valley Ave E, Sumner, WA 98390 · <b>11:00 AM – 12:00 AM</b> · the one fixed door of the morning — he is there when the doors open at 11. You walked it 9/6 and he was out; this is the return</p><p class="say">You bought captainjacksbarandgrill.shop and it goes nowhere — here&#x27;s the site to put on it.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/captain-jacks-bar-and-grill/">Demo</a><a class="tel" href="tel:+12538260679">(253) 826-0679</a><a class="tel" href="https://maps.apple.com/?q=13501%20Valley%20Ave%20E%2C%20Sumner%2C%20WA%2098390">Map</a></div></div></li>
+<li id="s-sumner-nails"><button class="t" aria-label="mark done">11:25</button><div><div class="head"><p class="name">Sumner Nails</p><span class="tag ok">walk M</span><span class="tag ok">hero approved</span></div><p class="sub">1111 Main St, Sumner, WA 98390 · <b>9 AM – 5 PM</b> · ask for <b>Tina</b> or <b>Tony</b> — customers name them in the reviews</p><p class="say">Customers write about Tina and Tony by name in the reviews, so the page is built around the two of you, not a stock salon.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/sumner-nails/">Demo</a><a class="tel" href="tel:+12538624214">(253) 862-4214</a><a class="tel" href="https://maps.apple.com/?q=1111%20Main%20St%2C%20Sumner%2C%20WA%2098390">Map</a><span class="ask">$750</span></div></div></li>
+<li id="s-kissed-by-chloe-sumner"><button class="t" aria-label="mark done">11:33</button><div><div class="head"><p class="name">Kissed By Chloe</p><span class="tag ok">walk M</span><span class="tag warn">hero options pending — link is the same</span></div><p class="sub">1018 Main St, Sumner, WA 98390 · <b>10:00 AM – 5:00 PM</b> · three doors down from Sumner Nails · western boutique, ten years on Main</p><p class="say">Ten years on Main Street and 42 photos of the store, and the only way to shop it is a Facebook feed. Every corner of the room is a display on here.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/kissed-by-chloe-sumner/">Demo</a><a class="tel" href="tel:+12534477389">(253) 447-7389</a><a class="tel" href="https://maps.apple.com/?q=1018%20Main%20St%2C%20Sumner%2C%20WA%2098390">Map</a><span class="ask">$1,500</span></div></div></li>
+<li id="s-bayabelle-boutique-sumner"><button class="t" aria-label="mark done">11:40</button><div><div class="head"><p class="name">Bayabelle Boutique</p><span class="tag ok">walk M</span><span class="tag warn">hero options pending — link is the same</span></div><p class="sub">926 Main St #101, Sumner, WA 98390 · <b>10:00 AM – 6:00 PM</b> · same block — last of the Main Street three</p><p class="say">You bought the Shopify plan and hit the password wall — Google still shows no website. This finishes the job you already started.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/bayabelle-boutique-sumner/">Demo</a><a class="tel" href="tel:+12534478530">(253) 447-8530</a><a class="tel" href="https://maps.apple.com/?q=926%20Main%20St%20Ste%20101%2C%20Sumner%2C%20WA%2098390">Map</a><span class="ask">$1,200</span></div></div></li>
+<li id="s-wendys-doggone-good-groomers"><button class="t" aria-label="mark done">11:50</button><div><div class="head"><p class="name">Wendy&#x27;s Dog&#x27;gone Good Groomers</p><span class="tag ok">on the way east</span><span class="tag warn">hero options pending — link is the same</span></div><p class="sub">16202 64th St E, Suite 105 · Sumner, WA 98390 · <b>9 am – 5 pm</b> · east side of Sumner, already pointing at Bonney Lake · ask for <b>Wendy</b></p><p class="say">41 finished-groom photos and 96 Google reviews doing nothing for you. Sixteen of the dogs you sent home are on the front of this one.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/wendys-doggone-good-groomers/">Demo</a><a class="tel" href="tel:+12537504792">(253) 750-4792</a><a class="tel" href="https://maps.apple.com/?q=16202%2064th%20St%20E%2C%20Suite%20105%20%2C%20Sumner%2C%20WA%2098390">Map</a><span class="ask">$1,200</span></div></div></li>
+</ol>
+
+<div class="block fork"><b>Why Fife and Milton are not in that list</b>
+<p>Top Auto Body opens at 8, but Sapporo doesn’t open until 10:30 and Yoko not until 11 — and
+Fife is a 25-minute ring the wrong way from a fixed noon in Bonney Lake. Driving out there for one
+open door costs ~50 minutes of the morning. <b>Run Fife/Milton as its own loop</b> (table below):
+Top Auto Body, Sapporo, Yoko and A Spoonful in one line down Pacific Hwy and Milton Way.</p></div>
+
+<h2>12:00 · Rose Spa <small>fixed — the one appointment of the day</small></h2>
+<ol>
+<li id="s-rose-spa-bonney-lake"><button class="t" aria-label="mark done">12:00</button><div><div class="head"><p class="name">Rose Spa</p><span class="tag fix">owner in WED 12–3 — fixed</span></div><p class="sub">20631 WA-410 E, Suite 302 · <b>9:30 am – 10 pm (seven days)</b> · the staff already saw the demo on 9/6 and told you the owner is in Wednesday 12–3. This is the appointment the whole day is built around — board says pitch <b>$1,500 + tax</b></p><p class="say">Tap where it hurts on the body map and it tells you which of your services is for that — same question you get asked at the desk all day.</p><div class="row"><a class="go" href="https://hjsdesigns.github.io/demos/rose-spa-bonney-lake/">Demo</a><a class="tel" href="tel:+12534478676">(253) 447-8676</a><a class="tel" href="https://maps.apple.com/?q=20631%20WA-410%20E%2C%20Suite%20302">Map</a><span class="ask">$1,500</span></div></div></li>
+</ol>
+<div class="block rest"><b>While you’re on 410</b>
+<p><b>Nails 410</b> is the same strip and <b>Teriyaki Wok &amp; Sushi</b> is four minutes off it —
+both in the afternoon table. If Rose Spa runs short, they are the two cheapest extra doors of the day.</p></div>
+
+<h2>12:30–1:30 · Colibri <small>Buckley · debrief</small></h2>
+<div class="block"><b>Debrief while it’s fresh</b>
+<p>Per door: who you talked to, whether it was the owner, what they said about the demo, and any name
+or time they gave you. That’s what moves the board tonight — and every &ldquo;come back at X&rdquo;
+becomes tomorrow’s fixed slot.</p></div>
+
+<h2>1:45–4:00 · Home <small>lunch, then the gym</small></h2>
+<div class="block rest"><b>1:45 lunch · 2:30–4:00 gym</b> — off the clock. No pitching a kitchen through its lunch rush anyway.</div>
+
+<h2>4:30–11:00 · Computer <small>then bed at 12</small></h2>
+<div class="block"><b>4:30–7:30 computer · 7:30–11 grind</b>
+<p>Revisions off today’s doors, the eight heroes Codex is still working, tomorrow’s sends, and
+the card pickup tonight. Bed at midnight.</p></div>
+
+<h2>If there’s time · afternoon <small>opens after 11:30, or off the morning line</small></h2>
+<table>
+<tr><td>Wash The Dog</td><td>115 W Meeker, Puyallup · <b>11:00 am – 5:00 pm</b> · <b>ask $1,000</b> · <a href="tel:+12538419988">(253) 841-9988</a> · <a href="https://hjsdesigns.github.io/demos/wash-the-dog-puyallup/">Demo</a><br><span class="mut">hero approved 9/7, locked</span><br><span class="mut">Say: Your seven-step sign, word for word, tub to dryer — so someone knows how the self-wash works before they drive over.</span></td></tr>
+<tr><td>Pioneer Antique Mall</td><td>113 S Meridian, Puyallup · <b>11:00 AM – 6:00 PM</b> · <b>ask $1,500</b> · <a href="tel:+12533804021">(253) 380-4021</a> · <a href="https://hjsdesigns.github.io/demos/pioneer-antique-mall-puyallup/">Demo</a><br><span class="mut">CALL FIRST — the door card says 11 but handwritten notes have said closed</span><br><span class="mut">Say: Some of what was actually on your floor, photographed, so people know what kind of mall this is before they park.</span></td></tr>
+<tr><td>Kyoto Teriyaki</td><td>513 S Meridian, Puyallup · <b>11:00 AM – 7:30 PM</b> · <b>ask $500</b> · <a href="tel:+12534351599">(253) 435-1599</a> · <a href="https://hjsdesigns.github.io/demos/kyoto-teriyaki-puyallup/">Demo</a><br><span class="mut">hero approved 9/7, locked</span><br><span class="mut">Say: Pick your plate right on the page — your real menu, your real prices, no delivery app in the middle.</span></td></tr>
+<tr><td>My Lil' Cube</td><td>402 N Meridian, Puyallup · <b>11:00 AM – 9:00 PM</b> · <b>ask $1,000</b> · <a href="tel:+12538402158">(253) 840-2158</a> · <a href="https://hjsdesigns.github.io/demos/my-lil-cube-puyallup/">Demo</a><br><span class="mut">closes seasonally — confirm it is open before the drive</span><br><span class="mut">Say: The opening-hours card in your own front window is the hours block, and the ramen list is the one people actually order from.</span></td></tr>
+<tr><td>Wayne's Inn</td><td>1902 E Main Ave, Puyallup · <b>11:00 AM – 2:00 AM</b> · <b>ask $1,500</b> · <a href="tel:+12538483466">(253) 848-3466</a> · <a href="https://hjsdesigns.github.io/demos/waynes-inn-puyallup/">Demo</a><br><span class="mut">same block as TK Top Nails</span><br><span class="mut">Say: “Is it karaoke tonight?” answers itself on the front page instead of being a phone call you have to take.</span></td></tr>
+<tr><td>Backyard Pizza</td><td>1824 S Meridian, Puyallup · <b>11:00 AM – 10:00 PM</b> · <b>ask $500</b> · <a href="tel:+12532680758">(253) 268-0758</a> · <a href="https://hjsdesigns.github.io/demos/backyard-pizza-puyallup/">Demo</a><br><span class="mut">hero approved 9/7 (trailer-mount, locked)</span><br><span class="mut">Say: It really is a backyard, and the page shows it — the trailer, the lights, the tables — not a stock pizza photo.</span></td></tr>
+<tr><td>Pho&Mi</td><td>727 River Rd, Puyallup · <b>11:00 AM – 9:00 PM</b> · <b>ask $1,000</b> · <a href="tel:+12534455111">(253) 445-5111</a> · <a href="https://hjsdesigns.github.io/demos/pho-and-mi-puyallup/">Demo</a><br><span class="mut">two doors from Bean Tree</span><br><span class="mut">Say: Right now Menu11&#x27;s rented template IS your website. This one has your 40 priced items and the plate that comes with every bowl.</span></td></tr>
+<tr><td>It's Pho U</td><td>3707 S Meridian, Puyallup · <b>10:30 AM – 9:30 PM</b> · <b>ask $1,000</b> · <a href="tel:+12538487468">(253) 848-7468</a> · <a href="https://hjsdesigns.github.io/demos/its-pho-u-puyallup/">Demo</a><br><span class="mut">South Hill end of Meridian</span><br><span class="mut">Say: Facebook is the whole web presence. Your printed menu prices are on here, and the side plate every bowl comes with.</span></td></tr>
+<tr><td>Out &amp; About Burgers</td><td>14214 Meridian E, South Hill · <b>11:00 AM – 8:00 PM</b> · <b>ask $1,000</b> · <a href="tel:+12539059830">(253) 905-9830</a> · <a href="https://hjsdesigns.github.io/demos/out-and-about-burgers-puyallup/">Demo</a><br><span class="mut">drive-thru · hero approved 9/7, locked</span><br><span class="mut">Say: 2,193 reviews and a Facebook page. The 19 prices off your own window panels are on here, burgers handed over the sill in paper.</span></td></tr>
+<tr><td>Teriyaki Town<span class="tag warn">hero options pending — link is the same</span></td><td>5605 112th St E Ste 100, South Hill · <b>10:30 AM – 9:00 PM</b> · <b>ask $750</b> · <a href="tel:+12534452443">(253) 445-2443</a> · <a href="https://hjsdesigns.github.io/demos/teriyaki-town-puyallup/">Demo</a><br><span class="mut">same strip as Beauty Nails — one stop, two doors</span><br><span class="mut">Say: Your only “site” is a Menu11 order page that takes a cut and shows none of the shop. Order by number on here, straight off your printed board.</span></td></tr>
+<tr><td>River Road Lodge</td><td>7824 River Rd E, Puyallup · <b>12:00 PM – 2:00 AM</b> · <b>ask $1,500</b> · <a href="tel:+12537700669">(253) 770-0669</a> · <a href="https://hjsdesigns.github.io/demos/river-road-lodge-puyallup/">Demo</a><br><span class="mut">opens at noon</span><br><span class="mut">Say: One room with four things going on — pool, pull tabs, the kitchen, the bar — and the name change off R&amp;R is on the page so people find you.</span></td></tr>
+<tr><td>Tacos los Queretaros</td><td>3420 Meridian Ave E, Edgewood · <b>10:00 AM – 10:00 PM</b> · <b>ask $500</b> · <a href="tel:+12063089792">(206) 308-9792</a> · <a href="https://hjsdesigns.github.io/demos/tacos-los-queretaros-edgewood/">Demo</a><br><span class="mut">trailer with a covered tent — order at the window</span><br><span class="mut">Say: Your board prices, cash and non-cash, exactly as the notice on the trailer says them.</span></td></tr>
+<tr><td>Ink'd Ink<span class="tag warn">hero options pending — link is the same</span></td><td>909 Alder Ave <b>Suite 202</b>, Sumner · <b>12 – 9 pm</b> · <b>ask $1,500</b> · <a href="tel:+13602500632">(360) 250-0632</a> · <a href="https://hjsdesigns.github.io/demos/inkd-ink-sumner/">Demo</a><br><span class="mut"><b>TEXT (360) 250-0632 FIRST.</b> Her own Google hours say Wed 12–9; a directory says 9–2 — treat <b>12–2</b> as the safe window. Upstairs, blue double doors, appointment only. Ask for <b>Staci</b></span><br><span class="mut">Say: Everything you sell is visual and it&#x27;s all behind a link-in-bio with a dead booking button. Tap a style on here and the work opens up.</span></td></tr>
+</table>
+
+<h2>Fife &amp; Milton <small>its own loop · 25 min west</small></h2>
+<table>
+<tr><td>Top Auto Body<span class="tag warn">hero options pending — link is the same</span></td><td>5717 Pacific Hwy E, Fife · <b>8:00 AM – 5:00 PM</b> · <b>ask $1,500</b> · <a href="tel:+12539228822">(253) 922-8822</a> · <a href="https://hjsdesigns.github.io/demos/top-auto-body-fife/">Demo</a><br><span class="mut">highest-ticket lead of the ring · ask for <b>Cesar</b>, the new owner — his surname is not published anywhere, get it at the counter</span><br><span class="mut">Say: 4.9 from 107 people and no website at all — everybody comparing body shops after a wreck reads Yelp&#x27;s version of you. One corner, both ends of the job, on the front.</span></td></tr>
+<tr><td>Sapporo &amp; Sushi<span class="tag ok">hero approved</span></td><td>4803 Pacific Hwy E, Fife · <b>10:30 AM – 9:00 PM</b> · <b>ask $1,500</b> · <a href="tel:+12539225656">(253) 922-5656</a> · <a href="https://hjsdesigns.github.io/demos/sapporo-and-sushi-restaurant-fife/">Demo</a><br><span class="mut">hero approved · two minutes from Top Auto Body, open till 9 so it is the safe one to run late into</span><br><span class="mut">Say: Four platforms take your orders — Menu11, DoorDash, Postmates, order.online — and not one shows the room or the sushi bar. This one does.</span></td></tr>
+<tr><td>A Spoonful Of Sugar</td><td>2420 Milton Way, Milton · <b>5:00 AM – 3:00 PM</b> · <b>ask $750</b> · <a href="tel:+12539271174">(253) 927-1174</a> · <a href="https://hjsdesigns.github.io/demos/a-spoonful-of-sugar-milton/">Demo</a><br><span class="mut">opens at 5 AM — the only one in this ring you could also catch first thing</span><br><span class="mut">Say: aspoonfulofsugarcafe.com has been parked since 2016 — it just serves a blank error. The white chairs, oak tables and the Mary Poppins wall are on this one.</span></td></tr>
+<tr><td>Yoko Teriyaki<span class="tag warn">hero options pending — link is the same</span></td><td>2800 Milton Way #18, Milton · <b>11:00 AM – 9:00 PM</b> · <b>ask $750</b> · <a href="tel:+12539523266">(253) 952-3266</a> · <a href="https://hjsdesigns.github.io/demos/yoko-teriyaki-milton/">Demo</a><br><span class="mut">Milton Plaza</span><br><span class="mut">Say: Menu11 takes the order and DoorDash takes a cut, and neither shows the shop. Point at the plate you want right on the page.</span></td></tr>
+</table>
+
+<h2>Bonney Lake <small>on the way home from Rose Spa</small></h2>
+<table>
+<tr><td>Nails 410</td><td>20820 WA-410 E, Bonney Lake · <b>9:30 am – 7:00 pm</b> · <b>ask $500</b> · <a href="tel:+12538621469">(253) 862-1469</a> · <a href="https://hjsdesigns.github.io/demos/nails-410/">Demo</a><br><span class="mut">same 410 strip as Rose Spa</span><br><span class="mut">Say: The sets that walked out your door, big enough to actually see, on a page you can text to somebody.</span></td></tr>
+<tr><td>Teriyaki Wok &amp; Sushi</td><td>9925 214th Ave E Unit L, Bonney Lake · <b>11 am – 8:30 pm</b> · <b>ask $1,500</b> · <a href="tel:+12538911980">(253) 891-1980</a> · <a href="https://hjsdesigns.github.io/demos/teriyaki-wok-and-sushi/">Demo</a><br><span class="mut">hero approved 9/7 (daylight-still, locked) · he found it closed 9/6 at 5:35 despite the listing — look before you park</span><br><span class="mut">Say: Build your bento on the page, off your own menu — and the hours on here match what the door actually does.</span></td></tr>
+</table>
+
+<h2>Call first <small>no Wednesday hours published · never a slot</small></h2>
+<table>
+<tr><td>All Star Auto Body</td><td><a href="tel:+12069281600">(206) 928-1600</a> · 2906 E Main Ave, Puyallup — their listing publishes no Wednesday hours at all, only "call for hours". 4.9 from 101. · <a href="https://hjsdesigns.github.io/demos/all-star-auto-body-puyallup/">Demo</a><br><span class="mut">Say: An AI lead-gen funnel is squatting your name in search. Drag the line across the car and it wipes wrecked to finished — straight off your own banner.</span></td></tr>
+<tr><td>Mulligans</td><td><a href="tel:+12533863174">(253) 386-3174</a> · 15716 Main St E, Sumner — no hours published anywhere; group line. Four minutes from Captain Jack’s if they pick up. <b>Never email info@mulligansgolf.com.</b> · <a href="https://hjsdesigns.github.io/demos/mulligans-sumner/">Demo</a><br><span class="mut">Say: Your parent site still calls this room the Water Hole Pub. This one is the room as it is now.</span></td></tr>
+</table>
+
+<h2>Not today <small>why</small></h2>
+<table>
+<tr><td>Water Hole Pub</td><td>closed for good — Hayden drove by 9/6, Mulligans is the bar in that spot now. Do not pitch, and <b>never email info@mulligansgolf.com</b></td></tr>
+<tr><td>Pretty Nails</td><td>emailed 9/7 to trangtranseahurst@icloud.com — if you stop in it is a follow-up, not a first pitch</td></tr>
+<tr><td>Main Street Tattoo</td><td>dossier only, no site built — a card drop, and you have no cards until tonight. Skip it</td></tr>
+</table>
+
+<p class="foot">Written 7:54 PM · 37 of 37 demos live on hjsdesigns.github.io.
+Hours, addresses, phones and every &ldquo;say&rdquo; line come off that build&rsquo;s own facts.json,
+its built page, or its board row — nothing re-scraped, nothing invented. Drive times out of Lake
+Tapps: Sumner 10 · Puyallup 15 · South Hill 20 · Milton 18 · Fife 25 · Bonney Lake 10.
+Every ask is that business&rsquo;s own tier cell on the board — one notch under worth, not a quote.
+Two of the 9/8 ten (Sapporo, Sumner Nails) have approved heroes; the other eight are still waiting on
+Codex&rsquo;s options — the links are the same either way.
+No Wednesday row published: All Star Auto Body, Mulligans.</p>
+</main>
+<script>
+(function(){
+  var KEY='wednesday-doors-done';
+  var done={};
+  try{done=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){done={}}
+  var items=document.querySelectorAll('li[id]');
+  for(var i=0;i<items.length;i++){(function(li){
+    if(done[li.id])li.classList.add('done');
+    var b=li.querySelector('.t');
+    if(!b)return;
+    b.addEventListener('click',function(){
+      var on=li.classList.toggle('done');
+      done[li.id]=on?1:0;
+      try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}
+    });
+  })(items[i])}
+})();
+</script>
