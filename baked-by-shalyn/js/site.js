@@ -11,21 +11,16 @@
    decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
    null = closed that day. Closing past midnight: use 26 for 2 am.
    ------------------------------------------------------------ */
-/* ECHO RIVER RANCH — rides are BY RESERVATION (text/call first).
-   The day rows below are the hours published on the ranch's directory
-   listing (Yahoo/Yelp exact-business listing) and are the best source we
-   have; they do not establish ride availability or a drop-in schedule.
-   PROVISIONAL — confirm with Debie before this goes live. */
 var HOURS = {
   tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
   days: {
-    0: [6, 20],                       // Sunday      6:00 am – 8:00 pm
-    1: [12, 19],                      // Monday     12:00 pm – 7:00 pm
-    2: [12, 19],                      // Tuesday    12:00 pm – 7:00 pm
-    3: [12, 19],                      // Wednesday  12:00 pm – 7:00 pm
-    4: [12, 19],                      // Thursday   12:00 pm – 7:00 pm
-    5: [12, 23],                      // Friday     12:00 pm – 11:00 pm
-    6: [6, 23]                        // Saturday    6:00 am – 11:00 pm
+    0: [8, 20],                       // Sunday      8:00 am - 8:00 pm
+    1: [8, 14],                       // Monday      8:00 am - 2:00 pm
+    2: [8, 20],                       // Tuesday     8:00 am - 8:00 pm
+    3: [8, 20],                       // Wednesday   8:00 am - 8:00 pm
+    4: [8, 20],                       // Thursday    8:00 am - 8:00 pm
+    5: [8, 21],                       // Friday      8:00 am - 9:00 pm
+    6: [8, 21]                        // Saturday    8:00 am - 9:00 pm
   }
 };
 
@@ -55,7 +50,7 @@ function customClose(p, close){ return close; }
 
   /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
-  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.setAttribute('aria-label',open?'Close menu':'Open menu');toggle.textContent=open?'✕':'☰'}
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
   if(toggle&&nav){
     toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
     $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
@@ -84,15 +79,24 @@ function customClose(p, close){ return close; }
   function hoursFor(day){return HOURS.days[day]||null}
 
   function computeStatus(){
-    // GREEN inside the hours on her listing, RED outside them. This says when
-    // she is reachable — every ride is still booked by text first.
-    var p=pacificNow(), h=hoursFor(p.day);
-    if(customClosure(p)) return {open:false,text:'Closed today · text and she’ll get back to you'};
-    if(!h) return {open:false,text:'Closed today · text and she’ll get back to you'};
-    var close=customClose(p,h[1]);
-    if(p.h>=h[0]&&p.h<close) return {open:true,text:'Open now until '+fmt(close)+' · text to reserve'};
-    if(p.h<h[0]) return {open:false,text:'Closed now · opens '+fmt(h[0])+' today'};
-    return {open:false,text:'Closed now · text and she’ll get back to you'};
+    var p=pacificNow(), d=p.day, h=p.h;
+    var closure=customClosure(p);
+    if(closure) return {open:false,text:'Closed today for '+closure};
+    // still inside yesterday's after-midnight hours? (e.g. a bar closing at 2 am = 26)
+    var yd=(d+6)%7, yh=hoursFor(yd);
+    if(yh&&yh[1]>24&&h<yh[1]-24) return {open:true,text:'Open now · til '+fmt(yh[1])};
+    var today=hoursFor(d);
+    if(today){
+      var close=customClose(p,today[1]);
+      if(h>=today[0]&&h<close) return {open:true,text:'Open now · til '+fmt(close),soon:(close-h)<=1};
+      if(h<today[0]) return {open:false,text:'Opens today at '+fmt(today[0])};
+    }
+    // find the next open day
+    for(var i=1;i<=7;i++){
+      var nd=(d+i)%7, nh=hoursFor(nd);
+      if(nh){var label=i===1?'tomorrow':dayName(nd);return {open:false,text:'Closed · opens '+label+' at '+fmt(nh[0])}}
+    }
+    return {open:false,text:'Closed'};
   }
   function applyStatus(){
     var s=computeStatus(), p=pacificNow();
@@ -106,7 +110,7 @@ function customClose(p, close){ return close; }
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
 
   /* ---------- scroll-reveal + count-up ---------- */
-  var io=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(function(entries){
+  var io=new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(!en.isIntersecting)return;
       en.target.classList.add('in');
@@ -120,66 +124,75 @@ function customClose(p, close){ return close; }
       });
       io.unobserve(en.target);
     });
-  },{threshold:.06,rootMargin:'0px 0px -6% 0px'}):null;
-  $$('.reveal').forEach(function(el){if(io)io.observe(el);else el.classList.add('in')});
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  $$('.reveal').forEach(function(el){io.observe(el)});
 
-  /* ---------- contact: a real email draft until live delivery is configured ---------- */
+  /* ---------- contact form ----------
+     Demo mode (hidden access_key empty): show the thank-you, send nothing.
+     Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms from the visitor's
+     browser -> lands in the owner's inbox. Failure falls back to "call or text us". */
   var form=$('.contact-form'), ok=$('.form-success');
-  if(form&&ok){
-    var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]');
-    var live=keyEl&&keyEl.value.trim();
-    if(live){btn.textContent=form.getAttribute('data-send-label');$('.form-fine',form).textContent='Your message goes directly to the business.';}
-    function feedback(message, error){ok.textContent=message;ok.classList.add('show');ok.setAttribute('role',error?'alert':'status');}
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      if(btn.disabled||!form.reportValidity())return;
-      var key=keyEl?keyEl.value.trim():'';
-      if(!key){
-        var fields=new FormData(form), topic=fields.get('topic')||'Website inquiry';
-        var body=['Name: '+(fields.get('name')||''),'Email: '+(fields.get('email')||''),'Phone: '+(fields.get('phone')||''),'',fields.get('msg')||''].join('\n');
-        location.href=form.action.split('?')[0]+'?subject='+encodeURIComponent(topic)+'&body='+encodeURIComponent(body);
-        feedback('Your email draft is ready to open. Send it from your email app to finish. If it does not open, use the email or phone link beside this form.',false);
-        return;
-      }
-      var label=btn.textContent;btn.disabled=true;btn.textContent='Sending…';
-      var data={};new FormData(form).forEach(function(v,k){data[k]=v});
-      data.subject=data.subject||('New message from your website ('+document.title+')');
-      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
-        .then(function(r){if(!r.ok)throw new Error('send failed');return r.json()})
-        .then(function(j){if(!j||!j.success)throw new Error('send failed');feedback('Message sent. The business will reply using the contact details you provided.',false);btn.textContent='Message sent';})
-        .catch(function(){btn.disabled=false;btn.textContent=label;feedback('Could not send just now. Use the email or phone link beside this form.',true);});
-    });
-  }
+  if(form&&ok){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
+    function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
+    if(!key){done();return}
+    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
+    var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
+    data.subject=data.subject||('New message from your website ('+document.title+')');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()}).then(function(j){if(j&&j.success){done()}else{throw new Error('send failed')}})
+      .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
+  })}
 
-  /* ---------- PICK YOUR RIDE — title cards that unroll ----------
-     One tap on the whole title row; the chevron flips down→up. */
-  $$('.ride-head').forEach(function(head){
-    var li=head.parentNode, body=document.getElementById(head.getAttribute('aria-controls'));
-    function setRide(open){
-      head.setAttribute('aria-expanded',String(open));li.classList.toggle('open',open);
-      if(body){body.setAttribute('aria-hidden',String(!open));body.inert=!open;}
-    }
-    setRide(false);
-    head.addEventListener('click',function(){setRide(head.getAttribute('aria-expanded')!=='true')});
+  /* ---------- SIGNATURE GADGET ----------
+     Per-client interactive code goes below this line (EA: day timeline +
+     rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+
+  /* ---------- SIGNATURE GADGET ----------
+     Two independent pieces, both one-tap:
+     (1) the unrolling title cards in #menu (TITLE CARDS UNROLL + ARROW LAW)
+     (2) "What are you celebrating?" in #signature — pick an occasion, see the
+         cake she actually made for it. Every photo and every line below is
+         real: the photos are her own posts, the lines are her own captions
+         and her own Google reviews. */
+
+  /* --- (1) unrolling title cards --- */
+  $$('.unroll-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var body = document.getElementById(btn.getAttribute('aria-controls'));
+      if(!body) return;
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      body.hidden = open;
+    });
   });
 
-  /* ---------- SIGNATURE GADGET — RAIN OR SHINE ----------
-     Tap a season, the big frame becomes a real ride photographed in it.
-     Four real photos, one tap, instant swap, nothing to read first. */
-  (function(){
-    var stage=$('#seasonImg'), cap=$('#seasonCap'), picks=$$('.season-pick');
-    if(!stage||!cap||!picks.length)return;
-    // preload so the swap is instant
-    picks.forEach(function(b){var i=new Image();i.src=b.getAttribute('data-src')});
-    picks.forEach(function(b){
-      b.addEventListener('click',function(){
-        picks.forEach(function(o){o.classList.remove('is-on');o.setAttribute('aria-pressed','false')});
-        b.classList.add('is-on');b.setAttribute('aria-pressed','true');
-        stage.src=b.getAttribute('data-src');
-        stage.alt=b.getAttribute('data-alt');
-        cap.textContent=b.getAttribute('data-cap');
+  /* --- (2) what are you celebrating? --- */
+  var occImg = $('#occImg'), occKicker = $('#occKicker'), occLine = $('#occLine'), occChips = $$('.occ-chip');
+  if(occImg && occChips.length){
+    // the default chip inherits the photo already in the markup, so it is never
+    // shipped twice; every other chip carries its own in data-img (the packer
+    // swaps that attribute for an inline data URI at build time)
+    occChips.forEach(function(c){
+      if(!c.getAttribute('data-img')){ c.setAttribute('data-img', occImg.getAttribute('src')); c.setAttribute('data-alt', occImg.getAttribute('alt')); }
+      var i = new Image(); i.src = c.getAttribute('data-img');   // warm, so the first tap is instant
+    });
+    occChips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        occChips.forEach(function(c){
+          var on = c === chip;
+          c.classList.toggle('is-on', on);
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        occImg.classList.remove('pop');
+        void occImg.offsetWidth;               // restart the entrance on every tap
+        occImg.src = chip.getAttribute('data-img');
+        occImg.alt = chip.getAttribute('data-alt') || '';
+        occKicker.textContent = chip.getAttribute('data-kicker');
+        occLine.textContent = chip.getAttribute('data-line');
       });
     });
-  })();
+  }
 
 })();

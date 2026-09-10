@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <title>Echo River Ranch — Guided Horseback Trail Rides, Enumclaw WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Guided horseback trail rides year-round near Enumclaw, Washington — walk only, beginner-friendly, small groups of one to four riders. Text Debie to reserve.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Young Serif (display) + Karla (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=1789068877">
+<link rel="stylesheet" href="css/adventure.css?v=1789068877">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -37,31 +39,18 @@
 <span id="top"></span>
 <main id="main-content">
 
-  <!-- ===================== #hero =====================
-       The river frame full-bleed on desktop — the product, from behind, no
-       face, and the ranch's own name in one picture. Phones run the HERO
-       STACK: the same river frame plus two portrait trail frames at their
-       natural aspect (contain, height:auto — nothing cropped, no gaps).
-       Nothing sits on the photo but the headline block. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg hero-stack">
-      <div class="hero-stack-track">
-        <img src="images/hero-river.jpg" alt="A rider on a grey paint horse standing on the gravel bar where the trail meets the river" fetchpriority="high" width="1920" height="1080">
-        <img src="images/hero-clearing.jpg" alt="From the saddle: a clearing full of blooming foxglove with tall fir timber behind it" width="960" height="1280">
-        <img src="images/hero-ferns.jpg" alt="A rider on a paint horse on a narrow trail walled in by sword ferns, sun coming through the firs" width="960" height="1280">
-        <img src="images/hero-river.jpg" alt="" aria-hidden="true" width="1920" height="1080">
-        <img src="images/hero-clearing.jpg" alt="" aria-hidden="true" width="960" height="1280">
-        <img src="images/hero-ferns.jpg" alt="" aria-hidden="true" width="960" height="1280">
-      </div>
-    </div>
-    <div class="hero-spacer"></div>
+  <!-- The real river ride is the desktop hero; the real fern trail is the
+       portrait hero. One opening into the landscape, never a moving photo reel. -->
+  <section class="hero hero-adventure" id="hero">
+    <div class="landscape"><div class="hero-bg">
+      <img class="river-wide" src="images/hero-river.jpg" alt="A rider on a grey paint horse at the gravel riverbank, with sun on the water and deep green forest beyond." fetchpriority="high" width="1920" height="1080">
+      <img class="trail-portrait" src="images/hero-ferns.jpg" alt="A rider and paint horse heading into a narrow fern-lined trail beneath sunlit fir trees." fetchpriority="high" width="960" height="1280">
+    </div></div>
+    <div class="forest-light" aria-hidden="true"></div>
+    <svg class="river-lines" viewBox="0 0 900 260" fill="none" aria-hidden="true"><path d="M-40 105C130 20 172 250 362 170S613 3 970 180"/><path d="M-40 130C130 45 172 275 362 195S613 28 970 205"/><path d="M-40 155C130 70 172 300 362 220S613 53 970 230"/></svg>
     <div class="hero-inner">
-      <h1>Wooded trails, <em>at a walk</em></h1>
-      <p class="hero-sub"><span class="sub-long">Guided horseback rides in the Cascade foothills outside Enumclaw — half an hour to all day, one to four riders, on trails Debie helped clear herself.</span><span class="sub-short">Half an hour to all day. One to four riders.</span></p>
-      <div class="hero-actions">
-        <a href="sms:+13603671201" class="btn btn-primary">Text to reserve</a>
-        <a href="#services" class="btn btn-cream">See the rides</a>
-      </div>
+      <h1 class="ranch-wordmark"><span>Echo River</span><small>Ranch</small></h1>
+      <div class="hero-bottom"><div><p class="hero-invitation">New trails.<br><em>Good company.</em></p><p class="hero-sub">Guided horseback adventures near Enumclaw.</p></div><div class="hero-actions"><a href="#services" class="btn btn-primary">Find your ride <span aria-hidden="true">↗</span></a><a href="#contact" class="btn btn-cream">Plan it with Debie</a></div></div>
     </div>
   </section>
 
@@ -69,11 +58,12 @@
        Reservation-first band on the forest ground. Day rows come from her
        directory listing and are marked as such — every ride is set by text
        first. Hours live HERE and nowhere else on the page. -->
-  <section class="status-band" id="hours">
+  <section class="status-band section-dark" id="hours">
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to ride</p>
         <h2>Rides are <em>by reservation</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot" aria-hidden="true"></span><span id="statusText">Checking the time…</span></p>
         <p class="reservation-line">Text first. She confirms the ride and where to meet.</p>
         <p class="status-addr">
           37901 304th Way SE, Enumclaw, WA 98022<br>
@@ -104,16 +94,18 @@
        1 hour $100, 2 hours $180). Everything else is quoted by Debie. -->
   <section class="section" id="services">
     <div class="wrap">
+      <div class="rides-intro">
       <figure class="print ranch-shot reveal">
         <img src="images/ranch.jpg" alt="A black and white paint horse tied at the rail fence in the ranch paddock, fir timber behind" loading="lazy" width="1400" height="1050">
         <figcaption>The ranch — five acres of paddock and fence line, about five miles northeast of Enumclaw</figcaption>
       </figure>
       <div class="section-head reveal">
         <p class="eyebrow">Pick your ride</p>
-        <h2>Half an hour to <em>all day</em></h2>
+        <h2>An adventure<br><em>at your pace.</em></h2>
         <p class="quote">“We have a huge variety of ride types, from one half hour to all day rides, we’ll even plan an overnight camping trip.” <cite>— Echo River Ranch’s own listing</cite></p>
       </div>
 
+      </div>
       <ul class="rides reveal">
         <li class="ride">
           <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-1">
@@ -137,7 +129,7 @@
             <span class="ride-price price tnum">$180 <i>per rider</i></span>
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
-          <div class="ride-body" id="ride-3"><div><p>Long enough to get well into the timber and back. One rider put it this way: “Ever have that great friend that says come on over and you just have a relaxing time.”</p></div></div>
+          <div class="ride-body" id="ride-3"><div><p>A longer stretch of trail, with time to settle into the rhythm of the ride. Walk with your horse through the timber and back.</p></div></div>
         </li>
         <li class="ride">
           <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-4">
@@ -161,7 +153,7 @@
             <span class="ride-price">Ask Debie</span>
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
-          <div class="ride-body" id="ride-6"><div><p>The ranch will plan an overnight camping trip on horseback. It’s built around your group rather than run to a schedule, so start with a text about the dates you have in mind.</p></div></div>
+          <div class="ride-body" id="ride-6"><div><p>Ask Debie about an overnight camping trip on horseback. Discuss your group, the dates you have in mind and what can be arranged before making plans.</p></div></div>
         </li>
         <li class="ride">
           <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-7">
@@ -169,7 +161,7 @@
             <span class="ride-price">Through the year</span>
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
-          <div class="ride-body" id="ride-7"><div><p>The ranch sponsors egg hunt, trick-n-treat, candy cane, patriotic and sweetheart rides. In fall she runs rides built around wild mushroom and berry foraging. Ask which one is coming up next.</p></div></div>
+          <div class="ride-body" id="ride-7"><div><p>The ranch’s listing describes egg hunt, trick-n-treat, candy cane, patriotic and sweetheart rides, plus fall foraging outings. Ask Debie which seasonal experiences are currently offered.</p></div></div>
         </li>
         <li class="ride">
           <button class="ride-head" type="button" aria-expanded="true" aria-controls="ride-8">
@@ -181,7 +173,7 @@
         </li>
       </ul>
 
-      <p class="menu-fine reveal">Groups are one to four riders, walk only. For a ride without a listed price, ask Debie for a quote before you book.</p>
+      <p class="menu-fine reveal">Groups are one to four riders, walk only. The two listed rates are from Visit Rainier; confirm current pricing, suitability and availability with Debie before booking.</p>
     </div>
   </section>
 
@@ -194,20 +186,20 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Rain or shine</p>
-        <h2>She rides <em>the whole year</em></h2>
-        <p>“We ride rain or shine; we use comfy waterproof lap blankets to keep our riders warm and dry in poor weather conditions.” Tap a picture. Every one is a ride that actually went out.</p>
+        <h2>Four windows into<br><em>the same wild place.</em></h2>
+        <p>From high summer up on the ridge to winter at the barn. Tap a photograph and see a different day on the trail.</p>
       </div>
       <div class="seasons reveal">
         <figure class="season-stage">
-          <img id="seasonImg" src="images/season-summer.jpg" alt="Two riders stopped where the trail crosses a shallow creek in deep summer" width="900" height="1200">
-          <figcaption id="seasonCap" aria-live="polite">High summer — the creek crossing, low and clear</figcaption>
+          <img id="seasonImg" src="images/summer-highcountry.jpg" alt="A rider on a paint horse stopped on a high ridge in summer, Mount Rainier showing over the firs behind her" width="864" height="1080">
+          <figcaption id="seasonCap" aria-live="polite">High summer — up on the ridge, with Rainier out</figcaption>
         </figure>
         <div class="season-picks" role="group" aria-label="Choose a picture">
           <button class="season-pick" type="button" aria-pressed="false" aria-controls="seasonImg seasonCap" data-src="images/season-spring.jpg" data-alt="Riders on the trail beside the old rail line with scotch broom in bloom" data-cap="Spring — scotch broom along the old rail line">
             <img src="images/season-spring.jpg" alt="" loading="lazy" width="900" height="1200"><span>Spring</span>
           </button>
-          <button class="season-pick is-on" type="button" aria-pressed="true" aria-controls="seasonImg seasonCap" data-src="images/season-summer.jpg" data-alt="Two riders stopped where the trail crosses a shallow creek in deep summer" data-cap="High summer — the creek crossing, low and clear">
-            <img src="images/season-summer.jpg" alt="" loading="lazy" width="900" height="1200"><span>Summer</span>
+          <button class="season-pick is-on" type="button" aria-pressed="true" aria-controls="seasonImg seasonCap" data-src="images/summer-highcountry.jpg" data-alt="A rider on a paint horse stopped on a high ridge in summer, Mount Rainier showing over the firs behind her" data-cap="High summer — up on the ridge, with Rainier out">
+            <img src="images/summer-highcountry.jpg" alt="" loading="lazy" width="864" height="1080"><span>Summer</span>
           </button>
           <button class="season-pick" type="button" aria-pressed="false" aria-controls="seasonImg seasonCap" data-src="images/season-grey.jpg" data-alt="Riders single file down a wet green trail on an overcast day" data-cap="A grey day in the timber — the ride goes anyway">
             <img src="images/season-grey.jpg" alt="" loading="lazy" width="900" height="1200"><span>Grey day</span>
@@ -220,37 +212,36 @@
     </div>
   </section>
 
-  <!-- ===================== #reviews =====================
-       Cream. Real Yelp reviews, verbatim, with initial discs — never a
-       scraped face. -->
+  <!-- Read the original rider stories; no initials stand in for missing
+       source portraits and no review tally is presented as current. -->
   <section class="section" id="reviews">
+    <div class="wrap rider-stories">
+      <figure class="print reveal"><img src="images/hero-clearing.jpg" alt="The view from horseback into a clearing of foxglove with tall firs beyond." loading="lazy" width="960" height="1280"><figcaption>A clearing worth slowing down for</figcaption></figure>
+      <div class="story-copy reveal"><p class="eyebrow">In riders’ own words</p><h2>Five stars,<br><em>every one of them.</em></h2><p>Birthdays, first-ever rides, people who hadn’t been on a horse in twenty years. These are their reviews as they published them on Google, name and photo and all.</p><a class="story-link" href="https://www.google.com/maps/place/Echo+River+Ranch/@47.2625787,-121.9420959,17z/data=!4m6!3m5!1s0x5490f2d78b5bd74f:0x342dad1b0035ec9d!8m2!3d47.2625787!4d-121.9420959" target="_blank" rel="noopener">Read every review on Google <span aria-hidden="true">↗</span></a><a class="story-link" href="https://visitrainier.com/echo-river-ranch/" target="_blank" rel="noopener">The Visit Rainier feature <span aria-hidden="true">↗</span></a></div>
+    </div>
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">5.0 from 6 Yelp reviews</p>
-        <h2>What riders <em>said afterwards</em></h2>
-      </div>
-      <div class="quotes">
-        <figure class="quote-card reveal">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“Ever have that great friend that says come on over and you just have a relaxing time..well thats what we had experienced on the 2 hour horse trail ride.”</blockquote>
-          <figcaption><span class="ini">IB</span><span class="who">Ian B.<small>Yelp · Oct 19, 2021</small></span></figcaption>
-        </figure>
-        <figure class="quote-card reveal">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“The horses were ready when we arrived and we learned their back stories.”</blockquote>
-          <figcaption><span class="ini">SV</span><span class="who">Stephanie V.<small>Yelp · Jun 26, 2021</small></span></figcaption>
-        </figure>
-        <figure class="quote-card reveal">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“The scenery was very nice and the owner, Debbie made it very fun.”</blockquote>
-          <figcaption><span class="ini">CF</span><span class="who">Chad F.<small>Yelp · Feb 28, 2021</small></span></figcaption>
-        </figure>
-        <figure class="quote-card reveal">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“Debie’s love of horses shows in her nurturing relationship with her horses.”</blockquote>
-          <figcaption><span class="ini">VB</span><span class="who">Victoria B.<small>Yelp · Jun 19, 2019</small></span></figcaption>
-        </figure>
-      </div>
+      <ul class="rev-cards reveal">
+        <li class="rev">
+          <div class="rev-who"><img src="images/rev-krista-stokes.jpg" alt="Krista Stokes, Google reviewer" loading="lazy" width="200" height="200"><span><b>Krista Stokes</b><small>Google · 3 months ago</small></span></div>
+          <p class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>“I just spent my 40th birthday at Echo Rivers Ranch. It was the most exceptional experience ever. Debie is an amazing and thoughtful guide and her horses are sweet, calm and intelligent.”</blockquote>
+        </li>
+        <li class="rev">
+          <div class="rev-who"><img src="images/rev-steph.jpg" alt="Steph, Google reviewer" loading="lazy" width="200" height="200"><span><b>Steph</b><small>Google · a year ago</small></span></div>
+          <p class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>“We had the most heartwarming experience celebrating two birthdays and Mother’s Day this month with an hour-long horseback ride. It had been years since I’d ridden, and I was so impressed with how calm and well-trained the horses were.”</blockquote>
+        </li>
+        <li class="rev">
+          <div class="rev-who"><img src="images/rev-jess-sartin.jpg" alt="Jess Sartin, Google reviewer" loading="lazy" width="200" height="200"><span><b>Jess Sartin</b><small>Google · 2 years ago</small></span></div>
+          <p class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>“Debbie was a wonderful guide. The trail was absolutely gorgeous, and her horses were so well mannered and cared for. I had an amazing time and loved on every one of her horses as if they were big puppies! Especially Spot.”</blockquote>
+        </li>
+        <li class="rev">
+          <div class="rev-who"><img src="images/rev-katherine-jones.jpg" alt="Katherine Jones, Google reviewer" loading="lazy" width="200" height="200"><span><b>Katherine Jones</b><small>Google · a year ago</small></span></div>
+          <p class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>“We found echo River Ranch this past June and had a terrific time on our ride with Debbie. Great trail, sweet horses and Debbie was a wonderful guide. We’d absolutely go again.”</blockquote>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -259,12 +250,11 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Out on the trail</p>
-        <h2>Riders’ own <em>photos</em></h2>
+        <h2>The moments<br><em>between the miles.</em></h2>
       </div>
       <div class="prints">
         <figure class="print reveal"><img src="images/gallery-1.jpg" alt="Two of the ranch's horses standing head to head in halters under a fir tree" loading="lazy" width="900" height="1200"><figcaption>Head to head, waiting to go out</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-2.jpg" alt="From the saddle: a saddled paint horse standing beside the trailer in early sunlight" loading="lazy" width="900" height="1200"><figcaption>Tacked up in the yard, first light</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="Three riders on horseback deep in green undergrowth under the fir timber on a soft grey morning" loading="lazy" width="1300" height="975"><figcaption>Three up, deep in the green</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-4.jpg" alt="A rider stopped beside a mossy stump covered in toys and ornaments on a forest trail" loading="lazy" width="731" height="1300"><figcaption>The decorated stump out on the trail</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-5.jpg" alt="Two riders on horseback beside the ranch's horse trailer at a trailhead" loading="lazy" width="900" height="1200"><figcaption>Hauled out to a trailhead</figcaption></figure>
         <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Two riders on paint horses side by side in a sunlit clearing" loading="lazy" width="1300" height="975"><figcaption>A clear afternoon, two up</figcaption></figure>
@@ -284,10 +274,10 @@
           <p class="eyebrow">The guide</p>
           <h2>Meet your <em>trail guide</em></h2>
           <p class="lede">Debie grew up in Washington and has been riding here for over forty years. She has helped clear and maintain a good many of the trails you’ll be on.</p>
-          <p>That’s the difference between a trail ride and a trail ride with her. She knows the terrain, and along the way she can name the native plants and the berries worth eating. In fall she runs rides built around wild mushroom and berry foraging.</p>
+          <p>That’s the difference between a trail ride and a trail ride with her. She knows the terrain, and along the way she can name the native plants and the berries worth eating. Her own listing also describes fall outings built around wild mushroom and berry foraging; ask about the current seasonal plans.</p>
           <p>The ranch is family-owned. There are only a few horses, so groups stay small and every ride is walk only — she specialises in confidence building, which is why so many of the reviews come from people who had never sat on a horse before. Missy, the ranch’s riding dog, turns up in a lot of riders’ photos.</p>
           <div class="team">
-            <h3>Who you’ll meet</h3>
+            <h3>Names from riders’ stories</h3>
             <div class="faces">
               <span class="face"><span class="ini">D</span>Debie<small>Owner &amp; trail guide</small></span>
               <span class="face"><span class="ini">H</span>Hawk<small>Horse</small></span>
@@ -340,8 +330,8 @@
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Ready when you are</p>
-        <h2>Pick a day and <em>text her</em></h2>
+        <p class="eyebrow">Your next day outside</p>
+        <h2>Let’s see where<br><em>the trail takes you.</em></h2>
       </div>
       <div class="numbers reveal">
         <div class="num"><b><span class="count tnum" data-to="40">40</span>+</b><span>years Debie has been riding, and clearing, these trails</span></div>
@@ -383,6 +373,7 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=1789068877"></script>
+<script src="js/adventure.js?v=1789068877"></script>
 </body>
 </html>
