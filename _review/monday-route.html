@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Monday route · Sept 14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f6efe3;--ink:#1e1a16;--muted:#6b6259;--rule:#e3d9c8;--card:#fffaf1;--brand:#1f4d3a;--accent:#b8562a;--green:#1f8a3b;--red:#c0392b;--amber:#b7791f;--display:'Fraunces',Georgia,'Times New Roman',serif;--body:'Karla','Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;-webkit-text-size-adjust:100%}
+a{color:var(--brand)}
+.wrap{max-width:720px;margin:0 auto;padding:0 14px 60px}
+header.top{padding:26px 0 14px;border-bottom:2px solid var(--ink)}
+header.top .eyebrow{font-family:var(--body);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--accent)}
+header.top h1{font-family:var(--display);font-weight:700;font-size:38px;line-height:1;margin:6px 0 8px}
+header.top .date{font-family:var(--display);font-style:italic;font-size:18px;color:var(--muted)}
+.loop{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px;font-size:13px}
+.loop span{background:var(--ink);color:var(--cream);padding:5px 10px;border-radius:999px}
+.loop span.start{background:var(--accent)}
+.loop i{align-self:center;color:var(--muted);font-style:normal}
+.plan{font-size:14px;color:var(--muted);margin:8px 0 0}
+h2{font-family:var(--display);font-weight:700;font-size:28px;margin:34px 0 4px;line-height:1.05}
+h2 small{font-family:var(--body);font-weight:400;font-size:14px;color:var(--muted);margin-left:8px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+.door{display:grid;grid-template-columns:34px 1fr;gap:10px;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 14px 12px 10px;margin:0 0 12px}
+.door-num{font-family:var(--display);font-weight:700;font-size:26px;color:var(--accent);line-height:1;padding-top:2px;text-align:center}
+.door-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.door h3{font-family:var(--display);font-weight:700;font-size:21px;margin:0;line-height:1.1}
+.tier{font-size:12px;font-weight:700;color:var(--brand);background:#e7efe9;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.fu-walk .tier{background:#f3e3d6;color:var(--accent)}
+.line{margin:7px 0 0;font-size:14px}
+.line .k{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:56px;margin-right:6px}
+.line em{color:var(--muted);font-style:normal}
+.line ol{margin:4px 0 0 18px;padding:0}
+.line ol li{margin:2px 0}
+.angle{background:#fbf3e6;border-left:3px solid var(--accent);padding:6px 8px;border-radius:4px}
+.note{color:var(--muted);font-size:13px}
+.early{margin:7px 0 0;font-size:13px;font-weight:700;color:var(--red)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;font-weight:700;font-size:13px;padding:8px 13px;border-radius:8px}
+.btn.ghost{background:transparent;color:var(--brand);border:1.5px solid var(--brand)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+th,td{text-align:left;vertical-align:top;padding:9px 8px;border-top:1px solid var(--rule)}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:0}
+td.ph{white-space:nowrap}
+.sm{color:var(--muted);font-size:12px}
+.tbl{overflow-x:auto}
+.fu{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:10px 12px;margin:0 0 10px}
+.fu-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.fu h3{font-family:var(--display);font-weight:700;font-size:18px;margin:0;line-height:1.1}
+.fu .last{font-family:var(--display);font-style:italic;color:var(--muted);white-space:nowrap}
+.fu-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:5px 0 0;font-size:12px}
+.stage{color:var(--muted)}
+.town{color:var(--muted)}
+.tag{background:#ebe3d3;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}
+.tag.loop{background:#e7efe9;color:var(--brand)}
+.tag.low{background:#f0e6e6;color:var(--muted)}
+.tag.held{background:#fbead0;color:var(--amber)}
+.fu-ch{font-size:13px;margin:6px 0 0}
+.fu-ch b{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+pre{white-space:pre-wrap;word-wrap:break-word;font-family:var(--body);font-size:14px;background:#fbf3e6;border:1px dashed #d9c6a4;border-radius:8px;padding:9px 10px;margin:7px 0 0}
+pre.block{background:#fff;border:1px solid var(--rule);font-size:13.5px}
+.legend{font-size:13px;color:var(--muted);margin:0 0 12px}
+@media (min-width:640px){header.top h1{font-size:46px}.door{padding:16px 18px 14px 12px}}
+@media (max-width:639px){.tbl table,.tbl tbody,.tbl tr,.tbl td{display:block}.tbl thead{display:none}.tbl tr{border-top:1px solid var(--rule);padding:8px 0}.tbl tr:first-child{border-top:0}.tbl td{border:0;padding:3px 10px}.tbl td.ph::before{content:"call ";font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Pitch route</div>
+  <h1>Monday route</h1>
+  <div class="date">Monday, September 14, 2026 · out of Colibri (1615 Cole St)</div>
+  <div class="loop"><span class="start">Colibri</span><i>→</i><span>Enumclaw (walk the block, then the 264th spur)</span><i>→</i><span>Buckley</span><i>→</i><span>Bonney Lake</span></div>
+  <p class="plan">11 doors confirmed open Monday + 2 follow-up walk-ins on the same loop · 17 to call first · 81 follow-ups due. Two doors close early (Sunrise 1 PM, Shalyn 2 PM) — hit those from Colibri or skip them.</p>
+</header>
+
+<h2>Doors <small>closest to Colibri first</small></h2>
+<p class="sub">Every Monday hour on this list is stated in that site's facts.json. Angle and counter questions are the board row's own words; "not on file" means the row doesn't have one — don't invent it at the door.</p>
+
+<article class="door" id="door-1">
+  <div class="door-num">1</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>The Dusty Shelf Books and Cafe</h3>
+      <span class="tier">Standard</span>
+    </div>
+    <div class="line"><span class="k">where</span> 1456 Cole St, Enumclaw, WA 98022 <em>· 2 blocks from Colibri</em></div>
+    <div class="line"><span class="k">Mon</span> <b>10:00 am – 7:00 pm</b></div>
+    
+    <div class="line"><span class="k">ask for</span> Josh</div>
+    <div class="line angle"><span class="k">angle</span> Josh has never actually been reached — the 9/3 text hit a landline and hard-failed. Walk in with the book-club countdown on the phone.</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Phone (360) 825-3210 is a landline — never text it.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/the-dusty-shelf-books-and-cafe/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=1456%20Cole%20St%2C%20Enumclaw%2C%20WA%2098022">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-2">
+  <div class="door-num">2</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Seeder&#x27;s Steak &amp; Brew House</h3>
+      <span class="tier">Premium</span>
+    </div>
+    <div class="line"><span class="k">where</span> 1502 Railroad St, Enumclaw, WA 98022 <em>· 1 block over from Cole</em></div>
+    <div class="line"><span class="k">Mon</span> <b>11:00 am – 2:00 am</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> seederssteakandbrew.com has NO DNS record — expired 7/24, WHOIS says redemptionPeriod. Their site is offline right now and the domain is on the clock before deletion.</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Board held the staged email for your one word — a walk-in is your call. No prior contact recorded.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/seeders-steak-and-brew-house/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=1502%20Railroad%20St%2C%20Enumclaw%2C%20WA%2098022">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-3">
+  <div class="door-num">3</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Sunrise Coffee Bar</h3>
+      <span class="tier">$500 standard</span>
+    </div>
+    <div class="line"><span class="k">where</span> 1325 Cole St, Enumclaw, WA 98022 <em>· 3 blocks from Colibri</em></div>
+    <div class="line"><span class="k">Mon</span> <b>7:00 am – 1:00 pm</b></div>
+    <div class="early">CLOSES 1 PM — pop over from Colibri, not on the afternoon loop</div>
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Hours are from joe.coffee + Restaurantji (facts.json marks them unverified).</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/sunrise-coffee-bar/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=1325%20Cole%20St%2C%20Enumclaw%2C%20WA%2098022">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-4">
+  <div class="door-num">4</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Enumclaw Veterinary Hospital</h3>
+      <span class="tier">Premium</span>
+    </div>
+    <div class="line"><span class="k">where</span> 1209 Cole St, Enumclaw, WA 98022 <em>· 4 blocks down Cole</em></div>
+    <div class="line"><span class="k">Mon</span> <b>8:00 am – 5:00 pm</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Gordon Stage A #65 (CALL frame) — email staged, never sent. Walk-in is a clean first touch.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/enumclaw-veterinary-hospital/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=1209%20Cole%20St%2C%20Enumclaw%2C%20WA%2098022">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-5">
+  <div class="door-num">5</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Four Seasons Chinese Restaurant</h3>
+      <span class="tier">Premium ($1,000)</span>
+    </div>
+    <div class="line"><span class="k">where</span> 820 Griffin Ave, Enumclaw, WA 98022 <em>· short drive, Griffin Ave</em></div>
+    <div class="line"><span class="k">Mon</span> <b>12:00 pm – 8:00 pm</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Image-gate PASS 9/4 — link shareable as-is. Pitch draft staged in gordon-final, never sent.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/four-seasons/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=820%20Griffin%20Ave%2C%20Enumclaw%2C%20WA%2098022">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-6">
+  <div class="door-num">6</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Crossley&#x27;s Country Brew</h3>
+      <span class="tier">$750 + tax</span>
+    </div>
+    <div class="line"><span class="k">where</span> 42810 264th Ave SE, Enumclaw, WA 98022 <em>· north spur on 264th</em></div>
+    <div class="line"><span class="k">Mon</span> <b>4 am – 6 pm</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>Current board prices and promo</li><li>Phone number and the owner&#x27;s name (nothing is published)</li></ol></div>
+    <div class="line note">Owner sharing authorized 9/10 (revision 16f9affa). MenuPix says 4:30 am weekdays — not used.</div>
+    <div class="btns">
+      <a class="btn" href="https://crossleys-country-brew-enumclaw.netlify.app/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=42810%20264th%20Ave%20SE%2C%20Enumclaw%2C%20WA%2098022">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-7">
+  <div class="door-num">7</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Baked by Shalyn</h3>
+      <span class="tier">Standard</span>
+    </div>
+    <div class="line"><span class="k">where</span> 39929 264th Ave SE, Enumclaw, WA 98022 <em>· Krain Corner, 3 min past Crossley&#x27;s</em></div>
+    <div class="line"><span class="k">Mon</span> <b>8:00 am – 2:00 pm</b></div>
+    <div class="early">CLOSES 2 PM MON — only if you leave Colibri by ~1:30, else Tue</div>
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> No email or phone door exists — the walk-in IS the only door.</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Board&#x27;s approved owner demo is baked-by-shalyn-enumclaw.netlify.app (verified 9/10).</div>
+    <div class="btns">
+      <a class="btn" href="https://baked-by-shalyn-enumclaw.netlify.app/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=39929%20264th%20Ave%20SE%2C%20Enumclaw%2C%20WA%2098022">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-8">
+  <div class="door-num">8</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Buckley Plateau Espresso</h3>
+      <span class="tier">Standard</span>
+    </div>
+    <div class="line"><span class="k">where</span> 29021 WA-410 E, Buckley, WA 98321 <em>· 410 into Buckley</em></div>
+    <div class="line"><span class="k">Mon</span> <b>4:00 am – 6:00 pm</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Finished demo — show it on the phone.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/buckley-plateau-espresso/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=29021%20WA-410%20E%2C%20Buckley%2C%20WA%2098321">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-9">
+  <div class="door-num">9</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>CLINK Coffee Co.</h3>
+      <span class="tier">Standard</span>
+    </div>
+    <div class="line"><span class="k">where</span> 202 WA-162 E, South Prairie, WA 98385 <em>· 10-min spur south of Buckley on 162</em></div>
+    <div class="line"><span class="k">Mon</span> <b>4:30 AM – 6:00 PM</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>Does &#x27;Fill a Tray Friday&#x27; recur?</li><li>Shoot the exterior — the demo&#x27;s is Street View, DEMO-ONLY</li></ol></div>
+    <div class="line note">Revised 9/2 with the laws applied.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/clink-coffee-co/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=202%20WA-162%20E%2C%20South%20Prairie%2C%20WA%2098385">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-10">
+  <div class="door-num">10</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>Nails 410</h3>
+      <span class="tier">Standard ($500)</span>
+    </div>
+    <div class="line"><span class="k">where</span> 20820 WA-410 E, Bonney Lake, WA 98391 <em>· 410 west — Babalouie&#x27;s is across the street</em></div>
+    <div class="line"><span class="k">Mon</span> <b>9:30 am – 7:00 pm</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Image-gate PASS 9/4 — link shareable as-is.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/nails-410/">Demo</a>
+      <a class="btn ghost" href="https://hjsdesigns.github.io/demos/for/nails-410/">Owner packet</a>
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=20820%20WA-410%20E%2C%20Bonney%20Lake%2C%20WA%2098391">Directions</a>
+    </div>
+  </div>
+</article>
+<article class="door" id="door-11">
+  <div class="door-num">11</div>
+  <div class="door-body">
+    <div class="door-top">
+      <h3>T J Nails</h3>
+      <span class="tier">Premium ($1,000)</span>
+    </div>
+    <div class="line"><span class="k">where</span> 9925 214th Ave E, Bonney Lake, WA 98391 <em>· same building as Plateau Jiu Jitsu</em></div>
+    <div class="line"><span class="k">Mon</span> <b>9:30 am – 7:00 pm</b></div>
+    
+    <div class="line"><span class="k">ask for</span> not on file</div>
+    <div class="line angle"><span class="k">angle</span> not on file</div>
+    <div class="line"><span class="k">ask at the counter</span><ol><li>not on file</li></ol></div>
+    <div class="line note">Image-gate PASS 9/4 — link shareable as-is. Pitch draft staged in gordon-final, never sent.</div>
+    <div class="btns">
+      <a class="btn" href="https://hjsdesigns.github.io/demos/t-j-nails/">Demo</a>
+      
+      <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=9925%20214th%20Ave%20E%2C%20Bonney%20Lake%2C%20WA%2098391">Directions</a>
+    </div>
+  </div>
+</article>
+<h2 style="font-size:22px;margin-top:22px">Follow-up walk-ins on the same loop</h2>
+<p class="sub">Already pitched — these two are on the Bonney Lake leg anyway.</p>
+
+<article class="door fu-walk">
+  <div class="door-num">↻</div>
+  <div class="door-body">
+    <div class="door-top"><h3>Babalouie&#x27;s</h3><span class="tier">follow-up walk-in</span></div>
+    <div class="line"><span class="k">where</span> 20833 WA-410, Bonney Lake, WA 98391 <em>· across from Nails 410</em></div>
+    <div class="line"><span class="k">Mon</span> <b>11:00am – 12:00am</b></div>
+    <div class="line angle"><span class="k">why</span> Both emails BOUNCED (Dominicshin@yahoo.com 552, babalouies07@gmail.com 550) — nobody there has ever seen the demo.</div>
+    <div class="line"><span class="k">do</span> Ask for Dominic by name (front staff pointed at him). Get the address confirmed out loud, letter by letter. Or call (253) 862-7521 and ask for Cher.</div>
+    <div class="btns"><a class="btn" href="https://hjsdesigns.github.io/demos/babalouies/">Demo</a><a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=20833%20WA-410%2C%20Bonney%20Lake%2C%20WA%2098391">Directions</a></div>
+  </div>
+</article>
+<article class="door fu-walk">
+  <div class="door-num">↻</div>
+  <div class="door-body">
+    <div class="door-top"><h3>Plateau Jiu Jitsu</h3><span class="tier">follow-up walk-in</span></div>
+    <div class="line"><span class="k">where</span> 9925 214th Ave E, Suite I, Bonney Lake, WA 98391 <em>· same building as T J Nails — evening class window</em></div>
+    <div class="line"><span class="k">Mon</span> <b>9 – 10 AM · 4:15 – 7:30 PM</b></div>
+    <div class="line angle"><span class="k">why</span> Pitched by phone 9/4, John&#x27;s interested in the long-term deal; the 5-item photo ask has sat unanswered since 9/4.</div>
+    <div class="line"><span class="k">do</span> Sit down with John: $125/mo?, Sat open mat, Littles, Google claim. Don&#x27;t re-send the list — ask for one date and film the room yourself.</div>
+    <div class="btns"><a class="btn" href="https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/">Demo</a><a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=9925%20214th%20Ave%20E%2C%20Suite%20I%2C%20Bonney%20Lake%2C%20WA%2098391">Directions</a></div>
+  </div>
+</article>
+
+<h2>Call first <small>not a route slot</small></h2>
+<p class="sub">Monday hours unknown, or flagged call-first / photo-blocked. Phones are from the board row or the site's facts.json.</p>
+<div class="tbl"><table>
+<thead><tr><th>Business</th><th>Phone</th><th>Why call first</th></tr></thead>
+<tbody><tr><td><b>Yella Beak Saloon</b><br><span class="sm">Enumclaw · 23525 SE 436th St</span></td><td class="ph">(360) 625-8621</td><td>3-way hours conflict (ASK-CLIENT flag). facts.json says Mon 11 AM – 10 PM, but it&#x27;s not settled. HOT lead, Gordon Stage A #53 never sent.<br><a href="https://hjsdesigns.github.io/demos/yella-beak-saloon/">demo</a></td></tr><tr><td><b>Enumclaw Auto Rebuild &amp; Glass</b><br><span class="sm">Enumclaw · 1942 Railroad St</span></td><td class="ph">(360) 825-2981</td><td>Open Mon 8–5, but the live demo has ZERO photos (SVG texture only) — photo-blocked. Drive-by shoot first.<br><a href="https://hjsdesigns.github.io/demos/enumclaw-auto-rebuild-and-glass/">demo</a></td></tr><tr><td><b>Ron&#x27;s Auto Care Center</b><br><span class="sm">Enumclaw · 435 Griffin Ave</span></td><td class="ph">(360) 825-5563</td><td>Hours conflict in facts.json (&#x27;Closes 5 PM&#x27; vs &#x27;24/7&#x27;). Three real photos landed 9/10 in the private revision — you still need to review before an owner link. Email rjsemal@gmail.com on file.<br><a href="https://hjsdesigns.github.io/demos/rons-auto-care-center/">demo</a></td></tr><tr><td><b>T Nails &amp; Spa</b><br><span class="sm">Enumclaw · 1116 Stevenson Ave</span></td><td class="ph">(360) 226-3948</td><td>PHOTO-BLOCKED — no exterior exists. Mon 9:30–7 per facts.json. Drive-by shot of the storefront, then it&#x27;s a door.<br><a href="https://hjsdesigns.github.io/demos/t-nails-spa/">demo</a></td></tr><tr><td><b>Black Bear Outpost</b><br><span class="sm">Enumclaw · Cole St (number not on the row)</span></td><td class="ph">not on file</td><td>PHOTO-BLOCKED, 0 photos, no demo yet — but both domains are hijacked, the hottest angle on the board. Shoot it while you&#x27;re on Cole St.<br>no demo yet</td></tr><tr><td><b>Grow with Grace Fitness</b><br><span class="sm">Enumclaw · 856 Cole St</span></td><td class="ph">(253) 740-0878</td><td>CALL/DM FIRST — her own Aug 2025 IG post says not coaching; booking link now spray tans. Ask for Gracie Tidwell. Hours not on file.<br><a href="https://hjsdesigns.github.io/demos/grow-with-grace-fitness/">demo</a></td></tr><tr><td><b>Revolution Speed Shop</b><br><span class="sm">Enumclaw · address unconfirmed (single source)</span></td><td class="ph">(206) 465-4881</td><td>No address, no hours on file. Demo approved 9/10 and shareable — confirm where the shop actually is.<br><a href="https://hjsdesigns.github.io/demos/revolution-speed-shop/">demo</a></td></tr><tr><td><b>Combat Sport &amp; Fitness</b><br><span class="sm">Enumclaw · 750 Hwy 410 S</span></td><td class="ph">(360) 802-3780</td><td>facts.json only lists class times (5–8 pm etc.), no Monday row. You know Jeff — text him. Domain renews 10/6.<br><a href="https://hjsdesigns.github.io/demos/combat-sport-and-fitness/">demo</a></td></tr><tr><td><b>Thunder Rail Stables</b><br><span class="sm">Enumclaw · 27102 SE 424th St</span></td><td class="ph">(206) 707-6192</td><td>Facebook posts Mon 9–9 but it&#x27;s a barn, lessons by appointment — facts.json says CONFIRM WITH OWNER. Owner Kelly Neu. Wedge: two competing FB pages + dead thunderrailstables.com.<br><a href="https://hjsdesigns.github.io/demos/thunder-rail-stables/">demo</a></td></tr><tr><td><b>Echo River Ranch</b><br><span class="sm">Enumclaw · 37901 304th Way SE</span></td><td class="ph">(360) 367-1201</td><td>Directory says Mon 12–7, Visit Rainier says by appointment only. Ask for Debie (spelling unconfirmed).<br><a href="https://hjsdesigns.github.io/demos/echo-river-ranch/">demo</a></td></tr><tr><td><b>Kiki Beauty Co</b><br><span class="sm">Buckley · 740 Main St</span></td><td class="ph">(206) 665-9651</td><td>Closure hunt incomplete — verify open + hours before walking in. No hours in facts.json.<br><a href="https://hjsdesigns.github.io/demos/kiki-beauty-co/">demo</a></td></tr><tr><td><b>Bonney Lake Barbecue</b><br><span class="sm">Bonney Lake · not on the row</span></td><td class="ph">(253) 447-7178</td><td>On the call list — can&#x27;t receive texts, no email. No facts.json, so Monday hours unknown.<br><a href="https://hjsdesigns.github.io/demos/bonney-lake-barbecue/">demo</a></td></tr><tr><td><b>Naches Tavern</b><br><span class="sm">Greenwater (off loop) · 58411 State Route 410 E</span></td><td class="ph">(360) 663-2267</td><td>Confirm name + hours with Patricia before pitching. 20+ miles east — not today&#x27;s loop.<br><a href="https://hjsdesigns.github.io/demos/naches-tavern/">demo</a></td></tr><tr><td><b>Williams Family Farm</b><br><span class="sm">Enumclaw · 23131 SE 464th St</span></td><td class="ph">(509) 948-3246</td><td>Seasonal; facts.json hours aren&#x27;t labeled by day. Their poster prints williams-farms.com and it has no DNS. Ask: 2026 season dates, admission, owner first names.<br><a href="https://hjsdesigns.github.io/demos/williams-family-farm/">demo</a></td></tr><tr><td><b>Mike&#x27;s Shop</b><br><span class="sm">Buckley · not on file</span></td><td class="ph">not on file</td><td>Recon only (9/5 Monday lead) — no demo, no hours. &#x27;Only auto shop in Buckley invisible online.&#x27;<br>no demo yet</td></tr><tr><td><b>Caviar Kennels</b><br><span class="sm">not on file · not on file</span></td><td class="ph">not on file</td><td>Recon only — no demo, no hours. Facebook + a dead domain.<br>no demo yet</td></tr><tr><td><b>R&amp;R Stables and Equestrian Event Center</b><br><span class="sm">not on file · not on file</span></td><td class="ph">not on file</td><td>Recon only — no demo, no hours. Event venue with nothing to send a show organizer.<br>no demo yet</td></tr></tbody>
+</table></div>
+
+<h2>Follow-ups due <small>81 · oldest first</small></h2>
+<p class="legend">Every pitched / follow-up row last touched 9/11 or earlier. Declined and never-pitch names are out (Esa's, Fill's, Rowdy Roan, Scott's, The Claw, The Garage). Drafts are in your voice; a bracket at the front is a note to you, not part of the message.</p>
+
+<article class="fu">
+  <div class="fu-head">
+    <h3>Sweet Necessities</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Sweet Necessities the other week about the site I made for you guys: https://sweet-necessities-enumclaw.netlify.app wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Local</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by The Local the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/the-local/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Pie Goddess</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by The Pie Goddess the other week about the site I made for you guys: https://pie-goddess-enumclaw.netlify.app wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Glam &amp; Glow Co.</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Glam &amp; Glow Co. the other week about the site I made for you guys: https://glam-and-glow-enumclaw.netlify.app wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>410 Rentals</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 7:00 am – 6:00 pm</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row · phone (facts.json) (253) 826-7671</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by 410 Rentals the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/410-rentals/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Bonney Lake Grocery</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span> <span class="tag low">no-benefit category</span> <span class="tag">Mon 6:30 am – 11:00 pm</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row · phone (facts.json) (253) 863-3273</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Bonney Lake Grocery the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/bonney-lake-grocery/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Bonnie&#x27;s Buns</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Bonnie&#x27;s Buns the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/bonnies-buns/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Buckley Pit Stop Express</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span> <span class="tag low">no-benefit category</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row · phone (facts.json) (360) 829-3201</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Buckley Pit Stop Express the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/buckley-pit-stop-express/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Cascade Automotive</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Cascade Automotive the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/cascade-automotive/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>El Camino Restaurant</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 825-5999 (carrier accepted)</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for El Camino Restaurant the other week: https://hjsdesigns.github.io/demos/el-camino-enumclaw/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Enumclaw Frame, Inc.</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 8:00 am – 4:30 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 350-2678 (carrier accepted)</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Enumclaw Frame, Inc. the other week: https://hjsdesigns.github.io/demos/enumclaw-frame/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Jötunheim Meadery</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email sent</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email winkelhausenterprises@gmail.com · phone (facts.json) (253) 921-2556</div>
+  <pre class="draft">[reply on the thread] Hey, this is Hayden, just bumping this back up in case it got buried. The site I made for Jötunheim Meadery: https://hjsdesigns.github.io/demos/jotunheim-meadery/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Carl Hart CPAs</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email sent</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9:00 AM – 5:00 PM</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email carl2@carlhartcpa.com · phone (facts.json) (360) 825-5515</div>
+  <pre class="draft">[reply on the thread] Hey, this is Hayden, just bumping this back up in case it got buried. The site I made for Carl Hart CPAs: https://hjsdesigns.github.io/demos/carl-hart-and-associates-cpas/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Hi-Way Grocery &amp; Deli</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span> <span class="tag low">no-benefit category</span> <span class="tag">Mon 4:30 AM – 11:00 PM</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row · phone (facts.json) (360) 829-0537</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Hi-Way Grocery &amp; Deli the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/hi-way-grocery-and-deli/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Jubilee Burgers</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Jubilee Burgers the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/jubilee-burgers-buckley/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Main St Dairy Freeze</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    
+    <span class="town">Sumner</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 863-8010 (carrier accepted)</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Main St Dairy Freeze the other week: https://hjsdesigns.github.io/demos/main-st-dairy-freeze/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Match Mart</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span> <span class="tag low">no-benefit category</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Match Mart the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/match-mart/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Oshio Teriyaki &amp; Sushi</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 10:30 am – 8:30 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row · phone (facts.json) (360) 802-8988</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Oshio Teriyaki &amp; Sushi the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/oshio-teriyaki-and-sushi/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Pick &amp; Shovel Saloon</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    
+    <span class="town">Black Diamond</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 761-7021 (carrier accepted)</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Pick &amp; Shovel Saloon the other week: https://hjsdesigns.github.io/demos/pick-and-shovel-saloon/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Stop N Shop</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in</span>
+    <span class="tag loop">on today's loop</span> <span class="tag low">no-benefit category</span> <span class="tag">Mon 5:30 AM – 10:00 PM</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in · Stage A email staged, never sent · text/call number is on the sheet, not the row · phone (facts.json) (360) 825-2520</div>
+  <pre class="draft">Hey, this is Hayden, just checking back in. I stopped by Stop N Shop the other week about the site I made for you guys: https://hjsdesigns.github.io/demos/stop-n-shop/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Tres Reinas Market</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9 AM – 8 PM</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 625-8432 (carrier accepted)</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Tres Reinas Market the other week: https://hjsdesigns.github.io/demos/tres-reinas-market/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Wayman&#x27;s Vintage Market</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 381-7506 (carrier accepted)</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Wayman&#x27;s Vintage Market the other week: https://hjsdesigns.github.io/demos/waymans-vintage-market/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Charlie&#x27;s Cafe</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email + text 9/3 · MEETING</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 6:00 AM – 2:00 PM</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text Autumn&#x27;s cell (360) 761-8387 · email</div>
+  <pre class="draft">[board has no record of how the 9/4 meeting went — log that first] Hey Autumn, this is Hayden, just checking back in. Anything you&#x27;d want changed on the site before I put it up for you, I can turn it around in a day, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Moms Tacos</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · sheet #1</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 11 AM – 8 PM</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> Gordon Stage A #17 EMAIL — staged, never sent · phone (facts.json) (206) 377-9107</div>
+  <pre class="draft">[Not a follow-up yet — the cold email is still staged in leads/gordon-final. Say go and it sends.]</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Honto Teriyaki II</h3>
+    <span class="last">9/03</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 11:00 AM – 8:30 PM</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 862-5781 (carrier accepted)</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Honto Teriyaki II the other week: https://hjsdesigns.github.io/demos/honto-teriyaki-ii/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Babalouie&#x27;s</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bounced</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 11:00am – 12:00am</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email DEAD — bounced twice · call (253) 862-7521 (ask for Cher) or walk in</div>
+  <pre class="draft">[No text possible — call or walk in on today&#x27;s loop] Hey, this is Hayden, I stopped in a couple weeks back and got an email from one of the girls up front for the site I made for you guys, but it bounced twice. Is Dominic around, or is there a better email I can send it to</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Firehouse Pub</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 11 am – 11 pm</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 829-2999</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for The Firehouse Pub the other week: https://firehouse-pub-buckley.netlify.app wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Carbonado Saloon</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town">Carbonado</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 829-4347</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Carbonado Saloon the other week: https://carbonado-saloon.netlify.app wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>CC&#x27;s Collectibles</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 825-3134</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for CC&#x27;s Collectibles the other week: https://ccs-collectibles-enumclaw.netlify.app wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Twisted Hive</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 284-4080</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for The Twisted Hive the other week: https://hjsdesigns.github.io/demos/the-twisted-hive/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Plateau Wine and Beer</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 825-2734</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Plateau Wine and Beer the other week: https://hjsdesigns.github.io/demos/plateau-wine-and-beer/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Enumclaw Tire Shop</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 825-3121</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for The Enumclaw Tire Shop the other week: https://hjsdesigns.github.io/demos/enumclaw-tire-shop/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Athena&#x27;s</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (206) 280-4330</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Athena&#x27;s the other week: https://hjsdesigns.github.io/demos/athenas/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Enumclaw Family Optometry</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 8 am–12 pm · 1–5 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 825-3000</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Enumclaw Family Optometry the other week: https://hjsdesigns.github.io/demos/enumclaw-family-optometry-clinic/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Nail Lab by JC</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town">Sumner</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 453-6965</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for The Nail Lab by JC the other week: https://hjsdesigns.github.io/demos/the-nail-lab-by-jc/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Daisy&#x27;s Boutique Antiques</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town">Orting</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 314-8314</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Daisy&#x27;s Boutique Antiques the other week: https://hjsdesigns.github.io/demos/daisys-boutique-antiques/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Nana&#x27;s Sweets and Crumbles</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (360) 829-7768</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Nana&#x27;s Sweets and Crumbles the other week: https://hjsdesigns.github.io/demos/nanas-sweets-and-crumbles/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Hills of Comics</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-04</span>
+    
+    <span class="town">Auburn</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 333-8841</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Hills of Comics the other week: https://hjsdesigns.github.io/demos/hills-of-comics/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Outpost Coffee &amp; Creamery</h3>
+    <span class="last">9/04</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-04</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 5:00 am – 6:00 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email outpost.coffee.creamery@gmail.com · phone (facts.json) (206) 707-6193</div>
+  <pre class="draft">[reply on the thread] Hey, this is Hayden, just bumping this back up in case it got buried. The site I made for The Outpost Coffee &amp; Creamery: https://hjsdesigns.github.io/demos/outpost-coffee-and-creamery/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Plateau Jiu Jitsu</h3>
+    <span class="last">9/05</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">demo-ready · pitched by phone 9/4 (interested in the long-term deal)</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9 – 10 AM · 4:15 – 7:30 PM</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> phone/text — pitched by phone 9/4 (John) · phone (facts.json) (253) 797-1223</div>
+  <pre class="draft">Hey John, this is Hayden, no stress on the photos, honestly easier if I just swing by and film the room myself. What day this week works for you, I&#x27;m down for whatever 🤙</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Pacific Ave Tattoo</h3>
+    <span class="last">9/06</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 2026-09-06</span>
+    
+    <span class="town">Tacoma</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text (253) 292-0298</div>
+  <pre class="draft">Hey, this is Hayden, just bumping this back up in case it got buried. Sent over the site I made for Pacific Ave Tattoo the other week: https://hjsdesigns.github.io/demos/pacific-ave-tattoo/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Mount Peak Tattoo</h3>
+    <span class="last">9/07</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · visited 9/7</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 12 – 8 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> text — existing thread with Mark (11:13 price text) · phone (facts.json) (808) 286-9195</div>
+  <pre class="draft">[delete the old unsent duplicate in Messages first; exact terms are in Clients/Mount Peak Tattoo.md] Hey Mark, this is Hayden, good seeing you the other day. Everything in one spot: the site https://hjsdesigns.github.io/demos/mount-peak-tattoo/ then [the $545 / Nov 1 terms — wording from the client note], next step is the domain which I can handle, and shoot me your list of anything you want changed whenever you get a sec</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Captain Jack&#x27;s Bar &amp; Grill</h3>
+    <span class="last">9/07</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in 9/6, owner not there</span>
+    
+    <span class="town">Sumner</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk in at 11 AM open — owner is there then (Sumner) · phone (facts.json) (253) 826-0679</div>
+  <pre class="draft">[walk-in opener, not a text] Hey, this is Hayden, stopped in a couple times and kept missing you. Noticed the .shop domain on your Google listing goes nowhere, so I built the site to put on it, not planning on selling you anything today, just wanted to give you this to look at</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Smokehouse &amp; More</h3>
+    <span class="last">9/07</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 9/7</span>
+    
+    <span class="town">Black Diamond</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email smokehouseandmore@yahoo.com · phone (facts.json) (360) 886-9293</div>
+  <pre class="draft">[reply on the thread] Hey, this is Hayden, just bumping this back up in case it got buried. The site I made for The Smokehouse &amp; More: https://hjsdesigns.github.io/demos/the-smokehouse-and-more/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Wings of Grace Home Care</h3>
+    <span class="last">9/07</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 9/7</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 10:00 am – 4:00 pm</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email wingsofgracehomecareservices@gmail.com · phone (facts.json) (253) 862-0062</div>
+  <pre class="draft">[reply on the thread] Hey Jerilyn, this is Hayden, just bumping this back up in case it got buried. The site I made for Wings of Grace Home Care: https://hjsdesigns.github.io/demos/wings-of-grace-home-care-services/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Pretty Nails</h3>
+    <span class="last">9/07</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 9/7</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9:30 AM – 7 PM</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email trangtranseahurst@icloud.com · phone (facts.json) (253) 891-9392</div>
+  <pre class="draft">[reply on the thread] Hey, this is Hayden, just bumping this back up in case it got buried. The site I made for Pretty Nails: https://hjsdesigns.github.io/demos/pretty-nails-bonney-lake/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Enumclaw Adventures</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · replied</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon Monday – Thursday 6:30 am – 6:00 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> her email thread (replied 9/8) — reply on it, never a new email · phone (facts.json) (702) 723-6342</div>
+  <pre class="draft">[reply on her thread, short] Hey Meg, this is Hayden, no rush at all on this. If it&#x27;s easier I&#x27;m around Enumclaw most days and could swing by and walk you and Tyler through it in person, whenever works easiest for you guys</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Bridget&#x27;s Boutique</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email bridget_bmp@yahoo.com (cold 9/3 + bump 9/8)</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Bridget&#x27;s Boutique is still up whenever you want a look: https://bridgets-boutique-enumclaw.netlify.app if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Öka Sugar &amp; Skin</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email kirstanleah@gmail.com (cold 9/3 + bump 9/8)</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Öka Sugar &amp; Skin is still up whenever you want a look: https://hjsdesigns.github.io/demos/oka-sugar-and-skin/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Black Diamond Bakery</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · text 9/3</span>
+    <span class="tag held">held</span>
+    <span class="town">Black Diamond</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> HELD — call (360) 886-2235 first; staged email after</div>
+  <pre class="draft">[HELD — call first, this is the call, not a text] Hey, this is Hayden, quick one so I don&#x27;t put the wrong info out there for you guys: is (360) 886-2741 or 886-2235 the number you want customers calling, and are you open till 8 or 9 at night</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Buds &amp; Blooms</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email wecare@enumclawflorist.com (cold 9/3 + bump 9/8)</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Buds &amp; Blooms is still up whenever you want a look: https://hjsdesigns.github.io/demos/buds-and-blooms/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Catwalk Salon And Spa</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Lake Tapps</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email blondequeen@glossgenius.com (cold 9/3 + bump 9/8) · phone (facts.json) (253) 269-4500</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Catwalk Salon And Spa is still up whenever you want a look: https://hjsdesigns.github.io/demos/catwalk-salon-and-spa/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Lavender Hair Studio</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · bump held</span>
+    <span class="tag loop">on today's loop</span> <span class="tag held">held</span> <span class="tag">Mon 7:00 am – 4:30 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email colettefrancel@gmail.com — bump HELD (Governor ASK) · phone (facts.json) (206) 372-9257</div>
+  <pre class="draft">[HELD — your call: send as-is or confirm the facts with the owner first] Hey, this is Hayden, just bumping this back up in case it got buried. The site I made for Lavender Hair Studio: https://hjsdesigns.github.io/demos/lavender-hair-studio/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Tangles Salon</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email brtangles@yahoo.com (cold 9/3 + bump 9/8) · phone (facts.json) (253) 862-0512</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Tangles Salon is still up whenever you want a look: https://hjsdesigns.github.io/demos/tangles-salon/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Puget Construction</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 7:30 AM – 4:00 PM</span>
+    <span class="town">Buckley</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email kris@pcsjac.com (cold 9/3 + bump 9/8) · phone (facts.json) (206) 793-4900</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Puget Construction is still up whenever you want a look: https://hjsdesigns.github.io/demos/puget-construction-services/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Roads Paving</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 8:00 am – 4:00 pm</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email info@roadspavingwa.com (cold 9/3 + bump 9/8) · phone (facts.json) (253) 630-5589</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Roads Paving is still up whenever you want a look: https://hjsdesigns.github.io/demos/roads-paving-washington/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Front Porch Quilts</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email lorna@frontporchquilts.comcastbiz.net (cold 9/3 + bump 9/8) · phone (facts.json) (360) 761-7185</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Front Porch Quilts is still up whenever you want a look: https://hjsdesigns.github.io/demos/front-porch-quilts/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Johann&#x27;s Garden</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email johannsgarden@gmail.com (cold 9/3 + bump 9/8)</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Johann&#x27;s Garden is still up whenever you want a look: https://hjsdesigns.github.io/demos/johanns-garden/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Plateau Diesel Performance</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 7:00 am – 5:00 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email admin@plateaudiesel.com (cold 9/3 + bump 9/8) · phone (facts.json) 360-334-6300</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Plateau Diesel Performance is still up whenever you want a look: https://hjsdesigns.github.io/demos/plateau-diesel/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Purdy&#x27;s Public House &amp; Arcade</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · bump held</span>
+    <span class="tag held">held</span>
+    <span class="town">Sumner</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email dan@witsendentertainment.com — bump HELD (Governor ASK) · phone (facts.json) (253) 447-7178</div>
+  <pre class="draft">[HELD — your call: send as-is or confirm the facts with the owner first] Hey, this is Hayden, just bumping this back up in case it got buried. The site I made for Purdy&#x27;s Public House &amp; Arcade: https://hjsdesigns.github.io/demos/purdys-public-house-and-arcade/ wanted to give you the link so you can look it over yourself, just wanted to pick your brain and see what you thought</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Rainier Bar &amp; Grill</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email enjoy@therainier.com (cold 9/3 + bump 9/8) · phone (facts.json) (360) 825-6363</div>
+  <pre class="draft">[reply on the thread — day 10] Hey Jeff, this is Hayden, last one from me on this I promise. The site I made for The Rainier Bar &amp; Grill is still up whenever you want a look: https://hjsdesigns.github.io/demos/rainier-bar-and-grill/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>King Tax Service</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9:00 AM – 6:30 PM</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email amy@kingtaxservice.com (cold 9/3 + bump 9/8) · phone (facts.json) (360) 802-1211</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for King Tax Service is still up whenever you want a look: https://hjsdesigns.github.io/demos/king-tax-service/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Lake Tapps Chiropractic</h3>
+    <span class="last">9/08</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">follow-up · bumped 9/8</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9:00 am – 7:00 pm</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email ltcc@laketappschiro.com (cold 9/3 + bump 9/8) · phone (facts.json) (253) 862-2138</div>
+  <pre class="draft">[reply on the thread — day 10] Hey, this is Hayden, last one from me on this I promise. The site I made for Lake Tapps Chiropractic is still up whenever you want a look: https://hjsdesigns.github.io/demos/lake-tapps-chiropractic-center/ if it&#x27;s not for you no hard feelings, thanks for taking a look either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Beau Rogers Chiropractic</h3>
+    <span class="last">9/09</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 9/9</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email rogersdevlin@outlook.com (9/9 nudge)</div>
+  <pre class="draft">[email reply] Hey Dr. Rogers, this is Hayden, just checking back in on the domain. The site&#x27;s built and ready to go the second it&#x27;s bought, happy to walk you through the Namecheap page over the phone if that&#x27;s easier, no rush on my end</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>West Pioneer Grill</h3>
+    <span class="last">9/09</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 9/9</span>
+    
+    <span class="town">Puyallup</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email pioneerg@gmail.com (9/9) · call (253) 604-4507, owner in at 8 AM</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for West Pioneer Grill last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Enumclaw Junction</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email enumclawjunction@gmail.com (2 sent) — board says no third email, call is next</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Enumclaw Junction last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Branex Feed &amp; Supply</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email info@branexfeedandsupply.com (2 sent) — board says no third email, call is next</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Branex Feed &amp; Supply last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Sumalee&#x27;s Thai Cuisine</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email sumaleethaicuisine@yahoo.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 826-3514</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Sumalee&#x27;s Thai Cuisine last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Valley Landscape Supply</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    
+    <span class="town">Orting</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email valleylandscapesupply@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 820-6907</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Valley Landscape Supply last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Black Diamond Dentistry</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    
+    <span class="town">Black Diamond</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email info@blackdiamonddentistry.com (2 sent) — board says no third email, call is next · phone (facts.json) (360) 886-1300</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Black Diamond Dentistry last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Sweet Pea&#x27;s Mercantile</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email holm5@me.com (2 sent) — board says no third email, call is next</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey Carrie, this is Hayden, I emailed over a site I made for Sweet Pea&#x27;s Mercantile last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Griffin &amp; Wells Curry House</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 12:00 pm – 8:30 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email griffinandwellscafe@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (360) 625-8307</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Griffin &amp; Wells Curry House last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Taqueria El Corral</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 11:00 am – 8:00 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email t.elcorral@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 217-3289</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Taqueria El Corral last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>The Studio on Cole Street</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 7:00 am – 10:00 pm</span>
+    <span class="town">Enumclaw</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email thestudiooncolestreet@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 495-2999</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for The Studio on Cole Street last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Glamour Nails &amp; Spa</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9:00 am – 6:30 pm</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email glamournails.bonneylake@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 987-5879</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Glamour Nails &amp; Spa last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Doggone Salon At Lake Tapps</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9:30 am – 4:00 pm</span>
+    <span class="town">Lake Tapps</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email doggonesalongrooming@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 862-2669</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Doggone Salon At Lake Tapps last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Spa Nails</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    <span class="tag loop">on today's loop</span> <span class="tag">Mon 9:30 am – 7:00 pm</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email bellanguyen1027@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 863-9628</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Spa Nails last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Jenna&#x27;s Pet Grooming</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    
+    <span class="town">Auburn</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email jennagroomsdogs@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 333-2346</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Jenna&#x27;s Pet Grooming last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Lulú&#x27;s Bakery Shop</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    
+    <span class="town">Tacoma</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email lulubakeryshop77@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (253) 278-8112</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Lulú&#x27;s Bakery Shop last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Robin the Groomer</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · email 2026-09-10 (day-5 bump)</span>
+    
+    <span class="town"></span>
+  </div>
+  <div class="fu-ch"><b>channel</b> email robinthegroomer@gmail.com (2 sent) — board says no third email, call is next · phone (facts.json) (206) 941-2899</div>
+  <pre class="draft">[CALL — no third email. Voicemail line:] Hey, this is Hayden, I emailed over a site I made for Robin the Groomer last week, just wanted to see what you thought, my cell is (253) 259-4558, no pressure either way</pre>
+</article>
+<article class="fu">
+  <div class="fu-head">
+    <h3>Rose Spa</h3>
+    <span class="last">9/10</span>
+  </div>
+  <div class="fu-meta">
+    <span class="stage">pitched · walked in 9/6</span>
+    <span class="tag loop">on today's loop</span>
+    <span class="town">Bonney Lake</span>
+  </div>
+  <div class="fu-ch"><b>channel</b> walk-in 9/6 (staff saw it) — no email/phone on the row · phone (facts.json) (253) 447-8676</div>
+  <pre class="draft">[walk back in on the Bonney Lake leg — or call (253) 447-8676] Hey, this is Hayden, I stopped in last week and showed the person up front the site I made for you guys, just wanted to see if the owner got a chance to look and what you thought</pre>
+</article>
+
+<h2>Text block <small>copy to your phone</small></h2>
+<pre class="block">MON 9/14 — Enumclaw → Buckley → Bonney Lake
+1. The Dusty Shelf Books and Cafe · 1456 Cole St, Enumclaw, WA 98022 · Mon 10:00 am – 7:00 pm
+2. Seeder&#x27;s Steak &amp; Brew House · 1502 Railroad St, Enumclaw, WA 98022 · Mon 11:00 am – 2:00 am
+3. Sunrise Coffee Bar · 1325 Cole St, Enumclaw, WA 98022 · Mon 7:00 am – 1:00 pm
+4. Enumclaw Veterinary Hospital · 1209 Cole St, Enumclaw, WA 98022 · Mon 8:00 am – 5:00 pm
+5. Four Seasons Chinese Restaurant · 820 Griffin Ave, Enumclaw, WA 98022 · Mon 12:00 pm – 8:00 pm
+6. Crossley&#x27;s Country Brew · 42810 264th Ave SE, Enumclaw, WA 98022 · Mon 4 am – 6 pm
+7. Baked by Shalyn · 39929 264th Ave SE, Enumclaw, WA 98022 · Mon 8:00 am – 2:00 pm
+8. Buckley Plateau Espresso · 29021 WA-410 E, Buckley, WA 98321 · Mon 4:00 am – 6:00 pm
+9. CLINK Coffee Co. · 202 WA-162 E, South Prairie, WA 98385 · Mon 4:30 AM – 6:00 PM
+10. Nails 410 · 20820 WA-410 E, Bonney Lake, WA 98391 · Mon 9:30 am – 7:00 pm
+11. T J Nails · 9925 214th Ave E, Bonney Lake, WA 98391 · Mon 9:30 am – 7:00 pm
+
+Follow-up walk-ins on the loop:
+- Babalouie&#x27;s · 20833 WA-410, Bonney Lake, WA 98391 · Mon 11:00am – 12:00am
+- Plateau Jiu Jitsu · 9925 214th Ave E, Suite I, Bonney Lake, WA 98391 · Mon 9 – 10 AM · 4:15 – 7:30 PM</pre>
+
+</div>
+</body>
+</html>
