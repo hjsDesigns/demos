@@ -1,0 +1,115 @@
+{
+  "_comment": "PNW ADU — Hayden's dad's new ADU company, Enumclaw/Buckley plateau. NOTHING about the business itself is verified yet (Recon/pnw-adu.md §6): every null below is a real unknown, never guessed on the page. The QA fact checks skip null phone/address/hours by design. BUILD IS PITCH/PUBLISH-BLOCKED (photo-blocked + publish_gate below). Hero (9/14 evening, Hayden): the ADD-ON FARMHOUSE concept render as a matched day/dusk pair — one day→dusk event on load, then the 'drag the day into night' toy, then depth parallax — labelled 'concept'. No sign board; the name lives in the header only. Bubbles show stills only (no push-in clips). CTA everywhere: 'Set up a consultation'. The dusk map shows the whole 30-mile ring on phones too.",
+  "name": "PNW ADU",
+  "business": "PNW ADU",
+  "domain": "pnw-adu.com (NOT registered as of 2026-09-14 12:03 PDT — whois 'No match')",
+  "town": "Buckley / Enumclaw, WA (unverified — which town goes on the site is dad's call)",
+  "address": null,
+  "phone": null,
+  "email": null,
+  "license": null,
+  "years_building": null,
+  "owner_name": null,
+  "offer_line": null,
+  "towns_served": [
+    "Buckley",
+    "Enumclaw",
+    "Bonney Lake",
+    "Lake Tapps",
+    "Sumner",
+    "Puyallup",
+    "Orting",
+    "Black Diamond",
+    "Maple Valley",
+    "Auburn",
+    "Wilkeson",
+    "Carbonado",
+    "South Prairie"
+  ],
+  "towns_served_status": "Hayden's 2026-09-14 (late) list — 13 'we build here' towns (white dots, tappable) around the Buckley hub, inside a 30-mile ring; 11 context towns (Tacoma, Kent, Federal Way, Renton, Covington, Graham, Eatonville, Greenwater, Gig Harbor, Lakewood, Spanaway) drawn grey, not tappable, plus Mt. Rainier as a peak glyph. Still PROVISIONAL until dad confirms the list and how far he'll drive (ask #5).",
+  "rules_as_of": "2026-09-14",
+  "rules_note": "The four lot-gadget answers come from Recon/pnw-adu.md §3–4 (RCW 36.70A.681, PCC 18A.37.120, KCC 21A.08.030 B.7.a, EMC 19.34 via index snippet, King DLS handout Mar 2026). The two 'out in the country' answers and Buckley's 2025 draft adoption are flagged UNVERIFIED with a planner in the brief — confirm before go-live.",
+  "asks_for_dad": [
+    "1. The name as he says it — PNW ADU / PNW ADU LLC? Registered business name + UBI; buy pnw-adu.com (unregistered 9/14) and say which registrar so DNS can point at GitHub Pages.",
+    "2. Photos — finished ADU whole from the yard at blue hour (two tripod frames: lights off / lights on), same unit in daylight, two whole-room interiors, the truck on a lot with the door readable, dad on site at work, any framing sequence, the mill/lumber stack if real, any existing lettering (original file). Until then the hero and the bubble frames are Higgsfield concept renders, every one tagged 'concept'.",
+    "3. Offer line — design-build turnkey? permits handled in-house? site work / septic / utilities? stick-built only or prefab set too? attached + garage conversions, or detached only? (decides the sub line and the five bubble lines — the fifth bubble is 'Inside the house' (basement/attic apartment, a KCC-recognised ADU type); the first build's 'Studio or shop' line was dropped 9/14 as an offer nobody gave. Until he answers, the page promises no permitting and no new-garage construction.)",
+    "4. WA contractor license number as printed + bonded/insured line — fills the hidden stake in #trust and the L&I link.",
+    "5. Service towns — confirm or edit the 13 'we build here' towns on the dusk map (Hayden's 9/14 list: Buckley hub + Enumclaw, Bonney Lake, Lake Tapps, Sumner, Puyallup, Orting, Black Diamond, Maple Valley, Auburn, Wilkeson, Carbonado, South Prairie) and the 30-mile ring; how far will he really drive?",
+    "6. First project story — whose ADU (with permission), why, what, which county/city permitted it, start-to-keys time.",
+    "7. Years in construction + what the crew has built — fills the hidden 'years building' stake; numbers must be true.",
+    "8. Price posture — show ranges? 'From $___'? or 'walk the lot first'? Is the lot walk free? Numbers incl. tax? (no prices are on the site until he answers)",
+    "9. Contact + lead path — business phone (a cell that takes texts?), email, where form submissions go, hours he'll answer; Google Business Profile exists? (the Call button is `hidden` until a number exists — un-hide with a tel: href)",
+    "10. Rules confirmation — has he pulled a permit under the new Pierce code? which planner at Pierce PPW / King DLS / Enumclaw / Buckley? did Buckley adopt the 2025 draft? (the two 'country' tiles ship flagged unverified)",
+    "11. Tone — three sentences of how he'd describe the work to a neighbour, recorded not written, so the copy can be re-cut in his voice."
+  ],
+  "prices": [],
+  "price_selector": ".price",
+  "header_selector": "header, .site-header",
+  "expected_sections": [
+    "top",
+    "hero",
+    "trust",
+    "build",
+    "lot",
+    "map",
+    "process",
+    "contact"
+  ],
+  "allow_repeat": [
+    "PNW ADU",
+    "Set up a consultation"
+  ],
+  "photo_status": "PHOTO-BLOCKED — zero real photos; concept renders in place (hero = Hayden's Higgsfield add-on farmhouse render, day/dusk pair, tagged 'concept'; bubble frames = Higgsfield renders relit to the same blue hour, tagged); real photos still required before go-live.",
+  "publish_gate": {
+    "blocked": true,
+    "why": [
+      "MINIMUM THREE PHOTOS: no real photos of the business — concept renders in place (hero + bubble frames, all labelled 'concept'); real photos still required before go-live",
+      "Lot explainer: the two 'out in the country' tiles are data-verified=\"false\" (Recon §3b leaves HB 1345 opt-in UNKNOWN for both counties) — VISIBLE again since 2026-09-14 evening (Hayden: keep them on the concept site; they carry the 'Rules as of Sept 2026. We confirm on the lot walk.' line) — still flagged: confirm with Pierce PPW / King DLS before go-live"
+    ],
+    "before_publish_or_share_link": [
+      "Real photos in images/ (>=3, of the actual business) — dad's real blue-hour frames (and, if he shoots one, a real lights-on clip) replace images/hero/* and the 'concept' tags come off; until then concept film + renders in place, real photos still required before go-live",
+      "The two country tiles are VISIBLE (Hayden, 9/14 evening) but still data-verified=\"false\": before go-live confirm with Pierce PPW / King DLS and set data-verified=\"<YYYY-MM-DD> <planner> <county>\" — or `hidden` them again",
+      "Preflight grep: grep -n 'data-verified=\"false\"' index.html | grep -v hidden — NON-EMPTY by Hayden's call (2 lines) until the planner confirmation lands; a go-live must resolve it, not ignore it"
+    ]
+  },
+  "hero_source": "higgsfield concept render — the add-on farmhouse (images/concepts/rev1/hero2-{day,dusk}-{wide,tall}.jpg), matched day/dusk pair, labelled 'concept'; no sign board — the name lives in the header only (9/14 evening). The film hero is shelved at versions/film-hero-0914/.",
+  "hero_assets": {
+    "stills": [
+      "images/hero/day-wide.jpg",
+      "images/hero/dusk-wide.jpg",
+      "images/hero/day-tall.jpg",
+      "images/hero/dusk-tall.jpg"
+    ],
+    "pair_match": "ORB/RANSAC similarity day→dusk: wide scale 0.9996 rot -0.004° shift (-0.1, 0.2) px, 843/1481 inliers; tall scale 1.0000 rot -0.004° shift (-0.1, -0.5) px, 781/1420 inliers; dusk→day Canny edge recall .943 / .947 (the missing day edges are foliage/ground detail that goes dark at dusk, not drift) — same composition, the gadget is ON for both",
+    "depth": [
+      "images/hero/fg-day-wide.webp",
+      "images/hero/fg-dusk-wide.webp",
+      "images/hero/fg-day-tall.webp",
+      "images/hero/fg-dusk-tall.webp",
+      "images/hero/plug-day-wide.webp",
+      "images/hero/plug-dusk-wide.webp",
+      "images/hero/plug-day-tall.webp",
+      "images/hero/plug-dusk-tall.webp"
+    ],
+    "event": "--dusk 0→1 over 2.6 s, power2.in, after a .25 s hold on the day; once; then still. Toy: drag/hover sweeps --dusk from the pointer's x; back to dusk 2 s after the hand leaves. Reduced-motion / no-JS: dusk still, no event, no toy.",
+    "encode": "stills q84 progressive at native px (PIL, 4:2:0 like the rest of images/hero/); depth layers WebP q82 at native px",
+    "shelved": "images/hero/lightson-*.{webm,mp4}, dark-*.jpg, lit-*.jpg, fg-lit-*.webp, plug-lit-*.webp, house-*.webp stay on disk unreferenced (film hero, 9/14 night)"
+  },
+  "map_source": "USGS NAIP, Higgsfield dusk re-render; ring 30 mi from Buckley",
+  "map_assets": {
+    "ground": "images/map/plateau30-dusk-web.jpg (2304x1856, q82 web copy of images/map/plateau30-dusk.jpg — the Higgsfield blue-hour re-render of images/map/naip-30mi.jpg, a 3200x2560 USGS NAIP Web Mercator export; bbox in images/map/map-30mi.json)",
+    "alignment_verified": "2026-09-14: dusk render vs NAIP at the nominal 0.72 x / 0.725 y scale — water-mask template match on Lake Tapps (+0,+1 px), Alder Lake (-2,+2), American Lake (-5,+1), Commencement Bay (-5,-1), Lake Youngs (0,0), Puget Sound/Vashon (-1,+2); max 5 px = 0.22% of the frame; whole-frame ORB/RANSAC fit scale 1.0048, rot -0.11 deg, shift (-4,-5) px, 332 inliers. No fit applied — nominal scale used.",
+    "projection": "x = (lon - W)/(E - W) * 2304; y = (merc(N) - merc(lat))/(merc(N) - merc(S)) * 1856; 28.373 px per mile at Buckley; ring30 r = 851.2 px, ring15 r = 425.6 px; Buckley at (50.00%, 50.22%)",
+    "drawn_map_shelved": "versions/drawn-map-0914/"
+  },
+  "cta": {
+    "label": "Set up a consultation",
+    "where": "nav · trust band · build panel link · lot card link · closing frame button · form submit · footer link",
+    "since": "2026-09-14 evening (Hayden) — replaced 'Walk my lot' (6×) and 'Book a lot walk' (1×)",
+    "form_subject": "Consultation request from pnw-adu.com"
+  },
+  "bubbles": {
+    "stills_only": "2026-09-14 evening (Hayden): no push-in clips; every bubble opens on frame 1",
+    "frames": "images/frames/*.jpg — q84 progressive re-encodes of the manifest's 12 frames (originals untouched in images/concepts/); manifest _sources maps each"
+  }
+}

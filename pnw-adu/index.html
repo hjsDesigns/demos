@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PNW ADU — Accessory dwelling units, Buckley &amp; Enumclaw WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Accessory dwelling units built on your lot on the Enumclaw–Buckley plateau and out across Pierce and King County — garage conversions, backyard homes, home add-ons, apartments above the garage or inside the house. It starts with a lot walk.">
+<!-- the .js / .reduce classes: FIRST, before any <link> — a script after a pending stylesheet waits for it, and this one
+     needs nothing (a 3 s font stall left the hero out of the DOM for 5 s, 9/15 verifier) -->
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Two faces (factory law). Archivo (variable, width axis) is the mark face — set wide and heavy it reads
+     like stamped lumber / cut-vinyl truck-door lettering; it goes on the truck and the yard sign later
+     (SIGN-FONT law in reverse). IBM Plex Sans is the body: plain, technical, reads like a set of plans. -->
+<!-- loaded non-render-blocking (preload → stylesheet on arrival; display=swap): the hero starts on the fallback faces and
+     the fonts swap in when Google answers — never a blank dark screen for the length of a slow font request -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B2226'/%3E%3Cpath d='M6 17 L16 8 L26 17 V26 H6 Z' fill='none' stroke='%23D4954D' stroke-width='2.2' stroke-linejoin='round'/%3E%3Crect x='13' y='18' width='6' height='8' fill='%23FFC46B'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     No logo file exists yet — the wordmark is live type in the mark face.
+     Four anchors + one CTA. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="PNW ADU — home">
+      <span class="wm">PNW ADU<small>Accessory dwelling units</small></span>
+    </a>
+    <div class="nav-wrap">
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#build">What we build</a>
+        <a href="#lot">Can I build one?</a>
+        <a href="#map">Where we work</a>
+        <a href="#process">How it goes</a>
+        <a href="#contact" class="nav-cta">Set up a consultation</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero — "Day into night" =====================
+       Hayden's 9/14 evening call: the hero is the ADD-ON FARMHOUSE ("that house
+       is beautiful") — his Higgsfield concept render as a matched DAY / DUSK
+       pair (images/hero/, same composition to the pixel), labelled "concept",
+       never presented as their work. NO sign board — the name lives in the
+       header; nothing sits on the hero but the concept tag, one mono hint and
+       the sr-only h1. Layers, bottom to top:
+         #heroBg   the background GROUP that lags the scroll after the event —
+                   the DAY still under the DUSK still (opacity = --dusk), plus
+                   #heroPlug (slivers of sky/treeline, day + dusk, that cover the
+                   roof edges the shift would drag out from under the cutout's
+                   eaves; JS-loaded, only shown with the cutout).
+         #heroFg   the house cut out WITH the ground below the horizon, day +
+                   dusk (JS-loaded WebP), riding with the page at 1× while
+                   #heroBg lags — sky and trees slide behind the house.
+       THE EVENT (js/hero.js): once, on load — the dusk goes 0 → 1 over 2.6 s
+       (power2.in: the sky cools first, the windows come on late), then still.
+       THE TOY: after that, drag a finger sideways (or just move the mouse) across
+       the hero to sweep day ↔ dusk — --dusk follows the pointer's x; it eases
+       back to dusk 2 s after the hand leaves. Both boxes extend --plx above the
+       hero so the parallax reveals real sky. Landscape viewports use the wide
+       pair; portrait ones (phones, tablets upright) the tall pair, height-capped
+       so the whole house stays in frame. The sconce is anchored in the render's
+       own pixels (--lamp-x/-y) so the moth idles beside the real light.
+       Reduced-motion / no-JS = the dusk still (the CSS default): no event, no
+       toy, no parallax. The film hero this replaced: versions/film-hero-0914/. -->
+  <section class="hero" id="hero" aria-label="PNW ADU">
+    <h1 class="sr-only">PNW ADU — accessory dwelling units built on the plateau</h1>
+    <div class="hero-bg" id="heroBg" aria-hidden="true">
+      <picture class="hero-layer hero-day">
+        <source media="(max-aspect-ratio: 1/1)" srcset="images/hero/day-tall.jpg">
+        <img src="images/hero/day-wide.jpg" alt="" width="2752" height="1536" fetchpriority="high" decoding="async" id="heroDay">
+      </picture>
+      <picture class="hero-layer hero-dusk">
+        <source media="(max-aspect-ratio: 1/1)" srcset="images/hero/dusk-tall.jpg">
+        <img src="images/hero/dusk-wide.jpg" alt="" width="2752" height="1536" fetchpriority="high" decoding="async" id="heroDusk">
+      </picture>
+      <div class="hero-layer hero-plug" id="heroPlug"></div>
+    </div>
+    <div class="hero-fg" id="heroFg" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <!-- the one hint for the toy: shows once the event is done, fades after the first drag -->
+    <span class="hero-hint" id="heroHint" aria-hidden="true"><span class="t-touch">drag</span><span class="t-mouse">move</span> ◂ day · dusk ▸</span>
+    <!-- CONCEPT RENDER: a rendering, never presented as their work. The tag stays until dad's real
+         frames replace the render — see NOTES.md (BLOCKED). -->
+    <span class="hero-tag">concept</span>
+  </section>
+
+  <!-- ===================== #trust =====================
+       The one-line subcopy lives UNDER the hero, not on it. Trust stakes are
+       null-safe: anything dad hasn't confirmed is `hidden` (never a visible
+       placeholder). Fill + un-hide when the fact arrives — see facts.json. -->
+  <section class="trust" id="trust">
+    <div class="wrap">
+      <h2 class="reveal">A second home in your backyard. <em>Buckley, Enumclaw and out.</em></h2>
+      <p class="lede reveal">A backyard home for your parents, your grown kids, or a renter. Built on your lot, permitted where you live.</p>
+      <!-- .trust-side: on a Mac (≥1024) the stake(s) + CTA sit in a right column beside the headline -->
+      <div class="trust-side">
+      <div class="stakes reveal" role="list">
+        <span class="stake" role="listitem"><b>Lot walk first</b><small>before any drawing</small></span>
+        <!-- ASK DAD: WA contractor license number. Fill and remove `hidden`. -->
+        <span class="stake" role="listitem" hidden data-ask="license"><b class="tnum" id="stakeLicense"></b><small>WA contractor lic.</small></span>
+        <!-- ASK DAD: years in construction. Fill and remove `hidden`. -->
+        <span class="stake" role="listitem" hidden data-ask="years"><b class="tnum" id="stakeYears"></b><small>years building</small></span>
+      </div>
+      <div class="trust-actions reveal">
+        <a href="#contact" class="btn btn-primary" data-lamp="always">Set up a consultation</a>
+        <!-- ASK DAD: business phone. Un-hide with href="tel:+1XXXXXXXXXX" when it exists (facts.json.phone).
+             Hidden until then — a Call button that opens a form reads as broken. -->
+        <a href="#contact" class="btn btn-ghost" id="callBtn" hidden>Call</a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #build — the five bubbles =====================
+       Five round icon buttons, labelled pills with a down-chevron (ARROW LAW).
+       The panel is always in place and opens on the first type by default, so
+       section 3 reads as information (the offerings list); tap another bubble
+       → its concept frame + one line switch in place; tap the lit one → it
+       closes to a one-line hint (the panel keeps its height, nothing jumps).
+       Phones: the panel sits ABOVE the bubbles (the thing that changes next to
+       the thing you tap). Concept frames are Hayden's Higgsfield renders
+       (listed in images/concepts/manifest.json — js/site.js reads the manifest
+       once and only loads files it names, no probing, no 404s), tagged
+       "concept". ONE HOUSE, FIVE WAYS (9/14): the first frame of every bubble
+       is the same white ranch house with that ADU type lit, a one-line
+       caption under it says what changed; Hayden's keepers follow — arrows
+       (44 px) and a swipe move through them. STILLS ONLY (9/14 evening, his
+       call: no push-in clips); every open starts on frame 1. The page loads
+       the q84 re-encodes in images/frames/ (originals untouched in
+       images/concepts/). The drawn silhouette shows only for a type with no
+       render. -->
+  <section class="section" id="build">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What we build</p>
+        <h2>Five ways to add <em>a home.</em></h2>
+        <p>Every one is a real home — kitchen, bath, its own front door. Which one fits depends on your lot, your house, and what the county allows.</p>
+      </div>
+
+      <div class="build-stage">
+      <div class="bubbles reveal" role="group" aria-label="Choose a kind of ADU">
+        <button class="bubble" type="button" data-type="garage" aria-pressed="false" aria-controls="buildPanel" data-lamp>
+          <span class="orb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 22 L24 8 L42 22"/><path d="M10 21 V40 H38 V21"/><path d="M15 40 V29 H33 V40" stroke-dasharray="3 3"/><path d="M19 40 V33 H29 V40"/></svg></span>
+          <span class="pill">Garage conversion <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span>
+        </button>
+        <button class="bubble" type="button" data-type="backyard" aria-pressed="false" aria-controls="buildPanel" data-lamp>
+          <span class="orb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 24 L24 10 L40 24"/><path d="M12 23 V40 H36 V23"/><path d="M21 40 V31 H27 V40"/><path d="M15 29 H19 V34 H15 Z"/><path d="M8 40 H40"/></svg></span>
+          <span class="pill">Backyard home <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span>
+        </button>
+        <button class="bubble" type="button" data-type="addon" aria-pressed="false" aria-controls="buildPanel" data-lamp>
+          <span class="orb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 20 L19 8 L33 20"/><path d="M8 19 V40 H30 V19"/><path d="M30 26 L36 21 L44 26 V40 H30" stroke-dasharray="3 3"/><path d="M35 40 V33 H39 V40"/></svg></span>
+          <span class="pill">Home add-on <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span>
+        </button>
+        <button class="bubble" type="button" data-type="above-garage" aria-pressed="false" aria-controls="buildPanel" data-lamp>
+          <span class="orb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 18 L24 6 L42 18"/><path d="M10 17 V42 H38 V17"/><path d="M10 29 H38"/><path d="M15 42 V34 H33 V42"/><path d="M20 20 H28 V26 H20 Z"/><path d="M38 29 L44 35 V42"/></svg></span>
+          <span class="pill">Above the garage <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span>
+        </button>
+        <button class="bubble" type="button" data-type="inside" aria-pressed="false" aria-controls="buildPanel" data-lamp>
+          <span class="orb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 22 L24 8 L42 22"/><path d="M10 21 V40 H38 V21"/><path d="M10 30 H38"/><path d="M14 40 V33 H34 V40" stroke-dasharray="3 3"/><path d="M17 40 V35 H22 V40"/><path d="M26 34 H31 V37 H26 Z"/></svg></span>
+          <span class="pill">Inside the house <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span>
+        </button>
+      </div>
+
+      <div class="build-panel" id="buildPanel" data-type="garage">
+        <p class="build-hint" id="buildHint" hidden>Tap a bubble</p>
+        <div class="concept-wrap" id="conceptWrap">
+        <div class="concept" id="concept">
+          <!-- drawn silhouettes — one per type; a loaded real render replaces the silhouette in place -->
+          <svg class="silhouette" data-type="garage" viewBox="0 0 400 300" aria-hidden="true"><g class="grid"><path d="M0 60 H400 M0 120 H400 M0 180 H400 M0 240 H400 M80 0 V300 M160 0 V300 M240 0 V300 M320 0 V300"/></g><g class="draw"><path d="M20 240 H380"/><path d="M40 150 L125 88 L210 150"/><path d="M55 150 V240 M195 150 V240"/><path d="M70 170 H100 V200 H70 Z M120 170 H150 V200 H120 Z"/><path d="M195 172 L262 128 L332 172"/><path d="M205 172 V240 M322 172 V240"/><path d="M212 240 V182 H316 V240" stroke-dasharray="5 5"/><path d="M222 240 V196 H246 V240"/><path d="M258 190 H306 V214 H258 Z"/><path d="M270 196 V208"/><path d="M340 240 V226 H364 V240"/></g></svg>
+          <svg class="silhouette" data-type="backyard" viewBox="0 0 400 300" aria-hidden="true" hidden><g class="grid"><path d="M0 60 H400 M0 120 H400 M0 180 H400 M0 240 H400 M80 0 V300 M160 0 V300 M240 0 V300 M320 0 V300"/></g><g class="draw"><path d="M0 240 H400"/><path d="M0 120 L62 70 L124 120"/><path d="M12 120 V240 M112 120 V240"/><path d="M40 140 H70 V170 H40 Z"/><path d="M130 240 V214 M146 240 V214 M162 240 V214 M178 240 V214"/><path d="M124 222 H184"/><path d="M212 170 L274 122 L336 170"/><path d="M222 170 V240 M326 170 V240"/><path d="M262 240 V198 H284 V240"/><path d="M234 190 H254 V212 H234 Z"/><path d="M298 190 H318 V212 H298 Z"/><path d="M290 202 h0"/><path d="M196 240 C215 236 240 232 262 240"/></g></svg>
+          <svg class="silhouette" data-type="addon" viewBox="0 0 400 300" aria-hidden="true" hidden><g class="grid"><path d="M0 60 H400 M0 120 H400 M0 180 H400 M0 240 H400 M80 0 V300 M160 0 V300 M240 0 V300 M320 0 V300"/></g><g class="draw"><path d="M20 240 H380"/><path d="M60 130 L150 62 L240 130"/><path d="M75 130 V240 M225 130 V240"/><path d="M100 150 H130 V184 H100 Z"/><path d="M160 240 V190 H190 V240"/><path d="M225 166 L262 140 L302 166" stroke-dasharray="5 5"/><path d="M296 166 V240" stroke-dasharray="5 5"/><path d="M270 240 V206 H288 V240" stroke-dasharray="5 5"/><path d="M238 184 H258 V206 H238 Z" stroke-dasharray="5 5"/><path d="M310 240 V226 H340 V240"/></g></svg>
+          <svg class="silhouette" data-type="above-garage" viewBox="0 0 400 300" aria-hidden="true" hidden><g class="grid"><path d="M0 60 H400 M0 120 H400 M0 180 H400 M0 240 H400 M80 0 V300 M160 0 V300 M240 0 V300 M320 0 V300"/></g><g class="draw"><path d="M20 240 H380"/><path d="M96 112 L200 40 L304 112"/><path d="M112 112 V240 M288 112 V240"/><path d="M112 176 H288"/><path d="M128 240 V192 H192 V240"/><path d="M208 240 V192 H272 V240"/><path d="M128 200 H192 M128 208 H192 M208 200 H272 M208 208 H272"/><path d="M140 126 H172 V156 H140 Z"/><path d="M228 126 H260 V156 H228 Z"/><path d="M288 176 L340 240"/><path d="M296 186 H306 M304 196 H314 M312 206 H322 M320 216 H330 M328 226 H338"/><path d="M288 168 L340 232"/></g></svg>
+          <svg class="silhouette" data-type="inside" viewBox="0 0 400 300" aria-hidden="true" hidden><g class="grid"><path d="M0 60 H400 M0 120 H400 M0 180 H400 M0 240 H400 M80 0 V300 M160 0 V300 M240 0 V300 M320 0 V300"/></g><g class="draw"><path d="M20 240 H380"/><path d="M60 130 L200 40 L340 130"/><path d="M76 130 V240 M324 130 V240"/><path d="M120 150 H160 V180 H120 Z"/><path d="M240 150 H280 V180 H240 Z"/><path d="M76 192 H324"/><path d="M84 198 H316 V234 H84 Z" stroke-dasharray="5 5"/><path d="M98 240 V204 H124 V240"/><path d="M150 206 H196 V226 H150 Z"/><path d="M230 206 H276 V226 H230 Z"/><path d="M50 240 V228 H76 M62 240 V234 H76"/></g></svg>
+          <div class="renders" id="renders" tabindex="-1" hidden></div>
+          <!-- strip arrows: visible 44 px targets so a mouse can move through the frames too (ARROW LAW is for
+               unrolls; these are prev/next). Hidden while a type has a single frame. -->
+          <div class="concept-nav" id="conceptNav" hidden>
+            <button class="cnav" id="conceptPrev" type="button" aria-label="Previous render" aria-controls="renders"><svg viewBox="0 0 12 20" aria-hidden="true" focusable="false"><path d="M10 2 2 10l8 8"/></svg></button>
+            <button class="cnav" id="conceptNext" type="button" aria-label="Next render" aria-controls="renders"><svg viewBox="0 0 12 20" aria-hidden="true" focusable="false"><path d="M2 2l8 8-8 8"/></svg></button>
+          </div>
+          <span class="concept-tag" aria-hidden="true">concept</span>
+        </div>
+        <!-- one line under the frame: what changed on the house in THIS frame (from the manifest's captions) -->
+        <div class="concept-foot"><p class="concept-cap" id="conceptCap"></p><span class="concept-count tnum" id="conceptCount"></span></div>
+        </div>
+        <div class="build-copy">
+          <h3 id="buildTitle">Garage conversion</h3>
+          <p id="buildLine">The garage you don't park in becomes a one-bedroom with its own door. Often the quickest way to a second home.</p>
+          <a href="#contact" class="walk-link">Set up a consultation <span class="chev" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #lot — "Can I build one on my lot?" =====================
+       Four picture tiles laid out like the two counties on a map (King north,
+       Pierce south; town lot vs country lot). Tap one → the answer card fills
+       (object + number, one line, source). Tap again clears. No inputs, no
+       math. Card copy = the brief's table verbatim (Recon/pnw-adu.md §4).
+       PUBLISH GATE: the two data-verified=false tiles (out in the country)
+       are VISIBLE (Hayden, 9/14 evening — they carry the "We confirm on the lot
+       walk" line) but stay data-verified=false until Pierce PPW / King DLS confirm,
+       dated in facts.json — a publish / share-link must resolve that first
+       (facts.json.publish_gate).
+       Tiles come first in the DOM; CSS puts the card above them on phones. -->
+  <section class="section section-plat section-ground" id="lot">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The first question</p>
+        <h2>Can I build one <em>on my lot?</em></h2>
+        <p>Washington rewrote the rules in 2023 and again in 2026. Most homeowners don't know what their lot allows now.</p>
+      </div>
+
+      <div class="lot reveal">
+        <div class="tiles" role="group" aria-label="Where is your house?">
+          <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+            <defs>
+              <symbol id="lot-town" viewBox="0 0 200 120"><g class="draw"><path d="M8 100 H192"/><path d="M8 108 H192" stroke-dasharray="4 6"/><path d="M14 60 L42 38 L70 60"/><path d="M20 60 V100 M64 60 V100"/><path d="M36 100 V80 H48 V100"/><path d="M76 56 L104 34 L132 56"/><path d="M82 56 V100 M126 56 V100"/><path d="M96 100 V78 H112 V100"/><path d="M90 68 H100 V78 H90 Z"/><path d="M138 62 L166 40 L194 62"/><path d="M144 62 V100 M188 62 V100"/><path d="M160 100 V82 H172 V100"/><path d="M8 100 V70 M4 70 H12"/></g></symbol>
+              <symbol id="lot-country" viewBox="0 0 200 120"><g class="draw"><path d="M6 100 H194"/><path d="M78 62 L110 36 L142 62"/><path d="M86 62 V100 M134 62 V100"/><path d="M104 100 V80 H118 V100"/><path d="M94 72 H102 V82 H94 Z"/><path d="M12 100 C40 92 66 88 104 100" stroke-dasharray="3 5"/><path d="M14 100 V86 M30 100 V86 M46 100 V86 M62 100 V86 M14 92 H62"/><path d="M160 100 V56 L150 76 M160 56 L170 76 M160 66 L152 84 M160 66 L168 84"/><path d="M184 100 V64 L176 80 M184 64 L192 80"/><path d="M150 100 V90 H170 V100 M148 90 L160 82 L172 90"/></g></symbol>
+            </defs>
+          </svg>
+          <button class="tile" type="button" data-k="king-town" aria-pressed="false" aria-controls="lotCard" data-lamp><svg viewBox="0 0 200 120" aria-hidden="true"><use href="#lot-town"/></svg><span class="pill"><b>King</b> in town <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span></button>
+          <button class="tile" type="button" data-k="king-country" data-verified="false" aria-pressed="false" aria-controls="lotCard" data-lamp><svg viewBox="0 0 200 120" aria-hidden="true"><use href="#lot-country"/></svg><span class="pill"><b>King</b> out in the country <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span></button>
+          <button class="tile" type="button" data-k="pierce-town" aria-pressed="false" aria-controls="lotCard" data-lamp><svg viewBox="0 0 200 120" aria-hidden="true"><use href="#lot-town"/></svg><span class="pill"><b>Pierce</b> in town <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span></button>
+          <button class="tile" type="button" data-k="pierce-country" data-verified="false" aria-pressed="false" aria-controls="lotCard" data-lamp><svg viewBox="0 0 200 120" aria-hidden="true"><use href="#lot-country"/></svg><span class="pill"><b>Pierce</b> out in the country <svg class="dn" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5"/></svg></span></button>
+          <p class="lookup">Not sure which you are? Look up your address: <span class="lookup-links"><a href="https://matterhornwab.co.pierce.wa.us/publicgis/" target="_blank" rel="noopener">Pierce Public GIS ↗</a><a href="https://gismaps.kingcounty.gov/iMap/" target="_blank" rel="noopener">King County iMap ↗</a></span></p>
+        </div>
+
+        <div class="lot-card" id="lotCard" aria-live="polite">
+          <p class="lot-hint" id="lotHint">Tap where your house is.</p>
+          <div class="lot-answer" id="lotAnswer" hidden>
+            <p class="lot-where" id="lotWhere"></p>
+            <h3 class="tnum" id="lotHead"></h3>
+            <p class="lot-line" id="lotLine"></p>
+            <p class="lot-src" id="lotSrc"></p>
+            <p class="lot-fine">Rules as of Sept 2026. We confirm on the lot walk.</p>
+            <a href="#contact" class="walk-link">Set up a consultation <span class="chev" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #map — where we work =====================
+       The REAL plateau at dusk: images/map/plateau30-dusk.jpg is Hayden's
+       Higgsfield blue-hour re-render of a USGS NAIP export (3200×2560, Web
+       Mercator, bbox in images/map/map-30mi.json), aligned 1:1 to it (verified
+       9/14: max 5 px / 0.22% drift on five water bodies + a whole-frame ORB fit
+       ≈ identity). Everything on it is projected from real lat/lon through the
+       same bbox into the render's 2304×1856 pixels, as % of the image plane:
+         .dmap        the frame (overflow hidden): phones = a tall 2:3 crop
+                      zoomed 2.8× and centred on Buckley (~29 mi wide — Tacoma's
+                      shore and the Cascade snow stay out, the plateau fills it);
+                      ≥760 = the wide 13:10 crop with the whole 30-mile ring.
+         .dmap-plane  the image plane (width = --zoom × frame, aspect 2304/1856),
+                      positioned so the focal point --fx/--fy (Buckley) lands at
+                      --tx/--ty of the frame — pure CSS, no JS, no layout shift.
+         .dmap-svg    the 30-mile ring (amber; breathes once on scroll-in, then
+                      rests), a faint 15-mile ring, the Rainier peak glyph.
+         .towns       live-text labels on 44 px targets: 13 "we build here"
+                      towns (white dots, tappable — Hayden's 9/14 list), Buckley
+                      the amber hub, 11 grey context towns (not tappable). Tap a
+                      town → amber + "we build here"; tap again clears. js/site.js
+                      lays the labels out with a collision nudge (each tries its
+                      preferred side, then the other seven; context labels hide
+                      rather than overlap) and re-lays on resize.
+       Positions: x = (lon − W)/(E − W) × 2304, y = (merc(N) − merc(lat)) /
+       (merc(N) − merc(S)) × 1856. 1 mile = 28.373 px at Buckley (Web
+       Mercator is conformal, so the rings are true circles). The drawn SVG map
+       this replaced is shelved at versions/drawn-map-0914/. -->
+  <section class="section section-alt" id="map">
+    <div class="wrap">
+      <div class="section-head map-copy reveal">
+        <p class="eyebrow">Where we work</p>
+        <h2>The plateau, <em>and the lots around it.</em></h2>
+        <p class="lede">Home base is the plateau. If your lot is inside the 30-mile ring, we'll come walk it.</p>
+        <p class="hint"><span class="t-touch">Tap</span><span class="t-mouse">Click</span> a town</p>
+      </div>
+      <div class="dmap reveal" id="dmap">
+        <div class="dmap-plane" id="dmapPlane">
+          <img src="images/map/plateau30-dusk-web.jpg" width="2304" height="1856" alt="The Enumclaw–Buckley plateau and the country 30 miles around it from above at dusk — USGS aerial imagery, town lights coming on" loading="lazy" decoding="async">
+          <svg class="dmap-svg" viewBox="0 0 2304 1856" aria-hidden="true" focusable="false">
+            <circle class="ring ring-15" cx="1152.0" cy="932.1" r="425.6"/>
+            <circle class="ring ring-30" cx="1152.0" cy="932.1" r="851.2"/>
+            <!-- Mt. Rainier: a peak glyph on the summit -->
+            <g class="peak-glyph" transform="translate(1507.6 1544.7)"><path class="mtn" d="M-40 26 L-12 -26 L0 -10 L12 -26 L40 26 Z"/><path class="snow" d="M-12 -26 L0 -10 L12 -26 L7 -14 L0 -18 L-7 -14 Z"/></g>
+          </svg>
+          <div class="towns" id="towns">
+          <button class="town hub" type="button" style="left:50.00%;top:50.22%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Buckley</span></button>
+          <button class="town" type="button" style="left:34.59%;top:47.86%" data-side="l" data-lamp aria-pressed="false"><i></i><span class="tn">Puyallup</span></button>
+          <button class="town" type="button" style="left:37.63%;top:45.96%" data-side="t" data-lamp aria-pressed="false"><i></i><span class="tn">Sumner</span></button>
+          <button class="town" type="button" style="left:41.68%;top:48.72%" data-side="b" data-lamp aria-pressed="false"><i></i><span class="tn">Bonney Lake</span></button>
+          <button class="town" type="button" style="left:41.76%;top:42.68%" data-side="t" data-lamp aria-pressed="false"><i></i><span class="tn">Lake Tapps</span></button>
+          <button class="town" type="button" style="left:52.04%;top:45.84%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Enumclaw</span></button>
+          <button class="town" type="button" style="left:46.14%;top:52.86%" data-side="l" data-lamp aria-pressed="false"><i></i><span class="tn">South Prairie</span></button>
+          <button class="town" type="button" style="left:48.82%;top:56.14%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Wilkeson</span></button>
+          <button class="town" type="button" style="left:48.55%;top:59.03%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Carbonado</span></button>
+          <button class="town" type="button" style="left:39.72%;top:57.17%" data-side="l" data-lamp aria-pressed="false"><i></i><span class="tn">Orting</span></button>
+          <button class="town" type="button" style="left:38.32%;top:34.86%" data-side="l" data-lamp aria-pressed="false"><i></i><span class="tn">Auburn</span></button>
+          <button class="town" type="button" style="left:51.38%;top:34.74%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Black Diamond</span></button>
+          <button class="town" type="button" style="left:48.97%;top:28.50%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Maple Valley</span></button>
+          <span class="town ctx" style="left:25.82%;top:40.66%" data-side="l"><i></i><span class="tn">Tacoma</span></span>
+          <span class="town ctx" style="left:33.45%;top:33.25%" data-side="l"><i></i><span class="tn">Federal Way</span></span>
+          <span class="town ctx" style="left:37.95%;top:26.99%" data-side="l"><i></i><span class="tn">Kent</span></span>
+          <span class="town ctx" style="left:44.56%;top:29.43%" data-side="r"><i></i><span class="tn">Covington</span></span>
+          <span class="town ctx" style="left:38.98%;top:16.08%" data-side="r"><i></i><span class="tn">Renton</span></span>
+          <span class="town ctx" style="left:34.51%;top:61.95%" data-side="l"><i></i><span class="tn">Graham</span></span>
+          <span class="town ctx" style="left:36.12%;top:81.63%" data-side="r"><i></i><span class="tn">Eatonville</span></span>
+          <span class="town ctx" style="left:26.38%;top:56.52%" data-side="b"><i></i><span class="tn">Spanaway</span></span>
+          <span class="town ctx" style="left:21.52%;top:49.31%" data-side="b"><i></i><span class="tn">Lakewood</span></span>
+          <span class="town ctx" style="left:17.95%;top:32.51%" data-side="b"><i></i><span class="tn">Gig Harbor</span></span>
+          <span class="town ctx" style="left:72.40%;top:51.85%" data-side="b"><i></i><span class="tn">Greenwater</span></span>
+          <span class="town peak" style="left:65.43%;top:83.23%" data-side="b"><span class="tn">Mt. Rainier</span></span>
+          <span class="here" id="here" hidden>we build here</span>
+          </div>
+        </div>
+        <span class="dmap-credit" title="Imagery: USGS NAIP · 30 miles from Buckley"><span class="credit-phone" aria-hidden="true">USGS</span><span class="credit-wide">Imagery: USGS NAIP · 30 miles from Buckley</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #process =====================
+       Lot walk → design & permit → build → keys. Times are ROUGH South Sound
+       figures from the brief (§3f), dated, never promised. -->
+  <section class="section section-ground" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">How it goes</p>
+        <h2>Lot walk to keys, <em>four steps.</em></h2>
+      </div>
+      <ol class="process reveal">
+        <li>
+          <span class="n tnum">01</span>
+          <h3>Lot walk</h3>
+          <p>We walk the property with you: where it could sit, septic and well or sewer and water, what the county will want. You leave knowing what your lot allows and what the county will ask for.</p>
+          <span class="when tnum">Day one</span>
+        </li>
+        <li>
+          <span class="n tnum">02</span>
+          <h3>Design &amp; permit</h3>
+          <p>Plans drawn to match your house and your lot, then through permitting with the city or county. Septic review runs alongside when you're not on sewer.</p>
+          <span class="when tnum">3–6 months, rough</span>
+        </li>
+        <li>
+          <span class="n tnum">03</span>
+          <h3>Build</h3>
+          <p>Footings, framing, dried in, finished. Inspections along the way.</p>
+          <span class="when tnum">4–6 months, rough</span>
+        </li>
+        <li>
+          <span class="n tnum">04</span>
+          <h3>Keys</h3>
+          <p>Final inspection, certificate of occupancy, and the lights come on.</p>
+          <span class="when">Move in</span>
+        </li>
+      </ol>
+      <p class="fine reveal">Rough South Sound timelines as of Sept 2026. Health-department review and county workload can add time.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #contact — the closing frame =====================
+       The page ends where it began: on the hero's DARKEST still (images/grounds/
+       contact.jpg — the lights-off frame, blurred and darkened, with a faint
+       glow where the lit still's windows are), one line in Hayden's plain voice,
+       one CTA (Set up a consultation → puts the cursor in the form), the form below it.
+       Form ships in demo mode (empty access_key → thank-you shown, nothing
+       sent). Phone / email lines stay out until dad gives them (facts.json). -->
+  <section class="section section-ground section-close" id="contact">
+    <div class="wrap">
+      <div class="close-line reveal">
+        <h2>Lights on <em>in your backyard.</em></h2>
+        <a href="#lotForm" class="btn btn-primary" id="bookWalk" data-lamp="always">Set up a consultation</a>
+        <!-- ASK DAD: phone + email. Add when known:
+             <div class="contact-lines"><span>📞 <a href="tel:+1XXXXXXXXXX">(XXX) XXX-XXXX</a></span><span>✉️ <a href="mailto:…">…</a></span></div> -->
+      </div>
+      <form class="contact-form reveal" id="lotForm" method="post" action="https://api.web3forms.com/submit">
+        <input type="hidden" name="access_key" value="">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <label>Name<input type="text" name="name" autocomplete="name" required></label>
+        <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+        <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+        <label class="full">Where's the lot?<input type="text" name="lot" placeholder="Town, or the address if you have it" autocomplete="off"></label>
+        <label class="full">What are you thinking?<select name="topic"><option>Not sure yet</option><option>Garage conversion</option><option>Backyard home</option><option>Add-on to the house</option><option>Apartment above the garage</option><option>Apartment inside the house</option></select></label>
+        <label class="full">Anything else<textarea name="msg" placeholder="Who it's for, septic or sewer, how soon…"></textarea></label>
+        <button type="submit" class="btn btn-primary" data-lamp="always">Set up a consultation</button>
+        <p class="form-success">Thanks — we'll be in touch to set a time for the walk.</p>
+        <p class="form-fine">We'll only use this to reply to you.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <!-- ASK DAD: base town goes in a <small> here once confirmed (facts.json.town). -->
+          <span class="wm">PNW ADU</span>
+        </div>
+        <p>Accessory dwelling units, built on the plateau.</p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <nav class="foot-links" aria-label="On this page"><a href="#build">What we build</a><a href="#lot">Can I build one?</a><a href="#map">Where we work</a><a href="#process">How it goes</a><a href="#contact">Set up a consultation</a></nav>
+      </div>
+      <div>
+        <h4>Reach us</h4>
+        <p>Use the form above and we'll set a time to come out.</p>
+        <!-- ASK DAD: phone / email / mailing town go here when known. -->
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> PNW ADU</span>
+      <span>Washington</span>
+    </div>
+  </div>
+</footer>
+
+<!-- the moth: idles beside the porch light in the hero, then threads down the page beside whatever is lit (js/site.js) -->
+<div class="moth" id="moth" aria-hidden="true"><svg viewBox="0 0 24 16"><g class="wing wl"><path d="M12 8 C8 1.5 2 2 1 6 C1 10 6 12.5 12 8 Z"/></g><g class="wing wr"><path d="M12 8 C16 1.5 22 2 23 6 C23 10 18 12.5 12 8 Z"/></g><ellipse class="body" cx="12" cy="8" rx="1.5" ry="4.2"/></svg></div>
+
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
