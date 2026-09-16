@@ -99,6 +99,24 @@
     if (renders.scrollTo) renders.scrollTo({ left: left, behavior: reduce ? 'auto' : 'smooth' }); else renders.scrollLeft = left;
     if (Math.abs(renders.scrollLeft - left) < 2) updateStrip();
   }
+  /* PRELOAD (Hayden, 9/16: "when it loads I just need it to pop straight up with the snap of a finger" — the
+     drawn blueprint underneath was showing in the gap while the manifest fetch + first image loaded). The
+     manifest is fetched at load and every type's FIRST frame is warmed once the hero has finished, at low
+     priority, so a tap paints from cache and the silhouette is never seen. */
+  function warmFrames() {
+    loadManifest().then(function (m) {
+      Object.keys(BUILD).forEach(function (t) {
+        var list = Array.isArray(m[t]) ? m[t] : [], url = list.length ? srcFor(list[0]) : '';
+        if (!url) return;
+        var im = new Image(); try { im.fetchPriority = 'low'; } catch (e) {}
+        im.decoding = 'async'; im.src = url;
+      });
+    });
+  }
+  function whenIdle(fn) {
+    if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: 4000 }); else setTimeout(fn, 1200);
+  }
+
   function showRenders(type) {
     if (!renders) return;
     loadManifest().then(function (m) {
@@ -172,7 +190,17 @@
         if (b.getAttribute('aria-pressed') === 'true') closeBuild(); else openBuild(b.getAttribute('data-type'), b, true);
       });
     });
-    openBuild('garage', bubbles[0], false);              // open on the first type at load: information first, tap to change
+    openBuild('garage', bubbles[0], false);
+    /* warm the other four as soon as the opener is out of the way */
+    var heroEl = document.querySelector('.hero');
+    if (!heroEl || heroEl.classList.contains('is-done') || document.documentElement.classList.contains('reduce')) whenIdle(warmFrames);
+    else {
+      var seen = false, mo = new MutationObserver(function () {
+        if (!seen && heroEl.classList.contains('is-done')) { seen = true; mo.disconnect(); whenIdle(warmFrames); }
+      });
+      mo.observe(heroEl, { attributes: true, attributeFilter: ['class'] });
+      setTimeout(function () { if (!seen) { seen = true; mo.disconnect(); whenIdle(warmFrames); } }, 11000);
+    }              // open on the first type at load: information first, tap to change
   }
 
   /* ---------- #lot — "Can I build one on my lot?" ----------
