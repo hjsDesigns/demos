@@ -1,7 +1,7 @@
 /* ============================================================
    PNW ADU — site.js
    Nav toggle · scroll-reveal · the five bubbles (+ concept-render manifest) ·
-   "Can I build one on my lot?" · the dusk map (label nudge + tap a town) · process rail ·
+   "Can I build one on my lot?" · the dusk map (label nudge + tap a town) ·
    contact form · the porch-light moth (idles at the render's real porch light).
    No store hours on a builder's site — the template clock is gone on purpose.
    ============================================================ */
@@ -227,11 +227,11 @@
      (width/height), computes the eight candidate rects arithmetically from the dot's centre and the town's
      --d/--dd offsets (the same numbers the CSS uses), scores them against every dot + every label already
      placed + the frame's edges, and keeps the first clean side (or the least-overlapping). DOM order is the
-     priority order: the hub, the tight western cluster, the other build towns, then context — a context
-     label that can't find a clean side hides rather than overlaps. Towns whose dot the frame crops away
-     are .off. Labels stay visibility:hidden until the first layout (after the fonts are in), and re-lay on
-     resize. Tap a build town → amber + "we build here"; the tag tries above / below / beside and dims any
-     label or dot it still touches (rects, not guesses). */
+     priority order: the hub, the tight western cluster, the other build towns (rev 2, 9/15: the grey
+     context towns and the Rainier glyph are gone — every label is a build town). Towns whose dot the frame
+     crops away are .off. Labels stay visibility:hidden until the first layout (after the fonts are in), and re-lay on
+     resize. Tap a build town → amber + "we build here"; the tag tries above / below / beside. Phone tags
+     search nearby empty space instead of dimming a neighbouring label or dot. */
   var dmap = $('#dmap'), townsWrap = $('#towns'), towns = $$('.town', townsWrap), here = $('#here');
   var SIDES = ['r', 'l', 't', 'b', 'tr', 'tl', 'br', 'bl'];
   /* candidate tiers, in order of preference: the eight sides at the normal offset; the same 7 px further out
@@ -272,7 +272,7 @@
       t.classList.toggle('off', off);
       var l = t.querySelector('.tn'); if (l) l.classList.remove('hide');
       if (off || !l) return;
-      var dot = t.querySelector('i'); if (dot) dots.push(grow(dot.getBoundingClientRect(), 1));
+      var dot = t.querySelector('i'), dr = dot ? dot.getBoundingClientRect() : null; if (dr) dots.push(dr);   // raw; grown per item in hard()
       var cs = getComputedStyle(t), d = parseFloat(cs.getPropertyValue('--d')) || 13, dd = parseFloat(cs.getPropertyValue('--dd')) || 9;
       var lr = l.getBoundingClientRect(), pref = t.getAttribute('data-side') || 'r';
       var order = [pref].concat(SIDES.filter(function (s) { return s !== pref; }));
@@ -285,11 +285,23 @@
           cands.push({ cls: s + (tier.far ? ' far' : '') + (tier.cls ? ' ' + tier.cls : ''), rect: c });
         });
       });
-      items.push({ t: t, l: l, cands: cands, soft: t.classList.contains('ctx') || t.classList.contains('peak'), rect: null, cls: null, score: Infinity });
+      items.push({ t: t, l: l, dot: dr, cands: cands, soft: false /* rev 2: no context/peak labels remain — every label is a build town */, rect: null, cls: null, score: Infinity });
     });
-    function hard(c) {                                   // the frame's edge + every dot: never negotiable
+    function edgeDist(a, b) {                            // gap between two rects' edges (0 when they touch/overlap)
+      var dx = Math.max(0, b.left - a.right, a.left - b.right), dy = Math.max(0, b.top - a.bottom, a.top - b.bottom);
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+    function hard(c, it) {                               // the frame's edge + every dot: never negotiable
       var s = (Math.max(0, inner.left - c.left) + Math.max(0, c.right - inner.right) + Math.max(0, inner.top - c.top) + Math.max(0, c.bottom - inner.bottom)) * 1000;
-      for (var j = 0; j < dots.length; j++) s += 3 * rectOverlap(c, dots[j]);
+      /* ATTRIBUTION (9/15 phone review: "Sumner" sat 4.9 px from Lake Tapps' dot vs 7.5 px from its own): a label may
+         kiss its OWN dot (1 px) but keeps a 7 px moat around every OTHER town's dot, and is never nearer a foreign dot
+         than its own — a name that reads as the neighbour's is as wrong as one that overlaps it. */
+      var own = it && it.dot ? it.dot : null, od = own ? edgeDist(c, own) : 0;
+      for (var j = 0; j < dots.length; j++) {
+        var foreign = dots[j] !== own;
+        s += 3 * rectOverlap(c, grow(dots[j], foreign ? 7 : 1));
+        if (own && foreign) { var fd = edgeDist(c, dots[j]); if (fd <= od) s += 2 * (od - fd) + 1; }
+      }
       if (credit) s += 3 * rectOverlap(c, credit);
       return s;
     }
@@ -301,7 +313,7 @@
     function bestFor(it, skip, extra) {                  // the first zero-score candidate, else the least-bad
       var best = null, bs = Infinity;
       for (var i = 0; i < it.cands.length; i++) {
-        var c = it.cands[i], s = hard(c.rect) + labelScore(c.rect, skip) + (extra ? rectOverlap(c.rect, grow(extra, 1)) : 0);
+        var c = it.cands[i], s = hard(c.rect, it) + labelScore(c.rect, skip) + (extra ? rectOverlap(c.rect, grow(extra, 1)) : 0);
         if (s < bs) { bs = s; best = c; }
         if (s === 0) break;
       }
@@ -315,7 +327,7 @@
     items.forEach(function (it) {
       if (it.score === 0 || it.soft) return;
       for (var i = 0; i < it.cands.length; i++) {
-        var c = it.cands[i]; if (hard(c.rect) > 0) continue;
+        var c = it.cands[i]; if (hard(c.rect, it) > 0) continue;
         var conflicts = items.filter(function (o) { return o !== it && o.rect && rectOverlap(c.rect, grow(o.rect, 1)) > 0; });
         var moves = [], ok = true;
         for (var k = 0; k < conflicts.length && ok; k++) {
@@ -328,7 +340,7 @@
         break;
       }
     });
-    /* commit: context/peak labels that still touch something hide rather than overlap. On a PHONE (the whole ring in a
+    /* commit: (rev 2 — no soft context/peak labels remain). On a PHONE (the whole ring in a
        ≤372 px square, 9/14 evening) the western cluster's dots sit ≤30 px apart — four 14 px names cannot all fit — so a
        build label with no clean slot hides too: its dot stays (white, 44 px, tappable) and the "we build here" tag carries
        the name when it is pressed (placeHere). Never on desktop. */
@@ -339,18 +351,21 @@
     });
     townsWrap.classList.add('placed');
     window.PNW_MAP = items;                                 // QA probe only (nothing on the page reads it)
+    var selected = $('.town[aria-pressed="true"]');
+    if (selected && here && !here.hidden) placeHere(selected);
   }
   function scheduleLayout() { if (layoutRaf) return; layoutRaf = requestAnimationFrame(function () { layoutRaf = 0; layoutLabels(); }); }
   if (dmap) {
-    /* first layout once the faces are in (label widths change with the font) — hidden until then, so no shift */
+    /* Nonblocking font CSS may arrive after fonts.ready has already resolved. Re-measure after later font loads too. */
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutLabels, layoutLabels); else layoutLabels();
+    if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', scheduleLayout);
     window.addEventListener('resize', scheduleLayout);
   }
 
   /* the "we build here" tag: sits above the pressed dot by default; when that would cover a neighbour's
      label or dot it tries below and beside (with the edge shifts), then hangs off the far end of the pressed
      town's OWN name (lbl-r / lbl-l), keeps the side with the least overlap that stays inside the FRAME, and
-     dims whatever it still touches while it is up. The pressed town's own label is a hard conflict — the
+     uses a nearby empty position on phones if the standard anchors are crowded. The pressed town's own label is a hard conflict — the
      name you just tapped is never covered or dimmed (Sumner / Bonney Lake / Lake Tapps / Wilkeson vanished
      under the tag, 9/14 review). Measured, never guessed. */
   var tapTowns = towns.filter(function (t) { return t.tagName === 'BUTTON'; });
@@ -360,18 +375,18 @@
   }
   function placeHere(b) {
     var own = b.querySelector('.tn');
-    var box = dmap ? dmap.getBoundingClientRect() : null, phone = !!box && box.width < 400;
-    /* a town whose name had to hide (phone cluster) says its name in the tag. On a PHONE the tag is the short form — a
-       '✓' hung off the end of the lit name ('<Town> ✓' when the name is hidden): at 'we build here' width it dimmed up to
-       three neighbours in the western cluster, at 'here ✓' still two or three (9/15 verifier: dimmed ≤ 1 per town) */
+    var box = dmap ? dmap.getBoundingClientRect() : null, phone = !!box && window.matchMedia('(max-width:759px)').matches;
+    /* A town whose name had to hide says its name in the tag. The compact phone check stays next to its lit name;
+       even in the western cluster, neighbours keep their full contrast. */
     var hiddenName = own && own.classList.contains('hide') ? own.textContent : '';
-    here.textContent = phone ? (hiddenName ? hiddenName + ' ✓' : '✓') : (hiddenName ? hiddenName + ' · ' : '') + 'we build here';
+    here.textContent = phone && box.width < 400 ? (hiddenName ? hiddenName + ' ✓' : '✓') : (hiddenName ? hiddenName + ' · ' : '') + 'we build here';
     var labels = towns.map(function (t) { return t.querySelector('.tn'); }).filter(Boolean);
     $$('.town .dim').forEach(function (l) { l.classList.remove('dim'); });
     var br = b.getBoundingClientRect(), bcx = br.left + br.width / 2, bcy = br.top + br.height / 2;
     var bx = box ? (bcx - box.left) / box.width * 100 : 50;
     var edge = bx > 72 ? ' edge-r' : bx < 28 ? ' edge-l' : '';
     var dots = towns.filter(function (t) { return t !== b && !t.classList.contains('off'); }).map(function (t) { return t.querySelector('i'); }).filter(Boolean);
+    var credit = dmap && dmap.querySelector('.dmap-credit');
     /* anchors: on desktop the dot first (above / below / beside), then the far end of the pressed town's own name. On a PHONE
        (the whole ring in a ≤372 px square) the name anchors go FIRST: above the dot the tag dimmed up to three neighbours
        (Bonney Lake took Sumner, Lake Tapps and Auburn with it, 9/15 verifier); off the far end of the name it clears them. */
@@ -385,7 +400,7 @@
     if (phone) anchors.push(dotAnchor); else anchors.unshift(dotAnchor);
     var best = null, bestScore = Infinity, bestRects = null, bestDots = null;
     var wasHidden = here.hidden; here.hidden = false; here.style.animation = 'none';
-    anchors.forEach(function (a) {
+    function scoreAnchor(a) {
       if (best !== null && bestScore === 0) return;
       here.style.left = a.pos.left; here.style.top = a.pos.top;
       a.tries.forEach(function (cls) {
@@ -394,18 +409,31 @@
         var r = here.getBoundingClientRect(), score = 0, rects = [], drects = [];
         if (box) { score += (Math.max(0, box.left - r.left) + Math.max(0, r.right - box.right) + Math.max(0, box.top - r.top) + Math.max(0, r.bottom - box.bottom)) * 1e5; }
         labels.forEach(function (l) {
-          var o = l.classList.contains('hide') ? 0 : rectOverlap(r, l.getBoundingClientRect());
+          var o = l.classList.contains('hide') ? 0 : rectOverlap(phone ? grow(r, 4) : r, l.getBoundingClientRect());
           rects.push(l === own ? 0 : o);
           score += (l === own ? 1000 : 1) * o;              // the pressed town's own name: never under the tag
         });
-        dots.forEach(function (d) { var o = rectOverlap(r, d.getBoundingClientRect()); drects.push(o); score += 25 * o; });   // a covered dot is someone's tap target — worth 25 covered-label pixels
+        dots.forEach(function (d) { var o = rectOverlap(phone ? grow(r, 4) : r, d.getBoundingClientRect()); drects.push(o); score += 25 * o; });   // a covered dot is someone's tap target — worth 25 covered-label pixels
+        if (credit) score += 1000 * rectOverlap(grow(r, 4), credit.getBoundingClientRect());
         if (score < bestScore) { bestScore = score; best = { cls: cls, pos: a.pos }; bestRects = rects; bestDots = drects; }
       });
-    });
+    }
+    anchors.forEach(scoreAnchor);
+    if (phone && bestScore > 0) {
+      /* Expand from the pressed name in 8 px steps. Keep the closest clean position, with the pointer aimed
+         back toward that name. This also handles font swaps and unusually narrow phone frames. */
+      var nr = own && !own.classList.contains('hide') ? own.getBoundingClientRect() : br;
+      for (var step = 8; step <= box.width && bestScore > 0; step += 8) {
+        for (var dy = -step; dy <= step && bestScore > 0; dy += 8) {
+          scoreAnchor({ pos: pct(nr.right + step, nr.top + nr.height / 2 + dy), tries: ['here lbl-r'] });
+          scoreAnchor({ pos: pct(nr.left - step, nr.top + nr.height / 2 + dy), tries: ['here lbl-l'] });
+        }
+      }
+    }
     here.style.left = best.pos.left; here.style.top = best.pos.top;
     here.className = best.cls; here.style.animation = ''; here.hidden = wasHidden;
-    if (bestRects) labels.forEach(function (l, i) { if (bestRects[i] > 0 && l !== own) l.classList.add('dim'); });
-    if (bestDots) dots.forEach(function (d, i) { if (bestDots[i] > 0) d.classList.add('dim'); });   // the tag is pointer-events:none — a covered dot still taps; it just steps back visually
+    if (!phone && bestRects) labels.forEach(function (l, i) { if (bestRects[i] > 0 && l !== own) l.classList.add('dim'); });
+    if (!phone && bestDots) dots.forEach(function (d, i) { if (bestDots[i] > 0) d.classList.add('dim'); });
   }
   /* in the western cluster (Puyallup · Sumner · Bonney Lake · Lake Tapps) the 44 px targets overlap, so a
      pointer tap resolves to the town whose DOT is nearest the tap point — the one the thumb was on — not

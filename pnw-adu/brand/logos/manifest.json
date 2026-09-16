@@ -1,0 +1,105 @@
+{
+  "date": "2026-09-15",
+  "status": "concept; no primary mark selected",
+  "typography": {
+    "family": "Archivo",
+    "wght": 800,
+    "wdth": 112,
+    "tracking_em": 0.04,
+    "source": "../fonts/Archivo-Variable.ttf",
+    "license": "../fonts/Archivo-OFL.txt",
+    "portable": "all logo typography outlined via CoreText"
+  },
+  "colors": {
+    "ground": "#1B2226",
+    "cream": "#EDE5D5",
+    "cedar": "#D4954D",
+    "window": "#FFC46B"
+  },
+  "concepts": [
+    {
+      "id": "01-light-gable",
+      "name": "Light Gable",
+      "rationale": "A broad roofline, an open threshold and one warm window.",
+      "files": {
+        "preview_dark": "01-light-gable-dark.png",
+        "lockup_dark": "01-light-gable-lockup-dark.svg",
+        "mark_dark": "01-light-gable-mark-dark.svg",
+        "preview_cream": "01-light-gable-cream.png",
+        "lockup_cream": "01-light-gable-lockup-cream.svg",
+        "mark_cream": "01-light-gable-mark-cream.svg",
+        "mark_mono": "01-light-gable-mark-mono.svg"
+      }
+    },
+    {
+      "id": "02-shared-wall",
+      "name": "Shared Wall",
+      "rationale": "Two spaces of different sizes meet along one structural wall.",
+      "files": {
+        "preview_dark": "02-shared-wall-dark.png",
+        "lockup_dark": "02-shared-wall-lockup-dark.svg",
+        "mark_dark": "02-shared-wall-mark-dark.svg",
+        "preview_cream": "02-shared-wall-cream.png",
+        "lockup_cream": "02-shared-wall-lockup-cream.svg",
+        "mark_cream": "02-shared-wall-mark-cream.svg",
+        "mark_mono": "02-shared-wall-mark-mono.svg"
+      }
+    },
+    {
+      "id": "03-timber-joint",
+      "name": "Timber Joint",
+      "rationale": "Two cut timbers interlock; the empty center is the extra room.",
+      "files": {
+        "preview_dark": "03-timber-joint-dark.png",
+        "lockup_dark": "03-timber-joint-lockup-dark.svg",
+        "mark_dark": "03-timber-joint-mark-dark.svg",
+        "preview_cream": "03-timber-joint-cream.png",
+        "lockup_cream": "03-timber-joint-lockup-cream.svg",
+        "mark_cream": "03-timber-joint-mark-cream.svg",
+        "mark_mono": "03-timber-joint-mark-mono.svg"
+      }
+    },
+    {
+      "id": "04-open-plan",
+      "name": "Open Plan",
+      "rationale": "An open floor plan draws the eye from the main space into the addition.",
+      "files": {
+        "preview_dark": "04-open-plan-dark.png",
+        "lockup_dark": "04-open-plan-lockup-dark.svg",
+        "mark_dark": "04-open-plan-mark-dark.svg",
+        "preview_cream": "04-open-plan-cream.png",
+        "lockup_cream": "04-open-plan-lockup-cream.svg",
+        "mark_cream": "04-open-plan-mark-cream.svg",
+        "mark_mono": "04-open-plan-mark-mono.svg"
+      }
+    },
+    {
+      "id": "05-twin-beams",
+      "name": "Twin Beams",
+      "rationale": "A compact P and A share the rhythm of two load-bearing frames.",
+      "files": {
+        "preview_dark": "05-twin-beams-dark.png",
+        "lockup_dark": "05-twin-beams-lockup-dark.svg",
+        "mark_dark": "05-twin-beams-mark-dark.svg",
+        "preview_cream": "05-twin-beams-cream.png",
+        "lockup_cream": "05-twin-beams-lockup-cream.svg",
+        "mark_cream": "05-twin-beams-mark-cream.svg",
+        "mark_mono": "05-twin-beams-mark-mono.svg"
+      }
+    },
+    {
+      "id": "06-window-cut",
+      "name": "Window Cut",
+      "rationale": "An N-to-U ribbon wraps around a single lit window.",
+      "files": {
+        "preview_dark": "06-window-cut-dark.png",
+        "lockup_dark": "06-window-cut-lockup-dark.svg",
+        "mark_dark": "06-window-cut-mark-dark.svg",
+        "preview_cream": "06-window-cut-cream.png",
+        "lockup_cream": "06-window-cut-lockup-cream.svg",
+        "mark_cream": "06-window-cut-mark-cream.svg",
+        "mark_mono": "06-window-cut-mark-mono.svg"
+      }
+    }
+  ]
+}

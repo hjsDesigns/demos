@@ -17,17 +17,23 @@
      the fonts swap in when Google answers — never a blank dark screen for the length of a slow font request -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B2226'/%3E%3Cpath d='M6 17 L16 8 L26 17 V26 H6 Z' fill='none' stroke='%23D4954D' stroke-width='2.2' stroke-linejoin='round'/%3E%3Crect x='13' y='18' width='6' height='8' fill='%23FFC46B'/%3E%3C/svg%3E">
+<!-- the mark: brand/logos/02-shared-wall (the main house + the attached unit sharing one wall) — SVG favicon + a 32 px PNG
+     (images/favicon-32.png, drawn from the same rectangles). Rev 2, 9/15. The other candidate (01 light gable) is on
+     brand/compare.html for Hayden to flip to. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B2226'/%3E%3Cg transform='translate(1.23 1.69) scale(.1154)'%3E%3Cpath fill='%23EDE5D5' fill-rule='evenodd' d='M24 24H160V224H24ZM60 60V188H124V60Z'/%3E%3Cpath fill='%23D4954D' fill-rule='evenodd' d='M124 96H232V224H124ZM160 132V188H196V132Z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- ===================== HEADER / NAV =====================
-     No logo file exists yet — the wordmark is live type in the mark face.
-     Four anchors + one CTA. -->
+     The lockup: mark 02 "shared wall" (brand/logos/02-shared-wall-mark-dark.svg, inline — cream house, amber unit,
+     the two rectangles sharing one wall) beside the wordmark, which stays LIVE TYPE in the mark face (Archivo 800/112,
+     the same axis values the outlined lockup files use). Four anchors + one CTA. -->
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="PNW ADU — home">
+      <svg class="mark" viewBox="24 24 208 200" aria-hidden="true" focusable="false"><path class="mk-house" fill-rule="evenodd" d="M24 24H160V224H24ZM60 60V188H124V60Z"/><path class="mk-unit" fill-rule="evenodd" d="M124 96H232V224H124ZM160 132V188H196V132Z"/></svg>
       <span class="wm">PNW ADU<small>Accessory dwelling units</small></span>
     </a>
     <div class="nav-wrap">
@@ -46,14 +52,14 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero — "Day into night" =====================
+  <!-- ===================== #hero — "Day into sunset" =====================
        Hayden's 9/14 evening call: the hero is the ADD-ON FARMHOUSE ("that house
        is beautiful") — his Higgsfield concept render as a matched DAY / DUSK
        pair (images/hero/, same composition to the pixel), labelled "concept",
        never presented as their work. NO sign board — the name lives in the
-       header; nothing sits on the hero but the concept tag, one mono hint and
-       the sr-only h1. Layers, bottom to top:
-         #heroBg   the background GROUP that lags the scroll after the event —
+       header; nothing sits on the hero but the concept tag and the sr-only h1.
+       Layers, bottom to top:
+         #heroBg   the background GROUP that lags the scroll after the sweep —
                    the DAY still under the DUSK still (opacity = --dusk), plus
                    #heroPlug (slivers of sky/treeline, day + dusk, that cover the
                    roof edges the shift would drag out from under the cutout's
@@ -61,17 +67,23 @@
          #heroFg   the house cut out WITH the ground below the horizon, day +
                    dusk (JS-loaded WebP), riding with the page at 1× while
                    #heroBg lags — sky and trees slide behind the house.
-       THE EVENT (js/hero.js): once, on load — the dusk goes 0 → 1 over 2.6 s
-       (power2.in: the sky cools first, the windows come on late), then still.
-       THE TOY: after that, drag a finger sideways (or just move the mouse) across
-       the hero to sweep day ↔ dusk — --dusk follows the pointer's x; it eases
-       back to dusk 2 s after the hand leaves. Both boxes extend --plx above the
-       hero so the parallax reveals real sky. Landscape viewports use the wide
-       pair; portrait ones (phones, tablets upright) the tall pair, height-capped
-       so the whole house stays in frame. The sconce is anchored in the render's
-       own pixels (--lamp-x/-y) so the moth idles beside the real light.
-       Reduced-motion / no-JS = the dusk still (the CSS default): no event, no
-       toy, no parallax. The film hero this replaced: versions/film-hero-0914/. -->
+         .hero-grade  the SUNSET grade: an amber-orange gradient, soft-light,
+                   at opacity --gold (0 → .55 → 0 across the middle of the sweep)
+                   plus a saturation lift on the stills — the midpoint reads as
+                   golden hour, not a crossfade.
+       THE SWEEP (js/hero.js), rev 2 (Hayden, 9/15: "go from daytime and slowly
+       transition into the sunset hour, then just sit at sunset … I don't need my
+       mouse to be the one that affects the daytime"): ONE slow one-way sweep on
+       load, ~8 s — .6 s on the day, then --dusk 0 → 1 over 7.4 s (power2.inOut,
+       slow in / slow out) with the gold grade peaking at 42–58 % — then still
+       forever. No pointer code anywhere: nothing can interrupt it or leave it at a
+       half state. Both boxes extend --plx above the hero so the parallax reveals
+       real sky. Landscape viewports use the wide pair; portrait ones (phones,
+       tablets upright) the tall pair, height-capped so the whole house stays in
+       frame. The sconce is anchored in the render's own pixels (--lamp-x/-y) so
+       the moth idles beside the real light. Reduced-motion / no-JS = the dusk
+       still (the CSS default): no sweep, no parallax. The drag/hover toy this
+       replaced is gone (rev 2); the film hero before it: versions/film-hero-0914/. -->
   <section class="hero" id="hero" aria-label="PNW ADU">
     <h1 class="sr-only">PNW ADU — accessory dwelling units built on the plateau</h1>
     <div class="hero-bg" id="heroBg" aria-hidden="true">
@@ -86,10 +98,9 @@
       <div class="hero-layer hero-plug" id="heroPlug"></div>
     </div>
     <div class="hero-fg" id="heroFg" aria-hidden="true"></div>
+    <div class="hero-grade" aria-hidden="true"></div>
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
-    <!-- the one hint for the toy: shows once the event is done, fades after the first drag -->
-    <span class="hero-hint" id="heroHint" aria-hidden="true"><span class="t-touch">drag</span><span class="t-mouse">move</span> ◂ day · dusk ▸</span>
     <!-- CONCEPT RENDER: a rendering, never presented as their work. The tag stays until dad's real
          frames replace the render — see NOTES.md (BLOCKED). -->
     <span class="hero-tag">concept</span>
@@ -260,42 +271,45 @@
        9/14: max 5 px / 0.22% drift on five water bodies + a whole-frame ORB fit
        ≈ identity). Everything on it is projected from real lat/lon through the
        same bbox into the render's 2304×1856 pixels, as % of the image plane:
-         .dmap        the frame (overflow hidden): phones = a tall 2:3 crop
-                      zoomed 2.8× and centred on Buckley (~29 mi wide — Tacoma's
-                      shore and the Cascade snow stay out, the plateau fills it);
-                      ≥760 = the wide 13:10 crop with the whole 30-mile ring.
-         .dmap-plane  the image plane (width = --zoom × frame, aspect 2304/1856),
-                      positioned so the focal point --fx/--fy (Buckley) lands at
-                      --tx/--ty of the frame — pure CSS, no JS, no layout shift.
-         .dmap-svg    the 30-mile ring (amber; breathes once on scroll-in, then
-                      rests), a faint 15-mile ring, the Rainier peak glyph.
+         .dmap        the frame (overflow hidden): phones = a square, ≥760 the
+                      wide 13:10. REV 2 (Hayden, 9/15: "zoom into the map a little
+                      bit and shrink our circle down so it shows where they
+                      build"): the ring is 15 MILES from Buckley and the plane is
+                      sized so the ring nearly fills the frame with ~12 px of air
+                      (the ring is 36.94 % of the image's width, so plane width =
+                      (frame − 24 px) / .3694 — on the 13:10 frame the ring fills
+                      the HEIGHT). All 13 build towns sit inside 15 mi (farthest:
+                      Maple Valley 14.1, Auburn 13.7, Puyallup 12.6).
+         .dmap-plane  the image plane (aspect 2304/1856), positioned so the focal
+                      point --fx/--fy (Buckley) lands at --tx/--ty of the frame —
+                      pure CSS, no JS, no layout shift.
+         .dmap-svg    the 15-mile ring (amber; breathes once on scroll-in, then
+                      rests). The grey context towns and the Rainier glyph are
+                      gone (rev 2) — everything on the map is a place they build.
          .towns       live-text labels on 44 px targets: 13 "we build here"
                       towns (white dots, tappable — Hayden's 9/14 list), Buckley
-                      the amber hub, 11 grey context towns (not tappable). Tap a
-                      town → amber + "we build here"; tap again clears. js/site.js
-                      lays the labels out with a collision nudge (each tries its
-                      preferred side, then the other seven; context labels hide
-                      rather than overlap) and re-lays on resize.
+                      the amber hub. Tap a town → amber + "we build here"; tap
+                      again clears. js/site.js lays the labels out with a
+                      collision nudge (each tries its preferred side, then the
+                      other seven) and re-lays on resize.
        Positions: x = (lon − W)/(E − W) × 2304, y = (merc(N) − merc(lat)) /
        (merc(N) − merc(S)) × 1856. 1 mile = 28.373 px at Buckley (Web
-       Mercator is conformal, so the rings are true circles). The drawn SVG map
-       this replaced is shelved at versions/drawn-map-0914/. -->
+       Mercator is conformal, so the ring is a true circle): r = 425.6 px. The
+       drawn SVG map this replaced is shelved at versions/drawn-map-0914/. -->
   <section class="section section-alt" id="map">
     <div class="wrap">
       <div class="section-head map-copy reveal">
         <p class="eyebrow">Where we work</p>
         <h2>The plateau, <em>and the lots around it.</em></h2>
-        <p class="lede">Home base is the plateau. If your lot is inside the 30-mile ring, we'll come walk it.</p>
+        <p class="lede">Home base is Buckley. If your lot is inside the ring, we'll come walk it.</p>
         <p class="hint"><span class="t-touch">Tap</span><span class="t-mouse">Click</span> a town</p>
       </div>
       <div class="dmap reveal" id="dmap">
         <div class="dmap-plane" id="dmapPlane">
-          <img src="images/map/plateau30-dusk-web.jpg" width="2304" height="1856" alt="The Enumclaw–Buckley plateau and the country 30 miles around it from above at dusk — USGS aerial imagery, town lights coming on" loading="lazy" decoding="async">
+          <img src="images/map/plateau30-dusk-web.jpg" width="2304" height="1856" alt="The Enumclaw–Buckley plateau and the towns 15 miles around it from above at dusk — USGS aerial imagery, town lights coming on" loading="lazy" decoding="async">
           <svg class="dmap-svg" viewBox="0 0 2304 1856" aria-hidden="true" focusable="false">
+            <!-- 15 miles from Buckley: 15 × 28.373 px -->
             <circle class="ring ring-15" cx="1152.0" cy="932.1" r="425.6"/>
-            <circle class="ring ring-30" cx="1152.0" cy="932.1" r="851.2"/>
-            <!-- Mt. Rainier: a peak glyph on the summit -->
-            <g class="peak-glyph" transform="translate(1507.6 1544.7)"><path class="mtn" d="M-40 26 L-12 -26 L0 -10 L12 -26 L40 26 Z"/><path class="snow" d="M-12 -26 L0 -10 L12 -26 L7 -14 L0 -18 L-7 -14 Z"/></g>
           </svg>
           <div class="towns" id="towns">
           <button class="town hub" type="button" style="left:50.00%;top:50.22%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Buckley</span></button>
@@ -311,62 +325,27 @@
           <button class="town" type="button" style="left:38.32%;top:34.86%" data-side="l" data-lamp aria-pressed="false"><i></i><span class="tn">Auburn</span></button>
           <button class="town" type="button" style="left:51.38%;top:34.74%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Black Diamond</span></button>
           <button class="town" type="button" style="left:48.97%;top:28.50%" data-side="r" data-lamp aria-pressed="false"><i></i><span class="tn">Maple Valley</span></button>
-          <span class="town ctx" style="left:25.82%;top:40.66%" data-side="l"><i></i><span class="tn">Tacoma</span></span>
-          <span class="town ctx" style="left:33.45%;top:33.25%" data-side="l"><i></i><span class="tn">Federal Way</span></span>
-          <span class="town ctx" style="left:37.95%;top:26.99%" data-side="l"><i></i><span class="tn">Kent</span></span>
-          <span class="town ctx" style="left:44.56%;top:29.43%" data-side="r"><i></i><span class="tn">Covington</span></span>
-          <span class="town ctx" style="left:38.98%;top:16.08%" data-side="r"><i></i><span class="tn">Renton</span></span>
-          <span class="town ctx" style="left:34.51%;top:61.95%" data-side="l"><i></i><span class="tn">Graham</span></span>
-          <span class="town ctx" style="left:36.12%;top:81.63%" data-side="r"><i></i><span class="tn">Eatonville</span></span>
-          <span class="town ctx" style="left:26.38%;top:56.52%" data-side="b"><i></i><span class="tn">Spanaway</span></span>
-          <span class="town ctx" style="left:21.52%;top:49.31%" data-side="b"><i></i><span class="tn">Lakewood</span></span>
-          <span class="town ctx" style="left:17.95%;top:32.51%" data-side="b"><i></i><span class="tn">Gig Harbor</span></span>
-          <span class="town ctx" style="left:72.40%;top:51.85%" data-side="b"><i></i><span class="tn">Greenwater</span></span>
-          <span class="town peak" style="left:65.43%;top:83.23%" data-side="b"><span class="tn">Mt. Rainier</span></span>
           <span class="here" id="here" hidden>we build here</span>
           </div>
         </div>
-        <span class="dmap-credit" title="Imagery: USGS NAIP · 30 miles from Buckley"><span class="credit-phone" aria-hidden="true">USGS</span><span class="credit-wide">Imagery: USGS NAIP · 30 miles from Buckley</span></span>
+        <span class="dmap-credit" title="Imagery: USGS NAIP · 15 miles from Buckley"><span class="credit-phone" aria-hidden="true">USGS</span><span class="credit-wide">Imagery: USGS NAIP · 15 miles from Buckley</span></span>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #process =====================
-       Lot walk → design & permit → build → keys. Times are ROUGH South Sound
-       figures from the brief (§3f), dated, never promised. -->
+  <!-- ===================== #process — "We handle it start to finish" =====================
+       REV 2 (Hayden, 9/15: "We don't really want 1 through 4 … Jared will handle
+       everything from start to finish … say 'We will.'"): the numbered steps, their
+       timelines and the fine print are gone. ONE band on the render ground — the
+       headline in his plain voice, one line, the one CTA. No numbers, no months. -->
   <section class="section section-ground" id="process">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="handle reveal">
         <p class="eyebrow">How it goes</p>
-        <h2>Lot walk to keys, <em>four steps.</em></h2>
+        <h2>We handle it <em>start to finish.</em></h2>
+        <p class="lede">The lot walk, the design and permits, the build, the keys. One crew, one number to call.</p>
+        <a href="#contact" class="btn btn-primary" data-lamp="always">Set up a consultation</a>
       </div>
-      <ol class="process reveal">
-        <li>
-          <span class="n tnum">01</span>
-          <h3>Lot walk</h3>
-          <p>We walk the property with you: where it could sit, septic and well or sewer and water, what the county will want. You leave knowing what your lot allows and what the county will ask for.</p>
-          <span class="when tnum">Day one</span>
-        </li>
-        <li>
-          <span class="n tnum">02</span>
-          <h3>Design &amp; permit</h3>
-          <p>Plans drawn to match your house and your lot, then through permitting with the city or county. Septic review runs alongside when you're not on sewer.</p>
-          <span class="when tnum">3–6 months, rough</span>
-        </li>
-        <li>
-          <span class="n tnum">03</span>
-          <h3>Build</h3>
-          <p>Footings, framing, dried in, finished. Inspections along the way.</p>
-          <span class="when tnum">4–6 months, rough</span>
-        </li>
-        <li>
-          <span class="n tnum">04</span>
-          <h3>Keys</h3>
-          <p>Final inspection, certificate of occupancy, and the lights come on.</p>
-          <span class="when">Move in</span>
-        </li>
-      </ol>
-      <p class="fine reveal">Rough South Sound timelines as of Sept 2026. Health-department review and county workload can add time.</p>
     </div>
   </section>
 
@@ -409,8 +388,8 @@
     <div class="foot">
       <div>
         <div class="brand">
-          <!-- ASK DAD: base town goes in a <small> here once confirmed (facts.json.town). -->
-          <span class="wm">PNW ADU</span>
+          <!-- the mark alone (02 shared wall); the name is live type in the © line below. ASK DAD: base town goes in a <small> here once confirmed (facts.json.town). -->
+          <svg class="mark" viewBox="24 24 208 200" role="img" aria-label="PNW ADU"><path class="mk-house" fill-rule="evenodd" d="M24 24H160V224H24ZM60 60V188H124V60Z"/><path class="mk-unit" fill-rule="evenodd" d="M124 96H232V224H124ZM160 132V188H196V132Z"/></svg>
         </div>
         <p>Accessory dwelling units, built on the plateau.</p>
       </div>

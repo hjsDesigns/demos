@@ -1,5 +1,5 @@
 {
-  "_comment": "PNW ADU — Hayden's dad's new ADU company, Enumclaw/Buckley plateau. NOTHING about the business itself is verified yet (Recon/pnw-adu.md §6): every null below is a real unknown, never guessed on the page. The QA fact checks skip null phone/address/hours by design. BUILD IS PITCH/PUBLISH-BLOCKED (photo-blocked + publish_gate below). Hero (9/14 evening, Hayden): the ADD-ON FARMHOUSE concept render as a matched day/dusk pair — one day→dusk event on load, then the 'drag the day into night' toy, then depth parallax — labelled 'concept'. No sign board; the name lives in the header only. Bubbles show stills only (no push-in clips). CTA everywhere: 'Set up a consultation'. The dusk map shows the whole 30-mile ring on phones too.",
+  "_comment": "PNW ADU — Hayden's dad's new ADU company, Enumclaw/Buckley plateau. NOTHING about the business itself is verified yet (Recon/pnw-adu.md §6): every null below is a real unknown, never guessed on the page. The QA fact checks skip null phone/address/hours by design. BUILD IS PITCH/PUBLISH-BLOCKED (photo-blocked + publish_gate below). Hero (9/14 evening, Hayden): the ADD-ON FARMHOUSE concept render as a matched day/dusk pair — REV 2 (9/15 evening, Hayden): ONE slow one-way sweep on load — day → a golden sunset midpoint → dusk, ~8 s — then still; the drag/hover toy is GONE; depth parallax stays — labelled 'concept'. No sign board; the name lives in the header only. Bubbles show stills only (no push-in clips). CTA everywhere: 'Set up a consultation'. The dusk map shows a 15-mile ring from Buckley that nearly fills the frame (rev 2); the process section is one 'We handle it start to finish' band; the site mark is brand/logos/02-shared-wall.",
   "name": "PNW ADU",
   "business": "PNW ADU",
   "domain": "pnw-adu.com (NOT registered as of 2026-09-14 12:03 PDT — whois 'No match')",
@@ -26,15 +26,34 @@
     "Carbonado",
     "South Prairie"
   ],
-  "towns_served_status": "Hayden's 2026-09-14 (late) list — 13 'we build here' towns (white dots, tappable) around the Buckley hub, inside a 30-mile ring; 11 context towns (Tacoma, Kent, Federal Way, Renton, Covington, Graham, Eatonville, Greenwater, Gig Harbor, Lakewood, Spanaway) drawn grey, not tappable, plus Mt. Rainier as a peak glyph. Still PROVISIONAL until dad confirms the list and how far he'll drive (ask #5).",
+  "towns_served_status": "Hayden's 2026-09-14 (late) list — 13 'we build here' towns (white dots, tappable) around the Buckley hub. REV 2 (2026-09-15): the ring is 15 miles from Buckley (all 13 sit inside — farthest Maple Valley 14.09 mi, Auburn 13.73, Puyallup 12.59); the 11 grey context towns and the Mt. Rainier glyph are gone from the map. Still PROVISIONAL until dad confirms the list and how far he'll drive (ask #5).",
   "rules_as_of": "2026-09-14",
   "rules_note": "The four lot-gadget answers come from Recon/pnw-adu.md §3–4 (RCW 36.70A.681, PCC 18A.37.120, KCC 21A.08.030 B.7.a, EMC 19.34 via index snippet, King DLS handout Mar 2026). The two 'out in the country' answers and Buckley's 2025 draft adoption are flagged UNVERIFIED with a planner in the brief — confirm before go-live.",
+  "hero_gadget": "none — one-way sunset sweep (rev 2, 2026-09-15): day → golden midpoint → dusk over ~8 s on load, then still; no pointer code; reduced-motion / no-JS = dusk still",
+  "map_ring_miles": 15,
+  "map_ring_towns_inside": [
+    "Buckley (hub)",
+    "Enumclaw 3.3 mi",
+    "South Prairie 3.6",
+    "Wilkeson 4.0",
+    "Carbonado 5.8",
+    "Bonney Lake 6.8",
+    "Lake Tapps 8.3",
+    "Orting 9.5",
+    "Black Diamond 10.1",
+    "Sumner 10.4",
+    "Puyallup 12.6",
+    "Auburn 13.7",
+    "Maple Valley 14.1"
+  ],
+  "process": "single band — 'We handle it start to finish.' + one line + 'Set up a consultation' → #contact; no numbered steps, no timelines (rev 2, 2026-09-15)",
+  "logo": "02-shared-wall (brand/logos/02-shared-wall-*): inline SVG mark + live-type wordmark lockup in the header, mark alone in the footer and as the favicon (SVG data URI + images/favicon-32.png); alternative 01-light-gable on brand/compare.html",
   "asks_for_dad": [
     "1. The name as he says it — PNW ADU / PNW ADU LLC? Registered business name + UBI; buy pnw-adu.com (unregistered 9/14) and say which registrar so DNS can point at GitHub Pages.",
     "2. Photos — finished ADU whole from the yard at blue hour (two tripod frames: lights off / lights on), same unit in daylight, two whole-room interiors, the truck on a lot with the door readable, dad on site at work, any framing sequence, the mill/lumber stack if real, any existing lettering (original file). Until then the hero and the bubble frames are Higgsfield concept renders, every one tagged 'concept'.",
     "3. Offer line — design-build turnkey? permits handled in-house? site work / septic / utilities? stick-built only or prefab set too? attached + garage conversions, or detached only? (decides the sub line and the five bubble lines — the fifth bubble is 'Inside the house' (basement/attic apartment, a KCC-recognised ADU type); the first build's 'Studio or shop' line was dropped 9/14 as an offer nobody gave. Until he answers, the page promises no permitting and no new-garage construction.)",
     "4. WA contractor license number as printed + bonded/insured line — fills the hidden stake in #trust and the L&I link.",
-    "5. Service towns — confirm or edit the 13 'we build here' towns on the dusk map (Hayden's 9/14 list: Buckley hub + Enumclaw, Bonney Lake, Lake Tapps, Sumner, Puyallup, Orting, Black Diamond, Maple Valley, Auburn, Wilkeson, Carbonado, South Prairie) and the 30-mile ring; how far will he really drive?",
+    "5. Service towns — confirm or edit the 13 'we build here' towns on the dusk map (Hayden's 9/14 list: Buckley hub + Enumclaw, Bonney Lake, Lake Tapps, Sumner, Puyallup, Orting, Black Diamond, Maple Valley, Auburn, Wilkeson, Carbonado, South Prairie) and the 15-mile ring (rev 2); how far will he really drive?",
     "6. First project story — whose ADU (with permission), why, what, which county/city permitted it, start-to-keys time.",
     "7. Years in construction + what the crew has built — fills the hidden 'years building' stake; numbers must be true.",
     "8. Price posture — show ranges? 'From $___'? or 'walk the lot first'? Is the lot walk free? Numbers incl. tax? (no prices are on the site until he answers)",
@@ -91,16 +110,17 @@
       "images/hero/plug-day-tall.webp",
       "images/hero/plug-dusk-tall.webp"
     ],
-    "event": "--dusk 0→1 over 2.6 s, power2.in, after a .25 s hold on the day; once; then still. Toy: drag/hover sweeps --dusk from the pointer's x; back to dusk 2 s after the hand leaves. Reduced-motion / no-JS: dusk still, no event, no toy.",
+    "event": "REV 2 sweep (js/hero.js SWEEP): .6 s hold on the day, then --dusk 0→1 over 7.4 s power2.inOut (total 8.0 s); --gold 0→.55 over 2.8 s (sine.inOut) from .6 s, holds 1.2 s (peak 3.4–4.6 s ≈ 42–58 %), falls to 0 over 3.0 s (gone at 7.6 s). Once; then still. No toy, no pointer code. Reduced-motion / no-JS: dusk still, no sweep.",
     "encode": "stills q84 progressive at native px (PIL, 4:2:0 like the rest of images/hero/); depth layers WebP q82 at native px",
     "shelved": "images/hero/lightson-*.{webm,mp4}, dark-*.jpg, lit-*.jpg, fg-lit-*.webp, plug-lit-*.webp, house-*.webp stay on disk unreferenced (film hero, 9/14 night)"
   },
-  "map_source": "USGS NAIP, Higgsfield dusk re-render; ring 30 mi from Buckley",
+  "map_source": "USGS NAIP, Higgsfield dusk re-render; ring 15 mi from Buckley (rev 2; the export itself still covers 30 mi)",
   "map_assets": {
     "ground": "images/map/plateau30-dusk-web.jpg (2304x1856, q82 web copy of images/map/plateau30-dusk.jpg — the Higgsfield blue-hour re-render of images/map/naip-30mi.jpg, a 3200x2560 USGS NAIP Web Mercator export; bbox in images/map/map-30mi.json)",
     "alignment_verified": "2026-09-14: dusk render vs NAIP at the nominal 0.72 x / 0.725 y scale — water-mask template match on Lake Tapps (+0,+1 px), Alder Lake (-2,+2), American Lake (-5,+1), Commencement Bay (-5,-1), Lake Youngs (0,0), Puget Sound/Vashon (-1,+2); max 5 px = 0.22% of the frame; whole-frame ORB/RANSAC fit scale 1.0048, rot -0.11 deg, shift (-4,-5) px, 332 inliers. No fit applied — nominal scale used.",
-    "projection": "x = (lon - W)/(E - W) * 2304; y = (merc(N) - merc(lat))/(merc(N) - merc(S)) * 1856; 28.373 px per mile at Buckley; ring30 r = 851.2 px, ring15 r = 425.6 px; Buckley at (50.00%, 50.22%)",
-    "drawn_map_shelved": "versions/drawn-map-0914/"
+    "projection": "x = (lon - W)/(E - W) * 2304; y = (merc(N) - merc(lat))/(merc(N) - merc(S)) * 1856; 28.373 px per mile at Buckley; ring15 r = 425.6 px (the 30-mile ring, r = 851.2 px, is gone — rev 2); Buckley at (50.00%, 50.22%)",
+    "drawn_map_shelved": "versions/drawn-map-0914/",
+    "crop": "rev 2: the plane is sized so the 15-mile ring nearly fills the frame with 12 px of air — plane width = (frame's shorter side − 24 px) / .36944 (ring diameter / image width); phones square, ≥760 13:10 (ring fills the height)"
   },
   "cta": {
     "label": "Set up a consultation",

@@ -70,8 +70,8 @@
 /* ============================================================
    Z-INDEX MAP
      60  .site-header   40  #main-nav   50  .moth (fixed, pointer-events:none)
-     inside .hero (isolation:isolate):  1 .hero-bg (inside it: 1 .hero-dark  2 .hero-lit  3 .hero-plug)
-        2 .hero-film  3 .hero-fg  4 .hero-scrim  5 .grain  6 .hero-tag
+     inside .hero (isolation:isolate):  1 .hero-bg (inside it: 1 .hero-day  2 .hero-dusk  3 .hero-plug)
+        3 .hero-fg  4 .hero-grade  5 .hero-scrim  6 .grain  7 .hero-tag
      inside .section-ground (isolation:isolate):  -2 ::before (the render ground)  -1 ::after (the top seam)  auto content
      inside .dmap:  the image plane (img · svg rings · .towns labels)  3 .dmap-credit
    ============================================================ */
@@ -94,9 +94,9 @@ p{margin:0 0 1em}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 7px color-mix(in srgb,var(--brand) 45%,transparent);border-radius:8px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .tnum{font-variant-numeric:tabular-nums}
-/* pointer-aware verbs: 'drag' / 'tap' for a thumb, 'move' / 'click' where a fine pointer hovers (a Mac with a mouse) */
+/* pointer-aware verbs: 'tap' for a thumb, 'click' where a fine pointer hovers (a Mac with a mouse) — the map's hint */
 .t-mouse{display:none}
-@media (hover:hover) and (pointer:fine){.t-touch{display:none}.t-mouse{display:inline}}
+@media (pointer:fine){.t-touch{display:none}.t-mouse{display:inline}}
 .hint{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 0}
 .fine{font-size:16px;color:var(--muted);margin:22px 0 0}
 .lede{font-size:clamp(17px,1.5vw,19.5px);color:var(--ink);max-width:56ch}
@@ -119,6 +119,12 @@ p{margin:0 0 1em}
   border-bottom:1px solid color-mix(in srgb,var(--brand) 22%,transparent)}
 .header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
 .logo{display:inline-flex;align-items:center;gap:11px;flex:none;min-height:44px}
+/* the mark (brand/logos/02-shared-wall, inline SVG in index.html): the main house in cream, the attached unit in amber,
+   painted from the tokens so it follows the palette. 34 px tall in the 72 px header; 40 px alone in the footer. */
+.mark{display:block;height:34px;width:auto;aspect-ratio:208/200;flex:none}
+.mark .mk-house{fill:var(--ink);transition:fill .2s}
+.mark .mk-unit{fill:var(--brand)}
+.logo:hover .mark .mk-house{fill:var(--brand-text)}
 .wm{font-family:var(--display);font-weight:800;font-stretch:112%;font-size:21px;letter-spacing:.06em;line-height:1;color:var(--ink);transition:color .2s}
 .logo:hover .wm{color:var(--brand-text)}
 .wm small{display:block;font-family:var(--mono);font-weight:600;font-stretch:100%;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);margin-top:5px}   /* --muted-2: the sub-line fell to 5.96:1 over the hero's sky through the 78% header (9/14 review) */
@@ -137,33 +143,37 @@ p{margin:0 0 1em}
   .main-nav .nav-cta{border-radius:0;margin-top:6px}
   .nav-toggle{display:flex;align-items:center;justify-content:center}
 }
-@media (max-width:560px){.wm{font-size:18px}.logo .wm small{display:none}}
+@media (max-width:560px){.wm{font-size:18px}.logo .wm small{display:none}.logo .mark{height:30px}}
 
-/* ============================================================ HERO — "Day into night"
+/* ============================================================ HERO — "Day into sunset"
    The add-on farmhouse: Hayden's Higgsfield concept render as a MATCHED day /
    dusk pair (images/hero/day-*.jpg under dusk-*.jpg). Layers (see the z-index
    map): .hero-bg = the background GROUP — the day still under the dusk still,
-   plus .hero-plug (day + dusk slivers) — which LAGS the scroll after the event;
+   plus .hero-plug (day + dusk slivers) — which LAGS the scroll after the sweep;
    .hero-fg = the house cut out with the ground below the horizon, day + dusk,
    riding with the page at 1×. Both boxes extend --plx above the hero
    (top: -plx) so the lag reveals real sky, never the ground colour.
-   ONE NUMBER, --dusk (0 = day … 1 = dusk), drives the light: the dusk still,
-   the dusk cutout and the dusk plug all sit at opacity --dusk over their day
-   twins, so the event (js/hero.js tweens it 0 → 1 once) and the toy (a drag
-   or a hover-move writes it from the pointer's x) move the whole stack at
-   once. THE FINAL FRAME IS THE CSS DEFAULT (--dusk: 1 = the dusk still) — only
-   an animating page (.js:not(.reduce), before .is-done) starts on the day;
+   TWO NUMBERS, written only by js/hero.js's one timeline (rev 2, 9/15 — the
+   drag/hover toy is gone, no pointer code touches the hero):
+     --dusk (0 = day … 1 = dusk): the dusk still, the dusk cutout and the dusk
+            plug all sit at opacity --dusk over their day twins, so the whole
+            stack moves at once.
+     --gold (0 … .55 … 0): the SUNSET grade — .hero-grade, an amber-orange
+            gradient in soft-light at opacity --gold, plus a saturation lift on
+            the stills while .is-grading — so the middle of the sweep reads as
+            golden hour, not a crossfade.
+   THE FINAL FRAME IS THE CSS DEFAULT (--dusk: 1, --gold: 0 = the dusk still) —
+   only an animating page (.js:not(.reduce), before .is-done) starts on the day;
    the fg and plug exist only for JS and paint once all four have decoded
    (.has-fg) — at rest they are the same pixels as the stills beneath, so the
    switch is invisible. Landscape viewports get the wide pair; portrait ones
    (max-aspect-ratio: 1/1, the same query as the <source> media in index.html)
-   the tall pair. Nothing sits on the hero but the concept tag, the one mono
-   hint for the toy, and the sr-only h1. --lamp-x/-y = the porch sconce as %
-   of the hero box, recomputed by hero.js from the render's own pixel anchor
-   on every resize (the moth's idle spot); the values below are no-JS defaults.
-   touch-action: pan-y — a vertical thumb still scrolls; a sideways one is the toy. */
-.hero{position:relative;height:calc(100svh - var(--header-h));min-height:440px;overflow:hidden;isolation:isolate;background:var(--bg);touch-action:pan-y;
-  --plx:60px;--lamp-x:52%;--lamp-y:61%;--dusk:1;--cap:100%}
+   the tall pair. Nothing sits on the hero but the concept tag and the sr-only
+   h1. --lamp-x/-y = the porch sconce as % of the hero box, recomputed by
+   hero.js from the render's own pixel anchor on every resize (the moth's idle
+   spot); the values below are no-JS defaults. */
+.hero{position:relative;height:calc(100svh - var(--header-h));min-height:440px;overflow:hidden;isolation:isolate;background:var(--bg);
+  --plx:60px;--lamp-x:52%;--lamp-y:61%;--dusk:1;--gold:0;--cap:100%}
 /* the two layer BOXES share one geometry (the same box → the same cover fit → the stills, the cutout and the
    plug land on the same pixels); each image inside is 100% of ITS box, never of the hero */
 .hero-bg,.hero-fg{position:absolute;left:0;right:0;top:calc(-1 * var(--plx));bottom:0;pointer-events:none}
@@ -185,16 +195,20 @@ p{margin:0 0 1em}
 /* an animating page starts on the DAY (js/hero.js writes the inline value from there); no-JS / reduced-motion keep the dusk default */
 .js:not(.reduce) .hero:not(.is-done){--dusk:0}
 .hero.is-done.has-fg .hero-fg,.hero.is-done.has-fg .hero-plug{opacity:1}
-.hero-scrim{position:absolute;left:0;right:0;bottom:0;height:16%;z-index:4;pointer-events:none;
+/* THE SUNSET GRADE — sits over the whole picture (sky AND house: golden hour lights everything), under the scrim.
+   A warm gradient — pale gold high in the sky, orange at the horizon band, ember low — in soft-light, so it warms
+   and lifts the day frame's highlights instead of muddying them (multiply turned the blue sky olive); its opacity
+   is --gold. While the grade is up (.is-grading) the stills get a saturation lift that scales with it — the colour
+   deepens with the light; the filter is off the picture entirely before and after the sweep. */
+.hero-grade{position:absolute;inset:0;z-index:4;pointer-events:none;mix-blend-mode:soft-light;opacity:var(--gold);
+  background:linear-gradient(to bottom,#FFB25A 0%,#FF9A3C 34%,#FF6A2A 62%,#B8521F 100%)}   /* top stop pushed from pale gold toward the horizon orange so the SKY warms at the peak too (9/15) */
+.hero.is-grading .hero-bg{filter:saturate(calc(1 + var(--gold) * .6))}
+.hero-scrim{position:absolute;left:0;right:0;bottom:0;height:16%;z-index:5;pointer-events:none;
   background:linear-gradient(to top,var(--bg) 0,color-mix(in srgb,var(--bg) 60%,transparent) 42%,transparent 100%)}
-.hero .grain{position:absolute;inset:0;z-index:5;opacity:.16;mix-blend-mode:overlay;pointer-events:none;
+.hero .grain{position:absolute;inset:0;z-index:6;opacity:.16;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
 /* the render is a placeholder — the tag says so (same tag as the concept frames) */
-.hero-tag{position:absolute;right:14px;bottom:12px;z-index:6;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);background:var(--brand-text);padding:5px 9px;border-radius:999px;pointer-events:none}
-/* the toy's one hint (bottom-left, the credit-pill look): in once the event is done, gone after the first drag; never for reduced-motion / no-JS */
-.hero-hint{position:absolute;left:14px;bottom:12px;z-index:6;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);
-  background:color-mix(in srgb,var(--dark) 66%,transparent);padding:5px 9px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .8s var(--ease)}
-.js:not(.reduce) .hero.is-done:not(.has-dragged) .hero-hint{opacity:.92}
+.hero-tag{position:absolute;right:14px;bottom:12px;z-index:7;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);background:var(--brand-text);padding:5px 9px;border-radius:999px;pointer-events:none}
 /* PORTRAIT (the tall pair, 1856×2304). The house runs from the porch-roof tip at x≈300 to the render's own right
    edge (84% of the frame) — wider than a phone at any scale that fills the hero's height — so the image is capped
    at --cap tall (145vw: the house whole with ~8 px of air at the tip, right-aligned so the crop takes the empty
@@ -207,10 +221,12 @@ p{margin:0 0 1em}
   .hero{--plx:48px;--cap:145vw;--lamp-x:70%;--lamp-y:57%}
   .hero-layer img,.hero-fg img{top:calc(var(--plx) - 8px);height:min(calc(100% - var(--plx) + 8px),var(--cap));object-position:100% 50%}
   .hero-scrim{bottom:max(0px,calc(100% - var(--cap) + 8px));height:20%;background:linear-gradient(to top,var(--bg) 0,color-mix(in srgb,var(--bg) 62%,transparent) 38%,transparent 100%)}
-  /* the ground under the capped image is a static --bg block ABOVE the layers (z 4, with the scrim): the
+  /* the grade covers the image only, never the --bg ground under the capped image (soft-light on flat charcoal read as a faint orange block) */
+  .hero-grade{bottom:max(0px,calc(100% - var(--cap) + 8px))}
+  /* the ground under the capped image is a static --bg block ABOVE the layers (z 5, with the scrim): the
      parallax slides the background group down up to --plx, and without this the still's bottom rows (lawn)
      slid out under the scrim's solid edge on tall phones (9/14 review). Zero height wherever the cap isn't reached. */
-  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;z-index:4;pointer-events:none;height:max(0px,calc(100% - var(--cap) + 8px));background:var(--bg)}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;z-index:5;pointer-events:none;height:max(0px,calc(100% - var(--cap) + 8px));background:var(--bg)}
 }
 
 /* ============================================================ TRUST — the sub line + stakes */
@@ -347,6 +363,7 @@ p{margin:0 0 1em}
 .tile[aria-pressed="true"] > svg{stroke:var(--warm)}
 .tile[aria-pressed="true"] .pill{background:var(--brand);color:var(--dark);border-color:var(--brand)}
 .lookup{grid-column:1 / -1;font-size:16px;color:var(--muted-2);margin:8px 0 0}   /* on the lot render ground: --muted read 6.9:1 against its brightest patch */
+#lot .section-head p:not(.eyebrow){color:var(--muted-2)}   /* same ground, same fix: the intro read 6.91:1 on phones/tablets (9/15); ≥1024 lifts it to --ink below. :not(.eyebrow) — the eyebrow keeps --brand-text at 12px (QA 9/15) */
 /* the two GIS links on their own row (they wrapped to three lines with the second link orphaned) */
 .lookup-links{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:2px}
 .lookup a{display:inline-block;padding:8px 0;color:var(--brand-text);font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent);white-space:nowrap}
@@ -358,43 +375,42 @@ p{margin:0 0 1em}
 /* ============================================================ MAP — the plateau at dusk
    The real imagery (images/map/plateau30-dusk-web.jpg — the Higgsfield blue-hour
    re-render of the USGS NAIP export, aligned 1:1) inside a cropping frame.
-   .dmap is the frame; .dmap-plane is the image plane, --zoom × the frame's
-   width with the image's own aspect, and the focal point --fx/--fy (Buckley,
-   as fractions of the image) pinned to --tx/--ty of the frame — `translate`
+   .dmap is the frame; .dmap-plane is the image plane, sized from the frame
+   with the image's own aspect, and the focal point --fx/--fy (Buckley, as
+   fractions of the image) pinned to --tx/--ty of the frame — `translate`
    percentages are the plane's OWN size, so the pin is pure CSS: no JS, no
-   layout shift. Phones: a tall 2:3 frame at 2.8× (≈29 mi across — Tacoma's
-   shore and the Cascade snow stay out, the plateau fills it; Buckley sits at
-   45% so Rainier's summit clears the bottom edge). ≥760: the wide 13:10 frame
-   at 1× — the whole 30-mile ring with ~2 mi of air top and bottom. Labels are
-   HTML (px type ≥14/16, 44/48 px targets) positioned by % of the plane; the
-   side each label hangs off is picked by js/site.js (collision nudge). */
+   layout shift. REV 2 (Hayden, 9/15: "zoom into the map a little bit and
+   shrink our circle down so it shows where they build"): the ring is 15 MILES
+   (r = 425.6 px, a diameter of 36.94% of the image's width) and the plane is
+   sized so the ring nearly FILLS the frame with 12 px of air: plane width =
+   (the ring's screen diameter) / .36944, where the diameter = the frame's
+   shorter side − 24 px. Phones: a square frame (ring fills it, ~2.5× the
+   1.26× the 30-mile ring needed). ≥760: the 13:10 frame, ring fills the
+   height, the sides show more plateau. Labels are HTML (px type ≥14/16,
+   44/48 px targets) positioned by % of the plane; the side each label hangs
+   off is picked by js/site.js (collision nudge). */
 .map-copy{max-width:62ch}
 .map-copy .lede{color:var(--ink);font-size:clamp(17px,1.5vw,19.5px);margin:0}
 .map-copy .hint{margin:16px 0 0}
-/* PHONES (9/14 evening, Hayden: "I want the ring"): a SQUARE frame at 1.26× centred on Buckley — the whole
-   30-mile ring (74% of the image's width) fits with ~10 px of air all round; the copy's "inside the 30-mile
-   ring" is true at every width. ≥760: the wide 13:10 frame at 1×. */
+/* --ringfrac = the 15-mile ring's diameter as a fraction of the image plane's width (2 × 425.6 / 2304) */
 .dmap{position:relative;overflow:hidden;border-radius:var(--r);border:var(--rule);background:var(--dark);width:100%;aspect-ratio:1/1;transform:translateZ(0);
-  --zoom:1.26;--fx:.5;--fy:.5022;--tx:.5;--ty:.5}
-.dmap-plane{position:absolute;left:calc(var(--tx) * 100%);top:calc(var(--ty) * 100%);width:calc(var(--zoom) * 100%);aspect-ratio:2304/1856;
+  --fx:.5;--fy:.5022;--tx:.5;--ty:.5}
+/* square frame: the shorter side IS the width → plane = (100% − 24px) / .36944 */
+.dmap-plane{position:absolute;left:calc(var(--tx) * 100%);top:calc(var(--ty) * 100%);width:calc((100% - 24px) / .36944);aspect-ratio:2304/1856;
   translate:calc(var(--fx) * -100%) calc(var(--fy) * -100%)}
 .dmap-plane > img{position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block}
 .dmap-svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible;pointer-events:none}
-/* the rings: strokes in SCREEN px (non-scaling) so they read the same at every zoom */
+/* the ring: stroke in SCREEN px (non-scaling) so it reads the same at every zoom */
 .dmap .ring{fill:none;vector-effect:non-scaling-stroke}
-.dmap .ring-15{stroke:var(--ink);stroke-opacity:.16;stroke-width:1.5;stroke-dasharray:5 9}
-.dmap .ring-30{stroke:var(--brand);stroke-opacity:.72;stroke-width:3;filter:drop-shadow(0 0 7px color-mix(in srgb,var(--brand) 55%,transparent))}
+.dmap .ring-15{stroke:var(--brand);stroke-opacity:.72;stroke-width:3;filter:drop-shadow(0 0 7px color-mix(in srgb,var(--brand) 55%,transparent))}
 /* breathes ONCE when the map scrolls in (site.js adds .in to every .reveal), then rests */
-.js:not(.reduce) .dmap.in .ring-30{animation:ringBreathe 2.8s var(--ease) .25s both}
+.js:not(.reduce) .dmap.in .ring-15{animation:ringBreathe 2.8s var(--ease) .25s both}
 @keyframes ringBreathe{0%{stroke-opacity:.1;stroke-width:1.5}42%{stroke-opacity:1;stroke-width:6}100%{stroke-opacity:.72;stroke-width:3}}
-.dmap .peak-glyph .mtn{fill:color-mix(in srgb,var(--dark) 55%,transparent);stroke:var(--ink);stroke-opacity:.6;stroke-width:2.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.dmap .peak-glyph .snow{fill:color-mix(in srgb,var(--ink) 82%,transparent)}
 .dmap-credit{position:absolute;left:12px;bottom:10px;z-index:3;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 82%,transparent);
   background:color-mix(in srgb,var(--dark) 66%,transparent);padding:5px 9px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);pointer-events:none;white-space:nowrap;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis}
-/* phones: the short credit ('USGS' visible, the full line sr-only + in the title) top-left. The ring's centre sits at 50% of the
-   frame, so BOTH left corners are crossed by its arc at x ≈ 104–140 px; a ~50 px pill stops well before the arc reaches the
-   corner band ('USGS NAIP imagery' at 150 px covered 45 px of the ring, 9/15 verifier). Its rect is a hard obstacle in site.js
-   layoutLabels(), so no label ever lands under it. ≥760 the long line, bottom-left. */
+/* phones: the short credit ('USGS' visible, the full line sr-only + in the title) top-left. With the ring inscribed in the
+   square (rev 2) the corners are clear of the arc; the pill's rect is still a hard obstacle in site.js layoutLabels(), so
+   no label ever lands under it. ≥760 the long line, bottom-left. */
 .credit-phone{display:none}
 @media (max-width:759px){.dmap-credit{bottom:auto;top:10px}.credit-phone{display:inline}
   .credit-wide{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}}
@@ -405,28 +421,23 @@ p{margin:0 0 1em}
 .town{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;background:none;border:0;padding:0;color:var(--ink);font-family:var(--body);display:block;-webkit-tap-highlight-color:transparent;--d0:13px;--dd0:9px;--d:var(--d0);--dd:var(--dd0)}
 button.town{cursor:pointer}
 .town.off{display:none}
-/* phones (the whole ring in a 320–372 px square, 9/14 evening): the eleven grey context towns come off — at 1.26× they are unlabelled
-   specks in the way of the thirteen build towns (seven of their labels already had to hide). Mt. Rainier stays. Desktop unchanged. */
-@media (max-width:759px){.town.ctx{display:none}}
 .town i{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:var(--ink);
   box-shadow:0 0 0 2px color-mix(in srgb,var(--dark) 75%,transparent),0 0 10px rgba(0,0,0,.7);transition:background .25s,box-shadow .35s,transform .35s var(--ease-2),opacity .25s}
 .town.hub{--d0:17px;--dd0:12px}
 .town.hub i{width:15px;height:15px;margin:-7.5px 0 0 -7.5px;background:var(--brand);
   box-shadow:0 0 0 3px color-mix(in srgb,var(--dark) 75%,transparent),0 0 0 8px color-mix(in srgb,var(--brand) 22%,transparent),0 0 20px 3px color-mix(in srgb,var(--brand) 55%,transparent)}
-.town.ctx{width:24px;height:24px;margin:-12px 0 0 -12px;pointer-events:none;--d0:9px;--dd0:7px}
-.town.ctx i{width:7px;height:7px;margin:-3.5px 0 0 -3.5px;background:var(--muted);opacity:.9;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--dark) 70%,transparent)}
-.town.peak{width:24px;height:24px;margin:-12px 0 0 -12px;pointer-events:none;--d0:16px;--dd0:12px}
 /* live text with a dark halo stroke (four 1 px shadows + two soft ones) so it reads on lights and forest alike */
 .town .tn{position:absolute;white-space:nowrap;font-size:14px;font-weight:600;letter-spacing:.01em;line-height:1.2;color:var(--ink);
   text-shadow:-1px -1px 0 var(--dark),1px -1px 0 var(--dark),-1px 1px 0 var(--dark),1px 1px 0 var(--dark),0 0 3px var(--dark),0 0 12px rgba(0,0,0,.95);transition:opacity .25s,color .2s}
 /* a real backing under the glyphs: a 3 px --dark stroke painted BEHIND the fill (1.5 px visible all round) — the four 1 px shadows alone
-   left context labels at 2.7–5.1:1 and 'Mt. Rainier' at 1.9:1 on the snow (9/14 review). Only where the browser paints stroke-under-fill. */
+   left labels at 2.7–5.1:1 on the lights (9/14 review). Only where the browser paints stroke-under-fill. */
 @supports (paint-order:stroke fill){.town .tn{paint-order:stroke fill;-webkit-text-stroke:3px var(--dark)}}
 .town.hub .tn{font-size:16px;font-weight:700;color:var(--brand-text)}
-.town.ctx .tn,.town.peak .tn{font-weight:500;color:var(--muted-2)}
 .town .tn.hide{display:none}
 .town .tn.dim{opacity:.15}
 .town i.dim{opacity:.2}
+/* Phone callouts find empty space; every neighbouring name and dot keeps its full contrast. */
+@media (max-width:759px){.town .tn.dim,.town i.dim{opacity:1}}
 .tn.far{--d:calc(var(--d0) + 7px);--dd:calc(var(--dd0) + 7px)}   /* the second tier: 7 px further out (site.js) */
 /* the slide tiers: 5 / 10 px along the side, as translate offsets (margins do nothing on a bottom/right-anchored label) */
 .tn{--nx:0px;--ny:0px}
@@ -478,19 +489,14 @@ button.town[aria-pressed="true"] .tn{color:var(--warm)}
 .here.below{animation-name:herePopDown}
 @keyframes herePopDown{from{opacity:0;margin-top:-8px}to{opacity:1;margin-top:0}}
 .reduce .here{animation:none}
-@media (min-width:760px){.dmap{aspect-ratio:13/10;--zoom:1;--ty:.5}}
+/* ≥760: the 13:10 frame — the shorter side is the HEIGHT (10/13 of the width), so plane = (76.923% − 24px) / .36944 */
+@media (min-width:760px){.dmap{aspect-ratio:13/10;--ty:.5}.dmap-plane{width:calc((76.923% - 24px) / .36944)}}
 
-/* ============================================================ PROCESS */
-.process{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,24px);position:relative;counter-reset:s}
-.process::before{content:"";position:absolute;left:0;right:0;top:22px;height:2px;background:var(--line);transform-origin:left;transform:scaleX(0);transition:transform 1.4s var(--ease) .2s}
-.process.in::before,.reduce .process::before{transform:none}
-.process li{position:relative;padding-top:60px}
-.process .n{position:absolute;left:0;top:0;width:46px;height:46px;border-radius:12px;background:var(--brand);color:var(--dark);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.02em}
-.process h3{font-size:22px;margin:0 0 8px}
-.process p{font-size:16px;color:var(--muted);margin:0 0 12px}
-.process .when{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);border:1px solid color-mix(in srgb,var(--brand) 40%,transparent);border-radius:999px;padding:6px 10px}
-@media (max-width:900px){.process{grid-template-columns:1fr 1fr}.process::before{display:none}}
-@media (max-width:520px){.process{grid-template-columns:1fr;gap:26px}.process li{padding:0 0 0 62px}.process .n{top:2px}}
+/* ============================================================ PROCESS — "We handle it start to finish" (rev 2, one band)
+   The numbered rail is gone (Hayden, 9/15). One block on the render ground: eyebrow, the headline, one line, the CTA. */
+.handle{max-width:62ch}
+.handle h2{font-size:clamp(34px,5vw,60px);margin:0 0 16px}
+.handle .lede{margin:0 0 30px}
 
 /* ============================================================ CONTACT — the closing frame
    On the hero's darkest still (see .section-ground / #contact): one line, one
@@ -518,7 +524,7 @@ button.town[aria-pressed="true"] .tn{color:var(--warm)}
 .site-footer{background:var(--dark);color:color-mix(in srgb,var(--ink) 80%,transparent);padding:clamp(40px,6vw,64px) 0 28px;border-top:1px solid color-mix(in srgb,var(--brand) 18%,transparent)}
 .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
 .foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.foot .wm{font-size:20px}
+.foot .mark{height:40px}
 .foot p{font-size:16px;margin:0 0 6px}
 .foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);margin:0 0 12px}
 .foot a:hover{color:var(--ink)}
@@ -561,7 +567,6 @@ button.town[aria-pressed="true"] .tn{color:var(--warm)}
   .fine,.lot-fine,.lookup,.form-fine,.foot p,.foot-links a,.foot-bottom{font-size:16.5px}
   .lot-src,.concept-count{font-size:13px}
   .stake small{font-size:12px}
-  .process .when{font-size:12.5px}
   .contact-form label{font-size:18px}
   .contact-form input,.contact-form select,.contact-form textarea{font-size:17px}
   .concept-cap{font-size:18px}
@@ -575,7 +580,7 @@ button.town[aria-pressed="true"] .tn{color:var(--warm)}
   .trust .stakes,.trust .trust-actions{margin:0}
   .trust .lede{font-size:20px;max-width:58ch}
   .section{padding:120px 0}
-  .section-head p{font-size:19px;color:var(--ink)}
+  .section-head p:not(.eyebrow),#lot .section-head p:not(.eyebrow){font-size:19px;color:var(--ink)}
   .section-head{max-width:64ch}
   /* the bubbles: one row, the render wide beside the copy */
   .bubbles{flex-wrap:nowrap;gap:clamp(18px,2.4vw,28px)}
@@ -603,23 +608,24 @@ button.town[aria-pressed="true"] .tn{color:var(--warm)}
   .town i{width:13px;height:13px;margin:-6.5px 0 0 -6.5px}
   .town.hub{--d0:19px;--dd0:13px}
   .town.hub i{width:17px;height:17px;margin:-8.5px 0 0 -8.5px}
-  .town.ctx{--d0:10px;--dd0:8px}
   .town .tn{font-size:16px}
   .town.hub .tn{font-size:19px}
   .here{font-size:11.5px;padding:7px 12px}
   .dmap-credit{font-size:11px}
-  .process h3{font-size:24px}
-  .process p{font-size:18px;color:var(--ink)}
-  .process .n{width:50px;height:50px;font-size:17px}
-  .process li{padding-top:64px}
-  .process::before{top:24px}
+  .handle{max-width:66ch}
+  .handle .lede{font-size:20px}
   .close-line{gap:30px}
-  .foot .wm{font-size:22px}
   .foot h4{font-size:12px}
 }
 /* wide Macs: the column breathes (1052 px in 1920 left 45% of the width dead → 1272 px, 34%; copy line lengths
    are still capped by the …ch rules above). Hayden's call, 9/14 review — one number to revert. */
 @media (min-width:1280px){.bubble .pill{font-size:17px;padding:8px 14px}}
+/* Narrow desktop: reserve side gutters and room between all five pills at 1024 px. */
+@media (min-width:1024px) and (max-width:1199px){
+  .bubbles{width:100%;padding-inline:14px;gap:14px}
+  .bubble{flex:1 1 0;min-width:0;width:auto}
+  .bubble .pill{font-size:14px;letter-spacing:0;padding:8px;gap:5px;max-width:100%}
+}
 @media (min-width:1600px){:root{--maxw:1400px}
   .contact-form{max-width:1000px}   /* the closing frame filled 68% of the 1272 px column at 1920 (9/14 review) → ~79% */
 }
