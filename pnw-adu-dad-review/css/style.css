@@ -1,0 +1,688 @@
+/* ============================================================
+   PNW ADU — Buckley / Enumclaw, WA  (dad's flagship)
+   Dark-ground build, EARNED by the brief: the hero is the finished unit
+   at blue hour, and Hayden asked for "darker tone, not so dark that it's
+   not welcoming, but not personality-less white."
+
+   MIRROR LAW derivation — no photos of THEIR work exist yet; the palette
+   was derived from the objects the business is made of and then checked
+   (9/14) against the Higgsfield concept render that now opens the page:
+     fir-charcoal at dusk (the page ground) ......... #1B2226   --bg
+     deeper dusk band ............................... #151B1F   --bg-2
+     cedar in low sun (buttons, dots, rules) ........ #D4954D   --brand   (the render's cedar siding)
+     the lit window (highlighted word) .............. #FFC46B   --warm    (the render's windows)
+     fir needle green (checks, success) ............. #7FA98A   --accent
+     steel roofing / grey-green (secondary text) .... #A6B0B2   --muted   (the render's standing-seam roof)
+     ONE cream (body text, never white) ............. #EDE5D5   --ink
+   Provisional until real photos of dad's own units exist.
+
+   DARK-GROUND SWEEP (template README): every rule that assumed a light
+   ground is overridden here — .btn-primary / .nav-cta / .steps li::before
+   (#fff on --brand → dark on amber), .btn-cream (explicit cream), the
+   footer (--dark, not --ink), .story-copy .lede / .card .ico / .face .ini
+   (not used on this page). Inputs sit on --bg-2 with cream text.
+   ============================================================ */
+:root{
+  /* ---- palette ---- */
+  --brand:#D4954D;          /* cedar-amber — buttons, dots, rules, highlighted words on cream */
+  --brand-text:#E8B978;     /* same amber, lifted to pass AA as small text on the dark ground */
+  --brand-bright:#E8A85C;   /* hover */
+  --accent:#7FA98A;         /* fir — success, checks */
+  --accent-soft:#9CC4A6;
+  --ink:#EDE5D5;            /* body text — the one cream (dark-ground build: this is LIGHT) */
+  --bg:#1B2226;             /* page ground — fir-charcoal at dusk */
+  --bg-2:#151B1F;           /* deeper band */
+  --paper:#232C31;          /* cards — a step up from the ground */
+  --muted:#A6B0B2;          /* secondary text — steel */
+  --muted-2:#B9C1C3;        /* the lifted steel — small print on --paper / imagery / the header sky (7.78:1 on --paper); cards set --muted to it */
+  --line:#2F3A40;           /* hairlines — steel seams */
+  --dark:#0E1417;           /* the one token guaranteed dark — footer, scrims */
+  --dark-2:#161D22;
+  --warm:#FFC46B;           /* window light — highlighted word in headlines */
+  --tint:#20282D;
+  --status-open:#10B981;    /* STATUS LIGHT LAW (unused — a builder has no store hours) */
+  --status-closed:#DC2626;
+
+  /* ---- the hero's own colours (the drawn scene's sky/siding tokens left with it — versions/drawn-hero-0914) ---- */
+  --sky-mid:#1A2740;        /* the plateau map's glow */
+  --line-art:#C7D0D5;       /* line-work: bubbles, tiles, concept silhouettes */
+  --river:#4B6C8C;
+  --concept-a:#1B242A;
+  --concept-b:#12191D;
+  --moth-wing:#E9DAB6;
+  --moth-body:#C8B48C;
+
+  /* ---- type: two faces, loaded in index.html <head> ---- */
+  --display:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --body:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --hero-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+
+  /* ---- metrics ---- */
+  --header-h:72px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.16,.9,.24,1);
+  --r:16px;
+}
+
+/* ============================================================
+   Z-INDEX MAP
+     60  .site-header   40  #main-nav   50  .moth (fixed, pointer-events:none)
+     inside .hero (isolation:isolate):  1 .hero-bg (inside it: 1 .hero-day  2 .hero-dusk  3 .hero-plug)
+        3 .hero-fg  4 .hero-grade  5 .hero-scrim  6 .grain  7 .hero-tag
+     inside .section-ground (isolation:isolate):  -2 ::before (the render ground)  -1 ::after (the top seam)  auto content
+     inside .dmap:  the image plane (img · svg rings · .towns labels)  3 .dmap-credit
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+figure,blockquote{margin:0}
+[hidden]{display:none!important}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.04;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2 em{font-style:normal;color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 7px color-mix(in srgb,var(--brand) 45%,transparent);border-radius:8px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tnum{font-variant-numeric:tabular-nums}
+/* pointer-aware verbs: 'tap' for a thumb, 'click' where a fine pointer hovers (a Mac with a mouse) — the map's hint */
+.t-mouse{display:none}
+@media (pointer:fine){.t-touch{display:none}.t-mouse{display:inline}}
+.hint{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 0}
+.fine{font-size:16px;color:var(--muted);margin:22px 0 0}
+.lede{font-size:clamp(17px,1.5vw,19.5px);color:var(--ink);max-width:56ch}
+
+/* ---------- buttons (≥48px tall) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:600;font-size:16px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+/* DARK SWEEP: dark type inside lit amber, never #fff on amber */
+.btn-primary{background:var(--brand);color:var(--dark)}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 0 34px -6px color-mix(in srgb,var(--brand) 70%,transparent)}
+.btn-cream{background:var(--ink);color:var(--dark)}
+.btn-cream:hover{background:var(--ink);filter:brightness(1.03);transform:translateY(-2px)}
+.btn-ghost{border-color:color-mix(in srgb,var(--ink) 40%,transparent);color:var(--ink);background:transparent}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--brand-text);color:var(--brand-text)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--dark) 78%,transparent);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);
+  border-bottom:1px solid color-mix(in srgb,var(--brand) 22%,transparent)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+
+/* THE LOCKUP IN THE HEADER (Hayden, 9/16: "the logo should be at the top … get the logo to the top left").
+   Jared's real mark — Codex concept B, gold script + mountain, cream ADU — cleaned off its white page and
+   recoloured, never redrawn (NEVER RECREATE). It replaces the block mark + live-type wordmark: the logo
+   already says the name, so the only text beside it is the plain sub-line. */
+.logo .mark-lockup{display:block;height:46px;width:auto;flex:none}
+.wm-sub{font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);line-height:1.2;max-width:8.5em}
+@media (max-width:860px){.wm-sub{display:none}}
+@media (max-width:560px){.logo .mark-lockup{height:40px}}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none;min-height:44px}
+.wm{font-family:var(--display);font-weight:800;font-stretch:112%;font-size:21px;letter-spacing:.06em;line-height:1;color:var(--ink);transition:color .2s}
+.logo:hover .wm{color:var(--brand-text)}
+.wm small{display:block;font-family:var(--mono);font-weight:600;font-stretch:100%;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);margin-top:5px}   /* --muted-2: the sub-line fell to 5.96:1 over the hero's sky through the 78% header (9/14 review) */
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:16px;font-weight:500}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand-text)}
+.main-nav .nav-cta{background:var(--brand);color:var(--dark);font-weight:600;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:var(--dark)}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--dark);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.wm{font-size:18px}.logo .wm small{display:none}.logo .mark{height:30px}}
+
+/* ============================================================ HERO — "Day into sunset"
+   The add-on farmhouse: Hayden's Higgsfield concept render as a MATCHED day /
+   dusk pair (images/hero/day-*.jpg under dusk-*.jpg). Layers (see the z-index
+   map): .hero-bg = the background GROUP — the day still under the dusk still,
+   plus .hero-plug (day + dusk slivers) — which LAGS the scroll after the sweep;
+   .hero-fg = the house cut out with the ground below the horizon, day + dusk,
+   riding with the page at 1×. Both boxes extend --plx above the hero
+   (top: -plx) so the lag reveals real sky, never the ground colour.
+   TWO NUMBERS, written only by js/hero.js's one timeline (rev 2, 9/15 — the
+   drag/hover toy is gone, no pointer code touches the hero):
+     --dusk (0 = day … 1 = dusk): the dusk still, the dusk cutout and the dusk
+            plug all sit at opacity --dusk over their day twins, so the whole
+            stack moves at once.
+     --gold (0 … .55 … 0): the SUNSET grade — .hero-grade, an amber-orange
+            gradient in soft-light at opacity --gold, plus a saturation lift on
+            the stills while .is-grading — so the middle of the sweep reads as
+            golden hour, not a crossfade.
+   THE FINAL FRAME IS THE CSS DEFAULT (--dusk: 1, --gold: 0 = the dusk still) —
+   only an animating page (.js:not(.reduce), before .is-done) starts on the day;
+   the fg and plug exist only for JS and paint once all four have decoded
+   (.has-fg) — at rest they are the same pixels as the stills beneath, so the
+   switch is invisible. Landscape viewports get the wide pair; portrait ones
+   (max-aspect-ratio: 1/1, the same query as the <source> media in index.html)
+   the tall pair. Nothing sits on the hero but the concept tag and the sr-only
+   h1. --lamp-x/-y = the porch sconce as % of the hero box, recomputed by
+   hero.js from the render's own pixel anchor on every resize (the moth's idle
+   spot); the values below are no-JS defaults. */
+.hero{position:relative;--scene-h:max(360px,calc(100svh - var(--header-h) - 110px));--image-h:var(--scene-h);height:auto;min-height:var(--scene-h);overflow:hidden;isolation:isolate;background:var(--bg);
+  --plx:60px;--lamp-x:52%;--lamp-y:61%;--dusk:1;--gold:0;--cap:100%}
+/* the two layer BOXES share one geometry (the same box → the same cover fit → the stills, the cutout and the
+   plug land on the same pixels); each image inside is 100% of ITS box, never of the hero */
+.hero-bg,.hero-fg{position:absolute;left:0;right:0;top:calc(-1 * var(--plx));height:calc(var(--scene-h) + var(--plx));pointer-events:none}
+.hero-bg{z-index:1;will-change:transform}
+.hero-fg{z-index:3;opacity:0}
+.hero-layer{position:absolute;inset:0;display:block;z-index:1;pointer-events:none}
+.hero-dusk{z-index:2}
+.hero-plug{z-index:3;opacity:0}
+/* LANDSCAPE (the wide pair, 2752×1536): the house is x 569–2682 (77% of the frame) — at 1024×768 the cover fit shows
+   82% of the width, so the crop window sits at 90% (takes the empty left margin first) and the right wing stays whole;
+   62% down keeps the roof peak and the patio in frame on a landscape phone (844×390) and at 1920×1080. */
+.hero-layer img,.hero-fg img{position:absolute;left:0;top:0;display:block;width:100%;height:100%;object-fit:cover;object-position:90% 62%;max-width:none}
+/* narrow landscape screens (an iPad on its side, 1024×768 → a 696 px hero): the layer box is --plx taller than the hero, and at 60 px
+   the cover fit showed only 75.6% of the frame's width — the porch tip clipped by 17 px. 36 px keeps the whole house with ≥8 px of air. */
+@media (min-aspect-ratio: 1/1) and (max-width:1200px){.hero{--plx:36px}}
+.hero-fg .l-dusk,.hero-plug .l-dusk{z-index:2}
+/* the light: every dusk layer over its day twin at --dusk */
+.hero-dusk,.hero-fg .l-dusk,.hero-plug .l-dusk{opacity:var(--dusk)}
+/* an animating page starts on the DAY (js/hero.js writes the inline value from there); no-JS / reduced-motion keep the dusk default */
+.js:not(.reduce) .hero:not(.is-done){--dusk:0}
+.hero.is-done.has-fg .hero-fg,.hero.is-done.has-fg .hero-plug{opacity:1}
+/* THE SUNSET GRADE — sits over the whole picture (sky AND house: golden hour lights everything), under the scrim.
+   A warm gradient — pale gold high in the sky, orange at the horizon band, ember low — in soft-light, so it warms
+   and lifts the day frame's highlights instead of muddying them (multiply turned the blue sky olive); its opacity
+   is --gold. While the grade is up (.is-grading) the stills get a saturation lift that scales with it — the colour
+   deepens with the light; the filter is off the picture entirely before and after the sweep. */
+.hero-grade{position:absolute;inset:0;bottom:auto;height:var(--image-h);z-index:4;pointer-events:none;mix-blend-mode:soft-light;opacity:var(--gold);
+  background:linear-gradient(to bottom,#FFB25A 0%,#FF9A3C 34%,#FF6A2A 62%,#B8521F 100%)}   /* top stop pushed from pale gold toward the horizon orange so the SKY warms at the peak too (9/15) */
+.hero.is-grading .hero-bg{filter:saturate(calc(1 + var(--gold) * .6))}
+.hero-scrim{position:absolute;left:0;right:0;top:calc(var(--image-h) * .68);height:calc(var(--image-h) * .32 + 1px);z-index:5;pointer-events:none;
+  background:linear-gradient(to top,var(--bg) 0,color-mix(in srgb,var(--bg) 60%,transparent) 42%,transparent 100%)}
+.hero .grain{position:absolute;inset:0;z-index:6;opacity:.16;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+/* the render is a placeholder — the tag says so (same tag as the concept frames) */
+
+/* Bottom-left editorial title. The scene keeps its original dimensions while the
+   content can extend into the lawn below it, never rising over the house. */
+.hero{display:flex;flex-direction:column}
+.hero::after{content:"";position:absolute;left:0;right:0;top:var(--image-h);bottom:0;z-index:5;pointer-events:none;background:var(--bg)}
+.hero-spacer{flex:1 0 auto;min-height:calc(var(--image-h) * .82)}
+.hero-inner{position:relative;z-index:7;width:100%;max-width:none;margin:0 auto;
+  padding:0 var(--pad) 24px;pointer-events:none}
+.hero-inner a{pointer-events:auto}
+.hero-eyebrow{margin:0 0 10px;font-family:var(--body);font-weight:500;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brand-text);text-shadow:0 1px 10px var(--dark)}
+.hero h1{margin:0;font-family:var(--hero-display);font-weight:500;font-stretch:normal;
+  font-size:clamp(35px,4.3vw,58px);line-height:1.02;letter-spacing:-.035em;
+  max-width:24ch;color:var(--ink);text-shadow:0 2px 18px color-mix(in srgb,var(--dark) 55%,transparent)}
+.hero h1 span,.hero h1 em{display:block}
+.hero h1 em{font-weight:500;font-style:italic;color:var(--brand-text);letter-spacing:-.04em}
+.hero-sub{margin:12px 0 18px;font-size:15px;line-height:1.45;max-width:45ch;
+  color:var(--ink);text-shadow:0 1px 12px var(--dark)}
+.hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px}
+.hero-actions .btn{font-size:14px;padding:11px 22px;min-height:46px}
+.hero-actions .btn-ghost{padding-inline:2px;border:none;border-radius:0;border-bottom:1px solid var(--brand-text);min-height:38px}
+/* Copy starts immediately; the independent daylight/sunset sequence never gates reading. */
+@keyframes heroCopyIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.js:not(.reduce) .hero-inner>*{animation:heroCopyIn .5s var(--ease) both}
+.js:not(.reduce) .hero h1{animation-delay:.04s}
+.js:not(.reduce) .hero-sub{animation-delay:.08s}
+.js:not(.reduce) .hero-actions{animation-delay:.12s}
+@media (max-width:760px){
+  .hero-inner{padding-bottom:24px}
+  .hero-eyebrow{font-size:9px;letter-spacing:.16em;margin-bottom:9px}
+  .hero h1{font-size:clamp(31px,5.8vw,42px);max-width:none}
+  .hero-sub{font-size:14px;margin:11px 0 16px;max-width:38ch}
+  .hero-actions{gap:14px}
+  .hero-actions .btn{font-size:12px;padding:10px 17px;min-height:44px}
+  .hero-actions .btn-ghost{padding-inline:0;min-height:34px}
+}
+.hero-tag{position:absolute;right:14px;bottom:12px;z-index:7;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);background:var(--brand-text);padding:5px 9px;border-radius:999px;pointer-events:none}
+
+/* on a phone the title card owns the bottom band, so the render label moves to the TOP-right corner
+   of the photo — it was landing on the towns line (9/16). Desktop keeps it bottom-right. */
+@media (max-width:760px){.hero-tag{top:12px;bottom:auto}}/* PORTRAIT (the tall pair, 1856×2304). The house runs from the porch-roof tip at x≈300 to the render's own right
+   edge (84% of the frame) — wider than a phone at any scale that fills the hero's height — so the image is capped
+   at --cap tall (145vw: the house whole with ~8 px of air at the tip, right-aligned so the crop takes the empty
+   left margin) and the hero's own --bg ground shows under it; on a tablet upright the cap is never reached and
+   the image is full-bleed. The image sits 8 px above the hero's top (top: plx − 8 inside the box that starts
+   --plx above): the parallax only ever exposes the strip above it under the translucent header, and the house
+   keeps 40 more px of screen than the old tuck-the-sky-away scheme. The scrim sits on the image's bottom edge,
+   so it only ever darkens the lawn, never the house. */
+@media (max-aspect-ratio: 1/1){
+  .hero{--plx:48px;--cap:145vw;--image-h:min(var(--scene-h),calc(var(--cap) - 8px));--lamp-x:70%;--lamp-y:57%}
+  .hero-layer img,.hero-fg img{top:calc(var(--plx) - 8px);height:min(calc(100% - var(--plx) + 8px),var(--cap));object-position:100% 50%}
+  .hero-scrim{top:calc(var(--image-h) * .76);height:calc(var(--image-h) * .24 + 1px);background:linear-gradient(to top,var(--bg) 0,color-mix(in srgb,var(--bg) 62%,transparent) 38%,transparent 100%)}
+  /* the grade covers the image only, never the --bg ground under the capped image (soft-light on flat charcoal read as a faint orange block) */
+  .hero-grade{bottom:auto;height:var(--image-h)}
+  /* the ground under the capped image is a static --bg block ABOVE the layers (z 5, with the scrim): the
+     parallax slides the background group down up to --plx, and without this the still's bottom rows (lawn)
+     slid out under the scrim's solid edge on tall phones (9/14 review). Zero height wherever the cap isn't reached. */
+  .hero::after{content:"";position:absolute;left:0;right:0;top:var(--image-h);bottom:0;z-index:5;pointer-events:none;background:var(--bg)}
+}
+
+/* ============================================================ TRUST — original Claude transition */
+.trust{background:var(--bg);border-top:1px solid color-mix(in srgb,var(--brand) 20%,transparent);padding:clamp(48px,7vw,88px) 0}
+.trust h2{font-size:clamp(30px,4.6vw,58px);max-width:22ch;margin:0 0 18px}
+.trust .lede{margin:0 0 30px}
+.stakes{display:flex;flex-wrap:wrap;gap:12px 28px;margin:0;padding:0}
+.stake{display:flex;flex-direction:column;gap:3px;padding-left:14px;border-left:3px solid var(--brand)}
+.stake b{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.01em;line-height:1.1}
+.stake small{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.trust-side{display:flex;flex-direction:column}
+.trust-process{align-self:flex-start;margin-top:24px}
+@media (min-width:1024px){
+  .trust{padding:96px 0}
+  .trust .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:24px 56px;align-items:center}
+  .trust h2{grid-column:1;max-width:none;margin:0}
+  .trust .lede{grid-column:1;margin:0;font-size:20px;max-width:58ch}
+  .trust-side{grid-column:2;grid-row:1 / span 2;gap:26px;justify-self:end;width:100%;max-width:380px}
+  .trust .stakes{margin:0}
+}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+/* Five compact, touchable character scenes below the start-to-finish promise.
+   These are anonymous graphic characters—not AI portraiture or a claim that
+   Jared has a crew. */
+.journey{--journey-gap:clamp(13px,2vw,30px);--journey-arrow-w:clamp(24px,3vw,42px);--journey-card:min(250px,calc((100% - (4 * var(--journey-gap)) - (2 * var(--journey-arrow-w))) / 3));max-width:1180px;margin-top:clamp(34px,4.8vw,58px)}
+.journey-steps{display:flex;flex-direction:column;gap:clamp(20px,3vw,34px)}
+.journey-row{display:flex;align-items:flex-start;justify-content:center;width:100%;gap:var(--journey-gap)}
+.journey-step{position:relative;flex:0 0 var(--journey-card);width:var(--journey-card);min-width:0;color:var(--ink);font:inherit;text-align:left}
+.journey-art{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:1;margin:0 0 14px;border:1px solid var(--line);border-radius:16px;background:var(--dark);box-shadow:inset 0 -16px 30px rgba(0,0,0,.2)}
+.journey-art img{display:block;width:100%;height:100%;border-radius:inherit;object-fit:cover;filter:saturate(.78) contrast(1.04)}
+.journey-number{display:grid;place-items:center;position:absolute;z-index:2;top:12px;left:12px;width:30px;height:30px;border:1px solid color-mix(in srgb,var(--brand) 58%,transparent);border-radius:50%;background:var(--dark);color:var(--brand-text);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em}
+.journey-step h3{margin:0 0 5px;font-size:clamp(17px,1.8vw,22px);line-height:1.1;letter-spacing:-.025em}
+.journey-step p{margin:0;color:var(--muted-2);font-size:clamp(13px,1.35vw,16px);line-height:1.4}
+.journey-arrow{align-self:center;flex:none;display:grid;place-items:center;width:var(--journey-arrow-w);height:42px;margin-top:clamp(68px,10vw,130px);color:var(--brand-text);font-family:var(--display);font-size:clamp(24px,3vw,36px);line-height:1;text-shadow:0 0 14px color-mix(in srgb,var(--brand) 38%,transparent)}
+.journey-turn{display:grid;place-items:center;align-self:center;width:32px;height:24px;margin:-4px 0;color:var(--brand-text);font-family:var(--display);font-size:28px;line-height:1;text-shadow:0 0 14px color-mix(in srgb,var(--brand) 38%,transparent)}
+@media (max-width:760px){.journey-step h3{font-size:16px}.journey-step p{font-size:13px}.journey-arrow{margin-top:clamp(48px,13vw,94px);font-size:22px}}
+@media (max-width:520px){.journey{--journey-gap:8px;--journey-arrow-w:13px;margin-top:29px}.journey-steps{gap:24px}.journey-art{border-radius:12px;margin-bottom:10px}.journey-number{top:8px;left:8px;width:23px;height:23px;font-size:8px}.journey-step h3{font-size:13px;line-height:1.15}.journey-step p{font-size:11px;line-height:1.35}.journey-arrow{margin-top:clamp(42px,14vw,60px);font-size:17px}.journey-turn{height:20px;margin:-2px 0;font-size:22px}}
+/* ---------- render-born grounds + edge hand-offs (9/14 late — "one evening") ----------
+   #lot, #process and #contact sit on a deeply blurred, darkened crop of a render (images/grounds/*.jpg:
+   1400 px, blur 44 px + a 70–78% black overlay, pre-rendered in PIL so nothing blurs at runtime; cream
+   reads ≥ 11:1 and steel ≥ 7:1 on the brightest 24 px patch of each). The picture fades out over its
+   last 160 px into the section's base tone, and a 160 px gradient across the top fades the PREVIOUS
+   section's tone in — no section starts on a hard seam:
+     build (--bg) → lot (ground, base --bg-2) → map (--bg-2) → process (ground, base --bg-2)
+     → contact (ground = the hero's dark still + a faint window glow, base --dark) → footer (--dark). */
+.section-ground{position:relative;isolation:isolate;background:var(--bg-2)}
+.section-ground::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background:var(--ground) center/cover no-repeat;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 160px),transparent 100%);mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 160px),transparent 100%)}
+.section-ground::after{content:"";position:absolute;left:0;right:0;top:0;height:160px;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,var(--seam-from),transparent)}
+#lot{--ground:url(../images/grounds/lot.jpg);--seam-from:var(--bg)}
+#process{--ground:url(../images/grounds/process.jpg);--seam-from:var(--bg-2)}
+#contact{--ground:url(../images/grounds/contact.jpg);--seam-from:var(--bg-2);background:var(--dark)}
+@media (max-width:760px){
+  .section-ground::before{-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 120px),transparent 100%);mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 120px),transparent 100%)}
+  .section-ground::after{height:120px}
+}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-head .eyebrow,.map-copy .eyebrow{font-size:12px;color:var(--brand-text);margin:0 0 14px}
+/* scroll-reveal (js/site.js adds .in) */
+.js:not(.reduce) .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js:not(.reduce) .reveal.in{opacity:1;transform:none}
+
+/* ============================================================ BUILD — the five bubbles */
+.bubbles{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2.4vw,28px);margin:0 auto clamp(20px,3vw,32px)}
+.bubble{background:none;border:0;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--ink);font-family:var(--body);width:clamp(96px,17vw,150px);-webkit-tap-highlight-color:transparent}
+.bubble .orb{width:clamp(72px,12vw,116px);height:clamp(72px,12vw,116px);border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1.5px solid var(--line);
+  box-shadow:inset 0 -6px 14px rgba(0,0,0,.28),0 14px 30px -18px rgba(0,0,0,.8);transition:transform .35s var(--ease-2),background .3s,border-color .3s,box-shadow .35s}
+.bubble .orb svg{width:58%;height:58%;fill:none;stroke:var(--line-art);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.bubble .pill{font-size:14px;font-weight:600;letter-spacing:.01em;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);text-align:center;line-height:1.2;transition:background .3s,color .3s,border-color .3s}
+.bubble:hover .orb{transform:translateY(-4px);border-color:color-mix(in srgb,var(--brand) 55%,transparent)}
+.bubble[aria-pressed="true"] .orb{background:var(--brand);border-color:var(--brand);transform:translateY(-4px) scale(1.04);
+  box-shadow:inset 0 -6px 14px rgba(0,0,0,.18),0 0 0 8px color-mix(in srgb,var(--brand) 18%,transparent),0 0 44px -6px color-mix(in srgb,var(--warm) 70%,transparent)}
+.bubble[aria-pressed="true"] .orb svg{stroke:var(--dark)}
+.bubble[aria-pressed="true"] .pill{background:var(--brand);color:var(--dark);border-color:var(--brand)}
+/* ARROW LAW: every unroll affordance is a down-chevron that flips up when open */
+.pill .dn{display:inline-block;width:10px;height:7px;aspect-ratio:auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-left:2px;transition:transform .3s var(--ease-2)}
+[aria-pressed="true"] .pill .dn{transform:rotate(180deg)}
+.build-stage{display:flex;flex-direction:column}
+.build-stage .bubbles{order:1}
+.build-stage .build-panel{order:2}
+.build-stage .hint{order:3}
+.build-panel{position:relative;display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(20px,4vw,48px);align-items:center;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(16px,2.6vw,28px);margin-top:8px;min-height:120px}
+.build-panel.is-closed{display:flex;align-items:center;justify-content:center}
+.build-panel.is-closed .concept-wrap,.build-panel.is-closed .build-copy{display:none}
+.build-hint{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.concept-wrap{min-width:0}
+.concept{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:linear-gradient(160deg,var(--concept-a),var(--concept-b));border:1px solid var(--line)}
+.concept .silhouette{position:absolute;inset:0;width:100%;height:100%;display:block}
+.concept .grid path{stroke:var(--line-art);stroke-opacity:.07;stroke-width:1}
+.concept .draw path{fill:none;stroke:var(--line-art);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.concept .renders{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:var(--dark)}
+.concept .renders::-webkit-scrollbar{display:none}
+/* one frame per slot — stills only (9/14 evening: no push-in clips); the one-house renders (.oh) are 4:5 with a lot
+   of gravel and sky, so the window sits at 42% down where the house is */
+.concept .slot{position:relative;flex:none;width:100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
+.concept .slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.concept .slot.oh img{object-position:50% 42%}
+.concept-tag{position:absolute;right:12px;bottom:10px;z-index:3;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);background:var(--brand-text);padding:5px 9px;border-radius:999px}
+/* prev / next: 44 px discs with a visible edge, at the frame's sides */
+.concept-nav{position:absolute;inset:0;z-index:2;pointer-events:none}
+.cnav{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;pointer-events:auto;cursor:pointer;display:grid;place-items:center;padding:0;
+  background:color-mix(in srgb,var(--dark) 72%,transparent);border:1.5px solid color-mix(in srgb,var(--line-art) 55%,transparent);color:var(--ink);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .25s var(--ease-2),background .25s,border-color .25s,opacity .25s}
+#conceptPrev{left:10px}#conceptNext{right:10px}
+.cnav svg{width:12px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cnav:hover{transform:translateY(-2px);background:var(--brand);color:var(--dark);border-color:var(--brand)}
+.cnav[aria-disabled="true"]{opacity:.35;cursor:default;transform:none;background:color-mix(in srgb,var(--dark) 72%,transparent);color:var(--ink);border-color:color-mix(in srgb,var(--line-art) 55%,transparent)}
+.concept-foot{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin:10px 2px 0}
+.concept-cap{font-size:16px;line-height:1.45;color:var(--ink);margin:0;min-height:1.45em}
+.concept-count{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);white-space:nowrap}
+@media (max-width:760px){.concept-cap{min-height:2.9em}}
+.build-copy h3{font-size:clamp(24px,2.6vw,32px);margin:0 0 10px}
+.build-copy p{font-size:16.5px;color:var(--ink);margin:0 0 18px;max-width:40ch}
+.walk-link{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--brand-text);border-bottom:1.5px solid color-mix(in srgb,var(--brand) 45%,transparent);padding-bottom:2px;min-height:44px}
+.walk-link:hover{border-bottom-color:var(--brand)}
+.walk-link .chev{transition:transform .25s var(--ease)}
+.walk-link:hover .chev{transform:translateX(4px)}
+#build .hint{text-align:center}
+/* phones: the result ABOVE the swatches (the thing that changes sits next to the thing you tap) */
+@media (max-width:760px){.build-panel{grid-template-columns:1fr}.build-stage .build-panel{order:0;margin:0 0 clamp(20px,3vw,32px)}}
+@media (max-width:420px){.bubble{width:31%}.bubble .pill{font-size:13px;padding:6px 8px}}
+
+/* ============================================================ LOT — "Can I build one on my lot?"
+   Styled like a county plat panel: faint survey grid on the band, the
+   answer card as the stake tag. Card ABOVE the tiles on phones. */
+.section-plat{background:var(--bg-2)}
+/* the survey grid sits ON the render ground (same pseudo-element, two extra background layers) */
+.section-plat.section-ground::before{background:linear-gradient(color-mix(in srgb,var(--line-art) 5%,transparent) 1px,transparent 1px) 0 0/48px 48px,
+  linear-gradient(90deg,color-mix(in srgb,var(--line-art) 5%,transparent) 1px,transparent 1px) 0 0/48px 48px,var(--ground) center/cover no-repeat}
+.lot{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);align-items:start}
+.lot-card{background:var(--paper);border:var(--rule);border-left:4px solid var(--brand);border-radius:var(--r);padding:clamp(20px,3vw,32px);min-height:260px;scroll-margin-top:calc(var(--header-h) + 12px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.lot-hint{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.lot-answer{width:100%;text-align:left}
+/* the answer's four lines each carry their own size — the old `.lot-answer p` rule out-ranked the three
+   single-class lines below and set the eyebrow, source and fine print at 16.5 px mono (9/14 review) */
+.lot-answer p{margin:0 0 10px}
+.lot-where{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);margin:0 0 10px}
+.lot-answer h3{font-size:clamp(24px,2.8vw,34px);color:var(--warm);margin:0 0 12px}
+.lot-line{font-size:16.5px}
+.lot-src{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--muted)}
+.lot-fine{font-size:16px;color:var(--muted);border-top:var(--rule);padding-top:12px;margin-top:14px!important}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+.tile{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:12px 12px 14px;cursor:pointer;color:var(--ink);font-family:var(--body);display:flex;flex-direction:column;gap:10px;align-items:stretch;min-height:48px;-webkit-tap-highlight-color:transparent;transition:transform .3s var(--ease-2),border-color .3s,background .3s,box-shadow .3s}
+/* <use> clones live in a shadow tree: selectors can't reach them, inheritance can — paint on the <svg> */
+.tile > svg{width:100%;height:auto;display:block;aspect-ratio:200/120;fill:none;stroke:var(--line-art);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.tile .pill{align-self:flex-start;font-size:14px;font-weight:500;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--bg);transition:background .3s,color .3s,border-color .3s}
+.tile .pill b{font-weight:600;margin-right:4px}
+/* cards: the muted token lifted so small print on --paper clears 7:1 — at EVERY width (phones sat at 6.42:1 while only ≥1024 had the lift, 9/14 review) */
+.lot-card,.contact-form,.build-panel,.tile{--muted:var(--muted-2)}
+.tile:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--brand) 55%,transparent)}
+.tile[aria-pressed="true"]{background:color-mix(in srgb,var(--brand) 16%,var(--paper));border-color:var(--brand);box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 14%,transparent),0 0 40px -8px color-mix(in srgb,var(--warm) 55%,transparent)}
+.tile[aria-pressed="true"] > svg{stroke:var(--warm)}
+.tile[aria-pressed="true"] .pill{background:var(--brand);color:var(--dark);border-color:var(--brand)}
+.lookup{grid-column:1 / -1;font-size:16px;color:var(--muted-2);margin:8px 0 0}   /* on the lot render ground: --muted read 6.9:1 against its brightest patch */
+#lot .section-head p:not(.eyebrow){color:var(--muted-2)}   /* same ground, same fix: the intro read 6.91:1 on phones/tablets (9/15); ≥1024 lifts it to --ink below. :not(.eyebrow) — the eyebrow keeps --brand-text at 12px (QA 9/15) */
+/* the two GIS links on their own row (they wrapped to three lines with the second link orphaned) */
+.lookup-links{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:2px}
+.lookup a{display:inline-block;padding:8px 0;color:var(--brand-text);font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent);white-space:nowrap}
+.lookup a:hover{border-bottom-color:var(--brand)}
+/* phones: card above the tiles; compact at rest (the hint alone), grows to fit the answer — site.js tweens the
+   height so the tiles slide, never jump */
+@media (max-width:820px){.lot{grid-template-columns:1fr}.lot-card{order:-1;min-height:120px}}
+
+/* ============================================================ MAP — the plateau at dusk
+   The real imagery (images/map/plateau30-dusk-web.jpg — the Higgsfield blue-hour
+   re-render of the USGS NAIP export, aligned 1:1) inside a cropping frame.
+   .dmap is the frame; .dmap-plane is the image plane, sized from the frame
+   with the image's own aspect, and the focal point --fx/--fy (Buckley, as
+   fractions of the image) pinned to --tx/--ty of the frame — `translate`
+   percentages are the plane's OWN size, so the pin is pure CSS: no JS, no
+   layout shift. REV 2 (Hayden, 9/15: "zoom into the map a little bit and
+   shrink our circle down so it shows where they build"): the ring is 15 MILES
+   (r = 425.6 px, a diameter of 36.94% of the image's width) and the plane is
+   sized so the ring nearly FILLS the frame with 12 px of air: plane width =
+   (the ring's screen diameter) / .36944, where the diameter = the frame's
+   shorter side − 24 px. Phones: a square frame (ring fills it, ~2.5× the
+   1.26× the 30-mile ring needed). ≥760: the 13:10 frame, ring fills the
+   height, the sides show more plateau. Labels are HTML (px type ≥14/16,
+   44/48 px targets) positioned by % of the plane; the side each label hangs
+   off is picked by js/site.js (collision nudge). */
+.map-copy{max-width:62ch}
+.map-copy .lede{color:var(--ink);font-size:clamp(17px,1.5vw,19.5px);margin:0}
+.map-copy .hint{margin:16px 0 0}
+/* --ringfrac = the 15-mile ring's diameter as a fraction of the image plane's width (2 × 425.6 / 2304) */
+.dmap{position:relative;overflow:hidden;border-radius:var(--r);border:var(--rule);background:var(--dark);width:100%;aspect-ratio:1/1;transform:translateZ(0);
+  --fx:.5;--fy:.5022;--tx:.5;--ty:.5}
+/* square frame: the shorter side IS the width → plane = (100% − 24px) / .36944 */
+.dmap-plane{position:absolute;left:calc(var(--tx) * 100%);top:calc(var(--ty) * 100%);width:calc((100% - 24px) / .36944);aspect-ratio:2304/1856;
+  translate:calc(var(--fx) * -100%) calc(var(--fy) * -100%)}
+.dmap-plane > img{position:absolute;inset:0;width:100%;height:100%;max-width:none;display:block}
+.dmap-svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible;pointer-events:none}
+/* the ring: stroke in SCREEN px (non-scaling) so it reads the same at every zoom */
+.dmap .ring{fill:none;vector-effect:non-scaling-stroke}
+.dmap .ring-15{stroke:var(--brand);stroke-opacity:.72;stroke-width:3;filter:drop-shadow(0 0 7px color-mix(in srgb,var(--brand) 55%,transparent))}
+/* breathes ONCE when the map scrolls in (site.js adds .in to every .reveal), then rests */
+.js:not(.reduce) .dmap.in .ring-15{animation:ringBreathe 2.8s var(--ease) .25s both}
+@keyframes ringBreathe{0%{stroke-opacity:.1;stroke-width:1.5}42%{stroke-opacity:1;stroke-width:6}100%{stroke-opacity:.72;stroke-width:3}}
+.dmap-credit{position:absolute;left:12px;bottom:10px;z-index:3;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 82%,transparent);
+  background:color-mix(in srgb,var(--dark) 66%,transparent);padding:5px 9px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);pointer-events:none;white-space:nowrap;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis}
+/* phones: the short credit ('USGS' visible, the full line sr-only + in the title) top-left. With the ring inscribed in the
+   square (rev 2) the corners are clear of the arc; the pill's rect is still a hard obstacle in site.js layoutLabels(), so
+   no label ever lands under it. ≥760 the long line, bottom-left. */
+.credit-phone{display:none}
+@media (max-width:759px){.dmap-credit{bottom:auto;top:10px}.credit-phone{display:inline}
+  .credit-wide{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}}
+/* towns: the dot is the target's centre; the label hangs off one of eight sides (--d straight, --dd diagonal).
+   Labels stay visibility:hidden until site.js has laid them out once (fonts in), so the nudge never shows. */
+.towns{position:absolute;inset:0}
+.js .towns:not(.placed) .tn{visibility:hidden}
+.town{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;background:none;border:0;padding:0;color:var(--ink);font-family:var(--body);display:block;-webkit-tap-highlight-color:transparent;--d0:13px;--dd0:9px;--d:var(--d0);--dd:var(--dd0)}
+button.town{cursor:pointer}
+.town.off{display:none}
+.town i{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:var(--ink);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--dark) 75%,transparent),0 0 10px rgba(0,0,0,.7);transition:background .25s,box-shadow .35s,transform .35s var(--ease-2),opacity .25s}
+.town.hub{--d0:17px;--dd0:12px}
+.town.hub i{width:15px;height:15px;margin:-7.5px 0 0 -7.5px;background:var(--brand);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--dark) 75%,transparent),0 0 0 8px color-mix(in srgb,var(--brand) 22%,transparent),0 0 20px 3px color-mix(in srgb,var(--brand) 55%,transparent)}
+/* live text with a dark halo stroke (four 1 px shadows + two soft ones) so it reads on lights and forest alike */
+.town .tn{position:absolute;white-space:nowrap;font-size:14px;font-weight:600;letter-spacing:.01em;line-height:1.2;color:var(--ink);
+  text-shadow:-1px -1px 0 var(--dark),1px -1px 0 var(--dark),-1px 1px 0 var(--dark),1px 1px 0 var(--dark),0 0 3px var(--dark),0 0 12px rgba(0,0,0,.95);transition:opacity .25s,color .2s}
+/* a real backing under the glyphs: a 3 px --dark stroke painted BEHIND the fill (1.5 px visible all round) — the four 1 px shadows alone
+   left labels at 2.7–5.1:1 on the lights (9/14 review). Only where the browser paints stroke-under-fill. */
+@supports (paint-order:stroke fill){.town .tn{paint-order:stroke fill;-webkit-text-stroke:3px var(--dark)}}
+.town.hub .tn{font-size:16px;font-weight:700;color:var(--brand-text)}
+.town .tn.hide{display:none}
+.town .tn.dim{opacity:.15}
+.town i.dim{opacity:.2}
+/* Phone callouts find empty space; every neighbouring name and dot keeps its full contrast. */
+@media (max-width:759px){.town .tn.dim,.town i.dim{opacity:1}}
+.tn.far{--d:calc(var(--d0) + 7px);--dd:calc(var(--dd0) + 7px)}   /* the second tier: 7 px further out (site.js) */
+/* the slide tiers: 5 / 10 px along the side, as translate offsets (margins do nothing on a bottom/right-anchored label) */
+.tn{--nx:0px;--ny:0px}
+.tn.nup{--ny:-5px}.tn.ndn{--ny:5px}.tn.nlf{--nx:-5px}.tn.nrt{--nx:5px}
+.tn.nup2{--ny:-10px}.tn.ndn2{--ny:10px}.tn.nlf2{--nx:-10px}.tn.nrt2{--nx:10px}
+.tn.r{left:calc(50% + var(--d));top:50%;translate:var(--nx) calc(-50% + var(--ny))}
+.tn.l{right:calc(50% + var(--d));top:50%;translate:var(--nx) calc(-50% + var(--ny))}
+.tn.t{left:50%;bottom:calc(50% + var(--d));translate:calc(-50% + var(--nx)) var(--ny)}
+.tn.b{left:50%;top:calc(50% + var(--d));translate:calc(-50% + var(--nx)) var(--ny)}
+.tn.tr{left:calc(50% + var(--dd));bottom:calc(50% + var(--dd));translate:var(--nx) var(--ny)}
+.tn.tl{right:calc(50% + var(--dd));bottom:calc(50% + var(--dd));translate:var(--nx) var(--ny)}
+.tn.br{left:calc(50% + var(--dd));top:calc(50% + var(--dd));translate:var(--nx) var(--ny)}
+.tn.bl{right:calc(50% + var(--dd));top:calc(50% + var(--dd));translate:var(--nx) var(--ny)}
+/* .hov is set by site.js from the SAME nearest-dot rule as the tap (:hover picked whichever button painted on top — Carbonado over Wilkeson's dot at 1440) */
+button.town.hov .tn,button.town:focus-visible .tn{color:var(--brand-text)}
+button.town.hov i,button.town:focus-visible i{transform:scale(1.25)}
+/* `button.` prefix: same specificity as the .hov rules above so the town you just clicked shows the pressed look while
+   the mouse is still on it (the hover amber won until the pointer moved off, 9/15 verifier) */
+button.town[aria-pressed="true"] i{background:var(--warm);transform:scale(1.35);box-shadow:0 0 0 3px color-mix(in srgb,var(--dark) 75%,transparent),0 0 0 8px color-mix(in srgb,var(--warm) 28%,transparent),0 0 22px 4px color-mix(in srgb,var(--warm) 55%,transparent)}
+button.town[aria-pressed="true"] .tn{color:var(--warm)}
+/* the "we build here" tag pops in with a CSS animation (restarts every time it is un-hidden);
+   `translate` is separate from `transform`, and nothing else animates it. Edge classes keep it
+   inside the map on phones (the arrow slides to the dot's side). */
+.here{position:absolute;translate:-50% calc(-100% - 26px);font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dark);background:var(--warm);padding:6px 10px;border-radius:999px;white-space:nowrap;pointer-events:none;box-shadow:0 8px 20px -8px rgba(0,0,0,.6);animation:herePop .32s var(--ease-2)}
+.here::after{content:"";position:absolute;left:50%;bottom:-5px;width:8px;height:8px;background:var(--warm);transform:translateX(-50%) rotate(45deg)}
+.here.edge-r{translate:calc(-100% + 16px) calc(-100% - 26px)}
+.here.edge-r::after{left:auto;right:12px;transform:rotate(45deg)}
+.here.edge-l{translate:-16px calc(-100% - 26px)}
+.here.edge-l::after{left:12px;transform:rotate(45deg)}
+/* .below: the tag hangs UNDER the dot (arrow on top) — site.js picks whichever side covers the fewest
+   neighbouring town labels (Carbonado's tag sat on Wilkeson, South Prairie's on Buckley; 9/14 review) */
+.here.below{translate:-50% 26px}
+.here.below::after{bottom:auto;top:-5px}
+.here.below.edge-r{translate:calc(-100% + 16px) 26px}
+.here.below.edge-l{translate:-16px 26px}
+/* .side-r / .side-l: the tag beside the dot (arrow on its left / right edge) */
+.here.side-r{translate:22px -50%}
+.here.side-r::after{left:-4px;bottom:auto;top:50%;transform:translateY(-50%) rotate(45deg)}
+.here.side-l{translate:calc(-100% - 22px) -50%}
+.here.side-l::after{left:auto;right:-4px;bottom:auto;top:50%;transform:translateY(-50%) rotate(45deg)}
+/* .lbl-r / .lbl-l: anchored at the far end of the pressed town's OWN name (site.js moves the anchor), arrow pointing at the name */
+.here.lbl-r{translate:12px -50%}
+.here.lbl-r::after{left:-4px;bottom:auto;top:50%;transform:translateY(-50%) rotate(45deg)}
+.here.lbl-l{translate:calc(-100% - 12px) -50%}
+.here.lbl-l::after{left:auto;right:-4px;bottom:auto;top:50%;transform:translateY(-50%) rotate(45deg)}
+.here.side-r,.here.side-l,.here.lbl-r,.here.lbl-l{animation-name:herePopSide}
+@keyframes herePopSide{from{opacity:0}to{opacity:1}}
+@keyframes herePop{from{opacity:0;margin-top:8px}to{opacity:1;margin-top:0}}
+.here.below{animation-name:herePopDown}
+@keyframes herePopDown{from{opacity:0;margin-top:-8px}to{opacity:1;margin-top:0}}
+.reduce .here{animation:none}
+/* ≥760: the 13:10 frame — the shorter side is the HEIGHT (10/13 of the width), so plane = (76.923% − 24px) / .36944 */
+@media (min-width:760px){.dmap{aspect-ratio:13/10;--ty:.5}.dmap-plane{width:calc((76.923% - 24px) / .36944)}}
+
+/* ============================================================ PROCESS — "We handle it start to finish" (rev 2, one band)
+   The numbered rail is gone (Hayden, 9/15). One block on the render ground: eyebrow, the headline, one line, the CTA. */
+.handle{max-width:62ch}
+.handle h2{font-size:clamp(34px,5vw,60px);margin:0 0 16px}
+.handle .lede{margin:0 0 30px}
+
+/* ============================================================ CONTACT — the closing frame
+   On the hero's darkest still (see .section-ground / #contact): one line, one
+   CTA (Set up a consultation → puts the cursor in the form), the form below. */
+.section-close{padding-bottom:clamp(64px,9vw,128px)}
+.close-line{display:flex;flex-direction:column;align-items:flex-start;gap:26px;margin:0 0 clamp(30px,4.5vw,52px)}
+.close-line h2{font-size:clamp(36px,5.4vw,68px);max-width:14ch;margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px;margin-top:22px}
+.contact-lines a{font-weight:600;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:860px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:600;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg-2);color:var(--ink);min-height:48px;color-scheme:dark}
+.contact-form ::placeholder{color:color-mix(in srgb,var(--muted) 85%,transparent)}
+.contact-form textarea{min-height:100px;resize:vertical}
+.contact-form input:hover,.contact-form select:hover,.contact-form textarea:hover{border-color:color-mix(in srgb,var(--brand) 55%,var(--line))}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 18%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:600;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:16px;color:var(--muted);margin:0}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ FOOTER — DARK SWEEP: --dark, not --ink */
+.site-footer{background:var(--dark);color:color-mix(in srgb,var(--ink) 80%,transparent);padding:clamp(40px,6vw,64px) 0 28px;border-top:1px solid color-mix(in srgb,var(--brand) 18%,transparent)}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .footer-logo{display:block;height:68px;width:auto}
+.foot p{font-size:16px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);margin:0 0 12px}
+.foot a:hover{color:var(--ink)}
+.foot-links{display:flex;flex-direction:column}
+.foot-links a{display:block;padding:6px 0;font-size:16px;min-height:32px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:15px;color:color-mix(in srgb,var(--ink) 75%,transparent)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================ THE MOTH — a sprinkle below the fold
+   Fixed, tiny, pointer-events:none, z below the header. Idles beside the
+   render's porch light while the hero is on screen; below it, follows the
+   pointer at a lazy lag and rests BESIDE the nearest lit thing, never on it. Removed
+   entirely under prefers-reduced-motion. */
+.moth{position:fixed;left:0;top:0;z-index:50;width:18px;height:12px;margin:-6px 0 0 -9px;pointer-events:none;opacity:0;transition:opacity .6s;will-change:transform;
+  filter:drop-shadow(0 0 4px color-mix(in srgb,var(--warm) 60%,transparent))}
+.moth.on{opacity:.9}
+.moth svg{width:100%;height:100%;display:block;overflow:visible}
+.moth path{fill:var(--moth-wing);fill-opacity:.85}
+.moth .body{fill:var(--moth-body)}
+.moth .wing{transform-origin:12px 8px;animation:flap .11s ease-in-out infinite alternate}
+.moth .wr{animation-delay:-.055s}
+@keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.4)}}
+.reduce .moth{display:none}
+
+/* ============================================================ DESKTOP FOR OLDER EYES (≥1024)
+   Hayden, 9/14: the site has to read as well on a Mac (his dad, older
+   homeowners) as on a phone. Body 18.5 px / 1.55, nothing under 15 px but
+   the mono tags, every card lifts its --muted to clear 7:1 on --paper, the
+   five bubbles in ONE row with the render in a 3:2 frame beside the copy,
+   the lot tiles 2×2 at a comfortable size with the card beside them, the
+   map at the full container width (the copy sits in its empty north-west,
+   the geography in the right 55.6% so the % positions stay true), 16 px
+   town labels on 48 px targets, generous section padding. */
+@media (min-width:1024px){
+  .hero{--scene-h:max(440px,35vw,calc(100svh - var(--header-h) - 180px))}
+  body{font-size:18.5px;line-height:1.55}
+  .lede{font-size:19.5px}
+  .main-nav{font-size:17px;gap:26px}
+  .btn{font-size:17px;padding:15px 28px}
+  .hint{font-size:13px}
+  .fine,.lot-fine,.lookup,.form-fine,.foot p,.foot-links a,.foot-bottom{font-size:16.5px}
+  .lot-src,.concept-count{font-size:13px}
+  .contact-form label{font-size:18px}
+  .contact-form input,.contact-form select,.contact-form textarea{font-size:17px}
+  .concept-cap{font-size:18px}
+  .section{padding:120px 0}
+  .section-head p:not(.eyebrow),#lot .section-head p:not(.eyebrow){font-size:19px;color:var(--ink)}
+  .section-head{max-width:64ch}
+  /* the bubbles: one row, the render wide beside the copy */
+  .bubbles{flex-wrap:nowrap;gap:clamp(18px,2.4vw,28px)}
+  .bubble{width:clamp(150px,15.5vw,184px)}
+  .bubble .orb{width:116px;height:116px}
+  .bubble .pill{font-size:15px;padding:8px 12px;display:inline-flex;align-items:center;justify-content:center;gap:6px;max-width:none;white-space:nowrap}   /* one line each — 'Garage conversion' / 'Above the garage' wrapped to 59 px beside 38 px pills (9/14 review); 15 px until the bubbles are wide enough for 17 */
+  .bubble .pill .dn{flex:none;margin:0}
+  .build-panel{grid-template-columns:1.5fr 1fr;gap:44px;padding:28px}
+  .concept{aspect-ratio:3/2}
+  .concept .slot.oh img{scale:1.1;transform-origin:50% 42%}   /* the one-house renders carry a lot of gravel + sky: a touch closer so the house fills the wide frame */
+  .build-copy h3{font-size:32px}
+  .build-copy p{font-size:18.5px;max-width:34ch}
+  .build-hint,.lot-hint{font-size:14px}
+  /* the lot: tiles 2×2 with room, the card beside them */
+  .lot{grid-template-columns:1.1fr .9fr;gap:44px}
+  .tiles{gap:16px}
+  .tile{padding:16px 16px 18px;gap:12px;border-radius:16px}
+  .tile .pill{font-size:17px;padding:8px 14px}
+  .lot-line{font-size:18.5px}
+  .lot-card{min-height:300px}
+  /* the dusk map: 48 px targets, 16 px labels (19 for the hub) */
+  .map-copy h2{font-size:clamp(36px,3.4vw,50px)}
+  .map-copy .lede{font-size:19px}
+  .town{width:48px;height:48px;margin:-24px 0 0 -24px;--d0:15px;--dd0:10px}
+  .town i{width:13px;height:13px;margin:-6.5px 0 0 -6.5px}
+  .town.hub{--d0:19px;--dd0:13px}
+  .town.hub i{width:17px;height:17px;margin:-8.5px 0 0 -8.5px}
+  .town .tn{font-size:16px}
+  .town.hub .tn{font-size:19px}
+  .here{font-size:11.5px;padding:7px 12px}
+  .dmap-credit{font-size:11px}
+  .handle{max-width:66ch}
+  .handle .lede{font-size:20px}
+  .close-line{gap:30px}
+  .foot h4{font-size:12px}
+}
+/* wide Macs: the column breathes (1052 px in 1920 left 45% of the width dead → 1272 px, 34%; copy line lengths
+   are still capped by the …ch rules above). Hayden's call, 9/14 review — one number to revert. */
+@media (min-width:1280px){.bubble .pill{font-size:17px;padding:8px 14px}}
+/* Narrow desktop: reserve side gutters and room between all five pills at 1024 px. */
+@media (min-width:1024px) and (max-width:1199px){
+  .bubbles{width:100%;padding-inline:14px;gap:14px}
+  .bubble{flex:1 1 0;min-width:0;width:auto}
+  .bubble .pill{font-size:14px;letter-spacing:0;padding:8px;gap:5px;max-width:100%}
+}
+@media (min-width:1600px){:root{--maxw:1400px}
+  .contact-form{max-width:1000px}   /* the closing frame filled 68% of the 1272 px column at 1920 (9/14 review) → ~79% */
+}

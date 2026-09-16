@@ -1,0 +1,56 @@
+{
+ "_how": "js/site.js reads this once and loads ONLY what is named here (no probing, no 404s). Each type lists its strip in order: the FIRST frame is the one-house render (the same white ranch house with that ADU type lit), then Hayden's keepers (2026-09-14 evening review). Names resolve: 'frames/x' -> images/frames/ (the q84 progressive re-encodes the page loads, native px), 'bubbles/x' -> images/bubbles/, anything else -> images/concepts/ (the untouched originals; see _sources).",
+ "_stills_only": "2026-09-14 evening (Hayden): NO push-in clips — the bubbles show stills only and every type opens on frame 1. The clip code, the clips block and the clip posters are gone from the manifest; the video files stay on disk in images/bubbles/ unlisted.",
+ "_relit": "Every keeper that wasn't already dusk was RELIT to the hero's blue hour with Higgsfield nano_banana_pro (same composition, only the light changed — structure-checked, see NOTES.md). The daylight originals stay untouched in images/concepts/.",
+ "_sources": {
+  "frames/garage-oh1.jpg": "onehouse/garage-oh1.jpg",
+  "frames/garage-5.jpg": "relit/garage-5.jpg",
+  "frames/backyard-oh1.jpg": "onehouse/backyard-oh1.jpg",
+  "frames/backyard-fog.jpg": "relit/bubbles/backyard-clip.jpg",
+  "frames/backyard-aerial.jpg": "rev1/backyard-aerial-big.jpg",
+  "frames/above-garage-oh1.jpg": "onehouse/above-garage-oh1.jpg",
+  "frames/above-garage-3.jpg": "relit/above-garage-3.jpg",
+  "frames/above-garage-5.jpg": "relit/above-garage-5.jpg",
+  "frames/addon-oh1.jpg": "onehouse/addon-oh1.jpg",
+  "frames/addon-dark.jpg": "relit/bubbles/addon-clip.jpg",
+  "frames/inside-oh1.jpg": "onehouse/inside-oh1.jpg",
+  "frames/inside-close.jpg": "rev1/inside-close.jpg"
+ },
+ "_captions": "captions[frame] = the one line under that frame: what changed on THIS house, in plain words. Frames without one get 'Another lot, same idea.'",
+ "garage": [
+  "frames/garage-oh1.jpg",
+  "frames/garage-5.jpg"
+ ],
+ "backyard": [
+  "frames/backyard-oh1.jpg",
+  "frames/backyard-fog.jpg",
+  "frames/backyard-aerial.jpg"
+ ],
+ "addon": [
+  "frames/addon-oh1.jpg",
+  "frames/addon-dark.jpg"
+ ],
+ "above-garage": [
+  "frames/above-garage-oh1.jpg",
+  "frames/above-garage-3.jpg",
+  "frames/above-garage-5.jpg"
+ ],
+ "inside": [
+  "frames/inside-oh1.jpg",
+  "frames/inside-close.jpg"
+ ],
+ "captions": {
+  "frames/garage-oh1.jpg": "The garage doors are gone; that's a front door now.",
+  "frames/garage-5.jpg": "Another lot. The garage kept its big door; inside, it's a room now.",
+  "frames/backyard-oh1.jpg": "Same house. A small one out back, with a lit path to it.",
+  "frames/backyard-fog.jpg": "Another lot. The small house on its own, back by the trees.",
+  "frames/backyard-aerial.jpg": "From above. The house in front, the small one behind it.",
+  "frames/addon-oh1.jpg": "A new wing on the end of the house, with its own door in.",
+  "frames/addon-dark.jpg": "Another lot. A darker house; the new wing is on the right, with its own door.",
+  "frames/above-garage-oh1.jpg": "A second floor over the garage, with its own stairs up.",
+  "frames/above-garage-3.jpg": "Another lot. The apartment over the garage, with its own deck off the side.",
+  "frames/above-garage-5.jpg": "Another lot. The lights on over the garage, next to the red barn.",
+  "frames/inside-oh1.jpg": "Same house. The basement got its own door and its own light.",
+  "frames/inside-close.jpg": "Up close. The basement door, with its own light over it."
+ }
+}
