@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services &amp; Pricing | HJS Designs</title>
+<meta name="description" content="What a website, monthly care, social media and Google Ads cost with HJS Designs - and what actually decides the price.">
+<meta name="theme-color" content="#22362d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HJS Designs">
+<meta property="og:title" content="HJS Designs - Services &amp; Pricing">
+<meta property="og:description" content="What a website, monthly care, social media and Google Ads cost with HJS Designs - and what actually decides the price.">
+<meta property="og:url" content="https://hjsdesigns.github.io/demos/services/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HJS Designs - Services &amp; Pricing">
+<meta name="twitter:description" content="What a website, monthly care, social media and Google Ads cost with HJS Designs - and what actually decides the price.">
+<link rel="canonical" href="https://hjsdesigns.github.io/demos/services/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --paper:#faf8f1;
+    --card:#f2f1e6;
+    --ink:#22362d;
+    --ink-soft:#3c5246;
+    --muted:#5f6f64;
+    --rule:#dee2d6;
+    --rule-strong:#c3cabb;
+    --accent:#35604a;
+    --brass:#9a6a2e;
+    --display:"Fraunces","Hoefler Text",Georgia,serif;
+    --body:"Karla","Helvetica Neue",Arial,sans-serif;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#141a17;
+      --card:#1c2521;
+      --ink:#eae7dc;
+      --ink-soft:#c8cfc6;
+      --muted:#9aa89f;
+      --rule:#2c3832;
+      --rule-strong:#3d4b43;
+      --accent:#8fbfa3;
+      --brass:#d1a05e;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#141a17;
+    --card:#1c2521;
+    --ink:#eae7dc;
+    --ink-soft:#c8cfc6;
+    --muted:#9aa89f;
+    --rule:#2c3832;
+    --rule-strong:#3d4b43;
+    --accent:#8fbfa3;
+    --brass:#d1a05e;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font:400 16px/1.6 var(--body);
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{max-width:980px;margin:0 auto;padding:44px 26px 80px}
+  h1,h2,h3{text-wrap:balance;margin:0}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:20px;flex-wrap:wrap;
+    padding-bottom:16px;border-bottom:2px solid var(--ink);
+  }
+  .wordmark{
+    font-family:var(--body);font-weight:700;font-size:13px;
+    letter-spacing:.2em;text-transform:uppercase;
+  }
+  .masthead .contact{
+    font-size:13px;color:var(--muted);text-align:right;line-height:1.5;
+  }
+  .lede{margin:34px 0 0;max-width:var(--measure)}
+  .lede h1{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(34px,5.4vw,54px);line-height:1.04;
+    letter-spacing:-.02em;
+  }
+  .lede p{
+    margin:16px 0 0;font-size:clamp(17px,2.2vw,19px);
+    color:var(--ink-soft);max-width:60ch;
+  }
+
+  /* ---------- section frame ---------- */
+  section{margin-top:52px}
+  .sec-head{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    border-bottom:1px solid var(--rule-strong);padding-bottom:10px;margin-bottom:22px;
+  }
+  .sec-head h2{
+    font-family:var(--display);font-weight:600;font-size:26px;letter-spacing:-.01em;
+  }
+  .sec-head .kicker{
+    font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;margin-left:auto;
+  }
+  .sec-intro{margin:0 0 22px;max-width:var(--measure);color:var(--ink-soft)}
+
+  /* ---------- tier cards ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .tier{
+    border:1px solid var(--rule);border-radius:4px;background:var(--card);
+    padding:22px 20px;display:flex;flex-direction:column;gap:14px;
+  }
+  .tier.feature{border-color:var(--accent);border-width:1.5px}
+  .tier-name{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:700;color:var(--accent);
+  }
+  .tier-price{
+    font-family:var(--display);font-weight:600;font-size:29px;
+    line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+  }
+  .tier-price span{display:block;font-family:var(--body);font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:7px}
+  .tier-who{font-size:14.5px;color:var(--ink-soft);margin:0}
+  .tier ul{margin:0;padding-left:17px;font-size:14px;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px}
+  .tier li::marker{color:var(--accent)}
+
+  /* ---------- the price-driver matrix ---------- */
+  .why-note{
+    border-left:3px solid var(--brass);padding:2px 0 2px 16px;
+    margin:0 0 24px;max-width:var(--measure);
+    font-size:16.5px;color:var(--ink);
+  }
+  .why-note strong{font-weight:700}
+  .matrix{display:flex;flex-direction:column;border-top:1px solid var(--rule-strong)}
+  .matrix-head{
+    display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:16px;
+    padding:11px 0;border-bottom:1px solid var(--rule-strong);
+  }
+  .matrix-head span{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:700;color:var(--muted);
+  }
+  .matrix-head span:first-child{color:var(--ink)}
+  .row{
+    display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:16px;
+    padding:15px 0;border-bottom:1px solid var(--rule);align-items:start;
+  }
+  .row-label{font-weight:600;font-size:15px}
+  .row-label em{
+    display:block;font-style:normal;font-weight:400;
+    font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45;
+  }
+  .cell{font-size:14px;color:var(--ink-soft);line-height:1.5}
+  .cell.none{color:var(--muted)}
+  .cell b{font-weight:600;color:var(--ink)}
+  .m-label{display:none}
+
+  /* ---------- plain two-column service blocks ---------- */
+  .split{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:start}
+  .block h3{
+    font-family:var(--body);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:11px;
+  }
+  .block ul{margin:0;padding-left:17px;display:flex;flex-direction:column;gap:7px;font-size:15px;color:var(--ink-soft)}
+  .block li::marker{color:var(--accent)}
+  .block p{margin:0;font-size:15px;color:var(--ink-soft)}
+  .price-line{
+    font-family:var(--display);font-size:25px;font-weight:600;
+    letter-spacing:-.015em;font-variant-numeric:tabular-nums;margin:0 0 6px;
+  }
+  .price-sub{font-size:13.5px;color:var(--muted);margin:0}
+
+  /* ---------- ads money split ---------- */
+  .split-money{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;
+  }
+  .money{
+    border:1px solid var(--rule);border-radius:4px;padding:17px 18px;background:var(--card);
+  }
+  .money h4{
+    margin:0 0 7px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:700;color:var(--muted);
+  }
+  .money .amt{font-family:var(--display);font-size:19px;font-weight:600;margin:0 0 7px;line-height:1.2}
+  .money p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.5}
+
+  /* ---------- packages ---------- */
+  .packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .pack{
+    border:1px solid var(--rule);border-radius:4px;padding:20px;background:var(--card);
+    display:flex;flex-direction:column;gap:11px;
+  }
+  .pack.best{border-color:var(--accent);border-width:1.5px;position:relative}
+  .pack h3{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .pack .flag{
+    font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    color:var(--brass);
+  }
+  .math{
+    margin:0;font-size:14px;color:var(--ink-soft);
+    display:flex;flex-direction:column;gap:5px;font-variant-numeric:tabular-nums;
+  }
+  .math span{display:flex;justify-content:space-between;gap:12px}
+  .math .total{
+    border-top:1px solid var(--rule-strong);margin-top:5px;padding-top:7px;
+    font-weight:700;color:var(--ink);
+  }
+  .pack p.gets{margin:0;font-size:13.5px;color:var(--muted)}
+
+  /* ---------- terms ---------- */
+  .terms{
+    margin-top:52px;border-top:2px solid var(--ink);padding-top:20px;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 34px;
+  }
+  .terms div{font-size:14px;color:var(--ink-soft)}
+  .terms b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;font-size:14.5px}
+  footer{
+    margin-top:28px;padding-top:16px;border-top:1px solid var(--rule);
+    font-size:12.5px;color:var(--muted);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+
+  a{color:var(--accent);text-underline-offset:3px}
+  a:focus-visible{outline:3px solid var(--brass);outline-offset:4px;border-radius:2px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    .split{grid-template-columns:1fr;gap:26px}
+    .packs{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .sheet{padding:30px 20px 60px}
+    .tiers{grid-template-columns:1fr}
+    .matrix-head{display:none}
+    .matrix{border-top:none}
+    .row{
+      grid-template-columns:1fr;gap:9px;padding:17px 0;
+      border-bottom:1px solid var(--rule-strong);
+    }
+    .row-label{font-size:16px}
+    .cell{
+      display:grid;grid-template-columns:82px 1fr;gap:12px;align-items:baseline;
+      font-size:14px;
+    }
+    .m-label{
+      display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+      font-weight:700;color:var(--muted);
+    }
+    .split-money{grid-template-columns:1fr}
+    .terms{grid-template-columns:1fr}
+    .masthead .contact{text-align:left}
+  }
+
+  @media print{
+    body{background:#fff;color:#000;font-size:10.5pt}
+    .sheet{padding:0;max-width:none}
+    section{margin-top:22px;break-inside:avoid}
+    .tier,.pack,.money{break-inside:avoid;background:#f7f6f0}
+    .lede h1{font-size:30pt}
+    footer{break-inside:avoid}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+  html{color-scheme:light dark}
+  img{max-width:100%}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="wordmark">HJS Designs</div>
+    <div class="contact">
+      Hayden Stevenson · Buckley, WA<br>
+      hjsdesignsco@gmail.com · (253) 259-4558
+    </div>
+  </header>
+
+  <div class="lede">
+    <h1>What it costs, and what makes it cost that.</h1>
+    <p>Four things I do: build the website, keep it current, run your social, and run your Google Ads. Take one or take all four. Everything monthly is month to month, cancel anytime.</p>
+  </div>
+
+  <!-- ============ WEBSITE ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>The website</h2>
+      <span class="kicker">One-time · plus tax</span>
+    </div>
+    <p class="sec-intro">Every site is built for the phone first, because that is where people look you up. You own the site and the domain. It goes live within 48 hours of your approval.</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Standard</div>
+        <div class="tier-price">$500 – $1,000<span>one-time</span></div>
+        <p class="tier-who">One strong page that tells people who you are, what you sell and how to reach you.</p>
+        <ul>
+          <li>Your photos, hours, offerings and contact</li>
+          <li>Tap to call, tap for directions, contact form</li>
+          <li>Your real reviews, with real names</li>
+          <li>One signature piece that is yours alone</li>
+        </ul>
+      </div>
+      <div class="tier feature">
+        <div class="tier-name">Premium</div>
+        <div class="tier-price">$1,000 – $3,000<span>one-time</span></div>
+        <p class="tier-who">More room, more moving parts, and a custom interactive built out of what you actually sell.</p>
+        <ul>
+          <li>Everything in Standard, with extra pages</li>
+          <li>A custom interactive piece built for you</li>
+          <li>An opening built from your own sign or logo</li>
+          <li>Live pieces: open now, today's hours, events</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Custom</div>
+        <div class="tier-price">$3,000 +<span>quoted to the job</span></div>
+        <p class="tier-who">A bigger or more specialised build, priced once we agree exactly what it needs to do.</p>
+        <ul>
+          <li>Several full pages, each with a job</li>
+          <li>Booking, schedules, ordering, video</li>
+          <li>Systems that need to be maintained</li>
+          <li>Quoted after we scope it together</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT MOVES THE PRICE ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>What moves the price</h2>
+      <span class="kicker">The honest version</span>
+    </div>
+
+    <p class="why-note">It is not a photo count. <strong>What moves the price is how much of your business gets built into the site</strong> — how many pages it needs, whether something on it is custom-made for you, and how much of your real menu, schedule and story we build in.</p>
+
+    <div class="matrix">
+      <div class="matrix-head">
+        <span>What it is</span><span>Standard</span><span>Premium</span><span>Custom</span>
+      </div>
+
+      <div class="row">
+        <div class="row-label">Pages<em>How much site there is to build.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>One page, built deep</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span>A main page plus the extra pages you need</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>Several full pages, each doing its own job</span></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">Your one-of-a-kind piece<em>Something interactive, made out of your actual offer. Nobody else has it.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>One simple one</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span><b>One custom-built</b> — like tapping an occasion to see the cake you made for it</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>Several, or one deep one like booking or a live schedule</span></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">The opening<em>The first thing someone sees. It does most of the selling.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>Your best photo, set properly, with your name on it</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span><b>Your real sign or logo</b>, lifted off your own materials and brought in with motion</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>A full opening sequence, sometimes with video</span></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">Reviews<em>Pulled from your Google or Facebook, word for word.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>Your real reviews, with the customer's real name and photo</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span>Same, placed through the page where they do the most work</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>Same, plus sorting and filtering</span></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">Your content<em>Typing your real menu, prices, hours and story into the site.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>Hours, contact, and the main things you sell</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span><b>Your whole menu or service list</b> with real prices, built to open up as people tap</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>Plus schedules, events, classes and booking</span></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">Photos<em>How they get used — not how many you send.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>Your existing photos, cleaned up and placed properly</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span>Colour-matched and cropped so the whole site looks like one thing</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>Plus photos and video I come and shoot</span></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">Making it look like you<em>Colours and lettering taken from your real place, not a template.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>Your colours, carried through the page</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span><b>Palette pulled from your actual room</b>, headline lettering matched to your outside sign</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>Full identity work across everything you hand out</span></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">Live pieces<em>Parts of the page that change by themselves.</em></div>
+        <div class="cell"><span class="m-label">Standard</span><span>Your seven days of hours, listed plainly</span></div>
+        <div class="cell"><span class="m-label">Premium</span><span>Open now, today's hours, a countdown to your next event</span></div>
+        <div class="cell"><span class="m-label">Custom</span><span>Schedules, booking and ordering that stay current</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARE ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>Keeping it current</h2>
+      <span class="kicker">Monthly · optional</span>
+    </div>
+    <div class="split">
+      <div class="block">
+        <h3>What I do</h3>
+        <ul>
+          <li>New hours, new photos, new prices, new specials — you text me, I change it.</li>
+          <li>Hosting, backups and fixes are on me.</li>
+          <li>Nothing breaks and sits broken.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <p class="price-line">$50 – $200 / month</p>
+        <p class="price-sub">Depending on how often things change. Month to month, cancel anytime, plus tax.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOCIAL ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>Social media</h2>
+      <span class="kicker">Monthly</span>
+    </div>
+    <div class="split">
+      <div class="block">
+        <h3>What I do</h3>
+        <ul>
+          <li>Three posts a week, using real photos of your place and your work. Each one goes out on both your Facebook and your Instagram — around twelve to fifteen posts a month across the two.</li>
+          <li>Written the way you talk. On an optional 20-minute call I learn your words, and the ones you would never use.</li>
+          <li>Your Google listing kept current, so the people searching you find the right hours and the right phone number.</li>
+          <li>One page a month: what went out, and what came back.</li>
+          <li>25 business cards with a QR code straight to your site.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <p class="price-line">$350 / month</p>
+        <p class="price-sub">Standard. More posts than that is $350 plus a quoted add-on. Month to month, cancel anytime, plus tax.</p>
+        <h3 style="margin-top:22px">What it does</h3>
+        <ul>
+          <li>Regulars see you every week instead of whenever they remember.</li>
+          <li>Messages that start with "I saw you on Facebook."</li>
+          <li>It builds. It is not a switch you flip — the first month looks like presence, and the months after that look like habit.</li>
+        </ul>
+        <p style="margin-top:14px"><b>What you do:</b> add me through Business Suite, which takes five minutes and never needs your password, then send me photos when you have them. I shoot some too.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GOOGLE ADS ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>Google Ads</h2>
+      <span class="kicker">Monthly · intro pricing</span>
+    </div>
+    <p class="sec-intro">Ads put you at the top of the page when somebody nearby searches for the thing you sell — today, not eventually. Two separate pots of money, and they never mix:</p>
+
+    <div class="split-money">
+      <div class="money">
+        <h4>Your ad budget</h4>
+        <p class="amt">You pick it. It stays on your card.</p>
+        <p>This is the money that goes to Google to actually show the ads. It never passes through me. You are only charged when somebody actually clicks — not for showing up. We set the monthly number together and you can change it any time.</p>
+      </div>
+      <div class="money">
+        <h4>My fee</h4>
+        <p class="amt">Introductory. Ask me.</p>
+        <p>Writing the ads, choosing the search terms, setting the area they run in, and checking them every week to cut what wastes money and push what works.</p>
+      </div>
+    </div>
+
+    <div class="split" style="margin-top:26px">
+      <div class="block">
+        <h3>What it can do</h3>
+        <ul>
+          <li>Catch people at the exact moment they are searching — "custom cakes near me", "birthday cake Enumclaw", "wedding cake".</li>
+          <li>Show up for the busy stretches: holidays, graduation, wedding season.</li>
+          <li>Every call and message from an ad gets counted, so you know exactly what it did.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Straight talk</h3>
+        <ul>
+          <li>Ads need somewhere to land. Paying for clicks that arrive at a listing you do not control is money spent badly — the site comes first.</li>
+          <li>They take a few weeks of tuning before the spend gets efficient.</li>
+          <li>They stop the day you stop paying. Unlike the site, you are renting the attention.</li>
+          <li>The free step comes first. Claiming your Google Business Profile and getting the right phone, hours and website on it costs nothing, and I do that before anyone spends a dollar on ads.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PACKAGES ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>Put together</h2>
+      <span class="kicker">Worked examples</span>
+    </div>
+    <p class="sec-intro">Three common ways it goes. Using a $1,000 site as the example — swap in whichever tier fits.</p>
+
+    <div class="packs">
+      <div class="pack">
+        <h3>Just the site</h3>
+        <p class="math">
+          <span>Website<b>$1,000</b></span>
+          <span class="total">Once<b>$1,000</b></span>
+        </p>
+        <p class="gets">You own it, it is live, and it is finished. Come back for changes whenever you want them.</p>
+      </div>
+
+      <div class="pack">
+        <h3>Site and care</h3>
+        <p class="math">
+          <span>Website<b>$1,000 once</b></span>
+          <span>Care<b>$50 – $200 / mo</b></span>
+          <span class="total">Then<b>from $50 / mo</b></span>
+        </p>
+        <p class="gets">For when the menu, the hours or the specials move and you would rather text me than think about it.</p>
+      </div>
+
+      <div class="pack best">
+        <span class="flag">The package</span>
+        <h3>Site and social</h3>
+        <p class="math">
+          <span>Website<b><s>$1,000</s> $900</b></span>
+          <span>Social<b><s>$350</s> $250 / mo</b></span>
+          <span class="total">Then<b>$250 / mo</b></span>
+        </p>
+        <p class="gets">Take both and the build comes down $100 and the monthly comes down $100. The 25 QR business cards come with it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TERMS ============ -->
+  <div class="terms">
+    <div><b>You own it</b>The website and the domain are yours, in your name.</div>
+    <div><b>No contracts</b>Everything monthly is month to month, cancel anytime.</div>
+    <div><b>Live in 48 hours</b>From the moment you approve it.</div>
+    <div><b>Say yes and I send a PDF</b>One page that confirms the deal. No lawyers.</div>
+    <div><b>Changes before it goes live</b>Tell me anything you want different and I fix it first.</div>
+    <div><b>If it is not working</b>Tell me and we change it. That is the whole policy.</div>
+  </div>
+
+  <footer>
+    <span>HJS Designs · Hayden Stevenson · hjsdesignsco@gmail.com · (253) 259-4558</span>
+    <span>All prices plus tax. Exact scope confirmed in writing before work starts.</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
