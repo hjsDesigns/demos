@@ -224,18 +224,27 @@ p{margin:0 0 1em}
    where. Bottom-left so it never meets the concept tag on the right; on portrait it lands in the
    band under the capped photo, which is dead ground otherwise. Fades in as the lights come on;
    reduced-motion and no-JS show it from the first frame. Never interactive — pointer-events:none. */
-.hero-card{position:absolute;left:var(--pad);bottom:18px;z-index:7;max-width:min(30ch,calc(100% - var(--pad) - 118px));pointer-events:none}
-.hero-card p{margin:0;display:grid;gap:5px}
-.hero-card b{font-family:var(--display);font-weight:700;font-stretch:100%;font-size:21px;line-height:1.22;color:var(--ink);text-shadow:0 1px 12px rgba(0,0,0,.7)}
-.hero-card span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);text-shadow:0 1px 8px rgba(0,0,0,.7)}
-.js:not(.reduce) .hero-card{opacity:0;transition:opacity .9s var(--ease)}
-.js:not(.reduce) .hero.is-lit .hero-card,.js:not(.reduce) .hero.is-done .hero-card{opacity:1}
+.hero-card{position:absolute;left:var(--pad);bottom:20px;z-index:7;max-width:min(34ch,calc(100% - var(--pad) - 118px));pointer-events:none;
+  padding:15px 19px 16px;border-radius:15px;border:1px solid color-mix(in srgb,var(--line) 78%,transparent);
+  background:color-mix(in srgb,var(--dark) 56%,transparent);backdrop-filter:blur(16px) saturate(1.15);-webkit-backdrop-filter:blur(16px) saturate(1.15);
+  box-shadow:0 14px 40px rgba(0,0,0,.42),inset 0 1px 0 color-mix(in srgb,var(--ink) 9%,transparent)}
+/* the amber hairline: the same accent the ring and the bubbles carry, drawn once as the card arrives */
+.hero-card::before{content:"";position:absolute;left:19px;top:0;width:34px;height:2px;border-radius:0 0 2px 2px;background:var(--brand);transform-origin:left;transform:scaleX(0)}
+.js:not(.reduce) .hero.is-lit .hero-card::before,.js:not(.reduce) .hero.is-done .hero-card::before{transform:scaleX(1);transition:transform .7s var(--ease) .15s}
+.reduce .hero-card::before,html:not(.js) .hero-card::before{transform:scaleX(1)}
+.hc-eyebrow{margin:0 0 7px;font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text)}
+.hc-title{margin:0;font-family:var(--display);font-weight:700;font-stretch:104%;font-size:25px;line-height:1.16;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+.hc-title em{font-style:normal;color:var(--brand-text)}
+.hc-sub{margin:9px 0 0;font-size:14px;line-height:1.45;color:var(--muted-2)}
+.js:not(.reduce) .hero-card{opacity:0;transform:translateY(8px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js:not(.reduce) .hero.is-lit .hero-card,.js:not(.reduce) .hero.is-done .hero-card{opacity:1;transform:none}
 @media (max-width:760px){
-  .hero-card{bottom:16px;max-width:min(26ch,calc(100% - var(--pad)*2))}
-  .hero-card b{font-size:18px}
-  .hero-card span{font-size:10px;letter-spacing:.12em}
+  .hero-card{bottom:16px;left:12px;right:12px;max-width:none;padding:13px 15px 14px;border-radius:13px}
+  .hero-card::before{left:15px;width:30px}
+  .hc-title{font-size:21px}
+  .hc-sub{font-size:13px;margin-top:7px}
 }
-@media (max-width:420px){.hero-card b{font-size:17px}}
+@media (max-width:420px){.hc-title{font-size:19.5px}.hc-eyebrow{font-size:10px;letter-spacing:.16em}}
 .hero-tag{position:absolute;right:14px;bottom:12px;z-index:7;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);background:var(--brand-text);padding:5px 9px;border-radius:999px;pointer-events:none}
 
 /* on a phone the title card owns the bottom band, so the render label moves to the TOP-right corner

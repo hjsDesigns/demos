@@ -58,7 +58,7 @@
      the dusk tween). Total = hold + dusk = 8.0 s. Peak gold (.55) sits at 3.4–4.6 s of the 8 s (≈ 43–58 % of the
      sweep); dusk is only ~.29 → .50 there, so the sky is still half bright behind the orange — sunset, not a
      crossfade — and the windows come on after the gold has gone (gold reaches 0 at 7.6 s, dusk 1 at 8.0 s). */
-  var SWEEP = { hold: .6, duskDelay: 1.6, dusk: 5.8, goldUp: 2.8, goldHold: 1.2, goldDown: 3.0, peak: .55 };   // 9/15: dusk waits 1.6 s after the gold starts so the day sky is still showing under the peak (it was cancelling the grade's warm top)
+  var SWEEP = { hold: .3, duskDelay: .8, dusk: 2.9, goldUp: 1.4, goldHold: .6, goldDown: 1.5, peak: .55 };   // 9/16 (Hayden: "two times quicker") — every number halved, so the shape is identical at 4.0 s instead of 8.0. 9/15: dusk waits behind the gold so the day sky still shows under the peak (it was cancelling the grade's warm top)
 
   function plx() { return parseFloat(getComputedStyle(hero).getPropertyValue('--plx')) || 0; }
   /* how far the background group is currently translated (0 at rest; the parallax moves it) */
