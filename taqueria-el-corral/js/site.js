@@ -240,4 +240,36 @@ function customClose(p, close){ return close; }
     });
   })();
 
+
+/* ------------------------------------------------------------
+   HERO DEPTH — "the corral sun" parallax.
+   The photographed lot drifts a few pixels against the mounted sign as the
+   pointer moves, so the sign reads as an object in front of the truck
+   rather than a sticker on a flat image. Fine pointers only (never on
+   touch), never under prefers-reduced-motion, never below 901px, and it
+   only ever moves the PHOTO layer — the headline block never transforms.
+   ------------------------------------------------------------ */
+(function(){
+  var hero=document.querySelector('.hero-corral');
+  if(!hero||!window.matchMedia) return;
+  var fine=window.matchMedia('(pointer:fine)');
+  var still=window.matchMedia('(prefers-reduced-motion:reduce)');
+  var wide=window.matchMedia('(min-width:901px)');
+  var raf=0,tx=0,ty=0;
+  function apply(){raf=0;hero.style.setProperty('--corral-x',tx.toFixed(2)+'px');
+                   hero.style.setProperty('--corral-y',ty.toFixed(2)+'px')}
+  function onMove(e){
+    if(still.matches||!fine.matches||!wide.matches) return;
+    var r=hero.getBoundingClientRect();
+    if(!r.height) return;
+    tx=(((e.clientX-r.left)/r.width)-0.5)*-13;
+    ty=(((e.clientY-r.top)/r.height)-0.5)*-9;
+    if(!raf) raf=requestAnimationFrame(apply);
+  }
+  function reset(){tx=0;ty=0;if(!raf) raf=requestAnimationFrame(apply)}
+  hero.addEventListener('pointermove',onMove);
+  hero.addEventListener('pointerleave',reset);
+  (still.addEventListener?still.addEventListener('change',reset):0);
+})();
+
 })();

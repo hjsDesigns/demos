@@ -1,0 +1,615 @@
+/* ============================================================
+   WEBSITE FACTORY — ONE-PAGE TEMPLATE
+   Distilled from the 2026-08 reference build (the quality bar; see README).
+   EVERY brand decision lives in :root below. Component rules only
+   ever reference tokens — never a hex color. Change the business,
+   change this block, done.
+
+   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
+   dark (a genuinely dark venue), three rules below still assume the light-
+   ground default and will render illegible — check/override these in the
+   SITE's OWN style.css, never edit this shared file:
+     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
+     .story-copy .lede         — color:var(--dark)
+     .site-footer              — background:var(--ink)
+   (The hero scrim had the same bug — built from var(--ink), which on a
+   dark-ground site is the light body-text color, so the "dark scrim" washed
+   the hero photo pale instead of darkening it; Hayden caught it live as
+   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
+   now uses var(--dark), the one token guaranteed dark in either mode — so
+   this one no longer needs a per-site override.)
+   Three separate bugs of this exact shape shipped in one build before this
+   note existed (footer, the About lede, then the hero scrim) — sweep the
+   remaining three before calling a dark-ground build done, don't wait for
+   Hayden to catch it.
+   ============================================================ */
+:root{
+  /* ---- palette (derive from the client's logo / storefront / photos) ---- */
+  --brand:#A8391F;          /* primary brand color — buttons, dots, big type      [EA: backpack red] */
+  --brand-text:#8E2E17;     /* same hue, darkened to pass AA on cream for small type */
+  --brand-bright:#C4472A;   /* hover state of --brand */
+  --accent:#3E6B4E;         /* secondary — "open" dots, checkmarks, success        [EA: teal] */
+  --accent-soft:#8FB79A;    /* lighter accent for dark grounds */
+  --ink:#241A13;            /* near-black text */
+  --bg:#F2E8D6;             /* TRUE CREAM page ground — never white (factory law) */
+  --bg-2:#E7DAC1;           /* deeper cream, alternating bands */
+  --paper:#F9F2E4;          /* cards — a hair lighter than --bg, never white */
+  --muted:#6D5B49;          /* secondary text */
+  --line:#DCCCB0;           /* hairlines, borders */
+  --dark:#2B1F18;           /* dark panels (hero fallback, closing CTA band)      [EA: slate] */
+  --dark-2:#3B2B21;         /* dark hover */
+  --warm:#E3A552;           /* highlighted word inside headlines on dark grounds  [EA: strap tan] */
+  --tint:#DFE4D4;           /* light tinted band (the hours/status band)          [EA: Rainier sky wash] */
+  --slate:#454C55;         /* the charcoal menu board bolted beside the window */
+  --slate-2:#3A4048;
+  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
+  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
+
+  /* ---- type: two faces max, loaded in index.html <head> ---- */
+  --display:'Rokkitt',Rockwell,'Roboto Slab',Georgia,serif;
+  --body:'Chivo',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+
+  /* ---- metrics ---- */
+  --header-h:72px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
+  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
+                                                (mechanical → steeper start; confident → slower settle;
+                                                elastic → overshoot past 1). Leave equal to --ease if
+                                                the build doesn't need a second feel. */
+  --r:18px;
+}
+
+/* ============================================================
+   Z-INDEX MAP (QA lesson from EA — keep it documented)
+     60  .site-header   sticky header, always on top
+     40  #main-nav      the dropped-down mobile menu (inside header)
+      3  .hero-inner    hero text block
+      2  .hero-bg::after film grain
+      1  .hero-bg::before scrim
+      0  .hero-bg img   photo
+   Nothing else on the page sets a z-index above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+/* base reset the template lost: without it every <figure>/<blockquote> keeps the
+   browser-default 40px side margins and renders 80px narrower than its column
+   (cast-iron-queen, 2026-09-06). Seven .print frames were losing 80px each. */
+figure,blockquote{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+/* .eyebrow has to outrank .section-head p / .story-copy p / .board .section-head p
+   (0,1,1 and 0,2,1), which otherwise repaint it 17-18px in --muted/--ink/cream
+   (the rose-spa template bug, 2026-09-06). */
+.section-head p.eyebrow,.story-copy p.eyebrow{font-size:12px;font-weight:600;color:var(--brand-text)}
+.section-dark .section-head p.eyebrow,.section-dark .story-copy p.eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  border-bottom:var(--rule)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo img{height:46px;width:auto}
+.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+/* live open/closed pill in the header */
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--status-open) 55%,transparent);background:color-mix(in srgb,var(--status-open) 14%,transparent)}
+/* no infinite animation is allowed to run over the hero: the live dot takes the
+   same static ring the hours-band dot already uses. */
+.hdr-live.is-open .dot{background:var(--status-open);box-shadow:0 0 0 4px color-mix(in srgb,var(--status-open) 26%,transparent)}
+.hdr-live.is-closed .dot{background:var(--status-closed)}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1100px){.hdr-live .txt-long{display:none}}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
+@media (max-width:420px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   Sized to the phone screen minus the sticky header (100svh under a sticky
+   header overshoots by the header's height — EA lesson). Content sits in
+   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
+   to opposite edges, so it can't collide on short screens. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%}
+/* The 22s kenburns zoom that used to live here started the photo at scale(1.1),
+   which drew images/hero.jpg ABOVE its native pixels for the first several
+   seconds of every visit (1547px wide against a 1500px original = x1.031 —
+   the CRISP RULE breach Hayden measured on 2026-09-10). It was also a generic
+   22s drift, where the standing rule is one business-specific opening event of
+   <=3s that then goes still. Removed. The hero's real opening event is the
+   stand's own seal stamping in above the headline (.hero-seal, 0.82s, once) —
+   see "hero: their real seal stamps in" below. */
+/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
+   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
+   light-ground AND a dark-ground build (it's the same token the .hero fallback
+   background above uses), where --ink flips to a light color on a dark-ground site
+   and would wash the photo pale instead of darkening it. */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+/* film grain */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
+.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* entrance stagger (only when JS is on, so no-JS never hides text) */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.sub-short{display:none}
+@media (max-width:520px){
+  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--status-open);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--status-closed)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--status-closed)}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.proof .ico{color:var(--accent)}
+.proof .star{color:var(--warm)}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.78)}
+/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+}
+
+/* ============================================================ SERVICES (cards grid) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
+.card .ico svg{width:26px;height:26px}
+.card h3{font-size:21px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================ MENU (priced list) — removable */
+.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
+.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:800;font-size:16.5px}
+.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
+.tnum{font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
+
+/* ============================================================ GALLERY (framed prints) */
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print:hover{transform:rotate(0) scale(1.01)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* ============================================================ SIGNATURE (per-client gadget goes here)
+   No styles by design. The gadget for each client is custom — build its CSS
+   in a block below this comment, using only tokens. EA's went here:
+   the live day-timeline + the rate calculator. */
+.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+
+/* ============================================================ ABOUT (owner story + photo) */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
+.team{margin-top:clamp(36px,5vw,64px)}
+.team h3{font-size:22px;margin:0 0 16px}
+.faces{display:flex;flex-wrap:wrap;gap:10px}
+.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
+.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
+.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
+.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND (dark, with count-up numbers) */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
+.num b i{font-style:normal;color:var(--warm)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
+.foot .plate img{height:44px;width:auto}
+.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#fff}
+.foot .soc{display:flex;gap:10px;margin-top:8px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================
+   OUTPOST COFFEE & CREAMERY — site-specific layer
+   Mirror Law: a dark-stained roadside cabin, warm bulb glow under the
+   eave, barn-red trim, firs behind it, and a charcoal menu board bolted
+   beside the window. Cream ground; the board section is the board.
+   ============================================================ */
+
+/* ---------- header mark ---------- */
+.site-header .logo img{filter:drop-shadow(0 1px 0 rgba(0,0,0,.25))}
+.site-header .logo .wm{font-family:var(--display);font-weight:800;letter-spacing:.01em}
+
+/* ---------- hero: their real seal stamps in above the headline ---------- */
+.hero-seal{display:block;width:clamp(74px,9vw,112px);margin:0 0 14px;line-height:0}
+.hero-seal img{width:100%;height:auto;display:block;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.55))}
+.js .hero-seal img{transform-origin:50% 60%;animation:sealStamp .82s var(--ease) both}
+@keyframes sealStamp{
+  0%{opacity:0;transform:scale(1.5) rotate(-13deg)}
+  62%{opacity:1;transform:scale(.955) rotate(2.5deg)}
+  100%{opacity:1;transform:scale(1) rotate(0deg)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .hero-seal img{animation:none;opacity:1;transform:none}
+}
+.hero h1 em{color:var(--warm);font-style:normal}
+
+/* ---------- #hours: warm bulb string under the band ---------- */
+.status-band{position:relative}
+.status-band::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;
+  background:repeating-linear-gradient(90deg,
+    color-mix(in srgb,var(--warm) 85%,transparent) 0 10px,
+    transparent 10px 34px)}
+.hours-list li.note .time{color:var(--brand-text);font-weight:700}
+
+/* ============================================================
+   #menu — THE BOARD. The section is their charcoal sign.
+   ============================================================ */
+.board{background:var(--slate);color:#F2ECDF;position:relative;overflow:hidden}
+.board::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:radial-gradient(120% 80% at 50% -10%,rgba(255,255,255,.10),transparent 60%)}
+.board > .wrap{position:relative}
+.board .eyebrow,.board .section-head p.eyebrow{color:var(--warm)}
+.board .section-head h2{color:#FBF6EC}
+.board .section-head h2 em{color:var(--warm);font-style:normal}
+.board .section-head p{color:rgba(242,236,223,.78)}
+
+.rolls{display:grid;gap:12px;margin-top:clamp(22px,4vw,38px)}
+.roll{border:1px solid rgba(242,236,223,.22);border-radius:14px;background:rgba(0,0,0,.14);overflow:hidden}
+.roll-head{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;
+  width:100%;min-height:62px;padding:14px clamp(14px,3vw,22px);
+  background:none;border:0;cursor:pointer;text-align:left;color:inherit;font:inherit;
+  transition:background .18s var(--ease)}
+.roll-head:hover,.roll-head:focus-visible{background:rgba(255,255,255,.06)}
+.roll-title{font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,2.4vw,1.5rem);color:#FBF6EC;letter-spacing:.01em}
+.roll-note{font-size:.82rem;color:rgba(242,236,223,.6);white-space:nowrap}
+.roll .chev{width:24px;height:24px;color:var(--warm);flex:none;transition:transform .3s var(--ease)}
+.roll.open .chev{transform:rotate(180deg)}
+.roll-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .36s var(--ease)}
+.roll.open .roll-body{grid-template-rows:1fr}
+.roll-inner{overflow:hidden;min-height:0}
+.roll-inner > *:first-child{margin-top:0}
+html:not(.js) .roll-body{grid-template-rows:1fr}
+@media (prefers-reduced-motion:reduce){.roll-body{transition:none}}
+
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 clamp(14px,3vw,22px) 18px}
+.board-table{width:100%;min-width:520px;border-collapse:collapse;
+  font-variant-numeric:tabular-nums;font-size:.95rem}
+.board-table th,.board-table td{padding:9px 8px;text-align:right;white-space:nowrap}
+.board-table thead th{font-family:var(--display);font-weight:600;color:var(--warm);
+  font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;
+  border-bottom:2px solid rgba(242,236,223,.4)}
+.board-table thead th small{display:block;font-size:.68rem;letter-spacing:.04em;
+  text-transform:none;color:rgba(242,236,223,.5);font-weight:400}
+.board-table tbody th{text-align:left;font-weight:500;color:#F5EFE3;
+  position:sticky;left:0;background:color-mix(in srgb,#000 14%,var(--slate));padding-right:18px;white-space:nowrap}
+.board-table thead th:first-child{text-align:left;position:sticky;left:0;background:color-mix(in srgb,#000 14%,var(--slate))}
+.board-table tbody tr + tr th,.board-table tbody tr + tr td{border-top:1px solid rgba(242,236,223,.12)}
+.board-table .price{color:#FBF6EC;font-weight:500}
+.board-table .price::before{content:"$";opacity:.45;margin-right:1px}
+.board-table .dash{color:rgba(242,236,223,.32)}
+
+.case-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(18px,3vw,32px);
+  padding:4px clamp(14px,3vw,22px) 22px}
+.case-col h4{font-family:var(--display);font-weight:700;font-size:1.08rem;color:var(--warm);
+  margin:0 0 10px;letter-spacing:.01em}
+.col-note{font-size:.9rem;color:rgba(242,236,223,.7);margin:0 0 12px}
+.plain-list{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.plain-list li{display:grid;grid-template-columns:1fr auto;column-gap:14px;
+  font-variant-numeric:tabular-nums;font-size:.95rem}
+.plain-list .name{color:#F5EFE3}
+.plain-list .price{color:var(--warm);font-weight:600}
+.plain-list .price::before{content:"$";opacity:.55;margin-right:1px}
+.plain-list .desc{grid-column:1/-1;font-size:.83rem;color:rgba(242,236,223,.62);line-height:1.45}
+.extras-list{max-width:420px;padding:4px clamp(14px,3vw,22px) 22px}
+.pips{display:flex;flex-wrap:wrap;gap:8px}
+.pips span{font-size:.82rem;padding:6px 12px;border-radius:999px;
+  border:1px solid rgba(242,236,223,.28);color:rgba(242,236,223,.9)}
+.board .menu-fine{color:rgba(242,236,223,.62);margin-top:22px}
+
+/* ============================================================
+   #signature — THE CREAMERY builder
+   ============================================================ */
+.creamery{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(22px,4vw,52px);align-items:start;margin-top:clamp(22px,4vw,38px)}
+.cr-stage{background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:22px 18px 20px;text-align:center;position:relative;overflow:hidden}
+.cr-stage::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 55% at 50% 22%,color-mix(in srgb,var(--warm) 22%,transparent),transparent 70%)}
+.cr-art{width:100%;max-width:280px;height:auto;display:block;margin:0 auto;position:relative}
+.cr-vessel{display:none}
+.cr-vessel.on{display:block}
+.cr-swirl{transform-box:fill-box;transform-origin:50% 100%;
+  transition:transform .34s var(--ease),opacity .24s var(--ease)}
+.cr-art[data-size="s"] .cr-swirl{transform:scale(.82)}
+.cr-art[data-size="m"] .cr-swirl{transform:scale(1)}
+.cr-art[data-size="l"] .cr-swirl{transform:scale(1.18)}
+.cr-art.no-swirl .cr-swirl{opacity:0}
+.cr-art .sprinkles,.cr-art .drizzle{transition:opacity .28s var(--ease)}
+.cr-art.tops .sprinkles{opacity:1}
+.cr-art.fudge .drizzle{opacity:1}
+.cr-art .pour{opacity:0;transition:opacity .2s linear}
+.cr-art.affo .pour{opacity:1;animation:pourIn .7s var(--ease) both}
+@keyframes pourIn{from{transform:translateY(-70px)}to{transform:translateY(0)}}
+.cr-art.float .bub{animation:bub 2.6s ease-in-out infinite}
+.cr-art.float .bub:nth-of-type(2){animation-delay:.5s}
+.cr-art.float .bub:nth-of-type(3){animation-delay:1.1s}
+.cr-art.float .bub:nth-of-type(4){animation-delay:1.7s}
+@keyframes bub{0%{transform:translateY(0);opacity:.15}50%{opacity:.6}100%{transform:translateY(-42px);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .cr-swirl,.cr-art .sprinkles,.cr-art .drizzle{transition:none}
+  .cr-art.affo .pour{animation:none}
+  .cr-art.float .bub{animation:none}
+}
+.cr-price{margin:14px 0 0;position:relative}
+.cr-amt{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,7vw,3.4rem);
+  color:var(--brand-text);line-height:1;font-variant-numeric:tabular-nums;display:block}
+.cr-amt::before{content:"$";font-size:.55em;vertical-align:.45em;opacity:.55;margin-right:2px}
+.cr-price small{display:block;margin-top:6px;color:var(--muted);font-size:.92rem}
+
+.cr-step{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brand-text);margin:0 0 10px}
+.cr-step + * + .cr-step,.cr-step:not(:first-child){margin-top:24px}
+.cr-picks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+@media (max-width:1080px){.cr-picks{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:420px){.cr-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cr-pick{display:flex;flex-direction:column;align-items:center;gap:6px;
+  min-height:118px;padding:14px 6px 12px;border-radius:14px;cursor:pointer;
+  background:var(--paper);border:2px solid var(--line);color:var(--ink);
+  font-family:var(--display);font-weight:700;font-size:.98rem;line-height:1.15;text-align:center;
+  transition:border-color .18s var(--ease),background .18s var(--ease),transform .18s var(--ease)}
+.cr-pick small{font-family:var(--body);font-weight:400;font-size:.74rem;line-height:1.25;color:var(--muted)}
+.cr-pick:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--brand) 45%,var(--line))}
+.cr-pick.is-on{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 10%,var(--paper))}
+.cr-pick.is-on small{color:var(--brand-text)}
+
+/* the little drawn icons on the pick cards */
+.ci{width:42px;height:42px;flex:none;display:block;background-repeat:no-repeat;
+  background-position:center;background-size:contain}
+.ci-cup{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M9 16h22l-3 18a3 3 0 0 1-3 3H15a3 3 0 0 1-3-3z' fill='%23F6EEDF' stroke='%23241A13' stroke-width='2'/%3E%3Cpath d='M20 4c-4 0-6 3-6 5 0 2 2 3 2 3s-5 1-5 4h18c0-3-5-4-5-4s2-1 2-3c0-2-2-5-6-5z' fill='%23FFF8EC' stroke='%23241A13' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.ci-cone{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M10 17h20L20 38z' fill='%23D6A05A' stroke='%23241A13' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M20 3c-4 0-6 3-6 5 0 2 2 3 2 3s-5 1-5 4h18c0-3-5-4-5-4s2-1 2-3c0-2-2-5-6-5z' fill='%23FFF8EC' stroke='%23241A13' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.ci-affo{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M10 15h20l-2.5 19a3 3 0 0 1-3 2.5h-9a3 3 0 0 1-3-2.5z' fill='%23F6EEDF' stroke='%23241A13' stroke-width='2'/%3E%3Cpath d='M12 21h16l-2 13a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2z' fill='%234A2A16'/%3E%3Cpath d='M20 2v11' stroke='%233A2010' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+.ci-float{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M11 12h18l-2.5 24a2.5 2.5 0 0 1-2.5 2h-8a2.5 2.5 0 0 1-2.5-2z' fill='%234A2A16' stroke='%23241A13' stroke-width='2'/%3E%3Ccircle cx='20' cy='9' r='6' fill='%23FFF8EC' stroke='%23241A13' stroke-width='2'/%3E%3Ccircle cx='17' cy='24' r='2.4' fill='%23F6EEDF' opacity='.7'/%3E%3Ccircle cx='24' cy='30' r='1.8' fill='%23F6EEDF' opacity='.7'/%3E%3C/svg%3E")}
+.ci-sundae{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M9 18h22l-3 17a3 3 0 0 1-3 3H15a3 3 0 0 1-3-3z' fill='%23F6EEDF' stroke='%23241A13' stroke-width='2'/%3E%3Cpath d='M20 4c-4 0-6 3-6 5 0 2 2 3 2 3s-5 1-5 4h18c0-3-5-4-5-4s2-1 2-3c0-2-2-5-6-5z' fill='%23FFF8EC' stroke='%23241A13' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M11 17c3 3 6 4 9 4s6-1 9-4c1 4-1 6-4 6.5-3 .5-4-1-5-1s-2 1.5-5 1c-3-.5-5-2.5-4-6.5z' fill='%235E3418'/%3E%3C/svg%3E")}
+
+.cr-sizes{display:flex;gap:10px;flex-wrap:wrap}
+.cr-size{min-height:48px;padding:0 22px;border-radius:999px;cursor:pointer;
+  background:var(--paper);border:2px solid var(--line);color:var(--ink);
+  font-family:var(--display);font-weight:700;font-size:1rem;
+  transition:border-color .18s var(--ease),background .18s var(--ease)}
+.cr-size:hover{border-color:color-mix(in srgb,var(--brand) 45%,var(--line))}
+.cr-size.is-on{border-color:var(--brand);background:var(--brand);color:#FFF6EA}
+.cr-tops{display:flex;gap:10px;flex-wrap:wrap}
+.cr-top{min-height:48px;padding:0 20px;border-radius:999px;cursor:pointer;
+  background:var(--paper);border:2px dashed var(--line);color:var(--ink);
+  font-family:var(--body);font-weight:500;font-size:.98rem;
+  transition:border-color .18s var(--ease),background .18s var(--ease)}
+.cr-top b{color:var(--brand-text)}
+.cr-top:hover{border-color:color-mix(in srgb,var(--brand) 45%,var(--line))}
+.cr-top[aria-pressed="true"]{border-style:solid;border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 14%,var(--paper))}
+.cr-top[aria-pressed="true"] b{color:var(--accent)}
+.cr-fine{margin:16px 0 0;font-size:.85rem;color:var(--muted)}
+@media (max-width:860px){
+  .creamery{grid-template-columns:1fr}
+  .cr-stage{order:-1}
+}
+
+/* ---------- #about tags ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:.82rem;padding:7px 13px;border-radius:999px;
+  background:var(--paper);border:var(--rule);color:var(--brand-text);font-weight:500}
+
+/* ---------- #reviews ---------- */
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(14px,2.4vw,22px);margin-top:clamp(22px,4vw,38px)}
+.rev{margin:0;padding:22px;background:var(--paper);border:var(--rule);border-radius:var(--r)}
+.rev-who{display:flex;align-items:center;gap:12px}
+.rev-who .mono{width:46px;height:46px;flex:none;border-radius:50%;
+  display:grid;place-items:center;background:var(--brand);color:#FFF6EA;
+  font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.02em}
+.rev-name{font-family:var(--display);font-weight:700;font-size:1.05rem;line-height:1.2}
+.rev-name small{display:block;font-family:var(--body);font-weight:400;font-size:.8rem;color:var(--muted);margin-top:2px}
+.rev-stars{color:var(--warm);letter-spacing:.12em;margin:12px 0 8px;font-size:1.05rem}
+.rev blockquote{margin:0;font-size:1rem;line-height:1.6;color:var(--ink)}
+.rev blockquote::before{content:"\201C"}
+.rev blockquote::after{content:"\201D"}
+
+/* ---------- hero scrim, tuned to THIS photo ----------
+   Their cut-metal sign sits mid-frame, exactly where the headline lands.
+   Rather than crop the sign out (never crop the important part), pool the
+   scrim under the type so the sign reads as lit atmosphere behind the words
+   and the lit roofline still shows above them. */
+/* <picture> wrapper has to carry the box, or height:100% on the <img> has no
+   definite parent height to resolve against. */
+.hero-bg picture{position:absolute;inset:0;display:block}
+/* object-position Y raised 42% -> 84% on 2026-09-10. At 1440x900 the photo is
+   width-driven, so Y is the only lever, and at 42% the headline block covered
+   70.7% of the real OUTPOST / COFFEE & CREAMERY sign — the one thing that makes
+   this photograph ("don't cover Mount Rainier"). At 84% the sign clears the type
+   completely (measured 0%), and the frame gains the real drink board and the
+   walk-up window instead of empty grey sky. Same photo, same crop, one number —
+   revert to 42% if the sky is wanted back. X is unchanged. At 768 and 390 the
+   photo is HEIGHT-driven (no vertical overflow), so Y is a no-op there and those
+   two viewports render exactly as before. */
+.hero-bg img{object-position:66% 84%}
+/* PHONE + TABLET take the portrait cut (images/hero-phone.jpg, 1560x3089 from the
+   same 4284x5712 original). At 390x844 it is an exact-aspect fit; at 768x1024 it is
+   width-driven with vertical slack, so this Y is what holds the sign clear of the
+   type there. Measured coverage of the OUTPOST lettering: 0% at both. */
+@media (max-width:900px){.hero-bg img{object-position:50% 0%}}
+.hero-bg::before{
+  background:
+    linear-gradient(102deg,
+      color-mix(in srgb,var(--dark) 88%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 66%,transparent) 34%,
+      color-mix(in srgb,var(--dark) 18%,transparent) 66%,
+      transparent 100%),
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 46%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 6%,transparent) 26%,
+      color-mix(in srgb,var(--dark) 60%,transparent) 74%,
+      color-mix(in srgb,var(--dark) 92%,transparent) 100%)}
+@media (max-width:760px){
+  /* portrait cut: exact-aspect at 390x844, so this is effectively a no-op there;
+     kept identical to the 900px rule so the two bands can't disagree. */
+  .hero-bg img{object-position:50% 0%}
+  .hero-bg::before{
+    background:linear-gradient(180deg,
+      color-mix(in srgb,var(--dark) 40%,transparent) 0%,
+      color-mix(in srgb,var(--dark) 6%,transparent) 24%,
+      color-mix(in srgb,var(--dark) 72%,transparent) 58%,
+      color-mix(in srgb,var(--dark) 95%,transparent) 100%)}
+}
+.hero h1{max-width:15ch}
+@media (max-width:560px){
+  .roll-note{display:none}
+  .roll-head{grid-template-columns:1fr auto}
+}

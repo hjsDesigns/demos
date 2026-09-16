@@ -9,8 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Archivo Black (display — matches the heavy grotesque of their own printed PLA-MOR wordmark)
      + Barlow (body). Must match --display / --body in css/style.css -->
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/purdy-review.css">
 </head>
 <body>
 
@@ -48,12 +49,12 @@
        important is cropped. Nothing sits on the photo but the headline. -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <picture>
-        <source media="(max-width:760px)" srcset="images/hero-portrait.jpg">
-        <img src="images/hero.jpg" alt="The Pla-Mor Bar &amp; Grill building on SE 272nd at sunset, with its Best of Western Washington 'Best Dive Bar' banner on the wall" fetchpriority="high">
-      </picture>
-    </div>
+      <img class="shot-wide" src="images/hero.jpg" alt="The Pla-Mor Bar &amp; Grill building on SE 272nd at sunset, with its Best of Western Washington 'Best Dive Bar' banner on the wall" fetchpriority="high">
+<img class="shot-tall" src="images/hero-portrait.jpg" alt="The Pla-Mor Bar &amp; Grill building on SE 272nd at sunset, with its Best of Western Washington 'Best Dive Bar' banner on the wall" fetchpriority="high" width="1500" height="2000">
+    <span class="hero-glow" aria-hidden="true"></span></div>
+    <div class="hero-spacer"></div>
     <div class="hero-inner">
+      <p class="hero-eyebrow">Pla-Mor · Maple Valley, WA</p>
       <h1>A dive bar <em>with a real kitchen</em></h1>
       <p class="hero-sub">
         <span class="sub-long">Hand-pressed burgers, a wall of pull tabs and a full bar — out on SE 272nd in Maple Valley.</span>
@@ -376,9 +377,9 @@
           <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
           <label class="full">What's it about?<select name="topic"><option>Booking a group</option><option>A question about the menu</option><option>Something else</option></select></label>
           <label class="full">Message<textarea name="msg" placeholder="How many of you, what night, and anything the kitchen should know."></textarea></label>
-          <button type="submit" class="btn btn-primary">Send it to the bar</button>
-          <p class="form-success">Thanks — someone at the Pla-Mor will get back to you.</p>
-          <p class="form-fine">We'll only use this to reply to you.</p>
+          <button type="submit" class="btn btn-primary">Check message</button>
+          <p class="form-success">This preview does not send messages. Please call (425) 432-6858.</p>
+          <p class="form-fine">Private preview — call the bar to get in touch.</p>
         </form>
       </div>
     </div>

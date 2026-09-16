@@ -566,3 +566,121 @@ figure,blockquote{margin:0}
   font-family:var(--mono);font-size:12px;line-height:1.2;letter-spacing:.22em;
   text-transform:uppercase;font-weight:600;color:var(--brand-text);margin:0 0 10px;max-width:none}
 .section-dark .section-head p.eyebrow{color:var(--warm)}
+
+/* ============================================================
+   HERO REBUILD 2026-09-10 — "THE CORRAL SUN"
+   Laws served: HERO FIRST + HIGHEST QUALITY (9/10), CRISP RULE (9/7),
+   HOLY-SHIT HERO (9/8), BUSINESS-SPECIFIC HOMEPAGE ANIMATION (9/10).
+
+   THE DEFECT THIS REPLACES: images/hero.jpg was 1069x1900 rendering 1547px
+   wide at 1440x900 — a 1.45x upscale, visibly soft. Both grounds below are
+   now cut from the 1920px originals in photos-raw/ and are only ever shown
+   DOWNSCALED (measured cover-scale 0.79 desktop, 0.38 phone).
+
+   THE LAYERS (ground + real mark + event + one flourish):
+     ground   their own truck photo, full-bleed, warm-graded, gentle
+              pointer parallax for depth on fine-pointer screens only
+     mark     the REAL painted El Corral decal, pulled from gmap-5, mounted
+              like the sign it is (hard edge, cast shadow) — it IS the h1
+     event    the sun painted inside that sign RISES: the lot lifts out of
+              dusk to golden while the sign settles onto the truck
+     flourish the sun's amber halo blooming out from behind the fence line
+   2.35s total, deterministic, plays once, never loops, then still.
+   NO shine/sheen sweep anywhere — Hayden banned it.
+   ============================================================ */
+.hero-corral{position:relative;isolation:isolate;overflow:hidden;background:var(--dark);
+  --corral-x:0px;--corral-y:0px}
+
+/* ---- ground ---- */
+.hero-corral .hero-scene{position:absolute;inset:-16px -18px;z-index:0;
+  transform:translate3d(var(--corral-x),var(--corral-y),0)}
+.hero-corral .hero-bg{position:absolute;inset:0}
+.hero-corral .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;
+  filter:saturate(1.06) contrast(1.03);
+  animation:corral-settle 2.4s cubic-bezier(.22,.85,.3,1) both}
+@keyframes corral-settle{from{transform:scale(1.04)}to{transform:scale(1)}}
+/* scrim pools under the sign block (bottom-right on desktop) and keeps the
+   painted truck itself BRIGHT AND VIBRANT above it */
+.hero-corral .hero-bg::before{z-index:1;
+  background:
+    radial-gradient(52% 62% at 76% 84%,color-mix(in srgb,var(--dark) 90%,transparent) 0%,color-mix(in srgb,var(--dark) 72%,transparent) 34%,color-mix(in srgb,var(--dark) 30%,transparent) 66%,transparent 88%),
+    linear-gradient(180deg,color-mix(in srgb,var(--dark) 22%,transparent) 0%,transparent 20%,transparent 42%,color-mix(in srgb,var(--dark) 62%,transparent) 100%)}
+/* grain kept, but way down — this hero is a crispness fix, not a texture study */
+.hero-corral .hero-bg::after{opacity:.14}
+
+/* ---- the event: dusk lifting off the lot ---- */
+.hero-corral .corral-dusk{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;
+  mix-blend-mode:multiply;
+  background:linear-gradient(180deg,#25324B 0%,#3A2617 52%,#160E08 100%)}
+.js .hero-corral .corral-dusk{animation:corral-dawn 2.35s cubic-bezier(.25,.72,.25,1) both}
+@keyframes corral-dawn{0%{opacity:.88}52%{opacity:.36}100%{opacity:0}}
+
+/* ---- the headline block ---- */
+.hero-corral .hero-inner{z-index:4}
+.hero-corral .corral-mark{width:min(80vw,520px);max-width:none;margin:0 0 24px;
+  position:relative;isolation:isolate;line-height:0}
+.hero-corral .corral-mark img{width:100%;height:auto;border-radius:3px;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--warm) 55%,transparent),
+             0 3px 0 color-mix(in srgb,var(--dark) 70%,transparent),
+             0 18px 34px -12px rgba(0,0,0,.55),
+             0 44px 88px -28px rgba(0,0,0,.92)}
+/* the sun inside their sign, blooming out from behind the corral fence */
+.hero-corral .corral-mark::before{content:"";position:absolute;z-index:-1;left:50%;top:44%;
+  width:205%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);opacity:.48;filter:blur(3px);
+  background:radial-gradient(circle,
+    color-mix(in srgb,var(--warm) 58%,transparent) 0%,
+    color-mix(in srgb,var(--warm) 24%,transparent) 30%,
+    color-mix(in srgb,var(--brand) 12%,transparent) 50%,
+    transparent 72%)}
+.hero-corral .hero-sub{color:rgba(255,255,255,.94);text-shadow:0 3px 20px rgba(0,0,0,.72);margin:0 0 28px;max-width:44ch}
+.js .hero-corral .corral-mark{animation:corral-mount 1.05s cubic-bezier(.2,.85,.28,1) .5s both}
+@keyframes corral-mount{from{opacity:0;transform:translateY(26px) scale(.86)}to{opacity:1;transform:none}}
+.js .hero-corral .corral-mark::before{animation:corral-sunup 1.72s cubic-bezier(.2,.75,.25,1) .63s both}
+@keyframes corral-sunup{
+  0%{opacity:0;transform:translate(-50%,26%) scale(.48)}
+  70%{opacity:.66}
+  100%{opacity:.48;transform:translate(-50%,-50%) scale(1)}}
+.js .hero-corral .hero-sub{animation:rise .8s var(--ease) 1.45s both}
+.js .hero-corral .hero-actions{animation:rise .8s var(--ease) 1.6s both}
+
+/* ---- desktop: the real small decal sits top-LEFT inside the photograph, so the
+       enlarged real sign lands bottom-RIGHT. Diagonal, no doubled-up mark. ---- */
+@media (min-width:901px){
+  /* The truck's OWN small decal sits upper-left in this band and its painted
+     TAQUERIA runs across the middle. So the mounted sign is deliberately kept
+     narrow, right-aligned and low: it clears the decal by ~195px horizontally,
+     never covers the painted lettering, and lands on the calm diamond-plate
+     skirt. One-line subhead so the whole block stays under the lettering. */
+  .hero-corral .hero-inner{display:flex;flex-direction:column;align-items:flex-start;
+    padding-bottom:clamp(36px,6vh,54px)}
+  .hero-corral .hero-inner>*{margin-left:auto;margin-right:0}
+  .hero-corral .corral-mark{width:clamp(300px,28vw,390px);margin-bottom:20px}
+  .hero-corral .hero-sub{text-align:right;max-width:36ch;margin-bottom:24px;white-space:nowrap}
+  .hero-corral .hero-actions{justify-content:flex-end}
+}
+@media (max-width:900px){
+  .hero-corral .hero-bg img{object-position:50% 44%}
+  .hero-corral .hero-bg::before{
+    background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 36%,transparent) 0%,color-mix(in srgb,var(--dark) 6%,transparent) 26%,color-mix(in srgb,var(--dark) 58%,transparent) 60%,color-mix(in srgb,var(--dark) 94%,transparent) 100%)}
+  .hero-corral .corral-mark{width:min(84vw,430px);margin-bottom:20px}
+}
+@media (max-width:520px){
+  .hero-corral .hero-sub{font-size:16.5px;margin-bottom:22px}
+}
+
+/* ---- REDUCED MOTION: land on the final frame, no motion at all ---- */
+@media (prefers-reduced-motion:reduce){
+  .hero-corral .hero-bg img,
+  .hero-corral .corral-dusk,
+  .js .hero-corral .corral-dusk,
+  .js .hero-corral .corral-mark,
+  .js .hero-corral .corral-mark::before,
+  .js .hero-corral .hero-sub,
+  .js .hero-corral .hero-actions{animation:none!important}
+  .hero-corral .hero-scene{transform:none!important}
+  .hero-corral .hero-bg img{transform:none!important}
+  .hero-corral .corral-dusk{opacity:0}
+  .js .hero-corral .corral-mark{opacity:1;transform:none}
+  .js .hero-corral .corral-mark::before{opacity:.48;transform:translate(-50%,-50%) scale(1)}
+  .js .hero-corral .hero-sub,.js .hero-corral .hero-actions{opacity:1;transform:none}
+}

@@ -8,10 +8,11 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Bevan (display — a sturdy slab at the weight their painted sign carries) + Karla (body).
-     Bevan ships at ONE weight: never set a display face above 400 or it fake-bolds. -->
-<link href="https://fonts.googleapis.com/css2?family=Bevan&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
+<!-- The actual Sunrise sign uses a sturdy connected script. Dancing Script 700 is
+     the closest available live-type approximation; Karla carries readable body text. -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/community.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -25,7 +26,6 @@
       <img src="images/mark-header.png" alt="Sunrise Coffee Bar" width="620" height="251">
     </a>
     <div class="nav-wrap">
-      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <a href="#hours">Hours</a>
@@ -41,28 +41,20 @@
 <span id="top"></span>
 <main id="main-content">
 
-  <!-- ===================== #hero =====================
-       EXTERIOR HERO DEFAULT (9/4): the interiors appear below, so the
-       opener is the real building with their sign lit on it. Nothing
-       sits on the photograph but the headline block. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(max-width:640px)" srcset="images/hero-tall.jpg" width="1200" height="1800">
-        <img src="images/hero.jpg" alt="The Sunrise Coffee Bar storefront on Cole Street — a black sign with the sunrise logo above a stone front, neon OPEN in the window and a chalk sandwich board on the sidewalk" width="1920" height="1280" fetchpriority="high">
-      </picture>
-    </div>
+  <!-- Morning arrives at the real storefront. The whole sign remains visible;
+       the warm light, live lettering and foreground curve are code, not a new photo. -->
+  <section class="hero hero-sunrise" id="hero">
+    <div class="hero-scene"><div class="hero-bg">
+      <img class="hero-wide" src="images/hero.jpg" alt="The real Sunrise Coffee Bar storefront on Cole Street, with its sunrise sign above the stone entrance and the board outside." width="1920" height="1280" fetchpriority="high">
+      <img class="hero-phone" src="images/hero-tall.jpg" alt="Sunrise Coffee Bar’s sign, front window and entrance on Cole Street in Enumclaw." width="1200" height="1800" fetchpriority="high">
+    </div></div>
+    <div class="morning-light" aria-hidden="true"></div><div class="morning-horizon" aria-hidden="true"></div>
     <div class="hero-inner">
-      <h1>A room to sit down in, <em>on Cole Street</em></h1>
-      <p class="hero-sub">
-        <span class="sub-long">Espresso, a non-coffee board, build-your-own energy, and a case stocked from local kitchens.</span>
-        <span class="sub-short">Espresso, energy and a case, in downtown Enumclaw.</span>
-      </p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the boards</a>
-        <a href="#hours" class="btn btn-cream">Are they open?</a>
-      </div>
+      <h1 class="sunrise-wordmark"><span>Sunrise</span><small>Coffee Bar</small></h1>
+      <p class="hero-sub">Good coffee. A table for you.</p>
+      <div class="hero-actions"><a href="#menu" class="btn btn-primary">Find your favourite <span aria-hidden="true">↗</span></a><a href="#hours" class="btn btn-cream">Plan a visit</a></div>
     </div>
+    <a href="#room" class="hero-welcome">Come on in <span aria-hidden="true">↓</span></a>
   </section>
 
   <!-- ===================== #hours =====================
@@ -72,15 +64,15 @@
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
-        <h2>Open early, <em>done by one</em></h2>
-        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <h2>Make time for<br><em>a little Sunrise.</em></h2>
+        <p class="hours-confirm">Listed hours below · please confirm before visiting.</p>
         <p class="status-addr">
           1325 Cole St, Enumclaw, WA 98022<br>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=1325+Cole+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
         <div class="proof-row">
-          <span class="proof"><span class="ico">✓</span> Tables inside, not a drive-thru window</span>
-          <span class="proof"><span class="ico">✓</span> Locally sourced foods in the case</span>
+          <span class="proof">Sit down. Catch up. Stay a while.</span>
+          
         </div>
       </div>
       <ul class="hours-list" id="hoursList">
@@ -106,9 +98,9 @@
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Inside 1325 Cole</p>
-          <h2>Not a window. <em>A room.</em></h2>
-          <p>Glossy deep-red tile the whole length of one wall, a black stone counter with the syrup shelf above it, and tables that are yours for as long as you want them. Most coffee in this valley is handed through a window — this one comes with a chair.</p>
-          <p>Behind the counter: whole beans on the steel shelf, a wall of syrups, a pastry case, and a cooler for whatever you're grabbing on the way out.</p>
+          <h2>Your coffee.<br><em>Your corner of Cole.</em></h2>
+          <p>Bring a friend, find a seat and settle in. Inside the stone storefront, a deep-red tile wall, a long coffee counter and tables by the window make room for a slower moment in downtown Enumclaw.</p>
+          <p>Start with an espresso, explore the energy board, or pick something from the case. Local kitchens are part of the story here, too.</p>
           <blockquote class="board-quote">
             <p>“Locally sourced foods — Sunrise Bites, Bonnie's Buns, Red Tea Room, &amp; house made sauces!”</p>
             <cite>Their sandwich board, out front on Cole</cite>
@@ -125,7 +117,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Off the boards on the wall</p>
-        <h2>What they pour, <em>and what's in the case</em></h2>
+        <h2>A favourite for<br><em>every kind of morning.</em></h2>
         <p>Straight off the two boards behind the counter — the espresso side, the non-coffee side, and the case.</p>
       </div>
 
@@ -209,9 +201,9 @@
   <section class="section" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Step 2 and step 3, off their own board</p>
+        <p class="eyebrow">A little colour in your day</p>
         <h2>Build your <em>natural energy</em></h2>
-        <p>Their Natural Energy board walks you through it: pick your flavour, pick your energy base, pick your topper. Here are the last two steps — tap one of each and watch it pour.</p>
+        <p>Choose a base and a topper. Watch your combination come together.</p>
       </div>
 
       <div class="builder-wrap reveal" id="builder">
@@ -261,7 +253,7 @@
             <button type="button" class="pill" data-name="Coconut Milk" data-c="#FBF5E9" style="--c:#FBF5E9" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Coconut Milk</button>
           </div>
 
-          <p class="builder-hint">Tap again to clear it. Step 1 is your flavour — that's the syrup wall behind the counter, so ask.</p>
+          <p class="builder-hint">Tap again to clear. Ask at the counter for your syrup flavour.</p>
         </div>
       </div>
     </div>
@@ -272,12 +264,12 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Before you walk in</p>
-        <h2>The room, <em>on opening weekend</em></h2>
+        <h2>A peek inside.<br><em>A reason to stay.</em></h2>
       </div>
       <div class="prints">
         <figure class="print reveal"><img src="images/counter.jpg" alt="The service counter end to end — black stone top, the espresso machine, trailing greenery along the front and the pastry case at the far end against the red tile" loading="lazy" width="1600" height="1067"><figcaption>The counter, end to end</figcaption></figure>
         <figure class="print reveal"><img src="images/case.jpg" alt="The pastry case, each shelf labelled — cinnamon rolls, cookies, cake pops and a hand-written flavour-guide card" loading="lazy" width="1600" height="1200"><figcaption>Everything in the case, labelled</figcaption></figure>
-        <figure class="print reveal"><img src="images/room-open.jpg" alt="The dining side of the room with balloons up for opening weekend, tables set with flowers along the red wall" loading="lazy" width="1600" height="1067"><figcaption>Balloons still up</figcaption></figure>
+        <figure class="print reveal"><img src="images/room-open.jpg" alt="The dining side of the room with balloons up for opening weekend, tables set with flowers along the red wall" loading="lazy" width="1600" height="1067"><figcaption>The room on opening weekend</figcaption></figure>
         <figure class="print reveal"><img src="images/cooler.jpg" alt="The glass case from the side — pastries and slices on the upper shelves, and the drink cooler underneath lined with Poppi, Red Bull and Honest Kids" loading="lazy" width="1100" height="1650"><figcaption>The cooler, under the case</figcaption></figure>
         <figure class="print reveal"><img src="images/shake.jpg" alt="A loaded shake rimmed with chocolate chips under whipped cream, drizzle and a cookie on top" loading="lazy" width="1100" height="1467"><figcaption>One they built at the counter</figcaption></figure>
       </div>
@@ -290,7 +282,7 @@
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Getting here</p>
-          <h2>1325 Cole, <em>middle of town</em></h2>
+          <h2>Meet us<br><em>on Cole Street.</em></h2>
           <figure class="print">
             <img src="images/cup-iced.jpg" alt="An iced latte in a Sunrise Coffee Bar cup on the black stone counter, the red tile wall and a window behind it" loading="lazy" width="627" height="836">
             <figcaption>On the counter, waiting</figcaption>
@@ -299,8 +291,8 @@
         <div class="contact-side reveal">
           <ol class="steps">
             <li><h3>Park on Cole</h3><p>Street parking runs right past the door, and the entrance is on the corner under the stone.</p></li>
-            <li><h3>Take a table</h3><p>There's a whole seating side past the counter. Nobody's rushing you out.</p></li>
-            <li><h3>Read the board out front</h3><p>The chalk sandwich board on the sidewalk is where what's new that week goes up first.</p></li>
+            <li><h3>Take a table</h3><p>The seating area is past the counter, with tables along the red wall.</p></li>
+            <li><h3>Read the board out front</h3><p>Look for the Sunrise sign and the chalk sandwich board beside the entrance.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=1325+Cole+St+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions to 1325 Cole St ↗</a></span>
@@ -309,11 +301,12 @@
             <label>Name<input type="text" name="name" autocomplete="name" required></label>
             <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
             <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-            <label class="full">What's it about?<select name="topic"><option>A catering or large order</option><option>Something on the menu</option><option>Something else</option></select></label>
+            <label class="full">What's it about?<select name="topic"><option>A question about visiting</option><option>Something on the menu</option><option>Something else</option></select></label>
             <label class="full">Message<textarea name="msg" placeholder="What you're after, and when you need it."></textarea></label>
-            <button type="submit" class="btn btn-primary">Send it to the shop</button>
-            <p class="form-success" role="status" aria-live="polite">Thanks — someone at Sunrise will get back to you.</p>
-            <p class="form-fine">We'll only use this to reply to you.</p>
+            <button type="submit" class="btn btn-primary" disabled>Prepare a note</button>
+            <p class="form-success" role="status" aria-live="polite"></p>
+            <label class="full inquiry-note" hidden>Your note<textarea readonly aria-label="Your prepared note"></textarea></label>
+            <p class="form-fine">Prepare a note to keep for your visit. Nothing is sent from this private preview.</p>
           </form>
         </div>
       </div>
@@ -369,5 +362,6 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script src="js/community.js"></script>
 </body>
 </html>

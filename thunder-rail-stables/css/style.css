@@ -69,7 +69,12 @@
   --rule:1px solid var(--line);
   --ease:cubic-bezier(.22,.85,.3,1);
   --ease-2:cubic-bezier(.22,.85,.3,1);
-  --r:18px;
+  --r:12px;
+  /* Private community revision: light canopy, fir, saddle leather and walnut. */
+  --hero-type:#FFF8EC;
+  --hero-shade:rgba(20,16,12,.9);
+  --frame-shadow:0 30px 65px -42px rgba(36,26,19,.5);
+  --arrival:cubic-bezier(.18,.7,.22,1);
 }
 
 /* ============================================================
@@ -386,7 +391,7 @@ h1,h2,h3,h4,.logo .wm,.foot .wm,.roll-title,.steps li::before{font-weight:400}
   transition:transform .28s var(--ease),border-color .28s,box-shadow .28s}
 .pick-frame{position:relative;display:block;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:var(--dark)}
 /* The echo carries its background-image in the element's own style attribute.
-   A url() held in a CUSTOM PROPERTY resolves against the stylesheet's base
+   An image URL held in a CUSTOM PROPERTY resolves against the stylesheet's base
    (css/images/…, a 404) — a style attribute resolves against the document. */
 .pick-echo{position:absolute;inset:0;background-size:cover;background-position:center;
   filter:blur(24px) saturate(.75) brightness(.45);transform:scale(1.25)}

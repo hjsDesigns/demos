@@ -176,14 +176,15 @@ function customClose(p, close) { return close; }
     paintBuilder();
   }
 
-  /* ---------- contact form (demo mode: shows the thank-you, sends nothing) ---------- */
+  /* A private note only: no transmission, storage or clipboard side effect. */
   var form = $('.contact-form');
   if (form) {
+    var prepare=$('button[type="submit"]',form); if(prepare) prepare.disabled=false;
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var ok = $('.form-success', form);
-      if (ok) ok.classList.add('show');
-      form.reset();
+      e.preventDefault();if(!form.reportValidity())return;
+      var fields=new FormData(form),note=$('.inquiry-note',form),area=$('textarea',note),ok=$('.form-success',form);
+      area.value=['Topic: '+fields.get('topic'),'Name: '+fields.get('name'),'Phone: '+fields.get('phone'),'Email: '+fields.get('email'),'',fields.get('msg')].join('\n');
+      note.hidden=false;ok.textContent='Your note is ready below. Nothing has been sent.';ok.classList.add('show');
     });
   }
 })();

@@ -1,0 +1,641 @@
+/* ============================================================
+   WEBSITE FACTORY — ONE-PAGE TEMPLATE
+   Distilled from the 2026-08 reference build (the quality bar; see README).
+   EVERY brand decision lives in :root below. Component rules only
+   ever reference tokens — never a hex color. Change the business,
+   change this block, done.
+
+   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
+   dark (a genuinely dark venue), three rules below still assume the light-
+   ground default and will render illegible — check/override these in the
+   SITE's OWN style.css, never edit this shared file:
+     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
+     .story-copy .lede         — color:var(--dark)
+     .site-footer              — background:var(--ink)
+   (The hero scrim had the same bug — built from var(--ink), which on a
+   dark-ground site is the light body-text color, so the "dark scrim" washed
+   the hero photo pale instead of darkening it; Hayden caught it live as
+   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
+   now uses var(--dark), the one token guaranteed dark in either mode — so
+   this one no longer needs a per-site override.)
+   Three separate bugs of this exact shape shipped in one build before this
+   note existed (footer, the About lede, then the hero scrim) — sweep the
+   remaining three before calling a dark-ground build done, don't wait for
+   Hayden to catch it.
+   ============================================================ */
+:root{
+  /* ---- palette (derive from the client's logo / storefront / photos) ---- */
+  --brand:#E0A03C;          /* honey gold — straight off her logo banner */
+  --brand-text:#9A5A16;      /* deep gold, AA-safe on cream */
+  --brand-bright:#F2BC5E;   /* gold hover */
+  --accent:#A8443F;          /* gingham red — her checked pop-up cloth + cherry hand pies */
+  --accent-soft:#D98A7E;    /* red on dark grounds */
+  --ink:#3A2417;            /* cocoa ink — the brush script in her mark */
+  --bg:#F7EEDD;             /* true cream */
+  --bg-2:#EFE2CB;           /* deeper cream band */
+  --paper:#FCF6EA;          /* cards */
+  --muted:#7A6754;          /* secondary text */
+  --line:#E3D4BC;           /* hairlines */
+  --dark:#2E1C12;           /* dark cocoa — hero scrim + closing band */
+  --dark-2:#43291A;         /* dark hover */
+  --warm:#EFC275;           /* gold highlight on dark grounds */
+  --tint:#F2E3C8;           /* the order band ground */
+  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
+  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
+
+  /* ---- type: two faces max, loaded in index.html <head> ---- */
+  --display:'Petrona',Georgia,'Iowan Old Style','Times New Roman',serif;
+  --body:'Karla',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;   /* eyebrows + small labels only */
+
+  /* ---- metrics ---- */
+  --header-h:76px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
+  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
+                                                (mechanical → steeper start; confident → slower settle;
+                                                elastic → overshoot past 1). Leave equal to --ease if
+                                                the build doesn't need a second feel. */
+  --r:18px;
+}
+
+/* ============================================================
+   Z-INDEX MAP (QA lesson from EA — keep it documented)
+     60  .site-header   sticky header, always on top
+     40  #main-nav      the dropped-down mobile menu (inside header)
+      3  .hero-inner    hero text block
+      2  .hero-bg::after film grain
+      1  .hero-bg::before scrim
+      0  .hero-bg img   photo
+   Nothing else on the page sets a z-index above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+figure,blockquote{margin:0}
+dd{margin-left:0}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  border-bottom:var(--rule)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo img{height:46px;width:auto}
+.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+/* live open/closed pill in the header */
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--status-open) 55%,transparent);background:color-mix(in srgb,var(--status-open) 14%,transparent)}
+.hdr-live.is-open .dot{background:var(--status-open);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:var(--status-closed)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1100px){.hdr-live .txt-long{display:none}}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
+@media (max-width:420px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   Sized to the phone screen minus the sticky header (100svh under a sticky
+   header overshoots by the header's height — EA lesson). Content sits in
+   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
+   to opposite edges, so it can't collide on short screens. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
+/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
+   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
+   light-ground AND a dark-ground build (it's the same token the .hero fallback
+   background above uses), where --ink flips to a light color on a dark-ground site
+   and would wash the photo pale instead of darkening it. */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+/* film grain */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
+.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* entrance stagger (only when JS is on, so no-JS never hides text) */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.sub-short{display:none}
+@media (max-width:520px){
+  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--status-open);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--status-closed)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--status-closed)}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.proof .ico{color:var(--accent)}
+.proof .star{color:var(--warm)}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.78)}
+/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .hero-bg img{animation:none}
+  .hdr-live.is-open .dot{animation:none}
+}
+
+/* ============================================================ SERVICES (cards grid) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
+.card .ico svg{width:26px;height:26px}
+.card h3{font-size:21px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================ MENU (priced list) — removable */
+.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
+.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:800;font-size:16.5px}
+.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
+.tnum{font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
+
+/* ============================================================ GALLERY (framed prints) */
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print:hover{transform:rotate(0) scale(1.01)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* ============================================================ SIGNATURE (per-client gadget goes here)
+   No styles by design. The gadget for each client is custom — build its CSS
+   in a block below this comment, using only tokens. EA's went here:
+   the live day-timeline + the rate calculator. */
+.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+
+/* ============================================================ ABOUT (owner story + photo) */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
+.team{margin-top:clamp(36px,5vw,64px)}
+.team h3{font-size:22px;margin:0 0 16px}
+.faces{display:flex;flex-wrap:wrap;gap:10px}
+.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
+.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
+.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
+.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND (dark, with count-up numbers) */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
+.num b i{font-style:normal;color:var(--warm)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
+.foot .plate img{height:44px;width:auto}
+.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#fff}
+.foot .soc{display:flex;gap:10px;margin-top:8px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================
+   NANA'S SWEETS AND CRUMBLES — site block
+   Palette + type are in :root above. Everything below is either a
+   zoning correction (gold is the interactive surface, gingham red is
+   the typographic accent) or a component this build adds.
+   ============================================================ */
+
+/* ---- ZONED COLOR (Schaafsma law): red owns type accents, gold owns surfaces ---- */
+.eyebrow{color:var(--accent)}
+/* ZONED COLOR fix: .section-head p / .story-copy p (0,1,1) outrank .eyebrow
+   (0,1,0) and were repainting four eyebrows --muted at 18px (the documented
+   rose-spa-bonney-lake bug). Gingham red owns the eyebrows on this site. */
+.section-head .eyebrow,.status-head .eyebrow,.story-copy .eyebrow,.contact .eyebrow,.treats-top .eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;color:var(--accent);margin:0 0 14px}
+.section-dark .section-head .eyebrow,.section-dark .eyebrow{color:var(--warm)}
+h2 em{color:var(--accent)}
+.btn-primary{background:var(--brand);color:var(--ink)}
+.btn-primary:hover{background:var(--brand-bright);color:var(--ink)}
+.main-nav .nav-cta{background:var(--brand);color:var(--ink)}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:var(--ink)}
+.main-nav a:hover{color:var(--accent)}
+.section-dark .btn-primary{color:var(--dark)}
+
+/* ---- header: her real mark, cropped off her own menu sheet ---- */
+.logo img{height:44px;width:auto}
+.logo .wm{font-weight:700;font-size:22px;letter-spacing:-.01em}
+@media (max-width:560px){.logo img{height:38px}}
+
+/* ---- the gingham device: her red-and-white checked pop-up cloth ---- */
+.gingham{height:14px;
+  background-image:
+    linear-gradient(90deg,color-mix(in srgb,var(--accent) 62%,transparent) 50%,transparent 50%),
+    linear-gradient(0deg,color-mix(in srgb,var(--accent) 62%,transparent) 50%,transparent 50%);
+  background-size:14px 14px,14px 14px;background-color:color-mix(in srgb,var(--accent) 16%,transparent)}
+#order{border-top:0}
+#order::before{content:"";display:block;height:12px;
+  background-image:
+    linear-gradient(90deg,color-mix(in srgb,var(--accent) 55%,transparent) 50%,transparent 50%),
+    linear-gradient(0deg,color-mix(in srgb,var(--accent) 55%,transparent) 50%,transparent 50%);
+  background-size:12px 12px,12px 12px;background-color:color-mix(in srgb,var(--accent) 14%,transparent)}
+
+/* ---- #order: she publishes no hours, so this band is the ordering rhythm ---- */
+.status-band .wrap{display:block;padding:clamp(44px,6vw,76px) var(--pad)}
+.status-head{max-width:60ch}
+.status-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.order-lede{font-size:18px;color:var(--muted);margin:0}
+.order-steps{list-style:none;margin:clamp(28px,4vw,44px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,22px)}
+.order-steps li{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:24px 22px 22px;position:relative;
+  box-shadow:0 30px 60px -46px color-mix(in srgb,var(--dark) 60%,transparent)}
+.order-steps .step-n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;
+  background:var(--brand);color:var(--ink);font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:14px}
+.order-steps h3{font-size:22px;margin:0 0 8px}
+.order-steps p{margin:0;color:var(--muted);font-size:15.5px;line-height:1.55}
+.order-steps a{color:var(--accent);font-weight:700;border-bottom:2px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.order-steps a:hover{border-bottom-color:var(--accent)}
+.towns{margin-top:clamp(26px,3.5vw,38px)}
+.towns-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.towns ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:9px}
+.towns li{font-weight:700;font-size:14.5px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 16px}
+.order-note{margin:22px 0 0;font-size:15px;color:var(--muted);max-width:70ch}
+@media (max-width:820px){.order-steps{grid-template-columns:1fr}}
+
+/* ---- the storefront-equivalent print: her table when she pops up ---- */
+.treats-top{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,58px);align-items:center;
+  margin:0 0 clamp(34px,5vw,58px)}
+.treats-top .section-head{margin-bottom:0}
+.wide-print{margin:0;transform:rotate(-1.1deg);max-width:420px;justify-self:center}
+.wide-print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:820px){.treats-top{grid-template-columns:1fr;gap:26px}.wide-print{max-width:100%}}
+
+/* ---- TITLE CARDS UNROLL: the headline is the tap target, chevron never a plus ---- */
+.rolls{display:grid;gap:12px}
+.roll{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;
+  box-shadow:0 26px 54px -48px color-mix(in srgb,var(--dark) 60%,transparent)}
+.roll summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px clamp(18px,3vw,28px);min-height:64px;transition:background .2s var(--ease)}
+.roll summary::-webkit-details-marker{display:none}
+.roll summary:hover{background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.roll summary h3{font-size:clamp(21px,2.4vw,27px);margin:0}
+.roll .chev{flex:none;width:34px;height:34px;border-radius:50%;background:var(--brand);position:relative;transition:transform .28s var(--ease)}
+.roll .chev::before{content:"";position:absolute;left:50%;top:46%;width:11px;height:11px;
+  border-right:2.6px solid var(--ink);border-bottom:2.6px solid var(--ink);transform:translate(-50%,-50%) rotate(45deg)}
+.roll[open] .chev{transform:rotate(180deg)}
+.roll .menu-list{padding:0 clamp(18px,3vw,28px) 8px;border-top:var(--rule)}
+.roll .menu-list li{grid-template-columns:1fr auto;padding:14px 0}
+.menu-list .name{font-weight:700;font-size:16.5px;line-height:1.4}
+.menu-list .u-price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;
+  font-variant-numeric:tabular-nums;font-size:14.5px;text-align:right}
+.menu-list .desc{grid-column:1/-1;color:var(--muted);font-size:14.5px;margin-top:2px}
+.roll[open] .menu-list li{animation:rollin .34s var(--ease) both}
+.roll[open] .menu-list li:nth-child(2){animation-delay:.03s}
+.roll[open] .menu-list li:nth-child(3){animation-delay:.06s}
+.roll[open] .menu-list li:nth-child(4){animation-delay:.09s}
+.roll[open] .menu-list li:nth-child(5){animation-delay:.12s}
+.roll[open] .menu-list li:nth-child(6){animation-delay:.15s}
+@keyframes rollin{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.roll[open] .menu-list li{animation:none}}
+@media (max-width:520px){.menu-list li{grid-template-columns:1fr}.menu-list .u-price{text-align:left;color:var(--accent)}}
+
+/* ---- reviews: monogram discs in the site's own type, never a scraped face ---- */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,22px);align-items:start}
+.rev{margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px 22px;
+  box-shadow:0 30px 60px -48px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rev .ini{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;
+  background:var(--brand);color:var(--ink);font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.02em;margin-bottom:16px}
+.rev blockquote{margin:0 0 16px;font-size:16.5px;line-height:1.6}
+.rev blockquote::before{content:"\201C"}
+.rev blockquote::after{content:"\201D"}
+.rev figcaption{font-weight:700;font-size:15px}
+.rev figcaption small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:5px;font-weight:600}
+@media (max-width:880px){.revs{grid-template-columns:1fr}}
+
+/* ---- SIGNATURE: build a box ---- */
+.boxer{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(20px,3vw,40px);align-items:start}
+.picks{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,16px)}
+.pick{appearance:none;border:2px solid var(--line);background:var(--paper);border-radius:var(--r);padding:0;overflow:hidden;
+  cursor:pointer;text-align:left;font-family:var(--body);color:var(--ink);display:block;position:relative;
+  transition:transform .18s var(--ease),border-color .18s,box-shadow .18s}
+.pick img{display:block;width:100%;height:clamp(110px,14vw,150px);object-fit:cover}
+.pick-l{display:block;padding:11px 13px 13px;font-weight:700;font-size:14.5px;line-height:1.25}
+.pick-l small{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-top:5px;font-weight:600;
+  font-variant-numeric:tabular-nums}
+.pick:hover{transform:translateY(-3px);box-shadow:0 18px 34px -22px color-mix(in srgb,var(--dark) 65%,transparent)}
+.pick::after{content:"";position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;
+  background:var(--brand);opacity:0;transform:scale(.5);transition:opacity .2s var(--ease),transform .25s var(--ease)}
+.pick::before{content:"";position:absolute;z-index:2;top:19px;right:21px;width:8px;height:14px;
+  border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(42deg) scale(.5);opacity:0;
+  transition:opacity .2s var(--ease),transform .25s var(--ease)}
+.pick.on{border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 30%,transparent)}
+.pick.on::after{opacity:1;transform:scale(1)}
+.pick.on::before{opacity:1;transform:rotate(42deg) scale(1)}
+
+.boxwrap{position:sticky;top:calc(var(--header-h) + 18px)}
+.bakebox{background:var(--dark);border-radius:var(--r);overflow:hidden;border:2px solid var(--dark-2);
+  box-shadow:0 40px 70px -46px color-mix(in srgb,var(--dark) 80%,transparent)}
+.bakebox .lid{background:var(--brand);padding:12px 20px;font-family:var(--display);font-weight:700;font-size:19px;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;letter-spacing:.01em}
+.bakebox .inside{min-height:210px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.bakebox .empty{margin:auto;color:rgba(255,255,255,.55);font-size:15px;text-align:center}
+.bx{display:flex;align-items:center;gap:12px;background:color-mix(in srgb,#fff 8%,transparent);
+  border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:8px 12px 8px 8px;animation:drop .34s var(--ease) both}
+.bx img{width:44px;height:44px;border-radius:9px;object-fit:cover;flex:none}
+.bx b{flex:1;color:#fff;font-family:var(--body);font-weight:700;font-size:14.5px}
+.bx span{font-family:var(--mono);font-size:14px;color:var(--warm);font-variant-numeric:tabular-nums}
+@keyframes drop{from{opacity:0;transform:translateY(-14px) scale(.96)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.bx{animation:none}}
+.tally{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:14px}
+.tally b{font-family:var(--display);font-size:clamp(38px,5vw,54px);line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.ship{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  border-radius:999px;padding:9px 15px;border:1px solid var(--line);background:var(--paper);color:var(--muted);
+  transition:background .25s var(--ease),color .25s,border-color .25s}
+.ship.free{background:color-mix(in srgb,var(--status-open) 16%,transparent);border-color:color-mix(in srgb,var(--status-open) 55%,transparent);color:#1B6B4F}
+@media (max-width:900px){
+  .boxer{grid-template-columns:1fr}
+  .boxwrap{position:static;order:-1}
+  .picks{grid-template-columns:repeat(2,1fr)}
+  .bakebox .inside{min-height:150px}
+}
+
+/* ---- about ---- */
+.story-copy .lede{color:var(--ink)}
+.story-copy em{font-style:italic;color:var(--ink)}
+.contact-lede{font-size:17px;color:var(--muted);max-width:44ch}
+
+/* ---- closing band ---- */
+.cta-band .num b i{font-style:normal;color:var(--warm)}
+
+/* ---- phones: her real mark carries the name on its own; the typed wordmark
+       is what pushed the hamburger off a 390px screen ---- */
+@media (max-width:620px){
+  .header-inner{gap:10px}
+  .logo .wm{display:none}
+  .logo img{height:52px}
+}
+/* keep every image reserving its box before it paints (CLS) */
+.print img,.pick img,.wide-print img,.hero-bg img{background:color-mix(in srgb,var(--line) 60%,transparent)}
+
+/* ============================================================ HERO — "HER OWN CARAMEL"
+   (rebuilt 2026-09-10 · CRISP RULE + HERO FIRST + HOLY-SHIT HERO)
+
+   WHY. The old hero ran images/hero.jpg — 787x1400, a downscale of her own
+   1152x2048 original — full-bleed on phones and stretched to a 1440px element
+   on desktop. Soft. On 2026-09-10 her Facebook page was re-harvested (see
+   harvest-0910/urls.txt) and it gave up genuinely larger real frames of HER
+   OWN work, including this one: her caramel corn, glossy, packed into the
+   red-and-white striped bags — 1536x1536, and her two brand colours (honey
+   gold, gingham red) sitting in a real photograph of a real thing she sells.
+
+   THE NUMBERS (cover scale, painted, not just the element box):
+     hero-ground.jpg 1536x1536  1440x824 -> 0.94   390x780 -> 0.51   768 -> 0.62
+     mark.png         923x649   1440     -> 0.46   390     -> 0.31
+   Nothing renders above native at any tested width. Above ~1540px of viewport
+   the photo layer is CAPPED at its own 1536px so it can still never stretch;
+   the warm ground either side is drawn, not scaled.
+
+   OPENING EVENT (from her own objects, deterministic, 2.6s, plays ONCE, then
+   still; reduced motion lands straight on the final frame):
+     0.00s  the photo ARRIVES — 1.045 -> 1.0, a settle, not a ken-burns drift
+     0.25s  the cream light SPILLS in from her side of the frame
+     0.55s  the ROLLING PIN rolls in from the left carrying the banner
+     1.35s  one warm OVEN BLOOM behind the mark
+     1.60s  her own line, then the two buttons
+   No sheen, no sweep, no loop.
+   ============================================================ */
+.hero-nana{background:var(--brand-text);color:var(--ink);isolation:isolate;
+  min-height:calc(100svh - var(--header-h));
+  display:flex;flex-direction:column;overflow:hidden}
+.hero-nana h1,.hero-nana .hero-sub{color:var(--ink)}
+
+/* --- the photograph, capped at its own pixels so it can never be stretched --- */
+.hero-nana .nana-ground{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);
+  width:min(100%,1536px);z-index:0;overflow:hidden;background:var(--brand-text)}
+.hero-nana .nana-ground img{display:block;width:100%;height:100%;object-fit:cover;
+  object-position:72% 38%;filter:saturate(1.06) contrast(1.03)}
+.js .hero-nana .nana-ground img{animation:nana-arrive 2.4s cubic-bezier(.16,.84,.24,1) both}
+
+/* --- the cream pool her name sits in. LIGHT HERO: ink on cream, never a
+       black scrim over a bright photo. Phones pool from the bottom, desktop
+       from the left, so the type always has her own cream under it. --- */
+.hero-nana .nana-pool{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(0deg,var(--bg) 0%,var(--bg) 41%,color-mix(in srgb,var(--bg) 84%,transparent) 47%,color-mix(in srgb,var(--bg) 24%,transparent) 55%,color-mix(in srgb,var(--bg) 0%,transparent) 62%),
+    radial-gradient(130% 34% at 50% 108%,color-mix(in srgb,var(--brand-bright) 30%,transparent),transparent 74%)}
+.js .hero-nana .nana-pool{animation:nana-spill 1.15s cubic-bezier(.2,.8,.28,1) .25s both}
+
+/* --- her checked cloth closes the hero and hands straight off to #order's
+       gingham rule: the same device, the same red. --- */
+.hero-nana .nana-cloth{position:absolute;left:0;right:0;bottom:0;height:14px;z-index:3;
+  background-image:
+    linear-gradient(90deg,color-mix(in srgb,var(--accent) 62%,transparent) 50%,transparent 50%),
+    linear-gradient(0deg,color-mix(in srgb,var(--accent) 62%,transparent) 50%,transparent 50%);
+  background-size:14px 14px,14px 14px;
+  background-color:color-mix(in srgb,var(--accent) 16%,transparent)}
+
+/* --- the mark IS the headline: her real asset, live at 0.46 of its pixels --- */
+.hero-nana .hero-spacer{flex:1 1 auto}
+.hero-nana .hero-inner{position:relative;z-index:2;padding-bottom:clamp(34px,5vh,84px)}
+.hero-nana .nana-mark{margin:0 0 clamp(12px,2vh,22px);max-width:none;text-shadow:none;line-height:0}
+.hero-nana .nana-mark img{display:block;width:min(64vw,252px);height:auto;
+  filter:drop-shadow(0 18px 30px color-mix(in srgb,var(--ink) 30%,transparent))}
+.hero-nana .nana-mark::before{content:"";position:absolute;z-index:-1;left:14%;top:6%;
+  width:min(64vw,270px);height:min(64vw,270px);border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--brand-bright) 58%,transparent),transparent 68%);
+  filter:blur(26px);opacity:0}
+.js .hero-nana .nana-mark::before{animation:nana-ovenbloom 1.5s var(--ease) 1.35s both}
+.hero-nana .hero-sub{font-family:var(--display);font-style:italic;font-weight:600;
+  font-size:clamp(19px,2.3vw,27px);line-height:1.26;color:var(--ink);
+  margin:0 0 clamp(14px,2.2vh,26px);max-width:24ch;text-shadow:none;white-space:normal}
+.hero-nana .hero-actions{gap:12px}
+.hero-nana .btn-cream{border-color:color-mix(in srgb,var(--ink) 16%,transparent);
+  box-shadow:0 10px 26px -16px color-mix(in srgb,var(--ink) 70%,transparent)}
+
+/* --- OPENING EVENT --- */
+@keyframes nana-arrive{from{transform:scale(1.045)}to{transform:scale(1)}}
+@keyframes nana-spill{from{opacity:0}to{opacity:1}}
+@keyframes nana-pinroll{
+  0%{opacity:0;transform:translate3d(-42%,0,0) rotate(-24deg)}
+  40%{opacity:1}
+  100%{opacity:1;transform:translate3d(0,0,0) rotate(0deg)}}
+@keyframes nana-ovenbloom{0%{opacity:0;transform:scale(.7)}70%{opacity:1}100%{opacity:.82;transform:scale(1)}}
+.js .hero-nana .nana-mark{animation:nana-pinroll 1.05s cubic-bezier(.2,.85,.28,1) .55s both}
+.js .hero-nana .hero-sub{animation:rise .8s var(--ease) 1.6s both}
+.js .hero-nana .hero-actions{animation:rise .8s var(--ease) 1.78s both}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero-nana .nana-ground img,.js .hero-nana .nana-pool,.js .hero-nana .nana-mark,
+  .js .hero-nana .nana-mark::before,.js .hero-nana .hero-sub,.js .hero-nana .hero-actions{
+    animation:none;opacity:1;transform:none}
+  .js .hero-nana .nana-mark::before{opacity:.82}
+}
+
+/* --- tablet up --- */
+@media (min-width:620px){
+  .hero-nana .nana-ground img{object-position:64% 52%}
+  .hero-nana .nana-mark img{width:min(46vw,372px)}
+  .hero-nana .nana-mark::before{width:min(44vw,320px);height:min(44vw,320px)}
+}
+/* --- desktop: the cream pools on her side, the caramel fills the rest --- */
+@media (min-width:901px){
+  .hero-nana{justify-content:center}
+  .hero-nana .nana-ground img{object-position:64% 56%}
+  .hero-nana .hero-spacer{display:none}
+  .hero-nana .hero-inner{padding-top:clamp(24px,4vh,56px);padding-bottom:clamp(24px,4vh,56px)}
+  .hero-nana .nana-mark img{width:min(31vw,424px)}
+  .hero-nana .nana-mark::before{left:6%;top:-6%;width:min(30vw,400px);height:min(30vw,400px)}
+  .hero-nana .hero-sub{font-size:clamp(23px,2.2vw,32px);max-width:15ch}
+  .hero-nana .nana-pool{background:
+    linear-gradient(90deg,var(--bg) 0%,var(--bg) 24%,color-mix(in srgb,var(--bg) 88%,transparent) 36%,color-mix(in srgb,var(--bg) 0%,transparent) 56%),
+    radial-gradient(44% 92% at 4% 52%,var(--bg),transparent 74%),
+    linear-gradient(0deg,color-mix(in srgb,var(--ink) 22%,transparent),transparent 34%)}
+}
+@media (min-width:901px) and (max-height:780px){
+  .hero-nana .nana-mark img{width:min(26vw,352px)}
+}
+
+/* prints size to their own photo — a square shot shouldn't get a tall empty mat */
+.prints{align-items:start}

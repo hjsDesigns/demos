@@ -61,7 +61,7 @@
      cropped from their own photo into logo.png. Karla carries the reading. ---- */
   --display:'Fraunces','Hoefler Text','Iowan Old Style',Georgia,'Times New Roman',serif;
   --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,sans-serif;
-  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --mono:var(--body);
 
   /* ---- metrics ---- */
   --header-h:80px;
@@ -595,3 +595,85 @@ html:not(.js) .contact-form{display:none}
   html:not(.js) .nav-toggle{display:none}
   html:not(.js) .main-nav{display:flex;position:static;box-shadow:none;border:0}
 }
+
+/* September 10 — Crossley's: carved sign, cedar, fir trim and warm cream. */
+:root{--cozy-shadow:color-mix(in srgb,var(--dark) 23%,transparent);--cozy-glow:color-mix(in srgb,var(--warm) 24%,transparent);--cozy-radius:28px}
+.site-header{background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--line);box-shadow:none}
+.header-inner .logo img{filter:drop-shadow(0 4px 7px var(--cozy-shadow));max-height:62px;width:auto}
+.hero.cozy-hero{background:radial-gradient(ellipse at 10% 15%,var(--paper),transparent 66%),var(--bg);color:var(--ink);min-height:calc(100svh - var(--header-h));overflow:hidden}
+.cozy-grid{position:relative;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:clamp(40px,6vw,100px);max-width:1340px;width:100%;margin:auto;padding:clamp(42px,7vh,80px) var(--pad) clamp(55px,8vh,90px);min-height:calc(100svh - var(--header-h))}
+.cozy-copy{position:relative;z-index:3}
+.cozy-eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-text);margin:0 0 24px}
+.cozy-hero h1{color:var(--ink);font-size:clamp(48px,5.8vw,82px);line-height:1.06;font-weight:600;max-width:12ch;text-shadow:none;margin:0 0 24px;letter-spacing:-.035em}
+.cozy-hero h1 em{color:var(--brand);font-style:italic;font-weight:600}
+.cozy-intro{font-size:clamp(17px,1.8vw,20px);line-height:1.7;color:var(--muted);max-width:32ch;margin:0 0 30px}
+.cozy-note{display:flex;align-items:center;gap:10px;margin-top:28px;font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.cozy-note>span{width:28px;height:1px;background:var(--brand)}
+.cozy-hero .btn{font-size:14px;padding:14px 21px;font-weight:700}
+.cozy-hero .btn-cream{background:transparent;color:var(--ink);border-color:var(--line)}
+.cozy-visual{position:relative;perspective:1100px;padding:0 0 25px 22px;--cozy-x:0deg;--cozy-y:0deg}
+.cozy-window{height:clamp(440px,68vh,665px);position:relative;border-radius:230px 230px 22px 22px;border:9px solid var(--accent);outline:1px solid color-mix(in srgb,var(--accent) 50%,transparent);outline-offset:8px;overflow:hidden;background:var(--dark);box-shadow:20px 28px 0 var(--bg-2),0 35px 65px -25px var(--cozy-shadow);transform:rotateY(var(--cozy-x)) rotateX(var(--cozy-y));transition:transform .55s var(--ease)}
+.cozy-window>img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;animation:cozy-arrive 1.7s var(--ease) both}
+.cozy-window-light{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 0,var(--cozy-glow),transparent 65%);mix-blend-mode:screen}
+.cozy-detail{position:absolute;z-index:2;width:clamp(120px,13vw,190px);left:-34px;bottom:-4px;margin:0;padding:8px 8px 12px;background:var(--paper);box-shadow:0 18px 38px -14px var(--cozy-shadow);border:1px solid var(--line);transform:rotate(-7deg) translateZ(50px);border-radius:6px}
+.cozy-detail img{width:100%;height:clamp(126px,15vw,194px);object-fit:cover;border-radius:3px}
+.cozy-detail figcaption{font-family:var(--display);font-size:12px;color:var(--brand);text-align:center;margin-top:9px;font-style:italic}
+.cozy-steam{position:absolute;right:-32px;bottom:-10px;width:70px;height:130px;stroke:var(--brand);stroke-width:1.3;opacity:.4;pointer-events:none}
+.cozy-steam path{stroke-dasharray:240;stroke-dashoffset:240;animation:cozy-steam 6s ease-in-out infinite}.cozy-steam path+path{animation-delay:1.1s}
+@keyframes cozy-arrive{from{transform:scale(1.045);filter:brightness(.78)}to{transform:scale(1);filter:brightness(1)}}
+@keyframes cozy-steam{0%{stroke-dashoffset:240;opacity:0}30%,60%{opacity:.55}100%{stroke-dashoffset:-240;opacity:0}}
+.js .cozy-eyebrow,.js .cozy-hero h1,.js .cozy-intro,.js .cozy-note,.js .cozy-hero .hero-actions{opacity:0;transform:translateY(18px);animation:rise .85s var(--ease) forwards}
+.js .cozy-eyebrow{animation-delay:.1s}.js .cozy-hero h1{animation-delay:.22s}.js .cozy-intro{animation-delay:.34s}.js .cozy-hero .hero-actions{animation-delay:.44s}.js .cozy-note{animation-delay:.6s}
+.section-head h2,.story-copy h2,.contact h2{font-weight:600;line-height:1.12}
+.section-head .eyebrow{font-size:11px;letter-spacing:.18em}
+.section-head .eyebrow::after{content:"";display:block;width:38px;height:1px;background:currentColor;margin-top:19px}
+.status-band{border-radius:28px 28px 0 0;position:relative;z-index:4}
+.status-band .wrap{padding-top:58px;padding-bottom:58px}
+.status-head h2{font-weight:600;line-height:1.2}
+.hours-list{border-radius:18px;background:var(--dark-2);box-shadow:0 24px 50px -34px var(--dark)}
+.print{border-radius:12px;background:var(--paper);border-color:var(--line);box-shadow:0 20px 50px -30px var(--cozy-shadow)}
+.board-photo{max-width:100%;padding:10px 10px 20px;transform:none!important;margin-bottom:36px}
+.board-photo img{border-radius:6px;aspect-ratio:16/7;object-fit:cover}
+.cozy-window-picks{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,70px);align-items:center;border:1px solid var(--line);border-radius:var(--cozy-radius);background:var(--paper);padding:clamp(20px,3.3vw,40px);margin:32px 0 48px}
+.cozy-pick-photo{height:320px;overflow:hidden;border-radius:150px 150px 14px 14px;background:var(--bg-2)}
+.cozy-pick-photo img{width:100%;height:100%;object-fit:cover;transition:opacity .18s,transform .5s var(--ease)}
+.cozy-pick-photo img.is-changing{opacity:.1;transform:scale(1.03)}
+.cozy-pick-copy h3{font-size:clamp(28px,3.2vw,40px);font-weight:600;line-height:1.16;margin:0 0 24px}
+.cozy-pick-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.cozy-pick-buttons button{min-height:44px;padding:10px 15px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:700 13px var(--body);cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.cozy-pick-buttons button[aria-pressed=true]{background:var(--accent);color:var(--on-dark);border-color:var(--accent);box-shadow:0 5px 14px color-mix(in srgb,var(--accent) 18%,transparent)}
+#cozyPickCaption{min-height:3.2em;color:var(--muted);font-size:15px;margin:0}
+.unroll{border-radius:16px!important;background:var(--paper);box-shadow:0 10px 24px -20px var(--cozy-shadow)}
+.unroll-head{padding:22px!important}.unroll-title{font-weight:600}
+.lid-wrap .print{max-width:460px;margin-inline:auto;transform:rotate(-2deg)}
+.rating-strip{border-radius:22px;background:var(--paper)}
+.story>.print{border-radius:180px 180px 12px 12px;overflow:hidden;transform:none}
+.story>.print img{border-radius:160px 160px 6px 6px}
+.contact-form{border-radius:24px;box-shadow:0 24px 45px -25px var(--cozy-shadow)}
+.site-footer .brand .plate{background:transparent;border:0;padding:0;box-shadow:none}
+.site-footer .brand img{width:190px;height:auto;filter:drop-shadow(0 7px 10px var(--dark))}
+@media (max-width:960px){.cozy-grid{gap:38px}.cozy-hero h1{font-size:52px}.cozy-detail{left:-10px}.cozy-window{height:520px}.cozy-note{font-size:10px}}
+@media (max-width:760px){
+ .cozy-grid{grid-template-columns:1fr;gap:30px;padding:28px 24px 44px;min-height:0}
+ .cozy-visual{order:-1;max-width:440px;width:100%;margin:0 auto;padding:0 14px 0 26px}
+ .cozy-window{height:clamp(270px,42svh,390px);border-width:6px;border-radius:160px 160px 12px 12px;outline-offset:5px;box-shadow:12px 14px 0 var(--bg-2),0 20px 30px -15px var(--cozy-shadow)}
+ .cozy-window>img{object-position:50% 8%}
+ .cozy-detail{width:98px;left:2px;bottom:-10px;padding:5px 5px 8px}.cozy-detail img{height:106px}.cozy-detail figcaption{font-size:9px;margin-top:5px}
+ .cozy-steam{width:40px;right:-7px;height:85px;bottom:-16px}
+ .cozy-eyebrow{font-size:9px;margin-bottom:14px;letter-spacing:.15em}
+ .cozy-hero h1{font-size:40px;line-height:1.05;max-width:none;margin-bottom:16px}
+ .cozy-intro{font-size:16px;line-height:1.55;max-width:32ch;margin-bottom:22px}
+ .cozy-hero .btn{font-size:13px;min-height:46px;padding:12px 14px;flex:1}.cozy-note{margin-top:18px;font-size:10px}
+ .cozy-window-picks{grid-template-columns:1fr;gap:26px;padding:20px;border-radius:22px}
+ .cozy-pick-photo{height:260px}.cozy-pick-copy h3{font-size:32px}.cozy-pick-buttons{gap:7px}
+ .board-photo img{aspect-ratio:4/3}.section-head h2,.story-copy h2,.contact h2{font-size:34px}
+ .section{padding:65px 0}.lid-wrap .print{transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+ .cozy-window{transform:none!important;transition:none}.cozy-window>img,.cozy-steam path{animation:none;filter:none;transform:none}.cozy-steam path{stroke-dashoffset:0;opacity:.35}
+ .js .cozy-eyebrow,.js .cozy-hero h1,.js .cozy-intro,.js .cozy-note,.js .cozy-hero .hero-actions{opacity:1;transform:none;animation:none}
+ .cozy-pick-photo img,.cozy-pick-buttons button{transition:none}
+}
+
+#gallery .prints{grid-template-columns:repeat(2,minmax(0,1fr));column-count:2}
+@media(max-width:600px){#gallery .prints{grid-template-columns:1fr;column-count:1}}

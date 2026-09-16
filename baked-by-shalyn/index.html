@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Newsreader (display) + Hanken Grotesk (body) — must match --display / --body in css/style.css -->
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1789068881">
+<link rel="stylesheet" href="css/style.css?v=1789068882">
 </head>
 <body>
 
@@ -38,36 +38,54 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero =====================
-       HEART LAW: the walk-in feeling — their own display case, shot from
-       where you stand at the counter. ANIMATED-MARK LAW: the headline IS
-       their real mark and wordmark, both cropped directly out of their own
-       printed menu (NEVER RECREATE) — nothing else sits on the photo. -->
+  <!-- ===================== #hero — "LOOK THROUGH THE GLASS" =====================
+       HERO FIRST + CRISP RULE (2026-09-10). The shipped hero rendered a
+       1440x1080 file at 1547px wide (x1.074 upscale — soft). Route (a) was
+       taken: two genuinely larger REAL photographs were re-harvested today from
+       this bakery's OWN Google Business Profile photo tab. Every source URL and
+       the fetch date are recorded in harvest-0910/urls.txt.
+         desktop  images/hero-case-wide.jpg   2560x1440  (4032x3024 original)
+         phones   images/hero-board-tall.jpg  1400x1900  (3024x4032 original)
+       Served through <picture>/<source media>. Measured cover-scale: 0.563 at
+       1440x900, 0.549 at 768x1024, 0.279 at 390x844 — never above native.
+
+       NOTHING ON THE HERO PHOTO (2026-08-22) and nothing covering the subject:
+       the mark, the line and the buttons all sit on the chalkboard LEDGE below
+       the photo, so no type ever lands on the case, the pies or her own
+       hand-chalked flavour labels.
+
+       Opening event (business-specific, no shine/sheen anywhere): her case
+       light strikes on with a real fluorescent stutter, the light spills down
+       onto the board, and her name is chalked across it left to right, then one
+       warm chalk-dust bloom settles. 2.5s, one pass, deterministic, never
+       loops. Reduced motion lands on the final frame with no motion. -->
   <section class="hero" id="hero">
-    <div class="hero-bg hero-stack">
-      <div class="hero-stack-track">
-        <img src="images/hero.jpg" alt="The Baked by Shalyn display case: whole cheesecakes, cream pies and cinnamon rolls under glass" fetchpriority="high">
-        <img src="images/hero-stack-2.jpg" alt="The counter at Baked by Shalyn, with the bakery's name chalked on the board behind it">
-        <img src="images/hero-stack-3.jpg" alt="The front room at Baked by Shalyn, looking in from the door">
-        <img src="images/hero.jpg" alt="" aria-hidden="true">
-        <img src="images/hero-stack-2.jpg" alt="" aria-hidden="true">
-        <img src="images/hero-stack-3.jpg" alt="" aria-hidden="true">
-      </div>
+    <div class="hero-plate">
+      <picture>
+        <source media="(max-width:900px)" srcset="images/hero-board-tall.jpg" width="1400" height="1900">
+        <img src="images/hero-case-wide.jpg" width="2560" height="1440" fetchpriority="high"
+             alt="Inside Baked by Shalyn at Krain Corner — whole pies, cheesecakes and cinnamon rolls in the lit display case under her hand-chalked flavour labels">
+      </picture>
+      <div class="case-lamp" aria-hidden="true"></div>
+      <div class="case-vignette" aria-hidden="true"></div>
     </div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1 class="mark-h1">
-        <span class="sr-only">Baked by Shalyn</span>
-        <img class="mark" src="images/logo.png" alt="" width="420" height="238">
-        <img class="wordmark" src="images/wordmark.png" alt="" width="1200" height="103">
-      </h1>
-      <p class="hero-sub">
-        <span class="sub-long">A family bakery on the corner in Enumclaw — cheesecakes, pies, cinnamon rolls and cakes made for whatever you're celebrating. Everything from scratch.</span>
-        <span class="sub-short">A family bakery. Everything from scratch.</span>
-      </p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See what's on the board</a>
-        <a href="tel:+12532619644" class="btn btn-cream">Call (253) 261-9644</a>
+    <div class="hero-ledge">
+      <div class="ledge-inner">
+        <div class="ledge-mark">
+          <h1 class="mark-h1">
+            <span class="sr-only">Baked by Shalyn</span>
+            <img class="mark" src="images/logo.png" alt="" width="300" height="170">
+            <img class="wordmark" src="images/wordmark.png" alt="" width="1000" height="86">
+          </h1>
+          <p class="hero-sub">
+            <span class="sub-long">A family bakery on the corner in Enumclaw — cheesecakes, pies, cinnamon rolls and cakes made for whatever you're celebrating. Everything from scratch.</span>
+            <span class="sub-short">A family bakery. Everything from scratch.</span>
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">See what's on the board</a>
+          <a href="tel:+12532619644" class="btn btn-cream">Call (253) 261-9644</a>
+        </div>
       </div>
     </div>
   </section>
@@ -413,6 +431,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1789068881"></script>
+<script src="js/site.js?v=1789068882"></script>
 </body>
 </html>

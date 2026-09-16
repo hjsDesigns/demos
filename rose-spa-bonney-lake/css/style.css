@@ -79,6 +79,9 @@
                                                 elastic → overshoot past 1). Leave equal to --ease if
                                                 the build doesn't need a second feel. */
   --r:18px;
+  --lamp-light:#E9B4AC;
+  --glass-edge:color-mix(in srgb,var(--paper) 28%,transparent);
+  --spa-shadow:color-mix(in srgb,var(--dark) 23%,transparent);
 }
 
 /* ============================================================
@@ -752,3 +755,98 @@ html:not(.js) .hdr-live{display:none}
    gadget's "Ask for" label at body size — same specificity trap as the
    .section-head p / .eyebrow one noted above. */
 .hurt-card .eyebrow{font-size:12px;line-height:1.4}
+
+
+/* September 10 — Rose Spa's actual lamp, sign and warm room set the atmosphere.
+   Keep the selected treatment-room photo and established headline. */
+.site-header{background:color-mix(in srgb,var(--bg) 95%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.logo img{filter:drop-shadow(0 2px 7px color-mix(in srgb,var(--brand) 12%,transparent))}
+.logo .wm{font-family:var(--body);font-size:10px;font-weight:400;text-transform:uppercase;letter-spacing:.12em;max-width:90px;line-height:1.5}
+.main-nav{font-size:13px}
+.main-nav .nav-cta,.btn{border-radius:6px;font-weight:700}
+.spa-hero{min-height:calc(100svh - var(--header-h));background:var(--dark);isolation:isolate;perspective:1600px}
+.spa-hero .hero-bg{inset:0;transform:translate3d(var(--spa-x,0px),var(--spa-y,0px),0) scale(1.018);transition:transform 1s var(--ease)}
+.spa-hero .hero-bg img{object-fit:cover;object-position:center 62%;width:100%;height:100%;animation:spaLight 2.4s var(--ease) both;filter:brightness(1.08);transform:none}
+.spa-hero .hero-bg::before{background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 84%,transparent),color-mix(in srgb,var(--dark) 35%,transparent) 50%,transparent 75%),linear-gradient(0deg,color-mix(in srgb,var(--dark) 65%,transparent),transparent 42%);z-index:1}
+.spa-hero .hero-bg::after{display:none}
+.spa-depth{position:absolute;inset:22px;z-index:2;border:1px solid var(--glass-edge);pointer-events:none;box-shadow:inset 0 0 0 7px color-mix(in srgb,var(--dark) 15%,transparent),0 0 65px 5px color-mix(in srgb,var(--dark) 35%,transparent)}
+.spa-depth::before,.spa-depth::after{content:"";position:absolute;top:-23px;bottom:-23px;width:24px;background:linear-gradient(90deg,var(--dark),transparent);opacity:.65}
+.spa-depth::before{left:-23px}.spa-depth::after{right:-23px;transform:rotate(180deg)}
+.spa-depth span{position:absolute;left:-4%;top:45%;width:26%;height:38%;background:radial-gradient(ellipse,color-mix(in srgb,var(--warm) 17%,transparent),transparent 70%);filter:blur(20px);animation:spaGlow 3.2s var(--ease) both}
+.spa-hero .hero-inner{padding:clamp(72px,10vh,120px) var(--pad) clamp(50px,8vh,85px);max-width:1320px}
+.spa-hero .hero-spacer{flex:1 1 auto}
+.spa-hero .hero-eyebrow{font-family:var(--body);font-size:11px;font-weight:400;letter-spacing:.17em;color:var(--paper);margin-bottom:24px}
+.spa-hero h1{font-weight:400;font-size:clamp(49px,5.2vw,76px);line-height:1.04;max-width:13ch;letter-spacing:-.045em;text-shadow:none;margin-bottom:26px;color:var(--paper)}
+.spa-hero h1 em{color:var(--lamp-light);font-weight:400}
+.spa-hero .hero-sub{font-size:17px;line-height:1.65;max-width:40ch;font-weight:400;color:var(--paper);margin-bottom:30px}
+.spa-hero .hero-actions{gap:13px}
+.spa-hero .btn-primary{background:var(--brand);border-color:color-mix(in srgb,var(--lamp-light) 22%,transparent);box-shadow:0 12px 28px -20px var(--dark)}
+.spa-hero .btn-cream{background:color-mix(in srgb,var(--paper) 10%,transparent);color:var(--paper);border:1px solid var(--glass-edge);backdrop-filter:blur(12px)}
+.spa-hero .btn-cream:hover{background:var(--paper);color:var(--dark)}
+.js .spa-hero h1{animation-delay:.25s}.js .spa-hero .hero-sub{animation-delay:.45s}.js .spa-hero .hero-actions{animation-delay:.6s}
+@keyframes spaLight{from{opacity:.35;filter:brightness(.6);transform:scale(1.025)}to{opacity:1;filter:brightness(1.08);transform:none}}
+@keyframes spaGlow{from{opacity:0;transform:scale(.65)}to{opacity:1;transform:scale(1)}}
+h2,h3{font-weight:400}
+.section{padding-block:clamp(64px,8vw,110px)}
+.section-head h2,.contact h2{font-size:clamp(36px,4.1vw,58px);line-height:1.1;letter-spacing:-.035em}
+.section-head p{line-height:1.7}
+.status-band{position:relative;background:var(--dark);border-top:1px solid var(--glass-edge)}
+.status-band .wrap{padding-block:clamp(42px,5vw,70px)}
+.status-head h2{font-weight:400;line-height:1.1}
+.hours-list{border-radius:12px;background:var(--dark-2);border-color:var(--glass-edge);box-shadow:0 20px 35px -25px var(--dark)}
+.hours-list li{border-color:var(--glass-edge);padding-block:11px}
+.storefront{border-radius:16px;box-shadow:0 30px 60px -30px var(--spa-shadow);padding:10px;background:var(--paper)}
+.storefront img{border-radius:8px}
+.storefront figcaption{border:0;font-size:14px;padding:20px 14px 12px}
+.roll{gap:20px}
+.roll-item{border:1px solid var(--line);border-radius:12px;background:var(--paper);box-shadow:0 14px 22px -22px var(--spa-shadow);overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.roll-item.open{border-color:color-mix(in srgb,var(--brand) 45%,var(--line));box-shadow:0 20px 35px -30px var(--brand)}
+.roll-btn{padding:26px 24px}
+.roll-t{font-weight:400;font-size:26px;line-height:1.2}
+.roll-t small{font-size:14px;line-height:1.6}
+.roll-panel .roll-inner{padding-inline:24px}
+.prints-2{gap:clamp(26px,4vw,56px);align-items:start}
+.prints-2 .print{padding:9px;background:var(--paper);border-radius:12px;box-shadow:0 22px 45px -24px var(--spa-shadow);transform:none;transition:transform .7s var(--ease),box-shadow .7s}
+.prints-2 .print:nth-child(n){transform:none}
+.prints-2 .print:nth-child(2n){margin-top:56px}
+.prints-2 .print img{border-radius:6px}
+.prints-2 .print figcaption{font-size:13px;line-height:1.6;padding:16px 10px 8px}
+.prints-2 .print:hover{transform:translateY(-5px);box-shadow:0 28px 50px -20px var(--spa-shadow)}
+.mentions{background:var(--tint);border:0;border-radius:12px;padding:30px}
+.mentions-lede{font-size:15px}
+.hurt-figure{border-radius:38% 38% 18px 18px;background:radial-gradient(ellipse at 50% 25%,var(--dark-2),var(--dark));box-shadow:0 22px 40px -20px var(--spa-shadow);border-color:var(--line)}
+.hurt-out{border-radius:14px;background:var(--paper);box-shadow:0 15px 30px -24px var(--spa-shadow)}
+.rev{border-radius:14px;border-top:2px solid color-mix(in srgb,var(--brand) 50%,var(--line));box-shadow:0 20px 35px -30px var(--spa-shadow)}
+.rev p{line-height:1.55}
+.contact-form{border-radius:16px;box-shadow:0 25px 45px -24px var(--spa-shadow)}
+.contact-form input,.contact-form select,.contact-form textarea{border-radius:6px}
+.cta-band{position:relative;background:radial-gradient(ellipse at 50% 0%,var(--dark-2),var(--dark) 70%)}
+.cta-band::before{content:"";position:absolute;top:0;width:50%;height:1px;left:25%;background:linear-gradient(90deg,transparent,var(--lamp-light),transparent)}
+.cta-band h2{font-weight:400}
+.site-footer .foot .plate{border-radius:6px}
+@media(max-width:1050px){.logo .wm{display:none}.main-nav{gap:15px}}
+@media(max-width:760px){
+ .spa-hero{min-height:0;display:flex;justify-content:flex-start;padding:28px 0 0}
+ .spa-hero .hero-bg{position:relative;inset:auto;flex:0 0 auto;margin:0 22px;border:1px solid var(--glass-edge);padding:6px;transform:none;background:var(--dark-2);box-shadow:10px 10px 0 -5px color-mix(in srgb,var(--warm) 22%,transparent)}
+ .spa-hero .hero-bg img{position:relative;height:auto;width:100%;max-height:none;object-fit:contain;object-position:center;animation:spaLight 2.4s var(--ease) both}
+ .spa-hero .hero-bg::before{display:none}
+ .spa-depth{inset:18px;box-shadow:none;border:0}
+ .spa-depth::before,.spa-depth::after{display:none}
+ .spa-depth span{left:-15%;top:18%;width:70%;height:32%;opacity:.6}
+ .spa-hero .hero-spacer{display:none}
+ .spa-hero .hero-inner{padding:34px 24px 34px;text-align:left}
+ .spa-hero .hero-eyebrow{font-size:9px;letter-spacing:.12em;margin-bottom:18px}
+ .spa-hero h1{font-size:clamp(38px,8.5vw,54px);max-width:17ch;line-height:1.06;margin-bottom:19px}
+ .spa-hero .hero-sub{font-size:15px;white-space:normal;margin-bottom:24px}
+ .spa-hero .hero-actions{gap:10px}
+ .spa-hero .hero-actions .btn{font-size:12px;min-height:48px;padding:12px 10px;flex:1}
+ .prints-2 .print:nth-child(2n){margin-top:30px}
+ .mentions{padding:25px}
+}
+@media(max-width:560px){.prints-2 .print:nth-child(n){margin-top:0}.roll-t{font-size:24px}.section{padding-block:64px}}
+@media(prefers-reduced-motion:reduce){
+ .spa-hero .hero-bg,.spa-hero .hero-bg img,.spa-depth span{animation:none;transition:none;transform:none}
+ .js .spa-hero h1,.js .spa-hero .hero-sub,.js .spa-hero .hero-actions{animation:none;opacity:1;transform:none}
+ .prints-2 .print,.roll-item{transition:none}
+ .prints-2 .print:hover{transform:none}
+}

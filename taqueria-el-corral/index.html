@@ -11,7 +11,7 @@
      hand-painted caps; the real mark ships as a photo crop in images/logo.png).
      Body: Golos Text. Both first use in the factory. -->
 <link href="https://fonts.googleapis.com/css2?family=Chango&family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1789068877">
+<link rel="stylesheet" href="css/style.css?v=1789092600">
 </head>
 <body>
 
@@ -41,16 +41,42 @@
 <main>
 
   <!-- ===================== #hero =====================
-       HEART LAW: the walk-in feeling. gmap-1 is the only genuinely vertical
-       frame in the harvest — the truck under open sky with its hand-painted
-       name and the picnic table you eat at in the foreground. Nothing sits on
-       the photo but the headline block (no eyebrow, no chips, no badges). -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"><img src="images/hero.jpg" width="1069" height="1900" alt="The Taqueria El Corral truck under blue sky, TAQUERIA painted in red across the side, with a weathered picnic table in the foreground" fetchpriority="high"></div>
+       HERO FIRST / CRISP RULE / HOLY-SHIT HERO (9/8-9/10).
+       TWO real sources, both downscaled only, never up:
+         desktop  images/hero-wide.jpg  1920x1080 — a landscape slice of
+                  photos-raw/gmap-1.jpg (1920x3413, their own Google Maps
+                  frame): the SAME band that makes the phone frame work —
+                  blue sky and fir branches across the top, the whole
+                  silver truck with its hand-painted red TAQUERIA and the
+                  marker board, down to the diamond-plate skirt and grass.
+                  The mounted sign is sized and placed to clear the truck's
+                  own small decal (upper-left in this band) and to land on
+                  the calm metal skirt, not on the painted lettering.
+         phone    images/hero-tall.jpg  1200x2133 — the same frame whole,
+                  nothing cropped out (NEVER CROP THE IMPORTANT PART).
+       THE MARK is their real painted decal pulled straight off
+       photos-raw/gmap-5.jpg (1920x1472) — nothing redrawn, nothing
+       generated — so the headline IS their sign, and it is genuinely
+       high-res (1500x1051 shown at <=520px, cover-scale ~0.35).
+       THE OPENING EVENT, from their own logo: the corral sun comes up.
+       The lot starts at dusk, the sun that is painted inside their sign
+       rises out from behind the fence and lifts the whole lot to golden
+       while the sign settles onto the truck. 2.35s, once, never loops.
+       NOTHING ON THE HERO PHOTO but the headline block. -->
+  <section class="hero hero-corral" id="hero">
+    <div class="hero-scene">
+      <div class="hero-bg">
+        <picture>
+          <source media="(max-width:900px)" srcset="images/hero-tall.jpg" width="1200" height="2133">
+          <img src="images/hero-wide.jpg" width="1920" height="1080" fetchpriority="high" alt="The Taqueria El Corral truck in its Enumclaw lot at the end of the day &mdash; TAQUERIA hand-painted in red down the white side, the painted El Corral sign beside the service window, Tortas Burritos Quesadillas in marker, and the picnic table out front">
+        </picture>
+      </div>
+    </div>
+    <div class="corral-dusk" aria-hidden="true"></div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
-      <h1>Authentic Mexican food, <em>straight out the window</em></h1>
-      <p class="hero-sub"><span class="sub-long">A silver truck parked off Roosevelt in Enumclaw. Seven meats on the board, tortas, burritos and full plates.</span><span class="sub-short">Seven meats. One silver truck.</span></p>
+      <h1 class="corral-mark"><img src="images/hero-mark.jpg" width="1500" height="1051" fetchpriority="high" alt="Taqueria El Corral &mdash; Authentic Mexican Food"></h1>
+      <p class="hero-sub"><span class="sub-long">Seven meats, out a truck window in Enumclaw.</span><span class="sub-short">Seven meats. One silver truck.</span></p>
       <div class="hero-actions">
         <a href="#menu" class="btn btn-primary">See the board</a>
         <a href="#hours" class="btn btn-cream">Where to find us</a>
@@ -337,7 +363,7 @@
   <section class="section section-dark cta-band" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Before you drive out</p>
+        <p class="eyebrow">Before you drive out</p><span class="arc" aria-hidden="true"></span>
         <h2>It's the silver trailer <em>behind the ski shop</em></h2>
       </div>
       <div class="cta-actions reveal">
@@ -381,6 +407,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1789068877"></script>
+<script src="js/site.js?v=1789092600"></script>
 </body>
 </html>

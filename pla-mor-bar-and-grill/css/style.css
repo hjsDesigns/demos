@@ -22,31 +22,31 @@
    ============================================================ */
 :root{
   /* ---- palette — sampled from their building, their room and their menu ---- */
-  --brand:#C0341C;          /* the red of the Best of Western Washington banner */
-  --brand-text:#D9A24E;     /* brass, for small type on the dark ground */
-  --brand-bright:#DC4426;   /* hover of --brand */
+  --brand:#C8A24B;          /* the red of the Best of Western Washington banner */
+  --brand-text:#E2BE72;     /* brass, for small type on the dark ground */
+  --brand-bright:#DDB65E;   /* hover of --brand */
   --accent:#4CAF50;         /* true green — the live "open" dot (STATUS LIGHT LAW) */
   --accent-soft:#8ED07C;
   --closed:#EF4444;         /* true red — the live "closed" dot (STATUS LIGHT LAW) */
-  --ink:#EFE6D6;            /* the paper of their printed menu */
-  --bg:#191310;             /* dark walnut — the room */
-  --bg-2:#120D0B;           /* deeper, for alternating bands */
-  --paper:#241A15;          /* cards — a hair lighter than the ground */
-  --muted:#B0A08C;          /* secondary type */
-  --line:#3B2A20;           /* hairlines */
-  --dark:#0B0806;           /* the guaranteed-dark token: scrims, dark bands, footer */
-  --dark-2:#150F0C;
-  --warm:#E0A94A;           /* brass — the highlighted word, prices, rules */
-  --tint:#0F0A08;           /* the hours band — the darkest corner of the room */
+  --ink:#F2EADA;            /* the paper of their printed menu */
+  --bg:#1A130D;             /* dark walnut — the room */
+  --bg-2:#120D08;           /* deeper, for alternating bands */
+  --paper:#241A10;          /* cards — a hair lighter than the ground */
+  --muted:#B0A088;          /* secondary type */
+  --line:#3D2E1D;           /* hairlines */
+  --dark:#0A0705;           /* the guaranteed-dark token: scrims, dark bands, footer */
+  --dark-2:#150F09;
+  --warm:#F0AE55;           /* brass — the highlighted word, prices, rules */
+  --tint:#211710;           /* the hours band — the darkest corner of the room */
   --board:#EDE5D3;          /* the specials sheet: real paper, in a dark room */
   --board-ink:#231A14;
 
   /* ---- type: two faces, Google Fonts, real fallbacks ---- */
   /* Archivo Black — a 4x crop of their printed PLA-MOR wordmark shows a heavy,
      slightly squared grotesque with flat terminals; this is its closest face. */
-  --display:'Archivo Black','Helvetica Neue',Impact,'Arial Black',sans-serif;
-  --body:'Barlow','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --display:'Rye','Bookman Old Style',Georgia,serif;
+  --body:'Alegreya Sans','Trebuchet MS',system-ui,sans-serif;
+  --mono:var(--body);
 
   /* ---- metrics ---- */
   --header-h:76px;
@@ -56,6 +56,8 @@
   --ease:cubic-bezier(.22,.85,.3,1);
   --ease-2:cubic-bezier(.32,.9,.24,1);
   --r:12px;
+
+ --bone:#EFE4CD;--rust:#A85A33;--gold:#D8B25E;
 }
 
 /* ============================================================

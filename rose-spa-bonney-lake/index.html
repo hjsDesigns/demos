@@ -10,8 +10,8 @@
 <!-- Fraunces (display, 400/700) + DM Sans (body, 400/700). Only the weights the
      CSS actually sets are requested, and every weight the CSS sets is here —
      nothing is left for the browser to fake. Must match --display / --body in css/style.css. -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788928623">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css?v=20260910-comfort">
 </head>
 <body>
 
@@ -28,7 +28,7 @@
     </a>
     <div class="nav-wrap">
       <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">☰</button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#services">Massages</a>
         <a href="#rooms">The rooms</a>
@@ -48,14 +48,16 @@
        interior, so the opener is the building itself with their own lit
        sign on it. One real photo, no crop through the sign, and nothing
        sitting on it but the headline block. -->
-  <section class="hero" id="hero">
+  <section class="hero spa-hero" id="hero">
     <div class="hero-bg">
       <img src="images/room-treatment.jpg" alt="A Rose Spa treatment room made up and waiting, the pink lamp lit and a rose on the towel" fetchpriority="high" width="1440" height="1080">
     </div>
+    <div class="spa-depth" aria-hidden="true"><span></span></div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
+      <p class="hero-eyebrow">Rose Spa · Bonney Lake, Washington</p>
       <h1>A quiet hour of <em>body and foot massage</em></h1>
-      <p class="hero-sub"><span class="sub-long">Suite 302 on Highway 410 — private rooms behind their own doors, open until ten every night of the week.</span><span class="sub-short">Private rooms on Highway 410.</span></p>
+      <p class="hero-sub"><span class="sub-long">A little space to unwind, in a private room on Highway 410. Body massage, foot reflexology, and time for yourself.</span><span class="sub-short">A private room. A little time for you.</span></p>
       <div class="hero-actions">
         <a href="tel:+12534478676" class="btn btn-primary">Call (253) 447-8676</a>
         <a href="#services" class="btn btn-cream">See the massages</a>
@@ -68,7 +70,7 @@
        address appear. Rose-black ground taken from the lamp in their
        treatment room; all seven days as rows, today lit.
        STATUS LIGHT LAW: the dot is green open, red closed. -->
-  <section class="status-band" id="hours">
+  <section class="status-band section-dark" id="hours">
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
@@ -358,9 +360,9 @@
       <div class="contact">
         <div class="reveal">
           <p class="eyebrow">Booking</p>
-          <h2>One call, <em>and the room is yours</em></h2>
+          <h2>Make time <em>for yourself</em></h2>
           <ol class="steps">
-            <li><h3>Call the desk</h3><p>Someone answers between appointments. Say the day and the time you want.</p></li>
+            <li><h3>Call the desk</h3><p>Ask about available appointments, session lengths and current pricing.</p></li>
             <li><h3>Say where it hurts</h3><p>Shoulders, back, feet or all over — they'll set the length to match.</p></li>
             <li><h3>Come in</h3><p>Suite 302, in the plaza on the north side of Highway 410. Park right out front.</p></li>
           </ol>
@@ -379,8 +381,8 @@
           <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
           <label class="full">What are you after?<select name="topic"><option>Body massage</option><option>Foot massage</option><option>Body and foot</option><option>Not sure yet</option></select></label>
           <label class="full">Message<textarea name="msg" placeholder="The day and time that works, and where you're sore."></textarea></label>
-          <button type="submit" class="btn btn-primary">Send it</button>
-          <p class="form-success">Thanks — the front desk will get back to you soon.</p>
+          <button type="submit" class="btn btn-primary">Preview enquiry</button>
+          <p class="form-success" role="status" aria-live="polite"></p>
           <p class="form-fine">Preview form — messages are not sent. Please call to arrange an appointment.</p>
         </form>
       </div>
@@ -394,7 +396,7 @@
         <p class="eyebrow">Bonney Lake</p>
         <h2>Come and <em>get the knot out</em></h2>
       </div>
-      <p class="cta-copy reveal">Nobody books a massage in advance when their neck has been locked up since Tuesday. Ring the desk, say how long you've got and where it's tight, and there's a room with your name on it before the plaza lights come on.</p>
+      <p class="cta-copy reveal">A quiet room, a warm welcome, and a little time set aside for you. Call the desk to check availability and plan your visit.</p>
       <div class="cta-actions reveal">
         <a href="tel:+12534478676" class="btn btn-primary">Call (253) 447-8676</a>
         <a href="https://maps.google.com/?q=20631+WA-410+E+%23302,+Bonney+Lake,+WA+98391" target="_blank" rel="noopener" class="btn btn-ghost">Get directions</a>

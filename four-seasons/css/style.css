@@ -47,16 +47,26 @@
   --status-open:#10B981;    /* STATUS LIGHT LAW — green when open, never brand */
   --status-closed:#DC2626;  /* STATUS LIGHT LAW — red when closed, never brand */
   --china:#8FA0B8;          /* the blue floral rim on their own dinner plates (gallery photos) */
-  --s-spring:#7FA85C;       /* the four seasonal lights over the signature table — */
-  --s-summer:#E0913F;       /* summer and autumn ARE the lantern amber and the wood copper; */
-  --s-autumn:#C4703C;       /* spring and winter are the two ends the room doesn't hold. */
-  --s-winter:#9DB6C4;
+  /* THE FOUR SEASONS, IN THEIR OWN PAINT (re-sampled 2026-09-10 from the four
+     medallions on the front wall in harvest-0910/g1-exterior-4032.jpg — the top
+     decile of luminance inside each disc, characters masked out, PIL):
+       四 spring #013f2b · 季 summer #b7a30c · 酒 autumn #b70018 · 家 winter #95aaaf
+     The wall is in shade at that hour, so each is lifted to read as a 10px light
+     on a dark ground. Same four colours now run the hero's opening event, the
+     four lights under the mark, and the signature table's chips — one set,
+     straight off their building. */
+  --s-spring:#2E8B5F;
+  --s-summer:#E3C21A;
+  --s-autumn:#D8202F;
+  --s-winter:#C9D6D9;
 
   /* ---- type: Trirong (display) + Work Sans (body), both first use in the factory.
          The real printed wordmark ships as an image crop (images/logo.png) —
          nothing about the logo is redrawn, so the display face is chosen for
          the ROOM and is NOT claimed as a match to their menu's Times-class serif. ---- */
   --display:'Trirong','Iowan Old Style','Hoefler Text',Georgia,'Times New Roman',serif;
+  /* SIGN FACE — the hero mark only. See the font note in index.html's <head>. */
+  --sign:'Yeseva One','Trirong','Hoefler Text',Georgia,serif;
   --body:'Work Sans','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
   --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
 
@@ -74,10 +84,11 @@
    Z-INDEX MAP (QA lesson from EA — keep it documented)
      60  .site-header   sticky header, always on top
      40  #main-nav      the dropped-down mobile menu (inside header)
-      3  .hero-inner    hero text block
-      2  .hero-bg::after film grain
-      1  .hero-bg::before scrim
-      0  .hero-bg img   photo
+      4  .hero-inner    hero text block  (raised 2026-09-10)
+      3  .hero-bg::after film grain
+      2  .hero-bg::before scrim
+      1  .season-wash   the four-season opening blooms
+      0  .hero-bg picture / img   photo
    Nothing else on the page sets a z-index above 10.
    ============================================================ */
 
@@ -406,47 +417,121 @@ p{margin:0 0 1em}
 .foot .brand{margin-bottom:16px}
 .foot-mark{height:34px;width:auto}
 
-/* ---------- hero ---------- */
-.hero-bg img{object-position:center 22%}
-.hero h1{max-width:15ch;letter-spacing:-.01em;font-weight:700}
-.hero h1 em{color:var(--warm)}
-.hero-inner{padding-top:clamp(24px,4vh,48px)}
+/* ============================================================
+   HERO — rebuilt 2026-09-10.
 
-/* HERO STACK — three real photos, one continuous vertical conveyor on phones.
-   height:auto is the no-crop guarantee; the track lists the three twice so the
-   loop point is invisible. Desktop drops the wrapper and shows frame 1 only. */
-.hero-stack-track{display:contents}
-.hero-stack img{display:none}
-.hero-stack img:first-child{display:block}
-@media (max-width:760px){
-  .hero-stack{overflow:hidden;background:var(--dark)}
-  .hero-stack-track{display:block;position:relative;animation:heroReel 52s linear infinite}
-  .hero-stack img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;animation:none;transform:none;will-change:transform}
+   THE PHOTO. One real photograph of 820 Griffin from the parking lot,
+   re-harvested at native 4032x3024 off their own Google Business Profile photo
+   tab (harvest-0910/urls.txt) and cut into two crops: 2800x1647 landscape for
+   desktop, 1400x2700 portrait for phones, swapped by <source media>. Cover
+   scale is BELOW 1.0 at every viewport — measured, not assumed:
+       1440x900 -> 0.514   768x1024 -> 0.593   390x844 -> 0.308
+   The old build stretched a 1600x783 crop to 1.09x under a blur (CRISP RULE).
+
+   THE TYPE NEVER COVERS THE SUBJECT. The building's roofline sits at ~53% of
+   the desktop crop and ~63% of the phone crop, so the headline block is
+   top-anchored and lives entirely in the sky. Clearance is measured in the
+   browser at each width, not eyeballed.
+
+   THE OPENING EVENT — "the four seasons come on."  Four warm blooms land in
+   turn on the four real painted medallions on their front wall (positions
+   below are the medallion centres measured in each crop, in %), the four
+   season lights under the mark strike on and STAY lit, then the name settles
+   and the grade lifts from cool to full colour. 2.5s, deterministic, once,
+   then completely still. No sheen, no sweep, no loop.
+   ============================================================ */
+
+/* --- the photo layer --- */
+.hero-bg picture{position:absolute;inset:0;display:block;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 62%;animation:none;transform:none}
+.js .hero-bg picture{animation:fsArrive 2.4s cubic-bezier(.2,.72,.24,1) forwards}
+@keyframes fsArrive{
+  from{transform:scale(1.05);filter:saturate(.5) brightness(.76) contrast(1.09)}
+  to{transform:none;filter:none}
 }
-@keyframes heroReel{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-@media (max-width:760px) and (prefers-reduced-motion:reduce){.hero-stack-track{animation:none}}
 
-/* EXTERIOR HERO (2026-09-04). Frame 1 is the building from the lot — landscape
-   against a tall hero, so on desktop it is CONTAINED (never cropped: the four
-   medallions, the marquee and the script wordmark all stay whole) over a
-   blurred, darkened echo of the same photo. Letterbox law, not a crop. */
-.hero-echo{display:block;position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center 62%;transform:scale(1.2);
-  filter:blur(46px) brightness(.52) saturate(1.05);animation:none;z-index:0}
-.hero-stack-track>img:first-child{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:contain;object-position:center 42%;animation:none;z-index:0}
-@media (max-width:760px){
-  .hero-echo{display:none}
-  .hero-stack-track>img:first-child{position:static;width:100%;height:auto;object-fit:contain;object-position:center}
+/* --- the event: four blooms, one per real medallion, left to right --- */
+.season-wash{position:absolute;inset:0;z-index:1;pointer-events:none;
+  --m1:3.8%;  --m2:14.1%; --m3:24.6%; --m4:35.5%; --my:70%}
+.season-wash i{position:absolute;inset:0;display:block;opacity:0;mix-blend-mode:screen}
+.season-wash i::after{content:""}
+.season-wash .w1{background:radial-gradient(17vw 25vh at var(--m1) var(--my),color-mix(in srgb,var(--s-spring) 92%,transparent) 0%,color-mix(in srgb,var(--s-spring) 40%,transparent) 34%,transparent 66%)}
+.season-wash .w2{background:radial-gradient(17vw 25vh at var(--m2) var(--my),color-mix(in srgb,var(--s-summer) 84%,transparent) 0%,color-mix(in srgb,var(--s-summer) 36%,transparent) 34%,transparent 66%)}
+.season-wash .w3{background:radial-gradient(17vw 25vh at var(--m3) var(--my),color-mix(in srgb,var(--s-autumn) 88%,transparent) 0%,color-mix(in srgb,var(--s-autumn) 38%,transparent) 34%,transparent 66%)}
+.season-wash .w4{background:radial-gradient(17vw 25vh at var(--m4) var(--my),color-mix(in srgb,var(--s-winter) 70%,transparent) 0%,color-mix(in srgb,var(--s-winter) 30%,transparent) 34%,transparent 66%)}
+.js .season-wash i{animation:seasonBeat .95s var(--ease) forwards}
+.js .season-wash .w1{animation-delay:.16s}
+.js .season-wash .w2{animation-delay:.44s}
+.js .season-wash .w3{animation-delay:.72s}
+.js .season-wash .w4{animation-delay:1.00s}
+@keyframes seasonBeat{0%{opacity:0}30%{opacity:.9}62%{opacity:.34}100%{opacity:0}}
+
+/* --- scrim + grain stack above the photo, below the type --- */
+.hero-bg::before{z-index:2;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 70%,transparent) 0%,color-mix(in srgb,var(--dark) 60%,transparent) 16%,color-mix(in srgb,var(--dark) 45%,transparent) 30%,color-mix(in srgb,var(--dark) 27%,transparent) 41%,color-mix(in srgb,var(--dark) 13%,transparent) 49%,color-mix(in srgb,var(--dark) 4%,transparent) 55%,transparent 62%,transparent 100%),
+             linear-gradient(90deg,color-mix(in srgb,var(--dark) 44%,transparent) 0%,color-mix(in srgb,var(--dark) 22%,transparent) 34%,color-mix(in srgb,var(--dark) 6%,transparent) 62%,transparent 84%)}
+.hero-bg::after{z-index:3;opacity:.3}
+.hero-inner{z-index:4}
+
+/* --- the mark IS the headline: live type in the sign's face and colours --- */
+.hero{justify-content:flex-start}
+.hero-inner{padding-top:clamp(18px,4.2vh,44px);padding-bottom:clamp(16px,2.4vh,30px);max-width:var(--maxw)}
+.hero h1.hero-mark{position:relative;display:flex;flex-direction:column;gap:.2em;margin:0 0 12px;max-width:none;text-shadow:0 3px 34px rgba(6,14,9,.55)}
+.hero h1.hero-mark::before{content:"";position:absolute;z-index:-1;left:-14%;right:-24%;top:-70%;bottom:-58%;pointer-events:none;
+  background:radial-gradient(64% 74% at 30% 50%,color-mix(in srgb,var(--brand) 22%,transparent) 0%,color-mix(in srgb,var(--brand) 9%,transparent) 34%,color-mix(in srgb,var(--brand) 3%,transparent) 58%,transparent 84%);opacity:0}
+.js .hero h1.hero-mark::before{animation:fade 1.3s var(--ease) 1.34s forwards}
+@keyframes fade{to{opacity:1}}
+.hero h1.hero-mark .mk-name{font-family:var(--sign);font-weight:400;font-size:clamp(44px,min(7.9vw,12vh),100px);
+  line-height:.92;letter-spacing:.005em;color:#F5F0E4}
+.hero h1.hero-mark .mk-line{font-family:var(--display);font-style:italic;font-weight:600;
+  font-size:clamp(15px,1.55vw,22px);letter-spacing:.05em;color:var(--warm)}
+
+/* --- the four season lights: the site's recurring signature device --- */
+.season-lights{display:flex;gap:11px;align-items:center;margin:0 0 15px}
+.season-lights i{width:11px;height:11px;border-radius:50%;display:block;
+  background:currentColor;opacity:.14;transform:scale(.35)}
+.season-lights .l1{color:var(--s-spring)}
+.season-lights .l2{color:var(--s-summer)}
+.season-lights .l3{color:var(--s-autumn)}
+.season-lights .l4{color:var(--s-winter)}
+.js .season-lights i{animation:lightOn .5s var(--ease-2) forwards}
+.js .season-lights .l1{animation-delay:.16s}
+.js .season-lights .l2{animation-delay:.44s}
+.js .season-lights .l3{animation-delay:.72s}
+.js .season-lights .l4{animation-delay:1.00s}
+@keyframes lightOn{to{opacity:1;transform:none;box-shadow:0 0 13px 1px currentColor}}
+
+/* --- the settle: name, then line, then the words and the buttons --- */
+.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(16px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:1.32s}
+.js .hero-sub{animation-delay:1.66s}
+.js .hero-actions{animation-delay:1.84s}
+.hero-sub{color:rgba(245,240,228,.94);max-width:44ch;margin-bottom:22px;text-shadow:0 2px 20px rgba(6,14,9,.5)}
+
+/* --- phone: portrait crop, medallions sit further apart across the frame --- */
+@media (max-width:820px){
+  .season-wash{--m1:12.1%; --m2:37.0%; --m3:62.7%; --m4:89.1%; --my:75.8%}
+  .season-wash .w1{background:radial-gradient(23vw 12vh at var(--m1) var(--my),color-mix(in srgb,var(--s-spring) 92%,transparent) 0%,color-mix(in srgb,var(--s-spring) 40%,transparent) 34%,transparent 66%)}
+  .season-wash .w2{background:radial-gradient(23vw 12vh at var(--m2) var(--my),color-mix(in srgb,var(--s-summer) 84%,transparent) 0%,color-mix(in srgb,var(--s-summer) 36%,transparent) 34%,transparent 66%)}
+  .season-wash .w3{background:radial-gradient(23vw 12vh at var(--m3) var(--my),color-mix(in srgb,var(--s-autumn) 88%,transparent) 0%,color-mix(in srgb,var(--s-autumn) 38%,transparent) 34%,transparent 66%)}
+  .season-wash .w4{background:radial-gradient(23vw 12vh at var(--m4) var(--my),color-mix(in srgb,var(--s-winter) 70%,transparent) 0%,color-mix(in srgb,var(--s-winter) 30%,transparent) 34%,transparent 66%)}
+  .hero-bg::before{
+    background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 82%,transparent) 0%,color-mix(in srgb,var(--dark) 60%,transparent) 26%,color-mix(in srgb,var(--dark) 24%,transparent) 46%,color-mix(in srgb,var(--dark) 3%,transparent) 60%,transparent 70%,transparent 100%)}
+  .hero-inner::before{display:none}
+  /* the roofline sits at 64.0% of the portrait crop — park the block in the
+     middle of the sky above it instead of jamming it under the header. */
+  .hero-inner{padding-top:18svh}
+  .hero h1.hero-mark .mk-name{font-size:clamp(46px,13.4vw,78px)}
+  .hero h1.hero-mark{text-shadow:0 3px 26px rgba(6,14,9,.72)}
+  .hero-sub{text-shadow:0 2px 18px rgba(6,14,9,.72)}
+  .hero-bg::before{
+    background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 60%,transparent) 0%,color-mix(in srgb,var(--dark) 48%,transparent) 20%,color-mix(in srgb,var(--dark) 32%,transparent) 36%,color-mix(in srgb,var(--dark) 16%,transparent) 50%,color-mix(in srgb,var(--dark) 5%,transparent) 60%,transparent 70%,transparent 100%)}
 }
-
-/* The opener is daylight now, not a dark room — the scrim tuned for the lit
-   interior was crushing it (HERO BRIGHT AND VIBRANT). Eased on both breakpoints;
-   still 78% dark under the headline column, which carries white type. */
-.hero-bg::before{
-  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 78%,transparent) 0%,color-mix(in srgb,var(--dark) 52%,transparent) 40%,color-mix(in srgb,var(--dark) 14%,transparent) 74%,color-mix(in srgb,var(--dark) 4%,transparent) 100%),
-             linear-gradient(180deg,color-mix(in srgb,var(--dark) 20%,transparent) 0%,transparent 26%,transparent 62%,color-mix(in srgb,var(--dark) 62%,transparent) 100%)}
-@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent) 0%,color-mix(in srgb,var(--dark) 6%,transparent) 28%,color-mix(in srgb,var(--dark) 52%,transparent) 62%,color-mix(in srgb,var(--dark) 90%,transparent) 100%)}}
+@media (max-width:520px){
+  .hero h1.hero-mark{margin-bottom:14px}
+  .season-lights{margin-bottom:16px}
+  .hero-sub{white-space:normal}
+}
 
 /* ---------- hours band ---------- */
 .status-band{border-bottom:1px solid var(--line);border-top:1px solid var(--line)}
@@ -583,4 +668,15 @@ h1,h2,h3,h4{font-weight:700}
 @media (prefers-reduced-motion:reduce){
   .fs-dishes li{opacity:1;transform:none;animation:none}
   .fs-chip,.fs-table,.fs-cloth{transition:none}
+}
+
+/* REDUCED MOTION — lands on the final frame of the opening event, no motion.
+   Declared last so it outranks the hero rules above (same specificity). */
+@media (prefers-reduced-motion:reduce){
+  .js .hero-bg picture{animation:none;transform:none;filter:none}
+  .hero-bg img{animation:none;transform:none}
+  .js .season-wash i{animation:none;opacity:0}
+  .js .season-lights i,.season-lights i{animation:none;opacity:1;transform:none;box-shadow:0 0 13px 1px currentColor}
+  .js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .hero h1.hero-mark::before,.js .hero h1.hero-mark::before{animation:none;opacity:1}
 }

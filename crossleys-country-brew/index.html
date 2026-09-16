@@ -47,20 +47,28 @@
        window. Phones swap to a portrait frame shot 2026-09-06, cropped so the
        entire oval sign survives the cover crop. Nothing sits on the photo but
        the headline block. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(max-width:760px)" srcset="images/hero-portrait.jpg" width="1200" height="2352">
-        <img src="images/hero.jpg" alt="The Crossley's Country Brew stand at golden hour — cedar board-and-batten siding, the carved oval sign lit under two lamps, and a red OPEN sign in the window" fetchpriority="high" width="2200" height="1149">
-      </picture>
-    </div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1>The cedar coffee stand <em>on 264th</em>.</h1>
-      <p class="hero-sub"><span class="sub-long">Espresso, cold brew, chai and breakfast, handed out the window.</span><span class="sub-short">Espresso, cold brew, breakfast.</span></p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See what's on the board</a>
-        <a href="#find" class="btn btn-cream">Find the window</a>
+  <section class="hero cozy-hero" id="hero">
+    <div class="cozy-grid">
+      <div class="cozy-copy">
+        <p class="cozy-eyebrow">Enumclaw, Washington · Drive-thru coffee</p>
+        <h1>A little comfort.<br><em>For the road.</em></h1>
+        <p class="cozy-intro">Espresso, cold brew and a familiar window. Pull up to the cedar stand on 264th.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">Find your favorite</a>
+          <a href="#find" class="btn btn-cream">Visit the stand <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="cozy-note"><span aria-hidden="true"></span>Made at the window. Taken on your way.</div>
+      </div>
+      <div class="cozy-visual" data-cozy-depth>
+        <div class="cozy-window">
+          <img src="images/hero-portrait.jpg" alt="Crossley's own carved oval sign, cedar siding and softly lit drive-thru window" width="1200" height="2352" fetchpriority="high">
+          <div class="cozy-window-light" aria-hidden="true"></div>
+        </div>
+        <figure class="cozy-detail">
+          <img src="images/print-iced.jpg" alt="An iced coffee from Crossley's, ready for the road" width="1500" height="2000">
+          <figcaption>A cup of something good.</figcaption>
+        </figure>
+        <svg class="cozy-steam" viewBox="0 0 90 150" fill="none" aria-hidden="true"><path d="M25 140C-5 105 66 95 33 59C10 34 47 15 39 2"/><path d="M53 142C25 113 83 84 62 64C35 41 76 25 64 5"/></svg>
       </div>
     </div>
   </section>
@@ -111,6 +119,17 @@
         <img src="images/stand.jpg" alt="The whole Crossley's Country Brew stand from the drive-thru side — cedar siding, corrugated metal skirt, string lights along the roof and the printed price board on the right end" loading="lazy" width="2200" height="1650">
         <figcaption>The whole stand. The price board is on the right end.</figcaption>
       </figure>
+      <div class="cozy-window-picks reveal" aria-label="A look inside Crossley's">
+        <div class="cozy-pick-photo"><img id="cozyPickImage" src="images/shot-espresso.jpg" alt="Espresso being prepared at Crossley's" width="1600" height="1200" loading="lazy"></div>
+        <div class="cozy-pick-copy"><p class="eyebrow">Your kind of morning</p><h3>What brings you<br>to the window?</h3>
+          <div class="cozy-pick-buttons" role="group" aria-label="Choose what to see">
+            <button type="button" data-cozy-pick="espresso" aria-pressed="true">The coffee</button>
+            <button type="button" data-cozy-pick="breakfast" aria-pressed="false">A bite to eat</button>
+            <button type="button" data-cozy-pick="seasonal" aria-pressed="false">The chalkboard</button>
+          </div>
+          <p id="cozyPickCaption" aria-live="polite">A closer look at the espresso bar.</p>
+        </div>
+      </div>
       <div class="board-layout">
         <div class="board-cards reveal">
           <article class="unroll">
@@ -171,12 +190,12 @@
         <h2>What comes back <em>through the window</em>.</h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/print-iced.jpg" alt="An iced coffee held up against a clear blue sky, the gravel lot and the stand behind it" loading="lazy" width="1500" height="2000"><figcaption>An iced coffee, held up in the lot.</figcaption></figure>
-        <figure class="print reveal"><img src="images/shot-espresso.jpg" alt="Two espresso shots pulling into glasses on the machine" loading="lazy" width="828" height="1326"><figcaption>Two shots, pulled to order.</figcaption></figure>
+        
+        
         <figure class="print reveal"><img src="images/shot-punchcard.jpg" alt="A Crossley's Country Brew cup on the counter beside their paper punch card" loading="lazy" width="1500" height="2000"><figcaption>Their cup — and the paper punch card.</figcaption></figure>
         <figure class="print reveal"><img src="images/shot-lavender.jpg" alt="An iced latte beside Torani lavender syrup and Pacific oat barista milk" loading="lazy" width="1500" height="1875"><figcaption>Lavender, on oat.</figcaption></figure>
-        <figure class="print reveal"><img src="images/shot-breakfast.jpg" alt="A ham and egg croissant breakfast sandwich on red checked paper" loading="lazy" width="1800" height="1416"><figcaption>Breakfast on a croissant.</figcaption></figure>
-        <figure class="print reveal"><img src="images/shot-chalkboard.jpg" alt="A pumpkin cheesecake cold brew beside a hand-lettered chalkboard and syrup bottles" loading="lazy" width="1440" height="1080"><figcaption>Whatever's on the chalkboard.</figcaption></figure>
+        
+        
       </div>
     </div>
   </section>
@@ -232,7 +251,7 @@
           <h2>A little cedar building in the <em>Masonic lot</em>.</h2>
           <p class="lede">Board-and-batten cedar, a metal roof, string lights strung the length of it, and the carved oval sign up on the gable.</p>
           <p>It sits off 264th Ave SE in the Enumclaw Masonic Center lot, on the way out of town toward the mountain. Pull in on the gravel, roll your window down, and the whole thing happens through theirs — no parking, no line inside, no counter.</p>
-          <p>A paper punch card on the counter. Seasonal drinks on a hand-lettered chalkboard. The lights come on at four in the morning on weekdays, which is earlier than anywhere else in town.</p>
+          <p>A paper punch card on the counter. Seasonal drinks on a hand-lettered chalkboard. The lights come on at four in the morning on weekdays, ready for early weekday starts.</p>
         </div>
       </div>
     </div>

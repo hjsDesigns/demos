@@ -197,3 +197,15 @@ function customClose(p, close){ return close; }
   })();
 
 })();
+
+/* A small look through the window: real coffee, food and chalkboard photographs. */
+(function(){
+ var picture=document.getElementById('cozyPickImage'),caption=document.getElementById('cozyPickCaption');
+ var choices={espresso:{src:'images/shot-espresso.jpg',alt:'Espresso at Crossley\'s Country Brew',caption:'A closer look at the espresso bar.'},breakfast:{src:'images/shot-breakfast.jpg',alt:'Breakfast pictured at Crossley\'s Country Brew',caption:'Something to go with your morning coffee.'},seasonal:{src:'images/shot-chalkboard.jpg',alt:'Crossley\'s own handwritten drink chalkboard',caption:'The handwritten board. Ask at the window for today\'s choices.'}};
+ document.querySelectorAll('[data-cozy-pick]').forEach(function(button){button.addEventListener('click',function(){var item=choices[button.dataset.cozyPick];if(!item||!picture)return;document.querySelectorAll('[data-cozy-pick]').forEach(function(other){other.setAttribute('aria-pressed',other===button?'true':'false')});picture.src=item.src;picture.alt=item.alt;caption.textContent=item.caption;});});
+ var visual=document.querySelector('[data-cozy-depth]');
+ if(visual&&matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  visual.addEventListener('pointermove',function(e){var r=visual.getBoundingClientRect();visual.style.setProperty('--cozy-x',((e.clientX-r.left)/r.width-.5)*4+'deg');visual.style.setProperty('--cozy-y',-((e.clientY-r.top)/r.height-.5)*3+'deg')});
+  visual.addEventListener('pointerleave',function(){visual.style.setProperty('--cozy-x','0deg');visual.style.setProperty('--cozy-y','0deg')});
+ }
+})();

@@ -53,7 +53,7 @@ function customClose(p, close){ return close; }
 
   /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
-  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.setAttribute('aria-label',open?'Close menu':'Open menu');toggle.textContent=open?'✕':'☰'}
   if(toggle&&nav){
     toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
     $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
@@ -214,4 +214,18 @@ function customClose(p, close){ return close; }
     });
   });
 
+})();
+
+
+/* Fine-pointer depth is bounded to a few pixels; touch and reduced motion stay still. */
+(function(){
+  var hero=document.querySelector('.spa-hero');if(!hero)return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)'),pointer=matchMedia('(hover:hover) and (pointer:fine)'),raf=0,x=0,y=0;
+  function reset(){cancelAnimationFrame(raf);raf=0;hero.style.removeProperty('--spa-x');hero.style.removeProperty('--spa-y');}
+  hero.addEventListener('pointermove',function(e){
+    if(reduce.matches||!pointer.matches)return;
+    var b=hero.getBoundingClientRect();x=((e.clientX-b.left)/b.width-.5)*5;y=((e.clientY-b.top)/b.height-.5)*4;
+    if(!raf)raf=requestAnimationFrame(function(){hero.style.setProperty('--spa-x',x.toFixed(2)+'px');hero.style.setProperty('--spa-y',y.toFixed(2)+'px');raf=0;});
+  },{passive:true});
+  hero.addEventListener('pointerleave',reset);reduce.addEventListener('change',reset);pointer.addEventListener('change',reset);
 })();
