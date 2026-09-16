@@ -212,7 +212,7 @@ p{margin:0 0 1em}
 .hero-grade{position:absolute;inset:0;z-index:4;pointer-events:none;mix-blend-mode:soft-light;opacity:var(--gold);
   background:linear-gradient(to bottom,#FFB25A 0%,#FF9A3C 34%,#FF6A2A 62%,#B8521F 100%)}   /* top stop pushed from pale gold toward the horizon orange so the SKY warms at the peak too (9/15) */
 .hero.is-grading .hero-bg{filter:saturate(calc(1 + var(--gold) * .6))}
-.hero-scrim{position:absolute;left:0;right:0;bottom:0;height:16%;z-index:5;pointer-events:none;
+.hero-scrim{position:absolute;left:0;right:0;bottom:0;height:52%;z-index:5;pointer-events:none;
   background:linear-gradient(to top,var(--bg) 0,color-mix(in srgb,var(--bg) 60%,transparent) 42%,transparent 100%)}
 .hero .grain{position:absolute;inset:0;z-index:6;opacity:.16;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
@@ -224,27 +224,41 @@ p{margin:0 0 1em}
    where. Bottom-left so it never meets the concept tag on the right; on portrait it lands in the
    band under the capped photo, which is dead ground otherwise. Fades in as the lights come on;
    reduced-motion and no-JS show it from the first frame. Never interactive — pointer-events:none. */
-.hero-card{position:absolute;left:var(--pad);bottom:20px;z-index:7;max-width:min(34ch,calc(100% - var(--pad) - 118px));pointer-events:none;
-  padding:15px 19px 16px;border-radius:15px;border:1px solid color-mix(in srgb,var(--line) 78%,transparent);
-  background:color-mix(in srgb,var(--dark) 56%,transparent);backdrop-filter:blur(16px) saturate(1.15);-webkit-backdrop-filter:blur(16px) saturate(1.15);
-  box-shadow:0 14px 40px rgba(0,0,0,.42),inset 0 1px 0 color-mix(in srgb,var(--ink) 9%,transparent)}
-/* the amber hairline: the same accent the ring and the bubbles carry, drawn once as the card arrives */
-.hero-card::before{content:"";position:absolute;left:19px;top:0;width:34px;height:2px;border-radius:0 0 2px 2px;background:var(--brand);transform-origin:left;transform:scaleX(0)}
-.js:not(.reduce) .hero.is-lit .hero-card::before,.js:not(.reduce) .hero.is-done .hero-card::before{transform:scaleX(1);transition:transform .7s var(--ease) .15s}
-.reduce .hero-card::before,html:not(.js) .hero-card::before{transform:scaleX(1)}
-.hc-eyebrow{margin:0 0 7px;font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text)}
-.hc-title{margin:0;font-family:var(--display);font-weight:700;font-stretch:104%;font-size:25px;line-height:1.16;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
-.hc-title em{font-style:normal;color:var(--brand-text)}
-.hc-sub{margin:9px 0 0;font-size:14px;line-height:1.45;color:var(--muted-2)}
-.js:not(.reduce) .hero-card{opacity:0;transform:translateY(8px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.js:not(.reduce) .hero.is-lit .hero-card,.js:not(.reduce) .hero.is-done .hero-card{opacity:1;transform:none}
+/* ---- THE OPENER BLOCK, factory pattern (Hayden, 9/16). Read off THE LOCAL and PURDY'S: the hero is a
+   flex column, a spacer pushes the block to the BOTTOM-LEFT, and the type sits straight on the photo over
+   the scrim — mono eyebrow, display h1 with one amber em, one sub line, then the two buttons. Each line
+   rises in on its own beat once the sweep has lit the house. No panel, no glass: the photo is the ground. */
+.hero{display:flex;flex-direction:column}
+.hero-spacer{flex:1 1 auto;min-height:0}
+.hero-inner{position:relative;z-index:7;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--pad) clamp(26px,5vh,54px);pointer-events:none}
+.hero-inner a{pointer-events:auto}
+.hero-eyebrow{margin:0 0 13px;font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--brand-text);text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.hero h1{margin:0;font-family:var(--display);font-weight:700;font-stretch:104%;font-size:clamp(30px,6.4vw,50px);
+  line-height:1.08;letter-spacing:-.015em;max-width:17ch;color:var(--ink);text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.hero h1 em{font-style:normal;color:var(--brand-text)}
+.hero-sub{margin:16px 0 26px;font-size:clamp(16px,1.6vw,19px);line-height:1.5;max-width:46ch;
+  color:var(--ink);opacity:.92;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+/* each line arrives on its own beat, once the house is lit — reduced motion and no-JS show them at rest */
+.js:not(.reduce) .hero-eyebrow,.js:not(.reduce) .hero h1,.js:not(.reduce) .hero-sub,.js:not(.reduce) .hero-actions{
+  opacity:0;transform:translateY(14px)}
+.js:not(.reduce) .hero.is-lit .hero-eyebrow,.js:not(.reduce) .hero.is-done .hero-eyebrow,
+.js:not(.reduce) .hero.is-lit h1,.js:not(.reduce) .hero.is-done h1,
+.js:not(.reduce) .hero.is-lit .hero-sub,.js:not(.reduce) .hero.is-done .hero-sub,
+.js:not(.reduce) .hero.is-lit .hero-actions,.js:not(.reduce) .hero.is-done .hero-actions{
+  opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js:not(.reduce) .hero.is-lit h1,.js:not(.reduce) .hero.is-done h1{transition-delay:.1s}
+.js:not(.reduce) .hero.is-lit .hero-sub,.js:not(.reduce) .hero.is-done .hero-sub{transition-delay:.2s}
+.js:not(.reduce) .hero.is-lit .hero-actions,.js:not(.reduce) .hero.is-done .hero-actions{transition-delay:.3s}
 @media (max-width:760px){
-  .hero-card{bottom:16px;left:12px;right:12px;max-width:none;padding:13px 15px 14px;border-radius:13px}
-  .hero-card::before{left:15px;width:30px}
-  .hc-title{font-size:21px}
-  .hc-sub{font-size:13px;margin-top:7px}
+  .hero-inner{padding-bottom:26px}
+  .hero-eyebrow{font-size:11px;letter-spacing:.2em;margin-bottom:10px}
+  .hero h1{max-width:14ch}
+  .hero-sub{margin:13px 0 20px;max-width:34ch}
+  .hero-actions .btn{flex:1 1 auto;justify-content:center}
 }
-@media (max-width:420px){.hc-title{font-size:19.5px}.hc-eyebrow{font-size:10px;letter-spacing:.16em}}
 .hero-tag{position:absolute;right:14px;bottom:12px;z-index:7;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);background:var(--brand-text);padding:5px 9px;border-radius:999px;pointer-events:none}
 
 /* on a phone the title card owns the bottom band, so the render label moves to the TOP-right corner
