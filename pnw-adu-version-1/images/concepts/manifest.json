@@ -1,0 +1,64 @@
+{
+  "_how": "js/site.js reads three approved stills per ADU type, in order. web/ files are optimized copies of the original approved images.",
+  "_stills_only": "Approved by Hayden on 2026-09-17: three still images per category, navigated with arrows or swipe.",
+  "_approved": "All 15 images approved for website integration. The House Eight original stays first; two distinct alternatives follow in each category.",
+  "garage": [
+    "web/garage-conversion-house-eight.webp",
+    "web/garage-rebuilt-garage-bay-single.webp",
+    "web/garage-detached-garage-home.webp"
+  ],
+  "backyard": [
+    "web/backyard-cottage-house-eight.webp",
+    "web/backyard-garden-lot-cottage.webp",
+    "web/backyard-hillside-second-home.webp"
+  ],
+  "addon": [
+    "web/attached-addition-house-eight.webp",
+    "web/addon-craftsman-courtyard-addition.webp",
+    "web/addon-ranch-house-adu-wing.webp"
+  ],
+  "above-garage": [
+    "web/above-garage-house-eight.webp",
+    "web/above-garage-exterior-stair-apartment.webp",
+    "web/above-garage-backyard-garage-loft.webp"
+  ],
+  "inside": [
+    "web/daylight-lower-level-house-eight.webp",
+    "web/inside-walkout-basement-apartment.webp",
+    "web/inside-finished-attic-apartment.webp"
+  ],
+  "captions": {
+    "web/attached-addition-house-eight.webp": "A connected home addition with its own front door and its own life.",
+    "web/backyard-cottage-house-eight.webp": "A true backyard home: separate, comfortable, and still part of your property.",
+    "web/garage-conversion-house-eight.webp": "A garage conversion becomes a warm second front door.",
+    "web/above-garage-house-eight.webp": "A complete apartment above the garage: parking below, a home above.",
+    "web/daylight-lower-level-house-eight.webp": "A daylight lower level becomes a home of its own.",
+    "web/addon-craftsman-courtyard-addition.webp": "Craftsman courtyard addition.",
+    "web/addon-ranch-house-adu-wing.webp": "Ranch house ADU wing.",
+    "web/backyard-garden-lot-cottage.webp": "Garden-lot cottage.",
+    "web/backyard-hillside-second-home.webp": "Hillside second home.",
+    "web/garage-rebuilt-garage-bay-single.webp": "Rebuilt garage bay.",
+    "web/garage-detached-garage-home.webp": "Detached garage home.",
+    "web/above-garage-exterior-stair-apartment.webp": "Exterior-stair apartment.",
+    "web/above-garage-backyard-garage-loft.webp": "Backyard garage loft.",
+    "web/inside-walkout-basement-apartment.webp": "Walkout basement apartment.",
+    "web/inside-finished-attic-apartment.webp": "Finished attic apartment."
+  },
+  "alt": {
+    "web/attached-addition-house-eight.webp": "Concept of a gray home with a connected cedar ADU addition around a courtyard.",
+    "web/backyard-cottage-house-eight.webp": "Concept of a detached cedar backyard home with its own path and entrance.",
+    "web/garage-conversion-house-eight.webp": "Concept of a former attached garage converted into a separate home.",
+    "web/above-garage-house-eight.webp": "Concept of a private apartment above a working garage with a separate entrance.",
+    "web/daylight-lower-level-house-eight.webp": "Concept of a daylight lower-level apartment with its own outside entrance.",
+    "web/addon-craftsman-courtyard-addition.webp": "Craftsman house with courtyard ADU addition — concept illustration.",
+    "web/addon-ranch-house-adu-wing.webp": "Ranch home with attached ADU wing — concept illustration.",
+    "web/backyard-garden-lot-cottage.webp": "Garden lot with a detached backyard ADU — concept illustration.",
+    "web/backyard-hillside-second-home.webp": "Hillside property with a detached ADU — concept illustration.",
+    "web/garage-rebuilt-garage-bay-single.webp": "Former attached garage converted into an ADU — concept illustration.",
+    "web/garage-detached-garage-home.webp": "Detached garage converted into an ADU — concept illustration.",
+    "web/above-garage-exterior-stair-apartment.webp": "Garage with a cedar ADU apartment above and exterior staircase — concept illustration.",
+    "web/above-garage-backyard-garage-loft.webp": "Detached garage with a one-bedroom ADU apartment above — concept illustration.",
+    "web/inside-walkout-basement-apartment.webp": "Hillside house with a finished daylight basement ADU — concept illustration.",
+    "web/inside-finished-attic-apartment.webp": "Finished attic ADU interior with sloped roof and stair opening — concept illustration."
+  }
+}
