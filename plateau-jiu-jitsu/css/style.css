@@ -1059,3 +1059,10 @@ body{background:var(--bg);color:var(--ink)}
 .js .setup.is-film-done .hero-bg .ground{opacity:.001;transition:none}
 .js .setup.is-film-done .hero-bg::before{opacity:1;transition:opacity 1s cubic-bezier(.4,0,.2,1)}
 .mk-p{transition:opacity .6s cubic-bezier(.4,0,.2,1)}
+/* phones: the film strip sits inside a blurred, darkened echo of its own last frame — no empty band above it */
+.setup .hero-bg .film-echo{display:none}
+@media (max-width:760px){
+  .setup .hero-bg .film-echo{display:block;position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;animation:none;transform:scale(1.06);opacity:0;transition:opacity .7s var(--ease)}
+  .js .setup.is-playing .hero-bg .film-echo,.js .setup.is-film-done .hero-bg .film-echo{opacity:1}
+  .setup .hero-bg .film{z-index:2}
+}
