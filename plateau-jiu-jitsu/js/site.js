@@ -146,39 +146,99 @@ function customClose(p, close){ return close; }
 
   applyStatus(); setInterval(applyStatus,60000);
 
-  /* ---------- HERO VIDEO: their own footage. Phones get the vertical reel, desktop the square one;
-     reduced motion keeps the poster frame and never loads a video. ---------- */
-  var hv=$('#heroVid');
-  if(hv){
-    var noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* ---------- THE SETUP hero: the ground is their own footage, pre-blurred, plays ONCE and holds on its last
+     frame (never loops). Poster = the final frame unless the film will actually play. Reduced motion / save-data /
+     blocked autoplay all land on the final frame. The mark sequence itself is pure CSS keyframes. ---------- */
+  var ground=$('#ground'), hero=$('#hero');
+  if(ground&&hero){
+    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var saveData=!!(navigator.connection&&navigator.connection.saveData);
     var phone=window.matchMedia('(max-width:760px)').matches;
-    var echo=$('.hero-echo');
-    if(phone){hv.poster='images/hero-poster-phone.jpg'; if(echo) echo.src='images/hero-poster-phone.jpg';}
-    if(!noMotion){
-      hv.src=phone?'videos/hero-phone.mp4':'videos/hero-desktop.mp4';
-      hv.autoplay=true; hv.load();
-      var pr=hv.play(); if(pr&&pr.catch) pr.catch(function(){});
-    }
+    var src=phone?ground.getAttribute('data-phone'):ground.getAttribute('data-desktop');
+    var endPoster=phone?ground.getAttribute('data-phone-poster'):ground.getAttribute('poster');
+    var startPoster=phone?ground.getAttribute('data-phone-opening'):ground.getAttribute('data-opening-poster');
+    function groundDone(){hero.classList.add('is-done')}
+    ground.poster=endPoster;
+    if(!reduce&&!saveData){
+      ground.poster=startPoster; ground.muted=true; ground.defaultMuted=true; ground.playsInline=true;
+      ground.src=src; ground.load();
+      ground.addEventListener('playing',function(){hero.classList.add('is-playing')},{once:true});
+      ground.addEventListener('ended',groundDone,{once:true});
+      ground.addEventListener('error',function(){ground.poster=endPoster;groundDone()},{once:true});
+      var pr=ground.play(); if(pr&&pr.catch) pr.catch(function(){ground.poster=endPoster;groundDone()});
+      document.addEventListener('visibilitychange',function(){if(document.hidden&&!ground.ended)ground.pause();else if(!ground.ended)ground.play().catch(function(){})});
+    } else groundDone();
   }
+
+  /* ---------- TODAY ON THE MAT: the live day timeline — done rows dim, the running class is lit, the next is
+     marked. Non-class days (and closures) show the next class day instead. Same CLASSES data as the week board. */
+  function renderToday(){
+    var rows=$('#todayRows'), title=$('#todayTitle'), note=$('#todayNote'); if(!rows||!title||!note) return;
+    var p=pacificNow(), closure=customClosure(p), day=p.day, k=0;
+    if(closure||!CLASS_DAYS[day]){k=1; while(!CLASS_DAYS[(p.day+k)%7]) k++; day=(p.day+k)%7;}
+    var isToday=(k===0), when=(k===1?'tomorrow':dayName(day));
+    title.innerHTML=(isToday?'Today':dayName(day))+' on <em>the mat</em>';
+    note.textContent= closure ? 'Closed today for '+closure+'. Back '+when+' — a '+CLASS_DAYS[day]+' day.'
+                    : isToday ? 'A '+CLASS_DAYS[day]+' day. Doors open when class is on.'
+                    : 'No classes today. Back on the mat '+when+' at 9 am — a '+CLASS_DAYS[day]+' day.';
+    var nextMarked=false;
+    rows.innerHTML=CLASSES.map(function(c){
+      var st='', tag='';
+      if(isToday){
+        if(p.h>=c.start&&p.h<c.end){st='now';tag='On the mat now'}
+        else if(p.h>=c.end){st='done';tag='Done'}
+        else if(!nextMarked){st='next';nextMarked=true;tag='Next up'}
+      }
+      return '<li class="'+st+'"><span class="tr-time">'+fmt(c.start)+'</span><span class="tr-who">'+c.who+'<small>'+CLASS_DAYS[day]+' · '+c.mins+' min</small></span><span class="tr-tag">'+tag+'</span></li>';
+    }).join('');
+  }
+  renderToday(); setInterval(renderToday,60000);
+
+  /* ---------- smooth scroll (Lenis, jsdelivr — on the artifact CSP allowlist); off under reduced motion ---------- */
+  if(window.Lenis&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var lenis=new Lenis({duration:1.1,easing:function(t){return 1-Math.pow(1-t,3)}});
+    (function raf(t){lenis.raf(t);requestAnimationFrame(raf)})(performance.now());
+    $$('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');var el=id.length>1?$(id):null;if(el){e.preventDefault();lenis.scrollTo(el,{offset:-84})}})});
+  }
+
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS,CLASSES:CLASSES};
 
   /* ---------- scroll-reveal + count-up ---------- */
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(!en.isIntersecting)return;
-      en.target.classList.add('in');
-      $$('.count',en.target).forEach(function(c){
-        if(c.dataset.done)return; c.dataset.done='1';
-        var to=parseInt(c.getAttribute('data-to'),10), from=parseInt(c.getAttribute('data-from')||'0',10), t0=null;
-        var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-        if(reduce){c.textContent=to;return}
-        function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step)}
-        requestAnimationFrame(step);
-      });
-      io.unobserve(en.target);
+  // Reveal a photo only once its pixels are ready. Cached images and slow lazy loads
+  // share the same fade; an image error still releases its caption and alt text.
+  function photoReady(img){
+    return new Promise(function(resolve){
+      function loaded(){
+        img.removeEventListener('load',loaded);img.removeEventListener('error',loaded);
+        if(img.naturalWidth&&typeof img.decode==='function')img.decode().catch(function(){}).then(resolve);
+        else resolve();
+      }
+      if(img.complete){loaded();return;}
+      img.addEventListener('load',loaded,{once:true});img.addEventListener('error',loaded,{once:true});
+      img.loading='eager';
     });
-  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
-  $$('.reveal').forEach(function(el){io.observe(el)});
+  }
+  function enterReveal(el){
+    el.classList.add('in');
+    $$('.count',el).forEach(function(c){
+      if(c.dataset.done)return;c.dataset.done='1';
+      var to=parseInt(c.getAttribute('data-to'),10),from=parseInt(c.getAttribute('data-from')||'0',10),t0=null;
+      if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){c.textContent=to;return;}
+      function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-k,3);c.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    });
+  }
+  function revealWhenReady(el){
+    if(el.dataset.revealPending)return;el.dataset.revealPending='1';
+    if(!el.classList.contains('photo-reveal')||window.matchMedia('(prefers-reduced-motion:reduce)').matches){enterReveal(el);return;}
+    Promise.all($$('img',el).map(photoReady)).then(function(){requestAnimationFrame(function(){enterReveal(el);});});
+  }
+  var reveals=$$('.reveal');
+  reveals.forEach(function(el){if(el.matches('.storefront,.print,.door'))el.classList.add('photo-reveal');});
+  if(typeof IntersectionObserver==='function'){
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(!en.isIntersecting)return;io.unobserve(en.target);revealWhenReady(en.target);});},{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+    reveals.forEach(function(el){io.observe(el);});
+  }else{reveals.forEach(enterReveal);}
 
   /* ---------- contact form (demo mode until go-live fills access_key) ---------- */
   var form=$('.contact-form'), ok=$('.form-success');

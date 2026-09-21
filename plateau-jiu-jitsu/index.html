@@ -6,11 +6,13 @@
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Brazilian Jiu-Jitsu for kids 5 and up and adults in Bonney Lake, WA. Gi and No-Gi classes Monday through Thursday, taught by black belt John Proud. Rated 5.0 on Google.">
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Archivo, wide + heavy = the closest sturdy Google face to their storefront wordmark (a bold, wide geometric grotesque — sign cropped + upscaled 2026-09-05). An APPROXIMATION, never claimed as the match. Hanken Grotesk = body. -->
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<!-- SIGN-FONT LAW: the storefront sign (cropped + 4x, 2026-09-20) is a wide geometric caps face — the same Lulo Clean the
+     wordmark on their own site uses. Syncopate 700 is the nearest Google face; Hanken Grotesk carries the body. Two fonts. -->
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20260920">
 </head>
 <body>
 
@@ -36,24 +38,34 @@
 
 <span id="top"></span>
 <main>
-  <!-- ===================== #hero — THE WALK-IN (Heart Law): the gym's own footage of the room —
-       their Facebook grand-opening reel (desktop, square) and their Instagram belt-promotion reel
-       (phones, vertical). Muted, natural speed, ~13 s, real clips only, no kids' faces. The whole
-       frame shows inside a blurred echo of itself — nothing cropped. Reduced motion = the poster
-       frame. The storefront-photo hero is kept at versions/storefront.html. PROVISIONAL clip picks. -->
-  <section class="hero hero-video" id="hero">
+  <!-- ===================== #hero — THE SETUP.
+       Ground: their own footage of the mat room, pre-blurred and warm-graded, plays ONCE and holds (never loops).
+       Mark: their real logo — the board with its five empty silhouettes fades up, then each real piece drops onto
+       its square, the king last; a halo blooms under the king; the wordmark strikes in the sign's face. ~3 s,
+       deterministic CSS, reduced motion lands on the final frame. Nothing sits on the ground but the mark block. -->
+  <section class="hero setup" id="hero">
     <div class="hero-bg">
-      <img class="hero-echo" src="images/hero-poster.jpg" alt="" aria-hidden="true" fetchpriority="high">
-      <video class="hero-vid" id="heroVid" muted playsinline loop preload="auto" poster="images/hero-poster.jpg" aria-label="Inside Plateau Jiu-Jitsu: students rolling on the mats and John coaching the room"></video>
+      <video class="ground" id="ground" muted playsinline preload="none" poster="images/ground-desktop.jpg"
+        data-opening-poster="images/ground-desktop-start.jpg" data-desktop="videos/ground-desktop.mp4"
+        data-phone="videos/ground-phone.mp4" data-phone-poster="images/ground-phone.jpg" data-phone-opening="images/ground-phone-start.jpg"
+        aria-hidden="true" tabindex="-1"></video>
     </div>
-    <div class="hero-spacer"></div>
     <div class="hero-inner">
-      <p class="hero-eyebrow">Bonney Lake, WA<span class="eb-long"> · Brazilian Jiu-Jitsu</span></p>
-      <h1>Jiu-Jitsu for Bonney Lake, <em>kids and adults.</em></h1>
-      <p class="hero-sub"><span class="sub-long">Gi and No-Gi classes four days a week for kids 5 and up and adults, taught by black belt John Proud.</span><span class="sub-short">Kids 5 and up · adults · Mon–Thu</span></p>
+      <h1 class="sr-only">Plateau Jiu-Jitsu — Brazilian Jiu-Jitsu for kids and adults in Bonney Lake, Washington</h1>
+      <div class="stage" aria-hidden="true">
+        <img class="st-board" src="images/pieces/board.png" alt="" width="1400" height="872" fetchpriority="high">
+        <span class="st-halo"></span>
+        <img class="st-piece p-pawn"   src="images/pieces/pawn.png"   alt="" fetchpriority="high">
+        <img class="st-piece p-rook"   src="images/pieces/rook.png"   alt="" fetchpriority="high">
+        <img class="st-piece p-knight" src="images/pieces/knight.png" alt="" fetchpriority="high">
+        <img class="st-piece p-bishop" src="images/pieces/bishop.png" alt="" fetchpriority="high">
+        <img class="st-piece p-king"   src="images/pieces/king.png"   alt="" fetchpriority="high">
+      </div>
+      <div class="wm-hero" aria-hidden="true"><span class="wm-top">Plateau</span><span class="wm-big">Jiu-Jitsu</span></div>
+      <p class="hero-sub"><span class="sub-long">Gi and No-Gi for kids 5 and up and adults, four days a week, taught by black belt John Proud.</span><span class="sub-short">Kids 5 and up · adults · Mon–Thu</span></p>
       <div class="hero-actions">
         <a href="contact.html#form" class="btn btn-primary">Book your free week</a>
-        <a href="schedule.html" class="btn btn-cream">See the schedule</a>
+        <a href="schedule.html" class="hero-link">See the schedule →</a>
       </div>
     </div>
   </section>
@@ -63,93 +75,127 @@
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
-        <h2>Open when <em>class is on.</em></h2>
+        <h2>Open when <em>class is on</em></h2>
         <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
         <p class="status-addr">
-          9925 214th Ave E, Suite I, Bonney Lake, WA 98391<br>
+          9925 214th Ave E, Suite I, Bonney Lake, WA 98391 — McHugh Plaza, next to Les Schwab<br>
           <a href="https://www.google.com/maps/place/Plateau+Jiu-Jitsu/@47.1657828,-122.1430878,17z/data=!4m6!3m5!1s0x5490fb101eca5989:0xf1a505f6501e0a51!8m2!3d47.1657828!4d-122.1430878!16s%2Fg%2F11w3gq4556" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
       </div>
       <ul class="hours-list" id="hoursList">
-        <li data-days="1"><span class="day">Monday</span><span class="time">9 – 10 AM · 4:15 – 7:30 PM</span></li>
-        <li data-days="2"><span class="day">Tuesday</span><span class="time">9 – 10 AM · 4:15 – 7:30 PM</span></li>
-        <li data-days="3"><span class="day">Wednesday</span><span class="time">9 – 10 AM · 4:15 – 7:30 PM</span></li>
-        <li data-days="4"><span class="day">Thursday</span><span class="time">9 – 10 AM · 4:15 – 7:30 PM</span></li>
+        <li data-days="1"><span class="day">Monday</span><span class="time"><b class="pill">Gi</b>9 – 10 AM · 4:15 – 7:30 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time"><b class="pill">No-Gi</b>9 – 10 AM · 4:15 – 7:30 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time"><b class="pill">Gi</b>9 – 10 AM · 4:15 – 7:30 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time"><b class="pill">No-Gi</b>9 – 10 AM · 4:15 – 7:30 PM</span></li>
         <li data-days="5" class="closed"><span class="day">Friday</span><span class="time">Closed</span></li>
-        <li data-days="6" class="closed note"><span class="day">Saturday</span><span class="time">Open mat some weeks, 11 AM, ages 15+ — at Combat Sport &amp; Fitness in Enumclaw</span></li>
+        <li data-days="6" class="note"><span class="day">Saturday</span><span class="time">Open mat some weeks, 11 AM, ages 15+ — at Combat Sport &amp; Fitness in Enumclaw</span></li>
         <li data-days="0" class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
       </ul>
     </div>
   </section>
 
-  <!-- ===================== #doors — the lobby: three doorways into the site -->
-  <section class="section section-alt" id="doors">
+  <!-- ===================== #today — the live day timeline (a functional trust object for parents: which class is
+       on the mat right now, what's next, what's done). Class rows, not store hours — the hours band owns those. -->
+  <section class="section today-band" id="today">
     <div class="wrap">
-      <!-- STOREFRONT BELOW THE HOURS (law 9/2): the hero is the room, so the building opens the lobby -->
-      <figure class="storefront reveal">
-        <img src="images/storefront.jpg" alt="Plateau Jiu-Jitsu's storefront and sign in McHugh Plaza, Bonney Lake" loading="lazy">
-        <figcaption>McHugh Plaza, next to Les Schwab</figcaption>
+      <div class="section-head reveal">
+        <p class="eyebrow">Right now</p>
+        <h2 id="todayTitle">Today on <em>the mat</em></h2>
+        <p id="todayNote">Loading the day…</p>
+      </div>
+      <ol class="today-rows reveal" id="todayRows" aria-live="polite"></ol>
+    </div>
+  </section>
+
+  <!-- ===================== #programs — STOREFRONT BELOW THE HOURS, then the four real programs as title cards that
+       unroll (down-chevron flips up). Each card carries a different real frame from their room. -->
+  <section class="section section-alt" id="programs">
+    <div class="wrap">
+      <figure class="storefront reveal photo-reveal">
+        <img src="images/storefront.jpg" alt="Plateau Jiu-Jitsu's storefront and sign in McHugh Plaza, Bonney Lake" loading="lazy" width="2000" height="1400">
+        <figcaption>Suite I, between Manhattan Designs and Bad Ash Athletics</figcaption>
       </figure>
       <div class="section-head reveal">
-        <p class="eyebrow">Around the academy</p>
-        <h2>Everything a first visit needs, <em>one tap away.</em></h2>
+        <p class="eyebrow">Programs</p>
+        <h2>Kids 5–7 · Kids 8–13 · <em>Adults</em></h2>
+        <p>Same flat rate for every program, unlimited classes, and the first week is free. Tap a program.</p>
       </div>
-      <div class="door-grid">
-        <a class="door reveal" href="schedule.html"><span class="door-pic d-schedule"><img src="images/door-schedule.jpg" alt="Two adults rolling on the mats at Plateau Jiu-Jitsu while a coach watches" loading="lazy"></span><span class="door-body"><span class="door-k">Schedule</span><b>The week on the mat</b><span>Which class is running right now, and what's next.</span><span class="door-go">Open the week board →</span></span></a>
-        <a class="door reveal" href="classes.html"><span class="door-pic d-classes"><img src="images/door-classes.jpg" alt="A young student in a Plateau Jiu-Jitsu rashguard, the chess logo on the back, moving across the mats" loading="lazy"></span><span class="door-body"><span class="door-k">Classes &amp; pricing</span><b>Kids 5–7 · Kids 8–13 · Adults</b><span>One flat rate, unlimited classes, discounts for service and families.</span><span class="door-go">See programs →</span></span></a>
-        <a class="door reveal" href="about.html"><span class="door-pic d-coaches"><img src="images/door-coaches.jpg" alt="John Proud sitting on the mats with students after class" loading="lazy"></span><span class="door-body"><span class="door-k">Coaches</span><b>John &amp; Shalise</b><span>A black belt's lifelong puzzle, and the gymnast who proves technique beats size.</span><span class="door-go">Meet them →</span></span></a>
+      <div class="programs">
+        <details class="program reveal">
+          <summary><span class="pg-pic"><img src="images/door-classes.jpg" alt="A young student in a Plateau Jiu-Jitsu rashguard, the chess logo on the back, moving across the mats" loading="lazy" width="720" height="1280"></span><span class="pg-head"><span class="door-k">Kids 5–7</span><b>4:15 PM · Mon–Thu · 40 min</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Games first, then real technique — balance, falling safely, listening, and a coach on the mat the whole time. Phone or in person to book this one.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
+        </details>
+        <details class="program reveal">
+          <summary><span class="pg-pic"><img src="images/fb-01.jpg" alt="Plateau kids on the podium with medals at The Revolution 55, July 2025" loading="lazy" width="1536" height="2048"></span><span class="pg-head"><span class="door-k">Kids 8–13</span><b>5:10 PM · Mon–Thu · 60 min</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Positions, escapes and live rounds at their size and pace. Some of them compete; none of them have to.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
+        </details>
+        <details class="program reveal">
+          <summary><span class="pg-pic"><img src="images/door-schedule.jpg" alt="Two adults rolling on the mats at Plateau Jiu-Jitsu while a coach watches" loading="lazy" width="1080" height="1080"></span><span class="pg-head"><span class="door-k">Adults</span><b>9 AM &amp; 6:15 PM · Mon–Thu</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Gi on Monday and Wednesday, No-Gi on Tuesday and Thursday. Twenty spots a class, so you get coached, not counted.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
+        </details>
+        <details class="program reveal">
+          <summary><span class="pg-pic"><img src="images/ig-DLQkGitTgkc.jpg" alt="Two little kids in gis playing a movement game on the mats under the chess mural" loading="lazy" width="640" height="1136"></span><span class="pg-head"><span class="door-k">Littles · pre-K</span><b>Call for the next start date</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Movement, games and the first words of the language for the youngest ones. Dates come straight from John.</p><p class="pg-price">$75<a href="tel:+12537971223">Call (253) 797-1223 →</a></p></div>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #signature — THE PIECES. Their own logo, cut into its five
-       real pieces (never redrawn). Tap one: it lifts and its line appears above. -->
-  <section class="section section-alt" id="signature">
+  <!-- ===================== #coaches — the owners are the face, once, in their own photo -->
+  <section class="section" id="coaches">
+    <div class="wrap coaches-grid">
+      <figure class="coach-print reveal photo-reveal">
+        <img src="images/coaches-john-shalise.jpg" alt="John Proud and Shalise Ward laughing on the mats after a roll" loading="lazy" width="1800" height="1200">
+        <figcaption>John &amp; Shalise</figcaption>
+      </figure>
+      <div class="coach-copy reveal">
+        <p class="eyebrow">Coaches</p>
+        <h2>On the mat <em>with you</em></h2>
+        <p>Both coaches are on the mats with every class — the kids at 4:15, the adults at 6:15. Patient with a nervous first-timer, sharp with a purple belt.</p>
+        <ul class="lineage">
+          <li><b>John Proud</b> — owner and head coach. Black belt under Jeff Hougland, December 2021. Almost two decades on the mats.</li>
+          <li><b>Shalise Ward</b> — co-owner and coach. Purple belt, January 2024. A gymnast since childhood; teaches kids, adults and women.</li>
+          <li>Affiliated with Combat Sport &amp; Fitness in Enumclaw.</li>
+        </ul>
+        <a href="about.html" class="btn btn-cream btn-ink">Meet the coaches →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #method — the "physical chess" line from their own About page, in their words -->
+  <section class="section section-alt" id="method">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Why the chess pieces</p>
-        <h2>Jiu-jitsu is <em>physical chess.</em></h2>
-        <p>Efficient movement, breathing and strategic thinking — continuously solving puzzles of positions and techniques. Tap a piece.</p>
+        <h2>Jiu-jitsu is <em>physical chess</em></h2>
+        <p>Continuously solving puzzles of positions and techniques. Three things every class comes back to.</p>
       </div>
-      <div class="pieces-wrap reveal">
-        <div class="piece-out" id="pieceOut" aria-live="polite">
-          <p class="po-hint">Every piece on the board has a job. So does every part of the game.</p>
-          <p class="po-title"></p>
-          <p class="po-line"></p>
-        </div>
-        <div class="piece-board" id="pieceBoard">
-          <img class="pb-ground" src="images/pieces/board.png" alt="" aria-hidden="true">
-          <button class="piece p-pawn" type="button" aria-pressed="false" data-color="#EFEFEF" data-title="The pawn — everyone starts here." data-line="No experience needed. Your first week is free."><img src="images/pieces/pawn.png" alt="White pawn"></button>
-          <button class="piece p-knight" type="button" aria-pressed="false" data-color="#A772DC" data-title="The knight — movement." data-line="Efficient movement first. The technique follows the hips."><img src="images/pieces/knight.png" alt="Purple knight"></button>
-          <button class="piece p-king" type="button" aria-pressed="false" data-color="#141416" data-title="The king — longevity." data-line="Almost two decades on the mats for John. The art and longevity of the practice, not the highlight reel."><img src="images/pieces/king.png" alt="Black king"></button>
-          <button class="piece p-bishop" type="button" aria-pressed="false" data-color="#8C5633" data-title="The bishop — breathing." data-line="Breathe, slow down, see the whole board."><img src="images/pieces/bishop.png" alt="Rust bishop"></button>
-          <button class="piece p-rook" type="button" aria-pressed="false" data-color="#1D49A6" data-title="The rook — position." data-line="Position before submission. Solve the puzzle one square at a time."><img src="images/pieces/rook.png" alt="Blue rook"></button>
-        </div>
+      <div class="method reveal">
+        <div><h3>Movement</h3><p>Efficient movement first. The technique follows the hips.</p></div>
+        <div><h3>Breathing</h3><p>Slow down, breathe, see the whole board.</p></div>
+        <div><h3>Strategy</h3><p>Position before submission. One square at a time.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== #reviews — real Google reviews, verbatim, initials discs (REVIEW-FACE LAW) -->
+  <!-- ===================== #reviews — REVIEW ATTRIBUTION LAW: the published rating and count, one link to the listing -->
   <section class="section" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Google reviews</p>
-        <h2>5.0 stars from <em>18 reviews.</em></h2>
-        <p>Every one of them is five stars. Here's what the parents and students actually said. <a href="about.html#reviews">Read all of them →</a></p>
+        <h2>5.0 stars from <em>18 reviews</em></h2>
+        <p>Not one of them under five — parents on the kids' classes, grown students on the rolls.</p>
       </div>
-      <div class="reviews">
-        <article class="review reveal">
-          <header><span class="rv-ini">V</span><div><b>Victoria</b><span class="rv-meta"><span class="stars" aria-label="5 stars">★★★★★</span> · a year ago</span></div></header>
-          <p>"John &amp; Shalise are amazing jiu-jitsu instructors. They are both on the mats with all the classes and very patient and knowledgeable. They are so great with the kids, and we love the community they have created. Highly recommend and hands down the best experience."</p>
-        </article>
-        <article class="review reveal">
-          <header><span class="rv-ini">J</span><div><b>Jason</b><span class="rv-meta"><span class="stars" aria-label="5 stars">★★★★★</span> · 2 years ago</span></div></header>
-          <p>"I went to a recent open mat and was super impressed with what they've accomplished here. It has a very clean and modern style, the bathroom is top notch, and the enclosed changing rooms are a nice touch. I'd highly recommend this gym to anyone in the area looking to train jiu jitsu in a professional, family-friendly environment!"</p>
-        </article>
-        <article class="review reveal">
-          <header><span class="rv-ini">S</span><div><b>Sarah</b><span class="rv-meta"><span class="stars" aria-label="5 stars">★★★★★</span> · 2 years ago</span></div></header>
-          <p>"John is a dynamic jiu-jitsu instructor. He is on the mats with adults and kids. He's taught me so much during rolls, addressing positional questions before and after sparring, making jiu jitsu fun, addicting and giving me confidence that I can defend myself."</p>
-        </article>
+      <div class="rating-card reveal">
+        <div class="rc-score">
+          <b>5.0</b>
+          <span class="stars" aria-label="Rated 5.0 out of 5 stars">★★★★★</span>
+          <span class="rc-count">18 reviews on Google</span>
+        </div>
+        <div class="rc-body">
+          <p>Read them where they were written — real names, real dates, nothing trimmed.</p>
+          <a class="btn btn-primary" href="https://www.google.com/maps/place/Plateau+Jiu-Jitsu/@47.1657828,-122.1430878,17z/data=!4m6!3m5!1s0x5490fb101eca5989:0xf1a505f6501e0a51!8m2!3d47.1657828!4d-122.1430878!16s%2Fg%2F11w3gq4556" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+        </div>
       </div>
     </div>
   </section>
@@ -159,7 +205,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Bonney Lake's own academy</p>
-        <h2>From the first class <em>to black belt.</em></h2>
+        <h2>From the first class <em>to black belt</em></h2>
       </div>
       <div class="numbers reveal">
         <div class="num"><b><i>est.</i> <span class="count" data-to="2024" data-from="1990">2024</span></b><span>opened in McHugh Plaza</span></div>
@@ -169,12 +215,10 @@
       </div>
       <div class="cta-actions reveal">
         <a href="contact.html#form" class="btn btn-primary">Start this week</a>
-        <a href="tel:+12537971223" class="btn btn-ghost">Call (253) 797-1223</a>
+        <a href="https://www.wellnessliving.com/signup/plateau_jiu-jitsu" target="_blank" rel="noopener" class="btn btn-ghost">Book straight into the schedule ↗</a>
       </div>
     </div>
   </section>
-
-
 </main>
 
 <footer class="site-footer">
@@ -208,6 +252,7 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="js/site.js?v=20260920"></script>
 </body>
 </html>
