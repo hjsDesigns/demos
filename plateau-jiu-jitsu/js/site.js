@@ -149,26 +149,38 @@ function customClose(p, close){ return close; }
      hand off immediately so the mark always arrives. ---------- */
   var film=$('#film'), stageEl=$('.stage'), heroF=$('#hero');
   if(film&&heroF&&stageEl){
-    var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches, handed=false, ending=false;
-    function handoff(){ if(handed) return; handed=true; heroF.classList.add('is-film-done'); film.classList.add('is-gone'); if(window.__startReel) window.__startReel(); }
-    function aimFilm(){
-      var hr=heroF.getBoundingClientRect(), sr=stageEl.getBoundingClientRect();
-      var contain=window.matchMedia('(max-width:760px)').matches, ar=16/9, bw=hr.width, bh=hr.height;
-      var rw=contain?Math.min(bw,bh*ar):Math.max(bw,bh*ar), rh=rw/ar;           /* the film's rendered rect */
-      var fs=Math.min(sr.width/rw, 1), fx=(sr.left+sr.width/2)-(hr.left+bw/2), fy=(sr.top+sr.height/2)-(hr.top+bh/2);
-      film.style.setProperty('--fs',fs.toFixed(4)); film.style.setProperty('--fx',fx.toFixed(1)+'px'); film.style.setProperty('--fy',fy.toFixed(1)+'px');
+    /* where the five real pieces sit in the film's last frame (fractions of the frame), measured 2026-09-21 */
+    var REAL={"pawn": [0.171, 0.448, 0.083, 0.269], "knight": [0.3094, 0.4006, 0.0828, 0.3137], "king": [0.4516, 0.2521, 0.0969, 0.472], "bishop": [0.6, 0.347, 0.092, 0.368], "rook": [0.733, 0.423, 0.1, 0.292]};
+    var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches, handed=false, settled=false;
+    function frameRect(){ var hr=heroF.getBoundingClientRect(), contain=window.matchMedia('(max-width:760px)').matches, ar=16/9;
+      var rw=contain?Math.min(hr.width,hr.height*ar):Math.max(hr.width,hr.height*ar), rh=rw/ar;
+      return {x:hr.left+(hr.width-rw)/2, y:hr.top+(hr.height-rh)/2, w:rw, h:rh}; }
+    function overlay(){ /* put every vector piece exactly on its real twin: same height, same bottom-centre */
+      var fr=frameRect(), sr=stageEl.getBoundingClientRect();
+      Object.keys(REAL).forEach(function(n){ var el=$('.st-piece.p-'+n,stageEl); if(!el) return; var b=REAL[n];
+        var bx=fr.x+b[0]*fr.w, by=fr.y+b[1]*fr.h, bw=b[2]*fr.w, bh=b[3]*fr.h;
+        var nx=sr.left+el.offsetLeft, ny=sr.top+el.offsetTop, nw=el.offsetWidth, nh=el.offsetHeight;
+        var k=bh/nh, dx=(bx+bw/2)-(nx+nw*k/2), dy=(by+bh)-(ny+nh*k);
+        el.style.transition='none'; el.style.transformOrigin='0 0';
+        el.style.transform='translate('+dx.toFixed(2)+'px,'+dy.toFixed(2)+'px) scale('+k.toFixed(4)+')';
+        void el.offsetWidth; el.style.transition='opacity .9s cubic-bezier(.4,0,.2,1)'; el.style.opacity='1'; });
     }
-    function endBeat(){ if(ending) return; ending=true; handoff(); }
+    function settle(){ if(settled) return; settled=true;
+      $$('.st-piece',stageEl).forEach(function(el){ el.style.transition='transform .8s cubic-bezier(.4,0,.2,1)'; el.style.transform='none'; });
+      heroF.classList.add('is-settled'); }
+    function handoff(){ if(handed) return; handed=true;
+      if(fReduce){ heroF.classList.add('is-film-done','is-settled'); return; }
+      overlay(); heroF.classList.add('is-film-done'); film.classList.add('is-gone'); if(window.__startReel) window.__startReel();
+      setTimeout(settle,950); }
     if(fReduce){ handoff(); }
     else{
       film.muted=true; film.defaultMuted=true; film.playsInline=true;
       film.addEventListener('playing',function(){film.classList.add('is-playing')},{once:true});
-      film.addEventListener('timeupdate',function(){ if(film.duration&&film.currentTime>=film.duration-0.95) endBeat(); });
-      film.addEventListener('ended',endBeat,{once:true});
+      film.addEventListener('timeupdate',function(){ if(film.duration&&film.currentTime>=film.duration-0.95) handoff(); });
+      film.addEventListener('ended',handoff,{once:true});
       film.addEventListener('error',handoff,{once:true});
       var fp=film.play(); if(fp&&fp.catch) fp.catch(handoff);
-      setTimeout(function(){ if(film.paused&&!ending) handoff(); },2500);   /* autoplay never started → hand off */
-      window.addEventListener('resize',function(){ if(!ending) aimFilm(); });
+      setTimeout(function(){ if(film.paused&&!handed) handoff(); },2500);
     }
   }
 
