@@ -144,6 +144,33 @@ function customClose(p, close){ return close; }
     }
   }
 
+  /* ---------- THE FILM: plays once over the reel; near its end it contracts into the mark's box and hardens to grey;
+     then the mark takes over (.is-film-done drives every later beat). Blocked autoplay / reduced motion / errors
+     hand off immediately so the mark always arrives. ---------- */
+  var film=$('#film'), stageEl=$('.stage'), heroF=$('#hero');
+  if(film&&heroF&&stageEl){
+    var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches, handed=false, ending=false;
+    function handoff(){ if(handed) return; handed=true; film.classList.add('is-gone'); heroF.classList.add('is-film-done'); }
+    function aimFilm(){
+      var hr=heroF.getBoundingClientRect(), sr=stageEl.getBoundingClientRect();
+      var contain=window.matchMedia('(max-width:760px)').matches, ar=16/9, bw=hr.width, bh=hr.height;
+      var rw=contain?Math.min(bw,bh*ar):Math.max(bw,bh*ar), rh=rw/ar;           /* the film's rendered rect */
+      var fs=Math.min(sr.width/rw, 1), fx=(sr.left+sr.width/2)-(hr.left+bw/2), fy=(sr.top+sr.height/2)-(hr.top+bh/2);
+      film.style.setProperty('--fs',fs.toFixed(4)); film.style.setProperty('--fx',fx.toFixed(1)+'px'); film.style.setProperty('--fy',fy.toFixed(1)+'px');
+    }
+    function endBeat(){ if(ending) return; ending=true; aimFilm(); film.classList.add('is-end'); setTimeout(handoff,1000); }
+    if(fReduce){ handoff(); }
+    else{
+      film.muted=true; film.defaultMuted=true; film.playsInline=true;
+      film.addEventListener('timeupdate',function(){ if(film.duration&&film.currentTime>=film.duration-0.55) endBeat(); });
+      film.addEventListener('ended',endBeat,{once:true});
+      film.addEventListener('error',handoff,{once:true});
+      var fp=film.play(); if(fp&&fp.catch) fp.catch(handoff);
+      setTimeout(function(){ if(film.paused&&!ending) handoff(); },2500);   /* autoplay never started → hand off */
+      window.addEventListener('resize',function(){ if(!ending) aimFilm(); });
+    }
+  }
+
   /* ---------- THE WEEK, LIVE: progress bar on the running class + the one-line "where the week is" readout ---------- */
   function trackNow(){
     var p=pacificNow(), line=$('#weekNow'); if(!line) return;
