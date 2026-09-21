@@ -719,3 +719,108 @@ h3{font-weight:400;letter-spacing:.04em;font-size:clamp(19px,2.1vw,25px)}
 .setup .hero-bg img.cb-knight{position:absolute;left:0;top:0;width:calc(var(--tile) * 1.1);height:calc(var(--tile) * 1.6);object-fit:contain;object-position:50% 100%;opacity:0;transform:translate(var(--x0),var(--y0)) scale(.5);filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
 .js .setup .hero-bg img.cb-knight{animation:kHop 1.25s var(--ease) 1.05s forwards}
 .setup .hero-bg .cb-grid .t{animation-name:tileIn}
+
+/* ============================================================
+   REVISION 2026-09-21 01:00 — DARK THEME (Hayden: "the entire background is very boring… same grade as the ADU").
+   The room under every section (pre-blurred real frames, seam-masked), the checkerboard as the recurring device,
+   purple/blue zoned, cream type. Dark-ground token sweep applied: --dark stays the guaranteed-dark scrim token.
+   ============================================================ */
+:root{
+  --bg:#1A1C21;            /* graphite — the grey mats at night */
+  --bg-2:#131418;          /* deeper band */
+  --paper:#23262D;         /* cards, a hair lighter than the ground */
+  --ink:#EEEAE0;           /* cream type */
+  --muted:#A7ABB4;         /* secondary type */
+  --line:#30343C;          /* hairlines */
+  --dark:#0E0F12;          /* guaranteed dark — scrims, footer */
+  --dark-2:#1A1C21;
+  --tint:#17191E;          /* hours band, lamp-lit near-black */
+  --brand:#3A6BE0;         /* rook blue, lifted for dark grounds — functional */
+  --brand-text:#93B2FF;    /* blue for small text on dark */
+  --brand-bright:#5A85F0;
+  --brand-2:#A772DC;       /* the knight's actual purple — eyebrows, marks */
+  --brand-2-bright:#C29CF0;
+  --accent:#B27A54;--accent-soft:#D0976E;
+  --warm:#C29CF0;
+}
+body{background:var(--bg);color:var(--ink)}
+.section{background:var(--bg)}
+.section-alt{background:var(--bg-2)}
+.section-dark,.cta-band{background:var(--dark)}
+.site-header{background:color-mix(in srgb,var(--bg-2) 86%,transparent);border-bottom:1px solid color-mix(in srgb,var(--brand-2) 28%,transparent)}
+.logo .wm,.main-nav a{color:var(--ink)}
+.main-nav a:hover{color:var(--brand-2-bright)}
+.hdr-live{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.nav-toggle{color:var(--ink);border-color:var(--line)}
+@media (max-width:900px){.main-nav{background:var(--bg-2);border-bottom-color:var(--brand-2)}}
+.btn-cream{background:var(--ink);color:var(--dark)}.btn-cream:hover{background:#fff}
+.btn-ghost{color:var(--ink)}
+.btn-ink{background:var(--brand-2);color:#fff}.btn-ink:hover{background:var(--brand-2-bright);color:#fff}
+.status-band{background:var(--tint);border-bottom:1px solid var(--line)}
+.status-addr,.hours-list .time,.hours-list li.note .time{color:var(--muted)}
+.hours-list li.today{background:color-mix(in srgb,var(--brand-2) 16%,transparent)}
+.hours-list li.today .time{color:var(--ink)}
+.week-col,.today-rows,.rating-card,.program,.storefront,.coach-print,.week-now{background:var(--paper);border-color:var(--line)}
+.wk-head{border-bottom-color:var(--line)}
+.wk-time,.wk-len{color:var(--muted)}
+.wk-row.now .wk-tag{color:var(--status-open)}
+.pg-head b,.pg-price{color:var(--ink)}
+.pg-body,.method p,.lineage li,.section-head p{color:var(--muted)}
+.lineage li b{color:var(--ink)}
+.section-dark .section-head p{color:var(--muted)}
+.num b{color:var(--ink)}.num span{color:var(--muted)}
+.site-footer{background:var(--dark);color:var(--muted)}
+.site-footer .wm,.site-footer h4,.site-footer a{color:var(--ink)}
+.form-success{color:var(--ink)}
+.contact-form input,.contact-form textarea,.contact-form select{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.page-head{background:var(--tint)}
+.card{background:var(--paper);border-color:var(--line)}
+.face img{border:2px solid var(--line)}
+/* the room under the sections — ADU's render-born grounds, seam-masked so nothing has a hard edge */
+.ground{position:relative;isolation:isolate}
+.ground::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--g) center/cover no-repeat;opacity:.5;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 140px,#000 calc(100% - 180px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 140px,#000 calc(100% - 180px),transparent 100%)}
+#programs.ground{--g:url(../images/ground-room.jpg)}
+#coaches.ground{--g:url(../images/ground-coach.jpg)}
+#method.ground{--g:url(../images/ground-mural.jpg)}
+#cta.ground{--g:url(../images/ground-desktop.jpg)}
+/* the checkerboard as the recurring device: a small board strip above every section title, and a faint board under the week */
+.section-head .eyebrow::before,.status-head .eyebrow::before{content:"";display:inline-block;width:48px;height:8px;margin-right:12px;vertical-align:2px;
+  background:repeating-conic-gradient(var(--brand-2) 0 25%,transparent 0 50%) 0 0/16px 16px}
+.week-band{background:var(--bg-2)}
+.week-band::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.05;
+  background:repeating-conic-gradient(var(--ink) 0 25%,transparent 0 50%) 0 0/72px 72px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+.week-band{position:relative}.week-band .wrap{position:relative;z-index:1}
+/* hero scrim on the dark ground: a touch lighter so the room still reads */
+.setup .hero-bg::before{background:radial-gradient(56% 50% at 50% 46%,color-mix(in srgb,var(--dark) 66%,transparent) 0%,color-mix(in srgb,var(--dark) 36%,transparent) 62%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,transparent 26%,transparent 58%,var(--bg) 100%)}
+
+/* ---------- the cursor (desktop only — a phone has no cursor): purple dot + lagging ring, grows on anything tappable,
+   the two big buttons pull toward it. Hidden under reduced motion. ---------- */
+@media (pointer:fine){
+  .js.cur body{cursor:none}
+  .js.cur a,.js.cur button,.js.cur summary,.js.cur label{cursor:none}
+  .cur-dot,.cur-ring{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);will-change:transform}
+  .cur-dot{width:8px;height:8px;background:var(--brand-2-bright);mix-blend-mode:difference}
+  .cur-ring{width:38px;height:38px;border:1.5px solid var(--brand-2-bright);opacity:.85;transition:width .25s var(--ease),height .25s var(--ease),background .25s,border-color .25s,opacity .25s}
+  .cur-ring.is-over{width:64px;height:64px;background:color-mix(in srgb,var(--brand-2-bright) 22%,transparent);border-color:transparent}
+  .cur-ring.is-down{width:30px;height:30px}
+  .cur-hidden .cur-dot,.cur-hidden .cur-ring{opacity:0}
+}
+@media (pointer:coarse),(prefers-reduced-motion:reduce){.cur-dot,.cur-ring{display:none}.js.cur body,.js.cur a,.js.cur button,.js.cur summary{cursor:auto}}
+
+/* ---------- rotating Google reviews (real names, Google's own avatars) ---------- */
+.rv-rotor{position:relative;display:grid;grid-template-columns:44px 1fr 44px;gap:12px;align-items:center}
+.rv-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 2px;scroll-behavior:smooth}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-card{flex:0 0 calc((100% - 32px) / 3);scroll-snap-align:start;margin:0;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:22px 22px 18px;display:flex;flex-direction:column;gap:16px;min-height:100%}
+.rv-card blockquote{margin:0;font-size:15.5px;line-height:1.6;color:var(--ink);flex:1 1 auto;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.rv-card figcaption{display:flex;align-items:center;gap:12px}
+.rv-card figcaption img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--line);flex:none}
+.rv-card figcaption b{display:block;font-size:15px}
+.rv-card figcaption small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-2);margin-top:3px}
+.rv-arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;transition:background .2s,transform .2s var(--ease)}
+.rv-arrow:hover{background:var(--brand-2);color:#fff;transform:scale(1.06)}
+.rv-more{margin:18px 0 0;text-align:center}.rv-more a{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand-text) 40%,transparent);padding-bottom:3px}
+@media (max-width:900px){.rv-card{flex-basis:calc((100% - 16px) / 2)}}
+@media (max-width:640px){.rv-rotor{grid-template-columns:1fr;gap:10px}.rv-arrow{display:none}.rv-card{flex-basis:88%}.rv-card blockquote{-webkit-line-clamp:8}}
+@media (prefers-reduced-motion:reduce){.rv-track{scroll-behavior:auto}}

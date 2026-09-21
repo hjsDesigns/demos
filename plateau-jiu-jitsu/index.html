@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Display: Anton (Hayden 9/21: the sign-matched Syncopate read boring — his call wins). Body: Hanken Grotesk. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260921">
+<link rel="stylesheet" href="css/style.css?v=20260921c">
 </head>
 <body>
 
@@ -149,7 +149,7 @@ path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px'
 
   <!-- ===================== #programs — STOREFRONT BELOW THE HOURS, then the four real programs as title cards that
        unroll (down-chevron flips up). Each card carries a different real frame from their room. -->
-  <section class="section section-alt" id="programs">
+  <section class="section section-alt ground" id="programs">
     <div class="wrap">
       <figure class="storefront reveal photo-reveal">
         <img src="images/storefront.jpg" alt="Plateau Jiu-Jitsu's storefront and sign in McHugh Plaza, Bonney Lake" loading="lazy" width="2000" height="1400">
@@ -182,7 +182,7 @@ path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px'
   </section>
 
   <!-- ===================== #coaches — the owners are the face, once, in their own photo -->
-  <section class="section" id="coaches">
+  <section class="section ground" id="coaches">
     <div class="wrap coaches-grid">
       <figure class="coach-print reveal photo-reveal">
         <img src="images/coaches-john-shalise.jpg" alt="John Proud and Shalise Ward laughing on the mats after a roll" loading="lazy" width="1800" height="1200">
@@ -203,7 +203,7 @@ path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px'
   </section>
 
   <!-- ===================== #method — the "physical chess" line from their own About page, in their words -->
-  <section class="section section-alt" id="method">
+  <section class="section section-alt ground" id="method">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Why the chess pieces</p>
@@ -218,30 +218,64 @@ path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px'
     </div>
   </section>
 
-  <!-- ===================== #reviews — REVIEW ATTRIBUTION LAW: the published rating and count, one link to the listing -->
+  <!-- ===================== #reviews — REVIEW ATTRIBUTION LAW: every card carries the reviewer's real published name AND the
+       avatar Google itself publishes for them (harvested 2026-09-21 from the live listing in a visible pane); quotes verbatim.
+       Rotates on its own, pauses under the pointer, swipes on a phone. One link-out to the listing. -->
   <section class="section" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Google reviews</p>
         <h2>Eighteen reviews. <em>Eighteen five-stars.</em></h2>
-        <p>Not one of them under five — parents on the kids' classes, grown students on the rolls.</p>
+        <p>Parents on the kids' classes, grown students on the rolls — in their own names, from the listing.</p>
       </div>
-      <div class="rating-card reveal">
-        <div class="rc-score">
-          <b>5.0</b>
-          <span class="stars" aria-label="Rated 5.0 out of 5 stars">★★★★★</span>
-          <span class="rc-count">18 reviews on Google</span>
+      <div class="rv-rotor reveal" id="rvRotor">
+        <button class="rv-arrow rv-prev" type="button" aria-label="Previous review">‹</button>
+        <div class="rv-track" id="rvTrack" tabindex="0" aria-label="Google reviews">
+        <figure class="rv-card">
+          <blockquote>John & Shalise are amazing jiu-jitsu instructors. They are both on the mats with all the classes and very patient and knowledgeable. They are so great with the kids, and we love the community they have created. Highly recommend and hands down the best experience.</blockquote>
+          <figcaption><img src="images/reviewers/victoria-wirtz.jpg" alt="" width="48" height="48" loading="lazy"><span><b>Victoria Wirtz</b><small>★★★★★ · Google · a year ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>I’ve had both of my boys training at Plateau Jiu-Jitsu for over a year now, and we couldn’t be happier! The boys absolutely love it and look forward to every class. Coach John is fantastic — patient, highly involved, and great at working with kids. He’s helped them build confidence, discipline, and solid skills in a fun, supportive environment. This place is truly a gem. Highly recommend it to any family looking for quality Jiu-Jitsu training!</blockquote>
+          <figcaption><img src="images/reviewers/j.jpg" alt="" width="48" height="48" loading="lazy"><span><b>J</b><small>★★★★★ · Google · 2 months ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>I’m so excited to see this gym opening in Bonney Lake! I went to a recent open mat and was super impressed with what they've accomplished here. It has a very clean and modern style, the bathroom is top notch, and the enclosed changing rooms are a nice touch. I'd highly recommend this gym to anyone in the area looking to train jiu jitsu in a professional, family-friendly environment!</blockquote>
+          <figcaption><img src="images/reviewers/jason-verhoff.jpg" alt="" width="48" height="48" loading="lazy"><span><b>Jason Verhoff</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>John is a dynamic jiu-jitsu instructor. He is on the mats with adults and kids. He's taught me so much during rolls, addressing positional questions before and after sparring, making jiu jitsu fun, addicting and giving me confidence that I can defend myself.</blockquote>
+          <figcaption><img src="images/reviewers/sarah.jpg" alt="" width="48" height="48" loading="lazy"><span><b>Sarah</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>Plateau Jiu-Jitsu owner/blackbelt John Proud is an excellent instructor. His teaching method is smooth, patient, and easily adjusted, which makes him a great teacher for the advanced practitioner — as well as the jiu-jitsu novice. It is a certain gift to effectively work with children. The kids always look forward to rolling with John, and parents can be confident in his focus on safety. Sad loss for Enumclaw but great news for Bonney Lake!</blockquote>
+          <figcaption><img src="images/reviewers/bethany-overland-jack.jpg" alt="" width="48" height="48" loading="lazy"><span><b>Bethany Overland Jack</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>Excellent space, superb teacher, and great community of people I would highly recommend John and Plateau Jiu Jitsu to anyone coming through the area in search of a great place to practice jiu jitsu.</blockquote>
+          <figcaption><img src="images/reviewers/jessica-norman.jpg" alt="" width="48" height="48" loading="lazy"><span><b>Jessica Norman</b><small>★★★★★ · Google · a year ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>I have had the privilege to train with John for some years now. John comes from a deep lineage of black belts and teaches a unique style of jiu jitsu that co-mingles sport and self defense. Definitely recommend his academy</blockquote>
+          <figcaption><img src="images/reviewers/anthony-borgomainerio.jpg" alt="" width="48" height="48" loading="lazy"><span><b>Anthony Borgomainerio</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>The owners and instructors are great and very knowledgeable. They bring many years of knowledge and experience to a fantastic gym. Great people, great atmosphere.</blockquote>
+          <figcaption><img src="images/reviewers/tyson-cunningham.jpg" alt="" width="48" height="48" loading="lazy"><span><b>tyson cunningham</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>John and Shalise did an amazing job on the remodel of their new gym! With John's Brazilian Jiu-Jitsu experience, you, your kids, your spouse, or your friends will be in good hands! Congrats on the opening of the new gym guys!</blockquote>
+          <figcaption><img src="images/reviewers/yuriy-khryukin.jpg" alt="" width="48" height="48" loading="lazy"><span><b>yuriy khryukin</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
         </div>
-        <div class="rc-body">
-          <p>Read them where they were written — real names, real dates, nothing trimmed.</p>
-          <a class="btn btn-primary" href="https://www.google.com/maps/place/Plateau+Jiu-Jitsu/@47.1657828,-122.1430878,17z/data=!4m6!3m5!1s0x5490fb101eca5989:0xf1a505f6501e0a51!8m2!3d47.1657828!4d-122.1430878!16s%2Fg%2F11w3gq4556" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
-        </div>
+        <button class="rv-arrow rv-next" type="button" aria-label="Next review">›</button>
       </div>
+      <p class="rv-more reveal"><a href="https://www.google.com/maps/place/Plateau+Jiu-Jitsu/@47.1657828,-122.1430878,17z/data=!4m6!3m5!1s0x5490fb101eca5989:0xf1a505f6501e0a51!8m2!3d47.1657828!4d-122.1430878!16s%2Fg%2F11w3gq4556" target="_blank" rel="noopener">5.0 · all 18 on Google ↗</a></p>
     </div>
   </section>
 
   <!-- ===================== #cta -->
-  <section class="section section-dark cta-band" id="cta">
+  <section class="section section-dark cta-band ground" id="cta">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Bonney Lake's own academy</p>
@@ -292,6 +326,7 @@ path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px'
   </div>
 </footer>
 
-<script src="js/site.js?v=20260921"></script>
+<span class="cur-dot" aria-hidden="true"></span><span class="cur-ring" aria-hidden="true"></span>
+<script src="js/site.js?v=20260921c"></script>
 </body>
 </html>
