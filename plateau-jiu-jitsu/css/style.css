@@ -951,3 +951,5 @@ body{background:var(--bg);color:var(--ink)}
   .js .setup .st-board,.js .setup .st-piece,.js .setup .wm-hero,.js .setup .hero-sub,.js .setup .hero-actions{animation:none;opacity:1;transform:none;clip-path:none}
   .js .setup .st-halo{opacity:.42;transform:translate(-50%,-50%)}
 }
+/* the contracting film loses its hard rectangle — feathered edges so the grey frame dissolves into the mark */
+.js .setup .film.is-end{-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent 100%)}
