@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Display: Anton (Hayden 9/21: the sign-matched Syncopate read boring — his call wins). Body: Hanken Grotesk. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260921c">
+<link rel="stylesheet" href="css/style.css?v=20260921e">
 </head>
 <body>
 
@@ -56,8 +56,17 @@ var W=cb.clientWidth||window.innerWidth,H=cb.clientHeight||window.innerHeight;va
 inner.style.setProperty('--cols',cols);inner.style.setProperty('--tile',tile+'px');var g=document.createElement('div');g.className='cb-grid';var f=document.createDocumentFragment();
 for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var t=document.createElement('i');t.className='t'+(((r+c)%2)?' d':'');t.style.setProperty('--i',r+c);f.appendChild(t)}
 g.appendChild(f);inner.appendChild(g);
-var path=cols>7?[[3,1],[5,2],[4,4]]:[[1,2],[3,3],[2,5]];var k=document.createElement('img');k.src='images/pieces/knight.png';k.alt='';k.className='cb-knight';
-path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px');k.style.setProperty('--y'+i,(p[1]*tile-tile*.6)+'px')});inner.appendChild(k);})();</script>
+/* every piece moves: pawn pushes, rook slides the rank, bishop cuts the diagonal, the knight hops twice and lands
+   on a square that attacks the king, the king flinches. Paths are tile coordinates [col,row]. */
+var D=cols>7;var P=[
+ ['king',  D?[[6,5]]:[[3,6]]],
+ ['pawn',  D?[[3,7],[3,5]]:[[1,8],[1,6]]],
+ ['rook',  D?[[11,5],[8,5]]:[[6,6],[5,6]]],
+ ['bishop',D?[[9,7],[7,5]]:[[6,8],[4,6]]],
+ ['knight',D?[[0,3],[2,4],[4,5]]:[[0,5],[2,6],[2,6]]]];
+P.forEach(function(pc){var k=document.createElement('img');k.src='images/pieces/'+pc[0]+'.png';k.alt='';k.className='cb-p cb-p-'+pc[0];
+ var path=pc[1];for(var i=0;i<3;i++){var q=path[Math.min(i,path.length-1)];k.style.setProperty('--x'+i,(q[0]*tile-tile*.05)+'px');k.style.setProperty('--y'+i,(q[1]*tile-tile*(pc[0]==='king'?.9:.6))+'px')}
+ inner.appendChild(k)});})();</script>
     </div>
     <div class="hero-inner">
       <h1 class="sr-only">Plateau Jiu-Jitsu — Brazilian Jiu-Jitsu for kids and adults in Bonney Lake, Washington</h1>
@@ -327,6 +336,6 @@ path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px'
 </footer>
 
 <span class="cur-dot" aria-hidden="true"></span><span class="cur-ring" aria-hidden="true"></span>
-<script src="js/site.js?v=20260921c"></script>
+<script src="js/site.js?v=20260921e"></script>
 </body>
 </html>
