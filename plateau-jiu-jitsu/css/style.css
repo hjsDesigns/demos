@@ -1134,3 +1134,9 @@ body{background:var(--bg);color:var(--ink)}
   .cur-ring.is-over{width:56px;height:56px;background:color-mix(in srgb,var(--brand) 14%,transparent);border-color:transparent}
   .setup .cur-dot,.setup .cur-ring{}
 }
+
+/* ---------- after the pieces land: Rainier dissolves into the action background, alone (Hayden 9/21 ~05:30) ---------- */
+.js .setup.is-bg .film,.js .setup.is-bg .film.is-gone{opacity:0;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-bg .hero-bg .ground{opacity:1 !important;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-bg .hero-bg .film-echo{opacity:0;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-bg .hero-bg::before{opacity:1}

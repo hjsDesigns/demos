@@ -184,7 +184,7 @@ function customClose(p, close){ return close; }
       place(); heroF.classList.add('is-film-done');
       requestAnimationFrame(function(){ heroF.classList.add('is-mark'); });   /* pieces fade in ON their twins, then mountains + board */
       if(fReduce) return;
-      /* the film's last frame stays as the ground — one background, nothing else decoding */
+      setTimeout(function(){ if(window.__startReel) window.__startReel(); heroF.classList.add('is-bg'); }, 1100);   /* then, alone: Rainier → the action background */
     }
     var imgs=$$('.mk-p',mark), pending=imgs.length; imgs.forEach(function(im){ if(im.complete) pending--; else im.addEventListener('load',function(){pending--;},{once:true}); });
     window.addEventListener('resize',function(){ if(handed) place(); });
