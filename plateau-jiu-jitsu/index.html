@@ -9,10 +9,9 @@
 <script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- SIGN-FONT LAW: the storefront sign (cropped + 4x, 2026-09-20) is a wide geometric caps face — the same Lulo Clean the
-     wordmark on their own site uses. Syncopate 700 is the nearest Google face; Hanken Grotesk carries the body. Two fonts. -->
-<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260920b">
+<!-- Display: Anton (Hayden 9/21: the sign-matched Syncopate read boring — his call wins). Body: Hanken Grotesk. Two fonts. -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20260921">
 </head>
 <body>
 
@@ -38,17 +37,27 @@
 
 <span id="top"></span>
 <main>
-  <!-- ===================== #hero — THE SETUP.
-       Ground: their own footage of the mat room, pre-blurred and warm-graded, plays ONCE and holds (never loops).
-       Mark: their real logo — the board with its five empty silhouettes fades up, then each real piece drops onto
-       its square, the king last; a halo blooms under the king; the wordmark strikes in the sign's face. ~3 s,
-       deterministic CSS, reduced motion lands on the final frame. Nothing sits on the ground but the mark block. -->
+  <!-- ===================== #hero — THE BOARD → THE SETUP (Hayden 9/21: "a fun chess board animation leading into the logo").
+       Ground: their own footage, pre-blurred, plays ONCE and holds. A full-screen board lays down tile by tile, their
+       purple knight hops two L-moves, the board tilts and folds into the logo's board; the real pieces land, king last;
+       a halo blooms; the wordmark strikes. ~4.4 s, deterministic CSS, reduced motion lands on the final frame. -->
   <section class="hero setup" id="hero">
     <div class="hero-bg">
       <video class="ground" id="ground" muted playsinline preload="none" poster="images/ground-desktop.jpg"
         data-opening-poster="images/ground-desktop-start.jpg" data-desktop="videos/ground-desktop.mp4"
         data-phone="videos/ground-phone.mp4" data-phone-poster="images/ground-phone.jpg" data-phone-opening="images/ground-phone-start.jpg"
         aria-hidden="true" tabindex="-1"></video>
+      <!-- THE BOARD: a full-screen chessboard lays itself down over the room, the knight hops two L-moves,
+           then the whole board tilts and folds down into the logo's board below. Tiles are built inline so
+           the CSS timeline starts with them in place. -->
+      <div class="cb" id="cb" aria-hidden="true"><div class="cb-inner" id="cbInner"></div></div>
+      <script>(function(){var cb=document.getElementById('cb'),inner=document.getElementById('cbInner');if(!cb||!inner)return;
+var W=cb.clientWidth||window.innerWidth,H=cb.clientHeight||window.innerHeight;var cols=W>760?12:7,tile=Math.ceil(W/cols),rows=Math.ceil(H/tile)+1;
+inner.style.setProperty('--cols',cols);inner.style.setProperty('--tile',tile+'px');var g=document.createElement('div');g.className='cb-grid';var f=document.createDocumentFragment();
+for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var t=document.createElement('i');t.className='t'+(((r+c)%2)?' d':'');t.style.setProperty('--i',r+c);f.appendChild(t)}
+g.appendChild(f);inner.appendChild(g);
+var path=cols>7?[[3,1],[5,2],[4,4]]:[[1,2],[3,3],[2,5]];var k=document.createElement('img');k.src='images/pieces/knight.png';k.alt='';k.className='cb-knight';
+path.forEach(function(p,i){k.style.setProperty('--x'+i,(p[0]*tile-tile*.05)+'px');k.style.setProperty('--y'+i,(p[1]*tile-tile*.6)+'px')});inner.appendChild(k);})();</script>
     </div>
     <div class="hero-inner">
       <h1 class="sr-only">Plateau Jiu-Jitsu — Brazilian Jiu-Jitsu for kids and adults in Bonney Lake, Washington</h1>
@@ -94,16 +103,47 @@
     </div>
   </section>
 
-  <!-- ===================== #today — the live day timeline (a functional trust object for parents: which class is
-       on the mat right now, what's next, what's done). Class rows, not store hours — the hours band owns those. -->
-  <section class="section today-band" id="today">
+  <!-- ===================== #week — the whole week with a live tracker (the Enumclaw Adventures move, Hayden 9/21):
+       today's column lit, the running class pulsing "Happening now" with a progress bar, the next one queued,
+       finished rows dimmed. Class rows, not store hours — the hours band owns those. -->
+  <section class="section week-band" id="week">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Right now</p>
-        <h2 id="todayTitle">Today on <em>the mat</em></h2>
-        <p id="todayNote">Loading the day…</p>
+        <p class="eyebrow">This week</p>
+        <h2>Where the week is <em>right now</em></h2>
+        <p class="week-now" id="weekNow">checking the clock…</p>
       </div>
-      <ol class="today-rows reveal" id="todayRows" aria-live="polite"></ol>
+      <div class="week reveal" aria-label="Weekly class schedule">
+        <div class="week-col" data-day="1">
+          <div class="wk-head"><b>Mon</b><span>Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9:00</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+        <div class="week-col" data-day="2">
+          <div class="wk-head"><b>Tue</b><span>No-Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9:00</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+        <div class="week-col" data-day="3">
+          <div class="wk-head"><b>Wed</b><span>Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9:00</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+        <div class="week-col" data-day="4">
+          <div class="wk-head"><b>Thu</b><span>No-Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9:00</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+      </div>
+      <p class="week-note reveal" id="weekNote"></p>
     </div>
   </section>
 
@@ -117,24 +157,24 @@
       </figure>
       <div class="section-head reveal">
         <p class="eyebrow">Programs</p>
-        <h2>Kids 5–7 · Kids 8–13 · <em>Adults</em></h2>
-        <p>Same flat rate for every program, unlimited classes, and the first week is free. Tap a program.</p>
+        <h2>Five years old <em>and up</em></h2>
+        <p>Kids 5–7 at 4:15 · Kids 8–13 at 5:10 · Adults at 9 and 6:15 · Littles pre-K. One flat rate, unlimited classes, first week free. Tap a program — hover to see it move.</p>
       </div>
       <div class="programs">
         <details class="program reveal">
-          <summary><span class="pg-pic"><img src="images/door-classes.jpg" alt="A young student in a Plateau Jiu-Jitsu rashguard, the chess logo on the back, moving across the mats" loading="lazy" width="720" height="1280"></span><span class="pg-head"><span class="door-k">Kids 5–7</span><b>4:15 PM · Mon–Thu · 40 min</b></span><span class="chev"></span></summary>
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/door-classes.jpg" data-src="videos/card-kids57.mp4" aria-label="A young student in a Plateau Jiu-Jitsu rashguard, the chess logo on the back, moving across the mats"></video></span><span class="pg-head"><span class="door-k">Kids 5–7</span><b>4:15 PM · Mon–Thu · 40 min</b></span><span class="chev"></span></summary>
           <div class="pg-body"><p>Games first, then real technique — balance, falling safely, listening, and a coach on the mat the whole time. Phone or in person to book this one.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
         </details>
         <details class="program reveal">
-          <summary><span class="pg-pic"><img src="images/fb-01.jpg" alt="Plateau kids on the podium with medals at The Revolution 55, July 2025" loading="lazy" width="1536" height="2048"></span><span class="pg-head"><span class="door-k">Kids 8–13</span><b>5:10 PM · Mon–Thu · 60 min</b></span><span class="chev"></span></summary>
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/fb-01.jpg" data-src="videos/card-kids813.mp4" aria-label="Plateau kids on the podium with medals at The Revolution 55, July 2025"></video></span><span class="pg-head"><span class="door-k">Kids 8–13</span><b>5:10 PM · Mon–Thu · 60 min</b></span><span class="chev"></span></summary>
           <div class="pg-body"><p>Positions, escapes and live rounds at their size and pace. Some of them compete; none of them have to.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
         </details>
         <details class="program reveal">
-          <summary><span class="pg-pic"><img src="images/door-schedule.jpg" alt="Two adults rolling on the mats at Plateau Jiu-Jitsu while a coach watches" loading="lazy" width="1080" height="1080"></span><span class="pg-head"><span class="door-k">Adults</span><b>9 AM &amp; 6:15 PM · Mon–Thu</b></span><span class="chev"></span></summary>
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/door-schedule.jpg" data-src="videos/card-adults.mp4" aria-label="Two adults rolling on the mats at Plateau Jiu-Jitsu while a coach watches"></video></span><span class="pg-head"><span class="door-k">Adults</span><b>9 AM &amp; 6:15 PM · Mon–Thu</b></span><span class="chev"></span></summary>
           <div class="pg-body"><p>Gi on Monday and Wednesday, No-Gi on Tuesday and Thursday. Twenty spots a class, so you get coached, not counted.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
         </details>
         <details class="program reveal">
-          <summary><span class="pg-pic"><img src="images/ig-DLQkGitTgkc.jpg" alt="Two little kids in gis playing a movement game on the mats under the chess mural" loading="lazy" width="640" height="1136"></span><span class="pg-head"><span class="door-k">Littles · pre-K</span><b>Call for the next start date</b></span><span class="chev"></span></summary>
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/ig-DLQkGitTgkc.jpg" data-src="videos/card-littles.mp4" aria-label="Two little kids in gis playing a movement game on the mats under the chess mural"></video></span><span class="pg-head"><span class="door-k">Littles · pre-K</span><b>Call for the next start date</b></span><span class="chev"></span></summary>
           <div class="pg-body"><p>Movement, games and the first words of the language for the youngest ones. Dates come straight from John.</p><p class="pg-price">$75<a href="tel:+12537971223">Call (253) 797-1223 →</a></p></div>
         </details>
       </div>
@@ -150,7 +190,7 @@
       </figure>
       <div class="coach-copy reveal">
         <p class="eyebrow">Coaches</p>
-        <h2>On the mat <em>with you</em></h2>
+        <h2>Two coaches. <em>Every class.</em></h2>
         <p>Both coaches are on the mats with every class — the kids at 4:15, the adults at 6:15. Patient with a nervous first-timer, sharp with a purple belt.</p>
         <ul class="lineage">
           <li><b>John Proud</b> — owner and head coach. Black belt under Jeff Hougland, December 2021. Almost two decades on the mats.</li>
@@ -183,7 +223,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Google reviews</p>
-        <h2>5.0 stars from <em>18 reviews</em></h2>
+        <h2>Eighteen reviews. <em>Eighteen five-stars.</em></h2>
         <p>Not one of them under five — parents on the kids' classes, grown students on the rolls.</p>
       </div>
       <div class="rating-card reveal">
@@ -252,6 +292,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=20260920b"></script>
+<script src="js/site.js?v=20260921"></script>
 </body>
 </html>

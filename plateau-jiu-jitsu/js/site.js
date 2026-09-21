@@ -144,7 +144,34 @@ function customClose(p, close){ return close; }
     }
   }
 
-  applyStatus(); setInterval(applyStatus,60000);
+  /* ---------- THE WEEK, LIVE: progress bar on the running class + the one-line "where the week is" readout ---------- */
+  function trackNow(){
+    var p=pacificNow(), line=$('#weekNow'); if(!line) return;
+    var now=$('.wk-row.now'), nxt=$('.week-col.today .wk-row.next');
+    $$('.wk-row').forEach(function(r){r.style.removeProperty('--pct');r.querySelector('.wk-tag').removeAttribute('data-left')});
+    if(now){
+      var s0=parseFloat(now.getAttribute('data-start')), e0=parseFloat(now.getAttribute('data-end'));
+      var pct=Math.max(0,Math.min(100,(p.h-s0)/(e0-s0)*100)), left=Math.max(1,Math.round((e0-p.h)*60));
+      now.style.setProperty('--pct',pct.toFixed(1)+'%'); now.querySelector('.wk-tag').setAttribute('data-left',left+' min left');
+      line.className='week-now is-on'; line.textContent='Right now · '+$('.wk-who',now).textContent+' on the mat · '+left+' min left';
+    } else if(nxt){
+      line.className='week-now'; line.textContent='Next up · '+$('.wk-time',nxt).textContent+' '+$('.wk-who',nxt).textContent+' · '+(CLASS_DAYS[p.day]||'');
+    } else {
+      var k=1; while(!CLASS_DAYS[(p.day+k)%7]) k++; var nd=(p.day+k)%7;
+      line.className='week-now'; line.textContent='No classes right now · back '+(k===1?'tomorrow':dayName(nd))+' at 9 am · '+CLASS_DAYS[nd];
+    }
+  }
+  applyStatus(); trackNow(); setInterval(function(){applyStatus();trackNow()},30000);
+
+  /* ---------- program cards: hover (or focus) plays the clip; on phones it plays when the card is opened ---------- */
+  $$('.program').forEach(function(card){
+    var v=$('video',card); if(!v) return;
+    function play(){ if(!v.getAttribute('src')){v.src=v.getAttribute('data-src');v.load();} v.play().catch(function(){}); }
+    function stop(){ v.pause(); }
+    card.addEventListener('mouseenter',play); card.addEventListener('mouseleave',stop);
+    card.addEventListener('focusin',play); card.addEventListener('focusout',stop);
+    card.addEventListener('toggle',function(){ card.open?play():stop(); });
+  });
 
   /* ---------- THE SETUP hero: the ground is their own footage, pre-blurred, plays ONCE and holds on its last
      frame (never loops). Poster = the final frame unless the film will actually play. Reduced motion / save-data /
@@ -169,30 +196,6 @@ function customClose(p, close){ return close; }
       document.addEventListener('visibilitychange',function(){if(document.hidden&&!ground.ended)ground.pause();else if(!ground.ended)ground.play().catch(function(){})});
     } else groundDone();
   }
-
-  /* ---------- TODAY ON THE MAT: the live day timeline — done rows dim, the running class is lit, the next is
-     marked. Non-class days (and closures) show the next class day instead. Same CLASSES data as the week board. */
-  function renderToday(){
-    var rows=$('#todayRows'), title=$('#todayTitle'), note=$('#todayNote'); if(!rows||!title||!note) return;
-    var p=pacificNow(), closure=customClosure(p), day=p.day, k=0;
-    if(closure||!CLASS_DAYS[day]){k=1; while(!CLASS_DAYS[(p.day+k)%7]) k++; day=(p.day+k)%7;}
-    var isToday=(k===0), when=(k===1?'tomorrow':dayName(day));
-    title.innerHTML=(isToday?'Today':dayName(day))+' on <em>the mat</em>';
-    note.textContent= closure ? 'Closed today for '+closure+'. Back '+when+' — a '+CLASS_DAYS[day]+' day.'
-                    : isToday ? 'A '+CLASS_DAYS[day]+' day. Doors open when class is on.'
-                    : 'No classes today. Back on the mat '+when+' at 9 am — a '+CLASS_DAYS[day]+' day.';
-    var nextMarked=false;
-    rows.innerHTML=CLASSES.map(function(c){
-      var st='', tag='';
-      if(isToday){
-        if(p.h>=c.start&&p.h<c.end){st='now';tag='On the mat now'}
-        else if(p.h>=c.end){st='done';tag='Done'}
-        else if(!nextMarked){st='next';nextMarked=true;tag='Next up'}
-      }
-      return '<li class="'+st+'"><span class="tr-time">'+fmt(c.start)+'</span><span class="tr-who">'+c.who+'<small>'+CLASS_DAYS[day]+' · '+c.mins+' min</small></span><span class="tr-tag">'+tag+'</span></li>';
-    }).join('');
-  }
-  renderToday(); setInterval(renderToday,60000);
 
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS,CLASSES:CLASSES};
 
