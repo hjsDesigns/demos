@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Display: Anton (Hayden 9/21: the sign-matched Syncopate read boring — his call wins). Body: Hanken Grotesk. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260921f">
+<link rel="stylesheet" href="css/style.css?v=20260921h">
 </head>
 <body>
 
@@ -43,30 +43,16 @@
        a halo blooms; the wordmark strikes. ~4.4 s, deterministic CSS, reduced motion lands on the final frame. -->
   <section class="hero setup" id="hero">
     <div class="hero-bg">
-      <video class="ground" id="ground" muted playsinline preload="none" poster="images/ground-desktop.jpg"
-        data-opening-poster="images/ground-desktop-start.jpg" data-desktop="videos/ground-desktop.mp4"
-        data-phone="videos/ground-phone.mp4" data-phone-poster="images/ground-phone.jpg" data-phone-opening="images/ground-phone-start.jpg"
+      <!-- the ground: a continuous reel of their real rolling (Hayden 9/21: "cool action shots in the background at all times") -->
+      <video class="ground" id="ground" muted playsinline loop preload="none" poster="images/reel-desktop-start.jpg"
+        data-opening-poster="images/reel-desktop-start.jpg" data-desktop="videos/reel-desktop.mp4"
+        data-phone="videos/reel-phone.mp4" data-phone-poster="images/reel-phone-start.jpg" data-phone-opening="images/reel-phone-start.jpg"
         aria-hidden="true" tabindex="-1"></video>
       <!-- THE BOARD: a full-screen chessboard lays itself down over the room, the knight hops two L-moves,
            then the whole board tilts and folds down into the logo's board below. Tiles are built inline so
            the CSS timeline starts with them in place. -->
       <div class="cb" id="cb" aria-hidden="true"><div class="cb-inner" id="cbInner"></div></div>
-      <script>(function(){var cb=document.getElementById('cb'),inner=document.getElementById('cbInner');if(!cb||!inner)return;
-var W=cb.clientWidth||window.innerWidth,H=cb.clientHeight||window.innerHeight;var cols=W>760?12:7,tile=Math.ceil(W/cols),rows=Math.ceil(H/tile)+1;
-inner.style.setProperty('--cols',cols);inner.style.setProperty('--tile',tile+'px');var g=document.createElement('div');g.className='cb-grid';var f=document.createDocumentFragment();
-for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var t=document.createElement('i');t.className='t'+(((r+c)%2)?' d':'');t.style.setProperty('--i',r+c);f.appendChild(t)}
-g.appendChild(f);inner.appendChild(g);
-/* every piece moves: pawn pushes, rook slides the rank, bishop cuts the diagonal, the knight hops twice and lands
-   on a square that attacks the king, the king flinches. Paths are tile coordinates [col,row]. */
-var D=cols>7;var P=[
- ['king',  D?[[6,5]]:[[3,6]]],
- ['pawn',  D?[[3,7],[3,5]]:[[1,8],[1,6]]],
- ['rook',  D?[[11,5],[8,5]]:[[6,6],[5,6]]],
- ['bishop',D?[[9,7],[7,5]]:[[6,8],[4,6]]],
- ['knight',D?[[0,3],[2,4],[4,5]]:[[0,5],[2,6],[2,6]]]];
-P.forEach(function(pc){var k=document.createElement('img');k.src='images/pieces/'+pc[0]+'.png';k.alt='';k.className='cb-p cb-p-'+pc[0];
- var path=pc[1];for(var i=0;i<3;i++){var q=path[Math.min(i,path.length-1)];k.style.setProperty('--x'+i,(q[0]*tile-tile*.05)+'px');k.style.setProperty('--y'+i,(q[1]*tile-tile*(pc[0]==='king'?.9:.6))+'px')}
- inner.appendChild(k)});})();</script>
+
     </div>
     <div class="hero-inner">
       <h1 class="sr-only">Plateau Jiu-Jitsu — Brazilian Jiu-Jitsu for kids and adults in Bonney Lake, Washington</h1>
@@ -86,6 +72,26 @@ P.forEach(function(pc){var k=document.createElement('img');k.src='images/pieces/
         <a href="schedule.html" class="hero-link">See the schedule →</a>
       </div>
     </div>
+    <script>(function(){var cb=document.getElementById('cb'),inner=document.getElementById('cbInner'),hero=document.getElementById('hero'),stage=document.querySelector('.stage');if(!cb||!inner||!hero||!stage)return;
+var W=cb.clientWidth||window.innerWidth,H=cb.clientHeight||window.innerHeight;var cols=W>760?12:7,tile=Math.ceil(W/cols),rows=Math.ceil(H/tile)+1;
+inner.style.setProperty('--cols',cols);inner.style.setProperty('--tile',tile+'px');var g=document.createElement('div');g.className='cb-grid';var f=document.createDocumentFragment();
+for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var t=document.createElement('i');t.className='t'+(((r+c)%2)?' d':'');t.style.setProperty('--i',r+c);f.appendChild(t)}
+g.appendChild(f);inner.appendChild(g);
+/* every piece moves on the big board and ends in the logo's order; then the board falls backwards and each piece
+   glides to the exact box of its twin in the logo (measured live), where the logo's piece takes over. */
+var D=cols>7;
+var SPEC={pawn:{pct:[16.4,36,11.1,28.5],h:1.6},knight:{pct:[28.1,31.3,13.7,39.5],h:1.6},king:{pct:[42.3,2.9,17.6,77.6],h:1.95},bishop:{pct:[60.2,15.5,13.7,55.2],h:1.6},rook:{pct:[75.4,37.7,9.9,26.9],h:1.6}};
+var PATH={king:D?[[6,5]]:[[3,6]],pawn:D?[[3,7],[3,5]]:[[1,8],[1,6]],rook:D?[[11,5],[8,5]]:[[6,6],[5,6]],bishop:D?[[9,7],[7,5]]:[[6,8],[4,6]],knight:D?[[0,3],[2,4],[4,5]]:[[0,5],[2,6],[2,6]]};
+var pieces={};
+Object.keys(PATH).forEach(function(name){var sp=SPEC[name],asp=(sp.pct[2]/sp.pct[3])*(1400/872);var h=tile*sp.h,w=h*asp;
+ var k=document.createElement('img');k.src='images/pieces/'+name+'.png';k.alt='';k.className='cb-p cb-p-'+name;k.style.width=w+'px';k.style.height=h+'px';
+ var path=PATH[name];for(var i=0;i<3;i++){var q=path[Math.min(i,path.length-1)];k.style.setProperty('--x'+i,(q[0]*tile+tile/2-w/2)+'px');k.style.setProperty('--y'+i,((q[1]+1)*tile-h)+'px')}
+ inner.appendChild(k);pieces[name]={el:k,w:w,h:h}});
+function aim(){var hr=hero.getBoundingClientRect(),sr=stage.getBoundingClientRect();var sx=sr.left-hr.left,sy=sr.top-hr.top;
+ Object.keys(pieces).forEach(function(name){var pc=SPEC[name].pct,o=pieces[name];var tw=pc[2]/100*sr.width,th=pc[3]/100*sr.height;
+  o.el.style.setProperty('--tx',(sx+pc[0]/100*sr.width)+'px');o.el.style.setProperty('--ty',(sy+pc[1]/100*sr.height)+'px');o.el.style.setProperty('--ts',(th/o.h).toFixed(4))})}
+aim();window.addEventListener('load',aim);window.addEventListener('resize',aim);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(aim);})();</script>
   </section>
 
   <!-- ===================== #hours — the one place hours, status and address live -->
@@ -318,7 +324,8 @@ P.forEach(function(pc){var k=document.createElement('img');k.src='images/pieces/
   </section>
 
   <!-- ===================== #cta -->
-  <section class="section section-dark cta-band ground" id="cta">
+  <section class="section section-dark cta-band" id="cta">
+    <video class="band-reel" muted playsinline loop autoplay preload="metadata" poster="images/ground-desktop.jpg" src="videos/reel-cta.mp4" aria-hidden="true" tabindex="-1"></video>
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Bonney Lake's own academy</p>
@@ -370,6 +377,6 @@ P.forEach(function(pc){var k=document.createElement('img');k.src='images/pieces/
 </footer>
 
 <span class="cur-dot" aria-hidden="true"></span><span class="cur-ring" aria-hidden="true"></span>
-<script src="js/site.js?v=20260921f"></script>
+<script src="js/site.js?v=20260921h"></script>
 </body>
 </html>

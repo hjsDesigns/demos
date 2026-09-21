@@ -893,3 +893,33 @@ body{background:var(--bg);color:var(--ink)}
 @keyframes rvRibbon{to{transform:translateX(calc(-50% - 8px))}}
 @media (max-width:640px){.rv-card{flex-basis:300px}.rv-track{animation-duration:60s}}
 @media (prefers-reduced-motion:reduce){.rv-track{animation:none;overflow-x:auto;width:auto}.rv-rotor{-webkit-mask-image:none;mask-image:none}}
+
+/* ---------- THE CATCH (Hayden 9/21): the board falls backwards, the pieces catch exactly where the logo is ---------- */
+.cb{z-index:4;perspective:1200px}
+.cb-grid{transform-origin:50% 100%;backface-visibility:hidden}
+.js .setup .cb-inner{animation:none}
+.setup .hero-bg img.cb-p{transform-origin:0 0;width:auto;height:auto}
+@keyframes boardFall{0%{transform:rotateX(0);opacity:1}55%{opacity:.9}100%{transform:rotateX(84deg) translateZ(-120px);opacity:0}}
+@keyframes pCatch{0%{transform:translate(var(--x2),var(--y2)) scale(1)}100%{transform:translate(var(--tx),var(--ty)) scale(var(--ts))}}
+@keyframes pHide{to{opacity:0}}
+@keyframes stShow{to{opacity:1;transform:none}}
+.js .setup .cb-grid{animation:tilesOut 0s linear 99999s,boardFall .95s cubic-bezier(.55,0,.35,1) 2.85s forwards}
+.js .setup .hero-bg img.cb-p-king{animation:kingFlinch 1.95s var(--ease) .85s forwards,pCatch .9s cubic-bezier(.5,0,.25,1) 2.85s forwards,pHide .01s linear 3.76s forwards}
+.js .setup .hero-bg img.cb-p-pawn{animation:pSlide .75s var(--ease) 1.0s forwards,pCatch .9s cubic-bezier(.5,0,.25,1) 2.85s forwards,pHide .01s linear 3.76s forwards}
+.js .setup .hero-bg img.cb-p-rook{animation:pSlide .75s var(--ease) 1.25s forwards,pCatch .9s cubic-bezier(.5,0,.25,1) 2.85s forwards,pHide .01s linear 3.76s forwards}
+.js .setup .hero-bg img.cb-p-bishop{animation:pSlide .8s var(--ease) 1.45s forwards,pCatch .9s cubic-bezier(.5,0,.25,1) 2.85s forwards,pHide .01s linear 3.76s forwards}
+.js .setup .hero-bg img.cb-p-knight{animation:kHop 1.15s var(--ease) 1.6s forwards,pCatch .9s cubic-bezier(.5,0,.25,1) 2.85s forwards,pHide .01s linear 3.76s forwards}
+/* the logo's board rises under the falling pieces; its pieces take over the instant the big ones land */
+.js .setup .st-board{animation:stBoard .7s var(--ease) 2.95s forwards}
+.js .setup .p-pawn,.js .setup .p-rook,.js .setup .p-knight,.js .setup .p-bishop,.js .setup .p-king{animation:stShow .01s linear 3.75s forwards}
+.js .setup .st-halo{animation:stHalo 1.1s var(--ease) 3.85s forwards}
+.js .setup .wm-hero{animation:markWipe .6s var(--ease-2) 3.95s forwards}
+.js .setup .wm-hero::after{animation:markSweep .7s var(--ease-2) 3.95s forwards}
+.js .setup .hero-sub{animation-delay:4.45s}.js .setup .hero-actions{animation-delay:4.6s}
+
+/* ---------- action in the background at all times: the hero reel loops; the closing band carries its own loop ---------- */
+.setup .hero-bg::before{background:radial-gradient(60% 56% at 50% 46%,color-mix(in srgb,var(--dark) 72%,transparent) 0%,color-mix(in srgb,var(--dark) 42%,transparent) 60%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 36%,transparent) 0%,transparent 24%,transparent 56%,var(--bg) 100%)}
+.cta-band{position:relative;isolation:isolate;overflow:hidden}
+.cta-band .band-reel{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;opacity:.55}
+.cta-band::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg-2) 0,transparent 18%,transparent 80%,#1A1D22 100%)}
+@media (prefers-reduced-motion:reduce){.cta-band .band-reel{display:none}}

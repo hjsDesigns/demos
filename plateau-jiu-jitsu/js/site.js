@@ -190,10 +190,11 @@ function customClose(p, close){ return close; }
       ground.poster=startPoster; ground.muted=true; ground.defaultMuted=true; ground.playsInline=true;
       ground.src=src; ground.load();
       ground.addEventListener('playing',function(){hero.classList.add('is-playing')},{once:true});
-      ground.addEventListener('ended',groundDone,{once:true});
+      ground.addEventListener('playing',groundDone,{once:true});
       ground.addEventListener('error',function(){ground.poster=endPoster;groundDone()},{once:true});
       var pr=ground.play(); if(pr&&pr.catch) pr.catch(function(){ground.poster=endPoster;groundDone()});
-      document.addEventListener('visibilitychange',function(){if(document.hidden&&!ground.ended)ground.pause();else if(!ground.ended)ground.play().catch(function(){})});
+      document.addEventListener('visibilitychange',function(){if(document.hidden)ground.pause();else ground.play().catch(function(){})});
+      var reels=$$('.band-reel');reels.forEach(function(v){v.muted=true;v.play().catch(function(){})});
     } else groundDone();
   }
 
