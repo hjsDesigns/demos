@@ -149,30 +149,39 @@ function customClose(p, close){ return close; }
      hand off immediately so the mark always arrives. ---------- */
   var film=$('#film'), heroF=$('#hero'), stageEl=$('.stage');
   if(film&&heroF&&stageEl){
-    /* where the five real pieces sit in the film's last frame (fractions of the frame), measured 2026-09-21 */
-    var REAL={"pawn": [0.171, 0.448, 0.083, 0.269], "knight": [0.3094, 0.4006, 0.0828, 0.3137], "king": [0.4516, 0.2521, 0.0969, 0.472], "bishop": [0.6, 0.347, 0.092, 0.368], "rook": [0.733, 0.423, 0.1, 0.292]};
-    var phoneQ=window.matchMedia('(max-width:760px)'), FILM_SCALE=phoneQ.matches?1.18:1.12, FILM_POS=phoneQ.matches?0.38:0.34;
+    /* the five real pieces on the film's last frame (fractions of the frame), measured 2026-09-21 on film-logo.mp4 (the re-shoot: the logo's own row) */
+    var REAL={"pawn":[0.198,0.407,0.083,0.279],"knight":[0.308,0.368,0.101,0.365],"king":[0.437,0.192,0.128,0.589],"bishop":[0.597,0.311,0.100,0.413],"rook":[0.729,0.408,0.090,0.273]};
+    var phoneQ=window.matchMedia('(max-width:760px)'), FILM_SCALE=phoneQ.matches?1.18:1, FILM_POS=phoneQ.matches?0.33:0.20;
     var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches, handed=false, settled=false;
-    function frameRect(){ var hr=heroF.getBoundingClientRect(), contain=phoneQ.matches, ar=16/9, bw=hr.width, bh=hr.height;
+    function frameRect(){ var hr=heroF.getBoundingClientRect(), contain=phoneQ.matches, ar=(film.videoWidth&&film.videoHeight)?film.videoWidth/film.videoHeight:1284/716, bw=hr.width, bh=hr.height;
       var rw=contain?Math.min(bw,bh*ar):Math.max(bw,bh*ar), rh=rw/ar, x=(bw-rw)*0.5, y=(bh-rh)*FILM_POS, cx=bw/2, cy=bh/2, s=FILM_SCALE;
       return {x:cx+(x-cx)*s, y:cy+(y-cy)*s, w:rw*s, h:rh*s}; }
-    /* 1. every vector piece appears exactly on its real twin (same height, same bottom-centre) */
+    /* 1. the logo forms ON the film: the whole stage is fitted (one scale, one shift) so its pieces sit on the real ones, then each piece gets the last few px onto its twin */
     function overlay(){ var fr=frameRect(), hr=heroF.getBoundingClientRect(), sr=stageEl.getBoundingClientRect();
-      Object.keys(REAL).forEach(function(n){ var el=$('.st-piece.p-'+n,stageEl); if(!el) return; var b=REAL[n];
-        var bx=fr.x+b[0]*fr.w, by=fr.y+b[1]*fr.h, bw=b[2]*fr.w, bh=b[3]*fr.h;
-        var nx=(sr.left-hr.left)+el.offsetLeft, ny=(sr.top-hr.top)+el.offsetTop, nw=el.offsetWidth, nh=el.offsetHeight;
-        var k=bh/nh, dx=(bx+bw/2)-(nx+nw*k/2), dy=(by+bh)-(ny+nh*k);
-        el.style.transition='none'; el.style.transformOrigin='0 0'; el.style.transform='translate('+dx.toFixed(2)+'px,'+dy.toFixed(2)+'px) scale('+k.toFixed(4)+')';
-        void el.offsetWidth; el.style.transition='opacity .55s cubic-bezier(.4,0,.2,1)'; el.style.opacity='1'; }); }
-    /* 2. then the five shift into the logo while its mountains and board rise */
+      var sx=sr.left-hr.left, sy=sr.top-hr.top, P=[], Q=[], els={};
+      Object.keys(REAL).forEach(function(n){ var el=$('.st-piece.p-'+n,stageEl); if(!el) return; els[n]=el; var b=REAL[n];
+        var bx=fr.x+b[0]*fr.w, by=fr.y+b[1]*fr.h, bw=b[2]*fr.w, bh=b[3]*fr.h, nx=el.offsetLeft, ny=el.offsetTop, nw=el.offsetWidth, nh=el.offsetHeight;
+        P.push([bx+bw/2,by],[bx+bw/2,by+bh]); Q.push([nx+nw/2,ny],[nx+nw/2,ny+nh]); });
+      var n=P.length, px=0,py=0,qx=0,qy=0,i; for(i=0;i<n;i++){px+=P[i][0];py+=P[i][1];qx+=Q[i][0];qy+=Q[i][1]} px/=n;py/=n;qx/=n;qy/=n;
+      var num=0,den=0; for(i=0;i<n;i++){num+=(Q[i][0]-qx)*(P[i][0]-px)+(Q[i][1]-qy)*(P[i][1]-py); den+=(Q[i][0]-qx)*(Q[i][0]-qx)+(Q[i][1]-qy)*(Q[i][1]-qy)}
+      var k=den?num/den:1, tx=px-k*qx, ty=py-k*qy;   /* stage-local → hero: p' = k·p + (tx,ty) */
+      stageEl.style.transition='none'; stageEl.style.transformOrigin='0 0'; stageEl.style.transform='translate('+(tx-sx).toFixed(2)+'px,'+(ty-sy).toFixed(2)+'px) scale('+k.toFixed(4)+')';
+      Object.keys(els).forEach(function(nm){ var el=els[nm], b=REAL[nm];
+        var bx=fr.x+b[0]*fr.w, by=fr.y+b[1]*fr.h, bw=b[2]*fr.w, bh=b[3]*fr.h, nx=el.offsetLeft, ny=el.offsetTop, nw=el.offsetWidth, nh=el.offsetHeight;
+        var kk=bh/(nh*k), dx=((bx+bw/2)-tx)/k-(nx+nw*kk/2), dy=((by+bh)-ty)/k-(ny+nh*kk);
+        el.style.transition='none'; el.style.transformOrigin='0 0'; el.style.transform='translate('+dx.toFixed(2)+'px,'+dy.toFixed(2)+'px) scale('+kk.toFixed(4)+')';
+        void el.offsetWidth; el.style.transition='opacity .5s cubic-bezier(.4,0,.2,1)'; el.style.opacity='1'; });
+      void stageEl.offsetWidth; }
+    /* 2. the formed logo settles into its place as ONE object (stage + pieces on the same curve) while the name rises */
     function settle(){ if(settled) return; settled=true;
-      $$('.st-piece',stageEl).forEach(function(el){ el.style.transition='transform .9s cubic-bezier(.4,0,.2,1)'; el.style.transform='none'; });
+      stageEl.style.transition='transform 1.1s cubic-bezier(.4,0,.2,1)'; stageEl.style.transform='none';
+      $$('.st-piece',stageEl).forEach(function(el){ el.style.transition='transform 1.1s cubic-bezier(.4,0,.2,1)'; el.style.transform='none'; });
       heroF.classList.add('is-settled'); }
     function handoff(){ if(handed) return; handed=true; try{ film.pause(); }catch(e){}
-      if(fReduce){ $$('.st-piece',stageEl).forEach(function(el){el.style.opacity='1';el.style.transform='none'}); heroF.classList.add('is-film-done','is-settled','is-bg'); return; }
-      overlay(); heroF.classList.add('is-film-done');
-      setTimeout(settle, 900);
-      setTimeout(function(){ if(window.__startReel) window.__startReel(); heroF.classList.add('is-bg'); }, 2400);   /* 3. then, alone: Rainier → the action background, behind the logo */
+      if(fReduce){ $$('.st-piece',stageEl).forEach(function(el){el.style.opacity='1';el.style.transform='none'}); stageEl.style.transform='none'; heroF.classList.add('is-film-done','is-settled','is-bg'); return; }
+      overlay(); heroF.classList.add('is-film-done');                                                                 /* pieces onto their twins; the logo's mountains + board fade in over the photo */
+      setTimeout(function(){ if(window.__startReel) window.__startReel(); heroF.classList.add('is-bg'); }, 450);   /* Rainier → the room, behind the logo */
+      setTimeout(settle, 1500);
     }
     if(fReduce){ handoff(); }
     else{
