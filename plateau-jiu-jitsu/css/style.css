@@ -1148,3 +1148,5 @@ body{background:var(--bg);color:var(--ink)}
 @media (max-width:760px){.setup .hero-bg .film-keep{object-fit:contain;object-position:50% 38%;transform:scale(1.18);-webkit-mask-image:radial-gradient(ellipse 62% 70% at 50% 50%,#000 42%,transparent 78%);mask-image:radial-gradient(ellipse 62% 70% at 50% 50%,#000 42%,transparent 78%)}}
 .js .setup.is-bg .hero-bg .film-keep{opacity:1}
 .setup .hero-bg .mark-live{z-index:4}
+/* phone: feather the kept centre inside the strip's own height so no hard edge shows */
+@media (max-width:760px){.setup .hero-bg .film-keep{-webkit-mask-image:radial-gradient(ellipse 58% 20% at 50% 40%,#000 38%,transparent 82%);mask-image:radial-gradient(ellipse 58% 20% at 50% 40%,#000 38%,transparent 82%)}}
