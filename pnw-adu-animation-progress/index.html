@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>PNW ADU — animation progress</title>
+  <style>
+    :root { color-scheme:dark; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:#101916; color:#f1eee4; }
+    * { box-sizing:border-box; }
+    body { margin:0; }
+    main { height:100vh; height:100dvh; display:flex; flex-direction:column; gap:12px; padding:18px; }
+    header { flex:none; }
+    h1 { font-size:clamp(18px,2.2vw,25px); line-height:1.2; margin:0 0 6px; }
+    p { margin:0; color:#bdc7bd; font-size:14px; line-height:1.4; }
+    .choices { display:flex; flex-wrap:wrap; gap:8px; flex:none; }
+    button { appearance:none; border:1px solid #66776b; border-radius:7px; background:#1c2821; color:inherit; padding:10px 13px; font-family:inherit; font-size:14px; font-weight:600; line-height:1.2; cursor:pointer; min-height:42px; }
+    button[aria-pressed="true"] { background:#e3c180; border-color:#e3c180; color:#16221b; }
+    button:focus-visible { outline:3px solid #f4e5b9; outline-offset:3px; }
+    .viewer { flex:1; min-height:0; display:flex; justify-content:center; background:#080e0b; border-radius:8px; overflow:hidden; }
+    video { display:block; width:100%; height:100%; min-height:0; object-fit:contain; }
+    @media (max-width:480px) { main { padding:12px; gap:10px; } button { flex:1; padding:10px 8px; font-size:13px; } p { font-size:13px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>House animation progress</h1>
+      <p id="details" aria-live="polite">Layer timing mock · September 19, 5:26 PM · Work in progress</p>
+    </header>
+    <nav class="choices" aria-label="Choose a progress video">
+      <button type="button" data-video="mock" aria-pressed="true">Layer timing mock</button>
+      <button type="button" data-video="camera" aria-pressed="false">Latest camera test</button>
+    </nav>
+    <div class="viewer">
+      <video id="player" controls playsinline preload="metadata" aria-label="Layer timing mock" src="videos/MOCK-real-layers-v2.mp4"></video>
+    </div>
+  </main>
+  <script>
+    const base = 'videos/';
+    const clips = {
+      mock: { file: 'MOCK-real-layers-v2.mp4', label: 'Layer timing mock', date: 'September 19, 5:26 PM' },
+      camera: { file: 'diagnostic-drone-move.mp4', label: 'Latest camera test', date: 'September 19, 8:47 PM' }
+    };
+    const player = document.getElementById('player');
+    const details = document.getElementById('details');
+    const buttons = Array.from(document.querySelectorAll('[data-video]'));
+    buttons.forEach(button => button.addEventListener('click', () => {
+      if (button.getAttribute('aria-pressed') === 'true') return;
+      const clip = clips[button.dataset.video];
+      player.pause();
+      buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+      details.textContent = clip.label + ' · ' + clip.date + ' · Work in progress';
+      player.setAttribute('aria-label', clip.label);
+      player.src = base + clip.file;
+      player.load();
+    }));
+  </script>
+</body>
+</html>
