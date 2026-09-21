@@ -166,7 +166,7 @@ function customClose(p, close){ return close; }
   /* ---------- program cards: hover (or focus) plays the clip; on phones it plays when the card is opened ---------- */
   $$('.program').forEach(function(card){
     var v=$('video',card); if(!v) return;
-    function play(){ if(!v.getAttribute('src')){v.src=v.getAttribute('data-src');v.load();} v.play().catch(function(){}); }
+    function play(){ v.play().catch(function(){}); }
     function stop(){ v.pause(); }
     card.addEventListener('mouseenter',play); card.addEventListener('mouseleave',stop);
     card.addEventListener('focusin',play); card.addEventListener('focusout',stop);
