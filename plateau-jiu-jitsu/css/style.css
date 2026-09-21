@@ -1194,3 +1194,7 @@ body{background:var(--bg);color:var(--ink)}
 .js .setup.is-bg .hero-bg .ground{opacity:1 !important;transition:opacity 1.4s cubic-bezier(.4,0,.2,1)}
 .js .setup.is-bg .hero-bg .film-echo{opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)}
 @media (prefers-reduced-motion:reduce){.js .setup .stage{transform:none !important}}
+
+/* ═══ BELT COLORS FILM BACK IN THE HERO (2026-09-21, Hayden's call) — same hand-off mechanics, the film framed as before. ═══ */
+.setup .hero-bg .film{object-fit:cover;object-position:50% 34%;transform:scale(1.12);transform-origin:50% 50%}
+@media (max-width:760px){.setup .hero-bg .film{object-fit:contain;object-position:50% 38%;transform:scale(1.18)}}
