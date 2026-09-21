@@ -884,3 +884,12 @@ body{background:var(--bg);color:var(--ink)}
 .ground::before{opacity:.42}
 .hdr-live{background:var(--paper)}
 .setup .hero-bg::before{background:radial-gradient(56% 50% at 50% 46%,color-mix(in srgb,var(--dark) 62%,transparent) 0%,color-mix(in srgb,var(--dark) 34%,transparent) 62%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 38%,transparent) 0%,transparent 26%,transparent 58%,var(--bg) 100%)}
+
+/* ---------- reviews as an endless ribbon (Hayden 9/21: "a continuous endless carousel, not slide show frames") ---------- */
+.rv-rotor{display:block;overflow:hidden;padding:6px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.rv-track{display:flex;gap:16px;width:max-content;overflow:visible;scroll-snap-type:none;padding:0;animation:rvRibbon 75s linear infinite;will-change:transform}
+.rv-track:hover,.rv-track.is-held{animation-play-state:paused}
+.rv-card{flex:0 0 360px;min-height:0}
+@keyframes rvRibbon{to{transform:translateX(calc(-50% - 8px))}}
+@media (max-width:640px){.rv-card{flex-basis:300px}.rv-track{animation-duration:60s}}
+@media (prefers-reduced-motion:reduce){.rv-track{animation:none;overflow-x:auto;width:auto}.rv-rotor{-webkit-mask-image:none;mask-image:none}}

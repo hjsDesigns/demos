@@ -278,18 +278,11 @@ function customClose(p, close){ return close; }
   }
 
 
-  /* ---------- rotating reviews: advances on its own every 6.5 s, pauses under the pointer / touch, arrows + swipe ---------- */
+  /* ---------- reviews ribbon: pure CSS marquee; a finger on it pauses it (hover pauses via CSS) ---------- */
   var track=$('#rvTrack');
   if(track){
-    var cards=$$('.rv-card',track), idx=0, hold=false, reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    function goTo(i){idx=(i+cards.length)%cards.length;track.scrollTo({left:cards[idx].offsetLeft-track.offsetLeft,behavior:reduce?'auto':'smooth'})}
-    var prev=$('.rv-prev'), next=$('.rv-next');
-    if(prev) prev.addEventListener('click',function(){goTo(idx-1);hold=true});
-    if(next) next.addEventListener('click',function(){goTo(idx+1);hold=true});
-    ['mouseenter','touchstart','focusin'].forEach(function(e){track.addEventListener(e,function(){hold=true},{passive:true})});
-    ['mouseleave','touchend','focusout'].forEach(function(e){track.addEventListener(e,function(){hold=false},{passive:true})});
-    track.addEventListener('scroll',function(){var l=track.scrollLeft,best=0,bd=1e9;cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft-track.offsetLeft-l);if(d<bd){bd=d;best=i}});idx=best},{passive:true});
-    if(!reduce) setInterval(function(){if(!hold&&document.visibilityState==='visible') goTo(idx+1)},6500);
+    track.addEventListener('touchstart',function(){track.classList.add('is-held')},{passive:true});
+    track.addEventListener('touchend',function(){setTimeout(function(){track.classList.remove('is-held')},1200)},{passive:true});
   }
 
   /* ---------- the cursor: dot follows exactly, ring lags; grows over anything tappable; the big buttons pull toward it.
