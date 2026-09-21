@@ -953,3 +953,24 @@ body{background:var(--bg);color:var(--ink)}
 }
 /* the contracting film loses its hard rectangle — feathered edges so the grey frame dissolves into the mark */
 .js .setup .film.is-end{-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent 100%)}
+
+/* ---------- smoother hand-off + no reel during the film (Hayden 9/21) ---------- */
+.setup{background:var(--dark)}
+.js .setup:not(.is-film-done) .hero-bg .ground{opacity:.001 !important}
+.js .setup.is-film-done .hero-bg .ground{opacity:1;transition:opacity 1.6s var(--ease) .3s}
+.js .setup:not(.is-film-done) .hero-bg::before{opacity:0}
+.setup .hero-bg::before{transition:opacity 1.2s var(--ease)}
+.setup .hero-bg .film{opacity:0;transition:opacity .7s var(--ease)}
+.js .setup .film.is-playing{opacity:1}
+@keyframes filmInto{to{transform:translate(var(--fx,0px),var(--fy,0px)) scale(var(--fs,.5));filter:grayscale(1) contrast(1.04) brightness(.95) blur(1.5px)}}
+.js .setup .film.is-end{animation:filmInto 1.5s cubic-bezier(.4,0,.2,1) forwards}
+.js .setup .film.is-gone{opacity:0;transition:opacity .8s var(--ease)}
+/* the mark fades up under the shrinking film — a crossfade, not a swap */
+@keyframes stFade{to{opacity:1;transform:none}}
+.js .setup.is-film-done .st-board{animation:stFade 1s var(--ease) forwards}
+.js .setup.is-film-done .p-pawn,.js .setup.is-film-done .p-rook,.js .setup.is-film-done .p-knight,.js .setup.is-film-done .p-bishop,.js .setup.is-film-done .p-king{animation:stFade 1s var(--ease) .05s forwards}
+.js .setup.is-film-done .st-halo{animation:stHalo 1.2s var(--ease) .7s forwards}
+.js .setup.is-film-done .wm-hero{animation:markWipe .7s var(--ease-2) .95s forwards}
+.js .setup.is-film-done .wm-hero::after{animation:markSweep .8s var(--ease-2) .95s forwards}
+.js .setup.is-film-done .hero-sub{animation:rise .8s var(--ease) 1.5s forwards}
+.js .setup.is-film-done .hero-actions{animation:rise .8s var(--ease) 1.65s forwards}
