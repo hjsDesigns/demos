@@ -1000,3 +1000,62 @@ body{background:var(--bg);color:var(--ink)}
 .js .setup.is-settled .hero-sub{animation:rise .8s var(--ease) 1.05s forwards}
 .js .setup.is-settled .hero-actions{animation:rise .8s var(--ease) 1.2s forwards}
 @media (prefers-reduced-motion:reduce){.js .setup .st-piece,.js .setup .st-board,.js .setup .wm-hero,.js .setup .hero-sub,.js .setup .hero-actions{animation:none !important;opacity:1 !important;transform:none !important}}
+
+/* ============================================================
+   THE MARK FORMS AROUND THE FILM (Hayden 9/21 04:xx). No shift: the vector pieces fade in ON the real pieces and stay;
+   mountains + board fade in behind them where they stand; then Rainier dissolves into the room on its own.
+   Zero filters, opacity only, one video decoding at a time.
+   ============================================================ */
+.setup .hero-bg .film{object-position:50% 34%;transform:scale(1.12);transform-origin:50% 50%;will-change:opacity}
+@media (max-width:760px){.setup .hero-bg .film{object-fit:contain;object-position:50% 38%;transform:scale(1.18)}}
+.setup .hero-bg .ground{will-change:opacity}
+.stage[hidden]{display:none}
+.mark-live{position:absolute;inset:0;z-index:4;pointer-events:none}
+.mark-live img,.mark-live svg{position:absolute;display:block;opacity:0;will-change:opacity}
+.mk-mtn{transition:opacity .7s cubic-bezier(.4,0,.2,1)}
+.mk-board{transition:opacity .7s cubic-bezier(.4,0,.2,1)}
+.mk-p{transition:opacity .55s cubic-bezier(.4,0,.2,1);object-fit:contain}
+.setup.is-mark .mk-p{opacity:1}
+.setup.is-mark .mk-mtn,.setup.is-mark .mk-board{opacity:1}
+/* the film freezes, then dissolves into the room — alone */
+.js .setup .film.is-gone{opacity:0;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-film-done .hero-bg .ground{opacity:1;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-film-done .hero-bg::before{opacity:1;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+/* the name sits under the row now: the text block is pinned to the bottom of the hero, compact */
+.setup .hero-inner{position:absolute;left:0;right:0;bottom:0;padding-bottom:clamp(22px,4vh,40px);justify-content:flex-end;min-height:0;z-index:5}
+.setup .hero-inner .stage{display:none}
+.wm-hero .wm-big{font-size:clamp(46px,7.6vw,96px)}
+.wm-hero .wm-top{font-size:clamp(14px,1.5vw,20px)}
+.setup .hero-sub{margin:0 0 14px}
+.js .setup.is-film-done .wm-hero,.js .setup.is-film-done .hero-sub,.js .setup.is-film-done .hero-actions{animation:none;opacity:0}
+.js .setup.is-mark .wm-hero{animation:stFade .7s cubic-bezier(.4,0,.2,1) .5s forwards}
+.js .setup.is-mark .hero-sub{animation:rise .7s var(--ease) .9s forwards}
+.js .setup.is-mark .hero-actions{animation:rise .7s var(--ease) 1.05s forwards}
+.js .setup.is-mark .st-halo{animation:none}
+@media (prefers-reduced-motion:reduce){.mark-live img,.mark-live svg{transition:none}.js .setup .film.is-gone{transition:none}}
+/* the live mark's images are positioned by JS — keep the generic hero-bg image rules off them */
+.setup .hero-bg .mark-live img{width:auto;height:auto;object-fit:contain;object-position:center;animation:none;transform:none;filter:none}
+.setup .hero-bg .mark-live{z-index:4}
+/* desktop: the name is a poster title over the sky (the row sits low in the film's frame); phones keep it under the board */
+@media (min-width:761px){
+  .setup .hero-inner{top:0;bottom:auto;justify-content:flex-start;padding-top:clamp(18px,3.2vh,40px);padding-bottom:0}
+  .setup .hero-bg::before{background:radial-gradient(60% 40% at 50% 22%,color-mix(in srgb,var(--dark) 62%,transparent) 0%,color-mix(in srgb,var(--dark) 30%,transparent) 60%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 55%,transparent) 0%,transparent 34%,transparent 62%,var(--bg) 100%)}
+  .wm-hero{margin-bottom:12px}.setup .hero-sub{margin-bottom:12px}
+}
+/* desktop title block: top-left, over the mountain's left slope, clear of the king */
+@media (min-width:761px){
+  .setup .hero-inner{align-items:flex-start;text-align:left;max-width:none;padding-left:var(--pad);padding-right:var(--pad)}
+  .setup .hero-inner>*{max-width:600px}
+  .wm-hero .wm-top,.wm-hero .wm-big{padding-left:0}
+  .setup .hero-actions{justify-content:flex-start}
+  .setup .hero-sub{text-align:left}
+  .setup .hero-bg::before{background:radial-gradient(44% 46% at 22% 20%,color-mix(in srgb,var(--dark) 66%,transparent) 0%,color-mix(in srgb,var(--dark) 32%,transparent) 60%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,transparent 30%,transparent 62%,var(--bg) 100%)}
+}
+
+/* ---------- ONE BACKGROUND, ZERO SHIFT (Hayden 9/21 04:xx): the film freezes on its last frame and stays; the vector pieces
+   fade in on their twins; the name rises. No mountain/board layers, no reel in the hero, nothing decodes after the freeze. ---------- */
+.mk-mtn,.mk-board{display:none !important}
+.js .setup .film.is-gone{opacity:1}
+.js .setup.is-film-done .hero-bg .ground{opacity:.001;transition:none}
+.js .setup.is-film-done .hero-bg::before{opacity:1;transition:opacity 1s cubic-bezier(.4,0,.2,1)}
+.mk-p{transition:opacity .6s cubic-bezier(.4,0,.2,1)}
