@@ -1140,3 +1140,11 @@ body{background:var(--bg);color:var(--ink)}
 .js .setup.is-bg .hero-bg .ground{opacity:1 !important;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
 .js .setup.is-bg .hero-bg .film-echo{opacity:0;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
 .js .setup.is-bg .hero-bg::before{opacity:1}
+
+/* ---------- the logo stays whole: the film's frozen centre (peak, board, pieces) is kept under a soft mask while its
+   edges dissolve into the action background ---------- */
+.setup .hero-bg .film-keep{position:absolute;inset:0;z-index:3;width:100%;height:100%;object-fit:cover;object-position:50% 34%;transform:scale(1.12);transform-origin:50% 50%;opacity:0;pointer-events:none;animation:none;filter:none;
+  -webkit-mask-image:radial-gradient(ellipse 60% 64% at 50% 52%,#000 40%,transparent 76%);mask-image:radial-gradient(ellipse 60% 64% at 50% 52%,#000 40%,transparent 76%);transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+@media (max-width:760px){.setup .hero-bg .film-keep{object-fit:contain;object-position:50% 38%;transform:scale(1.18);-webkit-mask-image:radial-gradient(ellipse 62% 70% at 50% 50%,#000 42%,transparent 78%);mask-image:radial-gradient(ellipse 62% 70% at 50% 50%,#000 42%,transparent 78%)}}
+.js .setup.is-bg .hero-bg .film-keep{opacity:1}
+.setup .hero-bg .mark-live{z-index:4}
