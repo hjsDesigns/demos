@@ -147,47 +147,33 @@ function customClose(p, close){ return close; }
   /* ---------- THE FILM: plays once over the reel; near its end it contracts into the mark's box and hardens to grey;
      then the mark takes over (.is-film-done drives every later beat). Blocked autoplay / reduced motion / errors
      hand off immediately so the mark always arrives. ---------- */
-  var film=$('#film'), heroF=$('#hero'), mark=$('#markLive');
-  if(film&&heroF&&mark){
+  var film=$('#film'), heroF=$('#hero'), stageEl=$('.stage');
+  if(film&&heroF&&stageEl){
     /* where the five real pieces sit in the film's last frame (fractions of the frame), measured 2026-09-21 */
     var REAL={"pawn": [0.171, 0.448, 0.083, 0.269], "knight": [0.3094, 0.4006, 0.0828, 0.3137], "king": [0.4516, 0.2521, 0.0969, 0.472], "bishop": [0.6, 0.347, 0.092, 0.368], "rook": [0.733, 0.423, 0.1, 0.292]};
-    var FILM_SCALE=window.matchMedia('(max-width:760px)').matches?1.18:1.12, FILM_POS=window.matchMedia('(max-width:760px)').matches?0.38:0.34;
-    var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches, handed=false;
-    function frameRect(){ var hr=heroF.getBoundingClientRect(), contain=window.matchMedia('(max-width:760px)').matches, ar=16/9, bw=hr.width, bh=hr.height;
-      var rw=contain?Math.min(bw,bh*ar):Math.max(bw,bh*ar), rh=rw/ar;
-      var x=(bw-rw)*0.5, y=(bh-rh)*FILM_POS;                       /* object-position inside the box */
-      var cx=bw/2, cy=bh/2, s=FILM_SCALE;                          /* then the box scales about its centre */
-      return {x:cx+(x-cx)*s, y:cy+(y-cy)*s, w:rw*s, h:rh*s}; }     /* hero-relative px */
-    function place(){
-      var fr=frameRect(), heroH=heroF.clientHeight;
-      var span=null;
-      Object.keys(REAL).forEach(function(n){ var el=$('.mk-'+n,mark), b=REAL[n];
+    var phoneQ=window.matchMedia('(max-width:760px)'), FILM_SCALE=phoneQ.matches?1.18:1.12, FILM_POS=phoneQ.matches?0.38:0.34;
+    var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches, handed=false, settled=false;
+    function frameRect(){ var hr=heroF.getBoundingClientRect(), contain=phoneQ.matches, ar=16/9, bw=hr.width, bh=hr.height;
+      var rw=contain?Math.min(bw,bh*ar):Math.max(bw,bh*ar), rh=rw/ar, x=(bw-rw)*0.5, y=(bh-rh)*FILM_POS, cx=bw/2, cy=bh/2, s=FILM_SCALE;
+      return {x:cx+(x-cx)*s, y:cy+(y-cy)*s, w:rw*s, h:rh*s}; }
+    /* 1. every vector piece appears exactly on its real twin (same height, same bottom-centre) */
+    function overlay(){ var fr=frameRect(), hr=heroF.getBoundingClientRect(), sr=stageEl.getBoundingClientRect();
+      Object.keys(REAL).forEach(function(n){ var el=$('.st-piece.p-'+n,stageEl); if(!el) return; var b=REAL[n];
         var bx=fr.x+b[0]*fr.w, by=fr.y+b[1]*fr.h, bw=b[2]*fr.w, bh=b[3]*fr.h;
-        var asp=(el.naturalWidth&&el.naturalHeight)?el.naturalWidth/el.naturalHeight:bw/bh; var w=bh*asp;
-        el.style.left=(bx+bw/2-w/2).toFixed(1)+'px'; el.style.top=by.toFixed(1)+'px'; el.style.width=w.toFixed(1)+'px'; el.style.height=bh.toFixed(1)+'px';
-        var l=bx+bw/2-w/2, r=l+w, base=by+bh; span=span?{l:Math.min(span.l,l),r:Math.max(span.r,r),base:Math.max(span.base,base)}:{l:l,r:r,base:base}; });
-      var spread=span.r-span.l, mid=(span.l+span.r)/2;
-      /* the logo's mountains: pieces cover 68.9% of the logo's width, starting 16.4% in; mountains are 83% of its height */
-      var mtn=$('.mk-mtn',mark), mw=Math.min(spread/0.689,(span.base-12)/((872/1400)*0.833)), mh=mw*(872/1400)*0.833;   /* never runs off the top */ mtn.style.width=mw.toFixed(1)+'px'; mtn.style.height=mh.toFixed(1)+'px';
-      mtn.style.left=(mid-mw/2).toFixed(1)+'px'; mtn.style.top=(span.base+0.015*mw-mh).toFixed(1)+'px';
-      /* the board: a perspective checkerboard under the row, wide at the top edge like the logo's */
-      var bd=$('.mk-board',mark), bw2=spread*1.42, bh2=Math.min(bw2*0.28, heroH-span.base-8);
-      bd.style.width=bw2.toFixed(1)+'px'; bd.style.height=Math.max(bh2,10).toFixed(1)+'px'; bd.style.left=(mid-bw2/2).toFixed(1)+'px'; bd.style.top=(span.base-2).toFixed(1)+'px';
+        var nx=(sr.left-hr.left)+el.offsetLeft, ny=(sr.top-hr.top)+el.offsetTop, nw=el.offsetWidth, nh=el.offsetHeight;
+        var k=bh/nh, dx=(bx+bw/2)-(nx+nw*k/2), dy=(by+bh)-(ny+nh*k);
+        el.style.transition='none'; el.style.transformOrigin='0 0'; el.style.transform='translate('+dx.toFixed(2)+'px,'+dy.toFixed(2)+'px) scale('+k.toFixed(4)+')';
+        void el.offsetWidth; el.style.transition='opacity .55s cubic-bezier(.4,0,.2,1)'; el.style.opacity='1'; }); }
+    /* 2. then the five shift into the logo while its mountains and board rise */
+    function settle(){ if(settled) return; settled=true;
+      $$('.st-piece',stageEl).forEach(function(el){ el.style.transition='transform .9s cubic-bezier(.4,0,.2,1)'; el.style.transform='none'; });
+      heroF.classList.add('is-settled'); }
+    function handoff(){ if(handed) return; handed=true; try{ film.pause(); }catch(e){}
+      if(fReduce){ $$('.st-piece',stageEl).forEach(function(el){el.style.opacity='1';el.style.transform='none'}); heroF.classList.add('is-film-done','is-settled','is-bg'); return; }
+      overlay(); heroF.classList.add('is-film-done');
+      setTimeout(settle, 900);
+      setTimeout(function(){ if(window.__startReel) window.__startReel(); heroF.classList.add('is-bg'); }, 2400);   /* 3. then, alone: Rainier → the action background, behind the logo */
     }
-    (function drawBoard(){ var g=document.getElementById('mkBoard'); if(!g) return; var cols=8, rows=3, out='';
-      for(var r=0;r<rows;r++){ var t0=r/rows, t1=(r+1)/rows, wTop=1000-500*t0, wBot=1000-500*t1, xTop=(1000-wTop)/2, xBot=(1000-wBot)/2, y0=300*t0, y1=300*t1;
-        for(var c=0;c<cols;c++){ var a0=xTop+wTop*c/cols, a1=xTop+wTop*(c+1)/cols, b0=xBot+wBot*c/cols, b1=xBot+wBot*(c+1)/cols;
-          out+='<polygon points="'+a0.toFixed(1)+','+y0+' '+a1.toFixed(1)+','+y0+' '+b1.toFixed(1)+','+y1+' '+b0.toFixed(1)+','+y1+'" fill="'+(((r+c)%2)?'#101113':'#F1EEE6')+'"/>'; } }
-      g.innerHTML=out; })();
-    function handoff(){ if(handed) return; handed=true;
-      try{ film.pause(); }catch(e){}                                /* freeze the last frame: one static image, nothing decoding */
-      place(); heroF.classList.add('is-film-done');
-      requestAnimationFrame(function(){ heroF.classList.add('is-mark'); });   /* pieces fade in ON their twins, then mountains + board */
-      if(fReduce) return;
-      setTimeout(function(){ if(window.__startReel) window.__startReel(); heroF.classList.add('is-bg'); }, 1100);   /* then, alone: Rainier → the action background */
-    }
-    var imgs=$$('.mk-p',mark), pending=imgs.length; imgs.forEach(function(im){ if(im.complete) pending--; else im.addEventListener('load',function(){pending--;},{once:true}); });
-    window.addEventListener('resize',function(){ if(handed) place(); });
     if(fReduce){ handoff(); }
     else{
       film.muted=true; film.defaultMuted=true; film.playsInline=true;

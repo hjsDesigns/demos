@@ -1150,3 +1150,31 @@ body{background:var(--bg);color:var(--ink)}
 .setup .hero-bg .mark-live{z-index:4}
 /* phone: feather the kept centre inside the strip's own height so no hard edge shows */
 @media (max-width:760px){.setup .hero-bg .film-keep{-webkit-mask-image:radial-gradient(ellipse 58% 20% at 50% 40%,#000 38%,transparent 82%);mask-image:radial-gradient(ellipse 58% 20% at 50% 40%,#000 38%,transparent 82%)}}
+
+/* ============================================================
+   THE LOGO, FRONT AND CENTRE (Hayden 9/21 ~06:00: "the logo we had was perfect, how it was kind of shifting into the logo").
+   Film freezes → vector pieces on their real twins → they shift into the real logo as its mountains and board rise →
+   the name → then Rainier dissolves into the action background behind the logo. Opacity + one transform, no filters.
+   ============================================================ */
+.mark-live,.setup .hero-bg .film-keep{display:none !important}
+.setup .hero-inner{position:relative;top:auto;bottom:auto;left:auto;right:auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  min-height:calc(100svh - var(--header-h));padding:clamp(20px,4vh,44px) var(--pad) clamp(34px,6vh,70px);z-index:5}
+.setup .hero-inner>*{max-width:none}
+.setup .hero-inner .stage{display:block;filter:none;width:min(600px,84vw)}
+@media (max-width:520px){.setup .hero-inner .stage{width:min(520px,90vw)}}
+.wm-hero .wm-top{padding-left:.36em}.wm-hero .wm-big{padding-left:.035em;font-size:clamp(46px,7.6vw,96px)}
+.setup .hero-sub{text-align:center;max-width:54ch}.setup .hero-actions{justify-content:center}
+.setup .hero-bg::before{background:radial-gradient(56% 50% at 50% 46%,color-mix(in srgb,var(--dark) 58%,transparent) 0%,color-mix(in srgb,var(--dark) 30%,transparent) 62%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 36%,transparent) 0%,transparent 26%,transparent 62%,var(--bg) 100%)}
+/* the sequence (these must sit last so they beat the earlier "park" rules) */
+.js .setup .st-piece{transform-origin:0 0}
+.js .setup.is-film-done .st-piece{animation:none}
+.js .setup.is-settled .st-piece{opacity:1}
+.js .setup.is-settled .st-board{animation:stFade .8s cubic-bezier(.4,0,.2,1) .1s forwards}
+.js .setup.is-settled .st-halo{animation:stHalo 1.2s var(--ease) .7s forwards}
+.js .setup.is-settled .wm-hero{animation:stFade .8s cubic-bezier(.4,0,.2,1) .45s forwards}
+.js .setup.is-settled .hero-sub{animation:rise .7s var(--ease) 1.0s forwards}
+.js .setup.is-settled .hero-actions{animation:rise .7s var(--ease) 1.15s forwards}
+.js .setup.is-bg .film,.js .setup.is-bg .film.is-gone{opacity:0;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-bg .hero-bg .ground{opacity:1 !important;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-bg .hero-bg .film-echo{opacity:0;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
+@media (prefers-reduced-motion:reduce){.js .setup .st-piece,.js .setup .st-board,.js .setup .wm-hero,.js .setup .hero-sub,.js .setup .hero-actions{animation:none !important;opacity:1 !important;transform:none !important}}
