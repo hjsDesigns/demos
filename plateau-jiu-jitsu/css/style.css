@@ -1066,3 +1066,71 @@ body{background:var(--bg);color:var(--ink)}
   .js .setup.is-playing .hero-bg .film-echo,.js .setup.is-film-done .hero-bg .film-echo{opacity:1}
   .setup .hero-bg .film{z-index:2}
 }
+
+/* ============================================================
+   THE ROOM (Hayden 9/21 ~05:00): "the inside of the website should feel like the inside of the gym" — white wall pads,
+   grey mats, clean daylight, black gis. Ink type on pad-white; blue is the one working colour; purple retired to the logo;
+   no checker devices, no glow. The film hero stays cinematic — it is the sell; the page under it is the room.
+   ============================================================ */
+:root{
+  --bg:#ECECE9;            /* the wall pads */
+  --bg-2:#E0E1DE;          /* the mats */
+  --paper:#F7F7F5;         /* cards, never pure white */
+  --ink:#17181A;           /* the gis, the king */
+  --muted:#5D6065;
+  --line:#CFD1CD;
+  --dark:#14161A;          /* scrims, footer */
+  --dark-2:#22252A;
+  --tint:#E3E5E2;          /* hours band */
+  --brand:#1D49A6;--brand-text:#173C8A;--brand-bright:#2A5CC7;   /* rook blue — everything functional */
+  --brand-2:#173C8A;--brand-2-bright:#3A6BE0;                    /* eyebrows join the blue; purple lives in the logo only */
+  --accent:#8C5633;--accent-soft:#B27A54;--warm:#1D49A6;
+}
+body{background:var(--bg);color:var(--ink)}
+.section{background:var(--bg)}.section-alt{background:var(--bg-2)}
+.section-dark,.cta-band{background:var(--bg-2);color:var(--ink)}
+.section-dark .section-head p,.cta-band .section-head p{color:var(--muted)}
+.section-dark h2 em,.cta-band h2 em{color:var(--brand)}
+.site-header{background:color-mix(in srgb,var(--paper) 86%,transparent);border-bottom:1px solid var(--line)}
+.logo .wm,.main-nav a{color:var(--ink)}.main-nav a:hover{color:var(--brand)}
+.hdr-live{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.nav-toggle{color:var(--ink);border-color:var(--line)}
+@media (max-width:900px){.main-nav{background:var(--paper);border-bottom-color:var(--brand)}}
+.btn-cream{background:var(--paper);color:var(--ink);border-color:var(--line)}.btn-cream:hover{background:#fff}
+.btn-ghost{color:var(--ink);border-color:var(--ink)}
+.btn-ink{background:var(--ink);color:var(--bg)}.btn-ink:hover{background:var(--dark-2);color:#fff}
+.status-band{background:var(--tint);border-bottom:1px solid var(--line)}
+.hours-list li.today{background:color-mix(in srgb,var(--brand) 10%,transparent)}
+.week-col,.today-rows,.rating-card,.program,.storefront,.coach-print,.week-now,.rv-card,.rv-arrow{background:var(--paper);border-color:var(--line)}
+.week-band{background:var(--bg)}.week-band::after{display:none}
+.wk-head{border-bottom-color:var(--ink)}
+.rv-card figcaption small{color:var(--brand-text)}
+.rv-card blockquote,.pg-head b,.pg-price,.lineage li b,.num b{color:var(--ink)}
+.pg-body,.method p,.lineage li,.section-head p,.wk-time,.wk-len{color:var(--muted)}
+.num span{color:var(--muted)}
+.method div{border-top-color:var(--brand)}.method h3{color:var(--brand-text)}
+.lineage li::before{background:var(--brand)}
+.section-head .eyebrow::before,.status-head .eyebrow::before{display:none}
+.section-head .eyebrow,.status-head .eyebrow{color:var(--brand-text)}
+.site-footer{background:var(--dark);color:rgba(255,255,255,.72)}
+.site-footer .wm,.site-footer h4,.site-footer a{color:#fff}
+.contact-form input,.contact-form textarea,.contact-form select{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.page-head{background:var(--tint)}
+.card{background:var(--paper);border-color:var(--line)}
+/* the room under the sections: bright frames of their own mats, softly, seam-masked */
+.ground::before{opacity:.55}
+#cta.ground{--g:none}
+.cta-band .band-reel{opacity:.35}
+.cta-band::before{background:linear-gradient(180deg,var(--bg) 0,transparent 18%,transparent 80%,var(--bg) 100%)}
+.num{background:var(--paper);border:1px solid var(--line)}
+/* hero: the film's bottom edge melts into the pad-white page */
+.setup .hero-bg::before{background:radial-gradient(44% 46% at 22% 20%,color-mix(in srgb,var(--dark) 62%,transparent) 0%,color-mix(in srgb,var(--dark) 30%,transparent) 60%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,transparent 30%,transparent 74%,var(--bg) 100%)}
+@media (max-width:760px){.setup .hero-bg::before{background:radial-gradient(70% 40% at 50% 74%,color-mix(in srgb,var(--dark) 55%,transparent) 0%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent) 0%,transparent 22%,transparent 80%,var(--bg) 100%)}}
+.setup{background:var(--dark)}
+/* cursor: an ink dot and a thin ring — no glow, no fill */
+@media (pointer:fine){
+  .cur-dot{background:var(--ink);mix-blend-mode:normal;width:6px;height:6px}
+  .cur-ring{border-color:color-mix(in srgb,var(--ink) 55%,transparent);opacity:.9}
+  .cur-ring.is-over{width:56px;height:56px;background:color-mix(in srgb,var(--brand) 14%,transparent);border-color:transparent}
+  .setup .cur-dot,.setup .cur-ring{}
+}
