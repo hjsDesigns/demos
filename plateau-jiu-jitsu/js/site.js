@@ -194,13 +194,6 @@ function customClose(p, close){ return close; }
   }
   renderToday(); setInterval(renderToday,60000);
 
-  /* ---------- smooth scroll (Lenis, jsdelivr — on the artifact CSP allowlist); off under reduced motion ---------- */
-  if(window.Lenis&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    var lenis=new Lenis({duration:1.1,easing:function(t){return 1-Math.pow(1-t,3)}});
-    (function raf(t){lenis.raf(t);requestAnimationFrame(raf)})(performance.now());
-    $$('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');var el=id.length>1?$(id):null;if(el){e.preventDefault();lenis.scrollTo(el,{offset:-84})}})});
-  }
-
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS,CLASSES:CLASSES};
 
   /* ---------- scroll-reveal + count-up ---------- */

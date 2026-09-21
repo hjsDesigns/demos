@@ -521,7 +521,6 @@ h2,.page-head h1{text-transform:uppercase;letter-spacing:.05em;font-size:clamp(1
 .logo .wm,.foot .wm{font-size:13.5px;letter-spacing:.1em;text-transform:uppercase;line-height:1.1}
 .logo .wm small,.foot .wm small{letter-spacing:.18em;margin-top:6px}
 .num b{font-size:clamp(28px,4vw,44px);letter-spacing:.02em}
-html.lenis,html.lenis body{height:auto}html.lenis{scroll-behavior:auto}
 
 /* ---------- ground: their footage, pre-blurred, plays once and holds ---------- */
 .setup{justify-content:center;align-items:center;text-align:center}
