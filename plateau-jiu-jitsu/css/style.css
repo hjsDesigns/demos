@@ -974,3 +974,17 @@ body{background:var(--bg);color:var(--ink)}
 .js .setup.is-film-done .wm-hero::after{animation:markSweep .8s var(--ease-2) .95s forwards}
 .js .setup.is-film-done .hero-sub{animation:rise .8s var(--ease) 1.5s forwards}
 .js .setup.is-film-done .hero-actions{animation:rise .8s var(--ease) 1.65s forwards}
+
+/* ---------- STRAIGHT DISSOLVE (Hayden 9/21: "straight from the animation to the logo… no in-between… seamless") ---------- */
+.js .setup .film.is-end{animation:none;-webkit-mask-image:none;mask-image:none;transform:none;filter:none}
+.js .setup .film.is-gone{opacity:0;transition:opacity 1.1s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-film-done .hero-bg .ground{opacity:1;transition:opacity 1.1s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-film-done .hero-bg::before{opacity:1;transition:opacity 1.1s cubic-bezier(.4,0,.2,1)}
+.js .setup.is-film-done .st-board{animation:stFade 1.1s cubic-bezier(.4,0,.2,1) forwards}
+.js .setup.is-film-done .p-pawn,.js .setup.is-film-done .p-rook,.js .setup.is-film-done .p-knight,.js .setup.is-film-done .p-bishop,.js .setup.is-film-done .p-king{animation:stFade 1.1s cubic-bezier(.4,0,.2,1) forwards}
+.js .setup .wm-hero{clip-path:none;transform:translateY(8px)}
+.js .setup.is-film-done .wm-hero{animation:stFade 1.1s cubic-bezier(.4,0,.2,1) .15s forwards}
+.js .setup.is-film-done .wm-hero::after{animation:none;opacity:0}
+.js .setup.is-film-done .st-halo{animation:stHalo 1.2s var(--ease) .6s forwards}
+.js .setup.is-film-done .hero-sub{animation:rise .8s var(--ease) .9s forwards}
+.js .setup.is-film-done .hero-actions{animation:rise .8s var(--ease) 1.05s forwards}
