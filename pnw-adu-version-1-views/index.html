@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>PNW ADU — Mac preview</title>
+  <style>
+    :root { color-scheme:dark; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:#eeeee9; background:#111815; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; width:100%; height:100%; overflow:hidden; }
+    main { height:100vh; height:100dvh; display:grid; grid-template-rows:auto minmax(0,1fr); padding:12px; gap:12px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:12px; min-width:0; }
+    h1 { margin:0; font-size:16px; font-weight:600; line-height:1.3; }
+    .dimensions { margin:3px 0 0; color:#adb8b0; font-size:12px; line-height:1.3; }
+    button { flex:none; padding:9px 12px; min-height:40px; border:1px solid #718075; border-radius:5px; background:transparent; color:inherit; font:inherit; font-size:13px; cursor:pointer; }
+    button:focus-visible { outline:2px solid #f0d699; outline-offset:3px; }
+    button[hidden] { display:none; }
+    .space { min-width:0; min-height:0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .frame { position:relative; flex:none; visibility:hidden; }
+    .frame.ready { visibility:visible; }
+    iframe { position:absolute; left:0; top:0; display:block; border:0; background:#111815; transform-origin:top left; }
+    #notice { font-size:12px; color:#adb8b0; margin:3px 0 0; }
+    #notice:empty { display:none; }
+    @media(max-width:420px) { main { padding:8px; gap:8px; } h1 { font-size:14px; } button { padding:8px 10px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1 id="heading">PNW ADU — Mac preview</h1>
+        <p class="dimensions" id="dimensions">1440 × 900</p>
+        <p id="notice" role="status"></p>
+      </div>
+      <button type="button" id="fullscreen" aria-pressed="false">Full screen</button>
+    </header>
+    <div class="space" id="space">
+      <div class="frame" id="frame">
+        <iframe id="website" title="PNW ADU — Mac preview" src="https://hjsdesigns.github.io/demos/pnw-adu-version-1/#top" width="1440" height="900" allow="autoplay; fullscreen"></iframe>
+      </div>
+    </div>
+  </main>
+  <script>
+    (() => {
+      const mobile = new URLSearchParams(location.search).get('view') === 'mobile';
+      const width = mobile ? 390 : 1440;
+      const height = mobile ? 844 : 900;
+      const title = 'PNW ADU — ' + (mobile ? 'Mobile preview' : 'Mac preview');
+      const space = document.getElementById('space');
+      const frame = document.getElementById('frame');
+      const website = document.getElementById('website');
+      const fullscreen = document.getElementById('fullscreen');
+      const notice = document.getElementById('notice');
+      document.title = title;
+      document.getElementById('heading').textContent = title;
+      document.getElementById('dimensions').textContent = width + ' × ' + height;
+      website.title = title;
+      website.width = width;
+      website.height = height;
+      website.style.width = width + 'px';
+      website.style.height = height + 'px';
+
+      function fit() {
+        const scale = Math.min(space.clientWidth / width, space.clientHeight / height);
+        if (scale <= 0) return;
+        frame.style.width = (width * scale) + 'px';
+        frame.style.height = (height * scale) + 'px';
+        website.style.transform = 'scale(' + scale + ')';
+        frame.classList.add('ready');
+      }
+      if ('ResizeObserver' in window) new ResizeObserver(fit).observe(space);
+      window.addEventListener('resize', fit);
+      if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
+      fit();
+
+      const page = document.documentElement;
+      const enterFullscreen = page.requestFullscreen || page.webkitRequestFullscreen;
+      const exitFullscreen = document.exitFullscreen || document.webkitExitFullscreen;
+      function activeFullscreen() { return document.fullscreenElement || document.webkitFullscreenElement; }
+      function updateFullscreen() {
+        const active = !!activeFullscreen();
+        fullscreen.textContent = active ? 'Exit full screen' : 'Full screen';
+        fullscreen.setAttribute('aria-pressed', String(active));
+        fit();
+      }
+      if (!enterFullscreen || !exitFullscreen) fullscreen.hidden = true;
+      fullscreen.addEventListener('click', async () => {
+        notice.textContent = '';
+        try {
+          if (activeFullscreen()) await exitFullscreen.call(document);
+          else await enterFullscreen.call(page);
+        } catch (error) {
+          notice.textContent = 'Full screen is unavailable in this browser.';
+        }
+        updateFullscreen();
+      });
+      document.addEventListener('fullscreenchange', updateFullscreen);
+      document.addEventListener('webkitfullscreenchange', updateFullscreen);
+    })();
+  </script>
+</body>
+</html>
