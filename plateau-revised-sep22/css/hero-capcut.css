@@ -28,6 +28,10 @@
   opacity:var(--hero-dissolve);
 }
 /* Feather only the outer edges of the sharp footage on wider screens. */
+/* Scale the registered pair together so the portrait opening reaches both edges. */
+@media(max-width:760px){
+  #hero[data-hero="capcut"] .hero-inner .stage{width:98vw;margin-inline:0;flex-shrink:0}
+}
 @media(min-width:761px){
   #hero[data-hero="capcut"] .hero-bg .film{
     mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
