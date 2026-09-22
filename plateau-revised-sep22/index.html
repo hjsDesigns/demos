@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Plateau Jiu-Jitsu — Brazilian Jiu-Jitsu in Bonney Lake, WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Brazilian Jiu-Jitsu for kids 5 and up and adults in Bonney Lake, WA. Gi and No-Gi classes Monday through Thursday, taught by black belt John Proud. Rated 5.0 on Google.">
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Display: Anton (Hayden 9/21: the sign-matched Syncopate read boring — his call wins). Body: Hanken Grotesk. Two fonts. -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20260922-program-order-cursor">
+<link rel="stylesheet" href="css/hero-capcut.css?v=20260921-stationary-fade">
+<link rel="stylesheet" href="css/schedule-summary.css?v=20260921-weekend-rows">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html" aria-label="Plateau Jiu-Jitsu — home">
+      <img src="images/logo.png" alt="" width="74" height="46">
+      <span class="wm">Plateau Jiu-Jitsu<small>Bonney Lake · BJJ</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="schedule.html">Schedule</a>
+        <a href="classes.html">Classes</a>
+        <a href="about.html">Coaches</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html#form" class="nav-cta">Free week</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+  <!-- ===================== #hero — THE BOARD → THE SETUP (Hayden 9/21: "a fun chess board animation leading into the logo").
+       Ground: their own footage, pre-blurred, plays ONCE and holds. A full-screen board lays down tile by tile, their
+       purple knight hops two L-moves, the board tilts and folds into the logo's board; the real pieces land, king last;
+       a halo blooms; the wordmark strikes. ~4.4 s, deterministic CSS, reduced motion lands on the final frame. -->
+  <section class="hero setup" id="hero" data-hero="capcut">
+    <div class="hero-bg">
+      <!-- the ground: a continuous reel of their real rolling (Hayden 9/21: "cool action shots in the background at all times") -->
+      <video class="ground" id="ground" muted playsinline loop preload="none" poster="images/bg-loop-soft-start.jpg"
+        data-opening-poster="images/bg-loop-soft-start.jpg" data-desktop="videos/bg-loop-soft.mp4"
+        data-phone="videos/bg-loop-soft.mp4" data-phone-poster="images/bg-loop-soft-start.jpg" data-phone-opening="images/bg-loop-soft-start.jpg"
+        aria-label="Concept background: training on mats, softened — an illustration behind the mark, not the gym" tabindex="-1"></video>
+      <!-- THE FILM (Hayden 9/21, Belt Colors): a photoreal concept film — five chess pieces in the colours of the five belts
+           before Mount Rainier — plays once aligned with the final mark, then dissolves into it in place.
+           Concept art, not the gym; provenance in the label. -->
+      <div class="film-scene" aria-hidden="true">
+      <video class="film" id="film" muted playsinline preload="auto" poster="images/film-capcut-start.jpg" src="videos/portrait-shuffle-capcut-20260921.mp4"
+        aria-label="Concept film: five chess pieces in the colours of the five belts on a walnut board before Mount Rainier — an illustration of the logo, not the gym" tabindex="-1"></video>
+      </div>
+
+    </div>
+    <div class="hero-inner">
+      <h1 class="sr-only">Plateau Jiu-Jitsu — Brazilian Jiu-Jitsu for kids and adults in Bonney Lake, Washington</h1>
+      <div class="stage" aria-hidden="true">
+        <img class="stationary-mark" src="images/logo.png" alt="" width="800" height="498" fetchpriority="high">
+      </div>
+      <div class="wm-hero" aria-hidden="true"><span class="wm-top">Plateau</span><span class="wm-big">Jiu-Jitsu</span></div>
+      <p class="hero-sub"><span class="sub-long">Gi and No-Gi for kids 5 and up and adults, four days a week, taught by black belt John Proud.</span><span class="sub-short">Kids 5 and up · adults · Mon–Thu</span></p>
+      <div class="hero-actions">
+        <a href="contact.html#form" class="btn btn-primary">Book your free week</a>
+        <a href="schedule.html" class="hero-link">See the schedule →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- One schedule: location, live status, class times and weekend exceptions. -->
+  <section class="section week-band schedule-summary" id="hours" aria-labelledby="schedule-title">
+    <div class="wrap">
+      <div class="schedule-heading reveal">
+        <div class="section-head">
+          <p class="eyebrow">Schedule &amp; location</p>
+          <h2 id="schedule-title">Your week <em>on the mat</em></h2>
+          <p class="schedule-hours">Mon–Thu · 9 – 10 AM · 4:15 – 7:30 PM</p>
+        </div>
+        <div class="schedule-location">
+          <p>9925 214th Ave E, Suite I, Bonney Lake, WA 98391</p>
+          <p class="schedule-landmark">McHugh Plaza, next to Les Schwab</p>
+          <a href="https://www.google.com/maps/place/Plateau+Jiu-Jitsu/@47.1657828,-122.1430878,17z/data=!4m6!3m5!1s0x5490fb101eca5989:0xf1a505f6501e0a51!8m2!3d47.1657828!4d-122.1430878!16s%2Fg%2F11w3gq4556" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </div>
+      </div>
+      <div class="schedule-live reveal" aria-live="polite" aria-atomic="true">
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">Checking hours…</span></p>
+        <p class="week-now" id="weekNow">Checking the next class…</p>
+      </div>
+      <div class="week reveal" id="week" aria-label="Weekly class schedule, Pacific time">
+        <div class="week-col" data-day="1">
+          <div class="wk-head"><b>Mon</b><span>Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9 AM</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15 PM</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10 PM</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15 PM</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+        <div class="week-col" data-day="2">
+          <div class="wk-head"><b>Tue</b><span>No-Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9 AM</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15 PM</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10 PM</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15 PM</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+        <div class="week-col" data-day="3">
+          <div class="wk-head"><b>Wed</b><span>Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9 AM</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15 PM</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10 PM</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15 PM</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+        <div class="week-col" data-day="4">
+          <div class="wk-head"><b>Thu</b><span>No-Gi</span></div>
+          <div class="wk-row" data-start="9" data-end="10"><span class="wk-time">9 AM</span><span class="wk-who">Adults</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="16.25" data-end="16.92"><span class="wk-time">4:15 PM</span><span class="wk-who">Kids 5–7</span><span class="wk-len">40 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="17.17" data-end="18.17"><span class="wk-time">5:10 PM</span><span class="wk-who">Kids 8–13</span><span class="wk-len">60 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+          <div class="wk-row" data-start="18.25" data-end="19.5"><span class="wk-time">6:15 PM</span><span class="wk-who">Adults</span><span class="wk-len">75 min</span><span class="wk-tag"></span><i class="wk-bar"></i></div>
+        </div>
+      </div>
+      <ul class="schedule-weekend reveal" aria-label="Friday through Sunday">
+        <li><strong>Friday</strong><div><b class="weekend-status is-closed">Closed</b></div></li>
+        <li><strong>Saturday</strong><div><b class="weekend-status is-mat">Open mat</b><p>some weeks, 11 AM, ages 15+ — at Combat Sport &amp; Fitness in Enumclaw</p></div></li>
+        <li><strong>Sunday</strong><div><b class="weekend-status is-closed">Closed</b></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #programs — STOREFRONT BELOW THE HOURS, then the four real programs as title cards that
+       unroll (down-chevron flips up). Each card carries a different real frame from their room. -->
+  <section class="section section-alt ground" id="programs">
+    <div class="wrap">
+      <figure class="storefront reveal photo-reveal">
+        <img src="images/storefront.jpg" alt="Plateau Jiu-Jitsu's storefront and sign in McHugh Plaza, Bonney Lake" loading="lazy" width="2000" height="1400">
+        <figcaption>Suite I, between Manhattan Designs and Bad Ash Athletics</figcaption>
+      </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">Programs</p>
+        <h2>Five years old <em>and up</em></h2>
+        <p>Littles pre-K · Kids 5–7 at 4:15 · Kids 8–13 at 5:10 · Adults at 9 and 6:15. One flat rate, unlimited classes, first week free. Tap a program — hover to see it move.</p>
+      </div>
+      <div class="programs">
+        <details class="program reveal">
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/ig-DLQkGitTgkc.jpg" src="videos/card-littles.mp4" aria-label="Two little kids in gis playing a movement game on the mats under the chess mural"></video></span><span class="pg-head"><span class="door-k">Littles · pre-K</span><b>Call for the next start date</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Movement, games and the first words of the language for the youngest ones. Dates come straight from John.</p><p class="pg-price">$75<a href="tel:+12537971223">Call (253) 797-1223 →</a></p></div>
+        </details>
+        <details class="program reveal">
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/door-classes.jpg" src="videos/card-kids57.mp4" aria-label="A young student in a Plateau Jiu-Jitsu rashguard, the chess logo on the back, moving across the mats"></video></span><span class="pg-head"><span class="door-k">Kids 5–7</span><b>4:15 PM · Mon–Thu · 40 min</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Games first, then real technique — balance, falling safely, listening, and a coach on the mat the whole time. Phone or in person to book this one.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
+        </details>
+        <details class="program reveal">
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/fb-01.jpg" src="videos/card-kids813.mp4" aria-label="Plateau kids on the podium with medals at The Revolution 55, July 2025"></video></span><span class="pg-head"><span class="door-k">Kids 8–13</span><b>5:10 PM · Mon–Thu · 60 min</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Positions, escapes and live rounds at their size and pace. Some of them compete; none of them have to.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
+        </details>
+        <details class="program reveal">
+          <summary><span class="pg-pic"><video muted loop playsinline preload="none" poster="images/door-schedule.jpg" src="videos/card-adults.mp4" aria-label="Two adults rolling on the mats at Plateau Jiu-Jitsu while a coach watches"></video></span><span class="pg-head"><span class="door-k">Adults</span><b>9 AM &amp; 6:15 PM · Mon–Thu</b></span><span class="chev"></span></summary>
+          <div class="pg-body"><p>Gi on Monday and Wednesday, No-Gi on Tuesday and Thursday. Twenty spots a class, so you get coached, not counted.</p><p class="pg-price">$125 unlimited<a href="classes.html">Classes &amp; pricing →</a></p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #coaches — the owners are the face, once, in their own photo -->
+  <section class="section ground" id="coaches">
+    <div class="wrap coaches-grid">
+      <figure class="coach-print reveal photo-reveal">
+        <img src="images/coaches-john-shalise.jpg" alt="John Proud and Shalise Ward laughing on the mats after a roll" loading="lazy" width="1800" height="1200">
+        <figcaption>John &amp; Shalise</figcaption>
+      </figure>
+      <div class="coach-copy reveal">
+        <p class="eyebrow">Coaches</p>
+        <h2>Two coaches. <em>Every class.</em></h2>
+        <p>Both coaches are on the mats with every class — the kids at 4:15, the adults at 6:15. Patient with a nervous first-timer, sharp with a purple belt.</p>
+        <ul class="lineage">
+          <li><b>John Proud</b> — owner and head coach. Black belt under Jeff Hougland, December 2021. Almost two decades on the mats.</li>
+          <li><b>Shalise Ward</b> — co-owner and coach. Purple belt, January 2024. A gymnast since childhood; teaches kids, adults and women.</li>
+          <li>Affiliated with Combat Sport &amp; Fitness in Enumclaw.</li>
+        </ul>
+        <a href="about.html" class="btn btn-cream btn-ink">Meet the coaches →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #method — the "physical chess" line from their own About page, in their words -->
+  <section class="section section-alt ground" id="method">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why the chess pieces</p>
+        <h2>Jiu-jitsu is <em>physical chess</em></h2>
+        <p>Continuously solving puzzles of positions and techniques. Three things every class comes back to.</p>
+      </div>
+      <div class="method reveal">
+        <div><h3>Movement</h3><p>Efficient movement first. The technique follows the hips.</p></div>
+        <div><h3>Breathing</h3><p>Slow down, breathe, see the whole board.</p></div>
+        <div><h3>Strategy</h3><p>Position before submission. One square at a time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews — REVIEW ATTRIBUTION LAW: every card carries the reviewer's real published name AND the
+       avatar Google itself publishes for them (harvested 2026-09-21 from the live listing in a visible pane); quotes verbatim.
+       Rotates on its own, pauses under the pointer, swipes on a phone. One link-out to the listing. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Google reviews</p>
+        <h2>Eighteen reviews. <em>Eighteen five-stars.</em></h2>
+        <p>Parents on the kids' classes, grown students on the rolls — in their own names, from the listing.</p>
+      </div>
+      <div class="rv-rotor reveal" id="rvRotor" aria-label="Google reviews, scrolling">
+        <div class="rv-track" id="rvTrack">
+        <figure class="rv-card">
+          <blockquote>John & Shalise are amazing jiu-jitsu instructors. They are both on the mats with all the classes and very patient and knowledgeable. They are so great with the kids, and we love the community they have created. Highly recommend and hands down the best experience.</blockquote>
+          <figcaption><img src="images/reviewers/victoria-wirtz.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Victoria Wirtz</b><small>★★★★★ · Google · a year ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>I’ve had both of my boys training at Plateau Jiu-Jitsu for over a year now, and we couldn’t be happier! The boys absolutely love it and look forward to every class. Coach John is fantastic — patient, highly involved, and great at working with kids. He’s helped them build confidence, discipline, and solid skills in a fun, supportive environment. This place is truly a gem. Highly recommend it to any family looking for quality Jiu-Jitsu training!</blockquote>
+          <figcaption><img src="images/reviewers/j.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>J</b><small>★★★★★ · Google · 2 months ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>I’m so excited to see this gym opening in Bonney Lake! I went to a recent open mat and was super impressed with what they've accomplished here. It has a very clean and modern style, the bathroom is top notch, and the enclosed changing rooms are a nice touch. I'd highly recommend this gym to anyone in the area looking to train jiu jitsu in a professional, family-friendly environment!</blockquote>
+          <figcaption><img src="images/reviewers/jason-verhoff.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Jason Verhoff</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>John is a dynamic jiu-jitsu instructor. He is on the mats with adults and kids. He's taught me so much during rolls, addressing positional questions before and after sparring, making jiu jitsu fun, addicting and giving me confidence that I can defend myself.</blockquote>
+          <figcaption><img src="images/reviewers/sarah.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Sarah</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>Plateau Jiu-Jitsu owner/blackbelt John Proud is an excellent instructor. His teaching method is smooth, patient, and easily adjusted, which makes him a great teacher for the advanced practitioner — as well as the jiu-jitsu novice. It is a certain gift to effectively work with children. The kids always look forward to rolling with John, and parents can be confident in his focus on safety. Sad loss for Enumclaw but great news for Bonney Lake!</blockquote>
+          <figcaption><img src="images/reviewers/bethany-overland-jack.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Bethany Overland Jack</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>Excellent space, superb teacher, and great community of people I would highly recommend John and Plateau Jiu Jitsu to anyone coming through the area in search of a great place to practice jiu jitsu.</blockquote>
+          <figcaption><img src="images/reviewers/jessica-norman.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Jessica Norman</b><small>★★★★★ · Google · a year ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>I have had the privilege to train with John for some years now. John comes from a deep lineage of black belts and teaches a unique style of jiu jitsu that co-mingles sport and self defense. Definitely recommend his academy</blockquote>
+          <figcaption><img src="images/reviewers/anthony-borgomainerio.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Anthony Borgomainerio</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>The owners and instructors are great and very knowledgeable. They bring many years of knowledge and experience to a fantastic gym. Great people, great atmosphere.</blockquote>
+          <figcaption><img src="images/reviewers/tyson-cunningham.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>tyson cunningham</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card">
+          <blockquote>John and Shalise did an amazing job on the remodel of their new gym! With John's Brazilian Jiu-Jitsu experience, you, your kids, your spouse, or your friends will be in good hands! Congrats on the opening of the new gym guys!</blockquote>
+          <figcaption><img src="images/reviewers/yuriy-khryukin.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>yuriy khryukin</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>John & Shalise are amazing jiu-jitsu instructors. They are both on the mats with all the classes and very patient and knowledgeable. They are so great with the kids, and we love the community they have created. Highly recommend and hands down the best experience.</blockquote>
+          <figcaption><img src="images/reviewers/victoria-wirtz.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Victoria Wirtz</b><small>★★★★★ · Google · a year ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>I’ve had both of my boys training at Plateau Jiu-Jitsu for over a year now, and we couldn’t be happier! The boys absolutely love it and look forward to every class. Coach John is fantastic — patient, highly involved, and great at working with kids. He’s helped them build confidence, discipline, and solid skills in a fun, supportive environment. This place is truly a gem. Highly recommend it to any family looking for quality Jiu-Jitsu training!</blockquote>
+          <figcaption><img src="images/reviewers/j.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>J</b><small>★★★★★ · Google · 2 months ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>I’m so excited to see this gym opening in Bonney Lake! I went to a recent open mat and was super impressed with what they've accomplished here. It has a very clean and modern style, the bathroom is top notch, and the enclosed changing rooms are a nice touch. I'd highly recommend this gym to anyone in the area looking to train jiu jitsu in a professional, family-friendly environment!</blockquote>
+          <figcaption><img src="images/reviewers/jason-verhoff.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Jason Verhoff</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>John is a dynamic jiu-jitsu instructor. He is on the mats with adults and kids. He's taught me so much during rolls, addressing positional questions before and after sparring, making jiu jitsu fun, addicting and giving me confidence that I can defend myself.</blockquote>
+          <figcaption><img src="images/reviewers/sarah.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Sarah</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>Plateau Jiu-Jitsu owner/blackbelt John Proud is an excellent instructor. His teaching method is smooth, patient, and easily adjusted, which makes him a great teacher for the advanced practitioner — as well as the jiu-jitsu novice. It is a certain gift to effectively work with children. The kids always look forward to rolling with John, and parents can be confident in his focus on safety. Sad loss for Enumclaw but great news for Bonney Lake!</blockquote>
+          <figcaption><img src="images/reviewers/bethany-overland-jack.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Bethany Overland Jack</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>Excellent space, superb teacher, and great community of people I would highly recommend John and Plateau Jiu Jitsu to anyone coming through the area in search of a great place to practice jiu jitsu.</blockquote>
+          <figcaption><img src="images/reviewers/jessica-norman.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Jessica Norman</b><small>★★★★★ · Google · a year ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>I have had the privilege to train with John for some years now. John comes from a deep lineage of black belts and teaches a unique style of jiu jitsu that co-mingles sport and self defense. Definitely recommend his academy</blockquote>
+          <figcaption><img src="images/reviewers/anthony-borgomainerio.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>Anthony Borgomainerio</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>The owners and instructors are great and very knowledgeable. They bring many years of knowledge and experience to a fantastic gym. Great people, great atmosphere.</blockquote>
+          <figcaption><img src="images/reviewers/tyson-cunningham.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>tyson cunningham</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        <figure class="rv-card" aria-hidden="true">
+          <blockquote>John and Shalise did an amazing job on the remodel of their new gym! With John's Brazilian Jiu-Jitsu experience, you, your kids, your spouse, or your friends will be in good hands! Congrats on the opening of the new gym guys!</blockquote>
+          <figcaption><img src="images/reviewers/yuriy-khryukin.jpg" alt="" width="48" height="48" loading="eager" decoding="async"><span><b>yuriy khryukin</b><small>★★★★★ · Google · 2 years ago</small></span></figcaption>
+        </figure>
+        </div>
+      </div>
+      <p class="rv-more reveal"><a href="https://www.google.com/maps/place/Plateau+Jiu-Jitsu/@47.1657828,-122.1430878,17z/data=!4m6!3m5!1s0x5490fb101eca5989:0xf1a505f6501e0a51!8m2!3d47.1657828!4d-122.1430878!16s%2Fg%2F11w3gq4556" target="_blank" rel="noopener">5.0 · all 18 on Google ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #cta -->
+  <section class="section section-dark cta-band" id="cta">
+    <video class="band-reel" muted playsinline loop autoplay preload="metadata" poster="images/reel-desktop-start.jpg" src="videos/reel-action.mp4" aria-hidden="true" tabindex="-1"></video>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Bonney Lake's own academy</p>
+        <h2>From the first class <em>to black belt</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><i>est.</i> <span class="count" data-to="2024" data-from="1990">2024</span></b><span>opened in McHugh Plaza</span></div>
+        <div class="num"><b><span class="count" data-to="16">16</span></b><span>classes every week</span></div>
+        <div class="num"><b><span class="count" data-to="2">2</span></b><span>coaches on the mat every class</span></div>
+        <div class="num"><b><span class="count" data-to="20">20</span><i> spots</i></b><span>per adult class, so you get coached</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="contact.html#form" class="btn btn-primary">Start this week</a>
+        <a href="https://www.wellnessliving.com/signup/plateau_jiu-jitsu" target="_blank" rel="noopener" class="btn btn-ghost">Book straight into the schedule ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt=""></span>
+          <span class="wm">Plateau Jiu-Jitsu<small>Bonney Lake · BJJ</small></span>
+        </div>
+        <p>Brazilian Jiu-Jitsu for kids and adults in Bonney Lake — growth and resilience on and off the mat.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/p/Plateau-Jiu-Jitsu-61558775690294/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/plateaubjj/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>9925 214th Ave E, Suite I<br>Bonney Lake, WA 98391</p>
+        <p><a href="tel:+12537971223">(253) 797-1223</a><br><a href="mailto:info@plateaujj.com">info@plateaujj.com</a></p>
+      </div>
+      <div>
+        <h4>Around the site</h4>
+        <p><a href="index.html">Home</a><br><a href="schedule.html">Schedule</a><br><a href="classes.html">Classes &amp; pricing</a><br><a href="about.html">Coaches</a><br><a href="contact.html">Contact</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Plateau Jiu-Jitsu</span>
+      <span>Bonney Lake, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<span class="cur-dot" aria-hidden="true"></span><span class="cur-ring" aria-hidden="true"></span>
+<script src="js/hero-options.js?v=20260921-unified-mark"></script>
+<script src="js/site.js?v=20260922-program-order-cursor"></script>
+<script src="js/hero-capcut.js?v=20260921-stationary-fade"></script>
+</body>
+</html>
