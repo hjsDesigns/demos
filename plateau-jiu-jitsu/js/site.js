@@ -30,8 +30,8 @@ var HOURS = {
    Times in decimal hours; source WellnessLiving 2026-09-04. */
 var CLASSES = [
   { start: 9,     end: 10,    who: 'Adults',    mins: 60 },
-  { start: 16.25, end: 16.92, who: 'Kids 5–7',  mins: 40 },
-  { start: 17.17, end: 18.17, who: 'Kids 8–13', mins: 60 },
+  { start: 16.25, end: 16 + 55/60, who: 'Kids 5–7',  mins: 40 },
+  { start: 17 + 10/60, end: 18 + 10/60, who: 'Kids 8–13', mins: 60 },
   { start: 18.25, end: 19.5,  who: 'Adults',    mins: 75 }
 ];
 var CLASS_DAYS = { 1: 'Gi', 2: 'No-Gi', 3: 'Gi', 4: 'No-Gi' };
@@ -110,26 +110,39 @@ function customClose(p, close){ return close; }
     applyBoard(p);
   }
 
-  /* ---------- THE WEEK BOARD (live) ----------
-     Today's column lights up. The class running right now says "On the mat now";
-     the next one today says "Next up". Done classes dim. Fri/Sat/Sun: nothing lit,
-     the whole board points at the next class day. */
+  function nextScheduledClass(p){
+    for(var offset=0;offset<=7;offset++){
+      var day=(p.day+offset)%7;
+      var date=new Date(p.y,p.mo,p.d+offset,12);
+      var candidate={day:day,y:date.getFullYear(),mo:date.getMonth(),d:date.getDate()};
+      if(!CLASS_DAYS[day]||customClosure(candidate)) continue;
+      for(var i=0;i<CLASSES.length;i++){
+        if(offset===0&&CLASSES[i].start<=p.h) continue;
+        return {day:day,index:i,start:CLASSES[i].start,who:CLASSES[i].who,daysAway:offset};
+      }
+    }
+    return null;
+  }
+
+  /* One current class and one next class, including the next teaching day. */
   function applyBoard(p){
     var cols=$$('.week-col'); if(!cols.length) return;
-    var closure=customClosure(p);
+    var closure=customClosure(p), next=nextScheduledClass(p);
     cols.forEach(function(col){
       var d=parseInt(col.getAttribute('data-day'),10);
       var isToday=(d===p.day);
       col.classList.toggle('today',isToday);
-      var rows=$$('.wk-row',col), nextMarked=false;
-      rows.forEach(function(r){
-        var s=parseFloat(r.getAttribute('data-start')), e=parseFloat(r.getAttribute('data-end'));
+      var rows=$$('.wk-row',col);
+      rows.forEach(function(r,index){
+        var entry=CLASSES[index];
+        var s=entry?entry.start:parseFloat(r.getAttribute('data-start')), e=entry?entry.end:parseFloat(r.getAttribute('data-end'));
         r.classList.remove('now','next','done');
         var tag=$('.wk-tag',r); if(tag) tag.textContent='';
-        if(!isToday||closure) return;
-        if(p.h>=s&&p.h<e){r.classList.add('now'); if(tag) tag.textContent='On the mat now';}
-        else if(p.h>=e){r.classList.add('done');}
-        else if(!nextMarked){r.classList.add('next'); nextMarked=true; if(tag) tag.textContent='Next up';}
+        if(isToday&&!closure){
+          if(p.h>=s&&p.h<e){r.classList.add('now'); if(tag) tag.textContent='On the mat now';}
+          else if(p.h>=e){r.classList.add('done');}
+        }
+        if(next&&next.day===d&&next.index===index){r.classList.add('next');if(tag) tag.textContent='Next up';}
       });
     });
     var note=$('#weekNote');
@@ -144,72 +157,173 @@ function customClose(p, close){ return close; }
     }
   }
 
-  /* ---------- THE FILM: plays once over the reel; near its end it contracts into the mark's box and hardens to grey;
-     then the mark takes over (.is-film-done drives every later beat). Blocked autoplay / reduced motion / errors
-     hand off immediately so the mark always arrives. ---------- */
+  /* Motion → motion: the logo takes shape DURING the final camera movement.
+     Media time drives the overlap, so there is no frozen frame before the handoff. */
   var film=$('#film'), heroF=$('#hero'), stageEl=$('.stage');
-  if(film&&heroF&&stageEl){
-    /* the five real pieces on the film's last frame (fractions of the frame), measured 2026-09-21 on film-belt.mp4 (Belt Colors A — Hayden's pick 9/21 late) */
-    var REAL={"pawn":[0.171,0.448,0.083,0.269],"knight":[0.3094,0.4006,0.0828,0.3137],"king":[0.4516,0.2521,0.0969,0.472],"bishop":[0.6,0.347,0.092,0.368],"rook":[0.733,0.423,0.1,0.292]};
-    var phoneQ=window.matchMedia('(max-width:760px)'), FILM_SCALE=phoneQ.matches?1.18:1.12, FILM_POS=phoneQ.matches?0.38:0.34;
-    var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches, handed=false, settled=false;
-    function frameRect(){ var hr=heroF.getBoundingClientRect(), contain=phoneQ.matches, ar=(film.videoWidth&&film.videoHeight)?film.videoWidth/film.videoHeight:16/9, bw=hr.width, bh=hr.height;
-      var rw=contain?Math.min(bw,bh*ar):Math.max(bw,bh*ar), rh=rw/ar, x=(bw-rw)*0.5, y=(bh-rh)*FILM_POS, cx=bw/2, cy=bh/2, s=FILM_SCALE;
-      return {x:cx+(x-cx)*s, y:cy+(y-cy)*s, w:rw*s, h:rh*s}; }
-    /* 1. the logo forms ON the film: the whole stage is fitted (one scale, one shift) so its pieces sit on the real ones, then each piece gets the last few px onto its twin */
-    function overlay(){ var fr=frameRect(), hr=heroF.getBoundingClientRect(), sr=stageEl.getBoundingClientRect();
-      var sx=sr.left-hr.left, sy=sr.top-hr.top, P=[], Q=[], els={};
-      Object.keys(REAL).forEach(function(n){ var el=$('.st-piece.p-'+n,stageEl); if(!el) return; els[n]=el; var b=REAL[n];
-        var bx=fr.x+b[0]*fr.w, by=fr.y+b[1]*fr.h, bw=b[2]*fr.w, bh=b[3]*fr.h, nx=el.offsetLeft, ny=el.offsetTop, nw=el.offsetWidth, nh=el.offsetHeight;
-        P.push([bx+bw/2,by],[bx+bw/2,by+bh]); Q.push([nx+nw/2,ny],[nx+nw/2,ny+nh]); });
-      var n=P.length, px=0,py=0,qx=0,qy=0,i; for(i=0;i<n;i++){px+=P[i][0];py+=P[i][1];qx+=Q[i][0];qy+=Q[i][1]} px/=n;py/=n;qx/=n;qy/=n;
-      var num=0,den=0; for(i=0;i<n;i++){num+=(Q[i][0]-qx)*(P[i][0]-px)+(Q[i][1]-qy)*(P[i][1]-py); den+=(Q[i][0]-qx)*(Q[i][0]-qx)+(Q[i][1]-qy)*(Q[i][1]-qy)}
-      var k=den?num/den:1, tx=px-k*qx, ty=py-k*qy;   /* stage-local → hero: p' = k·p + (tx,ty) */
-      stageEl.style.transition='none'; stageEl.style.transformOrigin='0 0'; stageEl.style.transform='translate('+(tx-sx).toFixed(2)+'px,'+(ty-sy).toFixed(2)+'px) scale('+k.toFixed(4)+')';
-      Object.keys(els).forEach(function(nm){ var el=els[nm], b=REAL[nm];
-        var bx=fr.x+b[0]*fr.w, by=fr.y+b[1]*fr.h, bw=b[2]*fr.w, bh=b[3]*fr.h, nx=el.offsetLeft, ny=el.offsetTop, nw=el.offsetWidth, nh=el.offsetHeight;
-        var kk=bh/(nh*k), dx=((bx+bw/2)-tx)/k-(nx+nw*kk/2), dy=((by+bh)-ty)/k-(ny+nh*kk);
-        el.style.transition='none'; el.style.transformOrigin='0 0'; el.style.transform='translate('+dx.toFixed(2)+'px,'+dy.toFixed(2)+'px) scale('+kk.toFixed(4)+')';
-        void el.offsetWidth; el.style.transition='opacity .5s cubic-bezier(.4,0,.2,1)'; el.style.opacity='1'; });
-      void stageEl.offsetWidth; }
-    /* 2. the formed logo settles into its place as ONE object (stage + pieces on the same curve) while the name rises */
-    function settle(){ if(settled) return; settled=true;
-      stageEl.style.transition='transform 1.1s cubic-bezier(.4,0,.2,1)'; stageEl.style.transform='none';
-      $$('.st-piece',stageEl).forEach(function(el){ el.style.transition='transform 1.1s cubic-bezier(.4,0,.2,1)'; el.style.transform='none'; });
-      heroF.classList.add('is-settled'); }
-    function handoff(){ if(handed) return; handed=true; try{ film.pause(); }catch(e){}
-      if(fReduce){ $$('.st-piece',stageEl).forEach(function(el){el.style.opacity='1';el.style.transform='none'}); stageEl.style.transform='none'; heroF.classList.add('is-film-done','is-settled','is-bg'); return; }
-      overlay(); heroF.classList.add('is-film-done');                                                                 /* pieces onto their twins; the logo's mountains + board fade in over the photo */
-      setTimeout(function(){ if(window.__startReel) window.__startReel(); heroF.classList.add('is-bg'); }, 450);   /* Rainier → the room, behind the logo */
-      setTimeout(settle, 1500);
+  if(film&&heroF&&stageEl&&heroF.getAttribute('data-hero')!=='capcut'){
+    var requestedTransition=new URLSearchParams(location.search).get('transition');
+    var transitionOptions=window.PLATEAU_TRANSITIONS||[];
+    var treatment=transitionOptions.filter(function(o){return o.id===requestedTransition})[0]||transitionOptions[0]||{id:'soft-melt',opacity:[.05,.68],move:[.35,1],mountain:[.05,.68],board:[.16,.86],fade:[.05,.82],rate:.8};
+    heroF.setAttribute('data-transition',treatment.id);
+    var REAL={pawn:[.1573,.4685,.0932,.2731],knight:[.2948,.4093,.1021,.3352],king:[.4359,.25,.1161,.4926],bishop:[.5885,.3639,.099,.3787],rook:[.724,.4352,.1063,.3102]};
+    // Measured image bounds during the camera pullback (media seconds).
+    var TRACK=[
+      {t:3.2,b:{pawn:[.0479,.4139,.1276,.3648],knight:[.2255,.3315,.1365,.4463],king:[.4141,.125,.1526,.6519],bishop:[.6156,.2713,.1318,.5074],rook:[.7964,.3657,.1354,.412]}},
+      {t:3.6,b:{pawn:[.0771,.4287,.1177,.3389],knight:[.2469,.35,.1271,.4213],king:[.4203,.1602,.1427,.6083],bishop:[.6078,.2954,.1229,.4722],rook:[.775,.384,.1354,.3833]}},
+      {t:4.4,b:{pawn:[.1302,.4546,.101,.2963],knight:[.2786,.3889,.1063,.3639],king:[.4297,.2213,.1214,.5315],bishop:[.5938,.3398,.1036,.413],rook:[.7375,.4176,.1109,.3352]}},
+      {t:5.04,b:REAL}
+    ];
+    var ALPHA={pawn:[0,163/600,355/374,437/600]};
+    var fReduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var morphing=false, finished=false, rendered=false, frame=null, resizeFrame=0, motionFrame=0, startupTimer;
+    var backgroundReady=false, backgroundStarted=false, backgroundPromise, morphStart=3.2, morphEnd=4.96;
+    var filmScene=$('.film-scene',heroF), mountainEl=$('.st-mountains',stageEl), boardEl=$('.st-board',stageEl);
+    var filmPieces=Object.keys(REAL).map(function(name){return {name:name,el:$('.st-piece.p-'+name,stageEl)}}).filter(function(p){return p.el});
+    function pieceWindow(name){
+      if(treatment.order==='center'){var delay=name==='king'?0:(name==='knight'||name==='bishop'?.14:.29);return [delay,delay+.52]}
+      if(treatment.order==='left'){var delay=['pawn','knight','king','bishop','rook'].indexOf(name)*.09;return [delay,delay+.56]}
+      return treatment.opacity;
     }
-    if(fReduce){ handoff(); }
+    // One shared geometry clock: the ridge, board and every piece settle together.
+    var geometryStart=Math.max(treatment.move[0],treatment.fade[0]+.82*(treatment.fade[1]-treatment.fade[0]),treatment.mountain[0]+.82*(treatment.mountain[1]-treatment.mountain[0]));
+    filmPieces.forEach(function(p){var w=pieceWindow(p.name);geometryStart=Math.max(geometryStart,w[0]+.82*(w[1]-w[0]))});
+    var geometryTime=morphStart+geometryStart*(morphEnd-morphStart);
+    var settleRate=(morphEnd-geometryTime)/1.35;
+
+    filmPieces.forEach(function(p){p.el.style.transform='none';p.el.style.transition='none'});
+    function target(p){
+      var el=p.el,w=el.offsetWidth,h=el.offsetHeight,alpha=ALPHA[p.name]||[0,0,1,1];
+      var ratio=el.naturalWidth&&el.naturalHeight?Math.min(w/el.naturalWidth,h/el.naturalHeight):1;
+      var iw=el.naturalWidth?el.naturalWidth*ratio:w,ih=el.naturalHeight?el.naturalHeight*ratio:h;
+      return {x:el.offsetLeft+(w-iw)/2+alpha[0]*iw,y:el.offsetTop+(h-ih)/2+alpha[1]*ih,w:alpha[2]*iw,h:alpha[3]*ih,left:el.offsetLeft,top:el.offsetTop};
+    }
+    function frameFilm(){
+      var sr=stageEl.getBoundingClientRect(),br=film.parentElement.getBoundingClientRect();
+      var vw=film.videoWidth||1920,vh=film.videoHeight||1080,pairs=[];
+      filmPieces.forEach(function(p){var r=REAL[p.name],t=p.target=target(p);
+        pairs.push([[vw*(r[0]+r[2]/2),vh*r[1]],[t.x+t.w/2,t.y]],[[vw*(r[0]+r[2]/2),vh*(r[1]+r[3])],[t.x+t.w/2,t.y+t.h]]);
+      });
+      var pm=[0,0],qm=[0,0];pairs.forEach(function(v){for(var i=0;i<2;i++){pm[i]+=v[0][i]/pairs.length;qm[i]+=v[1][i]/pairs.length}});
+      var num=0,den=0;pairs.forEach(function(v){for(var i=0;i<2;i++){var d=v[0][i]-pm[i];num+=d*(v[1][i]-qm[i]);den+=d*d}});
+      var scale=den?num/den:1;frame={x:qm[0]-scale*pm[0],y:qm[1]-scale*pm[1],w:vw*scale,h:vh*scale,stageWidth:sr.width};
+      film.style.left=(sr.left-br.left+frame.x)+'px';film.style.top=(sr.top-br.top+frame.y)+'px';film.style.width=frame.w+'px';film.style.height=frame.h+'px';
+      heroF.classList.add('is-film-framed');
+    }
+    function scheduleFrame(){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(frameFilm)}
+    function prepareBackground(){
+      if(backgroundStarted) return backgroundPromise;
+      if(!window.__startReel) return Promise.resolve();
+      backgroundStarted=true;
+      backgroundPromise=Promise.resolve(window.__startReel()).then(function(){backgroundReady=true},function(){backgroundReady=true});
+      return backgroundPromise;
+    }
+    function finalMark(){
+      if(finished) return;finished=true;clearTimeout(startupTimer);cancelAnimationFrame(motionFrame);
+      if(filmScene){filmScene.style.transition='none';filmScene.style.opacity='0'}
+      filmPieces.forEach(function(p){p.el.style.transform='none';p.el.style.opacity='1'});
+      if(mountainEl){mountainEl.src='images/pieces/board.png';mountainEl.style.transform='none';mountainEl.style.opacity='1';mountainEl.style.maskImage='none';mountainEl.style.webkitMaskImage='none'}
+      if(boardEl){boardEl.style.opacity='1';boardEl.style.transform='none'}
+      heroF.classList.add('is-film-done','is-settled','is-bg');heroF.setAttribute('data-morph-progress','1');
+      // The source is stopped only after it is completely invisible.
+      film.pause();
+      if(!fReduce) prepareBackground();
+    }
+    function smooth(p){p=Math.max(0,Math.min(1,p));return p*p*(3-2*p)}
+    function range(progress,window){return smooth((progress-window[0])/(window[1]-window[0]))}
+    function sourceBox(name,time){
+      var a=TRACK[0],b=TRACK[TRACK.length-1];
+      for(var i=1;i<TRACK.length;i++){if(time<=TRACK[i].t){a=TRACK[i-1];b=TRACK[i];break}}
+      var u=Math.max(0,Math.min(1,(time-a.t)/(b.t-a.t)));return a.b[name].map(function(v,j){return v+(b.b[name][j]-v)*u});
+    }
+    function drawMorph(time){
+      var progress=Math.max(0,Math.min(1,(time-morphStart)/(morphEnd-morphStart))),blend=smooth((progress-geometryStart)/(1-geometryStart));
+      if(!morphing){
+        morphing=true;filmScene.style.transition='none';heroF.classList.add('is-film-done','is-bg','is-morphing');
+        heroF.setAttribute('data-morph-start-time',time.toFixed(3));
+        heroF.setAttribute('data-morph-start-playing',String(!film.paused&&!film.ended));
+      }
+      filmPieces.forEach(function(p){
+        var t=p.target,r=sourceBox(p.name,time),scale=r[3]*frame.h/t.h;
+        var pieceOpacity=range(progress,pieceWindow(p.name));
+        var pieceBlend=blend;
+        var dx=frame.x+(r[0]+r[2]/2)*frame.w-(t.left+(t.x-t.left+t.w/2)*scale);
+        var dy=frame.y+(r[1]+r[3])*frame.h-(t.top+(t.y-t.top+t.h)*scale);
+        p.el.style.transform='translate('+(dx*(1-pieceBlend))+'px,'+(dy*(1-pieceBlend))+'px) scale('+(scale+(1-scale)*pieceBlend)+')';
+        p.el.style.opacity=String(pieceOpacity);
+      });
+      if(mountainEl){
+        // Register the logo summit on Rainier, then open into the logo's ridge line.
+        var peakX=frame.x+frame.w*.52,peakY=frame.y+frame.h*.072,logoPeakX=frame.stageWidth*(679/1400);
+        var ms=frame.w/frame.stageWidth;
+        mountainEl.style.transformOrigin='48.5% 0';
+        mountainEl.style.transform='translate('+((peakX-logoPeakX)*(1-blend))+'px,'+(peakY*(1-blend))+'px) scale('+(ms+(1-ms)*blend)+')';
+        mountainEl.style.opacity=String(range(progress,treatment.mountain));
+        if(treatment.order==='left'){
+          var edge=range(progress,treatment.mountain)*125;
+          var reveal='linear-gradient(90deg,#000 '+(edge-12)+'%,transparent '+(edge+12)+'%)';
+          mountainEl.style.maskImage=reveal;mountainEl.style.webkitMaskImage=reveal;
+        }
+      }
+      if(boardEl){
+        var stageHeight=frame.stageWidth*872/1400,boardTop=stageHeight*(565/872);
+        var tx=frame.x+frame.w/2-frame.stageWidth/2,ty=frame.y+frame.h*.74-boardTop;
+        var sx=frame.w/frame.stageWidth,sy=(frame.h*.25)/(stageHeight-boardTop);
+        boardEl.style.transformOrigin='50% 64.7936%';
+        boardEl.style.transform='translate('+(tx*(1-blend))+'px,'+(ty*(1-blend))+'px) scale('+(sx+(1-sx)*blend)+','+(sy+(1-sy)*blend)+')';
+        boardEl.style.opacity=String(range(progress,treatment.board));
+      }
+      filmScene.style.opacity=String(1-range(progress,treatment.fade));
+      heroF.setAttribute('data-morph-progress',progress.toFixed(3));
+      if(progress>=1) finalMark();
+    }
+    function motionTick(){
+      if(finished) return;
+      var time=film.currentTime;prepareBackground();
+      // A short speed ramp leaves moving frames available for the gradual overlap.
+      var rate=1.15-(1.15-treatment.rate)*smooth((time-2.9)/.3);if(time>=geometryTime) rate=settleRate;
+      if(Math.abs(film.playbackRate-rate)>.005) film.playbackRate=rate;
+      if(time>=morphStart) drawMorph(time);
+      if(!finished) motionFrame=requestAnimationFrame(motionTick);
+    }
+    film.addEventListener('loadedmetadata',frameFilm);
+    filmPieces.forEach(function(p){p.el.addEventListener('load',scheduleFrame,{once:true})});
+    if(window.ResizeObserver){var filmLayoutObserver=new ResizeObserver(scheduleFrame);filmLayoutObserver.observe(stageEl);filmLayoutObserver.observe(heroF)}
+    else window.addEventListener('resize',scheduleFrame);
+    frameFilm();if(document.fonts&&document.fonts.ready) document.fonts.ready.then(scheduleFrame);
+    if(fReduce) finalMark();
     else{
-      film.muted=true; film.defaultMuted=true; film.playsInline=true;
-      film.addEventListener('playing',function(){film.classList.add('is-playing')},{once:true});
-      film.addEventListener('timeupdate',function(){ if(film.duration&&film.currentTime>=film.duration-0.08) handoff(); });
-      film.addEventListener('ended',handoff,{once:true});
-      film.addEventListener('error',handoff,{once:true});
-      var fp=film.play(); if(fp&&fp.catch) fp.catch(handoff);
-      setTimeout(function(){ if(film.paused&&!handed) handoff(); },2500);
+      film.muted=true;film.defaultMuted=true;film.playsInline=true;film.playbackRate=1.15;
+      film.addEventListener('playing',function(){
+        if(finished){film.pause();return}rendered=true;clearTimeout(startupTimer);heroF.classList.add('is-playing');film.classList.add('is-playing');prepareBackground();
+        cancelAnimationFrame(motionFrame);motionFrame=requestAnimationFrame(motionTick);
+      });
+      film.addEventListener('ended',finalMark,{once:true});film.addEventListener('error',finalMark,{once:true});
+      startupTimer=setTimeout(function(){if(!rendered) finalMark()},10000);
+      requestAnimationFrame(function(){
+        // Decode the incoming motion first; never enter the morph halfway through.
+        Promise.race([prepareBackground(),new Promise(function(resolve){setTimeout(resolve,1800)})]).then(function(){
+          if(finished) return;var fp=film.play();if(fp&&fp.catch) fp.catch(finalMark);
+        },finalMark);
+      });
     }
   }
 
   /* ---------- THE WEEK, LIVE: progress bar on the running class + the one-line "where the week is" readout ---------- */
   function trackNow(){
     var p=pacificNow(), line=$('#weekNow'); if(!line) return;
-    var now=$('.wk-row.now'), nxt=$('.week-col.today .wk-row.next');
-    $$('.wk-row').forEach(function(r){r.style.removeProperty('--pct');r.querySelector('.wk-tag').removeAttribute('data-left')});
+    var now=$('.wk-row.now'), next=nextScheduledClass(p);
+    $$('.wk-row').forEach(function(r){var tag=$('.wk-tag',r);r.style.removeProperty('--pct');if(tag)tag.removeAttribute('data-left')});
     if(now){
-      var s0=parseFloat(now.getAttribute('data-start')), e0=parseFloat(now.getAttribute('data-end'));
+      var rowIndex=$$('.wk-row',now.parentElement).indexOf(now), entry=CLASSES[rowIndex];
+      var s0=entry?entry.start:parseFloat(now.getAttribute('data-start')), e0=entry?entry.end:parseFloat(now.getAttribute('data-end'));
       var pct=Math.max(0,Math.min(100,(p.h-s0)/(e0-s0)*100)), left=Math.max(1,Math.round((e0-p.h)*60));
       now.style.setProperty('--pct',pct.toFixed(1)+'%'); now.querySelector('.wk-tag').setAttribute('data-left',left+' min left');
       line.className='week-now is-on'; line.textContent='Right now · '+$('.wk-who',now).textContent+' on the mat · '+left+' min left';
-    } else if(nxt){
-      line.className='week-now'; line.textContent='Next up · '+$('.wk-time',nxt).textContent+' '+$('.wk-who',nxt).textContent+' · '+(CLASS_DAYS[p.day]||'');
+    } else if(next){
+      var when=next.daysAway===0?'today':next.daysAway===1?'tomorrow':dayName(next.day);
+      line.className='week-now';line.textContent='Next up · '+next.who+' '+when+' at '+fmt(next.start)+' · '+CLASS_DAYS[next.day];
     } else {
-      var k=1; while(!CLASS_DAYS[(p.day+k)%7]) k++; var nd=(p.day+k)%7;
-      line.className='week-now'; line.textContent='No classes right now · back '+(k===1?'tomorrow':dayName(nd))+' at 9 am · '+CLASS_DAYS[nd];
+      line.className='week-now';line.textContent='Call for the next class.';
     }
   }
   applyStatus(); trackNow(); setInterval(function(){applyStatus();trackNow()},30000);
@@ -241,7 +355,12 @@ function customClose(p, close){ return close; }
       ground.poster=startPoster; ground.muted=true; ground.defaultMuted=true; ground.playsInline=true;
       ground.src=src; ground.load();
       ground.addEventListener('playing',function(){hero.classList.add('is-playing')},{once:true});
-      window.__startReel=function(){ground.play().catch(function(){})};
+      window.__startReel=function(){
+        return ground.play().then(function(){
+          if(!ground.requestVideoFrameCallback) return;
+          return new Promise(function(resolve){ground.requestVideoFrameCallback(function(){resolve()})});
+        }).catch(function(){});
+      };
       ground.addEventListener('playing',groundDone,{once:true});
       ground.addEventListener('error',function(){ground.poster=endPoster;groundDone()},{once:true});
       if(!$('#film')){ var pr=ground.play(); if(pr&&pr.catch) pr.catch(function(){ground.poster=endPoster;groundDone()}); }
@@ -338,17 +457,8 @@ function customClose(p, close){ return close; }
     track.addEventListener('touchend',function(){setTimeout(function(){track.classList.remove('is-held')},1200)},{passive:true});
   }
 
-  /* ---------- the cursor: dot follows exactly, ring lags; grows over anything tappable; the big buttons pull toward it.
-     Desktop pointers only — touch devices never see it. ---------- */
-  var dot=$('.cur-dot'), ring=$('.cur-ring');
-  if(dot&&ring&&window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    document.documentElement.classList.add('cur');
-    var mx=-100,my=-100,rx=-100,ry=-100,shown=false;
-    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(!shown){shown=true;document.body.classList.remove('cur-hidden')}dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)'},{passive:true});
-    document.addEventListener('mouseleave',function(){document.body.classList.add('cur-hidden')});
-    document.addEventListener('mousedown',function(){ring.classList.add('is-down')});document.addEventListener('mouseup',function(){ring.classList.remove('is-down')});
-    (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';requestAnimationFrame(loop)})();
-    document.addEventListener('mouseover',function(e){ring.classList.toggle('is-over',!!e.target.closest('a,button,summary,label,.rv-card,.program,.week-col'))});
+  /* ---------- subtle button motion, with the browser's native pointer ---------- */
+  if(window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
     $$('.hero-actions .btn,.cta-actions .btn').forEach(function(b){
       b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();var dx=(e.clientX-(r.left+r.width/2))/r.width,dy=(e.clientY-(r.top+r.height/2))/r.height;b.style.transform='translate('+(dx*10)+'px,'+(dy*8)+'px)'});
       b.addEventListener('mouseleave',function(){b.style.transform=''});

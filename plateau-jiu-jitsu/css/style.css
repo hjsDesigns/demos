@@ -24,6 +24,10 @@
    Hayden to catch it.
    ============================================================ */
 :root{
+  --film-sky:#e9deca;
+  --film-dusk:#bba584;
+  --film-earth:#342b22;
+  --film-dissolve:1.25s;
   /* ---- palette (derive from the client's logo / storefront / photos) ---- */
   /* PLATEAU JIU-JITSU — palette sampled from their logo + mat room (Recon/plateau-jiu-jitsu.md).
      ZONED COLOR: royal blue (the rook) owns everything FUNCTIONAL — buttons, links, h2 highlights.
@@ -794,19 +798,8 @@ body{background:var(--bg);color:var(--ink)}
 /* hero scrim on the dark ground: a touch lighter so the room still reads */
 .setup .hero-bg::before{background:radial-gradient(56% 50% at 50% 46%,color-mix(in srgb,var(--dark) 66%,transparent) 0%,color-mix(in srgb,var(--dark) 36%,transparent) 62%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,transparent 26%,transparent 58%,var(--bg) 100%)}
 
-/* ---------- the cursor (desktop only — a phone has no cursor): purple dot + lagging ring, grows on anything tappable,
-   the two big buttons pull toward it. Hidden under reduced motion. ---------- */
-@media (pointer:fine){
-  .js.cur body{cursor:none}
-  .js.cur a,.js.cur button,.js.cur summary,.js.cur label{cursor:none}
-  .cur-dot,.cur-ring{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);will-change:transform}
-  .cur-dot{width:8px;height:8px;background:var(--brand-2-bright);mix-blend-mode:difference}
-  .cur-ring{width:38px;height:38px;border:1.5px solid var(--brand-2-bright);opacity:.85;transition:width .25s var(--ease),height .25s var(--ease),background .25s,border-color .25s,opacity .25s}
-  .cur-ring.is-over{width:64px;height:64px;background:color-mix(in srgb,var(--brand-2-bright) 22%,transparent);border-color:transparent}
-  .cur-ring.is-down{width:30px;height:30px}
-  .cur-hidden .cur-dot,.cur-hidden .cur-ring{opacity:0}
-}
-@media (pointer:coarse),(prefers-reduced-motion:reduce){.cur-dot,.cur-ring{display:none}.js.cur body,.js.cur a,.js.cur button,.js.cur summary{cursor:auto}}
+/* Keep the browser's native pointer visible; legacy cursor markup stays inert. */
+.cur-dot,.cur-ring{display:none}
 
 /* ---------- rotating Google reviews (real names, Google's own avatars) ---------- */
 .rv-rotor{position:relative;display:grid;grid-template-columns:44px 1fr 44px;gap:12px;align-items:center}
@@ -1127,14 +1120,6 @@ body{background:var(--bg);color:var(--ink)}
 .setup .hero-bg::before{background:radial-gradient(44% 46% at 22% 20%,color-mix(in srgb,var(--dark) 62%,transparent) 0%,color-mix(in srgb,var(--dark) 30%,transparent) 60%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 40%,transparent) 0%,transparent 30%,transparent 74%,var(--bg) 100%)}
 @media (max-width:760px){.setup .hero-bg::before{background:radial-gradient(70% 40% at 50% 74%,color-mix(in srgb,var(--dark) 55%,transparent) 0%,transparent 100%),linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent) 0%,transparent 22%,transparent 80%,var(--bg) 100%)}}
 .setup{background:var(--dark)}
-/* cursor: an ink dot and a thin ring — no glow, no fill */
-@media (pointer:fine){
-  .cur-dot{background:var(--ink);mix-blend-mode:normal;width:6px;height:6px}
-  .cur-ring{border-color:color-mix(in srgb,var(--ink) 55%,transparent);opacity:.9}
-  .cur-ring.is-over{width:56px;height:56px;background:color-mix(in srgb,var(--brand) 14%,transparent);border-color:transparent}
-  .setup .cur-dot,.setup .cur-ring{}
-}
-
 /* ---------- after the pieces land: Rainier dissolves into the action background, alone (Hayden 9/21 ~05:30) ---------- */
 .js .setup.is-bg .film,.js .setup.is-bg .film.is-gone{opacity:0;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
 .js .setup.is-bg .hero-bg .ground{opacity:1 !important;transition:opacity 2.2s cubic-bezier(.4,0,.2,1)}
@@ -1198,3 +1183,41 @@ body{background:var(--bg);color:var(--ink)}
 /* ═══ BELT COLORS FILM BACK IN THE HERO (2026-09-21, Hayden's call) — same hand-off mechanics, the film framed as before. ═══ */
 .setup .hero-bg .film{object-fit:cover;object-position:50% 34%;transform:scale(1.12);transform-origin:50% 50%}
 @media (max-width:760px){.setup .hero-bg .film{object-fit:contain;object-position:50% 38%;transform:scale(1.18)}}
+
+/* One portrait scene: sharp film feathered into its own sky/earth palette.
+   The complete scene dissolves over an already-playing background; no blurred echo. */
+.setup .hero-bg .film-scene{position:absolute;inset:0;z-index:2;overflow:hidden;opacity:1;
+  background:linear-gradient(180deg,var(--film-sky) 0%,var(--film-sky) 17%,var(--film-dusk) 42%,var(--film-earth) 66%,var(--dark) 100%);
+  transition:opacity var(--film-dissolve) cubic-bezier(.4,0,.2,1);pointer-events:none}
+.setup .hero-bg .film{inset:auto;object-fit:fill;object-position:center;transform:none;animation:none;pointer-events:none;filter:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 17%,#000 78%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 17%,#000 78%,transparent);
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+.setup .hero-bg .film-echo{display:none !important}
+.js .setup .stage{transform:none;will-change:auto}
+.js .setup .st-board{transform:none}
+.js .setup .st-piece{filter:none}
+.js .setup.is-film-done .st-board,.js .setup.is-settled .st-board{animation:stFade var(--film-dissolve) cubic-bezier(.4,0,.2,1) forwards}
+/* Only the full scene fades. Keeping the film opaque inside it avoids a double fade. */
+.js .setup.is-bg .film-scene{opacity:0}
+.js .setup.is-bg .hero-bg .film{opacity:1;transition:none}
+.js .setup.is-bg .hero-bg .ground{opacity:1 !important;transition:none}
+.js .setup.is-settled .wm-hero{animation:stFade .8s cubic-bezier(.4,0,.2,1) .35s forwards}
+.js .setup.is-settled .hero-sub{animation:rise .6s var(--ease) .55s forwards}
+.js .setup.is-settled .hero-actions{animation:rise .6s var(--ease) .7s forwards}
+@media(prefers-reduced-motion:reduce){.setup .hero-bg .film-scene{display:none}.js .setup.is-film-done .st-board{animation:none !important;opacity:1}}
+
+/* Keep the incoming scene fully rendered underneath the outgoing scene. */
+#hero.setup .hero-bg .ground{opacity:1 !important;transition:none}
+#hero.setup .hero-bg::before{opacity:1;transition:none}
+.js .setup.is-bg .hero-bg .film-scene .film{opacity:1;transition:none}
+
+/* Slow, matched layer morphs — the shared source image splits at row565. */
+#hero.setup .st-mountains{left:0;top:0;width:100%;height:100%;opacity:0;clip-path:inset(0 0 35.2064% 0);transition:none;animation:none;will-change:transform,opacity}
+#hero.setup .st-board{clip-path:inset(64.7936% 0 0 0);animation:none;transition:none;transform:none;opacity:0}
+#hero.setup .st-piece{animation:none;transition:none;will-change:transform,opacity}
+#hero.setup.is-settled .st-board,#hero.setup.is-settled .st-mountains{opacity:1}
+#hero.setup.is-settled .st-piece,#hero.setup.is-settled .st-mountains{will-change:auto}
+@media(prefers-reduced-motion:reduce){#hero.setup .st-board,#hero.setup .st-mountains{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){#hero.setup.is-settled .st-halo{animation:none !important;opacity:0}}
