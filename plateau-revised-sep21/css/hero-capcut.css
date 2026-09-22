@@ -1,0 +1,41 @@
+/* Stationary logo over registered CapCut footage. No geometry animation. */
+#hero[data-hero="capcut"]{--hero-dissolve:0}
+#hero[data-hero="capcut"] .film-scene{
+  background:linear-gradient(180deg,var(--film-sky),var(--film-dusk) 38%,var(--film-earth) 75%);
+  transition:none;
+}
+#hero[data-hero="capcut"] .hero-bg .film{
+  position:absolute;inset:auto;object-fit:fill;object-position:center;
+  transform:none!important;animation:none!important;filter:none;opacity:1;transition:none;visibility:hidden;
+  mask-image:none;-webkit-mask-image:none;
+}
+#hero[data-hero="capcut"].capcut-ready .hero-bg .film{visibility:visible}
+#hero[data-hero="capcut"] .hero-bg::after{display:none}
+#hero[data-hero="capcut"] .stage{
+  aspect-ratio:800/498;transform:none!important;animation:none!important;transition:none!important;
+  --pawn-hole:radial-gradient(ellipse 1.75% 2.81% at 21.65% 40.37%,transparent 96%,#000 100%);
+  mask-image:var(--pawn-hole);-webkit-mask-image:var(--pawn-hole);
+}
+#hero[data-hero="capcut"] .stage .stationary-mark{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  transform:none!important;animation:none!important;transition:none!important;opacity:1;
+}
+.js #hero[data-hero="capcut"] .stage .stationary-mark{opacity:0}
+#hero[data-hero="capcut"] .wm-hero,
+#hero[data-hero="capcut"] .hero-sub,
+#hero[data-hero="capcut"] .hero-actions{
+  transform:none!important;animation:none!important;transition:none!important;clip-path:none!important;
+  opacity:var(--hero-dissolve);
+}
+/* Feather only the outer edges of the sharp footage on wider screens. */
+@media(min-width:761px){
+  #hero[data-hero="capcut"] .hero-bg .film{
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #hero[data-hero="capcut"]{--hero-dissolve:1}
+  #hero[data-hero="capcut"] .film-scene{display:none}
+  .js #hero[data-hero="capcut"] .stage .stationary-mark{opacity:1}
+}

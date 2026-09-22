@@ -1,0 +1,52 @@
+{
+  "_comment": "Plateau Jiu-Jitsu — every string checked against visible page text. Source: vault Recon/plateau-jiu-jitsu.md (2026-09-04).",
+  "name": "Plateau Jiu-Jitsu",
+  "phone": "(253) 797-1223",
+  "address": "9925 214th Ave E, Suite I, Bonney Lake, WA 98391",
+  "hours": {
+    "Mon": "9 – 10 AM · 4:15 – 7:30 PM",
+    "Tue": "9 – 10 AM · 4:15 – 7:30 PM",
+    "Wed": "9 – 10 AM · 4:15 – 7:30 PM",
+    "Thu": "9 – 10 AM · 4:15 – 7:30 PM",
+    "Fri": "Closed",
+    "Sun": "Closed",
+    "Sat": "Open mat some weeks, 11 AM, ages 15+ — at Combat Sport & Fitness in Enumclaw"
+  },
+  "prices": [],
+  "price_selector": ".price",
+  "header_selector": "header, .site-header",
+  "expected_sections": [
+    "top",
+    "hero",
+    "hours",
+    "week",
+    "programs",
+    "coaches",
+    "method",
+    "reviews",
+    "cta"
+  ],
+  "allow_repeat": [
+    "9925 214th Ave E, Suite I, Bonney Lake, WA 98391",
+    "9 – 10 AM · 4:15 – 7:30 PM",
+    "Closed",
+    "$125",
+    "Adults",
+    "Kids 5–7",
+    "Kids 8–13",
+    "60 min",
+    "Gi",
+    "No-Gi",
+    "$75",
+    "Mon–Thu",
+    "40 min",
+    "75 min"
+  ],
+  "_pages": [
+    "index.html",
+    "schedule.html",
+    "classes.html",
+    "about.html",
+    "contact.html"
+  ]
+}
