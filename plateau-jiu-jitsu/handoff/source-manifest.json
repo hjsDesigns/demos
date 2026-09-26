@@ -1,0 +1,281 @@
+{
+  "updated_utc": "2026-09-26T06:39:52+00:00",
+  "source_base_revision": "f770104",
+  "refresh_policy": "Snapshot refreshed on request; no automatic synchronization.",
+  "website": "https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/",
+  "archive": "source.zip",
+  "archive_bytes": 19720488,
+  "archive_sha256": "bd9853104c97120db519de55f522b3bbc2dfe7b6cd902a90994253bf01e2c9d3",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4835,
+      "sha256": "861b08537aa7a7d4f9715e78d06169bb1f95d923af7edb44e12eff492bf34e64"
+    },
+    {
+      "path": "about.html",
+      "bytes": 8156,
+      "sha256": "ac3cc18963cb7c7104081974140f0cb52b9a7a521942f7cce9c1d71d666d1935"
+    },
+    {
+      "path": "classes.html",
+      "bytes": 9018,
+      "sha256": "927ca7664431401ea8a41fa610406a1d334f84860f9a58c3cf712748bebd0eda"
+    },
+    {
+      "path": "contact.html",
+      "bytes": 7890,
+      "sha256": "936072382a495b98ec1c6f6b8715feb3283ff255580148582a8a8146be54e190"
+    },
+    {
+      "path": "css/hero-capcut.css",
+      "bytes": 2112,
+      "sha256": "6f6e33e510c11d4086d4e58754cc821c32515317c8d3b06ed428cc2b1095b333"
+    },
+    {
+      "path": "css/schedule-summary.css",
+      "bytes": 3502,
+      "sha256": "c95cbf292d7822161ad59a8c879ccd9fd8bd74dab707168b06f6945469de445d"
+    },
+    {
+      "path": "css/style.css",
+      "bytes": 101460,
+      "sha256": "47c568eba745deec8a22dd99d267bb672ef27855cd6b0658a8a85d00b0924d6f"
+    },
+    {
+      "path": "hero-type-options.html",
+      "bytes": 11767,
+      "sha256": "cbb3871bb3b4c0fc0046a74c8f615d9a8484f188c92f625e6797c569d36e1087"
+    },
+    {
+      "path": "images/about.jpg",
+      "bytes": 559922,
+      "sha256": "764eb69446fb9f9d2656d12b85888b8959ecdee9e07db48aa567bcb31eab744d"
+    },
+    {
+      "path": "images/bg-loop-soft-start.jpg",
+      "bytes": 46603,
+      "sha256": "43203ac70dd5a4c9e9239b58daaf5629b240277667d46d615a239883f5b7eb61"
+    },
+    {
+      "path": "images/coaches-john-shalise.jpg",
+      "bytes": 239092,
+      "sha256": "ef88aed3ecec525e64db02679fa25dc15de04c2c4601968975659b53864563fc"
+    },
+    {
+      "path": "images/door-classes.jpg",
+      "bytes": 47108,
+      "sha256": "0c45805394d4bbbefc84ee396364576984333d272a454d7b63ce2a1d22b3fc67"
+    },
+    {
+      "path": "images/door-coaches.jpg",
+      "bytes": 70642,
+      "sha256": "e74a1d640f7ac0e43a9ba011457f0b75129a2499cf5a3480ae28edc297cdf4b7"
+    },
+    {
+      "path": "images/door-schedule.jpg",
+      "bytes": 64337,
+      "sha256": "1425ad68439170cfd8bb8dedb051cf17e421c23be35731e6c900d2f7bacfd0d2"
+    },
+    {
+      "path": "images/face-john.jpg",
+      "bytes": 18750,
+      "sha256": "92d42c49e5ba8d5dcb1c1355eade5ccc517aca4f5993ec220c9ac3e1c22d25b4"
+    },
+    {
+      "path": "images/face-shalise.jpg",
+      "bytes": 17640,
+      "sha256": "2810f88e90e7feee9257ff1037dda1293c7a63b6eed77eabda184617e2cc5eac"
+    },
+    {
+      "path": "images/fb-01.jpg",
+      "bytes": 338656,
+      "sha256": "30e862c7510010edb3eb59744ea2ba6258a42e8d25f175fa12980e750777733b"
+    },
+    {
+      "path": "images/film-capcut-start.jpg",
+      "bytes": 113602,
+      "sha256": "7eb15e0c4e3dca88acd3bfc0a3a944927b202cdd4612af437d1226d90b7b9b59"
+    },
+    {
+      "path": "images/gallery-1.jpg",
+      "bytes": 874629,
+      "sha256": "8672836f61749dfc03a192f48ec9b1e4b12e0db1f276d427435d05a81a77d040"
+    },
+    {
+      "path": "images/gallery-2.jpg",
+      "bytes": 753166,
+      "sha256": "3097c7dc6fb1f03bfbcebfea255cf938eee510a981642d9f75c182a54a1266d5"
+    },
+    {
+      "path": "images/gallery-3.jpg",
+      "bytes": 686747,
+      "sha256": "3bd5997a1eb8277d3d3396cd881428f2404392681ffebf2c88ad5ae13feab022"
+    },
+    {
+      "path": "images/gallery-4.jpg",
+      "bytes": 828381,
+      "sha256": "1fcb392c542c06f022bb3edd58412e5f738f7a3adc1579e8664430ac88652cc1"
+    },
+    {
+      "path": "images/gallery-5.jpg",
+      "bytes": 800301,
+      "sha256": "975943e3c116a71f4900fe86ffaabd7bd2ba7c65875865d876c1261f008b8d6e"
+    },
+    {
+      "path": "images/gallery-6.jpg",
+      "bytes": 320766,
+      "sha256": "8e215a1b19d38edeed35b525bf8e0a95948ebdff747908302628e8c5ddf6d5f9"
+    },
+    {
+      "path": "images/ground-coach.jpg",
+      "bytes": 31377,
+      "sha256": "1e653a6612a99026567372bd503423bedbc8790b68e77b73db0694be7454c7c2"
+    },
+    {
+      "path": "images/ground-desktop.jpg",
+      "bytes": 18066,
+      "sha256": "ad5eefc6929407168cca05761ffe8dfa79c31ee8f5d593d2ad6a5cab6bfa9f14"
+    },
+    {
+      "path": "images/ground-mural.jpg",
+      "bytes": 37797,
+      "sha256": "f5ba1241a99c378698e5552630f7b42a1a47aa359703dc238aed71bf411ff6fe"
+    },
+    {
+      "path": "images/ground-room.jpg",
+      "bytes": 25316,
+      "sha256": "d5fd9431bc5bd4e5b2bf38ebc0f703ceb81aafb13ec410921088c66e0974fd21"
+    },
+    {
+      "path": "images/ig-DLQkGitTgkc.jpg",
+      "bytes": 27507,
+      "sha256": "8616ac602ac8dcde8a5c4e442d93aa59f3ee14ef2243bffc028dcdbf44011577"
+    },
+    {
+      "path": "images/logo.png",
+      "bytes": 70892,
+      "sha256": "ee85b83c9d4d05cb212d4789eebc260a3d5a60619aaa73e47ac1b43ba1dad34b"
+    },
+    {
+      "path": "images/pieces/board.png",
+      "bytes": 149199,
+      "sha256": "13285d7f416602b342f7b15857afaf7755fb27ad740613e7d8bca626a922e20d"
+    },
+    {
+      "path": "images/reel-desktop-start.jpg",
+      "bytes": 24181,
+      "sha256": "d9f46cf327c5cc8730d665def27bf3a84794ee43235c8d8661aef7c422129591"
+    },
+    {
+      "path": "images/reviewers/anthony-borgomainerio.jpg",
+      "bytes": 10061,
+      "sha256": "7e56a1529976d64992561eaaa0d37ddeca9576555f5ac30862f45eb0e846bf0b"
+    },
+    {
+      "path": "images/reviewers/bethany-overland-jack.jpg",
+      "bytes": 7884,
+      "sha256": "32e542905b9805793ec4fc806c4f8f78608ba6805bf70d04d1eb0b29f7ab3fbf"
+    },
+    {
+      "path": "images/reviewers/j.jpg",
+      "bytes": 8749,
+      "sha256": "3e18afcd97aedc0a9bcbcb0eaf763af293b5ca63047a8bf095ebfa3a5df19f07"
+    },
+    {
+      "path": "images/reviewers/jason-verhoff.jpg",
+      "bytes": 3627,
+      "sha256": "88d0cffcd238153b94d6b70ed20b1e2d46930fe720c0939a4e715b05298d0e07"
+    },
+    {
+      "path": "images/reviewers/jessica-norman.jpg",
+      "bytes": 7815,
+      "sha256": "a48ea0fd38de17906ec93167d8ac3308d9908989920970a54ac634d47b87d13d"
+    },
+    {
+      "path": "images/reviewers/sarah.jpg",
+      "bytes": 4800,
+      "sha256": "f215e5758993722ebfda89c81d1addedd362694ef5ddcf9d42c3fb7cdf0703f5"
+    },
+    {
+      "path": "images/reviewers/tyson-cunningham.jpg",
+      "bytes": 8085,
+      "sha256": "8487f0362b48e46fd5098957fd3c286a2eb33e1343f62167e172fe09a924c2cf"
+    },
+    {
+      "path": "images/reviewers/victoria-wirtz.jpg",
+      "bytes": 4189,
+      "sha256": "a0505613dd3734e56c3eb9997e41e03a4eff2945430f1abe6eed8873d5cac3ed"
+    },
+    {
+      "path": "images/reviewers/yuriy-khryukin.jpg",
+      "bytes": 9146,
+      "sha256": "3157e6cb04785617ed02f1fd6618692b151f866632ce058cc2bddd98ab5158a7"
+    },
+    {
+      "path": "images/storefront.jpg",
+      "bytes": 598407,
+      "sha256": "482d1c72432f4b74f4f4fa20451f04d8ef97c4940698f5d5b1088da05f83ec96"
+    },
+    {
+      "path": "index.html",
+      "bytes": 32347,
+      "sha256": "7b330b83992838149dbaa652a0472cd38d3bff4ede9179ab2477d5ddea248ff7"
+    },
+    {
+      "path": "js/hero-capcut.js",
+      "bytes": 3575,
+      "sha256": "e87e0084d0e6072c8ac93118bce760af03b1ebf20a8d9ae95cb3c5901ce7f9f8"
+    },
+    {
+      "path": "js/hero-options.js",
+      "bytes": 2477,
+      "sha256": "997160ec1795d8ab61eeb1f12053b252d993724f02a5718aa988186c574eaa25"
+    },
+    {
+      "path": "js/site.js",
+      "bytes": 29321,
+      "sha256": "a3d32e78dcd5d9914f247983adf42002bf36d15577578e5320c211343089b109"
+    },
+    {
+      "path": "schedule.html",
+      "bytes": 9063,
+      "sha256": "3aa1d68ed8a541bc3ba8b8281ad3109f67b1be5a0e0b7651601039e84a04c2b2"
+    },
+    {
+      "path": "videos/bg-loop-soft.mp4",
+      "bytes": 762584,
+      "sha256": "469cb31e94bf7f16548a9ba2fc34aac54878735017d3efc7d333e8b1ad560880"
+    },
+    {
+      "path": "videos/card-adults.mp4",
+      "bytes": 60443,
+      "sha256": "92b63b7bce28103cf0743823a9062df1788183ef8e1f90e6cb5c850176bd8c84"
+    },
+    {
+      "path": "videos/card-kids57.mp4",
+      "bytes": 214553,
+      "sha256": "51d344858a0eb9a2f8a6f0467682df39c473f730fe41bc2819acdf486f054822"
+    },
+    {
+      "path": "videos/card-kids813.mp4",
+      "bytes": 185921,
+      "sha256": "07fd186f07c992690bb957a2f8614c842ca0b16773c3760a082cd311e711e553"
+    },
+    {
+      "path": "videos/card-littles.mp4",
+      "bytes": 313738,
+      "sha256": "8dca2a5a5ba6f63f21a493e609a50515ec39b052d1f8d68c3277e603e27b11cd"
+    },
+    {
+      "path": "videos/portrait-shuffle-capcut-20260921.mp4",
+      "bytes": 10632639,
+      "sha256": "08ca81a5d4697aad1780d144226420a9c66b645537d01e6658e637001ad17e47"
+    },
+    {
+      "path": "videos/reel-action.mp4",
+      "bytes": 778771,
+      "sha256": "26583559bd818d430efebab64d1d98ddf0f8273e44a8510386a5fd295e3d3372"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Website handoff — Plateau Jiu-Jitsu</title>
+<style>
+:root{--bg:#ECECE9;--paper:#F7F7F5;--ink:#17181A;--muted:#5D6065;--line:#CFD1CD;--purple:#6E3FB0;--purple-dark:#5D3199;--white:#fff;--body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}main{max-width:840px;margin:auto;padding:32px 24px 64px}header{display:flex;align-items:center;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line)}header img{width:64px;height:40px;object-fit:contain}header p{margin:0;font-size:15px;font-weight:750}.eyebrow{margin:36px 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:750;color:var(--purple-dark)}h1{font-size:clamp(34px,6vw,52px);line-height:1.1;letter-spacing:-.045em;margin:0 0 18px;max-width:650px}h2{font-size:20px;line-height:1.3;margin:0 0 12px;letter-spacing:-.015em}.intro{max-width:620px;color:var(--muted);font-size:18px;margin:0 0 24px}.actions{display:flex;flex-wrap:wrap;gap:12px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:1px solid var(--line);border-radius:9px;padding:12px 20px;font:700 15px/1.35 var(--body);cursor:pointer;text-decoration:none;background:var(--paper);color:var(--ink)}.primary{background:var(--purple);border-color:var(--purple);color:var(--white)}.primary:hover{background:var(--purple-dark)}a{color:var(--purple-dark);text-underline-offset:3px}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--purple);outline-offset:4px}.link-field{margin-top:24px}.link-field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.link-field input{display:block;width:100%;font:14px/1.5 var(--body);color:var(--muted);background:var(--paper);padding:12px;border:1px solid var(--line);border-radius:7px;min-height:46px}.status{margin:8px 0 0;min-height:24px;font-size:13px;color:var(--purple-dark)}.package-note{margin:13px 0 0;font-size:13px;color:var(--muted)}.brief{margin-top:30px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:12px}.brief ul{margin:0;padding-left:20px}.brief li{padding:4px 0}.brief p{margin:12px 0 0}.next{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}.next p{margin:0;color:var(--muted)}footer{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:28px;font-size:13px;color:var(--muted)}code{font-size:.9em;overflow-wrap:anywhere}@media(max-width:520px){main{padding:22px 20px 40px}.eyebrow{margin-top:28px}.intro{font-size:16px}.actions{gap:10px}.actions .primary{width:100%}.actions a{flex:1;padding-inline:12px}.brief{padding:20px}.link-field input{font-size:12px}header p{font-size:14px}}
+</style>
+</head>
+<body>
+<main>
+  <header><img src="../images/logo.png" alt="" width="64" height="40"><p>Plateau Jiu-Jitsu</p></header>
+  <p class="eyebrow">Website handoff</p>
+  <h1>Continue work in Claude</h1>
+  <p class="intro">Paste this link into Claude with your next request. The current website, source files and key decisions are together here.</p>
+  <div class="actions">
+    <button class="button primary" id="copy-link" type="button">Copy handoff link</button>
+    <a class="button" href="../">View website</a>
+    <a class="button" href="source.zip" download>Download source</a>
+  </div>
+  <p class="package-note"><span id="package-size">ZIP · 19.7 MB</span> · Updated <time id="updated" datetime="2026-09-26T06:39:52+00:00">2026-09-26</time><br>Snapshot from <span id="revision">f770104</span>. Refreshed on request; no automatic sync.</p>
+  <div class="link-field">
+    <label for="handoff-url">Handoff link</label>
+    <input id="handoff-url" type="text" readonly spellcheck="false" value="https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/handoff/">
+    <p class="status" id="copy-status" role="status" aria-live="polite">Copy the link, then paste it into your Claude chat.</p>
+  </div>
+  <section class="brief" aria-labelledby="brief-title">
+    <h2 id="brief-title">Keep these decisions</h2>
+    <ul>
+      <li>The approved CapCut film, stationary logo alignment and direct dissolve stay. The pawn's head is solid white.</li>
+      <li>White and light gray backgrounds, black type, and purple accents. Keep the original multicolor logo.</li>
+      <li>Programs stay in this order: Pre-K, ages 5–7, ages 8–13, then Adults.</li>
+      <li>Monday–Thursday classes and compact weekend rows stay. Friday and Sunday are closed; Saturday open mat is only some weeks at Combat Sport &amp; Fitness.</li>
+      <li>Heading and subtitle alternatives remain unselected. Keep the native mouse pointer and reduced-motion support.</li>
+    </ul>
+    <p><a href="handoff.md">Read the full handoff brief →</a></p>
+  </section>
+  <section class="next" aria-labelledby="next-title">
+    <h2 id="next-title">Still awaiting direction</h2>
+    <p>A wider Mac hero and the separate Mac background issue remain pending. Follow the user's next request; this handoff does not authorize new media generation, spending or publication.</p>
+  </section>
+  <footer><span>Plain HTML, CSS and JavaScript. No build step.</span><a href="source-manifest.json">Source file manifest</a></footer>
+</main>
+<script>
+(function(){
+  var button=document.getElementById('copy-link'),field=document.getElementById('handoff-url'),status=document.getElementById('copy-status');
+  button.addEventListener('click',async function(){
+    try{
+      if(!navigator.clipboard||!navigator.clipboard.writeText)throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(field.value);
+      button.textContent='Link copied';status.textContent='Copied. Paste the link into Claude with your next request.';
+    }catch(error){
+      field.focus();field.select();field.setSelectionRange(0,field.value.length);
+      button.textContent='Copy handoff link';status.textContent='Link selected. Press Command+C or Ctrl+C, or touch and hold to copy.';
+    }
+  });
+})();
+</script>
+</body>
+</html>
