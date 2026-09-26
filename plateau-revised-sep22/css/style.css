@@ -1062,7 +1062,7 @@ body{background:var(--bg);color:var(--ink)}
 
 /* ============================================================
    THE ROOM (Hayden 9/21 ~05:00): "the inside of the website should feel like the inside of the gym" — white wall pads,
-   grey mats, clean daylight, black gis. Ink type on pad-white; blue is the one working colour; purple retired to the logo;
+   grey mats, clean daylight, black gis. Ink type on pad-white; purple is the working colour, drawn from the logo;
    no checker devices, no glow. The film hero stays cinematic — it is the sell; the page under it is the room.
    ============================================================ */
 :root{
@@ -1075,9 +1075,9 @@ body{background:var(--bg);color:var(--ink)}
   --dark:#14161A;          /* scrims, footer */
   --dark-2:#22252A;
   --tint:#E3E5E2;          /* hours band */
-  --brand:#1D49A6;--brand-text:#173C8A;--brand-bright:#2A5CC7;   /* rook blue — everything functional */
-  --brand-2:#173C8A;--brand-2-bright:#3A6BE0;                    /* eyebrows join the blue; purple lives in the logo only */
-  --accent:#8C5633;--accent-soft:#B27A54;--warm:#1D49A6;
+  --brand:#6E3FB0;--brand-text:#5D3199;--brand-bright:#8050BE;   /* knight purple — buttons, links and highlights */
+  --brand-2:#6E3FB0;--brand-2-bright:#A772DC;                   /* purple labels; the logo shade on dark grounds */
+  --accent:#8C5633;--accent-soft:#B27A54;--warm:#6E3FB0;
 }
 body{background:var(--bg);color:var(--ink)}
 .section{background:var(--bg)}.section-alt{background:var(--bg-2)}
