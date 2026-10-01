@@ -11,7 +11,7 @@
 <style>
 :root{
   --bg:#ECECE9;--paper:#F6F6F3;--ink:#191A1C;--muted:#64666A;--line:#D6D7D4;
-  --purple:#6E3FB0;--purple-light:#A772DC;--blue:#1D49A6;--white:#F5F3EC;
+  --purple:#5D3199;--purple-light:#A772DC;--link:var(--purple);--white:#F5F3EC;
   --preview:#5B5D5E;--shade:rgba(25,26,28,.52);--shade-soft:rgba(25,26,28,.25);
   --display:'Anton',Impact,'Arial Narrow',sans-serif;
   --body:'Hanken Grotesk','Avenir Next','Segoe UI',sans-serif;
@@ -20,7 +20,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
-a{color:var(--blue);text-underline-offset:5px}
+a{color:var(--link);text-underline-offset:5px}
 a:focus-visible{outline:3px solid var(--purple);outline-offset:6px}
 .wrap{width:min(calc(100% - var(--pad)*2),var(--maxw));margin-inline:auto}
 .topbar{padding-block:24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:14px;font-weight:600}
