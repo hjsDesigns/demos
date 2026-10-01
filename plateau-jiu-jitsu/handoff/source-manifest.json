@@ -1,31 +1,31 @@
 {
-  "updated_utc": "2026-10-01T22:27:43+00:00",
-  "source_base_revision": "53869b9",
+  "updated_utc": "2026-10-01T23:24:57+00:00",
+  "source_base_revision": "9175433",
   "refresh_policy": "Snapshot refreshed on request; no automatic synchronization.",
   "website": "https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/",
   "archive": "source.zip",
-  "archive_bytes": 19720499,
-  "archive_sha256": "fd2546dcc1d6f90fb7fff8e2321f3c270e148a0e00c0e8b83d24376c4b8f20d9",
+  "archive_bytes": 19721040,
+  "archive_sha256": "231d9fba8647080baf76fca6cdd365b2b4d1e0da2d5331933afdd4540027907d",
   "files": [
     {
       "path": "README.md",
-      "bytes": 5147,
-      "sha256": "8a862de16d9f752f7b9a6f3927bfb52d4c4abef1144bc31922b7ebcebfb243b1"
+      "bytes": 5763,
+      "sha256": "309acceb61f2330cc360adb40b7df83dee4a16fbc9d2941e66204b45b5cd5b69"
     },
     {
       "path": "about.html",
-      "bytes": 8163,
-      "sha256": "bddf8045e4612aeea67b1004f90b53910244561957e5dad636e4cfa81024a2b8"
+      "bytes": 8165,
+      "sha256": "8f545a468cd5a5ad32147db2bc0a79698d93be2c28254ba11f71911e47c6fec4"
     },
     {
       "path": "classes.html",
-      "bytes": 9025,
-      "sha256": "3caea65189c478519c2ee21fc559e6395ee81270b452967e4f485d70bf8bb7b4"
+      "bytes": 9027,
+      "sha256": "e994fbe25d6baa8311e65136d156dd919cfc53446b4d9d4b824d11d8a005ed0b"
     },
     {
       "path": "contact.html",
-      "bytes": 7897,
-      "sha256": "b33d06923cb173add6ceea2e5961bb221ef1b73821f038feccbcd712cac9ec65"
+      "bytes": 7899,
+      "sha256": "01d1bba68e06d49e86142474d03ab066c6ad790fc90288054437ed84516c3ff5"
     },
     {
       "path": "css/hero-capcut.css",
@@ -39,8 +39,8 @@
     },
     {
       "path": "css/style.css",
-      "bytes": 100978,
-      "sha256": "1b031e4307381cd09fc478af0777c7f0bc03f7361be1083f7638b8bf533e7efe"
+      "bytes": 101614,
+      "sha256": "4e3a7b8eea19bb9e2624af3ee0d55a75437e20b898696a1ca8e98b044d51840d"
     },
     {
       "path": "hero-type-options.html",
@@ -219,8 +219,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 32354,
-      "sha256": "6fb1bd48c7b0dd4b3c00e23fa253440552a186d24928d9fb3603f8aeba446a0b"
+      "bytes": 32356,
+      "sha256": "a9e914dbba0e741d79fb7d210d297a23234bc76800e4f5e05fc9d830e03a4ef7"
     },
     {
       "path": "js/hero-capcut.js",
@@ -239,8 +239,8 @@
     },
     {
       "path": "schedule.html",
-      "bytes": 9070,
-      "sha256": "58370230a24d8cfba98b915b701881e71b4a685696b5297e508b266a371230e9"
+      "bytes": 9072,
+      "sha256": "42471ef1596d17543083c26383d60555f09bff11dfa30cdc652e1d752b798fc3"
     },
     {
       "path": "videos/bg-loop-soft.mp4",
