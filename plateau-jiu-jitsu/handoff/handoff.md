@@ -5,7 +5,7 @@ Handoff page: https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/handoff/
 Source ZIP: https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/handoff/source.zip
 File manifest: https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/handoff/source-manifest.json
 
-Source base revision: `f770104`.
+Source base revision: `53869b9`.
 This is a snapshot refreshed on request, with no automatic synchronization. The manifest records the exact packaged bytes; the website can change after this snapshot.
 
 ## Continue from this version
@@ -20,7 +20,7 @@ Pages: `index.html`, `schedule.html`, `classes.html`, `about.html`, and `contact
 
 - **Hero:** Keep `videos/portrait-shuffle-capcut-20260921.mp4`, the approved 1440 × 2560 CapCut export, approximately 5.233 seconds at its original 1× playback speed. Keep the existing stationary logo registration and direct opacity dissolve. Do not add a logo shift, zoom, intermediate treatment, or replacement animation.
 - **Hero implementation:** Preserve `css/hero-capcut.css` and `js/hero-capcut.js`, including their current responsive registration. The video is positioned relative to the stationary logo; the ending dissolves into the logo and moving background. Keep the original multicolor logo and the pawn's **solid white head**.
-- **Palette:** The page is white/light gray and black with **purple** accents. Current final tokens in `css/style.css`: `--brand: #6E3FB0`, `--brand-text: #5D3199`, `--brand-bright: #8050BE`, `--brand-2: #6E3FB0`, `--brand-2-bright: #A772DC`, and `--warm: #6E3FB0`. Preserve green for open status and red for closed status. The logo's original colored chess pieces stay intact.
+- **Palette:** The page is white/light gray and black with **purple** accents. The shared accent is **#A772DC**, sampled from the exact purple fill of the logo’s knight (RGB 167, 114, 220). Brand tokens are defined once in the opening `:root` of `css/style.css`: `--brand: #A772DC`, `--brand-text: #5D3199` for readable small text, `--brand-bright: #B786E6` for hover, `--brand-2: var(--brand-text)`, `--brand-2-bright: var(--brand)`, and `--warm: var(--brand)`. Purple buttons, schedule headers and pills use dark lettering for contrast. Do not restore the old blue palette. Preserve green for open status and red for closed status. The logo's original colored chess pieces stay intact.
 - **Typography:** Anton for display type and Hanken Grotesk for body copy. Heading/subtitle alternatives remain choices for the user; do not silently apply one.
 - **Programs:** Preserve the home-page order: Pre-K → ages 5–7 → ages 8–13 → Adults. Keep the current content and media with their programs.
 - **Schedule:** Preserve the compact Friday/Saturday/Sunday rows beneath Monday–Thursday. Classes Monday–Thursday: Adults at 9:00 AM; kids 5–7 at 4:15 PM; kids 8–13 at 5:10 PM; Adults at 6:15 PM. Gi Monday/Wednesday, No-Gi Tuesday/Thursday. Friday and Sunday are closed. Saturday open mat is only some weeks, at 11 AM for ages 15+, at Combat Sport & Fitness in Enumclaw. Pre-K dates remain something visitors must ask about. Do not invent extra classes or schedules.
