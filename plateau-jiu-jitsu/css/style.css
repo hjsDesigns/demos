@@ -35,6 +35,9 @@
      Black (the king) = ink + the dark band. The room is a bright grey box → light ground, a
      grey-warm cream (never white). */
   --brand:#A772DC;          /* exact solid fill of the logo's knight */
+  --brand-heading:#6E3FB0;  /* deeper knight purple for readable titles on light backgrounds */
+  --hero-copy-shadow:0 1px 2px var(--dark),0 0 4px var(--dark),0 0 8px var(--dark);
+  --ground-image-opacity:.17; /* keep section photography behind, rather than competing with, text */
   --brand-text:#5D3199;     /* readable purple for small text on light grounds */
   --brand-bright:#B786E6;   /* lighter purple hover, with dark lettering */
   --brand-2:var(--brand-text);
@@ -53,7 +56,7 @@
   --warm:var(--brand);      /* one logo-derived accent throughout */
   --tint:#DDE1E6;           /* hours band — the logo's grey mountain, washed */
   --status-open:#10B981;    /* STATUS LIGHT LAW */
-  --status-closed:#DC2626;  /* STATUS LIGHT LAW */
+  --status-closed:#B91C1C;  /* STATUS LIGHT LAW */
 
   /* ---- type: Archivo (wide 112%, 800) ≈ their bold wide geometric storefront wordmark (approximation) · Hanken Grotesk body ---- */
   --display:'Archivo','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
@@ -95,7 +98,7 @@ main{flex:1 0 auto}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
-h2 em{font-style:normal;color:var(--brand)}
+h2 em{font-style:normal;color:var(--brand-heading)}
 .section-dark h2 em,.hero h1 em{color:var(--warm)}
 p{margin:0 0 1em}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
@@ -129,7 +132,7 @@ p{margin:0 0 1em}
 .nav-wrap{display:flex;align-items:center;gap:18px}
 .main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
 .main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
-.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav a:hover{opacity:1;color:var(--brand-text)}
 .main-nav .nav-cta{background:var(--brand);color:var(--on-brand);padding:10px 16px;border-radius:999px;opacity:1}
 .main-nav .nav-cta:hover{background:var(--brand-bright);color:var(--on-brand)}
 /* live open/closed pill in the header */
@@ -398,8 +401,8 @@ h1,h2{letter-spacing:-.02em}
 .wk-row.now .wk-tag{display:block;color:color-mix(in srgb,var(--status-open) 70%,var(--ink))}
 .wk-row.now .wk-tag::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--status-open);margin-right:7px;vertical-align:middle;animation:pulse 2.4s var(--ease) infinite}
 .wk-row.next .wk-tag{display:block}
-.wk-row.done{opacity:.45}
-.wk-row.done .wk-who{text-decoration:line-through;text-decoration-color:var(--line)}
+.wk-row.done{opacity:1}
+.wk-row.done .wk-who{text-decoration:line-through;text-decoration-color:var(--muted)}
 .week-note{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--muted);margin:22px 0 0;font-variant-numeric:tabular-nums}
 @media (max-width:900px){.week{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.week{grid-template-columns:1fr;gap:10px}.wk-row{padding:11px 16px}}
@@ -458,12 +461,12 @@ h1,h2{letter-spacing:-.02em}
 }
 
 /* ---------- MULTI-PAGE (Combat-style sectioning, Hayden 2026-09-04) ---------- */
-.main-nav a[aria-current]{opacity:1;color:var(--brand);position:relative}
+.main-nav a[aria-current]{opacity:1;color:var(--brand-text);position:relative}
 .main-nav a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--brand);border-radius:2px}
 @media (max-width:900px){.main-nav a[aria-current]::after{display:none}.main-nav a[aria-current]{background:color-mix(in srgb,var(--brand) 10%,transparent)}}
 .page-head{background:var(--tint);border-bottom:var(--rule);padding:clamp(44px,7vw,84px) 0 clamp(30px,4vw,48px)}
 .page-head h1{font-size:clamp(36px,5vw,64px);margin:0 0 14px;max-width:18ch}
-.page-head h1 em{font-style:normal;color:var(--brand)}
+.page-head h1 em{font-style:normal;color:var(--brand-heading)}
 .page-intro{font-size:18px;color:var(--muted);margin:0;max-width:56ch}
 .door-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .door{display:flex;flex-direction:column;gap:8px;background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 24px 22px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
@@ -601,9 +604,9 @@ h2,.page-head h1{text-transform:uppercase;letter-spacing:.05em;font-size:clamp(1
 .tr-time{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums;font-size:15px}
 .tr-who{font-weight:700}.tr-who small{display:block;font-weight:500;color:var(--muted);font-size:13px}
 .tr-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.today-rows li.done{opacity:.5}
+.today-rows li.done{opacity:1}
 .today-rows li.now{background:color-mix(in srgb,var(--status-open) 12%,transparent)}
-.today-rows li.now .tr-tag{color:var(--status-open);font-weight:700}
+.today-rows li.now .tr-tag{color:var(--ink);font-weight:700}
 .today-rows li.now .tr-tag::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--status-open);margin-right:8px;vertical-align:1px;animation:pulse 2.4s var(--ease) infinite}
 .today-rows li.next .tr-tag{color:var(--brand-text);font-weight:700}
 @media (max-width:520px){.today-rows li{grid-template-columns:64px 1fr;padding:12px 14px}.tr-tag{grid-column:2}}
@@ -762,7 +765,7 @@ body{background:var(--bg);color:var(--ink)}
 .week-col,.today-rows,.rating-card,.program,.storefront,.coach-print,.week-now{background:var(--paper);border-color:var(--line)}
 .wk-head{border-bottom-color:var(--line)}
 .wk-time,.wk-len{color:var(--muted)}
-.wk-row.now .wk-tag{color:var(--status-open)}
+.wk-row.now .wk-tag{color:var(--ink)}
 .pg-head b,.pg-price{color:var(--ink)}
 .pg-body,.method p,.lineage li,.section-head p{color:var(--muted)}
 .lineage li b{color:var(--ink)}
@@ -1065,7 +1068,7 @@ body{background:var(--bg);color:var(--ink)}
   --bg-2:#E0E1DE;          /* the mats */
   --paper:#F7F7F5;         /* cards, never pure white */
   --ink:#17181A;           /* the gis, the king */
-  --muted:#5D6065;
+  --muted:#474A50;         /* readable secondary copy, including over faint photos */
   --line:#CFD1CD;
   --dark:#14161A;          /* scrims, footer */
   --dark-2:#22252A;
@@ -1077,9 +1080,9 @@ body{background:var(--bg);color:var(--ink)}
 .section{background:var(--bg)}.section-alt{background:var(--bg-2)}
 .section-dark,.cta-band{background:var(--bg-2);color:var(--ink)}
 .section-dark .section-head p,.cta-band .section-head p{color:var(--muted)}
-.section-dark h2 em,.cta-band h2 em{color:var(--brand)}
+.section-dark h2 em,.cta-band h2 em{color:var(--brand-heading)}
 .site-header{background:color-mix(in srgb,var(--paper) 86%,transparent);border-bottom:1px solid var(--line)}
-.logo .wm,.main-nav a{color:var(--ink)}.main-nav a:hover{color:var(--brand)}
+.logo .wm,.main-nav a{color:var(--ink)}.main-nav a:hover{color:var(--brand-text)}
 .hdr-live{background:var(--paper);color:var(--ink);border-color:var(--line)}
 .nav-toggle{color:var(--ink);border-color:var(--line)}
 @media (max-width:900px){.main-nav{background:var(--paper);border-bottom-color:var(--brand)}}
@@ -1098,16 +1101,16 @@ body{background:var(--bg);color:var(--ink)}
 .method div{border-top-color:var(--brand)}.method h3{color:var(--brand-text)}
 .lineage li::before{background:var(--brand)}
 .section-head .eyebrow::before,.status-head .eyebrow::before{display:none}
-.section-head .eyebrow,.status-head .eyebrow{color:var(--brand-text)}
+.section-head .eyebrow,.section-dark .section-head .eyebrow,.status-head .eyebrow{color:var(--brand-text)}
 .site-footer{background:var(--dark);color:rgba(255,255,255,.72)}
 .site-footer .wm,.site-footer h4,.site-footer a{color:#fff}
 .contact-form input,.contact-form textarea,.contact-form select{background:var(--paper);color:var(--ink);border-color:var(--line)}
 .page-head{background:var(--tint)}
 .card{background:var(--paper);border-color:var(--line)}
 /* the room under the sections: bright frames of their own mats, softly, seam-masked */
-.ground::before{opacity:.55}
+.ground::before{opacity:var(--ground-image-opacity)}
 #cta.ground{--g:none}
-.cta-band .band-reel{opacity:.35}
+.cta-band .band-reel{opacity:var(--ground-image-opacity)}
 .cta-band::before{background:linear-gradient(180deg,var(--bg) 0,transparent 18%,transparent 80%,var(--bg) 100%)}
 .num{background:var(--paper);border:1px solid var(--line)}
 /* hero: the film's bottom edge melts into the pad-white page */
@@ -1215,3 +1218,6 @@ body{background:var(--bg);color:var(--ink)}
 @media(prefers-reduced-motion:reduce){#hero.setup .st-board,#hero.setup .st-mountains{opacity:1;transform:none}}
 
 @media(prefers-reduced-motion:reduce){#hero.setup.is-settled .st-halo{animation:none !important;opacity:0}}
+
+/* Readable hero copy over moving footage; no change to logo geometry or timing. */
+.setup .wm-hero .wm-top,.setup .hero-sub,.setup .hero-link{text-shadow:var(--hero-copy-shadow)}
