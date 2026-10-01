@@ -21,7 +21,7 @@
    dark (a genuinely dark venue), three rules below still assume the light-
    ground default and will render illegible — check/override these in the
    SITE's OWN style.css, never edit this shared file:
-     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
+     .card .ico                — color:var(--dark) on background:var(--tint)
      .story-copy .lede         — color:var(--dark)
      .site-footer              — background:var(--ink)
    (The hero scrim had the same bug — built from var(--ink), which on a
@@ -57,7 +57,7 @@
   --dark-2:#1B120E;         /* dark hover */
   --warm:#E3A45E;           /* the lamp glow over the couches — highlight word on dark */
   --tint:#251913;           /* the hours/status band ground */
-  --burgundy:#5B2230;       /* the couches — used for the day-rail track + review faces */
+  --burgundy:#5B2230;       /* the couches — the day-rail track + the page's low warm glow */
 
   /* ---- type: two faces max, loaded in index.html <head> ---- */
   --display:'Ultra','Bookman Old Style',Georgia,'Times New Roman',serif;
@@ -219,7 +219,8 @@ p{margin:0 0 1em}
 .proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
 .proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
 .proof .ico{color:var(--accent)}
-.proof .star{color:var(--warm)}
+/* .proof .star removed 2026-09-19 with the "4.0 on Google" chip — the rating
+   now lives once, in #reviews. Nothing else on the page uses class="star". */
 @media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
 
 /* ============================================================ SECTION SHELL */
@@ -295,11 +296,10 @@ p{margin:0 0 1em}
 .story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
 .team{margin-top:clamp(36px,5vw,64px)}
 .team h3{font-size:22px;margin:0 0 16px}
-.faces{display:flex;flex-wrap:wrap;gap:10px}
-.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
-.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
-.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
-.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+/* .faces / .face / .face img / .face .ini / .face small deleted 2026-09-19.
+   Template leftovers — this build never used them, and .face .ini was an
+   initials-disc avatar, which the REVIEW ATTRIBUTION LAW (9/6) bans outright.
+   Verified unused across index.html, js/site.js and assets/ before removal. */
 @media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
 
 /* ============================================================ CONTACT */
@@ -331,6 +331,10 @@ p{margin:0 0 1em}
 /* ============================================================ CTA BAND (dark, with count-up numbers) */
 .cta-band .section-head{max-width:none}
 .numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+/* 2026-09-19: the reviews counter left this row (the 366 now lives once, in
+   #reviews), so the band runs two cards. Capped so they don't stretch into
+   two half-empty slabs on a wide screen. */
+.numbers-2{grid-template-columns:repeat(2,1fr);max-width:720px}
 .num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
 .num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
 .num b i{font-style:normal;color:var(--warm)}
@@ -361,7 +365,8 @@ p{margin:0 0 1em}
    2. TYPE (Ultra is a single-weight fat slab — never synthesise bold on it)
    3. THE LONG DAY rail (signature gadget)
    4. Title-cards-unroll menu
-   5. Reviews with recreated faces
+   5. Reviews — published score + a link to the live listing (no quote cards;
+      REVIEW ATTRIBUTION LAW 9/6, see review-notes.md)
    6. Hero: desktop panorama / phone conveyor
    ============================================================ */
 
@@ -401,7 +406,7 @@ body{background:
 
 /* ---------- 2. TYPE ---------- */
 h1,h2{font-weight:400;letter-spacing:0;line-height:1.06}
-h3,h4,.logo .wm,.foot .wm,.num b,.face .ini{font-family:var(--body);font-weight:800;letter-spacing:-.015em}
+h3,h4,.logo .wm,.foot .wm,.num b{font-family:var(--body);font-weight:800;letter-spacing:-.015em}
 .num b{font-size:clamp(38px,4.6vw,56px)}
 .hero h1{font-size:clamp(34px,min(5.2vw,8.4vh),68px);text-shadow:0 2px 40px rgba(0,0,0,.75)}
 .section-head h2{font-size:clamp(29px,3.9vw,48px)}
@@ -470,21 +475,33 @@ h3,h4,.logo .wm,.foot .wm,.num b,.face .ini{font-family:var(--body);font-weight:
 .menu-fine{color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.roll-t .chev{transition:none}}
 
-/* ---------- 5. REVIEWS (recreated faces — never a scraped photo) ---------- */
-.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.rev{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px 22px;
-  display:flex;flex-direction:column;gap:12px}
-.rev-who{display:flex;align-items:center;gap:12px}
-.rev-face{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;
-  background:linear-gradient(150deg,var(--brand),var(--burgundy));color:var(--ink);
-  font-family:var(--body);font-weight:800;font-size:19px;border:2px solid color-mix(in srgb,var(--warm) 45%,transparent)}
-.rev-who b{display:block;font-size:15.5px;font-weight:800}
-.rev-who small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px}
-.rev-stars{color:var(--warm);font-size:15px;letter-spacing:.08em}
-.rev-stars .off{color:var(--line)}
-.rev blockquote{margin:0;font-size:16px;line-height:1.55;color:var(--ink)}
-@media (max-width:980px){.revs{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.revs{grid-template-columns:1fr}}
+/* ---------- 5. REVIEWS: the published score + the live listing ----------
+   REVIEW ATTRIBUTION LAW (Hayden, 2026-09-06). A quote only ships beside the
+   reviewer's REAL published name AND their REAL profile image from the SAME
+   source. Reviewer avatars aren't harvestable for this build, so on 2026-09-19
+   the six quote cards came out and this band carries the published 4.0 / 366
+   and one link to the live reviews instead. The old .revs / .rev / .rev-face /
+   .rev-who / .rev-stars rules were deleted with them — nothing referenced them
+   anywhere else in the build. Do NOT reinstate a letter-disc avatar here. */
+.score{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4.5vw,54px);align-items:center;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(28px,4vw,46px) clamp(24px,4vw,46px);
+  box-shadow:0 30px 60px -44px #000}
+.score-mark{text-align:center;flex:none;min-width:210px;
+  padding-right:clamp(0px,3vw,36px);border-right:1px solid var(--line)}
+.score-mark b{display:block;font-family:var(--body);font-weight:800;font-size:clamp(58px,8vw,86px);
+  line-height:.92;letter-spacing:-.035em;color:var(--ink)}
+.score-stars{display:block;margin-top:14px;color:var(--warm);font-size:21px;letter-spacing:.14em}
+.score-stars .off{color:var(--line)}
+.score-sub{display:block;margin-top:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted)}
+.score-copy p{margin:0 0 24px;font-size:clamp(16.5px,1.7vw,19px);line-height:1.6;color:var(--ink);max-width:52ch}
+@media (max-width:760px){
+  .score{grid-template-columns:1fr;text-align:center;gap:26px}
+  .score-mark{min-width:0;padding-right:0;padding-bottom:26px;border-right:0;border-bottom:1px solid var(--line)}
+  .score-copy p{margin-left:auto;margin-right:auto}
+  .score-copy .btn{width:100%}
+}
 
 /* ---------- 6. HERO: desktop panorama / phone conveyor ---------- */
 .hero-wide{width:100%;height:100%;object-fit:cover;object-position:38% 52%;
@@ -587,8 +604,9 @@ h3,h4,.logo .wm,.foot .wm,.num b,.face .ini{font-family:var(--body);font-weight:
           1502 Railroad St, Enumclaw, WA 98022<br>
           <a href="https://maps.google.com/?q=1502+Railroad+St,+Enumclaw,+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
         </p>
+        <!-- The Google rating chip that used to sit here moved into #reviews,
+             which is now the page's one home for the 4.0 and the 366 (NEVER TWICE). -->
         <div class="proof-row">
-          <span class="proof"><span class="star">★</span> 4.0 on Google</span>
           <span class="proof"><span class="ico">✓</span> 21 and over</span>
         </div>
       </div>
@@ -774,50 +792,34 @@ h3,h4,.logo .wm,.foot .wm,.num b,.face .ini{font-family:var(--body);font-weight:
     </div>
   </section>
 
-  <!-- ===================== #reviews ===================== -->
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (Hayden, 2026-09-06): a quote only ships with the
+       reviewer's REAL published name AND their REAL profile image from the SAME
+       source. Google and Yelp reviewer avatars are not reachable from here, so
+       on 2026-09-19 the six attributed quote cards were pulled under the law's
+       own fallback clause and this band now carries the published rating and
+       count — facts, not attributed quotes — plus one link to the live reviews.
+       Full record, including every name removed: review-notes.md.
+       The 4.0 and the 366 live HERE now and nowhere else on the page (NEVER
+       TWICE): the hours-band "4.0 on Google" chip and the CTA band's reviews
+       counter were removed in the same pass. -->
   <section class="section section-alt" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">From the people in the room</p>
         <h2>What the <em>regulars</em> say</h2>
+        <p>We'd rather send you to all of them than pick out a flattering few.</p>
       </div>
-      <div class="revs">
-        <figure class="rev reveal">
-          <div class="rev-who"><span class="rev-face" aria-hidden="true">R</span>
-            <span><b>Richard</b><small>Google · April 2026</small></span></div>
-          <div class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
-          <blockquote>"It's a great place with great food. The wait staff is the best!!"</blockquote>
-        </figure>
-        <figure class="rev reveal">
-          <div class="rev-who"><span class="rev-face" aria-hidden="true">K</span>
-            <span><b>Katie</b><small>Yelp · November 2025</small></span></div>
-          <div class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
-          <blockquote>"Seeders has Great food, awesome karaoke, dancing and an amazing staff! It is always busy which makes it the perfect place to be social and meet new people!"</blockquote>
-        </figure>
-        <figure class="rev reveal">
-          <div class="rev-who"><span class="rev-face" aria-hidden="true">M</span>
-            <span><b>Madi</b><small>Yelp · March 2025</small></span></div>
-          <div class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
-          <blockquote>"Good food. Solid pours. Kitchen stays open till 11pm, which is rad when everything else in town closes at 9pm so it's super awesome."</blockquote>
-        </figure>
-        <figure class="rev reveal">
-          <div class="rev-who"><span class="rev-face" aria-hidden="true">J</span>
-            <span><b>Jaylaa</b><small>Yelp · January 2026</small></span></div>
-          <div class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
-          <blockquote>"Garrett &amp; maddie brings the best vibes and service you could ever ask for. Amazing food!!! I'll recommend the Reuben and Philly for forever!"</blockquote>
-        </figure>
-        <figure class="rev reveal">
-          <div class="rev-who"><span class="rev-face" aria-hidden="true">R</span>
-            <span><b>Robin</b><small>Yelp · February 2026</small></span></div>
-          <div class="rev-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
-          <blockquote>"Fun place with good burgers and friendly staff. Lots to do with games and tvs. Food was tasty even late night."</blockquote>
-        </figure>
-        <figure class="rev reveal">
-          <div class="rev-who"><span class="rev-face" aria-hidden="true">N</span>
-            <span><b>Nichole</b><small>Google · May 2026</small></span></div>
-          <div class="rev-stars" aria-label="4 out of 5 stars"><span aria-hidden="true">★★★★</span><span class="off" aria-hidden="true">★</span></div>
-          <blockquote>"Their food isn't bad for a bar in Enumclaw. I go here for a decent steak."</blockquote>
-        </figure>
+      <div class="score reveal">
+        <div class="score-mark">
+          <b class="tnum">4.0<span class="sr-only"> out of 5 stars</span></b>
+          <span class="score-stars" aria-hidden="true">★★★★<span class="off">★</span></span>
+          <span class="score-sub"><span class="tnum">366</span> reviews on Google</span>
+        </div>
+        <div class="score-copy">
+          <p>Nothing trimmed, nothing paraphrased. Every word written about this place — the good nights and the off ones — is sitting on the listing with the name of the person who wrote it attached.</p>
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Seeder%27s%20Steak%20%26%20Brew%20House%20Enumclaw%20WA" target="_blank" rel="noopener">Read them on Google ↗</a>
+        </div>
       </div>
     </div>
   </section>
@@ -879,8 +881,10 @@ h3,h4,.logo .wm,.foot .wm,.num b,.face .ini{font-family:var(--body);font-weight:
         <p class="eyebrow">The short version</p>
         <h2>Railroad Street, <em>with the light still on</em></h2>
       </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count tnum" data-to="366">366</span></b><span>reviews on Google</span></div>
+      <!-- The "366 reviews on Google" counter that used to lead this row was
+           removed 2026-09-19: the 366 now lives once, in #reviews. Two cards,
+           and .numbers is a 2-up grid to match (see css § CTA BAND). -->
+      <div class="numbers numbers-2 reveal">
         <div class="num"><b><span class="count tnum" data-to="111">111</span></b><span>hours open every week</span></div>
         <div class="num"><b><span class="count tnum" data-to="18">18</span></b><span>hours long on a Saturday</span></div>
       </div>
