@@ -1,0 +1,176 @@
+<meta charset="utf-8">
+<title>Batman Doors Run</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Anton&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12151A; --card:#1B2027; --sunk:#161A20; --line:#2B323C; --line-2:#394250;
+  --ink:#F2F4F6; --mute:#9AA4B1; --dim:#6E7884;
+  --teal:#3DD6B3; --gold:#E0B45A; --red:#E5484D;
+  --font:'IBM Plex Sans',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --disp:'Anton','Arial Narrow',Impact,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0 auto;max-width:720px;padding:20px 16px 72px;background:var(--bg);color:var(--ink);
+  font:16px/1.55 var(--font);-webkit-text-size-adjust:100%}
+
+h1{font:400 clamp(30px,8vw,42px)/.98 var(--disp);letter-spacing:.02em;text-transform:uppercase;
+  margin:2px 0 6px;text-wrap:balance}
+.stamp{color:var(--mute);font:500 12.5px/1.4 var(--mono);margin:0 0 4px}
+.lede{color:var(--mute);font-size:15px;margin:10px 0 0;max-width:62ch}
+
+h2{font:600 11.5px/1 var(--font);letter-spacing:.16em;text-transform:uppercase;color:var(--teal);
+  margin:38px 0 14px;display:flex;align-items:baseline;gap:9px}
+h2 .n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em}
+h3{font:600 16.5px/1.3 var(--font);margin:0 0 4px}
+
+/* the one thing that needs him — the only gold-edged block on the page */
+.ask{border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:12px;
+  background:linear-gradient(180deg,rgba(224,180,90,.09),rgba(224,180,90,.03));padding:18px 18px 16px;margin:26px 0 0}
+.ask .tag{font:600 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin:0 0 9px}
+.ask h3{font-size:19px;margin-bottom:8px}
+.ask p{margin:0 0 12px;font-size:15px;color:var(--ink)}
+.ask p:last-child{margin-bottom:0}
+.opt{display:grid;gap:9px;margin:13px 0 0}
+.opt div{background:var(--sunk);border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:14.5px;color:var(--mute)}
+.opt b{color:var(--ink);font-weight:600}
+
+ul.plain{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.row{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px 16px}
+.row p{margin:5px 0 0;color:var(--mute);font-size:14.5px}
+.row p.meta{font-family:var(--mono);font-size:12.5px;color:var(--dim);margin-top:8px;font-variant-numeric:tabular-nums}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+.pill{font:600 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:999px;white-space:nowrap;flex:none}
+.pill.live{background:rgba(61,214,179,.16);color:var(--teal)}
+.pill.open{background:rgba(224,180,90,.16);color:var(--gold)}
+.pill.none{background:var(--line);color:var(--mute)}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:11px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:500px;font-size:14px}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 10.5px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);background:var(--sunk)}
+tr:last-child td{border-bottom:none}
+td b{font-weight:600}
+td .u{font-family:var(--mono);font-size:12.5px;color:var(--gold)}
+
+.note{border-left:3px solid var(--line-2);padding:2px 0 2px 14px;margin:14px 0 0;color:var(--mute);font-size:14.5px}
+.note b{color:var(--ink)}
+.bad{border-left-color:var(--red)}
+.bad b{color:var(--red)}
+
+a{color:var(--teal);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(61,214,179,.35)}
+a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px}
+code{font-family:var(--mono);font-size:.88em;color:var(--gold);background:var(--sunk);padding:1px 5px;border-radius:4px}
+.end{margin:40px 0 0;padding-top:18px;border-top:1px solid var(--line);color:var(--dim);font:500 13px/1.5 var(--mono)}
+</style>
+
+<p class="stamp">Batman · run opened Sep 25 23:30 · closed Oct 2 19:30</p>
+<h1>Zero doors, two fakes killed</h1>
+<p class="lede">The run didn't build anything, and that was the right call — the board is carrying 67
+finished demos nobody has pitched. It went after contact details instead, found none, and fixed two
+published pages that were showing customers who don't exist.</p>
+
+<div class="ask">
+  <span class="tag">Needs you · one call · unblocks 21 live prospects</span>
+  <h3>Which review fix do you want?</h3>
+  <p>41 published pages break your own review law — a real reviewer's name next to a made-up
+  letter-disc instead of their actual photo. <b>24 of those are links an owner already has.</b>
+  Two patterns already exist in the factory and either one answers it for all of them:</p>
+  <div class="opt">
+    <div><b>a · The Adams pattern</b> — harvest the reviewer's real profile photo and embed it.
+      Keeps the testimonials. Costs a photo harvest per reviewer. It's what
+      <code>adams-family-ink</code> does — the one site that came back clean, and the one business
+      that has paid you.</div>
+    <div><b>b · The Auto Rebuild pattern</b> — drop the quotes, link out to the live reviews, state
+      the real star count. Free and instant. Loses the testimonial block.</div>
+  </div>
+  <p style="margin-top:13px">Say <b>a</b> or <b>b</b> and the next run starts working through them
+  one business at a time. Don't say "sweep it" — improvised sweeps made 11 defects on 9/20 and 43 on
+  9/22, which is why this is a question and not already done.</p>
+</div>
+
+<h2>Fixed and live <span class="n">verified, not assumed</span></h2>
+<ul class="plain">
+  <li class="row">
+    <div class="hd"><h3>Enumclaw Auto Rebuild &amp; Glass</h3><span class="pill live">live</span></div>
+    <p>A review signed <b>“Sarah S.”</b> — invented name, invented initial-disc face — had been sitting
+    on the public page for <b>15 days</b>. The corrected version had existed since Sep 16 and was never
+    copied across. Now links out to their real Facebook reviews instead.</p>
+    <p class="meta">25,339 B · 0 hits · shipped index.html + css/style.css together — the live stylesheet
+    had none of the new block's classes, so the HTML alone would have rendered unstyled</p>
+  </li>
+  <li class="row">
+    <div class="hd"><h3>Seeder's Steak &amp; Brew House</h3><span class="pill live">live</span></div>
+    <p>Six fake faces — Richard, Katie, Madi, Jaylaa, Robin, Nichole — real names off the listing, each
+    beside a manufactured letter. Now shows what Google actually publishes: <b>4.0 across 366
+    reviews</b>, with a link to the listing.</p>
+    <p class="meta">13,442,542 B · 0 hits · the live file was the inlined bundle, byte-identical to a
+    Sep 1 build — not the index.html that got fixed Sep 19, which is why the fix never reached anyone</p>
+  </li>
+</ul>
+<p class="note"><b>Worth knowing:</b> neither was the "copy one file and push" the census assumed. Half
+the published demos (104 of 198) are single-file bundles, so for those the fix is <b>repack</b>, never
+copy. Hash the live file against <code>sites/&lt;slug&gt;/artifact.html</code> first.</p>
+
+<h2>Doors <span class="n">0 new · 4 closed out · 3 still open</span></h2>
+<p class="lede" style="margin:0 0 14px">Four businesses were worked to exhaustion — roughly 70 separate
+source-and-tool attempts. Every one came back genuinely empty, and nothing was invented to fill the gap.</p>
+<div class="tw"><table>
+  <thead><tr><th>Business</th><th>Door</th><th>What came out of it</th></tr></thead>
+  <tbody>
+    <tr><td><b>T &amp; J Nails</b></td><td>call only<br><span class="u">(253) 891-3524</span></td>
+      <td>Owner is <b>Tom Nguyen</b>. No email exists — proved by recovering the Facebook About panel
+      through a mirror site after Facebook blocked all three normal routes. <b>Better angle than we
+      had:</b> their Google "Website" button goes to a live spam blog called "Nail Trends 2026" — their
+      presence isn't missing, it's hijacked.</td></tr>
+    <tr><td><b>Four Seasons Chinese</b></td><td>call only<br><span class="u">(360) 825-6541</span></td>
+      <td>Owner is <b>Bing Peng</b>, trading as CHEN-PENG LLC. Liquor licence <span class="u">364969</span>
+      is active and was renewed in January through Jan 2027 — so they're definitely trading. A trap was
+      caught and thrown out: an email hidden on their Nextdoor page belongs to Four Seasons
+      <em>Sotheby's Realty</em>, a different company.</td></tr>
+    <tr><td><b>Farmhouse Brew</b></td><td><span class="pill none">walk-in only</span></td>
+      <td>No email and <b>no phone number exists anywhere</b>. ⚠️ <b>The board had the owners wrong:</b>
+      it said "Jenn &amp; Brandon Froemke". The state filing (<span class="u">UBI 604949957</span>, active)
+      names <b>Jennifer Froemke and Hannah Shope</b>, Hannah as registered agent. No Brandon. Ask for
+      Jenn or Hannah.</td></tr>
+    <tr><td><b>Modoo #2 Teriyaki</b></td><td>call only<br><span class="u">(253) 826-7905</span></td>
+      <td>The family-website angle is dead — both family domains carry contact forms and no address, and
+      their Google listing is <b>unclaimed</b>, which is its own opener.</td></tr>
+  </tbody>
+</table></div>
+<p class="note"><b>Still open, and first up next time:</b> The Dusty Shelf — your top priority, never
+actually reached on any channel — plus Nails 410 and Bonney Lake Barbecue.</p>
+
+<h2>What went wrong <span class="n">two things, both now fixed in the rules</span></h2>
+<ul class="plain">
+  <li class="row">
+    <div class="hd"><h3>The factory was dark for five days</h3><span class="pill open">your call</span></div>
+    <p>Nothing ran Sep 26–30 — no Oracle, no Robin, no send, no Batman. Not a thin week: there is no run
+    file at all for those days, and no factory or vault file was touched. The last thing logged on Sep 25
+    was the cleanup closing the frozen Claude app at 23:29, and the scheduler lives inside that app. The
+    Mac also restarted around Sep 29.</p>
+    <p class="meta">worth checking the nightly tasks actually have a live next-run time before trusting
+    anything is scheduled — a run can't fix its own scheduler from inside itself</p>
+  </li>
+  <li class="row">
+    <div class="hd"><h3>Seven agents, one browser</h3><span class="pill none">rule written</span></div>
+    <p>Facebook and Google are blocked to plain requests, so all seven hunters were told to use the
+    in-app browser. There's only one of it. Three got through; four froze on a permission box that a
+    scheduled run has nobody to click, then the main session froze the same way for <b>28 hours</b> —
+    which is why this is landing Friday evening instead of Friday morning.</p>
+    <p class="meta">new standing rule: browser work happens one at a time in the main session; agents get
+    the request-based routes only. A mirror site that copies a Facebook About panel is usually enough —
+    that's exactly how the T&amp;J answer was obtained.</p>
+  </li>
+</ul>
+
+<h2>Sent <span class="n">nothing</span></h2>
+<p class="note bad"><b>No outreach went out, and none was staged to go.</b> That's correct for a night
+run — but it does mean the 9:35 morning send has now had nothing to send for about two weeks, and the
+reason is doors, not inventory: 34 finished demos with live links are each waiting on one contact line.</p>
+
+<p class="end">full detail · website-factory/batman/2026-09-25/ledger.md<br>
+census + corrections · board/published-vs-source-2026-09-25.md<br>
+the monogram-rule count · board/superseded-monogram-rule-2026-10-01.md</p>
