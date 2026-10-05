@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Batman — Sunday night, Oct 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#13110f; --panel:#1c1917; --panel2:#232020;
+    --ink:#f3ede4; --mute:#a69d91; --line:#322d28;
+    --go:#3fbf72; --stop:#e0574f; --warn:#e2a33c; --key:#f0c75e;
+    --display:'Fraunces',Georgia,serif; --body:'Karla',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+       font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+  .wrap{max-width:720px;margin:0 auto;padding:22px 16px 60px}
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+  .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,7vw,40px);line-height:1.08;margin:0 0 10px}
+  .sub{color:var(--mute);font-size:15px;margin:0}
+  .verdict{background:linear-gradient(180deg,#2a2118,#1f1a14);border:1px solid #4a3c22;
+           border-radius:14px;padding:18px;margin:22px 0}
+  .verdict h2{font-family:var(--display);font-size:20px;margin:0 0 8px;color:var(--key)}
+  .verdict p{margin:0 0 10px}
+  .verdict p:last-child{margin-bottom:0}
+  .ask{background:#101b14;border:1px solid #27613c;border-radius:14px;padding:18px;margin:22px 0}
+  .ask h2{font-family:var(--display);font-size:19px;margin:0 0 10px;color:var(--go)}
+  .say{display:block;background:#0b120d;border-left:3px solid var(--go);padding:12px 14px;
+       border-radius:0 8px 8px 0;font-size:16px;margin:12px 0;font-weight:600}
+  h2.sec{font-family:var(--display);font-size:22px;margin:34px 0 4px}
+  .secnote{color:var(--mute);font-size:14px;margin:0 0 14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+        padding:16px;margin:0 0 12px}
+  .card.pass{border-left:4px solid var(--go)}
+  .card.fail{border-left:4px solid var(--stop)}
+  .card.hero{border-left:4px solid var(--key);background:var(--panel2)}
+  .cardtop{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .biz{font-family:var(--display);font-size:18px;font-weight:700;margin:0}
+  .pill{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+        padding:4px 9px;border-radius:999px;white-space:nowrap}
+  .p-go{background:rgba(63,191,114,.14);color:var(--go)}
+  .p-stop{background:rgba(224,87,79,.14);color:var(--stop)}
+  .p-warn{background:rgba(226,163,60,.14);color:var(--warn)}
+  .gates{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 8px}
+  .gate{font-size:12px;padding:3px 8px;border-radius:6px;background:#2a2522;color:var(--mute)}
+  .gate b{color:var(--ink);font-weight:700}
+  .why{font-size:14.5px;color:#d8d0c5;margin:8px 0 0}
+  .why b{color:var(--ink)}
+  code{background:#2a2522;padding:1px 5px;border-radius:4px;font-size:12.5px;
+       font-family:ui-monospace,Menlo,monospace;word-break:break-all}
+  .num{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+  .stat{flex:1 1 90px;background:var(--panel);border:1px solid var(--line);
+        border-radius:10px;padding:12px}
+  .stat b{display:block;font-family:var(--display);font-size:24px;line-height:1}
+  .stat span{font-size:11.5px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+  .warnbox{background:#2a1a16;border:1px solid #6b3029;border-radius:12px;padding:15px;margin:16px 0}
+  .warnbox h3{margin:0 0 8px;font-size:15px;color:var(--stop);font-family:var(--body);
+              letter-spacing:.04em;text-transform:uppercase}
+  .warnbox p{margin:0 0 8px;font-size:14.5px}
+  .warnbox p:last-child{margin:0}
+  ul{padding-left:20px;margin:8px 0}
+  li{margin:5px 0;font-size:14.5px}
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
+         color:var(--mute);font-size:13px}
+  .nothing{background:var(--panel);border:1px dashed var(--line);border-radius:12px;
+           padding:14px;color:var(--mute);font-size:14.5px;margin:14px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Batman · overnight</p>
+  <h1>Nothing sent. One word unlocks the week.</h1>
+  <p class="sub">Sunday 23:15 → Monday ~04:00. Build 0 by order. Nine doors gated, nine held.</p>
+</header>
+
+<div class="num">
+  <div class="stat"><b>0</b><span>sent</span></div>
+  <div class="stat"><b>0</b><span>built</span></div>
+  <div class="stat"><b>9</b><span>gated</span></div>
+  <div class="stat"><b>15+</b><span>fixes unpublished</span></div>
+</div>
+
+<div class="verdict">
+  <h2>The headline: the thing you've been asked to decide is already done.</h2>
+  <p>For nine days the factory has been waiting on you to pick a review-law method —
+  <em>swap in another review, or link out?</em></p>
+  <p><b>On at least 15 sites that decision was already made and the fix already written.</b>
+  The repaired files are sitting in <code>sites/</code> unpublished, while the public pages
+  still show fake initials in place of faces.</p>
+  <p>So the question changed. It isn't <em>"what's the method?"</em> any more — it's
+  <b>"publish the repairs you already have."</b></p>
+</div>
+
+<div class="ask">
+  <h2>What I need from you — one sentence</h2>
+  <span class="say">"Yes — republish from <code>sites/</code>, and the link I approved is
+  &lt;GitHub Pages | Netlify&gt;."</span>
+  <p style="margin:0;font-size:14.5px">That one line clears Ink'd Ink's last blocker and flips
+  Revolution Speed Shop, Thunder Rail and Heather's from failing to passing. <b>The host half
+  matters</b> — see the warning below, it isn't a formality.</p>
+</div>
+
+<h2 class="sec">The one that's ready</h2>
+<p class="secnote">Passed both gates. Held on a link, nothing else.</p>
+
+<div class="card hero">
+  <div class="cardtop">
+    <p class="biz">Ink'd Ink. — Staci Shantel</p>
+    <span class="pill p-warn">Held · link only</span>
+  </div>
+  <div class="gates">
+    <span class="gate">page <b>PASS</b></span>
+    <span class="gate">door <b>CLEAN</b></span>
+    <span class="gate">hook <b>still true</b></span>
+    <span class="gate">refuters <b>0 of 2 killed it</b></span>
+  </div>
+  <p class="why"><b>Door:</b> her own Linktree publishes <code>InkdInkLLC@gmail.com</code> at
+  position 1, and her Milkshake bio carries it again — both saved on disk since Sep 8. It's the
+  LLC's own trading name. Never contacted on any channel (nine surfaces swept).</p>
+  <p class="why"><b>Page:</b> four real Google reviewers with four real profile photos. I opened
+  every image and looked at it — four distinct real women, no letter tiles.</p>
+  <p class="why"><b>Hook:</b> her booking link <code>vagaro.com/inkdinkllc</code> is still a hard
+  404, re-checked last night. Both her bios still point "Book" at it.</p>
+  <p class="why"><b>Blocker:</b> the email links a build you didn't approve. The body needs no edit.</p>
+</div>
+
+<div class="warnbox">
+  <h3>⚠ Read before you answer "republish"</h3>
+  <p>I fetched all three copies of Ink'd Ink. <b>No two match:</b></p>
+  <p><code>GitHub Pages 28,823 B</code> · <code>approved 29,095 B</code> · <code>Netlify 29,605 B</code></p>
+  <p><b>Neither public host is serving the build you approved on 9/14.</b> Oracle asked you on 10/3
+  which host you approved and it's still unanswered — so "republish" alone doesn't finish it.
+  That's why the sentence above has two halves.</p>
+</div>
+
+<h2 class="sec">Failing on the review law</h2>
+<p class="secnote">Public pages showing invented faces. Three of these are already fixed on disk — just unpublished.</p>
+
+<div class="card fail">
+  <div class="cardtop"><p class="biz">Revolution Speed Shop</p><span class="pill p-stop">Page fails</span></div>
+  <p class="why">Public page shows <code>TK</code> and <code>KR</code> as fake faces.
+  <b>The fix is written</b> — the source links out to their Birdeye reviews and Facebook instead.
+  Also: half the staged hook is false ("no photos on your Google listing" — they have photos and a
+  video). And one of their Google reviews says <em>"I got scammed out of all my money"</em> —
+  know that before you talk to Scott.</p>
+</div>
+
+<div class="card fail">
+  <div class="cardtop"><p class="biz">Thunder Rail Stables</p><span class="pill p-stop">Page fails</span></div>
+  <p class="why">Public page runs an anonymous quote strip — quotes with no name and no face.
+  <b>The fix is written</b> — the source shows their real 4.8 / 43 reviews and links to the listing.</p>
+</div>
+
+<div class="card fail">
+  <div class="cardtop"><p class="biz">Heather's Pet Grooming</p><span class="pill p-stop">Page fails</span></div>
+  <p class="why">One review card with an <code>M</code> monogram where a face should be.
+  <b>The fix is written</b> — the source links to her Facebook reviews.
+  <b>This business has no board row and no client note at all</b> — there's nowhere a next-action
+  would even be read. Worth adding.</p>
+</div>
+
+<div class="card fail">
+  <div class="cardtop"><p class="biz">Taquería Doña Licha</p><span class="pill p-stop">Two hard gates</span></div>
+  <p class="why">Anonymous quote wall — zero images in 995 lines. And it's
+  <b>photo-blocked</b>: no real photos of the place exist online. This one is a genuine gap, not
+  a publishing lag. <b>Needs your drive-by shoot before anything else.</b></p>
+</div>
+
+<div class="card fail">
+  <div class="cardtop"><p class="biz">PNW Companion Mobile Grooming</p><span class="pill p-stop">No site</span></div>
+  <p class="why">Best door in the whole set — she publishes her email herself on her Facebook
+  contact panel. <b>But there's no website at all.</b> No folder, no page, 404 live. The pitch is
+  "I made you one" and there's nothing to send. <b>This is the one worth a build night</b> — the
+  hard part is already done.</p>
+</div>
+
+<h2 class="sec">Doors that didn't hold up</h2>
+<p class="secnote">Pages are fine. The addresses can't be traced to the business itself.</p>
+
+<div class="card pass">
+  <div class="cardtop"><p class="biz">Kissed By Chloe</p><span class="pill p-warn">Walk in</span></div>
+  <p class="why">Page passes cleanly. But the opener says <em>"there's never been a site of your
+  own"</em> and <b>that's false</b> — she's owned the domain since 2018 and someone may be building
+  on it right now. Her address only ever came from a merchants' directory, and the copy we saved
+  back in September contains no email at all. <b>1018 Main St, Mon–Sat 10–5.</b></p>
+</div>
+
+<div class="card pass">
+  <div class="cardtop"><p class="biz">Bayabelle Boutique</p><span class="pill p-warn">Walk in</span></div>
+  <p class="why">Page passes. But the hunt row that created this lead — written four days before
+  the build — recorded the email as <b>"none found"</b> and tied the domain to the chain's
+  California HQ. <code>hello@bayabelle.com</code> is most likely a two-state brand inbox, so the
+  email would tell a Shopify operator in Lincoln, CA that she has no website.
+  <b>926 Main St #101, two doors from Kissed By Chloe.</b></p>
+</div>
+
+<div class="card pass">
+  <div class="cardtop"><p class="biz">Echo River Ranch</p><span class="pill p-warn">Call</span></div>
+  <p class="why">Reviews are real. But the public page is an old build, and it shows an
+  "open now" status for a ranch that's appointment-only. Her address only appears on a horse-trade
+  directory. There was never even a draft staged for this one. <b>(360) 367-1201 — Debie.</b></p>
+</div>
+
+<h2 class="sec">Also worth knowing</h2>
+<div class="card">
+  <p class="why"><b>Don't let anyone "fix all the stale publishes" in one sweep.</b> I measured all
+  197 published demos: 60 are behind their source, but <b>56 are the other way round</b> — the live
+  page is newer than the file on disk. A blanket re-publish would quietly wipe out work on 56 sites.
+  It has to be checked one at a time.</p>
+  <p class="why"><b>Fixed a record that was making a good page look broken.</b> Kissed By Chloe's
+  notes claimed no reviewer photos could be found. That was true for about 15 hours on Sep 8 and has
+  been wrong ever since. The note is corrected; the board row still says it.</p>
+  <p class="why"><b>Last night's run cost roughly double what it should have.</b> Not from doing too
+  much — 17 of 26 helpers stalled and had to restart, and over half the total work was re-runs.
+  That's the Mac being out of memory, and it's logged for Alfred.</p>
+</div>
+
+<div class="nothing">
+  Nothing was sent, published, go-lived or spent. No texts — you were inside the 9 PM–8 AM window
+  the whole run. Monday's 9:42 send still has nothing queued, and that is on purpose: every one of
+  the nine is held on a gate, not forgotten.
+</div>
+
+<footer>
+  Batman · Oct 4 23:15 → Oct 5 ~04:00 · build 0 by order · 26 agents, 9 gated<br>
+  Full detail: <code>batman/2026-10-04/ledger.md</code> · holds: <code>leads/gordon-final/97–105</code>
+</footer>
+
+</div>
+</body>
+</html>
