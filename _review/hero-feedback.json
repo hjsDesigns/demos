@@ -29,8 +29,8 @@
       3
     ],
     "selected": 3,
-    "instruction": "Selected option 3 — The Cabin Postcard. Preserve exactly.",
-    "state": "Selected: option 3 — The Cabin Postcard"
+    "instruction": "Keep the straight postcard layout; make the image bigger and title smaller to fit more of it.",
+    "state": "Hero 3 selected · larger photo and smaller title requested"
   },
   "village-coffee-maple-valley": {
     "business": "Village Coffee",
@@ -43,26 +43,38 @@
   },
   "kelly-lattes-kent": {
     "business": "Kelly Latte’s",
-    "liked": [],
-    "instruction": "Option 2 layout and latte photo selected. User requested warm cream with coffee-brown accents; revised background is ready for visual review.",
-    "state": "Option 2: approved photo, new cream-and-coffee background ready"
+    "liked": [
+      2
+    ],
+    "instruction": "Full website approved by Hayden. Keep Extra Good · Cream & Coffee as the main site.",
+    "state": "Website approved · option 2",
+    "selected": 2
   },
   "euphoriq-skin-and-beauty-sumner": {
     "business": "Euphoriq Skin & Beauty",
-    "liked": [],
-    "instruction": "Rebuilding all three around the neon sign and green leaf wall",
-    "state": "Three new neon-and-leaf-wall options ready"
+    "liked": [
+      1
+    ],
+    "instruction": "Selected option 1 — The Living Wall. Preserve exactly.",
+    "state": "Selected: option 1 — The Living Wall",
+    "selected": 1
   },
   "glo-skin-clinic-maple-valley": {
     "business": "GLO Skin Clinic and Spa",
-    "liked": [],
-    "instruction": "Three new variations related to the first option",
-    "state": "Three new options related to The Quiet Appointment ready"
+    "liked": [
+      3
+    ],
+    "instruction": "Selected option 3 — Entirely Yours. Preserve exactly.",
+    "state": "Selected: option 3 — Entirely Yours",
+    "selected": 3
   },
   "salon-410-buckley": {
     "business": "Salon 410",
-    "liked": [],
-    "instruction": "Three new directions in progress",
-    "state": "Three fresh options ready"
+    "liked": [
+      3
+    ],
+    "instruction": "Full website approved by Hayden. Keep The Color Studio · Warm Stone as the main site.",
+    "state": "Website approved · option 3",
+    "selected": 3
   }
 }

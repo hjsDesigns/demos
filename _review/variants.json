@@ -177,16 +177,16 @@
       "sha256": "6f0cd30fe3c5c511ee0a2c4b53733b73d7e7a39ba699ddd7ea032cd19680128b"
     },
     {
-      "name": "The Cabin Postcard",
-      "file": "hero-cabin-postcard.html",
-      "idea": "The same warm cabin story becomes a tactile photographic keepsake beside oversized type.",
+      "name": "The Cabin Postcard · Straight",
+      "file": "hero-cabin-postcard-straight.html",
+      "idea": "The same favorite cabin postcard, with a perfectly straight photographic print and decorative frame.",
       "emotion": "The familiar warmth of a little cedar coffee cabin.",
-      "composition": "An off-axis cream photographic print with fine timber-colored framing balances a large warm invitation; photo first on mobile.",
-      "motion": "The framed cabin print lands once with a slight rotation; the headline and actions arrive, then stillness by 2.2 seconds.",
+      "composition": "A straight cream photographic print with fine timber-colored framing balances a large warm invitation; photo first on mobile.",
+      "motion": "The framed cabin print arrives vertically with no rotation; the headline and actions arrive, then stillness by 2.2 seconds.",
       "number": 3,
-      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard.jpg?v=8c58362a16aa",
-      "sha256": "8dbb6201743271cddd5bbb86769f8c9ecc67fcd42e0dc8680911e9dc4c0b173c"
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard-straight.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard-straight.jpg?v=98429ed50150",
+      "sha256": "afbc6b1a7237dc63f7b6b4da9a2e64cdde681da6f2e57a79472a5d6ce6b5da16"
     }
   ],
   "village-coffee-maple-valley": [
@@ -329,16 +329,16 @@
       "sha256": "93a4b3e28876ff3f08fc2ba3c17ac2a6cd1832bc3607e1865f03f590398c28f8"
     },
     {
-      "name": "The Color Studio",
-      "idea": "A dimensional color book opens to an actual Salon 410 result, with warm swatch pages inspired by the room and the hair.",
-      "file": "hero-color-studio.html",
+      "name": "The Color Studio · Warm Stone",
+      "idea": "The same dimensional color-book composition, now on a softly lit warm-stone background.",
+      "file": "hero-color-studio-stone.html",
       "emotion": "Creative hands, considered color, and the excitement of choosing a fresh look.",
-      "composition": "A large open sample book floats at a deliberate angle over cream and honey oak. A whole result photograph is its central page, surrounded by fanned sage, oak and cream leaves; bold red name lettering grounds the other side.",
+      "composition": "A large open sample book floats at a deliberate angle over a softly lit warm-stone backdrop. A whole result photograph is its central page, surrounded by fanned sage, oak and cream leaves; bold red name lettering grounds the other side.",
       "motion": "The fanned leaves turn open in a short stagger, the result page settles into place, and the salon name wipes in once; settled by 2.6 seconds.",
       "number": 3,
-      "url": "https://hjsdesigns.github.io/demos/salon-410-buckley/versions/hero-color-studio.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/salon-410-buckley--hero-color-studio.jpg?v=da43222ed8c1",
-      "sha256": "1cfb61799033ec8df33e16bbed508e880190eb79d0c1629103d145d21cfb84fb"
+      "url": "https://hjsdesigns.github.io/demos/salon-410-buckley/versions/hero-color-studio-stone.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/salon-410-buckley--hero-color-studio-stone.jpg?v=749b4a80115f",
+      "sha256": "116f851854cf63b4d19062bd2d611bd1c41f38a5d0ce783c73e7cd34320158ab"
     }
   ]
 }

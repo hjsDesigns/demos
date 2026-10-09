@@ -1,21 +1,22 @@
 {
   "selected": [
     {
-      "name": "The Cabin Postcard",
-      "file": "hero-cabin-postcard.html",
-      "idea": "The same warm cabin story becomes a tactile photographic keepsake beside oversized type.",
+      "name": "The Cabin Postcard · Straight",
+      "file": "hero-cabin-postcard-straight.html",
+      "idea": "The same favorite cabin postcard, with a perfectly straight photographic print and decorative frame.",
       "emotion": "The familiar warmth of a little cedar coffee cabin.",
-      "composition": "An off-axis cream photographic print with fine timber-colored framing balances a large warm invitation; photo first on mobile.",
-      "motion": "The framed cabin print lands once with a slight rotation; the headline and actions arrive, then stillness by 2.2 seconds.",
+      "composition": "A straight cream photographic print with fine timber-colored framing balances a large warm invitation; photo first on mobile.",
+      "motion": "The framed cabin print arrives vertically with no rotation; the headline and actions arrive, then stillness by 2.2 seconds.",
       "number": 3,
-      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard.jpg?v=8c58362a16aa",
-      "sha256": "8dbb6201743271cddd5bbb86769f8c9ecc67fcd42e0dc8680911e9dc4c0b173c",
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard-straight.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard-straight.jpg?v=98429ed50150",
+      "sha256": "afbc6b1a7237dc63f7b6b4da9a2e64cdde681da6f2e57a79472a5d6ce6b5da16",
       "slug": "homestead-brew-sumner",
       "business": "Homestead Brew",
       "original_number": 3,
-      "status": "Selected",
-      "note": "This is the exact option you named. Full page is ready to review."
+      "status": "Hero selected · website review pending",
+      "note": "Your chosen third design with the postcard and frame straightened.",
+      "site_approval": "pending"
     },
     {
       "name": "Your Usual Table",
@@ -31,8 +32,9 @@
       "slug": "el-caporal-maple-valley",
       "business": "El Caporal",
       "original_number": 3,
-      "status": "Selected",
-      "note": "This is the exact option you named. Full page is ready to review."
+      "status": "Hero selected · website review pending",
+      "note": "This is the exact option you named. Full page is ready to review.",
+      "site_approval": "pending"
     },
     {
       "name": "Magnolia Morning",
@@ -48,11 +50,46 @@
       "slug": "village-coffee-maple-valley",
       "business": "Village Coffee",
       "original_number": 1,
-      "status": "Selected",
-      "note": "This is the exact option you named. Full page is ready to review."
-    }
-  ],
-  "conditional": [
+      "status": "Hero selected · website review pending",
+      "note": "This is the exact option you named. Full page is ready to review.",
+      "site_approval": "pending"
+    },
+    {
+      "name": "The Living Wall",
+      "file": "hero-the-living-wall.html",
+      "idea": "The real neon sign glows within an immersive, edge-to-edge wall of green leaves.",
+      "emotion": "A lush, private retreat; the studio identity is the entire first impression.",
+      "composition": "Unframed real signage and foliage cover the whole hero, with a restrained invitation along the bottom. On phones, the actual sign photograph is kept wide enough to show the full lettering, and cropped foliage from that same photo extends the green wall below.",
+      "motion": "The actual photograph brightens once as the lavender light softly blooms across the foliage; the bottom invitation settles, fully still by 2.35 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/euphoriq-skin-and-beauty-sumner/versions/hero-the-living-wall.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/euphoriq-skin-and-beauty-sumner--hero-the-living-wall.jpg?v=d4a923d98f10",
+      "sha256": "955eb9355aa18925b759ddc502a335978454546ef1180987b4ead3120b860ae4",
+      "slug": "euphoriq-skin-and-beauty-sumner",
+      "business": "Euphoriq Skin & Beauty",
+      "original_number": 1,
+      "status": "Hero selected · website review pending",
+      "note": "This is the exact option you chose. Open the full page to review it individually.",
+      "site_approval": "pending"
+    },
+    {
+      "name": "Entirely Yours",
+      "file": "hero-entirely-yours.html",
+      "idea": "A quiet editorial sentence wraps around a wide, softly sculpted view of the real room.",
+      "emotion": "Personal attention and room to breathe.",
+      "composition": "A split serif headline sits above and below an expansive room photograph, with opposite softened corners and a fine gold offset frame. Booking closes the editorial line, making a broad horizontal composition rather than another portrait arch.",
+      "motion": "The room opens horizontally between the two headline phrases, its fine frame follows, and the booking invitation rises gently. Fully settled at 2.3 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/glo-skin-clinic-maple-valley/versions/hero-entirely-yours.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/glo-skin-clinic-maple-valley--hero-entirely-yours.jpg?v=946518e241a9",
+      "sha256": "d7a2a4dab4c57b16ad1456d9fff4b843484a1a56b1f8d7015c563d7b8285a4f6",
+      "slug": "glo-skin-clinic-maple-valley",
+      "business": "GLO Skin Clinic and Spa",
+      "original_number": 3,
+      "status": "Hero selected · website review pending",
+      "note": "This is the exact option you chose. Open the full page to review it individually.",
+      "site_approval": "pending"
+    },
     {
       "name": "Extra Good · Cream & Coffee",
       "idea": "The chosen second layout and approved latte photo, on warm cream with coffee-brown accents.",
@@ -67,22 +104,44 @@
       "slug": "kelly-lattes-kent",
       "business": "Kelly Latte’s",
       "original_number": 2,
-      "status": "Approved photo · new background to review",
-      "note": "Your approved latte photo and chosen second layout, now on warm cream with coffee-brown accents."
+      "status": "Website approved",
+      "note": "Approved by you: option 2 with the latte photo and cream-and-coffee background.",
+      "site_approval": "approved",
+      "site_url": "https://hjsdesigns.github.io/demos/kelly-lattes-kent/",
+      "index_sha256": "08b12bef6f06c0f1e660e74a354d01058940217716601410f74c121b2ff6a445"
+    },
+    {
+      "name": "The Color Studio · Warm Stone",
+      "idea": "The same dimensional color-book composition, now on a softly lit warm-stone background.",
+      "file": "hero-color-studio-stone.html",
+      "emotion": "Creative hands, considered color, and the excitement of choosing a fresh look.",
+      "composition": "A large open sample book floats at a deliberate angle over a softly lit warm-stone backdrop. A whole result photograph is its central page, surrounded by fanned sage, oak and cream leaves; bold red name lettering grounds the other side.",
+      "motion": "The fanned leaves turn open in a short stagger, the result page settles into place, and the salon name wipes in once; settled by 2.6 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/salon-410-buckley/versions/hero-color-studio-stone.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/salon-410-buckley--hero-color-studio-stone.jpg?v=749b4a80115f",
+      "sha256": "116f851854cf63b4d19062bd2d611bd1c41f38a5d0ce783c73e7cd34320158ab",
+      "slug": "salon-410-buckley",
+      "business": "Salon 410",
+      "original_number": 3,
+      "status": "Website approved",
+      "note": "Approved by you: option 3 with the refined warm-stone background.",
+      "site_approval": "approved",
+      "site_url": "https://hjsdesigns.github.io/demos/salon-410-buckley/",
+      "index_sha256": "cc690cbc265ec571a1e9c0da62c854ce285e09f8e66f53663afefd0c800ed08f"
     }
   ],
+  "conditional": [],
   "unresolved": [
     {
+      "slug": "zolas-cafe-auburn",
       "business": "Zola’s Cafe",
-      "note": "Options 1 and 3 liked; no single winner named."
+      "note": "Favorites 1 and 3; no single winner yet."
     },
     {
+      "slug": "roundup-bar-grill-graham",
       "business": "Roundup Restaurant & Lounge",
-      "note": "Option 3 combines the original 1 and 2; awaiting your verdict."
-    },
-    {
-      "business": "Euphoriq, GLO and Salon 410",
-      "note": "Three new options for each are ready in the full gallery; no winner has been chosen."
+      "note": "Combined option 3 awaits your verdict."
     }
   ],
   "batch_note": "These nine businesses are the full Claude handoff. There are no additional sites in this batch."
