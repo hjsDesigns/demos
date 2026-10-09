@@ -11,6 +11,19 @@
 <!-- Display: Josefin Sans (the closest Google face to the light geometric caps of her "SKIN & BEAUTY" lockup — an approximation; the script wordmark ships as her real PNG). Body: Geologica. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Geologica:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+.hero.en{--leaf-black:#071009;--leaf-deep:#142519;position:relative;isolation:isolate;display:block;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));overflow:hidden;background:var(--leaf-black);color:var(--paper);font-family:var(--body)}.hero.en:before,.hero.en:after{content:none!important}.hero.en h1{font-family:var(--display);font-weight:400;font-size:45px;line-height:1.07;letter-spacing:-.035em;max-width:none;margin:0;color:inherit;text-shadow:none;opacity:1;transform:none;animation:none;text-wrap:initial}.en p{margin:0}.en img{width:100%;height:100%;object-fit:cover;display:block}.en .en-label{font-size:9px;line-height:1.7;font-weight:400;letter-spacing:.2em;text-transform:uppercase}.en .en-copy{font-size:13px;line-height:1.8;font-weight:400}.en .en-actions{display:flex;align-items:center;gap:26px}.en .en-primary{display:inline-flex;align-items:center;justify-content:space-between;gap:33px;padding:15px 23px;min-height:50px;background:var(--paper);color:var(--brand-text);font-size:11px;font-weight:500;border:1px solid var(--paper);transition:background .2s}.en .en-primary:hover{background:var(--warm)}.en .en-link{font-size:10px;white-space:nowrap;border-bottom:1px solid currentColor;padding:12px 0 6px}.en .leaf-texture{position:absolute;inset:0;width:100%;height:100%;opacity:.6;filter:blur(1.2px);transform:scale(1.025)}.en .en-photo{overflow:hidden}.en .en-photo>svg{width:100%;height:100%;display:block}.en .en-photo img,.en .en-photo>svg{animation:en-light 1.8s var(--ease) both}.en .en-top{position:absolute;top:28px;left:5%;right:5%;display:flex;justify-content:space-between;z-index:5}.en .en-top>span{font-size:8px;letter-spacing:.2em;text-transform:uppercase}.en .en-frame{position:absolute;inset:24px;border:1px solid color-mix(in srgb,var(--warm) 27%,transparent);z-index:5;pointer-events:none}
+@keyframes en-light{from{filter:brightness(.35);transform:scale(1.025)}to{filter:brightness(1);transform:scale(1)}}
+@keyframes en-arrive{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes en-open{from{clip-path:inset(0 50%)}to{clip-path:inset(0)}}
+@keyframes en-halo{from{opacity:0}60%{opacity:.26}to{opacity:.12}}
+@media(max-width:700px){.hero.en h1{font-size:35px}.en .en-copy{font-size:12px;line-height:1.75}.en .en-label{font-size:7px;letter-spacing:.17em}.en .en-primary{font-size:10px;gap:24px;padding:12px 17px;min-height:48px}.en .en-actions{gap:24px}.en .en-link{font-size:9px}.en .en-top{top:22px;left:25px;right:25px}.en .en-top>span{font-size:7px}.en .en-frame{inset:13px}}
+
+.en-living .leaf-texture{opacity:.84}.en-living .living-photo{position:absolute;inset:0}.en-living .living-photo img{object-position:50% 41%}.en-living .living-shade{position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb,var(--leaf-black) 38%,transparent),transparent 22%,transparent 60%,color-mix(in srgb,var(--leaf-black) 94%,transparent) 100%)}.en-living .living-halo{position:absolute;inset:13% 21% 32%;background:radial-gradient(ellipse,color-mix(in srgb,var(--neon) 50%,transparent),transparent 64%);mix-blend-mode:screen;opacity:.12;animation:en-halo 2.2s var(--ease) .15s both;pointer-events:none}.en-living .living-bottom{position:absolute;left:6%;right:6%;bottom:6%;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;animation:en-arrive 1s var(--ease) 1.25s both}.en-living .living-bottom .en-label{color:var(--warm);margin-bottom:18px}.en-living .living-book .en-copy{margin-bottom:25px;color:var(--paper)}.en-living .living-book{min-width:340px}.hero.en-living h1{font-size:clamp(36px,3.7vw,56px)}
+@media(max-width:900px) and (min-width:701px){.en-living .living-bottom{left:6%;right:6%;gap:20px}.en-living .living-book{min-width:300px}.en-living .en-actions{gap:17px}.en-living .en-primary{gap:23px;padding:13px 18px}.en-living .living-photo{bottom:16%;left:-23%;right:-23%;mask-image:linear-gradient(180deg,#000 0%,#000 76%,transparent 100%)}.en-living .living-photo img{object-fit:cover}}
+@media(max-width:700px){.en-living .living-photo{top:7%;left:-40%;right:-40%;bottom:auto;height:58%;mask-image:linear-gradient(180deg,transparent 0%,#000 12%,#000 78%,transparent 100%)}.en-living .living-photo img{object-position:50% 50%}.en-living .living-shade{background:linear-gradient(180deg,color-mix(in srgb,var(--leaf-black) 25%,transparent),transparent 25%,transparent 46%,color-mix(in srgb,var(--leaf-black) 84%,transparent) 69%,var(--leaf-black))}.en-living .living-halo{inset:15% 0 44%}.en-living .living-bottom{left:26px;right:26px;bottom:35px;display:block}.hero.en-living h1{font-size:40px;line-height:1.02}.en-living .living-bottom .en-label{margin-bottom:17px}.en-living .living-book{min-width:0}.en-living .living-book .en-copy{margin-top:19px;margin-bottom:22px}.en-living .en-primary{background:var(--paper)}.en-living .en-top{top:23px}}
+@media(max-width:700px) and (max-height:760px){.en-living .living-photo{top:2%;height:56%}.en-living .living-bottom{bottom:26px}.hero.en-living h1{font-size:33px}.en-living .living-book .en-copy{margin-top:15px;margin-bottom:18px}}
+@media(prefers-reduced-motion:reduce){.hero.en *,.hero.en *:before,.hero.en *:after{animation:none!important;transition:none!important}.hero.en .en-photo img,.hero.en .en-photo>svg{filter:brightness(1);transform:none}}</style>
 </head>
 <body>
 
@@ -38,24 +51,8 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero — THE SIGN COMES ON =====================
-       Ground: her own photo of the lavender neon wordmark on the studio's boxwood hedge wall, blurred
-       and darkened. Mark: her REAL wordmark PNG lit as a neon tube (a CSS mask over the file — never
-       redrawn). Event: the neon strikes on with a stutter, the glow blooms, a halo lands on the leaves
-       and the hedge brightens. ~3 s, deterministic, then still. The mark IS the headline; h1 is sr-only. -->
-  <section class="hero hero-neon" id="hero">
-    <div class="hero-bg"><img src="images/hero-neon-hedge.jpg" alt="" width="1000" height="691" fetchpriority="high"></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1 class="sr-only">Euphoriq Skin &amp; Beauty — facials, lash lifts and brows by licensed esthetician Katherine Matthews, Sumner, Washington</h1>
-      <div class="neon" aria-hidden="true"><span class="neon-halo"></span><span class="neon-tube"></span></div>
-      <p class="hero-sub"><span class="sub-long">Facials, peels, lash lifts and brows by licensed esthetician Katherine Matthews — by appointment in downtown Sumner.</span><span class="sub-short">Facials · lashes · brows · downtown Sumner</span></p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Book a visit</a>
-        <a href="#services" class="btn btn-ghost">See the services</a>
-      </div>
-    </div>
-  </section>
+  <!-- The Living Wall. Emotion: A lush, private retreat; the studio identity is the entire first impression. Composition: Unframed real signage and foliage cover the whole hero, with a restrained invitation along the bottom. On phones, the actual sign photograph is kept wide enough to show the full lettering, and cropped foliage from that same photo extends the green wall below. Arrival: The actual photograph brightens once as the lavender light softly blooms across the foliage; the bottom invitation settles, fully still by 2.35 seconds. -->
+  <section class="hero en en-living" id="hero" aria-labelledby="living-title"><svg class="leaf-texture" viewBox="0 491 1000 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="images/hero-neon-hedge.jpg" width="1000" height="691"/></svg><figure class="en-photo living-photo"><img src="images/hero-neon-hedge.jpg" alt="The actual Euphoriq Skin and Beauty neon sign glowing lavender on its dense green leaf wall" width="1000" height="691" fetchpriority="high"></figure><span class="living-shade" aria-hidden="true"></span><span class="living-halo" aria-hidden="true"></span><div class="en-top"><span>Sumner, Washington</span><span>By appointment</span></div><div class="living-bottom"><div><p class="en-label">Personal skin care · Lashes · Brows</p><h1 id="living-title">One room.<br> All for you.</h1></div><div class="living-book"><p class="en-copy">A little time for yourself.<br> Personal care with Katherine Matthews.</p><div class="en-actions"><a class="en-primary" href="#contact">Book your time <span aria-hidden="true">↗</span></a><a class="en-link" href="#services">Explore the care</a></div></div></div></section>
 
   <!-- ===================== #hours — the one place hours, status and address live ===================== -->
   <section class="status-band" id="hours">

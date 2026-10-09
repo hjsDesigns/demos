@@ -58,9 +58,10 @@
     "liked": [
       1
     ],
-    "instruction": "Selected option 1 — The Living Wall. Preserve exactly.",
-    "state": "Selected: option 1 — The Living Wall",
-    "selected": 1
+    "instruction": "Keep the exact The Living Wall complete website approved by Hayden.",
+    "state": "Website approved",
+    "selected": 1,
+    "site_approval": "approved"
   },
   "glo-skin-clinic-maple-valley": {
     "business": "GLO Skin Clinic and Spa",
