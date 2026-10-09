@@ -1,0 +1,31 @@
+{
+  "zolas-cafe-auburn": {
+    "business": "Zola’s Cafe",
+    "liked": [
+      1,
+      3
+    ],
+    "instruction": "Keep options 1 and 3 as favorites; no single winner chosen.",
+    "state": "Favorites saved"
+  },
+  "el-caporal-maple-valley": {
+    "business": "El Caporal",
+    "liked": [],
+    "instruction": "Some appeal in option 1, but change the image; overall none are good enough. Create stronger variation.",
+    "state": "Revising all three"
+  },
+  "roundup-bar-grill-graham": {
+    "business": "Roundup Restaurant & Lounge",
+    "liked": [],
+    "instruction": "Combine options 1 and 2. Preserve both originals for comparison.",
+    "state": "New option 3 combines 1 + 2"
+  },
+  "homestead-brew-sumner": {
+    "business": "Homestead Brew",
+    "liked": [
+      1
+    ],
+    "instruction": "Really likes option 1. Keep it exactly and create two more variations of its direction.",
+    "state": "Two related designs coming"
+  }
+}

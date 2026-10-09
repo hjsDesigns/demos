@@ -101,16 +101,16 @@
       "sha256": "ef0d98a19e6a2bfa54abd7f5f8e0774a0f604cbc987977d1e0ae996ee5fd9efb"
     },
     {
-      "name": "Good Company",
-      "idea": "A warm cream editorial spread makes the real food, music and people the stars.",
-      "file": "hero-good-company.html",
-      "emotion": "Unpretentious warmth: come hungry, find your people, and stay for one more song.",
-      "composition": "An airy cream canvas, towering walnut editorial type and a carefully cropped three-photo story with a maroon rail. The bright, human alternative to both the dark room and maroon poster.",
-      "motion": "The headline reveals line by line, then the three real photographs settle into their offset positions, followed by the call to action. Everything is still at 2.4 seconds.",
+      "name": "Where the Night Begins",
+      "idea": "The cinematic room of The Night Opens meets the bold maroon roadside character of Off the Highway.",
+      "file": "hero-where-the-night-begins.html",
+      "emotion": "The confidence of a familiar landmark, and the warm pull of the night waiting inside.",
+      "composition": "A monumental cream-and-amber Roundup masthead on maroon, a wide cream-framed panorama of the actual room, and a strong roadside invitation. It combines the two selected ideas without adding a second competing photo.",
+      "motion": "The two parts of the masthead arrive from opposite sides, the room opens from the center and the framed panorama settles gently into place. The invitation completes the arrival at 2.35 seconds; all motion then stops.",
       "number": 3,
-      "url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/versions/hero-good-company.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/roundup-bar-grill-graham--hero-good-company.jpg",
-      "sha256": "1173d9c20e8420eb4e5a1378c5d7ae29495f3afd44e73e4fe0dd462560984e14"
+      "url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/versions/hero-where-the-night-begins.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/roundup-bar-grill-graham--hero-where-the-night-begins.jpg",
+      "sha256": "e538425a63a8452b9d1196ed1356a677a03dfe05b7d15b14481f99a90720b9b4"
     }
   ],
   "kelly-lattes-kent": [
@@ -187,6 +187,120 @@
       "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-coffee-comes-first.html",
       "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-coffee-comes-first.jpg",
       "sha256": "b9cf9acac029f3e4af60a1db708c124cde0f7230041a988aba94dac320ecb277"
+    }
+  ],
+  "village-coffee-maple-valley": [
+    {
+      "name": "Magnolia Morning",
+      "idea": "The real magnolia canopy becomes the invitation, with a quiet cream nameplate beside it.",
+      "emotion": "Fresh air, a familiar stop and a slower breath before the day.",
+      "composition": "An edge-to-edge photograph fills the right three-fifths; oversized rose Tinos lettering lives on a narrow cream column that steps into the image. On phones the full hut sits below the name.",
+      "motion": "The photo opens like a wide curtain, the two brand lines rise into place, and a fine rose line draws once; settled by 2.2 seconds.",
+      "file": "hero-magnolia-morning.html",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/village-coffee-maple-valley/versions/hero-magnolia-morning.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/village-coffee-maple-valley--hero-magnolia-morning.jpg",
+      "sha256": "b5944c4d4e8be67234edddf6d6f33978cc45384fafcac856033079fb3d510fc6"
+    },
+    {
+      "name": "Morning Ritual",
+      "idea": "A real takeaway cup and oversized cream lettering turn the drive-thru into a personal morning ritual.",
+      "emotion": "Grounded, comforting and ready to go with you.",
+      "composition": "A dusk-blue canvas carries a large cream letterform block; the tall, whole cup photograph leans across a pink strip on the right. The composition has the weight and warmth of coffee in hand.",
+      "motion": "The cup print rises and settles at a slight angle, then the two title lines and invitation arrive; settled by 2.15 seconds.",
+      "file": "hero-morning-ritual.html",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/village-coffee-maple-valley/versions/hero-morning-ritual.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/village-coffee-maple-valley--hero-morning-ritual.jpg",
+      "sha256": "085fffe550d6924bfd9cdc70625593d4e7566339f972815aa6cb62c63152a0eb"
+    },
+    {
+      "name": "The Village V",
+      "idea": "The actual magnolia photograph fills a monumental V, turning the shop’s own initial into the hero.",
+      "emotion": "Bright, familiar and proud to be part of the Village.",
+      "composition": "A giant photographic Tinos V owns the pink canvas. The business name and invitation sit beside it on desktop and along the lower edge on phones, creating an emblem-first composition rather than a photo panel.",
+      "motion": "The photographic V scales gently into place as its offset edge aligns; the name and invitation lift into the lower corner, complete by 2.2 seconds.",
+      "file": "hero-village-v.html",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/village-coffee-maple-valley/versions/hero-village-v.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/village-coffee-maple-valley--hero-village-v.jpg",
+      "sha256": "ed3e9fefff6d233c596d5c79a4aa416b71e76ef1ccebf47780528bdc5523b6dd"
+    }
+  ],
+  "glo-skin-clinic-maple-valley": [
+    {
+      "name": "The Quiet Appointment",
+      "file": "hero-quiet-appointment.html",
+      "idea": "A long oval glimpse of the real room and quietly oversized serif type turn the first screen into an invitation to exhale.",
+      "emotion": "Warmth, privacy and the feeling that someone has set this time aside for you.",
+      "composition": "A cream gallery-like composition: an oversized oval room portrait, offset fine gold contour, spacious type, and a deliberately small booking invitation. Intimate and architectural, unlike the immersive amber photo or green treatment still life.",
+      "motion": "The oval opens vertically like a breath, its fine contour draws once, and the typography follows in a short measured sequence. Fully still by 2.3 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/glo-skin-clinic-maple-valley/versions/hero-quiet-appointment.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/glo-skin-clinic-maple-valley--hero-quiet-appointment.jpg",
+      "sha256": "1c1aea78ddab0227c497b3e572f86fd93e44022fa07ef232e1dccbd7c6676e56"
+    },
+    {
+      "name": "Liquid Gold",
+      "file": "hero-liquid-gold.html",
+      "idea": "GLO’s real amber sugar paste becomes an immersive beauty image, balanced by one sweeping cream shape.",
+      "emotion": "Tactile, beautiful and intentional: the care is in the details.",
+      "composition": "An edge-to-edge amber photograph and a large organic cream sweep hold a restrained serif headline. This is the immersive materials-led concept; no framed photographs, logo strike or dark photographic scrim.",
+      "motion": "The real photograph makes a small horizontal settle as the cream sweep comes softly into place; the booking line resolves last. All motion ends at 2.45 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/glo-skin-clinic-maple-valley/versions/hero-liquid-gold.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/glo-skin-clinic-maple-valley--hero-liquid-gold.jpg",
+      "sha256": "6bc395eaee479dfcb18ff37165774aa2b3fad1e25e0f48d76fdd5f4b369ffcdb"
+    },
+    {
+      "name": "The Treatment Edit",
+      "file": "hero-treatment-edit.html",
+      "idea": "An oversized overhead treatment tray and a forest-green editorial field show the care behind a customized facial.",
+      "emotion": "Personal attention, considered technique and calm confidence in the details.",
+      "composition": "A forest-green canvas with the real treatment tray enlarged into a low oval foreground, an expansive cream headline above, and a slim booking column to the side. The intimate working-detail concept, distinct from the quiet room portrait and immersive amber composition.",
+      "motion": "The overhead tray glides up from the lower edge and turns gently into position; the large cream headline and fine divider settle in sequence. The scene is still by 2.4 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/glo-skin-clinic-maple-valley/versions/hero-treatment-edit.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/glo-skin-clinic-maple-valley--hero-treatment-edit.jpg",
+      "sha256": "6455790e6f12656926ac2031462fccab94b8ebe3db6ca5b0ea842d6c6fba9aa4"
+    }
+  ],
+  "euphoriq-skin-and-beauty-sumner": [
+    {
+      "name": "Room for You",
+      "idea": "A spacious editorial diptych pairs expressive cream typography with an unblurred, full-height view of the real studio wall.",
+      "file": "hero-room-for-you.html",
+      "emotion": "Personal attention, ease and the calm of having a space entirely for you.",
+      "composition": "Two deliberate worlds: a cream typographic page at left, the crisp real leafy studio wall at right, joined by fine lavender frame lines. Mobile uses a compact editorial introduction followed by a clear photographic studio window.",
+      "motion": "The photograph opens through a single vertical reveal while the three headline lines settle together; the fine frame draws once, all complete by 1.9 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/euphoriq-skin-and-beauty-sumner/versions/hero-room-for-you.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/euphoriq-skin-and-beauty-sumner--hero-room-for-you.jpg",
+      "sha256": "151738bd0f17af270f53efb161d85a5f359ff6d26be617fe331c259f36754f25"
+    },
+    {
+      "name": "Care in Focus",
+      "idea": "A treatment-detail study turns Katherine’s gloved hands and careful technique into the visual focus of a spacious editorial design.",
+      "file": "hero-care-in-focus.html",
+      "emotion": "Confidence in care that is deliberate, attentive and tailored to one person.",
+      "composition": "An oversized full-width heading leads into an offset horizontal study: a close treatment-tool crop at lower left, generous blank space around the image, and a personal-care statement and booking action at lower right. No owner or client portrait is shown.",
+      "motion": "The heading rises first, the detail frame unfolds from left to right, and the accompanying copy appears last; fully still by 1.85 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/euphoriq-skin-and-beauty-sumner/versions/hero-care-in-focus.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/euphoriq-skin-and-beauty-sumner--hero-care-in-focus.jpg",
+      "sha256": "37d5ed666184f41f2075d719d84171e18d5a607463a311f3ea1c4452f7e36a19"
+    },
+    {
+      "name": "Quietly Euphoriq",
+      "idea": "A sculptural lavender glass form presents the original wordmark as a quiet beauty installation, with an invitation set outside it.",
+      "file": "hero-quietly-euphoriq.html",
+      "emotion": "Time set aside for yourself: soft light, quiet confidence and boutique care.",
+      "composition": "A full lavender field with a large translucent sculptural form and the authentic wordmark, counterbalanced by generous left-aligned typography and a small booking action. On phones the sculpture occupies the upper half and the invitation anchors the lower half. This is a brand-led graphic composition rather than another photographic split.",
+      "motion": "The sculpture rises and settles as its highlight crosses once; the original wordmark and invitation resolve without flicker. All motion stops by 2.3 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/euphoriq-skin-and-beauty-sumner/versions/hero-quietly-euphoriq.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/euphoriq-skin-and-beauty-sumner--hero-quietly-euphoriq.jpg",
+      "sha256": "d4ee2dcfe8c89a9e0891ac0eff06ddbdf3c97277a3282ea67b4824e21b8af3df"
     }
   ]
 }
