@@ -1,3 +1,8 @@
+<!-- HERO VARIANT: Extra Good — Cream & Coffee
+Emotion: The cheerful pick-me-up of a favorite drink: expressive, lively and a little indulgent.
+Composition: Warm cream canvas, large coffee-brown wordmark, an angled real coffee-and-muffin photograph, bold side typography, fine graphic accents and a cream location strip. On phones a two-line masthead leads into the large diagonal photograph.
+Arrival: The masthead arrives first, the coffee-and-muffin print glides in and settles at a slight angle, and side lettering steps into place once; everything stops by 1.9 seconds.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +16,50 @@
 <!-- Display: Arbutus — the nearest sturdy Google face to the cut-metal lettering on their gable signs (SIGN-FONT LAW, approximation, see CONTENT-BRIEF.md). Body: Karla. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Arbutus&family=Karla:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style id="hero-variant-styles">
+:root{--kh-paper:var(--bg);--kh-coffee:#573A28;--kh-roast:#39291F;--kh-caramel:#795437;--kh-frame:var(--paper);--kh-rule:#D5C1A5;--kh-shadow:color-mix(in srgb,var(--kh-coffee) 17%,transparent)}
+.hero.kh{height:calc(100svh - var(--header-h));min-height:650px;position:relative;isolation:isolate;overflow:hidden;display:block;background:var(--bg);color:var(--brand);font-family:var(--body)}
+.hero.kh::before,.hero.kh::after{content:none!important}.hero.kh h1{font-family:var(--display);font-weight:400;max-width:none;margin:0;line-height:1.03;letter-spacing:-.04em;text-shadow:none;text-wrap:nowrap;color:inherit;opacity:1;transform:none;animation:none}.kh p{margin:0}.kh img{display:block;width:100%;height:100%;object-fit:cover}.kh .kh-label{font-family:var(--body);font-size:11px;line-height:1.5;text-transform:uppercase;letter-spacing:.17em;font-weight:800}.kh .kh-copy{font-size:17px;line-height:1.55;font-weight:500;max-width:34ch}.kh .kh-actions{display:flex;align-items:center;gap:24px}.kh .kh-primary{display:inline-flex;align-items:center;justify-content:center;gap:22px;background:var(--bg);color:var(--brand-text);border:1px solid var(--bg);padding:14px 24px;min-height:52px;font-size:14px;font-weight:800;border-radius:5px;transition:background .2s,transform .2s}.kh .kh-primary:hover{background:var(--warm);border-color:var(--warm);transform:translateY(-2px)}.kh .kh-link{padding:12px 0 5px;font-size:13px;font-weight:800;border-bottom:1px solid currentColor;white-space:nowrap}.kh .kh-link:hover{color:var(--warm)}
+@keyframes kh-rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes kh-pan{from{transform:scale(1.05);opacity:.3}to{transform:scale(1);opacity:1}}
+@keyframes kh-side{from{opacity:0;transform:translateX(-35px)}to{opacity:1;transform:none}}
+@keyframes kh-reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@media(max-width:760px){.hero.kh{min-height:660px}.kh .kh-label{font-size:9px;letter-spacing:.16em}.kh .kh-copy{font-size:14px}.kh .kh-primary{min-height:48px;padding:11px 18px;font-size:13px}.kh .kh-link{font-size:12px}.kh .kh-actions{gap:22px}}
+
+
+.hero.kh-extra{background:var(--brand);color:var(--bg);padding:23px 5vw 72px}
+.kh-extra .extra-top{display:flex;justify-content:space-between;gap:15px;position:relative;z-index:3}.kh-extra .extra-top .kh-label{font-size:10px;color:var(--warm)}
+.hero.kh-extra h1{position:relative;z-index:4;font-size:clamp(76px,10.7vw,164px);line-height:1.1;text-align:center;margin-top:23px;animation:kh-rise 1.05s var(--ease) both}
+.kh-extra .extra-print{position:absolute;left:34%;top:28%;width:32%;height:62%;max-height:660px;transform:rotate(-7deg);overflow:hidden;border:8px solid var(--bg);box-shadow:18px 18px 0 color-mix(in srgb,var(--dark) 55%,transparent);z-index:2;animation:extra-print 1.5s cubic-bezier(.16,.8,.25,1) .25s both}
+@keyframes extra-print{0%{opacity:0;transform:translate(45px,65px) rotate(3deg)}100%{opacity:1;transform:rotate(-7deg)}}
+.kh-extra .extra-print img{object-position:50% 53%}
+.kh-extra .extra-big{position:absolute;left:6vw;top:39%;font-family:var(--display);font-size:clamp(42px,5.9vw,90px);font-weight:400;line-height:.98;letter-spacing:-.045em;color:var(--warm);animation:kh-side 1s var(--ease) .7s both;z-index:1}
+.kh-extra .extra-note{position:absolute;left:73%;right:3vw;top:39%;animation:kh-rise 1s var(--ease) .8s both}
+.kh-extra .extra-arrow{width:128px;height:85px;color:var(--warm);margin-bottom:15px}.kh-extra .extra-note p{font-size:clamp(22px,2.55vw,38px);line-height:1.15;letter-spacing:-.04em;margin-bottom:25px}.kh-extra .extra-note strong{font-weight:800}.kh-extra .extra-note .kh-label{display:block;color:color-mix(in srgb,var(--bg) 76%,transparent);line-height:1.8;font-size:10px;letter-spacing:.13em}.kh-extra .extra-note .kh-primary{margin-top:25px;padding:13px 17px;font-size:13px;gap:18px}
+.kh-extra .extra-foot{position:absolute;bottom:0;left:0;right:0;height:62px;background:var(--bg);color:var(--brand-text);display:flex;justify-content:space-between;align-items:center;padding:0 5vw;font-size:14px;font-weight:800}.kh-extra .extra-foot>a{border-bottom:1px solid currentColor;padding:5px 0}.kh-extra .extra-foot>a span{margin-left:20px}
+@media(min-width:761px) and (max-width:1050px){.hero.kh-extra h1{font-size:10vw}.kh-extra .extra-top .kh-label{font-size:8px}.kh-extra .extra-print{left:31%;top:27%;width:37%;height:60%}.kh-extra .extra-big{left:4vw;font-size:5.2vw;top:41%}.kh-extra .extra-note{left:74%;right:2vw;top:37%}.kh-extra .extra-arrow{width:100px}.kh-extra .extra-note p{font-size:23px}.kh-extra .extra-note .kh-label{font-size:8px}.kh-extra .extra-note .kh-primary{padding:10px 12px;font-size:11px;gap:7px}}
+@media(max-width:760px){
+ .hero.kh-extra{padding:23px 22px 55px}.kh-extra .extra-top{justify-content:center}.kh-extra .extra-top .kh-label{font-size:8px;letter-spacing:.12em}.kh-extra .extra-top span:last-child{display:none}
+ .hero.kh-extra h1{font-size:clamp(39px,11.3vw,76px);line-height:1.12;margin:21px auto 0;max-width:8ch;text-wrap:wrap}
+ .kh-extra .extra-print{top:25%;left:24%;width:64%;height:42%;max-height:370px;transform:rotate(-7deg);border-width:6px;box-shadow:10px 10px 0 color-mix(in srgb,var(--dark) 55%,transparent)}
+ .kh-extra .extra-big{left:20px;top:38%;font-family:var(--body);font-size:11px;letter-spacing:.3em;line-height:1;writing-mode:vertical-rl;transform:rotate(180deg);animation:none}.kh-extra .extra-big br{display:none}
+ .kh-extra .extra-note{left:22px;right:22px;top:73%;text-align:center;display:grid;grid-template-columns:1fr 1fr;gap:18px 15px;align-items:center}.kh-extra .extra-arrow{display:none}.kh-extra .extra-note p{font-size:24px;line-height:1.1;margin:0;text-align:left}.kh-extra .extra-note .kh-label{font-size:8px;line-height:1.7;text-align:left;border-left:1px solid color-mix(in srgb,var(--bg) 35%,transparent);padding-left:15px}.kh-extra .extra-note .kh-primary{grid-column:1/-1;justify-self:center;margin:0;font-size:12px;min-height:46px;padding:10px 22px}
+ .kh-extra .extra-foot{height:45px;justify-content:center;font-size:11px;padding:0 22px}.kh-extra .extra-foot>span{display:none}.kh-extra .extra-foot>a{border:0}
+}
+@media(max-width:760px) and (max-height:760px){.kh-extra .extra-note{top:71%;gap:13px}.kh-extra .extra-note p{font-size:22px}.kh-extra .extra-print{height:39%;top:27%}.hero.kh-extra h1{margin-top:15px}}
+
+/* Hayden’s selected warm cream / coffee-brown palette. Layout, photo and timing preserved. */
+.hero.kh-extra{background:var(--kh-paper);color:var(--kh-roast)}
+.kh-extra .extra-top .kh-label{color:var(--kh-coffee)}
+.kh-extra .extra-print{border-color:var(--kh-frame);box-shadow:18px 18px 0 var(--kh-shadow)}
+.kh-extra .extra-big,.kh-extra .extra-arrow{color:var(--kh-caramel)}
+.kh-extra .extra-note .kh-label{color:var(--kh-coffee);border-color:var(--kh-rule)}
+.kh-extra .extra-note .kh-primary{background:var(--kh-coffee);color:var(--kh-frame);border-color:var(--kh-coffee)}
+.kh-extra .extra-note .kh-primary:hover{background:var(--kh-roast);border-color:var(--kh-roast)}
+.kh-extra .extra-foot{background:var(--bg-2);color:var(--kh-coffee)}
+@media(max-width:760px){.kh-extra .extra-print{box-shadow:10px 10px 0 var(--kh-shadow)}}
+
+@media(prefers-reduced-motion:reduce){.hero.kh *,.hero.kh *::before,.hero.kh *::after{animation:none!important;transition:none!important;opacity:1}.hero.kh .kh-cover{display:none!important}}</style>
 </head>
 <body>
 
@@ -39,46 +88,13 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero — THE SIGN STRIKES ON =====================
-       One real object: their cup on the river-rock counter under the Auburn patio roof
-       (Google photo, 1920×1080; phones get the hand-held cup, 810×1080 — same object,
-       two real frames, never a rotation). The mark is live type in the sign's face on an
-       arc, exactly how the cut-metal gable sign reads. Event: the lettering strikes on with
-       a neon stutter (their walk-up window has a real neon), the logo's own cup drops in
-       and parks on the arch, steam lifts off the lid, a warm halo blooms — ~3 s, then still.
-       Reduced motion lands on the final frame. Nothing sits on the photo but this block. -->
-  <section class="hero sign-hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(orientation: portrait)" srcset="images/hero-tall.jpg">
-        <img src="images/hero-wide.jpg" alt="Two Kelly Latte's cups — a hot latte and an iced shake — on the river-rock counter under the covered patio at the Auburn stand" width="1920" height="1080" fetchpriority="high">
-      </picture>
-    </div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1 class="sr-only">Kelly Latte's — drive-thru espresso stands in Kent, Auburn and Black Diamond, Washington</h1>
-      <div class="mark" aria-hidden="true">
-        <span class="mark-halo"></span>
-        <svg class="mark-type" viewBox="0 -250 600 532" role="img" aria-label="Kelly Latte's">
-          <defs><path id="arcPath" d="M 34 150 A 330 330 0 0 1 566 150"/></defs>
-          <!-- the cup from their own mark (upscaled 4x, white knocked out), parked on the arch where the logo puts it; painted first so the letters tuck over its base -->
-          <g class="cup-g">
-            <image class="mark-cup" href="images/mark-cup.png" x="214" y="-228" width="180" height="181"/>
-            <path class="wisp w1" d="M 330 -232 C 322 -246, 340 -258, 330 -272 C 322 -286, 338 -296, 330 -310"/>
-            <path class="wisp w2" d="M 346 -228 C 340 -242, 356 -254, 348 -268 C 340 -282, 356 -292, 348 -306"/>
-            <path class="wisp w3" d="M 316 -236 C 308 -250, 324 -262, 316 -276 C 308 -288, 322 -298, 314 -312"/>
-          </g>
-          <text class="mk-kelly"><textPath href="#arcPath" startOffset="50%" text-anchor="middle"><tspan>K</tspan><tspan>E</tspan><tspan>L</tspan><tspan>L</tspan><tspan>Y</tspan></textPath></text>
-          <rect class="mk-bar" x="36" y="160" width="528" height="12" rx="3"/>
-          <text class="mk-lattes" x="300" y="268" text-anchor="middle"><tspan>L</tspan><tspan>A</tspan><tspan>T</tspan><tspan>T</tspan><tspan>E</tspan><tspan>’</tspan><tspan>S</tspan></text>
-        </svg>
-      </div>
-      <p class="hero-sub"><span class="sub-long">Drive-thru coffee, energy drinks, shakes and fresh mini donuts — three stands, open from 5 am.</span><span class="sub-short">Coffee · energy drinks · shakes · donuts</span></p>
-      <div class="hero-actions">
-        <a href="#hours" class="btn btn-primary">Find a stand</a>
-        <a href="#menu" class="btn btn-cream">See the menu</a>
-      </div>
-    </div>
+  <section class="hero kh kh-extra" id="hero" aria-labelledby="extra-title">
+    <div class="extra-top"><span class="kh-label">Drive-thru espresso &amp; little pick-me-ups</span><span class="kh-label">Kent · Auburn · Black Diamond</span></div>
+    <h1 id="extra-title">Kelly Latte's</h1>
+    <p class="extra-big" aria-hidden="true">GOOD<br> TO<br> GO.</p>
+    <figure class="extra-print"><img src="images/cup-pumpkin.jpg" alt="Kelly Latte's branded coffee cup beside a wrapped muffin top, held out at the stand" width="1200" height="1600" fetchpriority="high"></figure>
+    <div class="extra-note"><svg class="extra-arrow" viewBox="0 0 160 95" fill="none" aria-hidden="true"><path d="M147 8C126 9 104 8 94 30C84 54 93 70 63 76C47 79 31 73 15 64M34 48L13 64L20 86" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Your daily<br><strong>little extra.</strong></p><span class="kh-label">Coffee · energy drinks<br>Shakes · fresh mini donuts</span><a class="kh-primary" href="#menu">Find your favorite <span aria-hidden="true">↗</span></a></div>
+    <div class="extra-foot"><span>Good drinks. Good people.</span><a href="#hours">Find a Kelly's near you <span aria-hidden="true">↗</span></a></div>
   </section>
 
   <!-- ===================== #hours — three windows, one band =====================
