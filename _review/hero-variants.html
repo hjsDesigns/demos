@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Hero variants — pick one per site</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Nunito:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#15181A;--card:#1F2528;--ink:#EEE8DA;--mute:#9B978B;--line:#30383C;--brand:#E26A3E;--ok:#56B98A;--disp:'Bricolage Grotesque','Avenir Next',Helvetica,sans-serif;--body:'Nunito','Avenir Next',Helvetica,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body)}
+body{padding:18px 16px 60px;max-width:760px;margin:0 auto}
+h1{font:700 30px/1.05 var(--disp);margin:0 0 4px}.stamp{color:var(--mute);font-size:14px;margin:0 0 18px}
+.site{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 12px}
+.site h2{font:700 20px/1.2 var(--disp);margin:0 0 2px}.site .town{color:var(--mute);font-size:13px;margin:0 0 10px}
+.vars{display:grid;gap:8px}
+.v{width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--ink);font:inherit;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.v:hover,.v:focus-visible{border-color:var(--brand);outline:none}.v b{font:700 16px/1.2 var(--disp)}.v p{margin:2px 0 0;color:var(--mute);font-size:13.5px}.v .tap{color:var(--brand);font-weight:700;font-size:13px;white-space:nowrap}
+.v.live{border-style:dashed}.v.live b::after{content:" · live now";color:var(--mute);font-weight:400;font-size:13px}
+.empty{color:var(--mute);font-size:14px;padding:6px 0}
+#view{position:fixed;inset:0;background:rgba(10,12,13,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:9}
+#view.on{display:flex}
+.phone{position:relative;width:390px;height:844px;background:#000;border-radius:44px;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 2px #2a2f33;transform:scale(var(--s,1));transform-origin:center}
+.phone iframe{width:100%;height:100%;border:0;border-radius:34px;background:#fff;display:block}
+.x{position:absolute;top:-6px;left:-6px;width:44px;height:44px;border-radius:50%;border:0;background:var(--brand);color:#fff;font:700 22px/44px var(--body);text-align:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:20px;line-height:40px;text-align:center;cursor:pointer}
+.nav.prev{left:-54px}.nav.next{right:-54px}@media (max-width:520px){.nav{display:none}}
+.name{position:absolute;left:50%;bottom:-40px;transform:translateX(-50%);color:var(--mute);font-size:13px;white-space:nowrap;text-align:center}
+.name b{color:var(--ink)}
+.replay{position:absolute;top:-6px;right:-6px;width:44px;height:44px;border-radius:50%;border:0;background:var(--card);color:var(--ink);font:700 18px/44px var(--body);text-align:center;cursor:pointer;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<h1>Hero variants</h1>
+<p class="stamp">Three different ideas per site from Codex · tap one, it opens as your phone · ← → flips between that site's variants · ↻ replays the opening · X closes</p>
+<div id="sites"><p class="empty">Loading…</p></div>
+
+<div id="view" role="dialog" aria-modal="true">
+  <div class="phone" id="phone">
+    <button class="x" id="close" aria-label="Close">×</button>
+    <button class="replay" id="replay" aria-label="Replay">↻</button>
+    <button class="nav prev" id="prev" aria-label="Previous">‹</button>
+    <iframe id="frame" title="hero preview" src="about:blank"></iframe>
+    <button class="nav next" id="next" aria-label="Next">›</button>
+    <div class="name" id="name"></div>
+  </div>
+</div>
+
+<script>
+const SITES=[["zolas-cafe-auburn","Zola's Cafe","Auburn"],["el-caporal-maple-valley","El Caporal","Maple Valley"],["roundup-bar-grill-graham","Roundup Restaurant & Lounge","Graham"],["kelly-lattes-kent","Kelly Latte's","Kent"],["homestead-brew-sumner","Homestead Brew","Sumner"],["village-coffee-maple-valley","Village Coffee","Maple Valley"],["euphoriq-skin-and-beauty-sumner","Euphoriq Skin & Beauty","Sumner"],["glo-skin-clinic-maple-valley","GLO Skin Clinic and Spa","Maple Valley"],["salon-410-buckley","Salon 410","Buckley"]];
+const view=document.getElementById('view'),frame=document.getElementById('frame'),nameEl=document.getElementById('name'),phone=document.getElementById('phone');
+let data={},list=[],cur=-1,curSite='';
+function fit(){const s=Math.min(1,(innerHeight-56)/844,(innerWidth-24)/390);phone.style.setProperty('--s',s.toFixed(3));}
+function openAt(slug,i){curSite=slug;const vs=list=variantsFor(slug);cur=(i+vs.length)%vs.length;const v=vs[cur];frame.src=v.url+(v.url.includes('?')?'&':'?')+'v='+Date.now();nameEl.innerHTML=`<b>${v.name}</b> · ${cur+1} of ${vs.length}<br>${v.idea||''}`;view.classList.add('on');fit();document.body.style.overflow='hidden';}
+function variantsFor(slug){const vs=(data[slug]||[]).map(v=>({name:v.name,idea:v.idea||'',url:v.url}));vs.push({name:'current live hero',idea:'what is on the site right now',url:'../'+slug+'/'});return vs;}
+function close(){view.classList.remove('on');frame.src='about:blank';document.body.style.overflow='';}
+function render(){const root=document.getElementById('sites');root.innerHTML='';for(const [slug,n,town] of SITES){const vs=data[slug]||[];const d=document.createElement('section');d.className='site';d.innerHTML=`<h2>${n}</h2><p class="town">${town} · ${vs.length} variant${vs.length===1?'':'s'}</p><div class="vars"></div>`;const box=d.querySelector('.vars');vs.forEach((v,i)=>{const b=document.createElement('button');b.className='v';b.innerHTML=`<span><b>${v.name}</b><p>${v.idea||''}</p></span><span class="tap">Open →</span>`;b.onclick=()=>openAt(slug,i);box.appendChild(b);});const live=document.createElement('button');live.className='v live';live.innerHTML=`<span><b>current hero</b><p>what is on the site right now</p></span><span class="tap">Open →</span>`;live.onclick=()=>openAt(slug,vs.length);box.appendChild(live);if(!vs.length){const e=document.createElement('p');e.className='empty';e.textContent='No variants from Codex yet.';box.prepend(e);}root.appendChild(d);}}
+fetch('variants.json?v='+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({})).then(j=>{data=j||{};render();});
+document.getElementById('close').onclick=close;
+document.getElementById('prev').onclick=()=>openAt(curSite,cur-1);
+document.getElementById('next').onclick=()=>openAt(curSite,cur+1);
+document.getElementById('replay').onclick=()=>openAt(curSite,cur);
+view.addEventListener('click',e=>{if(e.target===view)close();});
+addEventListener('keydown',e=>{if(!view.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')openAt(curSite,cur+1);if(e.key==='ArrowLeft')openAt(curSite,cur-1);if(e.key==='r')openAt(curSite,cur);});
+addEventListener('resize',fit);
+</script>
+</body>
+</html>
