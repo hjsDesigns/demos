@@ -12,12 +12,14 @@
   "el-caporal-maple-valley": {
     "business": "El Caporal",
     "liked": [
-      3
+      1
     ],
-    "selected": 3,
-    "instruction": "Keep the exact Your Usual Table complete website approved by Hayden.",
+    "selected": 1,
+    "instruction": "Keep the approved An Open Door full website. Your Usual Table remains a saved reference.",
     "state": "Website approved",
-    "site_approval": "approved"
+    "site_approval": "approved",
+    "selected_file": "hero-an-open-door.html",
+    "selected_name": "An Open Door"
   },
   "roundup-bar-grill-graham": {
     "business": "Roundup Restaurant & Lounge",
