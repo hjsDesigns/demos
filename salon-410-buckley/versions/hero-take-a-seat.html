@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Salon 410 — Hair salon, Buckley WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Salon 410 is a professional hair salon for men, women and kids in Mr. Bill's Plaza, Buckley, WA — cuts, color and waxing with Yanka and Amanda since 2013. Walk-ins welcome Tuesday to Saturday.">
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Two faces. Oswald 700 = the closest Google face to the red channel-letter sign over the door (SIGN-FONT LAW:
+     heavy condensed grotesque caps, flat-top 4, read off the 1500x2000 storefront frame) — stated as an APPROXIMATION.
+     Mulish = body, a soft humanist sans for a room of sage walls and honey oak. -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+
+/* Salon 410: isolated hero art direction. The original site remains intact. */
+#hero.s410-hero{height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));max-height:none;display:block;position:relative;isolation:isolate;overflow:hidden;font-family:var(--body);color:var(--ink)}
+#hero.s410-hero::before,#hero.s410-hero::after{content:none}
+#hero.s410-hero h1{font-family:var(--display);font-weight:600;line-height:.97;letter-spacing:-.045em;text-wrap:initial;max-width:none;margin:0;color:inherit;animation:none;transform:none;opacity:1;text-shadow:none}
+#hero.s410-hero p{margin:0}
+#hero.s410-hero img{width:100%;height:100%;display:block;object-fit:cover;filter:none;transform:none;animation:none}
+#hero.s410-hero .s-label{font:800 10px/1.4 var(--body);letter-spacing:.17em;text-transform:uppercase}
+#hero.s410-hero .s-body{font:400 15px/1.65 var(--body);max-width:31ch}
+#hero.s410-hero .s-actions{display:flex;align-items:center;gap:25px;position:relative;z-index:3}
+#hero.s410-hero .s-button{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:52px;padding:14px 20px;border:1px solid var(--brand);background:var(--brand);color:var(--ink);font:800 13px/1.4 var(--body);border-radius:2px;transition:background .2s,transform .2s}
+#hero.s410-hero .s-button span{font-size:22px;font-weight:400;line-height:1}
+#hero.s410-hero .s-link{display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid currentColor;font:700 12px/1.4 var(--body)}
+#hero.s410-hero .s-button:hover{background:var(--brand-bright);transform:translateY(-2px)}
+#hero.s410-hero a:focus-visible{outline:3px solid var(--brand-text);outline-offset:4px}
+@keyframes s410-rise{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+@keyframes s410-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes s410-open{from{clip-path:inset(50% 0 50% 0);transform:scale(1.04)}to{clip-path:inset(0 0 0 0);transform:scale(1)}}
+@keyframes s410-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes s410-paper{from{transform:translateY(60px) rotate(2deg);opacity:0}to{transform:translateY(0) rotate(0);opacity:1}}
+@media(max-width:700px){#hero.s410-hero .s-label{font-size:9px}#hero.s410-hero .s-body{font-size:13px}#hero.s410-hero .s-actions{gap:22px}#hero.s410-hero .s-button{min-height:48px;padding:12px 16px;gap:25px;font-size:12px}}
+
+#hero.s-seat{background:var(--accent);color:var(--paper)}
+#hero .s-s-photo{position:absolute;left:0;top:0;bottom:0;width:63.5%;overflow:hidden;animation:s410-open 1.8s var(--ease) .15s both}
+#hero .s-s-photo img{object-position:47% center}
+#hero .s-s-wall{position:absolute;left:63.5%;top:0;bottom:0;right:0;padding:6.5vh 4vw;display:flex;align-items:flex-start;flex-direction:column;border-left:8px solid var(--brand)}
+#hero .s-s-wall .s-label{font-size:9px;max-width:24ch;line-height:1.8;color:var(--paper);opacity:.8;letter-spacing:.19em}
+#hero.s-seat h1{font-size:clamp(100px,11vw,170px);font-weight:600;line-height:.99;letter-spacing:-.045em;margin-top:4vh;color:var(--paper)}
+#hero.s-seat h1 span{display:block;animation:s410-rise 1.15s var(--ease) .45s both}#hero.s-seat h1 span:nth-child(2){animation-delay:.6s}#hero.s-seat h1 span:nth-child(3){animation-delay:.75s}
+#hero .s-s-rule{height:2px;width:65px;background:var(--brand);margin-top:3.2vh;transform-origin:left;animation:s410-line 1.1s var(--ease) 1.1s both}
+#hero .s-s-wall .s-body{font-size:16px;margin-top:3vh;line-height:1.65;animation:s410-rise .9s var(--ease) 1.1s both}
+#hero .s-s-wall .s-actions{margin-top:auto;flex-wrap:wrap;gap:20px;animation:s410-rise .8s var(--ease) 1.5s both}
+@media(max-width:1050px){#hero .s-s-photo{width:58%}#hero .s-s-wall{left:58%;padding:7vh 4vw}#hero.s-seat h1{font-size:12vw}#hero .s-s-wall .s-body{font-size:14px}}
+@media(max-width:700px){
+ #hero .s-s-photo{width:100%;height:52%;bottom:auto;top:0}#hero .s-s-photo img{object-position:center 47%;object-fit:cover}
+ #hero .s-s-wall{left:0;right:0;top:52%;bottom:0;border-left:0;border-top:7px solid var(--brand);padding:23px 27px 25px}
+ #hero .s-s-wall .s-label{font-size:8px;max-width:none;line-height:1.4}
+ #hero.s-seat h1{font-size:18.6vw;line-height:.99;margin-top:15px;white-space:nowrap;letter-spacing:-.055em}#hero.s-seat h1 span{display:inline}#hero.s-seat h1 span:nth-child(2)::after{content:"";display:block}
+ #hero.s-seat h1 span:nth-child(3){display:block;font-size:1.28em;line-height:1.05;margin-top:0}
+ #hero .s-s-rule{display:none}#hero .s-s-wall .s-body{position:absolute;right:27px;top:162px;font-size:11px;line-height:1.6;width:14ch;max-width:14ch;margin:0;display:block}
+ #hero .s-s-wall .s-actions{width:100%;gap:30px;flex-wrap:nowrap}
+}
+@media(max-width:700px) and (max-height:730px){#hero .s-s-photo{height:46%}#hero .s-s-wall{top:46%;padding-top:18px;padding-bottom:20px}#hero.s-seat h1{font-size:16.5vw;margin-top:12px}}
+
+@media(prefers-reduced-motion:reduce){#hero.s410-hero *,#hero.s410-hero *::before,#hero.s410-hero *::after{animation:none!important;transition:none!important;opacity:1!important;transform:none!important;clip-path:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV =====================
+     No crisp logo file exists (the print mark is a newsprint flyer, the sign is a 400px crop) — the wordmark is
+     live type in the sign's face and colour, like the sign. -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Salon 410 — home">
+      <span class="wm wm-sign">SALON 410<small>Hair salon · Buckley</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#services">Services</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#about">Yanka &amp; Amanda</a>
+        <a href="#hours">Hours</a>
+        <a href="tel:+12063937950" class="nav-cta">Call the salon</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+<!-- Take a Seat: Familiar, unhurried and warmly human: a place where someone listens. Composition: An immersive room photograph fills the left two-thirds with its reception desk and chairs; a sage invitation wall carries enormous cream lettering. Mobile puts the whole room first and the invitation underneath. Arrival: A pair of horizontal reveals opens the room from the center, followed by a paced rise of the three headline lines; all settled by 2.4 seconds. -->
+
+<section id="hero" class="hero s410-hero s-seat" aria-labelledby="seat-title">
+ <figure class="s-s-photo"><img src="hero-assets/reception.jpg" alt="The welcoming room inside Salon 410, with honey-oak stations, black styling chairs, sage walls and the reception desk" width="1244" height="934" fetchpriority="high"></figure>
+ <div class="s-s-wall"><p class="s-label">Salon 410 · Hair salon · Buckley</p><h1 id="seat-title"><span>TAKE </span><span>A </span><span>SEAT.</span></h1><div class="s-s-rule" aria-hidden="true"></div><p class="s-body">Your hair. Your ideas.<br>A stylist who listens.</p><div class="s-actions"><a href="tel:+12063937950" class="s-button">Call the salon <span aria-hidden="true">↗</span></a><a href="#lookbook" class="s-link">Our work</a></div></div>
+</section>
+
+  <!-- ===================== #hours — the one band: live status + address + all seven days ===================== -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Tuesday through <em>Saturday</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          135 Jefferson Ave, Ste K, Buckley, WA 98321<br>
+          <span class="addr-note">Mr. Bill's Plaza, under the green awning</span><br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Salon+410+135+Jefferson+Ave+Buckley+WA+98321" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> Best of the Plateau 2018 · 1st place</span>
+          <span class="proof"><span class="ico">✓</span> Walk-ins welcome</span>
+          <span class="proof"><span class="ico">✓</span> Men · women · kids</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1" class="closed"><span class="day">Monday</span><span class="time">Closed</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">9:30 AM – 5:30 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">9:30 AM – 5:30 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">9:30 AM – 5:30 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">9:30 AM – 5:30 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">10:00 AM – 4:00 PM</span></li>
+        <li data-days="0" class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #services — the room first, then the four things they do ===================== -->
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <figure class="print room-print reveal">
+        <img src="../images/room.jpg" alt="Inside Salon 410 — honey-oak stations with mirrors, black styling chairs on a grey tile floor, the sage accent wall with three framed hair portraits over the shampoo bowls" loading="lazy" width="2000" height="1125">
+        <figcaption>Suite K — the chairs, the bowls, the sage wall</figcaption>
+      </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">What we do</p>
+        <h2>Cuts, color <em>and the rest</em></h2>
+        <p>“A professional hair salon catering to men, women and children.” — their own words, on their page since the doors opened.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5 20 19M8.5 16.5 20 5"/></svg></div>
+          <h3>Haircuts</h3>
+          <p>Men, women and kids. You say how much comes off, and that is how much comes off — the thing regulars keep writing about.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/><path d="M9 14a3 3 0 0 0 3 3"/></svg></div>
+          <h3>Color &amp; highlights</h3>
+          <p>Balayage, full color, tints and root touch-ups. The blondes in the lookbook below are all from these chairs.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8c4-3 12-3 16 0"/><path d="M5 8l2 11h10l2-11"/><path d="M9 13h6"/></svg></div>
+          <h3>Waxing</h3>
+          <p>Brows and face, listed right alongside the hair services. Add it on when you book or ask at the desk.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-6 8 6v12"/><path d="M10 21v-6h4v6"/></svg></div>
+          <h3>Walk-ins welcome</h3>
+          <p>The banner over the door means it. Come in Tuesday to Saturday, or call ahead and a chair is held for you.</p>
+          <div class="chips"><span>Appointments</span><span>Walk-ins</span><span>Gift certificates</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #lookbook — THE SIGNATURE (section 4, Toddler Law) =====================
+       Their own result photos turned into the one toy on the page: tap a pill, the big print changes to that
+       look. One tap, instant payoff, no instructions beyond three words. Phones: the result sits ABOVE the pills.
+       Object + one word — the caption never narrates the tap back. -->
+  <section class="section" id="lookbook">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The lookbook</p>
+        <h2>Tap a look <em>from these chairs</em></h2>
+        <p>Five real results from Salon 410's own photos. Pick one.</p>
+      </div>
+      <div class="lookbook reveal">
+        <figure class="look-stage" id="lookStage">
+          <img id="lookImg" src="../images/look-1.jpg" alt="Blonde balayage — long soft waves with a bright blonde melt, done at Salon 410" width="720" height="960" loading="lazy">
+          <figcaption id="lookCap">Blonde balayage</figcaption>
+        </figure>
+        <div class="look-side">
+          <p class="look-hint">Tap a look</p>
+          <div class="look-chips" role="group" aria-label="Choose a look">
+            <button class="look-chip is-on" type="button" aria-pressed="true" data-src="../images/look-1.jpg" data-cap="Blonde balayage" data-alt="Blonde balayage — long soft waves with a bright blonde melt, done at Salon 410" style="--sw:#D9B679"><i></i>Blonde balayage</button>
+            <button class="look-chip" type="button" aria-pressed="false" data-src="../images/look-2.jpg" data-cap="Copper red" data-alt="Copper red color on long waved hair against the salon's brick wall" style="--sw:#B4512E"><i></i>Copper red</button>
+            <button class="look-chip" type="button" aria-pressed="false" data-src="../images/look-3.jpg" data-cap="Soft waves" data-alt="Soft honey-blonde waves, cut and styled at Salon 410" style="--sw:#C9A062"><i></i>Soft waves</button>
+            <button class="look-chip" type="button" aria-pressed="false" data-src="../images/look-4.jpg" data-cap="Long layers" data-alt="Long layered light blonde hair, blown out straight" style="--sw:#E4CFA0"><i></i>Long layers</button>
+            <button class="look-chip" type="button" aria-pressed="false" data-src="../images/look-5.jpg" data-cap="Fresh cut" data-alt="A fresh cut on long brown hair in the purple cape at Salon 410" style="--sw:#5A3A2E"><i></i>Fresh cut</button>
+          </div>
+          <p class="look-fine">Want one of these? Bring the picture — or just point at it on your phone.</p>
+          <a href="tel:+12063937950" class="btn btn-primary">Book a chair</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about — the two names on the awning ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="../images/at-work.jpg" alt="Two stylists working at the stations inside Salon 410, clients in capes, daylight through the front windows" loading="lazy" width="2000" height="1125">
+          <figcaption>Two chairs working, Jefferson Ave</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Yanka &amp; Amanda</p>
+          <h2>Two stylists, <em>one room</em>, since 2013</h2>
+          <p class="lede">Salon 410 opened its doors in June 2013, a few steps off Highway 410 in Buckley.</p>
+          <p>Yanka and Amanda are the two names on the awning. In 2018 Courier-Herald readers voted the salon Best of the Plateau — first place — and the thank-you ad still carries both of their signatures.</p>
+          <p>It's the kind of place where the stylist asks what you want and then does exactly that. The reviews on Google and Yelp keep landing on the same word: she listened.</p>
+          <div class="team">
+            <h3>Behind the chairs</h3>
+            <div class="faces">
+              <span class="face"><span class="ini">Y</span>Yanka<small>Stylist</small></span>
+              <span class="face"><span class="ini">A</span>Amanda<small>Stylist</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (2026-09-06): no review with a sourceable real name + real profile photo pair could be
+       pulled for this build (Google and Yelp are bot-walled to curl; the directory mirror strips names). So this is
+       VARIANT B, the sanctioned link-out — the real aggregate score, the real count, one true line, the live
+       listings. No quotes, no faces, no initials. See review notes in the client note. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Reviews</p>
+        <h2>What Buckley <em>says</em></h2>
+      </div>
+      <div class="rev-linkout reveal">
+        <p class="rev-score"><b>4.8</b><span class="rev-stars" aria-label="4.8 out of 5 stars">★★★★☆</span></p>
+        <p class="rev-count">38 reviews on Google</p>
+        <p class="rev-note">Same two stylists since 2013. The reviews are on Google and Yelp, in the reviewers' own names — read them there.</p>
+        <div class="rev-links">
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Buckley+Salon+410+135+Jefferson+Ave+Buckley+WA" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+          <a class="rev-alt" href="https://www.yelp.com/biz/salon-410-buckley" target="_blank" rel="noopener">Also on Yelp ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Book a chair</p>
+          <h2>Call, text <em>or walk in</em></h2>
+          <ol class="steps">
+            <li><h3>Call or text</h3><p>(206) 393-7950 — say what you're after and when you can come by.</p></li>
+            <li><h3>Or just walk in</h3><p>Tuesday to Saturday. If a chair is open, it's yours.</p></li>
+            <li><h3>Sit down and say it</h3><p>What you want, how much comes off, the color you're chasing. That's the whole method.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12063937950">(206) 393-7950</a></span>
+            <span>✉️ <a href="mailto:kslundin1@gmail.com">kslundin1@gmail.com</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Salon+410+135+Jefferson+Ave+Buckley+WA+98321" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What are you after?<select name="topic"><option>A cut</option><option>Color or highlights</option><option>Waxing</option><option>A gift certificate</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Anything we should know — a photo you love, a color you're after, when you're free…"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it</button>
+          <p class="form-success">Thanks — the salon will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta — numbers that feel like the shop ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Buckley's chair since 2013</p>
+        <h2>Same two names <em>on the awning</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><i>est.</i> <span class="count" data-to="2013" data-from="1990">2013</span></b><span>opened in June, Jefferson Ave</span></div>
+        <div class="num"><b><span class="count" data-to="2">2</span></b><span>stylists — Yanka and Amanda</span></div>
+        <div class="num"><b><span class="count" data-to="5">5</span></b><span>days a week, Tuesday to Saturday</span></div>
+        <div class="num"><b><span class="count" data-to="1">1</span><i>st</i></b><span>Best of the Plateau, 2018</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+12063937950" class="btn btn-primary">Call (206) 393-7950</a>
+        <a href="#hours" class="btn btn-ghost">Find the salon</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="wm wm-sign">SALON 410<small>Hair salon · Buckley</small></span>
+        </div>
+        <p>Cuts, color and waxing on the plateau since 2013.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/Salon410" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/explore/locations/1510069642612263/salon-410/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>135 Jefferson Ave, Ste K<br>Buckley, WA 98321</p>
+        <p><a href="tel:+12063937950">(206) 393-7950</a><br><a href="mailto:kslundin1@gmail.com">kslundin1@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#services">Services</a><br><a href="#lookbook">Lookbook</a><br><a href="#about">Yanka &amp; Amanda</a><br><a href="#hours">Hours</a><br><a href="#contact">Book a chair</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Salon 410</span>
+      <span>Buckley, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+</body>
+</html>

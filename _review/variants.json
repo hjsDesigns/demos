@@ -39,40 +39,40 @@
   ],
   "el-caporal-maple-valley": [
     {
-      "name": "Ranchero",
-      "idea": "An oversized burgundy restaurant poster meets a bright, full plate of El Caporal food.",
-      "file": "hero-ranchero.html",
-      "emotion": "Generous, confident and full of appetite.",
-      "composition": "Deep burgundy type-led left half; a large circular food photograph and terracotta sunburst occupy the right, with a fine cream perimeter.",
-      "motion": "The title reveals upward in two beats, then the plate settles into its frame; all motion ends at 1.9 seconds.",
+      "name": "Ranchero · Golden Plate",
+      "idea": "The burgundy Ranchero composition returns with a crisp, golden flauta plate in its turquoise dish.",
+      "file": "hero-ranchero-golden-plate.html",
+      "emotion": "Generous, confident and warm.",
+      "composition": "Retains the original Ranchero typography, burgundy field, terracotta sunburst and circular image placement; the rejected chalupa photograph is replaced with the real golden flautas.",
+      "motion": "The two-part name reveals and the plate settles once, complete by 1.9 seconds.",
       "number": 1,
-      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-ranchero.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-ranchero.jpg",
-      "sha256": "6cbb6f8190fd9541201daf1a3692da724fec19cacfe614f538e2062e93852951"
+      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-ranchero-golden-plate.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-ranchero-golden-plate.jpg",
+      "sha256": "ac94f4bae3c638888ffa1153bc3e86ec5f64d90a2ececa053f9b4a14a7d6daac"
     },
     {
-      "name": "The Dinner Poster",
-      "idea": "A cream-and-red masthead opens into a crisp photographic spread of a whole meal.",
-      "file": "hero-supper-club.html",
-      "emotion": "Warm, convivial and unpretentious; the feeling of ordering something for everyone.",
-      "composition": "An enormous horizontal wordmark above a three-panel food spread; a fine double red baseline and a centered invitation give it the rhythm of a restaurant poster.",
-      "motion": "The masthead uncovers from the baseline; three food panels arrive from below in sequence and settle by 2.1 seconds.",
+      "name": "First Bite",
+      "idea": "An enormous, crisp taco photograph meets a sweeping cream invitation and sign-red edge.",
+      "file": "hero-first-bite.html",
+      "emotion": "Immediate appetite, lively flavor and generous portions.",
+      "composition": "The real food fills the left two-thirds edge-to-edge, with a dramatic diagonal cream field for the invitation at right. On phones, the photograph owns the upper half and the cream diagonal carries the type into the lower half; this is an immersive photograph, not an arch or a poster grid.",
+      "motion": "The food opens across the page, followed by the angled cream field and a two-step typographic arrival; fully settled by 2.15 seconds.",
       "number": 2,
-      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-supper-club.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-supper-club.jpg",
-      "sha256": "9d0912c74c71a336dd7d1f3dbc11769af7541cc66a59be6124757095d88343be"
+      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-first-bite.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-first-bite.jpg",
+      "sha256": "37b5da49ad1fb81a67bd0dede769d387fa45b6a754234842a87e5c7479b033c4"
     },
     {
-      "name": "The Welcome Arch",
-      "idea": "A monumental terracotta arch frames the real El Caporal storefront as an invitation to step inside.",
-      "file": "hero-welcome-arch.html",
-      "emotion": "Familiar, sunny and rooted in the actual place.",
-      "composition": "A broad cream nameplate on the left meets an architectural terracotta arch on the right; the full storefront image stays legible within its opening, while a soft echo of the same photo fills the arch above and below.",
-      "motion": "Two terracotta shutters part across the photo; the title and invitation rise into place, fully settled by 2.3 seconds.",
+      "name": "Your Usual Table",
+      "idea": "The real lantern-lit dining room unfolds beside a warm invitation on a tall restaurant menu.",
+      "file": "hero-your-usual-table.html",
+      "emotion": "The familiar welcome of a family-run room you can settle into.",
+      "composition": "A panoramic window into the actual dining room sits behind a tall cream invitation offset to the right, with a broad red rail carrying the restaurant name at left. The cream panel layers across the photographic edge, and a restrained terracotta frame ties the two together. Mobile keeps the tall real room on one side and the invitation overlapping its lower edge, so the restaurant remains present around the words.",
+      "motion": "The dining room uncovers first, the cream invitation slides upward once, and a fine frame completes; fully still by 2.2 seconds.",
       "number": 3,
-      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-welcome-arch.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-welcome-arch.jpg",
-      "sha256": "8554c43357f5b26a5e8118c97adcb2bd508bfdcb6bab5dba35534d8ab5081853"
+      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-your-usual-table.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-your-usual-table.jpg",
+      "sha256": "7cb8b0b8da55807289296f0d54b2ff6dd1a9ae51c76ae3411bb8abeb36a5f3b4"
     }
   ],
   "roundup-bar-grill-graham": [
@@ -165,28 +165,28 @@
       "sha256": "d0b7d50dcebaba4234a27fed0fc1ce0938e0b3801ba06787606e5d071ff5e89c"
     },
     {
-      "name": "Before the Rush",
-      "file": "hero-before-the-rush.html",
-      "idea": "An oversized weekday opening time and a bold predawn palette celebrate the people who start early.",
-      "emotion": "Quiet purpose, a dependable coffee stop, and a head start on the day.",
-      "composition": "Predawn navy meets an amber 05:30 time lockup; a tall real service-window photograph occupies the other half. A crisp editorial composition built around the morning ritual rather than the cabin silhouette or coffee product.",
-      "motion": "The opening time resolves with a short vertical reveal, a narrow amber seam crosses into the actual window photograph, and the invitation follows. Everything settles at 2.3 seconds.",
+      "name": "Under One Roof",
+      "file": "hero-under-one-roof.html",
+      "idea": "The favorite’s cabin silhouette becomes a broad, centered architectural welcome.",
+      "emotion": "The familiar warmth of a little cedar coffee cabin.",
+      "composition": "Warm cream, amber roofline, symmetrical live type, and a wide gabled photograph of the same real cedar cabin.",
+      "motion": "A roofline draws, the photograph opens upward, and the invitation settles by 2.2 seconds.",
       "number": 2,
-      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-before-the-rush.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-before-the-rush.jpg",
-      "sha256": "b2de45c16e0e51353366507b18386f8d5768780d2d8afb96261d0605603bf10a"
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-under-one-roof.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-under-one-roof.jpg",
+      "sha256": "6f0cd30fe3c5c511ee0a2c4b53733b73d7e7a39ba699ddd7ea032cd19680128b"
     },
     {
-      "name": "Coffee Comes First",
-      "file": "hero-coffee-comes-first.html",
-      "idea": "A real iced-coffee photograph becomes the central still life in a bold timber-and-cream composition.",
-      "emotion": "The small pleasure that changes the whole day: good coffee, made for you.",
-      "composition": "An isolated photographic cup rests between tall live display type, backed by a simple amber ellipse and a soft ground shadow. The product-first concept, unlike the architectural cabin and weekday-time layouts.",
-      "motion": "The photographed cup rises once onto its ground shadow while the large headline settles into place. The amber ellipse reveals from below, and the actions settle by 2.35 seconds.",
+      "name": "The Cabin Postcard",
+      "file": "hero-cabin-postcard.html",
+      "idea": "The same warm cabin story becomes a tactile photographic keepsake beside oversized type.",
+      "emotion": "The familiar warmth of a little cedar coffee cabin.",
+      "composition": "An off-axis cream photographic print with fine timber-colored framing balances a large warm invitation; photo first on mobile.",
+      "motion": "The framed cabin print lands once with a slight rotation; the headline and actions arrive, then stillness by 2.2 seconds.",
       "number": 3,
-      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-coffee-comes-first.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-coffee-comes-first.jpg",
-      "sha256": "b9cf9acac029f3e4af60a1db708c124cde0f7230041a988aba94dac320ecb277"
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard.jpg",
+      "sha256": "8dbb6201743271cddd5bbb86769f8c9ecc67fcd42e0dc8680911e9dc4c0b173c"
     }
   ],
   "village-coffee-maple-valley": [
@@ -301,6 +301,44 @@
       "url": "https://hjsdesigns.github.io/demos/euphoriq-skin-and-beauty-sumner/versions/hero-quietly-euphoriq.html",
       "thumbnail": "thumbs/heroes-2026-10-09/euphoriq-skin-and-beauty-sumner--hero-quietly-euphoriq.jpg",
       "sha256": "d4ee2dcfe8c89a9e0891ac0eff06ddbdf3c97277a3282ea67b4824e21b8af3df"
+    }
+  ],
+  "salon-410-buckley": [
+    {
+      "name": "The Color Edit",
+      "idea": "A real finished look takes the scale and confidence of a fashion editorial, with the warmth of the local salon.",
+      "file": "hero-the-color-edit.html",
+      "emotion": "The small thrill of seeing yourself freshly, without losing yourself.",
+      "composition": "An oversized vertical FRESH margin sits beside the whole hair-result portrait on a cream sheet; the red name and generous editorial copy counterbalance it. Phones retain the vertical margin and uninterrupted portrait.",
+      "motion": "The portrait is revealed along its length, FRESH settles into its margin, then the invitation lifts in; finished by 2.15 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/salon-410-buckley/versions/hero-the-color-edit.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/salon-410-buckley--hero-the-color-edit.jpg",
+      "sha256": "fbb9e814442318827ec42b001ba55fa5e5ddfc30718667b54bdd3d0d893100d4"
+    },
+    {
+      "name": "Take a Seat",
+      "idea": "The actual room becomes an open invitation, framed in its own sage and oak.",
+      "file": "hero-take-a-seat.html",
+      "emotion": "Familiar, unhurried and warmly human: a place where someone listens.",
+      "composition": "An immersive room photograph fills the left two-thirds with its reception desk and chairs; a sage invitation wall carries enormous cream lettering. Mobile puts the whole room first and the invitation underneath.",
+      "motion": "A pair of horizontal reveals opens the room from the center, followed by a paced rise of the three headline lines; all settled by 2.4 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/salon-410-buckley/versions/hero-take-a-seat.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/salon-410-buckley--hero-take-a-seat.jpg",
+      "sha256": "f1ce4c45f21406b549d1d3ec885b59c20101e267bdb6a420c5210753da6d8c56"
+    },
+    {
+      "name": "Good Company",
+      "idea": "An oversized appointment folio turns the salon names, the real welcome and confident lettering into a warm keepsake.",
+      "file": "hero-good-company.html",
+      "emotion": "Personal connection: good hair, familiar people, a place worth returning to.",
+      "composition": "A cream appointment sheet on a sage ground uses bold four-line black typography, small red SALON 410 lettering and a real storefront print; a ruled booking line grounds the composition. The words lead and the photograph is a supporting glimpse.",
+      "motion": "The entire folio lands gently like a fresh page, the storefront print is uncovered, then a fine appointment rule draws across; settled by 2.3 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/salon-410-buckley/versions/hero-good-company.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/salon-410-buckley--hero-good-company.jpg",
+      "sha256": "82759f0d71be59defaffe8bfd45075f7a801d84714b541ddda8b58083ea1a07a"
     }
   ]
 }
