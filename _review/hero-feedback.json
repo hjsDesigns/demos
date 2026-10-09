@@ -10,9 +10,12 @@
   },
   "el-caporal-maple-valley": {
     "business": "El Caporal",
-    "liked": [],
-    "instruction": "Some appeal in option 1, but change the image; overall none are good enough. Create stronger variation.",
-    "state": "Rebuilt: a new plate photo + two fresh directions"
+    "liked": [
+      3
+    ],
+    "selected": 3,
+    "instruction": "Selected option 3 — Your Usual Table. Preserve exactly.",
+    "state": "Selected: option 3 — Your Usual Table"
   },
   "roundup-bar-grill-graham": {
     "business": "Roundup Restaurant & Lounge",
@@ -23,9 +26,43 @@
   "homestead-brew-sumner": {
     "business": "Homestead Brew",
     "liked": [
+      3
+    ],
+    "selected": 3,
+    "instruction": "Selected option 3 — The Cabin Postcard. Preserve exactly.",
+    "state": "Selected: option 3 — The Cabin Postcard"
+  },
+  "village-coffee-maple-valley": {
+    "business": "Village Coffee",
+    "liked": [
       1
     ],
-    "instruction": "Really likes option 1. Keep it exactly and create two more variations of its direction.",
-    "state": "Original favorite 1 + two new related designs"
+    "selected": 1,
+    "instruction": "Selected option 1 — Magnolia Morning. Preserve exactly.",
+    "state": "Selected: option 1 — Magnolia Morning"
+  },
+  "kelly-lattes-kent": {
+    "business": "Kelly Latte’s",
+    "liked": [],
+    "instruction": "Option 2 selected, photo replacement pending",
+    "state": "Option 2 selected, photo replacement pending"
+  },
+  "euphoriq-skin-and-beauty-sumner": {
+    "business": "Euphoriq Skin & Beauty",
+    "liked": [],
+    "instruction": "Rebuilding all three around the neon sign and green leaf wall",
+    "state": "Rebuilding all three around the neon sign and green leaf wall"
+  },
+  "glo-skin-clinic-maple-valley": {
+    "business": "GLO Skin Clinic and Spa",
+    "liked": [],
+    "instruction": "Three new variations related to the first option",
+    "state": "Three new variations related to the first option"
+  },
+  "salon-410-buckley": {
+    "business": "Salon 410",
+    "liked": [],
+    "instruction": "Three new directions in progress",
+    "state": "Three new directions in progress"
   }
 }

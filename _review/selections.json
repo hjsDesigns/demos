@@ -1,0 +1,89 @@
+{
+  "selected": [
+    {
+      "name": "The Cabin Postcard",
+      "file": "hero-cabin-postcard.html",
+      "idea": "The same warm cabin story becomes a tactile photographic keepsake beside oversized type.",
+      "emotion": "The familiar warmth of a little cedar coffee cabin.",
+      "composition": "An off-axis cream photographic print with fine timber-colored framing balances a large warm invitation; photo first on mobile.",
+      "motion": "The framed cabin print lands once with a slight rotation; the headline and actions arrive, then stillness by 2.2 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard.jpg?v=8c58362a16aa",
+      "sha256": "8dbb6201743271cddd5bbb86769f8c9ecc67fcd42e0dc8680911e9dc4c0b173c",
+      "slug": "homestead-brew-sumner",
+      "business": "Homestead Brew",
+      "original_number": 3,
+      "status": "Selected",
+      "note": "This is the exact option you named. Full page is ready to review."
+    },
+    {
+      "name": "Your Usual Table",
+      "idea": "The real lantern-lit dining room unfolds beside a warm invitation on a tall restaurant menu.",
+      "file": "hero-your-usual-table.html",
+      "emotion": "The familiar welcome of a family-run room you can settle into.",
+      "composition": "A panoramic window into the actual dining room sits behind a tall cream invitation offset to the right, with a broad red rail carrying the restaurant name at left. The cream panel layers across the photographic edge, and a restrained terracotta frame ties the two together. Mobile keeps the tall real room on one side and the invitation overlapping its lower edge, so the restaurant remains present around the words.",
+      "motion": "The dining room uncovers first, the cream invitation slides upward once, and a fine frame completes; fully still by 2.2 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-your-usual-table.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-your-usual-table.jpg?v=08335ff66e40",
+      "sha256": "7cb8b0b8da55807289296f0d54b2ff6dd1a9ae51c76ae3411bb8abeb36a5f3b4",
+      "slug": "el-caporal-maple-valley",
+      "business": "El Caporal",
+      "original_number": 3,
+      "status": "Selected",
+      "note": "This is the exact option you named. Full page is ready to review."
+    },
+    {
+      "name": "Magnolia Morning",
+      "idea": "The real magnolia canopy becomes the invitation, with a quiet cream nameplate beside it.",
+      "emotion": "Fresh air, a familiar stop and a slower breath before the day.",
+      "composition": "An edge-to-edge photograph fills the right three-fifths; oversized rose Tinos lettering lives on a narrow cream column that steps into the image. On phones the full hut sits below the name.",
+      "motion": "The photo opens like a wide curtain, the two brand lines rise into place, and a fine rose line draws once; settled by 2.2 seconds.",
+      "file": "hero-magnolia-morning.html",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/village-coffee-maple-valley/versions/hero-magnolia-morning.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/village-coffee-maple-valley--hero-magnolia-morning.jpg?v=deda509461e5",
+      "sha256": "b5944c4d4e8be67234edddf6d6f33978cc45384fafcac856033079fb3d510fc6",
+      "slug": "village-coffee-maple-valley",
+      "business": "Village Coffee",
+      "original_number": 1,
+      "status": "Selected",
+      "note": "This is the exact option you named. Full page is ready to review."
+    }
+  ],
+  "conditional": [
+    {
+      "name": "Extra Good",
+      "idea": "A vivid indigo coffee poster throws monumental lettering around a real iced drink and lands with playful, confident energy.",
+      "file": "hero-extra-good.html",
+      "emotion": "The cheerful pick-me-up of a favorite drink: expressive, lively and a little indulgent.",
+      "composition": "Full indigo canvas, large cream wordmark, an angled real iced-latte photograph, bold side typography, fine graphic accents and a cream location strip. On phones a two-line masthead leads into the large diagonal photograph.",
+      "motion": "The masthead arrives first, the iced-latte print glides in and settles at a slight angle, and side lettering steps into place once; everything stops by 1.9 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/kelly-lattes-kent/versions/hero-extra-good.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/kelly-lattes-kent--hero-extra-good.jpg?v=5a7c6e2caa6b",
+      "sha256": "6f3a37587ffb3fd13b11c64425e4bab0433e23533de12ce5b960f24c3f24ea1a",
+      "slug": "kelly-lattes-kent",
+      "business": "Kelly Latte’s",
+      "original_number": 2,
+      "status": "Photo change pending",
+      "note": "Option 2’s design is chosen, subject to replacing this photo."
+    }
+  ],
+  "unresolved": [
+    {
+      "business": "Zola’s Cafe",
+      "note": "Options 1 and 3 liked; no single winner named."
+    },
+    {
+      "business": "Roundup Restaurant & Lounge",
+      "note": "Option 3 combines the original 1 and 2; awaiting your verdict."
+    },
+    {
+      "business": "Euphoriq, GLO and Salon 410",
+      "note": "New sets are being made from your latest direction."
+    }
+  ],
+  "batch_note": "These nine businesses are the full Claude handoff. There are no additional sites in this batch."
+}
