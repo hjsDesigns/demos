@@ -1,22 +1,24 @@
 {
   "selected": [
     {
-      "name": "The Cabin Postcard · Straight",
-      "file": "hero-cabin-postcard-straight.html",
-      "idea": "The same favorite cabin postcard, with a perfectly straight photographic print and decorative frame.",
+      "name": "The Cabin Postcard · Whole Cabin",
+      "file": "hero-cabin-postcard-whole-cabin.html",
+      "idea": "The whole cabin is visible in a real wider sunny exterior photo, framed without cropping.",
       "emotion": "The familiar warmth of a little cedar coffee cabin.",
-      "composition": "A straight cream photographic print with fine timber-colored framing balances a large warm invitation; photo first on mobile.",
-      "motion": "The framed cabin print arrives vertically with no rotation; the headline and actions arrive, then stillness by 2.2 seconds.",
+      "composition": "Full 4:3 exterior photo, large straight frame and smaller title. Cartoon sticker removed with built-in image editor; four-image lower gallery retained. Local review only.",
+      "motion": "The straight framed print arrives vertically once; title and actions settle, then stillness by 2.2 seconds.",
       "number": 3,
-      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard-straight.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard-straight.jpg?v=98429ed50150",
-      "sha256": "afbc6b1a7237dc63f7b6b4da9a2e64cdde681da6f2e57a79472a5d6ce6b5da16",
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-postcard-whole-cabin.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-postcard-whole-cabin.jpg?v=fec3b99437c9",
+      "sha256": "c8546edda5257afff7b438da720ebd23a1c9818777141b7d6bba6561ef03cabf",
       "slug": "homestead-brew-sumner",
       "business": "Homestead Brew",
       "original_number": 3,
-      "status": "Hero selected · website review pending",
-      "note": "Your chosen third design with the postcard and frame straightened.",
-      "site_approval": "pending"
+      "status": "Website approved",
+      "note": "Approved: straight postcard, full-cabin photo with the cartoon sticker removed, larger image and smaller title, and four-photo gallery.",
+      "site_approval": "approved",
+      "site_url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/",
+      "index_sha256": "c8a31e0b27f3131b15ad9fe01023a562066823213a702ac1082f465ff758f20e"
     },
     {
       "name": "Your Usual Table",
