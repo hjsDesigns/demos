@@ -1,1 +1,116 @@
-{}
+{
+  "zolas-cafe-auburn": [
+    {
+      "name": "Morning on Main",
+      "idea": "An oversized handwritten masthead and a sculptural oval of real coffee turn the morning ritual into a warm editorial cover.",
+      "file": "hero-morning-on-main.html",
+      "emotion": "An unhurried, confident morning: personal, generous and handmade.",
+      "composition": "Cream editorial canvas; giant plum script across the top; an oval coffee photograph framed by thin orbital rules, with a narrow room portrait at the right and readable copy at the left. A compact stacked composition on phones.",
+      "motion": "The wordmark rises as one piece, the coffee aperture opens upward and the room portrait arrives last; all motion settles by 1.9 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/zolas-cafe-auburn/versions/hero-morning-on-main.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/zolas-cafe-auburn--hero-morning-on-main.jpg",
+      "sha256": "905490448df1143f709b0717e92b13b6207760a8e1ee89b7a62a8a66a05d9ca0"
+    },
+    {
+      "name": "Through the Red Door",
+      "idea": "A life-size photograph of the real red door opens like a curtain beside a dramatic plum invitation.",
+      "file": "hero-through-the-red-door.html",
+      "emotion": "The anticipation of discovering a beloved neighborhood place: a quiet invitation with a little theater.",
+      "composition": "Architectural split composition: expressive cream and gold type on a solid plum wall, the real gold-decal red door as a floor-to-ceiling photograph on the right, fine gold threshold lines. On phones the door becomes an arched window above the invitation.",
+      "motion": "A single plum curtain retracts off the real door, then the invitation settles into place. The threshold line draws once; the complete scene is still by 2.1 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/zolas-cafe-auburn/versions/hero-through-the-red-door.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/zolas-cafe-auburn--hero-through-the-red-door.jpg",
+      "sha256": "779a6a5f333043c585c6562485ab78b9d7405d398240342eb5cdae997dd48f85"
+    },
+    {
+      "name": "Stay a Little Longer",
+      "idea": "A panoramic cafe journal pairs monumental plum typography with a sweeping ribbon of the real room and its people-first coffee ritual.",
+      "file": "hero-stay-a-little-longer.html",
+      "emotion": "Belonging: the generous, art-filled cafe you come for and the comfortable room you stay in.",
+      "composition": "Wide cream masthead with an enormous left-aligned wordmark and right-aligned invitation; below, a full-width three-panel photographic ribbon of fireplace, coffee and cafe interior. A solid plum action rail closes the hero. On mobile the masthead is stacked above the photographic triptych.",
+      "motion": "Three photographs unfold upward in sequence, like opening a cafe journal; the large wordmark settles above them. Motion is complete by 1.85 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/zolas-cafe-auburn/versions/hero-stay-a-little-longer.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/zolas-cafe-auburn--hero-stay-a-little-longer.jpg",
+      "sha256": "654003d072499b7ad75a2c039b2c8cfd4654a2365d31ec410b83d97bf450dfe8"
+    }
+  ],
+  "el-caporal-maple-valley": [
+    {
+      "name": "Ranchero",
+      "idea": "An oversized burgundy restaurant poster meets a bright, full plate of El Caporal food.",
+      "file": "hero-ranchero.html",
+      "emotion": "Generous, confident and full of appetite.",
+      "composition": "Deep burgundy type-led left half; a large circular food photograph and terracotta sunburst occupy the right, with a fine cream perimeter.",
+      "motion": "The title reveals upward in two beats, then the plate settles into its frame; all motion ends at 1.9 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-ranchero.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-ranchero.jpg",
+      "sha256": "6cbb6f8190fd9541201daf1a3692da724fec19cacfe614f538e2062e93852951"
+    },
+    {
+      "name": "The Dinner Poster",
+      "idea": "A cream-and-red masthead opens into a crisp photographic spread of a whole meal.",
+      "file": "hero-supper-club.html",
+      "emotion": "Warm, convivial and unpretentious; the feeling of ordering something for everyone.",
+      "composition": "An enormous horizontal wordmark above a three-panel food spread; a fine double red baseline and a centered invitation give it the rhythm of a restaurant poster.",
+      "motion": "The masthead uncovers from the baseline; three food panels arrive from below in sequence and settle by 2.1 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-supper-club.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-supper-club.jpg",
+      "sha256": "9d0912c74c71a336dd7d1f3dbc11769af7541cc66a59be6124757095d88343be"
+    },
+    {
+      "name": "The Welcome Arch",
+      "idea": "A monumental terracotta arch frames the real El Caporal storefront as an invitation to step inside.",
+      "file": "hero-welcome-arch.html",
+      "emotion": "Familiar, sunny and rooted in the actual place.",
+      "composition": "A broad cream nameplate on the left meets an architectural terracotta arch on the right; the full storefront image stays legible within its opening, while a soft echo of the same photo fills the arch above and below.",
+      "motion": "Two terracotta shutters part across the photo; the title and invitation rise into place, fully settled by 2.3 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-welcome-arch.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-welcome-arch.jpg",
+      "sha256": "ca167647775cc9ebbb583cba980132aa4cbce7a0aa07d6f9bb2999174c56ed27"
+    }
+  ],
+  "roundup-bar-grill-graham": [
+    {
+      "name": "The Night Opens",
+      "idea": "A giant warm wordmark gives way to a wide, vivid view of the real room.",
+      "file": "hero-night-opens.html",
+      "emotion": "Familiar faces, the room coming alive, and the pull of a good night out.",
+      "composition": "A dark cinematic masthead, a wide photograph that is free of text, and an amber-lit invitation underneath. This is the room-first concept, unlike the roadside poster or cream photo essay.",
+      "motion": "The panorama opens outward from its center as the masthead rises into place; the invitation arrives last. All motion ends at 2.35 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/versions/hero-night-opens.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/roundup-bar-grill-graham--hero-night-opens.jpg",
+      "sha256": "a3764062f2722356d516fd510d84022a43f20e780c3e7aade30c856a7f54da40"
+    },
+    {
+      "name": "Off the Highway",
+      "idea": "An oversized maroon roadside poster turns the real storefront into a destination.",
+      "file": "hero-off-the-highway.html",
+      "emotion": "An unmistakable local landmark: familiar, full of character, and worth pulling over for.",
+      "composition": "A solid maroon field with monumental stacked ROUND / UP lettering, a tilted cream-framed real exterior and a quietly confident invitation. The bold graphic option; no dark-photo backdrop.",
+      "motion": "The two title lines slide in from opposing directions, the exterior print settles down onto the poster, and an amber rule draws across. The complete composition is still after 2.15 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/versions/hero-off-the-highway.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/roundup-bar-grill-graham--hero-off-the-highway.jpg",
+      "sha256": "ef0d98a19e6a2bfa54abd7f5f8e0774a0f604cbc987977d1e0ae996ee5fd9efb"
+    },
+    {
+      "name": "Good Company",
+      "idea": "A warm cream editorial spread makes the real food, music and people the stars.",
+      "file": "hero-good-company.html",
+      "emotion": "Unpretentious warmth: come hungry, find your people, and stay for one more song.",
+      "composition": "An airy cream canvas, towering walnut editorial type and a carefully cropped three-photo story with a maroon rail. The bright, human alternative to both the dark room and maroon poster.",
+      "motion": "The headline reveals line by line, then the three real photographs settle into their offset positions, followed by the call to action. Everything is still at 2.4 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/versions/hero-good-company.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/roundup-bar-grill-graham--hero-good-company.jpg",
+      "sha256": "1173d9c20e8420eb4e5a1378c5d7ae29495f3afd44e73e4fe0dd462560984e14"
+    }
+  ]
+}

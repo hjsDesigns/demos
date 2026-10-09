@@ -1,0 +1,396 @@
+<!-- HERO VARIANT: Stay a Little Longer
+Emotion: Belonging: the generous, art-filled cafe you come for and the comfortable room you stay in.
+Composition: Wide cream masthead with an enormous left-aligned wordmark and right-aligned invitation; below, a full-width three-panel photographic ribbon of fireplace, coffee and cafe interior. A solid plum action rail closes the hero. On mobile the masthead is stacked above the photographic triptych.
+Arrival: Three photographs unfold upward in sequence, like opening a cafe journal; the large wordmark settles above them. Motion is complete by 1.85 seconds.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Zola's Cafe — Coffee, scratch bakery &amp; sandwiches on Main Street, Auburn WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Zola's Cafe, 402 E Main St in downtown Auburn: Best of Auburn 2025 for both coffee and bakery. Breakfast, sandwiches, soups and salads and a scratch pastry case from chef-owner Matt Noesen, seven days a week.">
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Two faces. Yellowtail = the slanted brush script of the gold door decal (SIGN-FONT LAW, closest Google face). Karla = body + headings. -->
+<link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Karla:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="stylesheet" href="../css/style.css?v=20261008">
+<style id="hero-variant-styles">
+
+.hero.zhero{height:calc(100svh - var(--header-h));min-height:650px;position:relative;isolation:isolate;overflow:hidden;display:block;font-family:var(--body);color:var(--ink);background:var(--bg)}
+.hero.zhero::before,.hero.zhero::after{content:none!important}
+.hero.zhero h1{max-width:none;margin:0;font-family:var(--sign);font-weight:400;letter-spacing:-.035em;line-height:1.08;text-shadow:none;text-wrap:nowrap;opacity:1;transform:none;animation:none;color:inherit}
+.zhero p{margin:0}.zhero img{display:block;width:100%;height:100%;object-fit:cover}.zhero a{touch-action:manipulation}.zhero .zh-label{font-family:var(--body);font-size:11px;line-height:1.4;font-weight:700;letter-spacing:.2em;text-transform:uppercase}.zhero .zh-copy{font-size:17px;line-height:1.55;max-width:30ch}.zhero .zh-actions{display:flex;align-items:center;gap:24px}.zhero .zh-primary{min-height:52px;padding:13px 25px;display:inline-flex;justify-content:center;align-items:center;gap:20px;border-radius:0;background:var(--brand);color:var(--paper);font-size:14px;font-weight:800;border:1px solid var(--brand);transition:background .2s}.zhero .zh-primary:hover{background:var(--brand-text)}.zhero .zh-link{font-size:13px;font-weight:700;border-bottom:1px solid currentColor;padding:12px 0 5px}.zhero .zh-link:hover{color:var(--brand-bright)}
+@keyframes zh-rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+@keyframes zh-photo{from{transform:scale(1.06);opacity:.2}to{transform:scale(1);opacity:1}}
+@keyframes zh-open{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@keyframes zh-up{from{clip-path:inset(100% 0 0)}to{clip-path:inset(0)}}
+@media(max-width:760px){.hero.zhero{min-height:640px}.zhero .zh-copy{font-size:15px;line-height:1.5}.zhero .zh-label{font-size:9px;letter-spacing:.18em}.zhero .zh-actions{gap:20px}.zhero .zh-primary{min-height:48px;padding:11px 20px;font-size:13px}.zhero .zh-link{font-size:12px}}
+
+
+.hero.zh-journal{background:var(--bg);display:grid;grid-template-rows:35% 49% 16%;color:var(--brand-text)}
+.zh-journal .journal-mast{padding:30px 5vw 24px;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:4vw}
+.zh-journal .journal-name .zh-label{margin:0 0 12px}.hero.zh-journal h1{font-size:clamp(93px,11.5vw,176px);line-height:1.05;animation:zh-rise 1.1s var(--ease) .1s both}
+.zh-journal .journal-intro{border-left:1px solid color-mix(in srgb,var(--brand) 30%,transparent);padding:10px 0 10px 3vw;animation:zh-rise 1s var(--ease) .3s both}
+.zh-journal .journal-intro p{font-size:clamp(23px,2.9vw,43px);font-weight:800;letter-spacing:-.045em;line-height:1.2;margin-bottom:22px}.zh-journal .journal-intro p em{font-family:var(--sign);font-weight:400;font-size:1.32em;letter-spacing:0}
+.zh-journal .journal-ribbon{display:grid;grid-template-columns:1fr 1.3fr 1fr;position:relative;gap:8px;background:var(--bg);overflow:hidden}
+.zh-journal .journal-ribbon figure{position:relative;overflow:hidden;animation:zh-up 1.1s var(--ease) both}.zh-journal .journal-fire{animation-delay:.3s!important}.zh-journal .journal-cup{animation-delay:.55s!important}.zh-journal .journal-room{animation-delay:.75s!important}
+.zh-journal .journal-ribbon img{animation:zh-photo 1.55s var(--ease) .25s both}.zh-journal .journal-fire img{object-position:45% 51%}.zh-journal .journal-cup img{object-position:52% 60%}.zh-journal .journal-room img{object-position:50% 57%}
+.zh-journal .journal-seam{position:absolute;inset:0;border-top:1px solid color-mix(in srgb,var(--gold-deep) 65%,transparent);border-bottom:1px solid color-mix(in srgb,var(--gold-deep) 65%,transparent);pointer-events:none}
+.zh-journal .journal-rail{background:var(--brand-text);color:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:22px 5vw;gap:20px}
+.zh-journal .journal-rail>p{font-size:19px;line-height:1.4;font-weight:700}.zh-journal .journal-rail>p span{font-size:14px;opacity:.78;font-weight:400}
+.zh-journal .zh-primary{background:var(--bg);color:var(--brand-text);border-color:var(--bg)}.zh-journal .zh-primary:hover{background:var(--warm);border-color:var(--warm)}.zh-journal .zh-link:hover{color:var(--warm)}
+@media(max-width:1000px) and (min-width:761px){.zh-journal .journal-mast{gap:3vw}.hero.zh-journal h1{font-size:11vw}.zh-journal .journal-intro p{font-size:2.7vw}.zh-journal .journal-intro .zh-label{font-size:9px}.zh-journal .journal-rail>p{font-size:16px}.zh-journal .zh-actions{gap:18px}.zh-journal .zh-primary{padding:12px 18px;font-size:13px}}
+@media(max-width:760px){
+ .hero.zh-journal{grid-template-rows:36% 42% 22%;min-height:670px}.zh-journal .journal-mast{padding:22px 22px 24px;display:block;text-align:center}.zh-journal .journal-name .zh-label{font-size:9px;margin-bottom:9px}.hero.zh-journal h1{font-size:clamp(72px,22vw,130px);line-height:1.1}
+ .zh-journal .journal-intro{padding:0;border:0;margin-top:17px}.zh-journal .journal-intro p{font-size:18px;line-height:1.17;margin:0}.zh-journal .journal-intro p br{display:none}.zh-journal .journal-intro p em{display:block;font-size:1.7em}.zh-journal .journal-intro .zh-label{display:none}
+ .zh-journal .journal-ribbon{grid-template-columns:.8fr 1.35fr .8fr;gap:4px}.zh-journal .journal-cup img{object-position:53% 58%}.zh-journal .journal-fire img{object-position:41% 50%}.zh-journal .journal-room img{object-position:50% 50%}
+ .zh-journal .journal-rail{padding:19px 16px 21px;display:flex;flex-direction:column;justify-content:center;gap:18px;text-align:center}.zh-journal .journal-rail>p{font-size:15px;line-height:1.5}.zh-journal .journal-rail>p span{font-size:12px}.zh-journal .zh-actions{gap:22px}.zh-journal .zh-primary{padding:10px 18px;font-size:12px}
+}
+@media(max-width:760px) and (max-height:740px){.hero.zh-journal{grid-template-rows:36% 41% 23%}.zh-journal .journal-mast{padding-top:18px}.hero.zh-journal h1{font-size:75px}.zh-journal .journal-intro{margin-top:12px}.zh-journal .journal-rail{gap:12px}}
+
+
+@media(prefers-reduced-motion:reduce){.hero.zhero *,.hero.zhero *::before,.hero.zhero *::after{animation:none!important;transition:none!important;opacity:1;clip-path:none}.zhero .zh-motion-cover{display:none!important}}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Zola's Cafe — home">
+      <img src="../images/logo.png" alt="" width="46" height="46">
+      <span class="wm">Zola's Cafe<small>Downtown Auburn · Main &amp; D</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">Menu</a>
+        <a href="#corner">Your corner</a>
+        <a href="#about">Chef Matt</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Catering</a>
+        <a href="https://zolascafe.kwickmenu.com/" target="_blank" rel="noopener" class="nav-cta">Order online ↗</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <section class="hero zhero zh-journal" id="hero" aria-labelledby="journal-title">
+    <div class="journal-mast"><div class="journal-name"><p class="zh-label">Auburn, Washington · Main &amp; D</p><h1 id="journal-title">Zola's Cafe</h1></div><div class="journal-intro"><p>Come for the coffee.<br><em>Stay for the feeling.</em></p><span class="zh-label">Scratch kitchen. A room with soul.</span></div></div>
+    <div class="journal-ribbon" aria-label="A glimpse inside Zola's Cafe">
+      <figure class="journal-fire"><img src="../images/corner-fireplace.jpg" alt="Zola's cozy fireplace corner with its purple wall, local art and live-edge coffee table" width="1501" height="2000" fetchpriority="high"></figure>
+      <figure class="journal-cup"><img src="../images/cup-zolas.jpg" alt="A guest holding a latte with Zola's written in the foam" width="768" height="512" fetchpriority="high"></figure>
+      <figure class="journal-room"><img src="../images/hero-room.jpg" alt="Wooden tables, a reclaimed-wood wall and local art inside Zola's Cafe" width="810" height="1080" fetchpriority="high"></figure>
+      <span class="journal-seam" aria-hidden="true"></span>
+    </div>
+    <div class="journal-rail"><p>Coffee. Breakfast. Scratch bakery.<br><span>A little more time for the good things.</span></p><div class="zh-actions"><a class="zh-primary" href="#menu">Find your favorite <span aria-hidden="true">↗</span></a><a class="zh-link" href="https://zolascafe.kwickmenu.com/" target="_blank" rel="noopener">Order ahead ↗</a></div></div>
+  </section>
+
+  <!-- ===================== #hours — ONE band: live status + address + all seven days (today lit) + proof chips -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Seven days, <em>from seven</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          402 E Main St #120, Auburn, WA 98002<br>
+          The red door on the corner of Main and D St SE, downtown.<br>
+          <a href="https://www.google.com/maps/search/?api=1&query=Zola%27s+Cafe+402+E+Main+St+%23120+Auburn+WA+98002" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> Best Coffee Shop · Best of Auburn 2025</span>
+          <span class="proof"><span class="star">★</span> Best Bakery · Best of Auburn 2025</span>
+          <span class="proof"><span class="ico">✓</span> Vegan &amp; gluten-free options daily</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">7:00 AM – 5:00 PM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">8:00 AM – 3:00 PM</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">8:00 AM – 3:00 PM</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — STOREFRONT BELOW THE HOURS, then the real menu as title cards that unroll
+       (TITLE CARDS UNROLL + ARROW LAW). Every item and price is from their live Kwickmenu ordering page, 2026-10-08. -->
+  <section class="section section-alt" id="menu">
+    <div class="wrap">
+      <figure class="storefront reveal">
+        <img src="../images/storefront-door.jpg" alt="The red front door of Zola's Cafe with the gold sun-and-moon decal and 'Suite 120' on the glass" loading="lazy" width="1365" height="2048">
+        <figcaption class="storefront-copy">
+          <p class="eyebrow">The menu</p>
+          <h3>Breakfast till close, <em>everything from scratch</em></h3>
+          <p>Through the red door: the pastry case, the chalkboard, the espresso machine, and a kitchen run by a chef who spent eighteen years in fine dining before he came home to Auburn.</p>
+          <p>Soups, cookies, muffins and breads are made in-house. Most of the menu can be made vegan or gluten-free — just ask at the counter.</p>
+        </figcaption>
+      </figure>
+
+      <div class="dishes">
+        <article class="dish reveal is-open">
+          <button class="dish-summary" type="button" aria-expanded="true"><span class="dish-head"><b>Breakfast</b><span>Hashbrown sandwich · shakshuka · bagel and lox · burritos, vegan too</span></span><span class="chev" aria-hidden="true"></span></button>
+          <div class="dish-wrap"><div class="dish-body">
+            <figure class="print"><img src="../images/menu-breakfast.jpg" alt="A breakfast burrito cut open on a white plate with a side of salsa" loading="lazy" width="1024" height="1365"><figcaption>Breakfast burrito</figcaption></figure>
+            <ul class="menu-list">
+              <li><span class="name">Hashbrown Sandwich</span><span class="price">$7.25</span><span class="desc">Fried eggs, cheddar — add ham, bacon or sausage. Gluten-sensitive.</span></li>
+              <li><span class="name">Breakfast Burrito</span><span class="price">$10.75</span><span class="desc">Scrambled eggs, hashbrowns &amp; cheddar</span></li>
+              <li><span class="name">Vegan Breakfast Burrito</span><span class="price">$10.75</span><span class="desc">Tofu scramble, hashbrowns &amp; roasted veggies</span></li>
+              <li><span class="name">Shakshuka</span><span class="price">$12.00</span><span class="desc">Soft-boiled eggs &amp; focaccia toast</span></li>
+              <li><span class="name">Bagel n Lox</span><span class="price">$11.50</span><span class="desc">Everything bagel, cream cheese, capers, pickled red onion &amp; salmon lox</span></li>
+              <li><span class="name">Veggie or Meat Frittata</span><span class="price">$9.50</span><span class="desc">With a side salad</span></li>
+              <li><span class="name">Chia Seed Bowl</span><span class="price">$8.50</span><span class="desc">With fruit &amp; toasted nuts — vegan, gluten-sensitive</span></li>
+              <li><span class="name">Wheat English Muffin</span><span class="price">$4.75</span><span class="desc">Fried egg, cheddar &amp; romesco aioli</span></li>
+            </ul>
+          </div></div>
+        </article>
+
+        <article class="dish reveal">
+          <button class="dish-summary" type="button" aria-expanded="false"><span class="dish-head"><b>Sandwiches</b><span>Paninis on house bread · the pepper-bacon BLT · braised portabella on a hoagie</span></span><span class="chev" aria-hidden="true"></span></button>
+          <div class="dish-wrap"><div class="dish-body">
+            <figure class="print"><img src="../images/menu-sandwich.jpg" alt="A grilled panini with a side salad and dressing on a blue-rimmed plate" loading="lazy" width="1024" height="768"><figcaption>Panini with the side salad</figcaption></figure>
+            <ul class="menu-list">
+              <li><span class="name">Fresh Mozzarella &amp; Tomato</span><span class="price">$14.00</span><span class="desc">Fresh mozzarella, tomato, arugula, basil mayo, olive oil &amp; balsamic reduction</span></li>
+              <li><span class="name">Pepper Bacon BLT</span><span class="price">$11.00</span><span class="desc">Pepper bacon, lettuce, tomato, Mama Lil's aioli on sourdough</span></li>
+              <li><span class="name">Roasted Chicken</span><span class="price">$13.00</span><span class="desc">Roasted chicken breast, caramelized onion, swiss &amp; romesco aioli</span></li>
+              <li><span class="name">The Italian</span><span class="price">$14.00</span><span class="desc">Ham, salami, pepperoni, pepperjack &amp; Mama Lil's aioli</span></li>
+              <li><span class="name">Grilled Field Roast</span><span class="price">$13.00</span><span class="desc">Field roast, roasted zucchini, tomato, arugula &amp; sriracha aioli — vegan</span></li>
+              <li><span class="name">Braised Portabella</span><span class="price">$15.00</span><span class="desc">Caramelized onions, swiss, horseradish cream, on a hoagie roll</span></li>
+              <li><span class="name">Spiced Chickpea &amp; Hummus</span><span class="price">$13.50</span><span class="desc">Spiced chickpeas, hummus, cucumber, tomato, arugula &amp; tzatziki</span></li>
+              <li><span class="name">Tuna Melt</span><span class="price">$12.50</span></li>
+            </ul>
+          </div></div>
+        </article>
+
+        <article class="dish reveal">
+          <button class="dish-summary" type="button" aria-expanded="false"><span class="dish-head"><b>Soups &amp; salads</b><span>Soup of the day · five composed salads, every one of them a meal</span></span><span class="chev" aria-hidden="true"></span></button>
+          <div class="dish-wrap"><div class="dish-body">
+            <figure class="print"><img src="../images/menu-salad.jpg" alt="A spinach salad with roasted chickpeas and red peppers in a white bowl" loading="lazy" width="1024" height="768"><figcaption>Spinach, chickpeas, peppers</figcaption></figure>
+            <ul class="menu-list">
+              <li><span class="name">Chard &amp; Broccolini</span><span class="price">$14.00</span><span class="desc">White beans, toasted almonds &amp; lemon-tahini vinaigrette</span></li>
+              <li><span class="name">Roasted Sweet Potato</span><span class="price">$14.50</span><span class="desc">Carrots, feta, kalamata olives &amp; white balsamic vinaigrette</span></li>
+              <li><span class="name">Thai Peanut</span><span class="price">$15.00</span><span class="desc">Carrots, cucumber, red cabbage, crushed peanuts, cilantro &amp; Thai peanut dressing</span></li>
+              <li><span class="name">Apple &amp; Craisin</span><span class="price">$13.00</span><span class="desc">Mixed greens, apple, cranberry, feta, pecans &amp; white balsamic vinaigrette</span></li>
+              <li><span class="name">Garden</span><span class="price">$12.00</span><span class="desc">Mixed greens, carrot, cherry tomato, cucumber, croutons, your dressing</span></li>
+              <li><span class="name">Soup of the Day</span><span class="note">Made this morning — ask what's on, or add a cup to any sandwich.</span></li>
+            </ul>
+          </div></div>
+        </article>
+
+        <article class="dish reveal">
+          <button class="dish-summary" type="button" aria-expanded="false"><span class="dish-head"><b>The bakery case</b><span>Cinnamon rolls, carrot cake, cookies — vegan and gluten-free pastries most mornings</span></span><span class="chev" aria-hidden="true"></span></button>
+          <div class="dish-wrap"><div class="dish-body">
+            <figure class="print"><img src="../images/menu-muffin.jpg" alt="A chocolate-chip muffin on parchment paper" loading="lazy" width="1024" height="1365"><figcaption>From the morning bake</figcaption></figure>
+            <ul class="menu-list">
+              <li><span class="name">Cinnamon Roll</span><span class="price">$6.50</span></li>
+              <li><span class="name">Carrot Cake</span><span class="price">$6.75</span></li>
+              <li><span class="name">Coconut Macaroon</span><span class="price">$3.50</span></li>
+              <li><span class="name">Special Cookie</span><span class="price">$3.00</span></li>
+              <li><span class="name">Muffins · Vegan pastries · GF muffins</span><span class="note">What's in the case changes with the morning bake — see the counter.</span></li>
+            </ul>
+          </div></div>
+        </article>
+
+        <article class="dish reveal">
+          <button class="dish-summary" type="button" aria-expanded="false"><span class="dish-head"><b>Coffee &amp; drinks</b><span>Espresso at the counter, drip in five sizes, Poppi and Olipop in the cooler</span></span><span class="chev" aria-hidden="true"></span></button>
+          <div class="dish-wrap"><div class="dish-body">
+            <figure class="print"><img src="../images/menu-coffee.jpg" alt="Two lattes with heart latte art, one in a red cup, on a dark table" loading="lazy" width="768" height="559"><figcaption>Two lattes, two hearts</figcaption></figure>
+            <ul class="menu-list">
+              <li><span class="name">Drip coffee — 8, 12, 16, 20 or 32 oz</span><span class="note">Espresso drinks, lattes and mochas made at the counter; sizes and prices on the board.</span></li>
+              <li><span class="name">Poppi</span><span class="price">$3.25</span><span class="desc">Punch · Lemon Lime · Strawberry Lemon</span></li>
+              <li><span class="name">Olipop Strawberry Vanilla</span><span class="price">$3.25</span></li>
+              <li><span class="name">Orange Juice</span><span class="price">$4.00</span></li>
+              <li><span class="name">Pellegrino</span><span class="price">$2.25</span></li>
+              <li><span class="name">Coke · Diet Coke</span><span class="price">$2.00</span></li>
+            </ul>
+          </div></div>
+        </article>
+      </div>
+      <p class="menu-fine reveal">Prices from the ordering page, October 2026. A monthly specials menu runs alongside — ask what's on. <a href="https://zolascafe.kwickmenu.com/" target="_blank" rel="noopener">Order for pickup ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #corner — THE SIGNATURE (section 4). Pick your corner: tap a spot, the room lights it. -->
+  <section class="section" id="corner">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pick your corner</p>
+        <h2>Where will you <em>sit today?</em></h2>
+        <p>Three real corners of the room. Tap one.</p>
+      </div>
+      <div class="corner reveal">
+        <div class="corner-stage" id="cornerStage" aria-live="polite">
+          <figure class="corner-shot is-on" data-corner="fire">
+            <img class="echo" src="../images/corner-fireplace.jpg" alt="" aria-hidden="true" loading="lazy">
+            <img class="shot" src="../images/corner-fireplace.jpg" alt="The fireplace corner at Zola's Cafe: a grey mantel against the purple wall, local art above it, a live-edge coffee table and grey couches" loading="lazy" width="1502" height="2000">
+            <span class="ember" aria-hidden="true"></span>
+            <figcaption><b>The fireplace couch</b>Board games on the hearth, a live-edge table, and the painting everyone asks about.</figcaption>
+          </figure>
+          <figure class="corner-shot" data-corner="counter">
+            <img class="echo" src="../images/corner-counter.jpg" alt="" aria-hidden="true" loading="lazy">
+            <img class="shot" src="../images/corner-counter.jpg" alt="The counter at Zola's Cafe: the pastry case, the chalkboard menu and the gold sun mirror behind the register" loading="lazy" width="1440" height="1080">
+            <figcaption><b>The counter</b>The pastry case, the chalkboard, and the sun mirror watching over your doppio.</figcaption>
+          </figure>
+          <figure class="corner-shot" data-corner="patio">
+            <img class="echo" src="../images/corner-patio.jpg" alt="" aria-hidden="true" loading="lazy">
+            <img class="shot" src="../images/corner-patio.jpg" alt="The patio at Zola's Cafe: iron tables and chairs under black columns and a palm, on the corner of Main and D" loading="lazy" width="2000" height="1333"><figcaption><b>The patio</b>Iron tables under the black columns, right on the corner of Main and D.</figcaption>
+          </figure>
+        </div>
+        <div class="corner-side">
+          <p class="hint">Tap a spot</p>
+          <div class="corner-pills" role="group" aria-label="Pick your corner">
+            <button class="pill is-on" type="button" data-corner="fire" aria-pressed="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 4 4 4 8a4 4 0 0 1-8 0c0-1.5.6-2.5 1.5-3.5.3 1.4 1 2 2 2.5C12 8 11 5.5 12 3z"/><path d="M5 21h14"/></svg></i><span>Fireplace couch<small>Rainy-day doppio</small></span></button>
+            <button class="pill" type="button" data-corner="counter" aria-pressed="false"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M6 19h12"/><path d="M9 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg></i><span>The counter<small>In and out</small></span></button>
+            <button class="pill" type="button" data-corner="patio" aria-pressed="false"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M4 13c2-3 14-3 16 0M7 21h10"/></svg></i><span>The patio<small>Sunny corner</small></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about — the chef-owner's real story (Auburn Reporter, Feb 2020 + Nov 2025) -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="../images/about-matt.jpg" alt="Chef-owner Matt Noesen in a striped apron, smiling in front of the local art at Zola's Cafe" loading="lazy" width="2000" height="1502">
+          <figcaption>Matt Noesen · chef-owner since February 2020</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Chef Matt</p>
+          <h2>Eighteen years in fine dining, <em>then home</em></h2>
+          <p class="lede">Matt Noesen grew up in Auburn, made a list of what to do with the rest of his life, and it came down to culinary school or golf school. He picked the French Culinary Institute in Manhattan.</p>
+          <p>Eighteen years of cooking followed — New York, Aspen, a robata restaurant in Mexico, Artisanal in Bellevue, and finally executive chef of Compass, the full-service restaurant on Microsoft's Redmond campus, where he learned to feed a vegan and vegetarian crowd from every corner of the world.</p>
+          <p>In February 2020 a family friend mentioned Zola's was for sale and wanted it to go to someone who would love it. Matt came in with his parents, ate lunch, and three months later owned the place. The promise then is the promise now: the same funky room, the local art on the walls, the vegan and vegetarian menu Zola's was known for — "we'll just offer more of it" — and everything made from scratch.</p>
+          <div class="press">
+            <p>"Even with new owner Matthew Noesen's small changes to the café, and his upcoming plans to revitalize the menu, Zola's is still the top spot for coffee in Auburn."</p>
+            <small>Auburn Reporter · Best of Auburn 2025 · November 8, 2025</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews — REVIEW ATTRIBUTION LAW: no review with a real name + real profile photo pair was
+       reachable this run (Google and Yelp are bot-walled; HappyCow shows handles), so this ships the sanctioned link-out.
+       Every number here is real (Google listing via Wanderlog, 2026-10-08). -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What Auburn says</p>
+        <h2>The reviews, <em>in their words</em></h2>
+      </div>
+      <div class="rev-linkout reveal">
+        <p class="rev-score"><b>4.4</b><span class="rev-stars" aria-label="4.4 out of 5 stars">★★★★½</span></p>
+        <p class="rev-count">995 reviews on Google</p>
+        <p class="rev-note">Regulars Linda and Tony Romano have had their doppios here nearly every day since the place opened — once on cross-country skis, through a foot of snow. The rest of the reviews are on Google.</p>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Zola%27s+Cafe+402+E+Main+St+%23120+Auburn+WA+98002" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact — catering & private parties + the form (demo mode: sends nothing) -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Catering &amp; parties</p>
+          <h2>Feed the office, <em>or book the room</em></h2>
+          <ol class="steps">
+            <li><h3>Tell Matt the day and the headcount</h3><p>Sandwich platters, salads by the bowl, a tray from the bakery case — breakfast or lunch.</p></li>
+            <li><h3>He writes you a menu</h3><p>Vegan, vegetarian and gluten-free covered without a fuss — it's how the kitchen already cooks.</p></li>
+            <li><h3>Pick up at the red door, or ask about an evening</h3><p>Private evening parties in the room, by arrangement.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12533339652">(253) 333-9652</a></span>
+            <span>✉️ <a href="mailto:zolascafe@comcast.net">zolascafe@comcast.net</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&query=Zola%27s+Cafe+402+E+Main+St+%23120+Auburn+WA+98002" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it for?<select name="topic"><option>Catering an office or event</option><option>A private evening party</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Date, headcount, and anything the kitchen should know (vegan, gluten-free, allergies)."></textarea></label>
+          <button type="submit" class="btn btn-primary">Send to Matt</button>
+          <p class="form-success">Thanks — Matt will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta — the close: three numbers that feel like the shop, and the cup with their name on it -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div>
+        <div class="section-head reveal">
+          <p class="eyebrow">Downtown Auburn</p>
+          <h2>Come sit <em>by the fire</em></h2>
+        </div>
+        <div class="numbers reveal">
+          <div class="num"><b><i>est.</i> <span class="count" data-to="2020" data-from="1989">2020</span></b><span>the year Matt took the keys</span></div>
+          <div class="num"><b><span class="count" data-to="18">18</span><i> yrs</i></b><span>cooking in New York, Aspen and Seattle before Auburn</span></div>
+          <div class="num"><b><span class="count" data-to="13">13</span><i> stars</i></b><span>on the door, same as the logo — count them on the way in</span></div>
+        </div>
+        <div class="cta-actions reveal">
+          <a href="https://zolascafe.kwickmenu.com/" target="_blank" rel="noopener" class="btn btn-gold">Order ahead ↗</a>
+          <a href="tel:+12533339652" class="btn btn-ghost">Call (253) 333-9652</a>
+        </div>
+      </div>
+      <figure class="cta-cup reveal">
+        <img src="../images/cup-zolas.jpg" alt="Hands in a knit sweater holding a latte with 'Zola's' written in the foam" loading="lazy" width="768" height="512">
+        <figcaption>Your name's not on the cup. Theirs is.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="../images/logo.png" alt=""></span>
+          <span class="wm">Zola's Cafe<small>Downtown Auburn · Main &amp; D</small></span>
+        </div>
+        <p>Coffee, a scratch bakery, breakfast and sandwiches on Main Street — the same funky room, the local art, vegan and vegetarian done right.</p>
+        <div class="soc">
+          <a href="https://www.instagram.com/zolascafe/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://zolascafe.kwickmenu.com/" target="_blank" rel="noopener">Order online</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>402 E Main St #120<br>Auburn, WA 98002</p>
+        <p><a href="tel:+12533339652">(253) 333-9652</a><br><a href="mailto:zolascafe@comcast.net">zolascafe@comcast.net</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#menu">Menu</a><br><a href="#corner">Your corner</a><br><a href="#about">Chef Matt</a><br><a href="#hours">Hours</a><br><a href="#contact">Catering</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Zola's Cafe</span>
+      <span>Auburn, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/site.js?v=20261008"></script>
+</body>
+</html>

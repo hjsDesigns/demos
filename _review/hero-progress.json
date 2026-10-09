@@ -1,0 +1,56 @@
+{
+  "zolas-cafe-auburn": {
+    "name": "Zola’s Cafe",
+    "town": "Auburn",
+    "state": "ready",
+    "target": 3
+  },
+  "el-caporal-maple-valley": {
+    "name": "El Caporal",
+    "town": "Maple Valley",
+    "state": "ready",
+    "target": 3
+  },
+  "roundup-bar-grill-graham": {
+    "name": "Roundup Restaurant & Lounge",
+    "town": "Graham",
+    "state": "ready",
+    "target": 3
+  },
+  "homestead-brew-sumner": {
+    "name": "Homestead Brew",
+    "town": "Sumner",
+    "state": "designing",
+    "target": 3
+  },
+  "kelly-lattes-kent": {
+    "name": "Kelly Latte’s",
+    "town": "Kent",
+    "state": "designing",
+    "target": 3
+  },
+  "village-coffee-maple-valley": {
+    "name": "Village Coffee",
+    "town": "Maple Valley",
+    "state": "queued",
+    "target": 3
+  },
+  "euphoriq-skin-and-beauty-sumner": {
+    "name": "Euphoriq Skin & Beauty",
+    "town": "Sumner",
+    "state": "queued",
+    "target": 3
+  },
+  "glo-skin-clinic-maple-valley": {
+    "name": "GLO Skin Clinic and Spa",
+    "town": "Maple Valley",
+    "state": "queued",
+    "target": 3
+  },
+  "salon-410-buckley": {
+    "name": "Salon 410",
+    "town": "Buckley",
+    "state": "queued",
+    "target": 3
+  }
+}
