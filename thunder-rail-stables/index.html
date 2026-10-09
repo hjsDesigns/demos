@@ -245,43 +245,37 @@
     </div>
   </section>
 
-  <!-- ===================== #reviews — walnut =====================
-       REVIEW-FACE LAW: a clean typeset mark in the site's own palette, never a
-       scraped photo and never a grey silhouette. The mirrored Google listing
-       carried body text, stars and month/year but NO reviewer names, so no
-       name, initial or avatar is invented — the mark is a horseshoe in saddle
-       leather. Quotes are verbatim. See HANDOFF-CODEX.md. -->
+  <!-- ===================== #reviews — the Google score, linked out =====================
+       REVIEW ATTRIBUTION LAW (2026-09-06): every review shown on a client site must
+       carry the REAL reviewer's published name AND their real profile image from the
+       same source. The only review evidence this build ever harvested is the
+       loc8nearme mirror of the Google listing — body text, stars and month/year, but
+       NO reviewer names and NO avatars (facts.json → reviews.reviewer_names; the
+       mirror's own comments page is Cloudflare-walled, and its JSON-LD carries only
+       "Unknown User" on the image objects). No name+photo pair exists, so the three
+       anonymous quote cards are removed and the sanctioned LINK-OUT remedy stands in
+       their place: the real aggregate, the source named, and a working link to the
+       live Google reviews. Rating/count = 4.8 / 43 from the Google listing itself —
+       facts.json records the loc8 mirror's conflicting 4.9/21 and endorses 4.8/43.
+       The three verbatim quotes are preserved in review-notes.md and go back on the
+       page the day a real name + profile image is sourced for each. -->
   <section class="section section-dark" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">★ 4.8 on Google · 43 reviews</p>
+        <p class="eyebrow">Straight from Google</p>
         <h2>What families <em>say about it</em></h2>
       </div>
-      <div class="revs">
-        <figure class="rev reveal">
-          <span class="rev-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 20.5v-7.8a4.8 4.8 0 0 1 9.6 0v7.8"/><circle cx="9.1" cy="14.4" r=".95" fill="currentColor" stroke="none"/><circle cx="14.9" cy="14.4" r=".95" fill="currentColor" stroke="none"/></svg>
-          </span>
-          <div class="rev-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>Thunder Rails Stables is an excellent environment for your kids. They have an amazing homeschool program, horse back riding lessons, and summer camps. I&rsquo;ve chatted with people that have horses boarded there and they are so please with the excellent care their horses get.</blockquote>
-          <figcaption>Google review · February 2025</figcaption>
-        </figure>
-        <figure class="rev reveal">
-          <span class="rev-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 20.5v-7.8a4.8 4.8 0 0 1 9.6 0v7.8"/><circle cx="9.1" cy="14.4" r=".95" fill="currentColor" stroke="none"/><circle cx="14.9" cy="14.4" r=".95" fill="currentColor" stroke="none"/></svg>
-          </span>
-          <div class="rev-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>This is truly the best barn around. The owners are amazing humans who care deeply about the wellbeing of the animals. They are super supportive and great with young kids. They have made dreams come true for our girls and we are forever grateful!</blockquote>
-          <figcaption>Google review · March 2024</figcaption>
-        </figure>
-        <figure class="rev reveal">
-          <span class="rev-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 20.5v-7.8a4.8 4.8 0 0 1 9.6 0v7.8"/><circle cx="9.1" cy="14.4" r=".95" fill="currentColor" stroke="none"/><circle cx="14.9" cy="14.4" r=".95" fill="currentColor" stroke="none"/></svg>
-          </span>
-          <div class="rev-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>Friendly people, family-oriented and fun place to horse around</blockquote>
-          <figcaption>Google review · April 2023</figcaption>
-        </figure>
+      <div class="gscore reveal">
+        <p class="gscore-num">
+          <span class="gscore-rating">4.8</span>
+          <span class="gscore-outof">out of 5</span>
+        </p>
+        <div class="gscore-body">
+          <p class="gscore-stars" role="img" aria-label="Rated 4.8 out of 5 stars on Google">★★★★★</p>
+          <p class="gscore-line">43 reviews on Google</p>
+          <p class="gscore-src">Families who board, ride and learn here, in their own words and under their own names, on the Thunder Rail Stables listing.</p>
+          <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Thunder+Rail+Stables+Enumclaw&amp;query_place_id=ChIJaccmBULykFQRf-PppkzBE2c" target="_blank" rel="noopener">Read the reviews on Google <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </div>
   </section>

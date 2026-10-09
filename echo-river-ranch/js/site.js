@@ -1,7 +1,8 @@
 /* ============================================================
    WEBSITE FACTORY — site.js
-   Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
-   count-up numbers · contact form success.
+   Nav toggle · today's row lit in the hours list (Pacific time) · scroll-
+   reveal · count-up numbers · contact form success.
+   NO open/closed status on this build — see the HOURS note below.
    The ONLY thing to edit per client is the HOURS block right below.
    ============================================================ */
 
@@ -11,10 +12,15 @@
    decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
    null = closed that day. Closing past midnight: use 26 for 2 am.
    ------------------------------------------------------------ */
-/* ECHO RIVER RANCH — rides are BY RESERVATION (text/call first).
+/* ECHO RIVER RANCH — rides are BY APPOINTMENT ONLY (text/call first).
    The day rows below are the hours published on the ranch's directory
    listing (Yahoo/Yelp exact-business listing) and are the best source we
    have; they do not establish ride availability or a drop-in schedule.
+   NO OPEN-NOW STATUS IS COMPUTED OR SHOWN. The dossier is explicit —
+   "Rides **by appointment only**" / "No invented open-now indicator"
+   (vault Recon/echo-river-ranch.md) — so `days` below is reference data
+   that must stay in sync with the seven <li> rows in #hours, and nothing
+   reads it to decide open vs closed.
    PROVISIONAL — confirm with Debie before this goes live. */
 var HOURS = {
   tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
@@ -31,7 +37,9 @@ var HOURS = {
 
 /* ------------------------------------------------------------
    CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
-   Two functions site.js calls every minute. `p` is the Pacific "now":
+   INERT ON THIS BUILD: site.js normally calls these every minute to work out
+   open vs closed, but Echo River Ranch is appointment-only, so no status is
+   computed and neither hook is called. `p` is the Pacific "now":
    {day, h, y, mo, d}  (day 0-6, h decimal hour, y year, mo month 0-11, d date)
 
    customClosure(p) → return a string to mark the whole day CLOSED
@@ -66,7 +74,7 @@ function customClose(p, close){ return close; }
 
   /* ---------- Pacific time, wherever the viewer is ---------- */
   // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
-  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
+  // freezes the clock so any weekday can be shown lit. No UI exposes it.
   var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
     var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
     var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
@@ -79,31 +87,18 @@ function customClose(p, close){ return close; }
     var h=parseInt(o.hour,10)%24, m=parseInt(o.minute,10);
     return {day:days[o.weekday], h:h+m/60, y:parseInt(o.year,10), mo:parseInt(o.month,10)-1, d:parseInt(o.day,10)};
   }
-  function fmt(h){h=h%24;var ap=h>=12?'pm':'am';var hh=Math.floor(h)%12;if(hh===0)hh=12;var mm=Math.round((h%1)*60);if(mm===60){mm=0;hh=(hh%12)+1}return hh+(mm?':'+(mm<10?'0':'')+mm:'')+' '+ap}
   function dayName(d){return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d]}
-  function hoursFor(day){return HOURS.days[day]||null}
 
-  function computeStatus(){
-    // GREEN inside the hours on her listing, RED outside them. This says when
-    // she is reachable — every ride is still booked by text first.
-    var p=pacificNow(), h=hoursFor(p.day);
-    if(customClosure(p)) return {open:false,text:'Closed today · text and she’ll get back to you'};
-    if(!h) return {open:false,text:'Closed today · text and she’ll get back to you'};
-    var close=customClose(p,h[1]);
-    if(p.h>=h[0]&&p.h<close) return {open:true,text:'Open now until '+fmt(close)+' · text to reserve'};
-    if(p.h<h[0]) return {open:false,text:'Closed now · opens '+fmt(h[0])+' today'};
-    return {open:false,text:'Closed now · text and she’ll get back to you'};
-  }
-  function applyStatus(){
-    var s=computeStatus(), p=pacificNow();
-    var hp=$('#hdrLive'), ht=$('#hdrLiveText');
-    if(hp&&ht){hp.className='hdr-live '+(s.open?'is-open':'is-closed');ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+s.text.replace(/^Open now · /,'').replace(/^Closed · /,'')+'</span>';}
-    var sl=$('#statusLine'), st=$('#statusText');
-    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
+  /* ---------- light today's row in the hours list ----------
+     Appointment-only ranch: no open/closed status is computed, no dot, no
+     pill, no live text. This only marks which weekday it is in Pacific time
+     so the visitor can find today in her listed hours. */
+  function markToday(){
+    var p=pacificNow();
     $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
   }
-  applyStatus(); setInterval(applyStatus,60000);
-  window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
+  markToday(); setInterval(markToday,60000);
+  window.__site={pacificNow:pacificNow,HOURS:HOURS}; // handy in the console
 
   /* ---------- scroll-reveal + count-up ---------- */
   var io=typeof IntersectionObserver!=='undefined'?new IntersectionObserver(function(entries){
