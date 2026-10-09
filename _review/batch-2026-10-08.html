@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Thursday builds — phone review</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Nunito:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#15181A;--card:#1F2528;--ink:#EEE8DA;--mute:#9B978B;--line:#30383C;--brand:#E26A3E;--ok:#56B98A;--warn:#E0A939;--disp:'Bricolage Grotesque','Avenir Next',Helvetica,sans-serif;--body:'Nunito','Avenir Next',Helvetica,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body)}
+body{padding:18px 16px 60px;max-width:720px;margin:0 auto}
+h1{font:700 30px/1.05 var(--disp);margin:0 0 4px}.stamp{color:var(--mute);font-size:14px;margin:0 0 18px}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.item{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:var(--ink);font:inherit;cursor:pointer;display:grid;gap:4px;transition:transform .12s,border-color .12s}
+.item:hover,.item:focus-visible{border-color:var(--brand);transform:translateY(-1px);outline:none}
+.item b{font:700 19px/1.2 var(--disp)}.item .town{color:var(--mute);font-size:13px;margin-left:8px}.item p{margin:0;color:var(--mute);font-size:14px}
+.item .tap{color:var(--brand);font-weight:700;font-size:13px}
+/* the phone */
+#view{position:fixed;inset:0;background:rgba(10,12,13,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);z-index:9}
+#view.on{display:flex}
+.phone{position:relative;width:390px;height:844px;max-height:calc(100vh - 36px);max-width:calc(100vw - 24px);background:#000;border-radius:44px;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 2px #2a2f33;transform:scale(var(--s,1));transform-origin:center}
+.phone iframe{width:100%;height:100%;border:0;border-radius:34px;background:#fff;display:block}
+.x{position:absolute;top:-6px;left:-6px;width:44px;height:44px;border-radius:50%;border:0;background:var(--brand);color:#fff;font:700 22px/44px var(--body);text-align:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.x:hover{filter:brightness(1.1)}
+.name{position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);color:var(--mute);font-size:13px;white-space:nowrap}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:20px;line-height:40px;text-align:center;cursor:pointer}
+.nav.prev{left:-54px}.nav.next{right:-54px}
+@media (max-width:520px){.nav{display:none}}
+</style>
+</head>
+<body>
+<h1>Thursday builds</h1>
+<p class="stamp">Oct 8 · 9 sites · tap one, it opens as your phone · X closes it · ← → arrow keys flip between them</p>
+<ul id="list"></ul>
+
+<div id="view" role="dialog" aria-modal="true">
+  <div class="phone" id="phone">
+    <button class="x" id="close" aria-label="Close">×</button>
+    <button class="nav prev" id="prev" aria-label="Previous">‹</button>
+    <iframe id="frame" title="site preview" src="about:blank"></iframe>
+    <button class="nav next" id="next" aria-label="Next">›</button>
+    <div class="name" id="name"></div>
+  </div>
+</div>
+
+<script>
+const SITES=[
+ ["Zola's Cafe","Auburn","Best coffee shop + bakery in Auburn, ~995 reviews, domain hijacked","zolas-cafe-auburn"],
+ ["El Caporal","Maple Valley","Family Mexican since 1991, 234 reviews, domain bounces to Arizona","el-caporal-maple-valley"],
+ ["Roundup Restaurant & Lounge","Graham","34-year Mountain Hwy bar, Facebook only, name domain squatted","roundup-bar-grill-graham"],
+ ["Kelly Latte's","Kent · Auburn · Black Diamond","Three stands, their domain stuck on Coming Soon","kelly-lattes-kent"],
+ ["Homestead Brew","Sumner","4.9 on 112, parked for-sale domain that was never theirs","homestead-brew-sumner"],
+ ["Village Coffee","Maple Valley","18 years, Facebook is the whole web presence","village-coffee-maple-valley"],
+ ["Euphoriq Skin & Beauty","Sumner","67 five-star reviews, site is the blank Square template","euphoriq-skin-and-beauty-sumner"],
+ ["GLO Skin Clinic and Spa","Maple Valley","Old site says Website Expired; people think they closed","glo-skin-clinic-maple-valley"],
+ ["Salon 410","Buckley","Regulars rave, only a Facebook page; Google listing unclaimed","salon-410-buckley"],
+];
+const list=document.getElementById('list'),view=document.getElementById('view'),frame=document.getElementById('frame'),name=document.getElementById('name'),phone=document.getElementById('phone');
+let cur=-1;
+SITES.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<button class="item" data-i="${i}"><span><b>${s[0]}</b><span class="town">${s[1]}</span></span><p>${s[2]}</p><span class="tap">Open on the phone →</span></button>`;list.appendChild(li);});
+function fit(){const h=innerHeight-36,w=innerWidth-24;const s=Math.min(1,h/844,w/390);phone.style.setProperty('--s',s.toFixed(3));}
+function open(i){cur=(i+SITES.length)%SITES.length;const s=SITES[cur];frame.src='../'+s[3]+'/?v='+Date.now();name.textContent=s[0]+' · '+(cur+1)+' of '+SITES.length;view.classList.add('on');fit();document.body.style.overflow='hidden';}
+function close(){view.classList.remove('on');frame.src='about:blank';document.body.style.overflow='';const b=list.querySelector(`[data-i="${cur}"]`);if(b)b.focus();}
+list.addEventListener('click',e=>{const b=e.target.closest('.item');if(b)open(+b.dataset.i);});
+document.getElementById('close').onclick=close;
+document.getElementById('prev').onclick=()=>open(cur-1);
+document.getElementById('next').onclick=()=>open(cur+1);
+view.addEventListener('click',e=>{if(e.target===view)close();});
+addEventListener('keydown',e=>{if(!view.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')open(cur+1);if(e.key==='ArrowLeft')open(cur-1);});
+addEventListener('resize',fit);
+</script>
+</body>
+</html>
