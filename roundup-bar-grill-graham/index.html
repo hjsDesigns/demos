@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Roundup Restaurant &amp; Lounge — Graham's corner bar on Mountain Hwy</title>
+<title>Where the Night Begins | Roundup Restaurant &amp; Lounge — Graham's corner bar on Mountain Hwy</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Roundup Restaurant &amp; Lounge, 30411 Mountain Hwy E in Graham, WA — burgers, baskets and weekend breakfast, karaoke Friday and Saturday, bingo Monday, a fire pit out back. Open seven days.">
 <script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
@@ -12,6 +12,54 @@
      reads as a Clarendon-class slab: bold, bracketed serifs, slightly condensed). Body: Barlow. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@600;700;800&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=20261008a">
+<style>
+
+/* Hayden-selected combination of The Night Opens + Off the Highway.
+   Scoped exclusively to this variant. Original header and lower page retained. */
+.rup-combined{position:relative;isolation:isolate;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:24px;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));padding:25px 4.5vw 31px;background:var(--brand);color:var(--sign-white);overflow:hidden;font-family:var(--body)}
+.rup-combined::before,.rup-combined::after{content:none!important}
+.rup-combined p,.rup-combined figure{margin:0}
+.rup-cb-head{position:relative;z-index:2}
+.rup-cb-meta{display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid color-mix(in srgb,var(--ink) 38%,transparent);padding-bottom:15px;margin-bottom:23px;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:.18em;text-transform:uppercase}
+.rup-cb-meta p:last-child{text-align:right;color:var(--warm)}
+.rup-combined h1{font-family:var(--display);font-size:clamp(90px,18.6vw,285px);font-weight:800;line-height:.69;letter-spacing:-.065em;text-shadow:none;max-width:none;text-wrap:initial;margin:0;text-align:center;color:var(--sign-white);white-space:nowrap}
+.rup-combined h1 span{display:inline-block;animation:rup-cb-title 1.15s cubic-bezier(.16,.78,.16,1) .08s both}
+.rup-combined h1 span:last-child{color:var(--warm);animation-name:rup-cb-title-right;animation-delay:.2s}
+.rup-cb-sub{font-size:12px;font-weight:500;line-height:1.3;letter-spacing:.28em;text-transform:uppercase;text-align:center;margin-top:25px!important;animation:rup-cb-rise .8s ease .45s both}
+.rup-cb-window{position:relative;min-height:0;margin:1px 4px 0!important;border:9px solid var(--sign-white);background:var(--dark);transform:rotate(-.8deg);box-shadow:13px 14px 0 color-mix(in srgb,var(--dark) 24%,transparent);animation:rup-cb-frame 1.65s cubic-bezier(.16,.78,.16,1) .18s both}
+.rup-cb-photo{position:absolute;inset:0;overflow:hidden;animation:rup-cb-open 1.5s cubic-bezier(.16,.78,.16,1) .25s both}
+.rup-cb-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 53%;display:block;filter:saturate(.93) contrast(1.03);animation:rup-cb-push 2.2s cubic-bezier(.16,.78,.16,1) .1s both}
+.rup-cb-foot{display:flex;align-items:center;justify-content:space-between;gap:35px;padding-top:10px;position:relative;z-index:2;animation:rup-cb-rise .9s cubic-bezier(.2,.75,.2,1) 1.45s both}
+.rup-cb-invite{font-family:var(--display);font-size:clamp(30px,3.7vw,54px);font-weight:800;line-height:.88;letter-spacing:-.025em}
+.rup-cb-invite span{display:block;color:var(--warm)}
+.rup-cb-actions{display:flex;align-items:center;gap:27px}
+.rup-cb-button,.rup-cb-link{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:52px;font-size:15px;font-weight:700;line-height:1.2;white-space:nowrap}
+.rup-cb-button{background:var(--sign-white);color:var(--sign-ink);padding:14px 24px;transition:background .2s,transform .2s}
+.rup-cb-button:hover{background:var(--warm);transform:translateY(-2px)}
+.rup-cb-link{border-bottom:1px solid currentColor;padding:10px 0;transition:color .2s}
+.rup-cb-link:hover{color:var(--warm)}
+.rup-combined a:focus-visible{outline:3px solid var(--warm);outline-offset:6px}
+@keyframes rup-cb-title{from{opacity:0;transform:translateX(-65px)}to{opacity:1;transform:translateX(0)}}
+@keyframes rup-cb-title-right{from{opacity:0;transform:translateX(65px)}to{opacity:1;transform:translateX(0)}}
+@keyframes rup-cb-open{from{clip-path:inset(0 49.5%)}to{clip-path:inset(0)}}
+@keyframes rup-cb-frame{from{opacity:0;transform:translateY(22px) rotate(1.3deg)}to{opacity:1;transform:translateY(0) rotate(-.8deg)}}
+@keyframes rup-cb-push{from{transform:scale(1.055)}to{transform:scale(1)}}
+@keyframes rup-cb-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){
+ .rup-combined{padding:23px 22px 26px;grid-template-rows:auto minmax(160px,1fr) auto;gap:25px}
+ .rup-cb-meta{gap:14px;padding-bottom:15px;margin-bottom:23px;font-size:9px;letter-spacing:.12em}.rup-cb-meta p:first-child{max-width:145px}.rup-cb-meta p:last-child{max-width:110px}
+ .rup-combined h1{font-size:19.3vw;letter-spacing:-.065em;line-height:.74}
+ .rup-cb-sub{font-size:9px;letter-spacing:.25em;margin-top:17px!important}
+ .rup-cb-window{border-width:6px;margin:0 1px!important;box-shadow:8px 9px 0 color-mix(in srgb,var(--dark) 24%,transparent)}
+ .rup-cb-photo img{object-position:54% 50%}
+ .rup-cb-foot{display:block;padding-top:0}.rup-cb-invite{font-size:32px;line-height:.94;margin-bottom:21px!important}
+ .rup-cb-actions{gap:23px}.rup-cb-button,.rup-cb-link{font-size:14px;gap:18px;min-height:51px}.rup-cb-button{padding:13px 17px}
+}
+@media(max-height:710px) and (max-width:700px){.rup-combined{padding-top:18px;padding-bottom:20px;gap:19px}.rup-cb-meta{margin-bottom:18px;padding-bottom:12px}.rup-cb-sub{margin-top:13px!important}.rup-cb-invite{font-size:28px;margin-bottom:16px!important}.rup-cb-button,.rup-cb-link{min-height:46px}}
+@media(max-height:750px) and (min-width:701px){.rup-combined{padding-top:18px;gap:18px;padding-bottom:24px}.rup-cb-meta{margin-bottom:18px;padding-bottom:12px}.rup-combined h1{font-size:22vh}.rup-cb-sub{margin-top:17px!important}.rup-cb-invite{font-size:36px}}
+@media(prefers-reduced-motion:reduce){.rup-combined *,.rup-combined *::before,.rup-combined *::after{animation:none!important;transition:none!important}.rup-cb-photo{clip-path:none}.rup-cb-window{transform:rotate(-.8deg)}}
+
+</style>
 </head>
 <body>
 
@@ -39,33 +87,26 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero — THE AWNING AT DUSK =====================
-       HOLY-SHIT HERO recipe: ground = their real front at dusk (the awning photo, softened + graded) ·
-       mark = the sign's own words in live type in the sign's face and colours (black slab caps on the
-       white band, the maroon awning above it — CRISP RULE: the 545 px crop can't carry a headline) ·
-       event = the white band drops and settles onto the awning, then the seven letters stamp on one at
-       a time · flourish = the window light blooms across the lot and the red OPEN neon in the left
-       window hums up · then still. ~2.6 s, CSS only, deterministic, reduced motion lands on the final frame. -->
-  <section class="hero awning" id="hero">
-    <div class="hero-bg"><img src="images/hero-ground.jpg" alt="The front of Roundup Restaurant &amp; Lounge on Mountain Hwy E at dusk — the maroon awning, the white sign band, the neon in the windows" fetchpriority="high" width="1600" height="1467"></div>
-    <div class="hero-glow" aria-hidden="true"><i class="glow-window"></i><i class="glow-neon"></i></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1 class="sr-only">Roundup Restaurant &amp; Lounge — Graham's corner bar on Mountain Hwy</h1>
-      <div class="sign" aria-hidden="true">
-        <span class="sign-awning"></span>
-        <span class="sign-band">
-          <span class="sign-word"><b>R</b><b>O</b><b>U</b><b>N</b><b>D</b><b>U</b><b>P</b></span>
-          <span class="sign-sub">Restaurant &amp; Lounge</span>
-        </span>
-      </div>
-      <p class="hero-sub"><span class="sub-long">Graham's corner bar on Mountain Hwy — burgers and baskets, breakfast on the weekend, karaoke, bingo and a fire pit out back.</span><span class="sub-short">Graham's corner bar · Mountain Hwy</span></p>
-      <div class="hero-actions">
-        <a href="#week" class="btn btn-primary">What's on tonight</a>
-        <a href="#menu" class="btn btn-cream">See the menu</a>
-      </div>
-    </div>
-  </section>
+<!-- HERO CONCEPT: Where the Night Begins
+Emotion: The confidence of a familiar landmark, and the warm pull of the night waiting inside.
+Composition: A monumental cream-and-amber Roundup masthead on maroon, a wide cream-framed panorama of the actual room, and a strong roadside invitation. It combines the two selected ideas without adding a second competing photo.
+Arrival: The two parts of the masthead arrive from opposite sides, the room opens from the center and the framed panorama settles gently into place. The invitation completes the arrival at 2.35 seconds; all motion then stops.
+Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved unchanged.
+-->
+
+<section class="rup-combined" id="hero" aria-labelledby="rup-combined-title">
+ <div class="rup-cb-head">
+  <div class="rup-cb-meta"><p>Mountain Hwy · Graham, Washington</p><p>Your corner.<br>Your kind of night.</p></div>
+  <h1 id="rup-combined-title" aria-label="Roundup"><span>ROUND</span><span>UP</span></h1>
+  <p class="rup-cb-sub">Restaurant &amp; Lounge</p>
+ </div>
+ <figure class="rup-cb-window"><div class="rup-cb-photo"><img src="images/room-wide.jpg" alt="Friends and regulars gathered inside the Roundup under the lights, with the pool table in the foreground" fetchpriority="high" width="1200" height="560"></div></figure>
+ <div class="rup-cb-foot">
+  <p class="rup-cb-invite">Pull in.<span>Make a night of it.</span></p>
+  <div class="rup-cb-actions"><a class="rup-cb-button" href="#week">What's on tonight <span aria-hidden="true">↗</span></a><a class="rup-cb-link" href="#menu">The menu <span aria-hidden="true">↗</span></a></div>
+ </div>
+</section>
+
 
   <!-- ===================== #hours — ONE band: live status · address · all seven days ===================== -->
   <section class="status-band" id="hours">

@@ -21,9 +21,13 @@
   },
   "roundup-bar-grill-graham": {
     "business": "Roundup Restaurant & Lounge",
-    "liked": [],
-    "instruction": "Combine options 1 and 2. Preserve both originals for comparison.",
-    "state": "New option 3 combines 1 + 2"
+    "liked": [
+      3
+    ],
+    "instruction": "Keep the exact Where the Night Begins complete website approved by Hayden.",
+    "state": "Website approved",
+    "selected": 3,
+    "site_approval": "approved"
   },
   "homestead-brew-sumner": {
     "business": "Homestead Brew",

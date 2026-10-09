@@ -159,15 +159,29 @@
       "note": "Approved by you: option 3, Stay a Little Longer, as the complete website.",
       "site_url": "https://hjsdesigns.github.io/demos/zolas-cafe-auburn/",
       "index_sha256": "e2ff77903ab0e353baac93320e93c595595ab9b319dd361665285b90a294a956"
+    },
+    {
+      "name": "Where the Night Begins",
+      "idea": "The cinematic room of The Night Opens meets the bold maroon roadside character of Off the Highway.",
+      "file": "hero-where-the-night-begins.html",
+      "emotion": "The confidence of a familiar landmark, and the warm pull of the night waiting inside.",
+      "composition": "A monumental cream-and-amber Roundup masthead on maroon, a wide cream-framed panorama of the actual room, and a strong roadside invitation. It combines the two selected ideas without adding a second competing photo.",
+      "motion": "The two parts of the masthead arrive from opposite sides, the room opens from the center and the framed panorama settles gently into place. The invitation completes the arrival at 2.35 seconds; all motion then stops.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/versions/hero-where-the-night-begins.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/roundup-bar-grill-graham--hero-where-the-night-begins.jpg?v=6037e1423b31",
+      "sha256": "e538425a63a8452b9d1196ed1356a677a03dfe05b7d15b14481f99a90720b9b4",
+      "slug": "roundup-bar-grill-graham",
+      "business": "Roundup Restaurant & Lounge",
+      "original_number": 3,
+      "status": "Website approved",
+      "site_approval": "approved",
+      "note": "Approved by you: option 3, Where the Night Begins, as the complete website.",
+      "site_url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/",
+      "index_sha256": "55191ceb6879199bcfe4e8e8129ce787c1b65781eaf570e96e9bceafb69c53a7"
     }
   ],
   "conditional": [],
-  "unresolved": [
-    {
-      "slug": "roundup-bar-grill-graham",
-      "business": "Roundup Restaurant & Lounge",
-      "note": "Combined option 3 awaits your verdict."
-    }
-  ],
+  "unresolved": [],
   "batch_note": "These nine businesses are the full Claude handoff. There are no additional sites in this batch."
 }
