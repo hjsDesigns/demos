@@ -11,6 +11,20 @@
 <!-- Display: Ultra — the nearest sturdy Google face to the sign's heavy bracketed serif (SIGN-FONT LAW, approximation; the real letters lean, so the hero word carries the same lean). Body: Figtree. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+
+.hero.ecr{position:relative;isolation:isolate;min-height:calc(100svh - var(--header-h));height:calc(100svh - var(--header-h));display:block;overflow:hidden;font-family:var(--body);color:var(--dark)}
+.hero.ecr::before,.hero.ecr::after{content:none!important}.hero.ecr h1{font-family:var(--display);font-weight:400;letter-spacing:-.06em;line-height:.97;max-width:none;margin:0;text-shadow:none;color:inherit;opacity:1;transform:none;animation:none;text-wrap:initial}.ecr p{margin:0}.ecr img{display:block;width:100%;height:100%;object-fit:cover}.ecr .r-label{font-size:10px;line-height:1.5;font-weight:800;text-transform:uppercase;letter-spacing:.2em}.ecr .r-actions{display:flex;align-items:center;gap:24px}.ecr .r-main{display:inline-flex;align-items:center;justify-content:space-between;gap:36px;padding:14px 22px;min-height:52px;font-size:13px;font-weight:800;border:1px solid currentColor;background:var(--brand-text);color:var(--paper);transition:background .2s}.ecr .r-main:hover{background:var(--dark)}.ecr .r-link{font-size:12px;font-weight:800;border-bottom:1px solid currentColor;padding:12px 0 6px;white-space:nowrap}.ecr .r-description{font-size:16px;line-height:1.6;font-weight:500}.ecr .r-detail{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;line-height:1.6}
+@keyframes r-up{from{transform:translateY(25px);opacity:0}to{transform:none;opacity:1}}
+@keyframes r-left{from{transform:translateX(-5%);opacity:.5}to{transform:none;opacity:1}}
+@keyframes r-uncover{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+
+.ecr-table{background:var(--dark)}.ecr-table .table-rail{position:absolute;inset:0 auto 0 0;width:15%;background:var(--brand-text);color:var(--paper);padding:38px 0;display:flex;align-items:center;justify-content:space-between;flex-direction:column;z-index:1}.ecr-table .table-rail>span{font-family:var(--display);font-size:clamp(36px,4.5vw,72px);line-height:1;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:-.025em}.ecr-table .table-rail p{writing-mode:vertical-rl;transform:rotate(180deg);font-size:9px}.ecr-table .table-room{position:absolute;left:15%;top:0;bottom:0;width:58%;overflow:hidden;animation:r-uncover 1.5s var(--ease) both}.ecr-table .table-room img{object-position:50% 61%;animation:r-left 1.7s var(--ease) both}.ecr-table .table-invitation{position:absolute;left:59%;right:5%;top:8%;bottom:8%;padding:4.5% 3.8% 3%;background:var(--paper);color:var(--dark);z-index:2;display:flex;flex-direction:column;align-items:flex-start;box-shadow:0 18px 60px color-mix(in srgb,var(--dark) 36%,transparent);animation:r-up 1.2s var(--ease) .65s both}.ecr-table .r-label{color:var(--brand-text);font-size:9px;letter-spacing:.15em}.ecr-table .table-rule{width:60px;border-top:3px solid var(--terracotta);margin:28px 0 32px;animation:r-uncover 1s var(--ease) 1.2s both}.hero.ecr-table h1{font-size:clamp(45px,5.2vw,84px);line-height:1.02;color:var(--brand-text)}.ecr-table .r-description{margin-top:28px;line-height:1.7;font-size:15px}.ecr-table .r-actions{flex-direction:column;align-items:flex-start;gap:12px;margin-top:30px}.ecr-table .r-main{gap:30px}.ecr-table .table-last{font-family:var(--display);font-size:clamp(17px,1.5vw,23px);line-height:1.3;color:var(--muted);margin-top:auto;padding-top:24px}.ecr-table .table-last span{color:var(--brand-text)}.ecr-table .table-frame{position:absolute;inset:22px;border:1px solid color-mix(in srgb,var(--paper) 34%,transparent);pointer-events:none;z-index:3}
+@media(min-width:701px) and (max-width:1000px){.ecr-table .table-invitation{left:49%;right:4%;top:9%;bottom:9%;padding:5% 4%}.ecr-table .table-room{width:65%}.hero.ecr-table h1{font-size:6.5vw}.ecr-table .r-description{font-size:14px}.ecr-table .r-main{gap:18px;padding:12px 18px}.ecr-table .table-rail{width:12%}.ecr-table .table-room{left:12%}}
+@media(max-width:700px){.ecr-table .table-rail{width:50px;padding:28px 0}.ecr-table .table-rail>span{font-size:30px}.ecr-table .table-rail p{font-size:7px;letter-spacing:.15em}.ecr-table .table-room{left:50px;right:0;width:auto;bottom:27%}.ecr-table .table-room img{object-position:54% 55%}.ecr-table .table-invitation{left:78px;right:23px;top:38%;bottom:24px;padding:27px 25px 24px}.ecr-table .r-label{font-size:7px;line-height:1.5;letter-spacing:.13em}.ecr-table .table-rule{margin:20px 0;width:37px;border-width:2px}.hero.ecr-table h1{font-size:clamp(36px,10.7vw,58px);line-height:1.04}.ecr-table .r-description{font-size:13px;margin-top:18px;line-height:1.55}.ecr-table .r-description br{display:none}.ecr-table .r-actions{margin-top:20px;gap:10px}.ecr-table .r-main{font-size:11px;padding:11px 13px;gap:17px;min-height:46px}.ecr-table .r-link{font-size:11px;padding-top:6px}.ecr-table .table-last{font-size:16px;padding-top:20px}.ecr-table .table-last br{display:none}.ecr-table .table-frame{inset:12px;border-color:color-mix(in srgb,var(--paper) 30%,transparent)}}
+@media(max-width:700px) and (max-height:760px){.ecr-table .table-invitation{top:27%;bottom:18px;padding:22px}.ecr-table .table-rule{margin:15px 0}.ecr-table .r-description{margin-top:15px}.ecr-table .r-actions{margin-top:17px}.ecr-table .table-last{font-size:14px;padding-top:16px}}
+@media(prefers-reduced-motion:reduce){.hero.ecr *,.hero.ecr *::before,.hero.ecr *::after{animation:none!important;transition:none!important}.hero.ecr .r-reveal-cover{display:none!important}}
+</style>
 </head>
 <body>
 
@@ -37,28 +51,12 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero — THE SIGN POWERS ON
-       Ground: their real storefront photo (Intentionalist, 2023, Upscayl 4x), graded to dusk and softened so the live
-       mark reads. Mark: EL CAPORAL in live type in the sign's face and colours, channel-letter depth, the same lean the
-       real letters have. Event: the letters power on one by one with an LED stutter, left to right; the green
-       FAMILY MEXICAN RESTAURANT bar slides in under them; one warm bloom spreads on the stucco. ~2.8 s, CSS only,
-       deterministic, then still. Reduced motion lands on the final frame. -->
-  <section class="hero sign-hero" id="hero">
-    <div class="hero-bg"><img src="images/hero-ground.jpg" alt="El Caporal's storefront on the Maple Valley Black Diamond road — the red sign and the green Family Mexican Restaurant bar over the stucco arches" fetchpriority="high" width="2400" height="1349"></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <h1 class="sr-only">El Caporal — Family Mexican Restaurant in Maple Valley, Washington</h1>
-      <div class="sign" aria-hidden="true">
-        <span class="sign-glow"></span>
-        <div class="sign-word"><span>E</span><span>L</span><span class="gap"> </span><span>C</span><span>A</span><span>P</span><span>O</span><span>R</span><span>A</span><span>L</span></div>
-        <div class="sign-bar">Family Mexican Restaurant</div>
-      </div>
-      <p class="hero-sub"><span class="sub-long">Combo plates, fajitas for two, camarones five ways, a full bar — and the chips keep coming.</span><span class="sub-short">Combos · fajitas · full bar</span></p>
-      <div class="hero-actions">
-        <a href="tel:+14254328488" class="btn btn-primary">Call to order</a>
-        <a href="#menu" class="btn btn-cream">See the menu</a>
-      </div>
-    </div>
+  <!-- Your Usual Table: The familiar welcome of a family-run room you can settle into. Composition: A panoramic window into the actual dining room sits behind a tall cream invitation offset to the right, with a broad red rail carrying the restaurant name at left. The cream panel layers across the photographic edge, and a restrained terracotta frame ties the two together. Mobile keeps the tall real room on one side and the invitation overlapping its lower edge, so the restaurant remains present around the words. Arrival: The dining room uncovers first, the cream invitation slides upward once, and a fine frame completes; fully still by 2.2 seconds. -->
+  <section id="hero" class="hero ecr ecr-table" aria-labelledby="table-title">
+    <div class="table-rail"><span>El Caporal</span><p class="r-detail">Family Mexican Restaurant</p></div>
+    <figure class="table-room"><img src="images/interior-booths.jpg" width="1600" height="2131" alt="El Caporal’s warm dining room with carved pine booths, terracotta walls and a glowing tin lantern" fetchpriority="high"></figure>
+    <div class="table-invitation"><p class="r-label">Welcome to El Caporal<br> Maple Valley, Washington</p><div class="table-rule" aria-hidden="true"></div><h1 id="table-title">Pull up<br> a chair.</h1><p class="r-description">The booth you settle into.<br> The favorites you come back for.</p><div class="r-actions"><a class="r-main" href="#menu">See what’s cooking <span aria-hidden="true">↗</span></a><a class="r-link" href="#hours">Come on in</a></div><p class="table-last">Make yourself<br> <span>at home.</span></p></div>
+    <div class="table-frame" aria-hidden="true"></div>
   </section>
 
   <!-- ===================== #hours — ONE band: live status · address · all seven days -->
