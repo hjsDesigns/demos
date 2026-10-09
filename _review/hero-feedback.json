@@ -2,11 +2,12 @@
   "zolas-cafe-auburn": {
     "business": "Zola’s Cafe",
     "liked": [
-      1,
       3
     ],
-    "instruction": "Keep options 1 and 3 as favorites; no single winner chosen.",
-    "state": "Favorites saved"
+    "instruction": "Keep the exact Stay a Little Longer complete website approved by Hayden.",
+    "state": "Website approved",
+    "selected": 3,
+    "site_approval": "approved"
   },
   "el-caporal-maple-valley": {
     "business": "El Caporal",

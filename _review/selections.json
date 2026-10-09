@@ -139,15 +139,30 @@
       "site_approval": "approved",
       "site_url": "https://hjsdesigns.github.io/demos/salon-410-buckley/",
       "index_sha256": "cc690cbc265ec571a1e9c0da62c854ce285e09f8e66f53663afefd0c800ed08f"
+    },
+    {
+      "name": "Stay a Little Longer",
+      "idea": "A panoramic cafe journal pairs monumental plum typography with a sweeping ribbon of the real room and its people-first coffee ritual.",
+      "file": "hero-stay-a-little-longer.html",
+      "emotion": "Belonging: the generous, art-filled cafe you come for and the comfortable room you stay in.",
+      "composition": "Wide cream masthead with an enormous left-aligned wordmark and right-aligned invitation; below, a full-width three-panel photographic ribbon of fireplace, coffee and cafe interior. A solid plum action rail closes the hero. On mobile the masthead is stacked above the photographic triptych.",
+      "motion": "Three photographs unfold upward in sequence, like opening a cafe journal; the large wordmark settles above them. Motion is complete by 1.85 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/zolas-cafe-auburn/versions/hero-stay-a-little-longer.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/zolas-cafe-auburn--hero-stay-a-little-longer.jpg?v=34f9ce1909f9",
+      "sha256": "654003d072499b7ad75a2c039b2c8cfd4654a2365d31ec410b83d97bf450dfe8",
+      "slug": "zolas-cafe-auburn",
+      "business": "Zola’s Cafe",
+      "original_number": 3,
+      "status": "Website approved",
+      "site_approval": "approved",
+      "note": "Approved by you: option 3, Stay a Little Longer, as the complete website.",
+      "site_url": "https://hjsdesigns.github.io/demos/zolas-cafe-auburn/",
+      "index_sha256": "e2ff77903ab0e353baac93320e93c595595ab9b319dd361665285b90a294a956"
     }
   ],
   "conditional": [],
   "unresolved": [
-    {
-      "slug": "zolas-cafe-auburn",
-      "business": "Zola’s Cafe",
-      "note": "Favorites 1 and 3; no single winner yet."
-    },
     {
       "slug": "roundup-bar-grill-graham",
       "business": "Roundup Restaurant & Lounge",
