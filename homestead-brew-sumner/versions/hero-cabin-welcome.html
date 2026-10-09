@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Cabin Welcome | Homestead Brew — Drive-thru coffee &amp; hot dogs, Sumner WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Homestead Brew is the little cabin coffee stand in the McLendon Hardware lot in Sumner, WA — Dillanos espresso, hot dogs and breakfast at the drive-thru from 5:30 am, 4.9 stars on Google.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Two faces: Bebas Neue ≈ the sign's condensed capitals (SIGN-FONT LAW, an approximation) · Karla for reading -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="../images/logo.png" type="image/png">
+<style>
+
+.hm-hero{position:relative;isolation:isolate;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));overflow:hidden;font-family:var(--body);color:var(--ink)}
+.hm-hero::before,.hm-hero::after{content:none!important}
+.hm-hero h1{font-family:var(--display);font-weight:400;line-height:.88;letter-spacing:.006em;text-shadow:none;text-wrap:initial;max-width:none;margin:0;color:inherit}
+.hm-hero p,.hm-hero figure{margin:0}.hm-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hm-eyebrow{font-family:var(--body);font-size:11px;line-height:1.5;letter-spacing:.19em;text-transform:uppercase;font-weight:700}
+.hm-actions{display:flex;align-items:center;gap:25px;flex-wrap:wrap}
+.hm-button{display:inline-flex;align-items:center;justify-content:space-between;gap:25px;min-height:52px;background:var(--ink);color:var(--bg);padding:14px 22px;font-size:14px;font-weight:700;transition:background .2s,transform .2s}
+.hm-button:hover{background:var(--brand-heading);transform:translateY(-2px)}
+.hm-link{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-height:48px;padding:11px 0;border-bottom:1px solid currentColor;font-size:14px;font-weight:700}
+.hm-hero a:focus-visible{outline:3px solid var(--warm);outline-offset:5px}
+.hm-arrive{animation:hm-arrive .85s cubic-bezier(.16,.78,.19,1) both;animation-delay:var(--delay,0s)}
+@keyframes hm-arrive{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.hm-hero *,.hm-hero *::before,.hm-hero *::after{animation:none!important;transition:none!important}.hm-arrive{opacity:1;transform:none}}
+
+.hm-cabin{background:var(--bg);padding:35px max(25px,4.5vw) 32px;display:grid;grid-template-columns:.82fr 1.18fr;grid-template-rows:auto minmax(0,1fr) auto;gap:26px 5vw}
+.hm-cabin-top{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:25px;border-bottom:1px solid var(--line);padding-bottom:17px}
+.hm-cabin-top .hm-eyebrow:last-child{color:var(--brand-heading)}
+.hm-cabin-copy{align-self:center;z-index:2;padding-top:12px}
+.hm-cabin h1{font-size:clamp(74px,9.4vw,142px)}
+.hm-cabin h1 span{display:block}.hm-cabin h1 em{font-style:normal;color:var(--brand-heading)}
+.hm-cabin-copy p{font-size:17px;line-height:1.5;max-width:315px;margin-top:28px}
+.hm-house{position:relative;min-height:0;align-self:stretch;margin-top:10px!important;isolation:isolate}
+.hm-house-picture{position:absolute;inset:17px 8px 8px;clip-path:polygon(0 20%,50% 0,100% 20%,100% 100%,0 100%);overflow:hidden;animation:hm-house-open 1.6s cubic-bezier(.16,.78,.19,1) .3s both}
+.hm-house-picture img{object-position:40% 50%;animation:hm-house-settle 2.1s cubic-bezier(.16,.78,.19,1) both}
+.hm-house-outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.hm-house-outline path{fill:none;stroke:var(--brand-heading);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1600;stroke-dashoffset:0;animation:hm-roofline 1.7s cubic-bezier(.2,.75,.2,1) both}
+.hm-cabin-foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:30px;border-top:3px solid var(--brand);padding-top:19px}
+.hm-cabin-foot .hm-eyebrow{color:var(--muted);max-width:210px}
+@keyframes hm-house-open{from{clip-path:polygon(0 100%,50% 100%,100% 100%,100% 100%,0 100%)}to{clip-path:polygon(0 20%,50% 0,100% 20%,100% 100%,0 100%)}}
+@keyframes hm-house-settle{from{transform:scale(1.06)}to{transform:scale(1)}}
+@keyframes hm-roofline{from{stroke-dashoffset:1600}to{stroke-dashoffset:0}}
+@media(max-width:700px){
+.hm-cabin{padding:24px 22px 24px;grid-template-columns:1fr;grid-template-rows:auto auto minmax(180px,1fr) auto;gap:17px}
+.hm-cabin-top{padding-bottom:13px;gap:15px}.hm-cabin-top .hm-eyebrow{font-size:9px;max-width:140px;letter-spacing:.13em}.hm-cabin-top .hm-eyebrow:last-child{text-align:right}
+.hm-cabin-copy{padding:0;align-self:start}.hm-cabin h1{font-size:19.5vw;line-height:.86}.hm-cabin h1 span{display:inline}.hm-cabin h1 span:first-child::after{content:" "}.hm-cabin h1 span:last-child{display:block}
+.hm-cabin-copy p{font-size:14px;line-height:1.45;margin-top:14px;max-width:310px}
+.hm-house{width:100%;margin-top:0!important}.hm-house-picture{inset:13px 6px 4px;clip-path:polygon(0 20%,50% 0,100% 20%,100% 100%,0 100%)}.hm-house-picture img{object-position:40% 52%}
+.hm-cabin-foot{padding-top:14px;display:block}.hm-cabin-foot .hm-eyebrow{display:none}.hm-cabin-foot .hm-actions{gap:24px;justify-content:space-between}.hm-cabin .hm-button{padding:12px 18px;font-size:13px}.hm-cabin .hm-link{font-size:13px;gap:15px}
+}
+@media(max-height:720px) and (max-width:700px){.hm-cabin{gap:13px;padding-top:18px}.hm-cabin h1{font-size:16vw}.hm-cabin-copy p{font-size:13px;margin-top:10px}.hm-cabin{grid-template-rows:auto auto minmax(125px,1fr) auto}}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Homestead Brew — home">
+      <img src="../images/logo.png" alt="" width="46" height="46">
+      <span class="wm">Homestead Brew<small>Sumner · McLendon lot</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">The board</a>
+        <a href="#signature">Pick a cup</a>
+        <a href="#gallery">Photos</a>
+        <a href="#about">The stand</a>
+        <a href="#hours">Hours</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Homestead+Brew+1111+Fryar+Ave+Sumner+WA+98390" target="_blank" rel="noopener" class="nav-cta">Directions ↗</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+<!-- HERO CONCEPT: The Cabin Welcome
+Emotion: A familiar little stop that makes an ordinary morning feel cared for.
+Composition: Cream editorial type sits beside one large house-shaped photograph, with a fine roofline and amber threshold. Architectural and place-led, unlike the predawn time composition or isolated coffee still life.
+Arrival: A fine roofline is drawn, the real cabin photograph opens upward, then the invitation and directions settle in. The entrance finishes at 2.2 seconds.
+-->
+
+<section class="hm-hero hm-cabin" id="hero" aria-labelledby="hm-cabin-title">
+ <div class="hm-cabin-top hm-arrive"><p class="hm-eyebrow">Homestead Brew<br>Sumner, Washington</p><p class="hm-eyebrow">Your little stop.<br>A better start.</p></div>
+ <div class="hm-cabin-copy"><h1 id="hm-cabin-title" class="hm-arrive" style="--delay:.15s"><span>Your</span><span>morning,</span><span><em>made.</em></span></h1><p class="hm-arrive" style="--delay:.45s">Good coffee. A familiar window. The little cedar cabin in the McLendon lot.</p></div>
+ <figure class="hm-house"><div class="hm-house-picture"><img src="../images/hero.jpg" alt="Homestead Brew's cedar coffee cabin, with its mountain sign beside the service window" fetchpriority="high" width="2600" height="1461"></div><svg class="hm-house-outline" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true"><path d="M1 599 L1 129 L300 1 L599 129 L599 599"/></svg></figure>
+ <div class="hm-cabin-foot hm-arrive" style="--delay:1.35s"><p class="hm-eyebrow">Drive through.<br>Walk up. Make it yours.</p><div class="hm-actions"><a class="hm-button" href="https://www.google.com/maps/search/?api=1&amp;query=Homestead+Brew+1111+Fryar+Ave+Sumner+WA+98390" target="_blank" rel="noopener">Find the cabin <span aria-hidden="true">↗</span></a><a class="hm-link" href="#menu">Explore the board <span aria-hidden="true">↗</span></a></div></div>
+</section>
+
+
+  <!-- ===================== #hours — the one place hours, status and address live ===================== -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Up before <em>the hardware store.</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          1111 Fryar Ave, Sumner, WA 98390<br>
+          <a href="https://www.google.com/maps/search/?api=1&query=Homestead+Brew+1111+Fryar+Ave+Sumner+WA+98390" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <p class="status-note">The small cedar cabin with the metal roof, in the McLendon Hardware parking lot.</p>
+        <div class="proof-row">
+          <span class="proof"><span class="ico">✓</span> Drive-thru + walk-up window</span>
+          <span class="proof"><span class="ico">✓</span> Pouring Dillanos, roasted in Sumner</span>
+          <span class="proof"><span class="ico">✓</span> Hot dogs, burritos &amp; pastries</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">5:30 am – 5:30 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">5:30 am – 5:30 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">5:30 am – 5:30 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">5:30 am – 5:30 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">5:30 am – 5:30 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">7:00 am – 4:00 pm</span></li>
+        <li data-days="0"><span class="day">Sunday</span><span class="time">7:30 am – 4:00 pm</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — THE BOARD =====================
+       Their real board, group by group (TITLE CARDS UNROLL: the headline is the tap target,
+       a downward chevron flips up). Items are the ones painted on the board at the window;
+       prices stay at the window — the photographed board is out of date (CONTENT-BRIEF.md). -->
+  <section class="section section-alt" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The board</p>
+        <h2>Tap a headline. <em>The board rolls out.</em></h2>
+        <p>Everything painted on the board at the window — espresso from Dillanos Coffee Roasters down the road, the dogs, and the morning food.</p>
+      </div>
+      <div class="board reveal">
+        <details open>
+          <summary><h3>Brew<small>Dillanos espresso</small></h3><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li><b>Latte</b></li>
+            <li><b>Cappuccino</b></li>
+            <li><b>Mocha</b><span class="tag">a regular's pick</span></li>
+            <li><b>White Chocolate Mocha</b></li>
+            <li><b>Americano</b><span class="tag">try it white chocolate</span></li>
+          </ul>
+        </details>
+        <details>
+          <summary><h3>Signatures<small>house drinks</small></h3><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li><b>White Zombie</b><small>white chocolate &amp; white coffee</small></li>
+            <li><b>Chocolate Charger</b><small>chocolate &amp; white coffee</small></li>
+            <li><b>Weekly specials</b><small>a different one each week — ask at the window</small></li>
+          </ul>
+        </details>
+        <details>
+          <summary><h3>Alternatives<small>not coffee</small></h3><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li><b>Hot Chocolate</b></li>
+            <li><b>Chai</b></li>
+            <li><b>Italian Soda</b></li>
+            <li><b>Steamer</b></li>
+            <li><b>Apple Cider</b></li>
+            <li><b>Tea</b></li>
+          </ul>
+        </details>
+        <details>
+          <summary><h3>Eats<small>dogs &amp; mornings</small></h3><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li><b>Hot Dog</b><span class="tag">or the meal</span></li>
+            <li><b>Polish Dog</b><span class="tag">or the meal</span><small>ketchup, mayo, mustard, deli mustard, onions, relish, sauerkraut, cheese, jalapeños</small></li>
+            <li><b>Breakfast Burrito</b></li>
+            <li><b>Breakfast Sandwich</b></li>
+            <li><b>Bagel Sandwich</b></li>
+            <li><b>Oatmeal</b></li>
+            <li><b>Chips</b></li>
+          </ul>
+        </details>
+        <details>
+          <summary><h3>Pastries<small>incl. Seattle's Favorite</small></h3><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li><b>Muffins</b></li>
+            <li><b>Scones</b></li>
+            <li><b>Cookies</b><span class="tag">gluten-free too</span></li>
+            <li><b>Bagel w/ Cream Cheese</b></li>
+            <li><b>Dessert Bars</b></li>
+            <li><b>Muffin Tops</b></li>
+            <li><b>Frés Bars</b></li>
+          </ul>
+        </details>
+        <details>
+          <summary><h3>Beverages<small>&amp; extras</small></h3><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li><b>Bottled Water</b></li>
+            <li><b>Soda</b></li>
+            <li><b>Sports Drink</b></li>
+            <li><b>Juice</b></li>
+            <li><b>Red Bull</b></li>
+            <li><b>Extra shot · extra flavor · soy or breve</b></li>
+          </ul>
+        </details>
+      </div>
+      <p class="board-sizes reveal">Drinks come <span>12 oz</span><span>16 oz</span><span>20 oz</span><span>24 oz</span> — prices are on the board at the window.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — PICK YOUR CUP (section 4) =====================
+       Their own drinks turned into a toy: tap one, the 24 oz cup fills with it; tap again, it
+       empties. One gesture, instant payoff, the result right above the pills on phones. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pick your cup</p>
+        <h2>What's it <em>going to be?</em></h2>
+        <p>Five things people drive across Sumner for. Tap one.</p>
+      </div>
+      <div class="cup-stage reveal">
+        <div class="cup-wrap">
+          <svg class="cup" id="cup" viewBox="0 0 240 320" role="img" aria-labelledby="cupTitle">
+            <title id="cupTitle">A 24 oz cup</title>
+            <defs>
+              <clipPath id="cupClip"><path d="M46 70 L194 70 L178 292 Q176 304 164 304 L76 304 Q64 304 62 292 Z"/></clipPath>
+            </defs>
+            <!-- cup body -->
+            <path d="M46 70 L194 70 L178 292 Q176 304 164 304 L76 304 Q64 304 62 292 Z" fill="var(--paper)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+            <g clip-path="url(#cupClip)">
+              <rect class="liquid" id="liquid" x="40" y="96" width="160" height="220" fill="var(--brand)"/>
+              <!-- ice (soda) -->
+              <g class="ice" fill="rgba(255,255,255,.55)" stroke="rgba(255,255,255,.9)" stroke-width="2">
+                <rect x="78" y="130" width="34" height="30" rx="6" transform="rotate(-12 95 145)"/>
+                <rect x="124" y="150" width="34" height="30" rx="6" transform="rotate(14 141 165)"/>
+                <rect x="96" y="196" width="34" height="30" rx="6" transform="rotate(-6 113 211)"/>
+                <rect x="138" y="222" width="34" height="30" rx="6" transform="rotate(20 155 237)"/>
+              </g>
+              <!-- cream pour (soda) -->
+              <path class="cream" d="M40 96 L200 96 L200 118 Q120 134 40 118 Z" fill="rgba(255,250,240,.78)"/>
+              <!-- foam (latte / chai) -->
+              <path class="foam" d="M40 96 L200 96 L200 112 Q170 124 120 116 Q70 108 40 118 Z" fill="var(--bg)"/>
+            </g>
+            <!-- whip (mocha / zombie) sits above the rim -->
+            <g class="whip" fill="var(--paper)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round">
+              <path d="M70 72 Q74 42 100 50 Q106 22 134 36 Q160 20 164 52 Q188 48 180 72 Z"/>
+            </g>
+            <!-- lid + sleeve lines -->
+            <path d="M38 70 L202 70 L198 56 L42 56 Z" fill="var(--ink)"/>
+            <path d="M58 178 L182 178 M55 236 L185 236" stroke="var(--line)" stroke-width="2"/>
+            <!-- the emblem line on the sleeve -->
+            <text x="120" y="214" text-anchor="middle" font-family="var(--display)" font-size="22" fill="var(--ink)" letter-spacing="2">HOMESTEAD</text>
+          </svg>
+          <p class="cup-label" id="cupLabel" aria-live="polite">Empty cup<small>Pick a drink</small></p>
+        </div>
+        <div class="cup-picks" role="group" aria-label="Pick a drink">
+          <p class="cup-hint">Tap to fill · tap again to empty</p>
+          <button type="button" class="pick" aria-pressed="false" data-drink="latte" data-color="#C89A68" data-layers="foam" data-line="Dillanos espresso and steamed milk"><span class="swatch" style="background:#C89A68"></span><span>Latte</span><small>the everyday</small></button>
+          <button type="button" class="pick" aria-pressed="false" data-drink="mocha" data-color="#5A3A28" data-layers="whip" data-line="Espresso, chocolate, milk — and the iced one has fans"><span class="swatch" style="background:#5A3A28"></span><span>Mocha</span><small>hot or iced</small></button>
+          <button type="button" class="pick" aria-pressed="false" data-drink="zombie" data-color="#E8D7B8" data-layers="whip" data-line="White chocolate and white coffee — a house signature"><span class="swatch" style="background:#E8D7B8"></span><span>White Zombie</span><small>signature</small></button>
+          <button type="button" class="pick" aria-pressed="false" data-drink="chai" data-color="#B87A45" data-layers="foam" data-line="Spiced chai, steamed milk"><span class="swatch" style="background:#B87A45"></span><span>Chai</span><small>not coffee</small></button>
+          <button type="button" class="pick" aria-pressed="false" data-drink="soda" data-color="#E26A7A" data-layers="ice cream" data-line="Soda water, your flavor, over ice — cream on top if you say so"><span class="swatch" style="background:#E26A7A"></span><span>Italian Soda</span><small>over ice</small></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery — from the window ===================== -->
+  <section class="section section-alt" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From the window</p>
+        <h2>A cabin, a counter, <em>and the cups.</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="../images/gallery-1.jpg" alt="Inside the stand: the counter, syrups, the Drink Coffee sign and the Dillanos Coffee Roasters board over the window" loading="lazy" width="1000" height="750"><figcaption>Inside the window</figcaption></figure>
+        <figure class="print reveal"><img src="../images/gallery-2.jpg" alt="A Homestead Brew branded bag of coffee beans standing in a paper cup" loading="lazy" width="750" height="1000"><figcaption>Beans to go</figcaption></figure>
+        <figure class="print reveal"><img src="../images/gallery-3.jpg" alt="The cedar cabin with its metal roof seen from across the McLendon lot, a car at the drive-thru window" loading="lazy" width="750" height="1000"><figcaption>Across the lot</figcaption></figure>
+        <figure class="print reveal"><img src="../images/gallery-4.jpg" alt="An iced drink in a Dillanos Coffee Roasters cup on the patio table" loading="lazy" width="750" height="1000"><figcaption>Iced, on the patio</figcaption></figure>
+        <figure class="print reveal"><img src="../images/gallery-5.jpg" alt="A red Dillanos holiday cup held up in a car" loading="lazy" width="750" height="1000"><figcaption>Winter cup</figcaption></figure>
+        <figure class="print reveal"><img src="../images/gallery-6.jpg" alt="An Italian soda over ice in a clear Dillanos cup, held in the car" loading="lazy" width="750" height="1000"><figcaption>Italian soda, to go</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about — the stand ===================== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="../images/about.jpg" alt="A Homestead Brew bag of coffee tucked into a Dillanos holiday cup" loading="lazy" width="750" height="1000">
+          <figcaption>Their beans, their cup</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The stand</p>
+          <h2>The little cabin <em>in the McLendon lot.</em></h2>
+          <p class="lede">A cedar hut with a metal roof, two windows, and a line of trucks before the hardware store even unlocks its doors.</p>
+          <p>Homestead Brew pours Dillanos — roasted a few blocks away in Sumner — and builds the rest on top of it: lattes, mochas, white coffee signatures like the White Zombie, Italian sodas for the kids in the back seat, and a weekly special on the board. Hot dogs and polish dogs with the whole condiment list, breakfast burritos and bagel sandwiches for the early crowd.</p>
+          <p>The reviews keep saying the same two things: the coffee comes out the same every time, and the people at the window remember you. That's the whole idea of a homestead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews — VARIANT B (link-out) =====================
+       Review notes: no source reachable in fleet mode exposed a real name + real profile
+       photo pair (Yelp via Apple Maps shows initials only; Google is bot-walled), so no quoted
+       cards — the real score, the real count, one true line, the live link. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What Sumner says</p>
+        <h2>Four point nine, <em>and holding.</em></h2>
+      </div>
+      <div class="rev-linkout reveal">
+        <p class="rev-score"><b>4.9</b><span class="rev-stars" aria-label="4.9 out of 5 stars">★★★★★</span></p>
+        <p class="rev-count">112 reviews on Google</p>
+        <p class="rev-note">The line that keeps coming up, in different handwriting: “best I have ever had.” Read them where they live.</p>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Homestead+Brew+1111+Fryar+Ave+Sumner+WA+98390" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Say hi</p>
+          <h2>Pull in, <em>or send a note.</em></h2>
+          <ol class="steps">
+            <li><h3>Find the cabin</h3><p>Turn into the McLendon Hardware lot off Fryar Ave. The cedar hut with the metal roof is the one.</p></li>
+            <li><h3>Drive up or walk up</h3><p>Two windows. Punch cards live at the window too.</p></li>
+            <li><h3>Office &amp; event orders</h3><p>They've supplied coffee and treats for business meetings — call ahead for a batch.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12538913998">(253) 891-3998</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&query=Homestead+Brew+1111+Fryar+Ave+Sumner+WA+98390" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- demo mode: empty access_key shows the thank-you and sends nothing; pages-golive.sh fills it at go-live -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A question</option><option>An office or event order</option><option>Just saying hi</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many, and for when?"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it</button>
+          <p class="form-success">Thanks — the stand will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta — the last screen ends on the mark ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="cta-mark reveal" aria-hidden="true"><img src="../images/sign.jpg" alt="" loading="lazy" width="790" height="790"></div>
+      <div class="section-head reveal">
+        <p class="eyebrow">Tomorrow, 5:30</p>
+        <h2>See you <em>at the window.</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count" data-to="7">7</span></b><span>days a week</span></div>
+        <div class="num"><b><span class="count" data-to="12">12</span><i class="unit">hrs</i></b><span>of weekday pours, 5:30 to 5:30</span></div>
+        <div class="num"><b><span class="count" data-to="2">2</span></b><span>windows — drive-thru and walk-up</span></div>
+        <div class="num"><b><span class="count" data-to="24">24</span><i class="unit">oz</i></b><span>the biggest cup on the board</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="https://www.google.com/maps/search/?api=1&query=Homestead+Brew+1111+Fryar+Ave+Sumner+WA+98390" target="_blank" rel="noopener" class="btn btn-primary">Directions ↗</a>
+        <a href="tel:+12538913998" class="btn btn-ghost">Call (253) 891-3998</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="../images/logo.png" alt=""></span>
+          <span class="wm">Homestead Brew<small>Specialty coffee</small></span>
+        </div>
+        <p>Drive-thru coffee and hot dogs in the McLendon Hardware lot, Sumner.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/1420860064813632" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/homestead.brew/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>1111 Fryar Ave<br>Sumner, WA 98390</p>
+        <p><a href="tel:+12538913998">(253) 891-3998</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#menu">The board</a><br><a href="#signature">Pick a cup</a><br><a href="#gallery">Photos</a><br><a href="#about">The stand</a><br><a href="#contact">Say hi</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Homestead Brew</span>
+      <span>Sumner, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+</body>
+</html>

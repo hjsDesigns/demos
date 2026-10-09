@@ -72,7 +72,7 @@
       "number": 3,
       "url": "https://hjsdesigns.github.io/demos/el-caporal-maple-valley/versions/hero-welcome-arch.html",
       "thumbnail": "thumbs/heroes-2026-10-09/el-caporal-maple-valley--hero-welcome-arch.jpg",
-      "sha256": "ca167647775cc9ebbb583cba980132aa4cbce7a0aa07d6f9bb2999174c56ed27"
+      "sha256": "8554c43357f5b26a5e8118c97adcb2bd508bfdcb6bab5dba35534d8ab5081853"
     }
   ],
   "roundup-bar-grill-graham": [
@@ -111,6 +111,82 @@
       "url": "https://hjsdesigns.github.io/demos/roundup-bar-grill-graham/versions/hero-good-company.html",
       "thumbnail": "thumbs/heroes-2026-10-09/roundup-bar-grill-graham--hero-good-company.jpg",
       "sha256": "1173d9c20e8420eb4e5a1378c5d7ae29495f3afd44e73e4fe0dd462560984e14"
+    }
+  ],
+  "kelly-lattes-kent": [
+    {
+      "name": "The Scenic Sip",
+      "idea": "A sweeping indigo contour opens onto the real patio cups, turning a drive-thru stop into a small escape.",
+      "file": "hero-the-scenic-sip.html",
+      "emotion": "A bright pause in a busy day, with the familiar comfort of a favorite local stop.",
+      "composition": "A cinematic open-air cup photograph fills the right two-thirds; a deep-indigo curved field carries a bold two-line wordmark and a warm invitation. The photograph opens above an indigo text panel on phones.",
+      "motion": "The curved indigo field and copy settle from the left as the real cup photograph makes one gentle approach, finishing by 1.8 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/kelly-lattes-kent/versions/hero-the-scenic-sip.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/kelly-lattes-kent--hero-the-scenic-sip.jpg",
+      "sha256": "8089868e110604c555290378ad414471d41612a97211747037cca5d6db2a9554"
+    },
+    {
+      "name": "Extra Good",
+      "idea": "A vivid indigo coffee poster throws monumental lettering around a real iced drink and lands with playful, confident energy.",
+      "file": "hero-extra-good.html",
+      "emotion": "The cheerful pick-me-up of a favorite drink: expressive, lively and a little indulgent.",
+      "composition": "Full indigo canvas, large cream wordmark, an angled real iced-latte photograph, bold side typography, fine graphic accents and a cream location strip. On phones a two-line masthead leads into the large diagonal photograph.",
+      "motion": "The masthead arrives first, the iced-latte print glides in and settles at a slight angle, and side lettering steps into place once; everything stops by 1.9 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/kelly-lattes-kent/versions/hero-extra-good.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/kelly-lattes-kent--hero-extra-good.jpg",
+      "sha256": "6f3a37587ffb3fd13b11c64425e4bab0433e23533de12ce5b960f24c3f24ea1a"
+    },
+    {
+      "name": "Take the Good Turn",
+      "idea": "A bold cream-and-indigo direction sign sends a sweeping photographic arrow toward your next favorite coffee stop.",
+      "file": "hero-take-the-good-turn.html",
+      "emotion": "Momentum, friendliness and a quick reward: the stop that fits naturally into your day.",
+      "composition": "Oversized left-aligned slab typography on cream, a wide angular photograph shaped into a forward-pointing ribbon, and an indigo route rail with three towns. Mobile turns into a compact directional poster, retaining the photograph and a clear next action.",
+      "motion": "The wordmark slides in from the left, the photographic arrow sweeps across once, and the route line draws toward the three towns; settled by 1.85 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/kelly-lattes-kent/versions/hero-take-the-good-turn.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/kelly-lattes-kent--hero-take-the-good-turn.jpg",
+      "sha256": "df2a373266803249304c11ab520b5fbe618d6fee4a02747d3732c4ab21733757"
+    }
+  ],
+  "homestead-brew-sumner": [
+    {
+      "name": "The Cabin Welcome",
+      "file": "hero-cabin-welcome.html",
+      "idea": "The real cedar stand appears in an architectural roof-shaped frame beside a confident morning invitation.",
+      "emotion": "A familiar little stop that makes an ordinary morning feel cared for.",
+      "composition": "Cream editorial type sits beside one large house-shaped photograph, with a fine roofline and amber threshold. Architectural and place-led, unlike the predawn time composition or isolated coffee still life.",
+      "motion": "A fine roofline is drawn, the real cabin photograph opens upward, then the invitation and directions settle in. The entrance finishes at 2.2 seconds.",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-cabin-welcome.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-cabin-welcome.jpg",
+      "sha256": "d0b7d50dcebaba4234a27fed0fc1ce0938e0b3801ba06787606e5d071ff5e89c"
+    },
+    {
+      "name": "Before the Rush",
+      "file": "hero-before-the-rush.html",
+      "idea": "An oversized weekday opening time and a bold predawn palette celebrate the people who start early.",
+      "emotion": "Quiet purpose, a dependable coffee stop, and a head start on the day.",
+      "composition": "Predawn navy meets an amber 05:30 time lockup; a tall real service-window photograph occupies the other half. A crisp editorial composition built around the morning ritual rather than the cabin silhouette or coffee product.",
+      "motion": "The opening time resolves with a short vertical reveal, a narrow amber seam crosses into the actual window photograph, and the invitation follows. Everything settles at 2.3 seconds.",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-before-the-rush.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-before-the-rush.jpg",
+      "sha256": "b2de45c16e0e51353366507b18386f8d5768780d2d8afb96261d0605603bf10a"
+    },
+    {
+      "name": "Coffee Comes First",
+      "file": "hero-coffee-comes-first.html",
+      "idea": "A real iced-coffee photograph becomes the central still life in a bold timber-and-cream composition.",
+      "emotion": "The small pleasure that changes the whole day: good coffee, made for you.",
+      "composition": "An isolated photographic cup rests between tall live display type, backed by a simple amber ellipse and a soft ground shadow. The product-first concept, unlike the architectural cabin and weekday-time layouts.",
+      "motion": "The photographed cup rises once onto its ground shadow while the large headline settles into place. The amber ellipse reveals from below, and the actions settle by 2.35 seconds.",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/homestead-brew-sumner/versions/hero-coffee-comes-first.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/homestead-brew-sumner--hero-coffee-comes-first.jpg",
+      "sha256": "b9cf9acac029f3e4af60a1db708c124cde0f7230041a988aba94dac320ecb277"
     }
   ]
 }
