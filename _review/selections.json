@@ -54,9 +54,11 @@
       "slug": "village-coffee-maple-valley",
       "business": "Village Coffee",
       "original_number": 1,
-      "status": "Hero selected · website review pending",
-      "note": "This is the exact option you named. Full page is ready to review.",
-      "site_approval": "pending"
+      "status": "Website approved",
+      "note": "Approved by you: option 1, Magnolia Morning, as the complete website.",
+      "site_approval": "approved",
+      "site_url": "https://hjsdesigns.github.io/demos/village-coffee-maple-valley/",
+      "index_sha256": "546aa77ccd9520a5df8bb4aa0395b621744d1a5906785288285616352eb60845"
     },
     {
       "name": "The Living Wall",

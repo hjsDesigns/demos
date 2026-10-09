@@ -14,6 +14,60 @@
 <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@700&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23F2A8C5'/%3E%3Ctext x='32' y='50' text-anchor='middle' font-family='Times New Roman,serif' font-weight='700' font-size='50' fill='%235B3F34'%3EV%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css?v=20261008-dawn">
+<style>
+
+/* Village Coffee hero variants — isolated from all approved sections. */
+#hero.vc-hero{height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));max-height:none;isolation:isolate;position:relative;overflow:hidden;display:block;font-family:var(--body)}
+#hero.vc-hero::before,#hero.vc-hero::after{content:none}
+#hero.vc-hero h1{font-family:var(--display);font-weight:700;line-height:.82;letter-spacing:-.06em;max-width:none;text-wrap:initial;margin:0;opacity:1;transform:none;animation:none;text-shadow:none}
+#hero.vc-hero p{margin:0}
+#hero.vc-hero img{display:block;width:100%;height:100%;object-fit:cover;animation:none;transform:none;filter:none}
+#hero.vc-hero .vc-label{font:700 10px/1.4 var(--body);text-transform:uppercase;letter-spacing:.2em}
+#hero.vc-hero .vc-actions{display:flex;align-items:center;gap:25px;position:relative;z-index:5}
+#hero.vc-hero .vc-button{display:inline-flex;align-items:center;justify-content:space-between;gap:34px;font-family:var(--body);font-weight:700;font-size:13px;min-height:52px;border:1px solid transparent;border-radius:4px;padding:14px 22px;background:var(--brand);color:var(--paper);transition:background .2s,color .2s,transform .2s}
+#hero.vc-hero .vc-button span{font-size:21px;line-height:1;font-weight:400}
+#hero.vc-hero .vc-link{font-family:var(--body);font-weight:600;font-size:12px;min-height:44px;display:inline-flex;align-items:center;border-bottom:1px solid currentColor;white-space:nowrap}
+#hero.vc-hero .vc-button:hover{background:var(--brand-bright);transform:translateY(-2px)}
+#hero.vc-hero .vc-button:focus-visible,#hero.vc-hero .vc-link:focus-visible{outline:3px solid var(--brand-text);outline-offset:5px}
+#hero.vc-hero .vc-body{font-size:17px;line-height:1.55;max-width:32ch}
+@keyframes vc-lift{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes vc-uncover{from{clip-path:inset(100% 0 0 0);transform:translateY(20px)}to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes vc-unfold{from{opacity:0;transform:perspective(1500px) rotateY(-14deg) translateX(65px)}to{opacity:1;transform:perspective(1500px) rotateY(0deg) translateX(0)}}
+@keyframes vc-settle{from{opacity:0;transform:translateY(65px) rotate(9deg)}to{opacity:1;transform:translateY(0) rotate(-3deg)}}
+@keyframes vc-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:700px){#hero.vc-hero .vc-body{font-size:14px}#hero.vc-hero .vc-label{font-size:9px;letter-spacing:.17em}#hero.vc-hero .vc-actions{gap:23px}#hero.vc-hero .vc-button{min-height:48px;font-size:12px;padding:12px 18px;gap:25px}}
+
+#hero.vc-magnolia{background:var(--bg);color:var(--ink)}
+#hero .vc-m-photo{position:absolute;left:39%;right:0;top:0;bottom:0;overflow:hidden;animation:vc-unfold 1.8s var(--ease) .15s both}
+#hero .vc-m-photo img{object-fit:cover;object-position:50% 100%}
+#hero .vc-m-panel{position:absolute;top:0;bottom:0;left:0;width:41%;padding:8vh 4.6% 8vh 5%;display:flex;flex-direction:column;align-items:flex-start;background:var(--bg);z-index:2}
+#hero .vc-m-panel .vc-label{color:var(--brand-text);margin-bottom:4.5vh;max-width:28ch}
+#hero.vc-magnolia h1{color:var(--brand-text);font-size:clamp(72px,9.8vw,163px);line-height:.83;letter-spacing:-.065em;position:relative;white-space:nowrap}
+#hero.vc-magnolia h1 span{display:block;animation:vc-uncover 1.3s var(--ease) .25s both}#hero.vc-magnolia h1>span:nth-child(2){animation-delay:.4s}
+#hero.vc-magnolia h1 .vc-m-dot{display:inline;color:var(--bronze);animation:none}
+#hero .vc-m-rule{width:92px;height:2px;background:var(--brand-text);margin-top:5vh;transform-origin:left;animation:vc-line 1.15s var(--ease) 1.05s both}
+#hero .vc-m-panel .vc-m-invite{font-family:var(--display);font-size:clamp(28px,3.15vw,46px);line-height:1.02;letter-spacing:-.035em;margin-top:3vh;animation:vc-lift .9s var(--ease) .7s both}
+#hero .vc-m-panel .vc-body{font-size:15px;margin-top:22px;max-width:31ch;color:var(--muted);animation:vc-lift .9s var(--ease) .95s both}
+#hero .vc-m-panel .vc-actions{margin-top:auto;animation:vc-lift .8s var(--ease) 1.3s both;gap:24px}
+#hero .vc-m-edge{position:absolute;right:20px;top:32px;writing-mode:vertical-rl;font-size:9px;letter-spacing:.25em;font-weight:700;color:var(--dark);z-index:4}
+@media(max-width:1050px){#hero .vc-m-panel{width:44%;padding-left:4%;padding-right:4%}#hero .vc-m-photo{left:42%}#hero.vc-magnolia h1{font-size:10vw}#hero .vc-m-panel .vc-actions{gap:15px;flex-wrap:wrap}#hero .vc-m-panel .vc-body{font-size:14px}}
+@media(max-width:700px){
+ #hero .vc-m-panel{height:40%;width:100%;bottom:auto;padding:26px 26px 22px;align-items:center;text-align:center}
+ #hero .vc-m-panel .vc-label{margin-bottom:16px;max-width:none;font-size:8px}
+ #hero.vc-magnolia h1{font-size:15.3vw;line-height:.85;letter-spacing:-.065em;white-space:normal;width:100%}
+ #hero.vc-magnolia h1>span{display:inline}#hero.vc-magnolia h1>span:first-child{margin-right:.1em}
+ #hero .vc-m-rule{display:none}#hero .vc-m-panel .vc-m-invite{font-family:var(--body);font-weight:500;font-size:16px;margin-top:15px;line-height:1.3}#hero .vc-m-invite br{display:none}#hero .vc-m-invite br::after{content:' '}
+ #hero .vc-m-panel .vc-body{display:none}
+ #hero .vc-m-panel .vc-actions{margin-top:auto;gap:24px;flex-wrap:nowrap}
+ #hero .vc-m-photo{top:40%;bottom:0;left:0;right:0;animation-name:vc-lift}#hero .vc-m-photo img{object-position:center bottom}
+ #hero .vc-m-edge{right:13px;top:auto;bottom:17px;writing-mode:initial;color:var(--paper);font-size:8px;letter-spacing:.18em;text-shadow:0 1px 8px var(--dark)}
+}
+@media(max-width:700px) and (max-height:730px){#hero .vc-m-panel{height:44%;padding:20px 22px 18px}#hero .vc-m-photo{top:44%}#hero.vc-magnolia h1{font-size:14.8vw}#hero .vc-m-panel .vc-label{margin-bottom:12px}#hero .vc-m-panel .vc-m-invite{margin-top:12px}}
+
+@media(prefers-reduced-motion:reduce){#hero.vc-hero .vc-p-curtain{display:none!important}#hero.vc-hero .vc-r-print{transform:rotate(-3deg)!important}#hero.vc-hero .vc-r-track{transform:rotate(12deg)!important}}
+
+@media(prefers-reduced-motion:reduce){#hero.vc-hero *,#hero.vc-hero *::before,#hero.vc-hero *::after{animation:none!important;transition:none!important;opacity:1!important;transform:none!important;clip-path:none!important}}
+</style>
 </head>
 <body>
 
@@ -41,56 +95,20 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero — FIRST LIGHT ON WITTE ROAD =====================
-       One real object: their hut at dawn under the magnolia (their own March 2026 post), shown WHOLE
-       (never cropped) over a blurred warm echo of itself. One event, deterministic, ~3 s, then still:
-       the scene starts pre-dawn → the string lights along the eave strike on with an LED stutter,
-       left to right → the service window warms up → the pink OPEN neon buzzes on → the day comes up
-       → the sign lockup (live type in the sign's face and colours) sets itself: VILLAGE, the pink V
-       disc blooms, COFFEE. Flourish: one shine across the name. Reduced motion lands on the final
-       frame. The mark IS the headline; h1 is sr-only. -->
-  <section class="hero dawn" id="hero">
-    <div class="hero-bg">
-      <img class="echo" src="images/hero.jpg" alt="" aria-hidden="true" width="1440" height="1630" decoding="async">
-    </div>
-    <div class="hero-inner">
-      <h1 class="sr-only">Village Coffee — drive-thru espresso on Witte Road in Maple Valley, Washington, open from 5 AM</h1>
-      <div class="mark" aria-hidden="true">
-        <span class="mk-word mk-top">Village</span>
-        <span class="mk-v"><b>V</b></span>
-        <span class="mk-word mk-bot">Coffee</span>
-      </div>
-      <p class="hero-sub"><span class="sub-long">Drive-thru espresso on Witte Road — up at 5 AM, every day, for eighteen years.</span><span class="sub-short">Drive-thru · up at 5 AM · 18 years</span></p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">See the board</a>
-        <a href="#hours" class="btn btn-ghost">Open now?</a>
-      </div>
-    </div>
-    <div class="ph">
-      <div class="ph-box">
-        <img src="images/hero.jpg" alt="Village Coffee's drive-thru hut on Witte Road at first light, blue roof and lit window under a blooming magnolia" width="1440" height="1630" fetchpriority="high" decoding="async">
-        <div class="night"></div>
-        <div class="win-glow"></div>
-        <div class="neon"></div>
-        <i class="bulb" style="--x:27.5%;--y:71.2%;--c:#FF8ECB;--d:.30s"></i>
-        <i class="bulb" style="--x:29.6%;--y:69.4%;--c:#FFB347;--d:.36s"></i>
-        <i class="bulb" style="--x:31.8%;--y:67.8%;--c:#7CE0A4;--d:.42s"></i>
-        <i class="bulb" style="--x:34.0%;--y:66.4%;--c:#FF8ECB;--d:.48s"></i>
-        <i class="bulb" style="--x:37.5%;--y:66.0%;--c:#FFB347;--d:.54s"></i>
-        <i class="bulb" style="--x:41.0%;--y:65.8%;--c:#7CE0A4;--d:.60s"></i>
-        <i class="bulb" style="--x:44.5%;--y:65.7%;--c:#FF8ECB;--d:.66s"></i>
-        <i class="bulb" style="--x:48.0%;--y:65.7%;--c:#FFB347;--d:.72s"></i>
-        <i class="bulb" style="--x:51.5%;--y:65.8%;--c:#7CE0A4;--d:.78s"></i>
-        <i class="bulb" style="--x:55.0%;--y:66.0%;--c:#FF8ECB;--d:.84s"></i>
-        <i class="bulb" style="--x:58.5%;--y:66.2%;--c:#FFB347;--d:.90s"></i>
-        <i class="bulb" style="--x:62.0%;--y:66.4%;--c:#7CE0A4;--d:.96s"></i>
-        <i class="bulb" style="--x:65.5%;--y:66.7%;--c:#FF8ECB;--d:1.02s"></i>
-        <i class="bulb" style="--x:69.0%;--y:67.2%;--c:#FFB347;--d:1.08s"></i>
-        <i class="bulb" style="--x:72.5%;--y:68.6%;--c:#7CE0A4;--d:1.14s"></i>
-        <i class="bulb" style="--x:76.0%;--y:70.0%;--c:#FF8ECB;--d:1.20s"></i>
-      </div>
-    </div>
-  </section>
+<!-- Magnolia Morning: Fresh air, a familiar stop and a slower breath before the day. Composition: An edge-to-edge photograph fills the right three-fifths; oversized rose Tinos lettering lives on a narrow cream column that steps into the image. On phones the full hut sits below the name. Arrival: The photo opens like a wide curtain, the two brand lines rise into place, and a fine rose line draws once; settled by 2.2 seconds. -->
+
+<section id="hero" class="hero vc-hero vc-magnolia" aria-labelledby="magnolia-title">
+ <figure class="vc-m-photo"><img src="images/hero.jpg" alt="Village Coffee's little blue-roofed hut framed by the real blooming magnolia on Witte Road" width="1440" height="1630" fetchpriority="high"></figure>
+ <div class="vc-m-panel">
+  <p class="vc-label">Maple Valley's neighborhood drive-thru</p>
+  <h1 id="magnolia-title"><span>Village </span><span>Coffee<span class="vc-m-dot" aria-hidden="true">.</span></span></h1>
+  <div class="vc-m-rule" aria-hidden="true"></div>
+  <p class="vc-m-invite">A little hut.<br> A lovely start.</p>
+  <p class="vc-body">Your coffee, your people.<br>Right here on Witte Road.</p>
+  <div class="vc-actions"><a class="vc-button" href="#menu">See the board <span aria-hidden="true">↗</span></a><a class="vc-link" href="#hours">Plan your stop</a></div>
+ </div>
+
+</section>
 
   <!-- ===================== #hours — the status band: live dot + 7 day rows + address. Hours live HERE only. -->
   <section class="status-band" id="hours">
