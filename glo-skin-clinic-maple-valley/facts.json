@@ -1,0 +1,56 @@
+{
+  "name": "GLO Skin Clinic and Spa",
+  "phone": "(425) 358-5617",
+  "address": "22212 SE 272nd St",
+  "hours": {
+    "Monday": "9:00 AM – 5:00 PM",
+    "Tuesday": "9:00 AM – 5:00 PM",
+    "Wednesday": "9:00 AM – 5:00 PM",
+    "Thursday": "9:00 AM – 5:00 PM",
+    "Friday": "9:00 AM – 5:00 PM",
+    "Saturday": "Closed",
+    "Sunday": "Closed"
+  },
+  "prices": [
+    "$30",
+    "$7",
+    "$15",
+    "$15",
+    "$85",
+    "$75",
+    "$65",
+    "$25",
+    "$110",
+    "$45",
+    "$85",
+    "$40",
+    "$70"
+  ],
+  "price_selector": ".price",
+  "header_selector": "header, .site-header",
+  "expected_sections": [
+    "top",
+    "hero",
+    "hours",
+    "treatments",
+    "skin",
+    "about",
+    "reviews",
+    "contact",
+    "cta"
+  ],
+  "allow_repeat": [
+    "9:00 AM – 5:00 PM",
+    "Closed",
+    "22212 SE 272nd St",
+    "Maple Valley, WA 98038",
+    "(425) 358-5617",
+    "info@gloskinclinic.com",
+    "Book with Michelle",
+    "Read the reviews on Facebook",
+    "Maple Valley · by appointment",
+    "GLO Skin Clinic and Spa",
+    "Skin Clinic & Co.",
+    "Facebook · recommends · June 2019"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Homestead Brew",
+  "phone": "(253) 891-3998",
+  "address": "1111 Fryar Ave",
+  "hours": {
+    "Mon": "5:30 am – 5:30 pm",
+    "Sat": "7:00 am – 4:00 pm",
+    "Sun": "7:30 am – 4:00 pm"
+  },
+  "header_selector": "header, .site-header",
+  "expected_sections": ["top", "hero", "hours", "menu", "signature", "gallery", "about", "reviews", "contact", "cta"],
+  "allow_repeat": [
+    "1111 Fryar Ave",
+    "(253) 891-3998",
+    "Sumner, WA 98390"
+  ]
+}

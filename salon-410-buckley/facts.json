@@ -1,0 +1,27 @@
+{
+  "name": "Salon 410",
+  "phone": "(206) 393-7950",
+  "address": "135 Jefferson Ave, Ste K, Buckley, WA 98321",
+  "hours": {
+    "Mon": "Closed",
+    "Tue": "9:30 AM – 5:30 PM",
+    "Wed": "9:30 AM – 5:30 PM",
+    "Thu": "9:30 AM – 5:30 PM",
+    "Fri": "9:30 AM – 5:30 PM",
+    "Sat": "10:00 AM – 4:00 PM",
+    "Sun": "Closed"
+  },
+  "prices": [],
+  "price_selector": ".price",
+  "header_selector": "header, .site-header",
+  "expected_sections": ["top", "hero", "hours", "services", "lookbook", "about", "reviews", "contact", "cta"],
+  "allow_repeat": [
+    "(206) 393-7950",
+    "Call (206) 393-7950",
+    "9:30 AM – 5:30 PM",
+    "kslundin1@gmail.com",
+    "135 Jefferson Ave, Ste K",
+    "Hair salon · Buckley",
+    "Yanka & Amanda"
+  ]
+}

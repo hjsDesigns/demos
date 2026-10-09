@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kelly Latte's — Drive-thru espresso, Kent · Auburn · Black Diamond WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Kelly Latte's — three drive-thru espresso stands in Kent (East Hill), Auburn and Black Diamond, WA. Coffee, energy drinks, shakes, smoothies and fresh mini donuts from 5 am. Run by Kelly and Chad McGraw since the first Kent stand.">
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Display: Arbutus — the nearest sturdy Google face to the cut-metal lettering on their gable signs (SIGN-FONT LAW, approximation, see CONTENT-BRIEF.md). Body: Karla. Two fonts. -->
+<link href="https://fonts.googleapis.com/css2?family=Arbutus&family=Karla:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Kelly Latte's — home">
+      <img src="images/logo.png" alt="" width="46" height="46">
+      <span class="wm">Kelly Latte's<small>Drive-thru espresso · 3 stands</small></span>
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">Menu</a>
+        <a href="#signature">The board</a>
+        <a href="#crew">Crew</a>
+        <a href="#about">Story</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Say hi</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- ===================== #hero — THE SIGN STRIKES ON =====================
+       One real object: their cup on the river-rock counter under the Auburn patio roof
+       (Google photo, 1920×1080; phones get the hand-held cup, 810×1080 — same object,
+       two real frames, never a rotation). The mark is live type in the sign's face on an
+       arc, exactly how the cut-metal gable sign reads. Event: the lettering strikes on with
+       a neon stutter (their walk-up window has a real neon), the logo's own cup drops in
+       and parks on the arch, steam lifts off the lid, a warm halo blooms — ~3 s, then still.
+       Reduced motion lands on the final frame. Nothing sits on the photo but this block. -->
+  <section class="hero sign-hero" id="hero">
+    <div class="hero-bg">
+      <picture>
+        <source media="(orientation: portrait)" srcset="images/hero-tall.jpg">
+        <img src="images/hero-wide.jpg" alt="Two Kelly Latte's cups — a hot latte and an iced shake — on the river-rock counter under the covered patio at the Auburn stand" width="1920" height="1080" fetchpriority="high">
+      </picture>
+    </div>
+    <div class="hero-spacer"></div>
+    <div class="hero-inner">
+      <h1 class="sr-only">Kelly Latte's — drive-thru espresso stands in Kent, Auburn and Black Diamond, Washington</h1>
+      <div class="mark" aria-hidden="true">
+        <span class="mark-halo"></span>
+        <svg class="mark-type" viewBox="0 -250 600 532" role="img" aria-label="Kelly Latte's">
+          <defs><path id="arcPath" d="M 34 150 A 330 330 0 0 1 566 150"/></defs>
+          <!-- the cup from their own mark (upscaled 4x, white knocked out), parked on the arch where the logo puts it; painted first so the letters tuck over its base -->
+          <g class="cup-g">
+            <image class="mark-cup" href="images/mark-cup.png" x="214" y="-228" width="180" height="181"/>
+            <path class="wisp w1" d="M 330 -232 C 322 -246, 340 -258, 330 -272 C 322 -286, 338 -296, 330 -310"/>
+            <path class="wisp w2" d="M 346 -228 C 340 -242, 356 -254, 348 -268 C 340 -282, 356 -292, 348 -306"/>
+            <path class="wisp w3" d="M 316 -236 C 308 -250, 324 -262, 316 -276 C 308 -288, 322 -298, 314 -312"/>
+          </g>
+          <text class="mk-kelly"><textPath href="#arcPath" startOffset="50%" text-anchor="middle"><tspan>K</tspan><tspan>E</tspan><tspan>L</tspan><tspan>L</tspan><tspan>Y</tspan></textPath></text>
+          <rect class="mk-bar" x="36" y="160" width="528" height="12" rx="3"/>
+          <text class="mk-lattes" x="300" y="268" text-anchor="middle"><tspan>L</tspan><tspan>A</tspan><tspan>T</tspan><tspan>T</tspan><tspan>E</tspan><tspan>’</tspan><tspan>S</tspan></text>
+        </svg>
+      </div>
+      <p class="hero-sub"><span class="sub-long">Drive-thru coffee, energy drinks, shakes and fresh mini donuts — three stands, open from 5 am.</span><span class="sub-short">Coffee · energy drinks · shakes · donuts</span></p>
+      <div class="hero-actions">
+        <a href="#hours" class="btn btn-primary">Find a stand</a>
+        <a href="#menu" class="btn btn-cream">See the menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours — three windows, one band =====================
+       Live dot + status per stand, address, all 7 day rows (Kent lit as the home stand).
+       Hours live HERE and nowhere else on the page. Black Diamond's hours aren't published
+       anywhere we could verify — the card carries the address and a link, no invented rows. -->
+  <section class="status-band stands-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <h2>Three windows, <em>one Kelly's</em></h2>
+        <p class="stands-intro">Same crew, same drinks at every stand. Pull up to any of them.</p>
+      </div>
+      <div class="stands">
+        <article class="stand stand-featured">
+          <div class="stand-head">
+            <h3>Kent · East Hill</h3>
+            <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+          </div>
+          <p class="status-addr">
+            24220 132nd Ave SE, Kent, WA 98042<br>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kelly+Latte%27s+24220+132nd+Ave+SE+Kent+WA+98042" target="_blank" rel="noopener">Open in Maps ↗</a> · <a href="tel:+12536309051">(253) 630-9051</a>
+          </p>
+          <ul class="hours-list" id="hoursList">
+            <li data-days="1"><span class="day">Monday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="2"><span class="day">Tuesday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="3"><span class="day">Wednesday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="4"><span class="day">Thursday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="5"><span class="day">Friday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="6"><span class="day">Saturday</span><span class="time">6 am – 7 pm</span></li>
+            <li data-days="0"><span class="day">Sunday</span><span class="time">7 am – 7 pm</span></li>
+          </ul>
+          <figure class="stand-sign">
+            <img src="images/kent-sign.jpg" alt="The Kelly Latte's gable sign and reader board at the Kent stand, 24220 132nd Ave SE" width="304" height="250" loading="lazy">
+            <figcaption>The sign out front on 132nd</figcaption>
+          </figure>
+        </article>
+
+        <article class="stand">
+          <div class="stand-head">
+            <h3>Auburn · Black Diamond Rd</h3>
+            <p class="live-line" id="statusLineAuburn"><span class="dot"></span><span id="statusTextAuburn">checking hours…</span></p>
+          </div>
+          <p class="status-addr">
+            33428 192nd Ave SE, Auburn, WA 98092<br>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kelly+Latte%27s+33428+192nd+Ave+SE+Auburn+WA+98092" target="_blank" rel="noopener">Open in Maps ↗</a> · <a href="tel:+12537355282">(253) 735-5282</a>
+          </p>
+          <ul class="hours-list hours-compact" id="hoursListAuburn">
+            <li data-days="1"><span class="day">Monday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="2"><span class="day">Tuesday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="3"><span class="day">Wednesday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="4"><span class="day">Thursday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="5"><span class="day">Friday</span><span class="time">5 am – 7 pm</span></li>
+            <li data-days="6"><span class="day">Saturday</span><span class="time">6 am – 6 pm</span></li>
+            <li data-days="0"><span class="day">Sunday</span><span class="time">6 am – 7 pm</span></li>
+          </ul>
+          <p class="stand-note">Two drive-thru lanes, a walk-up window, and a covered patio with the fountain and fire pit.</p>
+        </article>
+
+        <article class="stand">
+          <div class="stand-head">
+            <h3>Black Diamond</h3>
+          </div>
+          <p class="status-addr">
+            29201 217th Pl SE, Black Diamond, WA 98010<br>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kelly+Latte%27s+29201+217th+Pl+SE+Black+Diamond+WA" target="_blank" rel="noopener">Open in Maps ↗</a>
+          </p>
+          <p class="stand-note">Our newest window. Today's hours and specials go up on <a href="https://www.instagram.com/kellylattes/" target="_blank" rel="noopener">@kellylattes</a>.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #menu — the window =====================
+       STOREFRONT BELOW THE HOURS: the real walk-up window with the neon, then four title
+       cards that unroll (ARROW LAW: a down-chevron that flips). Items are theirs —
+       the favorites on their Kent listing, their Instagram, and the board photographed at
+       the window. Prices are the 12 oz column of that board; the fine print says so. -->
+  <section class="section section-alt" id="menu">
+    <div class="wrap">
+      <figure class="storefront reveal">
+        <img src="images/storefront.jpg" alt="The walk-up window at Kelly Latte's Auburn stand with the red neon reading Fresh Mini Donuts" width="810" height="1080" loading="lazy">
+        <figcaption>The walk-up window — the neon isn't kidding, the mini donuts are made fresh</figcaption>
+      </figure>
+      <div class="section-head reveal">
+        <p class="eyebrow">The window</p>
+        <h2>Tap a board, <em>see what's on it</em></h2>
+        <p>Coffee, energy drinks, shakes and the donuts — the same four boards that hang at every window. Sizes run 8 to 32 oz.</p>
+      </div>
+      <div class="boards">
+        <details class="board reveal" open>
+          <summary><span class="board-title">Coffee &amp; espresso</span><span class="board-sub">Lattes, cold brew, nitro, white coffee</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="board-body">
+            <ul class="menu-list">
+              <li><span class="name">Iced Nitro with Sweet Cream</span><span class="desc">A customer favorite on the Kent listing — nitro cold brew, sweet cream on top.</span></li>
+              <li><span class="name">Lattes, hot or iced</span><span class="desc">Any flavor on the wall. Banana bread, the reader board's own pick.</span></li>
+              <li><span class="name">White Coffee Shot</span><span class="desc">Lighter roast, more kick — order it in anything.</span></li>
+              <li><span class="name">Cold brew with real pumpkin cold foam</span><span class="desc">Fall only. Topped with pumpkin pie spice.</span></li>
+              <li><span class="name">Egg Nog latte</span><span class="desc">Winter only. Rich, creamy, perfectly spiced.</span></li>
+              <li><span class="name">Extra shots, one to five</span><span class="price">$1.65 – $2.95</span></li>
+            </ul>
+            <figure class="board-photo">
+              <img src="images/cup-pumpkin.jpg" alt="A Kelly Latte's pumpkin spice latte held up next to a pumpkin spice muffin top in its wrapper" loading="lazy" width="1200" height="1600">
+              <figcaption>Pumpkin spice latte &amp; a muffin top — August 2026</figcaption>
+            </figure>
+          </div>
+        </details>
+
+        <details class="board reveal">
+          <summary><span class="board-title">Energy drinks &amp; sodas</span><span class="board-sub">Electric Blue, Italian sodas, floats</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="board-body">
+            <ul class="menu-list">
+              <li><span class="name">Electric Blue Energy</span><span class="price">$3.50</span><span class="desc">12 oz · up to 24 oz</span></li>
+              <li><span class="name">Energy Italian Soda</span><span class="price">$3.65</span><span class="desc">12 oz · energy drink, flavored, fizzy</span></li>
+              <li><span class="name">Italian Soda</span><span class="price">$2.35</span><span class="desc">12 oz · from 8 oz kid size</span></li>
+              <li><span class="name">Root Beer Float</span><span class="price">$3.45</span><span class="desc">12 oz</span></li>
+              <li><span class="name">Dreamsicle · Sunburst · Orange Sherbert</span><span class="desc">The cream-and-citrus sodas regulars keep naming.</span></li>
+              <li><span class="name">Fruit Lemonade</span><span class="price">$2.35</span><span class="desc">12 oz</span></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="board reveal">
+          <summary><span class="board-title">Shakes &amp; smoothies</span><span class="board-sub">Ice cream shakes, all-natural fruit smoothies</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="board-body">
+            <ul class="menu-list">
+              <li><span class="name">All Natural Fruit Smoothie · 12 oz</span><span class="price">$3.50</span></li>
+              <li><span class="name">All Natural Fruit Smoothie · 16 oz</span><span class="price">$4.00</span></li>
+              <li><span class="name">All Natural Fruit Smoothie · 20 oz</span><span class="price">$4.50</span></li>
+              <li><span class="name">All Natural Fruit Smoothie · 24 oz</span><span class="price">$4.75</span></li>
+              <li><span class="name">Ice cream shakes</span><span class="desc">Real pumpkin ice cream shake in the fall. Piña colada mango when the board says so.</span></li>
+              <li><span class="name">Chai — spiced, vanilla or Oregon</span><span class="price">$3.20</span><span class="desc">12 oz</span></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="board reveal">
+          <summary><span class="board-title">Mini donuts &amp; breakfast</span><span class="board-sub">Made fresh at the window, all day</span><i class="chev" aria-hidden="true"></i></summary>
+          <div class="board-body">
+            <ul class="menu-list">
+              <li><span class="name">Powdered Mini Donuts</span><span class="desc">The one everybody mentions. Light, fluffy, warm.</span></li>
+              <li><span class="name">Cinnamon sugar mini donuts</span><span class="desc">Same donut, the other coat.</span></li>
+              <li><span class="name">Breakfast Croissant · Breakfast Sandwich</span><span class="desc">All-day breakfast, drive-thru fast.</span></li>
+              <li><span class="name">Gluten Free Oatmeal</span></li>
+              <li><span class="name">Coffee Cake · Crumbcake · Oatmeal cookies · Scones</span><span class="desc">The bakery case, restocked through the week.</span></li>
+              <li><span class="name">Pumpkin spice cake pops &amp; muffin tops</span><span class="desc">September through the holidays.</span></li>
+            </ul>
+            <figure class="board-photo">
+              <img src="images/treats-pumpkin.jpg" alt="Kelly Latte's pumpkin treats laid out on fall leaves — a pumpkin spice cookie, a cake pop, a pumpkin muffin top and a frosted pumpkin sugar cookie" loading="lazy" width="1268" height="1364">
+              <figcaption>“All the yummy pumpkin treats” — first day of fall, 2026</figcaption>
+            </figure>
+          </div>
+        </details>
+      </div>
+      <p class="menu-fine reveal">Prices shown are the 12 oz column from the board at the window, as photographed on the Kent listing. Ask at the window for today's specials and 32 oz upgrades.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature — THE READER BOARD =====================
+       Every stand has a lit reader board out by the road under the gable sign. Tap a
+       special, the board spells it out — every line is one they've actually run, on the
+       board or on Instagram. Tap the lit one again to clear. Section 4; Toddler Law. -->
+  <section class="section" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Out by the road</p>
+        <h2>The reader board, <em>yours to flip</em></h2>
+        <p>Every stand has one under the sign, and it's how the specials get announced. Tap one — the board spells it out.</p>
+      </div>
+      <div class="board-wrap reveal">
+        <div class="rboard" aria-live="polite" aria-atomic="true">
+          <div class="rb-top">Coffee · Smoothies</div>
+          <div class="rb-led" id="rbLed" data-idle="STOP BY AND SAY HI">STOP BY AND SAY HI</div>
+          <div class="rb-post"></div>
+        </div>
+        <div class="rb-pills" role="group" aria-label="Specials">
+          <button type="button" class="pill" aria-pressed="false" data-msg="STOP BY AND SPOIL YOURSELF WITH A BANANA BREAD LATTE!">Banana bread latte</button>
+          <button type="button" class="pill" aria-pressed="false" data-msg="DIVE INTO A PINA COLADA MANGO SMOOTHIE!">Mango smoothie</button>
+          <button type="button" class="pill" aria-pressed="false" data-msg="NEVER TOO EARLY FOR PUMPKIN — COLD BREW WITH REAL PUMPKIN COLD FOAM">Pumpkin cold foam</button>
+          <button type="button" class="pill" aria-pressed="false" data-msg="EGG NOG LATTES ARE HERE! EGG NOG &amp; MINI DONUTS, A MATCH MADE IN HEAVEN">Egg nog latte</button>
+          <button type="button" class="pill" aria-pressed="false" data-msg="ICED NITRO WITH SWEET CREAM — ASK FOR A WHITE COFFEE SHOT">Nitro</button>
+        </div>
+        <p class="rb-hint">Tap one. Tap it again to clear.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #crew — the faces at the window =====================
+       Their own Instagram, 2026: the crew, named the way the stand named them. -->
+  <section class="section section-alt" id="crew">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">At the window</p>
+        <h2>The faces you'll see <em>more than family</em></h2>
+        <p>Kelly said it in 2009 and it still runs the place: “You see your customers more regularly than your family.” Here's who's pouring.</p>
+      </div>
+      <div class="crew-strip">
+        <figure class="print reveal"><img src="images/crew-rachael.jpg" alt="Rachael at the Kent drive-thru window on her birthday, flowers in hand" loading="lazy" width="1495" height="1600"><figcaption>Rachael · the Kent window</figcaption></figure>
+        <figure class="print reveal"><img src="images/crew-jacey.jpg" alt="Jacey behind the espresso machine with pink birthday balloons" loading="lazy" width="1329" height="1499"><figcaption>Jacey · makes up the new drinks</figcaption></figure>
+        <figure class="print reveal"><img src="images/crew-grace.jpg" alt="Grace in a red shirt behind the counter at the Auburn stand" loading="lazy" width="1200" height="1600"><figcaption>Grace · the Auburn window</figcaption></figure>
+        <figure class="print reveal"><img src="images/crew-chloe.jpg" alt="Chloe holding blue birthday balloons behind the counter" loading="lazy" width="1200" height="1600"><figcaption>Chloe · June birthday</figcaption></figure>
+        <figure class="print reveal"><img src="images/crew-hannah.jpg" alt="Hannah behind the counter under a 20th birthday banner" loading="lazy" width="1199" height="1600"><figcaption>Hannah · turned 20 at the stand</figcaption></figure>
+        <figure class="print reveal"><img src="images/crew-brenna.jpg" alt="Brenna at the counter under a Happy Birthday banner" loading="lazy" width="1179" height="1179"><figcaption>Brenna · “so lucky to have you”</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about — Kelly & Chad =====================
+       From the Auburn Reporter, Sept 16, 2009, the day-after-opening story; the photo is
+       that article's (468 px — shown at natural size inside a blurred echo, never blown up). -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="story">
+        <div class="story-prints">
+          <figure class="print print-echo reveal">
+            <div class="echo"><img src="images/owners-2009.jpg" alt="Manager Marciea Dubois with owners Kelly and Chad McGraw at the new Auburn stand in 2009, the reader board behind them" loading="lazy" width="468" height="351"></div>
+            <figcaption>Marciea, Kelly &amp; Chad at the new Auburn stand · Auburn Reporter, Sept 2009</figcaption>
+          </figure>
+          <figure class="print reveal">
+            <img src="images/auburn-lot.jpg" alt="The Auburn stand today — the covered patio building, lawn and flower beds along the Auburn–Black Diamond road" loading="lazy" width="1918" height="1080">
+            <figcaption>The Auburn lot now — the two acres they bought in 2009</figcaption>
+          </figure>
+        </div>
+        <div class="story-copy reveal">
+          <p class="eyebrow">Kelly &amp; Chad McGraw</p>
+          <h2>Started in Kent. <em>Still first-name.</em></h2>
+          <p class="lede">Kelly and Chad McGraw ran a small espresso stand in Kent, then bought two undeveloped acres along the Auburn–Black Diamond road near their house and built the second one from the dirt up. Black Diamond made three.</p>
+          <p>Kelly had already been pulling shots for twenty years when the Auburn stand opened in August 2009 — a covered, alpine-style patio with a fountain, a fire pit and river-rock benches, a front-service window, and a reader board facing the road. Chad runs his own paving company; the lot was the easy part.</p>
+          <p>Every cup still carries the mission statement and Kelly's own cell number. “People are shocked by that,” she said, “but I want to know how things are going with our customers.” Chad put it simpler: “We want to get to know our customers on a first-drink basis and first-name basis.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       VARIANT B (the sanctioned link-out): no review on any reachable listing came with a
+       sourceable name + profile photo pair (Google and Yelp are bot-walled; Restaurantji and
+       Wanderlog publish names but no faces), so no quotes are shown. Every number here is
+       the listing's own — see review-notes in CONTENT-BRIEF.md. -->
+  <section class="section section-alt" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What the regulars say</p>
+        <h2>Rated by the people <em>in the drive-thru line</em></h2>
+      </div>
+      <div class="rev-linkout reveal">
+        <p class="rev-score"><b>4.4</b><span class="rev-stars" aria-label="4.4 out of 5 stars">★★★★☆</span></p>
+        <p class="rev-count">167 ratings for the Kent stand · listed on Restaurantji</p>
+        <p class="rev-note">The Auburn stand sits at 4.7 from 688 Google reviews. Consistency is the word that keeps coming up — “all 3 locations are fabulous,” one August 2026 review put it. Read them live, then come judge for yourself.</p>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Kelly+Latte%27s+24220+132nd+Ave+SE+Kent+WA+98042" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Say hi</p>
+          <h2>Pull up, <em>or write to the stand</em></h2>
+          <ol class="steps">
+            <li><h3>Pick a window</h3><p>Kent, Auburn or Black Diamond — the addresses and today's hours are up top.</p></li>
+            <li><h3>Drive through or walk up</h3><p>Two lanes and a walk-up window at Auburn, so nobody waits long.</p></li>
+            <li><h3>Tell them what you like</h3><p>First-drink basis, first-name basis. That's the whole policy.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+12536309051">(253) 630-9051</a> — Kent</span>
+            <span>✉️ <a href="mailto:kellylattes@hotmail.com">kellylattes@hotmail.com</a></span>
+            <span>📷 <a href="https://www.instagram.com/kellylattes/" target="_blank" rel="noopener">@kellylattes ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's it about?<select name="topic"><option>A question for the stand</option><option>Applying for a job</option><option>A thank-you for the crew</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="Which stand, and what can we do for you?"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — the Kelly's crew will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta ===================== -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Since the first Kent stand</p>
+        <h2>Three windows. <em>One line that moves.</em></h2>
+      </div>
+      <div class="numbers reveal">
+        <div class="num"><b><span class="count" data-to="3">3</span></b><span>stands — Kent, Auburn, Black Diamond</span></div>
+        <div class="num"><b><span class="count" data-to="5">5</span><i> am</i></b><span>first pour, Monday to Friday</span></div>
+        <div class="num"><b><span class="count" data-to="7">7</span></b><span>days a week, every stand</span></div>
+        <div class="num"><b><i>est.</i> <span class="count" data-to="2009" data-from="1950">2009</span></b><span>the Auburn stand, built from a bare lot</span></div>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="#hours" class="btn btn-primary">Find a stand</a>
+        <a href="tel:+12536309051" class="btn btn-ghost">Call Kent</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <span class="plate"><img src="images/logo.png" alt=""></span>
+          <span class="wm">Kelly Latte's<small>Coffee · Energy drinks · Shakes</small></span>
+        </div>
+        <p>Drive-thru espresso stands in Kent, Auburn and Black Diamond, Washington. Owned by Kelly and Chad McGraw.</p>
+        <div class="soc">
+          <a href="https://www.instagram.com/kellylattes/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <h4>Home stand</h4>
+        <p>24220 132nd Ave SE<br>Kent, WA 98042</p>
+        <p><a href="tel:+12536309051">(253) 630-9051</a><br><a href="mailto:kellylattes@hotmail.com">kellylattes@hotmail.com</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#menu">Menu</a><br><a href="#signature">The board</a><br><a href="#crew">Crew</a><br><a href="#about">Story</a><br><a href="#contact">Say hi</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Kelly Latte's</span>
+      <span>Kent · Auburn · Black Diamond, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

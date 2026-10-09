@@ -1,0 +1,22 @@
+{
+  "name": "Village Coffee",
+  "phone": "(425) 432-4675",
+  "address": "23630 Witte Rd SE, Maple Valley, WA 98038",
+  "hours": {
+    "Monday": "5:00 am – 7:00 pm",
+    "Tuesday": "5:00 am – 7:00 pm",
+    "Wednesday": "5:00 am – 7:00 pm",
+    "Thursday": "5:00 am – 7:00 pm",
+    "Friday": "5:00 am – 7:00 pm",
+    "Saturday": "6:00 am – 7:00 pm",
+    "Sunday": "6:00 am – 6:00 pm"
+  },
+  "prices": ["$1.80","$2.25","$2.60","$3.15","$2.60","$3.15","$2.85","$3.40","$2.85","$3.40","$3.10","$3.65","$1.70","$1.85","$1.70","$1.85","$2.85","$3.10","$2.00","$2.25","$2.00","$2.25",
+             "$1.90","$2.30","$1.80","$1.95","$2.60","$3.15","$2.85","$3.40","$2.85","$3.40","$3.10","$3.65","$2.60","$2.85","$2.85","$3.10","$3.20","$3.45",
+             "$3.20","$3.45","$3.35","$3.65","$3.65","$3.85","+50¢",
+             "$10.00","+30¢","+50¢","+75¢","$2.50"],
+  "price_selector": ".price",
+  "header_selector": "header, .site-header",
+  "expected_sections": ["top","hero","hours","menu","signature","about","gallery","reviews","contact","cta"],
+  "allow_repeat": ["(425) 432-4675","23630 Witte Rd SE","Village Coffee","Maple Valley · drive-thru","Maple Valley, WA 98038","The board","Pour one","The crew","Find the hut"]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Kelly Latte's",
+  "phone": "(253) 630-9051",
+  "address": "24220 132nd Ave SE",
+  "hours": {
+    "Monday": "5 am – 7 pm",
+    "Tuesday": "5 am – 7 pm",
+    "Wednesday": "5 am – 7 pm",
+    "Thursday": "5 am – 7 pm",
+    "Friday": "5 am – 7 pm",
+    "Saturday": "6 am – 7 pm",
+    "Sunday": "7 am – 7 pm"
+  },
+  "price_selector": ".board[open] .price",
+  "prices": [
+    "$1.65 – $2.95"
+  ],
+  "expected_sections": [
+    "hero",
+    "hours",
+    "menu",
+    "signature",
+    "crew",
+    "about",
+    "reviews",
+    "contact",
+    "cta"
+  ],
+  "allow_repeat": [
+    "5 am – 7 pm",
+    "6 am – 7 pm",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Open in Maps ↗",
+    "(253) 630-9051",
+    "kellylattes@hotmail.com",
+    "checking hours…",
+    "24220 132nd Ave SE",
+    "All Natural Fruit Smoothie",
+    "Find a stand",
+    "Kelly Latte's",
+    "Instagram",
+    "Kent, WA 98042",
+    "STOP BY AND SAY HI"
+  ],
+  "_price_note": "Closed <details> boards render no text, so the harness checks the board that opens by default (coffee). The other ten board prices are listed in CONTENT-BRIEF.md."
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Euphoriq Skin & Beauty",
+  "phone": "(425) 318-2328",
+  "address": "914 Cherry Ave",
+  "hours": {
+    "Monday": "Closed",
+    "Tuesday": "1:00 – 7:00 pm",
+    "Wednesday": "10:00 am – 7:00 pm",
+    "Thursday": "10:00 am – 7:00 pm",
+    "Friday": "10:00 am – 7:00 pm",
+    "Saturday": "10:00 am – 7:00 pm",
+    "Sunday": "Closed"
+  },
+  "expected_sections": ["hero", "hours", "services", "signature", "about", "reviews", "contact", "close"],
+  "allow_repeat": ["(425) 318-2328", "Euphoriq Skin & Beauty", "Book a visit", "10:00 am – 7:00 pm", "Closed", "Lash lift", "Services", "Katherine", "Hours"]
+}

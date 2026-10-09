@@ -1,0 +1,592 @@
+/* ============================================================
+   KELLY LATTE'S — Kent · Auburn · Black Diamond, WA
+   MIRROR LAW: the stands are small grey rooms of stainless steel and black
+   counters behind a white gable sign with a royal-blue cup on it; the Auburn
+   patio is timber, river rock and flowers. Light ground (the rooms are bright),
+   ONE cream, never white. Palette sampled from their own mark + photos:
+     cup indigo (logo, sampled)  ............ #2F2F8C  --brand
+     the cup's shadow side ................... #1A1B4A  --dark
+     latte foam / powdered-donut gold ........ #E8B55A  --warm
+     cream (the sign panel, warmed) .......... #F2ECE0  --bg
+     the counter's charcoal .................. #1B1B2A  --ink
+   Type: Arbutus = nearest sturdy Google face to the cut-metal arched lettering
+   on the gable signs (approximation, heavy wedge-serif slab); Karla body.
+   ============================================================ */
+:root{
+  --brand:#2F2F8C;          /* the cup's indigo — buttons, dots, highlighted words */
+  --brand-text:#26267A;     /* same hue, deeper, for small text on cream */
+  --brand-bright:#3E3EA8;   /* hover */
+  --accent:#3C8A69;         /* checks, success */
+  --accent-soft:#6FB596;
+  --ink:#1B1B2A;            /* text, footer ground */
+  --bg:#F2ECE0;             /* page ground — ONE cream */
+  --bg-2:#E8DFCE;           /* deeper cream, alternating bands */
+  --paper:#F8F3E8;          /* cards — a hair lighter, never white */
+  --muted:#645F58;
+  --line:#DACFBB;
+  --dark:#1A1B4A;           /* dark panels — the cup's shadow indigo */
+  --dark-2:#25276A;
+  --warm:#E8B55A;           /* latte-foam gold — highlighted word on dark */
+  --tint:#DEE0EE;           /* the hours band — indigo washed into cream */
+  --status-open:#10B981;    /* STATUS LIGHT LAW */
+  --status-closed:#DC2626;  /* STATUS LIGHT LAW */
+
+  --display:'Arbutus','Rockwell','Roboto Slab',Georgia,serif;
+  --body:'Karla','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+
+  --header-h:72px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);
+  --ease-2:cubic-bezier(.34,1.56,.64,1);   /* the cup's park-in overshoot */
+  --r:18px;
+}
+
+
+/* ============================================================
+   Z-INDEX MAP (QA lesson from EA — keep it documented)
+     60  .site-header   sticky header, always on top
+     40  #main-nav      the dropped-down mobile menu (inside header)
+      3  .hero-inner    hero text block
+      2  .hero-bg::after film grain
+      1  .hero-bg::before scrim
+      0  .hero-bg img   photo
+   Nothing else on the page sets a z-index above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+figure,blockquote{margin:0} /* UA default 1em 40px shrank .print frames ~80px inside their column (cast-iron-queen, 2026-09-06) */
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  border-bottom:var(--rule)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo img{height:46px;width:auto}
+.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+/* live open/closed pill in the header */
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--status-open) 55%,transparent);background:color-mix(in srgb,var(--status-open) 14%,transparent)}
+.hdr-live.is-open .dot{background:var(--status-open);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:var(--status-closed)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1100px){.hdr-live .txt-long{display:none}}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
+@media (max-width:420px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   Sized to the phone screen minus the sticky header (100svh under a sticky
+   header overshoots by the header's height — EA lesson). Content sits in
+   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
+   to opposite edges, so it can't collide on short screens. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
+/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
+   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
+   light-ground AND a dark-ground build (it's the same token the .hero fallback
+   background above uses), where --ink flips to a light color on a dark-ground site
+   and would wash the photo pale instead of darkening it. */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+/* film grain */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
+.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* entrance stagger (only when JS is on, so no-JS never hides text) */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.sub-short{display:none}
+@media (max-width:520px){
+  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--status-open);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--status-closed)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--status-closed)}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.proof .ico{color:var(--accent)}
+.proof .star{color:var(--warm)}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.78)}
+/* Eyebrow labels sit inside blocks whose own `X p` rule (0,1,1) outranks
+   `.eyebrow` (0,1,0): `.section-head p` and `.story-copy p` were repainting
+   them muted/ink at body size with no bottom margin, on light AND dark
+   grounds (caught on rose-spa-bonney-lake, 2026-09-06). Re-assert the label
+   at higher weight; qa/verify.py checks the computed color vs --brand-text. */
+.section-head .eyebrow,.story-copy .eyebrow{font-size:12px;color:var(--brand-text);margin:0 0 14px}
+.section-dark .section-head .eyebrow,.section-dark .story-copy .eyebrow{color:var(--warm)}
+/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .hero-bg img{animation:none}
+  .hdr-live.is-open .dot{animation:none}
+}
+
+/* ============================================================ SERVICES (cards grid) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
+.card .ico svg{width:26px;height:26px}
+.card h3{font-size:21px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================ MENU (priced list) — removable */
+.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
+.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:800;font-size:16.5px}
+.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
+.tnum{font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
+
+/* ============================================================ GALLERY (framed prints) */
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print:hover{transform:rotate(0) scale(1.01)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* ============================================================ SIGNATURE (per-client gadget goes here)
+   No styles by design. The gadget for each client is custom — build its CSS
+   in a block below this comment, using only tokens. EA's went here:
+   the live day-timeline + the rate calculator. */
+.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+
+/* ============================================================ ABOUT (owner story + photo) */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
+.team{margin-top:clamp(36px,5vw,64px)}
+.team h3{font-size:22px;margin:0 0 16px}
+.faces{display:flex;flex-wrap:wrap;gap:10px}
+.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
+.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
+.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
+.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ REVIEWS (real name + real face)
+   REVIEW ATTRIBUTION LAW (2026-09-06): the reviewer's face is a real <img> of
+   the real person, from the same source as the quote.
+   THERE IS NO INITIALS DISC IN HERE AND THERE NEVER WILL BE. The `.face .ini`
+   rule in ABOUT above is for the TEAM chips only — copying it into a .rev is
+   the factory's single most-repeated law breach (106 of 192 builds). A face
+   you can't source is not a styling problem: use a different attributable
+   review, or ship .rev-linkout below (the sanctioned link-out).
+   Tokens only, and every token used here flips correctly on a dark-ground
+   build — no `color:var(--dark)` foregrounds — so this component is NOT on the
+   dark-ground override list at the top of this file. Renders correctly inside
+   .section, .section-alt and .section-dark. */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,22px);align-items:stretch}
+.rev{display:flex;flex-direction:column;gap:14px;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:24px 22px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s,background .3s}
+.rev:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
+/* THE FACE — an <img>, 1:1, real pixels of the real reviewer. --bg-2 is only
+   the colour behind the image while it decodes, never a stand-in for a face. */
+.rev-face{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
+  background:var(--bg-2);border:2px solid var(--bg-2)}
+.rev-who{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.15;letter-spacing:-.01em;color:var(--ink)}
+.rev-who small{display:block;font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-top:5px;line-height:1.35}
+.rev-stars{color:var(--warm);font-size:13px;letter-spacing:.08em;white-space:nowrap;align-self:start;margin-top:4px}
+.rev blockquote{font-size:16px;line-height:1.6;color:var(--ink)}
+.rev-all{margin:22px 0 0;font-size:14.5px}
+.rev-all a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.rev-all a:hover{border-bottom-color:var(--brand)}
+
+/* ---- THE TRIPWIRE (clock, 2026-09-17) -------------------------------------
+   The comment above tells a builder not to copy `.face .ini` into a review.
+   A comment is a weak barrier against copy-paste, and copy-paste is exactly how
+   this breach reached 106 of 192 builds. So the banned pattern is made to FAIL
+   LOUDLY instead of shipping quietly: any initials/monogram disc inside a review,
+   and any `.rev-face` that is not a real <img>, renders as a red breach block
+   that no visual QA pass or screenshot can miss. Deleting these rules to "fix"
+   the red box is the one wrong move — the box means the markup, not the CSS, is
+   wrong. Fix it with a real avatar <img>, a different attributable review, or
+   .rev-linkout below. Nothing legitimate ever matches these selectors: reviewer
+   faces are <img class="rev-face">, and .face .ini stays valid for TEAM chips,
+   which never live inside .rev / .revs. */
+.rev .ini, .revs .ini,
+.rev [class*="init"], .revs [class*="init"],
+.rev [class*="monogram"], .revs [class*="monogram"],
+.rev-face:not(img){
+  all:unset !important;
+  display:grid !important;place-items:center !important;
+  min-width:52px !important;min-height:52px !important;padding:8px !important;
+  background:#b3261e !important;color:#fff !important;border-radius:6px !important;
+  outline:4px dashed #ffd400 !important;outline-offset:3px !important;
+  font:800 9px/1.15 var(--mono,ui-monospace,monospace) !important;
+  text-align:center !important;text-transform:uppercase !important;letter-spacing:.04em !important;
+}
+.rev .ini::after, .revs .ini::after,
+.rev [class*="init"]::after, .revs [class*="init"]::after,
+.rev [class*="monogram"]::after, .revs [class*="monogram"]::after,
+.rev-face:not(img)::after{
+  content:"LAW BREACH — FABRICATED REVIEWER FACE. Use a real avatar <img>, another attributable review, or .rev-linkout." !important;
+}
+
+/* VARIANT B — the sanctioned fallback, finished to the same standard as a card */
+.rev-linkout{display:grid;justify-items:start;gap:12px;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(24px,4vw,40px);box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.rev-linkout[hidden]{display:none}  /* author display:grid would otherwise beat the UA [hidden] rule */
+.rev-score{display:flex;align-items:center;gap:14px;margin:0}
+.rev-score b{font-family:var(--display);font-weight:800;font-size:clamp(44px,6vw,64px);line-height:1;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums}
+.rev-score .rev-stars{font-size:clamp(17px,2.2vw,21px);margin:0;align-self:center}
+.rev-count{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.rev-note{margin:0;font-size:16px;color:var(--ink);max-width:52ch}
+.rev-linkout .btn{margin-top:6px}
+/* dark ground — a .section-dark band, or a genuinely dark-venue build */
+.section-dark .rev,.section-dark .rev-linkout{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.section-dark .rev:hover{background:rgba(255,255,255,.08);border-color:color-mix(in srgb,var(--warm) 45%,transparent)}
+.section-dark .rev-face{border-color:rgba(255,255,255,.22)}
+.section-dark .rev-who,.section-dark .rev-score b{color:#fff}
+.section-dark .rev-who small,.section-dark .rev-count{color:rgba(255,255,255,.62)}
+.section-dark .rev blockquote,.section-dark .rev-note{color:rgba(255,255,255,.88)}
+.section-dark .rev-all a{color:var(--warm);border-bottom-color:color-mix(in srgb,var(--warm) 45%,transparent)}
+@media (max-width:980px){.revs{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.revs{grid-template-columns:1fr}}
+@media (max-width:560px){
+  /* phones: the stars drop under the name so a long real name never squeezes */
+  .rev-head{grid-template-columns:auto 1fr}
+  .rev-face{grid-row:1 / span 2;align-self:start}
+  .rev-stars{grid-column:2;margin:0}
+  .rev blockquote{font-size:15.5px}
+  .rev-score{gap:11px}
+}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND (dark, with count-up numbers) */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
+.num b i{font-style:normal;color:var(--warm)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
+.foot .plate img{height:44px;width:auto}
+.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#fff}
+.foot .soc{display:flex;gap:10px;margin-top:8px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+/* ============================================================
+   KELLY LATTE'S — site block (appended to style.css by the build; tokens only)
+   ============================================================ */
+
+/* Arbutus ships one weight; every display element that asked for 800 gets 400 so
+   the browser never fakes a bold. Slight tracking so the chunky slab breathes. */
+h1,h2,h3,h4,.logo .wm,.foot .wm,.num b,.rev-score b,.steps li::before,.rev-who{font-weight:400;letter-spacing:0}
+.logo .wm{font-size:20px}
+.section-head h2{letter-spacing:-.005em}
+
+/* ---------- HERO: the sign strikes on ---------- */
+.sign-hero .hero-bg img{animation:none;object-position:50% 40%;transform:none}
+.sign-hero .hero-bg::before{
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 78%,transparent) 0%,color-mix(in srgb,var(--dark) 46%,transparent) 42%,color-mix(in srgb,var(--dark) 8%,transparent) 78%,transparent 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 22%,transparent) 0%,transparent 28%,transparent 55%,color-mix(in srgb,var(--dark) 74%,transparent) 100%)}
+@media (max-width:760px){
+  .sign-hero .hero-bg img{object-position:50% 38%}
+  .sign-hero .hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 34%,transparent) 0%,color-mix(in srgb,var(--dark) 4%,transparent) 26%,color-mix(in srgb,var(--dark) 48%,transparent) 56%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}
+}
+.sign-hero .hero-inner{padding-top:0}
+/* the ground fades up from the cup's indigo — first beat */
+.js .sign-hero .hero-bg{opacity:0;animation:groundUp .7s var(--ease) forwards}
+@keyframes groundUp{to{opacity:1}}
+
+.mark{position:relative;width:min(88vw,560px);margin:0 0 14px}
+.mark-type{display:block;width:100%;height:auto;overflow:visible;position:relative;z-index:2}
+.mark-type text{font-family:var(--display);font-size:112px;letter-spacing:.06em;fill:var(--bg);
+  filter:drop-shadow(0 4px 10px color-mix(in srgb,var(--dark) 70%,transparent))}
+.mark-type .mk-lattes{font-size:116px;letter-spacing:.08em}
+.mark-type .mk-bar{fill:var(--bg);filter:drop-shadow(0 3px 8px color-mix(in srgb,var(--dark) 60%,transparent))}
+/* the halo — one bloom behind the lettering, stays */
+.mark-halo{position:absolute;left:-12%;right:-12%;top:30%;bottom:-14%;border-radius:50%;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 55%,color-mix(in srgb,var(--warm) 42%,transparent),color-mix(in srgb,var(--warm) 10%,transparent) 48%,transparent 72%);
+  opacity:0;transform:scale(.8)}
+.mark-cup{filter:drop-shadow(0 10px 18px color-mix(in srgb,var(--dark) 55%,transparent));transform-box:fill-box;transform-origin:50% 100%}
+.wisp{fill:none;stroke:var(--bg);stroke-width:5;stroke-linecap:round;opacity:0;stroke-dasharray:140;stroke-dashoffset:140}
+
+/* ---- the event: strike (letters, neon stutter) → the cup drops and parks → steam → bloom → still ---- */
+.js .mark-type tspan{opacity:0;animation:strike .9s steps(1,end) forwards}
+.js .mk-kelly tspan:nth-child(1){animation-delay:.55s}
+.js .mk-kelly tspan:nth-child(2){animation-delay:.62s}
+.js .mk-kelly tspan:nth-child(3){animation-delay:.69s}
+.js .mk-kelly tspan:nth-child(4){animation-delay:.76s}
+.js .mk-kelly tspan:nth-child(5){animation-delay:.83s}
+.js .mk-lattes tspan:nth-child(1){animation-delay:.98s}
+.js .mk-lattes tspan:nth-child(2){animation-delay:1.03s}
+.js .mk-lattes tspan:nth-child(3){animation-delay:1.08s}
+.js .mk-lattes tspan:nth-child(4){animation-delay:1.13s}
+.js .mk-lattes tspan:nth-child(5){animation-delay:1.18s}
+.js .mk-lattes tspan:nth-child(6){animation-delay:1.23s}
+.js .mk-lattes tspan:nth-child(7){animation-delay:1.28s}
+@keyframes strike{0%{opacity:0}6%{opacity:1}11%{opacity:.15}18%{opacity:1}24%{opacity:.35}30%{opacity:1}100%{opacity:1}}
+.js .mk-bar{transform:scaleX(0);transform-origin:50% 50%;animation:barOn .55s var(--ease) .9s forwards}
+@keyframes barOn{to{transform:scaleX(1)}}
+.js .mark-cup{opacity:0;transform:translateY(-110px) rotate(-16deg);animation:cupPark .62s var(--ease-2) 1.45s forwards}
+@keyframes cupPark{to{opacity:1;transform:none}}
+.js .wisp{animation:wisp 1.5s ease-out forwards}
+.js .w1{animation-delay:2.05s}.js .w2{animation-delay:2.2s}.js .w3{animation-delay:2.35s}
+@keyframes wisp{0%{opacity:0;stroke-dashoffset:140;transform:translateY(6px)}25%{opacity:.85}70%{opacity:.5;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0;transform:translateY(-18px)}}
+.js .mark-halo{animation:bloom 1.1s var(--ease) 1.95s forwards}
+@keyframes bloom{to{opacity:1;transform:scale(1)}}
+/* hero copy arrives after the mark, not with it */
+.js .sign-hero .hero-sub{animation-delay:1.9s}
+.js .sign-hero .hero-actions{animation-delay:2.1s}
+.reduce .mark-type tspan,.reduce .mk-bar,.reduce .mark-cup,.reduce .mark-halo,.reduce .wisp,.reduce .sign-hero .hero-bg{animation:none}
+.reduce .mark-type tspan,.reduce .sign-hero .hero-bg,.reduce .mark-cup,.reduce .mark-halo{opacity:1}
+.reduce .mk-bar,.reduce .mark-cup{transform:none}
+.reduce .mark-halo{transform:scale(1)}
+.reduce .wisp{opacity:0}
+@media (max-width:520px){
+  .mark{width:min(88vw,400px);margin-bottom:10px}
+  .sign-hero .hero-inner{padding-bottom:clamp(28px,6vh,56px)}
+}
+
+/* ---------- HOURS: three stands ---------- */
+.stands-band .wrap{display:block}
+.stands-band .status-head{max-width:none;margin-bottom:clamp(22px,3vw,36px)}
+.stands-band .status-head h2{margin-bottom:8px}
+.stands-intro{color:var(--muted);font-size:17px;margin:0}
+.stands{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:clamp(14px,2vw,22px);align-items:start}
+.stand{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:22px 20px 20px;box-shadow:0 30px 60px -44px color-mix(in srgb,var(--dark) 50%,transparent)}
+.stand-featured{border-color:color-mix(in srgb,var(--brand) 45%,var(--line));box-shadow:0 34px 70px -40px color-mix(in srgb,var(--brand) 55%,transparent)}
+.stand-head{display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
+.stand h3{font-size:24px;line-height:1.1}
+.stand .live-line{font-size:14px}
+.stand .status-addr{padding-left:0;margin:0 0 14px;font-size:15px}
+.stand .hours-list{box-shadow:none;background:var(--bg)}
+.stand .hours-list li{padding:10px 14px;font-size:14.5px}
+.hours-compact li{padding:8px 14px;font-size:13.5px}
+.hours-compact li.today .day::after{content:""}
+.stand .hours-list .time{white-space:nowrap}
+.stand-note{font-size:14px;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.stand-note a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.stand-sign{margin:16px 0 0;display:flex;align-items:center;gap:12px}
+.stand-sign img{width:112px;height:auto;border-radius:10px;border:var(--rule);flex:none}
+.stand-sign figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+@media (max-width:980px){.stands{grid-template-columns:1fr 1fr}.stand-featured{grid-column:1 / -1}}
+@media (max-width:620px){.stands{grid-template-columns:1fr}.stand-featured{grid-column:auto}}
+
+/* ---------- MENU: storefront below the hours, then boards that unroll ---------- */
+.storefront{margin:0 auto clamp(32px,5vw,56px);max-width:520px;background:var(--paper);padding:12px 12px 14px;border:var(--rule);
+  box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transform:rotate(-.6deg)}
+.storefront img{width:100%;height:auto;display:block}
+.storefront figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:12px;text-align:center;line-height:1.5}
+.boards{display:grid;gap:12px}
+.board{background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.board[open]{border-color:color-mix(in srgb,var(--brand) 40%,var(--line));box-shadow:0 30px 50px -36px color-mix(in srgb,var(--dark) 55%,transparent)}
+.board summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;grid-template-areas:"t c" "s c";align-items:center;column-gap:16px;padding:20px 22px;min-height:64px}
+.board summary::-webkit-details-marker{display:none}
+.board-title{grid-area:t;font-family:var(--display);font-size:clamp(22px,2.6vw,30px);line-height:1.1;color:var(--ink)}
+.board-sub{grid-area:s;font-size:14px;color:var(--muted);margin-top:4px}
+.board .chev{grid-area:c;width:40px;height:40px;border-radius:50%;background:var(--brand);position:relative;flex:none;transition:transform .35s var(--ease),background .2s}
+.board .chev::before{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;border-right:3px solid #fff;border-bottom:3px solid #fff;transform:translate(-50%,-68%) rotate(45deg)}
+.board[open] .chev{transform:rotate(180deg)}
+.board summary:hover .chev{background:var(--brand-bright)}
+.board-body{display:grid;grid-template-columns:1.3fr .8fr;gap:clamp(18px,3vw,36px);padding:4px 22px 24px;border-top:var(--rule);padding-top:16px;animation:unroll .45s var(--ease)}
+@keyframes unroll{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.board-body .menu-list li{padding:11px 0}
+.board-body .menu-list .name{font-size:16px}
+.board-photo{background:var(--bg);padding:10px 10px 12px;border:var(--rule);align-self:start;max-width:320px;justify-self:end}
+.board-photo img{width:100%;height:auto;display:block}
+.board-photo figcaption{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px;text-align:center;line-height:1.5}
+@media (max-width:760px){.board-body{grid-template-columns:1fr}.board-photo{justify-self:start;max-width:360px}}
+
+/* ---------- SIGNATURE: the reader board ---------- */
+.board-wrap{display:grid;gap:18px;max-width:760px}
+.rboard{background:var(--paper);border:var(--rule);border-radius:14px 14px 6px 6px;padding:14px 14px 0;box-shadow:0 34px 70px -40px color-mix(in srgb,var(--dark) 60%,transparent);position:relative}
+.rb-top{font-family:var(--display);font-size:clamp(18px,2.6vw,26px);text-transform:uppercase;letter-spacing:.06em;color:var(--brand);text-align:center;padding:2px 0 12px;border-bottom:3px solid var(--brand)}
+.rb-led{margin:12px 0 0;min-height:7.2em;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px 18px;border-radius:6px;
+  background:
+    radial-gradient(circle at 2px 2px,rgba(255,255,255,.06) 1px,transparent 1.6px) 0 0/8px 8px,
+    linear-gradient(180deg,var(--ink),var(--dark));
+  color:var(--warm);font-family:var(--mono);font-weight:700;font-size:clamp(18px,3vw,26px);line-height:1.35;letter-spacing:.06em;text-transform:uppercase;
+  text-shadow:0 0 10px color-mix(in srgb,var(--warm) 70%,transparent),0 0 24px color-mix(in srgb,var(--warm) 35%,transparent);word-break:break-word;max-width:100%}
+.rb-led.typing::after{content:"▮";margin-left:2px;animation:blink .5s steps(1,end) infinite}
+@keyframes blink{50%{opacity:0}}
+.rb-post{height:34px;margin:0 auto;width:60%;border-top:var(--rule);display:flex;justify-content:space-between}
+.rb-post::before,.rb-post::after{content:"";width:14px;height:100%;background:linear-gradient(90deg,var(--line),var(--bg-2));border-radius:0 0 4px 4px}
+.rb-pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{font-family:var(--body);font-weight:800;font-size:15px;padding:12px 18px;min-height:48px;border-radius:999px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s,transform .2s var(--ease)}
+.pill:hover{border-color:var(--brand);transform:translateY(-2px)}
+.pill[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.rb-hint{font-size:13.5px;color:var(--muted);margin:0}
+@media (max-width:520px){.rb-led{min-height:8.4em;font-size:17px;padding:18px 12px}.pill{flex:1 1 auto;padding:11px 12px;font-size:14px}}
+
+/* ---------- CREW ---------- */
+.crew-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.crew-strip .print{padding:12px 12px 32px}
+.crew-strip .print img{aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+.crew-strip .print:nth-child(3n+1){transform:rotate(-1.1deg)}
+.crew-strip .print:nth-child(3n+2){transform:rotate(.7deg)}
+.crew-strip .print:nth-child(3n){transform:rotate(-.5deg)}
+.crew-strip .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.crew-strip{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.crew-strip{grid-template-columns:1fr 1fr;gap:12px}.crew-strip .print{padding:8px 8px 22px;transform:none}.crew-strip .print figcaption{font-size:10px;margin-top:10px}}
+
+/* ---------- ABOUT: then & now ---------- */
+.story-prints{display:grid;gap:clamp(18px,3vw,28px)}
+.story-prints .print:nth-child(2){transform:rotate(.9deg)}
+.story-prints .print:nth-child(2):hover{transform:rotate(0) scale(1.01)}
+/* a 468 px press photo shown at its natural size inside a blurred warm echo — never blown up */
+.print-echo .echo{position:relative;overflow:hidden;background:var(--bg-2);display:grid;place-items:center;min-height:300px}
+.print-echo .echo::before{content:"";position:absolute;inset:-30px;background:url('../images/owners-2009.jpg') center/cover;filter:blur(22px) saturate(1.2);opacity:.75}
+.print-echo .echo img{position:relative;width:468px;max-width:100%;height:auto}
+@media (max-width:900px){.story-prints{grid-template-columns:1fr 1fr}.story-prints .print:nth-child(2){transform:none}}
+@media (max-width:620px){.story-prints{grid-template-columns:1fr}}
+
+/* ---------- CTA numbers: Arbutus is one weight ---------- */
+.num b i{font-family:var(--body);font-weight:800;font-size:.42em;letter-spacing:.02em;vertical-align:middle}
