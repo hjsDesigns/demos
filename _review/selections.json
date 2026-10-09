@@ -54,21 +54,21 @@
   ],
   "conditional": [
     {
-      "name": "Extra Good",
-      "idea": "A vivid indigo coffee poster throws monumental lettering around a real iced drink and lands with playful, confident energy.",
-      "file": "hero-extra-good.html",
+      "name": "Extra Good · Coffee & a Treat",
+      "idea": "The chosen second layout, with Kelly’s own branded coffee-and-muffin photograph.",
+      "file": "hero-extra-good-coffee-and-treat.html",
       "emotion": "The cheerful pick-me-up of a favorite drink: expressive, lively and a little indulgent.",
-      "composition": "Full indigo canvas, large cream wordmark, an angled real iced-latte photograph, bold side typography, fine graphic accents and a cream location strip. On phones a two-line masthead leads into the large diagonal photograph.",
-      "motion": "The masthead arrives first, the iced-latte print glides in and settles at a slight angle, and side lettering steps into place once; everything stops by 1.9 seconds.",
+      "composition": "Full indigo canvas, large cream wordmark, an angled real coffee-and-muffin photograph, bold side typography, fine graphic accents and a cream location strip. On phones a two-line masthead leads into the large diagonal photograph.",
+      "motion": "The masthead arrives first, the coffee-and-muffin print glides in and settles at a slight angle, and side lettering steps into place once; everything stops by 1.9 seconds.",
       "number": 2,
-      "url": "https://hjsdesigns.github.io/demos/kelly-lattes-kent/versions/hero-extra-good.html",
-      "thumbnail": "thumbs/heroes-2026-10-09/kelly-lattes-kent--hero-extra-good.jpg?v=5a7c6e2caa6b",
-      "sha256": "6f3a37587ffb3fd13b11c64425e4bab0433e23533de12ce5b960f24c3f24ea1a",
+      "url": "https://hjsdesigns.github.io/demos/kelly-lattes-kent/versions/hero-extra-good-coffee-and-treat.html",
+      "thumbnail": "thumbs/heroes-2026-10-09/kelly-lattes-kent--hero-extra-good-coffee-and-treat.jpg?v=0c00a6827ca1",
+      "sha256": "c3f0db6284b6a78b4bdbc3a50596ebe82d64cc4ffb4cf97d60db8b54a407e5b2",
       "slug": "kelly-lattes-kent",
       "business": "Kelly Latte’s",
       "original_number": 2,
-      "status": "Photo change pending",
-      "note": "Option 2’s design is chosen, subject to replacing this photo."
+      "status": "New photo ready · review needed",
+      "note": "The chosen second layout now uses Kelly’s own coffee-and-muffin photo. The new photo still needs your verdict."
     }
   ],
   "unresolved": [
@@ -82,7 +82,7 @@
     },
     {
       "business": "Euphoriq, GLO and Salon 410",
-      "note": "New sets are being made from your latest direction."
+      "note": "Three new options for each are ready in the full gallery; no winner has been chosen."
     }
   ],
   "batch_note": "These nine businesses are the full Claude handoff. There are no additional sites in this batch."
