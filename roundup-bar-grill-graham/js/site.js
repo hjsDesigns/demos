@@ -19,8 +19,8 @@ var HOURS = {
     2: [10, 24],                      // Tuesday
     3: [10, 24],                      // Wednesday
     4: [10, 24],                      // Thursday
-    5: [10, 26],                      // Friday     10 am – 2 am
-    6: [9, 26]                        // Saturday   9 am – 2 am
+    5: [10, 25.5],                    // Friday     10 am – 1:30 am (roundupbar.my.canva.site, Oct 9 2026)
+    6: [9, 25.5]                      // Saturday   9 am – 1:30 am (roundupbar.my.canva.site, Oct 9 2026)
   }
 };
 
