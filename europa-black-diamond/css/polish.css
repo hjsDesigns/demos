@@ -1,0 +1,83 @@
+/* Europa primary only — a closer look at the room, the food and the porch. */
+.eu-polish #hero{padding-bottom:46px}
+.eu-polish #hero .rup-cb-invite{max-width:none;font-size:clamp(32px,3vw,44px)}
+.eu-polish #hero .eu-welcome-detail{display:flex;align-items:center;gap:22px;margin:26px 0}
+.eu-polish #hero .eu-welcome-detail img{width:100px;height:auto;aspect-ratio:3/4;border:4px solid var(--paper);object-fit:contain;flex:none;display:block}
+.eu-polish #hero .eu-copy{margin:0;font-size:16px;line-height:1.5}
+.eu-polish #hero .eu-copy span{display:block;color:var(--warm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:11px}
+.eu-polish #hero .rup-cb-window{max-height:495px;box-shadow:10px 11px 0 color-mix(in srgb,var(--warm) 13%,transparent);overflow:visible}
+.eu-polish #hero .eu-room-caption{position:absolute;top:calc(100% + 21px);right:-8px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--warm)}
+.eu-polish #hours .wrap{padding-top:44px;padding-bottom:44px}
+.eu-polish #hours h2{font-size:clamp(29px,3.1vw,40px)}
+.eu-polish #menu{padding-bottom:42px}
+.eu-polish #menu .print,.eu-polish #about .print{padding:9px 9px 0;transform:none;box-shadow:none;background:transparent;border:0;border-top:1px solid var(--accent)}
+.eu-polish #menu .print figcaption,.eu-polish #about .print figcaption{padding:14px 0 0;margin:0;text-align:left}
+.eu-polish #favorites{background:var(--bg);padding-top:40px;border-top:1px solid var(--line)}
+.eu-polish #favorites .section-head{margin-bottom:30px}
+.eu-polish .eu-menu-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,70px);align-items:center}
+.eu-polish .eu-menu-photo{padding:8px;border:1px solid var(--line);background:var(--paper)}
+.eu-polish .eu-menu-photo img{display:block;width:100%;height:auto;object-fit:contain}
+.eu-polish .eu-menu-photo figcaption{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);padding:15px 6px 8px}
+.eu-polish #favorites .menu-groups{grid-template-columns:1fr;gap:28px}
+.eu-polish #favorites .menu-fine{margin:25px 0 0}
+.eu-polish #gallery{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.eu-polish #gallery .section-head{max-width:none;display:flex;justify-content:space-between;gap:40px;align-items:start}
+.eu-polish #gallery .section-head h2{font-size:clamp(31px,4vw,48px);margin:0}
+.eu-polish #gallery .section-head .eyebrow{margin-top:10px}
+.eu-polish #gallery .prints{grid-template-columns:1fr .85fr 1fr;align-items:start;gap:30px}
+.eu-polish #gallery .print{padding:0;background:transparent;border:0;box-shadow:none;transform:none;transition:none}
+.eu-polish #gallery .print:nth-child(1){margin-top:70px}
+.eu-polish #gallery .print:nth-child(3){margin-top:160px}
+.eu-polish #gallery .print img{width:100%;height:auto;object-fit:contain;border:6px solid var(--paper)}
+.eu-polish #gallery .print figcaption{text-transform:none;text-align:left;letter-spacing:0;font-family:var(--display);font-size:17px;line-height:1.4;color:var(--ink);padding-top:16px;margin-top:15px;border-top:1px solid var(--accent)}
+.eu-polish #gallery .print figcaption span{display:block;font-family:var(--body);font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:6px}
+.eu-polish #about{background:var(--bg)}
+.eu-polish #about .story{grid-template-columns:.8fr 1.2fr;gap:clamp(35px,8vw,110px)}
+.eu-polish #about .print{max-width:350px}
+.eu-polish #reviews{padding-top:44px;padding-bottom:44px;border-block:1px solid var(--line);background:var(--tint)}
+.eu-polish #reviews .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center}
+.eu-polish #reviews .section-head{margin:0}
+.eu-polish #reviews h2{font-size:clamp(29px,3.1vw,40px);margin:0}
+.eu-polish #reviews .rev-linkout{background:transparent;border:0;box-shadow:none;padding:0;gap:8px}
+.eu-polish #reviews .rev-note{margin:0;max-width:37ch}
+.eu-polish #reviews .rev-score b{font-size:46px}
+.eu-polish #contact{background:var(--bg)}
+.eu-polish #contact .steps li::before{border-radius:50%;width:32px;height:32px;font-size:14px}
+.eu-polish #contact .steps li::after{left:15px;top:38px}
+.eu-polish #contact .steps li{padding-left:48px}
+@media(min-width:701px) and (max-width:1000px){
+ .eu-polish #hero .eu-welcome-detail{gap:12px;flex-wrap:wrap}
+ .eu-polish #hero .eu-welcome-detail img{width:80px}
+ .eu-polish #hero .eu-copy{font-size:14px}
+ .eu-polish #hero .rup-cb-invite{font-size:31px}
+ .eu-polish #hero .eu-room-caption{font-size:7px;letter-spacing:.08em}
+ .eu-polish .eu-menu-layout{grid-template-columns:.9fr 1.1fr;gap:28px}
+ .eu-polish #about .story{gap:40px}
+}
+@media(max-width:700px){
+ .eu-polish #hero{padding-bottom:30px;gap:25px}
+ .eu-polish #hero .eu-room{gap:42px}
+ .eu-polish #hero .rup-cb-invite{font-size:26px}
+ .eu-polish #hero .eu-welcome-detail{gap:20px;margin:20px auto;justify-content:center;text-align:left}
+ .eu-polish #hero .eu-welcome-detail img{width:72px;border-width:3px}
+ .eu-polish #hero .eu-copy{font-size:14px;line-height:1.45}
+ .eu-polish #hero .eu-copy span{font-size:8px;margin-bottom:6px}
+ .eu-polish #hero .eu-room-caption{top:calc(100% + 15px);font-size:7px;letter-spacing:.12em}
+ .eu-polish #menu{padding-bottom:35px}
+ .eu-polish #favorites{padding-top:36px}
+ .eu-polish .eu-menu-layout{grid-template-columns:1fr;gap:32px}
+ .eu-polish #favorites .menu-groups{gap:28px}
+ .eu-polish .eu-menu-photo{max-width:310px;margin:0 auto;width:100%}
+ .eu-polish #gallery .section-head{display:block}
+ .eu-polish #gallery .section-head .eyebrow{margin-top:0}
+ .eu-polish #gallery .prints{grid-template-columns:1fr 1fr;gap:28px 18px}
+ .eu-polish #gallery .print:nth-child(1){margin-top:0;grid-column:1/-1;width:85%}
+ .eu-polish #gallery .print:nth-child(2){grid-column:1;grid-row:2}
+ .eu-polish #gallery .print:nth-child(3){margin-top:55px;grid-column:2;grid-row:2}
+ .eu-polish #gallery .print img{border-width:4px}
+ .eu-polish #gallery .print figcaption{font-size:14px;padding-top:12px;margin-top:11px}
+ .eu-polish #gallery .print figcaption span{font-size:8px;letter-spacing:.1em}
+ .eu-polish #about .story{grid-template-columns:1fr;gap:30px}
+ .eu-polish #about .print{max-width:260px;width:100%}
+ .eu-polish #reviews .wrap{grid-template-columns:1fr;gap:28px}
+}

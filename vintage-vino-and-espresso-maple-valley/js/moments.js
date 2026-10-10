@@ -1,1 +1,18 @@
-(function(){const choices={coffee:['Your day starts here.','Espresso, iced coffee or a tea, with a drive-through for the days you’re on the move.'],bite:['A little time together.','Breakfast sandwiches, bagels and small plates: pick something good and settle in with a friend.'],wine:['Let the evening linger.','A glass of wine, a board to share, and a comfortable room. Check the latest happenings for live music and creative nights.']};document.querySelectorAll('[data-moment]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-moment]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));const chosen=choices[button.dataset.moment];document.getElementById('moment-title').textContent=chosen[0];document.getElementById('moment-copy').innerHTML=chosen[1]+' <a href="#hours">See when to stop by ↓</a>';}));})();
+/* A single tap exchanges a real photo; no navigation or automatic rotation. */
+(function () {
+  const buttons = Array.from(document.querySelectorAll('[data-moment]'));
+  const photos = Array.from(document.querySelectorAll('[data-moment-photo]'));
+  const announcement = document.getElementById('moment-announcement');
+  if (!buttons.length || !photos.length) return;
+  photos.forEach(figure => {
+    const photo = figure.querySelector('img');
+    const preload = new Image();
+    preload.src = photo.src;
+  });
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const choice = button.dataset.moment;
+    buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+    photos.forEach(figure => { figure.hidden = figure.dataset.momentPhoto !== choice; });
+    if (announcement) announcement.textContent = 'Showing: ' + button.textContent.trim();
+  }));
+})();
