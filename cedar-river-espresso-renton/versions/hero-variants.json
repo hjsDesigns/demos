@@ -1,0 +1,17 @@
+{
+  "default": "Little Stop, Big Day",
+  "variants": [
+    {
+      "name": "Little Stop, Big Day",
+      "file": "little-stop-big-day.html"
+    },
+    {
+      "name": "The Morning Window",
+      "file": "the-morning-window.html"
+    },
+    {
+      "name": "Good Things to Go",
+      "file": "good-things-to-go.html"
+    }
+  ]
+}
