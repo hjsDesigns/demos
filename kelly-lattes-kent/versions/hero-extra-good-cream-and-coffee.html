@@ -60,8 +60,8 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
 @media(max-width:760px){.kh-extra .extra-print{box-shadow:10px 10px 0 var(--kh-shadow)}}
 
 @media(prefers-reduced-motion:reduce){.hero.kh *,.hero.kh *::before,.hero.kh *::after{animation:none!important;transition:none!important;opacity:1}.hero.kh .kh-cover{display:none!important}}</style>
-</head>
-<body>
+<link rel="stylesheet" href="../css/personality.css?v=20261011"></head>
+<body class="personality-page">
 
 <!-- ===================== HEADER / NAV ===================== -->
 <header class="site-header">
@@ -106,7 +106,7 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
       <div class="status-head">
         <p class="eyebrow">When to find us</p>
         <h2>Three windows, <em>one Kelly's</em></h2>
-        <p class="stands-intro">Same crew, same drinks at every stand. Pull up to any of them.</p>
+        <p class="stands-intro">Three neighborhood stops. Choose the window that’s on your way.</p>
       </div>
       <div class="stands">
         <article class="stand stand-featured">
@@ -181,10 +181,10 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
       </figure>
       <div class="section-head reveal">
         <p class="eyebrow">The window</p>
-        <h2>Tap a board, <em>see what's on it</em></h2>
-        <p>Coffee, energy drinks, shakes and the donuts — the same four boards that hang at every window. Sizes run 8 to 32 oz.</p>
+        <h2>Coffee in hand.<br><em>A little extra, too.</em></h2>
+        <p>Espresso classics, bright cold drinks, shakes and fresh mini donuts. Start with what sounds good; each board opens to the details.</p>
       </div>
-      <div class="boards">
+      <div class="kelly-shortcuts" aria-label="Find a menu category"><p class="eyebrow">What brings you to the window?</p><div><button type="button" data-kelly-board="0"><b>Coffee first</b><span>Espresso, nitro &amp; seasonal favorites ↗</span></button><button type="button" data-kelly-board="3"><b>A bite to go</b><span>Mini donuts, breakfast &amp; bakery treats ↗</span></button><button type="button" data-kelly-board="1"><b>Something bright</b><span>Energy drinks, sodas &amp; floats ↗</span></button></div></div><div class="boards">
         <details class="board reveal" open>
           <summary><span class="board-title">Coffee &amp; espresso</span><span class="board-sub">Lattes, cold brew, nitro, white coffee</span><i class="chev" aria-hidden="true"></i></summary>
           <div class="board-body">
@@ -196,10 +196,7 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
               <li><span class="name">Egg Nog latte</span><span class="desc">Winter only. Rich, creamy, perfectly spiced.</span></li>
               <li><span class="name">Extra shots, one to five</span><span class="price">$1.65 – $2.95</span></li>
             </ul>
-            <figure class="board-photo">
-              <img src="../images/cup-pumpkin.jpg" alt="A Kelly Latte's pumpkin spice latte held up next to a pumpkin spice muffin top in its wrapper" loading="lazy" width="1200" height="1600">
-              <figcaption>Pumpkin spice latte &amp; a muffin top — August 2026</figcaption>
-            </figure>
+
           </div>
         </details>
 
@@ -257,7 +254,7 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
        Every stand has a lit reader board out by the road under the gable sign. Tap a
        special, the board spells it out — every line is one they've actually run, on the
        board or on Instagram. Tap the lit one again to clear. Section 4; Toddler Law. -->
-  <section class="section" id="signature">
+  <section class="section section-dark" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Out by the road</p>
@@ -344,7 +341,7 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
         <p class="rev-score"><b>4.4</b><span class="rev-stars" aria-label="4.4 out of 5 stars">★★★★☆</span></p>
         <p class="rev-count">167 ratings for the Kent stand · listed on Restaurantji</p>
         <p class="rev-note">Been here? Share your experience and help the next visitor know what to expect.</p>
-        <a class="btn btn-primary" data-google-review="write" href="https://search.google.com/local/writereview?placeid=ChIJ0ScVhIxekFQR0YOui4jPhHo" target="_blank" rel="noopener noreferrer">Leave a Google review ↗</a><p class="rev-note" style="font-size:14px;margin-top:12px">Opens Google in a new tab. Google sign-in required.</p>
+        <a class="btn btn-primary" data-google-review="write" href="https://search.google.com/local/writereview?placeid=ChIJ0ScVhIxekFQR0YOui4jPhHo" target="_blank" rel="noopener noreferrer">Leave a Google review ↗</a><p class="rev-note" style="font-size:14px;margin-top:12px">Review form opens on Google in a new tab. Google sign-in required.</p>
       </div>
     </div>
   </section>
@@ -358,7 +355,7 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
           <h2>Pull up, <em>or write to the stand</em></h2>
           <ol class="steps">
             <li><h3>Pick a window</h3><p>Kent, Auburn or Black Diamond — the addresses and today's hours are up top.</p></li>
-            <li><h3>Drive through or walk up</h3><p>Two lanes and a walk-up window at Auburn, so nobody waits long.</p></li>
+            <li><h3>Drive through or walk up</h3><p>Auburn has two drive-thru lanes and a walk-up window. Choose the stop that fits your route.</p></li>
             <li><h3>Tell them what you like</h3><p>First-drink basis, first-name basis. That's the whole policy.</p></li>
           </ol>
           <div class="contact-lines">
@@ -367,18 +364,7 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
             <span>📷 <a href="https://www.instagram.com/kellylattes/" target="_blank" rel="noopener">@kellylattes ↗</a></span>
           </div>
         </div>
-        <form class="contact-form reveal">
-          <input type="hidden" name="access_key" value="">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-          <label class="full">What's it about?<select name="topic"><option>A question for the stand</option><option>Applying for a job</option><option>A thank-you for the crew</option></select></label>
-          <label class="full">Message<textarea name="msg" placeholder="Which stand, and what can we do for you?"></textarea></label>
-          <button type="submit" class="btn btn-primary">Send it over</button>
-          <p class="form-success">Thanks — the Kelly's crew will get back to you soon.</p>
-          <p class="form-fine">We'll only use this to reply to you.</p>
-        </form>
+        <aside class="kelly-notebook"><p class="eyebrow">Good to know before you go</p><h3>Pick the right window.</h3><details open><summary>Which stop has a place to linger?</summary><p>The Auburn stand has two drive-thru lanes, a walk-up window and a covered patio. Kent and Black Diamond have their own location details above.</p></details><details><summary>What if I’m bringing breakfast?</summary><p>Mini donuts, breakfast sandwiches, croissants, oatmeal and bakery treats are part of the menu. Ask your stand about the day’s selection.</p></details><details><summary>Where do seasonal drinks show up?</summary><p>Check the real reader boards and Kelly’s Instagram for current specials. The favorites shown here are drawn from their published posts; seasonal availability changes.</p></details><a class="btn btn-dark" href="mailto:kellylattes@hotmail.com">Email the team ↗</a></aside>
       </div>
     </div>
   </section>
@@ -389,12 +375,6 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
       <div class="section-head reveal">
         <p class="eyebrow">Since the first Kent stand</p>
         <h2>Three windows. <em>One line that moves.</em></h2>
-      </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count" data-to="3">3</span></b><span>stands — Kent, Auburn, Black Diamond</span></div>
-        <div class="num"><b><span class="count" data-to="5">5</span><i> am</i></b><span>first pour, Monday to Friday</span></div>
-        <div class="num"><b><span class="count" data-to="7">7</span></b><span>days a week, every stand</span></div>
-        <div class="num"><b><i>est.</i> <span class="count" data-to="2009" data-from="1950">2009</span></b><span>the Auburn stand, built from a bare lot</span></div>
       </div>
       <div class="cta-actions reveal">
         <a href="#hours" class="btn btn-primary">Find a stand</a>
@@ -437,5 +417,5 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
 </footer>
 
 <script src="../js/site.js"></script>
-</body>
+<script src="../js/personality.js"></script></body>
 </html>

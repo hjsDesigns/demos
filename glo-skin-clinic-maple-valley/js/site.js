@@ -136,7 +136,7 @@ function customClose(p, close){ return close; }
     e.preventDefault();
     var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
     function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
-    if(!key){done();return}
+    if(!key){ok.textContent='This form is not connected. Please contact the studio directly.';ok.classList.add('show');ok.setAttribute('role','status');return}
     var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
     var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
     data.subject=data.subject||('New message from your website ('+document.title+')');
@@ -176,11 +176,11 @@ function customClose(p, close){ return close; }
      Five chips → one answer card (treatment + one line in Michelle's own words from her
      Facebook posts). One tap lights it; tapping the lit one clears. No numbers invented. */
   var SKIN={
-    dull:{t:'Dermaplaning',l:'Gently removes the outer layer of dead, dull skin cells and fine vellus hair — that smooth, fresh, lit-from-within glow.'},
-    texture:{t:'Microneedling',l:'Michelle\u2019s favorite reset for dull, uneven or textured skin — fantastic for correcting acne scars.'},
-    spots:{t:'A superficial peel',l:'Prepping the canvas: removes excess dead skin and brightens. The reviews call her a facial-peel queen.'},
-    dry:{t:'The PDRN facial',l:'DNA-derived ingredients that repair, restore and deeply hydrate from within — glowing skin starts at the cellular level.'},
-    hair:{t:'Waxing \u0026 sugaring',l:'The Hydration Hair Removal Method, brows to Brazilians — with a regular program it gets easier every time.'}
+    dull:{t:'Dermaplaning',l:'A service featured in GLO’s skin-treatment menu. Ask Michelle what the appointment involves and whether it fits your skin-care plans.'},
+    texture:{t:'Microneedling',l:'One of GLO’s listed treatment options. Discuss suitability, preparation and the appointment plan directly with Michelle.'},
+    spots:{t:'Superficial peels',l:'Peels appear in the studio’s treatment offering. Michelle can explain the options and current pricing at your consultation.'},
+    dry:{t:'PDRN facials',l:'A facial option featured in GLO’s own posts. Ask the clinic about the service, ingredients and current availability.'},
+    hair:{t:'Waxing & sugaring',l:'GLO’s named hair-removal menu covers face and body services. Browse the saved menu and confirm the current price when booking.'}
   };
   var card=$('#skinCard'), hint=$('#skinHint'), ans=$('#skinAnswer'), ttl=$('#skinTitle'), line=$('#skinLine');
   if(card){

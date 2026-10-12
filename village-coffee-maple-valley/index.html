@@ -68,8 +68,8 @@
 
 @media(prefers-reduced-motion:reduce){#hero.vc-hero *,#hero.vc-hero *::before,#hero.vc-hero *::after{animation:none!important;transition:none!important;opacity:1!important;transform:none!important;clip-path:none!important}}
 </style>
-</head>
-<body>
+<link rel="stylesheet" href="css/personality.css?v=20261011"></head>
+<body class="personality-page">
 
 <!-- ===================== HEADER / NAV ===================== -->
 <header class="site-header">
@@ -146,12 +146,12 @@
       </figure>
       <div class="section-head reveal">
         <p class="eyebrow">The board</p>
-        <h2>Everything on the board <em>in the hut.</em></h2>
+        <h2>A little of this.<br><em>A little of the Village.</em></h2>
         <p>Kerriston Coffee beans, pulled by people who've been doing it a while. Tap a group to roll it out — prices are 12 oz and 16 oz, straight off the board.</p>
       </div>
       <div class="board">
         <div class="roll reveal open">
-          <button type="button" class="roll-sum" aria-expanded="false"><span class="roll-head"><span class="door-k">Hot drinks</span><b>Americano, latte, breve, chai, cocoa</b></span><span class="chev"></span></button>
+          <button type="button" class="roll-sum" aria-expanded="true"><span class="roll-head"><span class="door-k">Hot drinks</span><b>Americano, latte, breve, chai, cocoa</b></span><span class="chev"></span></button>
           <div class="roll-body"><div class="roll-in">
             <ul class="menu-list two">
               <li><span class="name">Americano</span><span class="price">$1.80</span><span class="price">$2.25</span></li>
@@ -280,8 +280,8 @@
         <div class="story-copy reveal">
           <p class="eyebrow">The crew</p>
           <h2>Locally owned. <em>Eighteen years in the hut.</em></h2>
-          <p class="lede">A small drive-thru on Witte Road that has out-poured the big green one down the street since before most of Maple Valley's kids were born.</p>
-          <p>It's one hut, one window, and a crew the regulars know by name — the kind of place where the barista remembers your order before you reach the speaker. The beans are Kerriston Coffee, the burritos are Jen's, and the pastries show up fresh every morning.</p>
+          <p class="lede">Blue roof, pink V, and Kerriston Coffee in the cup. A small drive-thru with a place in the neighborhood.</p>
+          <p>It's one hut, one window, and a crew the regulars know by name — the kind of place where the barista remembers your order when you reach the window. The beans are Kerriston Coffee, the burritos are Jen's, and the pastries show up fresh every morning.</p>
           <p>Five in the morning on weekdays, six on the weekend, seven days a week. Come join the Village.</p>
           <div class="soc-row">
             <a href="https://www.instagram.com/villagecoffeemv/" target="_blank" rel="noopener">@villagecoffeemv on Instagram ↗</a>
@@ -310,7 +310,7 @@
        reachable from the sources this build could pull (Google, Yelp and Facebook are bot-walled; Restaurantji
        publishes quotes without names). So: VARIANT B, the sanctioned link-out — real aggregate, real count,
        one true line, one button to the live reviews. See review notes in CONTENT-BRIEF.md. -->
-  <section class="section section-alt" id="reviews">
+  <section class="section section-dark" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">What the regulars say</p>
@@ -335,25 +335,14 @@
           <ol class="steps">
             <li><h3>Turn in off Witte Road</h3><p>The hut sits in the lot by the Village shops — blue roof, pink V on the wall.</p></li>
             <li><h3>Order at the window</h3><p>Say the drink, the size, the milk. Candy blend-ins and extra shots are a word away.</p></li>
-            <li><h3>Back on the road in minutes</h3><p>Fast is the point. Cups, cards and whole beans by the pound all go out the same window.</p></li>
+            <li><h3>A little something for the road</h3><p>Grab your drink, add a bite, or ask about a bag of whole beans to take home.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📞 <a href="tel:+14254324675">(425) 432-4675</a></span>
             <span>📍 <a href="https://www.google.com/maps/search/?api=1&query=Village+Coffee+23630+Witte+Rd+SE+Maple+Valley+WA+98038" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
         </div>
-        <form class="contact-form reveal">
-          <input type="hidden" name="access_key" value="">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-          <label class="full">What's it about?<select name="topic"><option>A big order for the office or a team</option><option>Gift cards</option><option>Whole bean coffee</option><option>Just saying hi</option></select></label>
-          <label class="full">Message<textarea name="msg" placeholder="How many, when, and what everyone drinks."></textarea></label>
-          <button type="submit" class="btn btn-primary">Send it to the hut</button>
-          <p class="form-success">Thanks — someone from the hut will get back to you soon.</p>
-          <p class="form-fine">We'll only use this to reply to you.</p>
-        </form>
+        <aside class="village-takehome"><p class="eyebrow">A little more from the window</p><h3>Bring the Village<br>along with you.</h3><div><span class="village-number">01</span><h4>The beans for tomorrow</h4><p>Kerriston Coffee is on the espresso bar, and whole beans are on the menu by the pound. Ask the crew what’s on hand for your coffee at home.</p></div><div><span class="village-number">02</span><h4>Breakfast for the road</h4><p>Jen’s Breakfast Burritos and freshly delivered pastries make this more than a coffee stop. Check the day’s selection at the window.</p></div><details><summary>Prefer something without coffee?</summary><p>Tea, cocoa, steamers, fruit smoothies and Italian sodas have their own places on the board. Pick a group above to explore the choices.</p></details><a class="btn btn-primary" href="tel:+14254324675">Ask the crew ↗</a></aside>
       </div>
     </div>
   </section>
@@ -364,12 +353,6 @@
       <div class="section-head reveal">
         <p class="eyebrow">Maple Valley's own</p>
         <h2>The lights are on <em>before yours are.</em></h2>
-      </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count" data-to="18">18</span></b><span>years on Witte Road</span></div>
-        <div class="num"><b><span class="count" data-to="5">5</span><i> am</i></b><span>first cup out the window, weekdays</span></div>
-        <div class="num"><b><span class="count" data-to="7">7</span></b><span>days a week, every week</span></div>
-        <div class="num"><b><span class="count" data-to="32">32</span><i> oz</i></b><span>the biggest cup on the board</span></div>
       </div>
       <div class="cta-actions reveal">
         <a href="tel:+14254324675" class="btn btn-primary">Call the hut</a>

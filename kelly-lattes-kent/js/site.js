@@ -110,11 +110,11 @@ function customClose(p, close){ return close; }
     var hp=$('#hdrLive'), ht=$('#hdrLiveText');
     if(hp&&ht){hp.className='hdr-live '+(s.open?'is-open':'is-closed');ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+s.text.replace(/^Open now · /,'').replace(/^Closed · /,'')+'</span>';}
     var sl=$('#statusLine'), st=$('#statusText');
-    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
+    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent="Kent · "+s.text;}
     $$('#hoursList li[data-days], #hoursListAuburn li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
     // the Auburn stand's own clock
     var a=computeStatus(HOURS_AUBURN), al=$('#statusLineAuburn'), at=$('#statusTextAuburn');
-    if(al&&at){al.className='live-line '+(a.open?'is-open':'is-closed');at.textContent=a.text;}
+    if(al&&at){al.className='live-line '+(a.open?'is-open':'is-closed');at.textContent="Auburn · "+a.text;}
   }
   applyStatus(); setInterval(applyStatus,60000);
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console

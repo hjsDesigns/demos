@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="../">
 <meta charset="utf-8">
 <title>Where the Night Begins | Roundup Restaurant &amp; Lounge — Graham's corner bar on Mountain Hwy</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,7 +12,7 @@
 <!-- Display: Rokkitt — the closest Google face to the awning's bracketed slab caps (SIGN-FONT LAW; the sign crop at 4x
      reads as a Clarendon-class slab: bold, bracketed serifs, slightly condensed). Body: Barlow. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@600;700;800&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261008a">
+<link rel="stylesheet" href="css/style.css?v=20261008a">
 <style>
 
 /* Hayden-selected combination of The Night Opens + Off the Highway.
@@ -60,6 +61,7 @@
 @media(prefers-reduced-motion:reduce){.rup-combined *,.rup-combined *::before,.rup-combined *::after{animation:none!important;transition:none!important}.rup-cb-photo{clip-path:none}.rup-cb-window{transform:rotate(-.8deg)}}
 
 </style>
+<link rel="stylesheet" href="css/personality.css?v=20261011">
 </head>
 <body>
 
@@ -74,7 +76,7 @@
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#menu">Menu</a>
-        <a href="#week">This week</a>
+        <a href="#week">After dinner</a>
         <a href="#room">The room</a>
         <a href="#about">About</a>
         <a href="#hours">Hours</a>
@@ -100,10 +102,10 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
   <h1 id="rup-combined-title" aria-label="Roundup"><span>ROUND</span><span>UP</span></h1>
   <p class="rup-cb-sub">Restaurant &amp; Lounge</p>
  </div>
- <figure class="rup-cb-window"><div class="rup-cb-photo"><img src="../images/room-wide.jpg" alt="Friends and regulars gathered inside the Roundup under the lights, with the pool table in the foreground" fetchpriority="high" width="1200" height="560"></div></figure>
+ <figure class="rup-cb-window"><div class="rup-cb-photo"><img src="images/room-wide.jpg" alt="Friends and regulars gathered inside the Roundup under the lights, with the pool table in the foreground" fetchpriority="high" width="1200" height="560"></div></figure>
  <div class="rup-cb-foot">
   <p class="rup-cb-invite">Pull in.<span>Make a night of it.</span></p>
-  <div class="rup-cb-actions"><a class="rup-cb-button" href="#week">What's on tonight <span aria-hidden="true">↗</span></a><a class="rup-cb-link" href="#menu">The menu <span aria-hidden="true">↗</span></a></div>
+  <div class="rup-cb-actions"><a class="rup-cb-button" href="#week">Find your night <span aria-hidden="true">↗</span></a><a class="rup-cb-link" href="#menu">The menu <span aria-hidden="true">↗</span></a></div>
  </div>
 </section>
 
@@ -130,8 +132,8 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
         <li data-days="2"><span class="day">Tuesday</span><span class="time">10:00 AM – 12:00 AM</span></li>
         <li data-days="3"><span class="day">Wednesday</span><span class="time">10:00 AM – 12:00 AM</span></li>
         <li data-days="4"><span class="day">Thursday</span><span class="time">10:00 AM – 12:00 AM</span></li>
-        <li data-days="5"><span class="day">Friday</span><span class="time">10:00 AM – 2:00 AM</span></li>
-        <li data-days="6"><span class="day">Saturday</span><span class="time">9:00 AM – 2:00 AM</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">10:00 AM – 1:30 AM</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">9:00 AM – 1:30 AM</span></li>
         <li data-days="0"><span class="day">Sunday</span><span class="time">9:00 AM – 12:00 AM</span></li>
       </ul>
     </div>
@@ -146,11 +148,11 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
       <div class="section-head reveal">
         <p class="eyebrow">The kitchen</p>
         <h2>Burgers, baskets, <em>breakfast on the weekend.</em></h2>
-        <p>Tap a card to unroll it. Everything comes out of the same little kitchen behind the bar — hot, in a red-checkered basket.</p>
+        <p>Open a section to see what’s cooking: burgers and baskets, a few things for the middle of the table, and breakfast on the weekend.</p>
       </div>
       <div class="cards-unroll">
         <details class="ucard reveal" open>
-          <summary><span class="uc-pic"><img src="../images/snap-burger-basket.jpg" alt="A burger and fries in a red-checkered basket at the Roundup" loading="lazy" width="326" height="320"></span><span class="uc-head"><span class="uc-k">Burgers</span><b>Five of them, on a bun that holds</b></span><span class="chev"></span></summary>
+          <summary><span class="uc-pic"><img src="images/snap-burger-basket.jpg" alt="A burger and fries in a red-checkered basket at the Roundup" loading="lazy" width="326" height="320"></span><span class="uc-head"><span class="uc-k">Burgers</span><b>Five of them, on a bun that holds</b></span><span class="chev"></span></summary>
           <ul class="menu-list">
             <li><span class="name">The Hangover Burger</span><span class="price">$18.95</span><span class="desc">Two beef patties, bacon, grilled onions, choice of two cheeses, lettuce, tomato, mayo and a fried egg.</span></li>
             <li><span class="name">Bacon Bleu Burger</span><span class="price">$17.50</span><span class="desc">Beef patty, three strips of bacon, blue cheese crumbles, lettuce, tomato, mayo.</span></li>
@@ -160,7 +162,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
           </ul>
         </details>
         <details class="ucard reveal">
-          <summary><span class="uc-pic"><img src="../images/snap-burger2.jpg" alt="A sandwich with crinkle fries in a blue-checkered basket" loading="lazy" width="312" height="311"></span><span class="uc-head"><span class="uc-k">Sandwiches &amp; baskets</span><b>With fries, tots or a side salad</b></span><span class="chev"></span></summary>
+          <summary><span class="uc-pic"><img src="images/snap-burger2.jpg" alt="A sandwich with crinkle fries in a blue-checkered basket" loading="lazy" width="312" height="311"></span><span class="uc-head"><span class="uc-k">Sandwiches &amp; baskets</span><b>With fries, tots or a side salad</b></span><span class="chev"></span></summary>
           <ul class="menu-list">
             <li><span class="name">Philly Cheese Steak</span><span class="price">$17.95</span><span class="desc">Roast beef, green peppers, onions, mushrooms, provolone.</span></li>
             <li><span class="name">Fish &amp; Chips</span><span class="price">$16.95</span><span class="desc">Cod with fries.</span></li>
@@ -171,7 +173,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
           </ul>
         </details>
         <details class="ucard reveal">
-          <summary><span class="uc-pic"><img src="../images/snap-bacon-burger.jpg" alt="Fries on red-checkered paper at the bar" loading="lazy" width="262" height="313"></span><span class="uc-head"><span class="uc-k">Appetizers</span><b>Nachos, wings and the fried stuff</b></span><span class="chev"></span></summary>
+          <summary><span class="uc-pic"><img src="images/snap-bacon-burger.jpg" alt="Fries on red-checkered paper at the bar" loading="lazy" width="262" height="313"></span><span class="uc-head"><span class="uc-k">Appetizers</span><b>Nachos, wings and the fried stuff</b></span><span class="chev"></span></summary>
           <ul class="menu-list">
             <li><span class="name">Nachos</span><span class="price">$15.99</span><span class="desc">Beef, cheese, olives, onions, tomatoes, jalapeños, sour cream and salsa on the side. Add chicken for three dollars.</span></li>
             <li><span class="name">Wings</span><span class="price">$12.95</span><span class="desc">Plain, BBQ, sweet chili or buffalo.</span></li>
@@ -192,7 +194,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
           </ul>
         </details>
         <details class="ucard reveal">
-          <summary><span class="uc-pic"><img src="../images/snap-cfs.jpg" alt="Chicken fried steak with eggs, hash browns and toast on the bar" loading="lazy" width="330" height="330"></span><span class="uc-head"><span class="uc-k">Breakfast · Sat &amp; Sun</span><b>Chicken fried steak, biscuits and gravy</b></span><span class="chev"></span></summary>
+          <summary><span class="uc-pic"><img src="images/snap-cfs.jpg" alt="Chicken fried steak with eggs, hash browns and toast on the bar" loading="lazy" width="330" height="330"></span><span class="uc-head"><span class="uc-k">Breakfast · Sat &amp; Sun</span><b>Chicken fried steak, biscuits and gravy</b></span><span class="chev"></span></summary>
           <ul class="menu-list plain">
             <li><span class="name">Chicken Fried Steak</span><span class="desc">Country gravy, two eggs, hash browns and toast.</span></li>
             <li><span class="name">Biscuits &amp; Gravy</span><span class="desc">Full order or a half.</span></li>
@@ -215,24 +217,21 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
       <div class="section-head reveal">
         <p class="eyebrow">The room</p>
         <h2>Wood walls, two tables, <em>a stage in the corner.</em></h2>
-        <p>Not a biker bar, whatever you heard. A disco ball, a Seahawks corner, red stools, and a bartender who knows the regulars by name.</p>
+        <p>The pool tables, the Seahawks corner, the red stools and the karaoke screen. A few familiar reasons to pull off Mountain Hwy and settle in.</p>
       </div>
-      <figure class="room-print reveal">
-        <img src="../images/room-wide.jpg" alt="Inside the Roundup on a karaoke night — the crowd at the tables, the singer under the string lights, the pool table up front" loading="lazy" width="1200" height="560">
-        <figcaption>Karaoke night, August 2025</figcaption>
-      </figure>
+
       <div class="snaps reveal" aria-label="Snapshots from the Roundup">
-        <figure class="snap"><img src="../images/snap-backbar.jpg" alt="The back bar — bottles, the register and the second-anniversary banner" loading="lazy" width="521" height="308"><figcaption>The back bar</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-bar-pool.jpg" alt="The bar with the pool table beside it" loading="lazy" width="540" height="330"><figcaption>Bar and table</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-karaoke.jpg" alt="A singer at the karaoke screen under green light" loading="lazy" width="461" height="320"><figcaption>Karaoke</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-twelve.jpg" alt="The Seahawks 12 corner with the TVs" loading="lazy" width="416" height="330"><figcaption>The 12 corner</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-pool.jpg" alt="Pool tables and the crowd looking toward the stage" loading="lazy" width="372" height="296"><figcaption>Two tables</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-corner.jpg" alt="Regulars at the tables under the coloured lights" width="420" height="293"><figcaption>Friday regulars</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-squares.jpg" alt="A Seahawks–Bears football squares board filled in with red daubs" width="338" height="323"><figcaption>Game-day squares</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-hawks.jpg" alt="The dining side of the room with the Seahawks wall" width="372" height="313"><figcaption>The dining side</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-jersey.jpg" alt="A framed number-one jersey on the wood wall" width="312" height="311"><figcaption>On the wall</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-tables.jpg" alt="Tables set for dinner in the quiet of the afternoon" width="340" height="293"><figcaption>Afternoon</figcaption></figure>
-        <figure class="snap"><img src="../images/snap-exterior-wide.jpg" alt="The Roundup from the highway, a pickup parked out front" width="310" height="250"><figcaption>From the highway</figcaption></figure>
+        <figure class="snap"><img src="images/snap-backbar.jpg" alt="The back bar — bottles, the register and the second-anniversary banner" loading="lazy" width="521" height="308"><figcaption>The back bar</figcaption></figure>
+        <figure class="snap"><img src="images/snap-bar-pool.jpg" alt="The bar with the pool table beside it" loading="lazy" width="540" height="330"><figcaption>Bar and table</figcaption></figure>
+        <figure class="snap"><img src="images/snap-karaoke.jpg" alt="A singer at the karaoke screen under green light" loading="lazy" width="461" height="320"><figcaption>Karaoke</figcaption></figure>
+        <figure class="snap"><img src="images/snap-twelve.jpg" alt="The Seahawks 12 corner with the TVs" loading="lazy" width="416" height="330"><figcaption>The 12 corner</figcaption></figure>
+        <figure class="snap"><img src="images/snap-pool.jpg" alt="Pool tables and the crowd looking toward the stage" loading="lazy" width="372" height="296"><figcaption>Two tables</figcaption></figure>
+        <figure class="snap"><img src="images/snap-corner.jpg" alt="Regulars at the tables under the coloured lights" width="420" height="293"><figcaption>Friday regulars</figcaption></figure>
+        <figure class="snap"><img src="images/snap-squares.jpg" alt="A Seahawks–Bears football squares board filled in with red daubs" width="338" height="323"><figcaption>Game-day squares</figcaption></figure>
+        <figure class="snap"><img src="images/snap-hawks.jpg" alt="The dining side of the room with the Seahawks wall" width="372" height="313"><figcaption>The dining side</figcaption></figure>
+        <figure class="snap"><img src="images/snap-jersey.jpg" alt="A framed number-one jersey on the wood wall" width="312" height="311"><figcaption>On the wall</figcaption></figure>
+        <figure class="snap"><img src="images/snap-tables.jpg" alt="Tables set for dinner in the quiet of the afternoon" width="340" height="293"><figcaption>Afternoon</figcaption></figure>
+        <figure class="snap"><img src="images/snap-exterior-wide.jpg" alt="The Roundup from the highway, a pickup parked out front" width="310" height="250"><figcaption>From the highway</figcaption></figure>
       </div>
       <p class="snaps-hint"><span class="t-touch">Swipe</span><span class="t-mouse">Scroll</span> the snapshots →</p>
     </div>
@@ -242,47 +241,22 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
        A lit reader board. Tonight is already up when the page opens (clock-driven, Pacific); tap any day and the
        board flips to that night. One tap, one payoff, no reading needed. Event nights only — store hours live in
        #hours and nowhere else. The nights are as the regulars report them in reviews; confirm with the owner. -->
-  <section class="section section-alt" id="week">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">This week</p>
-        <h2>What's on <em>tonight.</em></h2>
-        <p>Karaoke, bingo, tacos, bands, open mic — there's something most nights. Tap a day.</p>
-      </div>
-      <div class="board reveal" id="board">
-        <div class="board-face" id="boardFace" aria-live="polite" aria-atomic="true">
-          <span class="board-day" id="boardDay">Tonight</span>
-          <span class="board-word" id="boardWord">Karaoke</span>
-          <span class="board-line" id="boardLine">Karaoke and live music into the night</span>
-        </div>
-        <div class="board-days" role="tablist" aria-label="Pick a night">
-          <button class="bday" type="button" data-day="1" role="tab" aria-selected="false">Mon</button>
-          <button class="bday" type="button" data-day="2" role="tab" aria-selected="false">Tue</button>
-          <button class="bday" type="button" data-day="3" role="tab" aria-selected="false">Wed</button>
-          <button class="bday" type="button" data-day="4" role="tab" aria-selected="false">Thu</button>
-          <button class="bday" type="button" data-day="5" role="tab" aria-selected="false">Fri</button>
-          <button class="bday" type="button" data-day="6" role="tab" aria-selected="false">Sat</button>
-          <button class="bday" type="button" data-day="0" role="tab" aria-selected="false">Sun</button>
-        </div>
-      </div>
-      <p class="board-fine reveal">As the regulars tell it. Bands and open mic nights get posted on Facebook.</p>
-    </div>
-  </section>
+  <section class="section section-alt" id="week"><div class="wrap night-layout"><div class="section-head"><p class="eyebrow">After the kitchen</p><h2>Find your<br><em>kind of night.</em></h2><p>Make it a game, take the mic, or see who’s playing. Choose a reason to stay a while.</p><a class="btn btn-gold" href="https://www.facebook.com/profile.php?id=61552008274818" target="_blank" rel="noopener">Check current events ↗</a><p class="night-note">Dates and performers change. Check the latest posts or call before making plans.</p></div><div class="night-board"><div class="night-picks" role="group" aria-label="Choose an evening activity"><button type="button" aria-pressed="true" data-night="karaoke">Karaoke</button><button type="button" aria-pressed="false" data-night="games">Pool &amp; darts</button><button type="button" aria-pressed="false" data-night="music">Live music</button></div><div id="night-copy" aria-live="polite"><span class="night-kicker" id="night-kicker">The mic is calling</span><h3 id="night-title">Your song.<br>Your moment.</h3><p id="night-detail">The karaoke screen and the corner stage are part of the room. Check the current event posts for the next night on the mic.</p></div></div></div></section>
 
   <!-- ===================== #about — the place, in one print and three paragraphs ===================== -->
   <section class="section" id="about">
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="../images/about.jpg" alt="Two motorcycles parked under the Roundup's awning at dusk, the Budweiser neon lit in the window" loading="lazy" width="720" height="960">
+          <img src="images/about.jpg" alt="Two motorcycles parked under the Roundup's awning at dusk, the Budweiser neon lit in the window" loading="lazy" width="720" height="960">
           <figcaption>Out front, at dusk</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">The place</p>
           <h2>A hole in the wall — <em>the good kind.</em></h2>
-          <p class="lede">Thirty-four years on Mountain Hwy, and the regulars still call it their corner bar.</p>
+          <p class="lede">A neighborhood stop on Mountain Hwy, from the first plate to the last song.</p>
           <p>The Roundup sits on the Graham–Spanaway line with a maroon awning out front and wood paneling floor to ceiling inside. There's a kitchen behind the bar that turns out burgers, chowder and fish and chips, a couple of pool tables, darts, a jukebox, and a stage in the corner that gets used more than you'd think.</p>
-          <p>Kids are welcome at dinner. Monday bingo is family night, Thursdays every other week are kids' karaoke, and when the weather's right the fire pit out back is where everyone ends up. The t-shirts are cool too — the regulars say so.</p>
+          <p>The dining side makes room for dinner; the bar side has the TVs and the game. For family events, karaoke and live music, check the current posts before you come. The calendar belongs to the people who keep this place going.</p>
         </div>
       </div>
     </div>
@@ -303,7 +277,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
         <div class="revs revs-one">
           <figure class="rev reveal">
             <figcaption class="rev-head">
-              <img class="rev-face" src="../images/reviewer-christi.jpg" alt="Christi Simon" width="200" height="200" loading="lazy">
+              <img class="rev-face" src="images/reviewer-christi.jpg" alt="Christi Simon" width="200" height="200" loading="lazy">
               <span class="rev-who">Christi Simon<small>Google · 2026</small></span>
               <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
             </figcaption>
@@ -330,7 +304,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
           <ol class="steps">
             <li><h3>Pull in off Mountain Hwy</h3><p>Right on the Graham–Spanaway line, with the lot out front. You'll see the awning.</p></li>
             <li><h3>Grab a stool or a table</h3><p>Dinner side for the kids, bar side for the game. Breakfast on the weekend.</p></li>
-            <li><h3>Book the room</h3><p>Birthdays, fundraisers, a band that wants a Saturday — call and ask for the owner.</p></li>
+            <li><h3>Ask about your plans</h3><p>Call to discuss a birthday, group visit or performance inquiry.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📞 <a href="tel:+12532711697">(253) 271-1697</a></span>
@@ -338,18 +312,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
             <span>👍 <a href="https://www.facebook.com/profile.php?id=61552008274818" target="_blank" rel="noopener">Round Up on Facebook ↗</a></span>
           </div>
         </div>
-        <form class="contact-form reveal">
-          <input type="hidden" name="access_key" value="">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-          <label class="full">What's it about?<select name="topic"><option>Booking a party</option><option>Playing a show or karaoke</option><option>Just saying hi</option></select></label>
-          <label class="full">Message<textarea name="msg" placeholder="Date, how many people, what you're thinking…"></textarea></label>
-          <button type="submit" class="btn btn-primary">Send it</button>
-          <p class="form-success">Thanks — someone from the Roundup will get back to you.</p>
-          <p class="form-fine">We'll only use this to reply to you.</p>
-        </form>
+        <aside class="person-call r-call"><p class="eyebrow">One quick call</p><h3>Got a night<br>in mind?</h3><p>Ask what’s on, check kitchen service, or talk through a group visit. For a party or performance inquiry, have your date and group size ready.</p><a class="btn btn-gold" href="tel:+12532711697">Call the Roundup ↗</a><p class="r-call-note">Coming for a particular band or event? Confirm the details before you head down the highway.</p></aside>
       </div>
     </div>
   </section>
@@ -391,7 +354,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#menu">Menu</a><br><a href="#week">This week</a><br><a href="#room">The room</a><br><a href="#about">About</a><br><a href="#contact">Get in touch</a></p>
+        <p><a href="#menu">Menu</a><br><a href="#week">After dinner</a><br><a href="#room">The room</a><br><a href="#about">About</a><br><a href="#contact">Get in touch</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -401,6 +364,7 @@ Reference inputs: hero-night-opens.html + hero-off-the-highway.html, preserved u
   </div>
 </footer>
 
-<script src="../js/site.js?v=20261008a"></script>
+<script src="js/site.js?v=20261009-hours"></script>
+<script src="js/personality.js?v=20261011"></script>
 </body>
 </html>

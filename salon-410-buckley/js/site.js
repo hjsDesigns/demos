@@ -136,7 +136,7 @@ function customClose(p, close){ return close; }
     e.preventDefault();
     var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
     function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
-    if(!key){done();return}
+    if(!key){ok.textContent='This form is not connected. Please contact the studio directly.';ok.classList.add('show');ok.setAttribute('role','status');return}
     var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
     var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
     data.subject=data.subject||('New message from your website ('+document.title+')');

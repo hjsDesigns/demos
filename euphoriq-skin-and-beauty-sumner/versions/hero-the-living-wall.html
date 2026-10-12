@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><base href="../">
 <meta charset="utf-8">
 <title>Euphoriq Skin & Beauty — Facials, lash lifts & brows in Sumner, WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Display: Josefin Sans (the closest Google face to the light geometric caps of her "SKIN & BEAUTY" lockup — an approximation; the script wordmark ships as her real PNG). Body: Geologica. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Geologica:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style.css">
 <style>
 .hero.en{--leaf-black:#071009;--leaf-deep:#142519;position:relative;isolation:isolate;display:block;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));overflow:hidden;background:var(--leaf-black);color:var(--paper);font-family:var(--body)}.hero.en:before,.hero.en:after{content:none!important}.hero.en h1{font-family:var(--display);font-weight:400;font-size:45px;line-height:1.07;letter-spacing:-.035em;max-width:none;margin:0;color:inherit;text-shadow:none;opacity:1;transform:none;animation:none;text-wrap:initial}.en p{margin:0}.en img{width:100%;height:100%;object-fit:cover;display:block}.en .en-label{font-size:9px;line-height:1.7;font-weight:400;letter-spacing:.2em;text-transform:uppercase}.en .en-copy{font-size:13px;line-height:1.8;font-weight:400}.en .en-actions{display:flex;align-items:center;gap:26px}.en .en-primary{display:inline-flex;align-items:center;justify-content:space-between;gap:33px;padding:15px 23px;min-height:50px;background:var(--paper);color:var(--brand-text);font-size:11px;font-weight:500;border:1px solid var(--paper);transition:background .2s}.en .en-primary:hover{background:var(--warm)}.en .en-link{font-size:10px;white-space:nowrap;border-bottom:1px solid currentColor;padding:12px 0 6px}.en .leaf-texture{position:absolute;inset:0;width:100%;height:100%;opacity:.6;filter:blur(1.2px);transform:scale(1.025)}.en .en-photo{overflow:hidden}.en .en-photo>svg{width:100%;height:100%;display:block}.en .en-photo img,.en .en-photo>svg{animation:en-light 1.8s var(--ease) both}.en .en-top{position:absolute;top:28px;left:5%;right:5%;display:flex;justify-content:space-between;z-index:5}.en .en-top>span{font-size:8px;letter-spacing:.2em;text-transform:uppercase}.en .en-frame{position:absolute;inset:24px;border:1px solid color-mix(in srgb,var(--warm) 27%,transparent);z-index:5;pointer-events:none}
 @keyframes en-light{from{filter:brightness(.35);transform:scale(1.025)}to{filter:brightness(1);transform:scale(1)}}
@@ -24,6 +24,7 @@
 @media(max-width:700px){.en-living .living-photo{top:7%;left:-40%;right:-40%;bottom:auto;height:58%;mask-image:linear-gradient(180deg,transparent 0%,#000 12%,#000 78%,transparent 100%)}.en-living .living-photo img{object-position:50% 50%}.en-living .living-shade{background:linear-gradient(180deg,color-mix(in srgb,var(--leaf-black) 25%,transparent),transparent 25%,transparent 46%,color-mix(in srgb,var(--leaf-black) 84%,transparent) 69%,var(--leaf-black))}.en-living .living-halo{inset:15% 0 44%}.en-living .living-bottom{left:26px;right:26px;bottom:35px;display:block}.hero.en-living h1{font-size:40px;line-height:1.02}.en-living .living-bottom .en-label{margin-bottom:17px}.en-living .living-book{min-width:0}.en-living .living-book .en-copy{margin-top:19px;margin-bottom:22px}.en-living .en-primary{background:var(--paper)}.en-living .en-top{top:23px}}
 @media(max-width:700px) and (max-height:760px){.en-living .living-photo{top:2%;height:56%}.en-living .living-bottom{bottom:26px}.hero.en-living h1{font-size:33px}.en-living .living-book .en-copy{margin-top:15px;margin-bottom:18px}}
 @media(prefers-reduced-motion:reduce){.hero.en *,.hero.en *:before,.hero.en *:after{animation:none!important;transition:none!important}.hero.en .en-photo img,.hero.en .en-photo>svg{filter:brightness(1);transform:none}}</style>
+<link rel="stylesheet" href="css/personality.css">
 </head>
 <body>
 
@@ -31,7 +32,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="#top" aria-label="Euphoriq Skin & Beauty — home">
-      <img src="../images/logo.png" alt="" width="1244" height="557">
+      <img src="images/logo.png" alt="" width="1244" height="557">
       <span class="wm">Euphoriq Skin &amp; Beauty<small>Sumner · skin studio</small></span>
     </a>
     <div class="nav-wrap">
@@ -52,10 +53,10 @@
 <main>
 
   <!-- The Living Wall. Emotion: A lush, private retreat; the studio identity is the entire first impression. Composition: Unframed real signage and foliage cover the whole hero, with a restrained invitation along the bottom. On phones, the actual sign photograph is kept wide enough to show the full lettering, and cropped foliage from that same photo extends the green wall below. Arrival: The actual photograph brightens once as the lavender light softly blooms across the foliage; the bottom invitation settles, fully still by 2.35 seconds. -->
-  <section class="hero en en-living" id="hero" aria-labelledby="living-title"><svg class="leaf-texture" viewBox="0 491 1000 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="../images/hero-neon-hedge.jpg" width="1000" height="691"/></svg><figure class="en-photo living-photo"><img src="../images/hero-neon-hedge.jpg" alt="The actual Euphoriq Skin and Beauty neon sign glowing lavender on its dense green leaf wall" width="1000" height="691" fetchpriority="high"></figure><span class="living-shade" aria-hidden="true"></span><span class="living-halo" aria-hidden="true"></span><div class="en-top"><span>Sumner, Washington</span><span>By appointment</span></div><div class="living-bottom"><div><p class="en-label">Personal skin care · Lashes · Brows</p><h1 id="living-title">One room.<br> All for you.</h1></div><div class="living-book"><p class="en-copy">A little time for yourself.<br> Personal care with Katherine Matthews.</p><div class="en-actions"><a class="en-primary" href="#contact">Book your time <span aria-hidden="true">↗</span></a><a class="en-link" href="#services">Explore the care</a></div></div></div></section>
+  <section class="hero en en-living" id="hero" aria-labelledby="living-title"><svg class="leaf-texture" viewBox="0 491 1000 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="images/hero-neon-hedge.jpg" width="1000" height="691"/></svg><figure class="en-photo living-photo"><img src="images/hero-neon-hedge.jpg" alt="The actual Euphoriq Skin and Beauty neon sign glowing lavender on its dense green leaf wall" width="1000" height="691" fetchpriority="high"></figure><span class="living-shade" aria-hidden="true"></span><span class="living-halo" aria-hidden="true"></span><div class="en-top"><span>Sumner, Washington</span><span>By appointment</span></div><div class="living-bottom"><div><p class="en-label">Personal skin care · Lashes · Brows</p><h1 id="living-title">Euphoriq<small>Skin &amp; Beauty</small></h1></div><div class="living-book"><p class="en-copy">A little time for yourself.<br> Personal care with Katherine Matthews.</p><div class="en-actions"><a class="en-primary" href="#contact">Book your time <span aria-hidden="true">↗</span></a><a class="en-link" href="#services">Explore the care</a></div></div></div></section>
 
   <!-- ===================== #hours — the one place hours, status and address live ===================== -->
-  <section class="status-band" id="hours">
+  <section class="status-band section-dark" id="hours">
     <div class="wrap">
       <div class="status-head">
         <p class="eyebrow">When to find her</p>
@@ -86,13 +87,13 @@
     <div class="wrap">
       <div class="services-top">
         <figure class="studio reveal">
-          <img src="../images/room-hydrafacial.jpg" alt="Katherine mid-treatment under the ring light in the Euphoriq treatment room" loading="lazy" width="750" height="1000">
+          <img src="images/room-hydrafacial.jpg" alt="Katherine mid-treatment under the ring light in the Euphoriq treatment room" loading="lazy" width="750" height="1000">
           <figcaption>In the treatment room at 914 Cherry</figcaption>
         </figure>
         <div class="section-head reveal">
           <p class="eyebrow">Services</p>
           <h2>Skin first. <em>Then the details.</em></h2>
-          <p>Corrective skin work is the core of the studio — the kind that changes what you see in the mirror over months, not an afternoon. Lashes, brows and waxing finish it. Tap a line to see what's in it.</p>
+          <p>Facials and skin treatments are the heart of Katherine’s studio. Explore those first, then the lash, brow and waxing services that make the visit your own.</p>
         </div>
       </div>
       <div class="svc">
@@ -105,7 +106,7 @@
               <li><b>Corrective facials</b><span>Personalized to what your skin is doing right now.</span></li>
               <li><b>Dermaplaning</b><span>Peach fuzz and dead skin off, product in.</span></li>
             </ul>
-            <figure class="svc-pic"><img src="../images/facial-client.jpg" alt="A client on the treatment bed, headband on, mid-facial" width="1000" height="750"></figure>
+            <figure class="svc-pic"><img src="images/facial-client.jpg" alt="A client on the treatment bed, headband on, mid-facial" width="1000" height="750"></figure>
           </div>
         </details>
         <details class="reveal">
@@ -140,7 +141,7 @@
               <li><b>Lash lift</b><span>A curl from the root that lasts weeks, no extensions.</span></li>
               <li><b>Lash tint</b><span>Darker, fuller-looking lashes with nothing to put on in the morning.</span></li>
             </ul>
-            <figure class="svc-pic"><img src="../images/lash-closeup.jpg" alt="A freshly lifted lash line, close up" width="422" height="992"></figure>
+            <figure class="svc-pic"><img src="images/lash-closeup.jpg" alt="A freshly lifted lash line, close up" width="422" height="992"></figure>
           </div>
         </details>
         <details class="reveal">
@@ -154,7 +155,7 @@
           </div>
         </details>
       </div>
-      <p class="svc-ask reveal">Not sure which? Tell Katherine what you're seeing in the mirror and she'll pick the service — that's the first ten minutes of every visit.</p>
+      <p class="svc-ask reveal">Not sure where to begin? Ask Katherine about the service options before booking. Treatment suitability and a plan for your skin belong in that conversation.</p>
     </div>
   </section>
 
@@ -166,8 +167,8 @@
     <div class="wrap">
       <div class="ba-wrap">
         <div class="ba reveal" id="lashBA">
-          <img class="before" src="../images/lash-before.jpg" alt="Before: natural lashes, straight" width="488" height="560" loading="lazy">
-          <img class="after" src="../images/lash-after.jpg" alt="After: the same lashes lifted and tinted" width="488" height="560" loading="lazy">
+          <img class="before" src="images/lash-before.jpg" alt="Before: natural lashes, straight" width="488" height="560" loading="lazy">
+          <img class="after" src="images/lash-after.jpg" alt="After: the same lashes lifted and tinted" width="488" height="560" loading="lazy">
           <span class="line" aria-hidden="true"></span>
           <span class="knob" aria-hidden="true">◂ ▸</span>
           <span class="tag tag-before" aria-hidden="true">Before</span>
@@ -185,11 +186,11 @@
   </section>
 
   <!-- ===================== #about — Katherine, in her own words ===================== -->
-  <section class="section section-alt" id="about">
+  <section class="section section-alt section-dark" id="about">
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="../images/about.jpg" alt="Katherine Matthews in the studio, in front of the neon sign and a wall of lavender balloons" loading="lazy" width="1466" height="2200">
+          <img src="images/about.jpg" alt="Katherine Matthews in the studio, in front of the neon sign and a wall of lavender balloons" loading="lazy" width="1466" height="2200">
           <figcaption>Katherine, in the studio</figcaption>
         </figure>
         <div class="story-copy reveal">
@@ -207,7 +208,7 @@
   <!-- ===================== #reviews — VARIANT B (the link-out). 191 Google reviews exist with published
        names, but no reachable source shows a real profile photo for any of them (Birdeye mirrors them
        all behind its default avatar), so no name+face pair can ship. Real numbers, one link. ===================== -->
-  <section class="section" id="reviews">
+  <section class="section euph-first" id="first-visit"><div class="wrap first-room"><div class="first-room-title"><p class="eyebrow">A room of your own</p><h2>Your first time<br><em>with Katherine.</em></h2><p>One licensed esthetician. By appointment. A chance to talk about your skin before choosing the next step.</p></div><div class="first-room-notes"><article><span>THE CONVERSATION</span><h3>Start with what brought you in.</h3><p>Tell Katherine what you’d like to discuss — your skin, a first lash lift, brow shaping or a waxing appointment. Ask about the service, its price and any preparation before your visit.</p></article><article><span>THE PERSON</span><h3>Skin care started personally.</h3><p>Katherine’s own experience of skin concerns led her into esthetics. She trained at the Euro Institute and brings that personal interest to the services in her Sumner studio.</p></article><a class="btn btn-primary" href="tel:+14253182328">Talk with Katherine ↗</a></div></div></section><section class="section" id="reviews">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Google reviews</p>
@@ -231,28 +232,15 @@
           <h2>Three steps <em>to the chair</em></h2>
           <ol class="steps">
             <li><h3>Say what you're seeing</h3><p>Breakouts, texture, scarring, tired eyes — a sentence is enough.</p></li>
-            <li><h3>Pick a time</h3><p>Call, or send the form and Katherine will reply with openings.</p></li>
-            <li><h3>Come as you are</h3><p>One room, one client at a time. You'll leave knowing exactly what to do at home.</p></li>
+            <li><h3>Pick a time</h3><p>Call Katherine to discuss a service and the next available appointment.</p></li>
+            <li><h3>Come as you are</h3><p>One room, one client at a time. Ask Katherine what follow-up or home care fits your appointment.</p></li>
           </ol>
           <div class="contact-lines">
             <span>📞 <a href="tel:+14253182328">(425) 318-2328</a></span>
             <span>📍 <a href="https://www.google.com/maps/place/?q=place_id:ChIJ5V5mdJr7kFQR1z_7KEmq1o0" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
         </div>
-        <form class="contact-form reveal">
-          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
-               At go-live, pages-golive.sh fills this and the form emails the owner. -->
-          <input type="hidden" name="access_key" value="">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-          <label class="full">What are you after?<select name="topic"><option>A facial or skin consult</option><option>Lash lift or brows</option><option>Peel, Procell or Omnilux</option><option>Waxing</option></select></label>
-          <label class="full">Message<textarea name="msg" placeholder="What's your skin doing, and when are you free?"></textarea></label>
-          <button type="submit" class="btn btn-primary">Send to Katherine</button>
-          <p class="form-success">Thanks — Katherine will get back to you soon.</p>
-          <p class="form-fine">We'll only use this to reply to you.</p>
-        </form>
+        <aside class="katherine-note section-dark"><p class="eyebrow">A direct conversation</p><h3>Book with the person<br>who will care for you.</h3><p>Call Katherine to ask about the service you have in mind and arrange your time in the studio.</p><a class="btn btn-cream" href="tel:+14253182328">Call Katherine ↗</a><p class="katherine-small">Appointment details are confirmed directly with Euphoriq.</p></aside>
       </div>
     </div>
   </section>
@@ -278,7 +266,7 @@
     <div class="foot">
       <div>
         <div class="brand">
-          <span class="plate"><img src="../images/logo.png" alt=""></span>
+          <span class="plate"><img src="images/logo.png" alt=""></span>
           <span class="wm">Euphoriq Skin &amp; Beauty<small>Sumner · skin studio</small></span>
         </div>
         <p>A woman-owned skin studio in downtown Sumner — facials, peels, lashes and brows by licensed esthetician Katherine Matthews.</p>
@@ -304,6 +292,6 @@
   </div>
 </footer>
 
-<script src="../js/site.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
