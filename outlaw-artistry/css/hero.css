@@ -12,3 +12,11 @@
 @media(max-width:1000px) and (min-width:701px){.oa-hero{padding:45px 4vw;gap:32px}.oa-hero h1{font-size:46px}.oa-hero .oa-mark{max-width:285px}.oa-hero .oa-deck{font-size:15px}.oa-hero .oa-actions{gap:12px}.oa-hero .btn{font-size:13px;padding:13px 18px}}
 @media(max-width:700px){.oa-hero{grid-template-columns:1fr;gap:30px;padding:24px 23px 36px;min-height:calc(100svh - var(--header-h));overflow:hidden}.oa-photo{grid-row:1}.oa-hero .oa-photo{width:100%;max-width:430px;justify-self:center;padding:7px;box-shadow:7px 9px 0 color-mix(in srgb,var(--brand) 10%,transparent)}.oa-copy{justify-self:start;max-width:none}.oa-hero .oa-mark{display:none}.oa-hero .oa-kicker{font-size:10px;margin-bottom:11px}.oa-hero h1{font-size:42px;max-width:15ch;margin-bottom:14px}.oa-hero .oa-deck{font-size:15px;max-width:36ch}.oa-hero .oa-actions{margin-top:23px;gap:22px}.oa-hero .btn{font-size:13px;padding:13px 19px}}
 @media(prefers-reduced-motion:reduce){.oa-hero *{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}}
+
+/* Hayden: give the business name the leading role in the hero. */
+.oa-hero h1{font-size:clamp(76px,7.4vw,108px);line-height:.85;letter-spacing:-.045em;margin:0 0 27px;max-width:none}
+.oa-hero h1 em{font-weight:600;color:var(--brand-text)}
+.oa-hero .oa-kicker{max-width:35ch;line-height:1.6;margin-bottom:22px}
+.oa-hero .oa-tagline{font-family:var(--display);font-size:clamp(25px,2.5vw,33px);line-height:1.1;color:var(--ink);margin-bottom:17px}
+@media(max-width:1000px) and (min-width:701px){.oa-hero h1{font-size:76px}.oa-hero .oa-kicker{font-size:10px}}
+@media(max-width:700px){.oa-hero{gap:27px;padding-top:29px}.oa-copy{display:contents}.oa-identity{grid-row:1}.oa-hero .oa-photo{grid-row:2}.oa-intro{grid-row:3}.oa-hero h1{font-size:clamp(70px,20vw,104px);line-height:.85;margin-bottom:0}.oa-hero .oa-kicker{font-size:9px;letter-spacing:.16em;max-width:none;margin-bottom:17px}.oa-hero .oa-tagline{font-size:29px}.oa-hero .oa-deck{max-width:36ch}}
