@@ -68,7 +68,13 @@
 @media(prefers-reduced-motion:reduce){#hero.s2-hero *,#hero.s2-hero *::before,#hero.s2-hero *::after{animation:none!important;transition:none!important}#hero.s2-hero .s2-glint,#hero.s2-hero .s2-scissors,#hero.s2-hero .s2-cut-cover{display:none!important}}
 </style>
 <link rel="stylesheet" href="css/personality.css">
-</head>
+<style data-hero-reference="2026-10-12">
+.ref-hero{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - var(--header-h));font-family:var(--body)}.ref-hero::before,.ref-hero::after{content:none!important}.ref-hero figure,.ref-hero p{margin:0}.ref-hero img{display:block;max-width:100%;filter:none;transform:none}.ref-hero h1{margin:0;max-width:none;text-shadow:none;opacity:1;transform:none;text-wrap:initial;animation:none}.ref-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.ref-actions a{min-height:48px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}.ref-actions .ref-book{padding:14px 22px;gap:24px}.ref-actions .ref-more{border-bottom:1px solid currentColor;gap:18px}.ref-hero a:focus-visible{outline:3px solid currentColor;outline-offset:5px}.ref-kicker{font:700 10px/1.5 var(--body);letter-spacing:.19em;text-transform:uppercase}.ref-enter{animation:ref-settle 1.4s cubic-bezier(.2,.7,.2,1) both}@keyframes ref-settle{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.ref-hero *,.ref-hero *::before,.ref-hero *::after{animation:none!important;transition:none!important;opacity:1;transform:none}}
+
+.color-house{--stone-ground:#BDBEB3;--stone-ink:#283C34;--stone-red:#AC2529;background:var(--stone-ground);color:var(--stone-ink);display:grid;grid-template-columns:1fr min(46vw,calc((100svh - var(--header-h)) * .75));height:calc(100svh - var(--header-h));min-height:650px}.color-house-work{grid-column:2;grid-row:1;position:relative;align-self:stretch;background:var(--stone-ground)}.color-house-work img{width:100%;height:100%;object-fit:contain;object-position:right center}.color-house-copy{grid-column:1;grid-row:1;align-self:center;padding:38px 6vw 50px 8vw}.color-house h1{font-family:var(--display);display:flex;align-items:flex-start;gap:22px;color:var(--stone-red);line-height:.9;letter-spacing:-.02em;margin:35px 0 36px;font-weight:600}.color-house-salon{writing-mode:vertical-rl;transform:rotate(180deg);font-size:clamp(27px,3.3vw,44px);letter-spacing:.09em;margin-top:6px}.color-house-number{font-size:clamp(150px,17vw,250px);letter-spacing:-.04em;line-height:.85}.color-house-line{font:500 clamp(27px,3vw,38px)/1.08 var(--display)}.color-house-copy .ref-actions{margin-top:46px;gap:25px}.color-house-copy .ref-book{background:var(--stone-ink);color:var(--paper);border:0}.color-house-copy .ref-more{font-size:12px}.color-house-caption{position:absolute;right:22px;bottom:18px;color:var(--paper);font:700 9px/1.2 var(--body);letter-spacing:.13em;text-transform:uppercase;padding:7px 10px;background:var(--stone-ink)}
+@media(max-width:900px){.color-house-copy{padding-left:5vw;padding-right:3vw}.color-house-number{font-size:19vw}.color-house h1{gap:12px}.color-house-copy .ref-actions{gap:13px}.color-house-copy .ref-book{font-size:12px;padding:13px 15px}}
+@media(max-width:700px){.color-house{height:calc(100svh - var(--header-h));min-height:720px;display:grid;grid-template-columns:90px 1fr;grid-template-rows:minmax(0,1fr) auto}.color-house-work{grid-column:2;grid-row:1;align-self:center;justify-self:end;width:100%;height:auto}.color-house-work img{width:100%;height:auto;object-fit:contain}.color-house-copy{display:contents}.color-house .ref-kicker{grid-column:1;grid-row:1;writing-mode:vertical-rl;transform:rotate(180deg);align-self:start;justify-self:center;margin-top:24px;font-size:8px}.color-house h1{grid-column:1;grid-row:1;align-self:end;justify-self:center;flex-direction:column;gap:0;margin:0 0 20px}.color-house-salon{font-size:24px;writing-mode:vertical-rl;letter-spacing:.13em;transform:rotate(180deg);margin:0 auto 20px}.color-house-number{font-size:53px;line-height:1;letter-spacing:-.03em}.color-house-line{grid-column:1/-1;grid-row:2;background:var(--stone-ink);color:var(--paper);font-size:28px;padding:25px 22px 85px!important}.color-house-line br{display:none}.color-house-copy .ref-actions{position:absolute;left:22px;right:22px;bottom:19px;margin:0;gap:23px;color:var(--paper)}.color-house-copy .ref-book{background:var(--paper);color:var(--stone-ink);padding:12px 17px}.color-house-caption{display:none}}
+</style></head>
 <body>
 
 <!-- ===================== HEADER / NAV =====================
@@ -76,17 +82,17 @@
      live type in the sign's face and colour, like the sign. -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="logo" href="#top" aria-label="Salon 410 — home">
+    <a class="logo" href="index.html#top" aria-label="Salon 410 — home">
       <span class="wm wm-sign">SALON 410<small>Hair salon · Buckley</small></span>
     </a>
     <div class="nav-wrap">
       <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
       <nav class="main-nav" id="main-nav">
-        <a href="#services">Services</a>
-        <a href="#lookbook">Lookbook</a>
-        <a href="#about">Yanka &amp; Amanda</a>
-        <a href="#hours">Hours</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#lookbook">Lookbook</a>
+        <a href="index.html#about">Yanka &amp; Amanda</a>
+        <a href="index.html#hours">Hours</a>
         <a href="tel:+12063937950" class="nav-cta">Call the salon</a>
       </nav>
     </div>
@@ -98,11 +104,7 @@
 
 <!-- The Color Studio · Warm Stone. Backdrop-only refinement: softly lit warm stone; original photo, book, type, layout, copy, controls and motion preserved. Emotion: Creative hands, considered color, and the excitement of choosing a fresh look. Composition: A large open sample book floats at the same angle over softly lit warm stone. A whole result photograph is its central page, surrounded by fanned sage, oak and cream leaves; bold red name lettering grounds the other side. Arrival: The fanned leaves turn open in a short stagger, the result page settles into place, and the salon name wipes in once; settled by 2.6 seconds. -->
 
-<section id="hero" class="hero s2-hero s2-studio" aria-labelledby="studio-title">
- <div class="s2-b-ground" aria-hidden="true"></div>
- <div class="s2-b-object"><div class="s2-b-leaf s2-b-leaf-one" aria-hidden="true"></div><div class="s2-b-leaf s2-b-leaf-two" aria-hidden="true"></div><div class="s2-b-leaf s2-b-leaf-three" aria-hidden="true"></div><figure class="s2-b-photo"><img src="hero-assets/color-result.jpg" alt="A real Salon 410 highlighted hairstyle on the open photographic page of a color-book-inspired composition" width="720" height="960" fetchpriority="high"><figcaption>From the chairs at Salon 410</figcaption></figure><div class="s2-b-binding" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
- <div class="s2-b-copy"><p class="s2-label">Cuts · color · a little confidence</p><h1 id="studio-title">SALON<br> <span>410.</span></h1><p class="s2-b-phrase">Find your color.<br> Feel like yourself.</p><div class="s2-actions"><a href="tel:+12063937950" class="s2-btn">Book your chair <span aria-hidden="true">↗</span></a><a href="#lookbook" class="s2-link">Explore the looks</a></div></div>
-</section>
+<section id="hero" class="ref-hero color-house" aria-labelledby="color-house-title"><figure class="color-house-work"><img src="hero-assets/color-result.jpg" width="720" height="960" alt="A complete real Salon 410 highlighted hairstyle, shown from crown to ends" fetchpriority="high"></figure><div class="color-house-copy ref-enter"><p class="ref-kicker">Cuts · Color · Buckley</p><h1 id="color-house-title"><span class="color-house-salon">SALON</span><span class="color-house-number">410</span></h1><p class="color-house-line">Find your color.<br> Feel like yourself.</p><div class="ref-actions"><a class="ref-book" href="tel:+12063937950">Book your chair <span aria-hidden="true">↗</span></a><a class="ref-more" href="index.html#lookbook">The lookbook <span aria-hidden="true">↓</span></a></div></div><span class="color-house-caption">Real work. From these chairs.</span></section>
 
   <!-- ===================== #hours — the one band: live status + address + all seven days ===================== -->
   <section class="status-band" id="hours">
@@ -291,7 +293,7 @@
       </div>
       <div class="cta-actions reveal">
         <a href="tel:+12063937950" class="btn btn-primary">Call (206) 393-7950</a>
-        <a href="#hours" class="btn btn-ghost">Find the salon</a>
+        <a href="index.html#hours" class="btn btn-ghost">Find the salon</a>
       </div>
     </div>
   </section>
@@ -319,7 +321,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">Services</a><br><a href="#lookbook">Lookbook</a><br><a href="#about">Yanka &amp; Amanda</a><br><a href="#hours">Hours</a><br><a href="#contact">Book a chair</a></p>
+        <p><a href="index.html#services">Services</a><br><a href="index.html#lookbook">Lookbook</a><br><a href="index.html#about">Yanka &amp; Amanda</a><br><a href="index.html#hours">Hours</a><br><a href="index.html#contact">Book a chair</a></p>
       </div>
     </div>
     <div class="foot-bottom">

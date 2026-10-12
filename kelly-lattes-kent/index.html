@@ -7,7 +7,7 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Kelly Latte's — Drive-thru espresso, Kent · Auburn · Black Diamond WA</title>
+<title>At the Window · Kelly Latte's — Drive-thru espresso, Kent · Auburn · Black Diamond WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Kelly Latte's — three drive-thru espresso stands in Kent (East Hill), Auburn and Black Diamond, WA. Coffee, energy drinks, shakes, smoothies and fresh mini donuts from 5 am. Run by Kelly and Chad McGraw since the first Kent stand.">
 <script>(function(d){d.classList.add('js');if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce')})(document.documentElement)</script>
@@ -60,7 +60,16 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
 @media(max-width:760px){.kh-extra .extra-print{box-shadow:10px 10px 0 var(--kh-shadow)}}
 
 @media(prefers-reduced-motion:reduce){.hero.kh *,.hero.kh *::before,.hero.kh *::after{animation:none!important;transition:none!important;opacity:1}.hero.kh .kh-cover{display:none!important}}</style>
-<link rel="stylesheet" href="css/personality.css?v=20261011"></head>
+<link rel="stylesheet" href="css/personality.css?v=20261011"><style id="hero-reference-candidate">
+.candidate-hero a:focus-visible{outline:3px solid var(--brand);outline-offset:5px}.candidate-hero figure{margin:0}.candidate-hero img{display:block;max-width:100%}.candidate-hero h1{margin:0;text-shadow:none;letter-spacing:0;font-weight:400}.candidate-hero .candidate-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.candidate-hero .candidate-actions a{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:25px;font-weight:800;font-size:14px;line-height:1.3}.candidate-hero .candidate-button{background:var(--brand);color:var(--paper);padding:16px 25px}.candidate-hero .candidate-link{color:inherit;border-bottom:1px solid currentColor;padding:10px 0}.candidate-hero .candidate-meta{font:700 11px var(--body);letter-spacing:.18em;text-transform:uppercase;line-height:1.6;margin:0}.candidate-hero .candidate-line{font-family:var(--body);font-size:19px;line-height:1.5;margin:0}
+@media(prefers-reduced-motion:reduce){.candidate-hero *,.candidate-hero *::before,.candidate-hero *::after{animation:none!important;transition:none!important;transform:none!important;opacity:1!important;clip-path:none!important}}
+
+#hero.kelly-window{position:relative;display:grid;grid-template-columns:minmax(0,1fr) min(47vw,calc((100svh - var(--header-h)) * .75));grid-template-rows:minmax(0,1fr) auto;height:calc(100svh - var(--header-h));min-height:720px;background:var(--bg);color:var(--ink);overflow:hidden;isolation:isolate;padding:0}
+.kelly-welcome{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px 4vw 24px;text-align:center}.kelly-window h1{width:min(100%,370px);max-width:none;line-height:1;margin:8px 0 0}.kelly-window h1 img{width:100%;height:auto;mix-blend-mode:multiply}.kelly-message{padding-top:5px}.kelly-message>p{font:400 clamp(24px,2.7vw,40px)/1.08 var(--body);margin:0 0 20px;letter-spacing:-.045em}.kelly-message strong{font-weight:800}.kelly-message .candidate-meta{color:var(--brand-text);font-size:10px;display:block}
+.kelly-latte{position:relative;min-height:0;grid-column:2;grid-row:1/span 2;align-self:stretch;background:transparent}.kelly-latte img{width:100%;height:100%;object-fit:contain;max-height:none;min-height:0;object-position:center}.kelly-counter{grid-column:1;grid-row:2;display:flex;justify-content:center;align-items:center;gap:30px;padding:23px 4vw;background:var(--bg-2);border-top:1px solid var(--line)}.kelly-counter>p{display:none;font-size:17px;line-height:1.35;margin:0}.kelly-counter strong{font-weight:800}.kelly-counter .candidate-button{background:var(--dark);border-radius:3px}.kelly-counter .candidate-link{color:var(--brand-text)}
+.kelly-window h1 img{animation:kelly-mark-rest 1.3s cubic-bezier(.2,.8,.2,1) both}.kelly-latte img{animation:kelly-window-open 1.5s cubic-bezier(.2,.8,.2,1) both}@keyframes kelly-mark-rest{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}@keyframes kelly-window-open{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}
+@media(max-width:760px){#hero.kelly-window{display:flex;flex-direction:column;height:auto;min-height:0}.kelly-welcome{display:grid;grid-template-columns:154px minmax(0,1fr);gap:8px;padding:7px 20px;text-align:left;align-items:center}.kelly-welcome>.candidate-meta{display:none}.kelly-window h1{width:100%;margin:0}.kelly-message{padding:0 0 0 12px;border-left:1px solid var(--line)}.kelly-message>p{font-size:25px;line-height:1.06;margin-bottom:14px}.kelly-message .candidate-meta{font-size:8px;letter-spacing:.12em}.kelly-latte{width:100%;background:var(--bg)}.kelly-latte img{width:100%;height:clamp(340px,calc(100svh - var(--header-h) - 260px),520px);max-height:none;min-height:0;object-fit:contain}.kelly-counter{display:block;padding:18px 20px}.kelly-counter>p{display:none}.kelly-counter .candidate-actions{gap:15px;flex-wrap:nowrap;justify-content:space-between}.kelly-counter .candidate-actions a{font-size:12px;gap:12px}.kelly-counter .candidate-button{padding:14px 17px}}
+</style></head>
 <body class="personality-page">
 
 <!-- ===================== HEADER / NAV ===================== -->
@@ -88,14 +97,10 @@ Arrival: The masthead arrives first, the coffee-and-muffin print glides in and s
 <span id="top"></span>
 <main>
 
-  <section class="hero kh kh-extra" id="hero" aria-labelledby="extra-title">
-    <div class="extra-top"><span class="kh-label">Drive-thru espresso &amp; little pick-me-ups</span><span class="kh-label">Kent · Auburn · Black Diamond</span></div>
-    <h1 id="extra-title">Kelly Latte's</h1>
-    <p class="extra-big" aria-hidden="true">GOOD<br> TO<br> GO.</p>
-    <figure class="extra-print"><img src="images/cup-pumpkin.jpg" alt="Kelly Latte's branded coffee cup beside a wrapped muffin top, held out at the stand" width="1200" height="1600" fetchpriority="high"></figure>
-    <div class="extra-note"><svg class="extra-arrow" viewBox="0 0 160 95" fill="none" aria-hidden="true"><path d="M147 8C126 9 104 8 94 30C84 54 93 70 63 76C47 79 31 73 15 64M34 48L13 64L20 86" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Your daily<br><strong>little extra.</strong></p><span class="kh-label">Coffee · energy drinks<br>Shakes · fresh mini donuts</span><a class="kh-primary" href="#menu">Find your favorite <span aria-hidden="true">↗</span></a></div>
-    <div class="extra-foot"><span>Good drinks. Good people.</span><a href="#hours">Find a Kelly's near you <span aria-hidden="true">↗</span></a></div>
-  </section>
+  <section id="hero" class="candidate-hero kelly-window" aria-labelledby="kelly-window-name">
+<div class="kelly-welcome"><p class="candidate-meta">Coffee &amp; little pick-me-ups</p><h1 id="kelly-window-name" aria-label="Kelly Latte’s"><img src="images/logo.png" width="600" height="600" alt="Kelly Latte’s" fetchpriority="high"></h1><div class="kelly-message"><p>Your daily<br><strong>little extra.</strong></p><span class="candidate-meta">Kent · Auburn<br>Black Diamond</span></div></div>
+<figure class="kelly-latte"><img src="images/cup-pumpkin.jpg" alt="Kelly Latte’s coffee and a wrapped muffin top, held out at the stand" width="1200" height="1600" fetchpriority="high"></figure>
+<div class="kelly-counter"><p>Coffee in hand.<br><strong>Something good to go.</strong></p><div class="candidate-actions"><a class="candidate-button" href="#menu">Find your favorite <span aria-hidden="true">↗</span></a><a class="candidate-link" href="#hours">Find your window <span aria-hidden="true">↓</span></a></div></div></section>
 
   <!-- ===================== #hours — three windows, one band =====================
        Live dot + status per stand, address, all 7 day rows (Kent lit as the home stand).
