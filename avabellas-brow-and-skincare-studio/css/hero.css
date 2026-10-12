@@ -1,0 +1,58 @@
+
+
+/* Related room-led variations from The Quiet Appointment. Original site below is intact. */
+.gq-hero{position:relative;isolation:isolate;height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--body)}
+.gq-hero::before,.gq-hero::after{content:none!important}.gq-hero p,.gq-hero figure{margin:0}.gq-hero img{display:block;width:100%;height:100%;object-fit:cover}
+.gq-hero h1{font-family:var(--display);font-weight:400;line-height:1.01;letter-spacing:-.04em;max-width:none;text-shadow:none;text-wrap:initial;margin:0;color:inherit}.gq-hero h1 em{font-style:normal;color:var(--brand-text)}
+.gq-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:17px;gap:25px;grid-column:1/-1;color:var(--brand-text)}
+.gq-kicker{font-size:9px;font-weight:600;line-height:1.5;letter-spacing:.2em;text-transform:uppercase}.gq-meta .gq-kicker:last-child{text-align:right}
+.gq-deck{font-size:15px;line-height:1.65;color:var(--muted)}
+.gq-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.gq-button{display:inline-flex;align-items:center;justify-content:center;gap:25px;min-height:52px;padding:14px 22px;background:var(--brand);color:var(--paper);border-radius:0 18px 0 18px;font-size:13px;font-weight:600;white-space:nowrap;transition:background .2s,transform .2s}.gq-button:hover{background:var(--brand-bright);transform:translateY(-2px)}
+.gq-link{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:48px;padding:10px 0;border-bottom:1px solid currentColor;font-size:13px;font-weight:500;white-space:nowrap}.gq-hero a:focus-visible{outline:3px solid var(--warm);outline-offset:5px}
+.gq-enter{animation:gq-arrive .85s cubic-bezier(.16,.78,.19,1) both;animation-delay:var(--delay,0s)}
+.gq-frame{position:relative;min-height:0;isolation:isolate}.gq-frame::before{content:"";position:absolute;border:1px solid var(--warm);pointer-events:none;z-index:2;animation:gq-contour 1.4s ease .55s both}
+.gq-image{position:absolute;overflow:hidden}.gq-image img{transform:scale(var(--gq-zoom,1));transform-origin:right center;animation:gq-settle 2.2s cubic-bezier(.16,.78,.19,1) both}
+@keyframes gq-arrive{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes gq-settle{from{transform:scale(calc(var(--gq-zoom,1) + .065))}to{transform:scale(var(--gq-zoom,1))}}
+@keyframes gq-contour{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes gq-open{from{opacity:0;clip-path:inset(100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@media(max-width:700px){.gq-meta{padding-bottom:13px;gap:15px}.gq-meta .gq-kicker{font-size:8px;letter-spacing:.14em;max-width:170px}.gq-deck{font-size:13px;line-height:1.5}.gq-actions{justify-content:space-between;gap:16px}.gq-button{font-size:12px;min-height:50px;padding:12px 16px;gap:16px}.gq-link{font-size:12px;gap:11px;min-height:47px}}
+@media(prefers-reduced-motion:reduce){.gq-hero *,.gq-hero *::before,.gq-hero *::after{animation:none!important;transition:none!important}.gq-enter{opacity:1;transform:none}.gq-image,.gq-frame::before{clip-path:none!important;opacity:1}}
+
+.gq-yours{display:grid;grid-template-columns:1.15fr 1fr;grid-template-rows:auto auto minmax(0,1fr) auto;padding:28px 6vw 32px;gap:23px 4vw}
+.gq-yours h1{display:contents}.gq-yours h1 span{font-family:var(--display);font-weight:400;line-height:.96;letter-spacing:-.045em}.gq-yours-first{grid-column:1/-1;grid-row:2;font-size:clamp(70px,8vw,119px)}.gq-yours-last{grid-column:1;grid-row:4;align-self:center;color:var(--brand-text);font-size:clamp(54px,6.65vw,96px)}
+.gq-yours .gq-frame{grid-column:1/-1;grid-row:3;margin:4px 0 3px}.gq-yours .gq-frame::before{inset:0 0 0 11px;border-radius:0 190px 0 190px}.gq-yours .gq-image{inset:10px 11px 0 0;border-radius:0 180px 0 180px;animation:gq-yours-open 1.8s cubic-bezier(.16,.78,.19,1) .12s both}.gq-yours .gq-image img{object-position:50% 50%}
+.gq-yours-foot{grid-column:2;grid-row:4;align-self:center;justify-self:end}.gq-yours-foot .gq-deck{font-size:14px;max-width:385px;margin-bottom:20px}.gq-yours-foot .gq-actions{gap:22px}.gq-yours-foot .gq-button{padding-left:19px;padding-right:19px}
+@keyframes gq-yours-open{from{opacity:0;clip-path:inset(0 50%)}to{opacity:1;clip-path:inset(0)}}
+@media(max-width:900px){.gq-yours{--gq-zoom:1.25}}
+@media(max-width:700px){.gq-yours{padding:23px 23px 24px;grid-template-columns:1fr;grid-template-rows:auto auto minmax(180px,1fr) auto auto;gap:20px}.gq-yours-first{font-size:12.2vw;line-height:1!important}.gq-yours-last{font-size:12.1vw;line-height:1.03!important}.gq-yours .gq-frame{margin:0}.gq-yours .gq-frame::before{inset:0 0 0 10px;border-radius:0 118px 0 118px}.gq-yours .gq-image{inset:10px 10px 0 0;border-radius:0 110px 0 110px}.gq-yours .gq-image img{object-position:61% 48%}.gq-yours-foot{grid-column:1;grid-row:5;justify-self:stretch;border-top:1px solid var(--line);padding-top:14px}.gq-yours-foot .gq-deck{font-size:13px;line-height:1.5;max-width:320px;margin-bottom:16px}.gq-yours-foot .gq-actions{gap:16px}.gq-yours-foot .gq-button{padding-left:16px;padding-right:16px}}
+@media(max-height:720px) and (max-width:700px){.gq-yours{padding-top:17px;padding-bottom:18px;gap:14px;grid-template-rows:auto auto minmax(130px,1fr) auto auto}.gq-yours-first,.gq-yours-last{font-size:11.6vw}.gq-yours-foot .gq-deck{font-size:12px;margin-bottom:12px}}
+
+
+/* More room for the original photograph, with its center kept fixed. */
+.gq-yours{--gq-zoom:1;height:auto;min-height:calc(100svh - var(--header-h));padding:24px 5vw 30px;gap:18px 4vw;grid-template-rows:auto auto minmax(400px,1fr) auto}
+.gq-yours-first{font-size:clamp(62px,6.5vw,94px)}
+.gq-yours-last{font-size:clamp(48px,5.4vw,78px)}
+.gq-yours .gq-frame{min-height:clamp(400px,43vw,620px);margin:0}
+.gq-yours .gq-frame::before{border-radius:0 110px 0 110px}
+.gq-yours .gq-image{border-radius:0 104px 0 104px}
+.gq-yours .gq-image img{object-position:center;transform-origin:center;--gq-zoom:1}
+@media(max-width:700px){.gq-yours{--gq-zoom:1;padding:21px 23px 26px;gap:18px;grid-template-rows:auto auto auto auto auto}.gq-yours-first{font-size:11.8vw}.gq-yours-last{font-size:11.5vw}.gq-yours .gq-frame{height:calc(100vw - 46px);min-height:0}.gq-yours .gq-frame::before{border-radius:0 54px 0 54px}.gq-yours .gq-image{border-radius:0 48px 0 48px}.gq-yours .gq-image img{object-position:50% 50%;--gq-zoom:1}}
+
+/* A wider view of the actual studio, with both chairs fully in the composition. */
+.gq-yours .gq-image img{object-position:50% 60%;transform:none;animation:none}
+@media(max-width:700px){.gq-yours .gq-image img{object-position:50% 50%}}
+
+/* AvaBellas: preserve the complete 16:9 primary-source photograph, no crop or zoom. */
+.gq-yours{padding:22px max(5vw,calc((100vw - 1180px)/2 + 40px)) 32px;grid-template-rows:auto auto auto auto;gap:16px 3vw;min-height:calc(100svh - var(--header-h))}
+.gq-yours-first{font-size:clamp(42px,5.1vw,72px)}
+.gq-yours-last{font-size:clamp(38px,4.3vw,62px)}
+.gq-yours .gq-frame{min-height:0;height:auto;aspect-ratio:16/9;margin:4px 0 8px}
+.gq-yours .gq-image{inset:0;border-radius:0;animation:gq-yours-open 1.6s ease .1s both}
+.gq-yours .gq-frame::before{inset:-7px 7px 7px -7px;border-radius:0;border-color:var(--accent);z-index:-1}
+.gq-yours .gq-image img{object-fit:contain;height:auto;width:100%;transform:none;animation:none}
+.gq-yours .gq-deck{max-width:42ch}
+.gq-button{border-radius:3px}
+.gq-yours .gq-frame,.gq-yours .gq-yours-first,.gq-yours .gq-yours-last,.gq-yours .gq-yours-foot{align-self:center}
+@media(max-width:700px){.gq-yours{padding:24px 22px 32px;min-height:calc(100svh - var(--header-h));grid-template-columns:1fr;grid-template-rows:auto auto auto auto auto;align-content:center;gap:22px}.gq-yours-first{font-size:45px}.gq-yours-last{font-size:43px}.gq-yours .gq-frame{min-height:0;height:auto;aspect-ratio:16/9;margin:0 -22px;width:calc(100% + 44px)}.gq-yours .gq-frame::before{display:none}.gq-yours .gq-image{inset:0;border-radius:0}.gq-yours-foot .gq-deck{font-size:15px;max-width:none}.gq-yours-foot .gq-actions{gap:14px}.gq-yours-foot{padding-top:16px}.gq-meta{padding-bottom:16px}.gq-kicker{font-size:9px!important}.gq-meta .gq-kicker:last-child{max-width:115px}}
+@media(max-height:730px) and (max-width:700px){.gq-yours{gap:15px;padding-top:18px;padding-bottom:20px}.gq-yours-first{font-size:40px}.gq-yours-last{font-size:38px}}

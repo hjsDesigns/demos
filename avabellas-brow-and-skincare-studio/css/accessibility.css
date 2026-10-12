@@ -1,0 +1,12 @@
+/* Structural additions for native service disclosures and the requested full-site routes. */
+.skip-link{position:fixed;left:12px;top:-80px;z-index:60;background:var(--paper);color:var(--ink);padding:12px 18px}.skip-link:focus{top:12px}
+.service-detail{border-top:var(--rule);padding:0}.service-detail:last-child{border-bottom:var(--rule)}
+.service-detail summary{display:flex;align-items:center;justify-content:space-between;gap:18px;cursor:pointer;list-style:none;min-height:82px;padding:20px 0;font-family:var(--display);font-size:clamp(25px,3vw,34px);font-weight:600;line-height:1.1}
+.service-detail summary::-webkit-details-marker{display:none}.service-detail summary::after{content:'+';font-family:var(--body);font-size:24px;font-weight:400;color:var(--brand-text)}.service-detail[open] summary::after{content:'−'}
+.service-detail .detail-body{max-width:66ch;padding:0 28px 25px 0;color:var(--muted)}.detail-body p:last-child{margin:0}.detail-body a{display:inline-flex;min-height:44px;align-items:center;color:var(--brand-text);border-bottom:1px solid var(--line);font-weight:700}
+.schedule-disclosure>summary{font-weight:700;cursor:pointer;padding:15px 0;min-height:48px}.hours-list li a{font-size:14px;text-decoration:underline;min-height:44px;display:flex;align-items:center;color:var(--brand-text)}
+.photo-natural{width:100%;height:auto;display:block}.editorial-photo{margin:0;max-width:490px}.editorial-photo figcaption{font-size:12px;color:var(--muted);margin-top:12px}
+.page-intro{padding:clamp(48px,7vw,100px) 0 35px}.page-intro h1{font-size:clamp(47px,7vw,86px);font-weight:500;max-width:14ch;line-height:1}.page-intro p:last-child{max-width:57ch;margin-top:24px;color:var(--muted)}
+.booking-card{background:var(--paper);border:var(--rule);padding:clamp(24px,4vw,42px);border-radius:var(--r)}.booking-card h3{font-size:31px;margin-bottom:18px}.booking-card .btn{margin-top:10px}
+.site-footer a[aria-current],.main-nav a[aria-current]{text-decoration:underline;text-underline-offset:6px}.logo .wm{font-weight:600}.logo .wm small{font-size:9px;letter-spacing:.13em}.foot-bottom a{min-height:44px;display:inline-flex;align-items:center}.foot-bottom{align-items:center}
+@media(max-width:700px){.gq-hero{overflow:clip}.service-detail summary{min-height:76px}.editorial-photo{max-width:100%}}

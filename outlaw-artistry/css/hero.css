@@ -1,0 +1,14 @@
+/* Approved reference: Homestead's whole-cabin postcard. Re-asseted to Outlaw's actual portrait photo and mark. */
+.oa-hero{position:relative;isolation:isolate;min-height:calc(100svh - var(--header-h));background:var(--bg);color:var(--ink);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);align-items:center;gap:clamp(35px,7vw,100px);padding:40px max(24px,7vw);overflow:hidden}
+.oa-hero p,.oa-hero figure{margin:0}.oa-copy{max-width:460px;justify-self:end}.oa-hero .oa-mark{width:min(100%,350px);height:auto;mix-blend-mode:multiply;margin:0 0 20px}
+.oa-hero .oa-kicker{font-size:11px;letter-spacing:.19em;text-transform:uppercase;font-weight:600;color:var(--brand-text);margin-bottom:17px}
+.oa-hero h1{font-family:var(--display);font-size:clamp(40px,4.15vw,62px);font-weight:600;line-height:1.03;letter-spacing:-.03em;max-width:12ch;margin-bottom:22px;color:var(--ink)}
+.oa-hero .oa-deck{max-width:31ch;font-size:16px;line-height:1.6;color:var(--muted)}
+.oa-hero .oa-actions{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:30px}.oa-hero .oa-link{min-height:48px;display:inline-flex;align-items:center;border-bottom:1px solid var(--brand);font-size:14px;font-weight:600}
+.oa-hero .oa-photo{width:100%;max-width:475px;justify-self:start;position:relative;padding:10px;background:var(--paper);border:1px solid var(--line);box-shadow:15px 16px 0 color-mix(in srgb,var(--brand) 10%,transparent);animation:oa-land 1.65s cubic-bezier(.16,.78,.19,1) .15s both}
+.oa-photo img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain}.oa-copy{animation:oa-arrive .9s cubic-bezier(.16,.78,.19,1) .35s both}
+@keyframes oa-land{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes oa-arrive{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+@media(max-width:1000px) and (min-width:701px){.oa-hero{padding:45px 4vw;gap:32px}.oa-hero h1{font-size:46px}.oa-hero .oa-mark{max-width:285px}.oa-hero .oa-deck{font-size:15px}.oa-hero .oa-actions{gap:12px}.oa-hero .btn{font-size:13px;padding:13px 18px}}
+@media(max-width:700px){.oa-hero{grid-template-columns:1fr;gap:30px;padding:24px 23px 36px;min-height:calc(100svh - var(--header-h));overflow:hidden}.oa-photo{grid-row:1}.oa-hero .oa-photo{width:100%;max-width:430px;justify-self:center;padding:7px;box-shadow:7px 9px 0 color-mix(in srgb,var(--brand) 10%,transparent)}.oa-copy{justify-self:start;max-width:none}.oa-hero .oa-mark{display:none}.oa-hero .oa-kicker{font-size:10px;margin-bottom:11px}.oa-hero h1{font-size:42px;max-width:15ch;margin-bottom:14px}.oa-hero .oa-deck{font-size:15px;max-width:36ch}.oa-hero .oa-actions{margin-top:23px;gap:22px}.oa-hero .btn{font-size:13px;padding:13px 19px}}
+@media(prefers-reduced-motion:reduce){.oa-hero *{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}}
