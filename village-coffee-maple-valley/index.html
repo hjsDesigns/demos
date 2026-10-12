@@ -75,7 +75,55 @@
 :root{--magnolia-sky:#b7ddeb}
 #hero.magnolia-place{display:block;position:relative;padding:0;min-height:0;background:var(--magnolia-sky);color:var(--dark);overflow:hidden}.magnolia-scene{position:relative;height:calc(100svh - var(--header-h) - 105px);min-height:650px}.magnolia-scene figure{position:absolute;inset:0}.magnolia-scene img{width:100%;height:100%;object-fit:cover;object-position:center bottom;filter:none;transform:none}.magnolia-scene::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,color-mix(in srgb,var(--magnolia-sky) 88%,transparent),transparent 43%);z-index:1}.magnolia-lettering{position:absolute;z-index:2;left:5.5%;top:7%;color:var(--dark)}.magnolia-place h1{font-family:var(--display);font-size:clamp(67px,7.4vw,106px);line-height:.83;letter-spacing:-.055em;max-width:none;margin:0 0 27px}.magnolia-place h1 span{display:block}.magnolia-place h1 span:last-child{color:var(--brand-text);margin-left:.45em}.magnolia-lettering p{font-family:var(--body);font-weight:700;font-size:19px;line-height:1.35;margin:0;max-width:23ch}.magnolia-road{background:var(--v-blue);display:flex;align-items:center;justify-content:space-between;gap:30px;padding:25px 5.5%;border-bottom:1px solid var(--brand)}.magnolia-road .candidate-line{font-size:17px;font-weight:700}.magnolia-road .candidate-button{background:var(--brand);color:var(--paper);border-radius:0}.magnolia-road .candidate-link{color:var(--brand)}.magnolia-lettering{animation:magnolia-name 1.3s ease-out both}.magnolia-scene img{animation:magnolia-air 1.7s ease-out both}@keyframes magnolia-name{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}@keyframes magnolia-air{from{filter:saturate(.8) brightness(.94)}to{filter:saturate(1) brightness(1)}}
 @media(max-width:760px){.magnolia-scene{height:auto;min-height:0}.magnolia-scene figure{position:relative}.magnolia-scene img{width:100%;height:auto;object-fit:contain}.magnolia-scene::after{background:linear-gradient(120deg,color-mix(in srgb,var(--magnolia-sky) 65%,transparent),transparent 58%)}.magnolia-lettering{left:5%;top:6%}.magnolia-place h1{font-size:49px;line-height:.9;margin-bottom:15px;letter-spacing:-.035em}.magnolia-place h1 span:last-child{margin-left:.35em}.magnolia-lettering p{font-size:12px;line-height:1.4;max-width:16ch}.magnolia-road{display:block;padding:25px 20px 28px}.magnolia-road .candidate-line{font-size:15px}.magnolia-road .candidate-actions{margin-top:19px;gap:22px;flex-wrap:nowrap;justify-content:space-between}.magnolia-road .candidate-actions a{font-size:12px;gap:13px}.magnolia-road .candidate-button{padding:14px 19px}}
-</style></head>
+</style>
+<style data-village-menu-invitation="2026-10-12">
+/* A quiet invitation in the Village's cream and magnolia pink. */
+.magnolia-road{
+  background:var(--bg);
+  border-bottom:1px solid color-mix(in srgb,var(--brand-text) 28%,var(--bg));
+  padding-top:23px;
+  padding-bottom:23px;
+}
+.magnolia-road .candidate-line{
+  font-family:var(--display);
+  font-size:25px;
+  line-height:1.2;
+  font-weight:700;
+  letter-spacing:-.025em;
+}
+.magnolia-road .candidate-actions{gap:30px}
+.magnolia-road .candidate-actions .candidate-button{
+  background:transparent;
+  color:var(--brand-text);
+  padding:9px 0;
+  border-bottom:1px solid currentColor;
+  font-family:var(--display);
+  font-size:24px;
+  font-weight:700;
+  gap:26px;
+}
+.magnolia-road .candidate-actions .candidate-button span{font-family:var(--body);font-size:20px;font-weight:500;transition:transform .2s ease}
+.magnolia-road .candidate-actions .candidate-button:hover span{transform:translateY(3px)}
+.magnolia-road .candidate-actions .candidate-link{font-size:12px;border-bottom-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+@media(max-width:760px){
+  .magnolia-road{padding:23px 20px 25px}
+  .magnolia-road .candidate-line{max-width:21ch;font-size:24px;line-height:1.15}
+  .magnolia-road .candidate-actions{margin-top:19px;gap:18px;align-items:center}
+  .magnolia-road .candidate-actions .candidate-button{padding:9px 0;font-size:21px;gap:15px}
+  .magnolia-road .candidate-actions .candidate-link{font-size:11px;gap:8px}
+}
+@media(max-width:350px){
+  .magnolia-road .candidate-actions{gap:13px}
+  .magnolia-road .candidate-actions .candidate-button{font-size:19px;gap:10px}
+  .magnolia-road .candidate-actions .candidate-link{font-size:10px;gap:6px}
+}
+
+@media(min-width:761px) and (max-width:1050px){
+ .magnolia-road{flex-wrap:wrap;gap:10px}
+ .magnolia-road .candidate-actions{margin-left:auto}
+}
+</style>
+</head>
 <body class="personality-page">
 
 <!-- ===================== HEADER / NAV ===================== -->
@@ -104,7 +152,7 @@
 
 <!-- Magnolia Morning: Fresh air, a familiar stop and a slower breath before the day. Composition: An edge-to-edge photograph fills the right three-fifths; oversized rose Tinos lettering lives on a narrow cream column that steps into the image. On phones the full hut sits below the name. Arrival: The photo opens like a wide curtain, the two brand lines rise into place, and a fine rose line draws once; settled by 2.2 seconds. -->
 
-<section id="hero" class="candidate-hero magnolia-place" aria-labelledby="magnolia-place-name"><div class="magnolia-scene"><figure><img src="images/hero.jpg" width="1440" height="1630" alt="Village Coffee’s entire blue-roofed hut under the blooming magnolia on Witte Road" fetchpriority="high"></figure><div class="magnolia-lettering"><h1 id="magnolia-place-name"><span>Village</span> <span>Coffee</span></h1><p>That little hut.<br>Your lovely start.</p></div></div><div class="magnolia-road"><p class="candidate-line">Your coffee. Your people. Your Village.</p><div class="candidate-actions"><a class="candidate-button" href="#menu">See the board <span aria-hidden="true">↗</span></a><a class="candidate-link" href="#hours">Pull up to the hut <span aria-hidden="true">↓</span></a></div></div></section>
+<section id="hero" class="candidate-hero magnolia-place" aria-labelledby="magnolia-place-name"><div class="magnolia-scene"><figure><img src="images/hero.jpg" width="1440" height="1630" alt="Village Coffee’s entire blue-roofed hut under the blooming magnolia on Witte Road" fetchpriority="high"></figure><div class="magnolia-lettering"><h1 id="magnolia-place-name"><span>Village</span> <span>Coffee</span></h1><p>That little hut.<br>Your lovely start.</p></div></div><div class="magnolia-road"><p class="candidate-line">Your coffee. Your people. Your Village.</p><div class="candidate-actions"><a class="candidate-button" href="#menu">Explore the menu <span aria-hidden="true">↓</span></a><a class="candidate-link" href="#hours">Pull up to the hut <span aria-hidden="true">↓</span></a></div></div></section>
 
   <!-- ===================== #hours — the status band: live dot + 7 day rows + address. Hours live HERE only. -->
   <section class="status-band" id="hours">
