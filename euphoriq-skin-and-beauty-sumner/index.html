@@ -25,6 +25,19 @@
 @media(max-width:700px) and (max-height:760px){.en-living .living-photo{top:2%;height:56%}.en-living .living-bottom{bottom:26px}.hero.en-living h1{font-size:33px}.en-living .living-book .en-copy{margin-top:15px;margin-bottom:18px}}
 @media(prefers-reduced-motion:reduce){.hero.en *,.hero.en *:before,.hero.en *:after{animation:none!important;transition:none!important}.hero.en .en-photo img,.hero.en .en-photo>svg{filter:brightness(1);transform:none}}</style>
 <link rel="stylesheet" href="css/personality.css">
+<style id="lash-comparison-fix">
+/* Each photograph stays full-size; the divider clips its own image and label together. */
+.ba-corrected .ba-plane{position:absolute;inset:0;overflow:hidden}
+.ba-corrected .ba-before-plane{clip-path:inset(0 calc(100% - var(--cut)) 0 0)}
+.ba-corrected .ba-after-plane{clip-path:inset(0 0 0 var(--cut))}
+.ba-corrected .ba-before-window{position:absolute;inset:0;overflow:hidden}
+/* The original 1000px composite has the Before photo on the left. Show x=0..488, y=0..560. */
+.ba-corrected img.ba-before-source{width:204.918032787%;max-width:none;height:auto;object-fit:initial;inset:0 auto auto 0}
+.ba-corrected .line,.ba-corrected .knob{z-index:2}
+.ba-corrected input[type=range]{z-index:3;touch-action:none}
+.ba-corrected input[type=range]::-webkit-slider-thumb{width:1px}
+.ba-corrected input[type=range]::-moz-range-thumb{width:1px}
+</style>
 </head>
 <body>
 
@@ -166,20 +179,24 @@
   <section class="section" id="signature">
     <div class="wrap">
       <div class="ba-wrap">
-        <div class="ba reveal" id="lashBA">
-          <img class="before" src="images/lash-before.jpg" alt="Before: natural lashes, straight" width="488" height="560" loading="lazy">
-          <img class="after" src="images/lash-after.jpg" alt="After: the same lashes lifted and tinted" width="488" height="560" loading="lazy">
+        <div class="ba reveal ba-corrected" id="lashCompare">
+          <div class="ba-plane ba-before-plane">
+            <div class="ba-before-window"><img class="ba-before-source" src="images/raw/yelp-via-yahoo-5.jpg" alt="Before the lash lift: the left-hand photograph from Euphoriq’s original comparison" width="1000" height="1000" loading="lazy"></div>
+            <span class="tag tag-before" aria-hidden="true">Before</span>
+          </div>
+          <div class="ba-plane ba-after-plane">
+            <img src="images/lash-after.jpg" alt="After the lash lift: the right-hand photograph from Euphoriq’s original comparison" width="488" height="560" loading="lazy">
+            <span class="tag tag-after" aria-hidden="true">After</span>
+          </div>
           <span class="line" aria-hidden="true"></span>
           <span class="knob" aria-hidden="true">◂ ▸</span>
-          <span class="tag tag-before" aria-hidden="true">Before</span>
-          <span class="tag tag-after" aria-hidden="true">After</span>
-          <input type="range" min="0" max="100" value="50" step="0.5" aria-label="Slide to compare the lash lift before and after">
+          <input type="range" min="0" max="100" value="50" step="0.5" aria-label="Lash lift before and after comparison" aria-valuetext="50% before, 50% after" aria-describedby="lash-compare-help">
         </div>
         <div class="section-head reveal">
           <p class="eyebrow">One lash lift, one client</p>
           <h2>Drag the line. <em>Same lashes.</em></h2>
           <p>This is one of Katherine's own clients, photographed before and after a single lash lift and tint. No extensions, nothing glued on — the lashes you already have, curled from the root.</p>
-          <p class="ba-hint"><b>Drag the line</b> — before on the left, after on the right.</p>
+          <p class="ba-hint" id="lash-compare-help"><b>Drag left for After. Drag right for Before.</b> All the way to either edge shows the full photo.</p>
         </div>
       </div>
     </div>
@@ -293,5 +310,6 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script src="js/lash-comparison.js"></script>
 </body>
 </html>
