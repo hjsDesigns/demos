@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PNW ADU — assembly film (code-built)</title>
+<style>
+html,body{margin:0;background:#0b0f14;height:100%;overflow:hidden}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0b0f14}
+canvas{display:block;max-width:100vw;max-height:100vh;aspect-ratio:9/16;background:#0b0f14}
+#ui{position:fixed;left:12px;bottom:12px;display:flex;gap:8px;z-index:2;font:600 13px -apple-system,Helvetica,sans-serif}
+#ui button{padding:8px 14px;border-radius:999px;border:1px solid #444;background:#1b2128;color:#eee;cursor:pointer}
+#ui span{color:#999;align-self:center}
+body.render #ui{display:none}
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="c" width="1080" height="1920"></canvas></div>
+<div id="ui"><button id="play">▶ Play</button><span id="time">0.00 s</span></div>
+<script>
+/* ======================================================================
+   PNW ADU — "One lot, built from the ground up" — the assembly film, in code.
+   Five real cutouts (blueprint → frame → utilities → furniture → exterior) nest
+   into ONE footprint, a slow camera descent the whole way, the windows glow on,
+   then a crossfade to the approved blue-hour photograph. Deterministic: every
+   frame is a pure function of t (seconds), so it renders identically to MP4.
+   Duration 9.0 s. Nothing loops.
+   ====================================================================== */
+const W=1080,H=1920,DUR=9.0;
+const SRC={blueprint:'layers/blueprint.png',frame:'layers/frame.png',utilities:'layers/utilities.png',furniture:'layers/furniture.png',exterior:'layers/exterior.png',ending:'ending.jpg'};
+// base anchors from bounds.json (bottom-center of each module in the 941×1671 source canvas)
+const ANCHOR={blueprint:[460,1368],frame:[473,1164],utilities:[474,894],furniture:[472,776],exterior:[472,615]};
+// the shared footprint on OUR canvas: where every module's base lands (x, y)
+const FOOT=[540,1260];
+const SCALE=1.32;               // source px → canvas px (941 → ~1240 wide field, centered)
+const IMG={};
+const ease=t=>t<0?0:t>1?1:1-Math.pow(1-t,3);            // ease-out cubic
+const easeIO=t=>t<0?0:t>1?1:(t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const seg=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+
+// Timeline (seconds): each module = [start, land] — drops from above and settles on the footprint.
+const T={
+  blueprint:[0.30,1.30],   // fades in flat on the ground, blue glow breathes
+  frame:[1.20,2.40],       // timber frame drops onto the slab
+  utilities:[2.30,3.30],   // fades in INSIDE the frame (drawn under the studs)
+  furniture:[3.20,4.20],   // lands inside
+  exterior:[4.20,5.60],    // the shell comes down over everything
+  lights:[5.50,6.60],      // warm bloom from the windows, with a flutter
+  photo:[6.90,8.30],       // crossfade to the approved photograph; hold to 9.0
+};
+
+function load(){return Promise.all(Object.entries(SRC).map(([k,s])=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;})));}
+
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+
+function drawModule(name,t,opts){
+  const im=IMG[name]; if(!im) return;
+  const [a,b]=T[name]; const p=seg(t,a,b); if(p<=0) return;
+  const e=ease(p);
+  const drop=(opts.drop||0)*(1-e);                 // starts high, lands at 0
+  const alpha=opts.fade?e:Math.min(1,p*2.2);
+  const scale=SCALE*(opts.k||1)*(opts.grow?(0.96+0.04*e):1);
+  const [ax,ay]=ANCHOR[name];
+  const cam=camera(t);
+  ctx.save();
+  ctx.globalAlpha=alpha*(opts.alphaMul||1);
+  ctx.translate(FOOT[0]+cam.x+(opts.dx||0)*cam.z, FOOT[1]+cam.y-drop+(opts.dy||0)*cam.z);
+  ctx.scale(scale*cam.z,scale*cam.z);
+  // overshoot settle: tiny squash when landing
+  const settle=opts.drop? (p>0.85&&p<1 ? 1+0.012*Math.sin((p-0.85)/0.15*Math.PI) : 1):1;
+  ctx.scale(1,settle);
+  ctx.drawImage(im,-ax,-ay);
+  ctx.restore();
+}
+function camera(t){ // slow descent + gentle push-in the whole film, deterministic
+  const p=seg(t,0,8.3);
+  return {x:0, y:-90+180*easeIO(p), z:1.02-0.07*easeIO(p)};
+}
+function background(t){
+  // blue-hour sky → ground, deepening as the film goes
+  const g=ctx.createLinearGradient(0,0,0,H);
+  const k=seg(t,0,6);
+  g.addColorStop(0,`rgb(${14+8*k},${22+10*k},${38+14*k})`);
+  g.addColorStop(0.55,'#0e1319');
+  g.addColorStop(1,'#07090c');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  // ground ellipse under the footprint, so the modules have somewhere to land
+  const cam=camera(t);
+  ctx.save(); ctx.globalAlpha=0.55;
+  const gg=ctx.createRadialGradient(FOOT[0]+cam.x,FOOT[1]+cam.y+30,40,FOOT[0]+cam.x,FOOT[1]+cam.y+30,520);
+  gg.addColorStop(0,'rgba(60,70,80,.55)'); gg.addColorStop(1,'rgba(60,70,80,0)');
+  ctx.fillStyle=gg; ctx.beginPath(); ctx.ellipse(FOOT[0]+cam.x,FOOT[1]+cam.y+30,560,230,0,0,Math.PI*2); ctx.fill(); ctx.restore();
+}
+function blueprintGlow(t){
+  const [a,b]=T.blueprint; const p=seg(t,a,b); if(p<=0) return;
+  const cam=camera(t); const pulse=0.55+0.25*Math.sin(t*2.2);
+  ctx.save(); ctx.globalCompositeOperation='screen'; ctx.globalAlpha=0.35*ease(p)*pulse*(1-seg(t,T.exterior[0],T.exterior[0]+0.7));
+  const gg=ctx.createRadialGradient(FOOT[0]+cam.x,FOOT[1]+cam.y-60,20,FOOT[0]+cam.x,FOOT[1]+cam.y-60,520);
+  gg.addColorStop(0,'rgba(80,160,255,.9)'); gg.addColorStop(1,'rgba(80,160,255,0)');
+  ctx.fillStyle=gg; ctx.fillRect(0,0,W,H); ctx.restore();
+}
+function lights(t){
+  const [a,b]=T.lights; const p=seg(t,a,b); if(p<=0) return;
+  // flutter: two quick dips then steady (a real light coming on)
+  let f=ease(p); if(p<0.35){const q=p/0.35; f=0.25+0.75*Math.max(0,Math.sin(q*Math.PI*2.5))*q;}
+  const cam=camera(t);
+  ctx.save(); ctx.globalCompositeOperation='screen'; ctx.globalAlpha=0.55*f;
+  const cx=FOOT[0]+cam.x, cy=FOOT[1]+cam.y-170;
+  const gg=ctx.createRadialGradient(cx,cy,30,cx,cy,620);
+  gg.addColorStop(0,'rgba(255,190,110,.95)'); gg.addColorStop(0.45,'rgba(255,160,80,.35)'); gg.addColorStop(1,'rgba(255,140,60,0)');
+  ctx.fillStyle=gg; ctx.fillRect(0,0,W,H); ctx.restore();
+}
+function photo(t){
+  const im=IMG.ending; if(!im) return;
+  const p=seg(t,T.photo[0],T.photo[1]); if(p<=0) return;
+  ctx.save(); ctx.globalAlpha=easeIO(p);
+  // cover-fit 1080×1920
+  const r=Math.max(W/im.width,H/im.height); const w=im.width*r,h=im.height*r;
+  // a slow 2% push-in on the photograph so the ending breathes
+  const z=1+0.02*seg(t,T.photo[0],DUR);
+  ctx.translate(W/2,H/2); ctx.scale(z,z); ctx.drawImage(im,-w/2,-h/2,w,h); ctx.restore();
+}
+function grain(t){ // very light film grain, deterministic per frame
+  ctx.save(); ctx.globalAlpha=0.035; ctx.globalCompositeOperation='overlay';
+  let s=Math.floor(t*1000)|1; const rnd=()=>{s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff;};
+  for(let i=0;i<900;i++){ctx.fillStyle=rnd()>0.5?'#fff':'#000';ctx.fillRect(rnd()*W,rnd()*H,2,2);}
+  ctx.restore();
+}
+
+function renderAt(t){
+  t=clamp(t,0,DUR);
+  ctx.clearRect(0,0,W,H);
+  background(t);
+  blueprintGlow(t);
+  const shellIn=seg(t,T.exterior[0]+0.35,T.exterior[1]);      // 0 → 1 as the shell closes over
+  drawModule('blueprint',t,{fade:true, alphaMul:1-0.6*shellIn});
+  drawModule('frame',t,{drop:520, alphaMul:1-shellIn});
+  // interiors draw OVER the frame (its floor is opaque) but sit up on the floor plane, so they read as inside the studs
+  drawModule('utilities',t,{drop:120,fade:true, k:0.84, dy:-92, alphaMul:1-shellIn});
+  drawModule('furniture',t,{drop:140,fade:true, k:0.88, dy:-70, alphaMul:1-shellIn});
+  drawModule('exterior',t,{drop:640});
+  lights(t);
+  photo(t);
+  if(t<T.photo[1]) grain(t);
+  // vignette
+  ctx.save(); const v=ctx.createRadialGradient(W/2,H*0.55,H*0.25,W/2,H*0.55,H*0.9); v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,.55)'); ctx.fillStyle=v; ctx.fillRect(0,0,W,H); ctx.restore();
+  document.getElementById('time').textContent=t.toFixed(2)+' s';
+}
+window.renderAt=renderAt; window.FILM={DUR,W,H};
+let raf=null,t0=0;
+function play(){cancelAnimationFrame(raf);t0=performance.now();const step=()=>{const t=(performance.now()-t0)/1000;renderAt(t);if(t<DUR)raf=requestAnimationFrame(step);};step();}
+document.getElementById('play').onclick=play;
+load().then(()=>{window.FILM.ready=true;renderAt(0);if(new URLSearchParams(location.search).get('autoplay')==='1')play();});
+</script>
+</body>
+</html>
