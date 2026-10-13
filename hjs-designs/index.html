@@ -11,7 +11,7 @@
 /* HJS Designs — green finishing pass. Foundation copy and section order retained. */
 :root{
   --bg:#F1EFE4; --bg-2:#E8E5D6; --paper:#F8F6EE; --ink:#13201A; --muted:#5E6B62; --line:#D5D2C2;
-  --brand:#1F5A3A; --brand-deep:#15412A; --accent:#7DA64A; --accent-soft:rgba(125,166,74,.16);
+  --brand:#173E2C; --brand-deep:#102C20; --accent:#65745A; --accent-soft:rgba(101,116,90,.16);
   --dark:#0F1F17; --dark-2:#173126; --ok:#2E9E5B;
   --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif; --body:'Newsreader',Georgia,serif;
   --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
@@ -167,10 +167,10 @@ figure,blockquote{margin:0}button,input,textarea{font:inherit}button{cursor:poin
 .section.fix{--brand-text:var(--paper)}
 .gc-free{display:inline-flex;align-items:center;min-height:44px}
 
-html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}.lenis-smooth []{overscroll-behavior:contain}
 
 /* Work proof panel: follows the existing green/cream site tokens. */
-.proof-film{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,220px);gap:clamp(24px,5vw,64px);align-items:center;margin-top:24px;padding:clamp(24px,4vw,48px);border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}
+.proof-film{scroll-margin-top:calc(var(--header-h) + 20px);display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,220px);gap:clamp(24px,5vw,64px);align-items:center;margin-top:24px;padding:clamp(24px,4vw,48px);border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}
 .proof-film h3{max-width:18ch;font-size:clamp(28px,3.8vw,44px);line-height:1.08;letter-spacing:-.035em}
 .proof-film-copy>p:not(.eyebrow){max-width:38ch;margin-top:18px;color:var(--muted);font-size:18px}
 .proof-film .proof-film-copy .proof-film-label{font:600 12px/1.6 var(--display);letter-spacing:.015em;color:var(--brand);padding-top:18px;border-top:1px solid var(--line)}
@@ -348,19 +348,19 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
       <a class="piece reveal" href="https://hills-of-comics-auburn.netlify.app/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-hills.jpg" alt="Hills of Comics site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>Hills of Comics</b><span>Auburn · the shelf, the pull list, the events</span></figcaption></figure></a>
     </div>
 <!-- Insert inside #work > .wrap, immediately after .work-grid. -->
-<article class="proof-film reveal" aria-labelledby="proof-film-title">
+<article class="proof-film reveal" id="anatomy-film" aria-labelledby="proof-film-title">
   <div class="proof-film-copy">
     <p class="eyebrow">A little motion goes a long way</p>
-    <h3 id="proof-film-title">A 9-second build animation, drawn in code.</h3>
-    <p>A house comes together, layer by layer. A small demonstration of what a website can show.</p>
-    <p class="proof-film-label">Concept illustration · built in code, no credits.</p>
+    <h3 id="proof-film-title">Inside the build. Layer by layer.</h3>
+    <p>The house opens into its blueprint, structure, wiring and interiors, then comes back together.</p>
+    <p class="proof-film-label">PNW ADU · Higgsfield concept animation.</p>
   </div>
   <figure class="proof-film-player">
-    <video controls playsinline preload="metadata" width="720" height="1280" poster="media/pnw-adu-code-film-poster.jpg" aria-label="Nine-second concept animation of a small house assembling, with its lights coming on">
-      <source src="media/pnw-adu-code-film-720.mp4" type="video/mp4">
-      <a href="media/pnw-adu-code-film-720.mp4">Watch the nine-second build animation.</a>
+    <video controls playsinline preload="metadata" width="1080" height="1920" poster="media/pnw-adu-higgsfield-anatomy-poster.jpg" aria-label="PNW ADU house expanding into separate anatomy layers, then closing back into a complete house">
+      <source src="media/pnw-adu-higgsfield-anatomy.mp4" type="video/mp4">
+      <a href="media/pnw-adu-higgsfield-anatomy.mp4">Watch the PNW ADU house anatomy animation.</a>
     </video>
-    <figcaption>PNW ADU · motion study</figcaption>
+    <figcaption>Architectural concept · created with Higgsfield</figcaption>
   </figure>
 </article>
 
@@ -405,12 +405,9 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
     </form>
   </div>
 </section>
-<div id="peek" class="peek" role="dialog" aria-modal="true" aria-label="Site preview" hidden>
-  <div class="peek-phone"><button class="peek-x" id="peekClose" aria-label="Close">×</button><iframe id="peekFrame" title="site preview"></iframe><a class="peek-open" id="peekOpen" href="#" target="_blank" rel="noopener">Open full site ↗</a></div>
-</div>
 </main>
 <!-- Insert once, after </main> and before the page scripts. -->
-<dialog data-lenis-prevent class="proof-preview" id="proof-preview" aria-labelledby="proof-preview-title">
+<dialog class="proof-preview" id="proof-preview" aria-labelledby="proof-preview-title">
   <div class="proof-preview-head">
     <div><p class="proof-preview-kicker">Explore the website</p><h2 id="proof-preview-title">Website preview</h2></div>
     <button class="proof-preview-close" type="button" aria-label="Close website preview">Close <span aria-hidden="true">×</span></button>
@@ -429,7 +426,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
   </div>
 </footer>
 
-<script src="js/gsap.min.js"></script><script src="js/ScrollTrigger.min.js"></script><script src="js/lenis.min.js"></script>
+<script src="js/gsap.min.js"></script><script src="js/ScrollTrigger.min.js"></script>
 <script>
 document.documentElement.classList.add('js');
 const tg=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
