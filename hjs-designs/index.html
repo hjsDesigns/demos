@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HJS Designs — Your phone rings more. Every month. Local businesses on the Plateau.</title>
+<meta name="description" content="HJS Designs runs the Google listing, Google ads and social for local businesses in Buckley, Enumclaw, Bonney Lake and the Plateau. Month to month, calls counted, cancel anytime. Websites included.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   HJS DESIGNS — the business card, as a site.
+   Palette is the card: near-black, bone white, the orange underline. Two faces: Bricolage (the mark)
+   + Newsreader (the talking). Dark ground is earned here: the brand IS black and orange.
+   Headline promise → three monthly packages (Listing first) → the 1st-of-the-month text →
+   the free fix → the promise → the work as results → who it's for → Hayden → text me.
+   ============================================================ */
+:root{
+  --bg:#0E1418; --bg-2:#131A1F; --paper:#18212A; --ink:#EEF3F5; --muted:#9AA8B0; --line:#243039;
+  --accent:#E4915E; --accent-deep:#C9763F; --accent-soft:rgba(228,145,94,.14);
+  --ok:#5CC08C;
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif; --body:'Newsreader',Georgia,serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --header-h:68px; --pad:clamp(20px,5vw,64px); --maxw:1120px; --r:18px; --ease:cubic-bezier(.22,.85,.3,1);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.55 var(--body);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100svh}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent);text-decoration:none}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.02;margin:0;text-wrap:balance}
+h2{font-size:clamp(32px,5vw,56px)} h3{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.01em}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+p{margin:0}
+.section{padding:clamp(64px,9vw,120px) 0}
+.section-head{max-width:34ch;margin:0 0 clamp(28px,4vw,48px)}
+.section-head p{color:var(--muted);font-size:clamp(17px,1.5vw,20px);margin-top:14px;max-width:48ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font:700 16px var(--display);letter-spacing:.01em;border:1.5px solid transparent;transition:transform .2s var(--ease),background .2s,border-color .2s}
+.btn-primary{background:var(--accent);color:#0E1418}.btn-primary:hover{background:#EFA474;transform:translateY(-2px)}
+.btn-ghost{border-color:rgba(238,243,245,.35);color:var(--ink)}.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.underline{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.12em;text-decoration-thickness:.09em}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;height:var(--header-h);background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mark{font:800 22px/1 var(--display);letter-spacing:-.02em;color:var(--ink)}.mark u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:.1em;text-underline-offset:.1em}
+#main-nav{display:flex;gap:22px;align-items:center}#main-nav a{font:700 14px var(--display);color:var(--muted)}#main-nav a:hover{color:var(--ink)}
+#main-nav .btn{min-height:40px;padding:0 16px;font-size:14px}
+.nav-toggle{display:none;background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:10px;width:44px;height:44px;font-size:20px}
+@media (max-width:760px){
+  .nav-toggle{display:grid;place-items:center}
+  #main-nav{position:absolute;left:0;right:0;top:var(--header-h);background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:14px var(--pad) 18px;gap:14px;display:none}
+  #main-nav.is-open{display:flex}
+}
+
+/* hero — the foundation version: the card's promise, big, with the three numbers that matter.
+   (Codex: three named hero concepts go on top of this — see handoffs/hjs-designs-heroes/BRIEF.md) */
+.hero{min-height:calc(100svh - var(--header-h));display:flex;align-items:center;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 70% 20%,rgba(228,145,94,.16),transparent 55%),var(--bg)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:var(--accent)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(48px,8vh,96px)}
+.hero h1{font-size:clamp(44px,7.2vw,96px)}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:clamp(18px,1.9vw,24px);color:var(--muted);max-width:40ch;margin:22px 0 30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{background:#0A0F12;border:1px solid var(--line);border-radius:14px;padding:26px 28px 24px;box-shadow:0 40px 80px -40px rgba(0,0,0,.8);position:relative;transform:rotate(-1.5deg);max-width:420px;margin-left:auto}
+.hero-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:var(--accent);border-radius:0 0 14px 14px}
+.hero-card .mark{font-size:30px}
+.hero-card .tag{font:italic 400 17px var(--body);color:var(--muted);margin:10px 0 44px}
+.hero-card .who{font:700 18px var(--display)}.hero-card .tel{font:700 20px var(--display);color:var(--accent);margin-top:4px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-card{margin:8px auto 0;transform:rotate(-1deg)}}
+
+/* packages */
+.packages{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pk{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px 24px;display:flex;flex-direction:column;gap:14px;position:relative}
+.pk.lead{border-color:var(--accent);box-shadow:0 30px 60px -40px rgba(228,145,94,.6)}
+.pk.lead::before{content:"Start here";position:absolute;top:-13px;left:22px;background:var(--accent);color:#0E1418;font:700 12px/26px var(--display);letter-spacing:.1em;text-transform:uppercase;padding:0 12px;border-radius:999px}
+.pk h3{margin-top:4px}
+.price{font:800 clamp(30px,3vw,40px)/1 var(--display);letter-spacing:-.03em}.price small{font:500 15px var(--display);color:var(--muted);letter-spacing:0;margin-left:6px}
+.pk ul{margin:0;padding:0;list-style:none;display:grid;gap:9px;color:var(--ink);font-size:17px}
+.pk li{padding-left:22px;position:relative}.pk li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.pk .site{color:var(--muted);font-size:15px;border-top:1px solid var(--line);padding-top:12px;margin-top:auto}
+.pk .btn{align-self:start}
+@media (max-width:900px){.pk-grid{grid-template-columns:1fr}.pk.lead{order:-1}}
+
+/* the 1st-of-the-month text */
+.report .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.phone{width:min(100%,340px);margin:0 auto;background:#000;border-radius:38px;padding:12px;border:2px solid #2a3338}
+.screen{background:#0b0f12;border-radius:28px;padding:40px 16px 26px;min-height:420px;display:flex;flex-direction:column;gap:10px}
+.bubble{max-width:85%;padding:12px 14px;border-radius:18px;font:400 16px/1.4 -apple-system,'Helvetica Neue',sans-serif}
+.bubble.in{background:#2b3036;color:#fff;border-bottom-left-radius:6px;align-self:flex-start}
+.bubble.out{background:#2f7bff;color:#fff;border-bottom-right-radius:6px;align-self:flex-end}
+.bubble time{display:block;font-size:11px;color:rgba(255,255,255,.55);margin-top:6px}
+@media (max-width:860px){.report .wrap{grid-template-columns:1fr}}
+
+/* free fix */
+.fix{background:var(--accent);color:#0E1418}
+.fix .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,5vw,64px);align-items:center}
+.fix .eyebrow{color:#0E1418;opacity:.7}.fix h2{color:#0E1418}.fix p{color:#2a1a0f;font-size:clamp(17px,1.5vw,20px);max-width:48ch;margin-top:14px}
+.fix .btn-dark{background:#0E1418;color:#fff;margin-top:22px}.fix .btn-dark:hover{background:#1c262c;transform:translateY(-2px)}
+.fix-check{background:rgba(14,20,24,.12);border:1px solid rgba(14,20,24,.25);border-radius:var(--r);padding:20px 22px;display:grid;gap:10px;font-size:16px;color:#1b120b}
+.fix-check b{font-family:var(--display)}
+.fix-check span{display:flex;gap:10px;align-items:baseline}.fix-check span::before{content:"✕";color:#8a2f12;font-weight:700}
+@media (max-width:860px){.fix .wrap{grid-template-columns:1fr}}
+
+/* promise */
+.promise .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pr{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 20px}
+.pr b{display:block;font:800 clamp(22px,2.4vw,28px)/1.1 var(--display);margin-bottom:8px}
+.pr p{color:var(--muted);font-size:16.5px}
+@media (max-width:760px){.promise .grid{grid-template-columns:1fr}}
+
+/* the work */
+.work-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.piece{display:block;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;color:var(--ink);transition:transform .25s var(--ease),border-color .2s}
+.piece:hover{transform:translateY(-4px);border-color:var(--accent)}
+.piece .shot{aspect-ratio:390/560;overflow:hidden;background:#000}.piece .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.piece figcaption{padding:12px 14px 14px}.piece b{display:block;font:700 16px var(--display)}.piece span{display:block;color:var(--muted);font-size:14.5px;margin-top:3px;line-height:1.35}
+@media (max-width:980px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* who it's for */
+.for .chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:10px 16px;font:700 15px var(--display);color:var(--ink);background:var(--paper)}
+.for .towns{color:var(--muted);margin-top:18px;font-size:17px}
+
+/* hayden */
+.me .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.me .frame{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px;transform:rotate(1.2deg);max-width:420px}
+.me .frame .ph{aspect-ratio:4/5;border-radius:10px;background:linear-gradient(160deg,#1c262c,#0b0f12);display:grid;place-items:center;color:var(--muted);font:600 14px var(--display);letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:20px}
+.me p{font-size:clamp(17px,1.6vw,20px);margin-top:14px;color:var(--ink)}.me p+p{color:var(--muted)}
+@media (max-width:860px){.me .wrap{grid-template-columns:1fr}.me .frame{margin:0 auto}}
+
+/* contact */
+.contact{background:var(--bg-2);border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.contact .big{font:800 clamp(28px,4vw,48px)/1.05 var(--display);letter-spacing:-.02em}
+.contact .big a{color:var(--accent)}
+.contact ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:8px;color:var(--muted);font-size:17px}
+.contact-form{display:grid;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.contact-form label{display:grid;gap:6px;font:700 13px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.contact-form input,.contact-form textarea{font:400 17px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+.contact-form textarea{min-height:110px;resize:vertical}
+.form-success{display:none;background:var(--accent-soft);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;color:var(--ink)}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+footer{margin-top:auto;border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:15px}
+footer .mark{font-size:18px}
+
+/* reveal (JS-gated) */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="mark" href="#top">HJS <u>Designs</u></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">☰</button>
+    <nav id="main-nav" aria-label="Site">
+      <a href="#packages">Packages</a><a href="#work">The work</a><a href="#free">Free fix</a><a href="#hayden">Hayden</a>
+      <a class="btn btn-primary" href="sms:+12532594558&body=Hey%20Hayden%2C%20">Text Hayden</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Buckley · Enumclaw · Bonney Lake · the Plateau</p>
+      <h1>Your phone rings more. <em>Every month.</em></h1>
+      <p class="hero-sub">I run the Google side of your business so people nearby find you, call you and show up. Month to month. Every call counted. Cancel whenever.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#packages">See the three packages</a><a class="btn btn-ghost" href="#free">Fix my Google listing, free</a></div>
+    </div>
+    <aside class="hero-card" aria-label="HJS Designs business card">
+      <div class="mark">HJS <u>Designs</u></div>
+      <p class="tag">Websites, Google &amp; social for local shops on the Plateau</p>
+      <div class="who">Hayden Stevenson</div>
+      <div class="tel">(253) 259-4558 · call or text</div>
+    </aside>
+  </div>
+</section>
+
+<section class="section packages" id="packages">
+  <div class="wrap">
+    <div class="section-head reveal"><p class="eyebrow">Three packages, all monthly</p><h2>Pick the one that fits. Add a site to any of them.</h2><p>Every package is month to month, quoted plus tax, cancel anytime. You see what went out and what came back on the first of every month.</p></div>
+    <div class="pk-grid">
+      <article class="pk lead reveal">
+        <p class="eyebrow">Google Listing</p>
+        <h3>The listing people actually find you on</h3>
+        <div class="price">$125<small>/ month</small></div>
+        <ul>
+          <li>Your Google Business Profile claimed, fixed and kept right: hours, photos, services, categories.</li>
+          <li>A post every week. Every review answered in your voice.</li>
+          <li>On the 1st: how many calls, direction requests and clicks Google counted.</li>
+        </ul>
+        <p class="site">No ad budget needed. Add a website for $500 to $1,000 one time.</p>
+        <a class="btn btn-primary" href="sms:+12532594558&body=Hey%20Hayden%2C%20I%27m%20interested%20in%20the%20Google%20Listing%20package%20for%20">Text me about this</a>
+      </article>
+      <article class="pk reveal">
+        <p class="eyebrow">The Phone Package</p>
+        <h3>Google ads that put you at the top when someone nearby searches</h3>
+        <div class="price">$250<small>/ month + your ad budget</small></div>
+        <ul>
+          <li>I write the ads, pick the search terms, set the area and run it.</li>
+          <li>Checked every week. What wastes money gets cut, what works gets pushed.</li>
+          <li>Every call from the ad is counted. Your ad money stays on your card, never through me.</li>
+        </ul>
+        <p class="site">Includes the Google Listing package. Best for auto, trades, salons, studios, anyone whose next customer is a phone call.</p>
+        <a class="btn btn-ghost" href="sms:+12532594558&body=Hey%20Hayden%2C%20I%27m%20interested%20in%20the%20Phone%20Package%20for%20">Text me about this</a>
+      </article>
+      <article class="pk reveal">
+        <p class="eyebrow">Social</p>
+        <h3>Three posts a week, in your voice, from your own photos</h3>
+        <div class="price">$350<small>/ month · $250 with a site</small></div>
+        <ul>
+          <li>Facebook and Instagram, three times a week, real photos of your place and your work.</li>
+          <li>Written the way you talk. A 20-minute call so it sounds like you, if you want it.</li>
+          <li>One page a month: what went out and what came back.</li>
+        </ul>
+        <p class="site">Best for restaurants, coffee, salons, retail. 25 QR business cards included.</p>
+        <a class="btn btn-ghost" href="sms:+12532594558&body=Hey%20Hayden%2C%20I%27m%20interested%20in%20the%20Social%20package%20for%20">Text me about this</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section report" id="report">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">The 1st of every month</p>
+      <h2>One text. The number that matters.</h2>
+      <p style="color:var(--muted);font-size:clamp(17px,1.5vw,20px);margin-top:14px;max-width:46ch">No dashboard to log into, no 40-page report. On the first of the month you get a text with what Google counted, and if the number isn't moving, we change something. That's the whole relationship.</p>
+    </div>
+    <div class="phone reveal" aria-label="Example monthly text">
+      <div class="screen">
+        <div class="bubble in">Hey Mike, October's in. 31 calls through your Google listing, up from 12 in September. 48 people asked for directions. The Saturday post about the brake special was your best one.<time>Nov 1, 9:02 AM</time></div>
+        <div class="bubble out">Hell yeah. Keep going<time>Nov 1, 9:10 AM</time></div>
+        <div class="bubble in">On it. Next month I want to test an ad for "brakes Enumclaw" at $10 a day. Say the word.<time>Nov 1, 9:11 AM</time></div>
+      </div>
+    </div>
+  </div>
+  <p class="sr-only">The numbers in this example are illustrative.</p>
+</section>
+
+<section class="section fix" id="free">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Free, today, no catch</p>
+      <h2>Unclaimed Google listing? I'll fix it while you watch.</h2>
+      <p>Most shops on the Plateau have never claimed their Google listing. That means wrong hours, three photos and anyone can edit it. Text me your business name and I'll claim it, fix the hours and add your photos, free. Ten minutes. Then decide if you want me to keep it up.</p>
+      <a class="btn btn-dark" href="sms:+12532594558&body=Hey%20Hayden%2C%20can%20you%20fix%20the%20Google%20listing%20for%20">Text me your business name</a>
+    </div>
+    <div class="fix-check reveal" aria-label="What's usually wrong">
+      <b>What I usually find</b>
+      <span>"Claim this business" still showing</span>
+      <span>Hours missing or wrong on the weekend</span>
+      <span>Three photos, none of them the sign</span>
+      <span>Reviews with no reply</span>
+      <span>The website button going nowhere</span>
+    </div>
+  </div>
+</section>
+
+<section class="section promise" id="promise">
+  <div class="wrap">
+    <div class="section-head reveal"><p class="eyebrow">The promise</p><h2>Month to month means I earn it every month.</h2></div>
+    <div class="grid">
+      <div class="pr reveal"><b>Cancel anytime.</b><p>No contract, no annual lock-in. If it isn't working, you stop.</p></div>
+      <div class="pr reveal"><b>Leads counted, not promised.</b><p>Calls, messages and directions tracked through your own listing and site, so the number is Google's, not mine.</p></div>
+      <div class="pr reveal"><b>Miss the number, the monthly pauses.</b><p>If six months in the leads aren't there, you stop paying until they are. The work you already own stays yours.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head reveal"><p class="eyebrow">The work</p><h2>Built for the phone, because that's where people look you up.</h2><p>Real businesses around the Plateau. Tap any one and it opens.</p></div>
+    <div class="work-grid">
+      <a class="piece reveal" href="https://hjsdesigns.github.io/demos/vintage-vino-and-espresso-maple-valley/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-vintage-vino.jpg" alt="Vintage Vino &amp; Espresso site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>Vintage Vino &amp; Espresso</b><span>Maple Valley · wine bar and espresso, at the counter</span></figcaption></figure></a>
+      <a class="piece reveal" href="https://hjsdesigns.github.io/demos/zolas-cafe-auburn/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-zolas.jpg" alt="Zola's Cafe site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>Zola's Cafe</b><span>Auburn · the menu unrolls, pick your corner of the room</span></figcaption></figure></a>
+      <a class="piece reveal" href="https://hjsdesigns.github.io/demos/plateau-jiu-jitsu/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-plateau.jpg" alt="Plateau Jiu-Jitsu site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>Plateau Jiu-Jitsu</b><span>Enumclaw · your week on the mat, live</span></figcaption></figure></a>
+      <a class="piece reveal" href="https://hjsdesigns.github.io/demos/echo-river-ranch/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-echo-river.jpg" alt="Echo River Ranch site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>Echo River Ranch</b><span>Enumclaw · guided rides, book by text</span></figcaption></figure></a>
+      <a class="piece reveal" href="https://hjsdesigns.github.io/demos/sunrise-coffee-bar/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-sunrise.jpg" alt="Sunrise Coffee Bar site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>Sunrise Coffee Bar</b><span>Enumclaw · hours, menu, tap to call</span></figcaption></figure></a>
+      <a class="piece reveal" href="https://hjsdesigns.github.io/demos/the-nail-lab-by-jc/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-nail-lab.jpg" alt="The Nail Lab by JC site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>The Nail Lab by JC</b><span>Nail studio · the work, then the booking</span></figcaption></figure></a>
+      <a class="piece reveal" href="https://hjsdesigns.github.io/demos/the-studio-on-cole-street/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-studio-cole.jpg" alt="The Studio on Cole Street site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>The Studio on Cole Street</b><span>Enumclaw · a photo studio that shows its photos</span></figcaption></figure></a>
+      <a class="piece reveal" href="https://hills-of-comics-auburn.netlify.app/" target="_blank" rel="noopener"><figure><div class="shot"><img src="images/work-hills.jpg" alt="Hills of Comics site on a phone" loading="lazy" width="780" height="1688"></div><figcaption><b>Hills of Comics</b><span>Auburn · the shelf, the pull list, the events</span></figcaption></figure></a>
+    </div>
+  </div>
+</section>
+
+<section class="section for" id="for">
+  <div class="wrap">
+    <div class="section-head reveal"><p class="eyebrow">Who this is for</p><h2>Shops where the next customer is a phone call or a walk-in.</h2></div>
+    <div class="chips reveal"><span class="chip">Auto &amp; tire shops</span><span class="chip">Salons &amp; nail studios</span><span class="chip">Restaurants &amp; bars</span><span class="chip">Coffee stands</span><span class="chip">Contractors &amp; excavation</span><span class="chip">Studios, gyms &amp; dojos</span><span class="chip">Groomers &amp; vets</span><span class="chip">Tattoo</span></div>
+    <p class="towns reveal">Buckley · Enumclaw · Bonney Lake · Lake Tapps · Black Diamond · Maple Valley · Sumner · Auburn · Puyallup</p>
+  </div>
+</section>
+
+<section class="section me" id="hayden">
+  <div class="wrap">
+    <div class="frame reveal"><div class="ph">Photo of Hayden<br>goes here</div></div>
+    <div class="reveal">
+      <p class="eyebrow">Who you're texting</p>
+      <h2>Hayden. I live here. I'll walk in.</h2>
+      <p>I grew up on the Plateau and spent years on a construction crew before I started building for the businesses I drive past every day. I don't sell from a call center. I come in, show you what I made, and if you like it we go.</p>
+      <p>HJS Designs is based in Buckley. Everything I run for you, you own: the site, the domain, the listing, the ad account.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Start with a text</p>
+      <p class="big">Text <a href="sms:+12532594558&body=Hey%20Hayden%2C%20">(253) 259-4558</a><br>or call, I pick up.</p>
+      <ul><li>hjsdesignsco@gmail.com</li><li>HJS Designs · Buckley, WA</li><li>Facebook: HJS Designs</li></ul>
+    </div>
+    <form class="contact-form reveal" id="contactForm" novalidate>
+      <label>Your business<input id="f-biz" name="business" type="text" placeholder="e.g. Ron's Auto Care" required></label>
+      <label>Your phone<input id="f-phone" name="phone" type="tel" placeholder="(253) 555-0100" required></label>
+      <label>What's going on<textarea id="f-msg" name="message" placeholder="Nobody can find our hours on Google…"></textarea></label>
+      <button class="btn btn-primary" type="submit">Send it to Hayden</button>
+      <p class="form-success" id="formSuccess">Got it. I'll text you back today.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mark">HJS <u>Designs</u></span>
+    <span>Websites, Google &amp; social for local shops on the Plateau · Buckley, WA · (253) 259-4558</span>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+const tg=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
+tg.addEventListener('click',()=>{const o=nav.classList.toggle('is-open');tg.setAttribute('aria-expanded',o);});
+nav.addEventListener('click',e=>{if(e.target.tagName==='A')nav.classList.remove('is-open');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')nav.classList.remove('is-open');});
+document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))nav.classList.remove('is-open');});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('is-in');io.unobserve(x.target);}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// the form hands off to a text; nothing is sent from the page
+document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const b=document.getElementById('f-biz').value.trim(),m=document.getElementById('f-msg').value.trim();const body=encodeURIComponent(`Hey Hayden, this is ${b||'a business on the Plateau'}. ${m}`);document.getElementById('formSuccess').style.display='block';location.href='sms:+12532594558&body='+body;});
+</script>
+</body>
+</html>
