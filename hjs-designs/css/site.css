@@ -33,6 +33,7 @@ p{margin:0}.lede{font-size:clamp(17px,1.6vw,21px);color:var(--muted);max-width:5
 .site-header{position:sticky;top:0;z-index:90;height:var(--header-h);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .mark{font:800 21px/1 var(--display);letter-spacing:-.02em;color:var(--ink);display:inline-flex;align-items:center;gap:10px}
+.mark-img{width:34px;height:34px;object-fit:contain}
 .mark i{width:26px;height:26px;border-radius:7px;background:var(--brand);display:inline-grid;place-items:center;font-style:normal;color:#0F1F17;font-size:12px;font-weight:800}
 #main-nav{display:flex;gap:22px;align-items:center}#main-nav a{font:700 14px var(--display);color:var(--muted)}#main-nav a:hover,#main-nav a[aria-current]{color:var(--ink)}
 #main-nav .btn{min-height:40px;padding:0 16px;font-size:14px}
