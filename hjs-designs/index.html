@@ -35,7 +35,7 @@ p{margin:0}
 .underline{text-decoration:underline;text-decoration-color:var(--brand);text-underline-offset:.12em;text-decoration-thickness:.09em}
 
 /* header */
-.site-header{position:sticky;top:0;z-index:90;height:var(--header-h);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.site-header{position:sticky;top:0;z-index:50;height:var(--header-h);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .mark{font:800 22px/1 var(--display);letter-spacing:-.02em;color:var(--ink)}.mark u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:.1em;text-underline-offset:.1em}
 #main-nav{display:flex;gap:22px;align-items:center}#main-nav a{font:700 14px var(--display);color:var(--muted)}#main-nav a:hover{color:var(--brand)}
@@ -142,18 +142,6 @@ footer{margin-top:auto;border-top:1px solid var(--line);padding:28px 0 calc(28px
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:15px}
 footer .mark{font-size:18px}
 
-.peek{position:fixed;inset:0;z-index:80;background:rgba(15,31,23,.78);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
-.peek[hidden]{display:none}
-.peek-phone{position:relative;width:min(390px,calc(100vw - 32px));height:min(844px,calc(100svh - 40px));background:#000;border-radius:40px;padding:12px;box-shadow:0 40px 90px rgba(0,0,0,.6)}
-.peek-phone iframe{width:100%;height:100%;border:0;border-radius:30px;background:#fff;display:block}
-.peek-x{position:absolute;top:-8px;left:-8px;width:44px;height:44px;border-radius:50%;border:0;background:var(--brand);color:#fff;font:700 22px/44px var(--display);text-align:center;cursor:pointer}
-.peek-open{position:absolute;left:50%;bottom:-40px;transform:translateX(-50%);color:#F1EFE4;font:700 14px var(--display);white-space:nowrap}
-.piece{cursor:pointer}
-.film{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--dark);color:#F1EFE4;border-color:var(--dark-2)}
-.film video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;background:#000}
-.film figcaption{padding:22px 22px 24px;align-self:center}.film b{color:#F1EFE4;font-size:20px}.film span{color:#B9C6BC;font-size:15.5px;margin-top:8px}.film .tag{display:inline-block;margin-top:14px;font:700 11px var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:4px 10px}
-@media (max-width:980px){.film{grid-column:span 2}}@media (max-width:560px){.film{grid-template-columns:1fr}}
-
 /* reveal (JS-gated) */
 .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .js .reveal.is-in{opacity:1;transform:none}
@@ -178,6 +166,8 @@ figure,blockquote{margin:0}button,input,textarea{font:inherit}button{cursor:poin
 .skip-link{position:absolute}
 .section.fix{--brand-text:var(--paper)}
 .gc-free{display:inline-flex;align-items:center;min-height:44px}
+
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 
 /* Work proof panel: follows the existing green/cream site tokens. */
 .proof-film{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,220px);gap:clamp(24px,5vw,64px);align-items:center;margin-top:24px;padding:clamp(24px,4vw,48px);border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}
@@ -415,13 +405,9 @@ figure,blockquote{margin:0}button,input,textarea{font:inherit}button{cursor:poin
     </form>
   </div>
 </section>
-
-<div id="peek" class="peek" role="dialog" aria-modal="true" aria-label="Site preview" hidden>
-  <div class="peek-phone"><button class="peek-x" id="peekClose" aria-label="Close">×</button><iframe id="peekFrame" title="site preview"></iframe><a class="peek-open" id="peekOpen" href="#" target="_blank" rel="noopener">Open full site ↗</a></div>
-</div>
 </main>
 <!-- Insert once, after </main> and before the page scripts. -->
-<dialog class="proof-preview" id="proof-preview" aria-labelledby="proof-preview-title">
+<dialog data-lenis-prevent class="proof-preview" id="proof-preview" aria-labelledby="proof-preview-title">
   <div class="proof-preview-head">
     <div><p class="proof-preview-kicker">Explore the website</p><h2 id="proof-preview-title">Website preview</h2></div>
     <button class="proof-preview-close" type="button" aria-label="Close website preview">Close <span aria-hidden="true">×</span></button>
@@ -449,22 +435,33 @@ tg.addEventListener('click',()=>{const o=nav.classList.toggle('is-open');tg.setA
 nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('is-open')){closeMenu();tg.focus();}});
 document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))closeMenu();});
+// Preserve the foundation run's smooth scrolling and monthly text sequence.
+// Hero entrances remain owned by their individual concepts.
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!rm && window.gsap && window.ScrollTrigger && window.Lenis){
+if(!rm && window.gsap && window.ScrollTrigger){
   gsap.registerPlugin(ScrollTrigger);
-  const lenis=new Lenis({lerp:.09,smoothWheel:true}); lenis.on('scroll',ScrollTrigger.update); gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
-  document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('is-in');el.style.transition='none';
-    gsap.from(el,{y:26,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}});});
-  // the hero: one arrival, then still
-  gsap.timeline({defaults:{ease:'power3.out'}}).from('.hero h1',{y:30,opacity:0,duration:.9,delay:.1}).from('.hero-sub',{y:18,opacity:0,duration:.7},'-=.5').from('.hero-actions',{y:14,opacity:0,duration:.6},'-=.45').from('.hero-card',{y:40,opacity:0,rotate:-6,duration:1,ease:'back.out(1.4)'},'-=.7');
-  // the monthly text: bubbles land one at a time when the phone scrolls in
-  gsap.from('.bubble',{y:14,opacity:0,duration:.5,stagger:.35,ease:'power2.out',scrollTrigger:{trigger:'.phone',start:'top 75%',once:true}});
-  // nav anchors through Lenis
-  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();lenis.scrollTo(t,{offset:-68});}}));
+  if(window.Lenis){
+    const lenis=window.hjsScroll=new Lenis({lerp:.09,smoothWheel:true});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+      const hash=a.getAttribute('href');if(!hash||hash.length<2)return;
+      const target=document.getElementById(hash.slice(1));
+      if(target){e.preventDefault();history.replaceState(null,'',hash);lenis.scrollTo(target,{offset:-88});}
+    }));
+  }
+  document.querySelectorAll('.reveal').forEach(el=>{
+    el.classList.add('is-in');el.style.transition='none';
+    gsap.from(el,{y:26,opacity:0,duration:.75,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+  });
+  gsap.from('.report .bubble',{y:14,opacity:0,duration:.5,stagger:.28,ease:'power2.out',scrollTrigger:{trigger:'.report .phone',start:'top 75%',once:true}});
+  document.fonts.ready.then(()=>ScrollTrigger.refresh());
 }else{
   const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('is-in');io.unobserve(x.target);}}),{rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 }
+
 // Opens a reviewable SMS draft; this page sends nothing.
 function smsDraft(body){const apple=/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);return 'sms:+12532594558'+(apple?'&':'?')+'body='+encodeURIComponent(body);}
 document.querySelectorAll('a[href^="sms:"]').forEach(a=>{const raw=a.getAttribute('href');const body=raw.split('body=')[1];if(body)a.href=smsDraft(decodeURIComponent(body));});
@@ -501,6 +498,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDe
       full.href = url.href;
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
+      window.hjsScroll?.stop();
       dialog.showModal();
       frame.src = url.href;
       close.focus();
@@ -516,6 +514,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDe
   dialog.addEventListener('close', () => {
     frame.src = 'about:blank';
     document.body.style.overflow = previousOverflow;
+    window.hjsScroll?.start();
     if (opener?.isConnected) opener.focus({preventScroll:true});
     opener = null;
   });
