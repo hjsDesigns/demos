@@ -168,7 +168,7 @@ figure,blockquote{margin:0}button,input,textarea{font:inherit}button{cursor:poin
 .section.fix{--brand-text:var(--paper)}
 .gc-free{display:inline-flex;align-items:center;min-height:44px}
 
-html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}.lenis-smooth []{overscroll-behavior:contain}
+
 
 /* Work proof panel: follows the existing green/cream site tokens. */
 .proof-film{scroll-margin-top:calc(var(--header-h) + 20px);display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,220px);gap:clamp(24px,5vw,64px);align-items:center;margin-top:24px;padding:clamp(24px,4vw,48px);border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}
@@ -547,17 +547,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))close
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!rm && window.gsap && window.ScrollTrigger){
   gsap.registerPlugin(ScrollTrigger);
-  if(window.Lenis){
-    const lenis=window.hjsScroll=new Lenis({lerp:.09,smoothWheel:true});
-    lenis.on('scroll',ScrollTrigger.update);
-    gsap.ticker.add(t=>lenis.raf(t*1000));
-    gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
-      const hash=a.getAttribute('href');if(!hash||hash.length<2)return;
-      const target=document.getElementById(hash.slice(1));
-      if(target){e.preventDefault();history.replaceState(null,'',hash);lenis.scrollTo(target,{offset:-88});}
-    }));
-  }
+  
   document.querySelectorAll('.reveal').forEach(el=>{
     el.classList.add('is-in');el.style.transition='none';
     gsap.from(el,{y:26,opacity:0,duration:.75,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%',once:true}});
