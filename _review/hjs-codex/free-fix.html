@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Free Google listing fix — HJS Designs</title><meta name="description" content="Unclaimed Google listing? Hayden fixes it free, while you watch. Then you decide.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="mark" href="index.html"><img class="mark-img" src="images/mark-laptop-earth-white.png" alt="" width="512" height="512">HJS Designs</a>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">☰</button>
+  <nav id="main-nav" aria-label="Site"><a href="packages.html">Packages</a><a href="work.html">The work</a><a href="free-fix.html" aria-current="page">Free fix</a><a href="hayden.html">Hayden</a><a class="btn btn-primary" href="sms:+12532594558&body=Hey%20Hayden%2C%20">Text Hayden</a></nav>
+</div></header>
+<main>
+
+<section class="page-hero"><div class="wrap">
+  <p class="eyebrow">Free fix</p><h1>Unclaimed Google listing? <em>I'll fix it while you watch.</em></h1>
+  <p class="lede">Most shops on the Plateau never claimed their Google listing. That means wrong hours, three photos, and anyone can edit it. Text me your business name and I'll claim it, fix the hours and add your photos. Free. Then you decide if you want me to keep it up.</p>
+  <div class="actions"><a class="btn btn-primary" href="sms:+12532594558&body=Hey%20Hayden%2C%20can%20you%20fix%20the%20Google%20listing%20for%20">Text me your business name</a></div>
+</div></section>
+<section class="section"><div class="wrap two">
+  <div class="reveal"><p class="eyebrow">What I usually find</p><h2>Five things, almost every time.</h2><div class="check" style="margin-top:18px"><span>"Claim this business" still showing</span><span>Hours missing or wrong on the weekend</span><span>Three photos, none of them the sign</span><span>Reviews with no reply</span><span>The website button going nowhere</span></div></div>
+  <div class="reveal"><p class="eyebrow">What I fix, that day</p><h2>And what it looks like after.</h2><div class="check ok" style="margin-top:18px"><span>Claimed and verified, so only you can change it</span><span>All seven days of hours, the real phone, the right category</span><span>Ten real photos, the sign first</span><span>Every review answered in your voice</span><span>The website button going to a site that works</span></div></div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">How it works</p><h2>Ten minutes, no password, no catch.</h2></div>
+  <div class="grid grid-3">
+    <div class="card reveal"><p class="eyebrow">1</p><h3>Text me the name</h3><p>I pull up your listing and tell you what's wrong before I touch anything.</p></div>
+    <div class="card reveal"><p class="eyebrow">2</p><h3>Add me as a manager</h3><p>In your Google Business Profile, Users, add hjsdesignsco@gmail.com. One minute. You never share a password and you can remove me anytime.</p></div>
+    <div class="card reveal"><p class="eyebrow">3</p><h3>I fix it, you watch</h3><p>Hours, photos, category, replies. Done while we're standing there or by the end of the day. Then it's yours, fixed, whether or not we ever talk again.</p></div>
+  </div>
+</div></section>
+<section class="section"><div class="wrap two">
+  <div class="reveal"><p class="eyebrow">Why free</p><h2>Because it's the fastest way to show you what I do.</h2><p class="lede">A fixed listing is proof, not a pitch. If you want me to keep it up, the Google Listing package is $125 a month and the first number you'll see is Google's, not mine. If you don't, you still have a listing that works.</p><div class="actions"><a class="btn btn-ghost" href="packages.html">See the packages</a></div></div>
+  <form class="ask reveal" id="fixForm" novalidate>
+    <label>Business name<input id="fx-biz" type="text" placeholder="e.g. Ron's Auto Care" required></label>
+    <label>Town<input id="fx-town" type="text" placeholder="Enumclaw"></label>
+    <label>Your phone<input id="fx-phone" type="tel" placeholder="(253) 555-0100"></label>
+    <button class="btn btn-primary" type="submit">Send it to Hayden</button>
+    <small>This opens a text to me with what you typed. Nothing is sent until you hit send.</small>
+  </form>
+</div></section>
+
+</main>
+<footer><div class="wrap">
+  <span class="mark"><img class="mark-img" src="images/mark-laptop-earth-white.png" alt="" width="512" height="512">HJS Designs</span>
+  <nav><a href="packages.html">Packages</a><a href="work.html">The work</a><a href="free-fix.html" aria-current="page">Free fix</a><a href="hayden.html">Hayden</a></nav>
+  <span>Buckley, WA · (253) 259-4558 · hjsdesignsco@gmail.com</span>
+</div></footer>
+<script>
+document.documentElement.classList.add('js');
+const tg=document.querySelector('.nav-toggle'),nav=document.getElementById('main-nav');
+tg.addEventListener('click',()=>{const o=nav.classList.toggle('is-open');tg.setAttribute('aria-expanded',o);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')nav.classList.remove('is-open');});
+document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))nav.classList.remove('is-open');});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('is-in');io.unobserve(x.target);}}),{rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.getElementById('fixForm').addEventListener('submit',e=>{e.preventDefault();const b=document.getElementById('fx-biz').value.trim(),t=document.getElementById('fx-town').value.trim();location.href='sms:+12532594558&body='+encodeURIComponent(`Hey Hayden, can you fix the Google listing for ${b||'my business'}${t?' in '+t:''}?`);});
+</script>
+</body>
+</html>
