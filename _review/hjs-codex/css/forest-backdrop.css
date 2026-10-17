@@ -1,0 +1,50 @@
+/* One continuous natural setting. The same saved scene stays behind the whole site. */
+:root{
+  --scene-position:62% 50%;
+  --scene-scrim:rgba(4,12,8,.62);
+  --scene-edge:rgba(3,10,7,.20);
+  --scene-reading:rgba(5,16,10,.58);
+  --scene-surface:rgba(7,18,12,.72);
+  --scene-border:rgba(213,224,207,.18);
+  --scene-shadow:rgba(0,7,3,.48);
+  --scene-text:#e4e9df;
+}
+/* Fixed media is independent of document height; no repeated image tiles. */
+body>.site-atmosphere{background:var(--bg);inset:0;height:100vh;height:100lvh;contain:strict;isolation:isolate}
+.site-landscape{position:absolute;inset:0;overflow:hidden}
+.site-landscape-still,.site-landscape-motion{position:absolute;inset:0;display:block;max-width:none;width:100%;height:100%;object-fit:cover;object-position:var(--scene-position)}
+.site-landscape-motion{opacity:0;transition:opacity .65s ease;pointer-events:none}
+.site-landscape-motion.is-ready{opacity:1}
+.site-landscape-shade{position:absolute;inset:0;background:linear-gradient(90deg,var(--scene-edge),transparent 55%,var(--scene-edge)),var(--scene-scrim);opacity:var(--scene-dim,1);pointer-events:none}
+/* Real creek, rock and forest detail replaces the synthetic glossy light layers. */
+.site-atmosphere .atmosphere-light,.site-atmosphere .atmosphere-mist{display:none;animation:none}
+.hero{background:transparent;overflow:visible}
+.hero::before{background:linear-gradient(90deg,rgba(5,16,10,.80),rgba(5,16,10,.54) 40%,rgba(5,16,10,.12) 80%);inset:0;pointer-events:none}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:170px;background:linear-gradient(transparent,rgba(4,12,8,.10));pointer-events:none;z-index:-1}
+/* All sections share the same setting, rather than switching to a green panel. */
+main>.section,main>.page-hero{background:transparent}
+.page-hero{border-bottom-color:var(--scene-border)}
+.page-hero::before{content:none}
+.section+.section{border-color:var(--scene-border)}
+.section .lede,.page-hero .lede,.project-copy>p:not(.eyebrow),.service-row p,.process-grid p,.faq-answer p,.proof-note,.example-note,.pricing-note,.listing-checks p{color:var(--scene-text)}
+h1,h2,h3,.section .lede,.page-hero .lede,.service-row p,.process-grid p,.faq-answer p,.project-copy,.section-head,.split-heading{text-shadow:0 2px 22px var(--scene-shadow)}
+.specialties{background:rgba(5,16,10,.28);border-color:var(--scene-border)}
+.specialties-heading{color:var(--scene-text)}
+.card,.package-card,form.ask,.field-note,.finale-inner{background:var(--scene-surface);border-color:var(--scene-border);box-shadow:none}
+.finale-inner::after{content:none}
+.service-list,.service-row,.process-grid>li,.faq-list,.faq-item,.example-note,.project-feature,.listing-checks>div{border-color:var(--scene-border)}
+.service-row:hover,.service-row:focus-visible{background:var(--scene-reading)}
+.site-header{background:rgba(5,15,10,.46);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.site-header.is-scrolled{background:rgba(5,15,10,.90)}
+footer.site-footer{background:rgba(5,15,10,.68);border-color:var(--scene-border)}
+.footer-grid>div>p,.footer-location,.footer-contact span,.site-footer .footer-bottom,.ambient-toggle{color:var(--scene-text)}
+/* The selected image remains still when motion is unavailable or unwanted. */
+@media(max-width:760px){
+  :root{--scene-position:64% 50%;--scene-scrim:rgba(4,12,8,.58);--scene-surface:rgba(7,18,12,.74)}
+  .hero::before{background:linear-gradient(90deg,rgba(5,16,10,.69),rgba(5,16,10,.24)),linear-gradient(0deg,rgba(4,12,8,.18),transparent 45%)}
+  .hero::after{height:100px}
+  .site-landscape-shade{background:var(--scene-scrim)}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-landscape-motion{display:none;transition:none}
+}
