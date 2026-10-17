@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-16",
+  "status": "blueprint_checked_not_implemented",
+  "browser_scope": [
+    "phone homepage and drawer/services/FAQ",
+    "desktop homepage and services dropdown",
+    "portfolio next/previous",
+    "representative case study",
+    "web design service page",
+    "consultation first step only"
+  ],
+  "independent_reviews": [
+    "delivered first-party code audit",
+    "current HJS implementation audit"
+  ],
+  "corrections_applied": [
+    "scroll cue 80px threshold",
+    "add missing menu focus behavior rather than assume it exists",
+    "moving headings/body copy restriction excludes specialties ticker",
+    "preserve existing Promise and wording"
+  ],
+  "user_answers": {
+    "background": "keep wilderness; alternatives discussed before selection",
+    "motion": "noticeable, smooth and controlled",
+    "reviews": "not yet"
+  },
+  "site_files_unchanged_against_baseline": true,
+  "new_generation_credits": 0,
+  "publication": false,
+  "limitations": [
+    "no form submitted",
+    "no backend or private pages audited",
+    "no real-device FPS benchmark",
+    "no independent verification of HillWebs review claims"
+  ],
+  "blueprint_sha256": "9515b5ad079619576782957e9ca6762f9130284eaad9dafadaee656da6b3691a"
+}
