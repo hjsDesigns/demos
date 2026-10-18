@@ -1,0 +1,547 @@
+{
+  "url": "http://127.0.0.1:8907/hjs-designs/references/competitor-review-2026-10-17/",
+  "checks": [
+    {
+      "name": "390: five provider buttons",
+      "pass": true
+    },
+    {
+      "name": "390: empty copy feedback",
+      "pass": true
+    },
+    {
+      "name": "390: HillWebs correct heading",
+      "pass": true
+    },
+    {
+      "name": "390: HillWebs correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/hillwebs.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "HillWebs homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "390: HillWebs single selected provider",
+      "pass": true
+    },
+    {
+      "name": "390: HillWebs reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: HillWebs skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: HillWebs no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 390,
+        "innerWidth": 390
+      }
+    },
+    {
+      "name": "390: Whitespark correct heading",
+      "pass": true
+    },
+    {
+      "name": "390: Whitespark correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/whitespark.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "Whitespark homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "390: Whitespark single selected provider",
+      "pass": true
+    },
+    {
+      "name": "390: Whitespark reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: Whitespark skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: Whitespark no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 390,
+        "innerWidth": 390
+      }
+    },
+    {
+      "name": "390: Sterling Sky correct heading",
+      "pass": true
+    },
+    {
+      "name": "390: Sterling Sky correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/sterling-sky.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "Sterling Sky homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "390: Sterling Sky single selected provider",
+      "pass": true
+    },
+    {
+      "name": "390: Sterling Sky reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: Sterling Sky skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: Sterling Sky no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 390,
+        "innerWidth": 390
+      }
+    },
+    {
+      "name": "390: Hook Agency correct heading",
+      "pass": true
+    },
+    {
+      "name": "390: Hook Agency correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/hook-agency.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "Hook Agency homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "390: Hook Agency single selected provider",
+      "pass": true
+    },
+    {
+      "name": "390: Hook Agency reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: Hook Agency skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: Hook Agency no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 390,
+        "innerWidth": 390
+      }
+    },
+    {
+      "name": "390: WebFX correct heading",
+      "pass": true
+    },
+    {
+      "name": "390: WebFX correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/webfx.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "WebFX homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "390: WebFX single selected provider",
+      "pass": true
+    },
+    {
+      "name": "390: WebFX reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: WebFX skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "390: WebFX no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 390,
+        "innerWidth": 390
+      }
+    },
+    {
+      "name": "390: HillWebs selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "390: Whitespark selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "390: Sterling Sky selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "390: Hook Agency selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "390: WebFX selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "390: companies section only visible",
+      "pass": true
+    },
+    {
+      "name": "390: companies nav state",
+      "pass": true
+    },
+    {
+      "name": "390: companies no overflow",
+      "pass": true
+    },
+    {
+      "name": "390: services section only visible",
+      "pass": true
+    },
+    {
+      "name": "390: services nav state",
+      "pass": true
+    },
+    {
+      "name": "390: services no overflow",
+      "pass": true
+    },
+    {
+      "name": "390: context section only visible",
+      "pass": true
+    },
+    {
+      "name": "390: context nav state",
+      "pass": true
+    },
+    {
+      "name": "390: context no overflow",
+      "pass": true
+    },
+    {
+      "name": "390: 12 service cards",
+      "pass": true
+    },
+    {
+      "name": "390: Meta separate from Search",
+      "pass": true
+    },
+    {
+      "name": "390: Regulars explicitly future/pilot",
+      "pass": true
+    },
+    {
+      "name": "390: no public pricing",
+      "pass": true
+    },
+    {
+      "name": "1440: five provider buttons",
+      "pass": true
+    },
+    {
+      "name": "1440: empty copy feedback",
+      "pass": true
+    },
+    {
+      "name": "1440: HillWebs correct heading",
+      "pass": true
+    },
+    {
+      "name": "1440: HillWebs correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/hillwebs.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "HillWebs homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "1440: HillWebs single selected provider",
+      "pass": true
+    },
+    {
+      "name": "1440: HillWebs reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: HillWebs skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: HillWebs no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "name": "1440: Whitespark correct heading",
+      "pass": true
+    },
+    {
+      "name": "1440: Whitespark correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/whitespark.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "Whitespark homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "1440: Whitespark single selected provider",
+      "pass": true
+    },
+    {
+      "name": "1440: Whitespark reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: Whitespark skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: Whitespark no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "name": "1440: Sterling Sky correct heading",
+      "pass": true
+    },
+    {
+      "name": "1440: Sterling Sky correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/sterling-sky.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "Sterling Sky homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "1440: Sterling Sky single selected provider",
+      "pass": true
+    },
+    {
+      "name": "1440: Sterling Sky reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: Sterling Sky skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: Sterling Sky no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "name": "1440: Hook Agency correct heading",
+      "pass": true
+    },
+    {
+      "name": "1440: Hook Agency correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/hook-agency.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "Hook Agency homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "1440: Hook Agency single selected provider",
+      "pass": true
+    },
+    {
+      "name": "1440: Hook Agency reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: Hook Agency skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: Hook Agency no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "name": "1440: WebFX correct heading",
+      "pass": true
+    },
+    {
+      "name": "1440: WebFX correct loaded image",
+      "pass": true,
+      "detail": {
+        "src": "assets/webfx.jpg",
+        "width": 1440,
+        "height": 1000,
+        "alt": "WebFX homepage screenshot, captured for this research review"
+      }
+    },
+    {
+      "name": "1440: WebFX single selected provider",
+      "pass": true
+    },
+    {
+      "name": "1440: WebFX reference exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: WebFX skip exclusive",
+      "pass": true
+    },
+    {
+      "name": "1440: WebFX no overflow",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "name": "1440: HillWebs selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "1440: Whitespark selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "1440: Sterling Sky selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "1440: Hook Agency selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "1440: WebFX selection survives reload",
+      "pass": true
+    },
+    {
+      "name": "1440: companies section only visible",
+      "pass": true
+    },
+    {
+      "name": "1440: companies nav state",
+      "pass": true
+    },
+    {
+      "name": "1440: companies no overflow",
+      "pass": true
+    },
+    {
+      "name": "1440: services section only visible",
+      "pass": true
+    },
+    {
+      "name": "1440: services nav state",
+      "pass": true
+    },
+    {
+      "name": "1440: services no overflow",
+      "pass": true
+    },
+    {
+      "name": "1440: context section only visible",
+      "pass": true
+    },
+    {
+      "name": "1440: context nav state",
+      "pass": true
+    },
+    {
+      "name": "1440: context no overflow",
+      "pass": true
+    },
+    {
+      "name": "1440: 12 service cards",
+      "pass": true
+    },
+    {
+      "name": "1440: Meta separate from Search",
+      "pass": true
+    },
+    {
+      "name": "1440: Regulars explicitly future/pilot",
+      "pass": true
+    },
+    {
+      "name": "1440: no public pricing",
+      "pass": true
+    },
+    {
+      "name": "No page errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No failed requests",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No HTTP errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "failures": [],
+  "page_errors": [],
+  "failed_requests": [],
+  "http_errors": [],
+  "widths": [
+    390,
+    1440
+  ],
+  "service_catalog_review": {
+    "status": "PASS",
+    "notes": [
+      "Website and care match documented core offers.",
+      "Google profile setup/management and review work correctly marked plans rather than proven results.",
+      "Search ads marked pilot; Meta kept distinct and marked learning/pilot.",
+      "Regulars voluntary signup and future/pilot label match private plan readiness.",
+      "Broader local SEO marked study first; social posting exclusion and booking exploration preserved.",
+      "Photo/video editing scope correctly needs agreement."
+    ]
+  },
+  "status": "PASS",
+  "visual_review": {
+    "status": "PASS",
+    "notes": [
+      "Desktop and phone full-page screenshots inspected; no clipping or overlapping controls.",
+      "All five provider screenshot identities visually confirmed against visible brand names."
+    ]
+  }
+}

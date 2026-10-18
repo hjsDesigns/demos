@@ -1,0 +1,30 @@
+{
+  "scope": "Research snapshot only; no website implementation or new service approval.",
+  "claude_access": "Read-only local saved HJS Claude Code transcripts plus shared project files; not live chat synchronization or account linking.",
+  "sessions": [
+    "abdb02c7-b3ec-43f7-a3a0-b87625c5ed5d",
+    "f6c9d535-c79d-4184-964b-1c59b6776d73"
+  ],
+  "latest_user_preference_observed_at": "2026-10-18T00:18:29.367Z",
+  "latest_user_preference": "Web design as main service; simple free service to start relationship; monthly services later, with openness to a credible monthly upfront offer.",
+  "unresolved": [
+    "Which services are ready to sell vs pilot vs future",
+    "Whether Regulars appears publicly",
+    "Definition and scope of small add-on services",
+    "Evidence and exact measurement before outcome promises"
+  ],
+  "local_sources": [
+    "CONTENT-BLUEPRINT.md",
+    "CURRENT-WORK.md",
+    "CHANGELOG.md",
+    "../../handoffs/hjs-designs-2026-10-17/BRIEF.md",
+    "Vault: What I Do.md",
+    "Vault: Batmobile.md",
+    "Vault: Pricing.md (private amounts not reproduced)",
+    "formats/regulars-consent.md"
+  ],
+  "research": "research.json",
+  "raw_transcripts_copied": false,
+  "private_prices_copied": false,
+  "selection_storage": "Browser localStorage; Copy my picks produces human-readable text. Selections do not automatically edit shared source or authorize implementation."
+}
