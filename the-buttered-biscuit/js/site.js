@@ -11,7 +11,17 @@
    decimal 24h hours (6.5 = 6:30 am, 18 = 6:00 pm, 23.5 = 11:30 pm).
    null = closed that day. Closing past midnight: use 26 for 2 am.
    ------------------------------------------------------------ */
-var HOURS = {tz:'America/Los_Angeles', verified:false, days:{}};
+var HOURS = {
+  tz: 'America/Los_Angeles',          // Pacific, wherever the viewer is
+  days: {   // Google Business panel, read 2026-10-21 (matches RestaurantGuru + Restaurantji). Ask-client: Placejoys says 8 pm, Apple 7 pm.
+    0: [6, 16],                       // Sunday     6 am – 4 pm
+    1: [6, 15],                       // Monday     6 am – 3 pm
+    2: [6, 17],                       // Tuesday    6 am – 5 pm
+    3: [6, 17],                       // Wednesday
+    4: [6, 17],                       // Thursday
+    5: [6, 17],                       // Friday
+    6: [6, 17]                        // Saturday
+  }};
 
 /* ------------------------------------------------------------
    CUSTOM CLOSE RULES HOOK  (optional — leave as-is for most clients)
@@ -68,7 +78,6 @@ function customClose(p, close){ return close; }
   function hoursFor(day){return HOURS.days[day]||null}
 
   function computeStatus(){
-    if(!HOURS.verified) return {open:null,text:"Call for today’s hours"};
     var p=pacificNow(), d=p.day, h=p.h;
     var closure=customClosure(p);
     if(closure) return {open:false,text:'Closed today for '+closure};
@@ -135,17 +144,47 @@ function customClose(p, close){ return close; }
       .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
   })}
 
-  /* ---------- SIGNATURE GADGET ----------
+  /* ---------- reviews: the face is load-bearing (REVIEW ATTRIBUTION LAW, 2026-09-06) ----------
+     Every .rev card must show the real reviewer's real photo. If an avatar 404s or is
+     corrupt the card would silently degrade into an anonymous quote — which the law
+     forbids — so the card is REMOVED instead, loudly, and the sanctioned remedy
+     (.rev-linkout: "read the live reviews") takes over if every card is gone.
+     Never patch a missing face with initials, a monogram, or a placeholder image:
+     re-harvest the real profile photo, or use a different attributable review. */
+  $$('.rev .rev-face').forEach(function(img){
+    function drop(){
+      console.error('REVIEW ATTRIBUTION LAW: reviewer avatar failed to load ('+img.getAttribute('src')+
+        ') — that review card was removed. Re-harvest the real profile photo, use a different '+
+        'attributable review, or ship .rev-linkout. Never substitute initials or a stock face.');
+      var card=img.closest('.rev'); if(card) card.parentNode.removeChild(card);
+      if($$('.rev').length===0){
+        var grid=$('.revs'); if(grid) grid.parentNode.removeChild(grid);
+        var all=$('.rev-all'); if(all) all.parentNode.removeChild(all);
+        var lo=$('.rev-linkout'); if(lo){lo.hidden=false;lo.classList.add('in')}
+      }
+    }
+    if(img.complete&&img.naturalWidth===0) drop();
+    else img.addEventListener('error',drop);
+  });
+
+  /* ---------- SIGNATURE GADGET ---------- */
+  /* What's in a name? — tap a house-favorite's name, the card above shows what's on the plate + price.
+     Tap the same name again to clear. One gesture, instant payoff (TODDLER LAW). */
+  var chips=$$('#nameChips button'), card=$('#plateCard');
+  if(card&&chips.length){
+    chips.forEach(function(b){b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')==='true';
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      if(on){card.classList.remove('on');return}
+      b.setAttribute('aria-pressed','true');
+      $('#plateName').textContent=b.textContent;
+      $('#platePrice').textContent=b.getAttribute('data-price');
+      $('#plateDesc').textContent=b.getAttribute('data-desc');
+      card.classList.remove('on');void card.offsetWidth;card.classList.add('on');
+    })});
+  }
+  /* (end signature)
      Per-client interactive code goes below this line (EA: day timeline +
      rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
 
-})();
-
-(function(){
- 'use strict';
- var buttons=Array.from(document.querySelectorAll('[data-category]')),groups=Array.from(document.querySelectorAll('[data-group]'));
- function filter(category){if(!buttons.some(function(b){return b.dataset.category===category}))category='all';buttons.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.category===category))});groups.forEach(function(g){g.hidden=category!=='all'&&g.dataset.group!==category});var live=document.getElementById('menu-announcement');if(live)live.textContent=category==='all'?'Showing all menu categories.':'Showing '+buttons.find(function(b){return b.dataset.category===category}).textContent+'.';}
- if(buttons.length){buttons.forEach(function(b){b.addEventListener('click',function(){filter(b.dataset.category);var u=new URL(location.href);u.searchParams.set('category',b.dataset.category);history.replaceState(null,'',u)})});filter(new URLSearchParams(location.search).get('category')||'breakfast');}
- var dialog=document.querySelector('.photo-dialog'),previous=null;
- if(dialog){document.querySelectorAll('[data-photo]').forEach(function(b){b.addEventListener('click',function(){previous=b;var im=dialog.querySelector('img');im.src=b.dataset.photo;im.alt=b.dataset.caption;dialog.querySelector('.dialog-caption').textContent=b.dataset.caption;dialog.showModal()})});dialog.querySelector('.dialog-close').addEventListener('click',function(){dialog.close()});dialog.addEventListener('click',function(ev){if(ev.target===dialog){var r=dialog.getBoundingClientRect();if(ev.clientX<r.left||ev.clientX>r.right||ev.clientY<r.top||ev.clientY>r.bottom)dialog.close()}});dialog.addEventListener('close',function(){if(previous)previous.focus()});}
 })();
