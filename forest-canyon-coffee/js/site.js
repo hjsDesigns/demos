@@ -168,13 +168,39 @@ function customClose(p, close){ return close; }
     else img.addEventListener('error',drop);
   });
 
-  /* ---------- SIGNATURE GADGET: FILL A CUP ----------
-     Tap a cup → it fills with that October special's layers; tap again → it empties. */
-  $$('.cup').forEach(function(b){b.addEventListener('click',function(){
-    b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');
-  })});
-  /* ---------- SIGNATURE GADGET ----------
-     Per-client interactive code goes below this line (EA: day timeline +
-     rate calculator). Keep it inside this IIFE so it can use $ / $$ / pacificNow. */
+  /* Monthly specials: choose only owner-supplied boards, by Pacific calendar month.
+     No current board? Keep the latest past board explicitly dated, never claim it is current. */
+  function refreshSpecials(){
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit'}).formatToParts(new Date());
+    var year=parts.find(function(p){return p.type==='year'}).value;
+    var month=parts.find(function(p){return p.type==='month'}).value;
+    var current=year+'-'+month, boards=$$('.specials-board');
+    var eligible=boards.filter(function(b){return b.dataset.specialsMonth<=current});
+    var selected=eligible[eligible.length-1];
+    boards.forEach(function(b){b.hidden=b!==selected});
+    var section=$('#signature'); if(section) section.hidden=!selected;
+    if(!selected)return;
+    var fresh=selected.dataset.specialsMonth===current, label=selected.dataset.monthLabel;
+    selected.querySelector('[data-specials-title]').textContent=fresh?'This month’s':label;
+    selected.querySelector('[data-specials-intro]').textContent=fresh?'Four seasonal favorites, from the stand’s own board.':'A look back at '+label+'. Ask at the window for the latest specials.';
+  }
+  refreshSpecials();
+  setInterval(refreshSpecials,60000);
+
+
+  /* One native-scroll review at a time; manual navigation only. */
+  var track=$('#reviewTrack'), controls=$('#reviewControls');
+  if(track&&controls){
+    var cards=$$('.rev',track), prev=$('[data-review-prev]',controls), next=$('[data-review-next]',controls), counter=$('.review-position',controls), current=0;
+    function updateReviews(){
+      var middle=track.getBoundingClientRect().left+track.clientWidth/2, nearest=Infinity;
+      cards.forEach(function(card,i){var r=card.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-middle);if(d<nearest){nearest=d;current=i}});
+      counter.textContent=(current+1)+' / '+cards.length;prev.disabled=current===0;next.disabled=current===cards.length-1;
+    }
+    function goReview(i){i=Math.max(0,Math.min(cards.length-1,i));track.scrollTo({left:cards[i].getBoundingClientRect().left-track.getBoundingClientRect().left+track.scrollLeft,behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'})}
+    prev.addEventListener('click',function(){goReview(current-1)});next.addEventListener('click',function(){goReview(current+1)});
+    track.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();goReview(current+(e.key==='ArrowRight'?1:-1))}});
+    track.addEventListener('scroll',updateReviews,{passive:true});window.addEventListener('resize',updateReviews);controls.hidden=false;updateReviews();
+  }
 
 })();

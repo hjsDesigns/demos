@@ -172,21 +172,30 @@ function customClose(p, close){ return close; }
      Their pole sign has a hand-set changeable-letter board (harvest g11 shows
      it reading FOOTBALL HERE). This is that board and it answers exactly one
      question, off the same Pacific clock the hours band uses: is karaoke
-     tonight? The only recurring night Wayne's has a SOURCE for is the banner
-     over their stage — "EVERY FRIDAY & SATURDAY NIGHT" — so those are the only
-     two nights the board can ever claim. Sunday through Thursday, the next
-     karaoke night is always Friday, so the second line is deterministic:
-       Fri (5) / Sat (6) -> KARAOKE / TONIGHT
-       every other day   -> KARAOKE / FRIDAY
+     tonight? The SOURCE for the nights is Wayne's own hand-set sidewalk
+     A-frame, also in harvest g11: "KARAOKE * 8PM / WED. FRI. SAT." — so Wed,
+     Fri and Sat are the only nights the board can ever claim, and on any other
+     day it names the next one:
+       Wed (3) / Fri (5) / Sat (6)  -> KARAOKE / TONIGHT
+       Thu (4)                      -> KARAOKE / FRIDAY
+       Sun (0) / Mon (1) / Tue (2)  -> KARAOKE / WEDNESDAY
+     (The banner over the stage in harvest g9 reads "EVERY FRIDAY & SATURDAY
+     NIGHT" — it is the older of the two signs and does not list Wednesday.
+     The sidewalk sign wins; confirm with the owner before go-live.)
      No hours, no invented events, no cycling states. One tap = lamps on and
      the letters clack into their slots; tap again = lamps off. */
   var board=$('#readerBoard');
   if(board){
     var l1=$('#rbLine1'), l2=$('#rbLine2');
     var reduceMo=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var KARAOKE_DAYS=[3,5,6];   // 0=Sun … 6=Sat — Wed, Fri, Sat (sidewalk A-frame, g11)
+    var DAY_NAMES=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
     function boardLines(){
       var d=pacificNow().day;
-      return ['KARAOKE',(d===5||d===6)?'TONIGHT':'FRIDAY'];
+      if(KARAOKE_DAYS.indexOf(d)>-1) return ['KARAOKE','TONIGHT'];
+      var n=d;                  // walk forward to the next karaoke night
+      do{ n=(n+1)%7 } while(KARAOKE_DAYS.indexOf(n)<0 && n!==d);
+      return ['KARAOKE',DAY_NAMES[n]];
     }
     function setLine(el,text,delay0){
       el.textContent='';

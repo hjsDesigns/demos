@@ -1,0 +1,19 @@
+Expected image filenames (index.html points at these exactly):
+  logo.png        — client's logo, transparent PNG, ≥ 400px tall
+  hero.jpg        — the walk-in-feeling photo (interior atmosphere), ≥ 2000px wide
+  about.jpg       — owner / team / storefront photo for the story section
+  gallery-1.jpg … gallery-6.jpg — six more real photos (never repeat hero.jpg)
+  team-1.jpg      — optional headshot for a team chip
+  reviewer-<firstname>.jpg — the REAL profile photo of a real reviewer, one per
+                  #reviews card, saved from the same source as the quote.
+                  Validate with `file` + pixel dimensions, NEVER byte size —
+                  a genuine Google avatar is 160×160 and legitimately 6–20 KB.
+                  Do NOT downsample these and do NOT delete one for being small.
+                  No real photo → use a different attributable review, or ship
+                  the #reviews link-out variant. Never a stock face or initials.
+Downsample the CONTENT photos to ≤ 2500px wide — never the avatars:
+  sips -Z 2500 images/hero.jpg images/about.jpg images/gallery-*.jpg
+  NOT `sips -Z 2500 images/*.jpg`: sips -Z UPSCALES anything smaller, so that
+  glob blew a real 200×200 / 6,833 B avatar up to 2500×2500 / 291,671 B —
+  a blurry smear of a real person's face (measured 2026-09-17).
+Regenerate the numbered picker:          sh assets/make-contact-sheet.sh

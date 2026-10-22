@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <title>Wayne's Inn Bar &amp; Grill — dive bar, kitchen &amp; beer garden, Puyallup WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Wayne's Inn Bar &amp; Grill on E Main Ave in Puyallup — pool, darts, cornhole, a beer garden out back, karaoke every Friday and Saturday night, and a real kitchen. Open seven days, every one of them until 2 AM.">
+<meta name="description" content="Wayne's Inn Bar &amp; Grill on E Main Ave in Puyallup — pool, darts, cornhole, a beer garden out back, karaoke every Wednesday, Friday and Saturday night, and a real kitchen. Open seven days, every one of them until 2 AM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Bevan (the hero mark — the pole sign's own slab, SIGN-FONT LAW) + Oswald (display, sturdy condensed) + Barlow (body) — Oswald/Barlow must match --display / --body in css/style.css?v=1788939414 -->
 <link href="https://fonts.googleapis.com/css2?family=Bevan&family=Oswald:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1788939414">
 <link rel="stylesheet" href="css/hero.css?v=1788939414">
+<link rel="stylesheet" href="css/review-rollout.css">
 </head>
 <body>
 
@@ -156,9 +157,9 @@
 
         <article class="card reveal">
           <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div>
-          <h3>Karaoke Friday &amp; Saturday</h3>
-          <p class="when">Off the banner over the stage</p>
-          <p>It's painted up there in two lines: <b>every Friday &amp; Saturday night</b>. The board further down tells you whether it's tonight.</p>
+          <h3>Karaoke Wednesday, Friday &amp; Saturday</h3>
+          <p class="when">Off the sidewalk sign out front</p>
+          <p>Set by hand on the A-frame by the road: <b>karaoke 8 PM, Wed · Fri · Sat</b>. The board further down tells you whether it's tonight.</p>
         </article>
 
         <article class="card reveal">
@@ -328,9 +329,13 @@
   <!-- ===================== #signature — the reader board =====================
        Their real pole sign has a hand-set changeable letter board under the panel
        (it currently reads FOOTBALL HERE). This is that board, and the only thing
-       it ever says is whether karaoke is tonight — the one recurring night the
-       banner over their stage actually names. Tap it, the lamps come on and the
-       letters clack in. Tap again, lights out. No hours in it, ever. -->
+       it ever says is whether karaoke is tonight — the recurring nights their own
+       sidewalk A-frame actually names (KARAOKE 8PM / WED. FRI. SAT., harvest-0906/
+       g11.jpg). Tap it, the lamps come on and the letters clack in. Tap again,
+       lights out. No hours in it, ever.
+       rbLine2's static value is the DAY LIST, never "TONIGHT" — with JS off, or
+       in the moment before js/site.js runs, the board has to be true on all seven
+       days. site.js overwrites both lines on load off the Pacific clock. -->
   <section class="section section-alt" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
@@ -344,11 +349,11 @@
           <span class="rb-lamps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
           <span class="rb-face">
             <span class="rb-line" id="rbLine1">KARAOKE</span>
-            <span class="rb-line rb-line-2" id="rbLine2">TONIGHT</span>
+            <span class="rb-line rb-line-2" id="rbLine2">WED·FRI·SAT</span>
           </span>
           <span class="rb-hint">tap the sign</span>
         </button>
-        <p class="board-note">Karaoke every Friday &amp; Saturday night — off the banner strung over the stage. Any other night, the board points at the next one.</p>
+        <p class="board-note">Karaoke every Wednesday, Friday &amp; Saturday night — off the sidewalk sign out on Main. Any other night, the board points at the next one.</p>
       </div>
     </div>
   </section>
@@ -365,7 +370,7 @@
         <figure class="print reveal"><img src="images/room-wide.jpg" width="1600" height="1200" alt="The main room at Wayne's Inn — wood floor, high tables and chairs, TVs along the wall and pink and green light across the ceiling" loading="lazy"><figcaption>Straight in the door — the main floor</figcaption></figure>
         <figure class="print reveal"><img src="images/about.jpg" width="1800" height="1350" alt="Inside Wayne's Inn at night — green LED strip along the ceiling, a disco ball, bar stools at the counter and a wood floor" loading="lazy"><figcaption>The floor, on a karaoke night</figcaption></figure>
         <figure class="print reveal"><img src="images/room-out.jpg" width="1600" height="1200" alt="The back of the room at Wayne's Inn, tables by the windows looking out to the covered beer garden" loading="lazy"><figcaption>The back tables, looking out to the yard</figcaption></figure>
-        <figure class="print reveal"><img src="images/room-out.jpg" width="1600" height="1200" alt="The back tables at Wayne's Inn looking out to the yard" loading="lazy"><figcaption>PUYALLUP, in neon, over the bar</figcaption></figure>
+        <figure class="print reveal"><img src="images/neon-puyallup.jpg" width="1600" height="1200" alt="A white neon sign spelling PUYALLUP mounted under the wood ceiling beam over the bar at Wayne's Inn, red neon glowing behind it" loading="lazy"><figcaption>PUYALLUP, in neon, over the bar</figcaption></figure>
       </div>
     </div>
   </section>
@@ -377,72 +382,21 @@
        (place cid 13629777111836389513 — see scrape-reviews.py). The aggregate
        score is NOT repeated here; it lives once, in the hours band. -->
   <section class="section section-alt" id="reviews">
-    <div class="wrap">
-      <div class="section-head reveal">
+<div class="wrap"><div class="section-head reveal">
         <p class="eyebrow">In their own words, on Google</p>
         <h2>The regulars <em>already told you</em></h2>
-        <p>Six of them, word for word off the listing. Names and profile pictures are theirs.</p>
+        <p>Ten experiences, in their own words.</p>
       </div>
-      <div class="revs">
-
-        <article class="rev reveal">
-          <div class="rev-head">
-            <img class="rev-face" src="images/reviewer-beattie.jpg" alt="Nicole Beattie's Google profile picture" width="52" height="52" loading="lazy">
-            <span class="rev-who">Nicole Beattie<small>4 months ago · Google</small></span>
-            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          </div>
-          <p>“Anyone old enough to remember the show Cheers? That's what this bar reminds me of. You only have to stop in once or twice and the bartenders and staff remember your name, your drink and treat you like gold.”</p>
-        </article>
-
-        <article class="rev reveal">
-          <div class="rev-head">
-            <img class="rev-face" src="images/reviewer-barber.jpg" alt="Samantha Barber's Google profile picture" width="52" height="52" loading="lazy">
-            <span class="rev-who">Samantha Barber<small>4 months ago · Google</small></span>
-            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          </div>
-          <p>“The staff are AMAZING the bartenders, cooks, security and bar backs are always happy, friendly and helpful! The owner always says hello asking if you are ok and need anything when he comes in. Great place for karaoke and trivia!”</p>
-        </article>
-
-        <article class="rev reveal">
-          <div class="rev-head">
-            <img class="rev-face" src="images/reviewer-theth.jpg" alt="Kun Ponleu Theth's Google profile picture" width="52" height="52" loading="lazy">
-            <span class="rev-who">Kun Ponleu Theth<small>4 months ago · Google</small></span>
-            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          </div>
-          <p>“Amazing service, Terese was such a pleasant bartender. All of my drinks were phenomenal and the atmosphere here is great! Definitely coming back”</p>
-        </article>
-
-        <article class="rev reveal">
-          <div class="rev-head">
-            <img class="rev-face" src="images/reviewer-smiley.jpg" alt="Jennifer Smiley's Google profile picture" width="52" height="52" loading="lazy">
-            <span class="rev-who">Jennifer Smiley<small>A year ago · Google</small></span>
-            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          </div>
-          <p>“I have been coming here for 5 years… I had the best French dip ever! Great new chef. H8ghly recommend.”</p>
-        </article>
-
-        <article class="rev reveal">
-          <div class="rev-head">
-            <img class="rev-face" src="images/reviewer-satchel.jpg" alt="Jaquan Satchel's Google profile picture" width="52" height="52" loading="lazy">
-            <span class="rev-who">Jaquan Satchel<small>A year ago · Google</small></span>
-            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          </div>
-          <p>“The food is great and their chef, jeff pays close attention to detail when you request something special for your meal. If you ask for medium rare you get meadium rare… altho it's nice to sit inside I love to sit outside with the tv and heat lamps.”</p>
-        </article>
-
-        <article class="rev reveal">
-          <div class="rev-head">
-            <img class="rev-face" src="images/reviewer-jfrost.jpg" alt="J Frost's Google profile picture" width="52" height="52" loading="lazy">
-            <span class="rev-who">J Frost<small>11 months ago · Google</small></span>
-            <span class="rev-stars" aria-label="4 out of 5 stars">★★★★☆</span>
-          </div>
-          <p>“I'm Surprised this place Hasn't been flooded with Karaoke SIngers yet! Outstanding, very Attentive staff, Friendly atmosphere, and Security to keep things Civil. Looking for a New venue to Kickback with friends, This is it!”</p>
-        </article>
-
-      </div>
-      <p class="revs-foot reveal"><a href="https://www.google.com/maps?cid=13629777111836389513" target="_blank" rel="noopener">Read the rest on Google ↗</a></p>
-    </div>
-  </section>
+<div class="rollout-shell" data-review-rollout role="region" aria-label="Google customer reviews"><div class="revs rollout-track" tabindex="0" aria-label="Swipe reviews or use arrow keys"><figure class="rev" role="group" aria-roledescription="slide" aria-label="1 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-01.png" alt="Nicole Beattie's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Nicole Beattie<small>Google · 4 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Anyone old enough to remember the show Cheers? That’s what this bar reminds me of.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="2 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-02.png" alt="Samantha Barber's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Samantha Barber<small>Google · Edited 4 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“The staff are AMAZING the bartenders, cooks, security and bar backs are always happy, friendly and helpful!”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="3 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-03.png" alt="Kun Ponleu Theth's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Kun Ponleu Theth<small>Google · 4 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Amazing service, Terese was such a pleasant bartender. All of my drinks were phenomenal and the atmosphere here is great!”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="4 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-04.png" alt="Jennifer Smiley's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Jennifer Smiley<small>Google · a year ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“I had the best French dip ever! Great new chef. H8ghly recommend.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="5 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-05.png" alt="Jaquan Satchel's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Jaquan Satchel<small>Google · Edited a year ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“This place is usually full of energy, sometimes it&#x27;s quiet during the weekday.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="6 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-06.png" alt="Allie P's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Allie P<small>Google · 4 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Great staff and great vibe here overall! Always a fun time.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="7 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-07.png" alt="Daniel Tate's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Daniel Tate<small>Google · Edited 3 years ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Best dive bar in Puyallup. Good for Seahawks games!”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="8 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-08.png" alt="Kristie Stahl's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Kristie Stahl<small>Google · 4 years ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“This is a home away from home! Great food, Great drinks, lots of interactive games!”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="9 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-09.png" alt="Melody Rath's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Melody Rath<small>Google · Edited 3 years ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Still the best local hang-out! Love the staff here - doesn&#x27;t take long to become family.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="10 of 10"><figcaption class="rev-head"><img class="rev-face" src="images/rollout-reviewer-10.png" alt="Britney Trimble's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Britney Trimble<small>Google · 3 years ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Food was great, service was amazing! The girls were very attentive and friendly.”</blockquote></figure></div><div class="rollout-controls"><button type="button" data-pause aria-label="Pause automatic reviews">Pause</button></div><div class="rollout-actions"><a class="btn btn-primary" href="https://www.google.com/maps?cid=13629777111836389513" target="_blank" rel="noopener">See other reviews</a><a class="btn btn-ghost" href="https://search.google.com/local/writereview?placeid=ChIJVwwhUPv7kFQRifDBzhGyJr0" target="_blank" rel="noopener">Leave a review</a></div><p class="rollout-date">Selected Google reviews.</p></div></div></section>
 
   <!-- ===================== #contact =====================
        Address and hours are NOT repeated here — they live in #hours and the footer. -->
@@ -521,6 +475,7 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788939414"></script>
+<script src="js/site.js?v=1789632000"></script>
+<script src="js/review-rollout.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Wayne's Inn Bar &amp; Grill — dive bar, kitchen &amp; beer garden, Puyallup WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Wayne's Inn Bar &amp; Grill on E Main Ave in Puyallup — pool, darts, cornhole, a beer garden out back, karaoke every Friday and Saturday night, and a real kitchen. Open seven days, every one of them until 2 AM.">
+<meta name="description" content="Wayne's Inn Bar &amp; Grill on E Main Ave in Puyallup — pool, darts, cornhole, a beer garden out back, karaoke every Wednesday, Friday and Saturday night, and a real kitchen. Open seven days, every one of them until 2 AM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Oswald (display, sturdy condensed) + Barlow (body) — must match --display / --body in css/style.css -->
@@ -114,8 +114,8 @@
 
         <article class="card reveal">
           <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div>
-          <h3>Karaoke Friday &amp; Saturday</h3>
-          <p>It's painted on the banner strung over the stage: <b>every Friday &amp; Saturday night</b>. The board below tells you if it's tonight.</p>
+          <h3>Karaoke Wednesday, Friday &amp; Saturday</h3>
+          <p>Set by hand on the A-frame by the road: <b>karaoke 8 PM, Wed · Fri · Sat</b>. The board below tells you if it's tonight.</p>
         </article>
 
         <article class="card reveal">
@@ -233,9 +233,13 @@
   <!-- ===================== #signature — the reader board =====================
        Their real pole sign has a hand-set changeable letter board under the panel
        (it currently reads FOOTBALL HERE). This is that board, and the only thing
-       it ever says is whether karaoke is tonight — the one recurring night the
-       banner over their stage actually names. Tap it, the lamps come on and the
-       letters clack in. Tap again, lights out. No hours in it, ever. -->
+       it ever says is whether karaoke is tonight — the recurring nights their own
+       sidewalk A-frame actually names (KARAOKE 8PM / WED. FRI. SAT., harvest-0906/
+       g11.jpg). Tap it, the lamps come on and the letters clack in. Tap again,
+       lights out. No hours in it, ever.
+       rbLine2's static value is the DAY LIST, never "TONIGHT" — with JS off, or
+       in the moment before js/site.js runs, the board has to be true on all seven
+       days. site.js overwrites both lines on load off the Pacific clock. -->
   <section class="section section-alt" id="signature">
     <div class="wrap">
       <div class="section-head reveal">
@@ -249,11 +253,11 @@
           <span class="rb-lamps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
           <span class="rb-face">
             <span class="rb-line" id="rbLine1">KARAOKE</span>
-            <span class="rb-line rb-line-2" id="rbLine2">TONIGHT</span>
+            <span class="rb-line rb-line-2" id="rbLine2">WED·FRI·SAT</span>
           </span>
           <span class="rb-hint">tap the sign</span>
         </button>
-        <p class="board-note">Karaoke every Friday &amp; Saturday night — off the banner strung over the stage. Any other night, the board points at the next one.</p>
+        <p class="board-note">Karaoke every Wednesday, Friday &amp; Saturday night — off the sidewalk sign out on Main. Any other night, the board points at the next one.</p>
       </div>
     </div>
   </section>

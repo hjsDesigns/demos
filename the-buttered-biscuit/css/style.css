@@ -48,7 +48,7 @@
   --status-closed:#DC2626;
 
   /* ---- type: Rokkitt = the sign's slab caps (SIGN-FONT LAW); Karla body ---- */
-  --display:'Rokkitt','Rockwell','Roboto Slab',Georgia,serif;
+  --display:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
   --body:'Karla',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
   --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
 
@@ -142,76 +142,95 @@ p{margin:0 0 1em}
 @media (max-width:420px){.hdr-live{display:none}}
 
 /* ============================================================ HERO — "6 A.M. on North Street"
-   One idea from their real front door: the actual storefront (Google listing photo) starts in
-   pre-dawn blue and warms to morning while THEIR two-board sign — the reclaimed WELCOME BACK
-   board and the dark barn-wood plank hung under it — is set crisp in live Rokkitt slab caps
-   (SIGN-FONT LAW: the real sign is red Rockwell-class slab caps, oversized W) and drops in on
-   its chains, swings once, settles. ~2.8 s, deterministic, never loops; reduced motion lands
-   on the final frame. Nothing on the photo but this headline block. */
-.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+   Preserve the storefront, board proportions and placement. Live Archivo follows the lower
+   sign's broad sans capitals; the taller W approximates the separate upper board's face.
+   Seeded SVG grain is a wood texture, not a raster/redrawn mark. Both boards settle once,
+   with a shallow damped swing and morning light, complete by 2.7 s. */
+/* This wordmark rule belongs to the requested sign-font treatment. */
+.site-header .logo .wm{font-weight:650;font-stretch:120%;font-variation-settings:"wdth" 120;
+  font-size:clamp(14px,4.25vw,21px);letter-spacing:0}
+.hero{
+  --wood-grain:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22260%22%20viewBox%3D%220%200%20800%20260%22%3E%3Cfilter%20id%3D%22grain%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.009%20.36%22%20numOctaves%3D%223%22%20seed%3D%2217%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22linear%22%20slope%3D%221.5%22%20intercept%3D%22-.24%22%2F%3E%3CfeFuncG%20type%3D%22linear%22%20slope%3D%221.5%22%20intercept%3D%22-.24%22%2F%3E%3CfeFuncB%20type%3D%22linear%22%20slope%3D%221.5%22%20intercept%3D%22-.24%22%2F%3E%3C%2FfeComponentTransfer%3E%3C%2Ffilter%3E%3Cpath%20fill%3D%22%23aaa%22%20filter%3D%22url%28%23grain%29%22%20d%3D%22M0%200h800v260H0z%22%2F%3E%3C%2Fsvg%3E");
+  --wood-raw:color-mix(in srgb,var(--plank-light) 72%,var(--muted));
+  --wood-fade:color-mix(in srgb,var(--paper) 46%,var(--plank-light));
+  --wood-charcoal:color-mix(in srgb,var(--dark) 82%,var(--muted));
+  --wood-silver:color-mix(in srgb,var(--muted) 55%,var(--line));
+  --paint-red:color-mix(in srgb,var(--brand) 82%,var(--plank-light));
+  --paint-rose:color-mix(in srgb,var(--brand-bright) 55%,var(--tint));
+  --paint-edge:color-mix(in srgb,var(--brand-text) 67%,var(--dark));
+  position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;
+  overflow:hidden;background:var(--dark);color:var(--paper)}
 .hero-bg{position:absolute;inset:0}
 .hero-bg picture,.hero-bg img{display:block;width:100%;height:100%}
 .hero-bg img{object-fit:cover;object-position:72% 46%;animation:sixam 2.2s var(--ease) both}
 @keyframes sixam{
-  0%{filter:brightness(.42) saturate(.45) contrast(1.08) hue-rotate(-14deg)}
-  100%{filter:brightness(1) saturate(1.06) contrast(1.02) hue-rotate(0deg)}}
-/* pre-dawn blue that lifts off the street */
+  0%{filter:brightness(.65) saturate(.74) contrast(1.04)}
+  100%{filter:brightness(1) saturate(1.06) contrast(1.02)}}
 .hero-dawn{position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,#0E2340 0%,#1B3557 55%,#2A3B52 100%);mix-blend-mode:multiply;opacity:0;animation:dawn 2.2s var(--ease) both}
-@keyframes dawn{0%{opacity:.7}100%{opacity:0}}
-/* first light catching the stucco, sweeping in from the east (right), then resting warm */
+  background:linear-gradient(180deg,var(--dark),color-mix(in srgb,var(--dark) 60%,var(--accent)));
+  mix-blend-mode:multiply;opacity:0;animation:dawn 2.2s var(--ease) both}
+@keyframes dawn{0%{opacity:.45}100%{opacity:0}}
 .hero-light{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;
   background:radial-gradient(60% 70% at 85% 30%,color-mix(in srgb,var(--warm) 85%,transparent) 0%,transparent 70%);
-  opacity:0;animation:firstlight 2.2s var(--ease) .3s both}
-@keyframes firstlight{0%{opacity:0;transform:translateX(18%)}60%{opacity:.95}100%{opacity:.6;transform:none}}
+  opacity:.6;animation:firstlight 2.4s var(--ease) .2s both}
+@keyframes firstlight{0%{opacity:0;transform:translateX(8%)}65%{opacity:.8}100%{opacity:.6;transform:none}}
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:2;
   background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 86%,transparent) 0%,color-mix(in srgb,var(--dark) 55%,transparent) 34%,color-mix(in srgb,var(--dark) 8%,transparent) 62%,transparent 100%),
              linear-gradient(180deg,transparent 55%,color-mix(in srgb,var(--dark) 60%,transparent) 100%)}
 @media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 25%,transparent) 0%,transparent 22%,transparent 46%,color-mix(in srgb,var(--dark) 80%,transparent) 68%,color-mix(in srgb,var(--dark) 96%,transparent) 100%)}}
 .hero-spacer{flex:1 1 auto}
 .hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(20px,4vh,48px) var(--pad) clamp(28px,6vh,72px)}
-/* ---- the sign: two real boards, live type ---- */
+/* Two weathered surfaces: fine longitudinal grain, irregular faded patches and shallow knots. */
 .sign{display:inline-flex;flex-direction:column;align-items:center;margin:0 0 clamp(16px,2.6vh,26px);max-width:100%}
-.board-top{margin:0;position:relative;z-index:2;padding:.14em .5em .08em;
-  font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:1;
-  font-size:clamp(30px,min(3.9vw,6.6vh),56px);color:var(--brand);
-  background:repeating-linear-gradient(92deg,transparent 0 22px,rgba(110,72,36,.10) 22px 24px,transparent 24px 61px),
-             linear-gradient(180deg,#E6CBA0,#D6B483 60%,#CDA673);
-  border-radius:3px;box-shadow:0 2px 0 rgba(0,0,0,.25),0 18px 30px -14px rgba(0,0,0,.6);
-  text-shadow:0 1px 0 rgba(70,20,10,.35);white-space:nowrap;
-  animation:boardin .7s var(--ease-2) .35s both}
-.board-top .w{font-size:1.32em;line-height:.8;vertical-align:-.02em}
-@keyframes boardin{0%{opacity:0;transform:translateY(-26px)}100%{opacity:1;transform:none}}
-.plank{position:relative;margin:clamp(12px,1.8vh,18px) 0 0;padding:.3em .8em .26em;text-align:center;
-  font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.98;letter-spacing:.02em;
-  font-size:clamp(26px,min(3.1vw,5.4vh),44px);color:var(--brand-bright);text-shadow:0 1px 0 rgba(0,0,0,.5);
-  background:repeating-linear-gradient(0deg,transparent 0 31%,rgba(0,0,0,.28) 31% 33.3%),
-             repeating-linear-gradient(91deg,transparent 0 30px,rgba(255,235,210,.05) 30px 32px,transparent 32px 77px),
-             linear-gradient(180deg,#3C2D23,var(--dark));
-  border-radius:3px;box-shadow:0 22px 36px -16px rgba(0,0,0,.75);
-  transform-origin:50% -16px;animation:hang 2s cubic-bezier(.3,.7,.4,1) .8s both}
-.plank span{display:block}
-/* the two chains the plank hangs from */
+.board-top{margin:0;position:relative;z-index:2;isolation:isolate;padding:.14em .5em .08em;
+  font-family:var(--display);font-weight:650;font-stretch:100%;font-variation-settings:"wdth" 100;
+  text-transform:uppercase;letter-spacing:-.025em;line-height:1;
+  font-size:clamp(30px,min(3.9vw,6.6vh),56px);color:var(--paint-red);
+  background-image:var(--wood-grain),
+    radial-gradient(ellipse 34% 4% at 27% 73%,color-mix(in srgb,var(--dark) 35%,transparent),transparent 80%),
+    radial-gradient(ellipse 7% 14% at 78% 28%,color-mix(in srgb,var(--dark) 48%,transparent) 0 9%,transparent 13% 25%,color-mix(in srgb,var(--dark) 20%,transparent) 30% 33%,transparent 42%),
+    linear-gradient(177deg,var(--wood-fade),var(--wood-raw) 29%,var(--plank-light) 41%,var(--wood-fade) 52%,var(--wood-raw) 77%,var(--wood-fade));
+  background-color:var(--wood-raw);background-blend-mode:soft-light,multiply,multiply,normal;
+  border-radius:1px 3px 2px 1px;box-shadow:inset 0 1px 0 color-mix(in srgb,var(--paper) 35%,transparent),inset 0 -3px 2px color-mix(in srgb,var(--dark) 32%,transparent),0 3px 0 var(--dark-2),0 16px 24px -13px var(--dark);
+  white-space:nowrap;transform-origin:50% 0;animation:board-settle 2.5s ease-out both}
+.board-top .w{font-size:1.32em;line-height:.8;vertical-align:-.02em;letter-spacing:-.055em}
+/* The lettering stays live. A lightly uneven paint fill, a sunlit edge and a short
+   cast shadow give depth without a heavy outline or cartoon extrusion. */
+.sign-paint{display:inline-block}
+.sign-paint,.plank > span{position:relative;z-index:1;
+  color:var(--paint-red);text-shadow:0 1px 0 var(--paint-edge),1px 2px 0 var(--paint-edge),2px 3px 2px color-mix(in srgb,var(--dark) 70%,transparent)}
+@supports (-webkit-background-clip:text){
+  .sign-paint,.plank > span{
+    background-image:linear-gradient(176deg,color-mix(in srgb,var(--paint-red) 78%,var(--tint)),var(--paint-red) 24%,color-mix(in srgb,var(--paint-red) 87%,var(--tint)) 48%,var(--paint-red) 72%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(1px 2px 0 var(--paint-edge)) drop-shadow(1px 1px 1px color-mix(in srgb,var(--dark) 65%,transparent))}
+}
+.plank{position:relative;isolation:isolate;margin:clamp(12px,1.8vh,18px) 0 0;padding:.3em .68em .26em;text-align:center;
+  font-family:var(--display);font-weight:625;font-stretch:125%;font-variation-settings:"wdth" 125;
+  text-transform:uppercase;line-height:.98;letter-spacing:.005em;
+  font-size:clamp(26px,min(3.1vw,5.4vh),44px);color:var(--paint-rose);
+  background-image:var(--wood-grain),
+    linear-gradient(0deg,transparent 32%,color-mix(in srgb,var(--dark) 78%,transparent) 32.4% 33%,color-mix(in srgb,var(--wood-silver) 24%,transparent) 33.4%,transparent 34% 66%,color-mix(in srgb,var(--dark) 70%,transparent) 66.3% 67%,transparent 67.8%),
+    radial-gradient(ellipse 40% 12% at 94% 78%,color-mix(in srgb,var(--wood-silver) 70%,transparent),transparent),
+    radial-gradient(ellipse 12% 8% at 19% 48%,var(--dark) 8%,transparent 17% 25%,color-mix(in srgb,var(--wood-silver) 30%,transparent) 28% 33%,transparent 40%),
+    linear-gradient(174deg,var(--wood-charcoal),var(--dark) 34%,var(--wood-charcoal) 58%,color-mix(in srgb,var(--wood-silver) 45%,var(--dark)));
+  background-color:var(--wood-charcoal);background-blend-mode:soft-light,normal,normal,multiply,normal;
+  border-radius:2px 1px 3px 2px;box-shadow:inset 0 1px 0 color-mix(in srgb,var(--wood-silver) 40%,transparent),inset 0 -2px 0 var(--dark),1px 3px 0 var(--dark),0 22px 32px -16px var(--dark);
+  transform-origin:50% -16px;animation:plank-settle 2.55s ease-out .15s both}
+.plank > span{display:block;--paint-red:var(--paint-rose)}
+/* Two short metal hangers; no floating board or repeated bounce. */
 .plank::before,.plank::after{content:"";position:absolute;bottom:100%;width:3px;height:clamp(12px,1.8vh,18px);
-  background:repeating-linear-gradient(180deg,#8C8378 0 4px,#4A443D 4px 6px);border-radius:2px}
+  background:repeating-linear-gradient(180deg,var(--muted) 0 3px,var(--dark) 3px 5px,var(--line) 5px 6px);border-radius:2px;
+  box-shadow:1px 0 1px color-mix(in srgb,var(--dark) 70%,transparent)}
 .plank::before{left:18%}.plank::after{right:18%}
-@keyframes hang{
-  0%{opacity:0;transform:translateY(-60px) rotate(0deg)}
-  18%{opacity:1;transform:translateY(4px) rotate(0deg)}
-  30%{transform:translateY(0) rotate(5.5deg)}
-  48%{transform:rotate(-3.6deg)}
-  64%{transform:rotate(2deg)}
-  80%{transform:rotate(-.8deg)}
-  100%{opacity:1;transform:none}}
-.hero-sub{font-size:clamp(16px,1.6vw,19px);max-width:44ch;margin:0 0 24px;color:rgba(255,255,255,.93);font-weight:600}
+@keyframes board-settle{0%{transform:translateY(-3px) rotate(-.7deg)}35%{transform:translateY(0) rotate(.35deg)}62%{transform:rotate(-.16deg)}82%{transform:rotate(.06deg)}100%{transform:none}}
+@keyframes plank-settle{0%{transform:rotate(2.2deg)}28%{transform:rotate(-1.1deg)}53%{transform:rotate(.5deg)}75%{transform:rotate(-.17deg)}90%{transform:rotate(.05deg)}100%{transform:none}}
+.hero-sub{font-size:clamp(16px,1.6vw,19px);max-width:44ch;margin:0 0 24px;color:color-mix(in srgb,var(--paper) 93%,transparent);font-weight:600}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(14px);animation:rise .6s var(--ease) forwards}
+.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(8px);animation:rise .6s var(--ease) forwards}
 .js .hero-sub{animation-delay:1.9s}.js .hero-actions{animation-delay:2.05s}
 @keyframes rise{to{opacity:1;transform:none}}
 .sub-short{display:none}
-/* PHONES: the photo is cropped to end right above the real sign (awning, umbrella, the tandem on
-   the balcony) and bottom-anchored, so the live boards hang exactly where the real ones do —
-   under the balcony, on the stucco. One sign on screen, never two. */
+/* Same phone composition: balcony photo above, live sign directly below. */
 @media (max-width:600px){
   .hero-bg{position:relative;inset:auto;flex:1 1 auto;min-height:34svh}
   .hero-bg picture{position:absolute;inset:0}
@@ -220,16 +239,16 @@ p{margin:0 0 1em}
   .hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 30%,transparent) 0%,transparent 18%,transparent 88%,color-mix(in srgb,var(--stucco) 70%,transparent) 100%)}
   .hero-inner{text-align:center;padding-top:0;isolation:isolate;
     background:linear-gradient(180deg,var(--stucco) 0%,color-mix(in srgb,var(--stucco) 45%,var(--dark)) 42%,var(--dark) 100%)}
-  .hero-inner::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:#0E2340;mix-blend-mode:multiply;opacity:0;animation:dawn 2.2s var(--ease) both}
+  .hero-inner::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--dark);mix-blend-mode:multiply;opacity:0;animation:dawn 2.2s var(--ease) both}
   .sign{display:flex;margin-top:0}
-  .board-top{font-size:clamp(27px,8.8vw,38px);border-radius:0 0 3px 3px}
-  .plank{font-size:clamp(32px,10.4vw,44px);padding:.26em .7em .22em}
+  .board-top{font-size:clamp(25px,8.1vw,35px);border-radius:0 0 2px 2px}
+  .plank{font-size:clamp(30px,9.6vw,41px);padding:.31em .55em .27em}
   .hero-sub{font-size:16px;max-width:none;white-space:nowrap;margin-bottom:18px}.sub-long{display:none}.sub-short{display:inline}
   .hero-actions{gap:10px;justify-content:center}.hero-actions .btn{flex:1 1 0;padding:13px 12px;font-size:14.5px}
 }
 @media (prefers-reduced-motion:reduce){
-  .hero-bg img,.hero-dawn,.hero-light,.board-top,.plank,.hero-inner::before{animation:none}
-  .hero-light{opacity:.6}.hero-dawn{opacity:0}
+  .hero-bg img,.hero-dawn,.hero-light,.board-top,.plank,.hero-inner::before,.js .hero-sub,.js .hero-actions{animation:none;transform:none}
+  .hero-light{opacity:.6}.hero-dawn{opacity:0}.js .hero-sub,.js .hero-actions{opacity:1}
 }
 
 /* ============================================================ HOURS / STATUS BAND */
@@ -504,6 +523,47 @@ p{margin:0 0 1em}
   .rev-score{gap:11px}
 }
 
+/* Manual carousel: one card per snap point at every width, native phone swipe. */
+.review-carousel{max-width:780px;min-width:0}
+.review-carousel[hidden],.review-controls[hidden]{display:none}
+#reviews .review-track{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin;
+  scrollbar-color:var(--line) transparent;-webkit-overflow-scrolling:touch}
+#reviews .review-track .rev{flex:0 0 100%;min-width:0;min-height:240px;margin:0;
+  scroll-snap-align:start;scroll-snap-stop:always;transform:none;box-shadow:none;
+  padding:clamp(22px,4vw,34px);border-radius:8px;justify-content:flex-start;gap:24px}
+#reviews .review-track .rev:hover{transform:none;box-shadow:none}
+#reviews .rev-who{font-family:var(--body);font-weight:800;font-size:18px;overflow-wrap:anywhere}
+#reviews .rev-who small{font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:0;text-transform:none;line-height:1.5}
+#reviews .rev-stars{color:var(--brand-text)}
+#reviews .rev blockquote{font-size:clamp(18px,2vw,22px);line-height:1.55;max-width:52ch}
+.review-controls{display:flex;align-items:center;justify-content:flex-start;gap:12px;margin-top:14px}
+.review-controls button{appearance:none;display:inline-grid;place-items:center;flex:0 0 auto;
+  min-width:44px;min-height:44px;padding:0;border:1px solid var(--line);border-radius:50%;
+  background:var(--paper);color:var(--ink);font-family:var(--body);font-size:23px;cursor:pointer;
+  transition:background .2s,border-color .2s}
+.review-controls button:hover:not(:disabled){background:var(--bg-2);border-color:var(--brand-text)}
+.review-controls button:disabled{opacity:.35;cursor:default}
+.review-dots{display:flex;align-items:center;gap:0}
+.review-dots button{position:relative;min-width:32px;min-height:44px;background:transparent;border:0;border-radius:4px}
+.review-dots button::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted);opacity:.42}
+.review-dots button[aria-current="true"]::after{width:10px;height:10px;background:var(--brand-text);opacity:1;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 15%,transparent)}
+.review-position{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.review-dates{font-size:12px;color:var(--muted);margin:16px 0 0}
+#reviews .rev-all{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+#reviews .rev-all .btn-dark{color:var(--paper);border:2px solid transparent}
+#reviews .rev-all .btn-ghost{color:var(--brand-text);border:2px solid currentColor}
+@media (max-width:560px){
+  #reviews .review-track .rev{min-height:290px;gap:20px}
+  #reviews .rev-head{gap:5px 12px}
+  .review-controls{gap:10px}
+  #reviews .rev-all .btn{width:100%;padding:13px 16px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  #reviews .review-track{scroll-behavior:auto}.review-controls button{transition:none}
+}
+
 /* ============================================================ CONTACT */
 .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
 .contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
@@ -558,3 +618,28 @@ p{margin:0 0 1em}
 
 .revs.revs-2{grid-template-columns:repeat(2,1fr)}
 @media (max-width:760px){.revs.revs-2{grid-template-columns:1fr}}
+
+/* Actual photographed sign: no reconstructed boards; unchanged source pixels. */
+.hero-bg img{animation:none;filter:none}
+.hero-dawn,.hero-light{display:none}
+.hero-bg::before{background:linear-gradient(180deg,transparent 0%,transparent 63%,rgba(0,0,0,.12) 72%,rgba(0,0,0,.44) 85%,rgba(0,0,0,.8) 95%,#000 100%)}
+.hero-inner{background:transparent}
+.hero-proof{background:var(--dark);color:var(--paper);padding:22px 0;border-top:1px solid rgba(255,255,255,.14)}
+.hero-proof .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.hero-proof p{margin:0;font-size:15px}.hero-proof strong{font-family:var(--display);font-size:30px;color:var(--warm);margin-right:8px}
+.hero-proof small{font-size:11px;opacity:.72}
+.numbers{grid-template-columns:repeat(2,1fr)}
+@media(max-width:600px){
+ .hero{min-height:calc(100svh - var(--header-h));background:#000}
+ .hero-bg{flex:none;height:150vw;min-height:0;overflow:hidden}
+ .hero-bg img{position:absolute;width:303.03%;max-width:none;height:auto;left:-151.5%;top:-26vw;object-fit:initial;object-position:initial}
+ .hero-bg::before{background:linear-gradient(180deg,transparent 0%,transparent 0%,transparent 110vw,rgba(0,0,0,.12) 120vw,rgba(0,0,0,.4) 132vw,rgba(0,0,0,.77) 143vw,#000 150vw)}
+ .hero-inner{background:#000;padding-top:0}.hero-inner::before{display:none}
+ .hero-proof .wrap{gap:10px 18px;justify-content:center;text-align:center}.hero-proof small{flex-basis:100%}
+ .hero-proof p{font-size:12px}.hero-proof strong{display:block;margin:0;font-size:30px}
+}
+
+/* A relaxed invitation beneath the real doorway sign. */
+.hero .hero-sub{font-family:var(--display);font-size:clamp(24px,2.1vw,30px);font-weight:500;line-height:1.3;letter-spacing:.01em;text-transform:none;max-width:none;white-space:normal;margin-bottom:24px}
+
+.hero .hero-sub{text-shadow:0 2px 12px rgba(0,0,0,.65)}

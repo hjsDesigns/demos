@@ -8,8 +8,9 @@
 <meta name="theme-color" content="#2E221B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@500;600;700;800&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/review-rollout.css">
 </head>
 <body>
 <header class="site-header">
@@ -36,7 +37,7 @@
   <section class="hero" id="hero">
     <div class="hero-bg">
       <picture>
-        <source media="(max-width:600px)" srcset="images/hero-phone.jpg">
+        <source media="(max-width:600px)" srcset="images/hero.jpg">
         <img src="images/hero.jpg" alt="The Buttered Biscuit's terracotta building on North Street in Sumner — the blue tandem bike on the balcony over the Welcome Back sign" fetchpriority="high" width="2000" height="1500">
       </picture>
       <div class="hero-dawn"></div>
@@ -44,17 +45,18 @@
     </div>
     <div class="hero-spacer"></div>
     <div class="hero-inner">
-      <div class="sign">
-        <p class="board-top" aria-hidden="true"><span class="w">W</span>elcome back</p>
-        <h1 class="plank"><span>The</span> <span>Buttered</span> <span>Biscuit</span></h1>
-      </div>
-      <p class="hero-sub"><span class="sub-long">Big breakfasts on North Street since 2010 — and the cornbread comes first.</span><span class="sub-short">Big breakfasts. Cornbread first.</span></p>
+      <h1 class="sr-only">The Buttered Biscuit</h1>
+      <p class="hero-sub"><span class="sub-long">Come hungry. Stay awhile.</span><span class="sub-short">Come hungry. Stay awhile.</span></p>
       <div class="hero-actions">
         <a href="menu.html" class="btn btn-primary">See the menu</a>
         <a href="https://www.toasttab.com/local/order/buttered-biscuit-1014-north-st-1000" class="btn btn-cream" target="_blank" rel="noopener">Order online</a>
       </div>
     </div>
   </section>
+
+  <aside class="hero-proof" aria-label="Google review snapshot">
+    <div class="wrap"><p><strong>3,088</strong> Google reviews</p><p><strong>384</strong> mention the cornbread</p><small>Review total recorded Oct. 21, 2026 · cornbread mentions from saved Google snapshot</small></div>
+  </aside>
 
   <section class="status-band" id="hours">
     <div class="wrap">
@@ -83,7 +85,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">On the menu</p>
-        <h2>Come hungry. <em>Really.</em></h2>
+        <h2>Come <em>hungry.</em></h2>
         <p>Portions run big here — plenty of folks split a plate. Tap a card to see what's on it.</p>
       </div>
       <div class="unrolls">
@@ -164,7 +166,7 @@
       </div>
       <div class="prints">
         <figure class="print reveal"><img src="images/room.jpg" alt="The Buttered Biscuit dining room — green walls, wood posts, string lights" loading="lazy" width="2000" height="1500"><figcaption>The dining room</figcaption></figure>
-        <figure class="print reveal"><img src="images/cornbread.jpg" alt="A thick square of cornbread with a cup of whipped butter" loading="lazy" width="960" height="791"><figcaption>Cornbread, before anything else</figcaption></figure>
+        <figure class="print reveal"><img src="images/cornbread.jpg" alt="A thick square of cornbread with a cup of whipped butter" loading="lazy" width="960" height="791"><figcaption>Cornbread</figcaption></figure>
         <figure class="print reveal"><img src="images/french-toast.jpg" alt="French toast with scrambled eggs, bacon and strawberries" loading="lazy" width="2000" height="1331"><figcaption>French toast, eggs &amp; bacon</figcaption></figure>
         <figure class="print reveal"><img src="images/omelet.jpg" alt="A cheese-topped omelet with a mountain of home fries" loading="lazy" width="2000" height="1125"><figcaption>Omelet &amp; home fries</figcaption></figure>
         <figure class="print reveal"><img src="images/smothered.jpg" alt="A breakfast plate smothered in country gravy with potatoes" loading="lazy" width="2048" height="2048"><figcaption>Gravy, the house way</figcaption></figure>
@@ -206,7 +208,7 @@
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">The people behind it</p>
-          <h2>A place to feel <em>paid attention to</em></h2>
+          <h2>No rush. <em>Stay a while.</em></h2>
           <p class="lede">“We try to give folks a fair bang for their buck.” — owner Tami Haskins, to FOX 13 in 2019.</p>
           <p>Hank and Jean were the best customers for years. After they passed, their son brought in a framed photo of them — it hangs on the wall so they can keep an eye on the place. Tami's own parents are pictured on the menu.</p>
           <p><a class="btn btn-dark" href="about.html">Read their story</a></p>
@@ -216,36 +218,15 @@
   </section>
 
   <section class="section" id="reviews">
-    <div class="wrap">
-      <div class="section-head reveal">
+<div class="wrap"><div class="section-head reveal">
         <p class="eyebrow">What the regulars say</p>
         <h2>Nobody leaves <em>hungry</em></h2>
       </div>
-      <div class="revs revs-2">
-        <figure class="rev reveal">
-          <figcaption class="rev-head">
-            <img class="rev-face" src="images/reviewer-jaime.png" alt="Jaime Garcia" width="256" height="256" loading="lazy">
-            <span class="rev-who">Jaime Garcia<small>Google review · summer 2026</small></span>
-            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          </figcaption>
-          <blockquote>“Food was amazing! Can't say enough good things about the food. Everything was delicious! Great atmosphere and aesthetic.”</blockquote>
-        </figure>
-        <figure class="rev reveal">
-          <figcaption class="rev-head">
-            <img class="rev-face" src="images/reviewer-edward.png" alt="D. Edward" width="256" height="256" loading="lazy">
-            <span class="rev-who">D. Edward<small>Google review · summer 2026</small></span>
-            <span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span>
-          </figcaption>
-          <blockquote>“Over the top - delish! Can't rave enough about this establishment! Leaving you full (and then some) and satisfied. If I even purchased a side, 1 side, I would have been filled up with a touch of Southern goodness. Respectfully, A Southern Fan of The Buttered Biscuit!”</blockquote>
-        </figure>
-      </div>
-      <p class="rev-all reveal"><a href="https://search.google.com/local/reviews?placeid=ChIJ4dB6stf7kFQRpU2VuKrA5j8" target="_blank" rel="noopener">Read the reviews on Google ↗</a></p>
-      <div class="rev-linkout reveal" hidden>
-        <p class="rev-note">The reviews all live on Google.</p>
-        <a class="btn btn-primary" href="https://search.google.com/local/reviews?placeid=ChIJ4dB6stf7kFQRpU2VuKrA5j8" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
-      </div>
-    </div>
-  </section>
+<div class="rollout-shell" data-review-rollout role="region" aria-label="Google customer reviews"><div class="revs rollout-track" tabindex="0" aria-label="Swipe reviews or use arrow keys"><figure class="rev" role="group" aria-roledescription="slide" aria-label="1 of 5"><figcaption class="rev-head"><img class="rev-face" src="images/reviewer-jaime.png" alt="Jaime Garcia's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Jaime Garcia<small>Google · 2 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Food was amazing! Can&#x27;t say enough good things about the food. Everything was delicious! Great atmosphere and aesthetic.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="2 of 5"><figcaption class="rev-head"><img class="rev-face" src="images/reviewer-edward.png" alt="D. Edward's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">D. Edward<small>Google · 4 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Over the top - delish! Can&#x27;t rave enough about this establishment!”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="3 of 5"><figcaption class="rev-head"><img class="rev-face" src="images/reviewer-chey-google.png" alt="Chey Fregon-Walker's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Chey Fregon-Walker<small>Google · 3 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“The portions are huge and everything was delicious.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="4 of 5"><figcaption class="rev-head"><img class="rev-face" src="images/reviewer-layton-google.png" alt="Layton Terry's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Layton Terry<small>Google · 4 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Portions are massive, I recommend splitting an entree.”</blockquote></figure>
+<figure class="rev" role="group" aria-roledescription="slide" aria-label="5 of 5"><figcaption class="rev-head"><img class="rev-face" src="images/reviewer-briana-google.png" alt="Briana Hill's Google profile image" width="512" height="512" loading="lazy"><span class="rev-who">Briana Hill<small>Google · 5 months ago</small></span><span class="rev-stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption><blockquote>“Well, this place did NOT disappoint!”</blockquote></figure></div><div class="rollout-controls"><button type="button" data-prev aria-label="Previous review">←</button><span data-count>1 / 5</span><button type="button" data-pause aria-label="Pause automatic reviews">Pause</button><button type="button" data-next aria-label="Next review">→</button></div><div class="rollout-actions"><a class="btn btn-primary" href="https://search.google.com/local/reviews?placeid=ChIJ4dB6stf7kFQRpU2VuKrA5j8" target="_blank" rel="noopener">See other reviews</a><a class="btn btn-ghost" href="https://search.google.com/local/writereview?placeid=ChIJ4dB6stf7kFQRpU2VuKrA5j8" target="_blank" rel="noopener">Leave a review</a></div><p class="rollout-date">Selected Google reviews.</p></div></div></section>
 
   <section class="section section-alt" id="contact">
     <div class="wrap">
@@ -280,8 +261,6 @@
       </div>
       <div class="numbers reveal">
         <div class="num"><b><span class="count" data-to="2010" data-from="1990">2010</span></b><span>On North Street since</span></div>
-        <div class="num"><b><span class="count" data-to="3088">3088</span></b><span>Google reviews, 4.3 stars</span></div>
-        <div class="num"><b><span class="count" data-to="384">384</span></b><span>of those reviews mention the cornbread</span></div>
         <div class="num"><b><span class="count" data-to="6">6</span><i> a.m.</i></b><span>doors open, seven days a week</span></div>
       </div>
       <div class="cta-actions reveal">
@@ -319,5 +298,6 @@
   </div>
 </footer>
 <script src="js/site.js"></script>
+<script src="js/review-rollout.js"></script>
 </body>
 </html>

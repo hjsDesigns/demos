@@ -144,28 +144,113 @@ function customClose(p, close){ return close; }
       .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
   })}
 
-  /* ---------- reviews: the face is load-bearing (REVIEW ATTRIBUTION LAW, 2026-09-06) ----------
-     Every .rev card must show the real reviewer's real photo. If an avatar 404s or is
-     corrupt the card would silently degrade into an anonymous quote — which the law
-     forbids — so the card is REMOVED instead, loudly, and the sanctioned remedy
-     (.rev-linkout: "read the live reviews") takes over if every card is gone.
-     Never patch a missing face with initials, a monogram, or a placeholder image:
-     re-harvest the real profile photo, or use a different attributable review. */
-  $$('.rev .rev-face').forEach(function(img){
-    function drop(){
-      console.error('REVIEW ATTRIBUTION LAW: reviewer avatar failed to load ('+img.getAttribute('src')+
-        ') — that review card was removed. Re-harvest the real profile photo, use a different '+
-        'attributable review, or ship .rev-linkout. Never substitute initials or a stock face.');
-      var card=img.closest('.rev'); if(card) card.parentNode.removeChild(card);
-      if($$('.rev').length===0){
-        var grid=$('.revs'); if(grid) grid.parentNode.removeChild(grid);
-        var all=$('.rev-all'); if(all) all.parentNode.removeChild(all);
-        var lo=$('.rev-linkout'); if(lo){lo.hidden=false;lo.classList.add('in')}
+  /* ---------- reviews: manual, native-swipe carousel; real faces required ----------
+     No autoplay, clones, or wraparound. A failed real avatar removes its card;
+     if every avatar fails, the live Google reviews link takes over. */
+  var reviews=$('#reviews'), reviewCarousel=reviews&&$('.review-carousel',reviews);
+  var reviewTrack=reviewCarousel&&$('.review-track',reviewCarousel);
+  if(reviewTrack){
+    var reviewControls=$('.review-controls',reviewCarousel);
+    var reviewPrev=$('.review-prev',reviewCarousel), reviewNext=$('.review-next',reviewCarousel);
+    var reviewDots=$('.review-dots',reviewCarousel), reviewPosition=$('.review-position',reviewCarousel);
+    var reviewFallback=$('.rev-linkout',reviews), reviewCards=$$('.rev',reviewTrack);
+    var reviewIndex=0, reviewScrollFrame=0;
+
+    function reviewLeft(card){
+      return reviewTrack.scrollLeft+card.getBoundingClientRect().left-
+        reviewTrack.getBoundingClientRect().left-reviewTrack.clientLeft;
+    }
+    function setReview(index){
+      reviewIndex=Math.max(0,Math.min(index,reviewCards.length-1));
+      if(reviewPrev) reviewPrev.disabled=reviewIndex===0;
+      if(reviewNext) reviewNext.disabled=reviewIndex>=reviewCards.length-1;
+      if(reviewDots) $$('button[data-review-index]',reviewDots).forEach(function(dot,i){
+        if(i===reviewIndex) dot.setAttribute('aria-current','true');
+        else dot.removeAttribute('aria-current');
+      });
+      var position=reviewCards.length?(reviewIndex+1)+' / '+reviewCards.length:'0 / 0';
+      if(reviewPosition&&reviewPosition.textContent!==position) reviewPosition.textContent=position;
+    }
+    function goToReview(index,instant){
+      if(!reviewCards.length)return;
+      setReview(index);
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      reviewTrack.scrollTo({left:reviewLeft(reviewCards[reviewIndex]),behavior:instant||reduce?'instant':'smooth'});
+    }
+    function refreshReviews(preferredCard,align){
+      reviewCards=$$('.rev',reviewTrack);
+      reviewCards.forEach(function(card,i){card.setAttribute('aria-label',(i+1)+' of '+reviewCards.length)});
+      if(reviewDots&&$$('button[data-review-index]',reviewDots).length!==reviewCards.length){
+        var focusedDot=document.activeElement, restoreDotFocus=reviewDots.contains(focusedDot);
+        reviewDots.textContent='';
+        reviewCards.forEach(function(card,i){
+          var dot=document.createElement('button');
+          dot.type='button';dot.setAttribute('data-review-index',String(i));
+          dot.setAttribute('aria-controls',reviewTrack.id);dot.setAttribute('aria-label','Go to review '+(i+1));
+          reviewDots.appendChild(dot);
+        });
+      }
+      var preferredIndex=preferredCard?reviewCards.indexOf(preferredCard):-1;
+      setReview(preferredIndex>=0?preferredIndex:reviewIndex);
+      var loaded=reviewCards.filter(function(card){var img=$('.rev-face',card);return img&&img.complete&&img.naturalWidth>0}).length;
+      if(reviewControls) reviewControls.hidden=loaded<2;
+      reviewCarousel.hidden=reviewCards.length===0;
+      if(reviewFallback){reviewFallback.hidden=reviewCards.length>0;if(!reviewCards.length)reviewFallback.classList.add('in')}
+      if(align&&reviewCards.length)goToReview(reviewIndex,true);
+      if(restoreDotFocus){
+        if(reviewControls&&!reviewControls.hidden){$$('button[data-review-index]',reviewDots)[reviewIndex].focus()}
+        else if(reviewCards.length)reviewTrack.focus();
+        else if(reviewFallback){var link=$('a',reviewFallback);if(link)link.focus()}
       }
     }
-    if(img.complete&&img.naturalWidth===0) drop();
-    else img.addEventListener('error',drop);
-  });
+    if(reviewPrev) reviewPrev.addEventListener('click',function(){goToReview(reviewIndex-1,false)});
+    if(reviewNext) reviewNext.addEventListener('click',function(){goToReview(reviewIndex+1,false)});
+    if(reviewDots) reviewDots.addEventListener('click',function(e){
+      var dot=e.target.closest('button[data-review-index]');
+      if(dot&&reviewDots.contains(dot))goToReview(parseInt(dot.getAttribute('data-review-index'),10),false);
+    });
+    reviewTrack.addEventListener('keydown',function(e){
+      if(e.target!==reviewTrack||e.altKey||e.ctrlKey||e.metaKey)return;
+      var target=reviewIndex;
+      if(e.key==='ArrowLeft')target--;
+      else if(e.key==='ArrowRight')target++;
+      else if(e.key==='Home')target=0;
+      else if(e.key==='End')target=reviewCards.length-1;
+      else return;
+      e.preventDefault();goToReview(target,false);
+    });
+    reviewTrack.addEventListener('scroll',function(){
+      if(reviewScrollFrame)return;
+      reviewScrollFrame=requestAnimationFrame(function(){
+        reviewScrollFrame=0;
+        var nearest=0, distance=Infinity;
+        reviewCards.forEach(function(card,i){
+          var delta=Math.abs(reviewLeft(card)-reviewTrack.scrollLeft);
+          if(delta<distance){distance=delta;nearest=i}
+        });
+        setReview(nearest);
+      });
+    },{passive:true});
+    window.addEventListener('resize',function(){goToReview(reviewIndex,true)});
+    reviewCards.forEach(function(card){
+      var img=$('.rev-face',card);
+      function drop(){
+        if(!card.parentNode)return;
+        var selectedCard=reviewCards[reviewIndex];
+        console.error('REVIEW ATTRIBUTION LAW: reviewer avatar failed to load ('+(img?img.getAttribute('src'):'missing image')+
+          ') — that review card was removed. Re-harvest the real profile photo, use a different '+
+          'attributable review, or ship .rev-linkout. Never substitute initials or a stock face.');
+        card.parentNode.removeChild(card);refreshReviews(selectedCard,true);
+      }
+      if(!img){drop();return}
+      // Load all small profile photos even when their cards start off screen.
+      img.loading='eager';
+      img.addEventListener('error',drop,{once:true});
+      img.addEventListener('load',function(){refreshReviews(null,false)},{once:true});
+      if(img.complete&&img.naturalWidth===0)drop();
+    });
+    refreshReviews(null,false);
+  }
 
   /* ---------- SIGNATURE GADGET ---------- */
   /* What's in a name? — tap a house-favorite's name, the card above shows what's on the plate + price.

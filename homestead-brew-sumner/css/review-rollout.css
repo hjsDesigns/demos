@@ -1,0 +1,30 @@
+/* Review rollout: inherit each business's palette and type, one readable card. */
+#reviews .rollout-shell{min-width:0;max-width:100%;width:100%}
+#reviews .rollout-track{display:flex;grid-template-columns:none;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;margin:0;padding:5px 2px 15px;max-width:100%;width:100%}
+#reviews .rollout-track::-webkit-scrollbar{display:none}
+#reviews .rollout-track>.rev{flex:0 0 100%;min-width:0;box-sizing:border-box;scroll-snap-align:center;margin:0;opacity:1;transform:none;min-height:245px;display:flex;flex-direction:column;justify-content:center}
+#reviews .rollout-track .rev-face{width:52px;height:52px;object-fit:cover;border-radius:50%}
+#reviews .rollout-track blockquote{margin:18px 0 0;max-width:52ch;font-size:clamp(16px,1.6vw,20px);line-height:1.65}
+#reviews .rollout-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0 22px;color:var(--ink)}
+#reviews .rollout-controls button{font:inherit;min-width:44px;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:24px;background:var(--paper,var(--bg));color:inherit;cursor:pointer}
+#reviews .rollout-controls button:disabled{opacity:.55;cursor:default}
+#reviews .rollout-controls [data-count]{font-size:13px;font-variant-numeric:tabular-nums;min-width:42px;text-align:center}
+#reviews .rollout-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin:0}
+#reviews .rollout-actions .btn{display:flex;align-items:center;justify-content:center;font-size:14px;padding:13px 8px;min-width:0;text-align:center;white-space:normal}
+#reviews .rollout-actions .btn-ghost{border:1px solid currentColor;color:var(--brand-text,var(--ink));background:transparent}
+#reviews .rollout-date{font-size:12px;color:var(--muted);margin:16px 0 0;text-align:center}
+@media(min-width:900px){#reviews .rollout-shell{max-width:820px;margin-left:auto;margin-right:auto}}
+@media(max-width:560px){#reviews .rollout-track .rev-head{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px}#reviews .rollout-track .rev-stars{grid-column:2;margin:0}#reviews .rollout-track .rev-face{grid-row:1 / span 2}#reviews .rollout-track .rev-who{overflow-wrap:anywhere}}
+
+/* Seamless continuous ribbon; maintains each site's existing card palette/type. */
+#reviews [data-review-rollout]{max-width:100%;min-width:0;width:100%}
+#reviews .review-glide{display:flex!important;gap:18px!important;overflow-x:auto!important;overflow-y:hidden;scroll-snap-type:none!important;scroll-behavior:auto!important;scrollbar-width:none;max-width:100%;width:100%;padding:6px 2px 16px;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
+#reviews .review-glide::-webkit-scrollbar{display:none}
+#reviews .review-glide-group{display:flex;flex:0 0 auto;gap:18px;align-items:stretch}
+#reviews .review-glide-group[hidden]{display:none!important}
+#reviews .review-glide-group>.rev,#reviews .review-glide-group>.rr-card{flex:0 0 auto!important;width:clamp(275px,78vw,450px);min-width:0!important;max-width:none!important;margin:0!important;animation:none!important;transform:none!important;opacity:1!important;box-sizing:border-box;scroll-snap-align:none;min-height:260px}
+#reviews .review-glide-group blockquote{font-size:clamp(18px,1.7vw,23px);line-height:1.6}
+#reviews .rr-links,#reviews .rollout-actions{max-width:820px;margin-left:auto;margin-right:auto}
+#reviews .review-glide:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+@media(prefers-reduced-motion:reduce){#reviews .review-glide-copy{display:none!important}}

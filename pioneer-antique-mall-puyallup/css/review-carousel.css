@@ -1,0 +1,30 @@
+#reviews .revs{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--brass) transparent;padding:4px 2px 16px;overscroll-behavior-x:contain}
+#reviews .rev{flex:0 0 100%;min-width:0;scroll-snap-align:start;margin:0;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--brass)}
+#reviews .rev blockquote{white-space:pre-line;max-width:65ch}
+#reviews .rev-head{align-items:center}
+#reviews .rev-who small{letter-spacing:.03em;line-height:1.6}
+#reviews .rev-stars{margin:16px 0 8px;color:var(--brand-text)}
+.rev-initial{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--brand);color:var(--paper);font:700 22px var(--body)}
+.review-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin:15px 0 24px;font-variant-numeric:tabular-nums}
+.review-controls button{font:700 16px var(--body);min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--brand-text);cursor:pointer}
+.review-controls [data-review-pause]{border-radius:999px;padding:0 18px}
+.review-controls button:hover{background:var(--bg-2)}
+.review-controls button:focus-visible,.revs:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.review-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px;margin:auto}
+.review-actions .btn{min-width:0;padding:14px 10px;font-size:15px;text-align:center;line-height:1.3}
+@media(min-width:800px){#reviews .rev{flex-basis:calc(50% - 12px)}}
+@media(prefers-reduced-motion:reduce){#reviews .revs{scroll-behavior:auto}}
+
+/* Continuous ribbon — readable cards flow past rather than step between slides. */
+#reviews .rollout-shell{max-width:none}
+#reviews .continuous-viewport{display:block;overflow-x:auto;overflow-y:hidden;scroll-snap-type:none;scroll-behavior:auto;padding:6px 2px 18px;max-width:100%;scrollbar-width:none}
+#reviews .continuous-viewport.is-moving{overflow-x:hidden}
+#reviews .continuous-row{display:flex;width:max-content;gap:20px;align-items:stretch;will-change:transform}
+#reviews .continuous-row>.rev{flex:0 0 auto;width:min(80vw,370px);min-width:0;margin:0;scroll-snap-align:none;opacity:1;transform:none;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-start}
+#reviews .continuous-row .rev-head{flex-wrap:wrap}
+#reviews .continuous-row blockquote{white-space:normal;max-width:100%;font-size:17px;line-height:1.65}
+#reviews .continuous-row .rev-who{overflow-wrap:anywhere}
+#reviews .continuous-row.motion-reduced .review-loop-copy{display:none}
+#reviews .review-controls,#reviews .rollout-controls{margin-top:8px}
+#reviews [data-pause],#reviews [data-review-pause]{min-height:44px;width:auto}
+@media(prefers-reduced-motion:reduce){#reviews .continuous-row{will-change:auto}}

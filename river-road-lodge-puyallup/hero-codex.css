@@ -1,0 +1,51 @@
+/* Codex hero alternative. Append after existing stylesheet. */
+.hero.codex-river-road-lodge-puyallup{
+  --codex-paper:var(--ink);--codex-button-ink:var(--dark);
+  position:relative;isolation:isolate;display:grid;place-items:center;
+  height:calc(100svh - var(--header-h));min-height:calc(100svh - var(--header-h));
+  width:100%;max-width:none;overflow:hidden;box-sizing:border-box;margin:0;padding:24px;
+  background:var(--dark);color:var(--codex-paper);
+}
+.hero.codex-river-road-lodge-puyallup *,.hero.codex-river-road-lodge-puyallup *::before,.hero.codex-river-road-lodge-puyallup *::after{box-sizing:border-box}
+.hero.codex-river-road-lodge-puyallup .codex-sr{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;animation:none!important;transform:none!important;opacity:1!important}
+.hero.codex-river-road-lodge-puyallup .codex-scene{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.hero.codex-river-road-lodge-puyallup .codex-scene img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;pointer-events:none}
+.hero.codex-river-road-lodge-puyallup .codex-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:1000px;margin:0 auto;gap:clamp(22px,4svh,42px);text-align:center}
+.hero.codex-river-road-lodge-puyallup .codex-mark{position:relative;display:block;margin:0;flex:none;pointer-events:none}
+.hero.codex-river-road-lodge-puyallup .codex-mark img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.hero.codex-river-road-lodge-puyallup .codex-actions{display:flex;justify-content:center;align-items:stretch;gap:12px;max-width:100%;margin:0;opacity:1;transform:none}
+.hero.codex-river-road-lodge-puyallup .codex-actions a{display:flex;justify-content:center;align-items:center;min-height:50px;padding:14px 22px;border:1px solid transparent;border-radius:7px;white-space:nowrap;font-family:var(--body);font-size:15px;line-height:1.25;font-weight:700;letter-spacing:0;text-decoration:none;box-shadow:none;transform:none;animation:none;transition:background .2s,color .2s}
+.hero.codex-river-road-lodge-puyallup .codex-actions .btn-primary{background:var(--brand);color:var(--codex-button-ink)}
+.hero.codex-river-road-lodge-puyallup .codex-actions .btn-cream{background:var(--codex-paper);color:var(--dark);border-color:var(--codex-paper)}
+.hero.codex-river-road-lodge-puyallup .codex-actions a:focus-visible{outline:3px solid var(--codex-paper);outline-offset:5px}
+.hero.codex-river-road-lodge-puyallup .codex-actions a:hover{background:var(--brand-bright);color:var(--codex-button-ink);transform:none}
+@media(max-width:600px){
+  .hero.codex-river-road-lodge-puyallup{padding:22px}
+  .hero.codex-river-road-lodge-puyallup .codex-actions{gap:10px;width:100%}
+  .hero.codex-river-road-lodge-puyallup .codex-actions a{flex:1;min-width:0;padding:14px 10px;font-size:13px;min-height:48px}
+}
+
+.hero.codex-river-road-lodge-puyallup::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 55%,transparent),color-mix(in srgb,var(--dark) 28%,transparent) 45%,color-mix(in srgb,var(--dark) 88%,transparent))}
+.hero.codex-river-road-lodge-puyallup .codex-scene picture{display:block;width:100%;height:100%}
+.hero.codex-river-road-lodge-puyallup .codex-scene img{object-position:50% 52%;filter:brightness(.8) saturate(.86);transform:scale(1.015);animation:codex-lodge-room 2.7s ease-out both}
+.hero.codex-river-road-lodge-puyallup .codex-content{gap:28px}
+.hero.codex-river-road-lodge-puyallup .codex-name{position:relative;width:max-content;max-width:100%;margin:0;padding:0;line-height:.9;font-family:var(--display);font-weight:700;text-transform:uppercase;text-align:center;letter-spacing:-.025em;text-shadow:0 7px 28px var(--dark);color:var(--codex-paper);opacity:1;transform:none;animation:none}
+.hero.codex-river-road-lodge-puyallup .codex-river{display:block;font-size:clamp(38px,6.3vw,82px);letter-spacing:.045em;animation:codex-lodge-title 1.5s cubic-bezier(.15,.8,.2,1) both}
+.hero.codex-river-road-lodge-puyallup .codex-lodge{display:block;font-size:clamp(103px,16.4vw,224px);letter-spacing:.012em;margin-top:.055em;color:var(--brand-bright);animation:codex-lodge-light 2.1s ease-out both}
+.hero.codex-river-road-lodge-puyallup .codex-actions{animation:codex-lodge-buttons 1s .45s ease-out both}
+@keyframes codex-lodge-title{from{opacity:.5;letter-spacing:.10em;transform:translateY(-12px)}to{opacity:1;letter-spacing:.045em;transform:none}}
+@keyframes codex-lodge-light{0%{opacity:.6;transform:translateY(18px);text-shadow:0 0 0 transparent}40%{opacity:1;text-shadow:0 0 22px color-mix(in srgb,var(--brand) 62%,transparent)}100%{opacity:1;transform:none;text-shadow:0 7px 28px var(--dark)}}
+@keyframes codex-lodge-room{from{filter:brightness(.53) saturate(.65)}to{filter:brightness(.8) saturate(.86)}}
+@keyframes codex-lodge-buttons{from{opacity:.6;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.hero.codex-river-road-lodge-puyallup .codex-river{font-size:clamp(36px,11vw,59px)}.hero.codex-river-road-lodge-puyallup .codex-lodge{font-size:clamp(98px,30vw,152px)}.hero.codex-river-road-lodge-puyallup .codex-content{gap:30px}}
+@media(max-height:540px) and (min-width:601px){.hero.codex-river-road-lodge-puyallup .codex-river{font-size:7svh}.hero.codex-river-road-lodge-puyallup .codex-lodge{font-size:20svh}}
+
+@media(max-height:540px) and (min-width:601px){
+ .hero.codex-river-road-lodge-puyallup{padding:16px 6vw}
+ .hero.codex-river-road-lodge-puyallup .codex-content{flex-direction:row;justify-content:center;gap:40px}
+ .hero.codex-river-road-lodge-puyallup .codex-mark{width:min(46vw,55svh)!important;max-height:70svh}
+ .hero.codex-river-road-lodge-puyallup .codex-actions{flex-direction:column;min-width:180px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero.codex-river-road-lodge-puyallup *,.hero.codex-river-road-lodge-puyallup *::before,.hero.codex-river-road-lodge-puyallup *::after{animation:none!important;transition:none!important}
+}
