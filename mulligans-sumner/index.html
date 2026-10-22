@@ -7,10 +7,13 @@
 <meta name="description" content="Mulligans is the new name on the long-standing bar at 15716 Main St E in Sumner, Washington — run by the Mulligans golf group out of Buckley, with a simulator bay coming to the room.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- two faces: Bevan (display — vintage slab, sits with their painted script mark) + Archivo (body) -->
-<link href="https://fonts.googleapis.com/css2?family=Bevan&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1788938921">
-<link rel="stylesheet" href="css/hero.css?v=1788938921">
+<!-- Bevan (display — vintage slab) + Archivo (body). Lobster Two 700 italic is not a
+     third "look": it is the SIGN FACE, matched off a 4x upscale of their own
+     wordmark, and it sets exactly one element on the page — the hero name
+     (SIGN-FONT LAW + CRISP RULE, 2026-09-10). -->
+<link href="https://fonts.googleapis.com/css2?family=Bevan&family=Archivo:wght@400;500;600;700&family=Lobster+Two:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1789081100">
+<link rel="stylesheet" href="css/hero.css?v=1789081100">
 </head>
 <body>
 
@@ -40,33 +43,45 @@
 <main>
 
   <!-- ===================== #hero =====================
-       ANIMATED-MARK INTRO. Their real wordmark (pulled straight off
-       mulligansgc.com, keyed to alpha — never redrawn) is the headline,
-       over the actual back bar at 15716 Main St E. Nothing else on the
-       photo. Plays once; reduced-motion lands on the final frame. -->
-  <section class="hero v-neon-strike" id="hero">
-    <!-- GROUND: their own back bar (harvest-0907/room/gp-24.jpg — the wide frame,
-         no people in it), blurred and graded down to closing time. It is a stage,
-         not a photograph: nothing in it has to be read. -->
-    <div class="ns-room" aria-hidden="true"><span class="ns-room-img"></span></div>
-    <!-- THE STRIKE: the room's three real light sources come up in the order they
-         actually sit in that photograph — the blue LED strip under the shelves,
-         the green neon tree over the well, then the Edison bulbs on the string. -->
-    <div class="ns-spill" aria-hidden="true">
-      <span class="ns-s ns-blue"></span>
-      <span class="ns-s ns-green"></span>
-      <span class="ns-s ns-amber"></span>
-    </div>
-    <div class="ns-inner hero-inner">
-      <h1 class="sr-only">Mulligans — the bar on Main Street in Sumner, Washington</h1>
-      <!-- THE MARK IS THE HEADLINE: their real wordmark off mulligansgc.com,
-           keyed to alpha, never redrawn. It lands, its own outline green strikes
-           on like a tube warming, and one shine crosses the letters. -->
-      <div class="ns-mark" aria-hidden="true">
-        <img class="ns-art" src="images/mark.png" alt="" aria-hidden="true">
-        <img class="ns-glow" src="images/mark.png" alt="" aria-hidden="true">
-        <img class="ns-shine" src="images/mark.png" alt="" aria-hidden="true">
+       LIGHTS ON AT THE BACK BAR. One idea from one real object of theirs:
+       this room's own back bar coming on for the night, with the name hung
+       on it like the sign it is. Nothing on the photo but the headline
+       block. Plays once, ≤3s, never loops; reduced-motion lands on the
+       final frame with no motion at all. See css/hero.css for the beat
+       sheet and for why the name is live type (CRISP RULE). -->
+  <section class="hero v-closing" id="hero">
+    <!-- GROUND — 4K CLARITY: two real sources cut from their own photograph
+         (harvest-0907/room/about.jpg, 2500x1875, the wide frame of the back
+         bar, no people in it). Landscape for desktop, portrait for phones,
+         so the picture never renders above its own native pixels. -->
+    <div class="cl-scene">
+      <div class="cl-bg">
+        <picture>
+          <source media="(max-width:640px)" srcset="images/hero-tall.jpg" width="1200" height="1800">
+          <img src="images/hero-wide.jpg" width="1920" height="1280" fetchpriority="high"
+               alt="The back bar at Mulligans in Sumner — shelves of bottles lit blue and green behind a long wooden counter, a green neon over the well, televisions above and Edison bulbs strung across the ceiling">
+        </picture>
       </div>
+    </div>
+    <!-- THE STRIKE: the room's three real light sources come up in the order
+         they actually sit in that photograph — the blue LED strip under the
+         shelves, the green neon over the well, then the Edison bulbs. -->
+    <div class="cl-spill" aria-hidden="true">
+      <span class="cl-s cl-blue"></span>
+      <span class="cl-s cl-green"></span>
+      <span class="cl-s cl-amber"></span>
+    </div>
+    <div class="cl-inner hero-inner">
+      <!-- THE NAME IS THE HEADLINE, and it is LIVE TYPE: their mark's own
+           face (Lobster Two 700 italic, matched off a 4x upscale of the real
+           wordmark) in their mark's own two greens. The real raster is only
+           984px wide, so it keeps the jobs it is sharp at — the header and
+           the footer plate — and never gets blown up here. -->
+      <h1 class="cl-wordmark">
+        <span class="cl-name">Mulligans</span>
+        <span class="sr-only"> — the bar on Main Street in Sumner, Washington</span>
+        <span class="cl-fairway" aria-hidden="true"></span>
+      </h1>
       <p class="hero-sub">
         <span class="sub-long">New name, same room: the bar at 15716 Main St E is Mulligans now.</span>
         <span class="sub-short">New name on the old room.</span>
@@ -76,7 +91,7 @@
         <a href="#hours" class="btn btn-cream">Are they open?</a>
       </div>
     </div>
-    <div class="ns-hem" aria-hidden="true"></div>
+    <div class="cl-hem" aria-hidden="true"></div>
   </section>
 
   <!-- ===================== #hours =====================
@@ -127,14 +142,9 @@
         <p class="eyebrow">Finding the door</p>
         <h2>Grey siding, <em>chairs out front</em></h2>
       </div>
-      <div class="doorway">
-        <figure class="print door-print reveal">
-          <img src="images/storefront.jpg" alt="The single-storey storefront at 15716 Main St E in Sumner, wooden chairs and a bar stool out front under a deep awning" loading="lazy" width="2200" height="1240">
-          <figcaption>15716 Main St E, under the awning</figcaption>
-        </figure>
+      <div class="doorway" style="grid-template-columns:1fr">
         <div class="doorway-copy reveal">
           <p>A single-storey strip on Main Street with a deep awning over the walk. Wooden chairs and a bar stool sit out front, and the number over the glass reads <b>15716</b>. That's the one.</p>
-          <p class="doorway-note">Photographed before the changeover — the banner in this frame is the room's previous name. Mulligans is on the door now.</p>
         </div>
       </div>
     </div>
@@ -447,6 +457,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=1788929128"></script>
+<script src="js/site.js?v=1789081100"></script>
 </body>
 </html>

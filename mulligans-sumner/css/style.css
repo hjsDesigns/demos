@@ -167,28 +167,14 @@ p{margin:0 0 1em}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
 .hero-spacer{flex:1 1 auto}
 .hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
-/* ---------- ANIMATED-MARK INTRO ----------
-   Their own wordmark IS the headline (sr-only <h1> carries the text for
-   screen readers and search). It swings up into place once, then a single
-   shine passes across the letters and stops — no loop, no second gesture.
-   prefers-reduced-motion lands straight on the final frame. */
-.mark-intro{position:relative;display:block;width:min(600px,88%);margin:0 0 24px}
-.mark-art{width:100%;height:auto;display:block;filter:drop-shadow(0 20px 44px rgba(0,0,0,.72)) drop-shadow(0 0 1px rgba(0,0,0,.9))}
-/* the shine is a second copy of their own mark, blown out and clipped to a
-   diagonal band that travels across it — no CSS mask, so it works from
-   file:// as well as over http (a mask would be blocked by CORS locally). */
-.mark-shine{position:absolute;left:0;top:0;width:100%;height:auto;pointer-events:none;
-  filter:brightness(2.9) saturate(.45);opacity:0;
-  clip-path:polygon(-26% 0%,-12% 0%,-2% 100%,-16% 100%)}
-.js .mark-intro{opacity:0;transform:translateY(18px) scale(.93) rotate(-2deg);animation:markIn 1s var(--ease-2) .08s forwards}
-@keyframes markIn{to{opacity:1;transform:none}}
-.js .mark-shine{animation:markShine 1.2s cubic-bezier(.4,0,.5,1) .95s forwards}
-@keyframes markShine{
-  0%  {opacity:0;clip-path:polygon(-26% 0%,-12% 0%,-2% 100%,-16% 100%)}
-  14% {opacity:1}
-  86% {opacity:1}
-  100%{opacity:0;clip-path:polygon(106% 0%,120% 0%,130% 100%,116% 100%)}
-}
+/* ---------- THE HERO NAME ----------
+   REMOVED 2026-09-10: the .mark-intro / .mark-shine block that used to live
+   here rendered the 984px mark raster as the hero headline and swept a
+   generic SHINE across it. Both are banned — the raster renders above its
+   own pixels at hero size (CRISP RULE) and the shine is the generic sweep
+   Hayden struck out. The hero name is now live type in the sign's own face
+   and colours, and the opening event is the room's own lights coming on.
+   It all lives in css/hero.css under .hero.v-closing. Nothing here. */
 
 .hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.94);font-weight:500}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
@@ -199,12 +185,7 @@ p{margin:0 0 1em}
 .sub-short{display:none}
 @media (max-width:520px){
   .hero-sub{font-size:16px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}
-  .mark-intro{width:100%;margin-bottom:20px}
   .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
-}
-@media (prefers-reduced-motion:reduce){
-  .js .mark-intro{animation:none;opacity:1;transform:none}
-  .js .mark-shine{animation:none;background-position:-100% 0}
 }
 
 /* ============================================================ HOURS / STATUS BAND */

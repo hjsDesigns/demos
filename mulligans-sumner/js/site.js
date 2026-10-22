@@ -235,3 +235,33 @@ function customClose(p, close){ return close; }
   }
 
 })();
+
+/* ------------------------------------------------------------
+   HERO DEPTH (2026-09-10) — the back bar sits BEHIND the name.
+   As the page moves, the photograph drifts a fraction of the
+   scroll while the name stays put, so the hero reads as two
+   planes instead of one flat card. Transform only (no layout,
+   no CLS), rAF-throttled, scroll-driven only — no pointer
+   tracking, no loop, and nothing at all under reduced motion.
+   ------------------------------------------------------------ */
+(function(){
+  var hero = document.getElementById('hero');
+  if(!hero || !hero.classList.contains('v-closing')) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)');
+  if(reduce.matches) return;
+  var DEPTH = 0.14, MAX = 90, ticking = false;
+
+  function apply(){
+    ticking = false;
+    var h = hero.offsetHeight || 1;
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if(y > h) return;                        /* hero is off-screen — stop working */
+    var d = Math.min(MAX, y * DEPTH);
+    hero.style.setProperty('--cl-scroll', d.toFixed(1) + 'px');
+  }
+  function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(apply); } }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  apply();
+})();

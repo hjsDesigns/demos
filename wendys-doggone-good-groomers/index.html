@@ -8,11 +8,42 @@
 <meta name="theme-color" content="#F4F0E2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1788923191">
 <link rel="stylesheet" href="css/site.css?v=1788923191">
 <link rel="icon" href="images/mark-dog.png">
-<link rel="stylesheet" href="css/review-rollout.css?v=20261022">
+<style>
+.w-hero{--cream:#f4f0e2;--pine:#344835;--lavender:#ddd2e5;--ink:#302c30;--clay:#985f40;min-height:calc(100svh - var(--header-h));color:var(--ink);background:var(--cream);position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box}
+.w-hero *{box-sizing:border-box}.w-hero h1{font-family:var(--body);font-size:clamp(44px,5vw,76px);font-weight:800;letter-spacing:-.055em;line-height:1.02;margin:15px 0}.w-hero .name{font-family:var(--display);font-size:24px;line-height:1.1;margin:0}.w-hero .over{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;margin:0 0 13px}.w-hero .desc{font:16px/1.5 var(--body);max-width:32ch;margin:0 0 22px}.w-hero a.action{display:inline-flex;min-height:48px;align-items:center;justify-content:center;padding:13px 21px;border-radius:30px;background:var(--pine);color:var(--cream);font-weight:800;text-decoration:none;font-size:14px}.w-hero a.secondary{display:inline-block;font-size:13px;font-weight:800;margin:12px 0 0 15px;text-underline-offset:4px}.w-hero img{display:block}.w-hero em{font-style:normal}.w-hero .copy{animation:w-reveal .7s ease both}@keyframes w-reveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* A: dark green editorial split, with an uncropped portrait */
+.forest-letter{display:grid;grid-template-columns:1fr 1fr;background:var(--pine);color:var(--cream);padding:50px 6vw;gap:5vw;align-items:center}.forest-letter .portrait{width:100%;max-height:680px;object-fit:contain}.forest-letter .name{color:var(--lavender)}.forest-letter .action{background:var(--cream)!important;color:var(--pine)!important}.forest-letter h1 em{color:var(--lavender)}
+/* B: warm editorial headline above a panoramic photograph */
+.weekend-cover{padding:40px 6vw 28px}.weekend-cover .copy{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:24px}.weekend-cover h1{max-width:12ch;margin-bottom:0}.weekend-cover .photo{width:100%;height:420px;object-fit:cover;object-position:50% 62%;border-radius:4px}.weekend-cover .name{color:var(--pine)}.weekend-cover .photo-note{display:flex;justify-content:space-between;border-top:1px solid #302c3040;margin-top:14px;padding-top:10px;font-size:11px;letter-spacing:.04em}
+/* C: lavender book jacket; a whole portrait beside a vertical title */
+.lavender-jacket{background:var(--lavender);padding:44px 6vw;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center}.lavender-jacket .portrait-wrap{position:relative;padding:16px 0 0 25px}.lavender-jacket .portrait-wrap:before{content:'';position:absolute;inset:0 25px 20px 0;background:var(--pine);border-radius:160px 160px 6px 6px;z-index:-1}.lavender-jacket .portrait{width:100%;max-height:630px;object-fit:contain;border-radius:160px 160px 6px 6px}.lavender-jacket h1 em{font-family:var(--display);font-weight:400;letter-spacing:0;color:var(--pine)}
+/* D: full photograph with typography in separate top/bottom panels */
+.the-outdoor-window{background:var(--clay);color:var(--cream);display:grid;grid-template-columns:1fr 1fr;align-items:center}.the-outdoor-window .portrait{width:100%;height:calc(100svh - var(--header-h));object-fit:cover;object-position:center}.the-outdoor-window .copy{padding:45px 6vw}.the-outdoor-window h1{font-size:clamp(44px,5vw,74px)}.the-outdoor-window .action{background:var(--cream)!important;color:var(--ink)!important}
+@media(max-width:650px){
+.w-hero h1{font-size:40px}.w-hero .name{font-size:22px}.w-hero .desc{font-size:14px;margin-bottom:16px}.w-hero a.action{font-size:13px;padding:12px 18px}.w-hero a.secondary{font-size:12px;margin-left:10px}
+.forest-letter{display:flex;flex-direction:column;padding:25px 24px;gap:22px;align-items:stretch}.forest-letter .copy{order:1}.forest-letter h1{font-size:39px;max-width:13ch}.forest-letter .portrait{order:2;height:345px;max-height:none;width:100%;object-fit:contain;background:#283b29;border-radius:6px}.forest-letter .over{margin-bottom:12px}
+.weekend-cover{padding:26px 22px}.weekend-cover .copy{display:block;margin-bottom:20px}.weekend-cover h1{font-size:45px;margin:10px 0 14px;max-width:12ch}.weekend-cover .photo{height:320px;object-position:50% 58%}.weekend-cover .over{margin-bottom:10px}.weekend-cover .desc{max-width:35ch}.weekend-cover .photo-note{font-size:10px}
+.lavender-jacket{display:flex;flex-direction:column;padding:25px 24px 28px;gap:24px}.lavender-jacket .portrait-wrap{order:2;width:100%;padding:16px 0 0 22px}.lavender-jacket .portrait{height:300px;object-fit:cover;object-position:50% 60%;border-radius:130px 130px 6px 6px}.lavender-jacket .portrait-wrap:before{border-radius:130px 130px 6px 6px}.lavender-jacket .copy{order:1;width:100%}.lavender-jacket h1{font-size:42px;max-width:13ch}.lavender-jacket .desc{margin-bottom:16px}
+.the-outdoor-window{display:flex;flex-direction:column}.the-outdoor-window .portrait{height:360px;object-position:50% 55%;order:2}.the-outdoor-window .copy{order:1;padding:25px 24px 24px;width:100%}.the-outdoor-window h1{font-size:42px;max-width:14ch}.the-outdoor-window .over{font-size:10px}.the-outdoor-window .desc{font-size:14px}.the-outdoor-window .name{border-bottom:1px solid #f4f0e260;padding-bottom:16px}
+}
+@media(prefers-reduced-motion:reduce){.w-hero .copy{animation:none}}
+@media(max-width:650px){.the-outdoor-window .portrait{order:1;height:410px;object-position:50% 60%}.the-outdoor-window .copy{order:2;padding-top:24px}.the-outdoor-window h1{font-size:36px}}
+
+/* Requested 15% tighter copy panel; photograph untouched. */
+.the-outdoor-window .copy{padding-top:30px;padding-bottom:30px}
+.the-outdoor-window .copy h1{margin-top:10px;margin-bottom:10px}
+.the-outdoor-window .copy .desc{margin-bottom:14px}
+@media(max-width:650px){.the-outdoor-window .copy{padding-top:8.85px;padding-bottom:8.85px}.the-outdoor-window .copy .name{padding-bottom:10px}.the-outdoor-window .copy h1{margin-top:10px;margin-bottom:10px}.the-outdoor-window .copy .desc{margin-bottom:12px}}
+
+:root{--body:'Cabin',-apple-system,'Segoe UI',sans-serif}.the-outdoor-window{--name-green:var(--brand)}
+.the-outdoor-window .name span{color:var(--brand)}.the-outdoor-window .name span:last-child{color:var(--brand-bright)}.the-outdoor-window .copy .name{background:transparent;color:var(--cream);padding:0 0 10px;border-bottom:1px solid #f4f0e260;border-radius:0}
+.the-outdoor-window .copy h1{font-family:var(--body);font-weight:600;letter-spacing:-.015em;line-height:1.1;font-size:clamp(40px,5vw,68px)}
+@media(max-width:650px){.the-outdoor-window .copy h1{font-size:34px;max-width:none}}
+</style><link rel="stylesheet" href="css/review-rollout.css?v=20261022">
 </head>
 <body>
 
@@ -41,20 +72,7 @@
 <main>
 
   <!-- ============================================ HERO — her own hand-drawn dog inks in -->
-  <section class="hero-inked" id="hero">
-    <h1 class="sr-only">Wendy's Dog'gone Good Groomers — dog grooming in Sumner, Washington</h1>
-    <img class="ink-dog" src="images/mark-dog.png" alt="The hand-drawn sleeping dog from the Dog'gone Good Groomers sign" width="590" height="416">
-    <p class="wordmark" aria-hidden="true">
-      <span class="mk-1">Wendy's</span>
-      <span class="mk-2">Dog'gone Good</span>
-      <span class="mk-3">Groomers</span>
-    </p>
-    <div class="hero-actions">
-      <a href="tel:+12537504792" class="btn btn-primary">Call (253) 750-4792</a>
-      <a href="#wall" class="btn btn-cream">See the dogs</a>
-    </div>
-    <p class="hero-note">Sumner, WA · 410 Plaza</p>
-  </section>
+  <section id="hero" class="w-hero the-outdoor-window"><img class="portrait" src="harvest-0908/g19.jpg" alt="Smiling dog outdoors beside a woodpile"><div class="copy"><p class="name"><span>Wendy’s</span> Dog’gone Good <span>Groomers</span></p><h1>Your best friend.<br>Our kind of company.</h1><p class="desc">Fresh grooms and familiar faces in Sumner’s 410 Plaza.</p><a class="action" href="tel:+12537504792">Talk to a groomer ↗</a><a class="secondary" href="#wall">See their work</a></div></section>
 
   <!-- ============================================ WHEN TO FIND US -->
   <section class="status-band" id="hours">
