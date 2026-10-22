@@ -3,7 +3,7 @@ document.querySelectorAll('[data-review-rollout]').forEach(root=>{
  const old=root.querySelector('.rollout-track');let viewport=old;
  if(!viewport){viewport=document.createElement('div');root.prepend(viewport);root.querySelectorAll('.rr-card').forEach(c=>viewport.append(c));}
  viewport.classList.add('review-glide');viewport.tabIndex=0;viewport.setAttribute('aria-label','Customer reviews. Swipe or use arrow keys to browse.');
- const cards=[...viewport.children];const group=document.createElement('div');group.className='review-glide-group';cards.forEach(c=>{c.hidden=false;c.removeAttribute('aria-roledescription');group.append(c)});viewport.append(group);
+ const cards=[...viewport.children];const group=document.createElement('div');group.className='review-glide-group';cards.forEach(c=>{c.hidden=false;c.removeAttribute('aria-roledescription');c.querySelectorAll('img').forEach(img=>img.loading='eager');group.append(c)});viewport.append(group);
  const clone=group.cloneNode(true);clone.setAttribute('aria-hidden','true');clone.inert=true;clone.classList.add('review-glide-copy');clone.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));viewport.append(clone);
  root.querySelectorAll('.rr-prev,.rr-next,.rr-status,[data-prev],[data-next],[data-count]').forEach(e=>e.remove());
  const button=root.querySelector('.rr-toggle,[data-pause]'),mq=matchMedia('(prefers-reduced-motion: reduce)');let paused=false,hover=false,focus=false,touch=false,last=0,x=0,period=0;
