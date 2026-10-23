@@ -1,0 +1,36 @@
+/* The Red Table — the whole plate, the actual laminate, the untouched oval. */
+#hero.md-red-table{height:calc(100svh - var(--header-h));min-height:610px;display:grid;grid-template-rows:auto minmax(0,1fr);position:relative;overflow:hidden;isolation:isolate;background:var(--bg);color:var(--ink)}
+#hero .md-masthead{display:flex;justify-content:space-between;align-items:center;gap:30px;padding:30px clamp(26px,5vw,80px);border-bottom:4px solid var(--brand);animation:md-identity .9s .2s var(--ease) both}
+#hero .md-identity{display:flex;align-items:center;gap:clamp(22px,3vw,46px);min-width:0}
+#hero .md-oval{width:150px;max-width:17vw;height:auto;flex:none}
+#hero #md-title{font:900 clamp(46px,6.2vw,96px)/.9 var(--display);color:var(--brand);letter-spacing:-.025em;text-shadow:none;white-space:nowrap;margin:0;max-width:none}
+#hero .md-location{display:block;font:500 10px/1.5 var(--body);letter-spacing:.23em;text-transform:uppercase;color:var(--accent);margin:16px 0 0;white-space:normal}
+#hero .md-invitation{flex:none}
+#hero .md-invitation p{font:500 19px/1.4 var(--body);margin:0 0 17px;max-width:none}
+#hero .md-invitation strong{font-weight:700;color:var(--brand-text)}
+#hero .md-actions{display:flex;align-items:center;gap:20px}
+#hero .md-actions .btn{font-size:13px;padding:12px 20px}
+#hero .md-menu{display:inline-flex;align-items:center;gap:10px;min-height:48px;font:700 13px/1.3 var(--body);border-bottom:1px solid var(--brand)}
+#hero .md-table{min-height:0;min-width:0;overflow:hidden;background:var(--dark);animation:md-plate 1.1s var(--ease) both}
+#hero .md-table picture{display:block;width:100%;height:100%}
+#hero .md-table img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+@keyframes md-plate{from{transform:translateY(24px);opacity:.7}to{transform:none;opacity:1}}
+@keyframes md-identity{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@media(max-width:1100px) and (min-width:901px){#hero .md-masthead{padding:25px;gap:20px}#hero .md-oval{width:110px}#hero #md-title{font-size:54px}#hero .md-identity{gap:20px}#hero .md-actions{gap:14px}}
+@media(max-width:900px){
+ #hero.md-red-table{min-height:630px}
+ #hero .md-masthead{display:block;padding:20px 22px 19px}
+ #hero .md-identity{justify-content:center;gap:18px}
+ #hero .md-oval{width:88px;max-width:24vw}
+ #hero #md-title{font-size:clamp(35px,9.4vw,62px)}
+ #hero .md-location{font-size:8px;letter-spacing:.12em;margin-top:9px}
+ #hero .md-invitation{margin-top:16px}
+ #hero .md-invitation p{font-size:14px;text-align:center;margin:0 0 13px}
+ #hero .md-invitation p br{display:none}
+ #hero .md-invitation strong{margin-left:.25em}
+ #hero .md-actions{justify-content:center;gap:24px}
+ #hero .md-actions .btn{font-size:12px;padding:11px 18px}
+ #hero .md-menu{font-size:12px}
+ #hero .md-table img{object-fit:contain}
+}
+@media(prefers-reduced-motion:reduce){#hero .md-table,#hero .md-masthead{animation:none;transform:none;opacity:1}}

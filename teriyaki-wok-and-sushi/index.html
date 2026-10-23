@@ -9,9 +9,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Archivo Black (display — the heavy grotesque of their real channel letters,
      one weight only, pinned at 400) + Barlow (body). Must match --display / --body. -->
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css?v=1788925197">
 <link rel="stylesheet" href="css/hero.css?v=1788925197">
+<link rel="stylesheet" href="css/community.css">
+<link rel="stylesheet" href="css/sign-arrival.css"><link rel="stylesheet" href="css/hero-walnut-table.css?v=20261022">
+<link rel="stylesheet" href="css/friday-finish.css?v=20261023">
 </head>
 <body>
 
@@ -42,37 +45,30 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero ===================== -->
-  <!-- ===================== #hero — variant: daylight-still =====================
-     Their own storefront photo, held perfectly still under the teal roof.
-     No pan, no ken-burns, no particles. One warm bloom crosses the sign
-     once, the headline rises once in the channel-letters' own yellow, and
-     the frame goes quiet. The sign in the photograph is the business's real
-     name, so the h1 never repeats it — it says what they actually serve.
-     Assets: images/daylight-still-wide.jpg + -tall.jpg, both straight crops
-     of images/hero-exterior.jpg (their real storefront). Nothing redrawn. -->
-<section class="hero v-daylight-still" id="hero">
-  <img class="ds-echo" src="images/daylight-still-tall.jpg" alt="" aria-hidden="true">
-  <div class="ds-frame" aria-hidden="true">
-    <picture class="ds-shot">
-      <source media="(max-width:640px)" srcset="images/daylight-still-tall.jpg">
-      <img src="images/daylight-still-wide.jpg" alt="" aria-hidden="true" width="1800" height="1106" fetchpriority="high" decoding="async">
-    </picture>
-    <span class="ds-bloom"></span>
-    <span class="ds-pool"></span>
-  </div>
-
-  <div class="hero-inner ds-inner">
-    <h1 class="ds-h1">
-      Teriyaki, wok plates and a full sushi bar.
-      <span class="sr-only"> Teriyaki Wok &amp; Sushi, Bonney Lake, WA.</span>
-    </h1>
-    <div class="hero-actions ds-actions">
-      <a href="#menu" class="btn btn-primary">See the whole menu</a>
-      <a href="tel:+12538911980" class="btn btn-cream">Call (253) 891-1980</a>
+  <!-- Real sign artwork; one playful arrival and a short ignition on its painted flame. -->
+<section class="hero table-hero" id="hero" aria-labelledby="table-title">
+    <!-- At the Walnut Table: generous, familiar, food-first. The actual plate and table,
+         actual sign pixels, one 1.5-second serving reveal; no replay or invented scenery. -->
+    <div class="table-scene" role="img" aria-label="Teriyaki Wok and Sushi's rainbow roll served on a long white plate at its walnut table"></div>
+    <div class="table-identity">
+      <p class="table-location">Bonney Lake, Washington</p>
+      <h1 id="table-title"><span class="table-sign" aria-hidden="true"></span><span class="table-sushi" aria-hidden="true">&amp; Sushi</span><span class="sr-only">Teriyaki Wok &amp; Sushi</span></h1>
+      <span class="table-rule" aria-hidden="true"></span>
+      <p class="table-invitation">Your favorite roll.<br> Your kind of table.</p>
+      <p class="table-detail">Teriyaki, wok dishes &amp; a full sushi bar.</p>
+      <div class="table-actions">
+        <a href="#menu" class="btn btn-primary">Explore the menu <span aria-hidden="true">↓</span></a>
+        <a href="https://teriyakiwoksushi.menu11.com/bonneylake/order" class="table-order" target="_blank" rel="noopener">Order online <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <figure class="storefront-arrival" aria-labelledby="storefront-caption">
+    <div class="storefront-window">
+      <img src="images/hero-exterior.jpg" alt="The real Teriyaki Wok &amp; Sushi storefront: yellow flame lettering under its teal roof, sushi banner and front entrance on 214th Avenue East" width="1920" height="1440" loading="lazy" decoding="async">
+    </div>
+    <figcaption id="storefront-caption"><strong>Look for the teal roof.</strong><span>Unit L · Bonney Lake</span></figcaption>
+  </figure>
 
   <!-- ===================== #hours =====================
        Hours live HERE and nowhere else on the page (NEVER TWICE).
@@ -105,25 +101,36 @@
     </div>
   </section>
 
+  <section class="four-facts" id="facts" aria-label="Four things to know">
+    <div class="wrap"><ul class="facts-row">
+      <li><strong>201</strong><span>Dishes on the online menu</span></li>
+      <li><strong>56</strong><span>Sushi rolls, including the Bonney Lake</span></li>
+      <li><strong>10</strong><span>Sashimi cuts on the menu</span></li>
+      <li><strong>Bento, your way</strong><span>Five teriyaki mains with the same four sides</span></li>
+    </ul></div>
+  </section>
+
+  
+
   <!-- ===================== #about — the room ===================== -->
   <section class="section section-alt" id="about">
     <div class="wrap">
       <div class="story">
         <!-- The room itself — the one whole-room photo they publish, uncropped
-             of its walls. The storefront belongs to the hero and is never
-             shown twice (NEVER TWICE); the other room files in images/ are
+             of its walls. The exterior now has its own horizontal frame above the hours;
+             the other room files in images/ are
              crops of this same frame, so only this one ships. -->
-        <figure class="print reveal">
+        <figure class="print reveal" data-depth>
           <img src="images/lantern-room-room.jpg" alt="Inside Teriyaki Wok &amp; Sushi — live-edge walnut tables and cream chairs under a timber pillar, the lit menu boards along the left wall and the counter with its stools at the back" loading="lazy" width="1920" height="1440">
           <figcaption>The room, from the front door</figcaption>
         </figure>
         <div class="story-copy reveal">
           <p class="eyebrow">Inside Unit L</p>
           <span class="sign-rule" aria-hidden="true"></span>
-          <h2>One room, <em>three stations</em>.</h2>
+          <h2>Your table in <em>Bonney Lake</em>.</h2>
           <p class="lede">A sit-down teriyaki house with its own sushi bar, in the plaza on 214th Ave E.</p>
-          <p>Most teriyaki places pick a lane. This one runs a grill, a wok and a sushi bar out of the same kitchen — so one table can order a chicken teriyaki plate, a Mongolian beef and a sashimi deluxe and have it all land at once.</p>
-          <p>Lit menu boards fill the wall over the counter, the tables are solid walnut, and there's counter seating down the far side under the sushi lanterns. Two hundred and one dishes, from a $2 scoop of rice to a $45 toro carpaccio.</p>
+          <p>Pick from the grill, the wok or the sushi bar. A chicken teriyaki plate, Mongolian beef, a sashimi deluxe — there’s room for everyone’s favorite at the table.</p>
+          <p>Lit menu boards fill the wall over the counter, the tables are solid walnut, and there's counter seating down the far side under the sushi lanterns. The online menu lists 201 dishes; the photographed in-house menu adds tartare, tataki and carpaccio.</p>
           <ul class="stations">
             <li><span class="st-n">01</span><span class="st-name">The teriyaki grill</span><span class="st-count">6 plates · 13 combos</span></li>
             <li><span class="st-n">02</span><span class="st-name">The wok</span><span class="st-count">22 plates</span></li>
@@ -595,9 +602,9 @@
         <h2>What lands on the <em>walnut</em>.</h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gal-roll.jpg" alt="A roll topped with sliced white fish and two cuts of red tuna, scattered with green onion and sesame, on a long white plate" loading="lazy" width="1400" height="788"><figcaption>Tuna and white fish, over a roll</figcaption></figure>
-        <figure class="print reveal"><img src="images/gal-table.jpg" alt="Two long specialty rolls on white plates set down on a walnut table, one of them dressed with sauce" loading="lazy" width="1100" height="1467"><figcaption>Two rolls hitting the table</figcaption></figure>
-        <figure class="print reveal"><img src="images/gal-close.jpg" alt="Close-up of a roll finished with red tuna, white fish and green onion beside a dark side dish" loading="lazy" width="1100" height="1467"><figcaption>Close enough to count the sesame</figcaption></figure>
+        <figure class="print reveal" data-depth><img src="images/gal-roll.jpg" alt="A roll topped with sliced white fish and two cuts of red tuna, scattered with green onion and sesame, on a long white plate" loading="lazy" width="1400" height="788"><figcaption>Tuna and white fish, over a roll</figcaption></figure>
+        <figure class="print reveal" data-depth><img src="images/gal-table.jpg" alt="Two long specialty rolls on white plates set down on a walnut table, one of them dressed with sauce" loading="lazy" width="1100" height="1467"><figcaption>Two rolls hitting the table</figcaption></figure>
+        <figure class="print reveal" data-depth><img src="images/gal-close.jpg" alt="Close-up of a roll finished with red tuna, white fish and green onion beside a dark side dish" loading="lazy" width="1100" height="1467"><figcaption>Close enough to count the sesame</figcaption></figure>
       </div>
     </div>
   </section>
@@ -613,44 +620,47 @@
         <span class="sign-rule" aria-hidden="true"></span>
         <h2>What people <em>write down</em>.</h2>
       </div>
-      <div class="quotes">
-        <figure class="quote reveal">
+      <div class="review-ribbon" data-review-ribbon data-pixels-per-second="40" tabindex="0" role="region" aria-label="Google customer reviews">
+        <div class="review-track"><div class="review-group">
+<figure class="quote">
           <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
           <blockquote>“Some of the best teriyaki I have ever had in my life! First time coming here and I'm sitting in the parking lot writing this review and thinking about what I'm gonna order next time.”</blockquote>
           <figcaption class="who">
-            <img src="images/reviewer-jacob.jpg" alt="jacob smith" loading="lazy" width="48" height="48">
+            <img class="rev-face" src="images/reviewer-jacob.jpg" alt="jacob smith" loading="lazy" width="48" height="48">
             <span><b>jacob smith</b><span>Google · a month ago</span></span>
           </figcaption>
         </figure>
-        <figure class="quote reveal">
+<figure class="quote">
           <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
           <blockquote>“Great food today. We had Orange chicken, s-9 teriyaki chicken with breaded almond chicken and teriyaki chicken with vegetable chow mein. Waiter was really nice and quick. We also had the miso soup. It was also awesome. We will eat here again.”</blockquote>
           <figcaption class="who">
-            <img src="images/reviewer-kevin.jpg" alt="Kevin Martin" loading="lazy" width="48" height="48">
+            <img class="rev-face" src="images/reviewer-kevin.jpg" alt="Kevin Martin" loading="lazy" width="48" height="48">
             <span><b>Kevin Martin</b><span>Google · 10 months ago</span></span>
           </figcaption>
         </figure>
-        <figure class="quote reveal">
+<figure class="quote">
           <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
           <blockquote>“Delicious teriyaki! Plus I get to order yummy sushi! Definitely a must try. Clean inside and the staff is very kind”</blockquote>
           <figcaption class="who">
-            <img src="images/reviewer-nicole.jpg" alt="Nicole Fifield" loading="lazy" width="48" height="48">
+            <img class="rev-face" src="images/reviewer-nicole.jpg" alt="Nicole Fifield" loading="lazy" width="48" height="48">
             <span><b>Nicole Fifield</b><span>Google · 5 months ago</span></span>
           </figcaption>
         </figure>
-        <figure class="quote reveal">
+<figure class="quote">
           <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
           <blockquote>“If you’re getting a tire patched at Les Schwab walk next door - so good! … The fish was fresh and had the thicker cut that I enjoy. The hot tea was refilled regularly and the service from “Phoebe” was truly excellent.”</blockquote>
           <figcaption class="who">
-            <img src="images/reviewer-jay.jpg" alt="Jay Freeman" loading="lazy" width="48" height="48">
+            <img class="rev-face" src="images/reviewer-jay.jpg" alt="Jay Freeman" loading="lazy" width="48" height="48">
             <span><b>Jay Freeman</b><span>Google · 7 months ago</span></span>
           </figcaption>
         </figure>
+        </div></div>
       </div>
-      <div class="quotes-foot reveal">
-        <p class="quotes-fine">Quoted as written, with each reviewer's own Google name and profile photo.</p>
-        <a class="btn btn-ghost" href="https://www.google.com/maps?cid=9468896444782640707" target="_blank" rel="noopener">Read the reviews on Google ↗</a>
+      <div class="review-actions">
+        <a class="btn btn-primary" href="https://www.google.com/maps?cid=9468896444782640707" target="_blank" rel="noopener">See other reviews ↗</a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps?cid=9468896444782640707" target="_blank" rel="noopener">Open listing to leave a review ↗</a>
       </div>
+      <p class="review-source-note">Google listing saved September 8, 2026. Choose “Write a review” on the listing; Google may ask you to sign in. Review dates are shown as recorded in the saved source.</p>
     </div>
   </section>
 
@@ -663,7 +673,7 @@
           <span class="sign-rule" aria-hidden="true"></span>
           <h2>Three ways to <em>eat</em>.</h2>
           <ol class="steps">
-            <li><h3>Sit down</h3><p>Walk in and take a table — no reservations needed.</p></li>
+            <li><h3>Sit down</h3><p>Come in for a table, or call ahead about a larger group.</p></li>
             <li><h3>Call ahead</h3><p>Order by phone and pick it up at the counter in Unit L.</p></li>
             <li><h3>Order online</h3><p>Their ordering page takes pick-up and delivery orders straight to the kitchen.</p></li>
           </ol>
@@ -673,20 +683,12 @@
             <span><i class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></i><a href="https://www.google.com/maps/search/?api=1&amp;query=9925%20214th%20Ave%20E%20Unit%20L%20Bonney%20Lake%20WA%2098391" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
         </div>
-        <form class="contact-form reveal">
-          <!-- INBOX WIRING: value="" = demo mode (shows the thank-you, sends nothing).
-               At go-live, pages-golive.sh fills this and the form emails the owner. -->
-          <input type="hidden" name="access_key" value="">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-          <label class="full">What's this about?<select name="topic"><option>A big party or a catering order</option><option>A question about the menu</option><option>Something else</option></select></label>
-          <label class="full">Message<textarea name="msg" placeholder="How many people, what day, what time…"></textarea></label>
-          <button type="submit" class="btn btn-primary">Send it over</button>
-          <p class="form-success">Thanks — the restaurant will get back to you soon.</p>
-          <p class="form-fine">Preview form — messages are not sent. Please call or use Order online for an order.</p>
-        </form>
+        <aside class="contact-direct" aria-label="Contact the restaurant directly">
+          <h3>Your order, straight to the kitchen</h3>
+          <p>Call for a pickup order or a menu question. Online ordering is handled by the restaurant’s existing ordering service.</p>
+          <a href="tel:+12538911980" class="btn btn-primary">Call Teriyaki Wok &amp; Sushi</a>
+          <a class="contact-online" href="https://teriyakiwoksushi.menu11.com/bonneylake/order" target="_blank" rel="noopener">Order online ↗</a>
+        </aside>
       </div>
     </div>
   </section>
@@ -698,11 +700,6 @@
         <p class="eyebrow">One menu, all of it</p>
         <span class="sign-rule" aria-hidden="true"></span>
         <h2>Grilled, wok-fired or <em>cut to order</em>.</h2>
-      </div>
-      <div class="numbers reveal">
-        <div class="num"><b><span class="count tnum" data-to="201">201</span></b><span>dishes on the menu, priced</span></div>
-        <div class="num"><b><span class="count tnum" data-to="56">56</span></b><span>sushi rolls on the board, one of them the Bonney Lake</span></div>
-        <div class="num"><b><span class="count tnum" data-to="6">6</span></b><span>days a week the grill, the wok and the bar are all running</span></div>
       </div>
       <div class="cta-actions reveal">
         <a href="https://teriyakiwoksushi.menu11.com/bonneylake/order" target="_blank" rel="noopener" class="btn btn-primary">Order online</a>
@@ -719,7 +716,7 @@
     <div class="foot">
       <div>
         <div class="brand">
-          <img src="images/sign-mark.png" alt="Teriyaki Wok &amp; Sushi" width="720" height="194">
+          <strong class="footer-name">Teriyaki Wok &amp; Sushi</strong>
           <small>9925 214th Ave E, Unit L · Bonney Lake, WA</small>
         </div>
         <p>Teriyaki off the grill, twenty-two plates out of the wok, and a sushi bar cutting to order — six days a week in the plaza on 214th.</p>
@@ -745,5 +742,7 @@
 </footer>
 
 <script src="js/site.js?v=1788925197"></script>
+<script src="js/depth.js" defer></script>
+<script src="js/sign-arrival.js" defer></script><script src="js/review-ribbon.js?v=20261023" defer></script>
 </body>
 </html>

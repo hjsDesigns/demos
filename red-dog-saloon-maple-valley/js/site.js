@@ -42,7 +42,7 @@ function customClose(p, close){ return close; }
 
   /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
-  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰';toggle.setAttribute('aria-label',open?'Close menu':'Open menu')}
   if(toggle&&nav){
     toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
     $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
@@ -70,29 +70,11 @@ function customClose(p, close){ return close; }
   function hoursFor(day){return HOURS.days[day]||null}
 
   function computeStatus(){
-    var p=pacificNow(), d=p.day, h=p.h;
-    var closure=customClosure(p);
-    if(closure) return {open:false,text:'Closed today for '+closure};
-    var yd=(d+6)%7, yh=hoursFor(yd);
-    if(yh&&yh[1]>24&&h<yh[1]-24) return {open:true,text:'Open now · til '+fmt(yh[1])};
-    var today=hoursFor(d);
-    if(today){
-      var close=customClose(p,today[1]);
-      if(h>=today[0]&&h<close) return {open:true,text:'Open now · til '+fmt(close),soon:(close-h)<=1};
-      if(h<today[0]) return {open:false,text:'Opens today at '+fmt(today[0])};
-    }
-    for(var i=1;i<=7;i++){
-      var nd=(d+i)%7, nh=hoursFor(nd);
-      if(nh){var label=i===1?'tomorrow':dayName(nd);return {open:false,text:'Closed · opens '+label+' at '+fmt(nh[0])}}
-    }
-    return {open:false,text:'Closed'};
+    // A conflicting Sunday close cannot support a reliable live status.
+    return {open:null,confirmed:false,text:'Call to confirm today’s hours'};
   }
   function applyStatus(){
-    var s=computeStatus(), p=pacificNow();
-    var hp=$('#hdrLive'), ht=$('#hdrLiveText');
-    if(hp&&ht){hp.className='hdr-live '+(s.open?'is-open':'is-closed');ht.innerHTML=(s.open?'Open':'Closed')+' <span class="txt-long">· '+s.text.replace(/^Open now · /,'').replace(/^Closed · /,'')+'</span>';}
-    var sl=$('#statusLine'), st=$('#statusText');
-    if(sl&&st){sl.className='live-line '+(s.open?'is-open':'is-closed');st.textContent=s.text;}
+    var p=pacificNow();
     $$('#hoursList li[data-days]').forEach(function(li){li.classList.toggle('today',li.getAttribute('data-days').split(',').indexOf(String(p.day))>-1)});
   }
   applyStatus(); setInterval(applyStatus,60000);

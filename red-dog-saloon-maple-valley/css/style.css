@@ -24,21 +24,21 @@
    ============================================================ */
 :root{
   /* ---- palette — sampled from their own photographs ---- */
-  --brand:#C43A2E;          /* the red on the roadside sign lettering + the barn-red walls */
-  --brand-text:#E9A63C;     /* small type on the dark ground reads amber, not red */
-  --brand-bright:#DC4839;   /* hover of --brand */
+  --brand:#C8A24B;          /* the red on the roadside sign lettering + the barn-red walls */
+  --brand-text:#E2BE72;     /* small type on the dark ground reads amber, not red */
+  --brand-bright:#DDB65E;   /* hover of --brand */
   --accent:#22C55E;         /* live "open" — STATUS LIGHT LAW, always green */
   --accent-soft:#5FD98C;    /* lighter accent on dark grounds */
-  --ink:#F1E7D8;            /* the white sign face — body type on the dark ground */
-  --bg:#17110E;             /* the room at night: plank walls, no daylight */
-  --bg-2:#100C0A;           /* deeper, alternating bands */
-  --paper:#221A16;          /* cards — a hair lighter than the ground */
-  --muted:#B0A08D;          /* secondary type */
-  --line:#3A2B23;           /* hairlines */
-  --dark:#0A0706;           /* the guaranteed-dark token: scrims, dark bands, footer */
-  --dark-2:#140F0C;
-  --warm:#E9A63C;           /* the string lights over the beer garden */
-  --tint:#120D0B;           /* the hours band — lamp-lit near-black */
+  --ink:#F2EADA;            /* the white sign face — body type on the dark ground */
+  --bg:#1A130D;             /* the room at night: plank walls, no daylight */
+  --bg-2:#120D08;           /* deeper, alternating bands */
+  --paper:#241A10;          /* cards — a hair lighter than the ground */
+  --muted:#B0A088;          /* secondary type */
+  --line:#3D2E1D;           /* hairlines */
+  --dark:#0A0705;           /* the guaranteed-dark token: scrims, dark bands, footer */
+  --dark-2:#150F09;
+  --warm:#F0AE55;           /* the string lights over the beer garden */
+  --tint:#211710;           /* the hours band — lamp-lit near-black */
   --status-open:#22C55E;    /* STATUS LIGHT LAW — green when open */
   --status-closed:#EF4444;  /* STATUS LIGHT LAW — red when closed */
 
@@ -47,18 +47,20 @@
      fat outlined marquee lettering on their roadside sign and of the
      "LIVE MUSIC EVERY FRIDAY NIGHT" banner on the beer-garden fence.
      Barlow: plain, wide-set grotesque — reads at a glance on a phone. */
-  --display:'Oswald','Haettenschweiler','Arial Narrow Bold','Impact',sans-serif;
-  --body:'Barlow','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
-  --mono:ui-monospace,'SF Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --display:'Rye','Bookman Old Style',Georgia,serif;
+  --body:'Alegreya Sans','Trebuchet MS',system-ui,sans-serif;
+  --mono:var(--body);
 
   /* ---- metrics ---- */
-  --header-h:74px;
+  --header-h:76px;
   --pad:clamp(20px,5vw,64px);
   --maxw:1180px;
   --rule:1px solid var(--line);
   --ease:cubic-bezier(.22,.85,.3,1);
   --ease-2:cubic-bezier(.34,1.15,.4,1);   /* the chili-dog board: toppings land with a little weight */
   --r:14px;
+
+ --bone:#EFE4CD;--rust:#A85A33;--gold:#D8B25E;
 }
 
 /* ============================================================
