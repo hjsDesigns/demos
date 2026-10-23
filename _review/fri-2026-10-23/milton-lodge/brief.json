@@ -1,0 +1,329 @@
+{
+  "name": "Milton Lodge Bar and Grill",
+  "slug": "milton-lodge",
+  "town": "Milton, Washington",
+  "address": "7320 Pacific Hwy E, Milton, WA 98354",
+  "phone": "(253) 922-4277",
+  "email": "",
+  "category": "Bar and grill",
+  "tier": "premium",
+  "angle": "Rebuild the page around the actual Lodge room: worn blue half-walls, rust-red beams, torched wood, generous food and the real antler mark.",
+  "evidence_cutoff": "2026-09-05",
+  "build_date": "2026-10-22",
+  "scope": "Full local rebuild from saved facts and existing images only. No new research, publication or outreach; preserve facts.json unchanged.",
+  "hours": {
+    "0": null,
+    "1": null,
+    "2": null,
+    "3": null,
+    "4": null,
+    "5": null,
+    "6": null
+  },
+  "hours_partial": {
+    "0": {
+      "day": "Sunday",
+      "opens": "07:00",
+      "closes": null,
+      "display": "From 7 AM"
+    },
+    "1": {
+      "day": "Monday",
+      "opens": "07:00",
+      "closes": null,
+      "display": "From 7 AM"
+    },
+    "2": {
+      "day": "Tuesday",
+      "opens": "07:00",
+      "closes": null,
+      "display": "From 7 AM"
+    },
+    "3": {
+      "day": "Wednesday",
+      "opens": "07:00",
+      "closes": null,
+      "display": "From 7 AM"
+    },
+    "4": {
+      "day": "Thursday",
+      "opens": "07:00",
+      "closes": null,
+      "display": "From 7 AM"
+    },
+    "5": {
+      "day": "Friday",
+      "opens": "07:00",
+      "closes": null,
+      "display": "From 7 AM"
+    },
+    "6": {
+      "day": "Saturday",
+      "opens": "07:00",
+      "closes": null,
+      "display": "From 7 AM"
+    }
+  },
+  "hours_source": "facts.json; research/SOURCES.md; saved Restaurantji and Restaurant Guru pages captured September 5, 2026. Daily 7 AM opening agrees; closing times conflict with the prior Google hit-list.",
+  "hours_policy": "Show seven opening-only rows in the single hours band. Highlight today, but do not infer an open/closed state. Ask visitors to call for current kitchen and closing hours.",
+  "open_evidence": "Saved September 5, 2026 exact-business Google-origin reviews and owner responses support operation at capture. No October re-verification was authorized.",
+  "owner": {
+    "name": "",
+    "story": "",
+    "historical_founder": "Shawna Bell",
+    "historical_note": "Contemporary reporting documents Shawna Bell opening the Milton Lodge in August 2018 in the former Milton Tavern building. This is historical information, not a claim about current ownership.",
+    "source": "https://www.thenewstribune.com/entertainment/restaurants/tnt-diner/article215767510.html",
+    "local_evidence": "facts.json; research/SOURCES.md; CONTENT-BRIEF.md"
+  },
+  "offer": [
+    {
+      "item": "The Classic",
+      "category": "Breakfast",
+      "description": "Eggs, bacon or sausage, hash browns and toast.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "Biscuit and Gravy",
+      "category": "Breakfast",
+      "description": "Biscuits with sausage gravy.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "Bacon Cheese Burger",
+      "category": "Burgers and salads",
+      "description": "Beef, bacon, Swiss and American cheese.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "Mushroom Swiss Burger",
+      "category": "Burgers and salads",
+      "description": "Beef, sautéed mushrooms and Swiss.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "Chef Salad",
+      "category": "Burgers and salads",
+      "description": "Turkey, ham, egg, vegetables and cheese.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "Grilled Chicken Salad",
+      "category": "Burgers and salads",
+      "description": "Chicken, greens, vegetables and cheese.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "The Lodge Flatbread",
+      "category": "Flatbreads and bites",
+      "description": "Red sauce, chicken, artichoke and onion.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "The Pierce Flatbread",
+      "category": "Flatbreads and bites",
+      "description": "Garlic cream sauce, peppers, mushroom and onion.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "Artichoke Spinach Dip",
+      "category": "Flatbreads and bites",
+      "description": "With pita, carrots and celery.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    },
+    {
+      "item": "Wings",
+      "category": "Flatbreads and bites",
+      "description": "Plain, hot sauce or BBQ.",
+      "price": "",
+      "source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google"
+    }
+  ],
+  "menu_policy": "Use the ten saved dish names and concise ingredient summaries. Current prices and availability are unverified; no dollar prices, order integration or specials are promised. Local evidence is research/singleplatform.txt, corroborated by research/allmenus.html.",
+  "photos": [
+    {
+      "file": "images/lodge-08.jpg",
+      "what": "The real bar beyond worn blue half-walls, rust-red beams and torched wood",
+      "source_url": "https://cdn10.localdatacdn.com/wa/milton/4986736/original/3dy5BT5ZlP.jpeg",
+      "px": "2000x2000",
+      "real": true,
+      "role": "hero"
+    },
+    {
+      "file": "images/lodge-03.jpg",
+      "what": "Burger and fries at the Lodge",
+      "source_url": "https://cdn10.localdatacdn.com/wa/milton/4986736/original/NDq9uGXoVG.jpg",
+      "px": "1500x2000",
+      "real": true,
+      "role": "food"
+    },
+    {
+      "file": "images/lodge-10.jpg",
+      "what": "Grilled sandwich and tater tots",
+      "source_url": "https://cdn10.localdatacdn.com/wa/milton/4986736/original/VtsylsiVTb.jpg",
+      "px": "2000x1500",
+      "real": true,
+      "role": "food"
+    },
+    {
+      "file": "images/lodge-12.jpg",
+      "what": "A plate from the Lodge kitchen",
+      "source_url": "https://cdn10.localdatacdn.com/wa/milton/4986736/original/0jTer64QG9.jpg",
+      "px": "1200x1600",
+      "real": true,
+      "role": "food"
+    },
+    {
+      "file": "images/lodge-32.jpg",
+      "what": "Dining tables, blue bar seating and televisions",
+      "source_url": "https://cdn9.localdatacdn.com/wa/milton/4986736/original/xaHrOs4ATh.jpg",
+      "px": "2000x2000",
+      "real": true,
+      "role": "room"
+    },
+    {
+      "file": "images/lodge-02.jpg",
+      "what": "Covered outdoor tables",
+      "source_url": "https://cdn6.localdatacdn.com/wa/milton/4986736/original/X4U15e2G9A.jpg",
+      "px": "720x960",
+      "real": true,
+      "role": "patio"
+    },
+    {
+      "file": "images/lodge-22.jpg",
+      "what": "A beer served at the Lodge bar",
+      "source_url": "https://cdn.localdatacdn.com/wa/milton/4986736/original/4BlYMqHDQ0.jpg",
+      "px": "640x640",
+      "real": true,
+      "role": "story"
+    }
+  ],
+  "photo_policy": "Existing images/ assets only; use each displayed photograph once. Do not copy the later harvest into images. Avoid lodge-23.jpg because it is only 406 pixels wide. Do not use the pre-Lodge Milton Tavern storefront.",
+  "logo": {
+    "file": "images/logo.jpg",
+    "source": "https://cdn10.localdatacdn.com/wa/milton/4986736/original/JUNP85ISx0.jpg",
+    "local_evidence": "research/photo-manifest.json; visually inspected genuine mark",
+    "sign_font_read": "Italic serif Milton Lodge wordmark above a real antler mark, with arched serif Bar & Grill below. Preserve the actual mark rather than redrawing it."
+  },
+  "palette": {
+    "brand": "#294B59",
+    "accent": "#863F2C",
+    "ink": "#241A14",
+    "bg": "#EFE5D2",
+    "dark": "#171410",
+    "warm": "#D9AB65"
+  },
+  "fonts": {
+    "display": "Cormorant Garamond",
+    "display_style": "italic",
+    "body": "Barlow"
+  },
+  "hero": {
+    "name": "Through the Blue Half-Walls",
+    "pattern": "wall",
+    "object": "The Lodge's actual worn blue half-walls framing its back bar in images/lodge-08.jpg, with the genuine antler mark from images/logo.jpg.",
+    "event": "The real room opens once with a center-out clip-path reveal in 1.6 seconds, then remains still.",
+    "flourish": "One fine rule appears on the cream backing of the unchanged logo; complete at 1.4 seconds. No relighting, blur or glow.",
+    "emotion": "Pull up a chair in a lived-in neighborhood bar: blue paint, red beams, warm wood and a full plate.",
+    "runner_up_names": [
+      "Breakfast Mug",
+      "Weathered Antler Sign"
+    ],
+    "runner_up_status": "Concept names only; not implemented. Their local harvest photographs are outside this rebuild's existing-images-only asset scope.",
+    "reduced_motion": "Show the completed final composition immediately.",
+    "source_skeleton": "BUILD-SPEC wall anatomy; standard template header/hours/sections/prints/story/contact. Existing scene and actual mark, custom one-shot reveal."
+  },
+  "four_facts": [
+    {
+      "label": "Since August 2018",
+      "detail": "A new chapter in the former Milton Tavern building.",
+      "evidence": "facts.json historical_opening; research/SOURCES.md contemporary reporting"
+    },
+    {
+      "label": "Two Lodge flatbreads",
+      "detail": "The Lodge and The Pierce, from the published menu.",
+      "evidence": "research/singleplatform.txt; facts.json menu_items"
+    },
+    {
+      "label": "Covered outdoor seating",
+      "detail": "Another place to settle in.",
+      "evidence": "images/lodge-02.jpg; research/photo-manifest.json"
+    },
+    {
+      "label": "A breakfast menu",
+      "detail": "The Classic, biscuits and sausage gravy.",
+      "evidence": "research/singleplatform.txt Daily Breakfast; facts.json menu_items"
+    }
+  ],
+  "signature": {
+    "idea": "Native downward-unrolling menu categories in the fourth section; one tap opens, same tap closes; works without JavaScript."
+  },
+  "room_map": {
+    "enabled": false,
+    "reason": "Saved photographs show the bar and seating, but do not establish an accurate floor plan from the street, the entrance orientation or the patio connection. A map would guess geometry."
+  },
+  "reviews": [],
+  "reviews_variant": "B (link-out)",
+  "review_ribbon": {
+    "enabled": false,
+    "reason": "Saved reviews have initials rather than real profile photos and relative dates only. A five-person ribbon with verified faces cannot be built from the available local evidence."
+  },
+  "review_source_url": "https://restaurantguru.com/The-Milton-Lodge-Milton-Washington/reviews/google",
+  "review_policy": "Link to saved review source evidence without an unsupported aggregate score, invented faces, initials-based testimonial cards, precise review dates or a simulated moving ribbon. No verified direct Google review-writing URL exists locally.",
+  "contact": {
+    "telephone_url": "tel:+12539224277",
+    "directions_url": "https://www.google.com/maps/dir/?api=1&destination=7320%20Pacific%20Hwy%20E%2C%20Milton%2C%20WA%2098354",
+    "google_search_url": "https://www.google.com/maps/search/?api=1&query=Milton%20Lodge%20Bar%20and%20Grill%207320%20Pacific%20Hwy%20E%20Milton%20WA%2098354",
+    "google_search_label": "Find on Google",
+    "google_search_note": "Exact-name-and-address search only; not a verified place ID or direct review action.",
+    "facebook_url": "https://www.facebook.com/p/The-Milton-Lodge-100063481183682/",
+    "form_enabled": false,
+    "form_reason": "No verified owner email or form delivery destination. Use the real phone and directions."
+  },
+  "events": [],
+  "specials": [],
+  "higgsfield_fit": "maybe — a real camera move through the blue half-walls toward the bar could suit a later film hero; no generation is requested or authorized here.",
+  "missing": [
+    "REVIEW FACES: Saved Google-origin reviews in research/guru.html have only initials, relative dates and no profile-photo files. Use Variant B link-out; omit the review ribbon and record the exception.",
+    "CLOSING HOURS: Sources conflict on closes. All seven complete-hours values remain null; show seven From 7 AM rows from hours_partial, highlight today, and do not fabricate live open/closed status.",
+    "ROOM MAP: Existing room photos cannot establish street orientation, entrances, patio access or complete geometry. Omit the map rather than invent an accurate-looking plan.",
+    "DIRECT GOOGLE REVIEWS: No verified Google place ID, listing review URL or review-writing URL is stored. Exact-name-and-address search may be labeled Find on Google only.",
+    "CONTACT FORM: No verified owner email or submission destination. Omit the form rather than display a fake success interaction.",
+    "EVENTS AND SPECIALS: No confirmed current weekly event schedule or dated current special. Omit event calendar, countdown and specials claims.",
+    "EXTERIOR: Omitted under the existing-images-only scope. Later harvest-0906/g11.jpg shows a Lodge sign but is not copied or used; the old Milton Tavern exterior is not a substitute.",
+    "MENU PRICES: Saved menu has no current update date. Dish names and ingredients are used; prices and availability need owner confirmation.",
+    "OWNER STORY: Historical founder and August 2018 opening are sourced; current ownership and an owner-authored story are not verified.",
+    "BROWSER QA: Per handoffs/heroes-2026-10-22/BRIEF.md, no qa/run.sh, Playwright or browser screenshots in this run. Claude performs visual and runtime QA outside this sandbox before publication."
+  ],
+  "asks": [
+    "Confirm all current closing, kitchen and holiday hours.",
+    "Confirm current menu availability and prices.",
+    "Provide at least five real review names, matching profile photos and dates, plus the verified Google listing and review-writing link, before adding a review ribbon.",
+    "Confirm the entrance and room layout before any floor plan is drawn.",
+    "Confirm current owner identity and an owner-approved story.",
+    "Confirm an inbox and delivery route before enabling a contact form.",
+    "Confirm recurring events or a current dated special before adding them.",
+    "Approve photo rights and any future exterior image selection."
+  ],
+  "section_order": [
+    "hero",
+    "hours",
+    "services",
+    "menu (contains signature disclosures)",
+    "four facts",
+    "gallery",
+    "about",
+    "reviews (Variant B)",
+    "contact",
+    "cta",
+    "footer"
+  ]
+}

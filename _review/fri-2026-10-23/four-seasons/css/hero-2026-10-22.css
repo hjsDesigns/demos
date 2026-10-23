@@ -1,0 +1,33 @@
+/* The Griffin Sign — preserve the actual lettering and the whole roadside object. */
+#hero.fs-griffin{height:calc(100svh - var(--header-h));min-height:600px;display:grid;grid-template-columns:minmax(0,59%) minmax(0,41%);position:relative;isolation:isolate;overflow:hidden;background:var(--bg);color:var(--ink)}
+#hero .fs-roadside{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg-2);animation:fs-reveal 1.4s var(--ease) both}
+#hero .fs-roadside img{display:block;width:100%;height:100%;object-fit:contain}
+#hero .fs-welcome{align-self:center;padding:40px clamp(30px,4.5vw,74px);min-width:0;animation:fs-welcome .9s .35s var(--ease) both}
+#hero .fs-place{font:600 11px/1.5 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--warm);margin:0 0 30px}
+#hero .fs-invitation{font:600 clamp(36px,4.1vw,64px)/1.19 var(--display);letter-spacing:-.045em;margin:0;max-width:none}
+#hero .fs-invitation em{font-weight:600;color:var(--warm)}
+#hero .fs-rule{display:block;height:2px;width:78px;background:var(--accent);margin:30px 0;transform-origin:left;animation:fs-rule .65s 1s var(--ease) both}
+#hero .fs-detail{font:400 17px/1.7 var(--body);margin:0 0 28px;color:var(--muted)}
+#hero .fs-actions{display:flex;align-items:center;gap:12px 24px;flex-wrap:wrap}
+#hero .fs-actions .btn{padding:13px 23px}
+#hero .fs-call{display:inline-flex;align-items:center;gap:12px;min-height:48px;font:600 14px/1.4 var(--body);border-bottom:1px solid var(--line)}
+@keyframes fs-reveal{from{clip-path:inset(0 7% 0 0)}to{clip-path:inset(0)}}
+@keyframes fs-welcome{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fs-rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:760px){
+ #hero.fs-griffin{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;min-height:640px}
+ #hero .fs-roadside img{object-fit:contain;object-position:center}
+ #hero .fs-welcome{align-self:stretch;text-align:center;padding:21px 22px 26px;border-top:2px solid var(--accent)}
+ #hero .fs-place{font-size:9px;letter-spacing:.16em;margin:0 0 12px}
+ #hero .fs-invitation{font-size:clamp(29px,8.1vw,39px);line-height:1.17;letter-spacing:-.04em}
+ #hero .fs-invitation br:first-of-type{display:none}
+ #hero .fs-invitation br:first-of-type::after{content:' '}
+ #hero .fs-invitation em{display:inline-block;margin-top:3px}
+ #hero .fs-rule{width:48px;margin:16px auto}
+ #hero .fs-detail{font-size:13px;line-height:1.55;margin:0 0 17px}
+ #hero .fs-detail br{display:none}
+ #hero .fs-actions{justify-content:center;gap:12px 20px}
+ #hero .fs-actions .btn{padding:11px 18px;font-size:13px}
+ #hero .fs-call{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){#hero .fs-roadside,#hero .fs-welcome,#hero .fs-rule{animation:none;clip-path:none;opacity:1;transform:none}}

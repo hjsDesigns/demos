@@ -1,0 +1,36 @@
+{
+  "name": "The Red Dog Saloon",
+  "phone": "(425) 413-8600",
+  "address": "18605 Renton-Maple Valley Rd, Maple Valley, WA 98038",
+
+  "hours": {
+    "Mon": "12:00 PM – 12:00 AM",
+    "Fri": "12:00 PM – 2:00 AM",
+    "Sun": "12:00 PM – 11:00 PM"
+  },
+
+  "prices": [
+    "$10.99", "$14.99", "$12.99", "$12.99",
+    "$8.99", "$14.99", "$26.99",
+    "$12.99", "$11.99", "$9.99", "$11.99", "$11.99", "$4.99",
+    "$8.99", "$7.99", "$7.99", "$6.99", "$4.99"
+  ],
+  "price_selector": ".menu-list .price",
+
+  "header_selector": "header.site-header",
+
+  "expected_sections": ["top", "hero", "hours", "events", "menu", "signature", "gallery", "about", "reviews", "contact", "cta"],
+
+  "allow_repeat": [
+    "12:00 PM – 12:00 AM",
+    "12:00 PM – 2:00 AM",
+    "12:00 PM – 11:00 PM",
+    "(425) 413-8600",
+    "18605 Renton-Maple Valley Rd, Maple Valley, WA 98038",
+    "18605 Renton-Maple Valley Rd Maple Valley, WA 98038",
+    "Maple Valley, Washington",
+    "The Red Dog Saloon",
+    "Chili Dog",
+    "Maple Valley"
+  ]
+}

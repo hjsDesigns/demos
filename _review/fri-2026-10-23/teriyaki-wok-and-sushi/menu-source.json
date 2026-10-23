@@ -1,0 +1,1208 @@
+[
+  {
+    "name": "Lunch Combo #1 Gyoza",
+    "price": "12.95",
+    "category": "Lunch Special",
+    "description": "NO DRINK$11.95  WITH DRINK$13.95"
+  },
+  {
+    "name": "Lunch Combo #2 Egg Roll",
+    "price": "12.95",
+    "category": "Lunch Special",
+    "description": ""
+  },
+  {
+    "name": "Lunch Combo #3 Breaded Almond Chicken",
+    "price": "12.95",
+    "category": "Lunch Special",
+    "description": ""
+  },
+  {
+    "name": "Lunch Combo #4 Sweet & Sour Chicken",
+    "price": "12.95",
+    "category": "Lunch Special",
+    "description": ""
+  },
+  {
+    "name": "Edamame",
+    "price": "6.00",
+    "category": "Sushi Appetizers",
+    "description": "Soy beans in pod steamed"
+  },
+  {
+    "name": "Ika Geso Karaage",
+    "price": "9.00",
+    "category": "Sushi Appetizers",
+    "description": "Squid Legs Deep-fried"
+  },
+  {
+    "name": "House Salad",
+    "price": "5.00",
+    "category": "Salads",
+    "description": ""
+  },
+  {
+    "name": "Cucumber Salad",
+    "price": "5.00",
+    "category": "Salads",
+    "description": ""
+  },
+  {
+    "name": "Seaweed Salad",
+    "price": "6.00",
+    "category": "Salads",
+    "description": ""
+  },
+  {
+    "name": "California Roll",
+    "price": "7.00",
+    "category": "Basic Rolls",
+    "description": "Crabmeat, avocado, cucumber"
+  },
+  {
+    "name": "Spicy Roll",
+    "price": "8.00",
+    "category": "Basic Rolls",
+    "description": "Spicy tuna, cucumber."
+  },
+  {
+    "name": "Unagi Roll",
+    "price": "10.00",
+    "category": "Basic Rolls",
+    "description": "Unagi, cucumber, radish sprouts"
+  },
+  {
+    "name": "Tuna Roll",
+    "price": "6.00",
+    "category": "Basic Rolls",
+    "description": "Tuna Hosomaki Roll"
+  },
+  {
+    "name": "Albacore Roll",
+    "price": "6.00",
+    "category": "Basic Rolls",
+    "description": "Albacore Hosomaki Roll"
+  },
+  {
+    "name": "Salmon Roll",
+    "price": "6.00",
+    "category": "Basic Rolls",
+    "description": "Salmon Hosomaki Roll"
+  },
+  {
+    "name": "Yellowtail Roll",
+    "price": "6.00",
+    "category": "Basic Rolls",
+    "description": "Yellowtail Hosomaki Roll"
+  },
+  {
+    "name": "Avocado Roll",
+    "price": "5.00",
+    "category": "Basic Rolls",
+    "description": "Vegetarian \n \nAvocado Hosomaki Roll"
+  },
+  {
+    "name": "Oshinko Roll",
+    "price": "5.00",
+    "category": "Basic Rolls",
+    "description": "Vegetarian.  \n \nJapanese pickled radish hosomaki roll."
+  },
+  {
+    "name": "Kappa Maki",
+    "price": "5.00",
+    "category": "Basic Rolls",
+    "description": "Vegetarian.  \nCucumber hosomaki roll."
+  },
+  {
+    "name": "Tamago Roll",
+    "price": "5.00",
+    "category": "Basic Rolls",
+    "description": "Japanese Style Egg Hosomaki Roll"
+  },
+  {
+    "name": "Deep Fried Cali",
+    "price": "9.00",
+    "category": "Special Rolls",
+    "description": "Deep Fried California Roll"
+  },
+  {
+    "name": "Deep Fried Sp. Tuna",
+    "price": "10.00",
+    "category": "Special Rolls",
+    "description": "Deep Fried SPicy Tuna Roll"
+  },
+  {
+    "name": "Las Vegas Roll",
+    "price": "11.00",
+    "category": "Special Rolls",
+    "description": "Eel, Avocado, Crab Stick, Cream Cheese, Deep Fried"
+  },
+  {
+    "name": "Seattle Roll",
+    "price": "14.00",
+    "category": "Special Rolls",
+    "description": "Deep Fried Ali with Spicy Tuna Tempura Flakes"
+  },
+  {
+    "name": "Golden Cali",
+    "price": "11.00",
+    "category": "Special Rolls",
+    "description": "Deep Fried California Roll; Out: Tempura Flakes"
+  },
+  {
+    "name": "Golden Sp. Tuna",
+    "price": "12.00",
+    "category": "Special Rolls",
+    "description": "Deep Fried Sp, Tuna Roll Out; crab stick; Tempura Flakes"
+  },
+  {
+    "name": "Machu Picchu",
+    "price": "14.00",
+    "category": "Special Rolls",
+    "description": "In: Shrimp Tempura, Cucumber, Avocado, Cream Cheese; Out: Spicy Crab + Jalapeno"
+  },
+  {
+    "name": "Alki Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Avocado Cucumber, crabmeat, softshell crab, radish Out: Baked Unagi"
+  },
+  {
+    "name": "Killer Shrimp Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Shrimp Tempura, Cucumber, Avocado, Crabmeat out: Shrimp, avocado"
+  },
+  {
+    "name": "Dragon Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "California Roll OUT:Baked Eel"
+  },
+  {
+    "name": "Sp. Dragon Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Spicy California Roll OUT:Baked Eel"
+  },
+  {
+    "name": "Angry Dragon",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Shrimp Tempura Roll Out: Spicy Tuna, Fried Potato"
+  },
+  {
+    "name": "Rainbow Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "California roll Out: Tuna, Salmon, Shrimp, isumidai"
+  },
+  {
+    "name": "Sp, Rainbow Roll",
+    "price": "16.00",
+    "category": "Special Rolls",
+    "description": "Spicy California roll Out: Tuna, Salmon, Shrimp, isumidai"
+  },
+  {
+    "name": "Alaskan Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Cucumber, Soft Shell Crab, Avocado Out: Shrimp"
+  },
+  {
+    "name": "Tiger Roll",
+    "price": "13.00",
+    "category": "Special Rolls",
+    "description": "Sp. Crabmeat, Avocado, Cucumber OUT: Salmon, Shrimp"
+  },
+  {
+    "name": "Big Boss Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Cream Cheese, cucumber, crabmeat, tempura shrimp OUT: sp.Tuna, avocado, crunch flake"
+  },
+  {
+    "name": "Spider Roll",
+    "price": "14.00",
+    "category": "Special Rolls",
+    "description": "Avocado, Cucumber, Crabmmeat, deep fried softshell crab OUT: Masago"
+  },
+  {
+    "name": "Bonney Lake",
+    "price": "16.00",
+    "category": "Special Rolls",
+    "description": "Avocado, Salmon OUT: Tuna, crabmeat, tobico"
+  },
+  {
+    "name": "Rock N Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Cucumber, Avocado, Shrimp Tempura, Spicy Crabmeat, OUT: Spicy crabstick, jalapeno"
+  },
+  {
+    "name": "Aloha",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "In: Spipcy Tuna Cucumber Avocado; Out: Fresh Albacore Ponzu+Fresh Yellow Onion + Green Onion + Siriacha"
+  },
+  {
+    "name": "Philli Grunch",
+    "price": "13.00",
+    "category": "Special Rolls",
+    "description": "Cucumber, avocado, crabmeat, shrimp tempura, cream cheese OUT: tempura flakes"
+  },
+  {
+    "name": "Philadelphia",
+    "price": "10.00",
+    "category": "Special Rolls",
+    "description": "Salmon, cream cheese, avocado"
+  },
+  {
+    "name": "Yummy Roll",
+    "price": "13.00",
+    "category": "Special Rolls",
+    "description": "Crabstick, Cucumber, Avocado, Crabmeat, cream cheese, OUT: tobico"
+  },
+  {
+    "name": "Double Double",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Cucumber, Avocado, Crabmeat, Spicy Tuna, OUT: Tuna, White Tuna"
+  },
+  {
+    "name": "Catepillar",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Cucumber, eel, crabmeat OUT: avocado"
+  },
+  {
+    "name": "Fresh Yellowtail",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Cucumber, yellowtail, crabstick OUT: yellowtail, avocado, green onion"
+  },
+  {
+    "name": "Super Philadelphia",
+    "price": "14.00",
+    "category": "Special Rolls",
+    "description": "Avocado, Cream Cheese, Calmon OUT: Smoked Salmon, masago"
+  },
+  {
+    "name": "Hawaiian Roll",
+    "price": "14.00",
+    "category": "Special Rolls",
+    "description": "Cucumber, Avocado, Crabmeat, OUT: Tuna, Avocado"
+  },
+  {
+    "name": "Crunch Roll",
+    "price": "11.00",
+    "category": "Special Rolls",
+    "description": "Avocado, Crabmeat, shrimp tempura OUT: tempura flakes"
+  },
+  {
+    "name": "Fire Cracker Specialty Roll",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": ""
+  },
+  {
+    "name": "White Castle",
+    "price": "16.00",
+    "category": "Special Rolls",
+    "description": ""
+  },
+  {
+    "name": "Special Agent",
+    "price": "15.00",
+    "category": "Special Rolls",
+    "description": "Shrimp Tempura Crab Meat + In:Avocado;  Out: Fresh Tuna + Salmon + Avocado"
+  },
+  {
+    "name": "Seared Salmon",
+    "price": "14.00",
+    "category": "Baked/seared",
+    "description": "Avocado, Cucumebr, Crabmeat, OUT: Salmon(seared)"
+  },
+  {
+    "name": "Sp Seared Salmon",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Avocado, cucumber,; Spicy Crabmeat, OUT: Salmon (seared)"
+  },
+  {
+    "name": "Scallop Fantasia",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "California Roll OUT: Scallop, crabmeat(baked), green onion"
+  },
+  {
+    "name": "Bake Salmon",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Avocado, cucumber, crabmeat, cream cheese, shrimp tempura OUT: Spicy salmon(seared) , jalapeno"
+  },
+  {
+    "name": "Kiss Of Fire Roll",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Cucmber, Spicy Tuna, Crab Stick OUT: Escolar(seared_ jalapeno"
+  },
+  {
+    "name": "Dynamite Roll",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Califonia Roll OUT: Assorted (baked), green onion"
+  },
+  {
+    "name": "Seared Scallop",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Cucumber Spicy Tuna OUT: Jumbo Scallop(seared), green onion"
+  },
+  {
+    "name": "Baked Lobster",
+    "price": "16.00",
+    "category": "Baked/seared",
+    "description": "California Roll OUT: Lobster, crabmeat(baked), red tobico"
+  },
+  {
+    "name": "Gadzilla Roll",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Spicy Tuna, Cream Cheese, Shrimp Tempura OUT: Salmon(seared), tempura flakes"
+  },
+  {
+    "name": "Washington",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Spicy crabmeat, avocado, cucumber, shrimp tempura OUT: Spicy Scallop(seared), green onion"
+  },
+  {
+    "name": "Black Widow",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Soft Shell Crab, Avocado, Cucumber, Radish sprout OUT: white tuna(seared), black tobico"
+  },
+  {
+    "name": "Volcano",
+    "price": "15.00",
+    "category": "Baked/seared",
+    "description": "Cucumber, Avocado, Spicy Crabmeat OUT: Spicy Salmon(baked), Potato Flakes"
+  },
+  {
+    "name": "Tuna(Nigiri)",
+    "price": "8.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Salmon(Nigiri)",
+    "price": "7.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Yellowtail(Nigiri)",
+    "price": "8.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Red Snapper(Nigiri)",
+    "price": "6.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Albacore(Nigiri)",
+    "price": "8.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "White Tuna(Nigiri)",
+    "price": "8.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Scallop(Nigiri)",
+    "price": "8.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Shrimp(Nigiri)",
+    "price": "6.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Tamago(Nigiri)",
+    "price": "6.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Unagi(Nigiri)",
+    "price": "8.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Red Tobico Gunkan(Nigiri)",
+    "price": "8.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Masago Gunkan(Nigiri)",
+    "price": "7.00",
+    "category": "Sushi",
+    "description": "(2PC)"
+  },
+  {
+    "name": "Tuna(Sashimi)",
+    "price": "10.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Salmon(Sashimi)",
+    "price": "9.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Yellowtail(Sashimi)",
+    "price": "10.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Red Snapper(Sashimi)",
+    "price": "8.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Albacore(Sashimi)",
+    "price": "10.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "White Tuna(Sashimi)",
+    "price": "10.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Scallop(Sashimi)",
+    "price": "11.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Shrimp(Sashimi)",
+    "price": "8.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Tamago(Sashimi)",
+    "price": "8.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Unagi(Sashimi)",
+    "price": "10.00",
+    "category": "Sashimi",
+    "description": "(3PC)"
+  },
+  {
+    "name": "Sashimi Regular (6Pcs)",
+    "price": "18.00",
+    "category": "Sashimi Plate / Omakase",
+    "description": ""
+  },
+  {
+    "name": "Sashimi Deluxe (10Pcs)",
+    "price": "28.00",
+    "category": "Sashimi Plate / Omakase",
+    "description": ""
+  },
+  {
+    "name": "Sashimi Special (14Pcs)",
+    "price": "39.00",
+    "category": "Sashimi Plate / Omakase",
+    "description": ""
+  },
+  {
+    "name": "Omakase Plate Nama(8Pcs)",
+    "price": "29.00",
+    "category": "Sashimi Plate / Omakase",
+    "description": ""
+  },
+  {
+    "name": "Egg Roll (1Pc)",
+    "price": "2.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Egg Roll (2Pc)",
+    "price": "5.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Egg Roll (4Pc)",
+    "price": "11.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Gyoza (10Pc)",
+    "price": "9.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Chicken Wings",
+    "price": "11.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Crab Rangoon",
+    "price": "8.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Wonton Soup (Large)",
+    "price": "9.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Hot & Sour Soup (Large)",
+    "price": "9.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Egg Drop Soup (Large)",
+    "price": "8.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Egg Drop Soup (Small)",
+    "price": "2.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Miso (Large)",
+    "price": "8.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "Miso (Small)",
+    "price": "2.95",
+    "category": "Appetizers",
+    "description": ""
+  },
+  {
+    "name": "T-1 Chicken Teriyaki",
+    "price": "14.95",
+    "category": "Teriyaki Specials",
+    "description": "Chicken Teri + Rice + Fresh Salad"
+  },
+  {
+    "name": "T-2 Beef Teriyaki",
+    "price": "17.95",
+    "category": "Teriyaki Specials",
+    "description": "Beef Teri + Rice + Fresh Salad"
+  },
+  {
+    "name": "T-3 Pork Teriyaki",
+    "price": "16.95",
+    "category": "Teriyaki Specials",
+    "description": "Pork Teri + Rice + Fresh Salad"
+  },
+  {
+    "name": "T-4 Spicy Chicken Teriyaki",
+    "price": "15.95",
+    "category": "Teriyaki Specials",
+    "description": "Sp. Chicken Teri + Rice + Fresh Salad"
+  },
+  {
+    "name": "T-5 Chicken Breast Teriyaki",
+    "price": "16.95",
+    "category": "Teriyaki Specials",
+    "description": "Chicken Breast Teriyaki + Rice + Fresh Salad"
+  },
+  {
+    "name": "T-6 Shrimp Teriyaki",
+    "price": "16.95",
+    "category": "Teriyaki Specials",
+    "description": "Prawn (Skewers) Teriyaki + Rice + Salad"
+  },
+  {
+    "name": "T-7 Chicken & Beef",
+    "price": "18.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-8 Chicken & Pork",
+    "price": "17.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-9 Chicken & Shrimp",
+    "price": "17.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-10 Beef & Pork",
+    "price": "17.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-11 Chicken & Gyoza",
+    "price": "15.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-12 Chicken & Egg Rolls",
+    "price": "15.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-13 Chicken & Short Ribs",
+    "price": "24.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-14 Chicken & Katsu",
+    "price": "17.95",
+    "category": "Teriyaki Combo",
+    "description": "comes with Rice & Salad"
+  },
+  {
+    "name": "T-15 Tofu Teriyaki",
+    "price": "14.95",
+    "category": "Teriyaki Combo",
+    "description": "Comes with rice & salad"
+  },
+  {
+    "name": "T-16 Gyoza Plate",
+    "price": "14.95",
+    "category": "Teriyaki Combo",
+    "description": "Serve with Rice and Salad"
+  },
+  {
+    "name": "T-17 Beef Short Ribs",
+    "price": "28.95",
+    "category": "Teriyaki Combo",
+    "description": "9pcs short ribs, rice and salad"
+  },
+  {
+    "name": "T-18 Chicken Katsu Plate",
+    "price": "17.95",
+    "category": "Teriyaki Combo",
+    "description": "Chicken Katsu, rice and salad"
+  },
+  {
+    "name": "T-19 Salmon Teriyaki",
+    "price": "17.95",
+    "category": "Teriyaki Combo",
+    "description": "Comes with rice & salad"
+  },
+  {
+    "name": "C-1 Mongolian Beef",
+    "price": "17.95",
+    "category": "Wok",
+    "description": "Sliced beef stir-fried with green onions and onions, typically includes a savory Mongolian sauce."
+  },
+  {
+    "name": "C-2 Szechwan Beef",
+    "price": "17.95",
+    "category": "Wok",
+    "description": "Sliced beef stir-fried with a variety of vegetables, including onions and bell peppers, in a spicy Szechuan sauce"
+  },
+  {
+    "name": "C-3 Broccoli Beef",
+    "price": "17.95",
+    "category": "Wok",
+    "description": "Beef and broccoli stir-fried with carrots, typically includes onions and a savory brown sauce."
+  },
+  {
+    "name": "C-4 Chicken Chow Mein",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Stir-fried chow mein noodles with chicken, typically includes cabbage, carrot, onion, and celery in a light savory sauce."
+  },
+  {
+    "name": "C-5 Kung Pao Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Stir-fried chicken, peanuts, and vegetables such as carrots, celery, and water chestnuts, cooked in a spicy sauce."
+  },
+  {
+    "name": "C-6 Stir-Fried Almond Chicken6",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Stir-fried chicken and almonds, combined with vegetables such as carrots, celery, and water chestnuts, in a savory brown sauce."
+  },
+  {
+    "name": "C-7 Vegetable Deluxe",
+    "price": "13.95",
+    "category": "Wok",
+    "description": "Broccoli, cabbage, carrot, zucchini, mushroom, and bamboo stir-fried in a light white garlic sauce."
+  },
+  {
+    "name": "C-8 Chicken Curry",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Chicken breast simmered with onions, carrots, and zucchini in a rich, aromatic curry sauce, typically served over rice."
+  },
+  {
+    "name": "C-9 Broccoli Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Chicken and broccoli stir-fried with carrots and onions, typically includes sesame oil in a savory brown sauce."
+  },
+  {
+    "name": "C-10 Orange Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Crispy chicken pieces coated in a tangy orange sauce, served with steamed white rice."
+  },
+  {
+    "name": "C-11 Sweet & Sour Pork",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Breaded pork, deep-fried and tossed with bell peppers, onions, carrots, and pineapple in a sweet and sour sauce."
+  },
+  {
+    "name": "C-12  Sweet & Sour Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Crispy chicken balls coated in a tangy sweet and sour sauce, served with chunks of bell pepper and two portions of steamed white rice."
+  },
+  {
+    "name": "C-13 Sesame Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Chunks of chicken, typically deep-fried, then tossed in a sweet and savory sesame sauce, garnished with sesame seeds."
+  },
+  {
+    "name": "C-14 General Tao Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Crispy chicken pieces coated in a tangy-sweet sauce, served with steamed white rice."
+  },
+  {
+    "name": "C-15 Sweet & Sour Shrimp",
+    "price": "17.95",
+    "category": "Wok",
+    "description": "Shrimp deep-fried and tossed with a sweet and sour sauce, typically includes green peppers, pineapple, and onions."
+  },
+  {
+    "name": "C-16 Chicken & Vegetables",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Chicken breast and a medley of seasonal vegetables stir-fried in a light, savory sauce."
+  },
+  {
+    "name": "C-17 Tofu & Vegetable",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Tofu and mixed vegetables stir-fried together, typically including broccoli, carrots, and mushrooms in a savory sauce."
+  },
+  {
+    "name": "C-18 Mongolian Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Thinly sliced chicken stir-fried with green onions and onions, saut\u00e9ed in a savory Mongolian sauce."
+  },
+  {
+    "name": "C-19 Garlic Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Saut\u00e9ed chicken breast with garlic, green bell pepper, onion, mushroom, carrot, water chestnuts, and baby corn in a savory sauce."
+  },
+  {
+    "name": "C-20 Breaded Almond Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Crispy breaded chicken pieces coated with almond flakes, served with a side of dipping sauce."
+  },
+  {
+    "name": "C-21 Cashew Chicken",
+    "price": "15.95",
+    "category": "Wok",
+    "description": "Stir-fried chicken with cashews, bell peppers, carrots, onions, mushrooms, and zucchini in a savory white sauce."
+  },
+  {
+    "name": "C-22 Bulgogi",
+    "price": "18.95",
+    "category": "Wok",
+    "description": "Thinly sliced beef marinated in a savory sauce, stir-fried with vegetables."
+  },
+  {
+    "name": "S-1 Teriyaki Chicken & Mongolian Beef",
+    "price": "18.95",
+    "category": "Special Combo",
+    "description": "Grilled chicken in a sweet teriyaki sauce paired with Mongolian beef, typically saut\u00e9ed with onions and green onions."
+  },
+  {
+    "name": "S-2 Teriyaki Chicken & Kung Pao Chicken",
+    "price": "17.95",
+    "category": "Special Combo",
+    "description": "Chicken teriyaki paired with Kung Pao chicken, typically includes peanuts, green onions, and a mix of vegetables, finished with a savory teriyaki and spicy Kung Pao sauce."
+  },
+  {
+    "name": "S-3 Teriyaki Chicken & Broccoli Beef",
+    "price": "18.95",
+    "category": "Special Combo",
+    "description": "Grilled chicken and beef, glazed with teriyaki sauce, accompanied by stir-fried broccoli and carrots."
+  },
+  {
+    "name": "S-4 Teriyaki Chicken & Stir Fry Almond Chicken",
+    "price": "17.95",
+    "category": "Special Combo",
+    "description": "Grilled chicken teriyaki paired with almond-coated chicken, typically includes a savory blend of almonds, vegetables, and a hint of sesame oil."
+  },
+  {
+    "name": "S-5 Teriyaki Beef & Kung Pao Chicken",
+    "price": "18.95",
+    "category": "Special Combo",
+    "description": "Grilled beef with teriyaki sauce and spicy Kung Pao chicken, typically includes peanuts, green onions, and chili peppers."
+  },
+  {
+    "name": "S-6 Teriyaki Chicken & Vegetable Chow Mein",
+    "price": "17.95",
+    "category": "Special Combo",
+    "description": "Grilled chicken with teriyaki sauce, accompanied by stir-fried noodles and mixed vegetables typically found in vegetable chow mein."
+  },
+  {
+    "name": "S-7 Sweet & Sour Chicken & Mongolian Beef",
+    "price": "18.95",
+    "category": "Special Combo",
+    "description": "Sweet and sour chicken balls paired with Mongolian beef, typically includes bell peppers, onions, and pineapples in a tangy sauce alongside beef saut\u00e9ed with scallions and ginger."
+  },
+  {
+    "name": "S-8 Teriyaki Chicken & Yakisoba",
+    "price": "17.95",
+    "category": "Special Combo",
+    "description": "Grilled chicken with teriyaki sauce alongside stir-fried yakisoba noodles, typically includes a mix of vegetables."
+  },
+  {
+    "name": "S-9 Teriyaki Chicken & Breaded Almond Chicken",
+    "price": "17.95",
+    "category": "Special Combo",
+    "description": "Grilled chicken teriyaki paired with crispy breaded chicken topped with almond slices, served with a savory sauce."
+  },
+  {
+    "name": "S-10 Teriyaki Chicken & Sweet & Sour Chicken",
+    "price": "17.95",
+    "category": "Special Combo",
+    "description": "Grilled chicken teriyaki paired with crispy chicken balls tossed in a sweet and sour sauce, typically includes vegetables like bell peppers and onions."
+  },
+  {
+    "name": "S-11 Teriyaki Chicken & Salmon Teriyaki",
+    "price": "20.95",
+    "category": "Special Combo",
+    "description": "Charbroiled chicken and salmon, each glazed with a sweet and savory teriyaki sauce."
+  },
+  {
+    "name": "Y-1 Chicken Yakisoba",
+    "price": "14.95",
+    "category": "Yakisoba",
+    "description": "Stir-fried noodles with grilled chicken, cabbage, carrots, and broccoli, served alongside steamed white rice."
+  },
+  {
+    "name": "Y-2 Beef Yakisoba",
+    "price": "14.95",
+    "category": "Yakisoba",
+    "description": "Stir-fried yakisoba noodles with beef, typically includes cabbage, carrots, and onions, seasoned with a savory sauce."
+  },
+  {
+    "name": "Y-3 Shrimp Yakisoba",
+    "price": "15.95",
+    "category": "Yakisoba",
+    "description": "Stir-fried yakisoba noodles with shrimp, cabbage, carrots, onions, and a blend of traditional Japanese seasonings."
+  },
+  {
+    "name": "Y-4 Combo Yakisoba",
+    "price": "17.95",
+    "category": "Yakisoba",
+    "description": "Stir-fried noodles with chicken, beef, pork, shrimp, and a medley of vegetables including cabbage, carrots, and onions, seasoned with a savory sauce."
+  },
+  {
+    "name": "Y-5 Vegetable Yakisoba",
+    "price": "13.95",
+    "category": "Yakisoba",
+    "description": "Stir-fried noodles with broccoli, mushrooms, cabbage, zucchini, and carrots, served with white rice."
+  },
+  {
+    "name": "Y-6 Tofu Yakisoba",
+    "price": "13.95",
+    "category": "Yakisoba",
+    "description": "Tofu, cabbage, carrot, green onion, onion, celery, and broccoli stir-fried with yakisoba noodles."
+  },
+  {
+    "name": "F-1 Chicken Fried Rice",
+    "price": "14.95",
+    "category": "Fried Rice",
+    "description": "Tender chicken pieces mixed with fluffy rice, carrots, peas, and scrambled eggs."
+  },
+  {
+    "name": "F-2 Beef Fried Rice",
+    "price": "15.95",
+    "category": "Fried Rice",
+    "description": "Beef fried rice combines tender beef slices, eggs, carrots, and onions, all stir-fried with rice and seasoned with soy sauce."
+  },
+  {
+    "name": "F-3 Pork Fried Rice",
+    "price": "14.95",
+    "category": "Fried Rice",
+    "description": "Stir-fried rice with pork, typically includes egg, peas, carrots, and green onions."
+  },
+  {
+    "name": "F-4 Shrimp Fried Rice",
+    "price": "15.95",
+    "category": "Fried Rice",
+    "description": "Shrimp fried rice, with egg, peas, carrots, and onions, seasoned with soy sauce and stir-fried to perfection."
+  },
+  {
+    "name": "F-5 Vegetable Fried Rice",
+    "price": "13.95",
+    "category": "Fried Rice",
+    "description": "Stir-fried Japanese rice with a medley of vegetables including broccoli, carrots, peas, and onions, typically includes eggs."
+  },
+  {
+    "name": "F-6 Combination Fried Rice",
+    "price": "17.95",
+    "category": "Fried Rice",
+    "description": "Chicken, beef, prawns."
+  },
+  {
+    "name": "F-7 Tofu Fried Rice",
+    "price": "13.95",
+    "category": "Fried Rice",
+    "description": ""
+  },
+  {
+    "name": "M-1 Shrimp Tempura",
+    "price": "16.95",
+    "category": "Tempura",
+    "description": "Prawn Tempura with Rice & Salad"
+  },
+  {
+    "name": "M-2 Coconut Shrimp",
+    "price": "17.95",
+    "category": "Tempura",
+    "description": "Jumbo shrimp lightly battered and fried side of sweet chili sauce, served with rice and salad."
+  },
+  {
+    "name": "B-1 Sushi Bento",
+    "price": "25.95",
+    "category": "Bento Box",
+    "description": "Sushi 4 Pic (Tuna, salmon, shrimp, red snapper) Comes with Rice, Salad, Gyoza, California Roll Contains raw or undercooked ingredients. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness. Please eat with discretion. Before placing your order, please inform your server if you have any food allergies."
+  },
+  {
+    "name": "B-2 Sashimi Bento",
+    "price": "24.95",
+    "category": "Bento Box",
+    "description": "2 tuna, 2 salmon, 2 escolar Comes with Rice, Salad, Gyoza, California Roll Contains raw or undercooked ingredients. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness. Please eat with discretion. Before placing your order, please inform your server if you have any food allergies."
+  },
+  {
+    "name": "B-3 Chicken Teriyaki Bento",
+    "price": "19.95",
+    "category": "Bento Box",
+    "description": "Comes with Rice, Salad, Gyoza, California Rol"
+  },
+  {
+    "name": "B-4 Beef Teriyaki Bento",
+    "price": "20.95",
+    "category": "Bento Box",
+    "description": "Comes with Rice, Salad, Gyoza, California Roll"
+  },
+  {
+    "name": "B-5 Pork Teriyaki Bento",
+    "price": "19.95",
+    "category": "Bento Box",
+    "description": "Comes with Rice, Salad, Gyoza, California Roll"
+  },
+  {
+    "name": "B-6 Salmon Teri Bento",
+    "price": "20.95",
+    "category": "Bento Box",
+    "description": "Comes with Rice, Salad, Gyoza, California Roll"
+  },
+  {
+    "name": "B-7 Short Rib Bento",
+    "price": "28.95",
+    "category": "Bento Box",
+    "description": "Comes with Rice, Salad, Gyoza, California Roll"
+  },
+  {
+    "name": "Family Dinner #1",
+    "price": "44.95",
+    "category": "Family Dinner",
+    "description": "Teriyaki chicken, Mongolian beef, sweet & sour chicken, egg rolls (2), gyoza (5), steamed or fried rice."
+  },
+  {
+    "name": "Family Dinner #2",
+    "price": "49.95",
+    "category": "Family Dinner",
+    "description": "Teriyaki chicken, Mongolian beef, sweet & sour chicken, egg rolls (2), gyoza (5), steamed or fried rice, veggie yakisoba."
+  },
+  {
+    "name": "Steam Rice ( One Scoop)",
+    "price": "2.00",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Steam Rice (2 Scoop)",
+    "price": "3.95",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Steamed Rice (Large-4 Scoop)",
+    "price": "5.95",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "House Salad",
+    "price": "7.95",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Stir Fried Vegetables",
+    "price": "8.95",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Oriental Salad W/chicken Breast",
+    "price": "12.95",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Kimchee",
+    "price": "4.95",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "5Pcs Gyoza",
+    "price": "4.95",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Teriyaki Sauce Jar",
+    "price": "5.99",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Extra Teriyaki Sauce",
+    "price": "0.25",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Extra Salad Dressing",
+    "price": "0.50",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Extra Sweet & Sour Sauce",
+    "price": "0.50",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Extra Gyoza Sauce",
+    "price": "0.50",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Extra Katsu Sauce",
+    "price": "0.50",
+    "category": "Side Orders",
+    "description": ""
+  },
+  {
+    "name": "Kids Chicken Teriyaki Gyoza & Rice W/drink",
+    "price": "9.95",
+    "category": "Kids & Bowl",
+    "description": ""
+  },
+  {
+    "name": "Chicken Bowl",
+    "price": "9.95",
+    "category": "Kids & Bowl",
+    "description": ""
+  },
+  {
+    "name": "Coke",
+    "price": "3.49",
+    "category": "Beverages",
+    "description": ""
+  },
+  {
+    "name": "Bottled Water 16.9Oz",
+    "price": "1.99",
+    "category": "Beverages",
+    "description": ""
+  },
+  {
+    "name": "Sparkling Water S. Pellegrino 8.45Oz",
+    "price": "2.50",
+    "category": "Beverages",
+    "description": ""
+  },
+  {
+    "name": "Sparkling Water Maison Perrier 16.9Oz",
+    "price": "3.25",
+    "category": "Beverages",
+    "description": ""
+  },
+  {
+    "name": "Monster",
+    "price": "3.99",
+    "category": "Beverages",
+    "description": ""
+  },
+  {
+    "name": "Celsius",
+    "price": "3.99",
+    "category": "Beverages",
+    "description": ""
+  }
+]

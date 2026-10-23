@@ -1,0 +1,63 @@
+{
+  "business": "Milton Lodge Bar and Grill",
+  "slug": "milton-lodge",
+  "status": "local-preview-ready-for-batch-review",
+  "site_dir": "/Users/haydenstevenson/website-factory/sites/milton-lodge",
+  "proposed_price": 1500,
+  "original_price_range": [
+    1000,
+    1500
+  ],
+  "public_deploy": false,
+  "outreach": false,
+  "index_sha256": "e648dd861382dd15ffa6e765ced7a1088f56ca75b541d5f051342df1b9046235",
+  "package": "/Users/haydenstevenson/website-factory/sites/milton-lodge/packages/milton-lodge-preview.zip",
+  "standalone": "/Users/haydenstevenson/website-factory/sites/milton-lodge/artifact.html",
+  "real_business_photos_used": 8,
+  "genuine_logo_assets": 1,
+  "accepted_photo_candidates": 11,
+  "photo_source": "Exact Milton Restaurantji gallery; source URLs and credits in photo-manifest.json",
+  "photo_limits": [
+    "Current exterior unavailable; old Milton Tavern image excluded",
+    "Owner photo rights/currentness/choices pending"
+  ],
+  "factory_qa": [
+    {
+      "pass": 20,
+      "fail": 0,
+      "warn": 0,
+      "cls": "0.057"
+    },
+    {
+      "pass": 20,
+      "fail": 0,
+      "warn": 0,
+      "cls": "0.057"
+    }
+  ],
+  "interaction_viewports": [
+    360,
+    390,
+    736,
+    768,
+    1024,
+    1440
+  ],
+  "interactions": "Mobile nav Escape/outside/link close and focus; all3 menu categories/counts/selected state/live announcement/Enter/Space; all images; downstream sections; no-JS10 dishes. Passed.",
+  "artifact_qa": "390 and1440; all9 embedded image assets, menu choices, mobile nav and uncropped phone hero, no overflow or page errors. ZIP source bytes matched.",
+  "owner_confirm": [
+    "Current weekly/kitchen/holiday closing hours",
+    "Current menu prices and availability",
+    "Current owner identity; historical Shawna Bell verified2018 only",
+    "Exact Google review publication dates; capture date labeled",
+    "Photo approval/rights and new exterior photo",
+    "Actual existing ordering provider, if any"
+  ],
+  "board_row_proposed": {
+    "stage": "demo-ready (local, pending Hayden batch review)",
+    "tier": "$1,500 proposed; original$1,000\u2013$1,500",
+    "link": "Local preview; no public URL",
+    "next_action": "Hayden batch review; confirm menu prices/full hours/current owner and photo choices",
+    "last_touch": "2026-09-05 research/build; no outreach"
+  }
+}

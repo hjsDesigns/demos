@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Four Seasons Chinese Restaurant — Enumclaw, WA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Old-school Chinese-American cooking on Griffin Ave in Enumclaw — green booths, lit tiki lanterns, and the whole printed menu with real prices. Open Monday through Saturday, noon to eight.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Trirong (approved body headings) + Work Sans (body).
+     The hero now uses the actual photographed sign; the former hero-only Yeseva font is retired. -->
+<link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,600;0,700;0,800;1,600&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1789068815">
+<link rel="stylesheet" href="css/hero-2026-10-22.css">
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Four Seasons Chinese Restaurant — home">
+      <img src="images/logo.png" alt="Four Seasons Chinese Restaurant" width="560" height="158">
+    </a>
+    <div class="nav-wrap">
+      <span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="main-nav" id="main-nav">
+        <a href="#menu">Menu</a>
+        <a href="#signature">Four dinners</a>
+        <a href="#gallery">The room</a>
+        <a href="#about">Story</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact" class="nav-cta">Call</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<span id="top"></span>
+<main>
+
+  <!-- Hero: The Griffin Sign. Emotion: a familiar Enumclaw landmark, mountain at its shoulder.
+       The real roadside sign is the headline. Its lettering and weathering are untouched. -->
+  <section class="fs-griffin" id="hero" aria-labelledby="fs-title">
+    <h1 id="fs-title" class="sr-only">Four Seasons Chinese Restaurant &amp; Bar</h1>
+    <div class="fs-roadside">
+      <img src="images/hero-stack-2.jpg" alt="The real Four Seasons Chinese Restaurant and Bar sign on Griffin Avenue, with Mount Rainier beside it" width="1250" height="1162" fetchpriority="high">
+    </div>
+    <div class="fs-welcome">
+      <p class="fs-place">Enumclaw, Washington</p>
+      <p class="fs-invitation">You know <br>the sign.<br><em>Come on in.</em></p>
+      <span class="fs-rule" aria-hidden="true"></span>
+      <p class="fs-detail">Green booths. Lit tiki lanterns.<br> Almond Chicken on the table.</p>
+      <div class="fs-actions">
+        <a href="#menu" class="btn btn-primary">See the menu</a>
+        <a href="tel:+13608256541" class="fs-call">Call to order <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #hours =====================
+       Hours live HERE and nowhere else. Rows match the HOURS config in
+       js/site.js. Note row is their own printed menu's line. -->
+  <section class="status-band" id="hours">
+    <div class="wrap">
+      <div class="status-head">
+        <p class="eyebrow">When to find us</p>
+        <span class="lattice-rule" aria-hidden="true"></span>
+        <h2>Six days a week, <em>noon to eight</em></h2>
+        <p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+        <p class="status-addr">
+          820 Griffin Ave, Enumclaw, WA 98022<br>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Four+Seasons+Chinese+Restaurant+820+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Open in Maps ↗</a>
+        </p>
+        <div class="proof-row">
+          <span class="proof"><span class="star">★</span> 3.9 on Google</span>
+          <span class="proof"><span class="star">★</span> 124 reviews on Yelp</span>
+          <span class="proof"><span class="ico">✓</span> Dine in or take out</span>
+        </div>
+      </div>
+      <ul class="hours-list" id="hoursList">
+        <li data-days="1"><span class="day">Monday</span><span class="time">12:00 pm – 8:00 pm</span></li>
+        <li data-days="2"><span class="day">Tuesday</span><span class="time">12:00 pm – 8:00 pm</span></li>
+        <li data-days="3"><span class="day">Wednesday</span><span class="time">12:00 pm – 8:00 pm</span></li>
+        <li data-days="4"><span class="day">Thursday</span><span class="time">12:00 pm – 8:00 pm</span></li>
+        <li data-days="5"><span class="day">Friday</span><span class="time">12:00 pm – 8:00 pm</span></li>
+        <li data-days="6"><span class="day">Saturday</span><span class="time">12:00 pm – 8:00 pm</span></li>
+        <li data-days="0" class="closed"><span class="day">Sunday</span><span class="time">Closed</span></li>
+        <li class="note"><span class="day">Holidays</span><span class="time">Open on holiday Sundays — their menu's own note</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== #menu =====================
+       TITLE CARDS UNROLL (2026-08-27): each heading is the tap target and
+       rolls the real items out in place, downward chevron flipping up.
+       Every price is read off their own printed January 2024 menu
+       (images/menu-sheet.jpg). Nothing here is invented.
+       NOTE: the hero itself is now the building from outside (2026-09-04), so
+       STOREFRONT-BELOW-HOURS is satisfied above; this slot keeps their real
+       printed menu on their own table. -->
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">From the printed menu</p>
+        <span class="lattice-rule" aria-hidden="true"></span>
+        <h2>The whole board, <em>with the real prices</em></h2>
+        <p>Photographed on their own table, January 2024. Tap a heading to open it.</p>
+      </div>
+
+      <figure class="print menu-print reveal">
+        <img src="images/menu-sheet.jpg" alt="The open Four Seasons menu on the restaurant's marble table — lunch specials, appetizers and soup on the left, the family style dinners in the middle, chicken and beef down the right" loading="lazy">
+        <figcaption>The menu, on the table it came from</figcaption>
+      </figure>
+
+      <div class="menu-stack">
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="true" aria-controls="rollLunch">
+            <span><h3>Lunch Specials</h3><span class="cnt">Monday – Saturday, 12 – 3 pm (except holidays)</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel open" id="rollLunch">
+            <ul class="menu-list">
+              <li><span class="name">Chinese Specials — choose one</span><span class="price">$14.50</span><span class="desc">Comes with chow mein and pork fried rice. Beef or Chicken Chow Yuk · Almond Fried Chicken · Broccoli Beef · Deep Fried Chicken Wings · Deep Fried Prawns · Kung Pao Chicken · Mandarin Beef · Mandarin Chicken · Pork Egg Foo Young · Pot Stickers (fried) · Sweet &amp; Sour Chicken · Sweet &amp; Sour Pork.</span></li>
+              <li><span class="name">General Tso's Chicken (bone-out)</span><span class="price">$14.50</span><span class="desc">The Four Seasons lunch specials come with steamed rice; fried rice adds $1.50.</span></li>
+              <li><span class="name">Orange Chicken</span><span class="price">$14.50</span></li>
+              <li><span class="name">Szechuan Chicken or Beef</span><span class="price">$14.50</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollApps">
+            <span><h3>Appetizers &amp; Soup</h3><span class="cnt">Thirteen things off the front of the menu</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollApps">
+            <ul class="menu-list">
+              <li><span class="name">BBQ Pork (16)</span><span class="price">$16.50</span><span class="desc">Half order of 8, $9.00.</span></li>
+              <li><span class="name">Pork Ends</span><span class="price">$17.50</span></li>
+              <li><span class="name">Egg Rolls (3)</span><span class="price">$12.00</span></li>
+              <li><span class="name">Pot Stickers (10)</span><span class="price">$12.00</span><span class="desc">Half order of 5, $7.50.</span></li>
+              <li><span class="name">Deep Fried Chicken Wings (10)</span><span class="price">$17.50</span><span class="desc">Half order of 5, $9.00.</span></li>
+              <li><span class="name">Crab Rangoon (10)</span><span class="price">$13.50</span><span class="desc">Half order of 5, $8.00.</span></li>
+              <li><span class="name">Chicken Wrap with Bacon (8)</span><span class="price">$16.50</span></li>
+              <li><span class="name">Combination Hors d'Oeuvre Platter</span><span class="price">$17.50</span><span class="desc">Egg roll, BBQ pork, fried prawns, chicken wings.</span></li>
+              <li><span class="name">Won Ton Soup</span><span class="price">$12.50</span><span class="desc">Small, $5.00.</span></li>
+              <li><span class="name">Wor Won Ton Soup</span><span class="price">$14.00</span></li>
+              <li><span class="name">Hot &amp; Sour Soup</span><span class="price">$11.00</span><span class="desc">Small, $5.00.</span></li>
+              <li><span class="name">Egg Flower Soup</span><span class="price">$10.00</span><span class="desc">Small, $4.00.</span></li>
+              <li><span class="name">Chinese Green Soup</span><span class="price">$10.50</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollChicken">
+            <span><h3>Chicken</h3><span class="cnt">Fifteen ways, all with steamed rice</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollChicken">
+            <ul class="menu-list">
+              <li><span class="name">Moo Goo Gai Pan</span><span class="price">$17.00</span><span class="desc">Boneless chicken with mixed vegetables.</span></li>
+              <li><span class="name">Almond Chicken</span><span class="price">$16.00</span><span class="desc">The one a regular says they revolutionized.</span></li>
+              <li><span class="name">Mushroom Breaded Chicken</span><span class="price">$16.50</span><span class="desc">Breaded chicken breast pieces with mushroom and vegetables.</span></li>
+              <li><span class="name">Broccoli Chicken</span><span class="price">$16.50</span></li>
+              <li><span class="name">Sweet &amp; Sour Chicken with Pineapple</span><span class="price">$16.00</span></li>
+              <li><span class="name">Honey Garlic Chicken Wings</span><span class="price">$18.50</span></li>
+              <li><span class="name">Orange Chicken</span><span class="price">$17.50</span></li>
+              <li><span class="name">Lemon Chicken</span><span class="price">$17.50</span></li>
+              <li><span class="name">Curry Chicken</span><span class="price">$16.50</span></li>
+              <li><span class="name">Sesame Chicken</span><span class="price">$16.50</span></li>
+              <li><span class="name">Mandarin Chicken</span><span class="price">$16.50</span><span class="desc">Chicken deep fried with onions and peppers.</span></li>
+              <li><span class="name">General Tso's Chicken (bone-out)</span><span class="price">$17.50</span><span class="desc">Bone-in, $18.50.</span></li>
+              <li><span class="name">Kung Pao Chicken</span><span class="price">$17.00</span><span class="desc">Chicken with bamboo shoots, water chestnuts, peanuts and vegetables.</span></li>
+              <li><span class="name">Cashew Chicken</span><span class="price">$17.00</span><span class="desc">Chicken with mixed vegetables and cashews.</span></li>
+              <li><span class="name">Moo-Shi Chicken (with 4 pancakes)</span><span class="price">$16.50</span><span class="desc">Thin pancakes served with hoisin sauce and vegetables. Extra pancakes $0.50 each.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollBeef">
+            <span><h3>Beef &amp; Pork</h3><span class="cnt">Eleven off the same page</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollBeef">
+            <ul class="menu-list">
+              <li><span class="name">Broccoli Beef</span><span class="price">$16.50</span></li>
+              <li><span class="name">Ginger, Oyster Sauce, or Curry Beef</span><span class="price">$17.50</span></li>
+              <li><span class="name">Pepper Steak Cantonese</span><span class="price">$16.50</span><span class="desc">Sliced tenderloin beef combined with fresh peppers and onions.</span></li>
+              <li><span class="name">Mandarin Beef</span><span class="price">$17.50</span><span class="desc">Slices of beef combined with peppers, fried rice noodles on top.</span></li>
+              <li><span class="name">Hunan Beef</span><span class="price">$17.50</span><span class="desc">Beef stir-fried with onions and bamboo shoots in a Hunan sauce.</span></li>
+              <li><span class="name">Beef Tomatoes with Green Peppers and Onions</span><span class="price">$17.50</span></li>
+              <li><span class="name">Scrambled Eggs with BBQ Pork</span><span class="price">$15.50</span><span class="desc">Scrambled eggs with BBQ pork, bean sprouts and green onions.</span></li>
+              <li><span class="name">Sweet &amp; Sour Pork with Pineapple</span><span class="price">$15.50</span></li>
+              <li><span class="name">Moo-Shi Pork (with 4 pancakes)</span><span class="price">$16.50</span></li>
+              <li><span class="name">Hot &amp; Spicy Tofu with Pork</span><span class="price">$16.50</span><span class="desc">Steamed tofu combined with mixed vegetables.</span></li>
+              <li><span class="name">Family Style Tofu</span><span class="price">$17.50</span><span class="desc">Deep fried tofu with BBQ pork and vegetables.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roll">
+          <button class="roll-btn" type="button" aria-expanded="false" aria-controls="rollSea">
+            <span><h3>Seafood</h3><span class="cnt">Six, prawns mostly</span></span>
+            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
+          </button>
+          <div class="roll-panel" id="rollSea">
+            <ul class="menu-list">
+              <li><span class="name">Deep Fried Prawns (12)</span><span class="price">$15.50</span><span class="desc">Half order of 6, $9.00.</span></li>
+              <li><span class="name">Prawns with Garlic Sauce</span><span class="price">$18.50</span></li>
+              <li><span class="name">Kung Pao Prawns</span><span class="price">$18.50</span><span class="desc">Prawns with bamboo shoots, water chestnuts, peanuts and vegetables.</span></li>
+              <li><span class="name">Sweet &amp; Sour Prawns</span><span class="price">$16.50</span></li>
+              <li><span class="name">Prawns in Lobster Sauce</span><span class="price">$18.50</span></li>
+              <li><span class="name">Seafood Hot Plate</span><span class="price">$19.00</span><span class="desc">Scallops, prawns, chicken and vegetables.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="menu-fine">Read off their own printed menu, dated January 2024 — call ahead if you want tonight's price confirmed. Prices are subject to change without notice.</p>
+    </div>
+  </section>
+
+  <!-- ===================== #signature =====================
+       THE FOUR SEASONS TABLE. The restaurant is named Four Seasons and its
+       family-style dinners are named Spring, Summer, Autumn and Winter — and
+       each one puts one more dish on the table than the last (5, 6, 7, 8).
+       That is the one-of-one. Four labelled buttons, one tap, the plates land
+       on the table; tap the lit one again and it clears. Object + number only.
+       Every dish and price is read off the printed menu; nothing invented.
+       Family-style dinners appear ONLY here — never in #menu (NEVER TWICE). -->
+  <section class="section section-alt" id="signature">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The four dinners</p>
+        <span class="lattice-rule" aria-hidden="true"></span>
+        <h2>Tap a season, <em>the table fills</em></h2>
+        <p>Their family-style dinners are named for the seasons — and each one puts one more dish on the table than the one before it.</p>
+      </div>
+
+      <div class="fs reveal">
+        <div class="fs-stage">
+          <div class="fs-table" id="fsTable">
+            <div class="fs-cloth" aria-hidden="true"></div>
+            <p class="fs-hint" id="fsHint">Tap a season below</p>
+            <ul class="fs-dishes" id="fsDishes"></ul>
+          </div>
+          <div class="fs-readout">
+            <p class="fs-price"><span class="tnum" id="fsPrice"></span></p>
+            <p class="fs-sub"><span class="tnum" id="fsCount"></span> · minimum two of the same dinner</p>
+          </div>
+        </div>
+        <div class="fs-chips" id="fsChips" role="group" aria-label="Pick a family style dinner">
+          <button class="fs-chip s-spring" type="button" data-season="spring" aria-pressed="false"><span class="fs-mark" aria-hidden="true"></span>Spring</button>
+          <button class="fs-chip s-summer" type="button" data-season="summer" aria-pressed="false"><span class="fs-mark" aria-hidden="true"></span>Summer</button>
+          <button class="fs-chip s-autumn" type="button" data-season="autumn" aria-pressed="false"><span class="fs-mark" aria-hidden="true"></span>Autumn</button>
+          <button class="fs-chip s-winter" type="button" data-season="winter" aria-pressed="false"><span class="fs-mark" aria-hidden="true"></span>Winter</button>
+        </div>
+        <p class="sr-only" id="fsLive" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #gallery ===================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Inside 820 Griffin</p>
+        <span class="lattice-rule" aria-hidden="true"></span>
+        <h2>The lanterns, and <em>what comes out</em></h2>
+      </div>
+      <div class="prints">
+        <figure class="print reveal"><img src="images/gallery-7.jpg" alt="Further into the room — a red paper lantern, magnolia panels on the green wall, model ships on a shelf and a second tiki lantern over the booths" loading="lazy"><figcaption>Further into the room</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-8.jpg" alt="The same booths after dark, the tiki lanterns and a coloured glass ball glowing over the lattice ceiling" loading="lazy"><figcaption>The booths after dark</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="One of the carved bamboo tiki lanterns lit from inside, a face cut into the shade under a woven rattan hat" loading="lazy"><figcaption>One lantern, up close</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Sweet and sour in bright red sauce beside a plate of honey garlic chicken wings, on the restaurant's orange table over a red zodiac placemat" loading="lazy"><figcaption>Sweet &amp; sour, and the wings</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A plate of teriyaki chicken with pot stickers, fried rice and a green salad on the orange tabletop" loading="lazy"><figcaption>Off the teriyaki page</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Three plates spread across the orange table — chow mein, fried rice and a pork dish under crisp noodles — with the green booth behind" loading="lazy"><figcaption>A table, mid-order</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A blue and white striped bowl of bean sprouts and pork over fried rice, crisp chow mein noodles piled on one side" loading="lazy"><figcaption>In the bowl, crisp noodles on top</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Close view of battered chicken pieces beside celery, water chestnuts and toasted almonds on their own brown-ringed china" loading="lazy"><figcaption>Close up, on their own china</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #about ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="wrap">
+      <div class="story">
+        <figure class="print reveal">
+          <img src="images/about.jpg" alt="Shrimp fried rice filling a white takeout box with a plastic fork standing in it, held on the way out to the car" loading="lazy">
+          <figcaption>Shrimp fried rice, in the box, on the way home</figcaption>
+        </figure>
+        <div class="story-copy reveal">
+          <p class="eyebrow">The last one standing</p>
+          <span class="lattice-rule" aria-hidden="true"></span>
+          <h2>Five sister restaurants. <em>One left.</em></h2>
+          <p class="lede">A regular counted them off in his own review — Dynasty's in Federal Way, Ming Tree in Bellevue, Forbidden City in Puyallup, Lotus Tree in Auburn, The Great Wall in Tacoma. And Four Seasons.</p>
+          <p>Rick S. wrote it down on Yelp in February 2025: <em>“All are gone now except 4 seasons. I go every opportunity!!”</em> The same old-school Chinese-American cooking, the same green booths, the same lanterns over the same tables.</p>
+          <p>Bing is the one who answers questions on their Yelp page — signed <em>“Bing P., Business Owner.”</em> Ming runs the place alongside him, and regulars thank Helen and Sara by name. There's a second name on their own Facebook page, too: The Four Seasons Restaurant and Maui Room.</p>
+          <div class="team">
+            <h3>The names regulars thank</h3>
+            <div class="faces">
+              <span class="face">Bing</span>
+              <span class="face">Ming</span>
+              <span class="face">Helen</span>
+              <span class="face">Sara</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #reviews =====================
+       REVIEW ATTRIBUTION LAW (2026-09-06): every quote below is verbatim from
+       Four Seasons' own Google listing, with that reviewer's REAL published
+       name, their REAL Google profile photo (images/reviewers/*.jpg, pulled
+       from the same listing), their real star rating and their real date.
+       Nothing here is invented — no initials, no stock faces, no logos.
+       Harvested 2026-09-10; source rows in harvest/reviews-live.json. -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">In their words</p>
+        <span class="lattice-rule" aria-hidden="true"></span>
+        <h2>What the regulars <em>keep saying</em></h2>
+        <p>Five of their own Google reviews, word for word.</p>
+      </div>
+      <div class="review-grid">
+        <article class="review reveal">
+          <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>This restaurant bar has been around the enumclaw area for decades! No restaurant can possibly stay in business that long without providing the best in all areas. The food, service and atmosphere is spot on! … The owners Ming and Bing, are absolutely the kindest and the best!!</blockquote>
+          <div class="rv-who"><img class="rv-face" src="images/reviewers/taylor-vancleave.jpg" alt="taylor vancleave, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>taylor vancleave</b><span>Google · 2 years ago</span></span></div>
+        </article>
+        <article class="review reveal">
+          <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>So cool to visit again! I hadn't been here in over 20 years! I got to see the owner who recognized my dad and family. Such a nice restaurant with great service. It brought great memories back to my mind. The food is great, quick service and huge portions!</blockquote>
+          <div class="rv-who"><img class="rv-face" src="images/reviewers/bunny-parker.jpg" alt="Bunny Parker, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Bunny Parker</b><span>Google · a year ago</span></span></div>
+        </article>
+        <article class="review reveal">
+          <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>Back in the late '70s, early '80s, my mother and father used to take me to this restaurant when I was a child. I loved it then and I still love it now.</blockquote>
+          <div class="rv-who"><img class="rv-face" src="images/reviewers/jon-moler.jpg" alt="Jon Moler, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Jon Moler</b><span>Google · 3 years ago</span></span></div>
+        </article>
+        <article class="review reveal">
+          <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>We went here for my husband's 67th Birthday with friends. We all shared several different dishes and had plenty to take home too. We will go back!</blockquote>
+          <div class="rv-who"><img class="rv-face" src="images/reviewers/rhonda-benedict.jpg" alt="Rhonda Benedict, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Rhonda Benedict</b><span>Google · a year ago</span></span></div>
+        </article>
+        <article class="review reveal">
+          <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote>Very nice decor and atmosphere, friendly staff, quick delicious food.</blockquote>
+          <div class="rv-who"><img class="rv-face" src="images/reviewers/jeffrey-job.jpg" alt="Jeffrey Job, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Jeffrey Job</b><span>Google · 4 months ago</span></span></div>
+        </article>
+      </div>
+      <p class="menu-fine"><a href="https://www.google.com/maps/search/?api=1&amp;query=Four+Seasons+Chinese+Restaurant+820+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Read all of their Google reviews ↗</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== #contact ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="reveal">
+          <p class="eyebrow">Order or come in</p>
+          <span class="lattice-rule" aria-hidden="true"></span>
+          <h2>Call it in, or <em>take a booth</em></h2>
+          <ol class="steps">
+            <li><h3>Phone the kitchen</h3><p>They'll tell you how long it'll be. Take-out adds $1.50 to most soups and noodle sides.</p></li>
+            <li><h3>Pick a dinner or go à la carte</h3><p>The family-style dinners are minimum two of the same. Everything else comes with rice.</p></li>
+            <li><h3>Card or cash</h3><p>Visa, Mastercard and Discover. No checks — it's printed right on their menu.</p></li>
+          </ol>
+          <div class="contact-lines">
+            <span>📞 <a href="tel:+13608256541">(360) 825-6541</a></span>
+            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Four+Seasons+Chinese+Restaurant+820+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a></span>
+          </div>
+        </div>
+        <form class="contact-form reveal">
+          <!-- demo mode: empty access_key shows the thank-you and sends nothing -->
+          <input type="hidden" name="access_key" value="">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What's this about?<select name="topic"><option>A take-out order</option><option>A table for a group</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea name="msg" placeholder="How many people, and what night?"></textarea></label>
+          <button type="submit" class="btn btn-primary">Send it over</button>
+          <p class="form-success">Thanks — Bing will get back to you soon.</p>
+          <p class="form-fine">We'll only use this to reply to you.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== #cta =====================
+       Closing band. The template's four count-up numbers were deleted: every
+       honest number about this business already lives once somewhere on the
+       page, and inventing metrics is worse than none. -->
+  <section class="section section-dark cta-band" id="cta">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">820 Griffin Ave</p>
+        <span class="lattice-rule" aria-hidden="true"></span>
+        <h2>The lanterns are <em>still on</em></h2>
+        <p>Same booths, same board, same people behind it.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="tel:+13608256541" class="btn btn-primary">Call (360) 825-6541</a>
+        <a href="#menu" class="btn btn-ghost">Back to the menu</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <img class="foot-mark" src="images/logo.png" alt="Four Seasons Chinese Restaurant" width="560" height="158">
+        </div>
+        <p>Old-school Chinese-American cooking in Enumclaw, under the tiki lanterns.</p>
+        <div class="soc">
+          <a href="https://www.facebook.com/Fourseasonsenumclaw/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <p>820 Griffin Ave<br>Enumclaw, WA 98022</p>
+        <p><a href="tel:+13608256541">(360) 825-6541</a></p>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <p><a href="#menu">Menu</a><br><a href="#signature">Four dinners</a><br><a href="#gallery">The room</a><br><a href="#about">Story</a><br><a href="#reviews">Reviews</a><br><a href="#contact">Call</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Four Seasons Chinese Restaurant</span>
+      <span>Enumclaw, Washington</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=1789068815"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "result": "pass",
+  "public_files": [
+    "index.html",
+    "css/style.css",
+    "images/lodge-02.jpg",
+    "images/lodge-03.jpg",
+    "images/lodge-08.jpg",
+    "images/lodge-10.jpg",
+    "images/lodge-12.jpg",
+    "images/lodge-20.jpg",
+    "images/lodge-22.jpg",
+    "images/lodge-32.jpg",
+    "images/logo.jpg",
+    "js/site.js"
+  ],
+  "real_business_photo_count": 8,
+  "logo_count": 1,
+  "zip_bytes": 2422690,
+  "artifact_bytes": 3268736,
+  "index_sha256": "e648dd861382dd15ffa6e765ced7a1088f56ca75b541d5f051342df1b9046235",
+  "artifact_viewports": [
+    390,
+    1440
+  ]
+}

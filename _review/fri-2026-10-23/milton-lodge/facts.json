@@ -1,0 +1,44 @@
+{
+  "business": "Milton Lodge Bar and Grill",
+  "phone": "(253) 922-4277",
+  "address": "7320 Pacific Hwy E",
+  "hours": [
+    "Daily from 7 am"
+  ],
+  "prices": [],
+  "expected_sections": [
+    "hero",
+    "hours",
+    "services",
+    "signature",
+    "gallery",
+    "about",
+    "contact"
+  ],
+  "allow_repeat": [],
+  "quoted_site_price": 1500,
+  "original_ticket_range": [
+    1000,
+    1500
+  ],
+  "source_date": "2026-09-05",
+  "menu_source": "https://places.singleplatform.com/the-milton-lodge/menu?ref=google",
+  "menu_items": [
+    "The Classic",
+    "Biscuit and Gravy",
+    "Bacon Cheese Burger",
+    "Mushroom Swiss Burger",
+    "Chef Salad",
+    "Grilled Chicken Salad",
+    "The Lodge Flatbread",
+    "The Pierce Flatbread",
+    "Artichoke Spinach Dip",
+    "Wings"
+  ],
+  "hours_conflict": "Prior Google hit-list says daily11PM; current directories Sun\u2013Thu10PM/Fri\u2013Sat11PM. Daily7AM only on preview; no runtime status.",
+  "prices_verified_current": false,
+  "owner_verified_current": false,
+  "historical_opening": "August2018, Shawna Bell; contemporary reporting",
+  "accepted_business_photos": 11,
+  "review_date_note": "Only relative dates recovered; explicitly labeled capture date, not invented publication date."
+}

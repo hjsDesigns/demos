@@ -1,0 +1,77 @@
+/* September 10 — a comfortable, contemporary Bonney Lake restaurant.
+   Roof teal and sign yellow; the approved daylight-still storefront stays the hero. */
+:root{--bg:#10282D;--bg-2:#0A2026;--paper:#18373D;--dark:#06161A;--tint:#12383E;--line:#315056;--brand:#4AC1DD;--brand-bright:#75D6E8;--brand-text:#9BDDE8;--warm:#FDE518;--ink:#F3EADA;--muted:#B4C6C3;--walnut:#291E18;--bone:#F3EADA;--mono:var(--body);--r:7px;--pad:clamp(22px,5vw,68px);--maxw:1220px}
+body{background:var(--bg);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.site-header{background:color-mix(in srgb,var(--dark) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--brand) 24%,transparent)}
+.hero.v-daylight-still{min-height:calc(100svh - var(--header-h));border-bottom:1px solid var(--brand)}
+.hero.v-daylight-still .ds-inner{padding-bottom:clamp(36px,7vh,70px)}
+.hero.v-daylight-still .ds-h1{font-size:clamp(36px,4.9vw,66px);max-width:16ch;line-height:1.02;margin-bottom:24px;text-shadow:0 3px 18px var(--dark);letter-spacing:-.02em}
+.hero.v-daylight-still .ds-h1 .sr-only{letter-spacing:0}
+.hero.v-daylight-still .ds-pool{background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 24%,transparent),transparent 68%),linear-gradient(0deg,color-mix(in srgb,var(--dark) 95%,transparent),color-mix(in srgb,var(--dark) 60%,transparent) 22%,transparent 58%)}
+.hero.v-daylight-still .ds-actions .btn{min-height:50px;font-weight:700;box-shadow:0 12px 30px -16px var(--dark)}
+.hero .btn-primary{background:var(--warm);border-color:var(--warm);color:var(--dark)}
+.hero .btn-cream{background:color-mix(in srgb,var(--dark) 65%,transparent);color:var(--bone);border:1px solid color-mix(in srgb,var(--bone) 72%,transparent);backdrop-filter:blur(8px)}
+.hero .btn-cream:hover{background:var(--paper)}
+.section{padding-block:clamp(70px,8vw,110px)}
+.status-band{position:relative;background:var(--tint);border-bottom:1px solid var(--line)}
+.status-band .wrap{padding-block:48px}
+.hours-list{border:1px solid var(--line);border-radius:var(--r);background:color-mix(in srgb,var(--dark) 30%,transparent);box-shadow:0 24px 50px -34px var(--dark)}
+.hours-list li.today{background:color-mix(in srgb,var(--brand) 12%,var(--paper));border-left:3px solid var(--brand)}
+.proof{border-color:var(--line);background:var(--paper)}
+.section-alt{background:var(--bg-2)}
+#about{background:var(--walnut)}
+#about .story{align-items:center;gap:clamp(35px,6vw,90px)}
+#about .story-copy h2{font-size:clamp(34px,3.8vw,50px)}
+#about .story-copy p{max-width:46ch}
+.stations{border-top:1px solid color-mix(in srgb,var(--warm) 30%,transparent)}
+.stations li{background:transparent;border-bottom:1px solid color-mix(in srgb,var(--warm) 18%,transparent)}
+.st-n{color:var(--warm)}
+.print{padding:8px 8px 0;background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:0 30px 55px -32px var(--dark);transform:none}
+.print img{border-radius:2px}
+.print figcaption{padding:13px 6px;margin:0;color:var(--muted);font-family:var(--body);font-size:12px;letter-spacing:.06em}
+#about .print{background:var(--dark);border-color:color-mix(in srgb,var(--warm) 30%,transparent)}
+.menu-lead{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.menu-grid{gap:16px}
+.card-roll{border:1px solid var(--line);border-radius:7px;background:var(--paper);box-shadow:0 16px 30px -26px var(--dark);overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s}
+.card-roll.open{border-color:var(--brand);box-shadow:0 18px 35px -20px var(--dark)}
+.roll-head{padding:24px;min-height:94px}
+.roll-name{font-size:clamp(17px,1.8vw,23px);line-height:1.3}
+.chev{background:var(--dark);border:1px solid var(--line);color:var(--brand);border-radius:50%}
+.menu-search input{background:var(--dark);border:1px solid var(--line);color:var(--bone);border-radius:999px}
+.bento{padding:clamp(18px,3vw,36px);background:linear-gradient(140deg,color-mix(in srgb,var(--brand) 9%,var(--paper)),var(--dark));border:1px solid var(--line);border-radius:18px;box-shadow:0 35px 65px -35px var(--dark)}
+.bento-stage{border:0;background:transparent;box-shadow:none}
+.bento-shot{border-radius:7px;border:1px solid var(--line);overflow:hidden;background:var(--dark)}
+.bento-read{background:transparent}
+.bento-name{font-size:clamp(22px,2.4vw,30px)}
+.bento-price{color:var(--warm)}
+.bento-picks{justify-content:center}
+.pick{border:1px solid var(--line);background:var(--paper);color:var(--bone);min-height:48px}
+.pick.is-on,.pick[aria-pressed=true]{background:var(--warm);border-color:var(--warm);color:var(--dark)}
+.quote{background:var(--paper);border:1px solid var(--line);border-radius:7px;box-shadow:none}
+.quotes{gap:20px}
+.quote blockquote{font-size:18px;line-height:1.6}
+.quote .stars{color:var(--warm)}
+.contact-form{background:var(--paper);box-shadow:0 25px 55px -40px var(--dark)}
+.section-dark.cta-band{background:var(--tint);border-block:1px solid var(--line)}
+.num{background:var(--paper);border-color:var(--line)}
+.num b{font-size:clamp(32px,4vw,48px)}
+[data-depth]{transform:perspective(1200px) rotateX(var(--depth-x,0deg)) rotateY(var(--depth-y,0deg));transition:transform .45s var(--ease),box-shadow .45s;transform-style:preserve-3d}
+[data-depth] img{transform:translateZ(8px)}
+@media(hover:hover) and (pointer:fine){.card-roll:hover{border-color:var(--brand);transform:translateY(-2px)}[data-depth]:hover{box-shadow:0 38px 60px -32px var(--dark)}}
+@media(max-width:760px){.section{padding-block:65px}.status-band .wrap{padding-block:36px}.roll-head{padding:20px}.bento{padding:16px}.bento-picks{gap:7px}.pick{font-size:13px;padding:11px 14px}.quote blockquote{font-size:17px}}
+@media(max-width:640px){
+ .hero.v-daylight-still{min-height:calc(100svh - var(--header-h));height:auto;justify-content:flex-end}
+ .hero.v-daylight-still .ds-frame{height:53svh;aspect-ratio:auto;max-height:500px;flex:none;border-bottom:1px solid color-mix(in srgb,var(--brand) 40%,transparent)}
+ .hero.v-daylight-still .ds-shot img{object-fit:contain;object-position:center}
+ .hero.v-daylight-still .ds-inner{padding:24px var(--pad) 28px;justify-content:flex-end}
+ .hero.v-daylight-still .ds-h1{font-size:clamp(27px,7.5vw,34px);max-width:17ch;line-height:1.04;margin-bottom:22px}
+ .hero.v-daylight-still .ds-pool{background:linear-gradient(0deg,color-mix(in srgb,var(--dark) 28%,transparent),transparent 32%)}
+ .hero.v-daylight-still .ds-actions{flex-wrap:nowrap;gap:10px}
+ .hero.v-daylight-still .ds-actions .btn{min-width:0;font-size:12px;padding:12px 11px;min-height:46px;flex:1 1 0}
+ .hero.v-daylight-still::after{background:linear-gradient(0deg,color-mix(in srgb,var(--dark) 95%,transparent),transparent 70%)}
+ .hero.v-daylight-still .ds-echo{filter:blur(30px) saturate(1.1) brightness(.5)}
+}
+@media(prefers-reduced-motion:reduce){[data-depth],[data-depth] img{transform:none!important;transition:none!important}.card-roll{transition:none}}
+
+.community-eyebrow{font:700 11px/1.5 var(--body);color:var(--bone);letter-spacing:.18em;text-transform:uppercase;margin:0 0 14px}.community-lede{font:500 18px/1.4 var(--body);color:var(--bone);margin:0 0 24px}.hero.v-daylight-still .ds-h1{margin-bottom:16px}
+@media(max-width:640px){.hero.v-daylight-still .ds-frame{height:58svh}.hero.v-daylight-still .ds-inner{padding-top:20px}.community-eyebrow{font-size:10px;margin-bottom:12px}.community-lede{font-size:16px;margin-bottom:20px}.hero.v-daylight-still .ds-h1{margin-bottom:13px}}

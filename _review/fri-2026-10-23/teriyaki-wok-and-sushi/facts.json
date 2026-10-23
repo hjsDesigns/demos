@@ -1,0 +1,95 @@
+{
+  "_comment": "Every fact here is checked against the page's visible text. Sources: their own site https://teriyakiwoksushiwa.com/ (name, address, phone, hours Sun/Tue-Sat, the four photos), their ordering page https://teriyakiwoksushi.menu11.com/bonneylake/order (all 201 item names + prices, verbatim), and https://www.restaurantji.com/wa/bonney-lake/teriyaki-wok-/ (Monday closed, the three dated review quotes). The 4.4 / 646 Google figure comes from the hunt sheet in Clients/Teriyaki Wok & Sushi.md.",
+  "name": "Teriyaki Wok & Sushi",
+  "phone": "(253) 891-1980",
+  "address": "9925 214th Ave E, Unit L, Bonney Lake, WA 98391",
+  "hours": [
+    "Sunday 12 pm – 8:30 pm",
+    "Monday Closed",
+    "Tuesday 11 am – 8:30 pm",
+    "Wednesday 11 am – 8:30 pm",
+    "Thursday 11 am – 8:30 pm",
+    "Friday 11 am – 8:30 pm",
+    "Saturday 12 pm – 8:30 pm"
+  ],
+  "prices": [
+    "$19.95"
+  ],
+  "price_selector": ".bento-price",
+  "header_selector": ".site-header",
+  "expected_sections": [
+    "top",
+    "hero",
+    "hours",
+    "about",
+    "menu",
+    "signature",
+    "gallery",
+    "reviews",
+    "contact",
+    "cta"
+  ],
+  "allow_repeat": [
+    "(253) 891-1980",
+    "9925 214th Ave E, Unit L",
+    "Bento box",
+    "Bonney Lake, WA",
+    "Bonney Lake, WA 98391",
+    "Come get it",
+    "Delivery",
+    "Dine in",
+    "Google",
+    "Hours",
+    "Menu",
+    "Order online",
+    "Order online ↗",
+    "Photos",
+    "Take out",
+    "Teriyaki",
+    "Teriyaki Wok & Sushi",
+    "The boards over the counter",
+    "The restaurant",
+    "The room",
+    "teriyaki chicken",
+    "the sushi bar"
+  ],
+  "_sourced_facts": {
+    "items_on_menu": 201,
+    "sushi_rolls": 56,
+    "sashimi_cuts": 10,
+    "open_days_per_week": 6,
+    "bento_prices": {
+      "B-3 Chicken Teriyaki Bento": "19.95",
+      "B-4 Beef Teriyaki Bento": "20.95",
+      "B-5 Pork Teriyaki Bento": "19.95",
+      "B-6 Salmon Teri Bento": "20.95",
+      "B-7 Short Rib Bento": "28.95"
+    },
+    "bento_fixed_sides": "Comes with Rice, Salad, Gyoza, California Roll (menu11, verbatim on all seven bentos)",
+    "google_rating": "4.4 / 649 reviews (re-verified 2026-09-08 from the Google Maps place panel star histogram, cid 9468896444782640707)",
+    "order_online_url": "https://teriyakiwoksushi.menu11.com/bonneylake/order",
+    "printed_menu_items": "10 more (Tartare & Tataki 4, Carpaccio 6) transcribed verbatim from harvest-0906/g7.jpg, a photo of their in-house printed menu; these are NOT on the menu11 ordering page"
+  },
+  "_unknown": [
+    "Facebook / Instagram URLs (client note records FB /teriyakiwok — not verified, so not linked)",
+    "HOURS CONFLICT 9/7: Hayden found them CLOSED Sun 9/6 ~5:35 PM; their own site + door sign both say Sun 12–8:30. Likely a Labor Day-weekend closure — confirm Sunday hours with the owner before the pitch.",
+    "OWNER: several 2025-26 Google reviews say the place changed hands and was remodelled ('they are the new owners', 'what a transformation'); one review names an owner as James. NOT verified — confirm the owner's name before the pitch.",
+    "Sushi was added to the teriyaki menu roughly two years ago per reviews — confirm the date before putting it in copy.",
+    "founding year",
+    "owner name",
+    "public email address"
+  ],
+  "_hero": "9/8: hero is the APPROVED daylight-still storefront (locked). Interior photos moved into #about; the lit menu boards open #menu.",
+  "_reviews": {
+    "law": "REVIEW ATTRIBUTION LAW 9/6 — real name + real profile photo from the same source.",
+    "source": "Google Maps place cid 9468896444782640707, harvested 2026-09-08 (scrape-reviews.py, reviews.json).",
+    "shown": [
+      "jacob smith (a month ago)",
+      "Kevin Martin (10 months ago)",
+      "Nicole Fifield (5 months ago)",
+      "Jay Freeman (7 months ago, trimmed with an ellipsis)"
+    ],
+    "rejected": "Google monogram-letter avatars (a coloured square with one initial) were rejected as fabricated initials, not profile photos — Kelly Brammer, Colby Foster, Kevin Combs, Lucy Ray, Heidi Grande, Seonyoung Ahn, Teresa Simmons, Mauricio Landin, Andrew Gaddy, Sheri Beutler, tyler vallala, angela tapia; Brett Roper (phoenix logo); Adara Lombardi (parrot photo, real but not a face).",
+    "gap": "None — 4 full name+photo pairs shipped, plus a link out to the live reviews."
+  }
+}

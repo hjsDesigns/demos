@@ -1,0 +1,67 @@
+[
+  {
+    "check": "navigation 360",
+    "result": "pass",
+    "detail": "Toggle/Escape/focus/outside click/link-close correct where applicable; no horizontal overflow."
+  },
+  {
+    "check": "menu and downstream flow 360",
+    "result": "pass",
+    "detail": "All three categories/counts/selected states, keyboard Enter/Space, live announcement and image decode pass; menu/room/story/contact screenshots captured; no errors or overflow."
+  },
+  {
+    "check": "navigation 390",
+    "result": "pass",
+    "detail": "Toggle/Escape/focus/outside click/link-close correct where applicable; no horizontal overflow."
+  },
+  {
+    "check": "menu and downstream flow 390",
+    "result": "pass",
+    "detail": "All three categories/counts/selected states, keyboard Enter/Space, live announcement and image decode pass; menu/room/story/contact screenshots captured; no errors or overflow."
+  },
+  {
+    "check": "navigation 736",
+    "result": "pass",
+    "detail": "Toggle/Escape/focus/outside click/link-close correct where applicable; no horizontal overflow."
+  },
+  {
+    "check": "menu and downstream flow 736",
+    "result": "pass",
+    "detail": "All three categories/counts/selected states, keyboard Enter/Space, live announcement and image decode pass; menu/room/story/contact screenshots captured; no errors or overflow."
+  },
+  {
+    "check": "navigation 768",
+    "result": "pass",
+    "detail": "Toggle/Escape/focus/outside click/link-close correct where applicable; no horizontal overflow."
+  },
+  {
+    "check": "menu and downstream flow 768",
+    "result": "pass",
+    "detail": "All three categories/counts/selected states, keyboard Enter/Space, live announcement and image decode pass; menu/room/story/contact screenshots captured; no errors or overflow."
+  },
+  {
+    "check": "navigation 1024",
+    "result": "pass",
+    "detail": "Toggle/Escape/focus/outside click/link-close correct where applicable; no horizontal overflow."
+  },
+  {
+    "check": "menu and downstream flow 1024",
+    "result": "pass",
+    "detail": "All three categories/counts/selected states, keyboard Enter/Space, live announcement and image decode pass; menu/room/story/contact screenshots captured; no errors or overflow."
+  },
+  {
+    "check": "navigation 1440",
+    "result": "pass",
+    "detail": "Toggle/Escape/focus/outside click/link-close correct where applicable; no horizontal overflow."
+  },
+  {
+    "check": "menu and downstream flow 1440",
+    "result": "pass",
+    "detail": "All three categories/counts/selected states, keyboard Enter/Space, live announcement and image decode pass; menu/room/story/contact screenshots captured; no errors or overflow."
+  },
+  {
+    "check": "No JavaScript and factual boundaries",
+    "result": "pass",
+    "detail": "All10 real menu dishes and core copy remain; exact phone/maps/menu actions; no simulated ordering, unverified prices/closing status or invented review date."
+  }
+]

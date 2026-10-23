@@ -1,0 +1,54 @@
+[
+  {
+    "name": "primary",
+    "url": "https://miltonlodge.com/",
+    "result": "200 114",
+    "return": 0,
+    "title": []
+  },
+  {
+    "name": "restaurantji",
+    "url": "https://www.restaurantji.com/wa/milton/milton-lodge-/",
+    "result": "200 381100",
+    "return": 0,
+    "title": [
+      "Milton Lodge Bar and Grill, Milton - Menu, Reviews (203), Photos (40) - Restaurantji"
+    ]
+  },
+  {
+    "name": "gallery",
+    "url": "https://www.restaurantji.com/wa/milton/milton-lodge-/gallery/",
+    "result": "200 32461",
+    "return": 0,
+    "title": [
+      "Gallery"
+    ]
+  },
+  {
+    "name": "menu",
+    "url": "https://www.restaurantji.com/wa/milton/milton-lodge-/menu/",
+    "result": "403 5484",
+    "return": 0,
+    "title": [
+      "Just a moment..."
+    ]
+  },
+  {
+    "name": "restaurantjump",
+    "url": "https://restaurantjump.com/milton-lodge-bar-and-grill-98354/",
+    "result": "403 5508",
+    "return": 0,
+    "title": [
+      "Just a moment..."
+    ]
+  },
+  {
+    "name": "giftly",
+    "url": "https://www.giftly.com/gift-card/the-milton-lodge-milton",
+    "result": "200 272598",
+    "return": 0,
+    "title": [
+      "The Milton Lodge Giftly - Beautiful Gift Card Alternative"
+    ]
+  }
+]

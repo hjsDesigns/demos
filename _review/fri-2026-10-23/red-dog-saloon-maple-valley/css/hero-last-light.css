@@ -1,0 +1,36 @@
+/* Last Light at the Red Dog. Hero-only override; original sign pixels stay worn.
+   Dusk is a distinct, previously unused photograph. No redraw, blur or light simulation. */
+#hero.roadside-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,37%) minmax(0,63%);align-items:center;min-height:calc(100svh - var(--header-h));height:auto;padding:42px 0;background:var(--bg);color:var(--bone);overflow:hidden;border-bottom:1px solid var(--line)}
+#hero.roadside-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--dark),var(--bg) 42%);pointer-events:none}
+.roadside-scene{grid-column:2;grid-row:1;align-self:center;position:relative;width:100%;padding:0 3.5vw 0 0;animation:roadside-arrive 1.8s cubic-bezier(.16,1,.3,1) both}
+.roadside-scene img{display:block;width:100%;height:auto;max-height:calc(100svh - var(--header-h) - 84px);object-fit:contain;object-position:right center;filter:none;transform:none;animation:none;box-shadow:0 24px 50px color-mix(in srgb,var(--dark) 60%,transparent)}
+.roadside-heading{grid-column:1;grid-row:1;position:relative;z-index:1;width:100%;padding:35px 0 35px var(--pad)}
+.roadside-location{font:700 11px/1.5 var(--body);letter-spacing:.21em;text-transform:uppercase;color:var(--warm);margin:0 0 25px}
+#hero.roadside-hero h1{width:112%;max-width:550px;margin:0 0 36px;font:400 32px/1 var(--display);text-shadow:none;transform:none;opacity:1;animation:none}
+.roadside-sign{display:block;width:100%;aspect-ratio:1100/615;background:url('../images/mark.jpg') center / contain no-repeat;transform:rotate(-3deg);box-shadow:0 16px 25px color-mix(in srgb,var(--dark) 72%,transparent);animation:roadside-sign 1.3s .25s cubic-bezier(.16,1,.3,1) both}
+.roadside-sub{font:400 clamp(23px,2.45vw,35px)/1.28 var(--display);color:var(--bone);letter-spacing:-.02em;max-width:21ch;margin:0 10px 28px 0;text-wrap:balance}
+.roadside-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.roadside-actions .btn{padding:14px 22px;min-height:50px;font-size:15px}
+.roadside-menu{color:var(--bone);font:700 15px/1.5 var(--body);text-decoration:underline;text-underline-offset:6px;padding:12px 0}
+.roadside-menu:hover{color:var(--warm)}.roadside-menu:focus-visible{outline:2px solid var(--warm);outline-offset:6px}
+.roadside-edge{position:absolute;bottom:0;left:0;width:100%;height:4px;background:var(--rust);transform-origin:left;animation:roadside-line 1s .6s ease-out both}
+@keyframes roadside-arrive{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}
+@keyframes roadside-sign{from{transform:translateY(18px) rotate(1deg);opacity:0}to{transform:rotate(-3deg);opacity:1}}
+@keyframes roadside-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(min-width:1700px){#hero.roadside-hero{grid-template-columns:minmax(0,36%) minmax(0,64%)}.roadside-heading{max-width:610px;justify-self:end}.roadside-scene{max-width:1200px}}
+@media(max-width:900px) and (min-width:761px){.roadside-heading{padding-left:24px}.roadside-sub{font-size:24px}.roadside-location{font-size:9px}.roadside-actions{gap:8px}.roadside-actions .btn{font-size:13px;padding:12px 17px}.roadside-menu{font-size:13px}}
+@media(max-width:760px){
+ #hero.roadside-hero{display:flex;flex-direction:column;justify-content:flex-start;min-height:calc(100svh - var(--header-h));padding:0;background:var(--bg)}
+ .roadside-scene{order:0;padding:0;width:100%;flex:none;animation-duration:1.5s}
+ .roadside-scene img{width:100%;height:auto;max-height:none;object-fit:contain;box-shadow:none}
+ .roadside-heading{order:1;flex:1;width:100%;padding:0 24px 30px;display:flex;flex-direction:column;align-items:center;text-align:center}
+ .roadside-location{order:1;font-size:10px;margin:21px 0 13px;letter-spacing:.18em}
+ #hero.roadside-hero h1{order:0;width:76%;max-width:330px;margin:-38px 0 0;position:relative}
+ .roadside-sign{transform:rotate(-3deg);border:5px solid var(--paper);box-shadow:0 12px 24px color-mix(in srgb,var(--dark) 50%,transparent)}
+ .roadside-sub{order:2;font-size:clamp(22px,6.3vw,29px);margin:0 0 22px;max-width:25ch}
+ .roadside-actions{order:3;width:100%;justify-content:center;gap:20px;margin-top:auto}
+ .roadside-actions .btn{flex:1;max-width:220px;font-size:14px;padding:13px 15px}
+ .roadside-menu{font-size:14px}
+}
+@media(max-width:360px){.roadside-heading{padding-inline:20px}.roadside-actions{gap:15px}.roadside-sub{font-size:22px}}
+@media(prefers-reduced-motion:reduce){#hero.roadside-hero *,#hero.roadside-hero *::before,#hero.roadside-hero *::after{animation:none!important;transition:none!important}.roadside-scene{clip-path:none}.roadside-sign{opacity:1;transform:rotate(-3deg)}.roadside-edge{transform:none}}

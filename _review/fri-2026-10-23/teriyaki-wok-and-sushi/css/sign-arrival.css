@@ -1,0 +1,36 @@
+/* The actual channel-letter sign, with its own painted flame as the ignition point.
+   The photograph is unchanged; only its presentation is cropped in the browser. */
+:root{--sign-hot:#FF883A;--sign-core:#FFF2B3;--sign-shadow:#020C10;--sign-ease:cubic-bezier(.16,.9,.22,1)}
+.hero.v-wok-ignition{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:1fr;place-items:center;min-height:calc(100svh - var(--header-h));padding:clamp(65px,9vh,105px) var(--pad) clamp(45px,7vh,75px);background:var(--dark);border-bottom:1px solid var(--line);text-align:center}
+.ignition-room{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse 74% 62% at 70% 14%,color-mix(in srgb,var(--brand) 18%,transparent),transparent 72%),radial-gradient(ellipse 65% 70% at 16% 86%,color-mix(in srgb,var(--brand) 11%,transparent),transparent 75%),var(--dark)}
+.ignition-horizon{position:absolute;left:-10%;right:-10%;height:50%;top:12%;border:1px solid color-mix(in srgb,var(--brand) 17%,transparent);border-radius:50%;transform:perspective(800px) rotateX(63deg) rotateZ(-8deg);box-shadow:0 0 36px color-mix(in srgb,var(--brand) 8%,transparent),inset 0 0 45px color-mix(in srgb,var(--brand) 5%,transparent)}
+.ignition-floor{position:absolute;left:10%;right:10%;top:40%;height:25%;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--brand) 12%,transparent),transparent 66%);transform:perspective(700px) rotateX(67deg)}
+.ignition-inner{width:100%;max-width:820px;position:relative}
+.ignition-inner .community-eyebrow{color:var(--brand-text);margin:0 0 clamp(38px,6vh,62px)}
+.ignition-sign{position:relative;display:block;width:min(100%,660px);margin:0 auto;padding:0;border:0;background:transparent;color:inherit;cursor:pointer;perspective:900px;isolation:isolate;-webkit-tap-highlight-color:transparent}
+.ignition-sign:focus-visible{outline:2px solid var(--brand);outline-offset:18px;border-radius:10px}
+.ignition-mark-stage{position:relative;display:block;width:100%;aspect-ratio:720/194;transform-style:preserve-3d;transform-origin:80% 66%}
+.ignition-mark{position:relative;display:block;width:100%;height:auto;z-index:2;filter:drop-shadow(0 13px 0 color-mix(in srgb,var(--sign-shadow) 84%,transparent)) drop-shadow(0 26px 18px color-mix(in srgb,var(--sign-shadow) 80%,transparent))}
+.ignition-flame{position:absolute;left:0;top:-100%;width:100%;height:210%;z-index:3;pointer-events:none}
+.ignition-glow{position:absolute;left:75%;top:2%;width:22%;aspect-ratio:1;z-index:0;border-radius:50%;opacity:.22;background:radial-gradient(circle,color-mix(in srgb,var(--sign-hot) 65%,transparent),transparent 65%);transform:scale(1.5);pointer-events:none}
+.ignition-streak{position:absolute;left:0;right:0;top:62%;height:2px;z-index:0;background:linear-gradient(90deg,transparent,var(--brand),var(--sign-core),transparent);opacity:0;transform-origin:right center;box-shadow:0 0 12px var(--brand);pointer-events:none}
+.ignition-hint{font:500 12px/1.4 var(--body);color:var(--muted);margin:32px 0 30px;letter-spacing:.03em}
+.v-wok-ignition h1{font:400 clamp(27px,3vw,42px)/1.13 var(--display);letter-spacing:-.025em;color:var(--bone);margin:0 auto 16px;max-width:20ch;text-wrap:balance}
+.v-wok-ignition .community-lede{font-size:clamp(15px,1.4vw,18px);color:var(--muted);margin-bottom:27px}
+.ignition-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.ignition-actions .btn{min-height:50px;min-width:205px;font-weight:700}
+.ignition-playing .ignition-mark-stage{animation:sign-arrive 1.6s var(--sign-ease) both}
+.ignition-playing .ignition-streak{animation:sign-trail 1.4s ease-out both}
+.ignition-playing .ignition-glow{animation:sign-ignite 3.8s ease-out both}
+@keyframes sign-arrive{0%{opacity:0;transform:translate3d(-65%,10%,160px) rotateZ(-16deg) rotateY(-32deg) scale(.7)}38%{opacity:1}65%{transform:translate3d(1.5%,-1%,0) rotateZ(1.4deg) rotateY(3deg) scale(1.025)}100%{opacity:1;transform:none}}
+@keyframes sign-trail{0%{opacity:0;transform:translateX(-45%) scaleX(.1)}30%{opacity:.7}80%{opacity:.2;transform:translateX(0) scaleX(1)}100%{opacity:0;transform:translateX(25%) scaleX(.6)}}
+@keyframes sign-ignite{0%,32%{opacity:.08;transform:scale(.8)}47%{opacity:.85;transform:scale(2.8)}65%{opacity:.45;transform:scale(2)}100%{opacity:.22;transform:scale(1.5)}}
+.storefront-arrival{width:calc(100% - var(--pad)*2);max-width:calc(var(--maxw) - var(--pad)*2);margin:clamp(32px,5vw,62px) auto 0;padding:0;background:var(--dark);border:1px solid color-mix(in srgb,var(--brand) 40%,var(--line));border-radius:9px 9px 0 0;overflow:hidden;box-shadow:0 26px 50px -32px var(--sign-shadow)}
+.storefront-window{width:100%;aspect-ratio:2.35;overflow:hidden;background:var(--dark)}
+.storefront-window img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 12%;filter:none;transform:none}
+.storefront-arrival figcaption{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0;padding:17px 22px;color:var(--bone);font:500 14px/1.4 var(--body);border-top:3px solid var(--brand)}
+.storefront-arrival figcaption strong{font-weight:600}.storefront-arrival figcaption span{font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.storefront-arrival+#hours{margin-top:0;border-top:0}
+@media(max-width:640px){.hero.v-wok-ignition{min-height:calc(100svh - var(--header-h));padding:70px 24px 40px}.ignition-inner .community-eyebrow{font-size:10px;letter-spacing:.16em;margin-bottom:64px}.ignition-mark-stage{transform-origin:82% 70%}.ignition-hint{margin:29px 0 43px;font-size:11px}.v-wok-ignition h1{font-size:clamp(27px,7.4vw,34px);max-width:18ch}.v-wok-ignition .community-lede{font-size:15px;max-width:27ch;margin:0 auto 25px}.ignition-actions{gap:10px;flex-wrap:nowrap}.ignition-actions .btn{min-width:0;flex:1;font-size:12px;padding:12px 9px;min-height:48px}.storefront-arrival{width:calc(100% - 28px);max-width:none;margin-top:28px}.storefront-window{aspect-ratio:1.95}.storefront-arrival figcaption{padding:13px 12px;gap:9px;font-size:12px}.storefront-arrival figcaption span{font-size:10px;letter-spacing:.02em}}
+@media(max-height:700px) and (min-width:641px){.hero.v-wok-ignition{padding-block:44px}.ignition-inner .community-eyebrow{margin-bottom:35px}.ignition-sign{max-width:600px}.ignition-hint{margin-block:20px}.v-wok-ignition h1{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.ignition-playing .ignition-mark-stage,.ignition-playing .ignition-streak,.ignition-playing .ignition-glow{animation:none!important}.ignition-streak,.ignition-flame{display:none}.ignition-mark-stage{transform:none!important}.ignition-glow{opacity:.22;transform:scale(1.5)}}

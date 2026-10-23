@@ -1,0 +1,26 @@
+HTTP/2 200 
+date: Sun, 06 Sep 2026 05:40:26 GMT
+content-type: text/html; charset=utf-8
+cache-control: max-age=0, private, must-revalidate
+set-cookie: giftly=ns%3Dt%26tsid%3Dc937efda-7f57-4dd1-bcf4-0998953893ec%26tssd%3D2026-09-05+22%3A40%3A26+-0700%26ip%3D98.97.34.84%26or%3D%26os%3D%26la%3D2026-09-05+22%3A40%3A26+-0700%26lp%3D%2Fgift-card%2Fthe-milton-lodge-milton; path=/; secure; samesite=lax
+set-cookie: XSRF-TOKEN=PqS9IPEAbfas4Wpk_mYf7AIiVMsD2PDinHmBG51cEoF-Y_8EFmSlu8dB0Wz2o4HWIPMp0ETCBQfSeNNlI7kY5A; path=/; samesite=lax; secure
+set-cookie: _giftly_session=CzOT%2FgLh5XowQwOIb9hoOsZXv0CggaIjXwd9gGdt5oM1xhCowJj0cH66mNh1mcXhSxfWEwYI0e5bg6LND8EVKoGourpe34y5%2FKqPUW0LSVfx3roF2Xyod84TNuFXZcw%2BRXc%2BKyjrLsrMHwHyliJIVmdHk3VBuo5wjbBdxVseQDM8FRFUJHl9BdzkpymStSylHVHdhEV7eGqI2mamwCwIFxnBCKWzsgUJnFz9q%2BvwxMnPjRfGmtdDz%2BfcgQxcXDXRbzfsTsta0osfUAsy%2BSmGFK2xp9nGUi8%3D--r1fQlWlICA9acDLr--IyCxSt2FV1vxbnuRwTHdNA%3D%3D; path=/; secure; httponly; samesite=lax
+set-cookie: __cf_bm=KxC8oEolJ1zC5HjS1cWLUKP.JJ0Gr.2swPefuNMMIbw-1788673226.0533357-1.0.1.1-5wj48KqD64rzHVpt0WjCAlz5Qr2F3hofjzPgd56k6qQTz18rxrLmXGJTZaeU53flxaow4lAuv_ocicap42aHID.MvswoOh3of_NRja2R8UUZqz1O8jGeDsnWCZ5qOTEQ; HttpOnly; SameSite=None; Secure; Path=/; Domain=giftly.com; Expires=Sun, 06 Sep 2026 06:10:26 GMT
+link: <https://assets3.giftly.com/vite/consumer/assets/consumer_ssr-CR8NUz_9.js>; rel=modulepreload; as=script; crossorigin=; nopush,<https://assets3.giftly.com/vite/consumer/assets/consumer_phlex-kk9p_M2s.js>; rel=modulepreload; as=script; crossorigin=; nopush,<https://assets3.giftly.com/vite/consumer/assets/consumer_ssr-DPsHsi5T.css>; rel=preload; as=style; crossorigin=; nopush,<https://assets3.giftly.com/vite/consumer/assets/consumer_phlex-hMsHXolp.css>; rel=preload; as=style; crossorigin=; nopush,<https://assets3.giftly.com/vite/consumer/assets/windi-C-c6i8M6.css>; rel=preload; as=style; crossorigin=; nopush,<https://assets3.giftly.com/vite/consumer/assets/giftly_image-CQ3eWYKo.css>; rel=preload; as=style; crossorigin=; nopush,<https://assets3.giftly.com/vite/consumer/assets/Icon-5HQHss18.css>; rel=preload; as=style; crossorigin=; nopush,<https://assets3.giftly.com/vite/consumer/assets/BaseDialog-CL1jtJu2.css>; rel=preload; as=style; crossorigin=; nopush
+nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}
+referrer-policy: strict-origin-when-cross-origin
+report-to: {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=%2FG6d4DjfYA34KFuI8nhckO07r9Bg1X%2BlWZiowf3JSLk%3D\u0026sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6\u0026ts=1788673226"}],"max_age":3600}
+reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=%2FG6d4DjfYA34KFuI8nhckO07r9Bg1X%2BlWZiowf3JSLk%3D&sid=929419e7-33ea-4e2f-85f0-7d8b7cd5cbd6&ts=1788673226"
+server: cloudflare
+strict-transport-security: max-age=31536000; includeSubDomains
+vary: Accept, Accept-Encoding, Origin
+via: 1.1 heroku-router
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-permitted-cross-domain-policies: none
+x-request-id: 1dd2554e-4efe-46ac-4e10-129990dd3919
+x-runtime: 0.355975
+x-xss-protection: 1; mode=block
+cf-cache-status: DYNAMIC
+cf-ray: a36b238edbe9a344-SEA
+

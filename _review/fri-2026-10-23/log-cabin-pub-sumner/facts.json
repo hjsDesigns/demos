@@ -1,0 +1,71 @@
+{
+  "name": "The Log Cabin Pub",
+  "phone": "(253) 863-2905",
+  "address": "2719 E Valley Hwy E, Sumner, WA 98390",
+  "hours": {
+    "Sun": "8:00 am – 2:00 am",
+    "Mon": "10:00 am – 2:00 am",
+    "Sat": "8:00 am – 2:00 am"
+  },
+  "prices": [
+    "18",
+    "15",
+    "17",
+    "17",
+    "14",
+    "14",
+    "13",
+    "12",
+    "12",
+    "12",
+    "12",
+    "12"
+  ],
+  "price_selector": ".unroll[open] .menu-list .price",
+  "header_selector": "header.site-header",
+  "expected_sections": [
+    "top",
+    "hero",
+    "hours",
+    "rooms",
+    "menu",
+    "signature",
+    "about",
+    "reviews",
+    "contact",
+    "cta"
+  ],
+  "allow_repeat": [
+    "8:00 am – 2:00 am",
+    "10:00 am – 2:00 am",
+    "(253) 863-2905",
+    "2719 E Valley Hwy E, Sumner, WA 98390",
+    "Sumner, WA",
+    "Sumner, Washington",
+    "The Log Cabin Pub",
+    "Log Cabin Pub",
+    "Facebook",
+    "Instagram",
+    "Menu",
+    "Hours",
+    "Games",
+    "The rooms",
+    "Find us",
+    "Google · 2 months ago",
+    "Google",
+    "Reviews",
+    "Read all of them on Google ↗"
+  ],
+  "sources": {
+    "hours": "Restaurantji listing for Log Cabin Pub, Sumner (page updated 2026-04-27): Mon–Fri 10AM–2AM, Sat–Sun 8AM–2AM",
+    "rating": "Google 4.1 stars / 958 reviews (verified on the Maps place page 2026-09-06); Restaurantji 4.1 from 181 ratings with Food 4.4 / Service 4.2 / Atmosphere 4.0",
+    "menu": "The pub's own ALL DAY MENU and BREAKFAST menu PDFs, linked from their Linktree (linktr.ee/log_cabin_pub); every item and price transcribed verbatim and verified against the rendered PDF pages",
+    "tagline": "\"What happens here, stays here.\" — the pub's own Linktree bio; the same line appears on a tin sign photographed on their bar wall (harvest g58)",
+    "sign_copy": "\"eats | drinks | games\" and \"entertainment | beer garden\" — read off their own roadside sign (harvest g57, used as the hero)",
+    "socials": "facebook.com/logcabinpub · instagram.com/logcabinpub · linktr.ee/log_cabin_pub",
+    "photos": "60 full-size Google photos harvested 2026-09-06 to harvest-0906/",
+    "reviews": "Four verbatim Google reviews with the reviewer's real published name and their real Google profile photo (=s240-c off the same review card), harvested 2026-09-08 from the Log Cabin Pub place page via a warmed persistent Chromium profile — full dump in reviews.json (60 unique cards). Nykole Larson 5★ 2mo · Kyle 5★ 1yr · Nimrata Nand 5★ 2mo · Kelly Jo Caswell 5★ 5mo.",
+    "storefront": "harvest-0906/g57.jpg — their roadside sign and lit reader board on E Valley Hwy, shot from the lot; cropped only of empty sky and asphalt to images/sign-roadside.jpg (1920x1340), sign whole."
+  },
+  "price_note": "Scoped to the open title-card group (Appetizers, 12 items) because the other menu groups are collapsed unrolls and render no text until tapped. All 49 prices across the five groups come from the pub's own ALL DAY MENU and BREAKFAST PDFs and were checked item-by-item against the rendered PDF pages."
+}
