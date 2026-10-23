@@ -1,0 +1,9 @@
+{
+  "name": "Hello Pho",
+  "phone": "(253) 904-8480",
+  "address": "16116 Meridian E, Ste L, Puyallup, WA 98375",
+  "hours": ["Friday 10 am – 9 pm"],
+  "header_selector": "header, .site-header",
+  "expected_sections": ["top", "hours", "services", "gallery", "specials", "about", "reviews", "contact", "cta"],
+  "allow_repeat": ["16116 Meridian E, Ste L, Puyallup, WA 98375", "(253) 904-8480"]
+}

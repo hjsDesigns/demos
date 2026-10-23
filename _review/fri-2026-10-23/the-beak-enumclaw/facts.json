@@ -1,0 +1,42 @@
+{
+ "name": "The Beak",
+ "phone": "(360) 625-8621",
+ "address": "23525 SE 436th St #9067, Enumclaw, WA 98022",
+ "hours": {
+  "Mon": "11 AM – 10 PM",
+  "Tue": "11 AM – 10 PM",
+  "Wed": "11 AM – 10 PM",
+  "Thu": "11 AM – 12 AM",
+  "Fri": "11 AM – 2 AM",
+  "Sat": "11 AM – 2 AM",
+  "Sun": "11 AM – 10 PM"
+ },
+ "prices": [],
+ "price_selector": ".price",
+ "header_selector": "header, .site-header",
+ "expected_sections": [
+  "top",
+  "hero",
+  "hours",
+  "plate",
+  "facts",
+  "room",
+  "reviews",
+  "contact"
+ ],
+ "allow_repeat": [
+  "11 AM – 10 PM",
+  "(360) 625-8621",
+  "Google reviews",
+  "Save a stool",
+  "“The food here was phenomenal! I had been looking for good BBQ since moving here from the south two years ago and I definitely found my spot! The smoked wings were delicious, and the brisket was the best I've ever had. Amanda and Eric were incredibly friendly, and they made me feel right at home. Thanks!”",
+  "“With the renovations and new staff this place is doing much better. Such friendly staff, great drinks and good food! They welcome feedback and I think that's a great quality for a place to have.”",
+  "“We stopped in here for the first time. were greeted by friendly staff, Alyssa and Liz. They also waited on us and were extremely attentive to our needs and wants.”",
+  "Jamie Elizabeth (Jamie)",
+  "Google · 4 months ago",
+  "Google · 5 months ago",
+  "Google · a year ago",
+  "LM Bu",
+  "Erin Connolly, DVM"
+ ]
+}

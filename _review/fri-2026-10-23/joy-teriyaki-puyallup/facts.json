@@ -1,0 +1,16 @@
+{
+  "name": "Joy Teriyaki",
+  "phone": "(253) 446-7203",
+  "address": "13105 Meridian E, Site 106, Puyallup, WA 98373",
+  "hours": {
+    "Mon": "Closed",
+    "Tue": "11:00 AM – 8:30 PM",
+    "Sat": "11:00 AM – 8:30 PM",
+    "Sun": "11:00 AM – 8:00 PM"
+  },
+  "prices": [],
+  "price_selector": ".price",
+  "header_selector": "header, .site-header",
+  "expected_sections": ["top", "hero", "hours", "menu", "gallery", "about", "reviews", "contact", "cta"],
+  "allow_repeat": ["13105 Meridian E, Site 106, Puyallup, WA 98373", "(253) 446-7203", "Teriyaki"]
+}

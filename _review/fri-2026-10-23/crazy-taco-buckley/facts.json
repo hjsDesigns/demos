@@ -1,0 +1,35 @@
+{
+ "name": "Crazy Taco Buckley",
+ "phone": "(253) 831-8545",
+ "address": "28120 WA-410, Buckley, WA 98321",
+ "hours": {
+  "Mon": "11 AM – 8 PM",
+  "Tue": "11 AM – 8 PM",
+  "Wed": "11 AM – 8 PM",
+  "Thu": "11 AM – 8 PM",
+  "Fri": "11 AM – 8 PM",
+  "Sat": "11 AM – 8 PM",
+  "Sun": "Closed"
+ },
+ "prices": [],
+ "price_selector": ".price",
+ "header_selector": "header, .site-header",
+ "expected_sections": [
+  "top",
+  "hero",
+  "hours",
+  "menu",
+  "gallery",
+  "facts",
+  "reviews",
+  "contact",
+  "cta"
+ ],
+ "allow_repeat": [
+  "28120 WA-410, Buckley, WA 98321",
+  "11 AM – 8 PM",
+  "Closed",
+  "(253) 831-8545",
+  "Order online"
+ ]
+}
