@@ -585,3 +585,6 @@ figure,blockquote{margin:0}
   .prints{grid-template-columns:1fr 1fr}
 }
 @media (max-width:480px){.prints{grid-template-columns:1fr}}
+/* QA gate 10/22: section kickers are eyebrows (brand token, label size) */
+.section-head .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);font-weight:600;margin:0 0 14px}
+.section-dark .section-head .eyebrow{color:var(--warm)}
