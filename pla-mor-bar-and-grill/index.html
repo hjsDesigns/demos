@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <title>Pla-Mor Bar &amp; Grill — dive bar, full kitchen &amp; pull tabs, Maple Valley WA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Pla-Mor Bar &amp; Grill on SE 272nd in Maple Valley, Washington — hand-pressed 7 oz burgers, a full bar, a wall of pull tabs and dinner specials Monday through Friday. Voted Best Dive Bar, Best of Western Washington.">
+<meta name="description" content="Pla-Mor Bar &amp; Grill on SE 272nd in Maple Valley, Washington — hand-pressed 7 oz burgers, a full bar, a wall of pull tabs and a photographed menu of house dinner specials. Voted Best Dive Bar, Best of Western Washington.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Archivo Black (display — matches the heavy grotesque of their own printed PLA-MOR wordmark)
-     + Barlow (body). Must match --display / --body in css/style.css -->
+<!-- Rye + Alegreya Sans — retained from the existing approved body direction. -->
 <link href="https://fonts.googleapis.com/css2?family=Rye&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/purdy-review.css">
+<link rel="stylesheet" href="css/hero-2026-10-22.css">
+<link rel="stylesheet" href="css/finish-2026-10-23.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ===================== HEADER / NAV =====================
      The mark is their REAL wordmark, cropped straight off the front of
@@ -25,11 +27,10 @@
       <span class="wm-sub">Maple Valley, WA</span>
     </a>
     <div class="nav-wrap">
-      <a class="hdr-live" id="hdrLive" href="#hours"><span class="dot"></span><span id="hdrLiveText">checking…</span></a>
-      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">☰</button>
       <nav class="main-nav" id="main-nav">
         <a href="#services">What's here</a>
-        <a href="#signature">Tonight</a>
+        <a href="#signature">Specials</a>
         <a href="#menu">Menu</a>
         <a href="#gallery">The room</a>
         <a href="#hours">Hours</a>
@@ -40,29 +41,23 @@
 </header>
 
 <span id="top"></span>
-<main>
+<main id="main">
 
-  <!-- ===================== #hero =====================
-       EXTERIOR HERO DEFAULT: the building, with their own K5 Evening
-       "Best Dive Bar" banner on the wall, in evening light. Phones get a
-       real portrait frame of the same building from the lot, so nothing
-       important is cropped. Nothing sits on the photo but the headline. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <img class="shot-wide" src="images/hero.jpg" alt="The Pla-Mor Bar &amp; Grill building on SE 272nd at sunset, with its Best of Western Washington 'Best Dive Bar' banner on the wall" fetchpriority="high">
-<img class="shot-tall" src="images/hero-portrait.jpg" alt="The Pla-Mor Bar &amp; Grill building on SE 272nd at sunset, with its Best of Western Washington 'Best Dive Bar' banner on the wall" fetchpriority="high" width="1500" height="2000">
-    <span class="hero-glow" aria-hidden="true"></span></div>
-    <div class="hero-spacer"></div>
-    <div class="hero-inner">
-      <p class="hero-eyebrow">Pla-Mor · Maple Valley, WA</p>
-      <h1>A dive bar <em>with a real kitchen</em></h1>
-      <p class="hero-sub">
-        <span class="sub-long">Hand-pressed burgers, a wall of pull tabs and a full bar — out on SE 272nd in Maple Valley.</span>
-        <span class="sub-short">Burgers and pull tabs, on 272nd.</span>
-      </p>
-      <div class="hero-actions">
+  <!-- Hero: The Banner on 272nd. Emotion: a sun-warmed, well-worn local tavern.
+       The actual award banner stays on its actual wall. One arrival, then still. -->
+  <section class="pm-banner" id="hero" aria-labelledby="pm-title">
+    <div class="pm-wall">
+      <img src="images/hero.jpg" alt="Pla-Mor’s real Best Dive Bar banner, mounted on its weathered wall in the evening sun" width="2000" height="1500" fetchpriority="high">
+    </div>
+    <div class="pm-invitation">
+      <p class="pm-kicker">Maple Valley · Since 1966</p>
+      <h1 id="pm-title">PLA-MOR<span>Bar &amp; Grill</span></h1>
+      <span class="pm-rule" aria-hidden="true"></span>
+      <p class="pm-line">A dive bar.<br><em>A real kitchen.</em></p>
+      <p class="pm-detail">Hand-pressed burgers. Pull tabs.<br>A place to stay for another round.</p>
+      <div class="pm-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
-        <a href="#hours" class="btn btn-cream">Are they open?</a>
+        <a href="#hours" class="pm-link">Plan a visit <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>
@@ -98,6 +93,7 @@
        chevron is the affordance, and the real items roll out in place. -->
   <section class="section section-alt" id="services">
     <div class="wrap">
+<div class="facts-wrap" id="facts" aria-label="Four Pla-Mor details"><ul class="facts-row"><li><strong>1966</strong><span>“Since 1966” on the printed menu</span></li><li><strong>7 oz</strong><span>Hand-pressed beef burgers</span></li><li><strong>K5</strong><span>Best Dive Bar award on the wall</span></li><li><strong>Pull tabs</strong><span>A full wall alongside the bar</span></li></ul><p class="facts-source">From the restaurant’s 2026 menu and venue photographs saved September 6, 2026.</p></div>
       <div class="section-head reveal">
         <p class="eyebrow">Through the door</p>
         <h2>What's <em>in here</em></h2>
@@ -119,7 +115,7 @@
             <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
           <p class="when">Hand pressed · 7 oz · 100% beef</p>
-          <p>Their menu says it in three words on a stamp: hand pressed, 100% beef. Tap for how it comes.</p>
+          <p>The stamp on their menu next to the burgers reads “7OZ FRESH BEEF PATTY” around “100% BEEF”. Tap for how it comes.</p>
           <div class="rolled" id="roll-kitchen">
             <ul>
               <li>Bread: white, wheat, rye or sourdough</li>
@@ -158,8 +154,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Off the specials sheet in the binder</p>
-        <h2>Dinner specials <em>start at 4:00</em></h2>
-        <p>There's a page in the menu with a special for every weeknight. Tap a night to see what's on it.</p>
+        <h2>From the <em>specials sheet</em></h2>
+        <p>Five weeknight dishes from the photographed menu binder. Tap a day to explore the sheet; call for today’s specials.</p>
       </div>
 
       <div class="board-wrap reveal">
@@ -172,13 +168,13 @@
         </div>
 
         <div class="board" id="board" aria-live="polite">
-          <span class="board-tag" id="boardTag" hidden>Tonight</span>
+          <span class="board-tag" id="boardTag" hidden>From the photographed sheet</span>
           <p class="board-day" id="boardDay">Monday</p>
           <p class="board-dish" id="boardDish">Prime Rib Dinner</p>
           <p class="board-desc" id="boardDesc">14 oz., baked potato or fries, and salad.</p>
           <p class="board-extra" id="boardExtra"></p>
         </div>
-        <p class="board-fine">Copied word for word off their Daily Specials page. Prices on that sheet are older than the menu now in the binder — call and ask what tonight's runs.</p>
+        <p class="board-fine">Photographed September 2026; the sheet predates the 2026 main menu. Current dishes, days and prices need confirmation with the bar.</p>
       </div>
     </div>
   </section>
@@ -195,9 +191,9 @@
       </div>
 
       <div class="dish-strip reveal">
-        <figure class="dish"><img src="images/dish-1.jpg" alt="A bacon cheeseburger on a white plate — sesame bun, bacon, melted American cheese, lettuce and tomato" loading="lazy"><figcaption>Bacon cheeseburger</figcaption></figure>
-        <figure class="dish"><img src="images/dish-2.jpg" alt="A burger and fries in a red checkered basket on the bar, frizzled onions piled on the patty" loading="lazy"><figcaption>Out of the basket</figcaption></figure>
-        <figure class="dish"><img src="images/dish-3.jpg" alt="A patty melt on grilled rye with Swiss cheese and grilled onions, cut in half on a white plate" loading="lazy"><figcaption>Patty melt, on rye</figcaption></figure>
+        <figure class="dish"><img src="images/dish-1.jpg" alt="A bacon cheeseburger on a white plate — sesame bun, bacon, melted American cheese, lettuce and tomato" loading="lazy" width="2000" height="1500"><figcaption>Bacon cheeseburger</figcaption></figure>
+        <figure class="dish"><img src="images/dish-2.jpg" alt="A burger and fries in a red checkered basket on the bar, frizzled onions piled on the patty" loading="lazy" width="2000" height="1506"><figcaption>Out of the basket</figcaption></figure>
+        <figure class="dish"><img src="images/dish-3.jpg" alt="A patty melt on grilled rye with Swiss cheese and grilled onions, cut in half on a white plate" loading="lazy" width="2000" height="1500"><figcaption>Patty melt, on rye</figcaption></figure>
       </div>
 
       <div class="menu-groups reveal">
@@ -300,11 +296,11 @@
         <h2>Dark wood, <em>and a fish tank</em></h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The pull-tab wall at Pla-Mor — rows of bright game boards stacked above the bar rail, a drink on the counter in front" loading="lazy"><figcaption>Pull tabs, the length of the bar</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="The back bar — draft handles in a row and lit bottles on glass shelves" loading="lazy"><figcaption>The back bar</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A long hand-painted underwater scene on the wall with green fish and seaweed, a red neon OPEN sign lit in front of it" loading="lazy"><figcaption>The painted fish wall</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="The aquarium in the bar — a big armoured catfish resting on a piece of driftwood" loading="lazy"><figcaption>The tank in the corner</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="The back room at Pla-Mor — black tables and chairs, a television on the wall and the pull-tab boards behind" loading="lazy"><figcaption>Tables, away from the bar</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="The pull-tab wall at Pla-Mor — rows of bright game boards stacked above the bar rail, a drink on the counter in front" loading="lazy" width="2000" height="1506"><figcaption>Pull tabs, the length of the bar</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="The back bar — draft handles in a row and lit bottles on glass shelves" loading="lazy" width="2000" height="1125"><figcaption>The back bar</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A long hand-painted underwater scene on the wall with green fish and seaweed, a red neon OPEN sign lit in front of it" loading="lazy" width="2000" height="1125"><figcaption>The painted fish wall</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="The aquarium in the bar — a big armoured catfish resting on a piece of driftwood" loading="lazy" width="2000" height="1500"><figcaption>The tank in the corner</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="The back room at Pla-Mor — black tables and chairs, a television on the wall and the pull-tab boards behind" loading="lazy" width="2000" height="1500"><figcaption>Tables, away from the bar</figcaption></figure>
       </div>
     </div>
   </section>
@@ -314,7 +310,7 @@
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/about.jpg" alt="The bar top at Pla-Mor, set under glass with dozens of old wooden tavern tokens from around the plateau" loading="lazy">
+          <img src="images/about.jpg" alt="The bar top at Pla-Mor, set under glass with dozens of old wooden tavern tokens from around the plateau" loading="lazy" width="1500" height="2000">
           <figcaption>The bar top, under glass</figcaption>
         </figure>
         <div class="story-copy reveal">
@@ -340,7 +336,7 @@
       </div>
       <div class="proofs">
         <article class="proof-card reveal">
-          <img class="proof-fish" src="images/piranha.png" alt="" aria-hidden="true" loading="lazy">
+          <img class="proof-fish" src="images/piranha.png" alt="" aria-hidden="true" loading="lazy" width="866" height="912">
           <p class="proof-kicker">Best of Western Washington</p>
           <p class="proof-big">Best Dive Bar</p>
           <p class="proof-line">“Voted Best of Western Washington in the annual viewers poll.” — the banner on the side of the building, <span class="nb">K5 Evening</span>.</p>
@@ -348,9 +344,10 @@
         <article class="proof-card reveal">
           <p class="proof-kicker">Rated by the people who go</p>
           <p class="proof-big tnum">4.5<span class="of">/5</span></p>
-          <p class="proof-line">Across <span class="tnum">250</span> ratings on Restaurantji. Open seven days, and later than most of them.</p>
+          <p class="proof-line">Across <span class="tnum">250</span> ratings on Restaurantji, recorded September 6, 2026.</p>
         </article>
       </div>
+<div class="review-actions"><a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Pla-Mor+Bar+%26+Grill+Maple+Valley&amp;query_place_id=ChIJ_zIMGvxfkFQRO37uInnPMIU" target="_blank" rel="noopener">See other reviews</a><a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Pla-Mor+Bar+%26+Grill+Maple+Valley&amp;query_place_id=ChIJ_zIMGvxfkFQRO37uInnPMIU" target="_blank" rel="noopener">Leave a review on Google</a></div><p class="review-source">The Google listing opens in a new tab; choose Reviews to read or write a review.</p>
     </div>
   </section>
 
@@ -371,28 +368,19 @@
             <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=21607+SE+272nd+St%2C+Maple+Valley%2C+WA+98038" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
         </div>
-        <form class="contact-form reveal">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-          <label class="full">What's it about?<select name="topic"><option>Booking a group</option><option>A question about the menu</option><option>Something else</option></select></label>
-          <label class="full">Message<textarea name="msg" placeholder="How many of you, what night, and anything the kitchen should know."></textarea></label>
-          <button type="submit" class="btn btn-primary">Check message</button>
-          <p class="form-success">This preview does not send messages. Please call (425) 432-6858.</p>
-          <p class="form-fine">Private preview — call the bar to get in touch.</p>
-        </form>
+        <aside class="contact-call reveal" aria-labelledby="call-title"><h3 id="call-title">Let’s talk.</h3><p>For menu questions, current specials or a group visit, call the bar directly.</p><a class="btn btn-primary" href="tel:+14254326858">Call the bar</a></aside>
       </div>
     </div>
   </section>
 
   <!-- ===================== #cta ===================== -->
   <section class="section section-dark cta-band" id="cta">
-    <img class="cta-fish" src="images/piranha.png" alt="" aria-hidden="true" loading="lazy">
+    <img class="cta-fish" src="images/piranha.png" alt="" aria-hidden="true" loading="lazy" width="866" height="912">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">One more round</p>
         <h2>Doors at eleven. <em>Come find the fish.</em></h2>
-        <p>Maple Valley's dive bar, a full kitchen behind it, and a special on every weeknight after four.</p>
+        <p>Maple Valley’s dive bar, with a full kitchen behind it. Call for current specials.</p>
       </div>
       <div class="cta-actions reveal">
         <a href="tel:+14254326858" class="btn btn-primary">Call the bar</a>
@@ -421,7 +409,7 @@
       </div>
       <div>
         <h4>On this page</h4>
-        <p><a href="#services">What's here</a><br><a href="#signature">Tonight</a><br><a href="#menu">Menu</a><br><a href="#gallery">The room</a><br><a href="#contact">Find us</a></p>
+        <p><a href="#services">What's here</a><br><a href="#signature">Specials</a><br><a href="#menu">Menu</a><br><a href="#gallery">The room</a><br><a href="#contact">Find us</a></p>
       </div>
     </div>
     <div class="foot-bottom">

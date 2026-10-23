@@ -1,0 +1,37 @@
+/* The Banner on 272nd — hero-only. Real wall, readable banner, no synthetic light. */
+#hero.pm-banner{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,35%) minmax(0,65%);height:calc(100svh - var(--header-h));min-height:580px;overflow:hidden;background:var(--bg);color:var(--bone)}
+#hero .pm-wall{grid-column:2;grid-row:1;min-width:0;min-height:0;overflow:hidden;position:relative;animation:pm-wall-arrive 1.5s var(--ease) both}
+#hero .pm-wall img{width:100%;height:100%;object-fit:cover;object-position:55% 50%;display:block}
+#hero .pm-invitation{grid-column:1;grid-row:1;align-self:center;position:relative;padding:36px clamp(24px,3.3vw,58px);z-index:1;animation:pm-invitation-arrive 1s .35s var(--ease) both}
+#hero .pm-kicker{font:700 11px/1.4 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);margin:0 0 28px}
+#hero #pm-title{font:800 clamp(45px,5.3vw,86px)/.86 var(--body);letter-spacing:-.055em;margin:0;max-width:none;color:var(--bone);text-shadow:none;white-space:nowrap}
+#hero #pm-title span{display:block;font:700 clamp(17px,1.9vw,27px)/1.3 var(--body);letter-spacing:.19em;text-transform:uppercase;margin:14px 0 0}
+#hero .pm-rule{display:block;width:72px;height:3px;background:var(--warm);margin:32px 0;transform-origin:left;animation:pm-rule-arrive .7s 1.3s var(--ease) both}
+#hero .pm-line{font:400 clamp(24px,2.7vw,39px)/1.2 var(--display);margin:0 0 18px;max-width:none}
+#hero .pm-line em{font-style:normal;color:var(--warm)}
+#hero .pm-detail{font:500 17px/1.5 var(--body);color:var(--muted);margin:0 0 30px}
+#hero .pm-actions{display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap}
+#hero .pm-actions .btn{padding:13px 22px}
+#hero .pm-link{display:inline-flex;align-items:center;gap:12px;min-height:48px;border-bottom:1px solid var(--line);font:700 15px/1.3 var(--body)}
+@keyframes pm-wall-arrive{from{clip-path:inset(0 0 0 8%);transform:translateX(18px)}to{clip-path:inset(0);transform:none}}
+@keyframes pm-invitation-arrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pm-rule-arrive{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:1050px){
+ #hero.pm-banner{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;min-height:620px}
+ #hero .pm-wall{grid-column:1;grid-row:1}
+ #hero .pm-wall img{object-position:55% 54%}
+ #hero .pm-invitation{grid-column:1;grid-row:2;align-self:stretch;padding:25px 24px 28px;border-top:3px solid var(--warm)}
+ #hero .pm-kicker{font-size:10px;margin-bottom:14px}
+ #hero #pm-title{font-size:clamp(50px,15vw,76px)}
+ #hero #pm-title span{font-size:15px;letter-spacing:.21em;margin-top:9px}
+ #hero .pm-rule{display:none}
+ #hero .pm-line{font-size:22px;line-height:1.35;margin:18px 0 20px}
+ #hero .pm-line br{display:none}
+ #hero .pm-line em{margin-left:.15em}
+ #hero .pm-detail{display:none}
+ #hero .pm-actions{gap:12px 22px}
+ #hero .pm-actions .btn{padding:12px 20px;font-size:14px}
+ #hero .pm-link{font-size:14px}
+}
+
+@media(prefers-reduced-motion:reduce){#hero .pm-wall,#hero .pm-invitation,#hero .pm-rule{animation:none;transform:none;opacity:1;clip-path:none}}

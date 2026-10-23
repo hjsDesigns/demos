@@ -1,0 +1,30 @@
+/* October 23 finishing pass — existing direction, clearer small-screen reading. */
+:focus-visible{outline:3px solid var(--brand-text);outline-offset:4px}
+.skip-link{position:fixed;top:10px;left:var(--pad);z-index:1000;transform:translateY(-180%);padding:12px 18px;background:var(--ink);color:var(--bg);font-weight:700}
+.skip-link:focus{transform:none}
+section[id]{scroll-margin-top:calc(var(--header-h) + 18px)}
+.section-head h2,.story-copy h2{text-wrap:balance;overflow-wrap:break-word}
+.section-head>p:last-child,.story-copy p{max-width:62ch}
+.menu-list li{grid-template-columns:minmax(0,1fr) auto}
+.menu-list .name,.roll-head>span,.status-head,.story-copy,.contact>div{min-width:0}
+.menu-list .price{align-self:start}
+.nav-toggle{min-width:44px;min-height:44px}
+.main-nav a{min-height:44px;display:inline-flex;align-items:center}
+.review-linkout{border-block:1px solid var(--line);padding:clamp(24px,4vw,42px) 0;max-width:900px}
+.review-linkout p{max-width:62ch}
+.review-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.review-actions a{min-height:48px}
+.review-source,.facts-source{font-size:14px;line-height:1.55;color:var(--muted)}
+.contact-call{align-self:start;padding:clamp(24px,4vw,40px);background:var(--paper,var(--bg));border:1px solid var(--line);border-radius:var(--r);min-width:0}
+.contact-call h3{font-size:clamp(24px,3vw,34px);margin:0 0 16px}
+.contact-call p{max-width:40ch;margin:0 0 22px}
+.facts-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-block:1px solid var(--line);padding:24px 0;margin:0 0 24px;list-style:none}
+.facts-row li{min-width:0;padding:12px 20px;border-right:1px solid var(--line)}
+.facts-row li:last-child{border-right:0}
+.facts-row strong{display:block;font-family:var(--display);font-size:clamp(24px,3vw,36px);font-weight:400;line-height:1.15;color:var(--brand-text)}
+.facts-row span{display:block;font-size:15px;line-height:1.5;margin-top:9px;color:var(--ink)}
+.facts-wrap{margin-bottom:clamp(34px,5vw,64px)}
+.hours-note{font-size:15px;line-height:1.55;color:var(--muted);max-width:48ch}
+.footer-wordmark{font-family:var(--display);font-size:clamp(23px,3vw,32px);line-height:1.2;color:var(--ink)}
+@media(max-width:760px){.facts-row{grid-template-columns:repeat(2,minmax(0,1fr))}.facts-row li:nth-child(2){border-right:0}.facts-row li:nth-child(-n+2){border-bottom:1px solid var(--line)}.facts-row li{padding:20px 12px}.contact-call{padding:24px}.review-actions{align-items:stretch}.review-actions .btn{flex:1 1 180px}.hours-list .time{white-space:normal;text-align:right}.menu-list li{gap:6px 10px}.print,.dish{max-width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}

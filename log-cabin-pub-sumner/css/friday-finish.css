@@ -1,0 +1,36 @@
+/* Focused Friday finish; inherited palette, type and hero composition remain. */
+.reveal{opacity:1;transform:none}
+.reveal .sign-rule::after{transform:scaleX(1)}
+.section-head h2,.story-copy h2{text-wrap:balance;overflow-wrap:break-word}
+.section-head>p,.story-copy>p{max-width:65ch}
+.print figcaption{line-height:1.5}
+.menu-list .name{min-width:0;overflow-wrap:break-word}
+.menu-list .price{flex-shrink:0;font-variant-numeric:tabular-nums}
+.review-ribbon{overflow-x:auto;overscroll-behavior-x:contain;max-width:100%;padding:4px 0 18px;scrollbar-width:thin;scroll-behavior:auto;-webkit-overflow-scrolling:touch}
+.review-ribbon:focus-visible{outline:2px solid var(--brand-text);outline-offset:5px}
+.review-ribbon.has-ribbon-motion{scrollbar-width:none}
+.review-ribbon.has-ribbon-motion::-webkit-scrollbar{display:none}
+.review-track,.review-group{display:flex;gap:20px;width:max-content;align-items:stretch}
+.review-track{min-width:100%}
+.review-group>.review,.review-group>.rev,.review-group>.quote{flex:0 0 clamp(280px,76vw,390px);width:clamp(280px,76vw,390px);min-width:0;margin:0;transform:none;box-sizing:border-box;box-shadow:none;transition:border-color .2s}
+.review-group blockquote,.review-group>.rev>p{font-size:17px;line-height:1.65;overflow-wrap:break-word}
+.review-group .rv-meta,.review-group .rev-who,.review-group .who>span{min-width:0;overflow-wrap:break-word}
+.review-group .rev-head{grid-template-columns:auto 1fr}
+.review-group .rev-stars{grid-column:2;justify-self:start;margin-top:0}
+.review-group .rv-meta>span,.review-group .rev-who small,.review-group .who>span>span{font-family:var(--body);font-size:12px;line-height:1.45;letter-spacing:0;text-transform:none}
+.review-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+.review-actions .btn{min-height:48px;white-space:normal;text-align:center}
+.review-source-note{font-size:13px;line-height:1.55;color:var(--muted);margin:14px 0 0;max-width:70ch}
+.four-facts{padding-block:clamp(28px,4vw,44px);border-block:1px solid var(--line);background:var(--bg-2)}
+.facts-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
+.facts-row li{border-left:2px solid var(--brand);padding-left:16px;min-width:0}
+.facts-row strong{display:block;font-family:var(--display);font-weight:inherit;font-size:clamp(18px,1.8vw,25px);line-height:1.3;color:var(--warm);margin-bottom:7px;overflow-wrap:break-word}
+.facts-row span{display:block;color:var(--muted);font-size:14px;line-height:1.5}
+.contact-direct{align-self:start;padding:clamp(24px,4vw,40px);border:1px solid var(--line);background:var(--paper);border-radius:var(--r)}
+.contact-direct h3{font-size:clamp(23px,3vw,32px);line-height:1.2;margin:0 0 16px;text-wrap:balance}
+.contact-direct p{font-size:17px;line-height:1.6;color:var(--muted);margin:0 0 22px}
+.contact-direct .btn{min-height:48px}
+.contact-direct .contact-online{display:block;margin-top:18px;color:var(--brand-text);text-underline-offset:5px}
+.foot .footer-name{display:block;font:inherit;font-family:var(--display);font-size:24px;line-height:1.2;color:var(--warm);margin-bottom:10px}
+@media(max-width:760px){.facts-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}.review-actions .btn{flex:1 1 220px}.facts-row li{padding-left:12px}.contact-direct{padding:24px}.review-group blockquote,.review-group>.rev>p{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.review-ribbon{scroll-behavior:auto}.review-group>.review,.review-group>.rev,.review-group>.quote{transition:none}}

@@ -41,7 +41,7 @@ var SPECIALS = {
   4: {day:'Thursday',  dish:'BBQ Rib Dinner',   desc:'Baked potato or salad.',                                extra:'Double order of ribs also on the sheet'},
   5: {day:'Friday',    dish:'Fish & Chips',     desc:'Hand battered cod, fries or salad.',                    extra:'Double order of fish · steak dinner also on the sheet'}
 };
-var WEEKEND = {day:'Saturday and Sunday', dish:'No printed special', desc:'The specials page runs Monday through Friday — the full menu is on all weekend.', extra:''};
+var WEEKEND = {day:'The photographed sheet', dish:'Explore the weeknight dishes', desc:'Choose a day above. Call the bar to confirm today’s dishes and prices.', extra:''};
 
 
 (function(){
@@ -53,7 +53,7 @@ var WEEKEND = {day:'Saturday and Sunday', dish:'No printed special', desc:'The s
 
   /* ---------- mobile nav ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
-  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰';toggle.setAttribute('aria-label',open?'Close menu':'Open menu')}
   if(toggle&&nav){
     toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
     $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
@@ -148,7 +148,7 @@ var WEEKEND = {day:'Saturday and Sunday', dish:'No printed special', desc:'The s
       elDish.textContent=rec.dish;
       elDesc.textContent=rec.desc;
       elExtra.textContent=rec.extra||'';
-      elTag.hidden=!isToday;
+      elTag.hidden=true;
       if(animate && !REDUCE()){
         board.classList.remove('swap');
         void board.offsetWidth;                 // reflow, so a rapid re-tap replays
@@ -159,16 +159,16 @@ var WEEKEND = {day:'Saturday and Sunday', dish:'No printed special', desc:'The s
     function select(n, animate){
       var today=pacificNow().day;
       chips.forEach(function(c){c.setAttribute('aria-pressed', String(parseInt(c.getAttribute('data-day'),10)===n))});
-      if(SPECIALS[n]) paint(SPECIALS[n], n===today, animate);
+      if(SPECIALS[n]) paint(SPECIALS[n], false, animate);
       else paint(WEEKEND, false, animate);
     }
 
     chips.forEach(function(c){
-      c.addEventListener('click',function(){select(parseInt(c.getAttribute('data-day'),10), true)});
+      c.addEventListener('click',function(){select(c.getAttribute('aria-pressed')==='true' ? 0 : parseInt(c.getAttribute('data-day'),10), true)});
     });
 
     var d=pacificNow().day;
-    select(SPECIALS[d] ? d : 0, false);          // 0 falls through to the weekend line
+    select(0, false);          // 0 falls through to the weekend line
   }
 
 })();

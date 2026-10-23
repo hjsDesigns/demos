@@ -110,7 +110,7 @@ function customClose(p, close){ return close; }
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
 
   /* ---------- scroll-reveal + count-up ---------- */
-  var io=new IntersectionObserver(function(entries){
+  var io=typeof IntersectionObserver==='function'?new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(!en.isIntersecting)return;
       en.target.classList.add('in');
@@ -124,26 +124,10 @@ function customClose(p, close){ return close; }
       });
       io.unobserve(en.target);
     });
-  },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
-  $$('.reveal').forEach(function(el){io.observe(el)});
+  },{threshold:.06,rootMargin:'0px 0px -6% 0px'}):null;
+  $$('.reveal').forEach(function(el){if(io)io.observe(el);else el.classList.add('in')});
 
-  /* ---------- contact form ----------
-     Demo mode (hidden access_key empty): show the thank-you, send nothing.
-     Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms from the visitor's
-     browser -> lands in the owner's inbox. Failure falls back to "call or text us". */
-  var form=$('.contact-form'), ok=$('.form-success');
-  if(form&&ok){form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
-    function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
-    if(!key){done();return}
-    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
-    var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
-    data.subject=data.subject||('New message from your website ('+document.title+')');
-    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
-      .then(function(r){return r.json()}).then(function(j){if(j&&j.success){done()}else{throw new Error('send failed')}})
-      .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
-  })}
+  /* Contact uses verified phone/ordering links until an owner inbox is configured. */
 
   /* ---------- TITLE CARDS UNROLL — the heading is the tap target ---------- */
   $$('.roll-btn').forEach(function(btn){

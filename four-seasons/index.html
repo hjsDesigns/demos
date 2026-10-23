@@ -7,18 +7,12 @@
 <meta name="description" content="Old-school Chinese-American cooking on Griffin Ave in Enumclaw — green booths, lit tiki lanterns, and the whole printed menu with real prices. Open Monday through Saturday, noon to eight.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Trirong (display) + Work Sans (body) — both first use in the factory.
-     Yeseva One is the SIGN FACE and is used for one thing only: the hero mark.
-     SIGN-FONT LAW (9/7) + CRISP RULE — the FOUR SEASONS lettering on their own
-     road sign is a flared, art-nouveau, high-contrast cap face (ITC Benguiat
-     class: cupped serifs, curled S spur, swash EA ligature). Read off a 4x
-     upscale of the real sign, then compared against Yeseva One / Fraunces 700 /
-     Gilda Display / Eczar 700 / Rozha One / Trirong 700 rendered at the same
-     size — Yeseva One is the only one that carries the flare and the narrow,
-     high-contrast caps. The sign crop itself is far too small to blow up to
-     hero size, so the mark ships as live type in the nearest face. -->
-<link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,600;0,700;0,800;1,600&family=Work+Sans:wght@400;500;600;700;800&family=Yeseva+One&display=swap" rel="stylesheet">
+<!-- Trirong (approved body headings) + Work Sans (body).
+     The hero now uses the actual photographed sign; the former hero-only Yeseva font is retired. -->
+<link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,600;0,700;0,800;1,600&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=1789068815">
+<link rel="stylesheet" href="css/hero-2026-10-22.css">
+<link rel="stylesheet" href="css/friday-finish.css?v=20261023">
 </head>
 <body>
 
@@ -46,43 +40,23 @@
 <span id="top"></span>
 <main>
 
-  <!-- ===================== #hero =====================
-       REBUILT 2026-09-10 — HERO FIRST / HIGHEST QUALITY, CRISP RULE, HOLY-SHIT
-       HERO, BUSINESS-SPECIFIC HOMEPAGE ANIMATION. Route (a): the same real
-       photograph of 820 Griffin re-harvested from their own Google Business
-       Profile photo tab at its native 4032x3024 (the 2026-09-04 copy was only
-       ever saved at 1920x1440, and the shipped 1600x783 crop was being covered
-       by a blurred echo of itself rendering at 1.09x native). Provenance and
-       source URLs: harvest-0910/urls.txt.
-       EXTERIOR HERO DEFAULT (9/4) respected — this is still the OUTSIDE of the
-       store; the interiors keep their slots in #gallery below.
-       TWO real sources: 2800x1647 landscape for desktop, 1400x2700 portrait for
-       phones, both crops of the same native original, both rendering BELOW 1.0.
-       THE OPENING EVENT — "the four seasons come on." Four warm blooms land in
-       turn on the four real painted medallions along their front wall (四 季 酒 家,
-       green / gold / red / white), the four season lights under the mark stay
-       lit, and the name settles. Deterministic, 2.5s, plays once, never loops.
-       Nothing sits on the photo but the headline block, and the block is held
-       in the sky ABOVE the roofline so the building, the medallions, the lit
-       marquee and the script wordmark are never covered. -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <picture>
-        <source media="(max-width:820px)" srcset="images/hero-exterior-tall.jpg" width="1400" height="2700">
-        <img src="images/hero-exterior-wide.jpg" width="2800" height="1647" alt="Four Seasons at 820 Griffin Avenue seen from the parking lot — the long brown building under its shingled pagoda roof, the four painted season medallions along the front wall, the lit marquee reading Four Seasons Chinese Restaurant and Bar with Lunch Specials 12-3 Mon-Sat, and The Four Seasons in gold script at the far end" fetchpriority="high">
-      </picture>
-      <div class="season-wash" aria-hidden="true"><i class="w1"></i><i class="w2"></i><i class="w3"></i><i class="w4"></i></div>
+  <!-- Hero: The Griffin Sign. Emotion: a familiar Enumclaw landmark, mountain at its shoulder.
+       The real roadside sign is the headline. Its lettering and weathering are untouched. -->
+  <section class="fs-griffin" id="hero" aria-labelledby="fs-title">
+    <h1 id="fs-title" class="sr-only">Four Seasons Chinese Restaurant &amp; Bar</h1>
+    <div class="fs-roadside">
+      <img src="images/hero-stack-2.jpg" alt="The real Four Seasons Chinese Restaurant and Bar sign on Griffin Avenue, with Mount Rainier beside it" width="1250" height="1162" fetchpriority="high">
     </div>
-    <div class="hero-inner">
-      <h1 class="hero-mark"><span class="mk-name">Four Seasons</span><span class="mk-line">Chinese Restaurant &amp; Bar</span></h1>
-      <span class="season-lights" aria-hidden="true"><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i></span>
-      <p class="hero-sub"><span class="sub-long">Green booths, lit tiki lanterns, and the Almond Chicken people drive out of their way for — six days a week on Griffin Ave in Enumclaw.</span><span class="sub-short">Six days a week on Griffin Ave.</span></p>
-      <div class="hero-actions">
+    <div class="fs-welcome">
+      <p class="fs-place">Enumclaw, Washington</p>
+      <p class="fs-invitation">You know <br>the sign.<br><em>Come on in.</em></p>
+      <span class="fs-rule" aria-hidden="true"></span>
+      <p class="fs-detail">Green booths. Lit tiki lanterns.<br> Almond Chicken on the table.</p>
+      <div class="fs-actions">
         <a href="#menu" class="btn btn-primary">See the menu</a>
-        <a href="tel:+13608256541" class="btn btn-cream">Call to order</a>
+        <a href="tel:+13608256541" class="fs-call">Call to order <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <div class="hero-spacer"></div>
   </section>
 
   <!-- ===================== #hours =====================
@@ -118,12 +92,23 @@
     </div>
   </section>
 
+  <section class="four-facts" id="facts" aria-label="Four things to know">
+    <div class="wrap"><ul class="facts-row">
+      <li><strong>Four seasons</strong><span>Spring, Summer, Autumn &amp; Winter family dinners</span></li>
+      <li><strong>Almond chicken</strong><span>A classic on their printed Chinese-American menu</span></li>
+      <li><strong>Tiki lanterns</strong><span>Carved shades above the green booths</span></li>
+      <li><strong>Take it home</strong><span>Take-out options on their own menu</span></li>
+    </ul></div>
+  </section>
+
+  
+
   <!-- ===================== #menu =====================
        TITLE CARDS UNROLL (2026-08-27): each heading is the tap target and
        rolls the real items out in place, downward chevron flipping up.
        Every price is read off their own printed January 2024 menu
        (images/menu-sheet.jpg). Nothing here is invented.
-       NOTE: the hero itself is now the building from outside (2026-09-04), so
+       NOTE: the Friday hero is the real roadside sign (2026-10-22), so
        STOREFRONT-BELOW-HOURS is satisfied above; this slot keeps their real
        printed menu on their own table. -->
   <section class="section" id="menu">
@@ -136,7 +121,7 @@
       </div>
 
       <figure class="print menu-print reveal">
-        <img src="images/menu-sheet.jpg" alt="The open Four Seasons menu on the restaurant's marble table — lunch specials, appetizers and soup on the left, the family style dinners in the middle, chicken and beef down the right" loading="lazy">
+        <img src="images/menu-sheet.jpg" alt="The open Four Seasons menu on the restaurant's marble table — lunch specials, appetizers and soup on the left, the family style dinners in the middle, chicken and beef down the right" loading="lazy" width="1000" height="750">
         <figcaption>The menu, on the table it came from</figcaption>
       </figure>
 
@@ -188,7 +173,7 @@
           <div class="roll-panel" id="rollChicken">
             <ul class="menu-list">
               <li><span class="name">Moo Goo Gai Pan</span><span class="price">$17.00</span><span class="desc">Boneless chicken with mixed vegetables.</span></li>
-              <li><span class="name">Almond Chicken</span><span class="price">$16.00</span><span class="desc">The one a regular says they revolutionized.</span></li>
+              <li><span class="name">Almond Chicken</span><span class="price">$16.00</span></li>
               <li><span class="name">Mushroom Breaded Chicken</span><span class="price">$16.50</span><span class="desc">Breaded chicken breast pieces with mushroom and vegetables.</span></li>
               <li><span class="name">Broccoli Chicken</span><span class="price">$16.50</span></li>
               <li><span class="name">Sweet &amp; Sour Chicken with Pineapple</span><span class="price">$16.00</span></li>
@@ -298,14 +283,14 @@
         <h2>The lanterns, and <em>what comes out</em></h2>
       </div>
       <div class="prints">
-        <figure class="print reveal"><img src="images/gallery-7.jpg" alt="Further into the room — a red paper lantern, magnolia panels on the green wall, model ships on a shelf and a second tiki lantern over the booths" loading="lazy"><figcaption>Further into the room</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-8.jpg" alt="The same booths after dark, the tiki lanterns and a coloured glass ball glowing over the lattice ceiling" loading="lazy"><figcaption>The booths after dark</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="One of the carved bamboo tiki lanterns lit from inside, a face cut into the shade under a woven rattan hat" loading="lazy"><figcaption>One lantern, up close</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Sweet and sour in bright red sauce beside a plate of honey garlic chicken wings, on the restaurant's orange table over a red zodiac placemat" loading="lazy"><figcaption>Sweet &amp; sour, and the wings</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A plate of teriyaki chicken with pot stickers, fried rice and a green salad on the orange tabletop" loading="lazy"><figcaption>Off the teriyaki page</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Three plates spread across the orange table — chow mein, fried rice and a pork dish under crisp noodles — with the green booth behind" loading="lazy"><figcaption>A table, mid-order</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A blue and white striped bowl of bean sprouts and pork over fried rice, crisp chow mein noodles piled on one side" loading="lazy"><figcaption>In the bowl, crisp noodles on top</figcaption></figure>
-        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Close view of battered chicken pieces beside celery, water chestnuts and toasted almonds on their own brown-ringed china" loading="lazy"><figcaption>Close up, on their own china</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-7.jpg" alt="Further into the room — a red paper lantern, magnolia panels on the green wall, model ships on a shelf and a second tiki lantern over the booths" loading="lazy" width="1000" height="750"><figcaption>Further into the room</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-8.jpg" alt="The same booths after dark, the tiki lanterns and a coloured glass ball glowing over the lattice ceiling" loading="lazy" width="750" height="1000"><figcaption>The booths after dark</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-1.jpg" alt="One of the carved bamboo tiki lanterns lit from inside, a face cut into the shade under a woven rattan hat" loading="lazy" width="1000" height="749"><figcaption>One lantern, up close</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-2.jpg" alt="Sweet and sour in bright red sauce beside a plate of honey garlic chicken wings, on the restaurant's orange table over a red zodiac placemat" loading="lazy" width="750" height="1000"><figcaption>Sweet &amp; sour, and the wings</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-3.jpg" alt="A plate of teriyaki chicken with pot stickers, fried rice and a green salad on the orange tabletop" loading="lazy" width="750" height="1000"><figcaption>Off the teriyaki page</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-4.jpg" alt="Three plates spread across the orange table — chow mein, fried rice and a pork dish under crisp noodles — with the green booth behind" loading="lazy" width="750" height="1000"><figcaption>A table, mid-order</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-5.jpg" alt="A blue and white striped bowl of bean sprouts and pork over fried rice, crisp chow mein noodles piled on one side" loading="lazy" width="750" height="1000"><figcaption>In the bowl, crisp noodles on top</figcaption></figure>
+        <figure class="print reveal"><img src="images/gallery-6.jpg" alt="Close view of battered chicken pieces beside celery, water chestnuts and toasted almonds on their own brown-ringed china" loading="lazy" width="755" height="1000"><figcaption>Close up, on their own china</figcaption></figure>
       </div>
     </div>
   </section>
@@ -315,16 +300,15 @@
     <div class="wrap">
       <div class="story">
         <figure class="print reveal">
-          <img src="images/about.jpg" alt="Shrimp fried rice filling a white takeout box with a plastic fork standing in it, held on the way out to the car" loading="lazy">
+          <img src="images/about.jpg" alt="Shrimp fried rice filling a white takeout box with a plastic fork standing in it, held on the way out to the car" loading="lazy" width="750" height="1000">
           <figcaption>Shrimp fried rice, in the box, on the way home</figcaption>
         </figure>
         <div class="story-copy reveal">
-          <p class="eyebrow">The last one standing</p>
+          <p class="eyebrow">Behind the lanterns</p>
           <span class="lattice-rule" aria-hidden="true"></span>
-          <h2>Five sister restaurants. <em>One left.</em></h2>
-          <p class="lede">A regular counted them off in his own review — Dynasty's in Federal Way, Ming Tree in Bellevue, Forbidden City in Puyallup, Lotus Tree in Auburn, The Great Wall in Tacoma. And Four Seasons.</p>
-          <p>Rick S. wrote it down on Yelp in February 2025: <em>“All are gone now except 4 seasons. I go every opportunity!!”</em> The same old-school Chinese-American cooking, the same green booths, the same lanterns over the same tables.</p>
-          <p>Bing is the one who answers questions on their Yelp page — signed <em>“Bing P., Business Owner.”</em> Ming runs the place alongside him, and regulars thank Helen and Sara by name. There's a second name on their own Facebook page, too: The Four Seasons Restaurant and Maui Room.</p>
+          <h2>A familiar room, <em>familiar faces.</em></h2>
+          <p class="lede">Green booths, carved tiki lanterns and Chinese-American dinners served family style.</p>
+          <p>Bing is the one who answers questions on their Yelp page — signed <em>“Bing P., Business Owner.”</em> Google reviewers also name Ming, and regulars thank Helen and Sara by name. There's a second name on their own Facebook page, too: The Four Seasons Restaurant and Maui Room.</p>
           <div class="team">
             <h3>The names regulars thank</h3>
             <div class="faces">
@@ -352,36 +336,42 @@
         <p class="eyebrow">In their words</p>
         <span class="lattice-rule" aria-hidden="true"></span>
         <h2>What the regulars <em>keep saying</em></h2>
-        <p>Five of their own Google reviews, word for word.</p>
+        <p>Five excerpts from Google, with each reviewer’s own photo.</p>
       </div>
-      <div class="review-grid">
-        <article class="review reveal">
+      <div class="review-ribbon" data-review-ribbon data-pixels-per-second="40" tabindex="0" role="region" aria-label="Google customer reviews">
+        <div class="review-track"><div class="review-group">
+<article class="review">
           <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
           <blockquote>This restaurant bar has been around the enumclaw area for decades! No restaurant can possibly stay in business that long without providing the best in all areas. The food, service and atmosphere is spot on! … The owners Ming and Bing, are absolutely the kindest and the best!!</blockquote>
-          <div class="rv-who"><img class="rv-face" src="images/reviewers/taylor-vancleave.jpg" alt="taylor vancleave, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>taylor vancleave</b><span>Google · 2 years ago</span></span></div>
+          <div class="rv-who"><img class="rv-face rev-face" src="images/reviewers/taylor-vancleave.jpg" alt="taylor vancleave, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>taylor vancleave</b><span>Google · 2 years ago</span></span></div>
         </article>
-        <article class="review reveal">
+<article class="review">
           <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
           <blockquote>So cool to visit again! I hadn't been here in over 20 years! I got to see the owner who recognized my dad and family. Such a nice restaurant with great service. It brought great memories back to my mind. The food is great, quick service and huge portions!</blockquote>
-          <div class="rv-who"><img class="rv-face" src="images/reviewers/bunny-parker.jpg" alt="Bunny Parker, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Bunny Parker</b><span>Google · a year ago</span></span></div>
+          <div class="rv-who"><img class="rv-face rev-face" src="images/reviewers/bunny-parker.jpg" alt="Bunny Parker, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Bunny Parker</b><span>Google · a year ago</span></span></div>
         </article>
-        <article class="review reveal">
+<article class="review">
           <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
-          <blockquote>Back in the late '70s, early '80s, my mother and father used to take me to this restaurant when I was a child. I loved it then and I still love it now.</blockquote>
-          <div class="rv-who"><img class="rv-face" src="images/reviewers/jon-moler.jpg" alt="Jon Moler, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Jon Moler</b><span>Google · 3 years ago</span></span></div>
+          <blockquote>Back in the late '70s, early '80s, my mother and father used to take me to this restaurant when I was a child. … I loved it then and I still love it now.</blockquote>
+          <div class="rv-who"><img class="rv-face rev-face" src="images/reviewers/jon-moler.jpg" alt="Jon Moler, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Jon Moler</b><span>Google · 3 years ago</span></span></div>
         </article>
-        <article class="review reveal">
+<article class="review">
           <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
-          <blockquote>We went here for my husband's 67th Birthday with friends. We all shared several different dishes and had plenty to take home too. We will go back!</blockquote>
-          <div class="rv-who"><img class="rv-face" src="images/reviewers/rhonda-benedict.jpg" alt="Rhonda Benedict, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Rhonda Benedict</b><span>Google · a year ago</span></span></div>
+          <blockquote>We went here for my husband’s 67th Birthday with friends. We all shared several different dishes and had plenty to take home too. We will go back!</blockquote>
+          <div class="rv-who"><img class="rv-face rev-face" src="images/reviewers/rhonda-benedict.jpg" alt="Rhonda Benedict, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Rhonda Benedict</b><span>Google · a year ago</span></span></div>
         </article>
-        <article class="review reveal">
+<article class="review">
           <p class="rv-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></p>
           <blockquote>Very nice decor and atmosphere, friendly staff, quick delicious food.</blockquote>
-          <div class="rv-who"><img class="rv-face" src="images/reviewers/jeffrey-job.jpg" alt="Jeffrey Job, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Jeffrey Job</b><span>Google · 4 months ago</span></span></div>
+          <div class="rv-who"><img class="rv-face rev-face" src="images/reviewers/jeffrey-job.jpg" alt="Jeffrey Job, Google reviewer" width="240" height="240" loading="lazy"><span class="rv-meta"><b>Jeffrey Job</b><span>Google · 4 months ago</span></span></div>
         </article>
+        </div></div>
       </div>
-      <p class="menu-fine"><a href="https://www.google.com/maps/search/?api=1&amp;query=Four+Seasons+Chinese+Restaurant+820+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Read all of their Google reviews ↗</a></p>
+      <div class="review-actions">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Four+Seasons+Chinese+Restaurant+820+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">See other reviews ↗</a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Four+Seasons+Chinese+Restaurant+820+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Find listing to leave a review ↗</a>
+      </div>
+      <p class="review-source-note">These links find the business on Google Maps. Open its listing, then choose Reviews or Write a review; Google may ask you to sign in. Review dates are shown as recorded in the saved source.</p>
     </div>
   </section>
 
@@ -403,19 +393,11 @@
             <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=Four+Seasons+Chinese+Restaurant+820+Griffin+Ave+Enumclaw+WA+98022" target="_blank" rel="noopener">Directions ↗</a></span>
           </div>
         </div>
-        <form class="contact-form reveal">
-          <!-- demo mode: empty access_key shows the thank-you and sends nothing -->
-          <input type="hidden" name="access_key" value="">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
-          <label class="full">What's this about?<select name="topic"><option>A take-out order</option><option>A table for a group</option><option>Something else</option></select></label>
-          <label class="full">Message<textarea name="msg" placeholder="How many people, and what night?"></textarea></label>
-          <button type="submit" class="btn btn-primary">Send it over</button>
-          <p class="form-success">Thanks — Bing will get back to you soon.</p>
-          <p class="form-fine">We'll only use this to reply to you.</p>
-        </form>
+        <aside class="contact-direct" aria-label="Contact the restaurant directly">
+          <h3>A quick call to the kitchen</h3>
+          <p>For take-out, a group table or the latest menu prices, speak with the restaurant directly.</p>
+          <a href="tel:+13608256541" class="btn btn-primary">Call Four Seasons Chinese Restaurant</a>
+        </aside>
       </div>
     </div>
   </section>
@@ -472,5 +454,6 @@
 </footer>
 
 <script src="js/site.js?v=1789068815"></script>
+<script src="js/review-ribbon.js?v=20261023" defer></script>
 </body>
 </html>
