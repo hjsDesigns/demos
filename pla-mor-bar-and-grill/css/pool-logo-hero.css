@@ -1,0 +1,5 @@
+
+.pub-hero{min-height:calc(90svh - 72px);display:flex;align-items:flex-end;background:#101a14}.pub-hero .pub-scene{object-position:center;filter:brightness(1.12) saturate(1.12)}.pub-hero:after{background:linear-gradient(0deg,rgba(8,19,14,.97),rgba(8,19,14,.15) 70%)}.pub-heading{position:relative;z-index:2;width:100%;padding:65px clamp(24px,6vw,80px)}#pm-title{margin:0 0 28px;max-width:680px}.pub-real-logo{display:block;width:100%;height:auto;filter:drop-shadow(0 3px 12px #0009)}@media(max-width:760px){.pub-hero{min-height:calc(83svh - 72px)}.pub-hero .pub-scene{object-position:56% center}.pub-heading{padding:36px 24px}#pm-title{margin:0 0 26px}.pub-actions{display:flex;gap:10px;flex-wrap:wrap}.pub-actions .btn{font-size:13px;padding:12px 15px}}
+@media(max-width:760px){.pub-hero .pub-scene{height:76%;object-position:50% 100%}.pub-hero:after{background:linear-gradient(0deg,#0a1710 0%,rgba(10,23,16,.92) 18%,transparent 54%)}.pub-heading{padding-bottom:32px}}
+/* Hide the stray lower-corner shapes in the source logo, preserving its lettering. */
+img[src="images/logo.png"]{clip-path:polygon(0 0,100% 0,100% 74%,90% 74%,90% 100%,10% 100%,10% 74%,0 74%)}

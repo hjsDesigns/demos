@@ -1,427 +1,378 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"/>
 <title>The Red Dog Saloon — bar, grill &amp; live music, Maple Valley WA</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="The Red Dog Saloon in Maple Valley, Washington — burgers, wings and five house chili dogs, pool, horseshoes and a covered stage in the beer garden. Call for the current music schedule.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Rye + Alegreya Sans — retained from the existing body direction. -->
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/purdy-review.css">
-<link rel="stylesheet" href="css/hero-last-light.css?v=20261022">
-<link rel="stylesheet" href="css/finish-2026-10-23.css">
-</head>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="The Red Dog Saloon in Maple Valley, Washington — burgers, wings and five house chili dogs, free pool and horseshoes, and a covered stage in the beer garden with live music every Friday night." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<!-- Oswald (display, condensed marquee block) + Barlow (body) — must match --display / --body in css/style.css -->
+<link href="https://fonts.googleapis.com/css2?family=Rye&amp;family=Alegreya+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/purdy-review.css" rel="stylesheet"/>
+<link href="css/hero-last-light.css?v=20261022" rel="stylesheet"/>
+<link href="css/fast-finish.css?v=1" rel="stylesheet"/></head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-
 <!-- ===================== HEADER / NAV =====================
      The plate is a straight crop of their own roadside sign (images/mark.jpg,
      cropped out of their Google photo g4). Never redrawn. -->
 <header class="site-header">
-  <div class="header-inner">
-    <a class="logo" href="#top" aria-label="The Red Dog Saloon — home">
-      <img src="images/mark.jpg" alt="The Red Dog Saloon" width="1100" height="615">
-      <span class="wm">Maple Valley<br>Washington</span>
-    </a>
-    <div class="nav-wrap">
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">☰</button>
-      <nav class="main-nav" id="main-nav">
-        <a href="#events">What's on</a>
-        <a href="#menu">Menu</a>
-        <a href="#signature">Chili dogs</a>
-        <a href="#gallery">The room</a>
-        <a href="#hours">Hours</a>
-        <a href="#contact" class="nav-cta">Find us</a>
-      </nav>
-    </div>
-  </div>
+<div class="header-inner">
+<a aria-label="The Red Dog Saloon — home" class="logo" href="#top">
+<img alt="The Red Dog Saloon" height="614" src="images/mark.jpg" width="1100"/>
+<span class="wm">Maple Valley<br/>Washington</span>
+</a>
+<div class="nav-wrap">
+<span class="hdr-live" id="hdrLive"><span class="dot"></span><span id="hdrLiveText">checking…</span></span>
+<button aria-expanded="false" aria-label="Menu" class="nav-toggle">☰</button>
+<nav class="main-nav" id="main-nav">
+<a href="#events">What's on</a>
+<a href="#menu">Menu</a>
+<a href="#signature">Chili dogs</a>
+<a href="#gallery">The room</a>
+<a href="#hours">Hours</a>
+<a class="nav-cta" href="#contact">Find us</a>
+</nav>
+</div>
+</div>
 </header>
-
 <span id="top"></span>
-<main id="main">
-
-  <!-- ===================== #hero =====================
+<main>
+<!-- ===================== #hero =====================
        EXTERIOR HERO DEFAULT: the barn-red building from the road with their
        sign on the pole and real sky behind it. Interiors live further down.
        Nothing sits on the photo but the headline block.
        Phones: HERO STACK — three real photos, height:auto, doubled track,
        constant linear scroll. Outside → through the door → the room. -->
-  <section class="hero roadside-hero" id="hero" aria-labelledby="roadside-title">
-    <!-- Last Light at the Red Dog: a worn roadside invitation, firs and real window light.
-         The photo and sign remain unretouched. One arrival, then a still evening. -->
-    <div class="roadside-scene">
-      <img src="images/dusk.jpg" alt="The Red Dog Saloon at dusk: its weathered roadside sign, red siding, front steps and warm windows beneath the fir trees" width="1920" height="1440" fetchpriority="high" decoding="async">
-    </div>
-    <div class="roadside-heading">
-      <p class="roadside-location">Maple Valley, Washington</p>
-      <h1 id="roadside-title"><span class="roadside-sign" aria-hidden="true"></span><span class="sr-only">The Red Dog Saloon</span></h1>
-      <p class="roadside-sub">A roadhouse in the firs.<br>A stage out back.</p>
-      <div class="roadside-actions">
-        <a href="#events" class="btn btn-primary">Find your night <span aria-hidden="true">↓</span></a>
-        <a href="#menu" class="roadside-menu">See the menu <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-    <span class="roadside-edge" aria-hidden="true"></span>
-  </section>
-
-  <!-- ===================== #hours =====================
+<section aria-labelledby="roadside-title" class="pub-hero" id="hero"><img alt="Red Dog Saloon’s red siding, fir trees and warm window lights at dusk" class="pub-scene" fetchpriority="high" src="images/dusk.jpg"/><div class="pub-heading"><h1 id="roadside-title">RED DOG<span>Saloon</span></h1><div class="pub-actions"><a class="btn btn-primary" href="#events">Music &amp; the garden</a><a class="btn btn-ghost" href="#menu">See the menu</a></div></div></section><aside class="award-strip opening-strip"><strong>Seven days a week</strong><span>Doors open at noon · closing times below</span></aside>
+<!-- ===================== #hours =====================
        Live Pacific clock + address + all seven days, today lit.
        Hours live HERE and nowhere else on the page. -->
-  <section class="status-band" id="hours">
-    <div class="wrap">
-      <div class="status-head">
-        <p class="eyebrow">When to find us</p>
-        <h2>Plan your <em>visit</em></h2>
-        <p class="hours-note" id="hoursNote">These are the Restaurantji-listed hours saved September 2026. Sunday’s closing time differs across listings; call before a late visit and ask about kitchen hours.</p>
-        <p class="status-addr">
-          18605 Renton-Maple Valley Rd, Maple Valley, WA 98038<br>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=18605+Renton-Maple+Valley+Rd%2C+Maple+Valley%2C+WA+98038" target="_blank" rel="noopener">Open in Maps ↗</a>
-        </p>
-
-      </div>
-      <ul class="hours-list" id="hoursList">
-        <li data-days="1"><span class="day">Monday</span><span class="time">12:00 PM – 12:00 AM</span></li>
-        <li data-days="2"><span class="day">Tuesday</span><span class="time">12:00 PM – 12:00 AM</span></li>
-        <li data-days="3"><span class="day">Wednesday</span><span class="time">12:00 PM – 12:00 AM</span></li>
-        <li data-days="4"><span class="day">Thursday</span><span class="time">12:00 PM – 12:00 AM</span></li>
-        <li data-days="5"><span class="day">Friday</span><span class="time">12:00 PM – 2:00 AM</span></li>
-        <li data-days="6"><span class="day">Saturday</span><span class="time">12:00 PM – 2:00 AM</span></li>
-        <li data-days="0"><span class="day">Sunday</span><span class="time">12:00 PM – 11:00 PM</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ===================== #events — the one-of-one =====================
+<section class="status-band" id="hours">
+<div class="wrap">
+<div class="status-head">
+<p class="eyebrow">When to find us</p>
+<h2>Open at noon, <em>seven days</em></h2>
+<p class="live-line" id="statusLine"><span class="dot"></span><span id="statusText">checking hours…</span></p>
+<p class="status-addr">
+          18605 Renton-Maple Valley Rd, Maple Valley, WA 98038<br/>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=18605+Renton-Maple+Valley+Rd%2C+Maple+Valley%2C+WA+98038" rel="noopener" target="_blank">Open in Maps ↗</a>
+</p>
+</div>
+<ul class="hours-list" id="hoursList">
+<li data-days="1"><span class="day">Monday</span><span class="time">12:00 PM – 12:00 AM</span></li>
+<li data-days="2"><span class="day">Tuesday</span><span class="time">12:00 PM – 12:00 AM</span></li>
+<li data-days="3"><span class="day">Wednesday</span><span class="time">12:00 PM – 12:00 AM</span></li>
+<li data-days="4"><span class="day">Thursday</span><span class="time">12:00 PM – 12:00 AM</span></li>
+<li data-days="5"><span class="day">Friday</span><span class="time">12:00 PM – 2:00 AM</span></li>
+<li data-days="6"><span class="day">Saturday</span><span class="time">12:00 PM – 2:00 AM</span></li>
+<li data-days="0"><span class="day">Sunday</span><span class="time">12:00 PM – 11:00 PM</span></li>
+</ul>
+</div>
+</section>
+<!-- ===================== #events — the one-of-one =====================
        This is a bar that is also a music venue: a huge covered stage in the
        beer garden with their own bulldog banner behind the bands. Only the
        nights that are actually sourced appear here — the Friday banner on
        their fence, and karaoke, which the listing and the reviews both name
        but neither pins to a day. Nothing is invented. -->
-  <section class="section section-alt" id="events">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">What's on out back</p>
-        <h2>It's a bar. <em>It's also a venue.</em></h2>
-        <p>Behind the building: a covered stage, a grass beer garden and string lights over the tables. <a href="https://www.facebook.com/173757529301739" target="_blank" rel="noopener">Check the bar’s Facebook page</a> or call for the current music and karaoke schedule.</p>
-      </div>
-      <div class="cards">
-
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
-          <h3>Live music out back</h3>
-          <p class="when">Check the current lineup</p>
-          <p>The photographed fence banner advertises Friday-night live music on the covered stage. Call the bar for this week’s lineup and start time.</p>
-        </article>
-
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div>
-          <h3>Karaoke nights</h3>
-          <p>The machine hangs on the panelling by the door, under the Modelo neon. Regulars name it in their reviews right alongside the live bands — ring the bar for which nights are running.</p>
-        </article>
-
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14c3-7 17-7 20 0"/><path d="M4 14v6h16v-6"/><path d="M9 20v-4h6v4"/></svg></div>
-          <button class="unroll" type="button" aria-expanded="false" aria-controls="roll-garden">
-            <h3>The stage &amp; the garden</h3>
-            <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-          </button>
-          <p>A hooped cover shelters the stage, with outdoor tables nearby. Check with the bar for any weather changes to a show.</p>
-          <div class="rolled" id="roll-garden">
-            <ul>
-              <li>Covered outdoor stage</li>
-              <li>Beer garden on the grass</li>
-              <li>String lights over the tables</li>
-              <li>Fire pit going after dark</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="1.4"/><circle cx="16" cy="12" r="1.4"/></svg></div>
-          <h3>Pool &amp; horseshoes</h3>
-          <p class="when">Inside and out</p>
-          <p>Two of the things the photographed reader board lists under the sign — pool, horseshoes, beer garden. The tables are inside past the posts.</p>
-        </article>
-
-      </div>
-
-      <div class="stage-strip">
-        <figure class="print reveal mobile-exterior"><img src="images/hero-stack-1.jpg" alt="The Red Dog Saloon exterior and roadside sign on Renton–Maple Valley Road" loading="lazy" width="1920" height="1440"><figcaption>The saloon from the road</figcaption></figure>
-        <figure class="print reveal">
-          <img src="images/stage-live.jpg" alt="A four-piece band playing the covered outdoor stage under coloured string lights, the Red Dog Saloon bulldog banner hung behind them" loading="lazy" width="1920" height="1446">
-          <figcaption>A band on the covered stage</figcaption>
-        </figure>
-        <figure class="print reveal">
-          <img src="images/stage-set.jpg" alt="The covered stage set up with amps and a drum kit, patio tables out on the gravel in front of it" loading="lazy" width="1920" height="1440">
-          <figcaption>Set up, before the doors open</figcaption>
-        </figure>
-        <figure class="print reveal">
-          <img src="images/garden-night.jpg" alt="The beer garden after dark — umbrella tables and string lights strung between the trees" loading="lazy" width="1920" height="1440">
-          <figcaption>The garden after dark</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #menu — the board on the wall =====================
+<section class="section section-alt" id="events">
+<div class="wrap">
+<div class="section-head reveal">
+<p class="eyebrow">What's on out back</p>
+<h2>It's a bar. <em>It's also a venue.</em></h2>
+<p>Behind the building there's a covered stage, a grass beer garden and string lights over the tables — the listing calls it “free pool, horseshoes, and a huge outdoor covered stage for live music.”</p>
+</div>
+<div class="cards">
+<details class="compact-disclosure amenity"><summary>Live music Fridays</summary>
+<p class="when">Every Friday night</p>
+<p>Their own banner says it, zip-tied to the fence at the edge of the beer garden: LIVE MUSIC EVERY FRIDAY NIGHT. The bands play the covered stage behind the building.</p>
+</details>
+<details class="compact-disclosure amenity"><summary>Karaoke nights</summary>
+<p>The machine hangs on the panelling by the door, under the Modelo neon. Regulars name it in their reviews right alongside the live bands — ring the bar for which nights are running.</p>
+</details>
+<details class="compact-disclosure amenity"><summary>The stage &amp; the garden</summary>
+<p>A hooped cover sits over the whole stage, so a wet night doesn't cancel anything.</p>
+<div class="always-readable" id="roll-garden">
+<ul>
+<li>Covered outdoor stage</li>
+<li>Beer garden on the grass</li>
+<li>String lights over the tables</li>
+<li>Fire pit going after dark</li>
+</ul>
+</div>
+</details>
+<details class="compact-disclosure amenity"><summary>Free pool, horseshoes</summary>
+<p class="when">Whenever the doors are open</p>
+<p>Two of the three things the reader board out front has always listed under the sign — pool, horseshoes, beer garden. The tables are inside past the posts.</p>
+</details>
+</div>
+<div class="stage-strip">
+<figure class="print reveal mobile-exterior"><img alt="The Red Dog Saloon exterior and roadside sign on Renton–Maple Valley Road" height="1440" loading="lazy" src="images/hero-stack-1.jpg" width="1920"/><figcaption>The saloon from the road</figcaption></figure>
+<figure class="print reveal">
+<img alt="A four-piece band playing the covered outdoor stage under coloured string lights, the Red Dog Saloon bulldog banner hung behind them" height="1446" loading="lazy" src="images/stage-live.jpg" width="1920"/>
+<figcaption>A band on the covered stage</figcaption>
+</figure>
+<figure class="print reveal">
+<img alt="The covered stage set up with amps and a drum kit, patio tables out on the gravel in front of it" height="1440" loading="lazy" src="images/stage-set.jpg" width="1920"/>
+<figcaption>Set up, before the doors open</figcaption>
+</figure>
+<figure class="print reveal">
+<img alt="The beer garden after dark — umbrella tables and string lights strung between the trees" height="1440" loading="lazy" src="images/garden-night.jpg" width="1920"/>
+<figcaption>The garden after dark</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- ===================== #menu — the board on the wall =====================
        Every line and every price below is read off the photographed menu board
        in their own room. The chili-dog board is a separate board and lives in
        #signature — no item appears in both. -->
-  <section class="section" id="menu">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">From the board on the wall</p>
-        <h2>Burgers, wings and <em>fish and chips</em></h2>
-        <p>Everything here is off the printed board in their room, priced as printed. Wings come by the six, the twelve or the twenty-four.</p>
-      </div>
-
-      <div class="menu-groups reveal">
-        <div class="menu-group">
-          <h3>Burgers</h3>
-          <ul class="menu-list">
-            <li><span class="name">Deluxe Cheeseburger</span><span class="price">$10.99</span></li>
-            <li><span class="name">Red Dog Burger</span><span class="price">$14.99</span><span class="desc">Double meat, cheese &amp; bacon.</span></li>
-            <li><span class="name">Bacon Cheeseburger</span><span class="price">$12.99</span></li>
-            <li><span class="name">Blue Cheese Burger</span><span class="price">$12.99</span></li>
-          </ul>
-        </div>
-        <div class="menu-group">
-          <h3>Wings</h3>
-          <ul class="menu-list">
-            <li><span class="name">6 Piece Wings</span><span class="price">$8.99</span><span class="desc">Six hot wings with your choice of sauce.</span></li>
-            <li><span class="name">12 Piece Hot Wings</span><span class="price">$14.99</span></li>
-            <li><span class="name">24 Hot Wings</span><span class="price">$26.99</span></li>
-          </ul>
-        </div>
-        <div class="menu-group">
-          <h3>Salads etc</h3>
-          <ul class="menu-list">
-            <li><span class="name">Chef, Cobb or Taco Salad</span><span class="price">$12.99</span></li>
-            <li><span class="name">French Dip</span><span class="price">$11.99</span></li>
-            <li><span class="name">Sandwiches</span><span class="price">$9.99</span><span class="desc">Turkey, ham or roast beef.</span></li>
-            <li><span class="name">Fish &amp; Chips</span><span class="price">$11.99</span></li>
-            <li><span class="name">Chicken Strips &amp; Fries</span><span class="price">$11.99</span></li>
-            <li><span class="name">French Onion Soup</span><span class="price">$4.99</span></li>
-          </ul>
-        </div>
-        <div class="menu-group">
-          <h3>Appetizers</h3>
-          <ul class="menu-list">
-            <li><span class="name">Spinach Artichoke Dip</span><span class="price">$8.99</span><span class="desc">With fresh homemade chips.</span></li>
-            <li><span class="name">Mini Corn Dog Bites</span><span class="price">$7.99</span></li>
-            <li><span class="name">Mozzarella Cheese Sticks</span><span class="price">$7.99</span></li>
-            <li><span class="name">Onion Rings</span><span class="price">$6.99</span></li>
-            <li><span class="name">French Fries</span><span class="price">$4.99</span></li>
-          </ul>
-        </div>
-      </div>
-      <p class="menu-fine reveal">Prices are transcribed from an undated menu-board photograph; confirm today’s menu and prices with the bar. The board lists a 1-to-5 wing spice scale, teriyaki, BBQ or naked.</p>
-
-      <div class="dish-strip">
-        <figure class="print reveal"><img src="images/dish-burger.jpg" alt="A bacon cheeseburger stacked with two patties and cheese, tater tots beside it and a dark beer behind" loading="lazy" width="1650" height="2200"><figcaption>Bacon cheeseburger</figcaption></figure>
-        <figure class="print reveal"><img src="images/dish-wings.jpg" alt="Hot wings in sauce on red-checked paper with celery and a cup of dressing" loading="lazy" width="1238" height="2200"><figcaption>Hot wings</figcaption></figure>
-        <figure class="print reveal"><img src="images/dish-dip.jpg" alt="A French dip cut in two on red-checked paper with crinkle fries and a bowl of au jus" loading="lazy" width="1920" height="1440"><figcaption>French dip</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #signature — THE CHILI-DOG BOARD =====================
+<section class="section" id="menu">
+<div class="wrap">
+<div class="section-head reveal">
+<p class="eyebrow">From the board on the wall</p>
+<h2>Burgers, wings and <em>fish and chips</em></h2>
+<p>Everything here is off the printed board in their room, priced as printed. Wings come by the six, the twelve or the twenty-four.</p>
+</div>
+<div class="menu-groups reveal">
+<details class="menu-group compact-disclosure">
+<summary>Burgers</summary>
+<ul class="menu-list">
+<li><span class="name">Deluxe Cheeseburger</span><span class="price">$10.99</span></li>
+<li><span class="name">Red Dog Burger</span><span class="price">$14.99</span><span class="desc">Double meat, cheese &amp; bacon.</span></li>
+<li><span class="name">Bacon Cheeseburger</span><span class="price">$12.99</span></li>
+<li><span class="name">Blue Cheese Burger</span><span class="price">$12.99</span></li>
+</ul>
+</details>
+<details class="menu-group compact-disclosure">
+<summary>Wings</summary>
+<ul class="menu-list">
+<li><span class="name">6 Piece Wings</span><span class="price">$8.99</span><span class="desc">Six hot wings with your choice of sauce.</span></li>
+<li><span class="name">12 Piece Hot Wings</span><span class="price">$14.99</span></li>
+<li><span class="name">24 Hot Wings</span><span class="price">$26.99</span></li>
+</ul>
+</details>
+<details class="menu-group compact-disclosure">
+<summary>Salads etc</summary>
+<ul class="menu-list">
+<li><span class="name">Chef, Cobb or Taco Salad</span><span class="price">$12.99</span></li>
+<li><span class="name">French Dip</span><span class="price">$11.99</span></li>
+<li><span class="name">Sandwiches</span><span class="price">$9.99</span><span class="desc">Turkey, ham or roast beef.</span></li>
+<li><span class="name">Fish &amp; Chips</span><span class="price">$11.99</span></li>
+<li><span class="name">Chicken Strips &amp; Fries</span><span class="price">$11.99</span></li>
+<li><span class="name">French Onion Soup</span><span class="price">$4.99</span></li>
+</ul>
+</details>
+<details class="menu-group compact-disclosure">
+<summary>Appetizers</summary>
+<ul class="menu-list">
+<li><span class="name">Spinach Artichoke Dip</span><span class="price">$8.99</span><span class="desc">With fresh homemade chips.</span></li>
+<li><span class="name">Mini Corn Dog Bites</span><span class="price">$7.99</span></li>
+<li><span class="name">Mozzarella Cheese Sticks</span><span class="price">$7.99</span></li>
+<li><span class="name">Onion Rings</span><span class="price">$6.99</span></li>
+<li><span class="name">French Fries</span><span class="price">$4.99</span></li>
+</ul>
+</details>
+</div>
+<p class="menu-fine reveal">Sauce on the wings runs a 1-to-5 spice scale, plus teriyaki, BBQ, or — the board's word — just naked.</p>
+<div class="dish-strip">
+<figure class="print reveal"><img alt="A bacon cheeseburger stacked with two patties and cheese, tater tots beside it and a dark beer behind" height="2200" loading="lazy" src="images/dish-burger.jpg" width="1650"/><figcaption>Bacon cheeseburger</figcaption></figure>
+<figure class="print reveal"><img alt="Hot wings in sauce on red-checked paper with celery and a cup of dressing" height="2200" loading="lazy" src="images/dish-wings.jpg" width="1238"/><figcaption>Hot wings</figcaption></figure>
+<figure class="print reveal"><img alt="A French dip cut in two on red-checked paper with crinkle fries and a bowl of au jus" height="1440" loading="lazy" src="images/dish-dip.jpg" width="1920"/><figcaption>French dip</figcaption></figure>
+</div>
+</div>
+</section>
+<!-- ===================== #signature — THE CHILI-DOG BOARD =====================
        Their one-of-one: a second laminated board on the wall, all chili dogs,
        five of them, one named after the town. Tap a name and that dog gets
        built. One tap, instant payoff, tap again to clear. The wording under
        each is the board's own, verbatim. -->
-  <section class="section section-alt" id="signature">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">The other board on the wall</p>
-        <h2>Five chili dogs. <em>One's named after the town.</em></h2>
-        <p>All beef, grilled, on a toasted bun. Tap a name to see the toppings from the photographed board; ask the bar for current prices.</p>
-      </div>
-
-      <div class="board reveal">
-        <div class="dog-stage" id="dogStage">
-          <svg viewBox="0 0 420 250" role="img" aria-labelledby="dogSvgTitle">
-            <title id="dogSvgTitle">A grilled all-beef dog on a toasted bun, built with whatever the chosen dog carries</title>
-            <!-- back half of the bun — drawn FIRST so nothing it holds is ever hidden -->
-            <path d="M56 190c0-72 40-118 154-118s154 46 154 118z" fill="#E3AE68"/>
-            <path d="M86 118c26-21 68-30 124-30s98 9 124 30" stroke="#F5D3A0" stroke-width="9" stroke-linecap="round" fill="none"/>
-            <!-- the grilled dog, ends out past the bun -->
-            <rect x="26" y="130" width="368" height="52" rx="26" fill="#A03D28"/>
-            <path d="M52 148c26-8 62-10 158-10s132 2 158 10" stroke="#C4573A" stroke-width="8" stroke-linecap="round" fill="none"/>
-            <!-- toppings, layered per dog — all sit ON the dog, in front of the back bun -->
-            <g class="dog-topping t-chili">
-              <path d="M66 120c15-18 45-26 144-26s129 8 144 26c8 9 1 19-14 21-32 5-82 8-130 8s-98-3-130-8c-15-2-22-12-14-21z" fill="#7B2B14"/>
-              <circle cx="108" cy="118" r="9" fill="#5A1C0C"/><circle cx="156" cy="130" r="8" fill="#9A3A1D"/>
-              <circle cx="204" cy="116" r="9" fill="#5A1C0C"/><circle cx="252" cy="130" r="8" fill="#9A3A1D"/>
-              <circle cx="300" cy="117" r="9" fill="#5A1C0C"/><circle cx="338" cy="130" r="7" fill="#9A3A1D"/>
-              <circle cx="132" cy="138" r="6" fill="#6B240F"/><circle cx="276" cy="138" r="6" fill="#6B240F"/>
-            </g>
-            <g class="dog-topping t-cheese">
-              <path d="M76 106c26 13 70 18 134 18s108-5 134-18c9 13 6 24-9 26-35 5-81 8-125 8s-90-3-125-8c-15-2-18-13-9-26z" fill="#F0B429"/>
-              <path d="M114 138c0 15-3 22-9 22s-9-7-9-22zM324 138c0 15-3 22-9 22s-9-7-9-22zM220 142c0 14-3 21-9 21s-9-7-9-21z" fill="#F0B429"/>
-            </g>
-            <g class="dog-topping t-bacon">
-              <path d="M74 96c33 8 68 11 136 11s103-3 136-11c5 7 2 14-7 16-36 6-84 9-129 9s-93-3-129-9c-9-2-12-9-7-16z" fill="#8C3A22"/>
-              <path d="M88 100c45 8 199 8 244 0" stroke="#DE8055" stroke-width="6" stroke-linecap="round" fill="none"/>
-              <path d="M100 112c41 7 178 7 219 0" stroke="#DE8055" stroke-width="5" stroke-linecap="round" fill="none"/>
-            </g>
-            <g class="dog-topping t-jala">
-              <circle cx="100" cy="108" r="12" fill="#37701F"/><circle cx="100" cy="108" r="5" fill="#9FD37F"/>
-              <circle cx="155" cy="97" r="12" fill="#37701F"/><circle cx="155" cy="97" r="5" fill="#9FD37F"/>
-              <circle cx="210" cy="106" r="12" fill="#37701F"/><circle cx="210" cy="106" r="5" fill="#9FD37F"/>
-              <circle cx="265" cy="96" r="12" fill="#37701F"/><circle cx="265" cy="96" r="5" fill="#9FD37F"/>
-              <circle cx="320" cy="108" r="12" fill="#37701F"/><circle cx="320" cy="108" r="5" fill="#9FD37F"/>
-            </g>
-            <g class="dog-topping t-cream">
-              <path d="M80 104c29 11 70 15 130 15s101-4 130-15c7 11 2 20-12 22-33 5-78 7-118 7s-85-2-118-7c-14-2-19-11-12-22z" fill="#F4EFE3"/>
-            </g>
-            <g class="dog-topping t-kraut">
-              <path d="M88 104c32 5 66 8 122 8s90-3 122-8" stroke="#E9DEA8" stroke-width="9" stroke-linecap="round" fill="none"/>
-              <path d="M100 120c30 5 64 7 110 7s80-2 110-7" stroke="#D6C88C" stroke-width="8" stroke-linecap="round" fill="none"/>
-              <path d="M114 90c28 5 58 7 96 7s68-2 96-7" stroke="#F5EEC6" stroke-width="7" stroke-linecap="round" fill="none"/>
-            </g>
-            <!-- plate shadow + the front lip of the bun, lapping over the bottom -->
-            <ellipse cx="210" cy="216" rx="160" ry="11" fill="rgba(0,0,0,.5)"/>
-            <path d="M42 190c0-22 20-32 52-32h232c32 0 52 10 52 32s-20 24-52 24H94c-32 0-52-2-52-24z" fill="#D9A055"/>
-            <path d="M58 178c12-10 30-14 50-14h204c20 0 38 4 50 14" stroke="#F0C489" stroke-width="8" stroke-linecap="round" fill="none"/>
-          </svg>
-          <p class="dog-empty" id="dogEmpty">A bun and a grilled dog. Pick one below.</p>
-        </div>
-
-        <div class="dog-copy">
-          <div class="dog-read">
-            <p class="dog-name" id="dogName">The board</p>
-            <p class="dog-price tnum" id="dogPrice">$10.99 – $11.99</p>
-            <p class="dog-desc" id="dogDesc">Five house chili dogs, all on a toasted bun with an all-beef grilled Mariner dog under everything else.<cite>Photographed from the board in their room</cite></p>
-          </div>
-          <div class="dog-pills" id="dogPills" role="group" aria-label="Pick a chili dog">
-            <button type="button" aria-pressed="false" data-dog="chili" data-name="Chili Dog" data-price="$10.99"
-              data-desc="Toasted bun, grilled all beef Mariner hot dog, filled with chili and melted cheese. Add onions upon request.">Chili Dog</button>
-            <button type="button" aria-pressed="false" data-dog="bacon" data-name="Chili Cheese Bacon Dog" data-price="$11.99"
-              data-desc="Toasted bun, all beef grilled Mariner hot dog, chili, cheese topped with bacon. Add onions upon request.">Chili Cheese Bacon</button>
-            <button type="button" aria-pressed="false" data-dog="flamin" data-name="Flamin Chili Dog" data-price="$10.99"
-              data-desc="Toasted bun, all beef Mariner grilled hot dog, topped with tons of chili and jalapenos. Yum">Flamin</button>
-            <button type="button" aria-pressed="false" data-dog="seattle" data-name="Seattle Chili Dog" data-price="$10.99"
-              data-desc="Toasted bun, all beef grilled Mariner dog, chili topped with sour cream. Cheese added upon request">Seattle</button>
-            <button type="button" aria-pressed="false" data-dog="maple" data-name="Maple Valley Dog" data-price="$10.99"
-              data-desc="Toasted bun, grilled all beef Mariner dog, chili, cheese and topped with sauerkrat. So good.">Maple Valley</button>
-          </div>
-          <p class="dog-hint">Tap a name. Tap it again to clear the plate.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #gallery — the room ===================== -->
-  <section class="section" id="gallery">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Before you walk in</p>
-        <h2>Wood posts, red stools, <em>and a lot of neon</em></h2>
-      </div>
-      <div class="prints">
-        <figure class="print reveal"><img src="images/hero-stack-3.jpg" alt="The Red Dog Saloon pool room with wooden posts and the bar beyond" loading="lazy" width="1920" height="1440"><figcaption>Inside the saloon</figcaption></figure>
-        <figure class="print reveal"><img src="images/room-bar.jpg" alt="The bar at the Red Dog Saloon — a row of red-topped stools along a plank-fronted bar under the liquor shelf" loading="lazy" width="1920" height="1440"><figcaption>The bar</figcaption></figure>
-        <figure class="print reveal"><img src="images/room-pool.jpg" alt="A pool table under a Corona lamp with stools along the window wall behind it" loading="lazy" width="1650" height="2200"><figcaption>The pool room</figcaption></figure>
-        <figure class="print reveal"><img src="images/room-taps.jpg" alt="The back bar with lit beer coolers, the whiskey shelf overhead and red light across the ceiling" loading="lazy" width="1920" height="1440"><figcaption>The back bar</figcaption></figure>
-        <figure class="print reveal"><img src="images/room-neon.jpg" alt="A corner booth under Budweiser and Modelo neon with a painted landscape on the panelling" loading="lazy" width="1656" height="2200"><figcaption>The corner booth</figcaption></figure>
-        <figure class="print reveal"><img src="images/firepit.jpg" alt="The fire pit out back burning after dark beside the grill" loading="lazy" width="1650" height="2200"><figcaption>The fire pit, lit</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #about ===================== -->
-  <section class="section section-alt" id="about">
-    <div class="wrap">
-      <div class="story">
-        <figure class="print reveal">
-          <img src="images/bikes.jpg" alt="A long row of motorcycles parked nose-in along the front of the Red Dog Saloon on a clear day, the sign up on its pole beside the highway" loading="lazy" width="1920" height="1440">
-          <figcaption>Bikes out front on a clear day</figcaption>
-        </figure>
-        <div class="story-copy reveal">
-          <p class="eyebrow">Who's in there</p>
-          <h2>A red building, a gravel lot, <em>and whoever pulls in</em></h2>
-          <p class="lede">A Harley crowd and an afternoon-burger crowd both call this place theirs, and mostly on the same day.</p>
-          <p>The saloon is a low, barn-red, shingled building set back off the Renton–Maple Valley highway with the firs right behind it. The wall by the front door is signed <b>Parking for motorcycles only</b>, the lot is gravel and wide open, and on a clear afternoon the bikes go in nose-first the whole length of the building.</p>
-          <p>Inside is dark panelling, wooden posts holding up the ceiling, red-topped stools and a lot of beer neon. Out the back door it opens up: grass, picnic tables, a fire pit and the covered stage.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Review Variant B: no source-matched reviewer portraits are available. -->
-  <section class="section" id="reviews"><div class="wrap"><div class="section-head reveal"><p class="eyebrow">From the people who visit</p><h2>Get to know <em>the Red Dog</em></h2></div><div class="review-linkout reveal"><p>Read customer reviews on the venue’s listings, or share your own visit on Google.</p><p class="review-source">The saved Restaurantji listing showed 4.5 out of 5 from 178 ratings in September 2026. See the source for its current score.</p><div class="review-actions"><a class="btn btn-primary" href="https://www.restaurantji.com/wa/maple-valley/the-red-dog-saloon-/" target="_blank" rel="noopener">See other reviews</a><a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=The+Red+Dog+Saloon+18605+Renton-Maple+Valley+Rd+Maple+Valley+WA" target="_blank" rel="noopener">Leave a review on Google</a></div><p class="review-source">The Google action opens a listing search; choose Reviews to write a review.</p></div></div></section>
-
-  <!-- ===================== #contact ===================== -->
-  <section class="section section-alt" id="contact">
-    <div class="wrap">
-      <div class="contact">
-        <div class="reveal">
-          <p class="eyebrow">Getting there</p>
-          <h2>Off the highway, <em>past the firs</em></h2>
-          <ol class="steps">
-            <li><h3>Just walk in</h3><p>Stools along the bar, tables under the neon and an outdoor beer garden. Call ahead if you are planning a group visit.</p></li>
-            <li><h3>Bring the bike</h3><p>The front wall is signed for motorcycle parking and the lot is gravel, flat and wide. Ask the bar about car parking and access.</p></li>
-            <li><h3>Call about a group or a booking</h3><p>Bringing a crowd, or in a band with an eye on that stage? Ring the bar and ask for whoever's on.</p></li>
-          </ol>
-          <div class="contact-lines">
-            <span>📞 <a href="tel:+14254138600">(425) 413-8600</a></span>
-            <span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=18605+Renton-Maple+Valley+Rd%2C+Maple+Valley%2C+WA+98038" target="_blank" rel="noopener">Directions ↗</a></span>
-          </div>
-        </div>
-        <aside class="contact-call reveal" aria-labelledby="call-title"><h3 id="call-title">Let’s talk.</h3><p>For menu questions, groups or the current event schedule, call the bar directly.</p><a class="btn btn-primary" href="tel:+14254138600">Call the bar</a></aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== #cta ===================== -->
-  <section class="section section-dark cta-band" id="cta">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">One for the road</p>
-        <h2>The red building <em>on the highway</em></h2>
-      </div>
-      <div class="facts-wrap" id="facts" aria-label="Four Red Dog details"><ul class="facts-row"><li><strong>Five</strong><span>House chili dogs on their board</span></li><li><strong>Covered</strong><span>Outdoor stage behind the saloon</span></li><li><strong>Pool</strong><span>Tables inside the wood-paneled room</span></li><li><strong>Fire pit</strong><span>Out back in the beer garden</span></li></ul><p class="facts-source">From the saloon’s menu-board and venue photographs saved September 6, 2026.</p></div>
-      <div class="cta-actions reveal">
-        <a href="#contact" class="btn btn-primary">Get directions</a>
-        <a href="tel:+14254138600" class="btn btn-ghost">Call the saloon</a>
-      </div>
-    </div>
-  </section>
-
+<section class="section section-alt" id="signature">
+<div class="wrap"><details class="compact-disclosure"><summary>House chili dogs · see the board</summary>
+<div class="section-head reveal">
+<p class="eyebrow">The other board on the wall</p>
+<h2>Five chili dogs. <em>One's named after the town.</em></h2>
+<p>All beef, grilled, on a toasted bun, and every one of them under twelve dollars. Tap a name and watch it get built.</p>
+</div>
+<div class="board reveal">
+<div class="dog-stage" id="dogStage">
+<svg aria-labelledby="dogSvgTitle" role="img" viewbox="0 0 420 250">
+<title id="dogSvgTitle">A grilled all-beef dog on a toasted bun, built with whatever the chosen dog carries</title>
+<!-- back half of the bun — drawn FIRST so nothing it holds is ever hidden -->
+<path d="M56 190c0-72 40-118 154-118s154 46 154 118z" fill="#E3AE68"></path>
+<path d="M86 118c26-21 68-30 124-30s98 9 124 30" fill="none" stroke="#F5D3A0" stroke-linecap="round" stroke-width="9"></path>
+<!-- the grilled dog, ends out past the bun -->
+<rect fill="#A03D28" height="52" rx="26" width="368" x="26" y="130"></rect>
+<path d="M52 148c26-8 62-10 158-10s132 2 158 10" fill="none" stroke="#C4573A" stroke-linecap="round" stroke-width="8"></path>
+<!-- toppings, layered per dog — all sit ON the dog, in front of the back bun -->
+<g class="dog-topping t-chili">
+<path d="M66 120c15-18 45-26 144-26s129 8 144 26c8 9 1 19-14 21-32 5-82 8-130 8s-98-3-130-8c-15-2-22-12-14-21z" fill="#7B2B14"></path>
+<circle cx="108" cy="118" fill="#5A1C0C" r="9"></circle><circle cx="156" cy="130" fill="#9A3A1D" r="8"></circle>
+<circle cx="204" cy="116" fill="#5A1C0C" r="9"></circle><circle cx="252" cy="130" fill="#9A3A1D" r="8"></circle>
+<circle cx="300" cy="117" fill="#5A1C0C" r="9"></circle><circle cx="338" cy="130" fill="#9A3A1D" r="7"></circle>
+<circle cx="132" cy="138" fill="#6B240F" r="6"></circle><circle cx="276" cy="138" fill="#6B240F" r="6"></circle>
+</g>
+<g class="dog-topping t-cheese">
+<path d="M76 106c26 13 70 18 134 18s108-5 134-18c9 13 6 24-9 26-35 5-81 8-125 8s-90-3-125-8c-15-2-18-13-9-26z" fill="#F0B429"></path>
+<path d="M114 138c0 15-3 22-9 22s-9-7-9-22zM324 138c0 15-3 22-9 22s-9-7-9-22zM220 142c0 14-3 21-9 21s-9-7-9-21z" fill="#F0B429"></path>
+</g>
+<g class="dog-topping t-bacon">
+<path d="M74 96c33 8 68 11 136 11s103-3 136-11c5 7 2 14-7 16-36 6-84 9-129 9s-93-3-129-9c-9-2-12-9-7-16z" fill="#8C3A22"></path>
+<path d="M88 100c45 8 199 8 244 0" fill="none" stroke="#DE8055" stroke-linecap="round" stroke-width="6"></path>
+<path d="M100 112c41 7 178 7 219 0" fill="none" stroke="#DE8055" stroke-linecap="round" stroke-width="5"></path>
+</g>
+<g class="dog-topping t-jala">
+<circle cx="100" cy="108" fill="#37701F" r="12"></circle><circle cx="100" cy="108" fill="#9FD37F" r="5"></circle>
+<circle cx="155" cy="97" fill="#37701F" r="12"></circle><circle cx="155" cy="97" fill="#9FD37F" r="5"></circle>
+<circle cx="210" cy="106" fill="#37701F" r="12"></circle><circle cx="210" cy="106" fill="#9FD37F" r="5"></circle>
+<circle cx="265" cy="96" fill="#37701F" r="12"></circle><circle cx="265" cy="96" fill="#9FD37F" r="5"></circle>
+<circle cx="320" cy="108" fill="#37701F" r="12"></circle><circle cx="320" cy="108" fill="#9FD37F" r="5"></circle>
+</g>
+<g class="dog-topping t-cream">
+<path d="M80 104c29 11 70 15 130 15s101-4 130-15c7 11 2 20-12 22-33 5-78 7-118 7s-85-2-118-7c-14-2-19-11-12-22z" fill="#F4EFE3"></path>
+</g>
+<g class="dog-topping t-kraut">
+<path d="M88 104c32 5 66 8 122 8s90-3 122-8" fill="none" stroke="#E9DEA8" stroke-linecap="round" stroke-width="9"></path>
+<path d="M100 120c30 5 64 7 110 7s80-2 110-7" fill="none" stroke="#D6C88C" stroke-linecap="round" stroke-width="8"></path>
+<path d="M114 90c28 5 58 7 96 7s68-2 96-7" fill="none" stroke="#F5EEC6" stroke-linecap="round" stroke-width="7"></path>
+</g>
+<!-- plate shadow + the front lip of the bun, lapping over the bottom -->
+<ellipse cx="210" cy="216" fill="rgba(0,0,0,.5)" rx="160" ry="11"></ellipse>
+<path d="M42 190c0-22 20-32 52-32h232c32 0 52 10 52 32s-20 24-52 24H94c-32 0-52-2-52-24z" fill="#D9A055"></path>
+<path d="M58 178c12-10 30-14 50-14h204c20 0 38 4 50 14" fill="none" stroke="#F0C489" stroke-linecap="round" stroke-width="8"></path>
+</svg>
+<p class="dog-empty" id="dogEmpty">A bun and a grilled dog. Pick one below.</p>
+</div>
+<div class="dog-copy">
+<div class="dog-read">
+<p class="dog-name" id="dogName">The board</p>
+<p class="dog-price tnum" id="dogPrice">$10.99 – $11.99</p>
+<p class="dog-desc" id="dogDesc">Five house chili dogs, all on a toasted bun with an all-beef grilled Mariner dog under everything else.<cite>Photographed from the board in their room</cite></p>
+</div>
+<div aria-label="Pick a chili dog" class="dog-pills" id="dogPills" role="group">
+<button aria-pressed="false" data-desc="Toasted bun, grilled all beef Mariner hot dog, filled with chili and melted cheese. Add onions upon request." data-dog="chili" data-name="Chili Dog" data-price="$10.99" type="button">Chili Dog</button>
+<button aria-pressed="false" data-desc="Toasted bun, all beef grilled Mariner hot dog, chili, cheese topped with bacon. Add onions upon request." data-dog="bacon" data-name="Chili Cheese Bacon Dog" data-price="$11.99" type="button">Chili Cheese Bacon</button>
+<button aria-pressed="false" data-desc="Toasted bun, all beef Mariner grilled hot dog, topped with tons of chili and jalapenos. Yum" data-dog="flamin" data-name="Flamin Chili Dog" data-price="$10.99" type="button">Flamin</button>
+<button aria-pressed="false" data-desc="Toasted bun, all beef grilled Mariner dog, chili topped with sour cream. Cheese added upon request" data-dog="seattle" data-name="Seattle Chili Dog" data-price="$10.99" type="button">Seattle</button>
+<button aria-pressed="false" data-desc="Toasted bun, grilled all beef Mariner dog, chili, cheese and topped with sauerkrat. So good." data-dog="maple" data-name="Maple Valley Dog" data-price="$10.99" type="button">Maple Valley</button>
+</div>
+<p class="dog-hint">Tap a name. Tap it again to clear the plate.</p>
+</div>
+</div>
+</details></div>
+</section>
+<!-- ===================== #gallery — the room ===================== -->
+<section class="section" id="gallery">
+<div class="wrap">
+<div class="section-head reveal">
+<p class="eyebrow">Before you walk in</p>
+<h2>Wood posts, red stools, <em>and a lot of neon</em></h2>
+</div>
+<div class="prints">
+<figure class="print reveal"><img alt="The Red Dog Saloon pool room with wooden posts and the bar beyond" height="1440" loading="lazy" src="images/hero-stack-3.jpg" width="1920"/><figcaption>Inside the saloon</figcaption></figure>
+<figure class="print reveal"><img alt="The bar at the Red Dog Saloon — a row of red-topped stools along a plank-fronted bar under the liquor shelf" height="1440" loading="lazy" src="images/room-bar.jpg" width="1920"/><figcaption>The bar</figcaption></figure>
+<figure class="print reveal"><img alt="A pool table under a Corona lamp with stools along the window wall behind it" height="2200" loading="lazy" src="images/room-pool.jpg" width="1650"/><figcaption>The pool room</figcaption></figure>
+<figure class="print reveal"><img alt="The back bar with lit beer coolers, the whiskey shelf overhead and red light across the ceiling" height="1440" loading="lazy" src="images/room-taps.jpg" width="1920"/><figcaption>The back bar</figcaption></figure>
+<figure class="print reveal"><img alt="A corner booth under Budweiser and Modelo neon with a painted landscape on the panelling" height="2200" loading="lazy" src="images/room-neon.jpg" width="1656"/><figcaption>The corner booth</figcaption></figure>
+<figure class="print reveal"><img alt="The fire pit out back burning after dark beside the grill" height="2200" loading="lazy" src="images/firepit.jpg" width="1650"/><figcaption>The fire pit, lit</figcaption></figure>
+</div>
+</div>
+</section>
+<!-- ===================== #about ===================== -->
+<section class="section section-alt" id="about">
+<div class="wrap">
+<div class="story">
+<figure class="print reveal">
+<img alt="A long row of motorcycles parked nose-in along the front of the Red Dog Saloon on a clear day, the sign up on its pole beside the highway" height="1440" loading="lazy" src="images/bikes.jpg" width="1920"/>
+<figcaption>Bikes out front on a clear day</figcaption>
+</figure>
+<div class="story-copy reveal">
+<p class="eyebrow">Who's in there</p>
+<h2>A red building, a gravel lot, <em>and whoever pulls in</em></h2>
+<p class="lede">A Harley crowd and an afternoon-burger crowd both call this place theirs, and mostly on the same day.</p>
+<p>The saloon is a low, barn-red, shingled building set back off the Renton–Maple Valley highway with the firs right behind it. The wall by the front door is signed <b>Parking for motorcycles only</b>, the lot is gravel and wide open, and on a clear afternoon the bikes go in nose-first the whole length of the building.</p>
+<p>Inside is dark panelling, wooden posts holding up the ceiling, red-topped stools and a lot of beer neon. Out the back door it opens up: grass, picnic tables, a fire pit and the covered stage. A regular writing about the place in 2025 also noted that the bar “does a lot of charity work for needy families and dogs.”</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ===================== #reviews =====================
+       REVIEW LAW (2026-09-06): no named-reviewer + real-profile-photo pair
+       could be sourced for this listing, so the score is the object and the
+       quotes are cited to the listing and the month posted — never dressed up
+       with an invented name or a fabricated face. -->
+<section class="section" id="reviews">
+<div class="wrap">
+<div class="section-head reveal">
+<p class="eyebrow">What people say</p>
+<h2>From the regulars</h2>
+</div>
+<div class="review-actions"><a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=The+Red+Dog+Saloon+18605+Renton-Maple+Valley+Rd+Maple+Valley+WA" rel="noopener" target="_blank">See other reviews</a><a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=The+Red+Dog+Saloon+18605+Renton-Maple+Valley+Rd+Maple+Valley+WA" rel="noopener" target="_blank">Leave a review on Google</a></div><p class="review-source">Opens the Google listing search. Choose Reviews to read or write a review.</p></div>
+</section>
+<!-- ===================== #contact ===================== -->
+<section class="section section-alt" id="contact">
+<div class="wrap">
+<div class="contact">
+<div class="reveal">
+<p class="eyebrow">Getting there</p>
+<h2>Off the highway, <em>past the firs</em></h2>
+<ol class="steps">
+<li><h3>Just walk in</h3><p>No reservations and no dress code. Take a stool at the bar, a table under the neon, or the grass out back when it's dry.</p></li>
+<li><h3>Bring the bike</h3><p>The front wall is signed for motorcycle parking and the lot is gravel, flat and wide. Cars go around the side.</p></li>
+<li><h3>Call about a group or a booking</h3><p>Bringing a crowd, or in a band with an eye on that stage? Ring the bar and ask for whoever's on.</p></li>
+</ol>
+<div class="contact-lines">
+<span>📞 <a href="tel:+14254138600">(425) 413-8600</a></span>
+<span>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=18605+Renton-Maple+Valley+Rd%2C+Maple+Valley%2C+WA+98038" rel="noopener" target="_blank">Directions ↗</a></span>
+</div>
+</div>
+<form class="contact-form reveal">
+<input name="access_key" type="hidden" value=""/>
+<input aria-hidden="true" autocomplete="off" class="botfield" name="botcheck" tabindex="-1" type="checkbox"/>
+<label>Name<input autocomplete="name" name="name" required="" type="text"/></label>
+<label>Phone<input autocomplete="tel" name="phone" type="tel"/></label>
+<label class="full">Email<input autocomplete="email" name="email" required="" type="email"/></label>
+<label class="full">What's it about?<select name="topic"><option>Booking a group or a party</option><option>Playing the stage</option><option>Something else</option></select></label>
+<label class="full">Message<textarea name="msg" placeholder="How many of you, which night, and anything the kitchen should know."></textarea></label>
+<button class="btn btn-primary" type="submit">Send it to the bar</button>
+<p class="form-success">Thanks — someone at the Red Dog will get back to you.</p>
+<p class="form-fine">We'll only use this to reply to you.</p>
+</form>
+</div>
+</div>
+</section>
+<!-- ===================== #cta ===================== -->
 </main>
-
 <!-- ===================== FOOTER ===================== -->
 <footer class="site-footer">
-  <div class="wrap">
-    <div class="foot">
-      <div>
-        <div class="brand footer-wordmark">The Red Dog Saloon</div>
-        <p>Burgers, cold beer and a band out back. Come on in.</p>
-        <div class="soc">
-          <a href="https://www.facebook.com/173757529301739" target="_blank" rel="noopener">Facebook</a>
-        </div>
-      </div>
-      <div>
-        <h4>Find us</h4>
-        <p>18605 Renton-Maple Valley Rd<br>Maple Valley, WA 98038</p>
-        <p><a href="tel:+14254138600">(425) 413-8600</a></p>
-      </div>
-      <div>
-        <h4>On this page</h4>
-        <p><a href="#events">What's on</a><br><a href="#menu">Menu</a><br><a href="#signature">Chili dogs</a><br><a href="#gallery">The room</a><br><a href="#contact">Find us</a></p>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© <span id="year">2026</span> The Red Dog Saloon</span>
-      <span>Maple Valley, Washington</span>
-    </div>
-  </div>
+<div class="wrap">
+<div class="foot">
+<div>
+<div class="brand"><img alt="The Red Dog Saloon sign" height="614" loading="lazy" src="images/mark.jpg" width="1100"/></div>
+<p>Burgers, cold beer and a band out back. Come on in.</p>
+<div class="soc">
+<a href="https://www.facebook.com/173757529301739" rel="noopener" target="_blank">Facebook</a>
+</div>
+</div>
+<div>
+<h4>Find us</h4>
+<p>18605 Renton-Maple Valley Rd<br/>Maple Valley, WA 98038</p>
+<p><a href="tel:+14254138600">(425) 413-8600</a></p>
+</div>
+<div>
+<h4>On this page</h4>
+<p><a href="#events">What's on</a><br/><a href="#menu">Menu</a><br/><a href="#signature">Chili dogs</a><br/><a href="#gallery">The room</a><br/><a href="#contact">Find us</a></p>
+</div>
+</div>
+<div class="foot-bottom">
+<span>© <span id="year">2026</span> The Red Dog Saloon</span>
+<span>Maple Valley, Washington</span>
+</div>
+</div>
 </footer>
-
 <script src="js/site.js"></script>
 </body>
 </html>

@@ -53,7 +53,7 @@ var WEEKEND = {day:'The photographed sheet', dish:'Explore the weeknight dishes'
 
   /* ---------- mobile nav ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
-  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰';toggle.setAttribute('aria-label',open?'Close menu':'Open menu')}
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
   if(toggle&&nav){
     toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
     $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
@@ -164,7 +164,7 @@ var WEEKEND = {day:'The photographed sheet', dish:'Explore the weeknight dishes'
     }
 
     chips.forEach(function(c){
-      c.addEventListener('click',function(){select(c.getAttribute('aria-pressed')==='true' ? 0 : parseInt(c.getAttribute('data-day'),10), true)});
+      c.addEventListener('click',function(){select(parseInt(c.getAttribute('data-day'),10), true)});
     });
 
     var d=pacificNow().day;

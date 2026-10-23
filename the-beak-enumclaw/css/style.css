@@ -530,7 +530,7 @@ h1,h2,h3,h4,.logo .wm,.brand .wm,.rev-who,.num b,.steps h3,.rev-score b{font-wei
 #ribbon .rev blockquote{line-height:1.65;overflow-wrap:break-word}
 #ribbon.gliding{overflow:hidden}
 #ribbon.gliding .ribbon-track{animation:review-drift var(--review-duration) linear infinite;will-change:transform}
-#ribbon.gliding.pointer-hover .ribbon-track,#ribbon.gliding:focus-visible .ribbon-track,#ribbon.gliding.held .ribbon-track,#ribbon.gliding.page-hidden .ribbon-track{animation-play-state:paused}
+#ribbon.gliding:hover .ribbon-track,#ribbon.gliding:focus-within .ribbon-track,#ribbon.gliding.held .ribbon-track,#ribbon.gliding.page-hidden .ribbon-track{animation-play-state:paused}
 #ribbon:focus-visible{outline-offset:-3px}
 @keyframes review-drift{to{transform:translateX(calc(-1 * var(--review-distance)))}}
 @media(max-width:560px){
@@ -547,11 +547,3 @@ h1,h2,h3,h4,.logo .wm,.brand .wm,.rev-who,.num b,.steps h3,.rev-score b{font-wei
   #ribbon.gliding .ribbon-track{animation:none;transform:none}
   #ribbon .review-copy{display:none}
 }
-
-/* Contact actions work immediately; no unconnected form fields. */
-.contact-card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(24px,4vw,44px);align-self:start;display:grid;justify-items:start;gap:20px}
-.contact-card h3{font-size:clamp(28px,3vw,38px);line-height:1.2}
-.contact-card p{margin:0;max-width:38ch}
-.contact-hours-link{font-weight:700;text-decoration:underline;text-underline-offset:4px;line-height:1.5}
-
-#ribbon.gliding:not(.pointer-hover):not(.held):not(.page-hidden):not(:focus-visible) .ribbon-track{animation-play-state:running}

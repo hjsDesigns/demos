@@ -21,8 +21,6 @@
      .btn-cream    (background:var(--ink))
    ============================================================ */
 :root{
-  --status-open:#4CAF50;
-  --status-closed:#EF4444;
   /* ---- palette — sampled from their building, their room and their menu ---- */
   --brand:#C8A24B;          /* the red of the Best of Western Washington banner */
   --brand-text:#E2BE72;     /* brass, for small type on the dark ground */

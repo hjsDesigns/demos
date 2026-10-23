@@ -42,7 +42,7 @@ function customClose(p, close){ return close; }
 
   /* ---------- mobile nav (toggle · Escape · outside-click · close on link) ---------- */
   var toggle=$('.nav-toggle'), nav=$('#main-nav');
-  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰';toggle.setAttribute('aria-label',open?'Close menu':'Open menu')}
+  function setNav(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open?'true':'false');toggle.textContent=open?'✕':'☰'}
   if(toggle&&nav){
     toggle.addEventListener('click',function(e){e.stopPropagation();setNav(!nav.classList.contains('open'))});
     $$('#main-nav a').forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
@@ -99,7 +99,7 @@ function customClose(p, close){ return close; }
   $$('.reveal').forEach(function(el){io.observe(el)});
 
   /* ---------- contact form ----------
-     Demo mode (hidden access_key empty): show the thank-you, send nothing.
+     Demo mode (hidden access_key empty): explicitly say no message was sent.
      Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms
      from the visitor's browser -> lands in the owner's inbox. */
   var form=$('.contact-form'), ok=$('.form-success');
@@ -107,7 +107,7 @@ function customClose(p, close){ return close; }
     e.preventDefault();
     var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
     function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
-    if(!key){done();return}
+    if(!key){ok.textContent='Message not sent. Please use the phone link to contact the business.';ok.classList.add('show');ok.setAttribute('role','status');return}
     var label=btn.textContent; btn.disabled=true; btn.textContent='Sending…';
     var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
     data.subject=data.subject||('New message from your website ('+document.title+')');

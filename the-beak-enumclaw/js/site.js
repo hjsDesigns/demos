@@ -1,7 +1,7 @@
 /* ============================================================
    WEBSITE FACTORY — site.js
    Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
-   count-up numbers · review ribbon.
+   count-up numbers · contact form success.
    The ONLY thing to edit per client is the HOURS block right below.
    ============================================================ */
 
@@ -103,6 +103,25 @@ function customClose(p, close){ return close; }
   $$('.reveal').forEach(function(el){io.observe(el)});
   }
 
+  /* ---------- contact form ----------
+     Demo mode (hidden access_key empty): explain that nothing was sent.
+     Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms from the visitor's
+     browser -> lands in the owner's inbox. Failure falls back to "call or text us". */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){var configured=form.querySelector('[name=access_key]');if(configured&&configured.value.trim()){form.querySelector('button[type=submit]').disabled=false;form.querySelector('button[type=submit]').textContent='Send message';}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
+    function done(){ok.textContent='Message sent. Thank you.';ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
+    if(!key){ok.textContent='Message not sent. Please use the phone link to contact the business.';ok.classList.add('show');ok.setAttribute('role','status');return}
+    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
+    var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
+    data.subject=data.subject||('New message from your website ('+document.title+')');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()}).then(function(j){if(j&&j.success){done()}else{throw new Error('send failed')}})
+      .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
+  })}
+
   /* Reviews: 40 px/s; real cards only, with inert visual copies for the loop.
      Hover, keyboard focus and touch pause. Reduced motion keeps a scrollable strip. */
   (function(){
@@ -138,8 +157,6 @@ function customClose(p, close){ return close; }
       img.addEventListener('error',drop,{once:true});
       if(img.complete&&!img.naturalWidth) drop();
     });
-    rb.addEventListener('pointerenter',function(event){rb.classList.toggle('pointer-hover',event.pointerType==='mouse')});
-    rb.addEventListener('pointerleave',function(){rb.classList.remove('pointer-hover')});
     ['touchstart','touchmove'].forEach(function(event){rb.addEventListener(event,function(){rb.classList.add('held')},{passive:true})});
     ['touchend','touchcancel'].forEach(function(event){rb.addEventListener(event,function(){rb.classList.remove('held')},{passive:true})});
     document.addEventListener('visibilitychange',function(){rb.classList.toggle('page-hidden',document.hidden)});

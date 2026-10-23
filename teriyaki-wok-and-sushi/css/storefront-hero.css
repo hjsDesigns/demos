@@ -1,0 +1,22 @@
+/* Actual storefront hero, October 23. Scoped to hero only. */
+:root{--storefront-accent:#e5b750;--storefront-ground:#0b2727}
+.storefront-hero{background:var(--storefront-ground);display:grid;grid-template-columns:1fr 1.55fr;position:relative;min-height:540px;isolation:isolate;overflow:hidden;color:#fff5e9}
+.storefront-hero-scene{grid-column:2;grid-row:1;position:relative;min-height:540px;background:var(--storefront-ground)}
+.storefront-hero-scene img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center;display:block}
+.storefront-hero-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--storefront-ground),transparent 32%)}
+.storefront-hero-copy{grid-column:1;grid-row:1;position:relative;z-index:1;align-self:center;padding:60px 0 60px clamp(26px,5vw,76px);margin-right:-60px}
+.storefront-hero h1{font-family:var(--display);font-size:clamp(40px,5vw,76px);font-weight:700;line-height:1.02;letter-spacing:-.035em;color:#fff5e9;margin:0 0 30px;text-shadow:0 2px 20px #0007;transform:none;animation:none;text-wrap:balance}
+.storefront-hero h1 span{display:block;color:var(--storefront-accent);font-size:.85em;margin-top:.1em}
+.storefront-hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+.storefront-hero-actions .btn{font-size:14px;padding:13px 18px;border-radius:3px;min-height:46px}
+.storefront-hero-actions .btn-ghost{border:1px solid #fff6;color:#fff5e9;background:transparent}
+@media(max-width:800px){
+.storefront-hero{display:flex;flex-direction:column;min-height:0}
+.storefront-hero-scene{min-height:0;aspect-ratio:4/3;width:100%}
+.storefront-hero-scene img{object-fit:cover;object-position:50% 40%}
+.storefront-hero-scene:after{background:linear-gradient(0deg,var(--storefront-ground),transparent 30%)}
+.storefront-hero-copy{margin:-12px 0 0;padding:0 25px 32px;width:100%;align-self:auto}
+.storefront-hero h1{font-size:clamp(38px,8.5vw,58px);line-height:1.05;margin-bottom:22px;text-wrap:balance}
+.storefront-hero h1 span{font-size:.85em}
+.storefront-hero-actions .btn{padding:12px 14px;font-size:13px}
+}

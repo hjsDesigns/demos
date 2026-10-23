@@ -1,0 +1,27 @@
+
+:root{--accent:#c48f54;--accent-soft:#e9c58f;--r:3px;--brand:#c8944c;--brand-text:#e3b775;--brand-bright:#dfb36d}
+body{background:radial-gradient(ellipse at 10% 10%,#38251966,transparent 60%),var(--bg)}
+#hero.lc-taproom{display:flex;align-items:center;justify-content:center;min-height:560px;height:calc(90svh - var(--header-h));max-height:850px;background:var(--dark)}
+#hero .lc-taps{position:absolute;inset:0;animation:none}
+#hero .lc-taps img{object-fit:cover;object-position:center;filter:brightness(.79);width:100%;height:100%}
+#hero .lc-taps:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,var(--bg),transparent 45%,#09070466),radial-gradient(ellipse at 50% 43%,#100a0655,transparent 70%)}
+#hero .lc-welcome{position:relative;z-index:2;max-width:650px;padding:40px 25px;background:none;animation:none;align-self:center}
+#hero .lc-badge{width:clamp(260px,38vw,440px);filter:drop-shadow(0 4px 20px #000);margin-bottom:32px}
+#hero .lc-actions .btn{background:var(--warm);border-color:var(--warm);border-radius:2px;color:var(--dark);box-shadow:0 0 28px #e8be7220}
+#hero .lc-link{color:var(--ink);border-color:var(--warm);text-shadow:0 2px 8px #000}
+.site-header{background:#17120eef;border-bottom:1px solid #c8944c55}
+.section{padding-block:clamp(45px,7vw,82px)}
+.section-head h2,.story-copy h2,.contact-copy h2{font-size:clamp(28px,3.5vw,46px);line-height:1.18}
+.section-cream{background:radial-gradient(ellipse at top left,#fff7e4,transparent 80%),var(--cream)}
+.section-alt{background:linear-gradient(110deg,#241a12,var(--bg))}
+.card,.print,.story-photo,.rev{border-radius:3px!important}
+.btn{border-radius:2px!important}
+.print,.story-photo{transform:none!important;box-shadow:0 12px 32px #0002}
+.rev{box-shadow:none!important;border-top:2px solid var(--brand)!important}
+#reviews .review-ribbon{overflow-x:auto;scrollbar-width:none}
+#reviews .review-track,#reviews .review-group{display:flex;gap:20px;width:max-content}
+#reviews .rev{width:310px;flex:0 0 310px;min-height:0;padding:24px}
+#reviews .rev p{font-size:16px;line-height:1.6}
+#reviews .rev-stars{font-size:13px}
+#reviews .rev-head{flex-wrap:wrap}
+@media(max-width:760px){#hero.lc-taproom{min-height:540px;height:calc(86svh - 74px)}#hero .lc-taps{grid-row:auto}#hero .lc-welcome{padding:24px}#hero .lc-taps img{object-fit:cover;object-position:53% center}#hero .lc-badge{width:290px}#hero .lc-actions{gap:10px;flex-direction:column}.section-head h2{font-size:30px}.section-head{margin-bottom:28px}}

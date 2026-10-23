@@ -1,7 +1,7 @@
 /* ============================================================
    WEBSITE FACTORY — site.js
    Nav toggle · live open/closed clock (Pacific time) · scroll-reveal ·
-   count-up numbers · review ribbon.
+   count-up numbers · contact form success.
    The ONLY thing to edit per client is the HOURS block right below.
    ============================================================ */
 
@@ -53,7 +53,14 @@ function customClose(p, close){ return close; }
   var y=$('#year'); if(y) y.textContent=new Date().getFullYear();
 
   /* ---------- Pacific time, wherever the viewer is ---------- */
+  // Pitch/demo switch: ?demo=15.75 (hour, Pacific) [&day=1-6] [&date=YYYY-MM-DD]
+  // freezes the clock so "Open now" can be shown after hours. No UI exposes it.
+  var DEMO=(function(){try{var q=new URLSearchParams(location.search);if(!q.has('demo'))return null;
+    var h=parseFloat(q.get('demo'));var d=parseInt(q.get('day')||'3',10);if(isNaN(h))return null;var o={day:d,h:h};
+    var ds=q.get('date');if(ds&&/^\d{4}-\d{2}-\d{2}$/.test(ds)){var dt=new Date(ds+'T12:00:00');o.y=dt.getFullYear();o.mo=dt.getMonth();o.d=dt.getDate();o.day=dt.getDay()}
+    return o}catch(e){return null}})();
   function pacificNow(){
+    if(DEMO) return DEMO;
     var parts=new Intl.DateTimeFormat('en-US',{timeZone:HOURS.tz,weekday:'short',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
     var o={};parts.forEach(function(p){o[p.type]=p.value});
     var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
@@ -77,7 +84,6 @@ function customClose(p, close){ return close; }
   window.__site={pacificNow:pacificNow,computeStatus:computeStatus,HOURS:HOURS}; // handy in the console
 
   /* ---------- scroll-reveal + count-up ---------- */
-  if('IntersectionObserver' in window){
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(!en.isIntersecting)return;
@@ -94,55 +100,68 @@ function customClose(p, close){ return close; }
     });
   },{threshold:.06,rootMargin:'0px 0px -6% 0px'});
   $$('.reveal').forEach(function(el){io.observe(el)});
-  }
 
-  /* Reviews: 40 px/s; real cards only, with inert visual copies for the loop.
-     Hover, keyboard focus and touch pause. Reduced motion keeps a scrollable strip. */
-  (function(){
-    var rb=$('#ribbon'), track=rb&&$('.ribbon-track',rb), PPS=40;
-    if(!track) return;
-    var media=window.matchMedia('(prefers-reduced-motion:reduce)');
-    var original=document.createElement('div'); original.className='review-segment';
-    $$('.rev',track).forEach(function(card){original.appendChild(card)});
-    track.replaceChildren(original);
-    function build(){
-      $$('.review-copy',track).forEach(function(n){n.remove()});
-      rb.classList.remove('gliding'); track.style.transform='';
-      rb.scrollLeft=0;
-      var cards=$$('.rev',original), width=original.getBoundingClientRect().width;
-      if(media.matches||cards.length<2||!width) return;
-      var copies=Math.ceil(rb.clientWidth/width)+1;
-      for(var n=0;n<copies;n++){
-        var copy=original.cloneNode(true); copy.classList.add('review-copy');
-        copy.setAttribute('aria-hidden','true'); copy.setAttribute('inert','');
-        $$('[id]',copy).forEach(function(el){el.removeAttribute('id')});
-        $$('img',copy).forEach(function(img){img.alt='';img.loading='eager'});
-        track.appendChild(copy);
+  /* ---------- contact form ----------
+     Demo mode (hidden access_key empty): explicitly say no message was sent.
+     Live mode (key filled at go-live by pages-golive.sh): POST to Web3Forms from the visitor's
+     browser -> lands in the owner's inbox. Failure falls back to "call or text us". */
+  var form=$('.contact-form'), ok=$('.form-success');
+  if(form&&ok){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type=submit]'), keyEl=form.querySelector('[name=access_key]'), key=keyEl?keyEl.value.trim():'';
+    function done(){ok.classList.add('show');ok.setAttribute('role','status');btn.disabled=true}
+    if(!key){ok.textContent='Message not sent. Please use the phone link to contact the business.';ok.classList.add('show');ok.setAttribute('role','status');return}
+    var label=btn.textContent; btn.disabled=true; btn.textContent='Sending\u2026';
+    var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
+    data.subject=data.subject||('New message from your website ('+document.title+')');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json()}).then(function(j){if(j&&j.success){done()}else{throw new Error('send failed')}})
+      .catch(function(){btn.disabled=false;btn.textContent=label;ok.textContent='Couldn\u2019t send just now \u2014 call or text us instead.';ok.classList.add('show');ok.setAttribute('role','alert')});
+  })}
+
+  /* ---------- reviews: the face is load-bearing (REVIEW ATTRIBUTION LAW, 2026-09-06) ----------
+     Every .rev card must show the real reviewer's real photo. If an avatar 404s or is
+     corrupt the card would silently degrade into an anonymous quote — which the law
+     forbids — so the card is REMOVED instead, loudly, and the sanctioned remedy
+     (.rev-linkout: "read the live reviews") takes over if every card is gone.
+     Never patch a missing face with initials, a monogram, or a placeholder image:
+     re-harvest the real profile photo, or use a different attributable review. */
+  $$('.rev .rev-face').forEach(function(img){
+    function drop(){
+      console.error('REVIEW ATTRIBUTION LAW: reviewer avatar failed to load ('+img.getAttribute('src')+
+        ') — that review card was removed. Re-harvest the real profile photo, use a different '+
+        'attributable review, or ship .rev-linkout. Never substitute initials or a stock face.');
+      var card=img.closest('.rev'); if(card) card.parentNode.removeChild(card);
+      if($$('.rev').length===0){
+        var grid=$('.revs'); if(grid) grid.parentNode.removeChild(grid);
+        var all=$('.rev-all'); if(all) all.parentNode.removeChild(all);
+        var lo=$('.rev-linkout'); if(lo){lo.hidden=false;lo.classList.add('in')}
       }
-      track.style.setProperty('--review-distance',width+'px');
-      track.style.setProperty('--review-duration',(width/PPS)+'s');
-      rb.classList.add('gliding');
     }
-    var frame;
-    function schedule(){cancelAnimationFrame(frame);frame=requestAnimationFrame(build)}
-    $$('.rev-face',original).forEach(function(img){
-      img.loading='eager';
-      function drop(){var card=img.closest('.rev');if(card)card.remove();schedule()}
-      img.addEventListener('error',drop,{once:true});
-      if(img.complete&&!img.naturalWidth) drop();
-    });
-    rb.addEventListener('pointerenter',function(event){rb.classList.toggle('pointer-hover',event.pointerType==='mouse')});
-    rb.addEventListener('pointerleave',function(){rb.classList.remove('pointer-hover')});
-    ['touchstart','touchmove'].forEach(function(event){rb.addEventListener(event,function(){rb.classList.add('held')},{passive:true})});
-    ['touchend','touchcancel'].forEach(function(event){rb.addEventListener(event,function(){rb.classList.remove('held')},{passive:true})});
-    document.addEventListener('visibilitychange',function(){rb.classList.toggle('page-hidden',document.hidden)});
-    if(media.addEventListener) media.addEventListener('change',schedule);
-    else media.addListener(schedule);
-    if('ResizeObserver' in window){var observer=new ResizeObserver(schedule);observer.observe(rb);observer.observe(original)}
-    else window.addEventListener('resize',schedule);
-    window.addEventListener('load',schedule);
-    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(schedule);
-    build();
+    if(img.complete&&img.naturalWidth===0) drop();
+    else img.addEventListener('error',drop);
+  });
+
+  /* ---------- review ribbon: continuous glide at the saved speed; hover/touch pauses; no buttons ---------- */
+  (function(){
+    var PPS=40; // formats/review-carousel-defaults.json (pixels_per_second)
+    var rb=$('#ribbon'), track=$('#ribbonTrack'), set=$('#ribbonSet');
+    if(!rb||!track||!set) return;
+    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function build(){
+      $$('.ribbon-set[aria-hidden]',track).forEach(function(n){n.parentNode.removeChild(n)});
+      var w=set.getBoundingClientRect().width; if(!w) return;
+      var need=Math.ceil((rb.clientWidth+w)/w)+0; // total sets so the loop never shows a gap
+      for(var i=1;i<need;i++){
+        var c=set.cloneNode(true); c.removeAttribute('id'); c.setAttribute('aria-hidden','true'); c.setAttribute('inert','');
+        $$('img',c).forEach(function(im){im.alt='';im.removeAttribute('loading')});
+        track.appendChild(c);
+      }
+      track.style.setProperty('--set',w+'px'); track.style.setProperty('--dur',(w/PPS)+'s');
+    }
+    if(!reduce){ build(); window.addEventListener('resize',function(){clearTimeout(build.t);build.t=setTimeout(build,200)}); window.addEventListener('load',build);
+      var rel; rb.addEventListener('touchstart',function(){clearTimeout(rel);rb.classList.add('held')},{passive:true});
+      rb.addEventListener('touchend',function(){rel=setTimeout(function(){rb.classList.remove('held')},1200)},{passive:true}); }
   })();
 
   /* ---------- SIGNATURE GADGET ----------

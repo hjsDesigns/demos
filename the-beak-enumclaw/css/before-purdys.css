@@ -1,0 +1,36 @@
+
+:root{--brand:#f0d91c;--brand-text:#f0d91c;--brand-bright:#ffee77;--accent:#4fb8c4;--accent-soft:#7fd4dc;--ink:#f3e8d4;--bg:#17120d;--bg-2:#1e1810;--paper:#241c14;--muted:#c0b098;--line:#493b27;--dark:#0c0906;--dark-2:#171009;--warm:#edbb51;--tint:#211a12;--display:'Ultra',Georgia,serif;--gold-glow:rgba(240,217,28,.20);--teal-glow:rgba(79,184,196,.16)}
+body{background:var(--bg)}
+.site-header{background:color-mix(in srgb,var(--dark) 95%,transparent);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent);box-shadow:0 2px 22px var(--gold-glow)}
+.logo .wm{color:var(--brand);font-size:24px;text-shadow:0 0 18px var(--gold-glow)}
+.logo .wm small{color:var(--muted)}
+.hero{background:var(--dark)}
+.hero-bg::before{background:linear-gradient(180deg,rgba(12,9,6,.12) 10%,rgba(12,9,6,.3) 35%,rgba(12,9,6,.8) 70%,var(--bg) 100%)}
+.hero-inner{max-width:100%;padding-bottom:44px}
+.hero h1{font-size:clamp(58px,8.5vw,122px);color:var(--brand);line-height:1.12;letter-spacing:-.04em;text-shadow:0 2px 0 var(--dark),0 0 22px var(--gold-glow),0 0 65px var(--gold-glow)}
+.hero-location{display:block;font-family:var(--body);font-size:clamp(17px,2vw,24px);font-weight:600;color:var(--ink);letter-spacing:.03em;margin-top:14px;text-shadow:none}
+.hero-kicker{color:var(--accent-soft);font-size:11px;letter-spacing:.15em;text-shadow:0 0 20px var(--teal-glow)}
+.hero-sub{color:var(--muted);font-size:16px;max-width:42ch}
+.btn-primary{color:var(--dark);box-shadow:0 0 24px var(--gold-glow);border-color:var(--brand)}
+.btn-cream{color:var(--accent-soft);background:var(--dark-2);border:1px solid var(--accent);box-shadow:inset 0 0 18px var(--teal-glow),0 0 16px var(--teal-glow)}
+.status-band{background:radial-gradient(ellipse at 0 0,var(--teal-glow),transparent 60%),var(--bg);border-top:1px solid var(--accent);border-bottom:1px solid var(--line)}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:radial-gradient(ellipse at 100% 0,var(--gold-glow),transparent 65%),var(--dark);color:var(--ink)}
+.section-head h2,.story-copy h2,.contact h2,.status-head h2{font-size:clamp(28px,3.6vw,44px);line-height:1.2;letter-spacing:-.035em}
+h2 em{color:var(--warm);text-shadow:0 0 25px var(--gold-glow)}
+.status-head h2{font-size:clamp(26px,3vw,38px)}
+.print{background:var(--paper);border:1px solid var(--line);box-shadow:0 16px 45px rgba(0,0,0,.28);border-radius:12px;padding:9px 9px 16px;transform:none!important;overflow:hidden}
+.print img{border-radius:6px}.print figcaption{color:var(--muted)}
+.num{background:var(--paper);border:1px solid color-mix(in srgb,var(--brand) 35%,var(--line));box-shadow:inset 0 1px 0 var(--gold-glow)}
+.num b{color:var(--brand);font-size:clamp(36px,5vw,58px);text-shadow:0 0 25px var(--gold-glow)}
+.room-chips span{border:1px solid color-mix(in srgb,var(--accent) 55%,var(--line));background:var(--dark-2);color:var(--accent-soft);box-shadow:inset 0 0 16px var(--teal-glow)}
+.rev{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-top:2px solid var(--warm);box-shadow:0 -4px 20px var(--gold-glow)}
+.rev blockquote,.rev-who{color:var(--ink)}
+.rev-who small,.section-dark .review-source-note,.section-dark .facts-fine{color:var(--muted);opacity:1}
+.steps li::before{color:var(--dark)}.steps h3{font-family:var(--body);font-weight:700;font-size:21px}
+.site-footer{background:var(--dark);border-top:1px solid var(--accent);box-shadow:0 -3px 24px var(--teal-glow)}
+@media(max-width:760px){.main-nav{background:var(--dark)}.hero h1{font-size:clamp(48px,13vw,74px)}.hero-inner{padding-bottom:30px}.hero-actions{gap:10px}.hero-actions .btn{padding:13px 18px;font-size:14px}.hero-kicker{max-width:30ch}.hero-sub{font-size:15px}.num{padding:19px 14px}.logo .wm{font-size:22px}}
+
+/* Hayden: restore Claude's handwritten hero face, keep glowing yellow. */
+.hero h1{font-family:'Caveat Brush','Marker Felt',cursive;font-weight:400;font-size:clamp(84px,15vw,190px);letter-spacing:.005em;line-height:.95}
+@media(max-width:520px){.hero h1{font-size:clamp(88px,30vw,128px)}}
