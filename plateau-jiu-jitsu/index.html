@@ -12,7 +12,7 @@
 <!-- Display: Anton (Hayden 9/21: the sign-matched Syncopate read boring — his call wins). Body: Hanken Grotesk. Two fonts. -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=20261001-readable-purple">
-<link rel="stylesheet" href="css/hero-capcut.css?v=20260922-white-pawn">
+<link rel="stylesheet" href="css/hero-capcut.css?v=20261026-direct-logo">
 <link rel="stylesheet" href="css/schedule-summary.css?v=20260921-weekend-rows">
 </head>
 <body>
@@ -39,24 +39,14 @@
 
 <span id="top"></span>
 <main>
-  <!-- ===================== #hero — THE BOARD → THE SETUP (Hayden 9/21: "a fun chess board animation leading into the logo").
-       Ground: their own footage, pre-blurred, plays ONCE and holds. A full-screen board lays down tile by tile, their
-       purple knight hops two L-moves, the board tilts and folds into the logo's board; the real pieces land, king last;
-       a halo blooms; the wordmark strikes. ~4.4 s, deterministic CSS, reduced motion lands on the final frame. -->
-  <section class="hero setup" id="hero" data-hero="capcut">
+  <!-- Direct opening: approved stationary logo over the existing background reel. -->
+  <section class="hero setup is-film-done is-settled is-bg" id="hero" data-hero="capcut" data-intro="none">
     <div class="hero-bg">
-      <!-- the ground: a continuous reel of their real rolling (Hayden 9/21: "cool action shots in the background at all times") -->
+      <!-- Existing softened concept background; no opening film. -->
       <video class="ground" id="ground" muted playsinline loop preload="none" poster="images/bg-loop-soft-start.jpg"
         data-opening-poster="images/bg-loop-soft-start.jpg" data-desktop="videos/bg-loop-soft.mp4"
         data-phone="videos/bg-loop-soft.mp4" data-phone-poster="images/bg-loop-soft-start.jpg" data-phone-opening="images/bg-loop-soft-start.jpg"
         aria-label="Concept background: training on mats, softened — an illustration behind the mark, not the gym" tabindex="-1"></video>
-      <!-- THE FILM (Hayden 9/21, Belt Colors): a photoreal concept film — five chess pieces in the colours of the five belts
-           before Mount Rainier — plays once aligned with the final mark, then dissolves into it in place.
-           Concept art, not the gym; provenance in the label. -->
-      <div class="film-scene" aria-hidden="true">
-      <video class="film" id="film" muted playsinline preload="auto" poster="images/film-capcut-start.jpg" src="videos/portrait-shuffle-capcut-20260921.mp4"
-        aria-label="Concept film: five chess pieces in the colours of the five belts on a walnut board before Mount Rainier — an illustration of the logo, not the gym" tabindex="-1"></video>
-      </div>
 
     </div>
     <div class="hero-inner">
@@ -345,8 +335,6 @@
 </footer>
 
 <span class="cur-dot" aria-hidden="true"></span><span class="cur-ring" aria-hidden="true"></span>
-<script src="js/hero-options.js?v=20260921-unified-mark"></script>
 <script src="js/site.js?v=20260922-program-order-cursor"></script>
-<script src="js/hero-capcut.js?v=20260921-stationary-fade"></script>
 </body>
 </html>

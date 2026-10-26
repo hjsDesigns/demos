@@ -42,3 +42,8 @@
   #hero[data-hero="capcut"] .film-scene{display:none}
   .js #hero[data-hero="capcut"] .stage .stationary-mark{opacity:1}
 }
+
+/* October 26: open directly on the approved logo and background. */
+#hero[data-intro="none"]{--hero-dissolve:1}
+.js #hero[data-intro="none"] .stage .stationary-mark{opacity:1}
+.js #hero[data-intro="none"] .hero-bg .ground{opacity:1!important;transition:none}
