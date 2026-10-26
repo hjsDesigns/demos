@@ -1,0 +1,634 @@
+/* ============================================================
+   WEBSITE FACTORY — ONE-PAGE TEMPLATE
+   Distilled from the 2026-08 reference build (the quality bar; see README).
+   EVERY brand decision lives in :root below. Component rules only
+   ever reference tokens — never a hex color. Change the business,
+   change this block, done.
+
+   DARK-GROUND BUILDS (Babalouie's, 2026-08-29): if --bg/--ink get flipped
+   dark (a genuinely dark venue), three rules below still assume the light-
+   ground default and will render illegible — check/override these in the
+   SITE's OWN style.css, never edit this shared file:
+     .card .ico / .face .ini   — color:var(--dark) on background:var(--tint)
+     .story-copy .lede         — color:var(--dark)
+     .site-footer              — background:var(--ink)
+   (The hero scrim had the same bug — built from var(--ink), which on a
+   dark-ground site is the light body-text color, so the "dark scrim" washed
+   the hero photo pale instead of darkening it; Hayden caught it live as
+   "so white... backgroundish." Fixed AT THE SOURCE below — .hero-bg::before
+   now uses var(--dark), the one token guaranteed dark in either mode — so
+   this one no longer needs a per-site override.)
+   Three separate bugs of this exact shape shipped in one build before this
+   note existed (footer, the About lede, then the hero scrim) — sweep the
+   remaining three before calling a dark-ground build done, don't wait for
+   Hayden to catch it.
+   ============================================================ */
+:root{
+  /* ---- palette (derive from the client's logo / storefront / photos) ---- */
+  --brand:#0687FF;          /* primary brand color — buttons, dots, big type      [EA: backpack red] */
+  --brand-text:#0A56C4;     /* same hue, darkened to pass AA on cream for small type */
+  --brand-bright:#2A98FF;   /* hover state of --brand */
+  --accent:#2E7D32;         /* secondary — "open" dots, checkmarks, success        [EA: teal] */
+  --accent-soft:#7FCB83;    /* lighter accent for dark grounds */
+  --ink:#141A22;            /* near-black text */
+  --bg:#F2F1EC;             /* TRUE CREAM page ground — never white (factory law) */
+  --bg-2:#E7E8E1;           /* deeper cream, alternating bands */
+  --paper:#F9F8F4;          /* cards — a hair lighter than --bg, never white */
+  --muted:#5B6470;          /* secondary text */
+  --line:#D6D8D0;           /* hairlines, borders */
+  --dark:#141A22;           /* dark panels (hero fallback, closing CTA band)      [EA: slate] */
+  --dark-2:#1E2733;         /* dark hover */
+  --warm:#0687FF;           /* highlighted word inside headlines on dark grounds  [EA: strap tan] */
+  --tint:#DCE7EC;           /* light tinted band (the hours/status band)          [EA: Rainier sky wash] */
+  --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
+  --status-closed:#DC2626;  /* closed status indicators (red, never brand)        [STATUS LIGHT LAW] */
+
+  /* ---- type: two faces max, loaded in index.html <head> ---- */
+  --display:'Chakra Petch','Avenir Next','Segoe UI',Helvetica,Arial,sans-serif;
+  --body:'Figtree',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'Chakra Petch','Avenir Next',sans-serif;   /* eyebrows + small labels only */
+
+  /* ---- metrics ---- */
+  --header-h:72px;
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1180px;
+  --rule:1px solid var(--line);
+  --ease:cubic-bezier(.22,.85,.3,1);        /* default motion curve */
+  --ease-2:cubic-bezier(.22,.85,.3,1);      /* OPTIONAL: give the signature interactive its own curve
+                                                (mechanical → steeper start; confident → slower settle;
+                                                elastic → overshoot past 1). Leave equal to --ease if
+                                                the build doesn't need a second feel. */
+  --r:18px;
+}
+
+/* ============================================================
+   Z-INDEX MAP (QA lesson from EA — keep it documented)
+     60  .site-header   sticky header, always on top
+     40  #main-nav      the dropped-down mobile menu (inside header)
+      3  .hero-inner    hero text block
+      2  .hero-bg::after film grain
+      1  .hero-bg::before scrim
+      0  .hero-bg img   photo
+   Nothing else on the page sets a z-index above 10.
+   ============================================================ */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  display:flex;flex-direction:column;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{flex:1 0 auto}
+img{max-width:100%;height:auto;display:block}
+figure,blockquote{margin:0} /* UA default 1em 40px shrank .print frames ~80px inside their column (cast-iron-queen, 2026-09-06) */
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h2 em{font-style:normal;color:var(--brand)}
+.section-dark h2 em,.hero h1 em{color:var(--warm)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text);font-weight:600;margin:0 0 14px}
+.section-dark .eyebrow{color:var(--warm)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 50%,transparent);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- buttons (all ≥ 48px tall = tap-target safe) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:999px;
+  font-weight:800;font-size:15px;letter-spacing:.01em;border:2px solid transparent;min-height:48px;cursor:pointer;
+  font-family:var(--body);transition:transform .2s var(--ease),background .2s,box-shadow .2s,color .2s,border-color .2s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-bright);transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
+.btn-cream{background:var(--bg);color:var(--ink)}
+.btn-cream:hover{background:var(--paper);transform:translateY(-2px)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:var(--dark-2);transform:translateY(-2px)}
+
+/* ============================================================ HEADER */
+.site-header{position:sticky;top:0;z-index:60;height:var(--header-h);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.5) blur(12px);-webkit-backdrop-filter:saturate(1.5) blur(12px);
+  border-bottom:var(--rule)}
+.header-inner{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:inline-flex;align-items:center;gap:11px;flex:none}
+.logo img{height:46px;width:auto}
+.logo .wm{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.logo .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-wrap{display:flex;align-items:center;gap:18px}
+.main-nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:700}
+.main-nav a{color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap}
+.main-nav a:hover{opacity:1;color:var(--brand)}
+.main-nav .nav-cta{background:var(--brand);color:#fff;padding:10px 16px;border-radius:999px;opacity:1}
+.main-nav .nav-cta:hover{background:var(--brand-bright);color:#fff}
+/* live open/closed pill in the header */
+.hdr-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.hdr-live .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.hdr-live.is-open{border-color:color-mix(in srgb,var(--status-open) 55%,transparent);background:color-mix(in srgb,var(--status-open) 14%,transparent)}
+.hdr-live.is-open .dot{background:var(--status-open);animation:pulse 2.4s var(--ease) infinite}
+.hdr-live.is-closed .dot{background:var(--status-closed)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;line-height:1;color:var(--ink);cursor:pointer}
+@media (max-width:1100px){.hdr-live .txt-long{display:none}}
+@media (max-width:900px){
+  .main-nav{display:none;position:absolute;z-index:40;top:var(--header-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--bg);border-bottom:3px solid var(--brand);padding:8px 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .main-nav.open{display:flex}
+  .main-nav a{padding:15px var(--pad);opacity:1;min-height:48px;display:flex;align-items:center}
+  .main-nav .nav-cta{border-radius:0;margin-top:6px}
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:560px){.logo .wm{font-size:18px}.logo .wm small{display:none}.logo img{height:40px}}
+@media (max-width:420px){.hdr-live{display:none}}
+
+/* ============================================================ HERO
+   Sized to the phone screen minus the sticky header (100svh under a sticky
+   header overshoots by the header's height — EA lesson). Content sits in
+   NORMAL FLOW at the bottom via a flex spacer — nothing is absolutely pinned
+   to opposite edges, so it can't collide on short screens. */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;overflow:hidden;background:var(--dark);color:#fff}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 45%;animation:kenburns 22s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1)}}
+/* scrim: heavy on the text side (left), light on the photo side (right) so faces stay visible.
+   Built from --dark, not --ink — --dark is the one token guaranteed dark in both a
+   light-ground AND a dark-ground build (it's the same token the .hero fallback
+   background above uses), where --ink flips to a light color on a dark-ground site
+   and would wash the photo pale instead of darkening it. */
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 88%,transparent) 0%,color-mix(in srgb,var(--dark) 62%,transparent) 38%,color-mix(in srgb,var(--dark) 18%,transparent) 72%,color-mix(in srgb,var(--dark) 5%,transparent) 100%),
+             linear-gradient(180deg,color-mix(in srgb,var(--dark) 35%,transparent) 0%,transparent 30%,transparent 60%,color-mix(in srgb,var(--dark) 70%,transparent) 100%)}
+@media (max-width:760px){.hero-bg::before{background:linear-gradient(180deg,color-mix(in srgb,var(--dark) 42%,transparent) 0%,color-mix(in srgb,var(--dark) 8%,transparent) 30%,color-mix(in srgb,var(--dark) 55%,transparent) 62%,color-mix(in srgb,var(--dark) 92%,transparent) 100%)}}
+/* film grain */
+.hero-bg::after{content:"";position:absolute;inset:0;z-index:2;opacity:.45;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+.hero-spacer{flex:1 1 auto}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(24px,4vh,48px) var(--pad) clamp(36px,7vh,84px)}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;margin:0 0 16px}
+.hero h1{font-size:clamp(38px,min(5.8vw,9.2vh),76px);color:#fff;max-width:12ch;margin:0 0 18px;text-shadow:0 2px 30px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal}
+.hero-sub{font-size:clamp(16.5px,1.7vw,20px);max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.92);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* entrance stagger (only when JS is on, so no-JS never hides text) */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{opacity:0;transform:translateY(18px);animation:rise .9s var(--ease) forwards}
+.js .hero h1{animation-delay:.12s}.js .hero-sub{animation-delay:.26s}.js .hero-actions{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.sub-short{display:none}
+@media (max-width:520px){
+  .hero-sub{font-size:16.5px;max-width:none;white-space:nowrap}.sub-long{display:none}.sub-short{display:inline}.eb-long{display:none}
+  .hero h1{font-size:clamp(36px,10.5vw,44px)}
+  .hero-actions{gap:10px}.hero-actions .btn{flex:1 1 auto;padding:13px 14px;font-size:14px}
+}
+
+/* ============================================================ HOURS / STATUS BAND */
+.status-band{background:var(--tint);border-bottom:var(--rule)}
+.status-band .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(44px,6vw,72px) var(--pad)}
+.status-head h2{font-size:clamp(30px,3.8vw,44px);margin:0 0 18px}
+.live-line{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin:0;font-variant-numeric:tabular-nums}
+.live-line .dot{width:11px;height:11px;border-radius:50%;background:var(--muted);flex:none}
+.live-line.is-open .dot{background:var(--status-open);box-shadow:0 0 0 5px color-mix(in srgb,var(--status-open) 22%,transparent)}
+.live-line.is-closed .dot{background:var(--status-closed)}
+.status-addr{margin:12px 0 0;padding-left:22px;font-size:15.5px;color:var(--muted);line-height:1.7}
+.status-addr a{color:var(--brand-text);font-weight:700;border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.status-addr a:hover{border-bottom-color:var(--brand)}
+.hours-list{margin:0;padding:0;list-style:none;background:var(--paper);border:var(--rule);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:var(--rule);font-size:15.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li.today{background:color-mix(in srgb,var(--warm) 18%,transparent)}
+.hours-list .day{font-weight:700}
+.hours-list li.today .day::after{content:" · today";color:var(--brand-text);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.hours-list .time{font-family:var(--mono);color:var(--muted);font-size:14px;text-align:right}
+.hours-list li.note .time{font-family:var(--body);font-size:12.5px;color:var(--muted);max-width:30ch;line-height:1.4}
+.hours-list li.today .time{color:var(--ink);font-weight:600}
+.hours-list li.closed .time{color:var(--status-closed)}
+.proof-row{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.proof{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.proof .ico{color:var(--accent)}
+.proof .star{color:var(--warm)}
+@media (max-width:820px){.status-band .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* ============================================================ SECTION SHELL */
+.section{padding:clamp(56px,8vw,112px) 0}
+.section-alt{background:var(--bg-2)}
+.section-dark{background:var(--dark);color:#fff}
+.section-head{max-width:62ch;margin-bottom:clamp(28px,4vw,48px)}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);margin:0 0 14px}
+.section-head p{font-size:18px;color:var(--muted);margin:0}
+.section-dark .section-head p{color:rgba(255,255,255,.78)}
+/* Eyebrow labels sit inside blocks whose own `X p` rule (0,1,1) outranks
+   `.eyebrow` (0,1,0): `.section-head p` and `.story-copy p` were repainting
+   them muted/ink at body size with no bottom margin, on light AND dark
+   grounds (caught on rose-spa-bonney-lake, 2026-09-06). Re-assert the label
+   at higher weight; qa/verify.py checks the computed color vs --brand-text. */
+.section-head .eyebrow,.story-copy .eyebrow{font-size:12px;color:var(--brand-text);margin:0 0 14px}
+.section-dark .section-head .eyebrow,.section-dark .story-copy .eyebrow{color:var(--warm)}
+/* scroll-reveal (js/site.js adds .in when the element enters the viewport) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-actions{animation:none;opacity:1;transform:none}
+  .hero-bg img{animation:none}
+  .hdr-live.is-open .dot{animation:none}
+}
+
+/* ============================================================ SERVICES (cards grid) */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.card .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--dark);margin-bottom:18px}
+.card .ico svg{width:26px;height:26px}
+.card h3{font-size:21px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card .chips span{font-size:12px;font-weight:700;background:var(--bg-2);border-radius:999px;padding:5px 10px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================ MENU (priced list) — removable */
+.menu-groups{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px)}
+.menu-group h3{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 0;border-bottom:var(--rule)}
+.menu-list li:last-child{border-bottom:0}
+.menu-list .name{font-weight:800;font-size:16.5px}
+.menu-list .price{font-family:var(--mono);font-weight:600;color:var(--brand-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* apply to any per-build live number — countdowns, calculators, dashboard stats — so digits don't jitter width as they change */
+.tnum{font-variant-numeric:tabular-nums}
+.menu-list .desc{grid-column:1 / -1;font-size:14px;color:var(--muted);line-height:1.5}
+.menu-fine{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+@media (max-width:760px){.menu-groups{grid-template-columns:1fr}}
+
+/* ============================================================ GALLERY (framed prints) */
+.prints{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px)}
+.print{background:var(--paper);padding:14px 14px 40px;border:var(--rule);box-shadow:0 40px 80px -40px color-mix(in srgb,var(--dark) 55%,transparent);transition:transform .5s var(--ease)}
+.print:hover{transform:rotate(0) scale(1.01)}
+.print img{width:100%;height:auto;display:block}
+.print figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+.prints .print:nth-child(3n+1){transform:rotate(-1.2deg)}
+.prints .print:nth-child(3n+2){transform:rotate(.8deg)}
+.prints .print:nth-child(3n){transform:rotate(-.6deg)}
+.prints .print:hover{transform:rotate(0) scale(1.02)}
+@media (max-width:900px){.prints{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.prints{grid-template-columns:1fr}.prints .print{transform:none}}
+
+/* ============================================================ SIGNATURE (per-client gadget goes here)
+   No styles by design. The gadget for each client is custom — build its CSS
+   in a block below this comment, using only tokens. EA's went here:
+   the live day-timeline + the rate calculator. */
+.signature-empty{border:2px dashed var(--line);border-radius:var(--r);padding:40px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+
+/* ============================================================ ABOUT (owner story + photo) */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.story .print{transform:rotate(-1.2deg)}
+.story .print:hover{transform:rotate(0) scale(1.01)}
+.story-copy h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 16px}
+.story-copy p{font-size:17px;color:var(--ink)}
+.story-copy .lede{font-size:19px;font-weight:700;color:var(--dark)}
+.team{margin-top:clamp(36px,5vw,64px)}
+.team h3{font-size:22px;margin:0 0 16px}
+.faces{display:flex;flex-wrap:wrap;gap:10px}
+.face{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:var(--rule);border-radius:999px;padding:6px 16px 6px 6px;font-weight:800;font-size:14px}
+.face img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-2)}
+.face .ini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--dark);font-family:var(--display);font-weight:800;font-size:15px}
+.face small{display:block;font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text)}
+@media (max-width:900px){.story{grid-template-columns:1fr}.story .print{transform:none}}
+
+/* ============================================================ REVIEWS (real name + real face)
+   REVIEW ATTRIBUTION LAW (2026-09-06): the reviewer's face is a real <img> of
+   the real person, from the same source as the quote.
+   THERE IS NO INITIALS DISC IN HERE AND THERE NEVER WILL BE. The `.face .ini`
+   rule in ABOUT above is for the TEAM chips only — copying it into a .rev is
+   the factory's single most-repeated law breach (106 of 192 builds). A face
+   you can't source is not a styling problem: use a different attributable
+   review, or ship .rev-linkout below (the sanctioned link-out).
+   Tokens only, and every token used here flips correctly on a dark-ground
+   build — no `color:var(--dark)` foregrounds — so this component is NOT on the
+   dark-ground override list at the top of this file. Renders correctly inside
+   .section, .section-alt and .section-dark. */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,22px);align-items:stretch}
+.rev{display:flex;flex-direction:column;gap:14px;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:24px 22px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s,background .3s}
+.rev:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px color-mix(in srgb,var(--dark) 60%,transparent)}
+.rev-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
+/* THE FACE — an <img>, 1:1, real pixels of the real reviewer. --bg-2 is only
+   the colour behind the image while it decodes, never a stand-in for a face. */
+.rev-face{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
+  background:var(--bg-2);border:2px solid var(--bg-2)}
+.rev-who{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.15;letter-spacing:-.01em;color:var(--ink)}
+.rev-who small{display:block;font-family:var(--mono);font-weight:600;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-top:5px;line-height:1.35}
+.rev-stars{color:var(--warm);font-size:13px;letter-spacing:.08em;white-space:nowrap;align-self:start;margin-top:4px}
+.rev blockquote{font-size:16px;line-height:1.6;color:var(--ink)}
+.rev-all{margin:22px 0 0;font-size:14.5px}
+.rev-all a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.rev-all a:hover{border-bottom-color:var(--brand)}
+
+/* ---- THE TRIPWIRE (clock, 2026-09-17) -------------------------------------
+   The comment above tells a builder not to copy `.face .ini` into a review.
+   A comment is a weak barrier against copy-paste, and copy-paste is exactly how
+   this breach reached 106 of 192 builds. So the banned pattern is made to FAIL
+   LOUDLY instead of shipping quietly: any initials/monogram disc inside a review,
+   and any `.rev-face` that is not a real <img>, renders as a red breach block
+   that no visual QA pass or screenshot can miss. Deleting these rules to "fix"
+   the red box is the one wrong move — the box means the markup, not the CSS, is
+   wrong. Fix it with a real avatar <img>, a different attributable review, or
+   .rev-linkout below. Nothing legitimate ever matches these selectors: reviewer
+   faces are <img class="rev-face">, and .face .ini stays valid for TEAM chips,
+   which never live inside .rev / .revs. */
+.rev .ini, .revs .ini,
+.rev [class*="init"], .revs [class*="init"],
+.rev [class*="monogram"], .revs [class*="monogram"],
+.rev-face:not(img){
+  all:unset !important;
+  display:grid !important;place-items:center !important;
+  min-width:52px !important;min-height:52px !important;padding:8px !important;
+  background:#b3261e !important;color:#fff !important;border-radius:6px !important;
+  outline:4px dashed #ffd400 !important;outline-offset:3px !important;
+  font:800 9px/1.15 var(--mono,ui-monospace,monospace) !important;
+  text-align:center !important;text-transform:uppercase !important;letter-spacing:.04em !important;
+}
+.rev .ini::after, .revs .ini::after,
+.rev [class*="init"]::after, .revs [class*="init"]::after,
+.rev [class*="monogram"]::after, .revs [class*="monogram"]::after,
+.rev-face:not(img)::after{
+  content:"LAW BREACH — FABRICATED REVIEWER FACE. Use a real avatar <img>, another attributable review, or .rev-linkout." !important;
+}
+
+/* VARIANT B — the sanctioned fallback, finished to the same standard as a card */
+.rev-linkout{display:grid;justify-items:start;gap:12px;background:var(--paper);border:var(--rule);border-radius:var(--r);
+  padding:clamp(24px,4vw,40px);box-shadow:0 30px 60px -40px color-mix(in srgb,var(--dark) 50%,transparent)}
+.rev-linkout[hidden]{display:none}  /* author display:grid would otherwise beat the UA [hidden] rule */
+.rev-score{display:flex;align-items:center;gap:14px;margin:0}
+.rev-score b{font-family:var(--display);font-weight:800;font-size:clamp(44px,6vw,64px);line-height:1;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums}
+.rev-score .rev-stars{font-size:clamp(17px,2.2vw,21px);margin:0;align-self:center}
+.rev-count{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.rev-note{margin:0;font-size:16px;color:var(--ink);max-width:52ch}
+.rev-linkout .btn{margin-top:6px}
+/* dark ground — a .section-dark band, or a genuinely dark-venue build */
+.section-dark .rev,.section-dark .rev-linkout{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.section-dark .rev:hover{background:rgba(255,255,255,.08);border-color:color-mix(in srgb,var(--warm) 45%,transparent)}
+.section-dark .rev-face{border-color:rgba(255,255,255,.22)}
+.section-dark .rev-who,.section-dark .rev-score b{color:#fff}
+.section-dark .rev-who small,.section-dark .rev-count{color:rgba(255,255,255,.62)}
+.section-dark .rev blockquote,.section-dark .rev-note{color:rgba(255,255,255,.88)}
+.section-dark .rev-all a{color:var(--warm);border-bottom-color:color-mix(in srgb,var(--warm) 45%,transparent)}
+@media (max-width:980px){.revs{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.revs{grid-template-columns:1fr}}
+@media (max-width:560px){
+  /* phones: the stars drop under the name so a long real name never squeezes */
+  .rev-head{grid-template-columns:auto 1fr}
+  .rev-face{grid-row:1 / span 2;align-self:start}
+  .rev-stars{grid-column:2;margin:0}
+  .rev blockquote{font-size:15.5px}
+  .rev-score{gap:11px}
+}
+
+/* ============================================================ CONTACT */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.2vw,52px);margin:0 0 22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px}
+.steps li::after{content:"";position:absolute;left:19px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:19px;margin:0 0 4px}
+.steps p{font-size:15px;color:var(--muted);margin:0}
+.contact-lines{display:flex;flex-direction:column;gap:8px;font-size:16px}
+.contact-lines a{font-weight:800;color:var(--brand-text);border-bottom:1px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.contact-lines a:hover{border-bottom-color:var(--brand)}
+.contact-form{background:var(--paper);border:var(--rule);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.contact-form .full{grid-column:1 / -1}
+.contact-form input,.contact-form select,.contact-form textarea{font-family:var(--body);font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 15%,transparent)}
+.contact-form .btn{grid-column:1 / -1;justify-self:start}
+.form-success{display:none;grid-column:1 / -1;background:color-mix(in srgb,var(--accent-soft) 16%,transparent);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-weight:700;color:var(--ink)}
+.form-success.show{display:block}
+.form-fine{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:560px){.contact-form{grid-template-columns:1fr}}
+
+/* ============================================================ CTA BAND (dark, with count-up numbers) */
+.cta-band .section-head{max-width:none}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.num{border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:22px 20px;background:rgba(255,255,255,.04)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,60px);line-height:1;letter-spacing:-.03em;color:#fff}
+.num b i{font-style:normal;color:var(--warm)}
+.num > span{display:block;font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;line-height:1.4}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--ink);color:rgba(255,255,255,.8);padding:clamp(40px,6vw,64px) 0 28px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+.foot .brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.foot .plate{width:56px;height:56px;border-radius:16px;background:var(--bg);display:grid;place-items:center;flex:none}
+.foot .plate img{height:44px;width:auto}
+.foot .wm{font-family:var(--display);font-weight:800;font-size:20px;color:#fff;line-height:1.05}
+.foot .wm small{display:block;font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:5px}
+.foot p{font-size:14.5px;margin:0 0 6px}
+.foot h4{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin:0 0 12px}
+.foot a:hover{color:#fff}
+.foot .soc{display:flex;gap:10px;margin-top:8px}
+.foot .soc a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 13px;min-height:44px}
+.foot-bottom{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+
+/* ============================================================
+   GAGE ROGEL FITNESS — site layer (2026-10-26). Tokens above are his:
+   --brand is the exact blue of his GF mark; --bg is the bone of the
+   sky behind him in the hero frame; --ink is the black of his pants.
+   Signature device: the barbell from his logo, as the rail in #week
+   and the rule under section heads.
+   ============================================================ */
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.005em}
+h2 em,.hero h1 em{font-style:italic;color:var(--brand-text)}
+.section-dark h2 em{color:var(--brand)}
+.section-head::after,.status-head::after{content:"";display:block;width:64px;height:4px;margin-top:18px;background:linear-gradient(90deg,var(--brand) 0 12px,transparent 12px 16px,var(--brand) 16px 48px,transparent 48px 52px,var(--brand) 52px);border-radius:2px}
+.status-head::after{margin-top:14px}
+.tnum{font-variant-numeric:tabular-nums}
+/* header: Apply always visible on a phone, the nav behind the toggle */
+.hdr-apply{display:none;min-height:40px;padding:0 16px;font-size:15px}
+@media (max-width:900px){.hdr-apply{display:inline-flex;align-items:center}.nav-wrap{display:flex;align-items:center;gap:10px}}
+.logo img{object-fit:contain}
+.btn-primary{color:var(--ink)}
+.btn-outline{border-color:var(--ink);color:var(--ink);background:transparent}.btn-outline:hover{transform:translateY(-2px);border-color:var(--brand-text);color:var(--brand-text)}
+/* hero: the name, one real frame of him, the key light comes up once (≤2 s), then still */
+.hero-split{min-height:calc(100svh - var(--header-h,72px));display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(20px,4vw,56px);padding:clamp(28px,5vw,64px) var(--pad,24px);max-width:1180px;margin:0 auto;background:var(--bg)}
+.hero-split .hero-inner{position:static;max-width:none;padding:0;color:var(--ink)}
+.hero-split h1{font-family:var(--display);font-style:italic;font-weight:700;line-height:.92;letter-spacing:-.01em;display:grid;color:var(--ink)}
+.hero-split .h1-top{font-size:clamp(44px,8.2vw,112px)}
+.hero-split .h1-bottom{font-size:clamp(44px,8.2vw,112px);color:var(--brand);font-style:italic;display:block}
+.hero-split .hero-actions{margin-top:clamp(22px,3vw,36px)}
+.hero-split .hero-actions .btn-ghost{border-color:var(--ink);color:var(--ink)}
+.hero-photo{margin:0;justify-self:center;width:100%;max-width:470px;border-radius:18px;overflow:hidden;background:var(--bg-2);box-shadow:0 30px 60px -36px rgba(20,26,34,.45)}
+.hero-photo img{display:block;width:100%;height:auto;max-height:calc(100svh - var(--header-h,72px) - 56px);object-fit:cover;object-position:center top;filter:brightness(.28) saturate(.7);transition:filter 1.8s cubic-bezier(.2,.7,.2,1)}
+html.lit .hero-photo img{filter:none}
+@media (prefers-reduced-motion:reduce){.hero-photo img{filter:none;transition:none}}
+@media (max-width:860px){
+  .hero-split{grid-template-columns:1fr;position:relative;min-height:calc(100svh - var(--header-h,72px));padding:0;align-items:end;overflow:hidden}
+  .hero-photo{position:absolute;inset:0;max-width:none;border-radius:0;box-shadow:none}
+  .hero-photo img{width:100%;height:100%;max-height:none;object-position:center 22%}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,241,236,0) 42%,rgba(242,241,236,.92) 78%,var(--bg) 100%)}
+  .hero-split .hero-inner{position:relative;z-index:1;padding:0 20px 34px}
+  .hero-split .h1-top,.hero-split .h1-bottom{font-size:clamp(46px,14vw,72px)}
+}
+/* status band: taking clients + the three steps */
+.status-band .status-addr{max-width:52ch}
+.three-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-self:center}
+.three-steps li{display:grid;gap:4px;padding:16px 16px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+.three-steps .k{font-family:var(--display);font-style:italic;font-weight:700;color:var(--brand-text);font-size:13px;letter-spacing:.08em}
+.three-steps b{font-family:var(--display);font-size:19px}
+.three-steps span:last-child{color:var(--muted);font-size:15px;line-height:1.45}
+@media (max-width:860px){.three-steps{grid-template-columns:1fr}}
+/* who */
+.who-cards .card h3{font-size:21px}
+/* story */
+.story-gage{align-items:start}
+.story-gage .story-copy p{max-width:62ch}
+.unroll{margin-top:18px;border-top:1px solid var(--line)}
+.unroll summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;cursor:pointer;font-family:var(--display);font-weight:700;font-size:17px;color:var(--brand-text)}
+.unroll summary::-webkit-details-marker{display:none}
+.unroll summary i,.piece summary i,.faq summary i{width:12px;height:12px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .25s;flex:none;margin-right:4px}
+.unroll[open] summary i,.piece[open] summary i,.faq[open] summary i{transform:rotate(-135deg)}
+.unroll-body h3{font-size:20px;margin:18px 0 6px;display:grid;gap:4px}
+.unroll-body h3 .k{font-family:var(--display);font-style:italic;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);font-weight:700}
+.unroll-body p{max-width:62ch}
+.numbers-print{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px}
+.numbers-print .eyebrow{margin-bottom:12px}
+.his-numbers{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.his-numbers li{display:grid;gap:3px;padding:12px 0 0;border-top:2px solid var(--brand)}
+.his-numbers b{font-family:var(--display);font-style:italic;font-size:clamp(22px,2.4vw,30px);font-variant-numeric:tabular-nums;line-height:1}
+.his-numbers span{color:var(--muted);font-size:14px}
+.numbers-note{margin:16px 0 0;font-size:13.5px;color:var(--muted)}
+@media (max-width:520px){.his-numbers{grid-template-columns:1fr 1fr;gap:12px}}
+/* a week inside: the barbell rail with six stops */
+.lane{position:relative;margin-top:8px}
+.lane-bar{position:relative;height:14px;display:flex;align-items:center;margin:34px 0 0}
+.lane-bar .rail{flex:1;height:6px;background:var(--ink);border-radius:3px}
+.lane-bar .plate{width:14px;height:34px;background:var(--ink);border-radius:4px;flex:none}
+.stops{display:grid;grid-template-columns:repeat(6,1fr);margin:-20px 14px 0;gap:0}
+.stops .hot{position:static;margin:0;width:auto;height:auto;display:grid;justify-items:center;gap:8px;background:none;border:0;padding:0 0 4px;cursor:pointer;color:var(--ink)}
+.stops .hot span{display:block;width:16px;height:16px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--bg-2),0 0 0 6px rgba(6,135,255,.35);transition:transform .2s,box-shadow .2s;margin:0}
+.stops .hot small{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.02em;text-align:center;line-height:1.1}
+.stops .hot:hover span,.stops .hot.is-on span{transform:scale(1.3);box-shadow:0 0 0 4px var(--bg-2),0 0 0 8px rgba(6,135,255,.45)}
+.stops .hot.is-on small{color:var(--brand-text)}
+.stops .hot::after{display:none}
+.room-cards{position:relative;margin-top:22px;min-height:0}
+.room-card{display:none;padding:18px 20px;border-radius:14px;background:var(--paper);border:1px solid var(--line);max-width:640px}
+.room-card.is-on{display:block;animation:cardin .3s ease-out}
+@keyframes cardin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.room-card h3{font-size:21px;margin:0 0 6px}
+.room-card p{margin:0;font-size:15.5px}
+.room-card .eyebrow{margin-bottom:6px}
+.room-foot{margin:14px 0 0;font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.stops{grid-template-columns:repeat(3,1fr);gap:18px 6px;margin-top:14px}.lane-bar{display:none}.stops .hot span{box-shadow:0 0 0 4px var(--paper),0 0 0 6px rgba(6,135,255,.35)}}
+@media (prefers-reduced-motion:reduce){.room-card.is-on{animation:none}}
+/* coaching: six pieces, three tiers, the plan-match gadget */
+.pieces{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.piece{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+.piece summary{list-style:none;display:grid;grid-template-columns:1fr auto;grid-template-areas:"b i" "s i";align-items:center;gap:2px 12px;padding:14px 0;cursor:pointer}
+.piece summary::-webkit-details-marker{display:none}
+.piece summary b{grid-area:b;font-family:var(--display);font-size:18px}
+.piece summary span{grid-area:s;color:var(--muted);font-size:14px}
+.piece summary i{grid-area:i;color:var(--brand-text)}
+.piece p{margin:0 0 16px;font-size:15.5px;max-width:none}
+@media (max-width:760px){.pieces{grid-template-columns:1fr}}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.tier{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;display:grid;gap:8px;align-content:start}
+.tier-lead{border-color:var(--brand);box-shadow:0 24px 48px -36px rgba(6,135,255,.6)}
+.tier .eyebrow{margin:0}
+.tier-price{font-size:15px;color:var(--muted)}.tier-price b{font-family:var(--display);font-style:italic;font-size:clamp(30px,3vw,40px);color:var(--ink);margin-right:4px}
+.tier-calls{font-size:15.5px;border-top:1px solid var(--line);padding-top:10px}.tier-calls b{font-family:var(--display);color:var(--brand-text);font-size:20px}
+.tier ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.tier li{padding-left:18px;position:relative}.tier li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.tier-terms{max-width:70ch;font-size:14px;color:var(--muted);margin:16px 0 0}
+@media (max-width:860px){.tiers{grid-template-columns:1fr}}
+.match{margin-top:34px;background:var(--dark);color:var(--bg);border-radius:18px;padding:clamp(22px,3vw,34px)}
+.match .eyebrow{color:var(--brand)}
+.match-head h3{font-size:clamp(24px,3vw,32px);margin:4px 0 14px;color:#fff}
+.match-q{margin-top:14px}.match-q>p{margin:0 0 8px;font-size:15.5px;color:rgba(242,241,236,.85)}
+.match .chips{display:flex;flex-wrap:wrap;gap:8px}
+.match .chips button{font:600 15px var(--body);padding:11px 16px;min-height:44px;border-radius:999px;border:1.5px solid rgba(242,241,236,.35);background:transparent;color:#fff;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.match .chips button:hover{border-color:var(--brand)}
+.match .chips button.is-on{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+.match-out{margin:20px 0 0;padding-top:18px;border-top:1px solid rgba(242,241,236,.2);display:grid;gap:4px}
+.match-out[hidden]{display:none}
+.match-out b{font-family:var(--display);font-style:italic;font-size:clamp(30px,4vw,44px);color:var(--brand);line-height:1}
+.match-out span:last-child{font-size:15px;color:rgba(242,241,236,.85)}
+/* faq */
+.faqs{display:grid;gap:8px;max-width:760px}
+.faq{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0 16px}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;cursor:pointer;font-family:var(--display);font-weight:700;font-size:17px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{color:var(--brand-text)}
+.faq p{margin:0 0 16px;font-size:15.5px}
+/* apply */
+#apply .contact h2{max-width:14ch}
+.contact-form select{font:inherit;padding:12px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);width:100%}
+/* footer */
+.foot-codes{font-size:14px}.foot-codes b{font-family:var(--display);color:var(--brand-text)}
+
+/* 10/26 fixes after the first phone pass */
+.band-path{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;font-family:var(--display);font-weight:700;font-size:17px;align-self:center}
+.band-path i{width:28px;height:4px;background:var(--brand);border-radius:2px;position:relative}
+.band-path i::before,.band-path i::after{content:"";position:absolute;top:-4px;width:5px;height:12px;background:var(--brand);border-radius:1px}
+.band-path i::before{left:0}.band-path i::after{right:0}
+.section-head::after,.status-head::after{width:72px;height:14px;background:none;position:relative;border-radius:0}
+.section-head::after,.status-head::after{background:linear-gradient(var(--brand),var(--brand)) 0 50%/100% 4px no-repeat,linear-gradient(var(--brand),var(--brand)) 2px 0/7px 14px no-repeat,linear-gradient(var(--brand),var(--brand)) 63px 0/7px 14px no-repeat,linear-gradient(var(--brand),var(--brand)) 10px 2px/4px 10px no-repeat,linear-gradient(var(--brand),var(--brand)) 58px 2px/4px 10px no-repeat}
+.apply-lede{max-width:46ch;color:var(--muted);margin:0 0 18px}
+/* no numbered circles: the template's .steps are gone from this page; keep the rule in case one returns */
+.steps li::before{border-radius:3px;width:6px;height:26px;content:"";background:var(--brand)}
+
+.room-card .eyebrow{font-size:12px}
+
+/* header fits 390 */
+@media (max-width:900px){.nav-wrap{gap:8px;flex:none}.hdr-apply{padding:0 12px;font-size:14px;min-height:38px}.header-inner{gap:8px}}
+@media (max-width:480px){.logo .wm{font-size:17px}.logo .wm small{display:none}.logo img{width:40px;height:40px}}
+
+.stops .hot{min-height:48px;padding:4px 0}
+.hdr-apply{min-height:40px}
+
+/* photos in objects, spread down the page (10/26, after the side-by-side gate) */
+.story-gage{grid-template-columns:.8fr 1.2fr}
+.story-gage .print{max-width:360px;justify-self:start}
+.story-gage .numbers-print{margin-top:22px}
+@media (max-width:860px){.story-gage{grid-template-columns:1fr}.story-gage .print{max-width:340px;justify-self:center}}
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feed-card{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 10px 12px}
+.feed-card img{width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;object-position:center top;border-radius:8px;display:block}
+.feed-card figcaption{font-family:var(--display);font-style:italic;font-size:14px;margin-top:10px;color:var(--ink)}
+@media (max-width:760px){.feed{grid-template-columns:1fr 1fr 1fr;gap:8px}.feed-card{padding:6px 6px 8px}.feed-card figcaption{font-size:12px}}
+.cta-gym{position:relative;overflow:hidden}
+.cta-gym .cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:.28;filter:saturate(.6)}
+.cta-gym .wrap{position:relative;z-index:1}
+
+/* phone reviewer pass (10/26) */
+.hdr-apply{min-height:44px}
+@media (max-width:560px){.logo{flex:1 1 auto;min-width:0}.logo .wm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px}}
+.stops{counter-reset:stop}
+.stops .hot small::before{counter-increment:stop;content:counter(stop) " ";color:var(--brand-text)}
+.tier-adds{display:none;font-size:15px;color:var(--ink);border-top:1px solid var(--line);padding-top:10px}
+@media (max-width:860px){.tier ul{display:none}.tier-adds{display:block}.tier{padding:18px 18px 16px}}
+.match-out{display:grid;gap:6px}.match-out[hidden]{display:none}
+#matchLine{font-family:var(--display);font-size:18px;color:#fff}
+#matchApply{justify-self:start;margin-top:8px}
+.form-dm{justify-self:start;margin-top:4px;border-color:var(--ink);color:var(--ink)}
+@media (max-width:560px){.contact-form .btn{justify-self:stretch}.form-dm{justify-self:stretch}}
+.tier-terms{list-style:none;padding:0;display:grid;gap:6px}
+.room-card h3{margin-bottom:6px}
+
+/* laws reviewer pass (10/26) */
+.btn{border-radius:6px;font-family:var(--display);font-style:italic;font-weight:700;letter-spacing:.02em}
+.main-nav .nav-cta{border-radius:6px;color:var(--ink)}.main-nav .nav-cta:hover{color:var(--ink)}
+.hero-split h1{text-shadow:none}
+.js .hero-split h1,.js .hero-split .hero-actions{animation:none;opacity:1;transform:none}
+.form-demo-note{grid-column:1/-1;margin:0;font:600 12px/1.4 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tier.is-match{border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 25%,transparent)}
+.tier.is-match .eyebrow::after{content:" · your match";color:var(--brand-text)}
+.hero-photo::after{background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 0%,transparent) 42%,color-mix(in srgb,var(--bg) 92%,transparent) 78%,var(--bg) 100%)}
+.cta-gym .section-head{margin-bottom:0}
