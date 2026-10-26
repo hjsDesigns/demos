@@ -26,19 +26,21 @@
   <main>
     <header>
       <h1>House animation progress</h1>
-      <p id="details" aria-live="polite">Layer timing mock · September 19, 5:26 PM · Work in progress</p>
+      <p id="details" aria-live="polite">Oct 5 hero trial · MiniMax H3 · 10s · the kept version</p>
     </header>
     <nav class="choices" aria-label="Choose a progress video">
-      <button type="button" data-video="mock" aria-pressed="true">Layer timing mock</button>
+      <button type="button" data-video="oct5" aria-pressed="true">Oct 5 trial · kept</button>
+      <button type="button" data-video="mock" aria-pressed="false">Layer timing mock</button>
       <button type="button" data-video="camera" aria-pressed="false">Latest camera test</button>
     </nav>
     <div class="viewer">
-      <video id="player" controls playsinline preload="metadata" aria-label="Layer timing mock" src="videos/MOCK-real-layers-v2.mp4"></video>
+      <video id="player" controls playsinline preload="metadata" aria-label="Oct 5 hero trial" src="videos/oct5-next-hero-48c8e358.mp4"></video>
     </div>
   </main>
   <script>
     const base = 'videos/';
     const clips = {
+      oct5: { file: 'oct5-next-hero-48c8e358.mp4', label: 'Oct 5 hero trial · MiniMax H3', date: 'October 5, 6:50 PM · the one you liked, two corrections pending' },
       mock: { file: 'MOCK-real-layers-v2.mp4', label: 'Layer timing mock', date: 'September 19, 5:26 PM' },
       camera: { file: 'diagnostic-drone-move.mp4', label: 'Latest camera test', date: 'September 19, 8:47 PM' }
     };

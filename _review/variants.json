@@ -340,5 +340,38 @@
       "thumbnail": "thumbs/heroes-2026-10-09/salon-410-buckley--hero-color-studio-stone.jpg?v=749b4a80115f",
       "sha256": "116f851854cf63b4d19062bd2d611bd1c41f38a5d0ce783c73e7cd34320158ab"
     }
+  ],
+  "hjs-designs": [
+    {
+      "name": "The Green Card",
+      "idea": "Your real card lettering becomes a sculptural green signature, paired with the monthly promise.",
+      "file": "hero-the-green-card.html",
+      "number": 1,
+      "url": "https://hjsdesigns.github.io/demos/hjs-designs/versions/hero-the-green-card.html",
+      "thumbnail": "thumbs/hjs-designs-2026-10-12/hero-the-green-card.jpg",
+      "sha256": "905a6e6ef2ec1647a5b3a451566570d471d93c5beae9163ff1d542fae592b516",
+      "status": "not_selected; hero_direction_reopened"
+    },
+    {
+      "name": "The First",
+      "idea": "An oversized editorial identity and a dimensional phone make the first-of-month relationship tangible.",
+      "file": "hero-the-first.html",
+      "number": 2,
+      "url": "https://hjsdesigns.github.io/demos/hjs-designs/versions/hero-the-first.html",
+      "thumbnail": "thumbs/hjs-designs-2026-10-12/hero-the-first.jpg",
+      "sha256": "2baa355f9479850df0c3f0ac592dcd235a099d022fe755ae9db008761cbd6bee",
+      "status": "not_selected; hero_direction_reopened"
+    },
+    {
+      "name": "The Local Signal",
+      "idea": "An immersive fir-green map connects illustrative Plateau shops with the idea of being found nearby.",
+      "file": "hero-the-local-signal.html",
+      "number": 3,
+      "url": "https://hjsdesigns.github.io/demos/hjs-designs/versions/hero-the-local-signal.html",
+      "thumbnail": "thumbs/hjs-designs-2026-10-12/hero-the-local-signal.jpg",
+      "sha256": "e397a429cc9698269e598c4a36660ff90e15d9f3cb0a68f98b7728f044a99ccc",
+      "status": "rejected_by_hayden",
+      "feedback": "Basic and childish; map-style hero rejected. Wants to brainstorm cinematic Higgsfield imagery and animation."
+    }
   ]
 }
