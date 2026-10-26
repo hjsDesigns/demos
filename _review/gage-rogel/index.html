@@ -5,7 +5,7 @@
 <title>Gage Rogel Fitness — 1-on-1 online coaching</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="1-on-1 online coaching from Gage Rogel: a training and nutrition plan built from your own numbers, adjusted with you on check-in calls. Apply, talk it through on an intro call, start week one.">
-<meta name="theme-color" content="#141A22">
+<meta name="theme-color" content="#070B12">
 <link rel="icon" href="images/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +43,10 @@
 
   <!-- ===================== #hero — the name, one real frame of him, one event (the key light comes up), then still ===================== -->
   <section class="hero hero-split" id="hero">
+    <canvas id="specimen" class="hero-canvas" aria-hidden="true" data-logo="images/logo.png"></canvas>
+    <canvas id="hexfield" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-inner">
+      <img class="hero-mark" src="images/logo.png" alt="" width="400" height="256" decoding="async">
       <h1><span class="h1-top">Gage Rogel</span><em class="h1-bottom">Fitness</em></h1>
       <div class="hero-actions">
         <a href="#apply" class="btn btn-primary">Apply for coaching</a>
@@ -92,10 +95,21 @@
         <h2>His car. His kitchen. <em>His bowl.</em></h2>
         <p>No stock gym, no model. The coaching looks like this because he lives like this. Captions are his.</p>
       </div>
-      <div class="feed reveal">
-        <figure class="feed-card"><img src="images/feed-1.jpg" alt="Gage in his car, earbuds in, caption: pushing myself to failure every single set" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“pushing myself to failure every single set”</figcaption></figure>
-        <figure class="feed-card"><img src="images/feed-2.jpg" alt="Gage in his kitchen, caption: Everything I eat in a day, also staying lean year round" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“Everything I eat in a day… also staying lean year round”</figcaption></figure>
-        <figure class="feed-card"><img src="images/feed-3.jpg" alt="Gage eating from a bowl by a window, caption: The repetition works" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“The repetition works”</figcaption></figure>
+      <div class="ribbon reveal" aria-label="Four of his own posts">
+        <div class="ribbon-track">
+          <div class="ribbon-set">
+            <figure class="feed-card"><img src="images/feed-1.jpg" alt="Gage in his car, earbuds in, caption: pushing myself to failure every single set" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“pushing myself to failure every single set”</figcaption></figure>
+            <figure class="feed-card"><img src="images/feed-2.jpg" alt="Gage in his kitchen, caption: Everything I eat in a day, also staying lean year round" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“Everything I eat in a day… also staying lean year round”</figcaption></figure>
+            <figure class="feed-card wide"><img src="images/feed-4.jpg" alt="Gage on the treadmill in his garage, caption: Fasted cardio goated" width="720" height="538" loading="lazy" decoding="async"><figcaption>“Fasted cardio goated”</figcaption></figure>
+            <figure class="feed-card"><img src="images/feed-3.jpg" alt="Gage eating from a bowl by a window, caption: The repetition works" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“The repetition works”</figcaption></figure>
+          </div>
+          <div class="ribbon-set" aria-hidden="true">
+            <figure class="feed-card"><img src="images/feed-1.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“pushing myself to failure every single set”</figcaption></figure>
+            <figure class="feed-card"><img src="images/feed-2.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“Everything I eat in a day… also staying lean year round”</figcaption></figure>
+            <figure class="feed-card wide"><img src="images/feed-4.jpg" alt="" width="720" height="538" loading="lazy" decoding="async"><figcaption>“Fasted cardio goated”</figcaption></figure>
+            <figure class="feed-card"><img src="images/feed-3.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async"><figcaption>“The repetition works”</figcaption></figure>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -111,7 +125,7 @@
         <div class="story-copy reveal">
           <p class="eyebrow">His story</p>
           <h2>The skinny kid. The lifter who bulked too far. <em>The guy who looked fit but didn’t feel well.</em></h2>
-          <p class="lede">Gage has been all three. WSU Kinesiology. He coaches so his clients can skip the years of trial and error it took him to learn it.</p>
+          <p class="lede">Gage has been all three. WSU Kinesiology. He coaches so his clients can skip the years of trial and error it took him to learn it. You bring the effort, he brings the plan.</p>
           <p>His mother studied natural medicine and raised the family to be deliberate about food and lifestyle. Since then he has applied that lesson to himself: testing training methods, nutrition strategies, routines and supplements, tracking the results, keeping what worked and discarding what didn’t.</p>
           <details class="unroll">
             <summary><span>Read the whole story</span><i aria-hidden="true"></i></summary>
@@ -130,9 +144,9 @@
           <p class="eyebrow">Before he coached anyone, he coached himself</p>
           <ul class="his-numbers">
             <li><b>5′1″ → 5′10″</b><span>nine inches, high school</span></li>
-            <li><b>95 → 215 lb</b><span>the bulk, in roughly two years</span></li>
-            <li><b>215 → 185 lb</b><span>the cut, five months, about 1½ lb a week</span></li>
-            <li><b>8 years</b><span>of training and nutrition, tracked</span></li>
+            <li><b>95 → <span class="count" data-from="95" data-to="215">215</span> lb</b><span>the bulk, in roughly two years</span></li>
+            <li><b>215 → <span class="count" data-from="215" data-to="185">185</span> lb</b><span>the cut, five months, about 1½ lb a week</span></li>
+            <li><b><span class="count" data-from="0" data-to="8">8</span> years</b><span>of training and nutrition, tracked</span></li>
           </ul>
           <p class="numbers-note">His own numbers, from his own story.</p>
         </figure>
@@ -142,7 +156,8 @@
   </section>
 
   <!-- ===================== #week — "Know it before you join": tap a step, see what actually happens ===================== -->
-  <section class="section section-alt" id="week">
+  <section class="section section-dark gym" id="week">
+    <img class="gym-bg" src="images/gym.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async" aria-hidden="true">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">From application to week one</p>
@@ -150,7 +165,7 @@
         <p>Tap a stop. This is what coaching with Gage actually looks like, from the application to your first adjustment.</p>
       </div>
       <div class="lane reveal" role="group" aria-label="The path from application to week one">
-        <div class="lane-bar" aria-hidden="true"><span class="plate l"></span><span class="rail"></span><span class="plate r"></span></div>
+        <div class="lane-bar" aria-hidden="true"><span class="plate l"></span><span class="rail"></span><span class="plate r"></span><span class="marker"></span></div>
         <div class="stops">
           <button class="hot" data-spot="apply" aria-label="Apply"><span></span><small>Apply</small></button>
           <button class="hot" data-spot="call" aria-label="Intro call"><span></span><small>Intro call</small></button>
@@ -220,17 +235,6 @@
     </div>
   </section>
 
-  <!-- ===================== #cta — the close, no numbers (they live in his story) ===================== -->
-  <section class="section section-dark cta-band cta-gym" id="cta">
-    <img class="cta-bg" src="images/cta.jpg" alt="" width="720" height="1280" loading="lazy" decoding="async" aria-hidden="true">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Optimization is his profession</p>
-        <h2>You bring the effort. <em>He brings the plan.</em></h2>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== #apply — the one action; short; read by him; the thank-you tells you exactly what happens next ===================== -->
   <section class="section" id="apply">
     <div class="wrap">
@@ -295,5 +299,6 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script src="js/hero-field.js" defer></script>
 </body>
 </html>

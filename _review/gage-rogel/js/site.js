@@ -166,6 +166,13 @@ function customClose(p, close){ return close; }
     else img.addEventListener('error',drop);
   });
 
+  /* ---------- hero ground: a touch of depth on scroll (native scroll, no library) ---------- */
+  (function(){
+    var g=$('.hero-ground img'); if(!g)return;
+    var t=false; function go(){t=false;var y=window.scrollY;if(y>900)return;g.style.translate='0 '+Math.round(y*.18)+'px'}
+    window.addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(go)}},{passive:true});
+  })();
+
   /* ---------- SIGNATURE GADGET ----------
      Gage Rogel Fitness (2026-10-26): (1) the hero key light comes up once, then still;
      (2) "A week inside" — tap a stop on the barbell, one card shows (The Local's hotspot pattern);
@@ -181,7 +188,8 @@ function customClose(p, close){ return close; }
   })();
   (function(){
     var hots=$$('.stops .hot'), cards=$$('.room-cards .room-card'); if(!hots.length)return;
-    function show(k){hots.forEach(function(h){var on=h.getAttribute('data-spot')===k;h.classList.toggle('is-on',on);h.setAttribute('aria-pressed',on?'true':'false')});cards.forEach(function(c){c.classList.toggle('is-on',c.getAttribute('data-card')===k)})}
+    var marker=$('.lane-bar .marker');
+    function show(k){hots.forEach(function(h,i){var on=h.getAttribute('data-spot')===k;h.classList.toggle('is-on',on);h.setAttribute('aria-pressed',on?'true':'false');if(on&&marker){marker.style.left=((i+0.5)/hots.length*100)+'%'}});cards.forEach(function(c){c.classList.toggle('is-on',c.getAttribute('data-card')===k)})}
     hots.forEach(function(h){h.setAttribute('aria-pressed','false');h.addEventListener('click',function(e){e.preventDefault();var k=h.getAttribute('data-spot');show(h.classList.contains('is-on')?null:k)})});
     show('apply');
   })();

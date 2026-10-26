@@ -26,18 +26,18 @@
 :root{
   /* ---- palette (derive from the client's logo / storefront / photos) ---- */
   --brand:#0687FF;          /* primary brand color — buttons, dots, big type      [EA: backpack red] */
-  --brand-text:#0A56C4;     /* same hue, darkened to pass AA on cream for small type */
+  --brand-text:#5CB2FF;     /* same hue, darkened to pass AA on cream for small type */
   --brand-bright:#2A98FF;   /* hover state of --brand */
-  --accent:#2E7D32;         /* secondary — "open" dots, checkmarks, success        [EA: teal] */
-  --accent-soft:#7FCB83;    /* lighter accent for dark grounds */
-  --ink:#141A22;            /* near-black text */
-  --bg:#F2F1EC;             /* TRUE CREAM page ground — never white (factory law) */
-  --bg-2:#E7E8E1;           /* deeper cream, alternating bands */
-  --paper:#F9F8F4;          /* cards — a hair lighter than --bg, never white */
-  --muted:#5B6470;          /* secondary text */
-  --line:#D6D8D0;           /* hairlines, borders */
-  --dark:#141A22;           /* dark panels (hero fallback, closing CTA band)      [EA: slate] */
-  --dark-2:#1E2733;         /* dark hover */
+  --accent:#10B981;         /* secondary — "open" dots, checkmarks, success        [EA: teal] */
+  --accent-soft:#34D399;    /* lighter accent for dark grounds */
+  --ink:#E6EDF6;            /* near-black text */
+  --bg:#0B111B;             /* TRUE CREAM page ground — never white (factory law) */
+  --bg-2:#0F1724;           /* deeper cream, alternating bands */
+  --paper:#121B2A;          /* cards — a hair lighter than --bg, never white */
+  --muted:#8C9AAF;          /* secondary text */
+  --line:#26384F;           /* hairlines, borders */
+  --dark:#070B12;           /* dark panels (hero fallback, closing CTA band)      [EA: slate] */
+  --dark-2:#0F1724;         /* dark hover */
   --warm:#0687FF;           /* highlighted word inside headlines on dark grounds  [EA: strap tan] */
   --tint:#DCE7EC;           /* light tinted band (the hours/status band)          [EA: Rainier sky wash] */
   --status-open:#10B981;    /* open/live status indicators (green, never brand)   [STATUS LIGHT LAW] */
@@ -634,3 +634,130 @@ html.lit .hero-photo img{filter:none}
 .cta-gym .section-head{margin-bottom:0}
 
 @media (max-width:900px){.main-nav .nav-cta{display:none}}
+
+/* ============================================================
+   LIFE PASS (10/26 evening, Hayden: "bland, no life or depth").
+   One world: his daylight frame as a lit, drifting ground; the gym
+   as the dark room for the rail; the barbell draws itself; the
+   numbers count; the feed glides. Every event once, then still.
+   ============================================================ */
+/* chalk grain over the whole page */
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.16;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.22  0 0 0 0 0.26  0 0 0 .5 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>")}
+body>*{position:relative;z-index:1}
+/* HERO: the lit ground */
+.hero-split{position:relative;overflow:hidden;isolation:isolate}
+.hero-ground{position:absolute;inset:-8%;z-index:-2;pointer-events:none}
+.hero-ground img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:blur(26px) saturate(1.25) brightness(1.08);transform:scale(1.12);animation:drift 26s ease-in-out infinite alternate;will-change:transform}
+@keyframes drift{from{transform:scale(1.12) translate3d(0,0,0)}to{transform:scale(1.16) translate3d(-2.5%,-1.5%,0)}}
+.hero-split::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,color-mix(in srgb,var(--bg) 96%,transparent) 0 34%,color-mix(in srgb,var(--bg) 78%,transparent) 55%,color-mix(in srgb,var(--bg) 35%,transparent) 100%)}
+.hero-photo{box-shadow:0 40px 80px -30px rgba(20,26,34,.55),0 0 0 8px color-mix(in srgb,var(--bg) 85%,transparent)}
+.hero-mark{width:clamp(64px,7vw,104px);height:auto;display:block;margin-bottom:14px;filter:drop-shadow(0 10px 24px rgba(6,135,255,.35))}
+/* the one event: the mark settles, the name arrives, the light comes up (≤2 s), then still */
+.js .hero-mark{opacity:0;transform:translateY(-14px);animation:settle .7s cubic-bezier(.2,.7,.2,1) .15s forwards}
+.js .hero-split h1{opacity:0;transform:translateY(10px);animation:settle .8s cubic-bezier(.2,.7,.2,1) .45s forwards}
+.js .hero-split .hero-actions{opacity:0;animation:settle .6s ease-out 1s forwards}
+@keyframes settle{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hero-ground img{animation:none}.js .hero-mark,.js .hero-split h1,.js .hero-split .hero-actions{animation:none;opacity:1;transform:none}}
+@media (max-width:860px){.hero-ground{display:none}.hero-split::before{display:none}.hero-mark{width:64px;margin-bottom:10px;filter:drop-shadow(0 6px 16px rgba(6,135,255,.4))}}
+/* the barbell draws itself when its section arrives */
+.section-head::after,.status-head::after{transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1) .15s}
+.reveal.in.section-head::after,.reveal.in .section-head::after,.in .status-head::after,.status-head::after{transform:scaleX(1)}
+.status-head::after{transition:none}
+/* knurled top edge on cards: the bar's grip */
+.card,.tier,.piece,.faq,.numbers-print,.room-card{position:relative;overflow:hidden}
+.card::before,.tier::before,.numbers-print::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:repeating-linear-gradient(90deg,var(--brand) 0 3px,transparent 3px 6px);opacity:.55}
+.tier-lead::before{opacity:1}
+/* THE GYM: the week rail in the dark room */
+.gym{position:relative;overflow:hidden;background:var(--dark)}
+.gym .gym-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:.22;filter:blur(2px) saturate(.7);transform:scale(1.06)}
+.gym::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(6,135,255,.22),transparent 60%),repeating-radial-gradient(circle at 0 0,rgba(255,255,255,.035) 0 1px,transparent 1px 4px)}
+.gym .wrap{position:relative}
+.gym .eyebrow{color:var(--brand)}
+.gym h2{color:#fff}.gym h2 em{color:var(--brand)}
+.gym .section-head p{color:rgba(242,241,236,.8)}
+.gym .lane-bar .rail{background:#E9EBE4;box-shadow:0 0 24px rgba(6,135,255,.25)}
+.gym .lane-bar .plate{background:#E9EBE4}
+.gym .lane-bar .marker{position:absolute;top:50%;left:8.3%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 6px rgba(6,135,255,.25),0 0 30px rgba(6,135,255,.8);transition:left .5s cubic-bezier(.2,.7,.2,1)}
+.gym .stops .hot{color:#fff}
+.gym .stops .hot span{box-shadow:0 0 0 4px var(--dark),0 0 0 6px rgba(6,135,255,.35)}
+.gym .stops .hot small::before{color:var(--brand)}
+.gym .room-card{background:rgba(242,241,236,.06);border-color:rgba(242,241,236,.16);backdrop-filter:blur(10px);color:#fff}
+.gym .room-card p{color:rgba(242,241,236,.85)}
+.gym .room-card h3{color:#fff}
+@media (max-width:760px){.gym .stops .hot span{box-shadow:0 0 0 4px var(--dark),0 0 0 6px rgba(6,135,255,.35)}}
+/* the feed glides (40 px/s, the saved default); hover pauses; reduced motion stands still */
+.ribbon{overflow:hidden;margin-inline:calc(-1 * var(--pad,24px));padding-inline:var(--pad,24px);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.ribbon-track{display:flex;gap:14px;width:max-content;animation:glide var(--ribbon-dur,46s) linear infinite}
+.ribbon:hover .ribbon-track,.ribbon:focus-within .ribbon-track{animation-play-state:paused}
+.ribbon-set{display:flex;gap:14px;flex:none}
+@keyframes glide{to{transform:translateX(calc(-50% - 7px))}}
+.feed-card{width:220px;flex:none}
+.feed-card.wide{width:300px}.feed-card.wide img{aspect-ratio:4/3}
+.feed-card img{transition:transform .5s ease}.feed-card:hover img{transform:scale(1.03)}
+@media (prefers-reduced-motion:reduce){.ribbon-track{animation:none;width:auto;overflow-x:auto}.ribbon{mask-image:none}.ribbon-set[aria-hidden]{display:none}}
+/* numbers glow a little when they land */
+.his-numbers b .count{color:var(--brand-text)}
+/* the match panel: a lit panel, not a flat one */
+.match{position:relative;overflow:hidden}
+.match::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 15% 0%,rgba(6,135,255,.28),transparent 55%);pointer-events:none}
+.match>*{position:relative}
+/* tiers: Gold is lit */
+.tier-lead{box-shadow:0 0 0 1px var(--brand),0 30px 60px -36px rgba(6,135,255,.7),0 0 40px -10px rgba(6,135,255,.35)}
+/* story print hangs like a print, with a plate shadow */
+.story-gage .print{box-shadow:0 30px 50px -30px rgba(20,26,34,.5)}
+
+/* ============================================================
+   HIS WORLD (10/26 evening, Hayden: "a mix between his visual appeal and our
+   digestibility… reasonably the same background as his original").
+   Ground = the dark navy of his own demo. Our structure and copy stay.
+   ============================================================ */
+html{color-scheme:dark;background:var(--bg)}
+body::after{opacity:.07;mix-blend-mode:screen}
+/* template rules that assumed a cream ground */
+.story-copy .lede{color:var(--ink)}
+.site-footer{background:var(--dark);color:rgba(230,237,246,.8)}
+.print{background:var(--paper)}.print figcaption{color:var(--muted)}
+.contact-form input,.contact-form textarea,.contact-form select{background:var(--bg);color:var(--ink);border-color:var(--line)}
+.form-success{color:var(--brand-text)}
+.nav-toggle{background:var(--paper);color:var(--ink)}
+.main-nav.open{background:var(--bg)}
+.hdr-apply,.btn-primary{color:#07111B}
+.btn-ghost,.hero-split .hero-actions .btn-ghost,.form-dm{border-color:rgba(230,237,246,.4);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--brand)}
+.site-header{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.status-band{background:var(--bg-2)}
+.section-alt{background:var(--bg-2)}
+.section-head::after,.status-head::after{filter:drop-shadow(0 0 8px rgba(6,135,255,.6))}
+.card,.tier,.piece,.faq,.numbers-print,.feed-card,.room-card{background:var(--paper);border-color:var(--line)}
+.card::before,.tier::before,.numbers-print::before{opacity:.7}
+.tier-adds{color:var(--ink)}
+.feed-card figcaption{color:var(--ink)}
+.his-numbers li{border-top-color:var(--brand)}
+.match{background:var(--bg-2);border:1px solid var(--line);box-shadow:0 0 0 1px rgba(6,135,255,.15),0 40px 80px -40px rgba(6,135,255,.5)}
+.match .chips button{border-color:rgba(230,237,246,.3)}
+.gym{background:var(--dark)}
+.gym .lane-bar .rail,.gym .lane-bar .plate{background:#E6EDF6}
+.unroll summary,.piece summary i,.faq summary i{color:var(--brand-text)}
+.steps li::before{background:var(--brand)}
+.hero-photo{box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px var(--line),0 0 60px -10px rgba(6,135,255,.35)}
+/* THE HERO: his background, interactive from the first pixel; the name left; the photo to the side */
+.hero-split{background:radial-gradient(ellipse at 70% 20%,#0F1B2E 0%,var(--dark) 55%,#05080E 100%);color:var(--ink)}
+.hero-split::before{background:radial-gradient(ellipse at 22% 55%,rgba(7,11,18,.92) 0%,rgba(7,11,18,.55) 32%,transparent 60%)}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+#specimen{z-index:-1}
+#hexfield{z-index:-1}
+.hero-split h1{color:#fff}
+.hero-split .h1-bottom{color:var(--brand)}
+.hero-photo img{filter:brightness(.28) saturate(.7)}
+html.lit .hero-photo img{filter:none}
+.hero-mark{filter:drop-shadow(0 0 22px rgba(6,135,255,.55))}
+@media (max-width:860px){
+  .hero-split{background:var(--dark)}
+  .hero-photo::after{background:linear-gradient(180deg,rgba(7,11,18,0) 40%,rgba(7,11,18,.9) 76%,var(--dark) 100%)}
+  .hero-canvas{z-index:1}#specimen{display:none}
+  .hero-split .hero-inner{z-index:2}
+}
+
+/* keep the particle field clear of the photo card */
+@media (min-width:861px){.hero-photo{max-width:420px;justify-self:end}.hero-split{grid-template-columns:1.15fr .85fr}}
