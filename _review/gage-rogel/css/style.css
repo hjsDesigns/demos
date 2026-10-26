@@ -632,3 +632,5 @@ html.lit .hero-photo img{filter:none}
 .tier.is-match .eyebrow::after{content:" · your match";color:var(--brand-text)}
 .hero-photo::after{background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 0%,transparent) 42%,color-mix(in srgb,var(--bg) 92%,transparent) 78%,var(--bg) 100%)}
 .cta-gym .section-head{margin-bottom:0}
+
+@media (max-width:900px){.main-nav .nav-cta{display:none}}
