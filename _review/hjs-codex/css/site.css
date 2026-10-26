@@ -110,3 +110,7 @@ footer nav{display:flex;gap:16px;flex-wrap:wrap}footer nav a{color:var(--muted);
 .js .reveal.is-in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* one primary action, always visible: header button sits outside the collapsible nav */
+.site-header .wrap .mark{margin-right:auto}.site-header .wrap .header-cta{min-height:40px;padding:0 16px;font-size:14px;margin-left:22px;flex:none}
+@media (max-width:760px){.site-header .wrap .header-cta{min-height:38px;padding:0 13px;font-size:13px;margin-left:0}.site-header .wrap .nav-toggle{margin-left:10px}}
+.hero-alt{margin-top:14px;color:var(--muted);font-size:16px;max-width:52ch}.hero-alt a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--brand)}
