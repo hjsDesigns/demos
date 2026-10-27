@@ -1,7 +1,7 @@
 /* ============================================================
    PNW ADU — site.js
    Nav toggle · scroll-reveal · the five bubbles (+ concept-render manifest) ·
-   the dusk map (label nudge + tap a town) ·
+   "Can I build one on my lot?" · the dusk map (label nudge + tap a town) ·
    contact form · the porch-light moth (idles at the render's real porch light).
    No store hours on a builder's site — the template clock is gone on purpose.
    ============================================================ */
@@ -37,7 +37,7 @@
 
   /* ---------- #build — the five bubbles ----------
      The panel is always in place and opens on the first type at load (section 3 reads as the
-     offerings list, not a gadget). Tap a bubble → its three approved examples + one line
+     offerings list, not a gadget). Tap a bubble → its concept frame + one line + the 'Set up a consultation' link
      in place; tap the lit one → the panel closes to a hint but keeps its height (nothing jumps).
      Real renders: images/concepts/manifest.json lists what exists ({"garage":["garage-1.jpg"],…});
      read once, only named files are loaded, and each is appended only after it loads — no probing,
@@ -87,11 +87,8 @@
     if (!renders || !strip.slots.length) return;
     strip.idx = currentIdx();
     var slot = strip.slots[strip.idx], name = slot.getAttribute('data-name');
-    var caption = strip.caps[name] || CAP_FALLBACK;
-    var count = (strip.idx + 1) + ' / ' + strip.slots.length;
-    if (capEl && capEl.textContent !== caption) capEl.textContent = caption;
-    if (countEl && countEl.textContent !== count) countEl.textContent = count;
-    strip.slots.forEach(function (s, i) { s.setAttribute('aria-hidden', i === strip.idx ? 'false' : 'true'); });
+    if (capEl) capEl.textContent = strip.caps[name] || CAP_FALLBACK;
+    if (countEl) countEl.textContent = (strip.idx + 1) + ' / ' + strip.slots.length;
     if (prevBtn) prevBtn.setAttribute('aria-disabled', strip.idx === 0 ? 'true' : 'false');
     if (nextBtn) nextBtn.setAttribute('aria-disabled', strip.idx === strip.slots.length - 1 ? 'true' : 'false');
   }
@@ -135,24 +132,13 @@
         var slot = document.createElement('div'); slot.className = 'slot' + (/-oh1\.jpg$/.test(String(name)) ? ' oh' : '');
         slot.setAttribute('data-name', String(name));
         var im = new Image();
-        im.alt = (m.alt && m.alt[name]) || BUILD[type].t + ' — concept example ' + (i + 1);
+        im.alt = BUILD[type].t + ' — concept render ' + (i + 1);
         im.decoding = 'async';
-        function revealReadyStrip() {
-          if (slot.parentNode !== renders || panel.getAttribute('data-type') !== type) return;
-          var firstImage = strip.slots.length && strip.slots[0].querySelector('img');
-          if (firstImage && firstImage.complete && firstImage.naturalWidth) {
-            renders.hidden = false;
-            updateStrip();
-          }
-        }
-        im.onload = revealReadyStrip;
+        im.onload = function () { if (panel.getAttribute('data-type') === type) { renders.hidden = false; if (i === 0) { renders.scrollLeft = 0; updateStrip(); } } };
         im.onerror = function () {
-          if (slot.parentNode !== renders || panel.getAttribute('data-type') !== type) return;
-          slot.parentNode.removeChild(slot);
+          if (slot.parentNode) slot.parentNode.removeChild(slot);
           strip.slots = strip.slots.filter(function (s) { return s !== slot; });
           if (navEl) navEl.hidden = strip.slots.length < 2;
-          var firstImage = strip.slots.length && strip.slots[0].querySelector('img');
-          if (firstImage && firstImage.complete && firstImage.naturalWidth) renders.hidden = false;
           updateStrip();
         };
         im.src = url;
@@ -169,11 +155,6 @@
     }, { passive: true });
     if (prevBtn) prevBtn.addEventListener('click', function () { goTo(strip.idx - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { goTo(strip.idx + 1); });
-    renders.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault(); goTo(strip.idx + (e.key === 'ArrowRight' ? 1 : -1));
-      }
-    });
     window.addEventListener('resize', function () { if (strip.slots.length) renders.scrollLeft = strip.idx * renders.clientWidth; });
   }
   function openBuild(type, btn, animate) {
@@ -188,8 +169,8 @@
     panel.classList.remove('is-closed'); panel.style.minHeight = ''; if (buildHint) buildHint.hidden = true;
     if (animate && hasGsap && !reduce) gsap.fromTo([$('#conceptWrap'), $('.build-copy', panel)], { opacity: 0, y: wasClosed ? 10 : 6 }, { opacity: 1, y: 0, duration: .4, ease: 'power3.out', overwrite: true });
     showRenders(type);
-    /* The selected concept stays above the controls at every width. If a short screen leaves its frame above the
-       fixed header after a tap, bring it into view (scroll-margin-top clears the header). */
+    /* phones: the panel sits ABOVE the bubbles, and on a short screen (375×667) a row-2 tap left the frame off the
+       top — if the panel's top is under/above the header, bring it into view (scroll-margin-top clears the header) */
     if (animate) {
       var headerH = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) || 72;
       if (panel.getBoundingClientRect().top < headerH) panel.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
@@ -209,7 +190,7 @@
         if (b.getAttribute('aria-pressed') === 'true') closeBuild(); else openBuild(b.getAttribute('data-type'), b, true);
       });
     });
-    openBuild('addon', bubbles[0], false);
+    openBuild('garage', bubbles[0], false);
     /* warm the other four as soon as the opener is out of the way */
     var heroEl = document.querySelector('.hero');
     if (!heroEl || heroEl.classList.contains('is-done') || document.documentElement.classList.contains('reduce')) whenIdle(warmFrames);
@@ -221,6 +202,52 @@
       setTimeout(function () { if (!seen) { seen = true; mo.disconnect(); whenIdle(warmFrames); } }, 11000);
     }              // open on the first type at load: information first, tap to change
   }
+
+  /* ---------- #lot — "Can I build one on my lot?" ----------
+     Object + number, one line, the source. Copy = the brief's explainer table VERBATIM
+     (Recon/pnw-adu.md §4, rules as of Sept 2026) — the brief is the source of truth; change it there first. */
+  var LOT = {
+    'king-town':      { w: 'King County · in town',            h: 'Yes — up to 2, 1,000 sq ft (up to 1,500 heated in the county)',
+                        l: 'Enumclaw: 2, up to 1,000 sq ft', s: 'KCC 21A.08.030 · EMC 19.34' },
+    'king-country':   { w: 'King County · out in the country', h: '1 — detached only if your lot meets the zone minimum',
+                        l: 'Otherwise attached or in the house; forest zones no', s: 'KCC 21A.08.030 B.7.a(8)' },
+    'pierce-town':    { w: 'Pierce County · in town',          h: 'Yes — up to 2, each up to 1,000 sq ft',
+                        l: 'Buckley, Bonney Lake, Sumner, Orting have their own code — at least this generous', s: 'PCC 18A.37.120 · RCW 36.70A.681' },
+    'pierce-country': { w: 'Pierce County · out in the country', h: 'Yes — 1, up to 1,250 sq ft',
+                        l: 'Septic and well capacity decide the rest', s: 'PCC 18A.37.120' }
+  };
+  var tiles = $$('.tile'), lotHint = $('#lotHint'), lotAnswer = $('#lotAnswer'), lotCard = $('#lotCard');
+  /* The card rests compact (the hint alone) and grows to fit the answer: the height is tweened between the
+     two content states so the tiles under it slide, never jump (reduced-motion / no GSAP: instant). */
+  function morphCard(change) {
+    if (!lotCard || !hasGsap || reduce) { change(); return; }
+    var h0 = lotCard.offsetHeight; change(); var h1 = lotCard.offsetHeight;
+    if (Math.abs(h1 - h0) < 2) return;
+    gsap.fromTo(lotCard, { height: h0 }, { height: h1, duration: .4, ease: 'power3.out', overwrite: true, onComplete: function () { lotCard.style.height = ''; } });
+  }
+  function openLot(k, btn) {
+    var d = LOT[k]; if (!d) return;
+    tiles.forEach(function (t) { var on = t === btn; t.setAttribute('aria-pressed', on ? 'true' : 'false'); t.classList.toggle('is-on', on); });
+    morphCard(function () {
+      $('#lotWhere').textContent = d.w; $('#lotHead').textContent = d.h; $('#lotLine').textContent = d.l; $('#lotSrc').textContent = d.s;
+      lotHint.hidden = true; lotAnswer.hidden = false;
+    });
+    if (hasGsap && !reduce) gsap.fromTo(lotAnswer, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: .35, ease: 'power3.out', overwrite: true });
+    /* phones: the card sits ABOVE the tiles — with the tiles centred on a 375×667 screen the answer headline landed under the
+       72 px header, tiles at the top left the card entirely above the viewport (9/15 verifier; Safari has no scroll anchoring).
+       Same guard as the build panel: if the card's top is under the header, bring it into view (scroll-padding-top clears the header). */
+    var headerH = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) || 72;
+    if (lotCard && lotCard.getBoundingClientRect().top < headerH) lotCard.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+  }
+  function closeLot() {
+    tiles.forEach(function (t) { t.setAttribute('aria-pressed', 'false'); t.classList.remove('is-on'); });
+    morphCard(function () { lotAnswer.hidden = true; lotHint.hidden = false; });
+  }
+  if (lotAnswer) tiles.forEach(function (t) {
+    t.addEventListener('click', function () {
+      if (t.getAttribute('aria-pressed') === 'true') closeLot(); else openLot(t.getAttribute('data-k'), t);
+    });
+  });
 
   /* ---------- #map — the dusk map: label nudge + tap a town ----------
      Towns are HTML labels on % positions inside the image plane (index.html). Each label has a preferred
