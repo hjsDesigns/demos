@@ -51,10 +51,12 @@
 .pl-row{list-style:none;margin:0;padding:0;height:calc(var(--u)*59.6);display:flex;justify-content:center;align-items:center;gap:var(--pl-gap)}
 
 /* a card comes forward when clicked: the whole card grows toward you and sits above its neighbours.
-   z-index flips at once on the way out and only after the move on the way back, so a settling card never ducks under. */
-.pl-plan{position:relative;isolation:isolate;z-index:1;width:var(--pl-card-w);transform:scale(1);transform-origin:50% 35%;
-  transition:transform .45s var(--pl-ease),z-index 0s linear .45s}
-.pl-plan.is-popped{z-index:3;transform:scale(var(--pl-pop));transition:transform .45s var(--pl-ease),z-index 0s}
+   Round 5 (Hayden 10/30: "a lag … pops open twice"): the scale is no longer a transition here. plans.js steps it in the
+   card's own frame loop, in the same frame as its tilt and hover lift, to --pl-pop over 0.45s on --pl-ease from this
+   transform-origin (as a transition it ran on another clock, so the card first sank by the hover lift, then popped).
+   plans.js also keeps a card that is still on its way back above its neighbours (z 2), under the one coming forward (3). */
+.pl-plan{position:relative;isolation:isolate;z-index:1;width:var(--pl-card-w);transform:scale(1);transform-origin:50% 35%}
+.pl-plan.is-popped{z-index:3}
 /* Gold glows: his recommended plan (his demo + the dream site) */
 .pl-gold::before{content:"";position:absolute;z-index:-1;left:-18%;right:-18%;top:-6%;bottom:-6%;
   background:radial-gradient(closest-side,rgba(6,135,255,.38),rgba(6,135,255,.13) 60%,rgba(6,135,255,0));

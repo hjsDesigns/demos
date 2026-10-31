@@ -30,14 +30,26 @@
 //    stays on screen at the tunnel stop. The card still tilts as one object, and the printed layers now sit a little above
 //    the face (plans.css translateZ, no twists): title and price, then the logo, then the calls and the lines, then Apply,
 //    so they parallax as it tilts.
+// Round 5 (Hayden 10/30): "there's a lag in the pick your coaching plan … whenever I [click it] pops open twice." Two
+//    causes, both fixed with the look unchanged: (1) the pop was a CSS transition on the card's <li> while the hover lift
+//    (1.04 → 1 when a card pops) ran on this file's frame loop; the transition only starts once the browser has re-drawn
+//    the card at its popped size, so the card first sank by the lift, then popped (a beat late). The pop is now stepped in
+//    the card's own frame loop with the tilt and the lift (same 0.45 s, same curve, same 1.36x, same origin; interrupted
+//    the way CSS interrupts a transition), and a card still on its way back stays under the one coming forward.
+//    (2) the "SPOTS OPEN" board flipped in twice on arrival: the autoplay flipped it as the section flew in, then the
+//    tunnel's play() at the stop blanked it and started over. In the tunnel only play() runs the entrance now, and never
+//    over one that is still running.
 //  - The metals: brushed steel, polished gold, icy-blue platinum. Each is painted at the card's real pixel size: reflection
 //    bands, anisotropic grain, broad soft specular bands, a bright bevel lit from the top left, his tier emblem engraved.
 //  - REAL data only: assets/his-demo-copy.json, "protocols" (his demo, 10/26): tiers, prices, the 90-day minimum, calls a
 //    month, inclusions, Gold = Recommended. The faces shorten his inclusion lines to fit; the full lines are in PLANS.
 // API:
 //   const plans = mountPlans(host, { spots: { Silver: 3, Gold: 2, Platinum: 1 }, spotsPlaceholder: true,
-//                                    onApply(plan, button) {}, dprCap: 2, autoplay: true })
-//   plans.play()                          the heading's line reveal + the board flips in (call at the section's stop)
+//                                    onApply(plan, button) {}, dprCap: 2, autoplay: true, inTunnel: false })
+//                                         autoplay: flip the board in when it first comes on screen (off with inTunnel,
+//                                         where the page calls play())
+//   plans.play()                          the heading's line reveal + the board flips in (call at the section's stop;
+//                                         a running entrance isn't restarted, a hidden section isn't played)
 //   plans.pop('Silver' | null)            bring a card forward (null settles it); plans.popped = its name or null
 //   plans.setSpots({ Silver, Gold, Platinum }, real = false)   any subset; a single number sets all three;
 //                                         real = true drops the placeholder marks once they're Gage's counts
@@ -51,7 +63,7 @@
 import { createHoloCard } from '../../../js/vendor/holo-card.js?v=20261030b';
 import { FlapCell, BASE_COL_DELAY, BASE_STEP_MS, BASE_FLIP_S } from '../../../js/vendor/text-flipping-board.js?v=20261030b';
 
-const VERSION = '20261030b';
+const VERSION = '20261030c'; // its stylesheet's ?v= when the page hasn't linked plans.css itself
 const CSS_URL = new URL('./plans.css', import.meta.url).href.split('?')[0];
 const LOGO_URL = new URL('../../../images/logo.png', import.meta.url).href;
 const REDUCE = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -62,6 +74,49 @@ const FRAME = 3; // the Holo Card's sparkling rim, % of the width; the painted b
 const TILT = { max: 14, perspective: 1100, hoverScale: 1.04 }; // the Holo Card's own tiltMax, PERSPECTIVE and hoverScale
 const REST_LIGHT = { mx: 0.32, my: 0.2 }; // where the metal's highlight band rests (reduced motion)
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+// the pop (round 5, Hayden 10/30: "there's a lag … whenever I [click it] pops open twice"): the card's forward move is
+// stepped in the same frame loop as its tilt and hover lift (createTilt), on plans.css's own curve, so the three scales are
+// always one motion. It used to be a CSS transition on the card's <li> (run by the compositor, which can only start it
+// once the card is re-rasterised at its popped size) while the lift let go on this loop at once: the card first sank by
+// the lift (1.04 → 1), then the pop arrived. Same numbers as the transition it replaces: 0.45 s on
+// cubic-bezier(.22, 1, .36, 1), from 35% down the card (transform-origin in plans.css), --pl-pop (1.36) in plans.css.
+const POP_MS = 450;
+const cubicBezier = (x1, y1, x2, y2) => {
+  // the CSS timing function: solve x(t) = progress for t (Newton, then bisection), return y(t)
+  const ax = 3 * x1 - 3 * x2 + 1;
+  const bx = 3 * x2 - 6 * x1;
+  const cx = 3 * x1;
+  const ay = 3 * y1 - 3 * y2 + 1;
+  const by = 3 * y2 - 6 * y1;
+  const cy = 3 * y1;
+  const x = t => ((ax * t + bx) * t + cx) * t;
+  const dx = t => (3 * ax * t + 2 * bx) * t + cx;
+  const y = t => ((ay * t + by) * t + cy) * t;
+  return p => {
+    if (p <= 0) return 0;
+    if (p >= 1) return 1;
+    let t = p;
+    for (let i = 0; i < 8; i++) {
+      const err = x(t) - p;
+      if (Math.abs(err) < 1e-7) return y(t);
+      const d = dx(t);
+      if (Math.abs(d) < 1e-6) break;
+      t -= err / d;
+    }
+    let lo = 0;
+    let hi = 1;
+    t = p;
+    for (let i = 0; i < 40; i++) {
+      const v = x(t);
+      if (Math.abs(v - p) < 1e-7) break;
+      if (v < p) lo = t;
+      else hi = t;
+      t = (lo + hi) / 2;
+    }
+    return y(t);
+  };
+};
+const POP_EASE = cubicBezier(0.22, 1, 0.36, 1); // plans.css --pl-ease
 const SPOTS_WORDS = 'SPOTS OPEN';
 const DEFAULT_TIER = 'Gold'; // no card out: the board shows his recommended plan's count
 const SPOTS_DEFAULT = { Silver: 3, Gold: 2, Platinum: 1 }; // PLACEHOLDERS until Gage gives his real counts
@@ -181,6 +236,12 @@ const make = (tag, className, text) => {
   return el;
 };
 const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+// showing, as far as CSS goes (the tunnel hides a section it has flown past with visibility: hidden)
+const shown = node => {
+  if (!node.isConnected) return false;
+  if (node.checkVisibility) return node.checkVisibility({ visibilityProperty: true, checkVisibilityCSS: true });
+  return getComputedStyle(node).visibility !== 'hidden';
+};
 const rng = seed => () => {
   seed |= 0;
   seed = (seed + 0x6d2b79f5) | 0;
@@ -520,6 +581,9 @@ function createTilt(c) {
     liftV: 0,
     clock: Math.random() * 40
   };
+  // the pop: a tween of the <li>'s scale, interrupted the way CSS interrupts a transition (a reversal mid-way runs back in
+  // the share of the time it had used: the spec's reversing shortening factor)
+  const pop = { value: 1, from: 1, to: 1, t0: 0, ms: POP_MS, running: false, revStart: 1, factor: 1 };
   let pointer = { x: 0.5, y: 0.5, inside: false };
   let raf = 0;
   let last = 0;
@@ -532,7 +596,22 @@ function createTilt(c) {
   const fixed = (v, d) => (Math.abs(v) < 0.5 * 10 ** -d ? 0 : v).toFixed(d);
   let lastTilt = '';
   let lastShadow = '';
+  let lastPop = '';
+  let lastZ = null;
   const paint = () => {
+    // the pop, on the card's <li> (scaled from 35% down the card: plans.css transform-origin), in the same frame as the
+    // tilt and the lift below
+    const scale = pop.value.toFixed(4);
+    if (scale !== lastPop) {
+      c.li.style.transform = `scale(${scale})`;
+      lastPop = scale;
+    }
+    // above its neighbours while it's out, and while it's still on its way back (but under the one coming forward)
+    const z = c.popped ? '3' : pop.value > 1.0005 ? '2' : '';
+    if (z !== lastZ) {
+      c.li.style.zIndex = z;
+      lastZ = z;
+    }
     const tilt = `perspective(${TILT.perspective}px) scale(${fixed(state.lift, 4)}) rotateX(${fixed(state.tiltX, 3)}deg) rotateY(${fixed(state.tiltY, 3)}deg)`;
     if (tilt !== lastTilt) {
       c.tilt.style.transform = tilt;
@@ -569,6 +648,15 @@ function createTilt(c) {
       lightX = 0.5 + Math.sin(t * 0.41) * 0.42;
       lightY = 0.38 + Math.sin(t * 0.33 + 0.6) * 0.3;
     }
+    if (pop.running) {
+      // wall-clock, like the CSS transition it replaces (a slow frame lands it further on, never later)
+      const p = clamp((now - pop.t0) / pop.ms, 0, 1);
+      pop.value = pop.from + (pop.to - pop.from) * POP_EASE(p);
+      if (p >= 1) {
+        pop.value = pop.to;
+        pop.running = false;
+      }
+    }
     const steps = Math.ceil(dt / (1 / 240));
     const h = dt / steps;
     for (let i = 0; i < steps; i++) {
@@ -587,7 +675,7 @@ function createTilt(c) {
       Math.abs(state.tiltX - targetX) +
       Math.abs(state.tiltY - targetY);
     calm = motion > 0.02 ? 0 : calm + dt;
-    if (!drifting && !pointer.inside && calm > 0.3) return;
+    if (!drifting && !pointer.inside && !pop.running && calm > 0.3) return;
     raf = requestAnimationFrame(tick);
   };
 
@@ -610,6 +698,37 @@ function createTilt(c) {
       pointer = { ...pointer, inside: false };
       wake();
     },
+    /** Bring the card forward to `to` (--pl-pop) or back to 1, on POP_MS of POP_EASE. */
+    popTo(to) {
+      const now = performance.now();
+      if (pop.running) {
+        const p = clamp((now - pop.t0) / pop.ms, 0, 1);
+        pop.value = pop.from + (pop.to - pop.from) * POP_EASE(p); // where it is right now
+        if (to === pop.to) return; // already on its way there
+        if (to === pop.revStart) {
+          // turned back mid-way: the way back takes the share of the time it had used (CSS transitions do the same)
+          pop.factor = clamp(POP_EASE(p) * pop.factor + (1 - pop.factor), 0, 1);
+          pop.revStart = pop.to;
+        } else {
+          pop.revStart = pop.value;
+          pop.factor = 1;
+        }
+      } else {
+        if (to === pop.value) return;
+        pop.revStart = pop.value;
+        pop.factor = 1;
+      }
+      pop.from = pop.value;
+      pop.to = to;
+      pop.t0 = now;
+      pop.ms = POP_MS * pop.factor;
+      if (REDUCE || pop.ms <= 0) {
+        pop.value = to;
+        pop.running = false;
+      } else pop.running = true;
+      paint();
+      wake();
+    },
     wake,
     pause() {
       held = true;
@@ -629,7 +748,7 @@ function createTilt(c) {
 }
 
 export function mountPlans(host, opts = {}) {
-  const o = { spots: SPOTS_DEFAULT, spotsPlaceholder: true, onApply: null, dprCap: 2, autoplay: true, ...opts };
+  const o = { spots: SPOTS_DEFAULT, spotsPlaceholder: true, onApply: null, dprCap: 2, autoplay: true, inTunnel: false, ...opts };
   const cssReady = ensureCss();
 
   const root = make('div', 'pl-sec');
@@ -769,14 +888,23 @@ export function mountPlans(host, opts = {}) {
   });
 
   // ── which card is out ──
+  // how far a card comes forward: plans.css --pl-pop (1.36, round 4), read once its sheet is in
+  let popScale = 0;
+  const popTarget = () => {
+    if (!popScale) {
+      const v = parseFloat(getComputedStyle(root).getPropertyValue('--pl-pop'));
+      if (v > 0) popScale = v;
+    }
+    return popScale || 1.36;
+  };
   function setPopped(name) {
     popped = name && TIERS.includes(name) ? name : null;
     for (const c of cards) {
       const on = c.plan.name === popped;
       c.popped = on;
-      c.li.classList.toggle('is-popped', on);
+      c.li.classList.toggle('is-popped', on); // the shadow and the glow (plans.css, the same 0.45 s)
       c.li.dataset.popped = String(on);
-      c.motion.wake();
+      c.motion.popTo(on ? popTarget() : 1); // the scale: one tween in the card's own frame loop
     }
     showTier(popped || DEFAULT_TIER);
   }
@@ -926,20 +1054,32 @@ export function mountPlans(host, opts = {}) {
     });
   };
 
-  const play = () => {
-    revealHeading();
+  // the entrance, once per arrival (round 5): the tunnel calls play() at the section's stop, and the autoplay below used to
+  // flip the board in too, as soon as half of it was on screen during the fly-in; the second flip-in blanked the half-done
+  // board and started it over ("SPOTS OPEN" opened twice). Now in the tunnel (inTunnel: true) only play() runs it, a flip-in
+  // or heading reveal that is still running is never restarted, and a section the tunnel has hidden (it can call play()
+  // again while you're past it) isn't played.
+  let introUntil = 0;
+  const flipInOnce = () => {
+    if (REDUCE || performance.now() < introUntil) return;
     flipIn();
+    introUntil = busyUntil;
+  };
+  const play = () => {
+    if (!shown(root)) return;
+    if (!splitTw) revealHeading();
+    flipInOnce();
   };
 
-  // first time the board is properly on screen, flip it in (the tunnel should still call play() at the stop)
+  // a plain page (no tunnel to call play()): the first time the board is properly on screen, flip it in
   let seen = null;
-  if (o.autoplay && 'IntersectionObserver' in window) {
+  if (o.autoplay && !o.inTunnel && 'IntersectionObserver' in window) {
     seen = new IntersectionObserver(
       entries => {
         if (entries.some(e => e.isIntersecting && e.intersectionRatio >= 0.5)) {
           seen.disconnect();
           seen = null;
-          flipIn();
+          flipInOnce();
         }
       },
       { threshold: [0.5] }

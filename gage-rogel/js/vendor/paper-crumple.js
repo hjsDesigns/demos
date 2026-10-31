@@ -1,16 +1,18 @@
 // React Bits "Paper Crumple" (reactbits.dev/micro/paper-crumple · PaperCrumple.jsx · MIT + Commons Clause), ported to plain JS
 // for Gage's results (2026-10-30). The original sits unchanged in vendor/effects/reactbits/paper-crumple/.
 // Kept exactly: the crumple itself — the jittered paper grid with random diagonals, the 64-frame position-based crumple
-// simulation with crease hinges and layer separation (createPaperPath, copied character for character below), the creases
-// a sheet keeps after it is smoothed out ("creased" memory, 0.18), the crease-aware normals, the grain bump map, the matte
-// paper (front print, back plain #f4f0e8 stock), the paperLighting mix (a flat sheet shows its print unlit, light comes in
-// as it folds), the springs (advance), the lights (hemisphere 1.35 + warm key 1.8 at -35°, shadows) and the 35° camera with
-// 1 unit = 1 px.
+// simulation with crease hinges and layer separation (createPaperPath, copied character for character below; it runs in a
+// worker built from that same code), the creases a sheet keeps after it is smoothed out ("creased" memory, 0.18), the
+// crease-aware normals, the grain bump map, the matte paper (front print, back plain #f4f0e8 stock), the paperLighting mix
+// (a flat sheet shows its print unlit, light comes in as it folds), the springs (advance), the lights (hemisphere 1.35 +
+// warm key 1.8 at -35°, shadows) and the 35° camera with 1 unit = 1 px.
 // What is different (Hayden 10/30: "click on client's profile, animation happens. Paper shows up. Mouse goes off of it.
 // Paper crumples up… put a trash can so the paper crumples up and goes in the trash can"):
 //  - the page drives it (show / hide) instead of press-and-drag, and several sheets can be in the air at once (one per key);
-//  - a ribbed steel trash can (ours, not React Bits'): show() pops a balled-up sheet out of it, it opens flat on the way
-//    (keeping its creases), hide() crumples it into a ball and tosses it back in; the can wobbles when one lands;
+//    two never cross: a sheet waits in the can until every other sheet on its way in has gone in;
+//  - a digital trash can (ours, not React Bits': "more digital… rather than such a realistic one"): the tunnel's grid
+//    wrapped round a can in the room's blue. show() lights a balled-up sheet up in it, pops it out and opens it flat on the
+//    way (keeping its creases); hide() crumples it into a ball and tosses it back in, where it is deleted with a flash;
 //  - sizes come from the layout box (offsetWidth/Height), so it works inside the tunnel's 3D-scaled sections;
 //  - no floor shadow plane and no CSS drop-shadow (neither shows on a dark page; filtering a big canvas every frame costs);
 //  - PCFShadowMap instead of PCFSoftShadowMap (three r186 removed the soft one and substitutes this, with a warning).
@@ -252,14 +254,14 @@ function createPaperPath(rest, triangles, shortSide, density, sharpness, depth, 
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Everything above this line is the original, character for character. Below: the original component's sheet (mesh,
-// materials, deform, lights, camera) re-used for several sheets at once, driven by the page, plus our trash can.
+// materials, deform, lights, camera) re-used for several sheets at once and driven by the page, plus our digital trash can.
 // ---------------------------------------------------------------------------------------------------------------------
 
 const easeOutCubic = t => 1 - (1 - t) ** 3;
+const easeInCubic = t => t * t * t;
 const easeInOutCubic = t => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 const easeOutBack = (t, s = 1.1) => 1 + (s + 1) * (t - 1) ** 3 + s * (t - 1) ** 2;
 
-// the sheet's mesh data, built exactly as the original builds it (one model serves every sheet of the same shape)
 // the original createPaperPath, run in a worker made from the very same functions (0.3-0.6 s of math off the main thread)
 function crumplePath(original, indices, shortSide, foldTotal, sharpness, depth, seed) {
   const args = [original, indices, shortSide, foldTotal, sharpness, depth, seed];
@@ -269,7 +271,8 @@ function crumplePath(original, indices, shortSide, foldTotal, sharpness, depth, 
     );
   let worker;
   try {
-    const source = [clamp, randomSource, createPaperPath].map(f => f.toString()).join('\n') +
+    const source =
+      'const clamp = ' + clamp.toString() + ';\n' + randomSource.toString() + '\n' + createPaperPath.toString() +
       '\nonmessage = e => { const r = createPaperPath(...e.data); postMessage(r, [...r.samples.map(x => x.buffer), r.creased.buffer]); };';
     const url = URL.createObjectURL(new Blob([source], { type: 'text/javascript' }));
     worker = new Worker(url);
@@ -283,6 +286,8 @@ function crumplePath(original, indices, shortSide, foldTotal, sharpness, depth, 
     worker.postMessage([Float32Array.from(original), indices, shortSide, foldTotal, sharpness, depth, seed]);
   });
 }
+
+// the sheet's mesh data, built exactly as the original builds it (one model serves every sheet of the same shape)
 function paperModel(o) {
   const aspect = o.aspect;
   const shortSide = Math.min(1, aspect);
@@ -337,109 +342,133 @@ function paperModel(o) {
   return model;
 }
 
-// our trash can: a ribbed steel can with a rolled rim, 1 unit tall, standing on y = 0 (scaled by the page)
-const CAN = { top: 0.43, bottom: 0.36, rim: 0.016, floor: 0.03 };
-function ribbedNormalMap(ribs = 48) {
-  const cycle = 16,
-    canvas = document.createElement('canvas');
-  canvas.width = ribs * cycle;
-  canvas.height = 2;
-  const g = canvas.getContext('2d'),
-    img = g.createImageData(canvas.width, 2);
-  for (let x = 0; x < canvas.width; x++) {
-    const nx = Math.sin((x / cycle) * Math.PI * 2) * 0.55,
-      nz = 1;
-    const l = Math.hypot(nx, nz);
-    for (let y = 0; y < 2; y++) {
-      const i = (y * canvas.width + x) * 4;
-      img.data[i] = ((nx / l) * 0.5 + 0.5) * 255;
-      img.data[i + 1] = 128;
-      img.data[i + 2] = ((nz / l) * 0.5 + 0.5) * 255;
-      img.data[i + 3] = 255;
-    }
-  }
-  g.putImageData(img, 0, 0);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.colorSpace = THREE.NoColorSpace;
-  return texture;
-}
-function canEnvironment(renderer, accent) {   // what the steel reflects: the navy room, a warm key upper left, the room's blue strip
-  const env = new THREE.Scene();
+// our trash can, "more digital" (Hayden 10/30: "rather than such a realistic one"): the tunnel's own grid wrapped round a
+// can, glowing ribs and rings in the room's blue over a faint glass shell that glows at its edges. A paper that lands is
+// deleted with a flash; one that comes out lights up in the can first. 1 unit tall, standing on y = 0.
+const CAN = { top: 0.43, bottom: 0.35, floor: 0.02 };
+function buildCan(o) {
+  const radiusAt = y => CAN.bottom + (CAN.top - CAN.bottom) * y;
+  const glassColor = new THREE.Color(o.canColor);
+  const lineColor = new THREE.Color(o.canGlow);
+  const pivot = new THREE.Group();
+  const holder = new THREE.Group();
+  pivot.add(holder);
   const disposables = [];
   const keep = x => (disposables.push(x), x);
-  env.add(
-    new THREE.Mesh(
-      keep(new THREE.SphereGeometry(10, 32, 16)),
-      keep(
-        new THREE.ShaderMaterial({
-          side: THREE.BackSide,
-          vertexShader: 'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
-          fragmentShader:
-            'varying vec3 vP; void main(){ float h = normalize(vP).y; gl_FragColor = vec4(mix(vec3(0.012, 0.018, 0.03), vec3(0.11, 0.15, 0.23), smoothstep(-0.4, 0.9, h)), 1.0); }'
-        })
-      )
+  const profile = [];
+  for (let k = 0; k <= 20; k++) {
+    const y = k / 20;
+    profile.push(new THREE.Vector2(radiusAt(y), y));
+  }
+  const uniforms = { uColor: { value: glassColor }, uFlash: { value: 0 } };
+  const glass = new THREE.Mesh(
+    keep(new THREE.LatheGeometry(profile, 72)),
+    keep(
+      new THREE.ShaderMaterial({
+        uniforms,
+        transparent: true,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending,
+        vertexShader: [
+          'varying vec3 vN; varying vec3 vV; varying float vY;',
+          'void main() {',
+          '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
+          '  vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); vY = position.y;',
+          '  gl_Position = projectionMatrix * mv;',
+          '}'
+        ].join('\n'),
+        fragmentShader: [
+          'uniform vec3 uColor; uniform float uFlash; varying vec3 vN; varying vec3 vV; varying float vY;',
+          'void main() {',
+          '  float edge = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 2.4);',
+          '  float a = (0.03 + 0.5 * edge) * (0.55 + 0.45 * vY) + uFlash * (0.1 + 0.4 * edge);',
+          '  gl_FragColor = vec4(uColor, clamp(a, 0.0, 1.0));',
+          '  #include <colorspace_fragment>',
+          '}'
+        ].join('\n')
+      })
     )
   );
-  const panel = (w, h, color, x, y, z) => {
-    const m = new THREE.Mesh(keep(new THREE.PlaneGeometry(w, h)), keep(new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide })));
-    m.position.set(x, y, z);
-    m.lookAt(0, 0, 0);
-    env.add(m);
+  glass.renderOrder = 2;
+  const ribs = 28,
+    rings = [0.2, 0.4, 0.6, 0.8];
+  const points = [];
+  for (let i = 0; i < ribs; i++) {
+    const a = (i / ribs) * Math.PI * 2,
+      s = Math.sin(a),
+      c = Math.cos(a);
+    points.push(radiusAt(0) * s, 0, radiusAt(0) * c, radiusAt(1) * s, 1, radiusAt(1) * c);
+  }
+  for (const y of rings) {
+    const r = radiusAt(y);
+    for (let i = 0; i < 72; i++) {
+      const a0 = (i / 72) * Math.PI * 2,
+        a1 = ((i + 1) / 72) * Math.PI * 2;
+      points.push(r * Math.sin(a0), y, r * Math.cos(a0), r * Math.sin(a1), y, r * Math.cos(a1));
+    }
+  }
+  const gridGeometry = keep(new THREE.BufferGeometry());
+  gridGeometry.setAttribute('position', new THREE.Float32BufferAttribute(points, 3));
+  const gridMaterial = keep(
+    new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: 0.38, blending: THREE.AdditiveBlending, depthWrite: false })
+  );
+  const grid = new THREE.LineSegments(gridGeometry, gridMaterial);
+  grid.renderOrder = 3;
+  const band = (r, y, tube, opacity) => {   // the mouth and the foot: crisp glowing bands
+    const geometry = keep(new THREE.TorusGeometry(r, tube, 8, 120));
+    geometry.rotateX(Math.PI / 2);
+    geometry.translate(0, y, 0);
+    const material = keep(
+      new THREE.MeshBasicMaterial({ color: lineColor, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false })
+    );
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.renderOrder = 4;
+    return mesh;
   };
-  const blue = new THREE.Color(accent).multiplyScalar(3.2);
-  panel(6, 3, new THREE.Color(2.4, 2.35, 2.2), -5, 5, 5);
-  panel(0.7, 8, blue, 7, 0.5, -1.5);
-  panel(4, 1.2, new THREE.Color(0.55, 0.7, 1.05), 0, -2.5, 7);
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const texture = pmrem.fromScene(env, 0.04).texture;
-  pmrem.dispose();
-  disposables.forEach(x => x.dispose());
-  return texture;
-}
-function buildCan(renderer, o) {
-  const { top, bottom, rim, floor } = CAN;
-  const points = [new THREE.Vector2(0.0001, 0), new THREE.Vector2(bottom - 0.02, 0), new THREE.Vector2(bottom, 0.02)];
-  for (let k = 1; k <= 12; k++) {
-    const t = k / 12;
-    points.push(new THREE.Vector2(bottom + (top - bottom) * t, 0.02 + 0.98 * t));
-  }
-  for (let k = 1; k <= 10; k++) {
-    const a = (Math.PI * k) / 10;
-    points.push(new THREE.Vector2(top - rim + rim * Math.cos(a), 1 + rim * Math.sin(a)));
-  }
-  const innerTop = top - 2 * rim,
-    innerBottom = bottom - 2 * rim;
-  for (let k = 1; k <= 12; k++) {
-    const t = k / 12;
-    points.push(new THREE.Vector2(innerTop + (innerBottom - innerTop) * t, 1 - (1 - floor) * t));
-  }
-  points.push(new THREE.Vector2(0.0001, floor));
-  const geometry = new THREE.LatheGeometry(points, 72);
-  const ribs = ribbedNormalMap();
-  const envMap = canEnvironment(renderer, o.canAccent);
-  const material = new THREE.MeshStandardMaterial({
-    color: o.canColor,
-    metalness: 0.82,
-    roughness: 0.36,
-    envMap,
-    envMapIntensity: 1,
-    normalMap: ribs,
-    normalScale: new THREE.Vector2(0.7, 0.7),
-    side: THREE.DoubleSide
-  });
-  const mesh = new THREE.Mesh(geometry, material);
-  mesh.castShadow = o.shadow;
-  mesh.receiveShadow = o.shadow;
-  const pivot = new THREE.Group();   // the can tips about its foot when a ball lands
-  pivot.add(mesh);
-  return { pivot, mesh, dispose: () => (geometry.dispose(), material.dispose(), ribs.dispose(), envMap.dispose()) };
+  const mouth = band(CAN.top, 1, 0.007, 0.95);
+  const foot = band(CAN.bottom, 0, 0.005, 0.6);
+  const floorGeometry = keep(new THREE.CircleGeometry(CAN.bottom, 64));
+  floorGeometry.rotateX(-Math.PI / 2);
+  floorGeometry.translate(0, CAN.floor, 0);
+  const floorMaterial = keep(
+    new THREE.MeshBasicMaterial({
+      color: glassColor,
+      transparent: true,
+      opacity: 0.1,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      side: THREE.DoubleSide
+    })
+  );
+  const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+  floor.renderOrder = 1;
+  holder.add(floor, glass, grid, mouth, foot);
+  let size = 1;
+  return {
+    pivot,
+    size(h) {
+      size = h;
+      holder.scale.setScalar(h);
+    },
+    set(level) {   // 0 = its resting glow, 1 = the flash when a paper goes in or comes out
+      uniforms.uFlash.value = level;
+      gridMaterial.opacity = 0.38 + 0.45 * level;
+      floorMaterial.opacity = 0.1 + 0.45 * level;
+      foot.material.opacity = 0.6 + 0.4 * level;
+      holder.scale.setScalar(size * (1 + 0.018 * level));
+    },
+    dispose: () => disposables.forEach(x => x.dispose())
+  };
 }
 
-// createPaperToss(host, options) → { show(key, image), hide(key), hideAll(instant), pause(), resume(), refresh(), destroy() }
+// createPaperToss(host, options) → { show(key, image), hide(key), hideAll(instant), state(key), pause(), resume(), refresh(),
+//   ready (promise), destroy() }
 // host: a positioned box; the canvas fills it. options.layout(width, height) returns, in that box's px from its top-left:
 //   { paper: { width, x, y, rotation (deg) }, can: { x, bottom, height } }
 // image: a canvas or image with the paper's aspect (height / width = options.aspect), drawn edge to edge.
+// Two papers never cross (Hayden 10/30: "the paper ball is going through the sheet"): a paper waits in the can until every
+// other paper in the air has gone in.
 export function createPaperToss(host, options = {}) {
   const o = {
     aspect: 11 / 8.5,
@@ -460,8 +489,10 @@ export function createPaperToss(host, options = {}) {
     openDuration: 0.6,
     popDuration: 0.78,
     tossDuration: 0.62,
-    canColor: '#3a4658',
-    canAccent: '#0687FF',
+    appearDuration: 0.22,
+    vanishDuration: 0.2,
+    canColor: '#0687FF',
+    canGlow: '#5CB2FF',
     layout: (w, h) => ({ paper: { width: w * 0.72, x: w * 0.55, y: h * 0.4, rotation: -2.5 }, can: { x: w * 0.24, bottom: h - 2, height: h * 0.28 } }),
     onState: null,
     ...options
@@ -502,7 +533,7 @@ export function createPaperToss(host, options = {}) {
   light.shadow.normalBias = 0.6;
   light.shadow.radius = 3;
   scene.add(light, light.target);
-  const can = buildCan(renderer, o);
+  const can = buildCan(o);
   scene.add(can.pivot);
 
   const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -517,8 +548,13 @@ export function createPaperToss(host, options = {}) {
     paused = false,
     disposed = false,
     contextLost = false;
-  const wobble = { t: 1, amp: 0 };
   let pendingShow = null;
+  const glow = { t: 1, amp: 0 };
+  const pulse = amp => {
+    const now = glow.amp > 0 ? glow.amp * Math.exp(-glow.t * 7) : 0;
+    glow.amp = Math.max(now, amp);
+    glow.t = 0;
+  };
   const v = new THREE.Vector3(),
     q = new THREE.Quaternion(),
     qSpin = new THREE.Quaternion();
@@ -542,14 +578,14 @@ export function createPaperToss(host, options = {}) {
       inside: new THREE.Vector3(canX, canFoot + canHeight * CAN.floor + ball * 0.92, 0),
       rimY: canFoot + canHeight,
       canX,
-      opening: canHeight * (CAN.top - 2 * CAN.rim)
+      opening: canHeight * CAN.top * 0.96
     };
     can.pivot.position.set(canX, canFoot, 0);
-    can.mesh.scale.setScalar(canHeight);
+    can.size(canHeight);
     for (const s of sheets.values()) {
-      s.group.scale.setScalar(L.scale);
+      applyScale(s);
       if (s.state === 'open' && !s.flight) s.group.position.copy(L.display), s.group.quaternion.copy(L.rest);
-      if (s.state === 'in') s.group.position.copy(L.inside);
+      if (s.state === 'in' || s.pendingPop) s.group.position.copy(L.inside);
     }
   }
   function resize() {
@@ -630,19 +666,21 @@ export function createPaperToss(host, options = {}) {
     const group = new THREE.Group();
     group.add(front, back);
     group.visible = false;
-    group.scale.setScalar(L ? L.scale : 1);
-    if (L) group.position.copy(L.inside);
     scene.add(group);
     const n = sheets.size;   // each ball tumbles its own way
     const axis = new THREE.Vector3(Math.sin(n * 2.1 + 0.7), Math.cos(n * 1.7 + 0.3), 0.45 * Math.sin(n * 3.3)).normalize();
     const s = {
       key, group, geometry, frontMaterial, backMaterial, lighting, positions, renderPositions, renderNormals, faceNormals,
       texture: null, image: null, state: 'in', amount: spring(1), memory: spring(0), dur: o.crumpleDuration,
-      clock: 0, flight: null, openAt: null, launchAt: null, axis, spin: Math.PI * (1.4 + (n % 3) * 0.25),
-      previousAmount: -1, previousMemory: -1
+      clock: 0, flight: null, openAt: null, launchAt: null, wait: 0, pendingPop: false, fx: null, grow: 1,
+      axis, spin: Math.PI * (1.4 + (n % 3) * 0.25), previousAmount: -1, previousMemory: -1
     };
     sheets.set(key, s);
+    if (L) applyScale(s), group.position.copy(L.inside);
     return s;
+  }
+  function applyScale(s) {
+    s.group.scale.setScalar(L.scale * Math.max(0.001, s.grow));
   }
   function setImage(s, image) {
     if (!image || s.image === image) return;
@@ -724,15 +762,27 @@ export function createPaperToss(host, options = {}) {
   }
 
   const insideCan = p => p.y < L.rimY + L.ball * 0.9 && Math.abs(p.x - L.canX) < L.opening + L.ball;
+  function airTime(except) {   // how long until every other paper on its way in has gone into the can
+    let longest = 0;
+    for (const s of sheets.values()) {
+      if (s === except || s.state !== 'away') continue;
+      let left = 0;
+      if (s.launchAt !== null) left = Math.max(0, s.launchAt - s.clock) + o.tossDuration + o.vanishDuration;
+      else if (s.flight) left = (1 - s.flight.t) * s.flight.dur + o.vanishDuration;
+      else if (s.fx) left = (1 - s.fx.t) * s.fx.dur;
+      longest = Math.max(longest, left);
+    }
+    return longest ? longest + 0.05 : 0;
+  }
   function pop(s) {   // out of the can (or from wherever it is), up, and open on the display spot
     const from = s.group.position.clone();
-    let hold = 0;   // stay over the can until the ball clears the rim, so it never passes through the steel
+    let hold = 0;   // stay over the can until the ball clears the rim, so it never passes through the can's side
     if (insideCan(from)) {
       const need = (L.rimY + L.ball * 1.05 - from.y) / Math.max(1, L.display.y - from.y);
       while (hold < 0.6 && easeOutBack(hold) < need) hold += 0.01;
     }
     s.flight = { kind: 'pop', from, fromQ: s.group.quaternion.clone(), t: 0, dur: o.popDuration * (hold ? 1 : 0.8), hold };
-    s.openAt = (hold + 0.06) * s.flight.dur;
+    s.openAt = (hold ? hold + (1 - hold) * 0.35 : 0.06) * s.flight.dur;   // it opens once it is on its way across, not over the can
     s.launchAt = null;
   }
   function toss(s) {   // from where it is, a throw that drops through the middle of the can's mouth
@@ -774,9 +824,42 @@ export function createPaperToss(host, options = {}) {
   function step(s, dt) {
     if (s.state === 'in') return false;
     const instant = reduceMotion;
+    if (s.pendingPop) {   // waiting in the can for the air to clear; then it lights up and rises
+      if (s.wait > 0 && !instant) {
+        s.wait -= dt;
+        return true;
+      }
+      if (!s.fx) {
+        s.fx = { kind: 'appear', t: 0, dur: o.appearDuration };
+        s.group.visible = true;
+        pulse(0.8);
+      }
+    }
     let moving = advance(s.amount, dt, s.dur, instant);
     moving = advance(s.memory, dt, s.dur, instant) || moving;
-    s.clock += dt;
+    if (s.fx) {
+      const fx = s.fx;
+      fx.t = instant ? 1 : Math.min(1, fx.t + dt / fx.dur);
+      s.grow = fx.kind === 'appear' ? easeOutBack(fx.t, 1.6) : 1 - easeInCubic(fx.t);
+      if (fx.t >= 1) {
+        s.fx = null;
+        s.grow = 1;
+        if (fx.kind === 'appear') {
+          s.pendingPop = false;
+          s.clock = 0;
+          pop(s);
+        } else {   // deleted: back to sleep in the can
+          s.state = 'in';
+          s.group.visible = false;
+          applyScale(s);
+          o.onState && o.onState(s.key, 'in');
+          return false;
+        }
+      }
+      applyScale(s);
+      moving = true;
+    }
+    if (!s.pendingPop) s.clock += dt;
     if (s.openAt !== null && s.clock >= s.openAt) {   // clear of the can: it opens, keeping the creases it has from before
       s.openAt = null;
       s.dur = o.openDuration;
@@ -794,12 +877,9 @@ export function createPaperToss(host, options = {}) {
       pose(s, f);
       if (f.t >= 1) {
         s.flight = null;
-        if (f.kind === 'toss') {
-          s.state = 'in';
-          s.group.visible = false;
-          wobble.t = 0;
-          wobble.amp = THREE.MathUtils.degToRad(3.2);
-          o.onState && o.onState(s.key, 'in');
+        if (f.kind === 'toss') {   // in the can: deleted with a flash
+          s.fx = { kind: 'vanish', t: 0, dur: o.vanishDuration };
+          pulse(1);
         } else {
           s.state = 'open';
           s.group.position.copy(L.display);
@@ -809,16 +889,16 @@ export function createPaperToss(host, options = {}) {
       moving = true;
     }
     deform(s);
-    return moving || s.openAt !== null || s.launchAt !== null;
+    return moving || s.openAt !== null || s.launchAt !== null || !!s.fx || s.pendingPop;
   }
   function stepCan(dt) {
-    if (wobble.amp <= 0) return false;
-    wobble.t += dt;
-    const angle = wobble.amp * Math.exp(-wobble.t * 6.5) * Math.sin(wobble.t * 19);
-    can.pivot.rotation.z = reduceMotion ? 0 : angle;
-    if (wobble.t > 1.2) {
-      wobble.amp = 0;
-      can.pivot.rotation.z = 0;
+    if (glow.amp <= 0) return false;
+    glow.t += dt;
+    const level = glow.amp * Math.exp(-glow.t * 7);
+    can.set(level);
+    if (level < 0.01) {
+      glow.amp = 0;
+      can.set(0);
       return false;
     }
     return true;
@@ -838,6 +918,16 @@ export function createPaperToss(host, options = {}) {
   function wake() {
     if (!frame && !disposed && !paused && !contextLost && !document.hidden) frame = requestAnimationFrame(render);
   }
+  function sleep(s) {
+    s.state = 'in';
+    s.flight = s.fx = null;
+    s.openAt = s.launchAt = null;
+    s.pendingPop = false;
+    s.wait = 0;
+    s.grow = 1;
+    s.group.visible = false;
+    if (L) applyScale(s), s.group.position.copy(L.inside);
+  }
 
   const api = {
     canvas,
@@ -845,27 +935,43 @@ export function createPaperToss(host, options = {}) {
     show(key, image) {
       if (!model.path) {   // the crumple is still being worked out (a few hundred ms after start): show it the moment it is
         pendingShow = { key, image };
-        model.ready.then(() => { if (pendingShow && pendingShow.key === key && !disposed) { pendingShow = null; api.show(key, image); } });
+        model.ready.then(() => {
+          if (pendingShow && pendingShow.key === key && !disposed) {
+            pendingShow = null;
+            api.show(key, image);
+          }
+        });
         return;
       }
+      pendingShow = null;
       const s = sheets.get(key) || makeSheet(key);
       setImage(s, image);
       if (s.state === 'out' || s.state === 'open') return;
-      if (s.state === 'in') {   // it was in the can, balled up
+      if (s.state === 'in') {   // balled up in the can
         s.group.position.copy(L.inside);
         s.group.quaternion.setFromAxisAngle(s.axis, s.spin).multiply(L.rest);
         s.amount.value = s.amount.target = clamp(finite(o.crumpleAmount, 1), 0, 1);
         s.amount.velocity = 0;
         s.previousAmount = -1;
         deform(s);
-        wobble.t = 0;
-        wobble.amp = THREE.MathUtils.degToRad(1.6);
+        s.grow = 0;
+        applyScale(s);
+        s.group.visible = false;
+        s.wait = airTime(s);
+        s.pendingPop = true;
+        s.fx = s.flight = null;
+        s.openAt = null;
+      } else {   // it was on its way into the can: it turns round where it is
+        s.pendingPop = false;
+        s.fx = null;
+        s.grow = 1;
+        applyScale(s);
+        s.clock = 0;
+        pop(s);
       }
-      s.group.visible = true;
       s.state = 'out';
-      s.clock = 0;
       s.dur = o.openDuration;
-      pop(s);
+      s.launchAt = null;
       o.onState && o.onState(key, 'out');
       wake();
     },
@@ -873,10 +979,17 @@ export function createPaperToss(host, options = {}) {
       if (pendingShow && pendingShow.key === key) pendingShow = null;
       const s = sheets.get(key);
       if (!s || s.state === 'in' || s.state === 'away') return;
+      if (s.pendingPop) {   // it never left the can
+        sleep(s);
+        o.onState && o.onState(key, 'in');
+        return;
+      }
       s.state = 'away';
       s.clock = 0;
       s.openAt = null;
-      s.flight = null;
+      s.flight = s.fx = null;
+      s.grow = 1;
+      applyScale(s);
       s.dur = o.crumpleDuration;
       s.amount.target = clamp(finite(o.crumpleAmount, 1), 0, 1);
       s.launchAt = insideCan(s.group.position) ? 0 : o.crumpleDuration * 0.48;   // ball it up, then throw
@@ -884,15 +997,12 @@ export function createPaperToss(host, options = {}) {
       wake();
     },
     hideAll(instant = false) {
+      pendingShow = null;
       for (const s of sheets.values()) {
         if (instant) {
-          s.state = 'in';
-          s.flight = null;
-          s.openAt = s.launchAt = null;
-          s.group.visible = false;
+          sleep(s);
           s.amount.value = s.amount.target = 1;
-          s.memory.target = s.memory.value = Math.max(s.memory.value, o.creaseStrength);
-          if (L) s.group.position.copy(L.inside);
+          s.memory.value = s.memory.target = Math.max(s.memory.value, o.creaseStrength);
         } else api.hide(s.key);
       }
       wake();

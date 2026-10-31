@@ -433,14 +433,27 @@
 }
 
 /* =========================================================================================================
-   10 · BOOK: his words on the left, the Kokonut UI Slot Picker on the right (round 2, Hayden 10/30)
+   10 · BOOK: his words on the left, the Kokonut UI Slot Picker on the right (round 2, Hayden 10/30); its confirm is the
+   React Bits Hold Button (round 3, Hayden 10/30: "book a call. We need to make a little bit bigger … hold to confirm")
    ========================================================================================================= */
+/* Round 3, 18% bigger: the box stays 150u x 72u (the tunnel frames it at about 0.83 at the stop), and .bk-inner gives
+   everything inside a bigger unit: it redefines --u as --bu (set here on the box, from the box's own --u, so --u never
+   refers to itself). Every rule inside grows with it: the shared .gs-k / .gs-h / .gs-p / .gs-tag type, the topics, the
+   picker's --sp-px and the Hold Button (--hb-px = --sp-px). The grown content (~82u tall) is centred in the box: on a
+   1440x900 screen it spans about 94..806px down and 120..1320px across at the stop. */
 .gs-book {
+  --bu: calc(var(--u) * 1.18);
+  --bk-hold-bg: color-mix(in srgb, var(--gs-blue) 30%, #08111d); /* the Hold Button before it fills: a deep shade of his blue */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bk-inner {
+  --u: var(--bu);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: calc(var(--u) * 10);
-  padding-top: calc(var(--u) * 1.4);
 }
 .bk-left {
   flex: 0 0 calc(var(--u) * 52);
@@ -457,7 +470,8 @@
   font: 500 calc(var(--u) * 2) / 1.4 var(--gs-body);
   color: var(--gs-muted);
 }
-.bk-mail a {
+.bk-mail a,
+.bk-status a {
   color: var(--gs-blue-t);
   text-decoration: none;
   border-bottom: 1px solid rgba(92, 178, 255, 0.4);
@@ -471,8 +485,9 @@
   display: flex;
   justify-content: flex-end;
 }
+/* one line kept for the note (booked / "press and hold"), so the centred block doesn't jump when it appears */
 .bk-status {
-  min-height: 0;
+  min-height: 1.35em;
   margin: 0;
   font: 500 calc(var(--u) * 1.9) / 1.35 var(--gs-body);
   color: var(--gs-muted);
@@ -531,6 +546,56 @@
 }
 .gs-book .sp-meeting-btn:not(.is-booked) {
   box-shadow: 0 0 calc(var(--u) * 1.6) rgba(6, 135, 255, 0.55);
+}
+
+/* round 3: exactly one confirm. The picker's own one-tap Confirm is hidden (book.js presses it when a hold completes);
+   the Hold Button sits in its place in the confirm bar, beside the picked-time readout, at the picker's own scale */
+.gs-book .slot-picker .sp-confirm-btn {
+  display: none;
+}
+.bk-hold {
+  --hb-px: var(--sp-px);
+  flex-shrink: 0;
+}
+/* the picker resets every button inside it (.slot-picker button: padding 0, background none, color and font inherited).
+   These give the Hold Button back its own values, word for word from hold-button.css; two classes, so they sit above
+   that reset and below the Hold Button's own :hover and [data-phase] rules */
+.bk-hold.hold-button {
+  background: var(--hb-bg);
+  color: var(--hb-text);
+  font-weight: 500;
+  line-height: 1;
+}
+.bk-hold.hold-button--sm {
+  padding: 0 calc(var(--hb-px, 1px) * 16);
+  font-size: calc(var(--hb-px, 1px) * 13);
+}
+.bk-hold.hold-button--md {
+  padding: 0 calc(var(--hb-px, 1px) * 22);
+  font-size: calc(var(--hb-px, 1px) * 15);
+}
+.bk-hold.hold-button--lg {
+  padding: 0 calc(var(--hb-px, 1px) * 28);
+  font-size: calc(var(--hb-px, 1px) * 17);
+}
+/* phones (the tunnel's narrow room, width/height <= 0.95): there the box is only min(94vh, 96vw) wide and 72vh tall, so
+   the two columns stack and the unit shrinks until the picker (55.3u) fits the box's width and the stack (~116u) stays
+   on screen at the stop */
+@media (max-aspect-ratio: 19/20) {
+  .gs-book {
+    --bu: min(calc(var(--u) * 1.18), calc(min(94vh, 96vw) / 58), 0.86vh);
+    width: 100%;
+  }
+  .bk-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: calc(var(--u) * 3);
+  }
+  .bk-left {
+    flex: none;
+    width: calc(var(--u) * 55.32);
+    padding-top: 0;
+  }
 }
 
 /* =========================================================================================================

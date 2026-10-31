@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gage Rogel Fitness · hollow site</title>
+<title>Gage Rogel Fitness</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../images/logo.png" type="image/png">
 <link rel="stylesheet" href="../../js/vendor/accordion-flip.css?v=20261029c">
 <link rel="stylesheet" href="../../js/vendor/circular-carousel.css?v=20261029a">
-<link rel="stylesheet" href="sections/plans.css?v=20261030b">
+<link rel="stylesheet" href="sections/plans.css?v=20261030p">
 <link rel="stylesheet" href="../../js/vendor/scroll-index.css?v=20261030c">
-<link rel="stylesheet" href="sections/sections.css?v=20261030e">
+<link rel="stylesheet" href="sections/sections.css?v=20261030p">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -163,6 +163,8 @@ body{margin:0;background:var(--dark);color:var(--ink);font-family:var(--body);-w
 .rs-who span{display:block;margin-top:calc(var(--u)*.7);font:500 calc(var(--u)*2)/1.3 var(--body);letter-spacing:0;text-transform:none;color:var(--muted)}
 .rs-ring{position:absolute;left:calc(50% - var(--u)*25.5);top:0;bottom:0;width:calc(var(--u)*100);pointer-events:auto}   /* Hayden 10/30: bigger photos, filling the section (480 px cards) */   /* the ring's cards end at the section's right edge (its box runs a touch past it, empty) */
 #rsRing .circular-carousel{overflow:visible}   /* the cards that drop out of the camera's way fall past the ring's box instead of being cut off at its edge */
+.rs-paper{position:absolute;inset:0;pointer-events:none}   /* Hayden 10/30: the words are printed on a sheet that pops out of a digital trash can */
+.results.paper .rs-quote{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}   /* still read out to screen readers */
 @media (prefers-reduced-motion:reduce){.rs-rest,.rs-quote{transition:none}}
 /* section 7: Gage (Hayden 10/30: "a section more revolved around Gage, just the video"; the week calendar and its paragraph are gone) */
 .gage{pointer-events:none;height:calc(var(--u)*72)}
@@ -325,6 +327,7 @@ body.name-corner .corner-name{opacity:1}
       <div class="rs-left">
         <div class="rs-rest"><h3>Results</h3><p>Hold your mouse on someone to see their change.</p></div>
         <div class="rs-quote" aria-live="polite"><p class="rs-tag" id="rsTag"></p><blockquote class="rs-q" id="rsQ"></blockquote><p class="rs-who" id="rsWho"></p></div>
+        <div class="rs-paper" id="rsPaper" aria-hidden="true"></div>
       </div>
       <div class="rs-ring" id="rsRing"></div>
     </section>
@@ -595,6 +598,7 @@ gsap.ticker.add(() => {
     if (on !== results.live) { results.live = on; on ? results.cc.resume() : results.cc.pause(); }
     if (results.borders && resultsObj.shown !== results.bordersOn) { results.bordersOn = resultsObj.shown; results.borders.setActive(resultsObj.shown); }   // borders stay on through the deck, off once the section is gone
     if (!resultsObj.shown && results.hover >= 0) results.release();
+    if (results.paper && resultsObj.shown !== results.paperShown) { results.paperShown = resultsObj.shown; resultsObj.shown ? results.paper.resume() : results.paper.pause(); }
   }
   const moving = Math.abs(grid.cam.z - before) > 1e-5;
   grid.cam.moving = moving || idle > 0;
@@ -847,6 +851,33 @@ const results = {
       this.tapped = true; this.coolUntil = 0; this.aim(e.clientX, e.clientY); this.tapped = false;
     });
     (window.requestIdleCallback || (f => setTimeout(f, 300)))(() => PEOPLE.forEach((p, i) => this.build(i)));   // ready before anyone hovers
+    (window.requestIdleCallback || (f => setTimeout(f, 600)))(() => this.startPaper());
+  },
+  // Hayden 10/30: "whenever it's a client's quote, the paper pulls up… whenever it goes away from the client… crumple up… put a trash
+  // can so the paper crumples up and goes in the trash can… put the client's testimony on the piece of paper". React Bits'
+  // Paper Crumple (ported: js/vendor/paper-crumple.js) with their words printed on it (sections/paper-quotes.js): when their
+  // photo changes, their sheet lights up in the can, pops out and opens; mouse off and it crumples into a ball and goes back in.
+  // The can is digital, the room's grid in its blue ("more digital… rather than such a realistic one"). No WebGL: the words
+  // stay in the column as before.
+  paper: null, paperFor: null, paperOn: -1, paperShown: false,
+  async startPaper() {
+    if (this.paper) return;
+    try {
+      const [{ createPaperToss }, { paperFor, PAPER_ASPECT }] = await Promise.all([
+        import('../../js/vendor/paper-crumple.js?v=20261030p'),
+        import('./sections/paper-quotes.js?v=20261030p')
+      ]);
+      this.paperFor = paperFor;
+      this.paper = createPaperToss($('#rsPaper'), {
+        aspect: PAPER_ASPECT,
+        layout: (w, h) => ({ paper: { width: w * 0.78, x: w * 0.56, y: h * 0.4, rotation: -2.5 }, can: { x: w * 0.22, bottom: h * 0.975, height: h * 0.27 } })
+      });
+      $('#results').classList.add('paper');
+      this.paperShown = true;
+      if (!resultsObj.shown) { this.paper.pause(); this.paperShown = false; }
+      PEOPLE.forEach(p => paperFor(p));   // every sheet printed ahead of time
+      if (this.showing >= 0) this.quote(this.showing);
+    } catch (err) { console.warn('paper', err); this.paper = null; }
   },
   build(i) {   // each person's effect, made once
     if (this.fx[i]) return this.fx[i];
@@ -938,6 +969,18 @@ const results = {
     if (this.tw) { this.tw.kill(); this.tw = null; }
     if (this.split) { this.split.revert(); this.split = null; }
     sec.classList.toggle('on', i >= 0);
+    if (this.paper) {   // their words are on their sheet; the column keeps them for screen readers only
+      if (this.paperOn >= 0 && this.paperOn !== i) this.paper.hide(this.paperOn);
+      this.paperOn = i;
+      if (i < 0) return;
+      const p = PEOPLE[i];
+      tag.textContent = p.real ? 'Sample quote \u00b7 needs his own words' : 'Sample person \u00b7 not a real client';
+      q.textContent = '\u201c' + p.q + '\u201d';
+      who.textContent = p.result || '';
+      who.hidden = !p.result;
+      this.paperFor(p).then(c => { if (this.paperOn === i && this.paper) this.paper.show(i, c); });
+      return;
+    }
     if (i < 0) return;
     const p = PEOPLE[i];
     tag.textContent = p.real ? 'Sample quote \u00b7 needs his own words' : 'Sample person \u00b7 not a real client';
@@ -997,7 +1040,7 @@ const LATE = [
   { id: 'apply', z: 9.15, file: 'apply.js', mount: 'mountApply' },
   { id: 'book', z: 10.55, file: 'book.js', mount: 'mountBook' }
 ].map(L => ({ ...L, obj: objs.find(o => o.el.id === L.id), api: null, started: false, on: null, played: false, plan: null }));
-const LATE_V = '20261030k';
+const LATE_V = '20261030p';
 const lateY = L => st.start + pAt(L.z - 0.25) * (st.end - st.start);   // each section's stop
 function lateTick(cz) {
   for (const L of LATE) {
@@ -1010,7 +1053,7 @@ function lateTick(cz) {
     }
     const api = L.api; if (!api) continue;
     if (L.obj.shown !== L.on) { L.on = L.obj.shown; if (api.pause) L.on ? api.resume() : api.pause(); }   // its WebGL/loops only run while you can see it
-    if (!L.played && cz > L.z - 0.3) { L.played = true; (api.play || api.reveal || (() => {})).call(api); }   // its entrance plays as you arrive
+    if (!L.played && cz > L.z - 0.3 && cz < L.z + 0.7) { L.played = true; (api.play || api.reveal || (() => {})).call(api); }   // its entrance plays as you arrive
     else if (L.played && (cz < L.z - 1.3 || cz > L.z + 0.7)) L.played = false;   // and again the next time you come to it
     const near = Math.abs(cz - (L.z - 0.25)) < 0.12;
     if (api.close && L.near && !near) api.close();   // leaving it: an open question folds back before you fly through
