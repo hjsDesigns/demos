@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gage Rogel Fitness · hollow site</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../images/logo.png" type="image/png">
+<link rel="stylesheet" href="../../js/vendor/accordion-flip.css?v=20261029c">
+<link rel="stylesheet" href="../../js/vendor/circular-carousel.css?v=20261029a">
+<link rel="stylesheet" href="sections/plans.css?v=20261030b">
+<link rel="stylesheet" href="../../js/vendor/scroll-index.css?v=20261030c">
+<link rel="stylesheet" href="sections/sections.css?v=20261030e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* HOLLOW SITE (Hayden 10/29): only the saved opener. Sections get added back one at a time, side by side with the dream plan.
+   layout: a fixed stage (React Bits Grid Scan room + a CSS 3D layer using the room's exact camera) over a tall scroll track.
+   The back wall starts right in front of you holding his logo; tapping the logo blows it back down the room, scrolling flies you to it. */
+:root{
+  --bg:#0B111B; --dark:#070B12; --brand:#0687FF; --brand-text:#5CB2FF; --ink:#E6EDF6; --muted:#9AABC2;
+  --line:rgba(92,178,255,.24); --panel:rgba(9,15,25,.97);
+  --display:'Chakra Petch','Arial Narrow',sans-serif; --body:'Figtree','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--dark)}
+body{margin:0;background:var(--dark);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.stage{position:fixed;inset:0;overflow:hidden;background:radial-gradient(120% 85% at 50% 42%,#0d1828 0%,var(--dark) 72%)}
+#grid{position:absolute;inset:0;opacity:0}
+.entered #grid{opacity:1}
+.grid-scan-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.world{position:absolute;inset:0;pointer-events:none;--u:8px}
+.obj{position:absolute;left:50%;top:50%;will-change:transform,opacity;visibility:hidden}
+.scroller{height:1000vh}
+
+/* panels: thin lines and corner ticks, the same language as the grid */
+.panel{position:relative;padding:calc(var(--u)*2.8);background:linear-gradient(180deg,rgba(12,21,35,.97),var(--panel));border:1px solid var(--line);
+  box-shadow:0 calc(var(--u)*3) calc(var(--u)*9) calc(var(--u)*-3) rgba(6,135,255,.32),inset 0 1px 0 rgba(255,255,255,.05)}
+.panel::before,.panel::after,.frame::before,.frame::after{content:"";position:absolute;width:calc(var(--u)*2.4);height:calc(var(--u)*2.4);border:2px solid var(--brand);pointer-events:none}
+.panel::before,.frame::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+.panel::after,.frame::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.eyebrow{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:calc(var(--u)*1.45);color:var(--brand-text);margin:0 0 calc(var(--u)*1.4)}
+.h{font-family:var(--display);font-weight:700;line-height:1.02;font-size:calc(var(--u)*4.6);margin:0;letter-spacing:-.01em}
+.h em{font-style:italic;color:var(--brand-text)}
+.p{font-size:calc(var(--u)*2.5);line-height:1.42;color:var(--muted);margin:calc(var(--u)*1.6) 0 0}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:calc(var(--u)*1.7)}
+.list li{display:grid;gap:calc(var(--u)*.4);padding-top:calc(var(--u)*1.5);border-top:1px solid var(--line)}
+.list li:first-child{border-top:0;padding-top:0}
+.list b{font-family:var(--display);font-weight:700;font-size:calc(var(--u)*2.7);letter-spacing:.01em}
+.list span{font-size:calc(var(--u)*2.2);line-height:1.38;color:var(--muted)}
+.k{font-family:var(--display);font-weight:600;font-size:calc(var(--u)*1.35);letter-spacing:.18em;color:var(--brand-text);text-transform:uppercase}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.2) calc(var(--u)*2)}
+.stats b{display:block;font-family:var(--display);font-weight:700;font-size:calc(var(--u)*4.4);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats b small{font-size:.5em;color:var(--brand-text);margin-left:.15em}
+.stats > div > span{display:block;margin-top:calc(var(--u)*.8);font-size:calc(var(--u)*1.9);line-height:1.3;color:var(--muted)}
+.frame{position:relative;margin:0;padding:calc(var(--u)*.7);background:#04070c;border:1px solid var(--line);box-shadow:0 calc(var(--u)*3) calc(var(--u)*8) calc(var(--u)*-3) rgba(6,135,255,.3)}
+.frame img{display:block;width:100%;height:auto}
+.trio-row{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*1.6)}
+.trio-row .frame figcaption{font-size:calc(var(--u)*2)}
+.frame figcaption{position:absolute;left:calc(var(--u)*.7);bottom:calc(var(--u)*-3.6);font-family:var(--display);font-weight:700;font-style:italic;font-size:calc(var(--u)*2.4);color:var(--ink)}
+
+/* the wall at the end of the room (and right in front of you at the start) */
+.wall{display:block}
+.wall-head{position:absolute;left:0;right:0;top:50%;display:flex;flex-direction:column;align-items:center;transform:translateY(-50%)}
+.logo-btn{pointer-events:auto;position:relative;display:block;width:min(86%,calc(var(--u)*62));aspect-ratio:400/300;border:0;padding:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.logo-btn:focus-visible{outline:2px solid var(--brand-text);outline-offset:6px}
+.logo-box{position:absolute;inset:-30%}
+.logo-img{position:absolute;left:25%;top:25%;width:50%;height:50%;object-fit:contain;
+  filter:grayscale(0) brightness(1) contrast(1) drop-shadow(0 0 calc(var(--u)*.35) rgba(220,240,255,var(--neon-core,.9))) drop-shadow(0 0 calc(var(--u)*1.4) rgba(92,178,255,var(--neon,.8))) drop-shadow(0 0 calc(var(--u)*4) rgba(6,135,255,var(--neon,.8)));
+  transition:filter .45s cubic-bezier(.2,.7,.2,1)}
+.logo-box canvas{position:absolute;inset:0;opacity:var(--el,1);transition:opacity .5s ease}
+.logo-top{position:absolute;left:10%;top:10%;width:80%;height:80%;object-fit:contain;pointer-events:none;opacity:var(--crisp-top,0);filter:grayscale(0) brightness(1) contrast(1);transition:filter .45s ease}
+.wall-name{margin:calc(var(--u)*1.2) 0 0;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:calc(var(--u)*4.4);line-height:1;text-align:center}
+.wall-name em{font-style:italic;color:var(--brand-text)}
+.hint{margin:calc(var(--u)*2.6) 0 0;font-family:var(--display);font-weight:600;font-size:calc(var(--u)*1.6);letter-spacing:.26em;text-transform:uppercase;color:var(--brand-text);opacity:0;transition:opacity .6s ease}
+.ready .hint{opacity:1;animation:breathe 2.4s ease-in-out infinite}
+.entered .hint{opacity:0;animation:none}
+@keyframes breathe{50%{opacity:.45}}
+/* section 2, the line (Hayden 10/29): just the words floating in the room, same font as GET STARTED; they show up on the first
+   scroll and you fly straight through them */
+.words{margin:0;text-align:center;font:600 calc(var(--u)*6.2)/1.05 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-wrap:balance;
+  text-shadow:0 0 calc(var(--u)*2.2) rgba(7,11,18,.95),0 0 calc(var(--u)*.6) rgba(7,11,18,.9);pointer-events:none}
+.words span{display:block}
+.words .b{color:var(--brand-text)}
+/* section 4: his story, laid out from Hayden's drawing (10/29): the changing photo on the left, the graph across the top
+   growing out of it, the chapter's words under the graph, and Gage today (still) on the right, where the line lands */
+.journey{pointer-events:none;height:calc(var(--u)*88)}
+.jy-photo,.jy-still{position:absolute;margin:0}
+.jy-photo{left:0;top:calc(var(--u)*22);width:calc(var(--u)*31.5);height:calc(var(--u)*42)}
+.jy-still{left:calc(var(--u)*112);top:calc(var(--u)*42);width:calc(var(--u)*26);height:calc(var(--u)*40)}
+.jy-still img{display:block;width:100%;height:100%;object-fit:cover}
+.jy-still figcaption{position:absolute;left:0;right:0;top:calc(100% + var(--u)*1.5);bottom:auto;text-align:center;font:600 calc(var(--u)*1.45)/1 var(--display);font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.jy-stage{position:relative;width:100%;height:100%;overflow:hidden;background:#0c0d10}
+.jy-stage canvas{display:block;width:100%;height:100%}
+.jy-svg{position:absolute;left:0;top:0;width:100%;height:calc(var(--u)*44);overflow:visible}
+.jy-ghost{fill:none;stroke:rgba(154,171,194,.42);stroke-width:2.6;stroke-dasharray:2 9;stroke-linecap:round}
+.jy-seg{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.jy-tip{fill:#f4faff;transition:opacity .2s}
+.jy-tipglow{fill:rgba(92,178,255,.3);transition:opacity .2s}
+.jy-dot{fill:#0b1220;stroke:rgba(154,171,194,.5);stroke-width:2.5;transition:fill .3s,stroke .3s}
+.jy-dot.on{fill:var(--c);stroke:#eaf5ff}
+.jy-halo{fill:var(--c);opacity:0;transition:opacity .35s}
+.jy-halo.on{opacity:.16}
+.jy-halo.now{opacity:.3}
+.jy-num{font:600 15px var(--display);letter-spacing:.18em;fill:rgba(154,171,194,.5);text-anchor:middle;transition:fill .3s}
+.jy-num.on{fill:var(--ink)}
+.jy-num.now{fill:var(--brand-text)}
+.jy-ring{fill:none;stroke:var(--c);stroke-width:2.5;transform-box:fill-box;transform-origin:center;animation:jyRing .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes jyRing{from{transform:scale(.7);opacity:.95}to{transform:scale(3.6);opacity:0}}
+/* Hayden's "New 3" (10/29): one big changing photo on the left, the graph across the top right growing out of it,
+   the words under the graph on the right. Same story, same moments; "Current 1" is ?layout=1 */
+.journey[data-layout="3"] .jy-photo{top:calc(var(--u)*12);width:calc(var(--u)*40);height:calc(var(--u)*60)}
+.journey[data-layout="3"] .jy-words{left:calc(var(--u)*64);top:calc(var(--u)*49);width:calc(var(--u)*72)}
+.journey[data-layout="3"] .jy-still{display:none}
+.jy-dot.pop{transform-box:fill-box;transform-origin:center;animation:jyPop .7s cubic-bezier(.2,.7,.2,1)}
+@keyframes jyPop{0%{transform:scale(1)}28%{transform:scale(1.95)}62%{transform:scale(.9)}100%{transform:scale(1)}}
+.jy-num.pop{transform-box:fill-box;transform-origin:center;animation:jyNum .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes jyNum{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+.jy-photo{--fc:var(--brand)}
+.jy-photo::before,.jy-photo::after{border-color:var(--fc);transition:border-color .45s ease}
+.jy-photo.hit{animation:jyHit .8s ease-out}
+@keyframes jyHit{0%,100%{box-shadow:0 calc(var(--u)*3) calc(var(--u)*8) calc(var(--u)*-3) rgba(6,135,255,.3)}28%{box-shadow:0 0 calc(var(--u)*3.2) calc(var(--u)*.35) var(--fc)}}
+.jy-link{fill:none;stroke:rgba(127,224,168,.85);stroke-width:2.8;stroke-dasharray:4 7;transition:opacity .6s ease}
+.jy-halo.wait{animation:jyWait 1.8s ease-in-out infinite}
+@keyframes jyWait{0%,100%{opacity:.06}50%{opacity:.34}}
+.jy-hits{position:absolute;inset:0;margin:0;padding:0;list-style:none}
+.jy-hits button{pointer-events:auto;position:absolute;width:calc(var(--u)*6);height:calc(var(--u)*6);margin:calc(var(--u)*-3) 0 0 calc(var(--u)*-3);padding:0;border:0;border-radius:50%;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.jy-hits button:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+.jy-words{position:absolute;left:calc(var(--u)*41);top:calc(var(--u)*50);width:calc(var(--u)*66)}
+.jy-k{margin:0 0 calc(var(--u)*1);font:600 calc(var(--u)*1.55)/1.2 var(--display);letter-spacing:.22em;text-transform:uppercase;color:var(--brand-text)}
+.jy-t{margin:0 0 calc(var(--u)*1.4);font:600 calc(var(--u)*3.4)/1.05 var(--display);letter-spacing:.05em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 calc(var(--u)*1.6) rgba(7,11,18,.95)}
+.jy-p{margin:0;font:500 calc(var(--u)*2.45)/1.5 var(--body);color:var(--ink);text-wrap:pretty;text-shadow:0 0 calc(var(--u)*1.4) rgba(7,11,18,.95)}
+.jy-words.intro .jy-p{font-size:calc(var(--u)*2.75);line-height:1.46}
+.program{pointer-events:none}   /* section 5: the six pieces (Hayden 10/29: the accordion gallery and the flip card in one) */
+.program h3{margin:0;text-align:center;font:600 calc(var(--u)*5.4)/1.05 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 calc(var(--u)*2) rgba(7,11,18,.95)}
+.program .hint3{margin:calc(var(--u)*1.2) 0 calc(var(--u)*3.2);text-align:center;font:500 calc(var(--u)*2.6)/1.3 var(--body);color:var(--muted);text-shadow:0 0 calc(var(--u)*1.4) rgba(7,11,18,.95)}
+.pg-host{width:calc(var(--u)*114);height:calc(var(--u)*70.3);margin:0 auto}   /* 5% smaller (Hayden 10/29) */   /* Hayden 10/29: tall, iPhone-shaped photos, not wide ones */
+.pg-host .af-rest{bottom:calc(var(--u)*2);font:600 calc(var(--u)*1.55)/1.15 var(--display);letter-spacing:.14em;opacity:clamp(0,calc(1 - var(--gate,0)*3),1)}
+.pg-host.af-has-active .af-rest{opacity:0}
+.pg-host .ag-panel__label{opacity:clamp(0,calc(1 - var(--gate,0)*3),1)}   /* the names fade as the gate opens, so a trimmed panel never shows half a word */
+.pg-host .af-panel{pointer-events:auto}
+.pg-host .ag-panel__label{left:calc(var(--u)*2.2);bottom:calc(var(--u)*2.2);right:calc(var(--u)*2.2);gap:calc(var(--u)*1.2)}
+.pg-host .ag-panel__bar{height:calc(var(--u)*3)}
+.pg-host .ag-panel__text{font:600 calc(var(--u)*2.6)/1.1 var(--display);letter-spacing:.08em;text-transform:uppercase}
+.pg-host .af-face--back{background:linear-gradient(180deg,#1e2a3d 0%,#141c2a 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07),inset 0 1px 0 rgba(255,255,255,.12),0 10px 30px -18px rgba(0,0,0,.8)}
+.pg-host .af-back{padding:calc(var(--u)*3.4) calc(var(--u)*3.8)}
+.pg-host .af-back__tag{margin:0 0 calc(var(--u)*1.2);font:600 calc(var(--u)*1.7)/1.2 var(--display);letter-spacing:.2em}
+.pg-host .af-back__title{margin:0 0 calc(var(--u)*1.8);font:600 calc(var(--u)*4.4)/1.05 var(--display);letter-spacing:.05em;text-transform:uppercase}
+.pg-host .af-back__text{max-width:calc(var(--u)*62);font:500 calc(var(--u)*2.75)/1.5 var(--body)}
+.pg-host .af-back__hint{left:calc(var(--u)*3.8);bottom:calc(var(--u)*2.4);font:600 calc(var(--u)*1.25)/1 var(--display);letter-spacing:.2em}
+.results{pointer-events:none;height:calc(var(--u)*72)}   /* section 6: results (Hayden 10/29): the words on the left, his carousel on the right */
+.rs-left{position:absolute;left:0;top:0;bottom:0;width:calc(var(--u)*44)}
+.rs-rest,.rs-quote{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);transition:opacity .35s ease}
+.rs-rest h3{margin:0;font:600 calc(var(--u)*6.4)/1.02 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 calc(var(--u)*2) rgba(7,11,18,.95)}
+.rs-rest p{margin:calc(var(--u)*1.6) 0 0;font:500 calc(var(--u)*2.6)/1.35 var(--body);color:var(--muted);text-shadow:0 0 calc(var(--u)*1.4) rgba(7,11,18,.95)}
+.rs-quote{opacity:0}
+.results.on .rs-quote{opacity:1}
+.results.on .rs-rest{opacity:0}
+.rs-tag{display:inline-block;margin:0 0 calc(var(--u)*1.8);padding:calc(var(--u)*.5) calc(var(--u)*1);border:1px solid rgba(255,138,128,.55);border-radius:calc(var(--u)*.5);font:600 calc(var(--u)*1.3)/1 var(--display);letter-spacing:.18em;text-transform:uppercase;color:#ff8a80}
+.rs-q{margin:0;font:500 calc(var(--u)*3.2)/1.42 var(--body);color:var(--ink);text-wrap:pretty;text-shadow:0 0 calc(var(--u)*1.4) rgba(7,11,18,.95)}
+.rs-who{margin:calc(var(--u)*2.6) 0 0;font:600 calc(var(--u)*2.1)/1.2 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text)}
+.rs-who span{display:block;margin-top:calc(var(--u)*.7);font:500 calc(var(--u)*2)/1.3 var(--body);letter-spacing:0;text-transform:none;color:var(--muted)}
+.rs-ring{position:absolute;left:calc(50% - var(--u)*25.5);top:0;bottom:0;width:calc(var(--u)*100);pointer-events:auto}   /* Hayden 10/30: bigger photos, filling the section (480 px cards) */   /* the ring's cards end at the section's right edge (its box runs a touch past it, empty) */
+#rsRing .circular-carousel{overflow:visible}   /* the cards that drop out of the camera's way fall past the ring's box instead of being cut off at its edge */
+@media (prefers-reduced-motion:reduce){.rs-rest,.rs-quote{transition:none}}
+/* section 7: Gage (Hayden 10/30: "a section more revolved around Gage, just the video"; the week calendar and its paragraph are gone) */
+.gage{pointer-events:none;height:calc(var(--u)*72)}
+.gv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gv-eye{margin:0;font:600 calc(var(--u)*1.6)/1 var(--display);letter-spacing:.32em;text-transform:uppercase;color:var(--brand-text)}
+.gv h3{margin:calc(var(--u)*1.1) 0 calc(var(--u)*2.6);font:600 calc(var(--u)*5.6)/1.04 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 calc(var(--u)*2) rgba(7,11,18,.95)}
+/* the video: a plain horizontal frame (Hayden 10/29: "I just wanted it horizontal frame"), a slim dark bezel like a laptop screen's */
+.wk-vid{position:relative;z-index:2;width:calc(var(--u)*104);aspect-ratio:16/9;padding:calc(var(--u)*.8);border:0;border-radius:calc(var(--u)*1.3);background:#05080d;cursor:pointer;pointer-events:auto;
+  box-shadow:inset 0 0 0 1px rgba(92,178,255,.22),0 calc(var(--u)*2.4) calc(var(--u)*6) calc(var(--u)*-2) rgba(6,135,255,.32);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease;-webkit-tap-highlight-color:transparent}
+.wk-vid::before{content:"";position:absolute;left:50%;top:calc(var(--u)*.22);width:calc(var(--u)*.38);height:calc(var(--u)*.38);margin-left:calc(var(--u)*-.19);border-radius:50%;background:#1a2433}   /* the camera dot */
+.wk-vid img{position:absolute;left:calc(var(--u)*.8);top:calc(var(--u)*.8);width:calc(100% - var(--u)*1.6);height:calc(100% - var(--u)*1.6);object-fit:cover;object-position:50% 28%;border-radius:calc(var(--u)*.6)}   /* placed inside the bezel so the 4:3 photo can't stretch the 16:9 frame */
+.wk-vid:focus-visible{outline:2px solid #5CB2FF;outline-offset:4px}
+.wk-vid.on{transform:scale(1.03);box-shadow:inset 0 0 0 1px rgba(92,178,255,.45),0 calc(var(--u)*3) calc(var(--u)*8) calc(var(--u)*-2) rgba(6,135,255,.5)}
+.wk-play{position:absolute;left:50%;top:50%;width:calc(var(--u)*7.6);height:calc(var(--u)*7.6);margin:calc(var(--u)*-3.8) 0 0 calc(var(--u)*-3.8);border-radius:50%;
+  background:rgba(6,135,255,.92);box-shadow:0 0 calc(var(--u)*2.8) rgba(6,135,255,.6),inset 0 0 0 1px rgba(255,255,255,.25);display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .3s ease;pointer-events:none}
+.wk-play::after{content:"";margin-left:calc(var(--u)*.5);border-left:calc(var(--u)*2.2) solid #fff;border-top:calc(var(--u)*1.3) solid transparent;border-bottom:calc(var(--u)*1.3) solid transparent}
+.wk-vid:hover .wk-play{transform:scale(1.08)}
+.wk-cap{position:absolute;left:50%;bottom:calc(var(--u)*2.6);transform:translateX(-50%);margin:0;padding:calc(var(--u)*.6) calc(var(--u)*1.3);white-space:nowrap;background:rgba(0,0,0,.66);
+  font:500 calc(var(--u)*1.75)/1.3 var(--body);color:#fff;pointer-events:none}
+.wk-soon{position:absolute;left:calc(var(--u)*2);top:calc(var(--u)*2);padding:calc(var(--u)*.55) calc(var(--u)*1);border:1px solid rgba(255,138,128,.7);background:rgba(7,11,18,.72);
+  font:600 calc(var(--u)*1.2)/1 var(--display);letter-spacing:.18em;text-transform:uppercase;color:#ff8a80;opacity:0;transition:opacity .35s ease;pointer-events:none}
+.wk-vid.on .wk-soon{opacity:1}
+.wk-vid.on .wk-play{opacity:0;transform:scale(.7)}
+@media (prefers-reduced-motion:reduce){.wk-vid,.wk-play,.wk-soon{transition:none}}
+/* the where-you-are tracker (Hayden 10/30: "a tracking sidebar so people can know where they are inside the site and how far
+   it's going to take"): Kokonut UI's Scroll Index, ported, in his navy and blue (the old plain progress line stays hidden). */
+.si-nav{--si-ahead:#33415a;--si-current:#5CB2FF;--si-passed:#E6EDF6;--si-head:#E6EDF6;--si-label-bg:#0b1220;--si-label-border:rgba(92,178,255,.28);--si-label-ink:#E6EDF6;--si-muted:#9AABC2;--si-ring:#5CB2FF;
+  font-family:var(--body);opacity:0;transition:opacity .6s ease}
+body.entered .si-nav{opacity:1}
+/* sections 8-11 (Hayden 10/29): plans, apply, book a call, questions. Each is its own module (lab/hollow/sections/), loaded as you near it */
+.late{pointer-events:none;height:calc(var(--u)*72)}
+.late-host{position:absolute;inset:0}
+@media (prefers-reduced-motion:reduce){.jy-halo.wait,.jy-dot.pop,.jy-num.pop,.jy-photo.hit{animation:none}.jy-ring{animation:none;opacity:0}.jy-dot,.jy-halo,.jy-num,.jy-link{transition:none}}
+/* "Get started" (Hayden 10/29): just the words, a regular font, walking out of the shadows: dim, blurred and a step back,
+   then forward into focus. A shadow mask opens from the middle of the words as they arrive. */
+@property --reveal{syntax:'<percentage>';inherits:false;initial-value:0%}
+.start-wrap{position:absolute;left:50%;top:calc(100% + var(--u)*2.2);transform:translateX(-50%);pointer-events:none}
+.start{pointer-events:auto;position:relative;display:block;border:0;background:none;padding:calc(var(--u)*1.1) calc(var(--u)*2.8);cursor:pointer;white-space:nowrap;color:var(--ink);-webkit-tap-highlight-color:transparent}
+.start-text{position:relative;z-index:2;display:block;font:600 calc(var(--u)*3.3)/1 var(--display);letter-spacing:.14em;text-transform:uppercase;
+  opacity:0;filter:blur(12px) brightness(.3);transform:scale(.84) translateY(calc(var(--u)*1.2));--reveal:0%;
+  -webkit-mask-image:radial-gradient(closest-side,#000 calc(var(--reveal) - 35%),transparent var(--reveal));mask-image:radial-gradient(closest-side,#000 calc(var(--reveal) - 35%),transparent var(--reveal));
+  transition:opacity 1.5s cubic-bezier(.16,1,.3,1),filter 1.7s cubic-bezier(.16,1,.3,1),transform 1.8s cubic-bezier(.16,1,.3,1),--reveal 1.6s cubic-bezier(.33,1,.68,1),text-shadow .3s ease}
+.ready .start-text{opacity:1;filter:blur(0) brightness(1);transform:none;--reveal:170%}
+.start:hover .start-text,.start:focus-visible .start-text{text-shadow:0 0 calc(var(--u)*1.2) rgba(92,178,255,.55)}
+.start:focus-visible{outline:none}
+.entered .start-wrap{opacity:0;transition:opacity .3s ease}
+.entered .start{pointer-events:none}
+@media (prefers-reduced-motion:reduce){.start-text{transition:none}}
+/* the opener's strike (Hayden 10/29): a dead black-and-white sign → lightning hits it → it charges up */
+body:not(.lit) .logo-img{filter:grayscale(1) brightness(.5) contrast(1.45) drop-shadow(0 0 0 rgba(0,0,0,0)) drop-shadow(0 0 0 rgba(0,0,0,0)) drop-shadow(0 0 0 rgba(0,0,0,0))}
+body:not(.lit) .logo-top{filter:grayscale(1) brightness(.5) contrast(1.45)}
+body:not(.lit) .logo-box canvas{opacity:0 !important}
+body:not(.entered) .wall-name{opacity:0 !important;transition:none !important}
+.halo{position:absolute;left:50%;top:50%;width:min(110vmin,1100px);height:min(110vmin,1100px);transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(6,135,255,.42),rgba(6,135,255,.12) 45%,transparent 72%);opacity:0;pointer-events:none}
+#bolt{position:fixed;inset:0;width:100%;height:100%;z-index:20;pointer-events:none}
+.flash{position:fixed;inset:0;z-index:21;pointer-events:none;opacity:0;background:radial-gradient(120% 90% at 50% 28%,#cfe3ff,#7fb3f5 55%,#1f5fc0)}
+@media (prefers-reduced-motion:reduce){.logo-img,.logo-top,.logo-box canvas{transition:none}}
+/* "Get started": React Bits Electric Border, tuned by the same glow/crispness sliders as his sign */
+.electric-border{position:relative;isolation:isolate}
+.electric-border__canvas{position:absolute;z-index:1;display:block;pointer-events:none}
+.start-btn{pointer-events:auto;position:relative;margin-top:calc(var(--u)*3.2);padding:calc(var(--u)*1.6) calc(var(--u)*4.4);background:rgba(7,11,18,.55);border:0;
+  color:var(--ink);font-family:var(--display);font-weight:700;letter-spacing:.24em;text-transform:uppercase;font-size:calc(var(--u)*1.9);cursor:pointer;opacity:0;transition:opacity .6s ease}
+.start-btn span{position:relative;z-index:2;text-shadow:0 0 calc(var(--u)*.7) rgba(92,178,255,.75)}
+.start-btn:focus-visible{outline:2px solid var(--brand-text);outline-offset:8px}
+.ready .start-btn{opacity:1}
+.entered .start-btn{opacity:0;pointer-events:none}
+/* where his name sits before the open (tuning panel); the end wall always shows it under the logo */
+body.name-above:not(.entered) .wall-name{order:-1;margin:0 0 calc(var(--u)*2)}
+body.name-corner:not(.entered) .wall-name,body.name-after:not(.entered) .wall-name{opacity:0}
+.wall-name{transition:opacity .5s ease;position:absolute;left:0;right:0;top:100%}
+.corner-name{position:fixed;top:max(16px,env(safe-area-inset-top));left:18px;z-index:5;margin:0;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:15px;color:var(--ink);opacity:0;transition:opacity .5s ease;pointer-events:none}
+.corner-name em{font-style:italic;color:var(--brand-text)}
+body.name-corner .corner-name{opacity:1}
+/* tuning panel: test page only */
+.tune{position:fixed;left:16px;bottom:16px;z-index:9;width:280px;padding:14px 16px 12px;background:rgba(7,11,18,.88);border:1px solid var(--line);font:500 12px/1.4 var(--body);color:var(--muted)}
+.tune b{display:block;font:700 11px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--brand-text);margin-bottom:10px}
+.tune label{display:flex;justify-content:space-between;color:var(--ink);font-weight:600;margin-top:4px}
+.tune input[type=range]{width:100%;margin:8px 0 2px;accent-color:var(--brand)}
+.tune .ends{display:flex;justify-content:space-between;font-size:11px}
+.tune .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:8px}
+.tune .seg button{font:600 11px/1 var(--body);padding:7px 0;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;border-radius:3px}
+.tune .seg button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.tune .x{position:absolute;right:8px;top:6px;border:0;background:none;color:var(--muted);font-size:16px;cursor:pointer}
+.tune small{display:block;margin-top:10px;font-size:11px}
+.tune-open{position:fixed;left:16px;bottom:16px;z-index:9;display:none;font:700 11px/1 var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--brand-text);background:rgba(7,11,18,.88);border:1px solid var(--line);padding:9px 12px;cursor:pointer}
+.tune-hidden .tune{display:none}.tune-hidden .tune-open{display:block}
+.wall-end{position:absolute;left:7%;right:7%;top:45%;opacity:var(--end,0);transform:translateY(calc((1 - var(--end,0)) * var(--u) * 4));display:grid;gap:calc(var(--u)*2.2);justify-items:center;text-align:center}
+.wall-end[data-off]{visibility:hidden}
+.plans{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);width:100%;max-width:calc(var(--u)*120);border:1px solid var(--line);background:rgba(7,11,18,.82)}
+.plans li{padding:calc(var(--u)*2) calc(var(--u)*1.2);border-left:1px solid var(--line);display:grid;gap:calc(var(--u)*.6)}
+.plans li:first-child{border-left:0}
+.plans li.lead{background:linear-gradient(180deg,rgba(6,135,255,.16),rgba(6,135,255,.04))}
+.plans .k{font-size:calc(var(--u)*1.3)}
+.plans b{font-family:var(--display);font-weight:700;font-size:calc(var(--u)*4);line-height:1;font-variant-numeric:tabular-nums}
+.plans b small{font-size:.42em;color:var(--muted);font-weight:600}
+.plans span{font-size:calc(var(--u)*1.75);line-height:1.3;color:var(--muted)}
+.terms{margin:0;font-size:calc(var(--u)*1.9);color:var(--muted)}
+.btn{pointer-events:auto;display:inline-block;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.14em;text-decoration:none;color:#fff;background:var(--brand);
+  padding:calc(var(--u)*1.7) calc(var(--u)*4.2);border-radius:4px;font-size:calc(var(--u)*1.9);box-shadow:0 0 calc(var(--u)*3) rgba(6,135,255,.55)}
+.full{pointer-events:auto;font-size:calc(var(--u)*1.7);color:var(--brand-text)}
+
+/* fixed UI: Apply always one tap away, the depth dots, the scroll cue */
+.apply-corner{position:fixed;top:max(14px,env(safe-area-inset-top));right:16px;z-index:5;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:#fff;text-decoration:none;background:rgba(6,135,255,.92);padding:10px 16px;border-radius:4px;box-shadow:0 0 18px rgba(6,135,255,.45)}
+/* where you are: one continuous line that fills as you fly; the section names sit along it */
+.rail{display:none;position:fixed;left:22px;top:20vh;bottom:20vh;width:220px;z-index:5;opacity:0;transition:opacity .6s ease .6s;pointer-events:none}
+.entered .rail{opacity:1}
+.rail-track{position:absolute;left:0;top:0;bottom:0;width:2px;background:rgba(154,171,194,.16)}
+.rail-fill{position:absolute;left:0;top:0;width:2px;height:0;background:linear-gradient(180deg,rgba(92,178,255,.35),var(--brand-text));box-shadow:0 0 10px rgba(6,135,255,.8)}
+.rail-head{position:absolute;left:-3px;top:0;width:8px;height:8px;border-radius:50%;background:#e4f2ff;box-shadow:0 0 14px var(--brand),0 0 4px #fff;transform:translateY(-50%)}
+.rail-lab{position:absolute;left:16px;transform:translateY(-50%);pointer-events:auto;border:0;background:none;padding:3px 0;font:600 11px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;color:rgba(154,171,194,.5);cursor:pointer;white-space:nowrap;transition:color .3s}
+.rail-lab.past{color:rgba(230,237,246,.7)}
+.rail-lab.on{color:var(--brand-text);text-shadow:0 0 10px rgba(6,135,255,.6)}
+.entered .dots{opacity:1}
+.dot{position:relative;display:block;width:22px;height:22px;padding:0;border:0;background:none;cursor:pointer}
+.dot::before{content:"";position:absolute;left:8px;top:8px;width:6px;height:6px;background:rgba(154,171,194,.45);transition:background .3s,box-shadow .3s,transform .3s}
+.dot.on::before{background:var(--brand-text);box-shadow:0 0 10px var(--brand);transform:scale(1.5)}
+.dot span{position:absolute;left:28px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-text);opacity:0;transition:opacity .3s}
+.dot.on span{opacity:1}
+.cue{position:fixed;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:5;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brand-text);opacity:0;transition:opacity .5s;pointer-events:none;text-align:center}
+.cue::after{content:"";display:block;width:1px;height:28px;margin:10px auto 0;background:linear-gradient(var(--brand-text),transparent)}
+.show-cue .cue{opacity:.9}
+@media (max-width:560px){.rail-lab{display:none}}
+@media (prefers-reduced-motion:reduce){.ready .hint{animation:none}}
+</style>
+</head>
+<body class="name-corner">
+<div class="stage" id="stage">
+  <div id="grid"></div>
+  <div class="halo" id="halo"></div>
+  <div class="world" id="world">
+
+    <section class="obj wall" id="wall" aria-label="Gage Rogel Fitness">
+      <div class="wall-head">
+        <button class="logo-btn" id="logoBtn" type="button" aria-label="Click the logo to transform the page">
+          <span class="logo-box" id="logoBox"><img class="logo-img" src="../../images/logo.png" alt=""></span>
+          <img class="logo-top" src="../../images/logo.png" alt="">
+        </button>
+        <div class="start-wrap"><button class="start" id="startBtn" type="button"><span class="start-text">Get started</span></button></div>
+        <h1 class="wall-name">Gage Rogel <em>Fitness</em></h1>
+      </div>
+      <div class="wall-end" id="wallEnd" data-off></div>
+    </section>
+
+    <h2 class="obj words" data-z="0.75" data-w="0.94" data-wd="1.7" data-fly="1" data-y="0.13"><span>Looking healthy and being healthy</span><span class="b">are two different goals.</span></h2>
+    <section class="obj journey" id="journey" data-layout="3" data-z="4.95" data-w="0.94" data-wd="1.6" data-fly="1" aria-label="His story">
+      <figure class="frame jy-photo"><div class="jy-stage" id="jyStage" role="img" aria-label="A photo from this chapter of his story"></div></figure>
+      <svg class="jy-svg" id="jySvg" viewBox="0 0 1380 440" aria-hidden="true"></svg>
+      <ol class="jy-hits" id="jyHits" aria-label="Chapters of his story"></ol>
+      <div class="jy-words" id="jyWords" aria-live="polite"><h3 class="jy-t" id="jyT" hidden></h3><p class="jy-p" id="jyP"></p></div>
+      <figure class="frame jy-still"><img src="../../images/about.jpg" alt="Gage Rogel today, in his garage gym" width="720" height="1280" decoding="async"><figcaption>Gage, today</figcaption></figure>
+    </section>
+    <section class="obj program" id="program" data-z="6.35" data-w="0.94" data-wd="1.665" data-fly="1" aria-label="The method: what comes in your Complete Coaching Program">
+      <h3>The method</h3>
+      <p class="hint3">Tap one to flip it.</p>
+      <div class="pg-host" id="pgSix"></div>
+    </section>
+    <section class="obj results" id="results" data-z="3.55" data-w="0.94" data-wd="1.64" data-fly="1" data-fade="-0.75,-0.4" aria-label="Results">
+      <div class="rs-left">
+        <div class="rs-rest"><h3>Results</h3><p>Hold your mouse on someone to see their change.</p></div>
+        <div class="rs-quote" aria-live="polite"><p class="rs-tag" id="rsTag"></p><blockquote class="rs-q" id="rsQ"></blockquote><p class="rs-who" id="rsWho"></p></div>
+      </div>
+      <div class="rs-ring" id="rsRing"></div>
+    </section>
+    <section class="obj gage" id="coach" data-z="2.15" data-w="0.94" data-wd="1.64" data-fly="1" aria-label="Gage Rogel, your coach">
+      <div class="gv">
+        <p class="gv-eye">Your coach</p>
+        <h3>Gage Rogel</h3>
+        <div class="wk-vid" id="wkVid" role="button" tabindex="0" aria-pressed="false" aria-label="Play Gage’s video">
+          <img src="../../images/week-cover.jpg" alt="Gage in his garage gym" width="541" height="406" decoding="async">
+          <span class="wk-play" aria-hidden="true"></span>
+          <p class="wk-cap">“I’ve been the guy who looked fit but didn’t feel well.”</p>
+          <span class="wk-soon">Video coming &middot; Gage films it</span>
+        </div>
+      </div>
+    </section>
+    <section class="obj late" id="plans" data-z="7.75" data-w="0.94" data-wd="1.74" data-fly="1" aria-label="Coaching plans"><div class="late-host" id="plansHost"></div></section>
+    <section class="obj late" id="apply" data-z="9.15" data-w="0.94" data-wd="1.74" data-fly="1" aria-label="Apply for coaching"><div class="late-host" id="applyHost"></div></section>
+    <section class="obj late" id="book" data-z="10.55" data-w="0.94" data-wd="1.74" data-fly="1" aria-label="Book your intro call"><div class="late-host" id="bookHost"></div></section>
+  </div>
+  <nav class="rail" id="rail" aria-label="Where you are in the room"><span class="rail-track"></span><span class="rail-fill" id="railFill"></span><span class="rail-head" id="railHead"></span></nav>
+  <p class="cue" aria-hidden="true">Scroll</p>
+</div>
+<p class="corner-name" aria-hidden="true">Gage Rogel <em>Fitness</em></p>
+<canvas id="bolt" aria-hidden="true"></canvas>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="scroller" id="scroller" aria-hidden="true"></div>
+
+<script src="../../js/vendor/gsap.min.js"></script>
+<script src="../../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../../js/vendor/SplitText.min.js"></script>
+<script src="../../js/vendor/lenis.min.js"></script>
+<script type="module">
+import { createGridScan } from '../../js/vendor/grid-scan.js?v=20261029d';
+import { createElectricLogo } from '../../js/vendor/electric-logo.js?v=20261029c';
+import { createMorphSlider } from '../../js/vendor/morph-slider.js?v=20261029d';
+import { createAccordionFlip } from '../../js/vendor/accordion-flip.js?v=20261029c';
+import { createScrollIndex } from '../../js/vendor/scroll-index.js?v=20261030c';
+import { mountIsland } from './sections/island.js?v=20261030g';
+import { createElectricBorder } from '../../js/vendor/electric-border.js?v=20261030h';
+import { attachCardBorders } from './sections/card-borders.js?v=20261030h';
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+const stage = $('#stage'), world = $('#world'), wall = $('#wall'), wallEnd = $('#wallEnd'), head = $('.wall-head');
+const D = 12.05;                // the back wall's final distance (9.85 until 10/29; 14.85 with five more sections; 13.45 without the questions; 12.05 without the fit quiz, 10/30)
+const CAM_END = D - 0.34;      // stop just short of it, so the wall sits framed in grid
+const START_DEPTH = 0.125;     // before the tap: the wall is right in front of you
+const EYE = 1.25;
+// section 4 is a story you scroll: the camera holds at reading distance while scroll plays it, then flies on
+const PIN = { z: 4.746, len: 4.1 };
+// Hayden 10/29: section 5's gate opens only once you're close, and slowly: the camera crawls (k times more scroll) through it
+const GATE = { z0: 6.23, z1: 6.44, k: 3.5 }, GX = (GATE.k - 1) * (GATE.z1 - GATE.z0);
+const LEN = CAM_END + PIN.len + GX;
+const zAt = p => {
+  const s = p * LEN;
+  if (s <= PIN.z) return s;
+  if (s <= PIN.z + PIN.len) return PIN.z;
+  const u = s - PIN.len;
+  return u <= GATE.z0 ? u : u <= GATE.z0 + GATE.k * (GATE.z1 - GATE.z0) ? GATE.z0 + (u - GATE.z0) / GATE.k : u - GX;
+};
+const storyAt = p => Math.min(1, Math.max(0, (p * LEN - PIN.z) / PIN.len));
+const pAt = z => (z <= PIN.z ? z : (z <= GATE.z0 ? z : z <= GATE.z1 ? GATE.z0 + (z - GATE.z0) * GATE.k : z + GX) + PIN.len) / LEN;
+document.getElementById('scroller').style.height = (100 + 900 * LEN / 9.51) + 'vh';   // the scroll per unit of room Hayden paced in the 9.85-deep room
+let jy = null;   // section 4's controller (set up further down)
+
+const smooth = (e0, e1, x) => { const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+
+const objs = [...document.querySelectorAll('.obj[data-z]')].map(el => ({
+  el, z: +el.dataset.z, w: +el.dataset.w, wd: +el.dataset.wd, side: +(el.dataset.side || 0), sx: +(el.dataset.sx || 0),
+  y: +(el.dataset.y || 0), x: 0, shown: false, fly: el.dataset.fly === '1', fade: (el.dataset.fade || '-0.62,-0.05').split(',').map(Number), norise: el.dataset.norise === '1', list: el.dataset.list === '1', listIn: false, hold: +(el.dataset.hold || 0), read: +(el.dataset.read || 0.6),
+  counts: [...el.querySelectorAll('.count')].map(c => ({ el: c, from: +c.dataset.from, to: +c.dataset.to }))
+}));
+objs.filter(o => o.fly).sort((a, b) => a.z - b.z).forEach((o, i, arr) => { o.openAt = i ? arr[i - 1].z + 0.58 : 0.01; });
+const stops = objs.filter(o => o.el.dataset.stop).map(o => ({ label: o.el.dataset.stop, z: o.z }));
+// (no stops yet: the room is empty until sections are built)
+
+let H = stage.clientHeight, aspect = stage.clientWidth / H, entered = false, frames = 0;
+function layout() {
+  H = stage.clientHeight; const W = stage.clientWidth; aspect = W / H;
+  const wide = aspect > 0.95;
+  world.style.setProperty('--u', (H / 100) * (wide ? 1.16 : 1) + 'px');   // a touch larger type in the wide room
+  $('#program').style.setProperty('--u', (H / 100) * (wide ? 1.16 : 1) * 0.9 + 'px');   // the method, 10% smaller everywhere (Hayden 10/30)
+  wall.style.width = W + 'px'; wall.style.height = H + 'px';
+  for (const o of objs) {
+    const w = wide ? o.wd : Math.min(o.w, aspect * 0.96);
+    o.el.style.width = (w * H) + 'px';
+    o.x = wide ? o.side * Math.max(0, aspect / 2 - w / 2 - 0.1) : o.sx * aspect;
+  }
+}
+layout();
+
+// the room: React Bits Grid Scan, in Gage's navy and blue
+// smoothness (Hayden 10/29: "it lags every time"): nothing heavy starts in the first second.
+// The 3D room is built after the strike (or the moment someone clicks); inside the workbench's shrunk screens it renders lighter.
+const EMBED = window.top !== window;
+const cam = { z: 0, depth: START_DEPTH, fadeDepth: 3, moving: false, reveal: null };
+let realGrid = null;
+const grid = { cam, wake: () => realGrid && realGrid.wake(), set: o => realGrid && realGrid.set(o), ping: (...a) => realGrid && realGrid.ping(...a) };
+// Hayden 10/29: a brightness scale for the room's lines (the slider on the workbench's bottom bar; 1 = the original #31507e)
+const LINE_BASE = [0x31, 0x50, 0x7e];
+const LINES_SAVED = 1.5;   // Hayden 10/29 saved 150% (#4a78bd) as the room's look
+const linesK = () => { try { const v = parseFloat(localStorage.getItem('gage-grid-lines')); return Number.isFinite(v) ? Math.max(0, Math.min(3, v)) : LINES_SAVED; } catch { return LINES_SAVED; } };
+const linesHex = k => '#' + LINE_BASE.map(x => Math.min(255, Math.round(x * k)).toString(16).padStart(2, '0')).join('');
+function setLines(k) { if (realGrid && realGrid.set) realGrid.set({ linesColor: linesHex(Math.max(0, Math.min(3, k))) }); }
+function bootGrid() {
+  if (realGrid) return;
+  realGrid = createGridScan($('#grid'), {
+    linesColor: linesHex(linesK()), scanColor: '#2b97ff', cells: 8, depth: 3, depthFade: 0.6, reflection: 0.35, shading: 0.7,
+    glow: 0.75, autoScan: false, intro: false,   // Hayden 10/29: no repeating ring; the room appears only on the click
+    parallax: 0, interactive: false,   // Hayden 10/29: a built room, stationary; the mouse never moves the view
+    clickEffect: 'none', onFrame: sync,   // the only shockwave is the landing one
+    dpr: EMBED ? 1 : Math.min(devicePixelRatio || 1, 1.5), cam
+  });
+}
+const flight = { z: START_DEPTH };   // where his logo is: it starts right in front of you and shoots to the back wall
+
+// his mark, alive: React Bits Electric Logo over his real logo file
+let logoReady = false;
+const logo = createElectricLogo($('#logoBox'), {
+  onReady: () => { logoReady = true; }, dprCap: EMBED ? 1 : 1.5, pulseSpeed: 2.4,   // Hayden 10/29: speed up the wave that hits the logo
+  src: '../../images/logo.png', color: '#dcefff', glowColor: '#0687FF', scale: 0.5, intensity: 1, glow: 1,
+  thickness: 1.5, strands: 4, bend: 0.6, crackle: 1.5, arcs: 1, flicker: 0.6, fill: 0, speed: 2.5
+});
+
+// glow slider: 0 = a plain neon sign (his crisp logo, steady glow), 100 = full electric (the first version)
+const logoBox = $('#logoBox');
+const TUNE_KEY = 'gage-tunnel-tune';
+const tune = { glow: 69, crisp: 31, name: 'corner', wave: 'on' };   // Hayden's SAVED entry 10/29, locked (tuning panel removed)
+function applyLook(k = 1) {   // k > 1 = the overcharge right after the strike
+  const g = tune.glow / 100, c = tune.crisp / 100;      // glow = how much light; crisp = how tightly it hugs a readable sign
+  logo.set({
+    intensity: (0.25 + 0.75 * g) * (1 - 0.35 * c) * k, glow: (0.25 + 0.75 * g) * (1 - 0.55 * c) * Math.min(k, 1.8),
+    crackle: (0.3 + 1.2 * g) * (1 - 0.8 * c), bend: 0.6 * (1 - 0.85 * c), flicker: 0.6 * g * (1 - 0.9 * c),
+    arcs: g * (1 - 0.6 * c) * k, strands: Math.max(1, Math.round((2 + 2 * g) * (1 - 0.5 * c))), thickness: (1.1 + 0.4 * g) * (1 - 0.35 * c)
+  });
+  logoBox.style.setProperty('--el', Math.min(1, g * 1.6).toFixed(3));        // electric layer fades out toward plain neon
+  logoBox.style.setProperty('--neon', (0.85 - 0.45 * g).toFixed(3));         // the steady neon glow is strongest at the low end
+  logoBox.style.setProperty('--neon-core', (0.95 - 0.5 * g).toFixed(3));
+  $('#logoBtn').style.setProperty('--crisp-top', (c * 0.95).toFixed(3));      // his real sign drawn sharp on top of the electricity
+}
+function applyName(v) {
+  document.body.classList.remove('name-below', 'name-above', 'name-corner', 'name-after');
+  document.body.classList.add('name-' + v);
+}
+function applyWave(v) {
+}
+const saveTune = () => { try { localStorage.setItem(TUNE_KEY, JSON.stringify(tune)); } catch {} };
+applyLook(); applyName(tune.name); applyWave(tune.wave);
+
+// the line: each section's name sits where you read it
+const railEl = $('#rail'), railFill = $('#railFill'), railHead = $('#railHead');
+const readAt = s => s.label === 'Plans' ? 1 : Math.min(1, pAt(Math.max(0, s.z - 0.6)));
+const labs = stops.map((s, i) => {
+  const b = document.createElement('button');
+  b.className = 'rail-lab'; b.type = 'button'; b.textContent = s.label; b.style.top = (readAt(s) * 100) + '%';
+  b.setAttribute('aria-label', 'Go to: ' + s.label);
+  b.addEventListener('click', () => { if (!entered) enter(); goTo(i); });
+  railEl.appendChild(b); return b;
+});
+let activeDot = -1;
+
+function sync(f) {
+  frames++;
+  if (f.height && Math.abs(f.height - H) > 0.5) layout();
+  world.style.perspective = (f.eye.f * H) + 'px';
+  world.style.perspectiveOrigin = `calc(50% + ${f.eye.x * H}px) calc(50% - ${f.eye.y * H}px)`;
+  const cz = grid.cam.z;
+  for (const o of objs) {
+    let r = o.z - cz;
+    if (o.fly) {   // pieces you fly through: each opens once you've passed the one before it, grows as you come, and passes around you
+      const a = reduce ? (cz > o.openAt ? 1 : 0) : smooth(o.openAt, o.openAt + 0.25, cz);
+      if (o.list) {   // its rows come in one at a time as it opens (and replay if you scroll back before it)
+        if (!o.listIn && a > 0.05) { o.listIn = true; o.el.querySelectorAll('li').forEach((li, i) => { li.style.transitionDelay = reduce ? '0s' : (i * 0.085).toFixed(3) + 's'; }); o.el.classList.add('shown'); }
+        else if (o.listIn && a <= 0) { o.listIn = false; o.el.querySelectorAll('li').forEach(li => { li.style.transitionDelay = '0s'; }); o.el.classList.remove('shown'); }
+      }
+      const op = entered ? a * smooth(o.fade[0], o.fade[1], r) : 0;
+      if (op < 0.004 || r < o.fade[0]) { if (o.shown) { o.el.style.visibility = 'hidden'; o.shown = false; } continue; }
+      if (!o.shown) { o.el.style.visibility = 'visible'; o.shown = true; }
+      o.el.style.opacity = op.toFixed(3);
+      o.el.style.transform = `translate3d(${(o.x * H).toFixed(1)}px,${(-o.y * H).toFixed(1)}px,${(-r * H).toFixed(1)}px) translate(-50%,-50%)`;
+      continue;
+    }
+    if (o.hold) r = (o.z + Math.min(o.hold, Math.max(0, cz - (o.z - o.read)))) - cz;   // held at reading distance for a stretch of scroll
+    if (o.list) {   // the rows come in one at a time as you arrive (and replay if you come back)
+      if (!o.listIn && r < 0.9) { o.listIn = true; o.el.querySelectorAll('li').forEach((li, i) => { li.style.transitionDelay = reduce ? '0s' : (i * 0.085).toFixed(3) + 's'; }); o.el.classList.add('shown'); }
+      else if (o.listIn && r > 1.45) { o.listIn = false; o.el.querySelectorAll('li').forEach(li => { li.style.transitionDelay = '0s'; }); o.el.classList.remove('shown'); }
+    }
+    const a = reduce ? (r < 1.3 ? 1 : 0) : smooth(1.32, 0.95, r);       // arrives as the one before it leaves
+    const op = entered ? a * smooth(0.18, 0.38, r) : 0;
+    if (op < 0.004 || r < 0.15) { if (o.shown) { o.el.style.visibility = 'hidden'; o.shown = false; } continue; }
+    if (!o.shown) { o.el.style.visibility = 'visible'; o.shown = true; }
+    const y = o.norise ? o.y : o.y - (1 - a) * 0.34;
+    o.el.style.opacity = op.toFixed(3);
+    o.el.style.transform = `translate3d(${(o.x * H).toFixed(1)}px,${(-y * H).toFixed(1)}px,${(-r * H).toFixed(1)}px) translate(-50%,-50%)`;
+    for (const c of o.counts) c.el.textContent = Math.round(c.from + (c.to - c.from) * a);
+  }
+  const rw = flight.z - cz;
+  wall.style.visibility = 'visible';
+  // the far logo stays a quiet beacon while sections are in front of it, and comes back to full as you near the end
+  wall.style.opacity = entered ? (0.22 - 0.15 * smooth(4.15, 4.45, cz) * (1 - smooth(5.05, 5.45, cz)) + 0.78 * Math.max(1 - smooth(0.02, 0.5, cz), smooth(D - 1.35, D - 0.6, cz))).toFixed(3) : '1';   // full again only once the last section is behind you
+  wall.style.transform = `translate3d(0,0,${(-rw * H).toFixed(1)}px) translate(-50%,-50%)`;
+  const end = entered && wallEnd.children.length ? smooth(D - 1.9, D - 0.75, cz) : 0;   // hollow: the logo stays centered until the plans section exists   // the offer shows only as YOU arrive, not while the wall flies back
+  wall.style.setProperty('--end', end.toFixed(3));
+  const s1 = aspect > 0.95 ? 0.6 : 0.8, sc = 1 - end * (1 - s1), hh = head.offsetHeight;
+  head.style.transform = `translateY(calc(-50% - ${(end * (0.15 * H + hh * s1 / 2)).toFixed(1)}px)) scale(${sc.toFixed(4)})`;
+  if (end > 0.01) wallEnd.removeAttribute('data-off'); else wallEnd.setAttribute('data-off', '');
+  let on = -1;
+  if (entered) for (let i = 0; i < stops.length; i++) if (stops[i].z - cz < 1.3) on = i;
+  const frac = Math.min(1, Math.max(0, pAt(cz)));
+  railFill.style.height = (frac * 100) + '%'; railHead.style.top = (frac * 100) + '%';
+  if (on !== activeDot) { labs.forEach((d, i) => { d.classList.toggle('on', i === on); d.classList.toggle('past', i < on); }); activeDot = on; }
+  document.body.classList.toggle('show-cue', entered && cz < 0.25);
+}
+
+// scrolling flies the camera (Lenis smooths the wheel; this is a scroll story)
+// Hayden 10/29: every stop of his story is a hard stop. You steer the scroll between stops, but one swipe, however hard,
+// can't carry you past the next one; the next swipe goes on from there (both directions).
+const GATE_QUIET = 160;   // ms with no wheel input = that swipe, momentum and all, is over
+let gateLast = 0, gateLo = -Infinity, gateHi = Infinity, gateHeld = false, gateLastAbs = 0;
+const EXTRA_STOPS = [];   // hard stops outside his story (section 5 sits on one)
+const gateEase = t => 1 - Math.pow(1 - t, 3);
+function gateWheel(e) {
+  const gates = [...(jy ? jy.gates() : []), ...EXTRA_STOPS.map(f => f())];
+  if (!gates.length || !lenis) return true;
+  const now = performance.now(), ty = lenis.targetScroll, abs = Math.abs(e.deltaY);
+  // a new swipe: after a pause, or (Hayden 10/29: "you can still zoom to the next one") a fresh push on top of old momentum
+  const fresh = now - gateLast > GATE_QUIET || (gateHeld && abs > Math.max(10, gateLastAbs * 1.6));
+  gateLast = now; gateLastAbs = abs;
+  if (fresh) {   // it may run between the stops either side of where it starts
+    gateHeld = false; gateLo = -Infinity; gateHi = Infinity;
+    for (const g of gates) { if (g < ty - 2) gateLo = Math.max(gateLo, g); else if (g > ty + 2) gateHi = Math.min(gateHi, g); }
+  }
+  if (gateHeld) { if (e.event.cancelable) e.event.preventDefault(); return false; }   // this swipe already reached its stop: the rest is swallowed
+  const want = ty + e.deltaY, held = Math.min(gateHi, Math.max(gateLo, want));
+  if (held === want) return true;   // still between stops: you steer
+  gateHeld = true;   // this swipe reaches a stop: glide in crisply instead of creeping the last stretch
+  const dist = Math.abs(held - lenis.animatedScroll);
+  if (dist > 0.5) lenis.scrollTo(held, { duration: Math.min(0.45, Math.max(0.18, dist / 2800)), easing: gateEase });
+  if (e.event.cancelable) e.event.preventDefault();
+  return false;
+}
+const lenis = reduce ? null : new Lenis({ lerp: 0.09, virtualScroll: e => gateWheel(e) });
+if (lenis) { lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
+let progress = 0;
+const st = ScrollTrigger.create({
+  trigger: '#scroller', start: 'top top', end: 'bottom bottom',
+  onUpdate: s => { progress = s.progress; if (!entered && progress > 0.0015) enter(); }
+});
+function goTo(i) {
+  const z = i === stops.length - 1 ? CAM_END : Math.max(0, stops[i].z - 0.6);
+  const y = st.start + pAt(z) * (st.end - st.start);
+  lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+}
+let last = performance.now(), idle = 0;
+gsap.ticker.add(() => {
+  const now = performance.now(), dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const want = Math.min(zAt(progress), Math.max(0, flight.z - 0.34));
+  const before = grid.cam.z;
+  grid.cam.z = reduce ? want : before + (want - before) * (1 - Math.exp(-dt / 0.14));
+  if (jy && entered) jy.tick(storyAt(progress), grid.cam.z);
+  if (entered) gateSix(grid.cam.z);
+  if (entered && !results.started && grid.cam.z > 2.65) results.start();
+  if (entered) lateTick(grid.cam.z);
+  if (results.cc) {
+    results.fly(grid.cam.z);
+    const on = resultsObj.shown && !results.flying;   // the ring only runs while you can see it, and holds still while the camera passes
+    if (on !== results.live) { results.live = on; on ? results.cc.resume() : results.cc.pause(); }
+    if (results.borders && resultsObj.shown !== results.bordersOn) { results.bordersOn = resultsObj.shown; results.borders.setActive(resultsObj.shown); }   // borders stay on through the deck, off once the section is gone
+    if (!resultsObj.shown && results.hover >= 0) results.release();
+  }
+  const moving = Math.abs(grid.cam.z - before) > 1e-5;
+  grid.cam.moving = moving || idle > 0;
+  if (moving) { idle = 0.3; grid.wake(); } else idle = Math.max(0, idle - dt);
+  if (!realGrid || frames === 0 && now - boot > 900) sync({ eye: { x: 0, y: 0, f: EYE }, height: H });   // before the room starts (or no WebGL2)
+});
+const boot = performance.now();
+
+// the open (Hayden 10/29): click and his logo shoots back down the room, lighting the walls as it passes;
+// the back wall stays dark until the logo reaches it, then appears as the logo attaches (one shockwave, if on)
+function enter() {
+  if (entered) return;
+  entered = true;
+  bootGrid();
+  charge();
+  halo.animate([{ opacity: parseFloat(getComputedStyle(halo).opacity) || 0 }, { opacity: 0 }], { duration: 500, fill: 'forwards' });
+  document.body.classList.add('entered');
+  grid.cam.depth = D;
+  grid.cam.reveal = START_DEPTH;
+  if (reduce) { flight.z = D; grid.cam.reveal = null; grid.wake(); return; }
+  gsap.to(flight, {
+    z: D, duration: 1.8, ease: 'power3.out',
+    onUpdate: () => { grid.cam.reveal = Math.min(flight.z + 0.05, D - 0.25); grid.cam.moving = true; grid.wake(); },
+    onComplete: () => {
+      if (tune.wave === 'on') grid.ping(0, 0, D);
+      gsap.to(grid.cam, { reveal: D + 0.4, duration: 0.45, ease: 'power2.out', onUpdate: () => grid.wake(), onComplete: () => { grid.cam.reveal = null; grid.wake(); } });
+    }
+  });
+}
+$('#logoBtn').addEventListener('click', enter);
+
+// section 4: his story, laid out from Hayden's drawing (10/29). The changing photo is on the left, the graph runs across
+// the top growing out of it, the chapter's words sit under the graph, and Gage today (still) is on the right where the line
+// lands. The camera holds while you scroll the story: each chapter's leg of the line draws, the stop pops and ripples in its
+// color (Hayden 10/29: no lightning, but a moment at each stop), the photo cuts straight to that chapter (Morph Slider, no
+// queue), and the chapter's words roll in with Pegassi's line reveal. Every stop is a hard stop (see gateWheel). Tap a stop to go to it.
+// Words: trimmed from Gage's own About story (assets/his-demo-copy.json). Photos: stand-ins from his feed until he sends the real ones.
+const JY = {
+  intro: 'You can’t lead someone out of a place you’ve never been. I have been the skinny kid who wanted to change, the lifter who bulked too far, and the guy who looked fit but didn’t feel well. Each of those stages taught me something.',
+  ch: [
+    { t: 'The skinny kid', img: 'feed-3.jpg', x: 420, y: 360, c: '#5CB2FF',
+      p: 'My training started in my early teens. I was a small, skinny kid who was unhappy with what he saw in the mirror, and a simple goal of building a better physique grew into a lasting commitment to find out how far I could push my body.' },
+    { t: 'The bulk', img: 'feed-1.jpg', x: 660, y: 40, c: '#5CB2FF',
+      p: 'Between my freshman and junior years of high school, I grew from 5′1″ and 95 pounds to 5′10″ and 215 pounds. In chasing a number on the scale, I had gained a significant amount of body fat. I had not yet learned how to do it well.' },
+    { t: 'The cut', img: 'gym.jpg', x: 790, y: 160, c: '#5CB2FF',
+      p: 'This time my goal was a look and a feeling instead of a number. Over the first five months of my freshman year, I brought my bodyweight from 215 down to 185 pounds. I kept the muscle I had built and was lean for the first time in years. On paper, I was doing everything right.' },
+    { t: 'The wake-up call', img: 'feed-2.jpg', x: 890, y: 220, c: '#ff8a80',
+      p: 'What the mirror showed and how I felt were two different stories. Despite the leaner physique, I was dealing with ongoing digestive problems and persistent brain fog, and I was sick constantly. Tracking calories and macronutrients had made me lean. It had not made me healthy.' },
+    { t: 'The blueprint', img: 'hero.jpg', x: 1250, y: 60, c: '#7fe0a8',
+      p: 'So I went back to where my interest started: the quality of my nutrition, and how different foods affected my digestion, energy, and mental clarity. Over years of research and self-experimentation, everything came together into one complete system. It is the foundation of every program I build for my clients.' }
+  ]
+};
+const S_END = 5.6;   // story units: the intro, then one unit per leg of the line (chapter k is reached at k + 1, a hard stop), then a breath
+const legStart = i => i + (i === 0 ? 0.15 : 0.04);
+function journey() {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = $('#jySvg'), hits = $('#jyHits'), words = $('#jyWords'), tEl = $('#jyT'), pEl = $('#jyP');
+  const jyObj = objs.find(o => o.el.id === 'journey');
+  const jyEl = jyObj.el, LAYOUT = new URLSearchParams(location.search).get('layout') || jyEl.dataset.layout || '3';
+  jyEl.dataset.layout = LAYOUT;
+  const [dx, dy] = { '1': [0, 0], '3': [90, 40] }[LAYOUT] || [0, 0], hasStill = LAYOUT !== '3';
+  const CH = JY.ch.map(c => ({ ...c, x: c.x + dx, y: c.y + dy }));   // same curve, placed for this layout
+  const pts = [{ x: 330 + dx, y: 380 + dy }, ...CH];   // the line grows out of the changing photo's edge
+  const X = pts.map(q => q.x), Y = pts.map(q => q.y), n = X.length;
+  // a smooth hump and valley that never overshoot the stops (monotone cubic)
+  const d = [], m = new Array(n).fill(0);
+  for (let i = 0; i < n - 1; i++) d.push((Y[i + 1] - Y[i]) / (X[i + 1] - X[i]));
+  m[0] = d[0]; m[n - 1] = d[n - 2];
+  for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : (d[i - 1] + d[i]) / 2;
+  for (let i = 0; i < n - 1; i++) {
+    if (d[i] === 0) { m[i] = 0; m[i + 1] = 0; continue; }
+    const a = m[i] / d[i], b = m[i + 1] / d[i], s = a * a + b * b;
+    if (s > 9) { const k = 3 / Math.sqrt(s); m[i] = k * a * d[i]; m[i + 1] = k * b * d[i]; }
+  }
+  const curve = i => { const dx = X[i + 1] - X[i]; return `C${(X[i] + dx / 3).toFixed(1)},${(Y[i] + m[i] * dx / 3).toFixed(1)} ${(X[i + 1] - dx / 3).toFixed(1)},${(Y[i + 1] - m[i + 1] * dx / 3).toFixed(1)} ${X[i + 1]},${Y[i + 1]}`; };
+  const segD = i => `M${X[i]},${Y[i]} ${curve(i)}`;
+  const allD = `M${X[0]},${Y[0]} ` + [0, 1, 2, 3, 4].map(curve).join(' ');
+  const BLUE = '#5CB2FF', RED = '#ff8a80', GREEN = '#7fe0a8';
+  const paint = i => i < 3 ? BLUE : `url(#jyG${i})`;   // the cut runs into the wake-up call (blue to red), then the blueprint (red to green)
+  const LAYERS = [[26, 0.07], [13, 0.15], [6.5, 0.32], [3.2, 0.72], [1.6, 1]];   // built like the opener's bolt: wide glow down to a white core
+  svg.innerHTML = `<defs>
+      <linearGradient id="jyG3" gradientUnits="userSpaceOnUse" x1="${X[3]}" y1="0" x2="${X[4]}" y2="0"><stop offset="0" stop-color="${BLUE}"/><stop offset="1" stop-color="${RED}"/></linearGradient>
+      <linearGradient id="jyG4" gradientUnits="userSpaceOnUse" x1="${X[4]}" y1="0" x2="${X[5]}" y2="0"><stop offset="0" stop-color="${RED}"/><stop offset="1" stop-color="${GREEN}"/></linearGradient>
+      <linearGradient id="jyArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${BLUE}" stop-opacity=".2"/><stop offset="1" stop-color="${BLUE}" stop-opacity="0"/></linearGradient>
+      <clipPath id="jyClip"><rect id="jyClipR" x="${X[0]}" y="-200" width="0" height="900"/></clipPath></defs>
+    <path class="jy-ghost" d="${allD}"/>
+    <path d="${allD} L${X[n - 1]},440 L${X[0]},440 Z" fill="url(#jyArea)" clip-path="url(#jyClip)"/>
+    <line class="jy-link" id="jyLink" x1="${X[5]}" y1="${Y[5] + 16}" x2="${X[5]}" y2="418" opacity="0"/>
+    ${[0, 1, 2, 3, 4].map(i => `<g>${LAYERS.map(([w, o], l) => `<path class="jy-seg" d="${segD(i)}" stroke="${l === 4 ? '#f4faff' : paint(i)}" stroke-width="${w}" stroke-opacity="${o}"/>`).join('')}</g>`).join('')}
+    <g id="jyFx"></g>
+    ${CH.map((c, k) => `<circle class="jy-halo" cx="${c.x}" cy="${c.y}" r="21" style="--c:${c.c}"/><circle class="jy-dot" cx="${c.x}" cy="${c.y}" r="8" style="--c:${c.c}"/><text class="jy-num" x="${c.x}" y="${c.y - 27}">0${k + 1}</text>`).join('')}
+    <circle class="jy-tipglow" r="15" opacity="0"/><circle class="jy-tip" r="5" opacity="0"/>`;
+  hits.innerHTML = CH.map((c, k) => `<li><button type="button" style="left:${(c.x / 13.8).toFixed(3)}%;top:calc(var(--u)*${(c.y / 10).toFixed(1)})" aria-label="Chapter 0${k + 1}: ${c.t}"></button></li>`).join('');
+  const segs = [...svg.querySelectorAll('g:not(#jyFx)')].filter(g => g.querySelector('.jy-seg')).map(g => [...g.querySelectorAll('.jy-seg')]);
+  const L = segs.map(s => s[4].getTotalLength());
+  segs.forEach((s, i) => s.forEach(p => { p.style.strokeDasharray = L[i]; p.style.strokeDashoffset = L[i]; }));
+  const dots = [...svg.querySelectorAll('.jy-dot')], halos = [...svg.querySelectorAll('.jy-halo')], nums = [...svg.querySelectorAll('.jy-num')];
+  const tip = svg.querySelector('.jy-tip'), tipGlow = svg.querySelector('.jy-tipglow'), clipR = svg.querySelector('#jyClipR'), link = svg.querySelector('#jyLink'), fx = svg.querySelector('#jyFx');
+
+  function draw(slot) {
+    let at = null, edge = X[0];
+    for (let i = 0; i < 5; i++) {
+      const k = Math.min(1, Math.max(0, (slot - legStart(i)) / (i + 1 - legStart(i))));
+      const off = (L[i] * (1 - k)).toFixed(1);
+      for (const q of segs[i]) q.style.strokeDashoffset = off;
+      if (k > 0) { const pt = k < 1 ? segs[i][4].getPointAtLength(L[i] * k) : { x: X[i + 1], y: Y[i + 1] }; edge = pt.x; if (k < 1) at = pt; }
+    }
+    clipR.setAttribute('width', Math.max(0, edge - X[0]).toFixed(1));
+    for (const c of [tip, tipGlow]) { if (at) { c.setAttribute('cx', at.x.toFixed(1)); c.setAttribute('cy', at.y.toFixed(1)); } c.setAttribute('opacity', at ? 1 : 0); }
+  }
+  const frame = $('.jy-photo');
+  function burst(k) {   // a stop arrives: its dot pops, two rings ripple out in its color, the photo frame flashes that color
+    if (reduce) return;
+    const c = CH[k];
+    for (const [e, cls] of [[dots[k], 'pop'], [nums[k], 'pop'], [frame, 'hit']]) { e.classList.remove(cls); void e.getBoundingClientRect(); e.classList.add(cls); e.addEventListener('animationend', () => e.classList.remove(cls), { once: true }); }
+    [0, 150].forEach(delay => setTimeout(() => {
+      const ring = document.createElementNS(NS, 'circle');
+      ring.setAttribute('class', 'jy-ring'); ring.setAttribute('cx', c.x); ring.setAttribute('cy', c.y); ring.setAttribute('r', 10); ring.style.setProperty('--c', c.c);
+      fx.append(ring); setTimeout(() => ring.remove(), 900);
+    }, delay));
+  }
+  let split = null, splitTw = null;
+  function showWords(c) {   // Pegassi's line reveal: every line slides up out of its mask, 1.75 s expo.out, 0.1 s apart
+    if (splitTw) { splitTw.kill(); splitTw = null; }
+    if (split) { split.revert(); split = null; }
+    const ch = c >= 0 ? CH[c] : null;
+    words.classList.toggle('intro', !ch);
+    tEl.hidden = !ch;   // Hayden 10/29: just the chapter's name over its words, no "01 · Early teens" line
+    tEl.textContent = ch ? ch.t : ''; pEl.textContent = ch ? ch.p : JY.intro;
+    if (reduce) return;
+    split = SplitText.create(ch ? [tEl, pEl] : [pEl], { type: 'lines', mask: 'lines' });
+    split.lines.forEach(l => { l.style.paddingBlock = '.5em'; });
+    (split.masks || []).forEach(k => { k.style.marginBlock = '-.5em'; });
+    gsap.set(split.lines, { yPercent: 100 });
+    splitTw = gsap.to(split.lines, { yPercent: 0, duration: 1.75, ease: 'expo.out', stagger: 0.1, onComplete: () => { if (split) { split.revert(); split = null; } splitTw = null; } });
+  }
+  let morph = null;
+  const bootMorph = () => { morph = createMorphSlider($('#jyStage'), { images: CH.map(c => '../../images/' + c.img), duration: 0.45, ease: 'power2.out', overlayColor: '#070b12', dprCap: window.top !== window ? 1.25 : 1.75 }); };
+  let reached = -2, lastSlot = -1, opened = false;
+  function setReached(c, prev) {
+    dots.forEach((e, k) => e.classList.toggle('on', k <= c));
+    halos.forEach((e, k) => { e.classList.toggle('on', k <= c); e.classList.toggle('now', k === c); e.classList.toggle('wait', c < 0 && k === 0); });   // before it starts, 01 breathes: the story begins here
+    nums.forEach((e, k) => { e.classList.toggle('on', k <= c); e.classList.toggle('now', k === c); });
+    link.setAttribute('opacity', c === 4 && hasStill ? 1 : 0);
+    frame.style.setProperty('--fc', c >= 0 ? CH[c].c : 'var(--brand)');
+    if (c > prev && c >= 0) burst(c);
+    if (morph) morph.show(Math.max(0, c));
+    showWords(c);
+  }
+  const gateY = k => st.start + ((PIN.z + (k / S_END) * PIN.len) / LEN) * (st.end - st.start);   // where stop k sits on the page
+  hits.querySelectorAll('button').forEach((b, k) => b.addEventListener('click', () => {   // tap a stop: the story scrolls back (or on) to it
+    const y = gateY(k + 1);
+    lenis ? lenis.scrollTo(y, { duration: 1.1 }) : window.scrollTo({ top: y, behavior: 'auto' });
+  }));
+  return {
+    tick(P, cz) {
+      if (!morph && cz > 3.3) bootMorph();   // built while you're in section 3 (the results), so it's ready before you get here
+      if (morph) { if (jyObj.shown) morph.resume(); else morph.pause(); }
+      if (!jyObj.shown) { if (opened && cz < jyObj.openAt) { opened = false; reached = -2; } return; }
+      const slot = P * S_END;
+      if (Math.abs(slot - lastSlot) > 1e-4) { lastSlot = slot; draw(slot); }
+      let c = -1;
+      for (let k = 0; k < 5; k++) if (slot >= k + 1 - 0.03) c = k;   // the stop clicks as the line touches the dot, not after the last creep
+      if (!opened) { opened = true; reached = c; setReached(c, c); return; }   // the section arrives: its words unfold once
+      if (c !== reached) { const prev = reached; reached = c; setReached(c, prev); }
+    },
+    gates: () => [0, 1, 2, 3, 4, 5].map(gateY),   // Hayden 10/29: the opening line is a stop too, so a fast swipe can't skip it
+    get state() { return { reached, slot: +lastSlot.toFixed(3), morph: morph && morph.state, words: pEl.textContent.slice(0, 40) }; }
+  };
+}
+jy = journey();
+
+// section 5: the six pieces of every program (Hayden 10/29: "combine the flip card and the accordion gallery"). React Bits'
+// Accordion Gallery and Flip Card in one: hover opens a piece, tap turns it over for what's inside, in Gage's own words
+// (his program section). Photos are stand-ins until Gage sends one for each piece.
+const SIX = [
+  { label: 'Training', title: 'Training program', tag: 'Split \u00b7 exercises \u00b7 weekly volume', image: '../../images/cta.jpg',
+    text: 'Your split, exercise choices, and weekly volume come from your schedule, your equipment, and any injuries you\u2019re working around. Compounds get a Top Set and a Backoff Set, isolation work fills the gaps, and every session ends with a finisher.' },
+  { label: 'Nutrition', title: 'Nutrition plan', tag: 'Built from your MyFitnessPal', image: '../../images/feed-2.jpg',
+    text: 'Training gives your body a reason to change. Food is what moves the scale and the tape. Your meals come from the foods you already eat, written in grams so logging them takes two taps.' },
+  { label: 'Calls', title: 'Check-in calls', tag: '2 to 8 a month', image: '../../images/about.jpg',
+    text: 'Hour-long calls where we go over your lifts, your food, your trackers, and your photos, then adjust the plan based on how your body is responding.' },
+  { label: 'Direct access', title: 'Direct access', tag: 'Replies within 24 hours on weekdays', image: '../../images/feed-1.jpg',
+    text: 'Questions between calls get answered. When something isn\u2019t working, flag it and we fix it together, so you\u2019re never grinding through it alone.' },
+  { label: 'Supplements', title: 'Supplement guidance', tag: 'Client-only discounts', image: '../../images/feed-3.jpg',
+    text: 'The supplements I recommend for your plan, with client-only discount codes and links to order them. Your stack grows over time as it makes sense for where you are.' },
+  { label: 'Written plan', title: 'Written program', tag: 'Everything written out', image: '../../images/hero.jpg',
+    text: 'Your training, nutrition, trackers, substitution guide, and FAQs in one document. Nothing in it is set in stone, and it gets updated as you go.' }
+];
+// Hayden 10/29: all closed and even unless the pointer is on one; the open one is phone-shaped (expandRatio .36 of a 120u strip ≈ 9:16)
+const six = createAccordionFlip($('#pgSix'), { items: SIX, defaultIndex: -1, collapseOnLeave: true, expandRatio: 0.36, accentColor: '#5CB2FF', overlayColor: '#070B12',
+  textColor: '#E6EDF6', background: '#0b1220', color: '#E6EDF6', gap: 10, radius: 14, label: 'The six pieces of every program' });
+EXTRA_STOPS.push(() => st.start + pAt(6.10) * (st.end - st.start));   // where section 5 sits at reading size
+EXTRA_STOPS.push(() => st.start + pAt(3.38) * (st.end - st.start));   // section 6, results (closer: Hayden 10/29 'super small and far away')
+// Hayden 10/29: as you zoom on past section 5 it parts at a mark between Calls and Direct access. Each half squeezes in
+// toward its own outside edge (the photos are trimmed narrower, never squashed) and you fly through the opening.
+// section 6: results (Hayden 10/29-30). His carousel (React Bits Circular Carousel) turns slowly on the right, always, until the
+// mouse lands on someone: the ring turns them front and center (10/30: "it should bring him front and center") and holds, and
+// after 1.25 seconds (10/30; 1 was quick, 2 then 1.5 a bit long) their photo turns
+// into the after (Refine Frame on all six: Hayden 10/29 liked it far more than the morph) while their words roll in on the
+// left at the same moment; mouse off and the photo goes back to the before and the ring turns on. Cards off to the side
+// As the camera comes on past it, every card shuffles together into one deck at the front of the ring, off the camera's line
+// (10/30: "have all of them shuffle in like a deck… so it's out of the way"), and fans back out if you scroll back.
+// The three real clients are Gage's (photos he texted 10/29); their quotes are SAMPLES until they give their own words.
+// Nobody is named (Hayden 10/29: "We're not gonna name anybody").
+// The three sample people are generated stand-ins, stamped SAMPLE on the photo. Neither can go live.
+const PEOPLE = [
+  { result: 'Up 6 lb while losing body fat', real: true, fx: 'refine', img: 'jordan',
+    q: 'I thought I had to choose between getting bigger and getting leaner. The plan did both, and the check-in calls kept me on it.' },
+  { result: '', real: true, fx: 'refine', img: 'client2',
+    q: 'Every plan before this was a guess. This one was built from what I already eat, and for once the scale and the mirror moved together.' },
+  { result: '', real: true, fx: 'refine', img: 'client3',
+    q: 'The written plan made it simple. Train, log it, show up to the call. The results took care of themselves.' },
+  { result: 'Down 17 lb in 16 weeks', real: false, fx: 'refine', img: 'sample1',
+    q: 'I had tried every diet there is. This was the first time I knew exactly what to eat and why.' },
+  { result: 'Up 9 lb of muscle', real: false, fx: 'refine', img: 'sample2',
+    q: 'Skinny my whole life. A few months on an actual plan and people started asking what I changed.' },
+  { result: 'Back under 200 at 38', real: false, fx: 'refine', img: 'sample3',
+    q: 'I figured my best shape was behind me. It turns out I just never had a plan.' }
+];
+const resultsObj = objs.find(o => o.el.id === 'results');
+const results = {
+  live: true, started: false, cc: null, fx: [], ov: [], hover: -1, dwell: 0, showing: -1, token: 0, split: null, tw: null,
+  tapped: false, flying: false, deck: [], root: null, coolUntil: 0, intent: 0, pending: -1,
+  src: (p, k) => `../../images/results/${p.img}-${k}.jpg?v=20261030`,   // the two lined photos were trimmed 10/30
+  async start() {
+    this.started = true;
+    let mods;
+    try { mods = await Promise.all([import('../../js/vendor/circular-carousel.js?v=20261029a&t=' + Date.now()), import('../../js/vendor/card-fx.js?v=20261029a')]); }
+    catch { setTimeout(() => { this.started = false; }, 15000); return; }   // the carousel isn't there yet: try again in 15 s
+    const [{ createCircularCarousel }, fxMod] = mods;
+    this.fxMod = fxMod;
+    this.cc = createCircularCarousel($('#rsRing'), {
+      items: PEOPLE.map((p, i) => ({ src: this.src(p, 'before'), alt: 'A client before coaching', title: '' })),   // no names (Hayden 10/29)
+      preset: 'cylinder', intro: 'rise', cardWidth: 480, aspectRatio: 0.7,   // Hayden 10/29: fill the section like the others (220 left it tiny)
+      gap: 25, autoplay: 'drift', speed: 14, direction: 'left',
+      draggable: true, momentum: 0.6, snap: true, pauseOnHover: false, focusOnClick: true, fadeColor: '#070B12', innerShade: 0.6,
+      cornerRadius: 12, captions: false, label: 'Client results'
+    });   // pause-on-hover is off: only the front card stops it (track(), below, and the port's hold())
+    this.borders = attachCardBorders(this.cc);   // an electric border on each photo (Hayden 10/30), riding its card through the spin and the deck
+    this.root = $('#rsRing .circular-carousel');
+    const ring = $('#rsRing');
+    ring.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') this.aim(e.clientX, e.clientY); });
+    ring.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') this.release(); });
+    ring.addEventListener('pointerup', e => {   // touch has no hover: tap someone to bring them in and see their change, tap them again to put it back
+      if (e.pointerType === 'mouse') return;
+      const i = this.cardAt(e.clientX, e.clientY);
+      if (i < 0) return;
+      if (i === this.hover) { this.release(); return; }
+      this.tapped = true; this.coolUntil = 0; this.aim(e.clientX, e.clientY); this.tapped = false;
+    });
+    (window.requestIdleCallback || (f => setTimeout(f, 300)))(() => PEOPLE.forEach((p, i) => this.build(i)));   // ready before anyone hovers
+  },
+  build(i) {   // each person's effect, made once
+    if (this.fx[i]) return this.fx[i];
+    const p = PEOPLE[i], { width, height } = this.cc.cardSize, opts = { before: this.src(p, 'before'), after: this.src(p, 'after'), width, height, onFrame: c => this.ov[i] && this.ov[i].paint(c) };
+    this.fx[i] = p.fx === 'refine' ? this.fxMod.refineFx({ ...opts, stageDuration: 400 }) : Promise.resolve(this.fxMod.morphFx({ ...opts, duration: 1.4 }));
+    return this.fx[i];
+  },
+  enter(i) { this.hover = i; clearTimeout(this.dwell); this.dwell = setTimeout(() => { if (this.hover === i) this.reveal(i); }, this.tapped ? 0 : 1250); },   // hold 1.25 s (Hayden 10/30; a tap plays at once)
+  leave(i) { if (this.hover === i) this.hover = -1; clearTimeout(this.dwell); if (this.showing === i) this.conceal(i); },
+  async reveal(i) {
+    if (this.showing >= 0 && this.showing !== i) this.conceal(this.showing);
+    const token = ++this.token, fx = await this.build(i);
+    if (token !== this.token || this.hover !== i) return;
+    this.showing = i;
+    if (!this.ov[i]) this.ov[i] = this.fxMod.overlayCard(this.cc, i);
+    this.quote(i);   // the words start at the exact moment the photo starts to change
+    await fx.run(1);
+    if (fx.pause && this.showing !== i) fx.pause();
+  },
+  async conceal(i) {
+    const fx = await this.build(i);
+    if (this.showing === i) { this.showing = -1; this.quote(-1); }
+    await fx.run(0);
+    if (this.showing !== i && this.ov[i]) { this.ov[i].remove(); this.ov[i] = null; if (fx.pause) fx.pause(); }
+  },
+  cardAt(x, y) {
+    const el = document.elementFromPoint(x, y), card = el && el.closest ? el.closest('#rsRing [data-cc-index]') : null;
+    return card ? +card.getAttribute('data-cc-index') : -1;
+  },
+  // the mouse on anyone: the ring turns them front and center and holds; after the hold their change plays. Only real mouse
+  // movement aims (a still mouse never re-aims as cards turn under it), and a turn gets a moment to finish before the next one.
+  aim(x, y) {
+    if (this.flying || !this.cc || performance.now() < this.coolUntil) return;
+    const i = this.cardAt(x, y);
+    if (i < 0 || i === this.hover) { clearTimeout(this.intent); this.pending = -1; return; }   // empty space inside the ring keeps whoever is picked
+    if (i !== this.cc.active && !this.tapped) {   // someone off to the side: only once the mouse settles on them (sweeping across the ring picks nobody)
+      if (this.pending === i) return;
+      this.pending = i; clearTimeout(this.intent);
+      this.intent = setTimeout(() => { if (this.pending === i && this.cardAt(x, y) === i) { this.pending = -1; this.pick(i); } }, 180);
+      return;
+    }
+    this.pick(i);
+  },
+  pick(i) {
+    clearTimeout(this.intent); this.pending = -1;
+    if (this.hover >= 0) this.leave(this.hover);
+    this.cc.hold(true);
+    if (i !== this.cc.active) { this.cc.goTo(i); this.coolUntil = performance.now() + 750; }
+    this.enter(i);
+  },
+  release() {   // mouse off the ring: their photo goes back to the before and the ring turns on
+    clearTimeout(this.intent); this.pending = -1;
+    if (this.hover >= 0) this.leave(this.hover);
+    if (this.cc) this.cc.hold(false);
+  },
+  // Hayden 10/30: zooming in, "have all of them shuffle in like a deck… so it's out of the way". The ring stops, and each card
+  // swings the short way round into the front slot (right of the camera's line), one after another, lifting a little as it
+  // goes and landing on the pile. Scroll-driven both ways; at the start it's the turning ring again.
+  fly(cz) {
+    const c = reduce ? 0 : smooth(3.5, 3.8, cz);
+    if (c <= 0) {
+      if (this.flying) { this.flying = false; this.deck = []; }   // the carousel redraws every card the moment it runs again
+      return;
+    }
+    if (!this.flying) {
+      this.flying = true;
+      this.release();
+      const ring = $('#rsRing .circular-carousel__ring'), m = /rotateY\((-?[\d.]+)deg\)/.exec(ring ? ring.style.transform : ''), turn = m ? +m[1] : 0;
+      const wrap = a => ((a % 360) + 540) % 360 - 180;
+      this.deck = this.cc.cards.map(card => {
+        const t = card.style.transform, b = /rotateY\((-?[\d.]+)deg\)/.exec(t), z = /translateZ\((-?[\d.]+)px\)/.exec(t);
+        const base = b ? +b[1] : 0, R = z ? +z[1] : 0;
+        return { card, base, R, turn: wrap(-turn - base), depth: parseFloat(card.style.getPropertyValue('--cc-depth')) || 0 };
+      }).sort((p, q) => Math.abs(p.turn) - Math.abs(q.turn));   // the one already in front is the bottom of the pile
+      const n = this.deck.length;
+      this.deck.forEach((d, k) => { d.k = k; });
+    }
+    this.deck.forEach(d => {
+      const t = smooth(d.k * 0.1, d.k * 0.1 + 0.5, c), e = t * t * (3 - 2 * t);
+      const lift = Math.sin(Math.PI * t) * 0.07 * this.cc.cardSize.height;   // a little hop on the way round
+      // stacked like a deck: each one a little further out and nudged up-right, so the edges peek out. No tilt: the cards are
+      // bent, and tilted bent cards cut into each other (jagged spikes); offset straight out, they nest like rings and never touch
+      d.card.style.transform = `rotateY(${(d.base + d.turn * e).toFixed(2)}deg) translateZ(${(d.R + d.k * 4 * e).toFixed(1)}px) translateX(${(d.k * 2.6 * e).toFixed(1)}px) translateY(${(-lift - d.k * 2.6 * e).toFixed(1)}px)`;
+      d.card.style.setProperty('--cc-depth', (d.depth * (1 - e)).toFixed(3));   // each lands facing you, fully lit
+    });
+  },
+  quote(i) {   // Pegassi's line reveal, like the rest of the site
+    const sec = $('#results'), q = $('#rsQ'), who = $('#rsWho'), tag = $('#rsTag');
+    if (this.tw) { this.tw.kill(); this.tw = null; }
+    if (this.split) { this.split.revert(); this.split = null; }
+    sec.classList.toggle('on', i >= 0);
+    if (i < 0) return;
+    const p = PEOPLE[i];
+    tag.textContent = p.real ? 'Sample quote \u00b7 needs his own words' : 'Sample person \u00b7 not a real client';
+    q.textContent = '\u201c' + p.q + '\u201d';
+    who.textContent = p.result || '';   // no names (Hayden 10/29): just the result, when there is one
+    who.hidden = !p.result;
+    if (reduce) return;
+    this.split = SplitText.create(p.result ? [q, who] : [q], { type: 'lines', mask: 'lines' });
+    this.split.lines.forEach(l => { l.style.paddingBlock = '.5em'; });
+    (this.split.masks || []).forEach(k => { k.style.marginBlock = '-.5em'; });
+    gsap.set(this.split.lines, { yPercent: 100 });
+    this.tw = gsap.to(this.split.lines, { yPercent: 0, duration: 1.75, ease: 'expo.out', stagger: 0.1, onComplete: () => { if (this.split) { this.split.revert(); this.split = null; } this.tw = null; } });
+  }
+};
+// section 7: Gage (Hayden 10/30: "get rid of a week with Gage… a section more revolved around Gage, just the video"). His name over
+// a big horizontal video frame (10/29: "I just wanted it horizontal frame"; the MacBook Scroll port stays in the library).
+// Gage hasn't filmed the video yet (brief ask 16), so the cover is his garage-gym frame (feed-4, bars cropped) and a tap says
+// the video is coming. It sits second in the room, right after the opening line (Hayden 10/30: "Gage Rogel, obviously try to
+// put that maybe near the front"); the fit quiz, his story, the method and the results each moved back one slot.
+const VSL_SRC = '';   // his 1-2 minute video, once he films it: then a tap plays it in the frame
+const COACH_STOP = 1.98;   // Gage, second in the room (10/30)
+const coach = {
+  on: false, video: null,
+  build() {
+    const vid = $('#wkVid');
+    vid.addEventListener('click', e => { if (e.target.tagName !== 'VIDEO') this.toggle(); });   // the video's own controls don't toggle it
+    vid.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.toggle(); } });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && this.on) this.toggle(false); });
+  },
+  toggle(on = !this.on) {   // tap the frame: it plays (for now: says the video is coming); tap again or Esc: back
+    this.on = on;
+    const vid = $('#wkVid');
+    vid.classList.toggle('on', on);
+    vid.setAttribute('aria-pressed', String(on));
+    if (!VSL_SRC) return;
+    if (!this.video) {
+      this.video = Object.assign(document.createElement('video'), { src: VSL_SRC, playsInline: true, controls: true, preload: 'metadata' });
+      this.video.style.cssText = 'position:absolute;inset:calc(var(--u)*.8);width:calc(100% - var(--u)*1.6);height:calc(100% - var(--u)*1.6);border-radius:calc(var(--u)*.6);background:#000;object-fit:cover';
+      vid.append(this.video);
+    }
+    this.video.hidden = !on;
+    on ? this.video.play().catch(() => {}) : this.video.pause();
+  }
+};
+coach.build();
+// Hayden 10/30: "an electric border around the Gage Rogel video and the results perimeter", then "for each photo, not for the entire section" (React Bits Electric Border, ported;
+// it pauses itself while its section is hidden, so only the one in view runs)
+const borders = [
+  createElectricBorder($('#wkVid'), { color: '#5CB2FF', glowColor: '#0687FF', intro: false })   // always on, no trace-around (Hayden 10/30)
+];   // the results get one per photo instead (Hayden 10/30: "for each photo, not for the entire section"), see results.start()
+EXTRA_STOPS.push(() => st.start + pAt(COACH_STOP) * (st.end - st.start));   // section 7 at reading size
+// sections 8-11 (Hayden 10/29): the plans (silver, gold and platinum cards: Aceternity 3D Card + React Bits Holo Card foil, the
+// flipping-board "spots open"), the application (React Bits Stepper), booking an intro call, and the questions (React Bits Magic
+// Bento). Built as modules in lab/hollow/sections/; each loads when the camera gets near it, so the page starts light.
+const LATE = [
+  { id: 'plans', z: 7.75, file: 'plans.js', mount: 'mountPlans', opts: () => ({ onApply: plan => applyFor(plan), spots: { Silver: 3, Gold: 2, Platinum: 1 } }) },   // spots: placeholders until Gage gives his real counts
+  { id: 'apply', z: 9.15, file: 'apply.js', mount: 'mountApply' },
+  { id: 'book', z: 10.55, file: 'book.js', mount: 'mountBook' }
+].map(L => ({ ...L, obj: objs.find(o => o.el.id === L.id), api: null, started: false, on: null, played: false, plan: null }));
+const LATE_V = '20261030k';
+const lateY = L => st.start + pAt(L.z - 0.25) * (st.end - st.start);   // each section's stop
+function lateTick(cz) {
+  for (const L of LATE) {
+    if (!L.started && cz >= L.z - 2.2) {   // load it as you come near
+      L.started = true;
+      import(`./sections/${L.file}?v=${LATE_V}`).then(m => {
+        L.api = m[L.mount]($('#' + L.id + 'Host'), { inTunnel: true, ...(L.opts ? L.opts() : {}) }) || {};
+        if (L.plan != null && L.api.setPlan) L.api.setPlan(L.plan);
+      }).catch(err => { console.warn('section', L.id, err); setTimeout(() => { L.started = false; }, 15000); });
+    }
+    const api = L.api; if (!api) continue;
+    if (L.obj.shown !== L.on) { L.on = L.obj.shown; if (api.pause) L.on ? api.resume() : api.pause(); }   // its WebGL/loops only run while you can see it
+    if (!L.played && cz > L.z - 0.3) { L.played = true; (api.play || api.reveal || (() => {})).call(api); }   // its entrance plays as you arrive
+    else if (L.played && (cz < L.z - 1.3 || cz > L.z + 0.7)) L.played = false;   // and again the next time you come to it
+    const near = Math.abs(cz - (L.z - 0.25)) < 0.12;
+    if (api.close && L.near && !near) api.close();   // leaving it: an open question folds back before you fly through
+    L.near = near;
+  }
+}
+// Hayden's funnel: a plan card's "Apply for Gold" takes you on to the application with Gold already picked
+function applyFor(plan) {
+  const A = LATE.find(L => L.id === 'apply');
+  A.plan = plan;
+  if (A.api && A.api.setPlan) A.api.setPlan(plan);
+  lenis ? lenis.scrollTo(lateY(A), { duration: 1.6 }) : window.scrollTo({ top: lateY(A), behavior: reduce ? 'auto' : 'smooth' });
+}
+LATE.forEach(L => EXTRA_STOPS.push(() => lateY(L)));   // each at reading size (these are 150 units wide)
+// the tracker: one tick per section at the scroll position of its stop (or where it reads best, for the two before the story)
+const TRACK = [
+  ['The goal', 0.45], ['Your coach', COACH_STOP], ['Results', 3.38], ['His story', PIN.z], ['The method', 6.10],
+  ['Plans', 7.50], ['Apply', 8.90], ['Book a call', 10.30]
+];
+const trackSections = () => TRACK.map(([text, z]) => ({ text, level: 2, at: st.start + pAt(z) * (st.end - st.start) }));
+const tracker = createScrollIndex(document.body, {
+  label: 'Where you are',
+  side: 'left',   // Hayden 10/30: "on the left side of the site for the entire site for all of our sections"
+  sections: trackSections(),
+  range: () => ({ start: st.start, end: st.end }),
+  getScroll: () => window.scrollY,
+  setScroll: y => { if (!entered) enter(); lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : window.scrollTo(0, y); }
+});
+ScrollTrigger.addEventListener('refresh', () => tracker.setSections(trackSections()));   // the scroll positions move when the window is resized
+// the status island (Hayden 10/30: "the status island for sending a message to Gage or booking an appointment"): Kokonut UI's
+// Status Island, ported. At rest: Message Gage (his Instagram DMs, where his inquiries already go) and Book a call (flies you to
+// the booking section). It shows the booking and the application as they happen (both demos: it says so), with Undo.
+const island = mountIsland(document.body, {
+  onBook: () => { if (!entered) enter(); const B = LATE.find(L => L.id === 'book'); lenis ? lenis.scrollTo(lateY(B), { duration: 1.6 }) : window.scrollTo({ top: lateY(B), behavior: reduce ? 'auto' : 'smooth' }); },
+  onUndo: () => { const B = LATE.find(L => L.id === 'book'); if (B.api && B.api.reset) B.api.reset(); }
+});
+const sixPanels = [...document.querySelectorAll('#pgSix .af-panel')];
+let sixOpen = -1;
+function gateSix(cz) {
+  const open = reduce ? 0 : smooth(6.25, 6.42, cz);   // waits until you're close, then opens gently
+  if (open <= 0 && sixOpen <= 0) return;
+  sixOpen = open;
+  sixPanels[0].parentElement.style.setProperty('--gate', open.toFixed(3));
+  const s = 1 - 0.35 * open, L = sixPanels.map(p => p.offsetLeft), Wd = sixPanels.map(p => p.offsetWidth);   // Hayden 10/29: 30% narrower, just room to fly through
+  const left = L[0], right = L[5] + Wd[5], cut = ((1 - s) * 100).toFixed(2);
+  sixPanels.forEach((p, i) => {
+    if (open <= 0) { gsap.set(p, { x: 0 }); p.style.clipPath = ''; return; }
+    if (i < 3) { gsap.set(p, { x: (L[i] - left) * (s - 1) }); p.style.clipPath = `inset(0 ${cut}% 0 0 round 14px)`; }
+    else { gsap.set(p, { x: (right - (L[i] + Wd[i])) * (1 - s) }); p.style.clipPath = `inset(0 0 0 ${cut}% round 14px)`; }
+  });
+}
+
+// "Get started": just the words (Hayden 10/29: no outline); clicking them opens the room
+$('#startBtn').addEventListener('click', enter);
+// ---------- the strike: a bolt hits the dead sign, the screen flashes, the sign charges up ----------
+const boltCv = $('#bolt'), bctx = boltCv.getContext('2d'), flashEl = $('#flash'), halo = $('#halo');
+let bw = 0, bh = 0;
+function sizeBolt() { const d = 1; bw = innerWidth; bh = innerHeight; boltCv.width = bw * d; boltCv.height = bh * d; bctx.setTransform(d, 0, 0, d, 0, 0); }
+sizeBolt(); addEventListener('resize', sizeBolt);
+function jag(x0, y0, x1, y1, rough, depth, out) {   // midpoint displacement: the jagged path of a bolt
+  if (depth === 0) { out.push([x1, y1]); return; }
+  const mx = (x0 + x1) / 2 + (Math.random() - 0.5) * rough, my = (y0 + y1) / 2 + (Math.random() - 0.5) * rough * 0.3;
+  jag(x0, y0, mx, my, rough * 0.55, depth - 1, out); jag(mx, my, x1, y1, rough * 0.55, depth - 1, out);
+}
+function makeBolt(x0, y0, x1, y1) {
+  const main = [[x0, y0]]; jag(x0, y0, x1, y1, Math.hypot(x1 - x0, y1 - y0) * 0.3, 7, main);
+  const branches = [], nb = 2 + Math.floor(Math.random() * 3);
+  for (let i = 0; i < nb; i++) {
+    const [sx, sy] = main[Math.floor(main.length * (0.15 + Math.random() * 0.55))];
+    const ang = (Math.random() < 0.5 ? -1 : 1) * (0.35 + Math.random() * 0.6), len = (y1 - y0) * (0.1 + Math.random() * 0.22);
+    const b = [[sx, sy]]; jag(sx, sy, sx + Math.sin(ang) * len, sy + Math.cos(ang) * len * 0.9, len * 0.35, 5, b); branches.push(b);
+  }
+  return { main, branches };
+}
+function line(pts) { bctx.beginPath(); bctx.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) bctx.lineTo(pts[i][0], pts[i][1]); bctx.stroke(); }
+function drawBolt(b, a) {   // three passes: wide blue glow, bright mid, white-hot core
+  bctx.save(); bctx.globalCompositeOperation = 'lighter'; bctx.lineJoin = 'round'; bctx.lineCap = 'round';
+  for (const [w, col] of [[34, `rgba(30,110,255,${0.07 * a})`], [18, `rgba(50,140,255,${0.14 * a})`], [9, `rgba(120,190,255,${0.32 * a})`], [4.5, `rgba(185,225,255,${0.7 * a})`], [2, `rgba(255,255,255,${a})`]]) {
+    bctx.lineWidth = w; bctx.strokeStyle = col; line(b.main);
+    bctx.lineWidth = w * 0.45; b.branches.forEach(line);
+  }
+  bctx.restore();
+}
+const sparks = [];
+function burst(x, y) { for (let i = 0; i < 46; i++) { const a = Math.random() * Math.PI * 2, v = 80 + Math.random() * 420; sparks.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 140, life: 0.45 + Math.random() * 0.7, age: 0 }); } }
+function drawSparks(dt) {
+  bctx.save(); bctx.globalCompositeOperation = 'lighter';
+  for (let i = sparks.length - 1; i >= 0; i--) {
+    const s = sparks[i]; s.age += dt; if (s.age > s.life) { sparks.splice(i, 1); continue; }
+    s.vy += 640 * dt; s.vx *= 0.985; const px = s.x, py = s.y; s.x += s.vx * dt; s.y += s.vy * dt; const k = 1 - s.age / s.life;
+    bctx.strokeStyle = `rgba(${200 + 55 * k | 0},230,255,${k})`; bctx.lineWidth = 1.6 * k + 0.4; bctx.beginPath(); bctx.moveTo(px, py); bctx.lineTo(s.x, s.y); bctx.stroke();
+  }
+  bctx.restore();
+}
+function flashOnce(peak, up, down) { flashEl.animate([{ opacity: 0 }, { opacity: peak, offset: up / (up + down) }, { opacity: 0 }], { duration: up + down, easing: 'ease-out' }); }
+let charged = false;
+function charge() {   // the sign takes the hit: color floods in, the electricity overcharges, then settles to his saved look
+  if (charged) return; charged = true;
+  document.body.classList.add('lit');
+  if (reduce) { applyLook(1); return; }
+  const st = { k: 2.4 }; gsap.to(st, { k: 1, duration: 0.8, ease: 'power2.out', onUpdate: () => applyLook(st.k) });
+  halo.animate([{ opacity: 0, transform: 'translate(-50%,-50%) scale(.6)' }, { opacity: 0.75, transform: 'translate(-50%,-50%) scale(1.08)', offset: 0.16 }, { opacity: 0.3, transform: 'translate(-50%,-50%) scale(1)' }],
+               { duration: 1000, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
+}
+function strike() {
+  const r = document.querySelector('.logo-img').getBoundingClientRect();
+  const tx = r.left + r.width * (0.42 + Math.random() * 0.16), ty = r.top + r.height * 0.1;   // the top edge of his sign
+  const sx = tx + (Math.random() - 0.5) * bw * 0.35;
+  const b1 = makeBolt(sx, -30, tx, ty), b2 = makeBolt(sx + (Math.random() - 0.5) * 30, -30, tx, ty);
+  const t0 = performance.now(); let last = t0, hit = false;
+  flashOnce(0.42, 30, 260);   // Hayden 10/29: still a flash, not a flashbang
+  setTimeout(() => flashOnce(0.18, 25, 220), 150);   // one return stroke: two flashes in total, well under 3 a second
+  (function frame(now) {
+    const t = now - t0, dt = Math.min(0.05, (now - last) / 1000); last = now;
+    bctx.clearRect(0, 0, bw, bh);
+    const a = t < 60 ? 1 : t < 120 ? 0.3 : t < 190 ? 0.9 : Math.max(0, 1 - (t - 190) / 320);
+    if (a > 0) drawBolt(t > 65 ? b2 : b1, a);   // the restrike takes a slightly different path
+    if (!hit && t > 20) {
+      hit = true; burst(tx, ty); charge();
+      try { logoBox.dispatchEvent(new PointerEvent('pointerdown', { clientX: tx, clientY: ty, bubbles: true }));   // the Electric Logo's own pulse at the hit
+            setTimeout(() => logoBox.dispatchEvent(new PointerEvent('pointerleave')), 500); } catch {}
+    }
+    drawSparks(dt);
+    if (t < 1700 || sparks.length) requestAnimationFrame(frame); else bctx.clearRect(0, 0, bw, bh);
+  })(t0);
+  setTimeout(() => document.body.classList.add('ready'), 1100);   // the words step out of the dark once the sign has charged
+}
+const bootAt = performance.now();
+async function strikeWhenReady() {
+  if (reduce) { charge(); document.body.classList.add('ready'); setTimeout(bootGrid, 300); return; }
+  await Promise.race([(async () => { try { await document.fonts.ready; } catch {} while (!logoReady) await new Promise(r => setTimeout(r, 30)); })(),
+                      new Promise(r => setTimeout(r, 2500))]);
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));   // two quiet frames first
+  setTimeout(strike, Math.max(0, 650 - (performance.now() - bootAt)));
+  // after the strike settles, build the room in a quiet moment so the click is instant
+  setTimeout(() => (window.requestIdleCallback || (f => setTimeout(f, 1)))(bootGrid, { timeout: 1500 }), 2300);
+}
+strikeWhenReady();
+window.__tunnel = { grid, logo, tune, lenis, st, pAt, zAt, storyAt, PIN, GATE, six, results, coach, LATE, tracker, island, borders, setLines, get jy() { return jy; }, get progress() { return progress; }, get frames() { return frames; } };   // test-page debugging handle
+addEventListener('resize', () => { layout(); ScrollTrigger.refresh(); grid.wake(); });
+</script>
+</body>
+</html>

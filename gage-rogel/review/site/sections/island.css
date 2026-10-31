@@ -1,0 +1,131 @@
+/* Gage hollow site · the status island: where it sits and how it looks (the Kokonut UI port's --isl-* variables set to
+   Gage's navy and blue). A fixed overlay, plain px (not inside the 3D scene). Top-center, level with the wordmark (top-left)
+   and Apply (top-right); bottom-center on phones, where the top row is full. Hidden until the visitor has clicked in. */
+.gage-island {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  left: 50%;
+  z-index: 6;
+  transform: translate(-50%, -8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), visibility 0s linear 0.5s;
+}
+body.entered .gage-island {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease 0.2s, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.2s, visibility 0s;
+}
+body.entered .gage-island .status-island {
+  pointer-events: auto;
+}
+.gage-island .status-island {
+  --isl-px: 1.1px;
+  --isl-bg: #0b1220;
+  --isl-peek: #111c30;
+  --isl-ink: #e6edf6;
+  --isl-ring: rgba(92, 178, 255, 0.28);
+  --isl-peek-ring: rgba(92, 178, 255, 0.12);
+  --isl-shadow: 0 12px 30px -10px rgba(6, 135, 255, 0.45), 0 4px 10px -6px rgba(0, 0, 0, 0.6);
+  --isl-chip: rgba(92, 178, 255, 0.14);
+  --isl-chip-hover: rgba(92, 178, 255, 0.26);
+  --isl-dim: rgba(154, 171, 194, 0.9);
+  --isl-dim-2: rgba(154, 171, 194, 0.9);
+  --isl-ok: #4ade80;
+  --isl-error: #f87171;
+  --isl-focus: #5cb2ff;
+  font-family: 'Figtree', 'Helvetica Neue', Arial, sans-serif;
+}
+.gage-island .isl-body {
+  background: linear-gradient(180deg, #0f1a2d 0%, #0b1220 100%);
+}
+
+/* the resting face: Message Gage · Book a call */
+.gi-rest {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: calc(var(--isl-px, 1px) * 40);
+  padding: 0 5px;
+}
+.gi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  margin: 0;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 9999px;
+  font: 600 12px/1 'Chakra Petch', 'Arial Narrow', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms ease, transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.gi-btn:active {
+  transform: scale(0.96);
+}
+.gi-btn:focus-visible {
+  outline: 2px solid #5cb2ff;
+  outline-offset: 2px;
+}
+.gi-btn--ghost {
+  background: rgba(92, 178, 255, 0.12);
+  color: #e6edf6;
+}
+.gi-btn--ghost:hover {
+  background: rgba(92, 178, 255, 0.22);
+}
+.gi-btn--primary {
+  background: #0687ff;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(6, 135, 255, 0.45);
+}
+.gi-btn--primary:hover {
+  background: #2a9bff;
+}
+.gi-icon {
+  display: block;
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+/* phones: the top row is the wordmark and Apply, so the island sits at the bottom (and steps aside for the Scroll cue) */
+@media (max-width: 640px) {
+  .gage-island {
+    top: auto;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    transform: translate(-50%, 8px);
+  }
+  body.entered .gage-island {
+    transform: translate(-50%, 0);
+  }
+  body.entered.show-cue .gage-island {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .gage-island .status-island {
+    --isl-px: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gage-island,
+  body.entered .gage-island {
+    transform: translate(-50%, 0);
+    transition: opacity 0.3s ease, visibility 0s;
+  }
+  .gi-btn {
+    transition: background-color 150ms ease;
+  }
+  .gi-btn:active {
+    transform: none;
+  }
+}

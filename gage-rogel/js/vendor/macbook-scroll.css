@@ -1,0 +1,50 @@
+/* Aceternity UI "MacBook Scroll": the original's Tailwind classes written out as CSS (dark theme), for macbook-scroll.js.
+   1 rem in the original = var(--mbu) here (default 16px), so a page can size the whole laptop with one number;
+   every px value in the original is var(--px) x n here, so it scales with it. */
+.mb-root{--mbu:var(--mb,16px);--px:calc(var(--mbu) / 16);display:flex;flex-shrink:0;flex-direction:column;align-items:center;justify-content:flex-start;perspective:calc(var(--px) * 800)}
+.mb-root--scroll{min-height:200vh;padding:calc(var(--mbu) * 20) 0}
+.mb-title{margin:0 0 calc(var(--mbu) * 5);text-align:center;font-size:calc(var(--mbu) * 1.875);line-height:calc(var(--mbu) * 2.25);font-weight:700;color:#fff}
+
+.mb-lid{position:relative;perspective:calc(var(--px) * 800)}
+.mb-lid-back{position:relative;height:calc(var(--mbu) * 12);width:calc(var(--mbu) * 32);border-radius:var(--mbu);background:#010101;padding:calc(var(--mbu) * .5);
+  transform:perspective(calc(var(--px) * 800)) rotateX(-25deg) translateZ(0px);transform-origin:bottom;transform-style:preserve-3d}
+.mb-lid-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:calc(var(--mbu) * .5);background:#010101;box-shadow:0 calc(var(--px) * 2) 0 calc(var(--px) * 2) #171717 inset}
+.mb-logo{color:#fff;display:inline-flex}
+.mb-mark{height:calc(var(--mbu) * .75);width:calc(var(--mbu) * .75);color:#fff}
+.mb-screen{position:absolute;top:0;left:0;height:calc(var(--mbu) * 24);width:calc(var(--mbu) * 32);border-radius:var(--mbu);background:#010101;padding:calc(var(--mbu) * .5);transform-style:preserve-3d;transform-origin:top}
+.mb-screen-bg{position:absolute;inset:0;border-radius:calc(var(--mbu) * .5);background:#272729}
+.mb-img{position:absolute;inset:0;height:100%;width:100%;border-radius:calc(var(--mbu) * .5);object-fit:cover;object-position:left top}
+
+.mb-base{position:relative;z-index:-10;height:calc(var(--mbu) * 22);width:calc(var(--mbu) * 32);overflow:hidden;border-radius:var(--mbu);background:#272729}
+.mb-bar{position:relative;height:calc(var(--mbu) * 2.5);width:100%}
+.mb-bar>div{position:absolute;left:0;right:0;margin:0 auto;height:var(--mbu);width:80%;background:#050505}
+.mb-mid{position:relative;display:flex}
+.mb-side{margin:0 auto;height:100%;width:10%;overflow:hidden}
+.mb-center{margin:0 auto;height:100%;width:80%}
+.mb-grid{margin-top:calc(var(--mbu) * .5);display:flex;height:calc(var(--mbu) * 10);gap:calc(var(--px) * 2);padding:0 calc(var(--px) * .5);
+  background-image:radial-gradient(circle,#08080A calc(var(--px) * .5),transparent calc(var(--px) * .5));background-size:calc(var(--px) * 3) calc(var(--px) * 3)}
+.mb-keypad{margin:0 calc(var(--mbu) * .25);height:100%;transform:translateZ(0);border-radius:calc(var(--mbu) * .375);background:#050505;padding:calc(var(--mbu) * .25);will-change:transform}
+.mb-krow{margin-bottom:calc(var(--px) * 2);display:flex;width:100%;flex-shrink:0;gap:calc(var(--px) * 2)}
+.mb-trackpad{margin:calc(var(--mbu) * .25) auto;height:calc(var(--mbu) * 8);width:40%;border-radius:calc(var(--mbu) * .75);box-shadow:0 0 calc(var(--px) * 1) calc(var(--px) * 1) #00000020 inset}
+.mb-notch{position:absolute;left:0;right:0;bottom:0;margin:0 auto;height:calc(var(--mbu) * .5);width:calc(var(--mbu) * 5);border-top-left-radius:calc(var(--mbu) * 1.5);border-top-right-radius:calc(var(--mbu) * 1.5);background:linear-gradient(to top,#272729,#050505)}
+.mb-fade{position:absolute;left:0;right:0;bottom:0;z-index:50;height:calc(var(--mbu) * 10);width:100%;background:linear-gradient(to top,#000,#000,transparent)}
+.mb-badge{position:absolute;bottom:var(--mbu);left:var(--mbu)}
+
+/* KBtn (backlit) */
+.mb-k{transform:translateZ(0);border-radius:calc(var(--px) * 4);padding:calc(var(--px) * .5);will-change:transform;background:rgba(255,255,255,.2);
+  box-shadow:0 calc(var(--px) * 20) calc(var(--px) * 25) calc(var(--px) * -5) #fff,0 calc(var(--px) * 8) calc(var(--px) * 10) calc(var(--px) * -6) #fff}
+.mb-ki{display:flex;height:calc(var(--mbu) * 1.5);width:calc(var(--mbu) * 1.5);align-items:center;justify-content:center;border-radius:calc(var(--px) * 3.5);background:#0A090D;
+  box-shadow:0 calc(var(--px) * -.5) calc(var(--px) * 2) 0 #0D0D0F inset,calc(var(--px) * -.5) 0 calc(var(--px) * 2) 0 #0D0D0F inset}
+.mb-kc{display:flex;width:100%;flex-direction:column;align-items:center;justify-content:center;font-size:calc(var(--px) * 5);color:#fff;line-height:1.5}
+/* the per-key Tailwind overrides (tailwind-merge lets these win over the defaults above) */
+.mb-w6{width:calc(var(--mbu) * 1.5)}.mb-w8{width:calc(var(--mbu) * 2)}.mb-w10{width:calc(var(--mbu) * 2.5)}.mb-w28{width:calc(var(--mbu) * 2.8)}
+.mb-w285{width:calc(var(--mbu) * 2.85)}.mb-w365{width:calc(var(--mbu) * 3.65)}.mb-w82{width:calc(var(--mbu) * 8.2)}.mb-h3{height:calc(var(--mbu) * .75)}
+.mb-ie{align-items:flex-end}.mb-is{align-items:flex-start}.mb-js{justify-content:flex-start}.mb-je{justify-content:flex-end}.mb-jb{justify-content:space-between}
+.mb-pb2{padding-bottom:calc(var(--px) * 2)}.mb-pl4{padding-left:calc(var(--px) * 4)}.mb-pr4{padding-right:calc(var(--px) * 4)}
+.mb-hfull{height:100%}.mb-py4{padding-top:calc(var(--px) * 4);padding-bottom:calc(var(--px) * 4)}
+.mb-pl1{padding-left:calc(var(--mbu) * .25)}.mb-pr1{padding-right:calc(var(--mbu) * .25)}
+.mb-row-w{display:flex;width:100%}.mb-flex{display:flex}.mb-b{display:block}.mb-ib{display:inline-block}.mb-mt1{margin-top:calc(var(--mbu) * .25)}
+.mb-ico{height:calc(var(--px) * 6);width:calc(var(--px) * 6);flex-shrink:0}
+.mb-power{height:var(--mbu);width:var(--mbu);border-radius:9999px;padding:calc(var(--px) * 1);background:linear-gradient(to bottom,#171717 20%,#000 50%,#171717 95%)}
+.mb-power>div{height:100%;width:100%;border-radius:9999px;background:#000}
+.mb-arrows{margin-top:calc(var(--px) * 2);display:flex;height:calc(var(--mbu) * 1.5);width:calc(var(--mbu) * 4.9);flex-direction:column;align-items:center;justify-content:flex-end;border-radius:calc(var(--px) * 4);padding:calc(var(--px) * .5)}

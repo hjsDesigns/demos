@@ -1,0 +1,456 @@
+/* Kokonut UI "Slot Picker" (kokonutui.com/docs/inputs/slot-picker, MIT): the original's Tailwind classes written out. Colours
+   are the original's dark-mode values as --sp-* variables (a page recolours by setting them); every px is
+   calc(var(--sp-px, 1px) * n), so at 1px it is the original's size. */
+.slot-picker {
+  --sp-bg: #09090b;            /* zinc-950 */
+  --sp-border: #27272a;        /* zinc-800 */
+  --sp-ink: #f4f4f5;           /* zinc-100 */
+  --sp-ink-strong: #fafafa;    /* zinc-50 */
+  --sp-muted: #a1a1aa;         /* zinc-400 */
+  --sp-faint: #71717a;         /* zinc-500 */
+  --sp-line: #18181b;          /* zinc-900 */
+  --sp-track: #18181b;         /* zinc-900 */
+  --sp-pill: #3f3f46;          /* zinc-700 */
+  --sp-hover: #18181b;         /* zinc-900 */
+  --sp-hover-ink: #e4e4e7;     /* zinc-200 */
+  --sp-hatch: #27272a;         /* zinc-800 */
+  --sp-busy-bg: #18181b;       /* zinc-900 */
+  --sp-busy-border: #27272a;   /* zinc-800 */
+  --sp-off: #3f3f46;           /* zinc-700 */
+  --sp-off-2: #52525b;         /* zinc-600 */
+  --sp-ring: #f4f4f5;          /* zinc-100 */
+  --sp-focus: #a1a1aa;         /* zinc-400 */
+  --sp-accent: #0ea5e9;        /* sky-500 */
+  --sp-accent-ink: #082f49;    /* sky-950 */
+  --sp-accent-soft: rgba(14, 165, 233, 0.15);
+  --sp-accent-text: #7dd3fc;   /* sky-300 */
+  --sp-accent-focus: #38bdf8;  /* sky-400 */
+  --sp-ghost-border: rgba(14, 165, 233, 0.6);
+  --sp-ghost-bg: rgba(14, 165, 233, 0.1);
+  --sp-ok: #10b981;            /* emerald-500 */
+  --sp-ok-ink: #022c22;        /* emerald-950 */
+  --sp-free: #34d399;          /* emerald-400 */
+  --sp-button: #f4f4f5;        /* zinc-100 */
+  --sp-button-ink: #18181b;    /* zinc-900 */
+  --sp-button-hover: #ffffff;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(var(--sp-px, 1px) * 384);
+  padding: calc(var(--sp-px, 1px) * 20);
+  border: calc(var(--sp-px, 1px) * 1) solid var(--sp-border);
+  border-radius: calc(var(--sp-px, 1px) * 24);
+  background: var(--sp-bg);
+  color: var(--sp-ink);
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+}
+.slot-picker *,
+.slot-picker *::before,
+.slot-picker *::after {
+  box-sizing: border-box;
+}
+.slot-picker button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.slot-picker p {
+  margin: 0;
+}
+.slot-picker svg {
+  display: block;
+  flex: none;
+}
+.slot-picker__probe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--sp-px, 1px) * 100);
+  height: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* header */
+.sp-head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--sp-px, 1px) * 12);
+}
+.sp-avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--sp-px, 1px) * 36);
+  height: calc(var(--sp-px, 1px) * 36);
+  border-radius: 9999px;
+  background: var(--sp-accent-soft);
+  color: var(--sp-accent-text);
+  font-size: calc(var(--sp-px, 1px) * 12);
+  line-height: calc(var(--sp-px, 1px) * 16);
+  font-weight: 500;
+}
+.sp-head-text {
+  min-width: 0;
+  flex: 1;
+  line-height: 1.25;
+}
+.sp-title,
+.sp-sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sp-title {
+  font-size: calc(var(--sp-px, 1px) * 14);
+  font-weight: 500;
+  color: var(--sp-ink);
+}
+.sp-sub {
+  font-size: calc(var(--sp-px, 1px) * 12);
+  color: var(--sp-muted);
+}
+
+/* the length switch */
+.sp-lengths {
+  position: relative;
+  display: flex;
+  margin-top: calc(var(--sp-px, 1px) * 16);
+  padding: calc(var(--sp-px, 1px) * 2);
+  border-radius: 9999px;
+  background: var(--sp-track);
+}
+.sp-lengths-pill {
+  position: absolute;
+  top: calc(var(--sp-px, 1px) * 2);
+  left: 0;
+  height: calc(var(--sp-px, 1px) * 32);
+  border-radius: 9999px;
+  background: var(--sp-pill);
+  box-shadow: 0 calc(var(--sp-px, 1px) * 1) calc(var(--sp-px, 1px) * 2) rgb(0 0 0 / 0.08);
+  pointer-events: none;
+}
+.slot-picker .sp-length {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  height: calc(var(--sp-px, 1px) * 32);
+  border-radius: 9999px;
+  font-size: calc(var(--sp-px, 1px) * 12);
+  line-height: calc(var(--sp-px, 1px) * 16);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--sp-muted);
+  outline: none;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slot-picker .sp-length[aria-pressed='true'] {
+  color: var(--sp-ink-strong);
+}
+.slot-picker .sp-length[aria-pressed='false']:hover {
+  color: var(--sp-hover-ink);
+}
+.slot-picker .sp-length:focus-visible {
+  box-shadow: 0 0 0 calc(var(--sp-px, 1px) * 2) var(--sp-focus);
+}
+
+/* the day strip */
+.sp-days {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: calc(var(--sp-px, 1px) * 4);
+  margin-top: calc(var(--sp-px, 1px) * 16);
+}
+.sp-day-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border: calc(var(--sp-px, 1px) * 1) solid var(--sp-ring);
+  border-radius: calc(var(--sp-px, 1px) * 16);
+  pointer-events: none;
+}
+.slot-picker .sp-day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--sp-px, 1px) * 8) 0;
+  border-radius: calc(var(--sp-px, 1px) * 16);
+  outline: none;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slot-picker .sp-day:disabled {
+  cursor: not-allowed;
+}
+.slot-picker .sp-day[aria-pressed='false']:hover {
+  background: var(--sp-hover);
+}
+.slot-picker .sp-day:focus-visible {
+  box-shadow: 0 0 0 calc(var(--sp-px, 1px) * 2) var(--sp-focus);
+}
+.sp-day-week {
+  font-size: calc(var(--sp-px, 1px) * 11);
+  color: var(--sp-muted);
+}
+.sp-day-date {
+  font-size: calc(var(--sp-px, 1px) * 18);
+  line-height: 1.25;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--sp-ink);
+}
+.sp-day[data-full] .sp-day-date {
+  color: var(--sp-off);
+}
+.sp-day-free {
+  font-size: calc(var(--sp-px, 1px) * 10);
+  line-height: calc(var(--sp-px, 1px) * 14);
+  font-variant-numeric: tabular-nums;
+  color: var(--sp-free);
+}
+.sp-day[data-full] .sp-day-free {
+  color: var(--sp-off-2);
+}
+
+/* the day: hour lines, what's taken, and the meeting you're placing */
+.sp-railrow {
+  display: flex;
+  gap: calc(var(--sp-px, 1px) * 8);
+  margin-top: calc(var(--sp-px, 1px) * 16);
+}
+.sp-hours {
+  position: relative;
+  flex-shrink: 0;
+  width: calc(var(--sp-px, 1px) * 36);
+}
+.sp-hour {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: calc(var(--sp-px, 1px) * 10);
+  font-variant-numeric: tabular-nums;
+  color: var(--sp-faint);
+}
+.sp-rail {
+  position: relative;
+  flex: 1;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+.sp-rail.is-dragging {
+  cursor: grabbing;
+}
+.sp-lines,
+.sp-blocks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.slot-picker .sp-first {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--sp-px, 1px) * 8);
+  outline: none;
+  pointer-events: none;
+}
+.slot-picker .sp-first:focus-visible {
+  box-shadow: 0 0 0 calc(var(--sp-px, 1px) * 2) var(--sp-accent-focus);
+}
+.sp-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: calc(var(--sp-px, 1px) * 1) solid var(--sp-line);
+}
+.sp-block {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  color: var(--sp-hatch);
+  background-image: repeating-linear-gradient(135deg, currentColor 0 calc(var(--sp-px, 1px) * 1), transparent calc(var(--sp-px, 1px) * 1) calc(var(--sp-px, 1px) * 6));
+}
+.sp-block--busy {
+  border: calc(var(--sp-px, 1px) * 1) solid var(--sp-busy-border);
+  border-radius: calc(var(--sp-px, 1px) * 8);
+  background-color: var(--sp-busy-bg);
+}
+.sp-block-label,
+.sp-ghost-label {
+  position: absolute;
+  top: calc(var(--sp-px, 1px) * 4);
+  left: calc(var(--sp-px, 1px) * 8);
+  font-size: calc(var(--sp-px, 1px) * 10);
+  line-height: calc(var(--sp-px, 1px) * 12);
+  font-weight: 500;
+  color: var(--sp-muted);
+}
+.sp-ghost {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: calc(var(--sp-px, 1px) * 1) dashed var(--sp-ghost-border);
+  border-radius: calc(var(--sp-px, 1px) * 8);
+  background: var(--sp-ghost-bg);
+  pointer-events: none;
+}
+.sp-ghost-label {
+  font-variant-numeric: tabular-nums;
+  color: var(--sp-accent-text);
+}
+.sp-meeting {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.slot-picker .sp-meeting-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--sp-px, 1px) * 4);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: calc(var(--sp-px, 1px) * 4) calc(var(--sp-px, 1px) * 8);
+  border-radius: calc(var(--sp-px, 1px) * 8);
+  background: var(--sp-accent);
+  color: var(--sp-accent-ink);
+  box-shadow: 0 calc(var(--sp-px, 1px) * 1) calc(var(--sp-px, 1px) * 2) rgb(2 132 199 / 0.3);
+  text-align: left;
+  font-size: calc(var(--sp-px, 1px) * 11);
+  line-height: calc(var(--sp-px, 1px) * 16);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1), color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slot-picker .sp-meeting-btn.is-grab {
+  cursor: grab;
+}
+.slot-picker .sp-meeting-btn.is-booked {
+  background: var(--sp-ok);
+  color: var(--sp-ok-ink);
+  box-shadow: none;
+}
+.slot-picker .sp-meeting-btn:focus-visible {
+  box-shadow: 0 0 0 calc(var(--sp-px, 1px) * 2) var(--sp-bg), 0 0 0 calc(var(--sp-px, 1px) * 4) var(--sp-accent-focus);
+}
+.sp-meeting-check {
+  margin-top: calc(var(--sp-px, 1px) * 2);
+  width: calc(var(--sp-px, 1px) * 12);
+  height: calc(var(--sp-px, 1px) * 12);
+}
+.sp-meeting-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* time zone */
+.sp-tz {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--sp-px, 1px) * 6);
+  margin-top: calc(var(--sp-px, 1px) * 12);
+  font-size: calc(var(--sp-px, 1px) * 11);
+  color: var(--sp-muted);
+}
+.sp-tz-icon {
+  width: calc(var(--sp-px, 1px) * 12);
+  height: calc(var(--sp-px, 1px) * 12);
+}
+
+/* the confirm bar */
+.sp-confirm {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--sp-px, 1px) * 12);
+  margin-top: calc(var(--sp-px, 1px) * 16);
+  padding-top: calc(var(--sp-px, 1px) * 16);
+  border-top: calc(var(--sp-px, 1px) * 1) solid var(--sp-line);
+}
+.sp-confirm-text {
+  position: relative;
+  height: calc(var(--sp-px, 1px) * 36);
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+.sp-confirm-line {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.25;
+}
+.sp-hint {
+  font-size: calc(var(--sp-px, 1px) * 12);
+  color: var(--sp-muted);
+}
+.sp-picked,
+.sp-hosttime {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.sp-picked {
+  font-size: calc(var(--sp-px, 1px) * 14);
+  font-weight: 500;
+  color: var(--sp-ink);
+}
+.sp-hosttime {
+  font-size: calc(var(--sp-px, 1px) * 12);
+  color: var(--sp-muted);
+}
+.slot-picker .sp-confirm-btn {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: calc(var(--sp-px, 1px) * 6);
+  height: calc(var(--sp-px, 1px) * 36);
+  padding: 0 calc(var(--sp-px, 1px) * 14);
+  border-radius: calc(var(--sp-px, 1px) * 12);
+  background: var(--sp-button);
+  color: var(--sp-button-ink);
+  font-size: calc(var(--sp-px, 1px) * 12);
+  line-height: calc(var(--sp-px, 1px) * 16);
+  font-weight: 500;
+  outline: none;
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1), color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slot-picker .sp-confirm-btn:not(:disabled):not(.is-booked):hover {
+  background: var(--sp-button-hover);
+}
+.slot-picker .sp-confirm-btn.is-booked {
+  background: var(--sp-ok);
+  color: var(--sp-ok-ink);
+}
+.slot-picker .sp-confirm-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.slot-picker .sp-confirm-btn:focus-visible {
+  box-shadow: 0 0 0 calc(var(--sp-px, 1px) * 2) var(--sp-bg), 0 0 0 calc(var(--sp-px, 1px) * 4) var(--sp-focus);
+}
+.sp-confirm-label {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--sp-px, 1px) * 6);
+}
+.sp-confirm-icon {
+  width: calc(var(--sp-px, 1px) * 14);
+  height: calc(var(--sp-px, 1px) * 14);
+}

@@ -1,0 +1,672 @@
+/* Gage hollow site · sections 9-11: apply (questionnaire), book (a call), faq (the questions). 2026-10-29.
+   One file for all three; it pulls in the ports' CSS (Stepper, Magic Bento, Slot Picker, Smooth caret input). Every size is calc(var(--u) * n): --u comes from the
+   page (≈ 10.4px on a 900px-tall screen). Each section is a 150u × 72u box; the root lets the pointer through, the gadgets
+   take it (pointer-events: auto). Look: the site's navy panels, thin blue lines and corner ticks, Chakra Petch caps over
+   Figtree. */
+@import url('../../../js/vendor/stepper.css?v=20261030c');
+@import url('../../../js/vendor/magic-bento.css?v=20261030c');
+@import url('../../../js/vendor/slot-picker.css?v=20261030c');
+@import url('../../../js/vendor/smooth-input.css?v=20261030c');
+
+.gs {
+  --gs-ink: var(--ink, #e6edf6);
+  --gs-muted: var(--muted, #9aabc2);
+  --gs-blue: var(--brand, #0687ff);
+  --gs-blue-t: var(--brand-text, #5cb2ff);
+  --gs-line: var(--line, rgba(92, 178, 255, 0.24));
+  --gs-display: var(--display, 'Chakra Petch', 'Arial Narrow', sans-serif);
+  --gs-body: var(--body, 'Figtree', 'Helvetica Neue', Arial, sans-serif);
+  --gs-sample: #ff8a80;
+  /* the spring the site already uses (Animated List / Stepper / Magic Bento all carry this linear() curve) */
+  --gs-spring: linear(0, 0.0603, 0.2033, 0.3821, 0.5633, 0.7258, 0.8584, 0.9574, 1.0242, 1.0634, 1.0809, 1.0828, 1.0747, 1.0613, 1.046, 1.0313, 1.0186, 1.0085, 1.0012, 0.9965, 0.994, 0.9931, 0.9933, 0.9941, 0.9953, 0.9966, 0.9978, 0.9988, 1);
+  position: relative;
+  box-sizing: border-box;
+  width: calc(var(--u) * 150);
+  height: calc(var(--u) * 72);
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+  text-align: left;
+  pointer-events: none;
+}
+.gs *,
+.gs *::before,
+.gs *::after {
+  box-sizing: border-box;
+}
+.gs a,
+.gs button,
+.gs input,
+.gs textarea,
+.gs .stepper,
+.gs .slot-picker,
+.gs .smooth-input,
+.gs .magic-bento__card {
+  pointer-events: auto;
+}
+.gs button {
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---- shared type, the site's own ---- */
+.gs-k {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 0.9);
+  margin: 0 0 calc(var(--u) * 1.3);
+  font: 600 calc(var(--u) * 1.45) / 1.2 var(--gs-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+.gs-k-dot {
+  opacity: 0.55;
+}
+.gs-h {
+  margin: 0;
+  font: 600 calc(var(--u) * 6.4) / 1.02 var(--gs-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gs-ink);
+  text-shadow: 0 0 calc(var(--u) * 2) rgba(7, 11, 18, 0.95);
+  text-wrap: balance;
+}
+.gs-p {
+  margin: calc(var(--u) * 1.8) 0 0;
+  font: 500 calc(var(--u) * 2.6) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+  text-shadow: 0 0 calc(var(--u) * 1.4) rgba(7, 11, 18, 0.95);
+  text-wrap: pretty;
+}
+/* the site's sample stamp (section 6 uses the same one) */
+.gs-tag {
+  display: inline-block;
+  padding: calc(var(--u) * 0.5) calc(var(--u) * 1);
+  border: 1px solid rgba(255, 138, 128, 0.55);
+  border-radius: calc(var(--u) * 0.5);
+  font: 600 calc(var(--u) * 1.3) / 1 var(--gs-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--gs-sample);
+}
+/* panels: thin lines and corner ticks, the same language as the grid */
+.gs-panel {
+  position: relative;
+  background: linear-gradient(180deg, rgba(12, 21, 35, 0.97), rgba(9, 15, 25, 0.97));
+  border: 1px solid var(--gs-line);
+  box-shadow: 0 calc(var(--u) * 3) calc(var(--u) * 9) calc(var(--u) * -3) rgba(6, 135, 255, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.gs-panel::before,
+.gs-panel::after,
+.gs .stepper::before,
+.gs .stepper::after,
+.gs .slot-picker::before,
+.gs .slot-picker::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  width: calc(var(--u) * 2.4);
+  height: calc(var(--u) * 2.4);
+  border: 2px solid var(--gs-blue);
+  pointer-events: none;
+}
+.gs-panel::before,
+.gs .stepper::before,
+.gs .slot-picker::before {
+  left: -1px;
+  top: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.gs-panel::after,
+.gs .stepper::after,
+.gs .slot-picker::after {
+  right: -1px;
+  bottom: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+/* =========================================================================================================
+   9 · APPLY: his words on the left, the Stepper on the right
+   ========================================================================================================= */
+.gs-apply {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--u) * 6);
+  padding-top: calc(var(--u) * 6);
+}
+.ap-left {
+  flex: 0 0 calc(var(--u) * 50);
+}
+.ap-next {
+  margin-top: calc(var(--u) * 4);
+}
+/* numbered rows: plain numerals on thin rules, not circles */
+.ap-next-list,
+.bk-topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: calc(var(--u) * 1.2);
+}
+.ap-next-list li,
+.bk-topics li {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 4.6) 1fr;
+  align-items: baseline;
+  padding-top: calc(var(--u) * 1.2);
+  border-top: 1px solid var(--gs-line);
+}
+.ap-next-list b,
+.bk-topics b {
+  font: 600 calc(var(--u) * 1.6) / 1 var(--gs-display);
+  letter-spacing: 0.14em;
+  color: var(--gs-blue-t);
+}
+.ap-next-list span,
+.bk-topics span {
+  font: 500 calc(var(--u) * 2.3) / 1.35 var(--gs-body);
+  color: var(--gs-ink);
+}
+.ap-note {
+  margin: calc(var(--u) * 3) 0 0;
+  font: 500 calc(var(--u) * 1.9) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+}
+.ap-right {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.gs-apply .stepper {
+  --stepper-px: calc(var(--u) * 0.2);
+  font-family: var(--gs-body);
+}
+.gs-apply .stepper__button {
+  font-family: var(--gs-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.gs-apply .stepper__title {
+  letter-spacing: 0.01em;
+}
+.ap-step {
+  display: grid;
+  gap: calc(var(--u) * 2);
+}
+.ap-q {
+  margin: 0;
+  font: 600 calc(var(--u) * 3.2) / 1.15 var(--gs-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gs-ink);
+}
+.ap-opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--u) * 1.4);
+}
+.ap-opt {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.5);
+  min-height: calc(var(--u) * 8.8);
+  padding: calc(var(--u) * 1.4) calc(var(--u) * 2);
+  border: 1px solid rgba(92, 178, 255, 0.22);
+  border-radius: calc(var(--u) * 0.7);
+  background: rgba(92, 178, 255, 0.045);
+  color: var(--gs-ink);
+  font: 500 calc(var(--u) * 2.5) / 1.2 var(--gs-body);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.45s var(--gs-spring);
+}
+@media (hover: hover) {
+  .ap-opt:hover {
+    border-color: rgba(92, 178, 255, 0.5);
+    background: rgba(92, 178, 255, 0.08);
+  }
+}
+.ap-opt:active {
+  transform: scale(0.97);
+  transition-duration: 0.25s, 0.25s, 0.25s, 0s;
+}
+.ap-opt:focus-visible {
+  outline: 2px solid var(--gs-blue-t);
+  outline-offset: 2px;
+}
+.ap-opt[aria-checked='true'] {
+  border-color: var(--gs-blue-t);
+  background: rgba(6, 135, 255, 0.16);
+  box-shadow: 0 0 calc(var(--u) * 2.4) calc(var(--u) * -0.4) rgba(6, 135, 255, 0.55), inset 0 0 0 1px rgba(92, 178, 255, 0.35);
+}
+.ap-mk {
+  flex: none;
+  width: calc(var(--u) * 2.8);
+  height: calc(var(--u) * 2.8);
+  border-radius: 50%;
+  border: 2px solid rgba(154, 171, 194, 0.6);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.45s var(--gs-spring);
+}
+.ap-opt[aria-checked='true'] .ap-mk {
+  border-color: var(--gs-blue-t);
+  background: var(--gs-blue);
+  box-shadow: 0 0 calc(var(--u) * 1.5) rgba(6, 135, 255, 0.85);
+  transform: scale(1.08);
+}
+.ap-opt-t {
+  display: grid;
+  gap: calc(var(--u) * 0.35);
+}
+.ap-opt-name {
+  font: 600 calc(var(--u) * 2.6) / 1.1 var(--gs-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ap-opt-price {
+  font: 500 calc(var(--u) * 2) / 1.2 var(--gs-body);
+  color: var(--gs-muted);
+}
+/* the three plans wear their metals (section 8's cards) */
+.ap-opt[data-metal] .ap-opt-name {
+  background: var(--metal);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ap-opt[data-metal='silver'] {
+  --metal: linear-gradient(100deg, #f1f4f8 0%, #a9b2be 55%, #e3e8ee 100%);
+}
+.ap-opt[data-metal='gold'] {
+  --metal: linear-gradient(100deg, #ffe59a 0%, #d1a23c 55%, #fff0bd 100%);
+}
+.ap-opt[data-metal='platinum'] {
+  --metal: linear-gradient(100deg, #f7fbff 0%, #b9c9d8 50%, #eef5fb 100%);
+}
+/* round 2: the typed fields are the Skiper UI smooth caret input, in the site's look */
+.gs-apply .smooth-input {
+  --si-px: calc(var(--u) * 0.1);
+  --si-bg: rgba(3, 7, 13, 0.55);
+  --si-caret: var(--gs-blue-t);
+  max-width: none;
+  padding: calc(var(--u) * 1.6) calc(var(--u) * 2);
+  border: 1px solid rgba(92, 178, 255, 0.28);
+  border-radius: calc(var(--u) * 0.7);
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+  font-weight: 500;
+  line-height: 1.3;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.gs-apply .smooth-input:has(:focus-visible) {
+  outline: none;
+  border-color: var(--gs-blue-t);
+  box-shadow: inset 0 0 0 1px var(--gs-blue-t);
+}
+.gs-apply .smooth-input[data-bad] {
+  border-color: var(--gs-sample);
+}
+.gs-apply .smooth-input__field::placeholder {
+  color: rgba(154, 171, 194, 0.62);
+}
+.gs-apply .smooth-input--multi .smooth-input__field {
+  line-height: 1.4;
+}
+.gs-apply .smooth-input__caret {
+  border-radius: 1px;
+  box-shadow: 0 0 calc(var(--u) * 0.8) rgba(6, 135, 255, 0.95);
+}
+/* the Plan step: the question, then the "nothing is bought here" line */
+.ap-qwrap {
+  display: grid;
+  gap: calc(var(--u) * 0.9);
+}
+.ap-reassure {
+  margin: 0;
+  max-width: calc(var(--u) * 80);
+  font: 500 calc(var(--u) * 2.05) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+}
+/* Main goal: five examples + Other, three to a row */
+.ap-opts--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ap-opts--3 .ap-opt {
+  min-height: calc(var(--u) * 7.6);
+  gap: calc(var(--u) * 1.2);
+  padding: calc(var(--u) * 1.2) calc(var(--u) * 1.6);
+  font-size: calc(var(--u) * 2.3);
+}
+/* Other unfolds like the Stepper's footer does (grid rows 0fr → 1fr on its spring) */
+.ap-other {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: calc(var(--u) * -2);
+  opacity: 0;
+  transition: grid-template-rows 480ms var(--gs-spring), margin-top 480ms var(--gs-spring), opacity 0.2s ease;
+}
+.ap-other.is-open {
+  grid-template-rows: 1fr;
+  margin-top: 0;
+  opacity: 1;
+}
+.ap-other-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+/* the licence credit Skiper UI's free components ask for (kept visible) */
+.gs-credit {
+  margin: calc(var(--u) * 1.4) 0 0;
+  font: 500 calc(var(--u) * 1.35) / 1.3 var(--gs-body);
+  letter-spacing: 0.02em;
+  color: rgba(154, 171, 194, 0.72);
+}
+.gs-credit a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(154, 171, 194, 0.35);
+}
+.gs-u-probe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--u) * 100);
+  height: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.ap-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--u) * 1.6);
+}
+.ap-f {
+  display: grid;
+  gap: calc(var(--u) * 0.8);
+}
+.ap-f--full {
+  grid-column: 1 / -1;
+}
+.ap-f-l {
+  font: 600 calc(var(--u) * 1.45) / 1 var(--gs-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+.ap-done {
+  justify-items: start;
+  gap: calc(var(--u) * 1.6);
+  padding: calc(var(--u) * 0.6) 0 calc(var(--u) * 1);
+}
+.ap-done-mark {
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 7);
+  height: calc(var(--u) * 7);
+  border-radius: 50%;
+  background: var(--gs-blue);
+  color: #fff;
+  box-shadow: 0 0 calc(var(--u) * 3) rgba(6, 135, 255, 0.7);
+}
+.ap-done-mark svg {
+  width: 56%;
+  height: 56%;
+}
+.ap-done-mark path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: gs-draw 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+.ap-done-p {
+  margin: 0;
+  max-width: calc(var(--u) * 72);
+  font: 500 calc(var(--u) * 2.5) / 1.45 var(--gs-body);
+  color: var(--gs-muted);
+}
+@keyframes gs-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* =========================================================================================================
+   10 · BOOK: his words on the left, the Kokonut UI Slot Picker on the right (round 2, Hayden 10/30)
+   ========================================================================================================= */
+.gs-book {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: calc(var(--u) * 10);
+  padding-top: calc(var(--u) * 1.4);
+}
+.bk-left {
+  flex: 0 0 calc(var(--u) * 52);
+  padding-top: calc(var(--u) * 6);
+}
+.bk-topics {
+  margin-top: calc(var(--u) * 4);
+}
+.bk-mail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--u) * 0.4) calc(var(--u) * 1);
+  margin: calc(var(--u) * 3) 0 0;
+  font: 500 calc(var(--u) * 2) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+}
+.bk-mail a {
+  color: var(--gs-blue-t);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(92, 178, 255, 0.4);
+}
+.bk-right {
+  flex: 0 0 auto;
+  display: grid;
+  gap: calc(var(--u) * 1);
+}
+.bk-stamp {
+  display: flex;
+  justify-content: flex-end;
+}
+.bk-status {
+  min-height: 0;
+  margin: 0;
+  font: 500 calc(var(--u) * 1.9) / 1.35 var(--gs-body);
+  color: var(--gs-muted);
+  text-align: right;
+}
+/* the slot picker in the site's look: its own dark theme recoloured to the navy panel, thin blue lines, his blue */
+.gs-book .slot-picker {
+  --sp-px: calc(var(--u) * 0.12);
+  --sp-bg: linear-gradient(180deg, rgba(12, 21, 35, 0.97), rgba(9, 15, 25, 0.97));
+  --sp-border: var(--gs-line);
+  --sp-ink: var(--gs-ink);
+  --sp-ink-strong: #ffffff;
+  --sp-muted: var(--gs-muted);
+  --sp-faint: rgba(154, 171, 194, 0.72);
+  --sp-line: rgba(92, 178, 255, 0.12);
+  --sp-track: rgba(92, 178, 255, 0.06);
+  --sp-pill: rgba(92, 178, 255, 0.22);
+  --sp-hover: rgba(92, 178, 255, 0.07);
+  --sp-hover-ink: var(--gs-ink);
+  --sp-hatch: rgba(92, 178, 255, 0.16);
+  --sp-busy-bg: rgba(7, 11, 18, 0.85);
+  --sp-busy-border: rgba(92, 178, 255, 0.2);
+  --sp-off: rgba(154, 171, 194, 0.35);
+  --sp-off-2: rgba(154, 171, 194, 0.45);
+  --sp-ring: var(--gs-blue-t);
+  --sp-focus: var(--gs-blue-t);
+  --sp-accent: var(--gs-blue);
+  --sp-accent-ink: #ffffff;
+  --sp-accent-soft: rgba(6, 135, 255, 0.18);
+  --sp-accent-text: var(--gs-blue-t);
+  --sp-accent-focus: var(--gs-blue-t);
+  --sp-ghost-border: rgba(92, 178, 255, 0.6);
+  --sp-ghost-bg: rgba(6, 135, 255, 0.1);
+  --sp-ok: #22c55e;
+  --sp-ok-ink: #04220f;
+  --sp-free: #4ade80;
+  --sp-button: var(--gs-blue);
+  --sp-button-ink: #ffffff;
+  --sp-button-hover: #2a9bff;
+  /* Hayden 10/30: "horizontally dragged like twenty percent more": 20% wider than the original's 384 (46.1u → 55.3u at
+     this --sp-px); the day strip and the rail stretch, the height stays. An explicit width: the column around it
+     shrinks to fit, so a bigger max-width alone would leave it at its content's width */
+  width: calc(var(--sp-px, 1px) * 461);
+  max-width: none;
+  border-radius: 0;
+  font-family: var(--gs-body);
+  box-shadow: 0 calc(var(--u) * 3) calc(var(--u) * 9) calc(var(--u) * -3) rgba(6, 135, 255, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.gs-book .sp-title {
+  font-family: var(--gs-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.gs-book .sp-day-ring {
+  box-shadow: 0 0 calc(var(--u) * 1.4) rgba(6, 135, 255, 0.45);
+}
+.gs-book .sp-meeting-btn:not(.is-booked) {
+  box-shadow: 0 0 calc(var(--u) * 1.6) rgba(6, 135, 255, 0.55);
+}
+
+/* =========================================================================================================
+   11 · FAQ: the Magic Bento grid; a tapped tile grows to 2 × 2 and its answer rolls in
+   ========================================================================================================= */
+.gs-faq {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 2.6);
+}
+.fq-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(var(--u) * 3);
+}
+.fq-head .gs-h {
+  font-size: calc(var(--u) * 5.6);
+}
+.fq-hint {
+  margin: 0;
+  padding-bottom: calc(var(--u) * 0.8);
+  font: 600 calc(var(--u) * 1.5) / 1 var(--gs-display);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+.fq-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.fq-bento {
+  --mb-px: calc(var(--u) * 0.1);
+}
+.gs-faq .magic-bento__content {
+  padding: calc(var(--u) * 2.4);
+}
+.gs-faq .magic-bento__card[aria-expanded='true'] {
+  z-index: 3; /* above the tiles after it in the grid, which it grows over (they were showing through) */
+  box-shadow: 0 calc(var(--u) * 3) calc(var(--u) * 9) calc(var(--u) * -2) rgba(6, 135, 255, 0.45), 0 0 0 1px rgba(92, 178, 255, 0.4);
+}
+.fq {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.fq-face {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.3);
+  transition: opacity 0.22s ease 0.2s;
+}
+.fq.is-open .fq-face {
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.fq-n {
+  align-self: flex-start;
+  font: 600 calc(var(--u) * 1.5) / 1 var(--gs-display);
+  letter-spacing: 0.2em;
+  color: var(--gs-blue-t);
+}
+.fq-q {
+  margin: 0;
+  padding-right: calc(var(--u) * 3);
+  font: 600 calc(var(--u) * 2.45) / 1.28 var(--gs-body);
+  color: var(--gs-ink);
+  text-wrap: pretty;
+}
+.fq--wide .fq-q {
+  font-size: calc(var(--u) * 2.9);
+}
+.fq-open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+}
+.fq.is-open .fq-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.15s ease 0.05s, visibility 0s;
+}
+.fq-oq {
+  margin: 0;
+  padding-right: calc(var(--u) * 5);
+  font: 700 calc(var(--u) * 2.9) / 1.22 var(--gs-body);
+  color: var(--gs-ink);
+  text-wrap: pretty;
+}
+.fq-a {
+  margin: 0;
+  font: 500 calc(var(--u) * 2.3) / 1.5 var(--gs-body);
+  color: #c8d4e3;
+  text-wrap: pretty;
+}
+/* ARROW LAW: a downward chevron that flips up when the tile is open */
+.fq-chev {
+  position: absolute;
+  top: calc(var(--u) * -0.6);
+  right: calc(var(--u) * -0.6);
+  width: calc(var(--u) * 3.4);
+  height: calc(var(--u) * 3.4);
+  color: var(--gs-blue-t);
+  transition: transform 0.45s var(--gs-spring);
+}
+.fq-chev svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+@media (hover: hover) {
+  .magic-bento__card:hover .fq:not(.is-open) .fq-chev {
+    transform: translateY(calc(var(--u) * 0.35));
+  }
+}
+.fq.is-open .fq-chev {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ap-opt,
+  .ap-mk,
+  .ap-other,
+  .fq-face,
+  .fq-open,
+  .fq-chev {
+    transition: none;
+  }
+  .ap-done-mark path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

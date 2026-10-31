@@ -1,0 +1,219 @@
+/* Kokonut UI "Status Island" (kokonutui.com/docs/navigation/status-island, MIT): the original's Tailwind classes written
+   out. Colours are the original's dark-mode values as --isl-* variables; every px is calc(var(--isl-px, 1px) * n). */
+.status-island {
+  --isl-bg: #18181b;                       /* dark:bg-zinc-900 */
+  --isl-peek: #27272a;                     /* bg-zinc-800 */
+  --isl-ink: #ffffff;
+  --isl-ring: rgba(255, 255, 255, 0.1);    /* dark:ring-white/10 */
+  --isl-peek-ring: rgba(255, 255, 255, 0.05);
+  --isl-shadow: 0 calc(var(--isl-px, 1px) * 10) calc(var(--isl-px, 1px) * 15) calc(var(--isl-px, 1px) * -3) rgb(0 0 0 / 0.2),
+    0 calc(var(--isl-px, 1px) * 4) calc(var(--isl-px, 1px) * 6) calc(var(--isl-px, 1px) * -4) rgb(0 0 0 / 0.2);   /* shadow-lg shadow-black/20 */
+  --isl-chip: rgba(255, 255, 255, 0.12);
+  --isl-chip-hover: rgba(255, 255, 255, 0.2);
+  --isl-dim: rgba(255, 255, 255, 0.5);
+  --isl-dim-2: rgba(255, 255, 255, 0.55);
+  --isl-ok: #34d399;                       /* emerald-400 */
+  --isl-error: #f87171;                    /* red-400 */
+  --isl-focus: rgba(255, 255, 255, 0.6);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.status-island *,
+.status-island *::before,
+.status-island *::after {
+  box-sizing: border-box;
+}
+.isl-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.isl-island {
+  position: relative;
+  isolation: isolate;
+}
+.isl-peek {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--isl-px, 1px) * 20);
+  background: var(--isl-peek);
+  box-shadow: 0 0 0 calc(var(--isl-px, 1px) * 1) var(--isl-peek-ring);
+  pointer-events: none;
+}
+.isl-body {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--isl-px, 1px) * 20);
+  background: var(--isl-bg);
+  color: var(--isl-ink);
+  box-shadow: 0 0 0 calc(var(--isl-px, 1px) * 1) var(--isl-ring), var(--isl-shadow);
+}
+
+/* the open list */
+.isl-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--isl-px, 1px) * 14);
+  width: calc(var(--isl-px, 1px) * 320);
+  max-width: calc(100vw - 2rem);
+  margin: 0;
+  padding: calc(var(--isl-px, 1px) * 14) calc(var(--isl-px, 1px) * 16);
+  list-style: none;
+  outline: none;
+}
+.isl-list li {
+  margin: 0;
+  padding: 0;
+}
+
+/* the closed pill */
+.isl-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  height: calc(var(--isl-px, 1px) * 40);
+  margin: 0;
+  padding: 0 calc(var(--isl-px, 1px) * 16);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.isl-pill:focus-visible {
+  outline: none;
+}
+.isl-pill-content {
+  min-width: 0;
+}
+
+/* a task */
+.isl-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: calc(var(--isl-px, 1px) * 10);
+}
+.isl-row--pill {
+  min-width: calc(var(--isl-px, 1px) * 192);
+}
+.isl-label {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: calc(var(--isl-px, 1px) * 13);
+  line-height: calc(var(--isl-px, 1px) * 16);
+}
+.isl-detail {
+  color: var(--isl-dim);
+}
+.isl-trail-pad {
+  padding-left: calc(var(--isl-px, 1px) * 12);
+}
+.isl-chip {
+  flex-shrink: 0;
+  margin: calc(var(--isl-px, 1px) * -4) 0;
+  padding: calc(var(--isl-px, 1px) * 4) calc(var(--isl-px, 1px) * 10);
+  border-radius: 9999px;
+  background: var(--isl-chip);
+  font-size: calc(var(--isl-px, 1px) * 12);
+  line-height: calc(var(--isl-px, 1px) * 16);
+  font-weight: 500;
+}
+button.isl-chip {
+  border: 0;
+  color: var(--isl-ink);
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+button.isl-chip:hover {
+  background: var(--isl-chip-hover);
+}
+button.isl-chip:focus-visible {
+  outline: calc(var(--isl-px, 1px) * 2) solid var(--isl-focus);
+}
+.isl-chip--inert {
+  display: inline-block;
+}
+.isl-percent {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--isl-dim-2);
+  font-size: calc(var(--isl-px, 1px) * 12);
+  line-height: calc(var(--isl-px, 1px) * 16);
+}
+.isl-roll {
+  display: inline-flex;
+  font-variant-numeric: tabular-nums;
+}
+.isl-roll-cell {
+  position: relative;
+  display: inline-block;
+  height: calc(var(--isl-px, 1px) * 16);
+  overflow: hidden;
+}
+.isl-roll-strip {
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.isl-roll-digit {
+  height: calc(var(--isl-px, 1px) * 16);
+  line-height: calc(var(--isl-px, 1px) * 16);
+}
+.isl-icon {
+  display: block;
+  flex-shrink: 0;
+  width: calc(var(--isl-px, 1px) * 16);
+  height: calc(var(--isl-px, 1px) * 16);
+}
+.isl-icon--done {
+  color: var(--isl-ok);
+}
+.isl-icon--error {
+  color: var(--isl-error);
+}
+.isl-ring {
+  rotate: -90deg;
+}
+.isl-ring--spin {
+  animation: isl-spin 1s linear infinite;
+}
+.isl-ring-arc {
+  transition: stroke-dashoffset 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes isl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* added: the resting face (a page's own content when there are no tasks) */
+.isl-rest {
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .isl-roll-strip {
+    transition: none;
+  }
+  .isl-ring--spin {
+    animation: none;
+  }
+}
