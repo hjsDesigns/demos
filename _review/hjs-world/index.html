@@ -66,6 +66,12 @@ canvas{display:block}
 .pin:hover{background:rgba(167,192,163,.92);color:#14211A;border-color:var(--sage)}
 .pin i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--moss);
  margin-right:8px;vertical-align:middle;box-shadow:0 0 8px var(--moss);font-style:normal}
+/* a district you cannot see is held at the edge of the frame instead of disappearing,
+   so you always know which way to turn */
+.pin.live{opacity:1}
+.pin.live.edge{opacity:.52;font-size:.6rem;padding:6px 11px}
+.pin.live.edge i{background:var(--gold);box-shadow:0 0 8px var(--gold)}
+.pin.live.edge:hover{opacity:1}
 #hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:.62rem;
  letter-spacing:.2em;text-transform:uppercase;color:#6E7C6E;transition:opacity .5s}
 @media(max-width:720px){
@@ -125,5 +131,5 @@ canvas{display:block}
  "three":"https://unpkg.com/three@0.169.0/build/three.module.js",
  "three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}
 </script>
-<script type="module" src="js/world.js?v=14"></script>
+<script type="module" src="js/world.js?v=16"></script>
 </body></html>

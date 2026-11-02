@@ -650,7 +650,8 @@ function portal(){
   city.visible = true;                          // the first time the city is ever on screen
   scene.remove(room); scene.remove(laptop);     // the blank room's job is done
   worldUI.classList.add('on');
-  PINS.forEach(p => p.el.style.opacity = '1');
+  // the reveal is a class, not an inline style, so .pin.edge can still dim a pin
+  PINS.forEach(p => p.el.classList.add('live'));
 }
 
 /* ───────── the district pins ───────── */
