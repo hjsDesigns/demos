@@ -468,7 +468,7 @@ import { createAccordionFlip } from '../../js/vendor/accordion-flip.js?v=2026102
 import { createDecryptedText } from '../../js/vendor/decrypted-text.js?v=20261031a';
 import { createScrollIndex } from '../../js/vendor/scroll-index.js?v=20261030c';
 import { mountIsland } from './sections/island.js?v=20261101a';
-import { mountDock } from './sections/dock.js?v=20261101d';
+import { mountDock } from './sections/dock.js?v=20261101e';
 import { createElectricBorder } from '../../js/vendor/electric-border.js?v=20261030h';
 import { attachCardBorders } from './sections/card-borders.js?v=20261030h';
 
@@ -1331,6 +1331,8 @@ const island = mountIsland(document.body, {
 const DOCK_ICONS = ['goal', 'coach', 'results', 'story', 'method', 'plans', 'apply', 'book', 'sponsors'];
 dock = mountDock(document.body, {
   items: TRACK.map((t, i) => ({ label: t[0], icon: DOCK_ICONS[i] })),
+  magnification: 44,   // Hayden 11/1: even — no hover growth (the hovered one lifts a touch instead, dock.css)
+  animationTime: 300, timeVariance: 150,   // Hayden 11/1: the goo at twice the speed
   onPick: i => {
     const wait = entered ? 0 : 1900;   // from the gate: enter first, fly once the open has landed
     if (!entered) enter();

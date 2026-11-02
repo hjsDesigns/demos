@@ -37,7 +37,7 @@ let cssLink = null;
 function linkCss() {
   if (cssLink) return;
   cssLink = document.createElement('link'); cssLink.rel = 'stylesheet';
-  cssLink.href = new URL('./dock.css?v=20261101d', import.meta.url).href;
+  cssLink.href = new URL('./dock.css?v=20261101e', import.meta.url).href;
   document.head.appendChild(cssLink);
 }
 
