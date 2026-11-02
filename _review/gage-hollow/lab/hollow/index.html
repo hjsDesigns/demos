@@ -468,7 +468,7 @@ import { createAccordionFlip } from '../../js/vendor/accordion-flip.js?v=2026102
 import { createDecryptedText } from '../../js/vendor/decrypted-text.js?v=20261031a';
 import { createScrollIndex } from '../../js/vendor/scroll-index.js?v=20261030c';
 import { mountIsland } from './sections/island.js?v=20261101a';
-import { mountDock } from './sections/dock.js?v=20261101f';
+import { mountDock } from './sections/dock.js?v=20261101g';
 import { createElectricBorder } from '../../js/vendor/electric-border.js?v=20261030h';
 import { attachCardBorders } from './sections/card-borders.js?v=20261030h';
 
@@ -1324,15 +1324,14 @@ const island = mountIsland(document.body, {
   onBook: () => { if (!entered) enter(); const B = LATE.find(L => L.id === 'book'); lenis ? lenis.scrollTo(lateY(B), { duration: 1.6 }) : window.scrollTo({ top: lateY(B), behavior: reduce ? 'auto' : 'smooth' }); },
   onUndo: () => { const B = LATE.find(L => L.id === 'book'); if (B.api && B.api.reset) B.api.reset(); }
 });
-// the section dock (Hayden 11/1: "Mix Gooey Nav and Dock, and put it in the bottom of Gage's site, and then put it for each
-// section, but make sure it fits"): React Bits' Dock (the magnifying bar) crossed with its Gooey Nav (the goo pill and the particle
-// burst), one icon per tracker section. Tap one and the camera flies to that section's stop; the pill follows the camera and holds
-// on a tapped section until the camera arrives. It rises in when you enter (the gate keeps only the logo and GET STARTED).
+// the section dock (Hayden 11/1: "put it in the bottom of Gage's site, and then put it for each section, but make sure it fits"):
+// React Bits' Dock, one icon per tracker section, even sizes, a plain blue highlight under the section you're in (the Gooey Nav
+// half and the magnification came out the same night on his word). Tap one and the camera flies to that section's stop; the
+// highlight follows the camera and holds on a tapped section until the camera arrives. Hidden on the gate; rises in when you enter.
 const DOCK_ICONS = ['goal', 'coach', 'results', 'story', 'method', 'plans', 'apply', 'book', 'sponsors'];
 dock = mountDock(document.body, {
   items: TRACK.map((t, i) => ({ label: t[0], icon: DOCK_ICONS[i] })),
-  magnification: 44,   // Hayden 11/1: even — no hover growth (the hovered one lifts a touch instead, dock.css)
-  animationTime: 300, timeVariance: 150,   // Hayden 11/1: the goo at twice the speed
+  magnification: 44,   // Hayden 11/1: even — no hover growth (the hovered one lifts a touch instead, dock.css); the goo is gone too
   onPick: i => {
     const wait = entered ? 0 : 1900;   // from the gate: enter first, fly once the open has landed
     if (!entered) enter();
@@ -1343,14 +1342,14 @@ dock = mountDock(document.body, {
     }, wait);
   }
 });
-dock.setActive(0, { burst: false }); dockAt = 0;   // the goal is lit while you stand at the gate
+dock.setActive(0); dockAt = 0;   // the goal is lit while you stand at the gate
 function dockTick(cz) {   // the pill sits under the section whose stop is nearest the camera; it slides, never bursts, as you scroll
   let near = 0, gap = Infinity;
   for (let i = 0; i < TRACK.length; i++) { const d = Math.abs(cz - trackZ(TRACK[i])); if (d < gap) { gap = d; near = i; } }
   if (dockGoal >= 0) { if (near !== dockGoal && performance.now() < dockGoalUntil) return; dockGoal = -1; }
   if (near === dockAt) return;
   if (dockAt >= 0 && gap > Math.abs(cz - trackZ(TRACK[dockAt])) - 0.12) return;   // hysteresis: no flip-flop at the midpoint between two stops
-  dockAt = near; dock.setActive(near, { burst: false });
+  dockAt = near; dock.setActive(near);
 }
 const sixPanels = [...document.querySelectorAll('#pgSix .af-panel')];
 let sixOpen = -1;
