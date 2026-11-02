@@ -37,10 +37,26 @@ have that our first attempt did not: `envMap` ×108, `shadowMap` ×96, `aoMap` �
 and real CC0 PBR textures from ambientCG. So this build has an HDRI through `PMREMGenerator`,
 shadows on, street and plaza point lights, and the same `Ground037` material they use.
 
+## Checking it without a screenshot
+
+Pane screenshots do not composite WebGL reliably, and a hidden pane composites nothing at all —
+which cost several rounds on 11/1. So the build exposes a handle:
+
+```js
+window.__hjs.stats()
+// { meshes, lights, lineSets, instanced, drawCalls, triangles, cityVisible, phase }
+```
+
+At v12, after the portal: **936 meshes, 46 lights, 8 line sets, 4 instanced meshes**, `cityVisible
+true`, `phase "free"`. AskLex runs about 70 light objects, so the light count is in the right
+country now.
+
 ## Honest gaps
 
-- The towers still read darker and flatter than his reference. More window density and a second
-  glass material would help.
+- ~~Towers are plain blocks~~ — rebuilt 11/2 with a podium, one to three setbacks, a lip at each
+  step, and either a mast or rooftop plant. That is the silhouette fix; whether it reads is still
+  his call.
+- Towers may still be darker than his reference; a second glass material would help.
 - No `aoMap` anywhere — AskLex uses 43. That needs a second UV set per mesh.
 - The title block overlaps the skyline at some widths.
 - The foreground is a wide empty green band; it wants a road or a treeline closer to camera.

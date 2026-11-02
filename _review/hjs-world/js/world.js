@@ -258,18 +258,57 @@ function lattice(x,z,w,h,d,round){
   const L=new THREE.LineSegments(lg,new THREE.LineBasicMaterial({color:C.wire,transparent:true,opacity:.7}));
   L.position.set(x,0,z); scene.add(L);
 }
+/* A tower is not a box. Real skylines step back as they rise, and that silhouette is most of
+ * what makes a skyline read — the first build was a row of flat blocks and looked it. Each tower
+ * here gets a podium, one to three setbacks, and sometimes a mast or a rooftop plant box. */
 function tower(x,z,w,h,d,density,cool){
-  const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d), concreteMat);
-  m.position.set(x,h/2,z); m.castShadow=true; m.receiveShadow=true; scene.add(m);
-  const cap=new THREE.Mesh(new THREE.BoxGeometry(w*1.04,5,d*1.04),
-    new THREE.MeshStandardMaterial({color:C.concDark,roughness:.9}));
-  cap.position.set(x,h+1.5,z); scene.add(cap);
-  if(Math.random()<0.45){                       // a mast, so the skyline is not a row of flat blocks
-    const mast=new THREE.Mesh(new THREE.CylinderGeometry(0.6,1.4,18+Math.random()*26,6),
-      new THREE.MeshStandardMaterial({color:0x555C68,roughness:.6,metalness:.4}));
-    mast.position.set(x,h+14,z); scene.add(mast);
+  const steps = h > 190 ? 3 : h > 140 ? 2 : 1;
+  let y = 0, cw = w, cd = d;
+  const slice = h / (steps + 0.9);
+
+  // a wider podium at street level, the way a real tower meets the ground
+  const podH = Math.min(22, h*0.12);
+  const pod = new THREE.Mesh(new THREE.BoxGeometry(w*1.18, podH, d*1.18), concreteMat);
+  pod.position.set(x, podH/2, z); pod.castShadow = true; pod.receiveShadow = true; scene.add(pod);
+  y = podH;
+
+  for(let i=0;i<=steps;i++){
+    const segH = i === steps ? (h - y) : slice;
+    if(segH <= 2) break;
+    const seg = new THREE.Mesh(new THREE.BoxGeometry(cw, segH, cd), concreteMat);
+    seg.position.set(x, y + segH/2, z); seg.castShadow = true; seg.receiveShadow = true; scene.add(seg);
+    windows(x, y + 3, z, cw, segH - 6, cd, density, cool);
+    // the lip where the step sits back, catching the light
+    if(i < steps){
+      const lip = new THREE.Mesh(new THREE.BoxGeometry(cw*1.05, 2.2, cd*1.05),
+        new THREE.MeshStandardMaterial({color:C.concDark,roughness:.85,envMapIntensity:1.1}));
+      lip.position.set(x, y + segH, z); scene.add(lip);
+    }
+    y += segH;
+    cw *= 0.80; cd *= 0.80;          // each stage steps back
   }
-  windows(x,4,z,w,h-10,d,density,cool);
+
+  const cap = new THREE.Mesh(new THREE.BoxGeometry(cw*1.3, 4, cd*1.3),
+    new THREE.MeshStandardMaterial({color:C.concDark,roughness:.9}));
+  cap.position.set(x, h + 1, z); scene.add(cap);
+
+  const r = Math.random();
+  if(r < 0.4){                        // a mast
+    const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.6,1.4,18+Math.random()*28,6),
+      new THREE.MeshStandardMaterial({color:0x555C68,roughness:.55,metalness:.45,envMapIntensity:1.4}));
+    mast.position.set(x, h + 13, z); scene.add(mast);
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(1.1,8,6),
+      new THREE.MeshBasicMaterial({color:0xFF5C4A,toneMapped:false}));
+    lamp.position.set(x, h + 27, z); scene.add(lamp);
+  } else if(r < 0.72){                // rooftop plant, the boxes and vents a real roof carries
+    for(let k=0;k<2+Math.round(Math.random()*2);k++){
+      const bw = 5 + Math.random()*9;
+      const box = new THREE.Mesh(new THREE.BoxGeometry(bw, 4+Math.random()*7, bw*0.8),
+        new THREE.MeshStandardMaterial({color:0x4A4F5A,roughness:.85}));
+      box.position.set(x + (Math.random()-.5)*cw*0.8, h + 4, z + (Math.random()-.5)*cd*0.8);
+      box.castShadow = true; scene.add(box);
+    }
+  }
 }
 const SKYLINE=[
   [-330,-470,54,190,54,'c'],[-262,-420,46,150,46,'c'],[-196,-560,62,212,50,'l'],[-112,-498,48,164,44,'s'],
@@ -714,6 +753,17 @@ function arrive(){
 }
 skipBtn.addEventListener('click', arrive);
 hit.addEventListener('click', () => setTimeout(() => skipBtn.classList.add('on'), 600));
+
+/* a handle on the scene, so the build can be checked without a screenshot — pane screenshots do
+ * not composite WebGL reliably, and a hidden pane composites nothing at all */
+window.__hjs = { scene, camera, renderer, city,
+  stats(){ let m=0,l=0,ln=0,inst=0;
+    scene.traverse(o=>{ if(o.isInstancedMesh) inst++; else if(o.isMesh) m++;
+                        else if(o.isLight) l++; else if(o.isLineSegments) ln++; });
+    return { meshes:m, lights:l, lineSets:ln, instanced:inst,
+             drawCalls:renderer.info.render.calls, triangles:renderer.info.render.triangles,
+             cityVisible:city.visible, phase };
+  } };
 
 tick('ready');
 requestAnimationFrame(frame);
