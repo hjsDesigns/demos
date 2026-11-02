@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>HJS Designs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F2EDE0;--fir:#16281F;--moss:#5E7F5F;--sage:#A7C0A3;--gold:#C9A84B;
+ --body:'Poppins',system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#05070B;color:var(--cream);font-family:var(--body)}
+#stage{position:fixed;inset:0}
+canvas{display:block}
+
+#boot{position:fixed;inset:0;z-index:30;display:grid;place-items:center;background:#05070B;
+ transition:opacity .8s ease}
+#boot.gone{opacity:0;pointer-events:none}
+#boot .b{text-align:center}
+#boot .bar{width:170px;height:2px;background:rgba(242,237,224,.12);margin:16px auto 0;overflow:hidden}
+#boot .bar i{display:block;height:100%;width:0;background:var(--sage);transition:width .3s ease}
+#boot p{margin:0;font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:#5A6B5C}
+
+/* the invitation under the closed laptop */
+#invite{position:fixed;left:0;right:0;bottom:16vh;z-index:12;text-align:center;
+ pointer-events:none;opacity:0;transition:opacity .7s ease}
+#invite.on{opacity:1}
+#invite b{display:block;font-size:clamp(1.1rem,3vw,1.7rem);font-weight:500;color:var(--cream)}
+#invite span{display:block;margin-top:9px;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;
+ color:var(--moss);font-weight:600;animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+#hit{position:fixed;inset:0;z-index:11;cursor:pointer;display:none}
+#hit.on{display:block}
+
+/* the portal flash as the screen swallows you */
+#flash{position:fixed;inset:0;z-index:20;background:var(--cream);opacity:0;pointer-events:none;
+ mix-blend-mode:screen}
+
+/* the world's UI, after you are through */
+#world{position:fixed;inset:0;z-index:10;pointer-events:none;opacity:0;transition:opacity .9s ease}
+#world.on{opacity:1}
+#title{position:absolute;left:clamp(18px,4.4vw,70px);top:clamp(74px,18vh,170px);max-width:min(420px,46vw)}
+#title .yr{font-size:clamp(3rem,8vw,5.6rem);line-height:.9;font-weight:400;letter-spacing:-.02em;color:var(--cream)}
+#title .yr i{font-style:italic;font-size:.21em;margin-left:.5em;letter-spacing:0;color:#CFC8AE;vertical-align:.9em}
+#title h1{font-size:clamp(1.2rem,3vw,2rem);line-height:1.22;font-weight:500;margin:20px 0 12px;color:#F4EEDC}
+#title p{font-size:.82rem;line-height:1.7;color:#A9A898;margin:0;max-width:33ch}
+.pin{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;cursor:pointer;
+ white-space:nowrap;font-size:.68rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;
+ padding:8px 16px;border-radius:99px;color:var(--cream);
+ background:rgba(14,22,17,.6);border:1px solid rgba(167,192,163,.3);
+ backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);transition:.18s;opacity:0}
+.pin:hover{background:rgba(167,192,163,.92);color:#14211A;border-color:var(--sage)}
+.pin i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--moss);
+ margin-right:8px;vertical-align:middle;box-shadow:0 0 8px var(--moss);font-style:normal}
+#hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:.62rem;
+ letter-spacing:.2em;text-transform:uppercase;color:#6E7C6E;transition:opacity .5s}
+@media(max-width:720px){#title{top:64px;max-width:72vw}#title p{display:none}}
+</style>
+</head><body>
+<div id="stage"></div>
+<div id="hit"></div>
+<div id="invite"><b>Come on in.</b><span>click the laptop</span></div>
+<div id="flash"></div>
+<div id="world">
+  <div id="title">
+    <div class="yr">2026<i>HJS Designs</i></div>
+    <h1>Built for the Plateau.<br>Built to be found.</h1>
+    <p>Websites for local shops, trades and restaurants in Enumclaw, Buckley, Bonney Lake and the towns around them.</p>
+  </div>
+  <div id="hint">drag to look &middot; scroll to move</div>
+</div>
+<div id="boot"><div class="b"><p id="bootmsg">building the room</p><div class="bar"><i id="bootbar"></i></div></div></div>
+
+<script type="importmap">
+{"imports":{
+ "three":"https://unpkg.com/three@0.169.0/build/three.module.js",
+ "three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}
+</script>
+<script type="module" src="js/world.js?v=1"></script>
+</body></html>
