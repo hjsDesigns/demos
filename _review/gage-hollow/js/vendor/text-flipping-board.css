@@ -1,0 +1,208 @@
+/* Aceternity UI "Text Flipping Board": the local proof port's CSS (vendor/effects/aceternity/proof/text-flipping-board.css), unchanged. Use in end products only; never redistribute. */
+/* Text Flipping Board — plain CSS port of Aceternity UI's text-flipping-board.tsx
+   (Tailwind v4 classes translated by hand; values checked against the live
+   ui.aceternity.com computed styles on 2026-10-29). Local proof; do not redistribute. */
+
+.tfb {
+  /* light theme (Aceternity without .dark) */
+  --tfb-board-bg: oklch(97% 0 0);                         /* bg-neutral-100 */
+  --tfb-board-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); /* shadow-xl */
+  --tfb-cell-border: oklch(87% 0 0);                      /* border-neutral-300 */
+  --tfb-hinge: oklch(87% 0 0);                            /* bg-neutral-300 */
+  --tfb-half-bg: color-mix(in oklab, oklch(92.2% 0 0) 80%, transparent); /* bg-neutral-200/80 */
+  --tfb-flap-bg: oklch(97% 0 0);                          /* bg-neutral-100 */
+  --tfb-text: oklch(26.9% 0 0);                           /* text-neutral-800 */
+  --tfb-shimmer: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent 60%);
+  --tfb-shade-top: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+  --tfb-shade-bot: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0.6));
+  --tfb-split: color-mix(in oklab, oklch(70.8% 0 0) 50%, transparent); /* bg-neutral-400/50 */
+  --tfb-stripe: oklch(70.8% 0 0);                         /* text-neutral-400 */
+  --tfb-stripe-opacity: 0.2;
+  --tfb-flip: 0.35s;
+
+  position: relative;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 48rem;                                       /* max-w-3xl */
+  border-radius: 0.75rem;                                 /* rounded-xl */
+  background-color: var(--tfb-board-bg);
+  padding: 0.5rem;                                        /* p-2 */
+  box-shadow: var(--tfb-board-shadow);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;                   /* Aceternity's <body class="antialiased"> */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tfb--dark,
+.dark .tfb {
+  --tfb-board-bg: oklch(20.5% 0 0);                       /* dark:bg-neutral-900 */
+  --tfb-board-shadow: 0 20px 70px -15px rgba(0,0,0,0.6);
+  --tfb-cell-border: #000;
+  --tfb-hinge: #000;
+  --tfb-half-bg: oklch(20.5% 0 0);
+  --tfb-flap-bg: oklch(26.9% 0 0);                        /* dark:bg-neutral-800 */
+  --tfb-text: #fff;
+  --tfb-shimmer: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 60%);
+  --tfb-shade-top: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+  --tfb-shade-bot: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.6));
+  --tfb-split: color-mix(in oklab, #000 50%, transparent);
+  --tfb-stripe: #000;
+  --tfb-stripe-opacity: 1;
+}
+
+.tfb *, .tfb *::before, .tfb *::after { box-sizing: border-box; }
+
+.tfb-grid {
+  display: grid;
+  grid-template-columns: repeat(22, 1fr);
+  gap: 1px;                                               /* gap-px */
+}
+
+/* ── one split-flap cell ─────────────────────────────── */
+.tfb-cell {
+  display: flex;
+  aspect-ratio: 3 / 6;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid var(--tfb-cell-border);
+}
+.tfb-color {                                              /* ColorCell ({R} {O} ...) */
+  aspect-ratio: 3 / 5;
+  border-radius: 3px;
+  border: 2px solid var(--tfb-cell-border);
+}
+
+.tfb-flaps {                                              /* relative flex-1 perspective-dramatic transform-3d */
+  position: relative;
+  flex: 1 1 0%;
+  perspective: 100px;
+  transform-style: preserve-3d;
+}
+
+.tfb-hinge {                                              /* absolute inset-0 z-40 hidden md:flex */
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.tfb-hinge-l { height: 50%; width: 1px; border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem; background: var(--tfb-hinge); }
+.tfb-hinge-m { display: flex; height: 1px; flex: 1 1 0%; background: var(--tfb-hinge); }
+.tfb-hinge-r { height: 50%; width: 1px; border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem; background: var(--tfb-hinge); }
+
+.tfb-half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: calc(50% - 0.5px);
+  overflow: hidden;
+  background-color: var(--tfb-half-bg);
+}
+.tfb-top { top: 0; border-radius: 3px 3px 0 0; }
+.tfb-bot { bottom: 0; border-radius: 0 0 3px 3px; }
+
+.tfb-ch {                                                 /* absolute inset-x-0 flex select-none items-center justify-center font-mono font-bold tracking-wide */
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  font-size: clamp(6px, 2vw, 22px);
+  line-height: 1;
+  color: var(--tfb-text);
+}
+.tfb-top > .tfb-ch, .tfb-flap-top > .tfb-ch { top: 0; }
+.tfb-bot > .tfb-ch, .tfb-flap-bot > .tfb-ch { bottom: 0; }
+
+.tfb-fx { pointer-events: none; position: absolute; inset: 0; }
+
+/* static bottom shimmer: opacity .5 -> 0 over flip*1.3, ease-out */
+.tfb-shimmer { background-image: var(--tfb-shimmer); opacity: 0; animation: tfb-shimmer calc(var(--tfb-flip) * 1.3) ease-out both; }
+
+/* old char top half drops: rotateX 0 -> -100deg */
+.tfb-flap-top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: calc(50% - 0.5px);
+  transform-origin: bottom;
+  overflow: hidden;
+  border-radius: 3px 3px 0 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  background-color: var(--tfb-flap-bg);
+  animation: tfb-fall var(--tfb-flip) cubic-bezier(0.55, 0.055, 0.675, 0.19) both;
+}
+.tfb-flap-top > .tfb-fx { background-image: var(--tfb-shade-top); animation: tfb-shade-in var(--tfb-flip) ease-out both; }
+
+/* new char bottom half rises: rotateX 90 -> 0, overshoot ease, starts at flip*0.5 */
+.tfb-flap-bot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  height: calc(50% - 0.5px);
+  transform-origin: top;
+  overflow: hidden;
+  border-radius: 0 0 3px 3px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  background-color: var(--tfb-half-bg);
+  animation: tfb-rise calc(var(--tfb-flip) * 0.85) cubic-bezier(0.33, 1.55, 0.64, 1) calc(var(--tfb-flip) * 0.5) both;
+}
+.tfb-flap-bot > .tfb-fx { background-image: var(--tfb-shade-bot); animation: tfb-shade-out calc(var(--tfb-flip) * 0.85) ease-out calc(var(--tfb-flip) * 0.5) both; }
+
+.tfb-split {                                              /* pointer-events-none absolute inset-x-0 top-1/2 z-20 h-px -translate-y-[0.5px] */
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 20;
+  height: 1px;
+  transform: translateY(-0.5px);
+  background: var(--tfb-split);
+}
+
+.tfb-stripes {                                            /* decorative strip under the flaps */
+  height: 0.5rem;
+  width: 100%;
+  color: var(--tfb-stripe);
+  opacity: var(--tfb-stripe-opacity);
+  background-image: repeating-linear-gradient(to bottom, currentColor 0, currentColor 1px, transparent 1px, transparent 0.15rem);
+  -webkit-mask-image: linear-gradient(to top, #000 50%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 50%, transparent 100%);
+}
+
+@keyframes tfb-fall      { from { transform: rotateX(0deg); }  to { transform: rotateX(-100deg); } }
+@keyframes tfb-rise      { from { transform: rotateX(90deg); } to { transform: rotateX(0deg); } }
+@keyframes tfb-shimmer   { from { opacity: 0.5; } to { opacity: 0; } }
+@keyframes tfb-shade-in  { from { opacity: 0; }   to { opacity: 0.6; } }
+@keyframes tfb-shade-out { from { opacity: 0.4; } to { opacity: 0; } }
+
+/* md: (min-width 48rem) */
+@media (min-width: 48rem) {
+  .tfb { border-radius: 1rem; padding: 1rem; }            /* md:rounded-2xl md:p-4 */
+  .tfb-grid { gap: 3px; }
+  .tfb-cell { border-radius: 3px; border-width: 2px; }
+  .tfb-hinge { display: flex; }
+  .tfb-stripes {
+    height: 1rem;
+    background-image: repeating-linear-gradient(to bottom, currentColor 0, currentColor 1px, transparent 1px, transparent 0.2rem);
+  }
+}

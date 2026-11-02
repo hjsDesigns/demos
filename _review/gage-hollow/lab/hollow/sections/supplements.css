@@ -1,0 +1,362 @@
+/* Gage hollow site · the Supplements piece: his sponsors' products as 3D models, floating like Fizzi's cans
+   (sections/supplements.js). 2026-10-31.
+   The piece fills whatever box it's given and sizes everything from that box (a CSS size container): --su is 1/40 of a
+   tall box's width (the opened Supplements card is about 40 x 70 su), or 1/150 of a wide one's. Stack, back to front:
+   the light pools, the canvas (all three products), the boxes that take the pointer (a brand photo shows in each until its
+   model is ready, and stays without WebGL). Tokens fall back to the hollow site's own. */
+
+.sp {
+  --sp-ink: var(--ink, #e6edf6);
+  --sp-muted: var(--muted, #9aabc2);
+  --sp-blue: var(--brand, #0687ff);
+  --sp-blue-t: var(--brand-text, #5cb2ff);
+  --sp-line: var(--line, rgba(92, 178, 255, 0.24));
+  --sp-display: var(--display, 'Chakra Petch', 'Arial Narrow', sans-serif);
+  --sp-body: var(--body, 'Figtree', 'Helvetica Neue', Arial, sans-serif);
+  --sp-glow: rgba(6, 135, 255, 0.36);
+  container: sp / size;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  overflow: hidden;
+  border-radius: inherit;
+  color: var(--sp-ink);
+  font-family: var(--sp-body);
+  text-align: left;
+  pointer-events: auto;
+  background:
+    radial-gradient(90% 55% at 50% 38%, rgba(26, 64, 120, 0.42) 0%, rgba(11, 20, 36, 0) 70%),
+    linear-gradient(180deg, #0d1828 0%, #0a1220 55%, #070b12 100%);
+}
+.sp *,
+.sp *::before,
+.sp *::after {
+  box-sizing: border-box;
+}
+
+/* ---- the frame: tall (the card) = heading / stage / list / disclosure, one above the other */
+.sp-inner {
+  --su: min(2.5cqw, 1.4286cqh);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  grid-template-areas: 'head' 'stage' 'list' 'foot';
+  row-gap: calc(var(--su) * 1);
+  padding: calc(var(--su) * 2.2) calc(var(--su) * 2.2) calc(var(--su) * 1.5);
+}
+
+/* ---- heading: the sponsorship, said plainly */
+.sp-head {
+  grid-area: head;
+  position: relative;
+  z-index: 6;
+}
+.sp-k {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0 0 calc(var(--su) * 0.6);
+  font: 600 max(10px, calc(var(--su) * 1.05)) / 1.2 var(--sp-display);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sp-blue-t);
+}
+.sp-k-dot {
+  opacity: 0.55;
+}
+.sp-title {
+  margin: 0;
+  font: 600 max(18px, calc(var(--su) * 2.4)) / 1.04 var(--sp-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sp-ink);
+  text-wrap: balance;
+  text-shadow: 0 0 calc(var(--su) * 1.6) rgba(7, 11, 18, 0.95);
+}
+.sp-hint {
+  margin: calc(var(--su) * 0.55) 0 0;
+  font: 600 max(10px, calc(var(--su) * 0.95)) / 1.2 var(--sp-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sp-blue-t);
+  opacity: 0.8;
+}
+
+/* ---- the stage: the products float here; the canvas covers it, each box sits where its product floats */
+.sp-stage {
+  grid-area: stage;
+  position: relative;
+  min-height: 0;
+  margin: 0 calc(var(--su) * -1);
+  container: sp-stage / size; /* the boxes below size and place themselves from the stage */
+}
+.sp-stage > .float-viewer__canvas {
+  z-index: 1;
+}
+/* each product's square box: its centre (--*-cx, % of the stage's width; --*-cy, % of its height) and size (--*-s, % of
+   the stage's height), set per product by supplements.js; cq units here are the stage's (the nearest container) */
+.sp-slot,
+.sp-pool,
+.sp-still {
+  position: absolute;
+  width: calc(var(--tall-s) * 1cqh);
+  height: calc(var(--tall-s) * 1cqh);
+  left: calc(var(--tall-cx) * 1cqw - var(--tall-s) * 0.5cqh);
+  top: calc(var(--tall-cy) * 1cqh - var(--tall-s) * 0.5cqh);
+}
+/* the box that takes the pointer: trimmed to its product (clip-path trims hit-testing, not the canvas), so where boxes
+   overlap the pointer still finds the product behind */
+.sp-slot {
+  pointer-events: auto;
+  outline: none;
+  clip-path: var(--hit, none);
+  -webkit-tap-highlight-color: transparent;
+}
+/* the blue light under each one: a soft pool at its foot (--py: how far below the box's centre, share of the box) */
+.sp-pool {
+  z-index: 0;
+  pointer-events: none;
+}
+.sp-pool::before {
+  content: '';
+  position: absolute;
+  left: 24%;
+  right: 24%;
+  top: calc(50% + var(--py, 0.3) * 100%);
+  height: 11%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--sp-glow), rgba(6, 135, 255, 0.08) 62%, transparent);
+  opacity: 0.7;
+  transform: translateY(-50%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.sp-pool.is-active::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+}
+/* the brand's own photo, under the canvas, until the model is ready (or for good, without WebGL) */
+.sp-still {
+  z-index: 0;
+  object-fit: contain;
+  transform: scale(var(--still, 0.7)); /* the size its model rests at (supplements.js: still) */
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.6s ease;
+}
+.sp-still[data-ready] {
+  opacity: 0;
+}
+
+/* ---- the list: each product's brand, name, one line and official page */
+.sp-list {
+  grid-area: list;
+  position: relative;
+  z-index: 6;
+  display: grid;
+  row-gap: calc(var(--su) * 0.55);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sp-row {
+  position: relative;
+  padding: calc(var(--su) * 0.55) calc(var(--su) * 0.6) calc(var(--su) * 0.6) calc(var(--su) * 1.3);
+  border-left: 2px solid var(--sp-line);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.sp-row.is-active {
+  border-left-color: var(--sp-blue-t);
+  background: linear-gradient(90deg, rgba(6, 135, 255, 0.13), rgba(6, 135, 255, 0) 75%);
+}
+.sp-brand {
+  margin: 0;
+  font: 600 max(10px, calc(var(--su) * 0.95)) / 1.2 var(--sp-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sp-blue-t);
+}
+.sp-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(var(--su) * 1);
+  margin-top: calc(var(--su) * 0.15);
+}
+.sp-name {
+  margin: 0;
+  font: 600 max(15px, calc(var(--su) * 1.85)) / 1.05 var(--sp-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sp-ink);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.sp-row.is-active .sp-name {
+  color: #ffffff;
+  text-shadow: 0 0 calc(var(--su) * 1.1) rgba(92, 178, 255, 0.55);
+}
+.sp-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3em;
+  font: 600 max(11px, calc(var(--su) * 1.15)) / 1.25 var(--sp-body);
+  color: var(--sp-blue-t);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(92, 178, 255, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.sp-link:hover,
+.sp-link:focus-visible {
+  color: #ffffff;
+  border-color: var(--sp-blue-t);
+  outline: none;
+}
+.sp-arrow {
+  font-size: 0.9em;
+}
+.sp-what {
+  margin: calc(var(--su) * 0.3) 0 0;
+  font: 500 max(11px, calc(var(--su) * 1.2)) / 1.35 var(--sp-body);
+  color: var(--sp-muted);
+  text-wrap: pretty;
+}
+.sp-code {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45em;
+  width: fit-content;
+  margin: calc(var(--su) * 0.45) 0 0;
+  padding: 0.35em 0.7em;
+  border: 1px solid rgba(92, 178, 255, 0.45);
+  border-radius: calc(var(--su) * 0.45);
+  font: 500 max(11px, calc(var(--su) * 1.1)) / 1 var(--sp-body);
+  color: var(--sp-muted);
+  white-space: nowrap;
+}
+.sp-code[hidden] {
+  display: none;
+}
+.sp-code b {
+  font: 600 1.06em / 1 var(--sp-display);
+  letter-spacing: 0.08em;
+  color: var(--sp-ink);
+}
+.sp-code-k {
+  font: 600 0.85em / 1 var(--sp-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sp-blue-t);
+}
+
+/* ---- the disclosure */
+.sp-foot {
+  grid-area: foot;
+  position: relative;
+  z-index: 6;
+  margin: 0;
+  font: 500 max(10.5px, calc(var(--su) * 1.05)) / 1.35 var(--sp-body);
+  letter-spacing: 0.01em;
+  color: rgba(154, 171, 194, 0.88);
+}
+
+/* ---- wide boxes (a wide card, a phone held sideways, a whole section): the stage left, the words right */
+@container sp (min-aspect-ratio: 1 / 1) {
+  .sp-inner {
+    --su: min(0.6667cqw, 1.3889cqh);
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-areas: 'stage head' 'stage list' 'stage foot';
+    column-gap: calc(var(--su) * 4);
+    row-gap: calc(var(--su) * 1.6);
+    padding: calc(var(--su) * 3) calc(var(--su) * 3.2) calc(var(--su) * 2.4);
+  }
+  .sp-stage {
+    margin: 0;
+  }
+  .sp-slot,
+  .sp-pool,
+  .sp-still {
+    width: calc(var(--wide-s) * 1cqh);
+    height: calc(var(--wide-s) * 1cqh);
+    left: calc(var(--wide-cx) * 1cqw - var(--wide-s) * 0.5cqh);
+    top: calc(var(--wide-cy) * 1cqh - var(--wide-s) * 0.5cqh);
+  }
+  .sp-list {
+    align-content: center;
+    row-gap: calc(var(--su) * 1.4);
+  }
+  .sp-title {
+    font-size: max(18px, calc(var(--su) * 4.4));
+  }
+  .sp-k,
+  .sp-brand,
+  .sp-hint {
+    font-size: max(10px, calc(var(--su) * 1.35));
+  }
+  .sp-name {
+    font-size: max(15px, calc(var(--su) * 2.8));
+  }
+  .sp-what,
+  .sp-link {
+    font-size: max(11px, calc(var(--su) * 1.7));
+  }
+  .sp-foot {
+    font-size: max(10.5px, calc(var(--su) * 1.35));
+  }
+}
+
+/* ---- the entrance: the words come up after the products (reveal() adds .is-in) */
+.sp-hint,
+.sp-row,
+.sp-foot {
+  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+}
+.sp.is-in .sp-hint,
+.sp.is-in .sp-row,
+.sp.is-in .sp-foot {
+  animation: sp-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.sp.is-in .sp-row:nth-child(1) {
+  animation-delay: 0.25s;
+}
+.sp.is-in .sp-row:nth-child(2) {
+  animation-delay: 0.37s;
+}
+.sp.is-in .sp-row:nth-child(3) {
+  animation-delay: 0.49s;
+}
+.sp.is-in .sp-foot {
+  animation-delay: 0.6s;
+}
+@keyframes sp-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.9em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-still,
+  .sp-pool::before,
+  .sp-row,
+  .sp-name,
+  .sp-link,
+  .sp-hint,
+  .sp-foot {
+    transition: none;
+  }
+  .sp.is-in .sp-hint,
+  .sp.is-in .sp-row,
+  .sp.is-in .sp-foot {
+    animation: none;
+  }
+}

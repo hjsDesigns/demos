@@ -1,0 +1,290 @@
+/* Gage hollow site · the products he's sponsored by (sections/products.js). 2026-10-30.
+   The shared type (.gs, .gs-k, .gs-h, .gs-p) is sections.css's. Every size is calc(var(--u) * n); inside the section --u is
+   --pu (the page's --u on screens, smaller on phones). The 3D products are drawn by one canvas over .pr-row (the Float
+   Viewer); each .pr-stage is the box one product floats in, and the thing you hover and drag. */
+
+.gs-products {
+  --pu: var(--u);
+  --pr-glow: rgba(6, 135, 255, 0.34);
+  display: flex;
+  flex-direction: column;
+}
+.pr-inner {
+  --u: var(--pu);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: calc(var(--u) * 3) calc(var(--u) * 2) calc(var(--u) * 1.6);
+}
+
+/* ---- heading: the disclosure as the title, his line beside it ---- */
+.pr-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(var(--u) * 6);
+}
+.pr-title {
+  flex: 0 1 auto;
+  max-width: calc(var(--u) * 72); /* the heading balances onto two lines: BRANDS I'M / SPONSORED BY */
+}
+.pr-side {
+  flex: 0 1 calc(var(--u) * 56);
+  padding-bottom: calc(var(--u) * 0.4);
+}
+.pr-lede {
+  margin: 0;
+  font-size: calc(var(--u) * 2.15);
+}
+.pr-hint {
+  margin: calc(var(--u) * 1.1) 0 0;
+  font: 600 calc(var(--u) * 1.35) / 1.2 var(--gs-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+  opacity: 0.85;
+}
+
+/* ---- the row: three bays, the canvas over all of them ---- */
+.pr-row {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--u) * 4);
+  margin-top: calc(var(--u) * 2.4);
+}
+.pr-row > .float-viewer__canvas {
+  z-index: 1;
+}
+.pr-bay {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.pr-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: calc(var(--u) * 24);
+  pointer-events: auto;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* the blue light it floats in: a soft pool under it, brighter while it's yours */
+.pr-stage::before {
+  content: '';
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 2%;
+  height: 12%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--pr-glow), rgba(6, 135, 255, 0.08) 60%, transparent);
+  opacity: 0.75;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.pr-bay.is-active .pr-stage::before {
+  opacity: 1;
+}
+.pr-stage:focus-visible {
+  outline: 2px solid var(--gs-blue-t);
+  outline-offset: calc(var(--u) * 0.6);
+}
+/* the brand's own picture until the 3D card is ready (or for good, without WebGL) */
+.pr-still {
+  position: absolute;
+  left: 14%;
+  top: 10%;
+  width: 72%;
+  height: 78%;
+  object-fit: contain;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.pr-bay[data-ready] .pr-still {
+  opacity: 0;
+}
+
+/* ---- each caption: brand, name, what it is, the link (and the code, when codes are on) ---- */
+.pr-cap {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  padding-top: calc(var(--u) * 1.2);
+  text-align: center;
+}
+.pr-brand {
+  margin: 0;
+  font: 600 calc(var(--u) * 1.35) / 1.2 var(--gs-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+.pr-name {
+  margin: calc(var(--u) * 0.5) 0 0;
+  font: 600 calc(var(--u) * 2.8) / 1.05 var(--gs-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gs-ink);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.pr-bay.is-active .pr-name {
+  color: #ffffff;
+  text-shadow: 0 0 calc(var(--u) * 1.2) rgba(92, 178, 255, 0.55);
+}
+.pr-what {
+  margin: calc(var(--u) * 0.6) 0 0;
+  font: 500 calc(var(--u) * 1.75) / 1.35 var(--gs-body);
+  color: var(--gs-muted);
+  text-wrap: balance;
+}
+.pr-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--u) * 0.6) calc(var(--u) * 1.2);
+  margin: calc(var(--u) * 1) 0 0;
+}
+.pr-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: calc(var(--u) * 0.4);
+  font: 600 calc(var(--u) * 1.6) / 1.3 var(--gs-body);
+  color: var(--gs-blue-t);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(92, 178, 255, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.pr-link:hover,
+.pr-link:focus-visible {
+  color: #ffffff;
+  border-color: var(--gs-blue-t);
+  outline: none;
+}
+.pr-arrow {
+  font-size: 0.9em;
+}
+.pr-code {
+  display: inline-flex;
+  align-items: baseline;
+  gap: calc(var(--u) * 0.5);
+  padding: calc(var(--u) * 0.45) calc(var(--u) * 0.9);
+  border: 1px solid rgba(92, 178, 255, 0.45);
+  border-radius: calc(var(--u) * 0.5);
+  font: 500 calc(var(--u) * 1.4) / 1 var(--gs-body);
+  color: var(--gs-muted);
+  white-space: nowrap;
+}
+.pr-code[hidden] {
+  display: none;
+}
+.pr-code b {
+  font: 600 calc(var(--u) * 1.5) / 1 var(--gs-display);
+  letter-spacing: 0.08em;
+  color: var(--gs-ink);
+}
+.pr-code-k {
+  font: 600 calc(var(--u) * 1.15) / 1 var(--gs-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+
+/* ---- the disclosure ---- */
+.pr-foot {
+  margin: calc(var(--u) * 1.6) 0 0;
+  font: 500 calc(var(--u) * 1.4) / 1.35 var(--gs-body);
+  letter-spacing: 0.02em;
+  color: rgba(154, 171, 194, 0.8);
+  text-align: center;
+}
+
+/* phones (the tunnel's narrow room, width/height <= 0.95: the box is min(94vh, 96vw) wide and 72vh tall): the three stack
+   as rows, the product on the left of its caption, and the unit shrinks until 66 of them span the box */
+@media (max-aspect-ratio: 19/20) {
+  .gs-products {
+    --pu: min(var(--u), calc(min(94vh, 96vw) / 66));
+    width: 100%;
+  }
+  .pr-inner {
+    padding: calc(var(--u) * 2) calc(var(--u) * 2.4) calc(var(--u) * 1.4);
+  }
+  .pr-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(var(--u) * 1.4);
+  }
+  .pr-head .gs-h {
+    font-size: calc(var(--u) * 5);
+  }
+  .pr-title,
+  .pr-side {
+    flex: none;
+    max-width: none;
+  }
+  .pr-lede {
+    font-size: calc(var(--u) * 2.2);
+  }
+  .pr-hint {
+    font-size: calc(var(--u) * 1.6);
+  }
+  .pr-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: minmax(0, 1fr);
+    gap: calc(var(--u) * 1.6);
+    margin-top: calc(var(--u) * 2);
+  }
+  .pr-bay {
+    flex-direction: row;
+    align-items: center;
+    gap: calc(var(--u) * 2.4);
+  }
+  .pr-stage {
+    flex: 0 0 42%;
+    align-self: stretch;
+    min-height: 0;
+  }
+  .pr-cap {
+    flex: 1 1 auto;
+    padding-top: 0;
+    text-align: left;
+  }
+  .pr-brand {
+    font-size: calc(var(--u) * 1.7);
+  }
+  .pr-name {
+    font-size: calc(var(--u) * 3.2);
+  }
+  .pr-what {
+    font-size: calc(var(--u) * 2.2);
+  }
+  .pr-links {
+    justify-content: flex-start;
+  }
+  .pr-link {
+    font-size: calc(var(--u) * 2.1);
+  }
+  .pr-code {
+    font-size: calc(var(--u) * 1.8);
+  }
+  .pr-code b {
+    font-size: calc(var(--u) * 1.9);
+  }
+  .pr-foot {
+    font-size: calc(var(--u) * 1.8);
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pr-still,
+  .pr-stage::before,
+  .pr-name,
+  .pr-link {
+    transition: none;
+  }
+}
