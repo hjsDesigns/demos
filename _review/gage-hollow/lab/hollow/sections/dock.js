@@ -37,16 +37,18 @@ let cssLink = null;
 function linkCss() {
   if (cssLink) return;
   cssLink = document.createElement('link'); cssLink.rel = 'stylesheet';
-  cssLink.href = new URL('./dock.css?v=20261101c', import.meta.url).href;
+  cssLink.href = new URL('./dock.css?v=20261101d', import.meta.url).href;
   document.head.appendChild(cssLink);
 }
 
 // Motion's spring, solved per frame (the Dock's useSpring: mass 0.1, stiffness 150, damping 12)
-function spring(value, target, state, s, dt) {
+function spring(value, target, state, s, dt, lo, hi) {   // semi-implicit Euler in 1/480 s sub-steps: stable at any frame rate
   const k = s.stiffness, c = s.damping, m = s.mass;
-  const a = (-k * (value - target) - c * state.v) / m;
-  state.v += a * dt;
-  return value + state.v * dt;
+  const n = Math.max(1, Math.ceil(dt / (1 / 480))), h = dt / n;
+  let x = value;
+  for (let i = 0; i < n; i++) { state.v += ((-k * (x - target) - c * state.v) / m) * h; x += state.v * h; }
+  if (x < lo) { x = lo; state.v = 0; } else if (x > hi) { x = hi; state.v = 0; }   // never past the two sizes
+  return x;
 }
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 
@@ -73,7 +75,7 @@ export function mountDock(host, opts = {}) {
     const ic = el('span', 'gdock-icon'); ic.appendChild(svgIcon(it.icon));
     const lab = el('span', 'gdock-label', it.label);
     b.append(ic, lab);
-    b.addEventListener('click', () => { setActive(i, { burst: true }); o.onPick && o.onPick(i); });
+    b.addEventListener('click', () => { setActive(i, { burst: true }); o.onPick && o.onPick(i); }, { passive: true });
     panel.appendChild(b);
     return { el: b, size: o.baseItemSize, state: { v: 0 }, target: o.baseItemSize };
   });
@@ -94,7 +96,7 @@ export function mountDock(host, opts = {}) {
         const t = clamp(Math.abs(d) / o.distance, 0, 1);
         target = o.baseItemSize + (o.magnification - o.baseItemSize) * (1 - t);
       }
-      const next = reduce ? target : spring(it.size, target, it.state, o.spring, dt);
+      const next = reduce ? target : spring(it.size, target, it.state, o.spring, dt, Math.min(o.baseItemSize, o.magnification), Math.max(o.baseItemSize, o.magnification));
       if (Math.abs(next - it.size) > 0.05 || Math.abs(it.state.v) > 0.5) moving = true;
       it.size = next;
       it.el.style.width = it.el.style.height = it.size.toFixed(2) + 'px';

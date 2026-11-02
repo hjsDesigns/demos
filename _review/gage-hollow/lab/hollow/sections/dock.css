@@ -2,10 +2,11 @@
    phone in one row. The pill and the goo use the room's blues. */
 .gdock{position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translate(-50%,18px);opacity:0;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1);z-index:6;pointer-events:none;
  --color-1:#5CB2FF;--color-2:#0687FF;--color-3:#cfe6ff;--color-4:#ffffff;--gd-base:44px;--gd-mag:64px}
-.gdock.is-in{opacity:1;transform:translate(-50%,0)}
+body.entered .gdock.is-in{opacity:1;transform:translate(-50%,0)}
+body:not(.entered) .gdock{visibility:hidden}   /* not on the hero: it rises in when you enter */
 .gdock-panel{position:relative;display:flex;align-items:flex-end;gap:10px;width:fit-content;padding:0 8px 8px;border-radius:16px;pointer-events:auto;
- background:rgba(6,10,18,.82);border:1px solid rgba(92,178,255,.3);box-shadow:0 10px 30px -12px rgba(6,135,255,.45),0 2px 8px -4px rgba(0,0,0,.7);
- -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+ background:rgba(6,10,18,.94);border:1px solid rgba(92,178,255,.3);box-shadow:0 10px 30px -12px rgba(6,135,255,.45),0 2px 8px -4px rgba(0,0,0,.7);
+}
 .gdock-item{position:relative;display:inline-flex;align-items:center;justify-content:center;width:var(--gd-base);height:var(--gd-base);margin:0;padding:0;
  border-radius:10px;background:rgba(7,11,18,.9);border:1px solid rgba(92,178,255,.22);box-shadow:0 0 0 1px rgba(0,0,0,.5);color:#9AABC2;cursor:pointer;outline:none;
  transition:color .25s}
@@ -26,7 +27,7 @@
 .gdock-pill::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#5CB2FF,#0687FF);transform:scale(0);opacity:0;border-radius:10px}
 .gdock-pill.active::after{animation:gdock-pill .3s ease both}
 @keyframes gdock-pill{to{transform:scale(1);opacity:1}}
-.gdock-filter{filter:blur(7px) contrast(100) blur(0);mix-blend-mode:lighten;z-index:0}
+.gdock-filter{filter:blur(7px) contrast(100) blur(0);z-index:0}   /* no blend: the pill covers the field exactly, and a blend layer over a live WebGL canvas is what stutters */
 .gdock-filter::before{content:"";position:absolute;inset:0;border-radius:10px;z-index:-2;background:black}   /* the original reaches -75px; inside a fixed dock that reads as a black box, so the field stays on the pill */
 .gdock-filter::after{content:"";position:absolute;inset:0;background:#5CB2FF;transform:scale(0);opacity:0;z-index:-1;border-radius:9999px}
 .gdock-filter.active::after{animation:gdock-pill .3s ease both}

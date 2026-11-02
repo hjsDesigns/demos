@@ -468,7 +468,7 @@ import { createAccordionFlip } from '../../js/vendor/accordion-flip.js?v=2026102
 import { createDecryptedText } from '../../js/vendor/decrypted-text.js?v=20261031a';
 import { createScrollIndex } from '../../js/vendor/scroll-index.js?v=20261030c';
 import { mountIsland } from './sections/island.js?v=20261101a';
-import { mountDock } from './sections/dock.js?v=20261101c';
+import { mountDock } from './sections/dock.js?v=20261101d';
 import { createElectricBorder } from '../../js/vendor/electric-border.js?v=20261030h';
 import { attachCardBorders } from './sections/card-borders.js?v=20261030h';
 
@@ -1332,10 +1332,13 @@ const DOCK_ICONS = ['goal', 'coach', 'results', 'story', 'method', 'plans', 'app
 dock = mountDock(document.body, {
   items: TRACK.map((t, i) => ({ label: t[0], icon: DOCK_ICONS[i] })),
   onPick: i => {
+    const wait = entered ? 0 : 1900;   // from the gate: enter first, fly once the open has landed
     if (!entered) enter();
-    dockAt = i; dockGoal = i; dockGoalUntil = performance.now() + 2600;
-    const y = st.start + pAt(trackZ(TRACK[i])) * (st.end - st.start);
-    lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    dockAt = i; dockGoal = i; dockGoalUntil = performance.now() + 2600 + wait;
+    setTimeout(() => {
+      const y = st.start + pAt(trackZ(TRACK[i])) * (st.end - st.start);
+      lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    }, wait);
   }
 });
 dock.setActive(0, { burst: false }); dockAt = 0;   // the goal is lit while you stand at the gate
