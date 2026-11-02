@@ -574,7 +574,7 @@ const flight = { z: START_DEPTH };   // where his logo is: it starts right in fr
 // his mark, alive: React Bits Electric Logo over his real logo file
 let logoReady = false;
 const logo = createElectricLogo($('#logoBox'), {
-  onReady: () => { logoReady = true; }, dprCap: EMBED ? 1 : 1.5, pulseSpeed: 2.4,   // Hayden 10/29: speed up the wave that hits the logo
+  onReady: () => { logoReady = true; }, dprCap: EMBED ? 1 : (narrow ? 1.25 : 1.5), pulseSpeed: 2.4,   // [phone] 1.25x: twelve WebGL canvases on an iPhone is where it reloads itself   // Hayden 10/29: speed up the wave that hits the logo
   src: '../../images/logo.png', color: '#dcefff', glowColor: '#0687FF', scale: 0.5, intensity: 1, glow: 1,
   thickness: 1.5, strands: 4, bend: 0.6, crackle: 1.5, arcs: 1, flicker: 0.6, fill: 0, speed: 2.5
 });
@@ -1002,7 +1002,7 @@ if (supBack) {
   holder.className = 'af-sup';
   holder.style.cssText = 'position:absolute;inset:0';
   supBack.querySelector('.af-back').replaceWith(holder);
-  import('./sections/supplements.js?v=20261031a').then(m => { supMod = m; sup = m.mountSupplements(holder, { showCodes: false }); })
+  import('./sections/supplements.js?v=20261101a').then(m => { supMod = m; sup = m.mountSupplements(holder, { showCodes: false }); })
     .catch(err => console.warn('supplements', err));
 }
 // [phone] the method by touch: a finger that lands on a piece to scroll past doesn't open it; a tap opens the piece and turns it
@@ -1046,7 +1046,7 @@ const PEOPLE = [
 const resultsObj = objs.find(o => o.el.id === 'results');
 const results = {
   live: true, started: false, cc: null, fx: [], ov: [], hover: -1, dwell: 0, showing: -1, token: 0, split: null, tw: null,
-  tapped: false, flying: false, deck: [], root: null, coolUntil: 0, intent: 0, pending: -1,
+  tapped: false, flying: false, deck: [], root: null, coolUntil: 0, intent: 0, pending: -1, settling: null,
   src: (p, k) => `../../images/results/${p.img}-${k}.jpg?v=20261030`,   // the two lined photos were trimmed 10/30
   async start() {
     this.started = true;
@@ -1067,7 +1067,10 @@ const results = {
     const ring = $('#rsRing');
     ring.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') this.aim(e.clientX, e.clientY); });
     ring.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') this.release(); });
-    if (narrow) ring.addEventListener('pointerdown', e => { this.down = { x: e.clientX, y: e.clientY }; });   // [phone] where a touch started
+    ring.addEventListener('pointerdown', e => { this.down = { x: e.clientX, y: e.clientY }; clearInterval(this.settling); this.settling = null; });   // where a touch or press started
+    ring.addEventListener('pointerup', e => {   // Hayden 11/1: "whenever they stop the wheel, that person should automatically do the whole transition thing"
+      if (this.down && Math.hypot(e.clientX - this.down.x, e.clientY - this.down.y) > 12) this.settleThenPick();
+    });
     ring.addEventListener('pointerup', e => {   // touch has no hover: tap someone to bring them in and see their change, tap them again to put it back
       if (e.pointerType === 'mouse') return;
       if (narrow && this.down && Math.hypot(e.clientX - this.down.x, e.clientY - this.down.y) > 12) return;   // [phone] a swipe that spun the ring isn't a tap
@@ -1146,6 +1149,21 @@ const results = {
       return;
     }
     this.pick(i);
+  },
+  settleThenPick() {   // after a spin: the wheel is held so it comes to rest on whoever is nearest the front, then they play at once
+    if (!this.cc || this.flying) return;
+    this.cc.hold(true);
+    clearInterval(this.settling);
+    let last = null, same = 0;
+    this.settling = setInterval(() => {
+      const ring = $('#rsRing .circular-carousel__ring'), m = ring && /rotateY\((-?[\d.]+)deg\)/.exec(ring.style.transform || '');
+      const a = m ? +m[1] : 0;
+      if (a === last) same++; else { same = 0; last = a; }
+      if (same < 2) return;
+      clearInterval(this.settling); this.settling = null;
+      const i = this.cc.active;
+      if (i >= 0 && i !== this.hover && !this.flying) { this.tapped = true; this.coolUntil = 0; this.pick(i); this.tapped = false; }
+    }, 120);
   },
   pick(i) {
     clearTimeout(this.intent); this.pending = -1;
@@ -1267,7 +1285,7 @@ const LATE = [
   { id: 'book', z: 10.55, file: 'book.js', mount: 'mountBook' },
   { id: 'stands', z: 11.95, file: 'stands.js', mount: 'mountStands' },   // the sponsor stands, behind Book (11/1)
 ].map(L => ({ ...L, obj: objs.find(o => o.el.id === L.id), api: null, started: false, on: null, played: false, plan: null }));
-const LATE_V = '20261101p';
+const LATE_V = '20261101q';
 const lateY = L => st.start + pAt(L.z - 0.25 - back(L.id)) * (st.end - st.start);   // each section's stop
 function lateTick(cz) {
   for (const L of LATE) {

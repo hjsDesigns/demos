@@ -99,7 +99,8 @@ function setOpacity(object, a) {
 export function mountStands(host, opts = {}) {
   ensureCss();
   linkCss();
-  const o = { brands: BRANDS, dprCap: 1.5, swapMs: SWAP_MS, autoplay: true, ...opts };
+  const PHONE_Q = window.matchMedia ? window.matchMedia('(max-aspect-ratio: 19/20)').matches : false;
+  const o = { brands: BRANDS, dprCap: PHONE_Q ? 1.25 : 1.5, swapMs: SWAP_MS, autoplay: true, ...opts };   // [phone] 1.25x (11/1: memory)
   const still = reduce();
 
   const root = el('section', 'gs gs-stands');

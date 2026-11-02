@@ -154,7 +154,7 @@ export function preloadSupplements(products = SUPPLEMENTS) {
 
 export function mountSupplements(host, opts = {}) {
   const o = {
-    showCodes: false, onLink: null, lazy: true, autoplay: false, spin: 'turn', copy: null, products: SUPPLEMENTS, dprCap: 1.5,
+    showCodes: false, onLink: null, lazy: true, autoplay: false, spin: 'turn', copy: null, products: SUPPLEMENTS, dprCap: (window.matchMedia && window.matchMedia('(max-aspect-ratio: 19/20)').matches) ? 1.25 : 1.5,
     isolate: true, ...opts
   };
   const copy = { ...COPY, ...(o.copy || {}) };

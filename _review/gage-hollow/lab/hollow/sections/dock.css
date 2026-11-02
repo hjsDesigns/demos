@@ -25,7 +25,9 @@ body:not(.entered) .gdock{visibility:hidden}   /* not on the hero */
 .gdock-pill.active{opacity:1}
 /* nine must fit a phone in one row: 9 × 34 + 8 × 6 + 16 = 370 < 390 */
 @media (max-aspect-ratio: 19/20){
- .gdock{--gd-base:34px;bottom:max(8px,env(safe-area-inset-bottom))}
+ /* nine items sized from the screen: (width − 24 margin − 16 padding − 8 gaps × 6) / 9, between 28 and 34 px → 32 px on a 375 phone,
+    33.5 on 390, 34 from 413 up; the panel never meets the screen edge */
+ .gdock{--gd-base:clamp(28px,calc((100vw - 88px) / 9),34px);bottom:max(8px,env(safe-area-inset-bottom))}
  .gdock-panel{gap:6px;padding:0 8px 6px;border-radius:12px}
  .gdock-item,.gdock-pill{border-radius:8px}
  .gdock-label{display:none}

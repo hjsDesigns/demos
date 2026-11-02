@@ -86,7 +86,7 @@ import { FlapCell, BASE_COL_DELAY, BASE_STEP_MS, BASE_FLIP_S } from '../../../js
 const SPEED = 2;
 const COL_DELAY = BASE_COL_DELAY / SPEED, STEP_MS = BASE_STEP_MS / SPEED, FLIP_S = BASE_FLIP_S / SPEED;
 
-const VERSION = '20261101g'; // its stylesheet's ?v= when the page hasn't linked plans.css itself (11/1 iPhone pass: the phone back)
+const VERSION = '20261101h'; // its stylesheet's ?v= when the page hasn't linked plans.css itself (11/1 iPhone pass: the phone back)
 const CSS_URL = new URL('./plans.css', import.meta.url).href.split('?')[0];
 const LOGO_URL = new URL('../../../images/logo.png', import.meta.url).href;
 const REDUCE = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -1031,8 +1031,8 @@ export function mountPlans(host, opts = {}) {
       width: '100%',
       radius: 'var(--pl-radius)',
       shadow: false,
-      idle: true,
-      dprCap: o.dprCap,
+      idle: !NARROW.matches,   // [phone] no idle foil loop: three live WebGL canvases cost the iPhone its memory (11/1)
+      dprCap: NARROW.matches ? 1 : o.dprCap,
       style: { '--hc-ratio': RATIO, '--hc-radius': 'var(--pl-radius)' }
     });
     tilt.insertBefore(holo.el, tilt.firstChild);
