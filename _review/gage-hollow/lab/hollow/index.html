@@ -379,8 +379,8 @@ body.name-corner .corner-name{opacity:1}
   .si-nav .si-tick--h2{width:9px}
   .si-nav .si-head{width:15px}
   .si-nav .si-label{left:20px;font-size:13px}   /* a fixed overlay: these px are on-screen px (the phone floor) */
-  /* the hard stops by touch: while a finger drives the page it snaps (scroll-snap-stop: always) to the very stops the wheel's
-     hard stops use, so one fling can't fly past a section (the marks: snapMarks() in the script) */
+  /* the hard stops by touch (OFF since 11/1, Hayden: phones scroll smoothly; ?snap=1 for a test): while a finger drives the page it
+     snaps (scroll-snap-stop: always) to the very stops the wheel's hard stops use (the marks: snapMarks() in the script) */
   html.tunnel-snap{scroll-snap-type:y mandatory}
   .snap-marks{position:absolute;left:0;top:0;width:1px;height:0;pointer-events:none;opacity:0}
   .snap-marks i{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;scroll-snap-stop:always}
@@ -717,7 +717,7 @@ const EXTRA_STOPS = [];   // hard stops outside his story (section 5 sits on one
 const gateEase = t => 1 - Math.pow(1 - t, 3);
 let typing = null, snapOn = false, snapBox = null;   // [phone] declared before any scroll hook can run (the typing hold and snapMarks, at the end)
 function gateWheel(e) {
-  if (snapOn && e.event.type.startsWith('touch')) return true;   // [phone] a finger on a phone: the page's own scroll snapping holds the stops (snapMarks)
+  if (e.event.type.startsWith('touch')) return true;   // [phone] a finger is never gated (Hayden 11/1: "smooth scrolling throughout the entire thing, not jumping from section to section")
   const gates = [...(jy ? jy.gates() : []), ...EXTRA_STOPS.map(f => f())];
   if (!gates.length || !lenis) return true;
   const now = performance.now(), ty = lenis.targetScroll, abs = Math.abs(e.deltaY);
@@ -1513,8 +1513,9 @@ if (narrow && borders[0] && borders[0].set) borders[0].set({ dprCap: 1.25 });
 // 4 · the hard stops by touch. gateWheel can't hold a finger: native touch scrolling keeps flinging after the finger lifts. So
 //     on a phone the page uses the browser's own scroll snapping to the very same stops (scroll-snap-stop: always, so a fling
 //     can't skip one): a mark at each stop's scroll position (.snap-marks, the narrow CSS), switched on by a touch and off for
-//     any scroll the page drives itself (the lenis.scrollTo wrapper) and for the wheel. ?snap=0 turns it off for a test.
-const SNAP_OK = !reduce && new URLSearchParams(location.search).get('snap') !== '0';
+//     any scroll the page drives itself (the lenis.scrollTo wrapper) and for the wheel. Hayden 11/1: "It makes it chunk to each
+//     section. I don't want that" — so it is OFF unless ?snap=1; the Mac's wheel gate (gateWheel) is untouched.
+const SNAP_OK = !reduce && new URLSearchParams(location.search).get('snap') === '1';   // Hayden 11/1: OFF by default — phones scroll smoothly end to end; ?snap=1 brings the touch hard stops back for a test
 function setSnap(on) {
   on = !!(on && snapBox);
   if (on === snapOn) return;
