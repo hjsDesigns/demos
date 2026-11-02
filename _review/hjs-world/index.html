@@ -51,7 +51,9 @@ canvas{display:block}
 /* the world's UI, after you are through */
 #world{position:fixed;inset:0;z-index:10;pointer-events:none;opacity:0;transition:opacity .9s ease}
 #world.on{opacity:1}
-#title{position:absolute;left:clamp(18px,4.4vw,70px);top:clamp(74px,18vh,170px);max-width:min(420px,46vw)}
+#title{position:absolute;left:clamp(18px,4.4vw,70px);top:clamp(74px,18vh,170px);max-width:min(420px,46vw);
+ padding:22px 26px 24px;border-radius:14px;background:linear-gradient(180deg,rgba(8,13,10,.52),rgba(8,13,10,.18));
+ backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
 #title .yr{font-size:clamp(3rem,8vw,5.6rem);line-height:.9;font-weight:400;letter-spacing:-.02em;color:var(--cream)}
 #title .yr i{font-style:italic;font-size:.21em;margin-left:.5em;letter-spacing:0;color:#CFC8AE;vertical-align:.9em}
 #title h1{font-size:clamp(1.2rem,3vw,2rem);line-height:1.22;font-weight:500;margin:20px 0 12px;color:#F4EEDC}
@@ -118,5 +120,5 @@ canvas{display:block}
  "three":"https://unpkg.com/three@0.169.0/build/three.module.js",
  "three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}
 </script>
-<script type="module" src="js/world.js?v=8"></script>
+<script type="module" src="js/world.js?v=9"></script>
 </body></html>

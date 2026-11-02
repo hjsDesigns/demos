@@ -228,7 +228,7 @@ function windows(x,y0,z,w,h,d,density,cool){
         const u=(c+0.5)/fc-0.5;
         tmp.position.set(x+f.off[0]+(f.n[0]?0:u*f.sw), y0+(r+0.5)*(h/rows), z+f.off[2]+(f.n[2]?0:u*f.sw));
         tmp.rotation.set(0, Math.atan2(f.n[0],f.n[2]), 0);
-        tmp.scale.set(3.1,2.5,1); tmp.updateMatrix(); winXf.push(tmp.matrix.clone());
+        tmp.scale.set(3.3,2.7,1); tmp.updateMatrix(); winXf.push(tmp.matrix.clone());
         tc.setHex((cool?Math.random()<0.45:Math.random()<0.90)?C.winWarm:C.winCool);
         const v=0.78+Math.random()*0.22; winCol.push(tc.r*v,tc.g*v,tc.b*v);
       }
@@ -280,8 +280,13 @@ const SKYLINE=[
   [306,-270,54,96,50,'s'],[384,-166,46,78,44,'s'],[-300,-700,58,150,52,'s'],[200,-740,54,140,50,'s'],
   [-80,-790,62,162,56,'l'],[420,-760,48,120,46,'s'],[-520,-740,50,128,48,'s'],[660,-700,46,112,44,'s']
 ];
+let litCount = 0;
 SKYLINE.forEach(([x,z,w,h,d,k])=>{
-  if(k==='s') tower(x,z,w,h,d,0.82,Math.random()<0.3);
+  if(litCount < 9 && Math.random() < 0.4){        // nine towers light their own block
+    const L=new THREE.PointLight(C.winWarm, 26, 300, 2);
+    L.position.set(x, h*0.55, z + d/2 + 20); scene.add(L); litCount++;
+  }
+  if(k==='s') tower(x,z,w,h,d,0.88,Math.random()<0.3);
   else lattice(x,z,w,h,d,k==='c');
 });
 tick('raising the city');
@@ -366,6 +371,19 @@ for(let i=0;i<210;i++){
   tree(x,z,0.85+Math.random()*1.15);
 }
 for(let i=0;i<26;i++) tree(-820+Math.random()*1640, 330+Math.random()*180, 1.3+Math.random()*0.8);
+// a near treeline so the bottom of the frame is not bare field (the reference has one)
+for(let i=0;i<34;i++) tree(-1100+Math.random()*2200, 470+Math.random()*190, 1.5+Math.random()*1.1);
+// and a low hedge along the plaza's near edge, catching the plaza light
+(function hedge(){
+  const geo=new THREE.BoxGeometry(14,7,9);
+  const mesh=new THREE.InstancedMesh(geo, leafMat, 46); const o=new THREE.Object3D();
+  for(let i=0;i<46;i++){
+    o.position.set(-240+i*15.5, 3.5, 34+Math.sin(i*0.7)*5);
+    o.rotation.y=Math.random()*0.5; o.scale.setScalar(0.85+Math.random()*0.5);
+    o.updateMatrix(); mesh.setMatrixAt(i,o.matrix);
+  }
+  mesh.castShadow=true; scene.add(mesh);
+})();
 
 // street lights down the main road: a pole, a warm disc and a real PointLight each
 for(let i=0;i<(PHONE?8:18);i++){
