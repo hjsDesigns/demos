@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex"><title>Gage Rogel Fitness · phone</title>
+<script>
+// on a phone this IS the site; on a laptop it shows the phone version inside a phone-shaped frame
+if (matchMedia('(max-aspect-ratio: 19/20)').matches || /iPhone|iPod|Android.*Mobile/i.test(navigator.userAgent)) location.replace('../lab/hollow/' + location.search + location.hash);
+</script>
+<style>
+html,body{margin:0;height:100%;background:#070B12;display:grid;place-items:center;font:12px/1.4 system-ui,sans-serif;color:#9AABC2}
+.phone{height:min(844px,94vh);aspect-ratio:390/844;border-radius:46px;border:10px solid #141a26;box-shadow:0 0 0 1px #2a3344,0 40px 80px -30px rgba(6,135,255,.5),0 20px 50px -20px #000;overflow:hidden;background:#000;position:relative}
+.phone iframe{display:block;width:100%;height:100%;border:0}
+.note{position:fixed;left:50%;bottom:10px;translate:-50% 0;opacity:.7;letter-spacing:.08em;text-transform:uppercase;font-size:10px}
+</style></head><body>
+<div class="phone"><iframe src="../lab/hollow/" title="Gage Rogel Fitness on a phone" allow="clipboard-write"></iframe></div>
+<p class="note">The phone version · open this link on an iPhone and it fills the screen</p>
+</body></html>

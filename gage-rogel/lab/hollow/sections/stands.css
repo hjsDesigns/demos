@@ -1,0 +1,55 @@
+/* Section 11 · the sponsor stands. Round 4 (Hayden 11/1 night): one product per brand, no shine; two headlines, his code and
+   the percent on top, the company's name at the foot; tap the product or the name to open the brand's site; brighter, pitched
+   up. The FTC line small at the foot. Sizes in --gu = the room's section unit. */
+.gs-stands{--gu:var(--u,10px)}
+.gs-stands .st-inner{display:grid;grid-template-rows:1fr auto;gap:calc(var(--gu)*.9);height:100%}
+.gs-stands .st-row{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--gu)*3);min-height:0}
+.gs-stands .st-card{display:grid;grid-template-rows:auto 1fr auto;justify-items:center;min-height:0;background:none;border:0;text-align:center}
+
+/* the headline on top: USE CODE · GAGER (decodes in; tap copies) · 15% OFF (counts up). Sizes hang off the line (Hayden 11/1:
+   "make Use code ninety percent the size of GageR, and Off fifty percent the size of fifteen", both brands the same) */
+.gs-stands .st-code-line{display:flex;align-items:baseline;justify-content:center;gap:calc(var(--gu)*1);margin:0;
+ font-size:calc(var(--gu)*4.2);line-height:1.1;font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.gs-stands .st-code-use{font:600 .9em/1 var(--display);letter-spacing:.08em;color:rgba(230,237,246,.85)}
+.gs-stands .st-code{position:relative;display:inline-flex;flex-direction:column;align-items:center;padding:0 .06em;margin:0;border:0;background:none;
+ font:800 1em/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--brand-text,#5CB2FF);cursor:pointer;
+ text-shadow:0 0 .38em rgba(6,135,255,.55),0 0 .07em rgba(92,178,255,.8)}
+.gs-stands .st-code:hover .st-code-text{color:#fff}
+.gs-stands .st-code-text{display:block;transition:color .25s}
+.gs-stands .st-code .decrypted-text__char--encrypted,.gs-stands .st-code .dt-encrypted{color:rgba(92,178,255,.55)}
+.gs-stands .st-code-note{display:block;margin-top:.1em;font:600 .2em/1 var(--display);letter-spacing:.22em;text-transform:uppercase;
+ color:rgba(154,171,194,.55);text-shadow:none;transition:color .2s}
+.gs-stands .st-code.is-copied .st-code-note{color:#8FC79A}
+.gs-stands .st-code.is-copied .st-code-text{color:#fff}
+.gs-stands .st-off{display:inline-flex;align-items:baseline;gap:.06em;color:#fff}
+.gs-stands .st-off-n{font:800 1em/1 var(--display);letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:#fff}
+.gs-stands .st-off-t{font:700 .5em/1 var(--display);letter-spacing:.1em;color:#fff}
+
+/* the stage: the product alone, a still floor light under it (no sweep, no breathing: "I don't want the shine effect") */
+.gs-stands .st-stage{position:relative;width:100%;min-height:0;cursor:pointer;overflow:hidden}
+.gs-stands .st-stage::before{content:"";position:absolute;left:14%;right:14%;top:22%;bottom:4%;pointer-events:none;
+ background:radial-gradient(closest-side at 50% 66%,rgba(6,135,255,.2) 0%,rgba(6,135,255,.08) 45%,transparent 72%)}
+.gs-stands .st-slot{position:absolute;inset:3% 8% 9%;pointer-events:none;touch-action:pan-y}
+.gs-stands .st-slot.on{pointer-events:auto;cursor:grab;z-index:2}
+.gs-stands .st-slot.on:active{cursor:grabbing}
+.gs-stands .st-stage > canvas{pointer-events:none}
+.gs-stands .st-drag{position:absolute;left:50%;bottom:calc(var(--gu)*.3);transform:translateX(-50%);
+ font:600 calc(var(--gu)*1)/1 var(--display);letter-spacing:.16em;text-transform:uppercase;color:rgba(154,171,194,.45);pointer-events:none;white-space:nowrap}
+.gs-stands[data-flat] .st-stage{min-height:calc(var(--gu)*8)}
+
+/* the headline at the foot: the company, huge, in its own ink, with Magic UI's Line Shadow Text (ported: the ::after copy of the
+   word filled with 45° stripes in --brand-ink, offset .04em, drifting; animation 'line-shadow' 15s linear infinite) */
+.gs-stands .st-brand-line{position:relative;z-index:0;display:block;width:100%;margin:calc(var(--gu)*.5) 0 0;text-decoration:none;white-space:normal}
+.gs-stands .st-brand-word{position:relative;z-index:0;display:block;max-width:100%;font:800 calc(var(--gu)*5.04)/1 var(--brand-display,var(--display));letter-spacing:.08em;text-transform:uppercase;color:#fff;text-wrap:balance}   /* 3.6 × 1.4 (Hayden 11/1: "size up the titles… by forty percent"); --brand-display = the workbench's Brand-titles try-on */
+.gs-stands .st-brand-word::after{content:attr(data-text);position:absolute;left:.04em;top:.04em;width:100%;z-index:-1;
+ background-image:linear-gradient(45deg,transparent 45%,var(--brand-ink) 45%,var(--brand-ink) 55%,transparent 0);background-size:.06em .06em;
+ -webkit-background-clip:text;background-clip:text;color:transparent;animation:st-line-shadow 15s linear infinite}
+@keyframes st-line-shadow{0%{background-position:0 0}100%{background-position:100% -100%}}
+.gs-stands .st-brand-line:hover .st-brand-word{color:var(--brand-ink)}
+.gs-stands .st-brand-line:hover .st-brand-word::after{background-image:linear-gradient(45deg,transparent 45%,rgba(255,255,255,.55) 45%,rgba(255,255,255,.55) 55%,transparent 0)}
+
+/* the FTC line */
+.gs-stands .st-disc{margin:0;text-align:center;font:400 calc(var(--gu)*1.1)/1.4 var(--body);color:rgba(154,171,194,.6)}
+
+@media (prefers-reduced-motion: reduce){.gs-stands .st-brand-word::after{animation:none}}
+@media(max-width:860px){.gs-stands .st-row{grid-template-columns:1fr;gap:calc(var(--gu)*1.2)}}

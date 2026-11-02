@@ -1,0 +1,1032 @@
+/* Gage hollow site · sections 9-11: apply (questionnaire), book (a call), faq (the questions). 2026-10-29.
+   One file for all three; it pulls in the ports' CSS (Stepper, Magic Bento, Slot Picker, Smooth caret input). Every size is calc(var(--u) * n): --u comes from the
+   page (≈ 10.4px on a 900px-tall screen). Each section is a 150u × 72u box; the root lets the pointer through, the gadgets
+   take it (pointer-events: auto). Look: the site's navy panels, thin blue lines and corner ticks, Chakra Petch caps over
+   Figtree. */
+@import url('../../../js/vendor/stepper.css?v=20261030c');
+@import url('../../../js/vendor/magic-bento.css?v=20261030c');
+@import url('../../../js/vendor/slot-picker.css?v=20261101b');
+@import url('../../../js/vendor/smooth-input.css?v=20261030c');
+
+.gs {
+  --gs-ink: var(--ink, #e6edf6);
+  --gs-muted: var(--muted, #9aabc2);
+  --gs-blue: var(--brand, #0687ff);
+  --gs-blue-t: var(--brand-text, #5cb2ff);
+  --gs-line: var(--line, rgba(92, 178, 255, 0.24));
+  --gs-display: var(--display, 'Chakra Petch', 'Arial Narrow', sans-serif);
+  --gs-body: var(--body, 'Figtree', 'Helvetica Neue', Arial, sans-serif);
+  --gs-sample: #ff8a80;
+  /* the spring the site already uses (Animated List / Stepper / Magic Bento all carry this linear() curve) */
+  --gs-spring: linear(0, 0.0603, 0.2033, 0.3821, 0.5633, 0.7258, 0.8584, 0.9574, 1.0242, 1.0634, 1.0809, 1.0828, 1.0747, 1.0613, 1.046, 1.0313, 1.0186, 1.0085, 1.0012, 0.9965, 0.994, 0.9931, 0.9933, 0.9941, 0.9953, 0.9966, 0.9978, 0.9988, 1);
+  position: relative;
+  box-sizing: border-box;
+  width: calc(var(--u) * 150);
+  height: calc(var(--u) * 72);
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+  text-align: left;
+  pointer-events: none;
+}
+.gs *,
+.gs *::before,
+.gs *::after {
+  box-sizing: border-box;
+}
+.gs a,
+.gs button,
+.gs input,
+.gs textarea,
+.gs .stepper,
+.gs .slot-picker,
+.gs .smooth-input,
+.gs .magic-bento__card {
+  pointer-events: auto;
+}
+.gs button {
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---- shared type, the site's own ---- */
+.gs-k {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 0.9);
+  margin: 0 0 calc(var(--u) * 1.3);
+  font: 600 calc(var(--u) * 1.45) / 1.2 var(--gs-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+.gs-k-dot {
+  opacity: 0.55;
+}
+.gs-h {
+  margin: 0;
+  font: 600 calc(var(--u) * 6.4) / 1.02 var(--gs-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gs-ink);
+  text-shadow: 0 0 calc(var(--u) * 2) rgba(7, 11, 18, 0.95);
+  text-wrap: balance;
+}
+.gs-p {
+  margin: calc(var(--u) * 1.8) 0 0;
+  font: 500 calc(var(--u) * 2.6) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+  text-shadow: 0 0 calc(var(--u) * 1.4) rgba(7, 11, 18, 0.95);
+  text-wrap: pretty;
+}
+/* the site's sample stamp (section 6 uses the same one) */
+.gs-tag {
+  display: inline-block;
+  padding: calc(var(--u) * 0.5) calc(var(--u) * 1);
+  border: 1px solid rgba(255, 138, 128, 0.55);
+  border-radius: calc(var(--u) * 0.5);
+  font: 600 calc(var(--u) * 1.3) / 1 var(--gs-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--gs-sample);
+}
+/* panels: thin lines and corner ticks, the same language as the grid */
+.gs-panel {
+  position: relative;
+  background: linear-gradient(180deg, rgba(12, 21, 35, 0.97), rgba(9, 15, 25, 0.97));
+  border: 1px solid var(--gs-line);
+  box-shadow: 0 calc(var(--u) * 3) calc(var(--u) * 9) calc(var(--u) * -3) rgba(6, 135, 255, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.gs-panel::before,
+.gs-panel::after,
+.gs .stepper::before,
+.gs .stepper::after,
+.gs .slot-picker::before,
+.gs .slot-picker::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  width: calc(var(--u) * 2.4);
+  height: calc(var(--u) * 2.4);
+  border: 2px solid var(--gs-blue);
+  pointer-events: none;
+}
+.gs-panel::before,
+.gs .stepper::before,
+.gs .slot-picker::before {
+  left: -1px;
+  top: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.gs-panel::after,
+.gs .stepper::after,
+.gs .slot-picker::after {
+  right: -1px;
+  bottom: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+/* =========================================================================================================
+   9 · APPLY: his words on the left, the Stepper on the right
+   ========================================================================================================= */
+.gs-apply {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--u) * 6);
+  padding-top: calc(var(--u) * 6);
+}
+.ap-left {
+  flex: 0 0 calc(var(--u) * 50);
+}
+.ap-next {
+  margin-top: calc(var(--u) * 4);
+}
+/* numbered rows: plain numerals on thin rules, not circles */
+.ap-next-list,
+.bk-topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: calc(var(--u) * 1.2);
+}
+.ap-next-list li,
+.bk-topics li {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 4.6) 1fr;
+  align-items: baseline;
+  padding-top: calc(var(--u) * 1.2);
+  border-top: 1px solid var(--gs-line);
+}
+.ap-next-list b,
+.bk-topics b {
+  font: 600 calc(var(--u) * 1.6) / 1 var(--gs-display);
+  letter-spacing: 0.14em;
+  color: var(--gs-blue-t);
+}
+.ap-next-list span,
+.bk-topics span {
+  font: 500 calc(var(--u) * 2.3) / 1.35 var(--gs-body);
+  color: var(--gs-ink);
+}
+.ap-note {
+  margin: calc(var(--u) * 3) 0 0;
+  font: 500 calc(var(--u) * 1.9) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+}
+.ap-right {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.gs-apply .stepper {
+  --stepper-px: calc(var(--u) * 0.2);
+  font-family: var(--gs-body);
+}
+.gs-apply .stepper__button {
+  font-family: var(--gs-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.gs-apply .stepper__title {
+  letter-spacing: 0.01em;
+}
+.ap-step {
+  display: grid;
+  gap: calc(var(--u) * 2);
+}
+.ap-q {
+  margin: 0;
+  font: 600 calc(var(--u) * 3.2) / 1.15 var(--gs-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gs-ink);
+}
+.ap-opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--u) * 1.4);
+}
+.ap-opt {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.5);
+  min-height: calc(var(--u) * 8.8);
+  padding: calc(var(--u) * 1.4) calc(var(--u) * 2);
+  border: 1px solid rgba(92, 178, 255, 0.22);
+  border-radius: calc(var(--u) * 0.7);
+  background: rgba(92, 178, 255, 0.045);
+  color: var(--gs-ink);
+  font: 500 calc(var(--u) * 2.5) / 1.2 var(--gs-body);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.45s var(--gs-spring);
+}
+@media (hover: hover) {
+  .ap-opt:hover {
+    border-color: rgba(92, 178, 255, 0.5);
+    background: rgba(92, 178, 255, 0.08);
+  }
+}
+.ap-opt:active {
+  transform: scale(0.97);
+  transition-duration: 0.25s, 0.25s, 0.25s, 0s;
+}
+.ap-opt:focus-visible {
+  outline: 2px solid var(--gs-blue-t);
+  outline-offset: 2px;
+}
+.ap-opt[aria-checked='true'] {
+  border-color: var(--gs-blue-t);
+  background: rgba(6, 135, 255, 0.16);
+  box-shadow: 0 0 calc(var(--u) * 2.4) calc(var(--u) * -0.4) rgba(6, 135, 255, 0.55), inset 0 0 0 1px rgba(92, 178, 255, 0.35);
+}
+.ap-mk {
+  flex: none;
+  width: calc(var(--u) * 2.8);
+  height: calc(var(--u) * 2.8);
+  border-radius: 50%;
+  border: 2px solid rgba(154, 171, 194, 0.6);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.45s var(--gs-spring);
+}
+.ap-opt[aria-checked='true'] .ap-mk {
+  border-color: var(--gs-blue-t);
+  background: var(--gs-blue);
+  box-shadow: 0 0 calc(var(--u) * 1.5) rgba(6, 135, 255, 0.85);
+  transform: scale(1.08);
+}
+.ap-opt-t {
+  display: grid;
+  gap: calc(var(--u) * 0.35);
+}
+.ap-opt-name {
+  font: 600 calc(var(--u) * 2.6) / 1.1 var(--gs-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ap-opt-price {
+  font: 500 calc(var(--u) * 2) / 1.2 var(--gs-body);
+  color: var(--gs-muted);
+}
+/* the three plans wear their metals (section 8's cards) */
+.ap-opt[data-metal] .ap-opt-name {
+  background: var(--metal);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ap-opt[data-metal='silver'] {
+  --metal: linear-gradient(100deg, #f1f4f8 0%, #a9b2be 55%, #e3e8ee 100%);
+}
+.ap-opt[data-metal='gold'] {
+  --metal: linear-gradient(100deg, #ffe59a 0%, #d1a23c 55%, #fff0bd 100%);
+}
+.ap-opt[data-metal='platinum'] {
+  --metal: linear-gradient(100deg, #f7fbff 0%, #b9c9d8 50%, #eef5fb 100%);
+}
+/* round 2: the typed fields are the Skiper UI smooth caret input, in the site's look */
+.gs-apply .smooth-input {
+  --si-px: calc(var(--u) * 0.1);
+  --si-bg: rgba(3, 7, 13, 0.55);
+  --si-caret: var(--gs-blue-t);
+  max-width: none;
+  padding: calc(var(--u) * 1.6) calc(var(--u) * 2);
+  border: 1px solid rgba(92, 178, 255, 0.28);
+  border-radius: calc(var(--u) * 0.7);
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+  font-weight: 500;
+  line-height: 1.3;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.gs-apply .smooth-input:has(:focus-visible) {
+  outline: none;
+  border-color: var(--gs-blue-t);
+  box-shadow: inset 0 0 0 1px var(--gs-blue-t);
+}
+.gs-apply .smooth-input[data-bad] {
+  border-color: var(--gs-sample);
+}
+.gs-apply .smooth-input__field::placeholder {
+  color: rgba(154, 171, 194, 0.62);
+}
+.gs-apply .smooth-input--multi .smooth-input__field {
+  line-height: 1.4;
+}
+.gs-apply .smooth-input__caret {
+  border-radius: 1px;
+  box-shadow: 0 0 calc(var(--u) * 0.8) rgba(6, 135, 255, 0.95);
+}
+/* the Plan step: the question, then the "nothing is bought here" line */
+.ap-qwrap {
+  display: grid;
+  gap: calc(var(--u) * 0.9);
+}
+.ap-reassure {
+  margin: 0;
+  max-width: calc(var(--u) * 80);
+  font: 500 calc(var(--u) * 2.05) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+}
+/* Main goal: five examples + Other, three to a row */
+.ap-opts--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ap-opts--3 .ap-opt {
+  min-height: calc(var(--u) * 7.6);
+  gap: calc(var(--u) * 1.2);
+  padding: calc(var(--u) * 1.2) calc(var(--u) * 1.6);
+  font-size: calc(var(--u) * 2.3);
+}
+/* Other unfolds like the Stepper's footer does (grid rows 0fr → 1fr on its spring) */
+.ap-other {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: calc(var(--u) * -2);
+  opacity: 0;
+  transition: grid-template-rows 480ms var(--gs-spring), margin-top 480ms var(--gs-spring), opacity 0.2s ease;
+}
+.ap-other.is-open {
+  grid-template-rows: 1fr;
+  margin-top: 0;
+  opacity: 1;
+}
+.ap-other-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+/* the console heading (11/1, Hayden's pick of five): a status bar with a live LED, the heading typed in with a caret; Apply and
+   Book carry nothing else in their left column */
+.cs-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--u) * 1);
+  margin: 0 0 calc(var(--u) * 2.6);
+  padding: calc(var(--u) * 0.85) calc(var(--u) * 1.15);
+  border: 1px solid rgba(92, 178, 255, 0.62);
+  border-radius: 3px;
+  background: rgba(6, 135, 255, 0.16);
+  box-shadow: 0 0 calc(var(--u) * 1.6) rgba(6, 135, 255, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  font: 600 calc(var(--u) * 1.45) / 1 var(--gs-display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #cfe6ff;   /* brighter (Hayden 11/1: "make the application five steps thing brighter so it's easier to notice") */
+  white-space: nowrap;
+}
+.cs-led {
+  width: calc(var(--u) * 0.7);
+  height: calc(var(--u) * 0.7);
+  border-radius: 50%;
+  background: #9ff0ad;
+  box-shadow: 0 0 calc(var(--u) * 1.3) #8fc79a, 0 0 calc(var(--u) * 0.4) #fff;
+  animation: cs-led 2.2s ease-in-out infinite;
+}
+@keyframes cs-led { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.cs-h .cs-line { display: block; min-height: 1.02em; }
+/* (the blinking caret after the heading is gone, Hayden 11/1: "get rid of the cursor typing") */
+@keyframes cs-blink { 50% { opacity: 0; } }
+.ap-left { display: flex; flex-direction: column; }
+.rs-rest .cs-bar { margin-bottom: calc(var(--u) * 1.6); }
+.ap-left .gs-credit { margin-top: auto; }
+@media (prefers-reduced-motion: reduce) { .cs-led { animation: none; } }
+
+/* the licence credit Skiper UI's free components ask for (kept visible) */
+.gs-credit {
+  margin: calc(var(--u) * 1.4) 0 0;
+  font: 500 calc(var(--u) * 1.35) / 1.3 var(--gs-body);
+  letter-spacing: 0.02em;
+  color: rgba(154, 171, 194, 0.72);
+}
+.gs-credit a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(154, 171, 194, 0.35);
+}
+.gs-u-probe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--u) * 100);
+  height: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.ap-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--u) * 1.6);
+}
+.ap-f {
+  display: grid;
+  gap: calc(var(--u) * 0.8);
+}
+.ap-f--full {
+  grid-column: 1 / -1;
+}
+.ap-f-l {
+  font: 600 calc(var(--u) * 1.45) / 1 var(--gs-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+.ap-done {
+  justify-items: start;
+  gap: calc(var(--u) * 1.6);
+  padding: calc(var(--u) * 0.6) 0 calc(var(--u) * 1);
+}
+.ap-done-mark {
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 7);
+  height: calc(var(--u) * 7);
+  border-radius: 50%;
+  background: var(--gs-blue);
+  color: #fff;
+  box-shadow: 0 0 calc(var(--u) * 3) rgba(6, 135, 255, 0.7);
+}
+.ap-done-mark svg {
+  width: 56%;
+  height: 56%;
+}
+.ap-done-mark path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: gs-draw 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+.ap-done-p {
+  margin: 0;
+  max-width: calc(var(--u) * 72);
+  font: 500 calc(var(--u) * 2.5) / 1.45 var(--gs-body);
+  color: var(--gs-muted);
+}
+@keyframes gs-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* =========================================================================================================
+   10 · BOOK: his words on the left, the Kokonut UI Slot Picker on the right (round 2, Hayden 10/30); its confirm is the
+   React Bits Hold Button (round 3, Hayden 10/30: "book a call. We need to make a little bit bigger … hold to confirm")
+   ========================================================================================================= */
+/* Round 3, 18% bigger: the box stays 150u x 72u (the tunnel frames it at about 0.83 at the stop), and .bk-inner gives
+   everything inside a bigger unit: it redefines --u as --bu (set here on the box, from the box's own --u, so --u never
+   refers to itself). Every rule inside grows with it: the shared .gs-k / .gs-h / .gs-p / .gs-tag type, the topics, the
+   picker's --sp-px and the Hold Button (--hb-px = --sp-px). The grown content (~82u tall) is centred in the box: on a
+   1440x900 screen it spans about 94..806px down and 120..1320px across at the stop. */
+.gs-book {
+  --bu: calc(var(--u) * 1.18);
+  --bk-hold-bg: color-mix(in srgb, var(--gs-blue) 30%, #08111d); /* the Hold Button before it fills: a deep shade of his blue */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bk-inner {
+  --u: var(--bu);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: calc(var(--u) * 6);   /* 10/31: tighter, so the picker gets the room */
+}
+.bk-left {
+  flex: 0 0 calc(var(--u) * 38);   /* 10/31: 52 → 38, the picker is the point of the section */
+  padding-top: calc(var(--u) * 6);
+}
+.bk-topics {
+  margin-top: calc(var(--u) * 4);
+}
+.bk-mail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--u) * 0.4) calc(var(--u) * 1);
+  margin: calc(var(--u) * 3) 0 0;
+  font: 500 calc(var(--u) * 2) / 1.4 var(--gs-body);
+  color: var(--gs-muted);
+}
+.bk-mail a,
+.bk-status a {
+  color: var(--gs-blue-t);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(92, 178, 255, 0.4);
+}
+.bk-right {
+  flex: 0 0 auto;
+  display: grid;
+  gap: calc(var(--u) * 1);
+}
+.bk-stamp {
+  display: flex;
+  justify-content: flex-end;
+}
+/* one line kept for the note (booked / "press and hold"), so the centred block doesn't jump when it appears */
+.bk-status {
+  min-height: 1.35em;
+  margin: 0;
+  font: 500 calc(var(--u) * 1.9) / 1.35 var(--gs-body);
+  color: var(--gs-muted);
+  text-align: right;
+}
+/* the slot picker in the site's look: its own dark theme recoloured to the navy panel, thin blue lines, his blue */
+.gs-book .slot-picker {
+  --sp-px: calc(var(--u) * 0.15);   /* 10/31: 0.12 → 0.15, a quarter bigger */
+  --sp-bg: linear-gradient(180deg, rgba(12, 21, 35, 0.97), rgba(9, 15, 25, 0.97));
+  --sp-border: var(--gs-line);
+  --sp-ink: var(--gs-ink);
+  --sp-ink-strong: #ffffff;
+  --sp-muted: #b9c7d9;   /* 10/31: brighter grey labels, easier to read on the navy */
+  --sp-faint: rgba(185, 199, 217, 0.9);
+  --sp-line: rgba(92, 178, 255, 0.12);
+  --sp-track: rgba(92, 178, 255, 0.06);
+  --sp-pill: rgba(92, 178, 255, 0.22);
+  --sp-hover: rgba(92, 178, 255, 0.07);
+  --sp-hover-ink: var(--gs-ink);
+  --sp-hatch: rgba(92, 178, 255, 0.16);
+  --sp-busy-bg: rgba(7, 11, 18, 0.85);
+  --sp-busy-border: rgba(92, 178, 255, 0.2);
+  --sp-off: rgba(154, 171, 194, 0.35);
+  --sp-off-2: rgba(154, 171, 194, 0.45);
+  --sp-ring: var(--gs-blue-t);
+  --sp-focus: var(--gs-blue-t);
+  --sp-accent: var(--gs-blue);
+  --sp-accent-ink: #ffffff;
+  --sp-accent-soft: rgba(6, 135, 255, 0.18);
+  --sp-accent-text: var(--gs-blue-t);
+  --sp-accent-focus: var(--gs-blue-t);
+  --sp-ghost-border: rgba(92, 178, 255, 0.6);
+  --sp-ghost-bg: rgba(6, 135, 255, 0.1);
+  --sp-ok: #22c55e;
+  --sp-ok-ink: #04220f;
+  --sp-free: #4ade80;
+  --sp-button: var(--gs-blue);
+  --sp-button-ink: #ffffff;
+  --sp-button-hover: #2a9bff;
+  --sp-cal-open-hover: rgba(6, 135, 255, 0.34);   /* 11/1: a lit calendar day under the pointer (lit, picked: his blue through the --sp-accent tokens above) */
+  --sp-cal-cell-h: calc(var(--sp-px, 1px) * 42);   /* 11/1 PM: the calendar fills the card's width (seven 56 px cells), 42 tall so six rows keep the card at its 10/31 height */
+  /* Hayden 10/30: "horizontally dragged like twenty percent more": 20% wider than the original's 384 (46.1u → 55.3u at
+     this --sp-px); the day strip and the rail stretch, the height stays. An explicit width: the column around it
+     shrinks to fit, so a bigger max-width alone would leave it at its content's width */
+  width: calc(var(--sp-px, 1px) * 461);
+  max-width: none;
+  border-radius: 0;
+  font-family: var(--gs-body);
+  box-shadow: 0 calc(var(--u) * 3) calc(var(--u) * 9) calc(var(--u) * -3) rgba(6, 135, 255, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.gs-book .sp-title {
+  font-family: var(--gs-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.gs-book .sp-day-ring {
+  box-shadow: 0 0 calc(var(--u) * 1.4) rgba(6, 135, 255, 0.45);
+}
+.gs-book .sp-meeting-btn:not(.is-booked) {
+  box-shadow: 0 0 calc(var(--u) * 1.6) rgba(6, 135, 255, 0.55);
+}
+
+/* 10/31 (Hayden: "a lot bigger and easier to fill out… hard to tell what everything is… more legible"): the picker's
+   own type, a size up all round, and its two steps numbered above the parts they mean */
+.gs-book .sp-title { font-size: calc(var(--sp-px, 1px) * 16); }
+.gs-book .sp-sub { font-size: calc(var(--sp-px, 1px) * 13); }
+.gs-book .sp-day-week { font-size: calc(var(--sp-px, 1px) * 11.5); }   /* 10/31 PM: the day strip a size down so the box isn't crowded */
+.gs-book .sp-day-date { font-size: calc(var(--sp-px, 1px) * 17); line-height: 1.15; }
+.gs-book .sp-day-free { font-size: calc(var(--sp-px, 1px) * 10.5); line-height: calc(var(--sp-px, 1px) * 13); }
+.gs-book .slot-picker .sp-day { padding: calc(var(--sp-px, 1px) * 5) 0; }
+.gs-book .sp-hour { font-size: calc(var(--sp-px, 1px) * 12.5); }
+.gs-book .sp-block-label, .gs-book .sp-ghost-label { font-size: calc(var(--sp-px, 1px) * 11.5); line-height: calc(var(--sp-px, 1px) * 13); }
+.gs-book .sp-tz { font-size: calc(var(--sp-px, 1px) * 12); margin-top: calc(var(--sp-px, 1px) * 22); }   /* clear of the last hour label, which hangs half below the rail */
+.gs-book .sp-hint { font-size: calc(var(--sp-px, 1px) * 14); }
+.gs-book .sp-picked { font-size: calc(var(--sp-px, 1px) * 16); }
+.gs-book .sp-days, .gs-book .sp-railrow { margin-top: calc(var(--sp-px, 1px) * 8); }
+.bk-step {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--sp-px, 1px) * 8);
+  margin: calc(var(--sp-px, 1px) * 16) 0 0;
+  font: 600 calc(var(--sp-px, 1px) * 12.5) / 1.2 var(--gs-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gs-ink);
+}
+.bk-step b {   /* plain numerals like the topics (01, 02), never circles */
+  font: inherit;
+  letter-spacing: 0.14em;
+  color: var(--gs-blue-t);
+}
+/* 11/1 (Hayden: "give the month, and then you could click a day… get rid of pick a day… pop it up where it says tap an open
+   time"; then "when I have the calendar, it should take up the full box, and then whenever I click on the day, the time scale
+   for that day should be the full box, and then you should be able to give me like a button to go back"): the picker's day
+   strip is a MONTH CALENDAR (slot-picker.js, calendar: true) the full width of the card (419 inner px of --sp-px: seven 56 px
+   cells, 4 apart). Clicking a lit day fades it out and the rail view in, the same slot and the same width (hours column 36 +
+   8 + a 375 px rail), headed by "‹ Thu, Nov 5" (back to the calendar) and the one step label left ("Pick a day" is gone, and
+   the rail's label lost its number). Height: the slot is the calendar's 330 px (month row 28 + 8, weekday row 16 + 6, six
+   rows of 42 + five gaps of 4) in both views, so the card never moves; the rail view is 324 of it (back row 32, label 17,
+   margin 14, rail 300 min × 0.87 = 261, set in book.js). Cells are wider than tall (56 × 42): six rows of 56 px squares would
+   make the card ~1.5% taller than a 900 px screen. Type from the strip, a size up for the bigger cells: weekday caps 11, day
+   numerals 16, the month in the picker's title face at 14.5. Card ~539 px of --sp-px, the 10/31 strip layout's ~535. */
+.gs-book .sp-cal-row { margin-top: calc(var(--sp-px, 1px) * 16); }
+.gs-book .sp-cal-month {
+  font: 600 calc(var(--sp-px, 1px) * 14.5) / 1.2 var(--gs-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.gs-book .sp-cal-wd { font-size: calc(var(--sp-px, 1px) * 11); color: var(--sp-muted); }
+.gs-book .slot-picker .sp-cal-day { font-size: calc(var(--sp-px, 1px) * 16); }
+.gs-book .slot-picker .sp-cal-back { font-size: calc(var(--sp-px, 1px) * 13.5); }
+.gs-book .sp-times .bk-step {
+  min-height: 0;
+  margin: calc(var(--sp-px, 1px) * 2) 0 0;
+  padding: 0;
+  font-size: calc(var(--sp-px, 1px) * 12.5);
+  line-height: 1.2;
+}
+.gs-book .sp-cal-row .sp-railrow { margin-top: calc(var(--sp-px, 1px) * 14); }   /* the first hour label hangs 9 above the rail; 5 clear of the step label */
+
+/* round 3: exactly one confirm. The picker's own one-tap Confirm is hidden (book.js presses it when a hold completes);
+   the Hold Button sits in its place in the confirm bar, beside the picked-time readout, at the picker's own scale */
+.gs-book .slot-picker .sp-confirm-btn {
+  display: none;
+}
+.bk-hold {
+  --hb-px: var(--sp-px);
+  flex-shrink: 0;
+}
+/* the picker resets every button inside it (.slot-picker button: padding 0, background none, color and font inherited).
+   These give the Hold Button back its own values, word for word from hold-button.css; two classes, so they sit above
+   that reset and below the Hold Button's own :hover and [data-phase] rules */
+.bk-hold.hold-button {
+  background: var(--hb-bg);
+  color: var(--hb-text);
+  font-weight: 500;
+  line-height: 1;
+}
+.bk-hold.hold-button--sm {
+  padding: 0 calc(var(--hb-px, 1px) * 16);
+  font-size: calc(var(--hb-px, 1px) * 13);
+}
+.bk-hold.hold-button--md {
+  padding: 0 calc(var(--hb-px, 1px) * 22);
+  font-size: calc(var(--hb-px, 1px) * 15);
+}
+.bk-hold.hold-button--lg {
+  padding: 0 calc(var(--hb-px, 1px) * 28);
+  font-size: calc(var(--hb-px, 1px) * 17);
+}
+/* [phone] the narrow room (width/height <= 0.95, phones held upright; Hayden 10/31: "keep mac as it is but add a second
+   version"). The page makes the section box 90% of the screen's width at its stop (index.html, layout()) and 102u tall; here
+   the two columns stack inside it. The 10/31 picker (461 x 0.15u) no longer fit the old phone unit, so on phones the picker
+   gets its own: --sp-px is plain px (about 1.15), sized for the finger and the eye, not the 18% desktop growth. The three
+   topics repeat the line above them word for word ("where you're at, what you want, and which plan fits"), so phones skip
+   them (NEVER TWICE), and the picker's own "Intro call with Gage Rogel" header repeats the eyebrow, so it goes too. The
+   confirm bar stacks: the picked time on one line, Hold to book full width under it. */
+@media (max-aspect-ratio: 19/20) {
+  .gs-book {
+    --bu: var(--u);
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+  .bk-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: calc(var(--u) * 2.2);
+    width: 100%;
+    max-width: 560px;
+  }
+  .bk-left {
+    flex: none;
+    width: auto;
+    padding-top: 0;
+  }
+  .gs-book .gs-k {
+    font-size: calc(var(--u) * 1.6);
+  }
+  .gs-book .gs-h {
+    font-size: calc(var(--u) * 5);
+  }
+  .gs-book .gs-p {
+    margin-top: calc(var(--u) * 1.2);
+    font-size: max(18px, calc(var(--u) * 2.15));
+  }
+  .gs-book .bk-topics {
+    display: none;
+  }
+  .bk-mail {
+    margin-top: calc(var(--u) * 1.3);
+    font-size: max(17px, calc(var(--u) * 1.9));
+  }
+  .bk-right {
+    width: 100%;
+    gap: calc(var(--u) * 0.8);
+  }
+  .bk-stamp {
+    justify-content: flex-start;
+  }
+  .bk-status {
+    text-align: left;
+    font-size: max(17px, calc(var(--u) * 1.9));
+  }
+  .gs-book .slot-picker {
+    --sp-px: clamp(0.95px, calc(var(--u) * 0.137), 1.25px);   /* about 1.07 (360x780) to 1.25 (430x932); 0.95 keeps a 375x667 screen on screen */
+    width: 100%;
+    max-width: none;
+  }
+  .gs-book .slot-picker .sp-head {
+    display: none;
+  }
+  .gs-book .bk-step:first-of-type {
+    margin-top: 0;
+  }
+  /* [phone] 11/1: the same calendar ↔ rail slot as the Mac, at the phone's unit: cells (the card's ~299 inner px / 7 ≈ 39)
+     40 tall, finger-sized; the type a size up. The slot is the calendar's ~310 px of --sp-px (head 26 + 6, weekday row
+     14 + 4, six rows of 40 + gaps), about the strip + two step rows + rail it replaced, so the phone picker stays on the
+     screen as before; the rail view is 303 of it (back row 36, label 21, margin 12, rail 300 min × 0.78 = 234, book.js). */
+  /* 11/1 iPhone pass: --sp-px is 1.156 at 390x844 and the card shows at 0.83, so 13.5 sp-px = 15.6 layout px = 13 px on screen
+     (the phone type floor); the day cells 46 sp-px tall = 53 layout = 44 on screen (a thumb); the month chevrons 40 sp-px =
+     38 on screen, in a head row the same height. The calendar slot grows by about 58 layout px (the card had ~165 to spare). */
+  .gs-book .slot-picker { --sp-cal-cell-h: calc(var(--sp-px, 1px) * 46); }
+  .gs-book .sp-cal-row { margin-top: calc(var(--sp-px, 1px) * 8); }
+  .gs-book .sp-cal-head { height: calc(var(--sp-px, 1px) * 40); margin-bottom: calc(var(--sp-px, 1px) * 6); }
+  .gs-book .slot-picker .sp-cal-nav { width: calc(var(--sp-px, 1px) * 40); height: calc(var(--sp-px, 1px) * 40); }
+  .gs-book .sp-cal-week { margin-bottom: calc(var(--sp-px, 1px) * 4); }
+  .gs-book .sp-cal-month { font-size: calc(var(--sp-px, 1px) * 14); }
+  .gs-book .sp-cal-wd { font-size: calc(var(--sp-px, 1px) * 13.5); line-height: calc(var(--sp-px, 1px) * 16); }
+  .gs-book .slot-picker .sp-cal-day { font-size: calc(var(--sp-px, 1px) * 15); }
+  .gs-book .slot-picker .sp-cal-back { height: calc(var(--sp-px, 1px) * 36); font-size: calc(var(--sp-px, 1px) * 14); }
+  .gs-book .sp-times .bk-step {
+    min-height: 0;
+    margin: calc(var(--sp-px, 1px) * 6) 0 0;
+    padding: 0;
+    font-size: calc(var(--sp-px, 1px) * 13.5);
+  }
+  .gs-book .sp-cal-row .sp-railrow { margin-top: calc(var(--sp-px, 1px) * 12); }
+  .gs-book .sp-day-week { font-size: calc(var(--sp-px, 1px) * 13.5); }
+  .gs-book .sp-day-free { font-size: calc(var(--sp-px, 1px) * 13.5); line-height: calc(var(--sp-px, 1px) * 16); }
+  .gs-book .sp-hour { font-size: calc(var(--sp-px, 1px) * 13.5); }
+  .gs-book .sp-block-label, .gs-book .sp-ghost-label { font-size: calc(var(--sp-px, 1px) * 13.5); line-height: calc(var(--sp-px, 1px) * 16); }
+  .gs-book .sp-tz { font-size: calc(var(--sp-px, 1px) * 13.5); margin-top: calc(var(--sp-px, 1px) * 18); }
+  .gs-book .bk-step { font-size: calc(var(--sp-px, 1px) * 13.5); }
+  .gs-book .sp-hint, .gs-book .sp-hosttime { font-size: calc(var(--sp-px, 1px) * 13.5); }   /* "Your time shows here." and the host's time, in the confirm bar: the floor */
+  .gs .gs-tag { font-size: max(15.6px, calc(var(--u) * 1.3)); }   /* "Sample times", "Demo · nothing sent": 13 px on screen */
+  .gs-book .sp-confirm {
+    flex-wrap: wrap;
+    row-gap: calc(var(--sp-px, 1px) * 12);
+  }
+  .gs-book .sp-confirm-text {
+    flex: 1 1 100%;
+  }
+  .gs-book .bk-hold {
+    flex: 1 1 100%;
+  }
+  .gs-book .bk-hold.hold-button--md {
+    height: max(53px, calc(var(--hb-px, 1px) * 48));
+    font-size: calc(var(--hb-px, 1px) * 16);
+  }
+
+  /* [phone] the sponsor stands (11/1): the section fills the room's width; the two stands stack; the stage keeps a real height */
+  .gs-stands {
+    width: 100%;
+    height: 100%;
+  }
+  .gs-stands .st-inner { gap: calc(var(--u) * 1.2); }
+  .gs-stands .st-row { grid-template-columns: 1fr; gap: calc(var(--u) * 1.6); }
+  .gs-stands .st-card { grid-template-rows: auto minmax(calc(var(--u) * 16), 1fr) auto; }
+  .gs-stands .st-code-line { font-size: max(26px, calc(var(--u) * 3.4)); gap: calc(var(--u) * .8); }
+  .gs-stands .st-brand-word { font-size: max(22px, calc(var(--u) * 3.1)); }
+  /* 11/1 iPhone pass: the FTC line at 11 px on screen (13.5 here at the stands' 0.83); the drag hint and "tap to copy" up to the
+     13 px floor. The note under the code is sized in px, not .2em of the headline (5.7 px), and tracked tighter so it stays no
+     wider than the code word it sits under (TAP TO COPY 118 px vs GAGER 114 at 390x844: the headline grows 4 px, 361 → 365 in a
+     421 px box). The code line itself, measured from the Sarpanch metrics: 361 px (Legion) / 375 (Lineage) in 421 at 390x844,
+     398 / 414 in 464 at 430x932, ~330 in 405 at 375x667 — one line everywhere. */
+  .gs-stands .st-disc { font-size: max(13.5px, calc(var(--u) * 1.1)); }
+  .gs-stands .st-drag { font-size: max(16px, calc(var(--u) * 1)); }
+  .gs-stands .st-code-note { font-size: max(15.6px, .2em); letter-spacing: .1em; }
+  .gs-stands .st-off-t { font-size: .55em; }   /* "% OFF": Hayden's half-of-15 is 14.4 px here = 12 on screen; .55em (15.8 = 13.2) is the floor, +5 px on the line */
+  .cs-bar { font-size: max(16px, calc(var(--u) * 1.3)); margin-bottom: calc(var(--u) * 1.8); }   /* 16 = 13 px on screen at 0.83; APPLICATION 274 + 19 pad in a 421 box, INTRO CALL 334 + 19, CLIENT RESULTS 202 + 19 in the results' 267 */
+}
+/* [phone] 9 · APPLY in the narrow room: his words over the Stepper, the Stepper full width with a finger-sized unit
+   (the Continue button and the answers at least 44 px on screen at the stop, where the box shows at about 0.83). The box
+   is top-anchored, so a taller step grows downward instead of nudging his words. Main goal's six answers go two to a row,
+   the contact fields one to a row. */
+@media (max-aspect-ratio: 19/20) {
+  .gs-apply {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: calc(var(--u) * 2.4);
+    padding-top: calc(var(--u) * 4);
+  }
+  .ap-left {
+    flex: none;
+  }
+  .gs-apply .gs-h {
+    font-size: calc(var(--u) * 4.6);
+  }
+  .gs-apply .gs-p {
+    margin-top: calc(var(--u) * 1.2);
+    font-size: max(18px, calc(var(--u) * 2.15));
+  }
+  .ap-note {
+    margin-top: calc(var(--u) * 1.3);
+    font-size: max(16px, calc(var(--u) * 1.75));
+  }
+  .gs-apply .gs-credit {
+    margin-top: calc(var(--u) * 0.8);
+  }
+  .ap-right {
+    flex: none;
+    justify-content: stretch;
+  }
+  .gs-apply .stepper {
+    --stepper-px: max(1.4px, calc(var(--u) * 0.166));
+    width: 100%;
+  }
+  .ap-step {
+    gap: calc(var(--u) * 1.7);
+  }
+  .ap-q {
+    font-size: calc(var(--u) * 2.7);
+  }
+  .ap-opts {
+    gap: calc(var(--u) * 1.1);
+  }
+  .ap-opt,
+  .ap-opts--3 .ap-opt {
+    min-height: max(53px, calc(var(--u) * 6.3));
+    gap: calc(var(--u) * 1);
+    padding: calc(var(--u) * 1.1) calc(var(--u) * 1.2);
+    font-size: max(18px, calc(var(--u) * 2.1));
+  }
+  .ap-opts--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ap-mk {
+    width: calc(var(--u) * 2.4);
+    height: calc(var(--u) * 2.4);
+  }
+  .ap-opt-name {
+    font-size: max(18px, calc(var(--u) * 2.2));
+  }
+  .ap-opt-price {
+    font-size: max(16px, calc(var(--u) * 1.8));
+  }
+  .ap-reassure {
+    font-size: max(16px, calc(var(--u) * 1.85));
+  }
+  .ap-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: calc(var(--u) * 1.2);
+  }
+  .ap-f-l {
+    font-size: max(15.6px, calc(var(--u) * 1.6));   /* 13 px on screen (11/1 floor) */
+  }
+  .gs-apply .gs-credit {
+    font-size: max(13.5px, calc(var(--u) * 1.35));   /* the licence credit: 11 px on screen, the one line allowed under 13 */
+  }
+  .gs-apply .smooth-input {
+    padding: calc(var(--u) * 1.3) calc(var(--u) * 1.6);
+  }
+  .ap-done-p {
+    font-size: max(18px, calc(var(--u) * 2.15));
+  }
+}
+
+/* =========================================================================================================
+   11 · FAQ: the Magic Bento grid; a tapped tile grows to 2 × 2 and its answer rolls in
+   ========================================================================================================= */
+.gs-faq {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 2.6);
+}
+.fq-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(var(--u) * 3);
+}
+.fq-head .gs-h {
+  font-size: calc(var(--u) * 5.6);
+}
+.fq-hint {
+  margin: 0;
+  padding-bottom: calc(var(--u) * 0.8);
+  font: 600 calc(var(--u) * 1.5) / 1 var(--gs-display);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gs-blue-t);
+}
+.fq-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.fq-bento {
+  --mb-px: calc(var(--u) * 0.1);
+}
+.gs-faq .magic-bento__content {
+  padding: calc(var(--u) * 2.4);
+}
+.gs-faq .magic-bento__card[aria-expanded='true'] {
+  z-index: 3; /* above the tiles after it in the grid, which it grows over (they were showing through) */
+  box-shadow: 0 calc(var(--u) * 3) calc(var(--u) * 9) calc(var(--u) * -2) rgba(6, 135, 255, 0.45), 0 0 0 1px rgba(92, 178, 255, 0.4);
+}
+.fq {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.fq-face {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.3);
+  transition: opacity 0.22s ease 0.2s;
+}
+.fq.is-open .fq-face {
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.fq-n {
+  align-self: flex-start;
+  font: 600 calc(var(--u) * 1.5) / 1 var(--gs-display);
+  letter-spacing: 0.2em;
+  color: var(--gs-blue-t);
+}
+.fq-q {
+  margin: 0;
+  padding-right: calc(var(--u) * 3);
+  font: 600 calc(var(--u) * 2.45) / 1.28 var(--gs-body);
+  color: var(--gs-ink);
+  text-wrap: pretty;
+}
+.fq--wide .fq-q {
+  font-size: calc(var(--u) * 2.9);
+}
+.fq-open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+}
+.fq.is-open .fq-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.15s ease 0.05s, visibility 0s;
+}
+.fq-oq {
+  margin: 0;
+  padding-right: calc(var(--u) * 5);
+  font: 700 calc(var(--u) * 2.9) / 1.22 var(--gs-body);
+  color: var(--gs-ink);
+  text-wrap: pretty;
+}
+.fq-a {
+  margin: 0;
+  font: 500 calc(var(--u) * 2.3) / 1.5 var(--gs-body);
+  color: #c8d4e3;
+  text-wrap: pretty;
+}
+/* ARROW LAW: a downward chevron that flips up when the tile is open */
+.fq-chev {
+  position: absolute;
+  top: calc(var(--u) * -0.6);
+  right: calc(var(--u) * -0.6);
+  width: calc(var(--u) * 3.4);
+  height: calc(var(--u) * 3.4);
+  color: var(--gs-blue-t);
+  transition: transform 0.45s var(--gs-spring);
+}
+.fq-chev svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+@media (hover: hover) {
+  .magic-bento__card:hover .fq:not(.is-open) .fq-chev {
+    transform: translateY(calc(var(--u) * 0.35));
+  }
+}
+.fq.is-open .fq-chev {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ap-opt,
+  .ap-mk,
+  .ap-other,
+  .fq-face,
+  .fq-open,
+  .fq-chev {
+    transition: none;
+  }
+  .ap-done-mark path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
