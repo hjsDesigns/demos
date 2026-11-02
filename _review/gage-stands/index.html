@@ -1,0 +1,193 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sponsor stands — Legion &amp; Lineage</title>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="module" src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<style>
+:root{--bg:#0B1018;--bg2:#141A22;--line:#243040;--blue:#0687FF;--ink:#E8EEF6;--mute:#8697AB;
+ --disp:'Chakra Petch',system-ui,sans-serif;--body:'Figtree',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;
+ background-image:radial-gradient(900px 480px at 50% -8%,#15202E 0,transparent 60%)}
+.w{max-width:1120px;margin:0 auto;padding:36px 18px 70px}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(1.25rem,3.4vw,1.8rem);margin:0 0 5px;
+ letter-spacing:.04em;text-transform:uppercase}
+h1 em{color:var(--blue);font-style:normal}
+.sub{color:var(--mute);font-size:.86rem;margin:0 0 26px;max-width:72ch}
+
+.stands{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stand{background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+ display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:13px 17px;border-bottom:1px solid var(--line)}
+.brand b{font-family:var(--disp);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.brand .code{margin-left:auto;font-family:var(--disp);font-size:.62rem;font-weight:600;letter-spacing:.1em;
+ text-transform:uppercase;color:#02101F;background:var(--blue);border-radius:5px;padding:4px 9px}
+.brand .pct{font-size:.67rem;color:var(--mute)}
+
+.stage{position:relative;aspect-ratio:1/1.02;
+ background:radial-gradient(closest-side at 50% 56%,#1C2B3E 0%,transparent 72%)}
+/* a hidden viewer must not paint at all: opacity alone leaves the WebGL layer live */
+model-viewer{position:absolute;inset:0;width:100%;height:100%;opacity:0;visibility:hidden;
+ transition:opacity .28s ease,visibility 0s linear .28s;
+ --poster-color:transparent;background:transparent}
+model-viewer.on{opacity:1;visibility:visible;transition:opacity .28s ease,visibility 0s}
+.hint{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);font-size:.6rem;
+ letter-spacing:.16em;text-transform:uppercase;color:#5E6F82;pointer-events:none}
+
+.cap{padding:13px 17px 16px;border-top:1px solid var(--line);min-height:116px;
+ display:flex;flex-direction:column;gap:4px}
+.cap h3{margin:0;font-family:var(--disp);font-weight:600;font-size:.96rem;line-height:1.25;transition:opacity .28s}
+.cap p{margin:0;font-size:.78rem;color:var(--mute);line-height:1.45;transition:opacity .28s}
+.cap .price{font-size:.75rem;color:#8FC79A;font-weight:600;transition:opacity .28s}
+.cap.fade h3,.cap.fade p,.cap.fade .price{opacity:0}
+.go{margin-top:auto;padding-top:9px;display:flex;align-items:center;gap:10px}
+.go a{font-family:var(--disp);font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+ text-decoration:none;padding:8px 14px;border-radius:99px;background:var(--blue);color:#02101F}
+.go a:hover{background:#2E9BFF}
+.dots{display:flex;gap:5px;margin-left:auto}
+.dots button{width:7px;height:7px;padding:0;border-radius:50%;border:0;cursor:pointer;
+ background:#33414F;transition:.2s}
+.dots button.on{background:var(--blue);width:18px;border-radius:99px}
+.note{margin-top:24px;font-size:.77rem;color:var(--mute);max-width:80ch;line-height:1.6}
+.note b{color:var(--ink)}
+@media(max-width:720px){.stands{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<h1>Sponsor stands &mdash; <em>Legion &amp; Lineage</em></h1>
+<p class="sub">Two stands, each turning through that brand&rsquo;s products. Drag one to turn it yourself; tap it to open the real shop page with Gage&rsquo;s code.</p>
+<div class="stands" id="stands"></div>
+<p class="note" id="note"></p>
+</div>
+
+<script type="module">
+const HDR = 'mv/studio_small_03_1k.hdr';   // Model Viewer's own studio light (Poly Haven, CC0)
+const YAW = 42;                                          // degrees either side of front we have artwork for
+
+const BRANDS = [
+  { key:'legion', name:'Legion Athletics', code:'GageR', pct:'15% off', products:[
+    { model:'models/legion-pulse.glb', name:'Pulse · Pre-Workout',
+      what:'Naturally sweetened pre-workout, 20 servings. Around 30 flavours.', price:'$49.99',
+      url:'https://legionathletics.com/products/supplements/pulse-pre-workout/' },
+    { model:'models/legion-pump.glb', name:'Pump · Stim-Free Pre-Workout',
+      what:'The same tub without the caffeine — for evening sessions.', price:'$39.99',
+      url:'https://legionathletics.com/products/supplements/pump-pre-workout/' },
+    { model:'models/legion-hydrate.glb', name:'Hydrate · Electrolyte Powder',
+      what:'Sugar-free electrolyte drink mix. Watermelon, Fruit Punch, Lemon Lime.', price:'$29.99',
+      url:'https://legionathletics.com/products/supplements/electrolyte-powder/' } ]},
+  { key:'lineage', name:'Lineage Provisions', code:'GAGE10', pct:'15% off', products:[
+    { model:'models/lineage-protein-bar.glb', name:'The Lineage Bar · Chocolate',
+      what:'20g grass-fed protein. Real food, no gums or syrups.', price:'$49 / 12 bars',
+      url:'https://lineageprovisions.com/products/lineage-bar-chocolate' },
+    { model:'models/lineage-protein-bar-mixed-berry.glb', name:'The Lineage Bar · Mixed Berry',
+      what:'Same bar, berry wrapper. One of five flavours.', price:'$49 / 12 bars',
+      url:'https://lineageprovisions.com/products/lineage-bar-mixed-berry' } ]}
+];
+const SWAP_MS = 4800;
+const el = (t,c)=>{ const n=document.createElement(t); if(c) n.className=c; return n; };
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const box = document.getElementById('stands');
+const stands = [];
+
+for(const b of BRANDS){
+  const stand = el('div','stand');
+  const head = el('div','brand');
+  head.innerHTML = `<b>${b.name}</b><span class="code">${b.code}</span><span class="pct">${b.pct}</span>`;
+  const stage = el('div','stage');
+
+  // one <model-viewer> per product, stacked; only the current one is shown
+  const views = b.products.map((p,i)=>{
+    const m = document.createElement('model-viewer');
+    m.setAttribute('src', p.model);
+    m.setAttribute('alt', p.name);
+    m.setAttribute('environment-image', HDR);   // the studio light — this is what makes it read as a product shot
+    m.setAttribute('shadow-intensity', '0.9');
+    m.setAttribute('shadow-softness', '0.8');
+    m.setAttribute('exposure', '1.05');
+    m.setAttribute('tone-mapping', 'neutral');
+    m.setAttribute('camera-controls', '');
+    m.setAttribute('disable-zoom', '');
+    m.setAttribute('disable-pan', '');
+    m.setAttribute('interaction-prompt', 'none');
+    m.setAttribute('min-field-of-view', '26deg');
+    m.setAttribute('max-field-of-view', '26deg');
+    // never past the faces we have artwork for
+    m.setAttribute('min-camera-orbit', `-${YAW}deg 72deg auto`);
+    m.setAttribute('max-camera-orbit', `${YAW}deg 96deg auto`);
+    m.setAttribute('camera-orbit', '0deg 84deg auto');
+    m.setAttribute('loading', i ? 'lazy' : 'eager');
+    if(i === 0) m.classList.add('on');
+    m.addEventListener('load', ()=>{ m.dataset.loaded = '1'; });
+    stage.append(m);
+    return m;
+  });
+  const hint = el('div','hint'); hint.textContent = 'drag to turn'; stage.append(hint);
+
+  const cap = el('div','cap');
+  cap.innerHTML = `<h3></h3><p></p><span class="price"></span>
+    <div class="go"><a target="_blank" rel="noopener">Open the shop ↗</a><div class="dots"></div></div>`;
+  const dots = b.products.map((p,i)=>{ const d=el('button'); if(!i) d.className='on';
+    d.setAttribute('aria-label','Show '+p.name); cap.querySelector('.dots').append(d); return d; });
+  stand.append(head, stage, cap); box.append(stand);
+
+  const st = { b, views, cap, dots, i:0, timer:null, touched:false };
+  stands.push(st);
+
+  function paint(){
+    const p = b.products[st.i];
+    cap.querySelector('h3').textContent = p.name;
+    cap.querySelector('p').textContent  = p.what;
+    cap.querySelector('.price').textContent = p.price;
+    cap.querySelector('a').href = p.url;
+    views.forEach((m,j)=>m.classList.toggle('on', j===st.i));
+    dots.forEach((d,j)=>d.classList.toggle('on', j===st.i));
+  }
+  function show(n, byHand){
+    const next = (n + b.products.length) % b.products.length;
+    if(next === st.i) return;
+    cap.classList.add('fade');
+    views[next].setAttribute('loading','eager');
+    setTimeout(()=>{ st.i = next; paint(); cap.classList.remove('fade'); }, 280);
+    if(byHand) restart();
+  }
+  function restart(){ clearInterval(st.timer); if(!reduced) st.timer = setInterval(()=>show(st.i+1), SWAP_MS); }
+  st.show = show; st.restart = restart;
+
+  dots.forEach((d,j)=>d.onclick = e=>{ e.stopPropagation(); show(j, true); });
+  // the whole stage opens the shop, except when you were dragging it
+  let down = null;
+  stage.addEventListener('pointerdown', e=>{ down = [e.clientX, e.clientY]; });
+  stage.addEventListener('pointerup', e=>{
+    if(!down) return;
+    const moved = Math.hypot(e.clientX-down[0], e.clientY-down[1]); down = null;
+    if(moved < 6) window.open(b.products[st.i].url, '_blank', 'noopener');
+  });
+  // a gentle sway while nobody is touching it — never a full turn, so no blank backs
+  if(!reduced){
+    let t = 0;
+    setInterval(()=>{
+      const m = views[st.i];
+      if(!m || st.touched || !m.dataset.loaded) return;
+      t += 0.05;
+      m.cameraOrbit = `${(Math.sin(t) * 22).toFixed(2)}deg 84deg auto`;
+    }, 60);
+    views.forEach(m=>{
+      m.addEventListener('camera-change', e=>{
+        if(e.detail && e.detail.source === 'user-interaction'){
+          st.touched = true; clearTimeout(st.rest);
+          st.rest = setTimeout(()=>{ st.touched = false; }, 4000);
+        }
+      });
+    });
+  }
+  paint(); restart();
+}
+document.addEventListener('visibilitychange', ()=>{
+  stands.forEach(st=>{ clearInterval(st.timer); if(!document.hidden) st.restart(); });
+});
+window.__stands = stands;
+document.getElementById('note').innerHTML =
+  '<b>Five models, all built here.</b> Pulse, Hydrate and the Chocolate bar on 31 Oct; Pump and Mixed Berry added ' +
+  'today as flavour swaps, because their photos are pixel-aligned with the originals so the solved cameras applied ' +
+  'unchanged. Lit by Poly Haven&rsquo;s studio HDRI (CC0). Each turns 42° either side of front — the brands publish ' +
+  'no back-of-pack art, so nothing ever shows a face we do not have.';
+</script></body></html>
