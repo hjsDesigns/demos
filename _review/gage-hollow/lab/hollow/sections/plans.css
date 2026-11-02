@@ -21,6 +21,11 @@
 @import url('../../../js/vendor/holo-card.css?v=20261030b');
 @import url('../../../js/vendor/text-flipping-board.css?v=20261030b');
 
+/* Hayden 11/1: "Keep the current font for the silver, gold, and platinum. Whenever I click a new font, I don't want it to affect
+   the gold, silver, or platinum cards… I mean just the cards. You can change the font for the pick your coaching plan." The three
+   cards pin their two faces here (front and back), so the workbench's font try-on (which sets --display and --body on <html>) never
+   reaches them; the section's heading and the SPOTS OPEN board still follow it. A custom property resolves from the nearest ancestor. */
+#plans .pl-plan{--display:'Chakra Petch','Arial Narrow',sans-serif;--body:'Figtree','Helvetica Neue',Arial,sans-serif}   /* the three cards only (Hayden: "just the cards"); the heading and the board follow the try-on */
 .pl-sec{
   --pl-card-w:calc(var(--u)*28.64);                    /* 54 x 85.6 mm stood on end: 28.64u x 45.4u, all three alike */
   --pl-card-h:calc(var(--pl-card-w)*85.6/54);
@@ -35,8 +40,11 @@
 .pl-sec,.pl-sec *,.pl-sec *::before,.pl-sec *::after{box-sizing:border-box}
 
 /* the heading, in the same voice as the other sections' h3 */
-.pl-h{margin:0;text-align:center;font:600 calc(var(--u)*5.4)/1 var(--display,'Chakra Petch','Arial Narrow',sans-serif);
+.pl-h{margin:0;text-align:center;font:600 calc(var(--u)*6.21)/1 var(--display,'Chakra Petch','Arial Narrow',sans-serif);   /* 5.4 × 1.15 (Hayden 11/1: "size up pick your coaching plan by fifteen percent") */
   letter-spacing:.06em;text-transform:uppercase;color:var(--ink,#E6EDF6);text-shadow:0 0 calc(var(--u)*2) rgba(7,11,18,.95)}
+
+/* the one-line hint under the board (plans.js): phones only (the narrow block below shows it); the Mac never sees it */
+.pl-hint{display:none}
 
 /* SPOTS OPEN n: the dream site's plans-row board on the Aceternity flaps (dark theme, skinned to the dream-site tiles) */
 .pl-spots.tfb{width:auto;max-width:none;margin:calc(var(--u)*1) 0 0;padding:0;background:none;box-shadow:none;border-radius:0;
@@ -221,12 +229,23 @@
    is). Tap a tucked card and it slides out in front while the one that was out slides back into its slot (plans.js sets
    data-slot: 0 and 1 tucked, 2 in front; Gold is in front until you pick). No forward pop on phones (--pl-pop 1): coming
    out of the stack is the pop. The face: name + tier move up beside the logo so the tucked strip says which card it is,
-   and the small print is a size up for the phone screen (the box shows at about 0.83 at the stop). */
+   and the small print is a size up for the phone screen (the box shows at about 0.83 at the stop).
+   11/1 iPhone pass (Hayden: "make this iPhone accessible… digestible"): the card is 38u wide (was 36: 321 px at 390x844, 266 on
+   screen; 1cu = 9.25 px here, 7.7 on screen) and the tucked strip 8cu, so the stack still fits the 102u box with a one-line hint
+   under the board: heading 74 + board 64 + hint 30 + 13 + stack 657 = 838 of 861 at 844 tall (921 of 951 at 932, 665 of 680 at
+   667). Type floors are layout px over the stop's 0.83: 15.6 here = 13 px on screen. AND THE BACK NOW SHOWS ON PHONES: a tap on
+   the card that's out turns it over in place (plans.js turnTo, the same 180deg the same way round; no scale), a tap again turns
+   it back; a tucked card tapped comes out front-first. The back's study-05 pieces are re-set for this card: the brand line and
+   the 90-day term dropped (the front carries the logo and the term: NEVER TWICE), the frequency rail laid as a strip over the
+   list (the numeral left, the caption and one bar per call right), the quiet second lines under the features dropped, every
+   label at the floor, Apply 53 px (44 on screen). Platinum's back (the tallest): head 40 + rail 70 + six features 163 + how it
+   differs 83 + Apply 63 ≈ 437 of the panel's 457 at 390x844 (496 at 430x932). */
 @media (max-aspect-ratio: 19/20){
-  .pl-sec{--pl-card-w:calc(var(--u)*36);--pl-tab:calc(var(--cu)*10.4);--pl-pop:1;width:100%;max-width:none;height:100%;justify-content:center}
-  .pl-h{max-width:9em;font-size:calc(var(--u)*4.2);line-height:1.04;text-wrap:balance}
+  .pl-sec{--pl-card-w:calc(var(--u)*38);--pl-tab:calc(var(--cu)*8);--pl-pop:1;width:100%;max-width:none;height:100%;justify-content:center}
+  .pl-h{max-width:10em;font-size:calc(var(--u)*4.2);line-height:1.04;text-wrap:balance}   /* 10em: COACHING PLAN is 313 px of a 9em 315 */
   .pl-spots.tfb{margin-top:calc(var(--u)*1.2)}
-  .pl-row{position:relative;display:block;flex:none;width:100%;height:calc(var(--pl-tab)*2 + var(--pl-card-h));margin-top:calc(var(--u)*2.4);gap:0}
+  .pl-hint{display:block;margin:calc(var(--u)*1.2) 0 0;text-align:center;font:500 max(15.6px,calc(var(--u)*1.9))/1.3 var(--body,'Figtree','Helvetica Neue',Arial,sans-serif);color:var(--muted,#9AABC2);text-shadow:0 0 calc(var(--u)*1.4) rgba(7,11,18,.95)}
+  .pl-row{position:relative;display:block;flex:none;width:100%;height:calc(var(--pl-tab)*2 + var(--pl-card-h));margin-top:calc(var(--u)*1.6);gap:0}
   .pl-plan{position:absolute;left:50%;top:0;margin-left:calc(var(--pl-card-w)*-.5);transition:translate .5s var(--pl-ease)}
   .pl-plan[data-slot="0"]{z-index:1}
   .pl-plan[data-slot="1"]{z-index:2;translate:0 var(--pl-tab)}
@@ -239,15 +258,48 @@
   .pl-logo{grid-column:1;grid-row:1;height:calc(var(--cu)*4)}
   .pl-title{grid-column:2;grid-row:1;margin-top:0;text-align:right}
   .pl-name{font-size:calc(var(--cu)*3.75)}
-  .pl-tier,.pl-term{font-size:calc(var(--cu)*1.42)}
+  /* the front's small print at the floor (11/1): the tier line tracked a little tighter so Gold's "TIER 2 · RECOMMENDED" (209 px)
+     still fits its 207 px column at 15 px — if it wraps to two right-aligned lines, that's fine too; the calls caption wraps to
+     two lines beside its numeral, as on the Mac */
+  .pl-tier,.pl-term{font-size:max(15px,calc(var(--cu)*1.42));letter-spacing:.12em}
   .pl-price{grid-column:1/-1;grid-row:2;margin-top:calc(var(--cu)*2.1)}
-  .pl-amt span{font-size:calc(var(--cu)*1.9)}
+  .pl-amt span{font-size:max(15.6px,calc(var(--cu)*1.9))}
   .pl-calls{grid-column:1/-1;grid-row:3;margin-top:calc(var(--cu)*1.8)}
-  .pl-callrow span{font-size:calc(var(--cu)*1.4)}
+  .pl-callrow span{font-size:max(15.6px,calc(var(--cu)*1.4))}
   .pl-incl{grid-column:1/-1;grid-row:4;margin-top:calc(var(--cu)*1.6)}
-  .pl-incl li{font-size:calc(var(--cu)*1.72)}
+  .pl-incl li{font-size:max(15.6px,calc(var(--cu)*1.72))}
   .pl-print .pl-apply{grid-column:1/-1;grid-row:5;align-self:end;display:flex;align-items:center;justify-content:center;min-height:53px;margin:calc(var(--cu)*1.2) 0 0;
-    padding:calc(var(--cu)*2.15) calc(var(--cu)*1);font-size:calc(var(--cu)*1.75)}
+    padding:calc(var(--cu)*2.15) calc(var(--cu)*1);font-size:max(15.6px,calc(var(--cu)*1.75))}
+  /* ── the back on a phone (11/1): the panel set in 1.5cu with 1.3/1.2cu padding (inner 267 x 457 px at 390x844) ── */
+  .pl-panel{left:calc(var(--cu)*1.5);right:calc(var(--cu)*1.5);top:calc(var(--cu)*1.5);min-height:calc(100% - var(--cu)*3);padding:calc(var(--cu)*1.3) calc(var(--cu)*1.2)}
+  .pl-bbrand{display:none}   /* the front has the logo (NEVER TWICE); the head is the tier's name and its price */
+  .pl-bhead{min-height:0}
+  .pl-bname{margin-top:0;font-size:max(19px,calc(var(--cu)*2.15))}
+  .pl-bprice strong{font-size:max(19px,calc(var(--cu)*2.35))}
+  .pl-bprice span{font-size:max(15.6px,calc(var(--cu)*1.03))}
+  /* the frequency rail as a strip: the numeral left (two rows tall), the caption and the bars right, a rule under it */
+  .pl-rail-body{grid-template-columns:minmax(0,1fr);gap:0;margin:calc(var(--cu)*1.1) 0 calc(var(--cu)*.9)}
+  .pl-rail{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:calc(var(--cu)*1.4);align-items:center;
+    padding:0 0 calc(var(--cu)*.9);margin-bottom:calc(var(--cu)*.9);border-right:0;border-bottom:calc(var(--cu)*.09) solid rgba(var(--pl-spec),.16)}
+  .pl-rail-n{grid-column:1;grid-row:1/3;font-size:max(44px,calc(var(--cu)*6.6));line-height:.95}
+  .pl-rail-cap{grid-column:2;grid-row:1;margin:0;font-size:max(15.6px,calc(var(--cu)*1.12));line-height:1.25}
+  .pl-rail-bars{grid-column:2;grid-row:2;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:calc(var(--cu)*.4);margin-top:calc(var(--cu)*.6)}
+  .pl-rail-foot{display:none}   /* "one bar, one call" reads from the caption beside the numeral */
+  .pl-feats li{padding:calc(var(--cu)*.45) 0 calc(var(--cu)*.45) calc(var(--cu)*1.1)}
+  .pl-feats li::before{top:calc(var(--cu)*.45 + 7px)}   /* centred on a 15.6 px line (19.5 tall): the hex is 5 px */
+  .pl-feats li:first-child::before{top:7px}
+  .pl-feat-l{font-size:max(15.6px,calc(var(--cu)*1.22));line-height:1.25}
+  .pl-feat-s{display:none}   /* the quiet second lines (the detail of each feature) are the Mac's; the phone keeps the labels */
+  .pl-blabel{font-size:max(15.6px,calc(var(--cu)*1))}
+  .pl-bdiff p{font-size:max(15.6px,calc(var(--cu)*1.2));line-height:1.3}
+  .pl-bterm{display:none}   /* the 90-day minimum is printed on the front */
+  .pl-bfoot{padding-top:calc(var(--cu)*1)}
+  .pl-panel .pl-apply{display:flex;align-items:center;justify-content:center;min-height:53px;padding:calc(var(--cu)*1.4) calc(var(--cu)*1);font-size:max(15.6px,calc(var(--cu)*1.45))}
+}
+/* [phone] shorter phones (width/height 0.5-0.95, e.g. 375x667): Platinum's back (~430 px of type) is taller than the card's panel
+   (~354 px inner) at that height, so there the panel is a fixed box that scrolls under the thumb instead of hanging past the metal */
+@media (max-aspect-ratio: 19/20) and (min-aspect-ratio: 1/2){
+  .pl-panel{height:calc(100% - var(--cu)*3);min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
 }
 @media (max-aspect-ratio: 19/20) and (prefers-reduced-motion: reduce){
   .pl-plan{transition:none}

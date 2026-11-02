@@ -82,8 +82,11 @@
 
 import { createHoloCard } from '../../../js/vendor/holo-card.js?v=20261030b';
 import { FlapCell, BASE_COL_DELAY, BASE_STEP_MS, BASE_FLIP_S } from '../../../js/vendor/text-flipping-board.js?v=20261030b';
+// Hayden 11/1: "speed up the spots open process times two": the board's column stagger, flap step and flip time at half the Aceternity values
+const SPEED = 2;
+const COL_DELAY = BASE_COL_DELAY / SPEED, STEP_MS = BASE_STEP_MS / SPEED, FLIP_S = BASE_FLIP_S / SPEED;
 
-const VERSION = '20261101c'; // its stylesheet's ?v= when the page hasn't linked plans.css itself
+const VERSION = '20261101g'; // its stylesheet's ?v= when the page hasn't linked plans.css itself (11/1 iPhone pass: the phone back)
 const CSS_URL = new URL('./plans.css', import.meta.url).href.split('?')[0];
 const LOGO_URL = new URL('../../../images/logo.png', import.meta.url).href;
 const REDUCE = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -834,6 +837,35 @@ function createTilt(c) {
       paint();
       wake();
     },
+    /** [phone] Turn the card over in place (back = true shows the back), the same 180deg the same way round as the pop's turn,
+     *  on the pop's clock and curve, the scale untouched (the wallet stack has no forward pop: coming out of the stack is the
+     *  pop, and the card that's out turns on a tap, 11/1). A turn interrupted half-way keeps going the same way. */
+    turnTo(back) {
+      const now = performance.now();
+      if (pop.running) {
+        const p = clamp((now - pop.t0) / pop.ms, 0, 1);
+        const e = POP_EASE(p);
+        pop.value = pop.from + (pop.to - pop.from) * e; // where it is right now
+        turn.value = turn.from + (turn.to - turn.from) * e;
+      }
+      if (((turn.to % 360) + 360) % 360 !== (back ? 180 : 0)) turn.to += 180;
+      turn.from = turn.value;
+      setFace(back);
+      pop.from = pop.to = pop.revStart = pop.value; // no scale change: the pop stays where it is
+      pop.factor = 1;
+      pop.t0 = now;
+      pop.ms = POP_MS;
+      if (REDUCE || turn.from === turn.to) {
+        pop.running = false;
+        landTurn();
+      } else pop.running = true;
+      paint();
+      wake();
+    },
+    /** [phone] which face is wanted right now (the pop's own turn or turnTo). */
+    get showsBack() {
+      return c.showsBack;
+    },
     wake,
     pause() {
       held = true;
@@ -865,7 +897,9 @@ export function mountPlans(host, opts = {}) {
   flaps.setAttribute('aria-hidden', 'true');
   spots.appendChild(flaps);
   const row = make('ul', 'pl-row');
-  root.append(heading, spots, row);
+  // [phone] (11/1): one line under the board says what a tap does; plans.css shows it only in the narrow room (display:none on the Mac)
+  const hint = make('p', 'pl-hint', 'Tap the card in front to turn it over.');
+  root.append(heading, spots, hint, row);
   host.appendChild(root);
 
   let popped = null; // the name of the card that's out, or null (nothing on load)
@@ -1035,9 +1069,11 @@ export function mountPlans(host, opts = {}) {
     card.addEventListener('pointercancel', leave);
 
     // click / tap the card: it comes forward (or goes back). Apply applies and never pops.
+    // [phone] (11/1): the card in front of the stack stays out; a tap on it turns it over in place (the back: the plan's detail),
+    // a tap again turns it back. A tucked card tapped comes out, front first.
     card.addEventListener('click', e => {
       if (e.target && e.target.closest && e.target.closest('.pl-apply')) return;
-      if (NARROW.matches && (popped || DEFAULT_TIER) === plan.name) return;   // [phone] the card in front of the stack stays out
+      if (NARROW.matches && (popped || DEFAULT_TIER) === plan.name) { entry.motion.turnTo(!entry.showsBack); return; }   // [phone]
       setPopped(popped === plan.name ? null : plan.name);
     });
     // keyboard: Enter / Space on the focused card does the same; Escape sends it back
@@ -1045,9 +1081,10 @@ export function mountPlans(host, opts = {}) {
       if (e.target !== card) return;
       if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
         e.preventDefault();
-        if (NARROW.matches && (popped || DEFAULT_TIER) === plan.name) return;   // [phone] as a tap
+        if (NARROW.matches && (popped || DEFAULT_TIER) === plan.name) { if (!e.repeat) entry.motion.turnTo(!entry.showsBack); return; }   // [phone] as a tap
         if (!e.repeat) setPopped(popped === plan.name ? null : plan.name);
       } else if (e.key === 'Escape' && popped === plan.name) setPopped(null);
+      else if (e.key === 'Escape' && NARROW.matches && entry.showsBack) entry.motion.turnTo(false);   // [phone] Escape turns the front card back over
     });
     return entry;
   });
@@ -1071,6 +1108,9 @@ export function mountPlans(host, opts = {}) {
       c.li.classList.toggle('is-popped', on); // the shadow and the glow (plans.css, the same 0.45 s)
       c.li.dataset.popped = String(on);
       c.motion.popTo(on ? popTarget() : 1); // the scale: one tween in the card's own frame loop
+      // [phone] (11/1): popTo(1) is a no-op in the wallet stack (nothing pops), so a card that was turned over by a tap turns
+      // back to its front here before it tucks away (and the new front card comes out front-first)
+      if (NARROW.matches && c.showsBack && c.plan.name !== (popped || DEFAULT_TIER)) c.motion.turnTo(false);
     }
     showTier(popped || DEFAULT_TIER);
     if (NARROW.matches) placeSlots();   // [phone]
@@ -1173,17 +1213,17 @@ export function mountPlans(host, opts = {}) {
       if (ch === ' ') return flaps.appendChild(make('span', 'pl-gap'));
       const cell = new FlapCell();
       flaps.appendChild(cell.el);
-      cell.setTarget(ch, 0, BASE_STEP_MS, true);
+      cell.setTarget(ch, 0, STEP_MS, true);
       cells.push({ cell, ch, col, isNumber: col > SPOTS_WORDS.length });
     });
     markBoard();
   };
-  const runTime = list => Math.max(0, ...list.map(c => c.col)) * BASE_COL_DELAY + 39 * BASE_STEP_MS + BASE_FLIP_S * 1350;
+  const runTime = list => Math.max(0, ...list.map(c => c.col)) * COL_DELAY + 39 * STEP_MS + FLIP_S * 1350;
   const flipIn = (only = null) => {
     if (REDUCE) return;
     const list = only ? cells.filter(only) : cells;
-    list.forEach(({ cell }) => cell.setTarget(' ', 0, BASE_STEP_MS, true));
-    list.forEach(({ cell, ch, col }) => cell.setTarget(ch, col * BASE_COL_DELAY, BASE_STEP_MS));
+    list.forEach(({ cell }) => cell.setTarget(' ', 0, STEP_MS, true));
+    list.forEach(({ cell, ch, col }) => cell.setTarget(ch, col * COL_DELAY, STEP_MS));
     busyUntil = performance.now() + runTime(list);
   };
   const flipNumber = value => {
@@ -1199,10 +1239,10 @@ export function mountPlans(host, opts = {}) {
       .filter(c => c.isNumber)
       .forEach((c, i) => {
         c.ch = digits[i];
-        if (REDUCE) c.cell.setTarget(c.ch, 0, BASE_STEP_MS, true);
-        else c.cell.setTarget(c.ch, i * BASE_COL_DELAY, BASE_STEP_MS);
+        if (REDUCE) c.cell.setTarget(c.ch, 0, STEP_MS, true);
+        else c.cell.setTarget(c.ch, i * COL_DELAY, STEP_MS);
       });
-    busyUntil = Math.max(busyUntil, performance.now() + 39 * BASE_STEP_MS + BASE_FLIP_S * 1350);
+    busyUntil = Math.max(busyUntil, performance.now() + 39 * STEP_MS + FLIP_S * 1350);
     markBoard();
   };
   function showTier(tier) {

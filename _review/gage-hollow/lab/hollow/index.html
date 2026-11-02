@@ -8,12 +8,12 @@
 <link rel="icon" href="../../images/logo.png" type="image/png">
 <link rel="stylesheet" href="../../js/vendor/accordion-flip.css?v=20261029c">
 <link rel="stylesheet" href="../../js/vendor/circular-carousel.css?v=20261029a">
-<link rel="stylesheet" href="sections/plans.css?v=20261101c">
+<link rel="stylesheet" href="sections/plans.css?v=20261101g">
 <link rel="stylesheet" href="../../js/vendor/scroll-index.css?v=20261030c">
-<link rel="stylesheet" href="sections/sections.css?v=20261101b">
+<link rel="stylesheet" href="sections/sections.css?v=20261101i">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,700&family=Figtree:wght@400;500;600&family=Sarpanch:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 /* HOLLOW SITE (Hayden 10/29): only the saved opener. Sections get added back one at a time, side by side with the dream plan.
    layout: a fixed stage (React Bits Grid Scan room + a CSS 3D layer using the room's exact camera) over a tall scroll track.
@@ -21,7 +21,7 @@
 :root{
   --bg:#0B111B; --dark:#070B12; --brand:#0687FF; --brand-text:#5CB2FF; --ink:#E6EDF6; --muted:#9AABC2;
   --line:rgba(92,178,255,.24); --panel:rgba(9,15,25,.97);
-  --display:'Chakra Petch','Arial Narrow',sans-serif; --body:'Figtree','Helvetica Neue',Arial,sans-serif;
+  --display:'Sarpanch','Arial Narrow',sans-serif;   /* Hayden 11/1 night: "Save Sarpanch as the font for the entire website"; the hero's wordmark, GET STARTED and the plan cards keep Chakra Petch */ --body:'Figtree','Helvetica Neue',Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{background:var(--dark)}
@@ -71,6 +71,7 @@ body{margin:0;background:var(--dark);color:var(--ink);font-family:var(--body);-w
   transition:filter .45s cubic-bezier(.2,.7,.2,1)}
 .logo-box canvas{position:absolute;inset:0;opacity:var(--el,1);transition:opacity .5s ease}
 .logo-top{position:absolute;left:10%;top:10%;width:80%;height:80%;object-fit:contain;pointer-events:none;opacity:var(--crisp-top,0);filter:grayscale(0) brightness(1) contrast(1);transition:filter .45s ease}
+.wall-name,.start-text,.corner-name,.cue{--display:'Chakra Petch','Arial Narrow',sans-serif}   /* the hero's own face (Hayden 11/1: "you don't have to change the font on the hero image") */
 .wall-name{margin:calc(var(--u)*1.2) 0 0;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:calc(var(--u)*4.4);line-height:1;text-align:center}
 .wall-name em{font-style:italic;color:var(--brand-text)}
 .hint{margin:calc(var(--u)*2.6) 0 0;font-family:var(--display);font-weight:600;font-size:calc(var(--u)*1.6);letter-spacing:.26em;text-transform:uppercase;color:var(--brand-text);opacity:0;transition:opacity .6s ease}
@@ -143,7 +144,7 @@ body{margin:0;background:var(--dark);color:var(--ink);font-family:var(--body);-w
 .af-sup .sp-list{row-gap:3px}
 .af-sup .sp-foot{font-size:10px;line-height:1.3}
 .program{pointer-events:none}   /* section 5: the six pieces (Hayden 10/29: the accordion gallery and the flip card in one) */
-.program h3{margin:0;text-align:center;font:600 calc(var(--u)*5.4)/1.05 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 calc(var(--u)*2) rgba(7,11,18,.95)}
+.program h3{margin:0;text-align:center;font:600 calc(var(--u)*5.94)/1.05 var(--display);   /* 5.4 × 1.10 (Hayden 11/1: "size up the method by ten percent") */letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 calc(var(--u)*2) rgba(7,11,18,.95)}
 .program .hint3{margin:calc(var(--u)*1.2) 0 calc(var(--u)*3.2);text-align:center;font:500 calc(var(--u)*2.6)/1.3 var(--body);color:var(--muted);text-shadow:0 0 calc(var(--u)*1.4) rgba(7,11,18,.95)}
 .pg-host{width:calc(var(--u)*114);height:calc(var(--u)*70.3);margin:0 auto}   /* 5% smaller (Hayden 10/29) */   /* Hayden 10/29: tall, iPhone-shaped photos, not wide ones */
 .pg-host .af-rest{bottom:calc(var(--u)*2);font:600 calc(var(--u)*1.55)/1.15 var(--display);letter-spacing:.14em;opacity:clamp(0,calc(1 - var(--gate,0)*3),1)}
@@ -296,7 +297,7 @@ body.name-corner .corner-name{opacity:1}
 .dot.on::before{background:var(--brand-text);box-shadow:0 0 10px var(--brand);transform:scale(1.5)}
 .dot span{position:absolute;left:28px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-text);opacity:0;transition:opacity .3s}
 .dot.on span{opacity:1}
-.cue{position:fixed;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:5;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brand-text);opacity:0;transition:opacity .5s;pointer-events:none;text-align:center}
+.cue{position:fixed;left:50%;bottom:calc(max(10px,env(safe-area-inset-bottom)) + 76px);transform:translateX(-50%);z-index:5;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brand-text);opacity:0;transition:opacity .5s;pointer-events:none;text-align:center}
 .cue::after{content:"";display:block;width:1px;height:28px;margin:10px auto 0;background:linear-gradient(var(--brand-text),transparent)}
 .show-cue .cue{opacity:.9}
 @media (max-width:560px){.rail-lab{display:none}}
@@ -309,15 +310,22 @@ body.name-corner .corner-name{opacity:1}
    EYE / (EYE + gap), about 0.83-0.88), and each box is about 85% of the screen's height there, centred.
    ============================================================================================================================ */
 @media (max-aspect-ratio: 19/20){
-  /* the opening line, a size down: LOOKING / HEALTHY AND / BEING HEALTHY // ARE TWO / DIFFERENT / GOALS. */
-  .words{font-size:calc(var(--u)*5)}
+  /* the opening line, sized so it reads in FOUR lines on a phone (11/1 iPhone pass; it was 5u = six short lines): at 3.5u the
+     words box (0.96 of the screen's width) holds LOOKING HEALTHY AND / BEING HEALTHY // ARE TWO / DIFFERENT GOALS. — measured
+     from the Chakra Petch 600 metrics at .06em: 361 px in a 374 px box at 390x844, 399 in 413 at 430x932, 285 in 360 at 375x667 */
+  .words{font-size:calc(var(--u)*3.5)}
+  /* the gate: GET STARTED a finger tall (3.3u type + 1.7u above and below = 6.7u, 56 px here, 51 on screen at the wall's 0.91);
+     the end wall's name on one line (3.6u: "GAGE ROGEL FITNESS" 348 px in a 390 px wall; 4.4u wrapped it) */
+  .start{padding:calc(var(--u)*1.7) calc(var(--u)*2.8)}
+  .wall-name{font-size:calc(var(--u)*3.6)}
+  .cue{font-size:13px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + 62px)}
   /* 7 · your coach: the 16:9 frame full width; his line under the frame instead of over his face */
   .gv-eye{font-size:max(15px,calc(var(--u)*1.9))}
   .gv h3{margin:calc(var(--u)*1.1) 0 calc(var(--u)*2.2)}
   .wk-vid{width:100%;margin-bottom:calc(var(--u)*7.6)}
   .wk-cap{left:0;right:0;top:calc(100% + var(--u)*1.6);bottom:auto;transform:none;padding:0 calc(var(--u)*1);white-space:normal;background:none;
     text-align:center;font-size:max(17px,calc(var(--u)*2.15));line-height:1.35;color:var(--ink);text-shadow:0 0 calc(var(--u)*1.4) rgba(7,11,18,.95)}
-  .wk-soon{font-size:max(11px,calc(var(--u)*1.5))}
+  .wk-soon{font-size:max(15px,calc(var(--u)*1.5))}   /* 13 px on screen at the coach's 0.88 (the phone type floor, 11/1) */
   /* 6 · results: the ring on top (its box wider than the section, so the front card is big and the side cards run off the
      edges), under it the digital can with the words beside it; the sheet pops out of the can into that space (its phone
      layout: startPaper()). Nothing overlaps: ring 0-50u, can and sheet 51-96u. */
@@ -331,6 +339,7 @@ body.name-corner .corner-name{opacity:1}
   .rs-quote{top:auto;bottom:calc(var(--u)*3);transform:none}
   .rs-q{font-size:max(17px,calc(var(--u)*2.2))}
   .rs-who{font-size:calc(var(--u)*1.8)}
+  .rs-tag{font-size:max(15px,calc(var(--u)*1.3))}   /* the sample stamp (shown only without WebGL, when the words stay in the column) */
   /* 4 · his story: the changing photo on top, the graph as a strip under it (journey() crops it to where the line runs and
      thickens its strokes; 100cqw = the section's width), the chapter's words under that, always from 67u down */
   .journey{container-type:inline-size;height:calc(var(--u)*100)}
@@ -344,7 +353,7 @@ body.name-corner .corner-name{opacity:1}
   .jy-words.intro .jy-p{font-size:max(18.5px,calc(var(--u)*2.3))}
   .jy-ghost{stroke-width:6.5;stroke-dasharray:5 22}
   .jy-dot,.jy-halo,.jy-tip,.jy-tipglow,.jy-ring{transform-box:fill-box;transform-origin:center;scale:2.2}
-  .jy-num{font-size:34px;translate:0 -24px}
+  .jy-num{font-size:38px;translate:0 -24px}   /* 38 SVG units × the strip's 0.4 = 15.2 px here, 13 on screen at the story's 0.86 (34 read 11.7) */
   /* 5 · the method: the six pieces stacked; the accordion opens downward (the open piece about half the column, room for
      the Supplements piece's 3D products) and a tap opens a piece and turns it over; closed pieces keep their names. Body copy
      floors are in layout px over the stop's scale (15 px on screen = 18 px here at 0.83). */
@@ -356,19 +365,20 @@ body.name-corner .corner-name{opacity:1}
   .pg-host.af-has-active .af-panel:not(.af-panel--active) .af-rest{opacity:clamp(0,calc(1 - var(--gate,0)*3),1)}
   .pg-host .ag-panel__label{bottom:calc(var(--u)*1.8)}
   .pg-host .af-back{padding:calc(var(--u)*2.6) calc(var(--u)*3)}
-  .pg-host .af-back__tag{font-size:max(13px,calc(var(--u)*1.9))}
+  .pg-host .af-back__tag{font-size:max(15.6px,calc(var(--u)*1.9))}   /* 13 px on screen at the method's 0.83 (11/1 floor) */
   .pg-host .af-back__title{margin-bottom:calc(var(--u)*1.4);font-size:calc(var(--u)*3.6)}
   .pg-host .af-back__text{max-width:none;font-size:max(18px,calc(var(--u)*2.45));line-height:1.45}
-  .pg-host .af-back__hint{left:calc(var(--u)*3);bottom:calc(var(--u)*2);font-size:max(12px,calc(var(--u)*1.6))}
-  /* 8-10 · plans, apply, book: 102u boxes (each section centres or top-anchors itself inside; sections.css, plans.css) */
-  #plans,#apply,#book{height:calc(var(--u)*102)}
+  .pg-host .af-back__hint{left:calc(var(--u)*3);bottom:calc(var(--u)*2);font-size:max(15.6px,calc(var(--u)*1.6))}
+  /* 8-11 · plans, apply, book, the sponsor stands: 102u boxes (each section centres or top-anchors itself inside; sections.css,
+     plans.css). The stands joined 11/1 (iPhone pass): stacked, each product's stage gets about 350 px of layout height */
+  #plans,#apply,#book,#stands{height:calc(var(--u)*102)}
   /* the where-you-are tracker: slimmer and taller, and look-only on a phone (a strip at the screen's edge is where a thumb
      swipes and where iOS's back gesture starts, so it takes no touches; it still names each section as you arrive) */
   .si-nav{left:5px;width:20px;pointer-events:none}
   .si-nav .si-rail{height:min(56vh,520px) !important;pointer-events:none}
   .si-nav .si-tick--h2{width:9px}
   .si-nav .si-head{width:15px}
-  .si-nav .si-label{left:20px}
+  .si-nav .si-label{left:20px;font-size:13px}   /* a fixed overlay: these px are on-screen px (the phone floor) */
   /* the hard stops by touch: while a finger drives the page it snaps (scroll-snap-stop: always) to the very stops the wheel's
      hard stops use, so one fling can't fly past a section (the marks: snapMarks() in the script) */
   html.tunnel-snap{scroll-snap-type:y mandatory}
@@ -414,7 +424,7 @@ body.name-corner .corner-name{opacity:1}
     </section>
     <section class="obj results" id="results" data-z="3.55" data-w="0.94" data-wd="1.64" data-fly="1" data-fade="-0.75,-0.4" aria-label="Results">
       <div class="rs-left">
-        <div class="rs-rest"><h3>Results</h3><p>Hold your mouse on someone to see their change.</p></div>
+        <div class="rs-rest"><p class="cs-bar"><span class="cs-led"></span><span class="cs-bar-t">/// Client results</span></p><h3>Results</h3><p>Hold your mouse on someone to see their change.</p></div>
         <div class="rs-quote" aria-live="polite"><p class="rs-tag" id="rsTag"></p><blockquote class="rs-q" id="rsQ"></blockquote><p class="rs-who" id="rsWho"></p></div>
         <div class="rs-paper" id="rsPaper" aria-hidden="true"></div>
       </div>
@@ -457,7 +467,8 @@ import { createMorphSlider } from '../../js/vendor/morph-slider.js?v=20261029d';
 import { createAccordionFlip } from '../../js/vendor/accordion-flip.js?v=20261029c';
 import { createDecryptedText } from '../../js/vendor/decrypted-text.js?v=20261031a';
 import { createScrollIndex } from '../../js/vendor/scroll-index.js?v=20261030c';
-import { mountIsland } from './sections/island.js?v=20261031m';
+import { mountIsland } from './sections/island.js?v=20261101a';
+import { mountDock } from './sections/dock.js?v=20261101b';
 import { createElectricBorder } from '../../js/vendor/electric-border.js?v=20261030h';
 import { attachCardBorders } from './sections/card-borders.js?v=20261030h';
 
@@ -512,7 +523,7 @@ let H = stage.clientHeight, aspect = stage.clientWidth / H, entered = false, fra
 // section's box is 90% of the screen's width as seen from its stop. A stop shows its section at EYE / (EYE + gap), so the box
 // is 0.9 * (EYE + gap) / EYE screens wide. The gaps: the camera's distance to each section at its stop (phones keep the stops).
 let narrow = false, jyRoom = null;
-const PHONE_GAP = { coach: 0.17, results: 0.17, journey: 0.204, program: 0.25, plans: 0.25, apply: 0.25, book: 0.25 };
+const PHONE_GAP = { coach: 0.17, results: 0.17, journey: 0.204, program: 0.25, plans: 0.25, apply: 0.25, book: 0.25, stands: 0.25 };   // stands added 11/1 (iPhone pass): without it the stands box fell back to 0.96 of the screen's width in layout px, 80% on screen, and Lineage's code line met its edge at 430 wide
 function layout() {
   H = stage.clientHeight; const W = stage.clientWidth; aspect = W / H;
   const wide = aspect > 0.95;
@@ -612,12 +623,13 @@ let activeDot = -1;
 // moves the SECTION along the tunnel: DEPTH[key] in room units, + farther down the tunnel, - closer, saved as 'gage-section-depth'
 // (lab only). The goal and his story have none; phones ignore it. Farther than 0.6 a section would still be in front of you at the
 // NEXT stop (Book has the end wall, so 0.9); closer than -0.3 it would sit on the camera at its own stop.
-const BACK_KEYS = ['coach', 'results', 'method', 'plans', 'apply', 'book', 'stands'];
+const BACK_KEYS = ['coach', 'results', 'story', 'method', 'plans', 'apply', 'book', 'stands'];   // 'story' = his journey graph (Hayden 11/1: "why won't you let me affect the Graph section")
 const STOP_BACK = 0.2;
 const back = () => (aspect > 0.95 ? STOP_BACK : 0);
 const DEPTH_MIN = -0.3;
-const depthMax = key => (key === 'book' || key === 'stands' ? 0.9 : 0.6);
-const clampDepth = (v, key) => Math.max(DEPTH_MIN, Math.min(depthMax(key), +v || 0));
+const depthMax = key => (key === 'book' || key === 'stands' ? 0.9 : key === 'story' ? 0.4 : 0.6);   // the story sits close to The method, so less room
+const depthMin = key => (key === 'story' ? -0.1 : DEPTH_MIN);   // the graph already reads close at its pin (0.2 in front of the camera)
+const clampDepth = (v, key) => Math.max(depthMin(key), Math.min(depthMax(key), +v || 0));
 const DEPTH = Object.fromEntries(BACK_KEYS.map(k => [k, 0]));
 try {
   const m = JSON.parse(localStorage.getItem('gage-section-depth') || 'null');
@@ -629,7 +641,7 @@ try {
 } catch {}
 const depth = key => (aspect > 0.95 && key in DEPTH ? DEPTH[key] : 0);
 // which Distance each section answers to (the workbench slider; the words, his story and the end wall have none)
-const OBJ_KEY = { coach: 'coach', results: 'results', program: 'method', plans: 'plans', apply: 'apply', book: 'book', stands: 'stands' };
+const OBJ_KEY = { coach: 'coach', results: 'results', journey: 'story', program: 'method', plans: 'plans', apply: 'apply', book: 'book', stands: 'stands' };
 objs.forEach(o => { o.key = OBJ_KEY[o.el.id] || null; });
 const zOf = o => o.z + (o.key ? depth(o.key) : 0);   // where the section sits right now
 let stopOf = () => null, nextStopOf = () => null;   // a keyed section's camera stop, and the stop after it (set once TRACK exists, below)
@@ -742,6 +754,7 @@ function goTo(i) {
   const y = st.start + pAt(z) * (st.end - st.start);
   lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
 }
+let dock = null, dockAt = -1, dockGoal = -1, dockGoalUntil = 0;   // the section dock (mounted once TRACK exists, below)
 let last = performance.now(), idle = 0;
 gsap.ticker.add(() => {
   const now = performance.now(), dt = Math.min(0.05, (now - last) / 1000); last = now;
@@ -755,6 +768,7 @@ gsap.ticker.add(() => {
   if (wordsObj && wordsObj.shown !== lineOn) { lineOn = wordsObj.shown; lineFx.forEach((fx, i) => lineOn ? setTimeout(() => wordsObj.shown && fx.play(), i * 210) : fx.hide()); }
   if (entered && !results.started && grid.cam.z > 2.65) results.start();
   if (entered) lateTick(grid.cam.z);
+  if (dock && entered) dockTick(grid.cam.z);
   if (results.cc) {
     results.fly(grid.cam.z);
     const on = resultsObj.shown && !results.flying;   // the ring only runs while you can see it, and holds still while the camera passes
@@ -953,18 +967,21 @@ jy = journey();
 // section 5: the six pieces of every program (Hayden 10/29: "combine the flip card and the accordion gallery"). React Bits'
 // Accordion Gallery and Flip Card in one: hover opens a piece, tap turns it over for what's inside, in Gage's own words
 // (his program section). Photos are stand-ins until Gage sends one for each piece.
+// Hayden 11/1: the six pieces open on concept stills made for them (Higgsfield GPT Image 2.5, lab/method-photos/): objects of the
+// method in the room's own light, not photos of Gage (his real photos stay where they are him: coach, results, story). They are
+// concept art, never presented as his gym or his food.
 const SIX = [
-  { label: 'Training', title: 'Training program', tag: 'Split \u00b7 exercises \u00b7 weekly volume', image: '../../images/cta.jpg',
+  { label: 'Training', title: 'Training program', tag: 'Split \u00b7 exercises \u00b7 weekly volume', image: '../../images/method/training.jpg', alt: 'A barbell racked in a dark squat rack under one blue light',
     text: 'Your split, exercise choices, and weekly volume come from your schedule, your equipment, and any injuries you\u2019re working around. Compounds get a Top Set and a Backoff Set, isolation work fills the gaps, and every session ends with a finisher.' },
-  { label: 'Nutrition', title: 'Nutrition plan', tag: 'Built from your MyFitnessPal', image: '../../images/feed-2.jpg',
+  { label: 'Nutrition', title: 'Nutrition plan', tag: 'Built from your MyFitnessPal', image: '../../images/method/nutrition.jpg', alt: 'A bowl of rice and chicken on a kitchen scale',
     text: 'Training gives your body a reason to change. Food is what moves the scale and the tape. Your meals come from the foods you already eat, written in grams so logging them takes two taps.' },
-  { label: 'Calls', title: 'Check-in calls', tag: '2 to 8 a month', image: '../../images/about.jpg',
+  { label: 'Calls', title: 'Check-in calls', tag: '2 to 8 a month', image: '../../images/method/calls.jpg', alt: 'A phone propped on a desk, its screen glowing, a notebook beside it',
     text: 'Hour-long calls where we go over your lifts, your food, your trackers, and your photos, then adjust the plan based on how your body is responding.' },
-  { label: 'Direct access', title: 'Direct access', tag: 'Replies within 24 hours on weekdays', image: '../../images/feed-1.jpg',
+  { label: 'Direct access', title: 'Direct access', tag: 'Replies within 24 hours on weekdays', image: '../../images/method/access.jpg', alt: 'A smartwatch glowing on a folded towel',
     text: 'Questions between calls get answered. When something isn\u2019t working, flag it and we fix it together, so you\u2019re never grinding through it alone.' },
-  { label: 'Supplements', title: 'Supplement guidance', tag: 'Client-only discounts', image: '../../images/feed-3.jpg',
+  { label: 'Supplements', title: 'Supplement guidance', tag: 'Client-only discounts', image: '../../images/method/supplements.jpg', alt: 'A black shaker bottle and a scoop of powder',
     text: 'The supplements I recommend for your plan, with client-only discount codes and links to order them. Your stack grows over time as it makes sense for where you are.' },
-  { label: 'Written plan', title: 'Written program', tag: 'Everything written out', image: '../../images/hero.jpg',
+  { label: 'Written plan', title: 'Written program', tag: 'Everything written out', image: '../../images/method/written.jpg', alt: 'A clipboard of printed pages with a pen across it',
     text: 'Your training, nutrition, trackers, substitution guide, and FAQs in one document. Nothing in it is set in stone, and it gets updated as you go.' }
 ];
 // Hayden 10/29: all closed and even unless the pointer is on one; the open one is phone-shaped (expandRatio .36 of a 120u strip ≈ 9:16)
@@ -1250,7 +1267,7 @@ const LATE = [
   { id: 'book', z: 10.55, file: 'book.js', mount: 'mountBook' },
   { id: 'stands', z: 11.95, file: 'stands.js', mount: 'mountStands' },   // the sponsor stands, behind Book (11/1)
 ].map(L => ({ ...L, obj: objs.find(o => o.el.id === L.id), api: null, started: false, on: null, played: false, plan: null }));
-const LATE_V = '20261101c';
+const LATE_V = '20261101p';
 const lateY = L => st.start + pAt(L.z - 0.25 - back(L.id)) * (st.end - st.start);   // each section's stop
 function lateTick(cz) {
   for (const L of LATE) {
@@ -1281,14 +1298,14 @@ LATE.forEach(L => EXTRA_STOPS.push(() => lateY(L)));   // each at reading size (
 // the tracker: one tick per section at the scroll position of its stop (or where it reads best, for the two before the story)
 // [name, z, distance key]: the same stops as the hard stops above; the goal and his story have no distance (Hayden 11/1)
 const TRACK = [
-  ['The goal', 0.45], ['Your coach', COACH_STOP, 'coach'], ['Results', 3.38, 'results'], ['His story', PIN.z], ['The method', 6.10, 'method'],
+  ['The goal', 0.45], ['Your coach', COACH_STOP, 'coach'], ['Results', 3.38, 'results'], ['His story', PIN.z, 'story'], ['The method', 6.10, 'method'],
   ['Plans', 7.50, 'plans'], ['Apply', 8.90, 'apply'], ['Book a call', 10.30, 'book'], ['His sponsors', 11.70, 'stands']
 ];
-const trackZ = ([, z, key]) => (key ? z - back(key) : z);   // where the camera stops for each section
+const trackZ = ([, z, key]) => (key && key !== 'story' ? z - back(key) : z);   // where the camera stops for each section (the story's pin stays exactly where its gates expect it)
 const trackSections = () => TRACK.map(t => ({ text: t[0], level: 2, at: st.start + pAt(trackZ(t)) * (st.end - st.start) }));
 stopOf = key => { const row = TRACK.find(r => r[2] === key); return row ? trackZ(row) : null; };
 const jyFly = objs.find(o => o.el.id === 'journey');
-nextStopOf = key => key === 'coach' ? stopOf('results') : key === 'results' ? (jyFly ? jyFly.openAt + 0.25 : null) : key === 'method' ? stopOf('plans')
+nextStopOf = key => key === 'coach' ? stopOf('results') : key === 'results' ? (jyFly ? jyFly.openAt + 0.25 : null) : key === 'story' ? stopOf('method') : key === 'method' ? stopOf('plans')
   : key === 'plans' ? stopOf('apply') : key === 'apply' ? stopOf('book') : key === 'book' ? stopOf('stands')
   : key === 'stands' ? CAM_END : null;
 const tracker = createScrollIndex(document.body, {
@@ -1307,6 +1324,27 @@ const island = mountIsland(document.body, {
   onBook: () => { if (!entered) enter(); const B = LATE.find(L => L.id === 'book'); lenis ? lenis.scrollTo(lateY(B), { duration: 1.6 }) : window.scrollTo({ top: lateY(B), behavior: reduce ? 'auto' : 'smooth' }); },
   onUndo: () => { const B = LATE.find(L => L.id === 'book'); if (B.api && B.api.reset) B.api.reset(); }
 });
+// the section dock (Hayden 11/1: "Mix Gooey Nav and Dock, and put it in the bottom of Gage's site, and then put it for each
+// section, but make sure it fits"): React Bits' Dock (the magnifying bar) crossed with its Gooey Nav (the goo pill and the particle
+// burst), one icon per tracker section. Tap one and the camera flies to that section's stop; the pill follows the camera and holds
+// on a tapped section until the camera arrives. It rises in when you enter (the gate keeps only the logo and GET STARTED).
+const DOCK_ICONS = ['goal', 'coach', 'results', 'story', 'method', 'plans', 'apply', 'book', 'sponsors'];
+dock = mountDock(document.body, {
+  items: TRACK.map((t, i) => ({ label: t[0], icon: DOCK_ICONS[i] })),
+  onPick: i => {
+    if (!entered) enter();
+    dockAt = i; dockGoal = i; dockGoalUntil = performance.now() + 2600;
+    const y = st.start + pAt(trackZ(TRACK[i])) * (st.end - st.start);
+    lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+  }
+});
+dock.setActive(0, { burst: false }); dockAt = 0;   // the goal is lit while you stand at the gate
+function dockTick(cz) {   // the pill sits under the section whose stop is nearest the camera
+  let near = 0, gap = Infinity;
+  for (let i = 0; i < TRACK.length; i++) { const d = Math.abs(cz - trackZ(TRACK[i])); if (d < gap) { gap = d; near = i; } }
+  if (dockGoal >= 0) { if (near !== dockGoal && performance.now() < dockGoalUntil) return; dockGoal = -1; }
+  if (near !== dockAt) { dockAt = near; dock.setActive(near); }
+}
 const sixPanels = [...document.querySelectorAll('#pgSix .af-panel')];
 let sixOpen = -1;
 function gateSix(cz) {
@@ -1431,14 +1469,14 @@ function currentSection() {   // the section whose stop is nearest the camera, i
 }
 const getStopBack = () => STOP_BACK;   // the camera's push-back, one number now (the workbench's font fly-to-Book reads it)
 const getDepth = key => (key in DEPTH ? DEPTH[key] : 0);
-const depthRange = key => ({ min: DEPTH_MIN, max: depthMax(key), step: 0.02 });
+const depthRange = key => ({ min: depthMin(key), max: depthMax(key), step: 0.02 });
 function setDepth(v, key) {   // Hayden 11/1: moves one section along the tunnel (+ farther, - closer); the camera stays put; saved (lab only)
   if (!(key in DEPTH)) return null;
   DEPTH[key] = clampDepth(v, key);
   try { localStorage.setItem('gage-section-depth', JSON.stringify(DEPTH)); } catch {}
   return DEPTH[key];
 }
-window.__tunnel = { grid, logo, tune, lenis, st, pAt, zAt, storyAt, PIN, GATE, six, results, coach, LATE, tracker, island, borders, setLines, setRingScale, currentSection, getStopBack, getDepth, setDepth, depthRange, get wide() { return aspect > 0.95; }, get jy() { return jy; }, get progress() { return progress; }, get frames() { return frames; } };   // test-page debugging handle
+window.__tunnel = { grid, logo, tune, lenis, st, pAt, zAt, storyAt, PIN, GATE, six, results, coach, LATE, tracker, island, borders, setLines, setRingScale, currentSection, getStopBack, getDepth, setDepth, depthRange, get dock() { return dock; }, get wide() { return aspect > 0.95; }, get jy() { return jy; }, get progress() { return progress; }, get frames() { return frames; } };   // test-page debugging handle
 addEventListener('resize', () => { layout(); ScrollTrigger.refresh(); grid.wake(); });
 // [phone] =====================================================================================================================
 // THE NARROW ROOM, the rest of it (Hayden 10/31: a second version for phones, the Mac room kept as it is). Everything below acts
@@ -1451,6 +1489,19 @@ function phonePaper(w, h) {
 }
 // 2 · the results' line says tap, not mouse, on a touch screen
 if (narrow && matchMedia('(hover: none)').matches) { const p = $('.rs-rest p'); if (p) p.textContent = 'Tap someone to see their change.'; }
+// 2b · (11/1 iPhone pass) and a tap anywhere that isn't a person puts their sheet back — a thumb has no "mouse off": the ring's
+//     own pointerup handles a tap ON a card (tap = open, tap the same one again = toss); this catches the tap beside the ring,
+//     on the can, the words or the room, so the visitor isn't stuck with a sheet out. A swipe (over 12 px) is scrolling, not a tap.
+if (narrow && touchy) {
+  let tapAt = null;
+  addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') tapAt = { x: e.clientX, y: e.clientY }; }, { passive: true, capture: true });
+  addEventListener('pointerup', e => {
+    if (e.pointerType === 'mouse' || !tapAt) return;
+    const moved = Math.hypot(e.clientX - tapAt.x, e.clientY - tapAt.y); tapAt = null;
+    if (moved > 12 || !resultsObj.shown || results.hover < 0 || results.cardAt(e.clientX, e.clientY) >= 0) return;
+    results.release();
+  }, { passive: true, capture: true });
+}
 // 3 · lighter on a phone: the coach video's electric border at 1.25x (the room is 1.25x in bootGrid, the plan cards 1.5x)
 if (narrow && borders[0] && borders[0].set) borders[0].set({ dprCap: 1.25 });
 // 4 · the hard stops by touch. gateWheel can't hold a finger: native touch scrolling keeps flinging after the finger lifts. So

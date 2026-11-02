@@ -357,6 +357,41 @@
   min-height: 0;
   overflow: hidden;
 }
+/* the console heading (11/1, Hayden's pick of five): a status bar with a live LED, the heading typed in with a caret; Apply and
+   Book carry nothing else in their left column */
+.cs-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--u) * 1);
+  margin: 0 0 calc(var(--u) * 2.6);
+  padding: calc(var(--u) * 0.85) calc(var(--u) * 1.15);
+  border: 1px solid rgba(92, 178, 255, 0.62);
+  border-radius: 3px;
+  background: rgba(6, 135, 255, 0.16);
+  box-shadow: 0 0 calc(var(--u) * 1.6) rgba(6, 135, 255, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  font: 600 calc(var(--u) * 1.45) / 1 var(--gs-display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #cfe6ff;   /* brighter (Hayden 11/1: "make the application five steps thing brighter so it's easier to notice") */
+  white-space: nowrap;
+}
+.cs-led {
+  width: calc(var(--u) * 0.7);
+  height: calc(var(--u) * 0.7);
+  border-radius: 50%;
+  background: #9ff0ad;
+  box-shadow: 0 0 calc(var(--u) * 1.3) #8fc79a, 0 0 calc(var(--u) * 0.4) #fff;
+  animation: cs-led 2.2s ease-in-out infinite;
+}
+@keyframes cs-led { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.cs-h .cs-line { display: block; min-height: 1.02em; }
+/* (the blinking caret after the heading is gone, Hayden 11/1: "get rid of the cursor typing") */
+@keyframes cs-blink { 50% { opacity: 0; } }
+.ap-left { display: flex; flex-direction: column; }
+.rs-rest .cs-bar { margin-bottom: calc(var(--u) * 1.6); }
+.ap-left .gs-credit { margin-top: auto; }
+@media (prefers-reduced-motion: reduce) { .cs-led { animation: none; } }
+
 /* the licence credit Skiper UI's free components ask for (kept visible) */
 .gs-credit {
   margin: calc(var(--u) * 1.4) 0 0;
@@ -707,27 +742,33 @@
      40 tall, finger-sized; the type a size up. The slot is the calendar's ~310 px of --sp-px (head 26 + 6, weekday row
      14 + 4, six rows of 40 + gaps), about the strip + two step rows + rail it replaced, so the phone picker stays on the
      screen as before; the rail view is 303 of it (back row 36, label 21, margin 12, rail 300 min × 0.78 = 234, book.js). */
-  .gs-book .slot-picker { --sp-cal-cell-h: calc(var(--sp-px, 1px) * 40); }
+  /* 11/1 iPhone pass: --sp-px is 1.156 at 390x844 and the card shows at 0.83, so 13.5 sp-px = 15.6 layout px = 13 px on screen
+     (the phone type floor); the day cells 46 sp-px tall = 53 layout = 44 on screen (a thumb); the month chevrons 40 sp-px =
+     38 on screen, in a head row the same height. The calendar slot grows by about 58 layout px (the card had ~165 to spare). */
+  .gs-book .slot-picker { --sp-cal-cell-h: calc(var(--sp-px, 1px) * 46); }
   .gs-book .sp-cal-row { margin-top: calc(var(--sp-px, 1px) * 8); }
-  .gs-book .sp-cal-head { height: calc(var(--sp-px, 1px) * 26); margin-bottom: calc(var(--sp-px, 1px) * 6); }
+  .gs-book .sp-cal-head { height: calc(var(--sp-px, 1px) * 40); margin-bottom: calc(var(--sp-px, 1px) * 6); }
+  .gs-book .slot-picker .sp-cal-nav { width: calc(var(--sp-px, 1px) * 40); height: calc(var(--sp-px, 1px) * 40); }
   .gs-book .sp-cal-week { margin-bottom: calc(var(--sp-px, 1px) * 4); }
   .gs-book .sp-cal-month { font-size: calc(var(--sp-px, 1px) * 14); }
-  .gs-book .sp-cal-wd { font-size: calc(var(--sp-px, 1px) * 11.5); line-height: calc(var(--sp-px, 1px) * 14); }
+  .gs-book .sp-cal-wd { font-size: calc(var(--sp-px, 1px) * 13.5); line-height: calc(var(--sp-px, 1px) * 16); }
   .gs-book .slot-picker .sp-cal-day { font-size: calc(var(--sp-px, 1px) * 15); }
-  .gs-book .slot-picker .sp-cal-back { height: calc(var(--sp-px, 1px) * 32); font-size: calc(var(--sp-px, 1px) * 14); }
+  .gs-book .slot-picker .sp-cal-back { height: calc(var(--sp-px, 1px) * 36); font-size: calc(var(--sp-px, 1px) * 14); }
   .gs-book .sp-times .bk-step {
     min-height: 0;
     margin: calc(var(--sp-px, 1px) * 6) 0 0;
     padding: 0;
-    font-size: calc(var(--sp-px, 1px) * 12.5);
+    font-size: calc(var(--sp-px, 1px) * 13.5);
   }
   .gs-book .sp-cal-row .sp-railrow { margin-top: calc(var(--sp-px, 1px) * 12); }
-  .gs-book .sp-day-week { font-size: calc(var(--sp-px, 1px) * 13); }
-  .gs-book .sp-day-free { font-size: calc(var(--sp-px, 1px) * 12); line-height: calc(var(--sp-px, 1px) * 14); }
-  .gs-book .sp-hour { font-size: calc(var(--sp-px, 1px) * 13); }
-  .gs-book .sp-block-label, .gs-book .sp-ghost-label { font-size: calc(var(--sp-px, 1px) * 12.5); line-height: calc(var(--sp-px, 1px) * 14); }
-  .gs-book .sp-tz { font-size: calc(var(--sp-px, 1px) * 12.5); margin-top: calc(var(--sp-px, 1px) * 18); }
-  .gs-book .bk-step { font-size: calc(var(--sp-px, 1px) * 13); }
+  .gs-book .sp-day-week { font-size: calc(var(--sp-px, 1px) * 13.5); }
+  .gs-book .sp-day-free { font-size: calc(var(--sp-px, 1px) * 13.5); line-height: calc(var(--sp-px, 1px) * 16); }
+  .gs-book .sp-hour { font-size: calc(var(--sp-px, 1px) * 13.5); }
+  .gs-book .sp-block-label, .gs-book .sp-ghost-label { font-size: calc(var(--sp-px, 1px) * 13.5); line-height: calc(var(--sp-px, 1px) * 16); }
+  .gs-book .sp-tz { font-size: calc(var(--sp-px, 1px) * 13.5); margin-top: calc(var(--sp-px, 1px) * 18); }
+  .gs-book .bk-step { font-size: calc(var(--sp-px, 1px) * 13.5); }
+  .gs-book .sp-hint, .gs-book .sp-hosttime { font-size: calc(var(--sp-px, 1px) * 13.5); }   /* "Your time shows here." and the host's time, in the confirm bar: the floor */
+  .gs .gs-tag { font-size: max(15.6px, calc(var(--u) * 1.3)); }   /* "Sample times", "Demo · nothing sent": 13 px on screen */
   .gs-book .sp-confirm {
     flex-wrap: wrap;
     row-gap: calc(var(--sp-px, 1px) * 12);
@@ -742,6 +783,27 @@
     height: max(53px, calc(var(--hb-px, 1px) * 48));
     font-size: calc(var(--hb-px, 1px) * 16);
   }
+
+  /* [phone] the sponsor stands (11/1): the section fills the room's width; the two stands stack; the stage keeps a real height */
+  .gs-stands {
+    width: 100%;
+    height: 100%;
+  }
+  .gs-stands .st-inner { gap: calc(var(--u) * 1.2); }
+  .gs-stands .st-row { grid-template-columns: 1fr; gap: calc(var(--u) * 1.6); }
+  .gs-stands .st-card { grid-template-rows: auto minmax(calc(var(--u) * 16), 1fr) auto; }
+  .gs-stands .st-code-line { font-size: max(26px, calc(var(--u) * 3.4)); gap: calc(var(--u) * .8); }
+  .gs-stands .st-brand-word { font-size: max(22px, calc(var(--u) * 3.1)); }
+  /* 11/1 iPhone pass: the FTC line at 11 px on screen (13.5 here at the stands' 0.83); the drag hint and "tap to copy" up to the
+     13 px floor. The note under the code is sized in px, not .2em of the headline (5.7 px), and tracked tighter so it stays no
+     wider than the code word it sits under (TAP TO COPY 118 px vs GAGER 114 at 390x844: the headline grows 4 px, 361 → 365 in a
+     421 px box). The code line itself, measured from the Sarpanch metrics: 361 px (Legion) / 375 (Lineage) in 421 at 390x844,
+     398 / 414 in 464 at 430x932, ~330 in 405 at 375x667 — one line everywhere. */
+  .gs-stands .st-disc { font-size: max(13.5px, calc(var(--u) * 1.1)); }
+  .gs-stands .st-drag { font-size: max(16px, calc(var(--u) * 1)); }
+  .gs-stands .st-code-note { font-size: max(15.6px, .2em); letter-spacing: .1em; }
+  .gs-stands .st-off-t { font-size: .55em; }   /* "% OFF": Hayden's half-of-15 is 14.4 px here = 12 on screen; .55em (15.8 = 13.2) is the floor, +5 px on the line */
+  .cs-bar { font-size: max(16px, calc(var(--u) * 1.3)); margin-bottom: calc(var(--u) * 1.8); }   /* 16 = 13 px on screen at 0.83; APPLICATION 274 + 19 pad in a 421 box, INTRO CALL 334 + 19, CLIENT RESULTS 202 + 19 in the results' 267 */
 }
 /* [phone] 9 · APPLY in the narrow room: his words over the Stepper, the Stepper full width with a finger-sized unit
    (the Continue button and the answers at least 44 px on screen at the stop, where the box shows at about 0.83). The box
@@ -818,7 +880,10 @@
     gap: calc(var(--u) * 1.2);
   }
   .ap-f-l {
-    font-size: calc(var(--u) * 1.6);
+    font-size: max(15.6px, calc(var(--u) * 1.6));   /* 13 px on screen (11/1 floor) */
+  }
+  .gs-apply .gs-credit {
+    font-size: max(13.5px, calc(var(--u) * 1.35));   /* the licence credit: 11 px on screen, the one line allowed under 13 */
   }
   .gs-apply .smooth-input {
     padding: calc(var(--u) * 1.3) calc(var(--u) * 1.6);

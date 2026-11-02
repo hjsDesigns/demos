@@ -105,6 +105,9 @@ export function mountIsland(host = document.body, opts = {}) {
         }
       });
     }, HOLD_MS);
+    // Hayden 11/1: "that green bar will kind of follow me" — the held-slot note is fixed to the screen, so it leaves on its own a few
+    // seconds later (Undo stays possible until then); nothing on the island lingers while he scrolls
+    later.push(setTimeout(() => { try { island.remove(id); } catch {} }, HOLD_MS + 6500));
     return id;
   }
 
@@ -112,6 +115,7 @@ export function mountIsland(host = document.body, opts = {}) {
     const id = `apply-${++n}`;
     island.push({ id, status: 'running', label: 'Sending your application' });
     settle(() => island.update(id, { status: 'done', label: 'Demo', detail: 'not sent yet', action: undefined }), HOLD_MS);
+    later.push(setTimeout(() => { try { island.remove(id); } catch {} }, HOLD_MS + 6500));
     return id;
   }
 

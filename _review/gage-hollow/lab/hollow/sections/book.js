@@ -40,10 +40,12 @@
 // to it, in case the browser held the tab back). Every booking fires CustomEvent('book-confirm') on the host.
 import { createSlotPicker } from '../../../js/vendor/slot-picker.js?v=20261101b';
 import { createHoldButton } from '../../../js/vendor/hold-button.js?v=20261030a';
-import { ensureCss, el, lineReveal } from './common.js?v=20261030e';
+import { ensureCss, el, lineReveal, reduce } from './common.js?v=20261030e';
 
 const COPY = {
-  k: ['Intro call', '1-on-1 with me'],
+  bar: '/// Intro call · 1-on-1 with me',
+  titleLines: ['Book', 'a call'],
+  k: ['Intro call', '1-on-1 with me'],   // not shown since 11/1 (kept for the record, with the lede, topics and email below)
   title: 'Book a call',
   lede: "We talk through where you're at, what you want, and which plan fits.",
   topics: ["Where you're at", 'What you want', 'Which plan fits'],
@@ -131,6 +133,20 @@ const shown = node => {
   return getComputedStyle(node).visibility !== 'hidden';
 };
 
+
+// the console heading (Hayden 11/1, picking treatment 1 of five and cutting it down: "I like the number one, but we can just get rid
+// of the entire subsection… just keep the Apply for coaching and Book a call"): a status bar with a live LED, then the heading typed
+// in with a caret when the camera arrives. Nothing else in the column. Reduced motion: the words are simply there.
+function consoleHead(barText, lines) {   // Hayden 11/1 later: "I don't need it typed on there… get rid of the cursor typing" — the words are simply there, no caret
+  const bar = el('div', 'cs-bar');
+  bar.append(el('span', 'cs-led'), el('span', 'cs-bar-t', barText));
+  const h = el('h3', 'gs-h cs-h');
+  const spans = lines.map(t => { const sp = el('span', 'cs-line', t); sp.dataset.text = t; h.appendChild(sp); return sp; });
+  const fill = () => { spans.forEach(sp => { sp.textContent = sp.dataset.text; }); };
+  const type = onDone => { fill(); onDone && onDone(); return () => {}; };   // kept as the reveal hook; nothing animates
+  return { bar, h, type, fill };
+}
+
 export function mountBook(host, opts = {}) {
   const css = ensureCss();
   linkHoldCss();
@@ -147,21 +163,9 @@ export function mountBook(host, opts = {}) {
 
   // ---- left: his words ----
   const left = el('div', 'bk-left');
-  const k = el('p', 'gs-k');
-  k.append(el('span', '', COPY.k[0]), el('span', 'gs-k-dot', '·'), el('span', '', COPY.k[1]));
-  const h = el('h3', 'gs-h', COPY.title);
-  const lede = el('p', 'gs-p', COPY.lede);
-  const topics = el('ol', 'bk-topics');
-  COPY.topics.forEach((line, i) => {
-    const li = el('li');
-    li.append(el('b', '', String(i + 1).padStart(2, '0')), el('span', '', line));
-    topics.appendChild(li);
-  });
-  const mail = el('p', 'bk-mail');
-  const a = el('a', '', COPY.email);
-  a.href = `mailto:${COPY.email}`;
-  mail.append(el('span', '', COPY.emailLead), a);
-  left.append(k, h, lede, topics, mail);
+  const head = consoleHead(COPY.bar, COPY.titleLines);
+  const h = head.h;
+  left.append(head.bar, h);   // the console bar and the typed heading; no eyebrow, no lede, no 01–03, no email line (Hayden 11/1)
 
   // ---- right: the slot picker ----
   const right = el('div', 'bk-right');
@@ -303,11 +307,7 @@ export function mountBook(host, opts = {}) {
       if (revealing || !shown(root)) return;
       cancelReveal();
       revealing = true;
-      cancelReveal = lineReveal([h, lede], {
-        onDone: () => {
-          revealing = false;
-        }
-      });
+      cancelReveal = head.type(() => { revealing = false; });
     },
     reset,
     destroy() {

@@ -23,7 +23,9 @@ import { ensureCss, el, lineReveal, reduce } from './common.js?v=20261030e';
 
 const FORM = {
   title: 'Apply for coaching',
-  lede: 'Tell me about your goals and your schedule. I read every application myself and get back to you personally.',
+  bar: '/// Application · 5 steps',
+  titleLines: ['Apply for', 'coaching'],
+  lede: 'Tell me about your goals and your schedule. I read every application myself and get back to you personally.',   // not shown since 11/1 (kept for the record)
   experience: {
     label: 'Training experience',
     options: ['New to training', 'Some experience', 'Experienced lifter', 'Returning after time off']
@@ -50,7 +52,25 @@ const FORM = {
   credit: { text: 'Text-field caret: Skiper UI', href: 'https://skiper-ui.com' }
 };
 const SCAN_MS = 800;   // one pass of the band (Hayden: "don't have it do a bunch of phases, just one")
+// [phone] the tunnel's narrow room (width/height <= 0.95), the same switch as index.html's layout(): the contact fields tell
+// the phone keyboard what its return key does (next field / done), which is what Enter already does in them (11/1)
+const PHONE = () => !!(window.matchMedia && window.matchMedia('(max-aspect-ratio: 19/20)').matches);
+const keyHint = hint => (PHONE() ? { enterkeyhint: hint } : {});
 const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+
+
+// the console heading (Hayden 11/1, picking treatment 1 of five and cutting it down: "I like the number one, but we can just get rid
+// of the entire subsection… just keep the Apply for coaching and Book a call"): a status bar with a live LED, then the heading typed
+// in with a caret when the camera arrives. Nothing else in the column. Reduced motion: the words are simply there.
+function consoleHead(barText, lines) {   // Hayden 11/1 later: "I don't need it typed on there… get rid of the cursor typing" — the words are simply there, no caret
+  const bar = el('div', 'cs-bar');
+  bar.append(el('span', 'cs-led'), el('span', 'cs-bar-t', barText));
+  const h = el('h3', 'gs-h cs-h');
+  const spans = lines.map(t => { const sp = el('span', 'cs-line', t); sp.dataset.text = t; h.appendChild(sp); return sp; });
+  const fill = () => { spans.forEach(sp => { sp.textContent = sp.dataset.text; }); };
+  const type = onDone => { fill(); onDone && onDone(); return () => {}; };   // kept as the reveal hook; nothing animates
+  return { bar, h, type, fill };
+}
 
 export function mountApply(host, opts = {}) {
   const css = ensureCss();
@@ -68,16 +88,15 @@ export function mountApply(host, opts = {}) {
   // ---- left: his words ----
   const left = el('div', 'ap-left');
   // 10/30 (Hayden): the "Coaching application · Read by Gage" line and the "What happens next" steps are gone
-  const h = el('h3', 'gs-h', FORM.title);
-  const lede = el('p', 'gs-p', FORM.lede);
-  const note = el('p', 'ap-note', FORM.note);
+  const head = consoleHead(FORM.bar, FORM.titleLines);
+  const h = head.h;
   // Skiper UI's free licence: "Attribution to Skiper UI is required when using the free version"
   const credit = el('p', 'gs-credit');
   credit.dataset.credit = 'skiper-ui';
   const creditLink = el('a', '', FORM.credit.text);
   Object.assign(creditLink, { href: FORM.credit.href, target: '_blank', rel: 'noopener' });
   credit.appendChild(creditLink);
-  left.append(h, lede, note, credit);
+  left.append(head.bar, h, credit);   // the console bar, the typed heading, the licence credit; no lede, no note (Hayden 11/1)
 
   // ---- the questions ----
   const question = text => el('p', 'ap-q', text);
@@ -197,10 +216,10 @@ export function mountApply(host, opts = {}) {
     email.el.toggleAttribute('data-bad', answers.email.length > 3 && !emailOk(answers.email) && document.activeElement !== email.input);
     stepper.refresh();
   }
-  const name = field(FORM.contact.name, { name: 'Name', autocomplete: 'name', required: true }, true);
+  const name = field(FORM.contact.name, { name: 'Name', autocomplete: 'name', required: true, ...keyHint('next') }, true);
   // type stays "text" (inputmode email): Chrome gives no selectionStart on type="email", and the caret is placed from it
-  const email = field(FORM.contact.email, { name: 'Email', autocomplete: 'email', required: true, inputmode: 'email' });
-  const phone = field(FORM.contact.phone, { name: 'Phone', autocomplete: 'tel', type: 'tel', inputmode: 'tel' });
+  const email = field(FORM.contact.email, { name: 'Email', autocomplete: 'email', required: true, inputmode: 'email', ...keyHint('next') });
+  const phone = field(FORM.contact.phone, { name: 'Phone', autocomplete: 'tel', type: 'tel', inputmode: 'tel', ...keyHint('done') });
   [name, email, phone].forEach(f => {
     f.input.addEventListener('keydown', e => {
       if (e.key !== 'Enter') return;
@@ -400,7 +419,7 @@ export function mountApply(host, opts = {}) {
     // the heading lines roll in (Pegassi); call it when the camera arrives
     reveal() {
       cancelReveal();
-      cancelReveal = lineReveal([h, lede]);
+      cancelReveal = head.type();
     },
     data: () => ({ ...answers, submitted }),
     destroy() {
