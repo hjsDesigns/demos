@@ -37,7 +37,7 @@ let cssLink = null;
 function linkCss() {
   if (cssLink) return;
   cssLink = document.createElement('link'); cssLink.rel = 'stylesheet';
-  cssLink.href = new URL('./dock.css?v=20261101e', import.meta.url).href;
+  cssLink.href = new URL('./dock.css?v=20261101f', import.meta.url).href;
   document.head.appendChild(cssLink);
 }
 
@@ -151,11 +151,11 @@ export function mountDock(host, opts = {}) {
     items.forEach((it, j) => it.el.classList.toggle('active', j === i));
     active = i;
     placeEffect(true);
-    if (burst && !reduce) {
+    if (burst && !reduce) {   // a tap: the pill scales in and the goo bursts
       fx.querySelectorAll('.gdock-particle').forEach(p => p.remove());
       pill.classList.remove('active'); void pill.offsetWidth; pill.classList.add('active');
       makeParticles(fx);
-    } else { pill.classList.add('active'); }
+    } else { pill.classList.add('active'); fx.classList.add('active'); }   // the camera passing by: the pill slides over, nothing bursts
   }
   const onResize = () => placeEffect(true);
   addEventListener('resize', onResize);

@@ -22,7 +22,7 @@ body:not(.entered) .gdock{visibility:hidden}   /* not on the hero: it rises in w
 .gdock.is-hover .gdock-item:not(:hover) .gdock-label{opacity:0;transform:translate(-50%,0)}
 
 /* Gooey Nav's effect layers (its CSS, with the room's colours) */
-.gdock-effect{position:absolute;opacity:1;pointer-events:none;display:grid;place-items:center;z-index:1;border-radius:10px}
+.gdock-effect{position:absolute;opacity:1;pointer-events:none;display:grid;place-items:center;z-index:1;border-radius:10px;transition:left .38s cubic-bezier(.2,.7,.2,1),top .38s cubic-bezier(.2,.7,.2,1),width .38s,height .38s}   /* slides between items when the camera moves */
 .gdock-pill{z-index:1}
 .gdock-pill::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#5CB2FF,#0687FF);transform:scale(0);opacity:0;border-radius:10px}
 .gdock-pill.active::after{animation:gdock-pill var(--gd-pill,.3s) ease both}
@@ -48,7 +48,7 @@ body:not(.entered) .gdock{visibility:hidden}   /* not on the hero: it rises in w
  .gdock-item{border-radius:8px}
  .gdock-label{display:none}
 }
-@media (prefers-reduced-motion: reduce){.gdock-pill.active::after,.gdock-filter.active::after{animation:none;transform:scale(1);opacity:1}.gdock-particle,.gdock-point{display:none}}
+@media (prefers-reduced-motion: reduce){.gdock-effect{transition:none}.gdock-pill.active::after,.gdock-filter.active::after{animation:none;transform:scale(1);opacity:1}.gdock-particle,.gdock-point{display:none}}
 
 /* phones: the status island (bottom-centred there) rides above the dock */
 @media (max-width:640px){body.entered .gage-island{bottom:calc(max(8px,env(safe-area-inset-bottom)) + 56px)}}
