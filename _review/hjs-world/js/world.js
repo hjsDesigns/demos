@@ -214,7 +214,14 @@ road([[-900,-60],[-420,-40],[60,20],[520,90],[980,120]], 13);
 
 /* ───────── buildings ───────── */
 const concreteMat = pbr('Concrete034','Concrete034_1K-JPG', 4, {color:new THREE.Color(C.concrete),roughness:.72,envMapIntensity:1.3});
-const glassMat = new THREE.MeshStandardMaterial({color:0x1C2130,roughness:.11,metalness:.68,envMapIntensity:2.1});
+/* three glasses, not one: a cool blue, a bronze and a near-black. A skyline of identical glass
+ * reads as one material repeated, which is exactly what "flat" means. */
+const GLASS = [
+  new THREE.MeshStandardMaterial({color:0x1C2130,roughness:.11,metalness:.68,envMapIntensity:2.1}),
+  new THREE.MeshStandardMaterial({color:0x2A2418,roughness:.16,metalness:.74,envMapIntensity:2.4}),
+  new THREE.MeshStandardMaterial({color:0x10141C,roughness:.07,metalness:.60,envMapIntensity:1.8})
+];
+const glassMat = GLASS[0];
 const WIN_GEO = new THREE.PlaneGeometry(1,1);
 const winXf=[], winCol=[]; const tmp=new THREE.Object3D(), tc=new THREE.Color();
 
@@ -241,7 +248,8 @@ function windows(x,y0,z,w,h,d,density,cool){
 }
 function lattice(x,z,w,h,d,round){
   const geo=round?new THREE.CylinderGeometry(w/2,w/2,h,26):new THREE.BoxGeometry(w,h,d);
-  const m=new THREE.Mesh(geo,glassMat); m.position.set(x,h/2,z); m.castShadow=true; scene.add(m);
+  const m=new THREE.Mesh(geo, GLASS[Math.floor(Math.random()*GLASS.length)]);
+  m.position.set(x,h/2,z); m.castShadow=true; scene.add(m);
   const seg=[], rows=Math.round(h/7.2), cols=round?26:Math.round(w/7.2);
   if(round){
     for(let r=0;r<=rows;r++){ const y=r*(h/rows);
@@ -717,9 +725,15 @@ function frame(now){
   if(done){
     PINS.forEach(p => {
       v.copy(p.at).project(camera);
-      const on = v.z < 1 && Math.abs(v.x) < 1.08 && Math.abs(v.y) < 1.08;
-      p.el.style.display = on ? 'block' : 'none';
-      if(on){ p.el.style.left = ((v.x*.5+.5)*innerWidth)+'px'; p.el.style.top = ((-v.y*.5+.5)*innerHeight)+'px'; }
+      const behind = v.z > 1;
+      if(behind){ v.x = -v.x; v.y = -v.y; }            // a point behind you projects inverted
+      const off = behind || Math.abs(v.x) > 0.95 || Math.abs(v.y) > 0.92;
+      const cx = Math.max(-0.95, Math.min(0.95, v.x));  // held at the edge, not thrown away
+      const cy = Math.max(-0.92, Math.min(0.92, v.y));
+      p.el.style.display = 'block';
+      p.el.style.left = ((cx*.5+.5)*innerWidth)+'px';
+      p.el.style.top  = ((-cy*.5+.5)*innerHeight)+'px';
+      p.el.classList.toggle('edge', off);
     });
   }
   composer.render();

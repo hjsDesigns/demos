@@ -56,7 +56,9 @@ country now.
 - ~~Towers are plain blocks~~ — rebuilt 11/2 with a podium, one to three setbacks, a lip at each
   step, and either a mast or rooftop plant. That is the silhouette fix; whether it reads is still
   his call.
-- Towers may still be darker than his reference; a second glass material would help.
+- ~~One glass material everywhere~~ — three now (cool blue, bronze, near-black), picked at
+  random per tower. A skyline of identical glass reads as one material repeated, which is what
+  "flat" means.
 - ~~No `aoMap` anywhere~~ — added 11/2 on the ground, the roads, the plaza, the Needle's base and
   the room floor. The catch: `aoMap` reads from the SECOND uv set, so a geometry carrying only `uv`
   renders no occlusion and warns about nothing. `withAO()` copies `uv` to `uv1`; verified all five
