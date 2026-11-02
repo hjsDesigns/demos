@@ -1,0 +1,63 @@
+/* React Bits Accordion Gallery + Flip Card, joined (see accordion-flip.js). Gallery rules are the originals;
+   the panel's surface moved onto the card faces so a card can turn over without being clipped. */
+.accordion-flip {
+  --ag-accent: #ffffff; --ag-overlay: #060010; --ag-text: #ffffff; --ag-gap: 10px; --ag-radius: 16px; --ag-media-size: 320px;
+  --fc-radius: 16px; --fc-bg: #27272a; --fc-ink: #f5f5f5; --fc-shadow: #000000; --fc-shadow-o: 0.45; --fc-glare: 0.22;
+  display: flex; flex-direction: row; gap: var(--ag-gap); width: 100%; max-width: 100%;
+  perspective: 1400px; perspective-origin: 50% 50%;
+}
+.af-panel {
+  position: relative; flex: 1 1 0; min-width: 0; min-height: 0; cursor: pointer; display: block; outline: none;
+  transform-style: flat; transform-origin: center center; will-change: flex-grow, transform; -webkit-tap-highlight-color: transparent;
+}   /* flat: the card turns inside its own 3D, so nothing in the panel can cut through it */
+.af-panel:focus-visible .af-face { box-shadow: 0 0 0 2px var(--ag-accent), 0 10px 30px -18px rgba(0, 0, 0, 0.8); }
+.af-shadow {
+  position: absolute; inset: 12% 9% -5%; border-radius: var(--fc-radius); pointer-events: none;
+  background: color-mix(in srgb, var(--fc-shadow) calc(var(--fc-shadow-o) * 100%), transparent); filter: blur(22px);
+}
+.af-rotor { position: absolute; inset: 0; transform-style: preserve-3d; }
+.af-face {
+  position: absolute; inset: 0; overflow: hidden; border-radius: var(--fc-radius); background: var(--fc-bg); color: var(--fc-ink);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.8); backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.af-face--front { transform: translateZ(0.5px); }   /* the two faces sit a hair apart so they never flicker through each other */
+.af-face--back { transform: rotateY(180deg) translateZ(0.5px); }
+.af-glare {
+  position: absolute; inset: 0; pointer-events: none; opacity: var(--fc-sheen, 0);
+  background: radial-gradient(circle farthest-side at var(--fc-gx, 50%) var(--fc-gy, 50%),
+    rgba(255, 255, 255, var(--fc-glare)) 0%, rgba(255, 255, 255, calc(var(--fc-glare) * 0.76)) 12%,
+    rgba(255, 255, 255, calc(var(--fc-glare) * 0.5)) 26%, rgba(255, 255, 255, calc(var(--fc-glare) * 0.28)) 42%,
+    rgba(255, 255, 255, calc(var(--fc-glare) * 0.12)) 60%, rgba(255, 255, 255, calc(var(--fc-glare) * 0.04)) 78%, rgba(255, 255, 255, 0) 100%);
+}
+.ag-panel__frame { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+.ag-panel__media {
+  --ag-gray: 1; --ag-dim: 0.35; position: absolute; top: 50%; left: 50%; width: var(--ag-media-size); height: 100%;
+  filter: grayscale(var(--ag-gray)); will-change: transform, filter;
+}
+.ag-panel__media img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+.ag-panel__overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--ag-overlay) 78%, transparent) 100%),
+    color-mix(in srgb, var(--ag-overlay) calc(var(--ag-dim, 0.35) * 100%), transparent);
+}
+.ag-panel__label { position: absolute; left: 20px; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 12px; pointer-events: none; z-index: 2; }
+.ag-panel__bar { flex: 0 0 auto; width: 3px; height: 26px; border-radius: 3px; background: var(--ag-accent); opacity: 0; box-shadow: 0 0 12px color-mix(in srgb, var(--ag-accent) 60%, transparent); }
+.ag-panel__text {
+  color: var(--ag-text); font-family: inherit; font-weight: 600; font-size: clamp(1rem, 1.4vw, 1.4rem); letter-spacing: 0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+.af-rest {
+  position: absolute; left: 6px; right: 6px; bottom: 16px; z-index: 2; text-align: center; pointer-events: none;
+  color: var(--ag-text); font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75); opacity: 1; transition: opacity 0.35s ease;
+}
+.accordion-flip.af-has-active .af-rest { opacity: 0; }
+.af-back { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 28px 30px; }
+.af-back__tag { margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ag-accent); }
+.af-back__title { margin: 0 0 12px; font-size: 26px; font-weight: 700; line-height: 1.05; }
+.af-back__text { margin: 0; font-size: 16px; line-height: 1.5; opacity: 0.92; }
+.af-back__hint { position: absolute; left: 30px; bottom: 22px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.55; }
+.af-panel:not(.af-panel--active) .af-back { visibility: hidden; }
+.af-panel[data-fade] .af-face { transform: none; opacity: 0; backface-visibility: visible; -webkit-backface-visibility: visible; transition: opacity 200ms ease; }
+.af-panel[data-fade='front'] .af-face--front, .af-panel[data-fade='back'] .af-face--back { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .af-panel, .ag-panel__media { will-change: auto; } }

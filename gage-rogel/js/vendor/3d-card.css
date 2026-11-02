@@ -1,0 +1,86 @@
+/* Aceternity UI "3D Card Effect": the local proof port's CSS (vendor/effects/aceternity/proof/3d-card.css), unchanged. Goes with 3d-card.js. Use in end products only; never redistribute. */
+/* 3D Card — plain CSS port of Aceternity UI's 3d-card.tsx (CardContainer / CardBody / CardItem)
+   plus their 3d-card-demo-2 card classes. Tailwind v4 classes translated by hand and checked
+   against the live demo's computed styles on 2026-10-29. Local proof; do not redistribute. */
+
+:where(.tdc, .tdc *, .tdc *::before, .tdc *::after) { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
+:where(.tdc img) { display: block; vertical-align: middle; max-width: 100%; height: auto; }
+:where(.tdc button) { font: inherit; letter-spacing: inherit; color: inherit; background-color: transparent; border-radius: 0; }
+
+/* CardContainer outer: py-20 flex items-center justify-center, perspective 1000px */
+.tdc {
+  padding-block: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  -webkit-font-smoothing: antialiased;                   /* Aceternity's <body class="antialiased"> */
+  -moz-osx-font-smoothing: grayscale;
+}
+/* CardContainer inner: flex items-center justify-center relative transition-all duration-200 ease-linear */
+.tdc-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 200ms linear;
+  transform-style: preserve-3d;
+  touch-action: pan-y;            /* touch fallback: vertical swipes still scroll the page */
+}
+/* CardBody: h-96 w-96 [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d] */
+.tdc-body { height: 24rem; width: 24rem; transform-style: preserve-3d; }
+.tdc-body > * { transform-style: preserve-3d; }
+/* CardItem: w-fit transition duration-200 ease-linear (Tailwind v4 "transition" property list) */
+.tdc-item {
+  width: fit-content;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+}
+
+/* ── the demo card (3d-card-demo-2), light by default, .tdc--dark for dark ── */
+.tdc {
+  --tdc-card-bg: oklch(98.5% 0.002 247.839);              /* bg-gray-50 */
+  --tdc-card-border: color-mix(in oklab, #000 10%, transparent);   /* border-black/[0.1] */
+  --tdc-title: oklch(43.9% 0 0);                          /* text-neutral-600 */
+  --tdc-copy: oklch(55.6% 0 0);                           /* text-neutral-500 */
+  --tdc-cta-bg: #000;
+  --tdc-cta-text: #fff;
+}
+.tdc.tdc--dark, .dark .tdc {
+  --tdc-card-bg: #000;                                    /* dark:bg-black */
+  --tdc-card-border: color-mix(in oklab, #fff 20%, transparent);   /* dark:border-white/[0.2] */
+  --tdc-title: #fff;
+  --tdc-copy: oklch(87% 0 0);                             /* dark:text-neutral-300 */
+  --tdc-cta-bg: #fff;
+  --tdc-cta-text: #000;
+}
+
+.tdc-card {                       /* bg-gray-50 relative group/card w-auto sm:w-[30rem] h-auto rounded-xl p-6 border */
+  background-color: var(--tdc-card-bg);
+  position: relative;
+  width: auto;
+  height: auto;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid var(--tdc-card-border);
+}
+@media (min-width: 40rem) { .tdc-card { width: 30rem; } }
+
+.tdc-title { font-size: 1.25rem; line-height: 1.4; font-weight: 700; color: var(--tdc-title); }   /* text-xl font-bold */
+.tdc-copy  { color: var(--tdc-copy); font-size: 0.875rem; line-height: calc(1.25 / 0.875); max-width: 24rem; margin-top: 0.5rem; } /* text-sm max-w-sm mt-2 */
+.tdc-media { width: 100%; margin-top: 1rem; }
+.tdc-img   { height: 15rem; width: 100%; object-fit: cover; border-radius: 0.75rem; }   /* h-60 w-full object-cover rounded-xl */
+.tdc-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 5rem; }   /* mt-20 */
+.tdc-btn { padding: 0.5rem 1rem; border-radius: 0.75rem; font-size: 0.75rem; line-height: calc(1 / 0.75); }  /* px-4 py-2 rounded-xl text-xs */
+.tdc-btn-ghost { font-weight: 400; }                     /* light: inherits the page color */
+.tdc--dark .tdc-btn-ghost, .dark .tdc .tdc-btn-ghost { color: #fff; }   /* dark:text-white */
+.tdc-btn-cta { background-color: var(--tdc-cta-bg); color: var(--tdc-cta-text); font-weight: 700; }
+
+/* hover looks (Tailwind v4 wraps hover: in @media (hover: hover)); .is-lifted mirrors them for touch */
+@media (hover: hover) {
+  .tdc-card:hover .tdc-img { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }  /* group-hover/card:shadow-xl */
+  .tdc--dark .tdc-card:hover, .dark .tdc-card:hover { box-shadow: 0 25px 50px -12px color-mix(in oklab, oklch(69.6% 0.17 162.48) 10%, transparent); } /* dark:hover:shadow-2xl shadow-emerald-500/[0.1] */
+}
+.tdc-card.is-lifted .tdc-img { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+.tdc--dark .tdc-card.is-lifted, .dark .tdc-card.is-lifted { box-shadow: 0 25px 50px -12px color-mix(in oklab, oklch(69.6% 0.17 162.48) 10%, transparent); }

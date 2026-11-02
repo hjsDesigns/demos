@@ -1,0 +1,25 @@
+/* Kokonut UI "Scroll Index": the original's Tailwind classes written out as CSS (its dark-mode colours as the defaults).
+   Set the --si-* variables on a parent to use a site's own palette. Fixed to the right edge, vertically centred (the
+   original's "self" placement: top-1/2 right-3 -translate-y-1/2). */
+.si-nav{--si-ahead:#3f3f46;--si-current:#60a5fa;--si-passed:#f4f4f5;--si-head:#f4f4f5;--si-label-bg:#18181b;--si-label-border:#27272a;--si-label-ink:#e4e4e7;--si-muted:#a1a1aa;--si-ring:#a1a1aa;
+  position:fixed;top:50%;right:12px;translate:0 -50%;z-index:10;display:flex;width:48px;justify-content:flex-end;font-family:inherit}
+.si-rail{position:relative;width:100%;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
+.si-rail[data-dragging]{cursor:grabbing}
+.si-tick{position:absolute;right:0;height:16px;translate:0 -50%;border:0;padding:0;margin:0;background:none;border-radius:2px;outline:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.si-tick--h2{width:14px}
+.si-tick--h3{width:8px}
+.si-tick:focus-visible{box-shadow:0 0 0 2px var(--si-ring)}
+.si-tick span{position:absolute;top:50%;right:0;height:1.5px;width:100%;transform-origin:right;translate:0 -50%;scale:var(--swell,1) 1;border-radius:9999px;background:var(--si-ahead);transition:background-color .2s ease-out}
+.si-tick[data-state=current] span{background:var(--si-current)}
+.si-tick[data-state=passed] span{background:var(--si-passed)}
+.si-head{pointer-events:none;position:absolute;top:0;right:0;height:2px;width:24px;translate:0 -50%;border-radius:9999px;background:var(--si-head);will-change:transform}
+.si-label{pointer-events:none;position:absolute;top:0;right:36px;white-space:nowrap;border-radius:6px;border:1px solid var(--si-label-border);background:var(--si-label-bg);padding:4px 8px;
+  font-weight:500;font-size:12px;line-height:16px;color:var(--si-label-ink);opacity:0;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);transition:opacity .15s ease-out,transform .15s ease-out}
+.si-label em{font-style:normal;margin-left:8px;color:var(--si-muted)}
+@media (prefers-reduced-motion:reduce){.si-tick span,.si-label{transition:none}}
+/* added: side 'left', the original mirrored (left-3 instead of right-3; ticks, head and name tag flipped) */
+.si-nav--left{right:auto;left:12px;justify-content:flex-start}
+.si-nav--left .si-tick{right:auto;left:0}
+.si-nav--left .si-tick span{right:auto;left:0;transform-origin:left}
+.si-nav--left .si-head{right:auto;left:0}
+.si-nav--left .si-label{right:auto;left:36px}

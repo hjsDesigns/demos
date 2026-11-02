@@ -1,0 +1,84 @@
+/* Skiper UI "Smooth caret input" (skiper-ui.com/v1/skiper106): the original's Tailwind classes written out, every px as
+   calc(var(--si-px, 1px) * n) (1px = the original). Free version: a visible credit to Skiper UI is required (README). */
+.smooth-input {
+  --si-bg: #1c1c1e;          /* bg-muted2 (Skiper's token, not published) */
+  --si-ring: #3a3a3c;        /* outline-muted3 */
+  --si-caret: #fafafa;       /* bg-primary */
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(var(--si-px, 1px) * 420);
+  padding: calc(var(--si-px, 1px) * 16);
+  border-radius: calc(var(--si-px, 1px) * 16);
+  background: var(--si-bg);
+}
+
+.smooth-input:has(:focus-visible) {
+  outline: calc(var(--si-px, 1px) * 2) solid var(--si-ring);
+  outline-offset: calc(var(--si-px, 1px) * 2);
+}
+
+.smooth-input__box {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  padding: 0;
+}
+
+.smooth-input__field {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  color: inherit;
+}
+
+.smooth-input__field::placeholder {
+  color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.smooth-input__measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.smooth-input__caret {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  align-self: center;
+  width: calc(var(--si-px, 1px) * 2);
+  height: 0.9em;
+  background: var(--si-caret);
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* added: the multiline (textarea) version */
+.smooth-input--multi .smooth-input__field {
+  resize: none;
+  overflow-y: auto;
+}
+
+.smooth-input--multi .smooth-input__caret {
+  align-self: start;
+}
+
+.smooth-input__mirror {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  pointer-events: none;
+}
