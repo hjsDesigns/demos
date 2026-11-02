@@ -57,7 +57,11 @@ country now.
   step, and either a mast or rooftop plant. That is the silhouette fix; whether it reads is still
   his call.
 - Towers may still be darker than his reference; a second glass material would help.
-- No `aoMap` anywhere — AskLex uses 43. That needs a second UV set per mesh.
+- ~~No `aoMap` anywhere~~ — added 11/2 on the ground, the roads, the plaza, the Needle's base and
+  the room floor. The catch: `aoMap` reads from the SECOND uv set, so a geometry carrying only `uv`
+  renders no occlusion and warns about nothing. `withAO()` copies `uv` to `uv1`; verified all five
+  meshes carry it. Only Grass004, PavingStones131 and Asphalt033 ship an AO map — Concrete034
+  publishes none at any resolution (checked against ambientCG's API, not a failed download).
 - The title block overlaps the skyline at some widths.
 - The foreground is a wide empty green band; it wants a road or a treeline closer to camera.
 - Phone build is tuned (no shadows, 1.5× dpr, 8 street lights) but **not yet looked at on a phone**.

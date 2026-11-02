@@ -69,6 +69,7 @@ const camera = new THREE.PerspectiveCamera(46, innerWidth/innerHeight, 0.5, 9000
 
 /* ───────── loaders ───────── */
 const texLoader = new THREE.TextureLoader();
+const HAS_AO = new Set(['Grass004', 'PavingStones131', 'Asphalt033']);   // the rest publish none
 function pbr(folder, file, repeat = 1, opts = {}) {
   const get = (suffix, srgb) => {
     const t = texLoader.load(`tex/${folder}/${file}_${suffix}.jpg`);
@@ -78,10 +79,13 @@ function pbr(folder, file, repeat = 1, opts = {}) {
     t.anisotropy = 4;
     return t;
   };
-  return new THREE.MeshStandardMaterial(Object.assign({
-    map: get('Color', true), normalMap: get('NormalGL'), roughnessMap: get('Roughness')
-  }, opts));
+  const m = { map: get('Color', true), normalMap: get('NormalGL'), roughnessMap: get('Roughness') };
+  if (HAS_AO.has(folder)) { m.aoMap = get('AmbientOcclusion'); m.aoMapIntensity = 0.9; }
+  return new THREE.MeshStandardMaterial(Object.assign(m, opts));
 }
+/* aoMap reads from the SECOND uv set, so a geometry with only `uv` shows no occlusion at all and
+ * fails silently. AskLex uses aoMap 43 times; we had none. */
+const withAO = g => { if (g.attributes.uv && !g.attributes.uv1) g.setAttribute('uv1', g.attributes.uv); return g; };
 
 /* ───────── the environment: the single biggest lever (AskLex: envMap x108) ───────── */
 const pmrem = new THREE.PMREMGenerator(renderer);
@@ -160,7 +164,7 @@ const city = new THREE.Group();
 
 /* ───────── the ground: real grass, not a hex colour ───────── */
 const grassMat = pbr('Grass004','Grass004_1K-JPG', 70, { color:new THREE.Color(0x7E9846), roughness:1 });
-const ground = new THREE.Mesh(new THREE.PlaneGeometry(9000,9000,1,1).rotateX(-Math.PI/2), grassMat);
+const ground = new THREE.Mesh(withAO(new THREE.PlaneGeometry(9000,9000,1,1).rotateX(-Math.PI/2)), grassMat);
 ground.position.y = -0.2; ground.receiveShadow = true; scene.add(ground);
 tick('laying the ground');
 
@@ -179,7 +183,7 @@ function road(pts, w){
   const g=new THREE.BufferGeometry();
   g.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));
   g.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));
-  g.setIndex(idx); g.computeVertexNormals();
+  g.setIndex(idx); g.computeVertexNormals(); withAO(g);
   const m=new THREE.Mesh(g, asphaltMat); m.receiveShadow=true; scene.add(m);
   const dash=new THREE.InstancedMesh(new THREE.PlaneGeometry(1.5,11).rotateX(-Math.PI/2),
     new THREE.MeshBasicMaterial({color:C.lineY,toneMapped:false}), 150);
@@ -194,7 +198,7 @@ road([[-900,-60],[-420,-40],[60,20],[520,90],[980,120]], 13);
 
 /* ───────── the plaza + pool ───────── */
 (function plaza(){
-  const slab=new THREE.Mesh(new THREE.BoxGeometry(400,1.6,330),
+  const slab=new THREE.Mesh(withAO(new THREE.BoxGeometry(400,1.6,330)),
     pbr('PavingStones131','PavingStones131_1K-JPG', 22, {color:new THREE.Color(0x7B8089),roughness:.8,envMapIntensity:1.2}));
   slab.position.set(30,0.8,-150); slab.receiveShadow=true; scene.add(slab);
   const pool=new THREE.Mesh(new THREE.CircleGeometry(54,64).rotateX(-Math.PI/2),
@@ -351,7 +355,7 @@ const steelMat = pbr('Metal063','Metal063_1K-JPG', 2, {color:0x5A6472,roughness:
   const mast=new THREE.Mesh(new THREE.CylinderGeometry(0.6,1.6,48,8), steelMat); mast.position.y=160; g.add(mast);
   const tip=new THREE.Mesh(new THREE.SphereGeometry(1.5,10,8),
     new THREE.MeshBasicMaterial({color:0xFF5C4A,toneMapped:false})); tip.position.y=186; g.add(tip);
-  const base=new THREE.Mesh(new THREE.CylinderGeometry(46,52,3,40),
+  const base=new THREE.Mesh(withAO(new THREE.CylinderGeometry(46,52,3,40)),
     pbr('PavingStones131','PavingStones131_1K-JPG',6,{color:new THREE.Color(C.stone),roughness:.85}));
   base.position.y=1.5; base.receiveShadow=true; g.add(base);
   // a RectAreaLight ring under the saucer: panel light is what makes a lit thing light its surroundings
@@ -553,7 +557,7 @@ const room = new THREE.Group();
   const shell = new THREE.Mesh(new THREE.BoxGeometry(1200, 700, 900),
     new THREE.MeshStandardMaterial({ color:0x0C1016, roughness:1, metalness:0, side:THREE.BackSide }));
   shell.position.set(-40, 180, 560); room.add(shell);
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(1200, 900).rotateX(-Math.PI/2),
+  const floor = new THREE.Mesh(withAO(new THREE.PlaneGeometry(1200, 900).rotateX(-Math.PI/2)),
     pbr('Ground037','Ground037_1K-JPG', 10, { color:0x10151C, roughness:1 }));
   floor.position.set(-40, 0.5, 560); floor.receiveShadow = true; room.add(floor);
   const key = new THREE.DirectionalLight(0xC8D4EC, 1.5); key.position.set(60, 320, 760);
@@ -760,7 +764,8 @@ window.__hjs = { scene, camera, renderer, city,
   stats(){ let m=0,l=0,ln=0,inst=0;
     scene.traverse(o=>{ if(o.isInstancedMesh) inst++; else if(o.isMesh) m++;
                         else if(o.isLight) l++; else if(o.isLineSegments) ln++; });
-    return { meshes:m, lights:l, lineSets:ln, instanced:inst,
+    let ao=0; scene.traverse(o=>{ if(o.isMesh && o.material && o.material.aoMap) ao++; });
+    return { meshes:m, lights:l, lineSets:ln, instanced:inst, aoMeshes:ao,
              drawCalls:renderer.info.render.calls, triangles:renderer.info.render.triangles,
              cityVisible:city.visible, phase };
   } };
