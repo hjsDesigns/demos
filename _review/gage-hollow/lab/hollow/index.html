@@ -331,9 +331,18 @@ body.name-corner .corner-name{opacity:1}
      layout: startPaper()). Nothing overlaps: ring 0-50u, can and sheet 51-96u. */
   .results{height:calc(var(--u)*96)}
   .rs-left{width:auto;right:0}
-  .rs-ring{left:-15%;width:130%;top:0;bottom:auto;height:calc(var(--u)*50);transform:none}   /* the workbench's desktop ring-size slider would push the ring into the can's band */
+  .rs-ring{left:-6%;width:112%;top:0;bottom:auto;height:calc(var(--u)*42);transform:none}   /* 11/1: smaller ring, less running off the edges ("too big and it gets cut off") */   /* the workbench's desktop ring-size slider would push the ring into the can's band */
   .rs-paper{top:auto;height:calc(var(--u)*45)}
-  .rs-rest{top:auto;bottom:calc(var(--u)*3);left:33%;right:0;transform:none}
+  .rs-rest{top:auto;bottom:calc(var(--u)*3);left:30%;right:2%;transform:none}
+  .rs-rest .cs-bar{font-size:11px;letter-spacing:.12em;line-height:1.35;white-space:normal;display:inline-block;max-width:100%}   /* the bar wraps instead of running off the right edge */
+  .sup-photos{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--u)*2.2);color:var(--ink)}
+  .sup-k{margin:0 0 calc(var(--u)*1.4);font:600 max(15.6px,calc(var(--u)*1.7))/1.25 var(--display);letter-spacing:.14em;text-transform:uppercase;color:#5CB2FF}
+  .sup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*1.2)}
+  .sup-grid figure{margin:0;text-align:center}
+  .sup-grid img{width:100%;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.6))}
+  .sup-grid figcaption{margin-top:calc(var(--u)*.8);font:600 max(15.6px,calc(var(--u)*1.6))/1.2 var(--display);letter-spacing:.06em}
+  .sup-grid figcaption span{display:block;margin-top:2px;font:400 max(13.5px,calc(var(--u)*1.35))/1.3 var(--body);color:#9AABC2}
+  .sup-disc{margin:calc(var(--u)*1.6) 0 0;font:400 max(13.5px,calc(var(--u)*1.3))/1.3 var(--body);color:#9AABC2}
   .rs-rest h3{font-size:calc(var(--u)*5)}
   .rs-rest p{margin-top:calc(var(--u)*1);font-size:max(17px,calc(var(--u)*2.15))}
   .rs-quote{top:auto;bottom:calc(var(--u)*3);transform:none}
@@ -523,6 +532,12 @@ let H = stage.clientHeight, aspect = stage.clientWidth / H, entered = false, fra
 // section's box is 90% of the screen's width as seen from its stop. A stop shows its section at EYE / (EYE + gap), so the box
 // is 0.9 * (EYE + gap) / EYE screens wide. The gaps: the camera's distance to each section at its stop (phones keep the stops).
 let narrow = false, jyRoom = null;
+// [phone] two phone builds (Hayden 11/1, after the iPhone reloaded at the method): ?tier=best keeps the life (the room, the hero
+// logo, the coach border, the photo borders, the paper, the 3D stands) at phone resolutions; ?tier=safe keeps only the room, the
+// story's photo stage and the plan cards' metal, with photos where the 3D and the extra canvases were. A phone with no ?tier gets
+// best. The sections read it from <html data-tier>.
+const TIER_PARAM = new URLSearchParams(location.search).get('tier');
+const tierNow = () => TIER_PARAM === 'safe' ? 'safe' : TIER_PARAM === 'best' ? 'best' : (narrow ? 'best' : 'full');
 const PHONE_GAP = { coach: 0.17, results: 0.17, journey: 0.204, program: 0.25, plans: 0.25, apply: 0.25, book: 0.25, stands: 0.25 };   // stands added 11/1 (iPhone pass): without it the stands box fell back to 0.96 of the screen's width in layout px, 80% on screen, and Lineage's code line met its edge at 430 wide
 function layout() {
   H = stage.clientHeight; const W = stage.clientWidth; aspect = W / H;
@@ -536,6 +551,7 @@ function layout() {
     o.x = wide ? o.side * Math.max(0, aspect / 2 - w / 2 - 0.1) : o.sx * aspect;
   }
   narrow = !wide;   // [phone]
+  document.documentElement.dataset.tier = tierNow();
   if (!wide) for (const o of objs) { const g = PHONE_GAP[o.el.id]; if (g != null) o.el.style.width = (0.9 * (EYE + g) / EYE * W) + 'px'; }   // [phone]
   if (jyRoom && jyRoom.narrow !== narrow) jyRoom(narrow);   // [phone] his story's graph: the phone strip or the full width
 }
@@ -566,7 +582,7 @@ function bootGrid() {
     parallax: 0, interactive: false,   // Hayden 10/29: a built room, stationary; the mouse never moves the view
     clickEffect: 'none', onFrame: sync,   // the only shockwave is the landing one
     dpr: EMBED && !embedFull() ? 1 : Math.min(devicePixelRatio || 1, 1.5), cam,
-    ...(narrow && !EMBED ? { dpr: Math.min(devicePixelRatio || 1, 1.25) } : {})   // [phone] the full-screen room at 1.25x on a phone (3x screens)
+    ...(narrow && !EMBED ? { dpr: Math.min(devicePixelRatio || 1, tierNow() === 'safe' ? 1 : 1.25) } : {})   // [phone] the full-screen room at 1.25x on a phone (1x in the safe build)
   });
 }
 const flight = { z: START_DEPTH };   // where his logo is: it starts right in front of you and shoots to the back wall
@@ -574,7 +590,7 @@ const flight = { z: START_DEPTH };   // where his logo is: it starts right in fr
 // his mark, alive: React Bits Electric Logo over his real logo file
 let logoReady = false;
 const logo = createElectricLogo($('#logoBox'), {
-  onReady: () => { logoReady = true; }, dprCap: EMBED ? 1 : (narrow ? 1.25 : 1.5), pulseSpeed: 2.4,   // [phone] 1.25x: twelve WebGL canvases on an iPhone is where it reloads itself   // Hayden 10/29: speed up the wave that hits the logo
+  onReady: () => { logoReady = true; }, dprCap: EMBED ? 1 : (narrow ? (tierNow() === 'safe' ? 1 : 1.25) : 1.5), pulseSpeed: 2.4,   // [phone] 1.25x: twelve WebGL canvases on an iPhone is where it reloads itself   // Hayden 10/29: speed up the wave that hits the logo
   src: '../../images/logo.png', color: '#dcefff', glowColor: '#0687FF', scale: 0.5, intensity: 1, glow: 1,
   thickness: 1.5, strands: 4, bend: 0.6, crackle: 1.5, arcs: 1, flicker: 0.6, fill: 0, speed: 2.5
 });
@@ -929,7 +945,7 @@ function journey() {
     splitTw = gsap.to(split.lines, { yPercent: 0, duration: 1.75, ease: 'expo.out', stagger: 0.1, onComplete: () => { if (split) { split.revert(); split = null; } splitTw = null; } });
   }
   let morph = null;
-  const bootMorph = () => { morph = createMorphSlider($('#jyStage'), { images: CH.map(c => '../../images/' + c.img), duration: 0.45, ease: 'power2.out', overlayColor: '#070b12', dprCap: window.top !== window ? 1.25 : 1.75 }); };
+  const bootMorph = () => { morph = createMorphSlider($('#jyStage'), { images: CH.map(c => '../../images/' + c.img), duration: 0.45, ease: 'power2.out', overlayColor: '#070b12', dprCap: narrow ? 1 : (window.top !== window ? 1.25 : 1.75) }); };
   let reached = -2, lastSlot = -1, opened = false;
   function setReached(c, prev) {
     dots.forEach((e, k) => e.classList.toggle('on', k <= c));
@@ -970,18 +986,19 @@ jy = journey();
 // Hayden 11/1: the six pieces open on concept stills made for them (Higgsfield GPT Image 2.5, lab/method-photos/): objects of the
 // method in the room's own light, not photos of Gage (his real photos stay where they are him: coach, results, story). They are
 // concept art, never presented as his gym or his food.
+const MIMG = narrow ? '../../images/method/phone/' : '../../images/method/';   // [phone] 720 px stills (the 1080s were part of the method's memory)
 const SIX = [
-  { label: 'Training', title: 'Training program', tag: 'Split \u00b7 exercises \u00b7 weekly volume', image: '../../images/method/training.jpg', alt: 'A barbell racked in a dark squat rack under one blue light',
+  { label: 'Training', title: 'Training program', tag: 'Split \u00b7 exercises \u00b7 weekly volume', image: MIMG + 'training.jpg', alt: 'A barbell racked in a dark squat rack under one blue light',
     text: 'Your split, exercise choices, and weekly volume come from your schedule, your equipment, and any injuries you\u2019re working around. Compounds get a Top Set and a Backoff Set, isolation work fills the gaps, and every session ends with a finisher.' },
-  { label: 'Nutrition', title: 'Nutrition plan', tag: 'Built from your MyFitnessPal', image: '../../images/method/nutrition.jpg', alt: 'A bowl of rice and chicken on a kitchen scale',
+  { label: 'Nutrition', title: 'Nutrition plan', tag: 'Built from your MyFitnessPal', image: MIMG + 'nutrition.jpg', alt: 'A bowl of rice and chicken on a kitchen scale',
     text: 'Training gives your body a reason to change. Food is what moves the scale and the tape. Your meals come from the foods you already eat, written in grams so logging them takes two taps.' },
-  { label: 'Calls', title: 'Check-in calls', tag: '2 to 8 a month', image: '../../images/method/calls.jpg', alt: 'A phone propped on a desk, its screen glowing, a notebook beside it',
+  { label: 'Calls', title: 'Check-in calls', tag: '2 to 8 a month', image: MIMG + 'calls.jpg', alt: 'A phone propped on a desk, its screen glowing, a notebook beside it',
     text: 'Hour-long calls where we go over your lifts, your food, your trackers, and your photos, then adjust the plan based on how your body is responding.' },
-  { label: 'Direct access', title: 'Direct access', tag: 'Replies within 24 hours on weekdays', image: '../../images/method/access.jpg', alt: 'A smartwatch glowing on a folded towel',
+  { label: 'Direct access', title: 'Direct access', tag: 'Replies within 24 hours on weekdays', image: MIMG + 'access.jpg', alt: 'A smartwatch glowing on a folded towel',
     text: 'Questions between calls get answered. When something isn\u2019t working, flag it and we fix it together, so you\u2019re never grinding through it alone.' },
-  { label: 'Supplements', title: 'Supplement guidance', tag: 'Client-only discounts', image: '../../images/method/supplements.jpg', alt: 'A black shaker bottle and a scoop of powder',
+  { label: 'Supplements', title: 'Supplement guidance', tag: 'Client-only discounts', image: MIMG + 'supplements.jpg', alt: 'A black shaker bottle and a scoop of powder',
     text: 'The supplements I recommend for your plan, with client-only discount codes and links to order them. Your stack grows over time as it makes sense for where you are.' },
-  { label: 'Written plan', title: 'Written program', tag: 'Everything written out', image: '../../images/method/written.jpg', alt: 'A clipboard of printed pages with a pen across it',
+  { label: 'Written plan', title: 'Written program', tag: 'Everything written out', image: MIMG + 'written.jpg', alt: 'A clipboard of printed pages with a pen across it',
     text: 'Your training, nutrition, trackers, substitution guide, and FAQs in one document. Nothing in it is set in stone, and it gets updated as you go.' }
 ];
 // Hayden 10/29: all closed and even unless the pointer is on one; the open one is phone-shaped (expandRatio .36 of a 120u strip ≈ 9:16)
@@ -1002,8 +1019,13 @@ if (supBack) {
   holder.className = 'af-sup';
   holder.style.cssText = 'position:absolute;inset:0';
   supBack.querySelector('.af-back').replaceWith(holder);
-  import('./sections/supplements.js?v=20261101a').then(m => { supMod = m; sup = m.mountSupplements(holder, { showCodes: false }); })
-    .catch(err => console.warn('supplements', err));
+  if (narrow) {   // [phone] his stack as photos: the 3D viewer (a third three.js canvas and its models) is where the iPhone ran out of memory (11/1)
+    const P = [['legion-hydrate-lemon-lime.png', 'Hydrate', 'Legion · electrolyte drink mix'], ['legion-pulse-blue-raspberry.png', 'Pulse', 'Legion · pre-workout'], ['lineage-protein-bar-chocolate.png', 'Protein Bar', 'Lineage · 20g grass-fed protein']];
+    holder.innerHTML = `<div class="sup-photos"><p class="sup-k">His stack · client codes in the sponsors section</p><div class="sup-grid">${P.map(([f, n, w]) => `<figure><img src="../../images/products/${f}" alt="${n}" loading="lazy" decoding="async"><figcaption><b>${n}</b><span>${w}</span></figcaption></figure>`).join('')}</div><p class="sup-disc">Sponsored: Gage earns a commission when you buy with his codes.</p></div>`;
+  } else {
+    import('./sections/supplements.js?v=20261101a').then(m => { supMod = m; sup = m.mountSupplements(holder, { showCodes: false }); })
+      .catch(err => console.warn('supplements', err));
+  }
 }
 // [phone] the method by touch: a finger that lands on a piece to scroll past doesn't open it; a tap opens the piece and turns it
 // over in one go, as the hint says ("Tap one to flip it.")
@@ -1062,7 +1084,7 @@ const results = {
       draggable: true, momentum: 0.6, snap: true, pauseOnHover: false, focusOnClick: true, fadeColor: '#070B12', innerShade: 0.6,
       cornerRadius: 12, captions: false, label: 'Client results'
     });   // pause-on-hover is off: only the front card stops it (track(), below, and the port's hold())
-    this.borders = attachCardBorders(this.cc);   // an electric border on each photo (Hayden 10/30), riding its card through the spin and the deck
+    this.borders = tierNow() === 'safe' ? null : attachCardBorders(this.cc);   // an electric border on each photo (Hayden 10/30); not in the safe phone build
     this.root = $('#rsRing .circular-carousel');
     const ring = $('#rsRing');
     ring.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') this.aim(e.clientX, e.clientY); });
@@ -1080,7 +1102,7 @@ const results = {
       this.tapped = true; this.coolUntil = 0; this.aim(e.clientX, e.clientY); this.tapped = false;
     });
     (window.requestIdleCallback || (f => setTimeout(f, 300)))(() => PEOPLE.forEach((p, i) => this.build(i)));   // ready before anyone hovers
-    (window.requestIdleCallback || (f => setTimeout(f, 600)))(() => this.startPaper());
+    (window.requestIdleCallback || (f => setTimeout(f, 600)))(() => { if (tierNow() !== 'safe') this.startPaper(); });   // safe build: the words stay in the column
   },
   // Hayden 10/30: "whenever it's a client's quote, the paper pulls up… whenever it goes away from the client… crumple up… put a trash
   // can so the paper crumples up and goes in the trash can… put the client's testimony on the piece of paper". React Bits'
@@ -1273,7 +1295,7 @@ coach.build();
 // Hayden 10/30: "an electric border around the Gage Rogel video and the results perimeter", then "for each photo, not for the entire section" (React Bits Electric Border, ported;
 // it pauses itself while its section is hidden, so only the one in view runs)
 const borders = [
-  createElectricBorder($('#wkVid'), { color: '#5CB2FF', glowColor: '#0687FF', intro: false })   // always on, no trace-around (Hayden 10/30)
+  tierNow() === 'safe' ? null : createElectricBorder($('#wkVid'), { color: '#5CB2FF', glowColor: '#0687FF', intro: false })   // [phone] the safe build has no border canvas   // always on, no trace-around (Hayden 10/30)
 ];   // the results get one per photo instead (Hayden 10/30: "for each photo, not for the entire section"), see results.start()
 EXTRA_STOPS.push(() => st.start + pAt(COACH_STOP - back('coach')) * (st.end - st.start));   // section 7 at reading size
 // sections 8-11 (Hayden 10/29): the plans (silver, gold and platinum cards: Aceternity 3D Card + React Bits Holo Card foil, the
@@ -1285,7 +1307,7 @@ const LATE = [
   { id: 'book', z: 10.55, file: 'book.js', mount: 'mountBook' },
   { id: 'stands', z: 11.95, file: 'stands.js', mount: 'mountStands' },   // the sponsor stands, behind Book (11/1)
 ].map(L => ({ ...L, obj: objs.find(o => o.el.id === L.id), api: null, started: false, on: null, played: false, plan: null }));
-const LATE_V = '20261101q';
+const LATE_V = '20261101r';
 const lateY = L => st.start + pAt(L.z - 0.25 - back(L.id)) * (st.end - st.start);   // each section's stop
 function lateTick(cz) {
   for (const L of LATE) {

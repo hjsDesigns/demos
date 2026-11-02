@@ -28,7 +28,11 @@
 //
 // mountStands(host, opts) → { root, reveal(), pause(), resume(), destroy() }   opts: { swapMs: 3000, autoplay: true }
 import { ensureCss, el, reduce } from './common.js?v=20261030e';
-import { createFloatViewer, preloadModel } from '../../../js/vendor/float-viewer.js?v=20261031a';
+// the 3D viewer (three.js) loads only when a stand actually makes one: the safe phone build shows photos instead (11/1)
+let FV = null;
+const fv = () => FV || (FV = import('../../../js/vendor/float-viewer.js?v=20261031a'));
+const PHOTO = { pulse: 'legion-pulse-blue-raspberry.png', pump: 'legion-pump-fruit-punch.png', hydrate: 'legion-hydrate-lemon-lime.png', bar: 'lineage-protein-bar-chocolate.png', 'bar-berry': 'lineage-protein-bar-mixed-berry-1800.png' };
+const PHOTO_URL = n => new URL('../../../images/products/' + n, import.meta.url).href;
 import { createDecryptedText } from '../../../js/vendor/decrypted-text.js?v=20261031a';
 
 // paths resolve against THIS module (lab/hollow/sections/), so three levels up is the site root
@@ -62,12 +66,13 @@ function linkCss() {
   if (cssLink) return;
   cssLink = document.createElement('link');
   cssLink.rel = 'stylesheet';
-  cssLink.href = new URL('./stands.css?v=20261101j', import.meta.url).href;
+  cssLink.href = new URL('./stands.css?v=20261101k', import.meta.url).href;
   document.head.appendChild(cssLink);
 }
 export function preloadStands() {   // decode the two models early (the site may call this as the camera comes near)
   linkCss();
-  return Promise.allSettled(BRANDS.flatMap(b => b.products.map(p => preloadModel(MODEL(p.model)))));
+  if (document.documentElement.dataset.tier === 'safe') return Promise.resolve([]);
+  return fv().then(({ preloadModel }) => Promise.allSettled(BRANDS.flatMap(b => b.products.map(p => preloadModel(MODEL(p.model))))));
 }
 
 const ease = t => 1 - Math.pow(1 - t, 3);
@@ -100,11 +105,13 @@ export function mountStands(host, opts = {}) {
   ensureCss();
   linkCss();
   const PHONE_Q = window.matchMedia ? window.matchMedia('(max-aspect-ratio: 19/20)').matches : false;
+  const SAFE = document.documentElement.dataset.tier === 'safe';   // [phone] the safe build: product photos, no 3D
   const o = { brands: BRANDS, dprCap: PHONE_Q ? 1.25 : 1.5, swapMs: SWAP_MS, autoplay: true, ...opts };   // [phone] 1.25x (11/1: memory)
   const still = reduce();
 
   const root = el('section', 'gs gs-stands');
   root.setAttribute('aria-label', 'The brands Gage works with');
+  if (SAFE) root.dataset.photos = '';
   const inner = el('div', 'st-inner');
   const row = el('div', 'st-row');
   const stands = [];
@@ -126,7 +133,7 @@ export function mountStands(host, opts = {}) {
 
     // the stage: one Float Viewer canvas; one slot per product on the same spot, only the shown one takes the pointer
     const stage = el('div', 'st-stage');
-    const slots = b.products.map((p, i) => { const sl = el('div', 'st-slot' + (i ? '' : ' on')); sl.setAttribute('aria-hidden', 'true'); stage.appendChild(sl); return sl; });
+    const slots = b.products.map((p, i) => { const sl = el('div', 'st-slot' + (i ? '' : ' on')); sl.setAttribute('aria-hidden', 'true'); if (SAFE && PHOTO[p.key]) { const im = document.createElement('img'); im.src = PHOTO_URL(PHOTO[p.key]); im.alt = p.name; im.loading = 'lazy'; im.decoding = 'async'; sl.appendChild(im); } stage.appendChild(sl); return sl; });
     stage.append(el('div', 'st-drag', COPY.hint));
 
     // the headline at the foot: the company in its own ink with the drifting line shadow (Magic UI Line Shadow Text, ported), opens the site
@@ -159,6 +166,7 @@ export function mountStands(host, opts = {}) {
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(b.code).then(done, done); else done();
     });
 
+    if (!SAFE) fv().then(({ createFloatViewer }) => {
     st.viewer = createFloatViewer(stage, {
       environment: 'studio-tunnel',
       environmentIntensity: 1.6,          // brighter (Hayden: "they seem kind of dark")
@@ -200,6 +208,7 @@ export function mountStands(host, opts = {}) {
     });
     if (st.viewer.failed) root.dataset.flat = '';
     if (typeof ResizeObserver === 'function') { st.ro = new ResizeObserver(() => st.viewer && st.viewer.refresh && st.viewer.refresh()); st.ro.observe(stage); }
+    }).catch(err => { console.warn('stands viewer', err); root.dataset.flat = ''; });
 
     // one product fades and lifts away, then the next rises in: never two at once, never a cut (Hayden: "smooth… doesn't glitch")
     const fadeTo = (obj, from, to, ms, done) => {

@@ -53,3 +53,9 @@
 
 @media (prefers-reduced-motion: reduce){.gs-stands .st-brand-word::after{animation:none}}
 @media(max-width:860px){.gs-stands .st-row{grid-template-columns:1fr;gap:calc(var(--gu)*1.2)}}
+
+/* the safe phone build: product photos cross-fading where the 3D models were */
+.gs-stands[data-photos] .st-slot{opacity:0;transition:opacity .45s ease}
+.gs-stands[data-photos] .st-slot.on{opacity:1}
+.gs-stands[data-photos] .st-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,.55))}
+.gs-stands[data-photos] .st-drag{display:none}

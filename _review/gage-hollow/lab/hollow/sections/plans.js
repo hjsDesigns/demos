@@ -86,7 +86,7 @@ import { FlapCell, BASE_COL_DELAY, BASE_STEP_MS, BASE_FLIP_S } from '../../../js
 const SPEED = 2;
 const COL_DELAY = BASE_COL_DELAY / SPEED, STEP_MS = BASE_STEP_MS / SPEED, FLIP_S = BASE_FLIP_S / SPEED;
 
-const VERSION = '20261101h'; // its stylesheet's ?v= when the page hasn't linked plans.css itself (11/1 iPhone pass: the phone back)
+const VERSION = '20261101i'; // its stylesheet's ?v= when the page hasn't linked plans.css itself (11/1 iPhone pass: the phone back)
 const CSS_URL = new URL('./plans.css', import.meta.url).href.split('?')[0];
 const LOGO_URL = new URL('../../../images/logo.png', import.meta.url).href;
 const REDUCE = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -1024,7 +1024,9 @@ export function mountPlans(host, opts = {}) {
     row.appendChild(li);
 
     // the metal and its foil: the Holo Card in external mode, at the bottom of the tilt layer
-    const holo = createHoloCard(tilt, {
+    const SAFE = document.documentElement.dataset.tier === 'safe';   // [phone] the safe build: the face as a flat image, no WebGL foil
+    const flatHolo = () => { const e = document.createElement('div'); e.className = 'pl-holo-flat'; return { el: e, aim() {}, set(patch) { if (patch && patch.image) e.style.backgroundImage = `url("${patch.image}")`; }, pause() {}, resume() {}, destroy() { e.remove(); } }; };
+    const holo = SAFE ? flatHolo() : createHoloCard(tilt, {
       ...M.holo,
       external: true,
       frame: FRAME,

@@ -304,3 +304,6 @@
 @media (max-aspect-ratio: 19/20) and (prefers-reduced-motion: reduce){
   .pl-plan{transition:none}
 }
+
+/* the safe phone build: the card face as a flat image where the WebGL foil was (plans.js flatHolo) */
+.pl-holo-flat{position:absolute;inset:0;border-radius:var(--pl-radius);background:#1b2430 center/cover no-repeat}
