@@ -41,12 +41,25 @@ let step = 0; const STEPS = 6;
 const tick = msg => { step++; bootbar.style.width = Math.round(step/STEPS*100)+'%'; if(msg) bootmsg.textContent = msg; };
 
 /* ───────── renderer ───────── */
-const renderer = new THREE.WebGLRenderer({ antialias:true, powerPreference:'high-performance' });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+/* phones get a lighter build, and anything with no WebGL at all gets the plain page instead
+ * of a dead black canvas — it is still a website, it just is not a world. */
+const PHONE = matchMedia('(max-width:820px)').matches || navigator.maxTouchPoints > 1;
+(function webglOrBust(){
+  const c = document.createElement('canvas');
+  const ok = !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl')));
+  if(!ok){
+    document.getElementById('boot').classList.add('gone');
+    document.getElementById('fallback').classList.add('on');
+    throw new Error('no webgl');
+  }
+})();
+
+const renderer = new THREE.WebGLRenderer({ antialias:!PHONE, powerPreference:'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, PHONE ? 1.5 : 2));
 renderer.setSize(innerWidth, innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.28;
-renderer.shadowMap.enabled = true;                 // AskLex uses shadowMap 96 times; we had none
+renderer.shadowMap.enabled = !PHONE;                 // AskLex uses shadowMap 96 times; we had none
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.getElementById('stage').appendChild(renderer.domElement);
 
@@ -355,8 +368,8 @@ for(let i=0;i<210;i++){
 for(let i=0;i<26;i++) tree(-820+Math.random()*1640, 330+Math.random()*180, 1.3+Math.random()*0.8);
 
 // street lights down the main road: a pole, a warm disc and a real PointLight each
-for(let i=0;i<18;i++){
-  const t=i/18, P=mainRoad.getPoint(t), T=mainRoad.getTangent(t);
+for(let i=0;i<(PHONE?8:18);i++){
+  const t=i/(PHONE?8:18), P=mainRoad.getPoint(t), T=mainRoad.getTangent(t);
   const N=new THREE.Vector3(-T.z,0,T.x).normalize().multiplyScalar(13);
   const pole=new THREE.Mesh(new THREE.CylinderGeometry(0.5,0.7,16,6), steelMat);
   pole.position.set(P.x+N.x,8,P.z+N.z); scene.add(pole);
@@ -602,10 +615,28 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches){
   }, { capture:true });
 }
 
+/* skip: the whole point of the intro is the first time. Returning visitors should not be made
+ * to sit through it again, and some people never want it. */
+const skipBtn = document.getElementById('skip');
+function arrive(){
+  hinge.rotation.x = LID_OPEN;
+  camera.position.copy(CAM_D); camera.lookAt(LOOK_CITY);
+  portal();
+  phase = 'free'; done = true; travelT = 1;
+  controls.target.copy(LOOK_CITY); controls.enabled = true;
+  skipBtn.classList.remove('on');
+  invite.classList.remove('on'); hit.classList.remove('on');
+  try { sessionStorage.setItem('hjs-seen', '1'); } catch(e) {}
+}
+skipBtn.addEventListener('click', arrive);
+hit.addEventListener('click', () => setTimeout(() => skipBtn.classList.add('on'), 600));
+
 tick('ready');
 requestAnimationFrame(frame);
 setTimeout(() => {
   boot.classList.add('gone');
+  let seen = false; try { seen = sessionStorage.getItem('hjs-seen') === '1'; } catch(e) {}
+  if(seen) return arrive();          // you have already taken the ride this visit
   invite.classList.add('on');
   hit.classList.add('on');
 }, 900);
