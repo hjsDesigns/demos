@@ -17,6 +17,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass }     from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass }from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass }     from 'three/addons/postprocessing/OutputPass.js';
+import { mountPanels } from './panels.js?v=1';
 
 /* ───────── palette, sampled off his AskLex frame ───────── */
 const C = {
@@ -506,6 +507,7 @@ function portal(){
 
 /* ───────── the district pins ───────── */
 const pinBox = document.getElementById('world');
+const panels = mountPanels();
 const PINS = YEAR_PINS.map(d => {
   const el = document.createElement('button');
   el.className = 'pin'; el.type = 'button';
@@ -513,6 +515,7 @@ const PINS = YEAR_PINS.map(d => {
   el.onclick = () => {
     const dir = camera.position.clone().sub(d.at).setY(0).normalize().multiplyScalar(250);
     fly(d.at.clone().add(dir).setY(d.at.y*0.55 + 42), d.at);
+    panels.open(d.name);          // flying there is half of it; the content is the other half
   };
   pinBox.appendChild(el);
   return { at:d.at, el };
