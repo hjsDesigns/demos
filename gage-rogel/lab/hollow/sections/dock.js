@@ -31,7 +31,7 @@ let cssLink = null;
 function linkCss() {
   if (cssLink) return;
   cssLink = document.createElement('link'); cssLink.rel = 'stylesheet';
-  cssLink.href = new URL('./dock.css?v=20261101h', import.meta.url).href;
+  cssLink.href = new URL('./dock.css?v=20261101i', import.meta.url).href;
   document.head.appendChild(cssLink);
 }
 
@@ -102,8 +102,8 @@ export function mountDock(host, opts = {}) {
   let active = -1;
   function placePill() {
     if (active < 0) return;
-    const r = items[active].el.getBoundingClientRect(), pr = panel.getBoundingClientRect();
-    Object.assign(pill.style, { left: (r.left - pr.left) + 'px', top: (r.top - pr.top) + 'px', width: r.width + 'px', height: r.height + 'px' });
+    const b = items[active].el;   // layout position inside the panel's padding box: the border and the hover lift can't shift it
+    Object.assign(pill.style, { left: b.offsetLeft + 'px', top: b.offsetTop + 'px', width: b.offsetWidth + 'px', height: b.offsetHeight + 'px' });
   }
   function setActive(i) {
     if (i === active || i < 0 || i >= items.length) return;
