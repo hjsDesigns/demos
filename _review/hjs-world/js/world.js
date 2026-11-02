@@ -400,6 +400,72 @@ const CARS=[];
   }
 })();
 
+/* ───────── district landmarks ─────────
+ * Hayden wants the city to BE the navigation — "like a video game." Four pins over four
+ * identical blocks is not that, so each district gets something you can recognise from the air.
+ */
+
+/* Packages — the HJS board, where AskLex puts its own sign */
+(function board(){
+  const cv=document.createElement('canvas'); cv.width=1024; cv.height=640;
+  const x=cv.getContext('2d');
+  x.fillStyle='#101A13'; x.fillRect(0,0,1024,640);
+  x.strokeStyle='#C9A84B'; x.lineWidth=7; x.strokeRect(26,26,972,588);
+  x.fillStyle='#F2EDE0'; x.textAlign='center';
+  x.font='600 148px Poppins, system-ui, sans-serif';
+  x.fillText('HJS', 512, 252); x.fillText('Designs', 512, 398);
+  x.fillStyle='#C9A84B'; x.fillRect(250, 436, 524, 6);
+  x.font='500 38px Poppins, system-ui, sans-serif'; x.letterSpacing='12px';
+  x.fillText('PLATEAU WEBSITES', 512, 518);
+  const t=new THREE.CanvasTexture(cv); t.colorSpace=THREE.SRGBColorSpace;
+  const panel=new THREE.Mesh(new THREE.PlaneGeometry(190,119),
+    new THREE.MeshBasicMaterial({map:t,toneMapped:false}));
+  panel.position.set(395,118,-215); panel.rotation.y=-0.46; scene.add(panel);
+  const frame=new THREE.Mesh(new THREE.BoxGeometry(206,134,5),
+    new THREE.MeshStandardMaterial({color:C.gold,roughness:.35,metalness:.6,
+      emissive:new THREE.Color(C.gold),emissiveIntensity:.12,envMapIntensity:1.6}));
+  frame.position.set(397,118,-217); frame.rotation.y=-0.46; frame.castShadow=true; scene.add(frame);
+  [-70,0,70].forEach(o=>{
+    const leg=new THREE.Mesh(new THREE.BoxGeometry(5,118,5),
+      new THREE.MeshStandardMaterial({color:C.gold,roughness:.45,metalness:.55}));
+    leg.position.set(395+Math.cos(-0.46)*o, 59, -215-Math.sin(-0.46)*o);
+    leg.castShadow=true; scene.add(leg);
+  });
+  for(let i=-1;i<=1;i++){                       // the sign lights its own ground
+    const L=new THREE.PointLight(C.gold, 70, 320, 2);
+    L.position.set(395+i*60, 150, -195); scene.add(L);
+  }
+})();
+
+/* The Work — the tallest tower, crowned, so the eye lands on it from anywhere */
+(function workTower(){
+  const h=286, w=58, d=52;
+  const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d), concreteMat);
+  m.position.set(-20,h/2,-640); m.castShadow=true; scene.add(m);
+  windows(-20,4,-640,w,h-16,d,0.9,false);
+  const crown=new THREE.Mesh(new THREE.CylinderGeometry(w*0.62,w*0.52,10,24),
+    new THREE.MeshStandardMaterial({color:0x8E9AA6,roughness:.4,metalness:.45,envMapIntensity:1.6}));
+  crown.position.set(-20,h+6,-640); scene.add(crown);
+  const ring=new THREE.Mesh(new THREE.CylinderGeometry(w*0.64,w*0.64,2.6,24),
+    new THREE.MeshBasicMaterial({color:C.winWarm,toneMapped:false}));
+  ring.position.set(-20,h+2,-640); scene.add(ring);
+  const L=new THREE.PointLight(C.winWarm, 120, 520, 2); L.position.set(-20,h+8,-640); scene.add(L);
+})();
+
+/* About Hayden — a lit workshop in the neighbourhood, not another block */
+(function workshop(){
+  const g=new THREE.Group(); g.position.set(-330,0,180); g.rotation.y=0.42;
+  const body=new THREE.Mesh(new THREE.BoxGeometry(46,26,34), wallMat);
+  body.position.y=13; body.castShadow=true; body.receiveShadow=true; g.add(body);
+  const roof=new THREE.Mesh(new THREE.ConeGeometry(34,15,4), roofMat);
+  roof.position.y=33; roof.rotation.y=Math.PI/4; roof.castShadow=true; g.add(roof);
+  const win=new THREE.Mesh(new THREE.PlaneGeometry(30,13),
+    new THREE.MeshBasicMaterial({color:0xFFE9BC,toneMapped:false}));
+  win.position.set(0,14,17.2); g.add(win);
+  const L=new THREE.PointLight(0xFFD79A, 90, 300, 2); L.position.set(0,16,26); g.add(L);
+  scene.add(g);
+})();
+
 /* fold the city into its group and put it away until the portal */
 scene.children.slice(CITY_MARK).forEach(o => city.add(o));
 city.visible = false;
