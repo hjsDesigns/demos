@@ -500,9 +500,9 @@ const PASS_Z = 518;                              // the screen plane
 const CAM_A = new THREE.Vector3(-40, 430, 742);  // high and far back, looking steeply down
 const CAM_B = new THREE.Vector3(-40, 95, 604);   // square on to the open screen
 const CAM_C = new THREE.Vector3(-40, 90, 470);   // through it
-const CAM_D = new THREE.Vector3(-40, 132, 430);   // the city, at the framing sampled off his frame
+const CAM_D = PHONE ? new THREE.Vector3(-30, 118, 330) : new THREE.Vector3(-40, 132, 430);   // the city, at the framing sampled off his frame
 const LOOK_SCREEN = new THREE.Vector3(-40, 92, 520);
-const LOOK_CITY   = new THREE.Vector3(0, 74, -240);
+const LOOK_CITY   = PHONE ? new THREE.Vector3(0, 104, -300) : new THREE.Vector3(0, 74, -240);
 
 const camPath  = new THREE.CatmullRomCurve3([CAM_A, CAM_B, CAM_C, CAM_D], false, 'catmullrom', 0.0);
 const lookPath = new THREE.CatmullRomCurve3(

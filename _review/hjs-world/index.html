@@ -68,7 +68,12 @@ canvas{display:block}
  margin-right:8px;vertical-align:middle;box-shadow:0 0 8px var(--moss);font-style:normal}
 #hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:.62rem;
  letter-spacing:.2em;text-transform:uppercase;color:#6E7C6E;transition:opacity .5s}
-@media(max-width:720px){#title{top:64px;max-width:72vw}#title p{display:none}}
+@media(max-width:720px){
+  #title{top:60px;max-width:78vw;padding:16px 18px 18px}
+  #title p{display:none}
+  #hint{font-size:.55rem;letter-spacing:.14em;white-space:nowrap}
+  .pin{font-size:.6rem;padding:7px 12px}
+}
 
 #fallback,#plain{position:fixed;inset:0;z-index:40;display:none;place-items:center;
  background:#0E1A13;color:var(--cream);text-align:center;padding:30px}
@@ -120,5 +125,5 @@ canvas{display:block}
  "three":"https://unpkg.com/three@0.169.0/build/three.module.js",
  "three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}
 </script>
-<script type="module" src="js/world.js?v=9"></script>
+<script type="module" src="js/world.js?v=10"></script>
 </body></html>
