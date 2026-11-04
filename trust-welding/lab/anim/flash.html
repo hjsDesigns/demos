@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>Trust Welding · opening attempt 3 · Flash</title>
+<link rel="preload" as="image" href="emblem-box.png"><link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="anim.css?v=3">
+</head><body>
+<section class="hero" id="hero" data-take="flash" aria-label="Trust Welding opening, attempt 3">
+  <canvas aria-hidden="true"></canvas>
+  <div class="visor" aria-hidden="true"></div>
+  <div class="tag"><b>Attempt 3 of 3 · Flash</b>Through the auto-darkening lens. Each strike exposes the whole mark at once like a flash; between strikes the eye keeps a ghost of it. The lift comes up bright and settles.<i>Town backdrop is a concept render, not a photo of Enumclaw. Scroll or tap to skip.</i></div>
+  <button class="skip" type="button">Skip</button>
+  <nav class="nav" aria-label="attempts"><a href="arc.html">1 Arc</a><a href="bead.html">2 Bead</a><a href="flash.html" aria-current="page">3 Flash</a></nav>
+  <button class="replay" type="button">Replay</button>
+</section>
+<script type="module">
+import { mount } from './anim.js?v=2';
+const hero = document.getElementById('hero');
+const h = await mount(hero, 'flash');
+hero.querySelector('.skip').addEventListener('click', () => h.skip());
+hero.querySelector('.replay').addEventListener('click', () => h.replay());
+</script>
+</body></html>
