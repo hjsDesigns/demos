@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T06:41:40.724198Z",
+    "display_name": "Nano Banana Pro",
+    "id": "9125a377-8b9d-4547-a4db-e3a77e73d280",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_064140_9125a377-8b9d-4547-a4db-e3a77e73d280_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "1:1",
+      "batch_size": 1,
+      "height": 2048,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "4eac5f85-d59f-4c2d-8e09-7ee94ea406b9",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/4eac5f85-d59f-4c2d-8e09-7ee94ea406b9.png"
+        }
+      ],
+      "prompt": "The attached chrome emblem (gear ring, welder figure with blue sparks, raised letters TRUST WELDING, the rule, EST 2025) isolated as a standalone chrome badge on a flat pure green #00FF00 background: remove the black backplate and the four hex bolts, keep every reflection and the blue spark glow, crisp edges, no shadow on the background, nothing else.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_064140_9125a377-8b9d-4547-a4db-e3a77e73d280.png",
+    "status": "completed"
+  }
+]

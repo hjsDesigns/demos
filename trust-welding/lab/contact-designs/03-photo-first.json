@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T06:58:56.1843Z",
+    "display_name": "Nano Banana Pro",
+    "id": "baa8fcbf-e359-44e0-99df-20eeb54feefe",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_065856_baa8fcbf-e359-44e0-99df-20eeb54feefe_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "3:4",
+      "batch_size": 1,
+      "height": 2400,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "fc42c8ae-8430-4b96-82ae-b8d46d0f4988",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/fc42c8ae-8430-4b96-82ae-b8d46d0f4988.png"
+        }
+      ],
+      "prompt": "A full-page website design, desktop 1440 wide, for a welding shop's contact page where the biggest element is a photo drop zone: a large dark steel frame with a dashed teal-blue outline and the words \"Drop a photo of the job\", beside three short fields (Name, Phone, Where is it?) and a teal-blue button \"Send the request\". The attached chrome emblem sits in the dark header with the number 425-283-6496. Background: a dark welding shop, out of focus, a hint of a workbench. Heading \"Tell me about the job\". Masculine, industrial, crisp, legible, no rust, no pastels.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1792
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_065856_baa8fcbf-e359-44e0-99df-20eeb54feefe.png",
+    "status": "completed"
+  }
+]

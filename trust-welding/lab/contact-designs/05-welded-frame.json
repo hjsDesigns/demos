@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T06:58:56.201674Z",
+    "display_name": "Nano Banana Pro",
+    "id": "356ed73e-f243-4bcb-aa59-a1f0e545f903",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_065856_356ed73e-f243-4bcb-aa59-a1f0e545f903_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "3:4",
+      "batch_size": 1,
+      "height": 2400,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "6f9594f3-4e7d-4d48-beb0-48c12ec4f747",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/6f9594f3-4e7d-4d48-beb0-48c12ec4f747.png"
+        }
+      ],
+      "prompt": "A full-page website design, desktop 1440 wide, for a welding shop's contact page: a light-grey panel held inside a welded steel frame, the weld beads visible at the corners, brushed steel around it, the attached chrome emblem mounted above the panel. On the panel: heading \"Tell me about the job\", one short line, four form fields (Name, Phone, What do you need built or fixed?, Where is it?), a teal-blue button \"Send the request\", and three ways in: \"Text 425-283-6496\", \"Call\", \"Instagram\". Masculine, industrial, crisp, legible, no rust, no wood, no pastels.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1792
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_065856_356ed73e-f243-4bcb-aa59-a1f0e545f903.png",
+    "status": "completed"
+  }
+]

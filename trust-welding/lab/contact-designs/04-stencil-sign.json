@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T06:58:56.207781Z",
+    "display_name": "Nano Banana Pro",
+    "id": "3bf857f8-5919-468a-b165-b31e8f6a3017",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_065856_3bf857f8-5919-468a-b165-b31e8f6a3017_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "3:4",
+      "batch_size": 1,
+      "height": 2400,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "ce57e3f1-5de8-4720-94bd-d251317cec88",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/ce57e3f1-5de8-4720-94bd-d251317cec88.png"
+        }
+      ],
+      "prompt": "A full-page website design, desktop 1440 wide, for a welding shop's contact page styled as an industrial steel sign: a dark gunmetal panel with stencil-cut letters \"TELL ME ABOUT THE JOB\", one bold teal-blue hazard bar across, the attached chrome emblem riveted at the top left, form fields as hard-edged cut slots (Name, Phone, What do you need built or fixed?, Where is it?), a teal-blue button \"Send the request\", and \"Text 425-283-6496 · Call · Instagram\" as stencil tags. Masculine, industrial, crisp, legible, no rust, no wood.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1792
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_065856_3bf857f8-5919-468a-b165-b31e8f6a3017.png",
+    "status": "completed"
+  }
+]

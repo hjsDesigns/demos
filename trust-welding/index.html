@@ -8,7 +8,7 @@
 <meta name="description" content="Trust Welding: custom metal fabrication and mobile welding serving King County. Steel, aluminum and Corten. Call or text 425-283-6496.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site3.css?v=1793776522">
+<link rel="stylesheet" href="css/site3.css?v=1793777599">
 <link rel="icon" href="images/badge.jpg">
 </head>
 <body>
@@ -19,8 +19,11 @@
 <main id="top">
   <section class="hero" aria-label="Trust Welding">
     <h1 class="sr">Trust Welding, welding and metal fabrication, King County</h1>
-    <img class="hero-bg" src="images/town-aerial.jpg" srcset="images/town-aerial-phone.jpg 1280w, images/town-aerial.jpg 2560w" sizes="100vw" alt="" aria-hidden="true" fetchpriority="high">
-    <img class="emblem" src="images/emblem.png" srcset="images/emblem-1000.png 1000w, images/emblem.png 2000w" sizes="(max-width:900px) 78vw, 560px" alt="Trust Welding, est. 2025" fetchpriority="high">
+    <!-- Hayden's pick, 11/3 11:30 PM: the chrome emblem composited over a concept render of the town and the mountain (hero session, images/hero/APPROVED.md). Not a photo of Enumclaw; a real aerial replaces it when one exists. -->
+    <picture>
+      <source media="(max-width:900px)" srcset="images/hero/pick-golden-phone.jpg">
+      <img class="hero-bg" src="images/hero/pick-golden-desk.jpg" alt="Trust Welding, est. 2025. The chrome emblem over the Enumclaw plateau and Mount Rainier." fetchpriority="high">
+    </picture>
     <p class="cue" aria-hidden="true">Scroll</p>
   </section>
   <div class="flow" id="flow" data-per="7">
