@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T05:56:01.138819Z",
+    "display_name": "Nano Banana Pro",
+    "id": "04993dc6-ce14-4a12-ab56-3de6c1273bec",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055601_04993dc6-ce14-4a12-ab56-3de6c1273bec_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "1:1",
+      "batch_size": 1,
+      "height": 2048,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "caecb049-48c9-498f-b0f1-8d8b6b75a085",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/caecb049-48c9-498f-b0f1-8d8b6b75a085.png"
+        }
+      ],
+      "prompt": "The attached circular badge logo plasma-cut from Corten weathering steel, rust-orange patina with dark edges, the letters TRUST WELDING cut through the plate so light shows behind them, leaning against a concrete shop wall, late afternoon side light, photoreal, no extra text.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055601_04993dc6-ce14-4a12-ab56-3de6c1273bec.png",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Trust Welding · references</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0C0E;--card:#111418;--ink:#E9ECEF;--mute:#9AA3AD;--spark:#24B7CA;--line:rgba(255,255,255,.1)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Barlow,system-ui,sans-serif;padding:24px 20px 60px}
+h1{font:400 24px/1.1 'Russo One',sans-serif;letter-spacing:.04em;text-transform:uppercase;margin:0 0 4px} .sub{color:var(--mute);margin:0 0 26px;max-width:80ch}
+h2{font:400 17px/1.1 'Russo One',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--spark);margin:34px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.grid{display:grid;gap:14px} .g3{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))} .g2{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden} .card img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;background:#000}
+.card.sq img{aspect-ratio:1} .card .b{padding:10px 12px 12px} .card b{display:block;font-weight:600} .card small{color:var(--mute);display:block;margin-top:4px} .card a{color:var(--spark);text-decoration:none}
+.site{display:grid;grid-template-columns:1fr;gap:4px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px} .site b{font-weight:600} .site .why{color:#C9CFD5} .site .caveat{color:var(--mute);font-size:13px}
+.logo{display:flex;gap:16px;align-items:center;flex-wrap:wrap} .logo img{background:#000;border-radius:8px}
+.note{color:var(--mute);font-size:13px;margin:6px 0 0}
+/* five contact pages, phone frames */
+.phones{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.ph{width:250px;height:520px;border-radius:30px;border:8px solid #16191e;overflow:hidden;position:relative;background:#0b0e12;font-size:11px}
+.ph .top{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font:400 10px 'Russo One',sans-serif;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08)}
+.ph .top img{width:18px;height:18px;border-radius:50%;vertical-align:middle;margin-right:6px}
+.ph h3{margin:0 0 6px;font:400 17px/1.05 'Russo One',sans-serif;text-transform:uppercase}
+.ph p{margin:0 0 8px;color:#B8C0C9;font-size:10.5px}
+.ph .f{display:grid;gap:6px} .ph label{display:grid;gap:3px;font:600 8.5px Barlow;letter-spacing:.14em;text-transform:uppercase;color:#9AA3AD} .ph .in{height:24px;border-radius:4px;border:1px solid rgba(255,255,255,.16);background:#0a0d11} .ph .ta{height:46px}
+.ph .btn{display:inline-block;padding:8px 10px;border-radius:4px;background:var(--spark);color:#041014;font:600 9px Barlow;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.ph .ghost{background:transparent;border:1px solid rgba(255,255,255,.2);color:#E9ECEF}
+.ph .pad{padding:12px}
+.cap{font-size:12px;color:var(--mute);margin-top:6px;max-width:250px}
+/* 1 work order */
+.p1 .pad{background:#DCDFE3;color:#0b0e12;height:100%} .p1 h3{color:#0b0e12} .p1 p{color:#3b434c} .p1 label{color:#4a535d} .p1 .in{background:#fff;border:1px solid #9aa3ad;border-radius:0} .p1 .num{position:absolute;right:14px;top:44px;font:400 10px 'Russo One';color:#9aa3ad;letter-spacing:.1em}
+.p1 .stripe{height:6px;background:repeating-linear-gradient(135deg,#0b0e12 0 10px,#24B7CA 10px 20px)}
+/* 2 text first */
+.p2 .big{font:400 26px/1 'Russo One';color:#fff;margin:22px 0 6px;letter-spacing:.02em} .p2 .huge{display:block;background:var(--spark);color:#041014;text-align:center;padding:16px 10px;border-radius:6px;font:400 15px 'Russo One';letter-spacing:.06em;margin:10px 0}
+.p2 .fold{border-top:1px solid rgba(255,255,255,.12);padding-top:10px;margin-top:12px;color:#9AA3AD;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+/* 3 clipboard */
+.p3 .pad{background:#15181d} .p3 .drop{height:70px;border:1px dashed rgba(36,183,202,.6);border-radius:6px;display:grid;place-items:center;color:var(--spark);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+/* 4 stencil */
+.p4 .pad{background:#0b0e12} .p4 h3{font-family:'Russo One';letter-spacing:.08em;color:#E9ECEF;-webkit-text-stroke:1px #E9ECEF;color:transparent} .p4 .bar{height:10px;background:linear-gradient(90deg,var(--spark) 0 70%,transparent 70%);margin:6px 0 10px} .p4 .in{border-radius:0;border-color:#5a6169}
+.p4 .btn{border-radius:0}
+/* 5 bench */
+.p5 .pad{background:linear-gradient(180deg,#6b7178,#4b5157 40%,#5b616a);height:100%} .p5 .panel{background:#DCDFE3;color:#0b0e12;border-radius:4px;padding:10px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.3),0 8px 20px rgba(0,0,0,.4);position:relative} .p5 .panel::before,.p5 .panel::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:radial-gradient(#cfd4d9,#3b4148);top:6px;left:6px;box-shadow:216px 0 0 0 #5a6169} .p5 .panel::after{top:auto;bottom:6px} .p5 h3{color:#0b0e12} .p5 p{color:#3b434c} .p5 label{color:#4a535d} .p5 .in{background:#fff;border:1px solid #9aa3ad}
+</style></head><body>
+<h1>Trust Welding · references</h1>
+<p class="sub">Everything you asked for, one page: the welder-POV videos, six Enumclaw-with-Rainier photos, his logo at every size I could get, the six Higgsfield steel takes on it, nine websites in your three groups, and five contact-page designs for Trustin. Say the number of anything you want used.</p>
+
+<h2>1 · Welding through the helmet, first person (YouTube)</h2>
+<div class="grid g3">
+  <a class="card" href="https://www.youtube.com/watch?v=RvHXw68lBOs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/RvHXw68lBOs/hqdefault.jpg" alt=""><div class="b"><b>Through the Welding Helmet: A Welder's POV</b><small>Stick welding, helmet-cam. Dark lens, the arc is the only light. The closest to your opening.</small></div></a>
+  <a class="card" href="https://www.youtube.com/watch?v=fyMmDWJekBs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/fyMmDWJekBs/hqdefault.jpg" alt=""><div class="b"><b>What does a Welder See Through a Welding Helmet?</b><small>Tight welder's-eye shot through the auto-darkening lens; shows how the puddle and the bead read.</small></div></a>
+  <a class="card" href="https://www.youtube.com/watch?v=ZOlHndA6ZLE" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ZOlHndA6ZLE/hqdefault.jpg" alt=""><div class="b"><b>Welders Eye View, from behind the helmet</b><small>Several MIG passes from behind the lens; good for the sparks and the darkness between strikes.</small></div></a>
+</div>
+<p class="note">TikTok's "welding helmet POV" tag has dozens more (shorter, phone-shot): tiktok.com/discover/welding-helmet-pov.</p>
+
+<h2>2 · Enumclaw with Mount Rainier (six, free to use with credit)</h2>
+<div class="grid g3" id="rainier"></div>
+<p class="note">All from Wikimedia Commons at 4,608 px (one at 2,269 px, CC0). CC BY-SA means a photographer credit on the site. Better-looking paid options exist if you want them: iStock's red barn and Rainier near Enumclaw ($12, 4,368 px) and Kevin McNeal's Enumclaw print.</p>
+
+<h2>3 · His exact logo</h2>
+<div class="logo"><img src="../images/badge.jpg" width="150" height="150" alt="Trust Welding badge, 150 px"><img src="../assets/badge-4x.png" width="300" height="300" alt="the same badge enlarged 4x"><div><b>Instagram profile badge, 150 × 150</b><p class="note" style="max-width:48ch">That is the only size Instagram serves and the only place it exists online (no Facebook, no website). The 4× enlargement is soft. The vector or the original file has to come from Trustin or whoever drew it. Colours in it: black, white, steel grey, and the spark blue (about #24B7CA).</p></div></div>
+
+<h2>4 · Higgsfield: his logo in real steel, as if he just welded it (six)</h2>
+<div class="grid g3" id="steel"></div>
+<p class="note">Nano Banana Pro with the badge as the reference, one shot each, 12 credits. The badge's layout survived in all six. "Just welded" and "Plate hot" are the two closest to your words; "Chrome on black" is the most respectable; "Corten" is the Snohomish fire pit.</p>
+
+<h2>5 · Nine websites</h2>
+<p class="note" style="margin-bottom:10px">Honest caveat: nobody publishes conversion rates for welding shops, and traffic estimates only exist for big sites. The first trio is the most-visited welding sites that exist (manufacturers and one fab shop that grew into a store). The second trio is built for leads with evidence of the structure that converts. The third is for looks.</p>
+<div class="grid g2">
+  <div class="site"><b>Most people on it · millerwelds.com</b><span class="why">The biggest welding brand site. Worth a look for how it handles a giant catalog without clutter.</span><span class="caveat">Manufacturer, not a shop. Traffic data: SimilarWeb competitor set with Lincoln and Hobart.</span></div>
+  <div class="site"><b>Most people on it · lincolnelectric.com</b><span class="why">Lincoln's main site. Dense but clear navigation; the "find a distributor" and "contact" paths are the lesson.</span><span class="caveat">Manufacturer.</span></div>
+  <div class="site"><b>Most people on it · wcfab.com (Wehrli Custom Fabrication)</b><span class="why">A garage fab shop from 2010 that became a national diesel-parts brand; the biggest fabrication-shop site I can evidence.</span><span class="caveat">Sells products, not services; SEMA member spotlight 2023.</span></div>
+  <div class="site"><b>Built to convert · American Mobile Welding (CA)</b><span class="why">Built by GoldenComm as a lead-generation site: the 24-hour response promise sits right under the tagline and again in a red top bar; quote and call paths from the first screen.</span><span class="caveat">Agency case study; no published rate.</span></div>
+  <div class="site"><b>Built to convert · ASB Welding Pros (KY) · asbweldingpros.pages.dev</b><span class="why">The mobile-welding page carries the quote form plus a checklist: jobsite location and photos of the damage. That checklist is what gets a real quote back.</span><span class="caveat">Small shop; structure, not numbers.</span></div>
+  <div class="site"><b>Built to convert · A Complete Assembly (FL) · theedigital.com/portfolio/a-complete-assembly</b><span class="why">Thumb-friendly mobile layout and a gallery that's easy to browse; the agency reports better visibility and conversions.</span><span class="caveat">Agency claim, no figures.</span></div>
+  <div class="site"><b>Unique · Path Robotics · path-robotics.com</b><span class="why">Welding automation; Awwwards Site of the Day and a Developer Award (Sept 2021). Dark, cinematic, motion with a job.</span><span class="caveat">Robotics company, big budget.</span></div>
+  <div class="site"><b>Unique · Weldrite (UK) · awwwards.com/sites/weldrite</b><span class="why">A real fabricator (three decades, aluminium welding) with an Awwwards listing: the rare shop site that looks designed.</span><span class="caveat">Listing, no award shown.</span></div>
+  <div class="site"><b>Unique · MWD Technologies · awwwards.com/sites/mwd-technologies</b><span class="why">Precision machining and fabrication; Awwwards nominee. Industrial without being rustic.</span><span class="caveat">Nominee page; open it to judge.</span></div>
+</div>
+
+<h2>6 · Five contact pages for Trustin (blue-collar, masculine, not rustic, not pretty)</h2>
+<div class="phones">
+  <div><div class="ph p1"><div class="top"><span><img src="../images/badge.jpg" alt="">Trust Welding</span><span>425-283-6496</span></div><div class="stripe"></div><div class="pad"><div class="num">WO-0001</div><h3>Work order</h3><p>Fill it like a shop ticket. A photo and a rough size is enough.</p><div class="f"><label>Name<div class="in"></div></label><label>Phone<div class="in"></div></label><label>What needs built or fixed<div class="in ta"></div></label><label>Where (city or the shop)<div class="in"></div></label></div><span class="btn">Send the request</span></div></div><p class="cap">1 · Work order: light gray paper, black stroke, a ticket number, the hazard stripe in his blue and black.</p></div>
+  <div><div class="ph p2"><div class="top"><span><img src="../images/badge.jpg" alt="">Trust Welding</span><span>King County</span></div><div class="pad"><div class="big">Text him.<br>It's faster.</div><p>A photo and a rough size. He answers mornings.</p><a class="huge">425-283-6496</a><span class="btn ghost">Call</span> <span class="btn ghost">Instagram</span><div class="fold">Or send it here ▾</div><div class="f" style="margin-top:8px"><label>Phone<div class="in"></div></label><label>The job<div class="in ta"></div></label></div></div></div><p class="cap">2 · Text first: the number is the hero, the form folds underneath. Built for a man on a jobsite with one thumb.</p></div>
+  <div><div class="ph p3"><div class="top"><span><img src="../images/badge.jpg" alt="">Trust Welding</span><span>Quote</span></div><div class="pad"><h3>Show him the job</h3><p>Drop a photo first. Everything else is three lines.</p><div class="drop">Add a photo</div><div class="f"><label>Name<div class="in"></div></label><label>Phone<div class="in"></div></label><label>Where it is<div class="in"></div></label></div><span class="btn">Send the request</span></div></div><p class="cap">3 · Photo first: dark gunmetal, the photo drop is the biggest thing on the page because that's what gets a real quote.</p></div>
+  <div><div class="ph p4"><div class="top"><span><img src="../images/badge.jpg" alt="">Trust Welding</span><span>Est 2025</span></div><div class="pad"><h3>Tell me about the job</h3><div class="bar"></div><p>Steel, aluminum, Corten. Shop or your site.</p><div class="f"><label>Name<div class="in"></div></label><label>Phone<div class="in"></div></label><label>The job<div class="in ta"></div></label></div><span class="btn">Send the request</span> <span class="btn ghost">Text instead</span></div></div><p class="cap">4 · Stencil: outlined title, hard corners, one blue bar. The most "industrial sign" of the five.</p></div>
+  <div><div class="ph p5"><div class="top"><span><img src="../images/badge.jpg" alt="">Trust Welding</span><span>425-283-6496</span></div><div class="pad"><div class="panel"><h3>Tell me about the job</h3><p>Bolted to brushed steel. Three fields and a button.</p><div class="f"><label>Name<div class="in"></div></label><label>Phone<div class="in"></div></label><label>What needs built or fixed<div class="in ta"></div></label></div><span class="btn">Send the request</span></div></div></div><p class="cap">5 · Bench plate: a light-gray panel bolted onto brushed steel, like the chrome-on-black render. Classiest of the five.</p></div>
+</div>
+<script>
+fetch('refs/rainier/picks.json').then(r=>r.json()).then(P=>{document.getElementById('rainier').innerHTML=P.map(p=>`<a class="card" href="${p.url}" target="_blank" rel="noopener"><img src="refs/${p.file}" alt=""><div class="b"><b>${p.n} · ${p.cap}</b><small>${p.title.replace('File:','')} · ${p.w}×${p.h} · ${p.license}</small></div></a>`).join('')});
+const S=[['just-welded','Just welded: the bead still glowing, smoke thinning'],['plate-hot','Plate hot: cut from plate, beads cooling orange, mill scale'],['chrome-black','Chrome on black: mirror emblem on a bolted black panel'],['brushed-stainless','Brushed stainless: layered, polished letters'],['heat-tint','Heat tint: blackened steel, rainbow TIG beads'],['corten-plasma','Corten: plasma-cut, rust patina, light through the letters']];
+document.getElementById('steel').innerHTML=S.map(([k,c],i)=>`<a class="card sq" href="refs/steel/${k}.jpg" target="_blank"><img src="refs/steel/${k}.jpg" alt=""><div class="b"><b>${i+1} · ${c}</b></div></a>`).join('');
+</script>
+</body></html>

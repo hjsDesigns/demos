@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T05:56:01.226299Z",
+    "display_name": "Nano Banana Pro",
+    "id": "41d2dceb-a8b9-4444-93af-660177420323",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055601_41d2dceb-a8b9-4444-93af-660177420323_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "1:1",
+      "batch_size": 1,
+      "height": 2048,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "e497a41e-dbc4-439f-9c00-2f7369f587fb",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/e497a41e-dbc4-439f-9c00-2f7369f587fb.png"
+        }
+      ],
+      "prompt": "The attached circular badge logo remade as brushed stainless steel: the welder figure and gear ring machined as separate raised layers, TRUST WELDING and EST 2025 as polished raised letters, fine brushing, soft reflections, on a black background, studio product photo, photoreal, no extra text.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055601_41d2dceb-a8b9-4444-93af-660177420323.png",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T05:56:00.230634Z",
+    "display_name": "Nano Banana Pro",
+    "id": "72776e6f-b05b-4efb-b2ef-aee11dcfe339",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055600_72776e6f-b05b-4efb-b2ef-aee11dcfe339_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "1:1",
+      "batch_size": 1,
+      "height": 2048,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "5c426952-7bba-48fd-9bf6-e1412d3c8474",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/5c426952-7bba-48fd-9bf6-e1412d3c8474.png"
+        }
+      ],
+      "prompt": "First-person view through a welding helmet lens the moment after the arc stops: the attached circular badge logo welded into a steel plate, the last bead still glowing, sparks dying, smoke thinning, the rest of the shop black, photoreal, no extra text.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055600_72776e6f-b05b-4efb-b2ef-aee11dcfe339.png",
+    "status": "completed"
+  }
+]

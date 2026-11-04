@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T05:56:00.168365Z",
+    "display_name": "Nano Banana Pro",
+    "id": "1b04276f-d6aa-4300-92c3-9fc6980b054b",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055600_1b04276f-d6aa-4300-92c3-9fc6980b054b_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "1:1",
+      "batch_size": 1,
+      "height": 2048,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "65a372e2-aa22-48a6-ab30-498c01215686",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/65a372e2-aa22-48a6-ab30-498c01215686.png"
+        }
+      ],
+      "prompt": "The attached circular badge logo as a welded blackened-steel sign: raised letters TRUST WELDING with blue and gold heat-tint rainbow around every weld, fresh TIG beads visible, dark matte background, dramatic single spotlight, photoreal, no extra text.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055600_1b04276f-d6aa-4300-92c3-9fc6980b054b.png",
+    "status": "completed"
+  }
+]

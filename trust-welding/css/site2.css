@@ -1,0 +1,77 @@
+/* Trust Welding · second pass (Hayden's drawing, 11/3): rows in thirds, photo left in a black frame, the words on light gray.
+   Tokens are the badge's: black, steel, the spark blue. Steel realism lives in the titles (brushed fill) and the dividers. */
+:root{
+  --bg:#0A0C0E; --bg2:#101317; --ink:#E9ECEF; --mute:#9AA3AD; --steel:#8E959D; --line:rgba(255,255,255,.09);
+  --paper:#DCDFE3; --paper2:#CFD3D8; --paperink:#0E1114; --papermute:#4A535D;
+  --spark:#24B7CA; --spark2:#7FE3F2; --deep:#0F7D8C;
+  --display:'Russo One','Arial Black',Impact,sans-serif; --body:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --header-h:64px; --pad:clamp(18px,4vw,56px); --maxw:1440px; --frame:6px;
+}
+*{box-sizing:border-box} html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:hidden}
+img{display:block;max-width:100%} a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:4px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--ink);font:600 14px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.btn:hover{background:rgba(36,183,202,.14);border-color:rgba(36,183,202,.6);transform:translateY(-1px)}
+.btn.primary{background:var(--spark);border-color:var(--spark);color:#041014} .btn.primary:hover{background:var(--spark2);border-color:var(--spark2)}
+/* header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:20;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);background:linear-gradient(rgba(10,12,14,.94),rgba(10,12,14,.78));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none} .brand img{width:40px;height:40px;border-radius:50%} .brand b{font:400 16px/1 var(--display);letter-spacing:.06em;text-transform:uppercase}
+#main-nav{display:flex;align-items:center;gap:26px} #main-nav a{font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);text-decoration:none} #main-nav a:hover{color:var(--ink)} #main-nav .btn{min-height:40px;padding:0 16px;color:var(--ink)}
+/* hero: his badge in real steel, just welded (Higgsfield), the image is the headline */
+.hero{position:relative;height:100svh;min-height:520px;background:#000;overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 48%;animation:settle 7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes settle{from{transform:scale(1.06)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(to top,var(--bg),rgba(10,12,14,0))}
+.cue{position:absolute;z-index:3;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);font:600 11px/1 var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--mute);opacity:.85}
+.cue::after{content:"";display:block;width:1px;height:26px;margin:10px auto 0;background:linear-gradient(var(--mute),transparent)}
+/* the rows: photo | words, one third to two thirds */
+.rows{max-width:var(--maxw);margin:0 auto;padding:clamp(32px,6vh,72px) var(--pad) 0}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:0;margin:0 0 clamp(28px,5vh,64px);background:var(--paper);color:var(--paperink);border:var(--frame) solid #000;box-shadow:0 18px 50px -24px rgba(0,0,0,.9)}
+.frame{position:relative;margin:0;border-right:var(--frame) solid #000;background:#000;min-height:360px}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.frame figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0));color:#fff;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.frame figcaption::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--spark);transform:rotate(45deg);vertical-align:1px}
+.words{display:flex;align-items:center;padding:clamp(22px,3.4vw,52px) clamp(22px,3.6vw,60px)}
+.fold{width:100%;will-change:clip-path}
+.eyebrow{margin:0 0 10px;font:600 12px/1 var(--body);letter-spacing:.26em;text-transform:uppercase;color:var(--deep)}
+.row h2{margin:0 0 14px;font:400 clamp(26px,3vw,46px)/1.04 var(--display);letter-spacing:.01em;text-transform:uppercase;text-wrap:balance;
+  color:#1a1f25;background:linear-gradient(175deg,#2b3139 0%,#0e1114 38%,#3a424c 60%,#14181d 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none}
+.row p{margin:0 0 10px;max-width:60ch;color:#2a3139;font-size:clamp(16px,1.15vw,18px)}
+.row ul,.row ol{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.row li{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start;font-size:clamp(15px,1.05vw,17px);color:#2a3139}
+.row ul li::before{content:"";width:11px;height:11px;margin-top:7px;border:2px solid var(--deep);transform:rotate(45deg)}
+.row ol{counter-reset:step} .row ol li{grid-template-columns:36px 1fr;counter-increment:step} .row ol li::before{content:counter(step,decimal-leading-zero);font:400 15px/1.5 var(--display);color:var(--deep)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 18px;margin:4px 0 16px}
+.facts div{border-top:2px solid #0e1114;padding-top:10px} .facts b{display:block;font:400 clamp(20px,1.8vw,26px)/1.05 var(--display);color:#0e1114} .facts span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--papermute)}
+.row:not(.is-open) .fold{visibility:hidden} .row.is-open .fold{visibility:visible}
+/* more of the work: the rest of his photos, framed the same */
+.more{margin:0 0 clamp(28px,5vh,64px)} .more .eyebrow{color:var(--spark);margin-bottom:14px}
+.more-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.more-grid .frame{border:var(--frame) solid #000;min-height:0;aspect-ratio:4/5}
+/* the quote: dark gray and blue at the bottom (Hayden 11/3) */
+.quote{padding:clamp(56px,9vh,110px) var(--pad);background:linear-gradient(180deg,#171b20,#0d1116 60%,#0a1a21);border-top:1px solid var(--line)}
+.quote-in{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.quote .eyebrow{color:var(--spark)}
+.quote h2{margin:0 0 12px;font:400 clamp(32px,4vw,58px)/1 var(--display);text-transform:uppercase;color:#fff;background:linear-gradient(175deg,#f1f4f7,#aab2bb 45%,#e2e7ec 70%,#8e959d);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.quote p{margin:0 0 18px;color:#C9CFD5;max-width:46ch} .ways{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.contact-form{display:grid;gap:12px} .contact-form label{display:grid;gap:6px;font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.contact-form input,.contact-form textarea{width:100%;min-height:48px;padding:12px 14px;border-radius:4px;border:1px solid rgba(255,255,255,.16);background:#0b0e12;color:var(--ink);font:16px/1.4 var(--body)} .contact-form textarea{min-height:120px;resize:vertical}
+.contact-form input:focus,.contact-form textarea:focus{outline:2px solid var(--spark);outline-offset:1px;border-color:transparent}
+.form-note{font-size:13px;color:var(--mute)} .form-success{display:none;padding:16px;border:1px solid rgba(36,183,202,.5);border-radius:4px;color:var(--spark2)} .contact-form.sent .form-success{display:block} .contact-form.sent .fields{display:none}
+.site-footer{padding:28px var(--pad) max(28px,env(safe-area-inset-bottom));background:#07161b;border-top:2px solid var(--deep);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute)} .site-footer a{color:var(--ink);text-decoration:none}
+/* phones: the photo on top (full width), the words under it, same frame */
+@media (max-width:900px){
+  :root{--header-h:56px;--frame:5px}
+  .brand b{font-size:14px} #main-nav a:not(.btn){display:none}
+  .hero{height:78svh;min-height:420px}
+  .rows{padding-top:24px}
+  .row{grid-template-columns:1fr;margin-bottom:22px}
+  .frame{border-right:0;border-bottom:var(--frame) solid #000;min-height:0;aspect-ratio:4/3}
+  .words{padding:18px 18px 22px}
+  .row h2{font-size:clamp(24px,6.6vw,32px)} .row p{font-size:15.5px} .row li{font-size:14.5px}
+  .facts{grid-template-columns:1fr 1fr;gap:10px 14px} .facts b{font-size:19px}
+  .more-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .quote-in{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.hero-img{animation:none}}

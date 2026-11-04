@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T05:56:00.254455Z",
+    "display_name": "Nano Banana Pro",
+    "id": "b3b68c58-dd2c-494f-bcec-9da20c2be2c1",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055600_b3b68c58-dd2c-494f-bcec-9da20c2be2c1_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "1:1",
+      "batch_size": 1,
+      "height": 2048,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "5de60442-86bf-47bf-8b94-122dc8cf2e3c",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/5de60442-86bf-47bf-8b94-122dc8cf2e3c.png"
+        }
+      ],
+      "prompt": "The attached circular badge logo as a chrome emblem on black powder-coated steel: mirror-polished welder figure and gear ring, crisp raised letters TRUST WELDING and EST 2025, mounted on a black steel panel with four hex bolts, moody studio light, photoreal, no extra text.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_055600_b3b68c58-dd2c-494f-bcec-9da20c2be2c1.png",
+    "status": "completed"
+  }
+]
