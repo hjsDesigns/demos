@@ -1,0 +1,34 @@
+[
+  {
+    "created_at": "2026-11-04T07:07:21.579026Z",
+    "display_name": "Nano Banana Pro",
+    "id": "9bb6dea0-f265-4fd4-b510-388aec8b6c33",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_070721_9bb6dea0-f265-4fd4-b510-388aec8b6c33_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "16:9",
+      "batch_size": 1,
+      "height": 3072,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "b48fc2a9-708e-4947-8c9c-192d6507155f",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/b48fc2a9-708e-4947-8c9c-192d6507155f.jpg"
+        },
+        {
+          "id": "faa0f4c9-5c9b-4a1f-89d3-cdb15523ddbd",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/faa0f4c9-5c9b-4a1f-89d3-cdb15523ddbd.jpg"
+        }
+      ],
+      "prompt": "A photograph from a drone 1,500 feet above the farmland north of a small Pacific Northwest town at blue hour, looking south-southeast: the town's street grid and rooftops fill the middle of the frame with warm streetlights just coming on, flat green and gold fields and dark evergreen forest around it, and Mount Rainier rises huge behind the town on the horizon, its north face holding the last pink alpenglow against a deep clean blue sky, thin cool haze layering the foothills. Use the first attached image for the exact profile of Mount Rainier's north face and the second attached image for the layout of the town's street grid and the fields around it. Photoreal, crisp, full-frame camera at 35 mm, long exposure, no motion blur; the exact centre of the frame is calm low-contrast rooftops with nothing distinctive there; no people, no text, no logos, no signs, no vehicles near the camera.",
+      "resolution": "4k",
+      "surface": null,
+      "width": 5504
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_070721_9bb6dea0-f265-4fd4-b510-388aec8b6c33.png",
+    "status": "completed"
+  }
+]

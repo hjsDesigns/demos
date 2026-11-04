@@ -1,0 +1,34 @@
+[
+  {
+    "created_at": "2026-11-04T07:07:23.789174Z",
+    "display_name": "Nano Banana Pro",
+    "id": "13183fd9-afa8-4dd9-99f1-6c8356aaf32f",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_070723_13183fd9-afa8-4dd9-99f1-6c8356aaf32f_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "16:9",
+      "batch_size": 1,
+      "height": 3072,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "302e94db-b57f-43a6-8abb-8f179ed173f0",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/302e94db-b57f-43a6-8abb-8f179ed173f0.jpg"
+        },
+        {
+          "id": "b492c98e-48ee-47ca-8917-28d5783a68fd",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/b492c98e-48ee-47ca-8917-28d5783a68fd.jpg"
+        }
+      ],
+      "prompt": "A photograph from a drone 800 feet over the north edge of a small Pacific Northwest farm town on a clear cold autumn morning, looking south-southeast: Mount Rainier dominates the upper half of the frame, enormous and sharp, its glaciers lit white-gold by low morning sun with the north face in soft blue shadow, a few thin high clouds; the town's rooftops and tree-lined streets run across the middle of the frame; open green pasture with a plain wire fence line fills the lower third. Use the first attached image for the exact profile of Mount Rainier's north face and the second attached image for the layout of the town's street grid and the fields around it. Photoreal, crisp, full-frame camera at 50 mm, deep depth of field; the lower third is calm open pasture with nothing distinctive in it; no people, no animals, no text, no logos, no signs.",
+      "resolution": "4k",
+      "surface": null,
+      "width": 5504
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_070723_13183fd9-afa8-4dd9-99f1-6c8356aaf32f.png",
+    "status": "completed"
+  }
+]

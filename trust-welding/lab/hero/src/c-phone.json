@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-11-04T07:07:23.269627Z",
+    "display_name": "Nano Banana Pro",
+    "id": "8af7e0b8-36c8-4f90-9634-effdf7f9aaa9",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_070723_8af7e0b8-36c8-4f90-9634-effdf7f9aaa9_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "9:16",
+      "batch_size": 1,
+      "height": 2752,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "8ec11c24-3eed-4b86-a0ed-bcc53338fb7a",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/8ec11c24-3eed-4b86-a0ed-bcc53338fb7a.jpg"
+        }
+      ],
+      "prompt": "A vertical photograph at a welder's eye level, standing at his workbench inside a small fabrication shop and looking straight out through the wide open roll-up bay door: the clean brushed-steel top of the bench fills the lower third of the frame, empty and flat, a welding helmet set at the far left edge; beyond the door, late golden-hour light, the rooftops of a small Pacific Northwest town across the fields and Mount Rainier rising huge and pink-lit behind it in a clear sky, the mountain in the upper third; the dark door frame and shop walls edge the view. Use the first attached image for the exact profile of Mount Rainier's north face. Photoreal, crisp, 35 mm, a slight warm flare from the door; the centre of the bench top is perfectly empty; no people, no text, no logos, no signs.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1536
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3IvSpKaNroIDt4ok7YZUY2vO9LL/hf_20261104_070723_8af7e0b8-36c8-4f90-9634-effdf7f9aaa9.png",
+    "status": "completed"
+  }
+]
