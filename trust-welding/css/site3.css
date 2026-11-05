@@ -1,6 +1,7 @@
 /* Trust Welding · third pass (Hayden 11/3, his words): three sections only. The photos scroll on the left; the right side is ONE
    continuous panel of silver steel that never moves; the words unfold in white on it, a new section every seven photos. */
 :root{
+  --panel-body:'Archivo','Barlow','Helvetica Neue',Arial,sans-serif;   /* the panel's body face (11/4: a different font for the paragraphs); the rest of the site keeps --body */
   --bg:#0A0C0E; --bg2:#101317; --ink:#E9ECEF; --mute:#9AA3AD; --line:rgba(255,255,255,.09);
   --spark:#24B7CA; --spark2:#7FE3F2; --deep:#0F7D8C;
   --display:'Russo One','Arial Black',Impact,sans-serif; --body:'Barlow','Helvetica Neue',Arial,sans-serif;
@@ -34,22 +35,23 @@ img{display:block;max-width:100%} a{color:inherit}
 .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0));color:#fff;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase}
 .photos figcaption::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--spark);transform:rotate(45deg);vertical-align:1px}
 .panel{position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));align-self:start;
-  /* silver steel: a brushed base, a soft sheen band, hairline grain */
+  /* the scratched steel plate (Hayden's reference, 11/4): a real texture photo, darkened a touch so the white words hold */
   background:
-    linear-gradient(105deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.14) 46%,rgba(255,255,255,0) 58%),
-    repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0 1px,rgba(255,255,255,.04) 1px 2px),
-    linear-gradient(180deg,#6b7178 0%,#8a9199 22%,#5f666e 50%,#80878f 78%,#555b63 100%);
+    linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.30) 100%),
+    url(../images/texture/panel-steel.jpg) center/cover no-repeat,
+    #6b7178;
   box-shadow:inset var(--frame) 0 0 #000, inset 0 0 0 1px rgba(0,0,0,.35), inset 0 0 120px rgba(0,0,0,.25)}
 .panel::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.02' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");mix-blend-mode:overlay;pointer-events:none;opacity:.9}
-.stack{position:relative;height:100%;padding:clamp(28px,4vw,64px) clamp(26px,4vw,72px)}
-.sec{position:absolute;inset:0;padding:inherit;display:flex;flex-direction:column;justify-content:center;gap:12px;opacity:0;visibility:hidden}
+.stack{position:relative;height:100%;padding:var(--pad-y,clamp(22px,3vw,44px)) var(--pad-x,52px)}
+.sec{position:absolute;inset:0;padding:inherit;display:flex;flex-direction:column;justify-content:var(--block-y,flex-start);align-items:var(--block-x,stretch);gap:var(--gap,22px);opacity:0;visibility:hidden}
 .sec.is-on{opacity:1;visibility:visible}
-.sec .fold{width:100%} .eyebrow{margin:0 0 10px;font:600 12px/1 var(--body);letter-spacing:.26em;text-transform:uppercase;color:#CFF7FC;text-shadow:0 1px 0 rgba(0,0,0,.5)}
-.sec h2{margin:0 0 14px;font:400 clamp(28px,3.1vw,50px)/1.04 var(--display);letter-spacing:.01em;text-transform:uppercase;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.35);text-wrap:balance}
-.sec p{margin:0 0 10px;max-width:56ch;color:#fff;font-size:clamp(16px,1.15vw,18px);text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.sec .fold{width:var(--block-w,100%);position:relative;z-index:0}
+.sec .fold::before{content:"";position:absolute;inset:-22px -26px;z-index:-1;border-radius:28px;background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,var(--pool,.62)) 0%,rgba(255,255,255,calc(var(--pool,.62)*.55)) 55%,rgba(255,255,255,0) 100%);filter:blur(22px);pointer-events:none} .eyebrow{margin:0 0 10px;font:600 12px/1 var(--body);letter-spacing:.26em;text-transform:uppercase;color:#CFF7FC;text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.sec h2{margin:0 0 14px;font:400 var(--t-size,46px)/1.02 var(--display);letter-spacing:.01em;text-transform:uppercase;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.35);text-wrap:balance}
+.sec p{margin:0 0 10px;max-width:var(--b-max,none);color:#fff;font-size:var(--b-size,22px);font-weight:var(--b-weight,700);line-height:var(--b-lh,1.9);font-family:var(--panel-body,var(--body));text-shadow:0 1px 0 rgba(0,0,0,.35)}
 .sec ul,.sec ol{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px}
-.sec li{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start;color:#fff;font-size:clamp(15px,1.05vw,17px);text-shadow:0 1px 0 rgba(0,0,0,.35)}
-.sec ul li::before{content:"";width:11px;height:11px;margin-top:7px;border:2px solid var(--spark2);transform:rotate(45deg)}
+.sec li{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start;color:#fff;font-size:var(--b-size,22px);font-weight:var(--b-weight,700);line-height:var(--b-lh,1.9);font-family:var(--panel-body,var(--body));text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.sec ul li::before{content:"";width:11px;height:11px;margin-top:11px;background:var(--spark2);border:2px solid var(--spark2);transform:rotate(45deg)}
 .sec ol{counter-reset:step} .sec ol li{grid-template-columns:36px 1fr;counter-increment:step} .sec ol li::before{content:counter(step,decimal-leading-zero);font:400 15px/1.5 var(--display);color:var(--spark2)}
 .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin:4px 0 14px}
 .facts div{border-top:2px solid rgba(255,255,255,.55);padding-top:10px} .facts b{display:block;font:400 clamp(20px,1.8vw,26px)/1.05 var(--display);color:#fff} .facts span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#E6F7FA}
@@ -77,9 +79,37 @@ img{display:block;max-width:100%} a{color:inherit}
   .panel{position:sticky;top:auto;bottom:0;height:auto;max-height:50svh;margin:0 calc(var(--pad)*-1);z-index:5;box-shadow:inset 0 var(--frame) 0 #000,inset 0 0 0 1px rgba(0,0,0,.35)}
   .stack{padding:18px var(--pad) max(16px,env(safe-area-inset-bottom));height:auto;min-height:32svh;max-height:50svh;overflow:auto}
   .sec{position:relative;inset:auto;padding:0;display:none;justify-content:flex-start;gap:8px} .sec.is-on{display:flex}
-  .sec h2{font-size:clamp(24px,6.6vw,32px)} .sec p{font-size:15.5px;max-width:none} .sec li{font-size:14.5px} .sec ul,.sec ol{gap:5px}
+  .sec h2{font-size:clamp(26px,7vw,34px)} .sec p{font-size:16.5px;max-width:none} .sec li{font-size:15.5px} .sec ul,.sec ol{gap:5px}
   .facts{gap:8px 12px} .facts b{font-size:19px}
   .dots{position:static;margin-top:8px}
   .quote-in{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){.hero-bg{animation:none}}
+/* Fold Text in the panel (11/4): keep our type metrics; the original's display metrics apply only to the h2 */
+.sec .fold-text{display:inline;line-height:inherit;letter-spacing:inherit;white-space:normal}
+.sec h2 .fold-text{line-height:1.02;letter-spacing:.01em}
+.sec .fold-text-segment{vertical-align:baseline}
+.sec li .fold-text,.sec p .fold-text{color:inherit}
+
+/* panel words (Hayden 11/4): black with a light border, like letters stamped into the plate */
+.sec{color:#0A0C0E;text-shadow:none}
+.sec h2,.sec p,.sec li,.sec .eyebrow,.sec .facts b,.sec .facts span{color:#0A0C0E;-webkit-text-stroke:var(--stroke,1.2px) rgba(255,255,255,.6);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.25)}
+.sec .eyebrow{color:#0F7D8C;-webkit-text-stroke:0}
+.sec .fold-text-piece::after{--fold-shade:linear-gradient(180deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.2) 42%,rgba(0,0,0,.35) 100%)}
+
+/* the Format panel (localhost / ?edit=1 only): Hayden's sliders for the section block */
+.fmt{position:fixed;left:12px;bottom:12px;z-index:999;width:250px;background:rgba(10,12,14,.94);color:#E8EEF6;border:1px solid #243040;border-radius:8px;font:12px/1.3 system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.fmt.min .fmt-b{display:none}.fmt-h{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #243040;cursor:pointer;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:10.5px}
+.fmt-b{padding:8px 10px;display:grid;gap:6px}.fmt label{display:grid;grid-template-columns:86px 1fr 40px;gap:6px;align-items:center}.fmt input[type=range]{width:100%;accent-color:#24B7CA}.fmt select{background:#141A22;color:#E8EEF6;border:1px solid #243040;border-radius:4px;font:inherit}
+.fmt output{text-align:right;color:#8697AB;font-variant-numeric:tabular-nums}.fmt .row{display:flex;gap:6px}.fmt button{flex:1;background:#141A22;color:#E8EEF6;border:1px solid #243040;border-radius:4px;padding:5px;font:inherit;cursor:pointer}.fmt textarea{width:100%;height:46px;background:#070b12;color:#8697AB;border:1px solid #243040;border-radius:4px;font:10.5px/1.3 ui-monospace,monospace}
+
+/* life (11/5): the client strip under the hero and the ember drift */
+.clients{position:relative;z-index:2;overflow:hidden;background:#0d1013;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.clients-track{display:flex;align-items:center;gap:0;width:max-content;animation:clients var(--dur,40s) linear infinite;will-change:transform}
+.clients:hover .clients-track,.clients:active .clients-track{animation-play-state:paused}
+.clients-track span{font:400 13px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:#C9D1D9;padding:14px 22px;white-space:nowrap}
+.clients-track i{width:8px;height:8px;background:var(--spark);transform:rotate(45deg);flex:none;opacity:.9}
+@keyframes clients{to{transform:translateX(calc(var(--w,50%) * -1))}}
+@media (prefers-reduced-motion:reduce){.clients-track{animation:none}}
+.embers{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.site-header{z-index:20}.hero{z-index:0}.flow{position:relative;z-index:2}.quote{position:relative;z-index:2}
