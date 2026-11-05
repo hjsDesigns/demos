@@ -60,4 +60,6 @@
 body.thumb-on{padding-bottom:72px}@media (max-width:900px){body.thumb-on .panel{bottom:72px}}
 /* critic 11/5: the form breathes; five fields */
 .contact-form{display:grid;gap:14px}.contact-form label{display:grid;gap:6px}
-.wtj-chip{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:4px;font:600 13px/1.2 var(--body);color:#E9ECEF;background:rgba(255,255,255,.04)}
+.wtj-photos:has(.wtj-chip){display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;grid-template-columns:none}
+.wtj-photos figure.wtj-chip{position:static;aspect-ratio:auto;width:auto;height:auto;min-height:0;margin:0;padding:10px 14px;border:1px solid rgba(255,255,255,.16);border-left:3px solid var(--spark);border-radius:3px;background:rgba(255,255,255,.05);box-shadow:none;overflow:visible}
+.wtj-photos figure.wtj-chip figcaption{position:static;padding:0;margin:0;background:none;font:600 13px/1.25 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#E9ECEF}
