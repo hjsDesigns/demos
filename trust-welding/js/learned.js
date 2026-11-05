@@ -24,7 +24,7 @@
           .to(stamps[i - 1], { opacity: 0, duration: 0.12 }, t + 0.1).fromTo(stamps[i], { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.18, ease: 'power3.out' }, t + 0.22);
       }
       tl.to({}, { duration: 0.4 });
-      ScrollTrigger.create({ trigger: '.story', start: 'top top', end: 'bottom bottom', scrub: 0.35, animation: tl, onUpdate: self => { const n = Math.min(ticks.length - 1, Math.floor(self.progress * ticks.length + 0.15)); ticks.forEach((el, k) => el.classList.toggle('on', k <= n)); } });
+      ScrollTrigger.create({ trigger: '.story', start: 'top top', end: 'bottom bottom', scrub: 0.35, animation: tl, onUpdate: self => { const n = Math.min(ticks.length - 1, Math.floor(self.progress * ticks.length + 0.15)); ticks.forEach((el, k) => el.classList.toggle('on', k <= n)); window.__storyProgress = self.progress; if (window.__barBlock) { window.__barBlock.storyEnd = self.progress > 0.72 && window.__stageUp && window.__stageUp(); window.__syncBar && window.__syncBar(); } } });
     }
   }
   // 3 · the gadget: his real jobs as the answer to "can you weld this?"
@@ -47,10 +47,19 @@
   }).catch(() => {});
   // 5 · the thumb bar: text or call under the thumb once the hero is gone, hidden while the quote section is on screen
   const tb = document.getElementById('thumb');
-  const blockers = ['hero', 'how', 'whats-the-job', 'quote'].map(id => document.getElementById(id)).filter(Boolean);
-  if (tb && blockers.length && 'IntersectionObserver' in window) {   // the bar shows only where the page has no Text/Call of its own
-    const on = new Map(blockers.map(b => [b, b.id === 'hero']));
-    const io = new IntersectionObserver(es => { es.forEach(e => on.set(e.target, e.isIntersecting)); const show = ![...on.values()].some(Boolean); tb.classList.toggle('is-on', show); document.body.classList.toggle('thumb-on', show); }, { threshold: 0.08 });
+  const blockers = ['hero', 'quote'].map(id => document.getElementById(id)).filter(Boolean);
+  if (tb && blockers.length && 'IntersectionObserver' in window) {   // the bar hides only where Text/Call is already on screen: the hero, the quote, the story's last step, the gadget's result
+    const on = new Map(blockers.map(b => [b, b.id === 'hero'])); window.__barBlock = { storyEnd: false, gadget: false };
+    const sync = () => { const show = ![...on.values()].some(Boolean) && !window.__barBlock.storyEnd && !window.__barBlock.gadget; tb.classList.toggle('is-on', show); document.body.classList.toggle('thumb-on', show); };
+    window.__syncBar = sync;
+    const io = new IntersectionObserver(es => { es.forEach(e => on.set(e.target, e.isIntersecting)); sync(); }, { threshold: 0.08 });
     blockers.forEach(b => io.observe(b));
+    const wtj = document.getElementById('whats-the-job'), showEl = wtj && wtj.querySelector('.wtj-show');
+    const stage = wtj && wtj.querySelector('.wtj-stage');
+    const gadgetUp = () => { if (!wtj || !stage) return false; const r = wtj.getBoundingClientRect(); return stage.hasAttribute('data-on') && r.top < innerHeight && r.bottom > 0; };
+    const stageEl = document.querySelector('.story .stage');
+    window.__stageUp = () => { if (!stageEl) return false; const r = stageEl.getBoundingClientRect(); return r.bottom > innerHeight * 0.45 && r.top < innerHeight * 0.55; };   // its Text/Call must really be in view   // the story's last step stays pinned after its trigger ends
+    if (wtj) new MutationObserver(() => { window.__barBlock.gadget = gadgetUp(); sync(); }).observe(wtj, { attributes: true, subtree: true, attributeFilter: ['data-on', 'class'] });
+    addEventListener('scroll', () => { window.__barBlock.gadget = gadgetUp(); window.__barBlock.storyEnd = (window.__storyProgress || 0) > 0.72 && window.__stageUp(); sync(); }, { passive: true });
   }
 })();
