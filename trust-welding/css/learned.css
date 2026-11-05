@@ -18,7 +18,7 @@
 .story .stage{position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));display:grid;grid-template-columns:1fr 2fr;overflow:hidden}
 .story .shot{position:relative;margin:clamp(18px,3vh,36px) 0 clamp(18px,3vh,36px) var(--pad);border:var(--frame) solid #000;background:#000;box-shadow:0 24px 60px -28px rgba(0,0,0,.95);overflow:hidden}
 .story .shot figure{position:absolute;inset:0;margin:0;clip-path:inset(0 0 100% 0)}.story .shot figure:first-child{clip-path:inset(0 0 0 0)}
-.story .shot img{width:100%;height:100%;object-fit:cover}.story .shot figure:nth-child(1) img{object-position:62% 50%}.story .shot figure:nth-child(3) img{object-position:34% 50%}
+.story .shot img{width:100%;height:100%;object-fit:cover}.story .shot figure:nth-child(1) img{object-position:62% 88%}   /* the Instagram caption burned into the top of fab-2 stays out of the frame */.story .shot figure:nth-child(3) img{object-position:34% 50%}
 .story .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,0));color:#fff;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase}
 .story .shot figcaption::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--spark);transform:rotate(45deg);vertical-align:1px}
 .story .seam{position:absolute;left:-2px;right:-2px;height:3px;top:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,122,26,0),#FFD9A8 18%,#fff 50%,#FFD9A8 82%,rgba(255,122,26,0));box-shadow:0 0 14px 3px rgba(255,122,26,.75),0 0 34px 8px rgba(255,122,26,.28)}

@@ -9,11 +9,11 @@
 <meta name="description" content="Trust Welding: custom metal fabrication and mobile welding serving King County. Steel, aluminum and Corten. Call or text 425-283-6496.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@400;500;600&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site3.css?v=1793903912">
-<link rel="stylesheet" href="css/fold-text.css?v=1793903912">
-<link rel="stylesheet" href="css/wtj.css?v=1793903912">
-<link rel="stylesheet" href="css/molten-metal.css?v=1793903912">
-<link rel="stylesheet" href="css/learned.css?v=1793903912">
+<link rel="stylesheet" href="css/site3.css?v=1793904024">
+<link rel="stylesheet" href="css/fold-text.css?v=1793904024">
+<link rel="stylesheet" href="css/wtj.css?v=1793904024">
+<link rel="stylesheet" href="css/molten-metal.css?v=1793904024">
+<link rel="stylesheet" href="css/learned.css?v=1793904024">
 <link rel="icon" href="images/badge.jpg">
 </head>
 <body>
@@ -144,9 +144,9 @@
 </footer>
 <script src="js/vendor/gsap.min.js"></script>
 <script src="js/vendor/ScrollTrigger.min.js"></script>
-<script src="js/vendor/fold-text.js?v=1793903912"></script>
-<script src="js/vendor/wtj/click-spark.js?v=1793903912"></script>
-<script src="js/vendor/wtj/whats-the-job.js?v=1793903912"></script>
+<script src="js/vendor/fold-text.js?v=1793904024"></script>
+<script src="js/vendor/wtj/click-spark.js?v=1793904024"></script>
+<script src="js/vendor/wtj/whats-the-job.js?v=1793904024"></script>
 <script>
 // the panel holds; the section changes every 4 photos (the photo column's scroll progress); every time a section opens its words fold open (React Bits Fold Text, ported: js/vendor/fold-text.js)
 gsap.registerPlugin(ScrollTrigger);
@@ -214,10 +214,10 @@ if (!reduce) {
   requestAnimationFrame(tick);
 })();
 </script>
-<script src="js/learned.js?v=1793903912"></script>
+<script src="js/learned.js?v=1793904024"></script>
 <script>
 // Format panel (Hayden 11/4: "themes or formats… for me to manually adjust and edit"): localhost or ?edit=1; sliders set CSS variables on <html>, remembered in localStorage 'tw-format'; Copy puts the JSON on the clipboard
-if (location.hostname === 'localhost' || location.search.includes('edit=1')) (function () {
+if ((location.hostname === 'localhost' || location.search.includes('edit=1')) && !location.search.includes('nofmt')) (function () {
   const R = document.documentElement, KEY = 'tw-format';
   const C = [['--t-size','Title size',24,84,1,'px'],['--b-size','Body size',14,30,1,'px'],['--b-weight','Body weight',400,800,100,''],['--b-lh','Line height',1.1,1.9,0.05,''],['--stroke','Letter border',0,1.2,0.05,'px'],['--gap','Gap',4,36,1,'px'],['--pad-x','Side padding',8,110,2,'px'],['--pad-y','Top/bottom pad',8,110,2,'px'],['--block-w','Block width',40,100,1,'%'],['--pool','Light pool',0,1,0.05,'']];
   const S = [['--block-y','Vertical',['flex-start','center','flex-end'],['top','middle','bottom']],['--block-x','Horizontal',['stretch','flex-start','center','flex-end'],['full','left','center','right']]];
