@@ -33,23 +33,24 @@
     const P = f => 'images/work/phone/' + f + '.jpg';
     WTJ.mount(g, { total: 11, totalLabel: 'jobs posted · pick yours', plate: new URL('images/texture/panel-steel.jpg', document.baseURI).href, sms: SMS, button: 'Text Trustin a photo', smsBody: x => "Hi Trustin, I've got a " + x.ask + ". Here's a photo:",
       groups: [
-        { key: 'truck', label: 'Truck', alt: "Trustin's work on a Duramax pickup", cover: P('track-bars-duramax'), noun: 'truck jobs posted', ask: 'truck job', jobs: [{ src: P('track-bars-duramax'), caption: 'Track bars · Duramax LBZ', pos: '30% 60%' }, { src: P('headache-rack'), caption: 'Headache rack' }, { src: P('aluminum-roof-rack-bars'), caption: 'Aluminum roof-rack bars', pos: '60% 40%' }] },
-        { key: 'equipment', label: 'Equipment', alt: 'A Cat engine on a steel motor mount', cover: P('motor-mount-cat-rebuild'), noun: 'equipment jobs posted', ask: 'equipment job', jobs: [{ src: P('d-rings-roll-off-bed'), caption: 'D-rings · roll-off bed' }, { src: P('gantry-lift'), caption: 'Gantry lift' }, { src: P('motor-mount-cat-rebuild'), caption: 'Motor mount · Cat rebuild', pos: '62% 40%' }] },
-        { key: 'outdoor', label: 'Outdoor', alt: 'Corten steel fire-pit cladding', cover: P('corten-fire-pit-snohomish'), noun: 'outdoor jobs posted', ask: 'yard or building job', jobs: [{ src: P('corten-fire-pit-snohomish'), caption: 'Corten fire pit · Snohomish' }, { src: P('steel-planter-boxes'), caption: 'Steel planter boxes', pos: '50% 70%' }, { src: P('premier-chiropractic-install'), caption: 'Premier Chiropractic install', pos: '50% 75%' }] },
-        { key: 'signs', label: 'Signs', alt: 'A custom steel sign for Hopper Group', cover: P('custom-sign-hopper-group'), noun: 'sign jobs posted', ask: 'sign or cut-out job', jobs: [{ src: P('custom-sign-hopper-group'), caption: 'Custom sign · Hopper Group' }, { src: P('mariners-trident-door'), caption: 'Trident cut-out · the cocktail door' }] }
+        { key: 'truck', label: 'Truck', alt: "Trustin's work on a Duramax pickup", cover: P('track-bars-duramax'), noun: 'truck jobs posted', ask: 'truck job', jobs: [{ caption: 'Track bars · Duramax LBZ' }, { caption: 'Headache rack' }, { caption: 'Aluminum roof-rack bars' }] },
+        { key: 'equipment', label: 'Equipment', alt: 'A Cat engine on a steel motor mount', cover: P('motor-mount-cat-rebuild'), noun: 'equipment jobs posted', ask: 'equipment job', jobs: [{ caption: 'D-rings · roll-off bed' }, { caption: 'Gantry lift' }, { caption: 'Motor mount · Cat rebuild' }] },
+        { key: 'outdoor', label: 'Outdoor', alt: 'Corten steel fire-pit cladding', cover: P('corten-fire-pit-snohomish'), noun: 'outdoor jobs posted', ask: 'yard or building job', jobs: [{ caption: 'Corten fire pit · Snohomish' }, { caption: 'Steel planter boxes' }, { caption: 'Premier Chiropractic install' }] },
+        { key: 'signs', label: 'Signs', alt: 'A custom steel sign for Hopper Group', cover: P('custom-sign-hopper-group'), noun: 'sign jobs posted', ask: 'sign or cut-out job', jobs: [{ caption: 'Custom sign · Hopper Group' }, { caption: 'Trident cut-out · a cocktail door' }] }
       ] });
   }
   // 4 · the arc band under the quote (desktop only; one WebGL canvas, paused off-screen)
   const arc = document.getElementById('arc');
-  if (arc && !reduce && innerWidth > 760) import('./vendor/molten/molten-metal.js').then(({ createMoltenMetal }) => {
-    const mm = createMoltenMetal(arc, { colors: ['#24B7CA', '#FF7A1A'], coreColor: '#FFFFFF', backgroundColor: '#0A0C0E', speed: 0.25 });
+  if (arc && !reduce) import('./vendor/molten/molten-metal.js').then(({ createMoltenMetal }) => {
+    const phone = innerWidth <= 760; const mm = createMoltenMetal(arc, Object.assign({ colors: ['#24B7CA', '#FF7A1A'], coreColor: '#FFFFFF', backgroundColor: '#0A0C0E', speed: 0.25 }, phone ? { scale: 2.2 } : {}));
     new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? mm.resume() : mm.pause()), { threshold: 0.05 }).observe(arc);
   }).catch(() => {});
   // 5 · the thumb bar: text or call under the thumb once the hero is gone, hidden while the quote section is on screen
-  const tb = document.getElementById('thumb'), hero = document.getElementById('hero'), quote = document.getElementById('quote');
-  if (tb && hero && quote && 'IntersectionObserver' in window) {
-    let heroIn = true, quoteIn = false;
-    const io = new IntersectionObserver(es => { es.forEach(e => { if (e.target === hero) heroIn = e.isIntersecting; if (e.target === quote) quoteIn = e.isIntersecting; }); tb.classList.toggle('is-on', !heroIn && !quoteIn); }, { threshold: 0.12 });
-    io.observe(hero); io.observe(quote);
+  const tb = document.getElementById('thumb');
+  const blockers = ['hero', 'how', 'whats-the-job', 'quote'].map(id => document.getElementById(id)).filter(Boolean);
+  if (tb && blockers.length && 'IntersectionObserver' in window) {   // the bar shows only where the page has no Text/Call of its own
+    const on = new Map(blockers.map(b => [b, b.id === 'hero']));
+    const io = new IntersectionObserver(es => { es.forEach(e => on.set(e.target, e.isIntersecting)); const show = ![...on.values()].some(Boolean); tb.classList.toggle('is-on', show); document.body.classList.toggle('thumb-on', show); }, { threshold: 0.08 });
+    blockers.forEach(b => io.observe(b));
   }
 })();

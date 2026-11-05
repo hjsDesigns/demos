@@ -44,10 +44,20 @@
 .wtj-h2{-webkit-text-stroke:0}
 /* the arc band: Molten Metal as the quote section's ground (desktop); phones keep the plain ground (motion-life card: weak on a phone) */
 .quote{position:relative}.quote .arc{position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none}.quote .quote-in{position:relative;z-index:1}
-@media (max-width:760px){.quote .arc{display:none}}
+@media (max-width:760px){.quote .arc{opacity:.4}}
 /* the thumb bar: text or call under the thumb the whole way down (niche-intelligence: every leader keeps it there); phones only */
 .thumb{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;grid-template-columns:1fr 1fr;gap:8px;padding:10px var(--pad) max(10px,env(safe-area-inset-bottom));background:linear-gradient(rgba(10,12,14,0),rgba(10,12,14,.96) 30%);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .thumb.is-on{transform:none}.thumb .btn{justify-content:center;min-height:48px}
-@media (max-width:900px){.thumb{display:grid}body{padding-bottom:72px}}
+@media (max-width:900px){.thumb{display:grid}}
 /* the form carries the size and the metal (conversion-path: the live form dropped them) */
 .contact-form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* critic 11/5: eyebrows on the plate read in the black outlined type, not teal (1.2–2.6:1 on silver) */
+.sec .eyebrow,.story .plate .eyebrow,.story .step .k{color:#0A0C0E;-webkit-text-stroke:.6px rgba(255,255,255,.6);paint-order:stroke fill}
+/* critic 11/5: the quote's folding words keep their spacing */
+.quote .fold-text{display:inline;line-height:inherit;letter-spacing:inherit;white-space:normal}
+/* critic 11/5: the thumb bar never covers the panel; no dead strip under the footer */
+body.thumb-on{padding-bottom:72px}@media (max-width:900px){body.thumb-on .panel{bottom:72px}}
+/* critic 11/5: the form breathes; five fields */
+.contact-form{display:grid;gap:14px}.contact-form label{display:grid;gap:6px}
+.wtj-chip{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:4px;font:600 13px/1.2 var(--body);color:#E9ECEF;background:rgba(255,255,255,.04)}

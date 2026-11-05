@@ -56,8 +56,8 @@
       photos.innerHTML = '';
       g.jobs.forEach(function (j, i) {
         var f = el('figure', 'wtj-photo');
-        f.innerHTML = '<img alt="" src="' + j.src + '" decoding="async"><figcaption></figcaption>';
-        f.querySelector('img').alt = j.caption; f.querySelector('img').style.objectPosition = j.pos || '50% 50%';
+        if (j.src) { f.innerHTML = '<img alt="" src="' + j.src + '" decoding="async"><figcaption></figcaption>'; f.querySelector('img').alt = j.caption; f.querySelector('img').style.objectPosition = j.pos || '50% 50%'; }
+        else { f.innerHTML = '<figcaption></figcaption>'; f.classList.add('wtj-chip'); }
         f.querySelector('figcaption').textContent = j.caption;
         photos.appendChild(f);
         if (reduced) f.classList.add('in'); else setTimeout(function () { f.classList.add('in'); }, 30 + i * STAGGER);
