@@ -50,7 +50,7 @@
   const blockers = ['hero', 'quote'].map(id => document.getElementById(id)).filter(Boolean);
   if (tb && blockers.length && 'IntersectionObserver' in window) {   // the bar hides only where Text/Call is already on screen: the hero, the quote, the story's last step, the gadget's result
     const on = new Map(blockers.map(b => [b, b.id === 'hero'])); window.__barBlock = { storyEnd: false, gadget: false };
-    const sync = () => { const show = ![...on.values()].some(Boolean) && !window.__barBlock.storyEnd && !window.__barBlock.gadget; tb.classList.toggle('is-on', show); document.body.classList.toggle('thumb-on', show); };
+    const sync = () => { const show = ![...on.values()].some(Boolean) && !window.__barBlock.storyEnd && !window.__barBlock.gadget && !window.__barBlock.panelDoor; tb.classList.toggle('is-on', show); document.body.classList.toggle('thumb-on', show); };
     window.__syncBar = sync;
     const io = new IntersectionObserver(es => { es.forEach(e => on.set(e.target, e.isIntersecting)); sync(); }, { threshold: 0.08 });
     blockers.forEach(b => io.observe(b));
@@ -60,6 +60,10 @@
     const stageEl = document.querySelector('.story .stage');
     window.__stageUp = () => { if (!stageEl) return false; const r = stageEl.getBoundingClientRect(); return r.bottom > innerHeight * 0.45 && r.top < innerHeight * 0.55; };   // its Text/Call must really be in view   // the story's last step stays pinned after its trigger ends
     if (wtj) new MutationObserver(() => { window.__barBlock.gadget = gadgetUp(); sync(); }).observe(wtj, { attributes: true, subtree: true, attributeFilter: ['data-on', 'class'] });
-    addEventListener('scroll', () => { window.__barBlock.gadget = gadgetUp(); window.__barBlock.storyEnd = (window.__storyProgress || 0) > 0.72 && window.__stageUp(); sync(); }, { passive: true });
+    const panelEl = document.querySelector('.panel');
+    window.__barBlock.panelDoor = false;
+    const panelDoorUp = () => { const on = document.querySelector('.sec.is-on'); if (!on || !on.querySelector('.ways') || !panelEl) return false; const r = panelEl.getBoundingClientRect(); return r.bottom > innerHeight * 0.45 && r.top < innerHeight * 0.85; };   // the panel's own Text/Call is on screen
+    const syncAll = () => { window.__barBlock.gadget = gadgetUp(); window.__barBlock.storyEnd = (window.__storyProgress || 0) > 0.72 && window.__stageUp(); window.__barBlock.panelDoor = panelDoorUp(); sync(); };
+    addEventListener('scroll', syncAll, { passive: true }); setInterval(syncAll, 600);
   }
 })();
