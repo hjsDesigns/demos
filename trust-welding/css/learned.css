@@ -122,3 +122,6 @@ body.thumb-on{padding-bottom:72px}@media (max-width:900px){body.thumb-on .panel{
 .wtj-photos figure img{width:100%;height:100%;object-fit:cover;display:block}
 .wtj-photos figure figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,0));color:#fff;font:600 11px/1.2 var(--wtj-body);letter-spacing:.08em;text-transform:uppercase}
 @media (max-width:760px){.wtj-photos{grid-template-columns:repeat(2,1fr)}}
+
+/* the one-pass cut (11/6): words as inline blocks so the heat tint and the clip read per word */
+.sec .w{display:inline-block;white-space:nowrap}
