@@ -9,11 +9,11 @@
 <meta name="description" content="Trust Welding: custom metal fabrication and mobile welding serving King County. Steel, aluminum and Corten. Call or text 425-283-6496.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@400;500;600&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site3.css?v=1793911483">
-<link rel="stylesheet" href="css/fold-text.css?v=1793911483">
-<link rel="stylesheet" href="css/wtj.css?v=1793911483">
-<link rel="stylesheet" href="css/molten-metal.css?v=1793911483">
-<link rel="stylesheet" href="css/learned.css?v=1793911483">
+<link rel="stylesheet" href="css/site3.css?v=1793940731">
+<link rel="stylesheet" href="css/fold-text.css?v=1793940731">
+<link rel="stylesheet" href="css/wtj.css?v=1793940731">
+<link rel="stylesheet" href="css/molten-metal.css?v=1793940731">
+<link rel="stylesheet" href="css/learned.css?v=1793940731">
 <link rel="icon" href="images/badge.jpg">
 </head>
 <body>
@@ -59,29 +59,6 @@
       </div>
     </aside>
   </div>
-  <section class="story" id="how" aria-label="How a job goes, told through the Colibri job">
-    <div class="stage">
-      <div class="rail" aria-hidden="true"><i></i></div>
-      <div class="shot">
-        <figure><img src="images/work/story/story-fab-2.jpg" alt="The Colibri barista bar on the shop floor, the roaster's mark cut through its steel face" loading="lazy"><figcaption>Colibri · on the shop floor</figcaption></figure>
-        <figure><img src="images/work/story/story-fab-3.jpg" alt="Steel drink rails standing on the gravel patio outside the roastery" loading="lazy"><figcaption>Colibri · out on the patio</figcaption></figure>
-        <figure><img src="images/work/story/story-fab-4.jpg" alt="The finished patio along the front of the roastery with the steel rails in place" loading="lazy"><figcaption>Colibri · in place</figcaption></figure>
-        <figure class="last"><img src="images/work/shop-2.jpg" alt="The bench in Trustin’s shop" loading="lazy"><figcaption>The shop · your job next</figcaption></figure>
-        <div class="seam" aria-hidden="true"></div>
-      </div>
-      <div class="plate">
-        <div class="head"><p class="eyebrow">How a job goes</p><h2>Colibri's bar, shop floor to patio</h2></div>
-        <div class="steps">
-          <div class="step"><span class="k">The shop</span><p>It went together on the shop floor, Colibri's mark cut clean through the face before it ever left the building.</p></div>
-          <div class="step"><span class="k">The site</span><p>Then out to the roastery: the steel rails standing on the gravel where the patio goes, before anyone leans a coffee on them.</p></div>
-          <div class="step"><span class="k">Done</span><p>Set in place along the front of the roastery.</p></div>
-          <div class="step"><span class="k">Yours</span><p>Send the photo. He texts back.</p><div class="ways"><a class="btn primary" href="sms:+14252836496">Text 425-283-6496</a><a class="btn" href="tel:+14252836496">Call</a></div></div>
-        </div>
-        <p class="stamp" aria-hidden="true"><span>Shop</span><span>Site</span><span>Done</span><span>Yours</span></p>
-        <div class="ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
-      </div>
-    </div>
-  </section>
   <section class="wtj" id="whats-the-job" aria-labelledby="wtj-h">
     <div class="wtj-in">
       <p class="wtj-eyebrow">The counter question</p>
@@ -90,8 +67,8 @@
       <div class="wtj-grid">
         <div class="wtj-tiles" role="group" aria-label="What you've got"></div>
         <div class="wtj-stage" aria-live="polite">
-          <div class="wtj-idle"><div class="wtj-num"><div class="wtj-big">0</div><div class="wtj-sub"></div></div></div>
-          <div class="wtj-show"><div class="wtj-photos"></div><div class="wtj-bar"><div class="wtj-count"><b>0</b><span></span></div><a class="wtj-text" href="#">Text a photo of yours</a></div></div>
+          <div class="wtj-idle"><div class="wtj-num"><div class="wtj-sub">Tap the kind of job you have.</div></div></div>
+          <div class="wtj-show"><div class="wtj-photos"></div><div class="wtj-bar"><div class="wtj-count" hidden><b>0</b><span></span></div><a class="wtj-text" href="#">Text a photo of yours</a></div></div>
         </div>
       </div>
     </div>
@@ -126,9 +103,8 @@
 </footer>
 <script src="js/vendor/gsap.min.js"></script>
 <script src="js/vendor/ScrollTrigger.min.js"></script>
-<script src="js/vendor/fold-text.js?v=1793911483"></script>
-<script src="js/vendor/wtj/click-spark.js?v=1793911483"></script>
-<script src="js/vendor/wtj/whats-the-job.js?v=1793911483"></script>
+<script src="js/vendor/fold-text.js?v=1793940731"></script>
+<script src="js/vendor/wtj/whats-the-job.js?v=1793940731"></script>
 <script>
 // the panel holds; the section changes every 3 photos (the photo column's scroll progress); every time a section opens its words fold open (React Bits Fold Text, ported: js/vendor/fold-text.js)
 gsap.registerPlugin(ScrollTrigger);
@@ -169,35 +145,6 @@ if (!reduce) {
   const set = () => { const w = track.scrollWidth / 2; track.style.setProperty('--w', w + 'px'); track.style.setProperty('--dur', (w / 40) + 's'); };
   set(); addEventListener('resize', set); if (document.fonts) document.fonts.ready.then(set);
 })();
-// life: the ember drift (Hayden 11/5: "add the ember drift") — sparks from his world, slow, few, paused off-tab, off under reduced motion
-(function () {
-  if (reduce) return;
-  const c = document.createElement('canvas'); c.className = 'embers'; c.setAttribute('aria-hidden', 'true'); document.body.appendChild(c);
-  const ctx = c.getContext('2d'); const dpr = Math.min(devicePixelRatio || 1, 1.25); let W = 0, H = 0, P = [];
-  const N = innerWidth < 900 ? 22 : 36;
-  function size() { W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; c.style.width = W + 'px'; c.style.height = H + 'px'; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
-  function spawn(p, fresh) { p.x = Math.random() * W; p.y = fresh ? Math.random() * H : H + 10; p.r = 0.8 + Math.random() * 1.6; p.vy = 8 + Math.random() * 14; p.vx = (Math.random() - 0.5) * 6; p.life = 0; p.ttl = 9 + Math.random() * 9; p.warm = Math.random(); return p; }
-  size(); for (let i = 0; i < N; i++) P.push(spawn({}, true)); addEventListener('resize', size);
-  let last = performance.now(), on = true;
-  document.addEventListener('visibilitychange', () => { on = !document.hidden; last = performance.now(); if (on) requestAnimationFrame(tick); });
-  function tick(now) {
-    if (!on) return; const dt = Math.min(0.05, (now - last) / 1000); last = now;
-    ctx.clearRect(0, 0, W, H); ctx.globalCompositeOperation = 'lighter';
-    for (const p of P) {
-      p.life += dt; p.y -= p.vy * dt; p.x += (p.vx + Math.sin(p.life * 1.3 + p.r) * 4) * dt;
-      if (p.life > p.ttl || p.y < -10) spawn(p, false);
-      const a = Math.sin(Math.PI * Math.min(1, p.life / p.ttl)) * 0.55;
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-      g.addColorStop(0, `rgba(255,${200 + (p.warm * 50) | 0},${120 + (p.warm * 80) | 0},${a})`); g.addColorStop(0.4, `rgba(255,${120 + (p.warm * 60) | 0},40,${a * 0.5})`); g.addColorStop(1, 'rgba(255,90,20,0)');
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2); ctx.fill();
-    }
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
-</script>
-<script src="js/learned.js?v=1793911483"></script>
-<script>
 // Format panel (Hayden 11/4: "themes or formats… for me to manually adjust and edit"): localhost or ?edit=1; sliders set CSS variables on <html>, remembered in localStorage 'tw-format'; Copy puts the JSON on the clipboard
 if ((location.hostname === 'localhost' || location.search.includes('edit=1')) && !location.search.includes('nofmt')) (function () {
   const R = document.documentElement, KEY = 'tw-format';

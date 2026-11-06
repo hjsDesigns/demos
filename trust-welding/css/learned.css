@@ -90,3 +90,7 @@ body.thumb-on{padding-bottom:72px}@media (max-width:900px){body.thumb-on .panel{
 .sec .ways .btn:not(.primary),.story .ways .btn:not(.primary){color:#0A0C0E;background:rgba(255,255,255,.42);border-color:rgba(0,0,0,.55);-webkit-text-stroke:0;text-shadow:none}
 
 @media (max-width:900px){.panel{transition:bottom .35s cubic-bezier(.2,.7,.2,1)}}
+
+/* Hayden 11/5 1 PM: no counts on the gadget (categories and job names only), no sparks */
+.wtj-count{display:none !important}.wtj-idle .wtj-sub{font:600 18px/1.3 var(--wtj-body);text-transform:none;letter-spacing:0}
+.wtj-tile canvas,.wtj canvas.click-spark,.click-spark-canvas{display:none !important}
