@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>Trust Welding · opening · real footage</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="anim.css?v=3">
+<style>
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;background:#000}
+.hero .end{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .9s ease;background:#000}
+.hero .end img{width:100%;height:100%;object-fit:cover;display:block}
+.hero.is-lit .end{opacity:1}
+.hero .lens{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 70% 62% at 50% 52%,rgba(0,0,0,0) 0%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.92) 80%,#000 92%);mix-blend-mode:multiply}
+.hero.is-lit .lens{display:none}
+.hero.needs-tap::after{content:"Tap to start";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;font:600 12px/1 Barlow,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.75);padding:12px 18px;border:1px solid rgba(255,255,255,.3);border-radius:4px;background:rgba(0,0,0,.5)}
+</style></head><body>
+<section class="hero" id="hero" data-take="real" aria-label="Trust Welding opening, real footage">
+  <video id="weld" autoplay muted playsinline preload="auto" aria-hidden="true"><source src="real-weld.mp4" type="video/mp4"><source src="real-weld.webm" type="video/webm"></video>
+  <div class="lens" aria-hidden="true"></div>
+  <div class="end" aria-hidden="true"><picture><source media="(max-aspect-ratio: 3/4)" srcset="../../images/hero/pick-golden-phone.jpg"><img src="../../images/hero/pick-golden-desk.jpg" alt="Trust Welding"></picture></div>
+  <div class="visor" aria-hidden="true"></div>
+  <div class="tag"><b>Real footage · two welds · the helmet lifts</b>Real welding footage through the lens (free stock, Mixkit license), two welds, then the lift onto your pick. No drawn sparks anywhere.<i>Tap to start if it didn't. Scroll or tap skips.</i></div>
+  <button class="skip" type="button">Skip</button>
+  <nav class="nav" aria-label="attempts"><a href="arc.html">1 Arc</a><a href="bead.html">2 Bead</a><a href="flash.html">3 Flash</a><a href="real.html" aria-current="page">Real</a></nav>
+  <button class="replay" type="button">Replay</button>
+</section>
+<script type="module">
+const hero = document.getElementById('hero'), v = document.getElementById('weld'), visor = hero.querySelector('.visor');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; let done = false;
+function lift() { if (done) return; done = true; hero.classList.add('is-lit'); visor.style.transition = 'transform .9s cubic-bezier(.2,.7,.2,1)'; visor.style.transform = 'translate3d(0,-118%,0)'; try { v.pause(); } catch (e) {} }
+function start() { done = false; hero.classList.remove('is-lit', 'needs-tap'); visor.style.transition = 'none'; visor.style.transform = ''; v.muted = true; v.currentTime = 0; const p = v.play(); if (p && p.catch) p.catch(() => { hero.classList.add('needs-tap'); }); }
+v.addEventListener('playing', () => hero.classList.remove('needs-tap'));
+hero.addEventListener('pointerdown', () => { if (hero.classList.contains('needs-tap')) start(); }, { capture: true });
+v.addEventListener('ended', lift);
+const skip = () => lift();
+addEventListener('wheel', skip, { passive: true }); addEventListener('touchmove', skip, { passive: true }); addEventListener('keydown', e => { if ([' ', 'Enter', 'Escape'].includes(e.key)) skip(); });
+hero.querySelector('.skip').addEventListener('click', skip); hero.querySelector('.replay').addEventListener('click', start);
+v.addEventListener('click', () => { if (v.paused && !done) start(); });
+if (reduce) lift(); else start();
+</script>
+</body></html>

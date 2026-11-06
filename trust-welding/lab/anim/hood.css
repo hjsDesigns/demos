@@ -1,0 +1,74 @@
+/* THE HOOD VIEWPORT — Hayden 11/4: "put a rectangle over the view horizontally around 70% of
+ * the screen to match the helmet."
+ *
+ * A real hood is not a vignette. It is an opaque shell with ONE hard-edged landscape window cut
+ * through it. Everything outside that window is the hood body — not dark, OPAQUE. The old .visor
+ * faded softly to black, which reads as a filter over a full-screen video instead of looking
+ * out through a lens. Tune --hood-w / --hood-ar / --hood-y and nothing else moves.
+ */
+:root{
+  --hood-w: 70%;        /* his number: the window is 70% of the screen wide */
+  --hood-ar: 1.55;      /* landscape, roughly a wide auto-darkening lens */
+  --hood-y: 46%;        /* a touch above centre — you look DOWN at the work */
+  --hood-body: #05070A; /* the shell: near-black, never pure black, so it still reads as a surface */
+  --hood-r: 10px;       /* real lens frames are only barely rounded */
+}
+
+/* kill the old soft vignette on every take, including flash's radial */
+.hero .visor,
+.hero[data-take="flash"] .visor{
+  position:absolute; inset:0; z-index:3; pointer-events:none; background:none;
+  will-change:transform;
+}
+.hero .visor::before,
+.hero[data-take="flash"] .visor::before,
+.hero .visor::after{ content:none; }
+
+/* the shell. The window is this element; the body is its own shadow, spread over everything. */
+.hood{
+  position:absolute; z-index:3; pointer-events:none;
+  left:50%; top:var(--hood-y); transform:translate(-50%,-50%);
+  width:var(--hood-w); aspect-ratio:var(--hood-ar); border-radius:var(--hood-r);
+  box-shadow:
+    0 0 0 100vmax var(--hood-body),      /* the hood body, opaque, out past every edge */
+    inset 0 0 0 2px rgba(0,0,0,.9),       /* the lens sits a hair behind its frame */
+    inset 0 0 44px 10px rgba(0,0,0,.55),  /* the shade darkens toward the gasket */
+    inset 0 2px 0 rgba(255,255,255,.05);  /* one faint highlight on the top frame edge */
+  will-change:transform, opacity;
+}
+/* the gasket: the soft rubber lip between lens and shell */
+.hood::before{
+  content:""; position:absolute; inset:-7px; border-radius:calc(var(--hood-r) + 6px);
+  box-shadow:0 0 16px 6px rgba(0,0,0,.85);
+}
+/* a real lens is never perfectly clean: a faint sheen across the glass */
+.hood::after{
+  content:""; position:absolute; inset:0; border-radius:var(--hood-r);
+  background:linear-gradient(118deg, rgba(255,255,255,.035) 0 22%, rgba(255,255,255,0) 46%);
+  mix-blend-mode:screen;
+}
+/* the arc throws light onto the frame itself */
+.hero[data-arc="1"] .hood{
+  box-shadow:
+    0 0 0 100vmax var(--hood-body),
+    inset 0 0 0 2px rgba(150,205,230,.22),
+    inset 0 0 44px 10px rgba(0,0,0,.42),
+    inset 0 2px 0 rgba(255,255,255,.08);
+}
+
+/* THE LIFT — the shell swings up and out of frame, the way a hood actually does: it pivots from
+ * the crown, so it rises AND tips away rather than sliding straight up. */
+.hero.is-lit .hood{
+  transform-origin:50% -120%;
+  transform:translate(-50%,-50%) rotateX(-62deg) translateY(-58%);
+  opacity:0;
+  transition:transform 1.05s cubic-bezier(.3,.02,.2,1), opacity .8s ease-in .25s;
+}
+.hero{ perspective:1400px; }
+
+@media (max-width:720px){
+  :root{ --hood-w:84%; --hood-ar:1.25; }   /* a phone is portrait: the window takes more width */
+}
+@media (prefers-reduced-motion:reduce){
+  .hero.is-lit .hood{ transition:opacity .4s; transform:translate(-50%,-50%); }
+}

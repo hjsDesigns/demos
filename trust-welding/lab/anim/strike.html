@@ -1,0 +1,131 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>Trust Welding · the opening</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#E9ECEF;--mute:#9AA3AD;--spark:#24B7CA;
+ --body:'Barlow',Arial,sans-serif;--display:'Russo One',Impact,sans-serif;
+ --hood-w:70%;--hood-ar:1.55;--hood-y:46%;--hood-r:10px;--hood-body:#05070A}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:var(--body);color:var(--ink)}
+.hero{position:fixed;inset:0;background:#000;overflow:hidden;perspective:1400px}
+
+/* ── the work: the REAL logo file, never redrawn, never moved ────────────────────────
+   It sits black. The arc is the only thing that reveals it. */
+.work{position:absolute;inset:0;display:grid;place-items:center}
+.work img{width:min(58%,560px);height:auto;display:block;
+  /* black until lit: the arc raises brightness, nothing else */
+  filter:brightness(0) saturate(0);
+  will-change:filter}
+
+/* the arc: a hot core where the logo's own flare already sits, under the welder's hand */
+.arc{position:absolute;left:50%;top:50%;width:min(58%,560px);aspect-ratio:1;
+  transform:translate(-50%,-50%);pointer-events:none;opacity:0;will-change:opacity}
+.arc::before{content:"";position:absolute;left:38%;top:47%;width:24%;aspect-ratio:1;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,#fff 0%,#dff4ff 16%,#7fd4ff 34%,rgba(36,183,202,.5) 55%,transparent 72%);
+  filter:blur(2px)}
+.arc::after{content:"";position:absolute;left:38%;top:47%;width:135%;aspect-ratio:1;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(150,225,255,.42) 0%,rgba(36,120,170,.16) 34%,transparent 66%)}
+
+/* spatter thrown by the strike */
+.spark{position:absolute;width:2px;height:2px;border-radius:50%;background:#ffd9a0;
+  opacity:0;pointer-events:none}
+
+/* ── the hood: opaque shell, one hard window ──────────────────────────────────────── */
+.hood{position:absolute;z-index:3;pointer-events:none;left:50%;top:var(--hood-y);
+ transform:translate(-50%,-50%);width:var(--hood-w);aspect-ratio:var(--hood-ar);
+ border-radius:var(--hood-r);
+ box-shadow:0 0 0 100vmax var(--hood-body),inset 0 0 0 2px rgba(0,0,0,.9),
+  inset 0 0 44px 10px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.05);
+ will-change:transform,opacity}
+.hood::before{content:"";position:absolute;inset:-7px;border-radius:calc(var(--hood-r) + 6px);
+ box-shadow:0 0 16px 6px rgba(0,0,0,.85)}
+.hood::after{content:"";position:absolute;inset:0;border-radius:var(--hood-r);
+ background:linear-gradient(118deg,rgba(255,255,255,.035) 0 22%,rgba(255,255,255,0) 46%);
+ mix-blend-mode:screen}
+.hero.lit .hood{box-shadow:0 0 0 100vmax var(--hood-body),inset 0 0 0 2px rgba(150,205,230,.24),
+  inset 0 0 44px 10px rgba(0,0,0,.42),inset 0 2px 0 rgba(255,255,255,.08)}
+/* the lift: pivots from the crown, rises AND tips away */
+.hero.up .hood{transform-origin:50% -120%;
+  transform:translate(-50%,-50%) rotateX(-62deg) translateY(-58%);opacity:0;
+  transition:transform 1.05s cubic-bezier(.3,.02,.2,1),opacity .8s ease-in .25s}
+
+/* ── what the lifted hood reveals ─────────────────────────────────────────────────── */
+.reveal{position:absolute;inset:0;z-index:1;opacity:0;background:#000;
+  transition:opacity .9s ease .35s}
+.reveal img{width:100%;height:100%;object-fit:cover;display:block}
+.hero.up .reveal{opacity:1}
+
+.replay{position:absolute;z-index:6;right:16px;bottom:16px;display:none;padding:10px 15px;
+ border-radius:6px;border:1px solid rgba(255,255,255,.2);background:rgba(10,12,14,.6);
+ color:var(--ink);font:600 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.hero.up .replay{display:block}
+.beat{position:absolute;z-index:6;left:16px;bottom:16px;font:600 10px/1 var(--body);
+ letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+@media(max-width:720px){:root{--hood-w:84%;--hood-ar:1.25}}
+</style></head><body>
+<section class="hero" id="hero">
+  <div class="reveal"><img src="../../images/hero-just-welded.jpg" alt=""></div>
+  <div class="work"><img id="logo" src="../../images/emblem-1000.png" alt="Trust Welding"></div>
+  <div class="arc" id="arc"></div>
+  <div class="hood" aria-hidden="true"></div>
+  <div class="beat" id="beat">weld · off · weld · off · lift</div>
+  <button class="replay" type="button" id="replay">Replay</button>
+</section>
+<script>
+/* Hayden 11/4: "weld for a second off a second, weld for a second off a second, and then
+   the helmet is gonna come up." The logo NEVER moves and is never redrawn — it is his real
+   file, sat at brightness(0), and the arc is the only thing that lifts it out of the black. */
+const hero=document.getElementById('hero'), logo=document.getElementById('logo'),
+      arc=document.getElementById('arc'), beat=document.getElementById('beat');
+const WELD=1000, OFF=1000;          /* his rhythm, exactly: one second on, one second off */
+let timers=[];
+const at=(ms,fn)=>timers.push(setTimeout(fn,ms));
+
+function sparks(n){
+  for(let i=0;i<n;i++){
+    const s=document.createElement('div'); s.className='spark';
+    const box=arc.getBoundingClientRect();
+    s.style.left=(box.left+box.width*0.38)+'px';
+    s.style.top =(box.top +box.height*0.47)+'px';
+    document.body.appendChild(s);
+    const a=Math.random()*Math.PI*2, d=40+Math.random()*190;
+    s.animate([{transform:'translate(0,0) scale(1)',opacity:1},
+               {transform:`translate(${Math.cos(a)*d}px, ${Math.sin(a)*d*0.6+70}px) scale(.3)`,opacity:0}],
+              {duration:420+Math.random()*520,easing:'cubic-bezier(.2,.7,.4,1)'});
+    at(1000,()=>s.remove());
+  }
+}
+
+/* one strike: the arc fires, the logo comes out of the black while it burns, then both die */
+function strike(){
+  arc.animate([{opacity:0},{opacity:1,offset:.06},{opacity:.92,offset:.8},{opacity:0}],
+              {duration:WELD,easing:'linear',fill:'none'});
+  logo.animate([{filter:'brightness(0) saturate(0)'},
+                {filter:'brightness(2.4) saturate(1.15)',offset:.07},
+                {filter:'brightness(1.5) saturate(1)',offset:.3},
+                {filter:'brightness(1.35) saturate(1)',offset:.8},
+                {filter:'brightness(0) saturate(0)'}],
+               {duration:WELD,easing:'linear',fill:'none'});
+  hero.classList.add('lit');
+  sparks(16);
+  at(240,()=>sparks(10));
+  at(WELD,()=>hero.classList.remove('lit'));
+}
+
+function run(){
+  timers.forEach(clearTimeout); timers=[];
+  hero.classList.remove('up','lit');
+  strike();                                  /* weld 1s */
+  at(WELD+OFF, strike);                      /* off 1s, weld 1s */
+  at((WELD+OFF)*2, ()=>{                     /* off 1s, then the hood comes up */
+    hero.classList.add('up');
+    beat.textContent='hood up';
+  });
+}
+document.getElementById('replay').onclick=run;
+addEventListener('load',run);
+</script>
+</body></html>

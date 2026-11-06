@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Trust Welding · three generated takes</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0C0E;--ink:#E9ECEF;--mute:#9AA3AD;--spark:#24B7CA;
+ --body:'Barlow',Arial,sans-serif;--display:'Russo One',Impact,sans-serif;
+ --hood-w:70%;--hood-ar:1.55;--hood-r:10px;--hood-body:#05070A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body)}
+.w{max-width:1200px;margin:0 auto;padding:26px 18px 70px}
+h1{font:400 20px/1.2 var(--display);letter-spacing:.06em;margin:0 0 4px;text-transform:uppercase}
+h1 em{color:var(--spark);font-style:normal}
+.sub{color:var(--mute);font-size:13px;margin:0 0 6px;max-width:74ch;line-height:1.6}
+.toggle{display:flex;gap:8px;margin:16px 0 20px}
+.toggle button{font:600 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;
+ padding:10px 15px;border-radius:5px;border:1px solid rgba(255,255,255,.18);
+ background:rgba(255,255,255,.03);color:var(--ink);cursor:pointer}
+.toggle button.on{background:var(--spark);border-color:var(--spark);color:#04161a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px}
+.take{background:#0E1114;border:1px solid #1C2227;border-radius:10px;overflow:hidden}
+.stage{position:relative;aspect-ratio:16/10;background:#000;overflow:hidden}
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* the hood: an opaque shell with one window cut through it */
+.hood{position:absolute;z-index:2;pointer-events:none;left:50%;top:46%;
+ transform:translate(-50%,-50%);width:var(--hood-w);aspect-ratio:var(--hood-ar);
+ border-radius:var(--hood-r);
+ box-shadow:0 0 0 100vmax var(--hood-body),inset 0 0 0 2px rgba(0,0,0,.9),
+  inset 0 0 44px 10px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.05)}
+.hood::before{content:"";position:absolute;inset:-7px;border-radius:calc(var(--hood-r) + 6px);
+ box-shadow:0 0 16px 6px rgba(0,0,0,.85)}
+body.raw .hood{display:none}
+.meta{padding:12px 14px 15px}
+.meta b{display:block;font:400 13px/1.2 var(--display);letter-spacing:.07em;color:var(--spark);margin-bottom:5px}
+.meta p{margin:0 0 7px;font-size:12.5px;line-height:1.55;color:var(--mute)}
+.meta .cost{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#6E7A84}
+.note{margin-top:24px;padding:14px 16px;border-left:3px solid var(--spark);
+ background:#0E1114;border-radius:0 8px 8px 0;font-size:13px;line-height:1.6;color:#B4BDC4;max-width:84ch}
+.note b{color:var(--ink)}
+</style></head><body>
+<div class="w">
+<h1>Three generated takes &mdash; <em>pick one</em></h1>
+<p class="sub">Each ran once, no retries. 20 credits total. Shown through the hood window by default &mdash; that is the real test, since the frame is what you will actually see.</p>
+<div class="toggle">
+  <button id="bHood" class="on" type="button">Through the hood</button>
+  <button id="bRaw" type="button">Raw clip</button>
+</div>
+<div class="grid">
+  <div class="take"><div class="stage"><video src="grok-a-strike.mp4" autoplay muted loop playsinline></video><div class="hood"></div></div>
+    <div class="meta"><b>A &middot; Strike</b><p>Arc strikes and travels left to right across the steel.</p><span class="cost">Grok Lite &middot; 5 credits</span></div></div>
+  <div class="take"><div class="stage"><video src="grok-b-bead.mp4" autoplay muted loop playsinline></video><div class="hood"></div></div>
+    <div class="meta"><b>B &middot; Bead</b><p>Molten bead running, sparks arcing toward the lens.</p><span class="cost">Grok Lite &middot; 5 credits</span></div></div>
+  <div class="take"><div class="stage"><video src="kling-flare.mp4" autoplay muted loop playsinline></video><div class="hood"></div></div>
+    <div class="meta"><b>C &middot; Flare</b><p>Arc flares white, dies, steel left glowing orange.</p><span class="cost">Kling 2.6 &middot; 10 credits</span></div></div>
+</div>
+<p class="note"><b>The hood lift is not in these.</b> Each clip generates only the weld; the helmet rising is code, already built and tunable without touching the footage. Tell me which take and what to change, and the next pair goes out from there.</p>
+</div>
+<script>
+const b1=document.getElementById('bHood'),b2=document.getElementById('bRaw');
+b1.onclick=()=>{document.body.classList.remove('raw');b1.classList.add('on');b2.classList.remove('on')};
+b2.onclick=()=>{document.body.classList.add('raw');b2.classList.add('on');b1.classList.remove('on')};
+</script>
+</body></html>
