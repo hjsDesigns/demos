@@ -31,7 +31,7 @@
   const g = document.getElementById('whats-the-job');
   if (g && window.WTJ) {
     const P = f => 'images/work/phone/' + f + '.jpg';
-    WTJ.mount(g, { total: 11, totalLabel: 'jobs posted · pick yours', plate: new URL('images/texture/panel-steel.jpg', document.baseURI).href, sms: SMS, button: 'Text Trustin a photo', smsBody: x => "Hi Trustin, I've got a " + x.ask + ". Here's a photo:",
+    WTJ.mount(g, { total: 11, totalLabel: 'Tap the kind of job you have.', sparks: false, plate: new URL('images/texture/panel-steel.jpg', document.baseURI).href, sms: SMS, button: 'Text Trustin a photo', smsBody: x => "Hi Trustin, I've got a " + x.ask + ". Here's a photo:",
       groups: [
         { key: 'truck', label: 'Truck', alt: "Trustin's work on a Duramax pickup", cover: P('track-bars-duramax'), noun: 'truck jobs posted', ask: 'truck job', jobs: [{ caption: 'Track bars · Duramax LBZ' }, { caption: 'Headache rack' }, { caption: 'Aluminum roof-rack bars' }] },
         { key: 'equipment', label: 'Equipment', alt: 'A Cat engine on a steel motor mount', cover: P('motor-mount-cat-rebuild'), noun: 'equipment jobs posted', ask: 'equipment job', jobs: [{ caption: 'D-rings · roll-off bed' }, { caption: 'Gantry lift' }, { caption: 'Motor mount · Cat rebuild' }] },
