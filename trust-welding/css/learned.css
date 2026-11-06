@@ -95,3 +95,30 @@ body.thumb-on{padding-bottom:72px}@media (max-width:900px){body.thumb-on .panel{
 .wtj-count{display:none !important}.wtj-idle .wtj-sub{font:600 18px/1.3 var(--wtj-body);text-transform:none;letter-spacing:0}
 .wtj-tile canvas,.wtj canvas.click-spark,.click-spark-canvas{display:none !important}
 .wtj-idle .wtj-big{display:none !important}
+
+/* Hayden 11/6: one stage, thirds; the photos wipe with the weld seam; the words change per group */
+.stageflow{position:relative;height:calc(var(--shots,12) * 70svh);background:var(--bg)}
+.sstage{position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));display:grid;grid-template-columns:1fr 2fr;overflow:hidden}
+.sstage .shot{position:relative;margin:clamp(14px,2.5vh,28px) 0 clamp(14px,2.5vh,28px) var(--pad);border:var(--frame) solid #000;background:#000;box-shadow:0 24px 60px -28px rgba(0,0,0,.95);overflow:hidden}
+.sstage .shot figure{position:absolute;inset:0;margin:0;clip-path:inset(0 0 100% 0);border:0}.sstage .shot figure:first-child{clip-path:inset(0 0 0 0)}
+.sstage .shot img{width:100%;height:100%;object-fit:cover}
+.sstage .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,0));color:#fff;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.sstage .shot figcaption::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--spark);transform:rotate(45deg);vertical-align:1px}
+.sstage .seam{position:absolute;left:-2px;right:-2px;height:3px;top:0;opacity:0;pointer-events:none;z-index:2;background:linear-gradient(90deg,rgba(255,122,26,0),#FFD9A8 18%,#fff 50%,#FFD9A8 82%,rgba(255,122,26,0));box-shadow:0 0 14px 3px rgba(255,122,26,.75),0 0 34px 8px rgba(255,122,26,.28)}
+.sstage .panel{position:static;height:auto;min-height:0;margin:0;box-shadow:inset var(--frame) 0 0 #000}
+.sstage .stack{height:100%}
+@media (max-width:900px){
+  .stageflow{height:calc(var(--shots,12) * 60svh)}
+  .sstage{grid-template-columns:1fr;grid-template-rows:34% 66%}
+  .sstage .shot{margin:12px var(--pad) 0}
+  .sstage .panel{position:static;bottom:auto;max-height:none;margin:0;box-shadow:inset 0 var(--frame) 0 #000}
+  .sstage .stack{max-height:none;min-height:0;height:100%;overflow:auto}
+}
+@media (prefers-reduced-motion:reduce){.stageflow{height:auto}.sstage{position:static;height:auto;display:block}.sstage .shot{height:auto}.sstage .shot figure{position:relative;clip-path:none;margin:0 0 12px}}
+.quote .arc{display:none}
+/* the gadget shows every photo of a kind (Hayden 11/6), three across */
+.wtj-photos{display:grid !important;grid-template-columns:repeat(3,1fr);grid-auto-flow:row;gap:6px;flex-direction:row}
+.wtj-photos figure{position:relative;aspect-ratio:4/3;margin:0;overflow:hidden;border:var(--frame) solid #000;background:#000}
+.wtj-photos figure img{width:100%;height:100%;object-fit:cover;display:block}
+.wtj-photos figure figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,0));color:#fff;font:600 11px/1.2 var(--wtj-body);letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:760px){.wtj-photos{grid-template-columns:repeat(2,1fr)}}

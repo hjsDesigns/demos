@@ -33,18 +33,12 @@
     const P = f => 'images/work/phone/' + f + '.jpg';
     WTJ.mount(g, { total: 11, totalLabel: 'Tap the kind of job you have.', sparks: false, plate: new URL('images/texture/panel-steel.jpg', document.baseURI).href, sms: SMS, button: 'Text Trustin a photo', smsBody: x => "Hi Trustin, I've got a " + x.ask + ". Here's a photo:",
       groups: [
-        { key: 'truck', label: 'Truck', alt: "Trustin's work on a Duramax pickup", cover: P('track-bars-duramax'), noun: 'truck jobs posted', ask: 'truck job', jobs: [{ caption: 'Track bars · Duramax LBZ' }, { caption: 'Headache rack' }, { caption: 'Aluminum roof-rack bars' }] },
-        { key: 'equipment', label: 'Equipment', alt: 'A Cat engine on a steel motor mount', cover: P('motor-mount-cat-rebuild'), noun: 'equipment jobs posted', ask: 'equipment job', jobs: [{ caption: 'D-rings · roll-off bed' }, { caption: 'Gantry lift' }, { caption: 'Motor mount · Cat rebuild' }] },
-        { key: 'outdoor', label: 'Outdoor', alt: 'Corten steel fire-pit cladding', cover: P('corten-fire-pit-snohomish'), noun: 'outdoor jobs posted', ask: 'yard or building job', jobs: [{ caption: 'Corten fire pit · Snohomish' }, { caption: 'Steel planter boxes' }, { caption: 'Premier Chiropractic install' }] },
-        { key: 'signs', label: 'Signs', alt: 'A custom steel sign for Hopper Group', cover: P('custom-sign-hopper-group'), noun: 'sign jobs posted', ask: 'sign or cut-out job', jobs: [{ caption: 'Custom sign · Hopper Group' }, { caption: 'Trident cut-out · a cocktail door' }] }
+        { key: 'truck', label: 'Truck', alt: "Trustin's work on a Duramax pickup", cover: P('track-bars-duramax'), noun: '', ask: 'truck job', jobs: [{ src: P('track-bars-duramax'), caption: 'Track bars · Duramax LBZ', pos: '30% 60%' }, { src: P('track-bars-2'), caption: 'Track bars · on the truck' }, { src: P('track-bars-3'), caption: 'Track bars · the welds' }, { src: P('headache-rack'), caption: 'Headache rack' }, { src: P('aluminum-roof-rack-bars'), caption: 'Aluminum roof-rack bars', pos: '60% 40%' }, { src: P('d-rings-roll-off-bed'), caption: 'D-rings · roll-off bed' }] },
+        { key: 'equipment', label: 'Equipment', alt: 'A Cat engine on a steel motor mount', cover: P('motor-mount-cat-rebuild'), noun: '', ask: 'equipment job', jobs: [{ src: P('motor-mount-cat-rebuild'), caption: 'Motor mount · Cat rebuild', pos: '62% 40%' }, { src: P('gantry-lift'), caption: 'Gantry lift' }, { src: P('gantry-lift-2'), caption: 'Gantry lift · second view' }, { src: P('gantry-lift-3'), caption: 'Gantry lift · the frame' }] },
+        { key: 'outdoor', label: 'Outdoor', alt: 'Corten steel fire-pit cladding', cover: P('corten-fire-pit-snohomish'), noun: '', ask: 'yard or building job', jobs: [{ src: P('corten-fire-pit-snohomish'), caption: 'Corten fire pit · Snohomish' }, { src: P('corten-fire-pit-2'), caption: 'Corten fire pit · the cladding, close' }, { src: P('steel-planter-boxes'), caption: 'Steel planter boxes', pos: '50% 70%' }] },
+        { key: 'signs', label: 'Signs & installs', alt: 'A custom steel sign for Hopper Group', cover: P('custom-sign-hopper-group'), noun: '', ask: 'sign, cut-out or install job', jobs: [{ src: P('custom-sign-hopper-group'), caption: 'Custom sign · Hopper Group' }, { src: P('custom-sign-hopper-2'), caption: 'Custom sign · in place' }, { src: P('mariners-trident-door'), caption: 'Trident cut-out · a cocktail door' }, { src: P('mariners-trident-2'), caption: 'Trident cut-out · second piece' }, { src: P('premier-chiropractic-install'), caption: 'Install · Premier Chiropractic', pos: '50% 75%' }] }
       ] });
   }
-  // 4 · the arc band under the quote (desktop only; one WebGL canvas, paused off-screen)
-  const arc = document.getElementById('arc');
-  if (arc && !reduce) import('./vendor/molten/molten-metal.js').then(({ createMoltenMetal }) => {
-    const phone = innerWidth <= 760; const mm = createMoltenMetal(arc, Object.assign({ colors: ['#24B7CA', '#FF7A1A'], coreColor: '#FFFFFF', backgroundColor: '#0A0C0E', speed: 0.25 }, phone ? { scale: 2.2 } : {}));
-    new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? mm.resume() : mm.pause()), { threshold: 0.05 }).observe(arc);
-  }).catch(() => {});
   // 5 · the thumb bar: text or call under the thumb once the hero is gone, hidden while the quote section is on screen
   const tb = document.getElementById('thumb');
   const blockers = ['hero', 'quote'].map(id => document.getElementById(id)).filter(Boolean);
