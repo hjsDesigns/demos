@@ -124,4 +124,5 @@ body.thumb-on{padding-bottom:72px}@media (max-width:900px){body.thumb-on .panel{
 @media (max-width:760px){.wtj-photos{grid-template-columns:repeat(2,1fr)}}
 
 /* the one-pass cut (11/6): words as inline blocks so the heat tint and the clip read per word */
-.sec .w{display:inline-block;white-space:nowrap}
+.sec .w{display:inline-block;white-space:nowrap;transition:color .22s ease-out,-webkit-text-stroke-color .22s ease-out,text-shadow .22s ease-out}
+.sec .w.hot{color:#FFE3A3;-webkit-text-stroke-color:rgba(255,170,70,.85);text-shadow:0 0 4px rgba(255,160,60,.85)}
