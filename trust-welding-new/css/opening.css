@@ -1,0 +1,58 @@
+/* ── the opening: his approved hood photograph, lit (Hayden 11/6) ─────────────
+   The rule this follows: code never draws the subject. The subject is the photo;
+   code only moves light, mask and camera across it. */
+.opening{position:absolute;inset:0;z-index:6;background:#000;overflow:hidden;opacity:1;
+  transition:opacity .7s ease}
+.opening.is-gone{opacity:0;pointer-events:none}
+.opening .frame{position:absolute;inset:0;transform-origin:50% -34%;will-change:transform,opacity,filter;backface-visibility:hidden}
+.opening .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+/* the arc's spill onto the room, so the light leaves the frame too */
+.opening .spill{position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(42% 38% at 50% 52%,rgba(198,224,210,.5),rgba(80,120,96,.14) 48%,transparent 72%)}
+.opening .skip{position:absolute;top:14px;right:14px;z-index:9;padding:9px 15px;border:1px solid rgba(255,255,255,.2);
+  border-radius:3px;background:rgba(0,0,0,.5);color:#C7CED5;font:600 10px/1 var(--body);letter-spacing:.2em;
+  text-transform:uppercase;cursor:pointer}
+.opening .skip:hover{background:rgba(36,183,202,.2);border-color:var(--spark)}
+
+/* strike · burn 1s · BLACK 1s · strike · burn 1s · BLACK 1.1s · the room returns · the visor goes up */
+.opening.go .frame{animation:tw-arc 5.05s linear 1 both, tw-lift 1.05s cubic-bezier(.32,.02,.18,1) 5.05s 1 forwards}
+.opening.go .spill{animation:tw-spill 5.05s linear 1 both}
+@keyframes tw-arc{
+  0%    {opacity:0;filter:brightness(0)}
+  3.9%  {opacity:0;filter:brightness(0)}
+  4.0%  {opacity:1;filter:brightness(.18) contrast(1.1)}
+  5.0%  {opacity:1;filter:brightness(1.42) contrast(1.06) saturate(1.05)}
+  5.9%  {opacity:1;filter:brightness(.46)}
+  6.8%  {opacity:1;filter:brightness(1.55) contrast(1.05)}
+  7.8%  {opacity:1;filter:brightness(.86)}
+  8.9%  {opacity:1;filter:brightness(1) contrast(1.02)}
+  27.0% {opacity:1;filter:brightness(1.06) contrast(1.02)}
+  28.7% {opacity:1;filter:brightness(1) contrast(1.02)}
+  28.8% {opacity:0;filter:brightness(0)}
+  48.4% {opacity:0;filter:brightness(0)}
+  48.5% {opacity:1;filter:brightness(.26)}
+  49.6% {opacity:1;filter:brightness(1.5) contrast(1.06)}
+  50.6% {opacity:1;filter:brightness(.56)}
+  51.6% {opacity:1;filter:brightness(1.34)}
+  52.5% {opacity:1;filter:brightness(1) contrast(1.02)}
+  70.0% {opacity:1;filter:brightness(1.07) contrast(1.02)}
+  72.3% {opacity:1;filter:brightness(1) contrast(1.02)}
+  72.4% {opacity:0;filter:brightness(0)}
+  94.0% {opacity:0;filter:brightness(0)}
+  94.1% {opacity:1;filter:brightness(.10)}
+  100%  {opacity:1;filter:brightness(.38)}
+}
+@keyframes tw-spill{
+  0%,4%{opacity:0} 5%{opacity:.88} 5.9%{opacity:.26} 6.8%{opacity:1} 7.8%{opacity:.48} 8.9%{opacity:.6}
+  27%{opacity:.68} 28.7%{opacity:.6} 28.8%{opacity:0} 48.4%{opacity:0}
+  49.6%{opacity:.92} 50.6%{opacity:.34} 52.5%{opacity:.6} 70%{opacity:.68} 72.3%{opacity:.6}
+  72.4%,100%{opacity:0}
+}
+@keyframes tw-lift{
+  from{transform:rotateX(0) translateY(0);opacity:1;filter:brightness(.38)}
+  to{transform:rotateX(-78deg) translateY(-62%) scale(1.1);opacity:0;filter:brightness(.7)}
+}
+@media (prefers-reduced-motion:reduce){
+  .opening{opacity:0;pointer-events:none}
+  .opening.go .frame,.opening.go .spill{animation:none;opacity:0}
+}

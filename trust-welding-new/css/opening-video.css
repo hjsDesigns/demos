@@ -1,0 +1,7 @@
+/* ── the opening, filmed (Hayden 11/7, draft C: "that bangs") ────────────────
+   From inside the hood: two strikes on the top of the T, then the hood lifts onto
+   the hero still underneath. The video's last frame IS that still, so this frame
+   must crop exactly like .hero-bg: cover, same object-position, same 900px line.
+   Everything else (black ground, fade-out, Skip) comes from css/opening.css. */
+.opening--video .frame{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 53%;display:block;background:#000}
+@media (max-width:900px){.opening--video .frame{object-position:50% 50%}}

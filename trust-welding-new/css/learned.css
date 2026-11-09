@@ -1,0 +1,283 @@
+/* Trust Welding · the "learned" pass (11/5): what the learning systems found, applied on top of the hand-edited site */
+/* opening: the welding through the hood, over the hero still; the engine ends pixel-for-pixel on the still, then this layer fades */
+.opening{position:absolute;inset:0;z-index:6;background:#000;overflow:hidden;perspective:1400px;transition:opacity .7s ease}
+.opening.is-gone{opacity:0;pointer-events:none}
+.opening canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+.opening .visor{position:absolute;inset:0;z-index:2;pointer-events:none;background:none;will-change:transform}
+.opening .hood{--hood-w:70%;--hood-ar:1.55;--hood-y:46%;--hood-body:#05070A;--hood-r:10px;position:absolute;z-index:3;pointer-events:none;left:50%;top:var(--hood-y);transform:translate(-50%,-50%);width:var(--hood-w);aspect-ratio:var(--hood-ar);border-radius:var(--hood-r);
+  box-shadow:0 0 0 100vmax var(--hood-body),inset 0 0 0 2px rgba(0,0,0,.9),inset 0 0 44px 10px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.05);will-change:transform,opacity}
+.opening .hood::before{content:"";position:absolute;inset:-7px;border-radius:calc(var(--hood-r) + 6px);box-shadow:0 0 16px 6px rgba(0,0,0,.85)}
+.opening .hood::after{content:"";position:absolute;inset:0;border-radius:var(--hood-r);background:linear-gradient(118deg,rgba(255,255,255,.035) 0 22%,rgba(255,255,255,0) 46%);mix-blend-mode:screen}
+.opening[data-arc="1"] .hood{box-shadow:0 0 0 100vmax var(--hood-body),inset 0 0 0 2px rgba(150,205,230,.22),inset 0 0 44px 10px rgba(0,0,0,.42),inset 0 2px 0 rgba(255,255,255,.08)}
+.opening.is-lit .hood{transform-origin:50% -120%;transform:translate(-50%,-50%) rotateX(-62deg) translateY(-58%);opacity:0;transition:transform 1.05s cubic-bezier(.3,.02,.2,1),opacity .8s ease-in .25s}
+.opening .skip{position:absolute;z-index:7;right:16px;top:calc(var(--header-h) + 10px);font:600 11px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);background:none;border:0;cursor:pointer;padding:8px}
+@media (max-width:720px){.opening .hood{--hood-w:84%;--hood-ar:1.25}}
+@media (prefers-reduced-motion:reduce){.opening{display:none}}
+/* the story: how a job goes, told through the Colibri job (layout-sections trial, his thirds sketch) */
+.story{position:relative;height:420svh;background:var(--bg)}
+.story .stage{position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));display:grid;grid-template-columns:1fr 2fr;overflow:hidden}
+.story .shot{position:relative;margin:clamp(18px,3vh,36px) 0 clamp(18px,3vh,36px) var(--pad);border:var(--frame) solid #000;background:#000;box-shadow:0 24px 60px -28px rgba(0,0,0,.95);overflow:hidden}
+.story .shot figure{position:absolute;inset:0;margin:0;clip-path:inset(0 0 100% 0)}.story .shot figure:first-child{clip-path:inset(0 0 0 0)}
+.story .shot img{width:100%;height:100%;object-fit:cover}.story .shot figure:nth-child(1) img{object-position:62% 50%}.story .shot figure:nth-child(3) img{object-position:34% 50%}
+.story .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,0));color:#fff;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.story .shot figcaption::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--spark);transform:rotate(45deg);vertical-align:1px}
+.story .seam{position:absolute;left:-2px;right:-2px;height:3px;top:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,122,26,0),#FFD9A8 18%,#fff 50%,#FFD9A8 82%,rgba(255,122,26,0));box-shadow:0 0 14px 3px rgba(255,122,26,.75),0 0 34px 8px rgba(255,122,26,.28)}
+.story .shot .last{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 45%,#1a1f25 0%,#050607 70%)}.story .shot .last img{width:100%;height:100%;object-fit:cover;filter:none}
+.story .rail{position:absolute;left:calc(var(--pad) - 6px);top:clamp(18px,3vh,36px);bottom:clamp(18px,3vh,36px);width:3px;background:rgba(255,255,255,.08);z-index:2}
+.story .rail i{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:top;transform:scaleY(0);background:linear-gradient(to bottom,#6b7178,#C9D1D9 60%,#FFD9A8 92%,#fff)}
+.story .plate{position:relative;padding:clamp(22px,3vw,44px) 52px;display:flex;flex-direction:column;justify-content:flex-start;gap:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.30) 100%),url(../images/texture/panel-steel.jpg) center/cover no-repeat,#6b7178;color:#0A0C0E;box-shadow:inset var(--frame) 0 0 #000}
+.story .plate .eyebrow{margin:0 0 10px;font:600 12px/1 var(--body);letter-spacing:.26em;text-transform:uppercase;color:#0F7D8C}
+.story .plate h2{margin:0 0 14px;font:400 46px/1.02 var(--display);letter-spacing:.01em;text-transform:uppercase;color:#0A0C0E;-webkit-text-stroke:1.2px rgba(255,255,255,.6);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.25);text-wrap:balance}
+.story .steps{position:relative;min-height:9em;perspective:900px}
+.story .step{position:absolute;inset:0;opacity:0;transform-origin:top;max-width:34em}.story .step:first-child{opacity:1}
+.story .step .k{display:block;font:600 12px/1 var(--body);letter-spacing:.26em;text-transform:uppercase;color:#0F7D8C;margin-bottom:8px}
+.story .step p{margin:0 0 12px;font-family:var(--panel-body,var(--body));font-size:22px;font-weight:700;line-height:1.5;color:#0A0C0E;-webkit-text-stroke:1.2px rgba(255,255,255,.6);paint-order:stroke fill}
+.story .ways{display:flex;gap:10px;flex-wrap:wrap}
+.story .stamp{position:absolute;right:52px;bottom:18px;margin:0;font:400 clamp(80px,13vw,200px)/1 var(--display);text-transform:uppercase;color:rgba(20,24,28,.16);text-shadow:1px 1px 0 rgba(255,255,255,.25),-1px -1px 0 rgba(0,0,0,.25);pointer-events:none}
+.story .stamp span{position:absolute;right:0;bottom:0;opacity:0;white-space:nowrap}.story .stamp span:first-child{opacity:1}
+.story .ticks{position:absolute;left:52px;bottom:26px;display:flex;gap:8px}.story .ticks i{width:28px;height:4px;background:rgba(0,0,0,.25)}.story .ticks i.on{background:#0F7D8C}
+@media (max-width:900px){.story{height:380svh}.story .stage{grid-template-columns:1fr;grid-template-rows:46% 54%}.story .shot{margin:12px var(--pad) 0}.story .rail{display:none}.story .plate{padding:18px var(--pad) 60px;box-shadow:inset 0 var(--frame) 0 #000}.story .plate h2{font-size:clamp(26px,7vw,34px)}.story .step p{font-size:16.5px}.story .stamp{font-size:64px;right:var(--pad)}.story .ticks{left:var(--pad)}}
+@media (prefers-reduced-motion:reduce){.story{height:auto}.story .stage{position:static;height:auto}.story .shot{min-height:50svh}}
+/* the gadget on the site's tokens, its photos from images/work */
+.wtj{--wtj-bg:var(--bg);--wtj-accent:var(--spark);--wtj-accent2:var(--spark2)}
+.wtj-h2{-webkit-text-stroke:0}
+/* the arc band: Molten Metal as the quote section's ground (desktop); phones keep the plain ground (motion-life card: weak on a phone) */
+.quote{position:relative}.quote .arc{position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none}.quote .quote-in{position:relative;z-index:1}
+@media (max-width:760px){.quote .arc{opacity:.4}}
+/* the thumb bar: text or call under the thumb the whole way down (niche-intelligence: every leader keeps it there); phones only */
+.thumb{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;grid-template-columns:1fr 1fr;gap:8px;padding:10px var(--pad) max(10px,env(safe-area-inset-bottom));background:linear-gradient(rgba(10,12,14,0),rgba(10,12,14,.96) 30%);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.thumb.is-on{transform:none}.thumb .btn{justify-content:center;min-height:48px}
+@media (max-width:900px){.thumb{display:grid}}
+/* the form carries the size and the metal (conversion-path: the live form dropped them) */
+.contact-form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* critic 11/5: eyebrows on the plate read in the black outlined type, not teal (1.2–2.6:1 on silver) */
+.sec .eyebrow,.story .plate .eyebrow,.story .step .k{color:#0A0C0E;-webkit-text-stroke:.6px rgba(255,255,255,.6);paint-order:stroke fill}
+/* critic 11/5: the quote's folding words keep their spacing */
+.quote .fold-text{display:inline;line-height:inherit;letter-spacing:inherit;white-space:normal}
+/* critic 11/5: the thumb bar never covers the panel; no dead strip under the footer */
+body.thumb-on{padding-bottom:72px}@media (max-width:900px){body.thumb-on .panel{bottom:72px}}
+/* critic 11/5: the form breathes; five fields */
+.contact-form .fields{display:grid;gap:20px}.contact-form label{display:grid;gap:7px}.contact-form button[type=submit],.contact-form .btn{margin-top:6px}
+.wtj-photos:has(.wtj-chip){display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;grid-template-columns:none}
+.wtj-photos figure.wtj-chip{position:static;aspect-ratio:auto;width:auto;height:auto;min-height:0;margin:0;padding:10px 14px;border:1px solid rgba(255,255,255,.16);border-left:3px solid var(--spark);border-radius:3px;background:rgba(255,255,255,.05);box-shadow:none;overflow:visible}
+.wtj-photos figure.wtj-chip figcaption{position:static;padding:0;margin:0;background:none;font:600 13px/1.25 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#E9ECEF}
+
+/* critic round 2 (11/5): the gadget's result keeps his plate, no black void; the story plate gets the panel's light pool; the quote h2 balances */
+.wtj-stage{background:linear-gradient(180deg,rgba(0,0,0,.16),rgba(0,0,0,.30)),url(../images/texture/panel-steel.jpg) center/cover no-repeat,#6b7178;border:var(--frame) solid #000}
+.wtj-show,.wtj-photos,.wtj-idle{background:transparent}
+.wtj-idle .wtj-big,.wtj-idle .wtj-sub,.wtj-count b,.wtj-count span{color:#0A0C0E;-webkit-text-stroke:.8px rgba(255,255,255,.6);paint-order:stroke fill}
+.wtj-bar{background:rgba(10,12,14,.72);border-radius:4px}
+.wtj-photos figure.wtj-chip{background:rgba(10,12,14,.78)}
+.story .plate .head,.story .plate .steps{position:relative;z-index:0}
+.story .plate .head::before,.story .plate .steps::before{content:"";position:absolute;inset:-22px -26px;z-index:-1;border-radius:28px;background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.62) 0%,rgba(255,255,255,.34) 55%,rgba(255,255,255,0) 100%);filter:blur(22px);pointer-events:none}
+.quote h2{text-wrap:balance}
+
+/* critic round 3 (11/5): the gadget's number on his light pool, big in both states; the plate's second buttons in black outlined type */
+.wtj-idle::before{background:none}
+.wtj-num,.wtj-show{position:relative;z-index:0}
+.wtj-num::before,.wtj-show::before{content:"";position:absolute;inset:-18px -22px;z-index:-1;border-radius:26px;background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.64) 0%,rgba(255,255,255,.36) 55%,rgba(255,255,255,0) 100%);filter:blur(20px);pointer-events:none}
+.wtj-show{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(20px,3vw,44px)}
+.wtj-idle,.wtj-show{justify-content:flex-start;padding:clamp(20px,3vw,44px)}   /* both states start at the same top line, so a tap reads as 11 becoming 3 */
+.wtj-text{max-width:none !important;white-space:nowrap}
+.wtj-bar{display:contents}.wtj-count{order:1;margin:0 0 10px}.wtj-photos{order:2;display:flex;flex-direction:column;gap:3px;flex:0 0 auto;margin:0 0 18px}.wtj-text{order:3}
+.wtj-photos figure.wtj-chip{border:0;background:none;padding:0;box-shadow:none}
+.wtj-photos figure.wtj-chip figcaption{color:#0A0C0E;-webkit-text-stroke:.6px rgba(255,255,255,.6);paint-order:stroke fill;font-size:16px;line-height:1.3}
+.wtj-count b{font:400 clamp(56px,8vw,120px)/1 var(--wtj-display);color:#0A0C0E;-webkit-text-stroke:1.2px rgba(255,255,255,.65);paint-order:stroke fill}
+.wtj-count span{font:600 13px/1.2 var(--wtj-body);letter-spacing:.14em;text-transform:uppercase;color:#0A0C0E;-webkit-text-stroke:.6px rgba(255,255,255,.6);paint-order:stroke fill}
+.wtj-idle .wtj-big{font-size:clamp(56px,8vw,120px)}
+.sec .ways .btn:not(.primary),.story .ways .btn:not(.primary){color:#0A0C0E;background:rgba(255,255,255,.42);border-color:rgba(0,0,0,.55);-webkit-text-stroke:0;text-shadow:none}
+
+@media (max-width:900px){.panel{transition:bottom .35s cubic-bezier(.2,.7,.2,1)}}
+
+/* Hayden 11/5 1 PM: no counts on the gadget (categories and job names only), no sparks */
+.wtj-count{display:none !important}.wtj-idle .wtj-sub{font:600 18px/1.3 var(--wtj-body);text-transform:none;letter-spacing:0}
+.wtj-tile canvas,.wtj canvas.click-spark,.click-spark-canvas{display:none !important}
+.wtj-idle .wtj-big{display:none !important}
+
+/* Hayden 11/6: one stage, thirds; the photos wipe with the weld seam; the words change per group */
+.stageflow{position:relative;height:calc(var(--shots,12) * var(--dwell,300svh));background:var(--bg)}
+.sstage{position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));display:grid;grid-template-columns:1fr 2fr;overflow:hidden}
+.sstage .shot{position:relative;margin:clamp(14px,2.5vh,28px) 0 clamp(14px,2.5vh,28px) var(--pad);border:var(--frame) solid #000;background:#000;box-shadow:0 24px 60px -28px rgba(0,0,0,.95);overflow:hidden}
+.sstage .shot figure{position:absolute;inset:0;margin:0;clip-path:inset(0 0 100% 0);border:0}.sstage .shot figure:first-child{clip-path:inset(0 0 0 0)}
+.sstage .shot img{width:100%;height:100%;object-fit:cover}
+.sstage .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,0));color:#fff;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.sstage .shot figcaption::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--spark);transform:rotate(45deg);vertical-align:1px}
+.sstage .seam{position:absolute;left:-2px;right:-2px;height:3px;top:0;opacity:0;pointer-events:none;z-index:2;background:linear-gradient(90deg,rgba(255,122,26,0),#FFD9A8 18%,#fff 50%,#FFD9A8 82%,rgba(255,122,26,0));box-shadow:0 0 14px 3px rgba(255,122,26,.75),0 0 34px 8px rgba(255,122,26,.28)}
+.sstage .panel{position:static;height:auto;min-height:0;margin:0;box-shadow:inset var(--frame) 0 0 #000}
+.sstage .stack{height:100%}
+@media (max-width:900px){
+  .stageflow{height:calc(var(--shots,12) * var(--dwell-m,230svh))}
+  .sstage{grid-template-columns:1fr;grid-template-rows:34% 66%}
+  .sstage .shot{margin:12px var(--pad) 0}
+  .sstage .panel{position:static;bottom:auto;max-height:none;margin:0;box-shadow:inset 0 var(--frame) 0 #000}
+  .sstage .stack{max-height:none;min-height:0;height:100%;overflow:auto}
+}
+@media (prefers-reduced-motion:reduce){.stageflow{height:auto}.sstage{position:static;height:auto;display:block}.sstage .shot{height:auto}.sstage .shot figure{position:relative;clip-path:none;margin:0 0 12px}}
+.quote .arc{display:none}
+/* the gadget shows every photo of a kind (Hayden 11/6), three across */
+.wtj-photos{display:grid !important;grid-template-columns:repeat(3,1fr);grid-auto-flow:row;gap:6px;flex-direction:row}
+.wtj-photos figure{position:relative;aspect-ratio:4/3;margin:0;overflow:hidden;border:var(--frame) solid #000;background:#000}
+.wtj-photos figure img{width:100%;height:100%;object-fit:cover;display:block}
+.wtj-photos figure figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,0));color:#fff;font:600 11px/1.2 var(--wtj-body);letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:760px){.wtj-photos{grid-template-columns:repeat(2,1fr)}}
+
+/* the one-pass cut (11/6): words as inline blocks so the heat tint and the clip read per word */
+.sec .w{display:inline-block;white-space:nowrap;transition:color .22s ease-out,-webkit-text-stroke-color .22s ease-out,text-shadow .22s ease-out}
+.sec .w.hot{color:#FFE3A3;-webkit-text-stroke-color:rgba(255,170,70,.85);text-shadow:0 0 4px rgba(255,160,60,.85)}
+
+/* wide photos (11/6): shown whole inside a blurred echo of themselves, so the work is never cropped away */
+.sstage .shot figure.wide img.echo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(24px) saturate(1.05);transform:scale(1.15);opacity:.92}
+.sstage .shot figure.wide img.main{position:absolute;inset:0;object-fit:contain}
+
+/* ═══ Hayden's 11/6 ticket ═══════════════════════════════════════════════════
+   drag column · weld on every photo · tracking seam · faster words with a spark · the mix quote
+   "the metal frame all the way down" — the plate was height:auto inside a full-height grid cell */
+/* three tracks, the middle one zero-wide: the handle sits in the seam instead of becoming a third
+   column that pushes the plate onto a second row. Scoped above 900px so the phone layout still wins. */
+@media (min-width:901px){
+  .sstage{grid-template-columns:var(--photo-col,1fr) 0px 2fr}
+  .sstage .panel{height:100%;min-height:100%;align-self:stretch}
+  .sstage .stack{height:100%;min-height:0}
+}
+
+/* the handle on the seam between the photos and the plate (his tool: localhost or ?edit=1) */
+.colgrab{position:relative;z-index:12;width:0;cursor:col-resize;touch-action:none}
+.colgrab span{position:absolute;top:0;bottom:0;left:-7px;width:14px;display:block}
+.colgrab::before{content:"";position:absolute;top:0;bottom:0;left:-1px;width:2px;background:rgba(36,183,202,.18);transition:background .18s,box-shadow .18s}
+.colgrab::after{content:attr(data-v);position:absolute;top:50%;left:7px;transform:translateY(-50%);padding:5px 9px;border-radius:3px;
+  background:rgba(6,8,10,.9);border:1px solid rgba(36,183,202,.45);color:#7FE3F2;font:600 10px/1 var(--body,sans-serif);letter-spacing:.14em;
+  opacity:0;pointer-events:none;transition:opacity .18s;white-space:nowrap}
+.colgrab:hover::before,.colgrab.on::before,.colgrab:focus-visible::before{background:var(--spark,#24B7CA);box-shadow:0 0 16px 2px rgba(36,183,202,.6)}
+.colgrab:hover::after,.colgrab.on::after,.colgrab:focus-visible::after{opacity:1}
+.colgrab:focus-visible{outline:0}
+@media (max-width:900px){.colgrab{display:none}}
+
+/* ── the weld rail (Hayden approved 2026-11-06) ───────────────────────────
+   Half width · only the bead, no box · the arc spills outside it · a rounded molten nose.
+   Ported from lab/rail with its values unchanged. The old drawn gradient seam is gone. */
+/* Hayden 11/7: "for the mobile view have the weld progress tracker half the size", then "for mac view keep orignail weld size just halfed for the iphone".
+   --ts-scale sizes the whole tracker: the rail, puddle, glow and canvas here, and the sparks in the page script. 1 = the 11/6 size (the Mac); .5 under the 900px phone line. */
+.trackseam{--ts-scale:1;opacity:0;transition:opacity .45s ease;position:fixed;left:0;top:var(--header-h,64px);bottom:0;width:calc(13px * var(--ts-scale));z-index:25;overflow:visible;background:none;pointer-events:none}
+.trackseam .ts-col{position:absolute;inset:0;overflow:hidden}
+.trackseam .ts-bead,.trackseam .ts-heat,.trackseam .ts-heat2{position:absolute;left:0;right:0;top:0;height:0;
+  background-image:url(../images/video/bead-only.jpg);background-size:100% auto;background-repeat:repeat-y}
+.trackseam .ts-bead{filter:grayscale(.72) brightness(1) contrast(1.25) saturate(.42)}
+.trackseam .ts-heat,.trackseam .ts-heat2{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:bottom;mask-position:bottom}
+.trackseam .ts-heat2{filter:brightness(calc(1.42 * var(--heat,1))) sepia(1) saturate(9) hue-rotate(-44deg) contrast(1.15);
+  -webkit-mask-image:linear-gradient(to top,#000 0,rgba(0,0,0,.95) calc(46px * var(--ts-scale)),rgba(0,0,0,.6) calc(96px * var(--ts-scale)),rgba(0,0,0,.2) calc(142px * var(--ts-scale)),transparent calc(186px * var(--ts-scale)));
+  mask-image:linear-gradient(to top,#000 0,rgba(0,0,0,.95) calc(46px * var(--ts-scale)),rgba(0,0,0,.6) calc(96px * var(--ts-scale)),rgba(0,0,0,.2) calc(142px * var(--ts-scale)),transparent calc(186px * var(--ts-scale)));
+  -webkit-mask-size:100% calc(186px * var(--ts-scale));mask-size:100% calc(186px * var(--ts-scale))}
+.trackseam .ts-heat{filter:brightness(calc(1.95 * var(--heat,1))) sepia(1) saturate(5.5) hue-rotate(-16deg) contrast(1.05);
+  -webkit-mask-image:linear-gradient(to top,#000 0,rgba(0,0,0,.8) calc(20px * var(--ts-scale)),rgba(0,0,0,.3) calc(42px * var(--ts-scale)),transparent calc(64px * var(--ts-scale)));
+  mask-image:linear-gradient(to top,#000 0,rgba(0,0,0,.8) calc(20px * var(--ts-scale)),rgba(0,0,0,.3) calc(42px * var(--ts-scale)),transparent calc(64px * var(--ts-scale)));
+  -webkit-mask-size:100% calc(64px * var(--ts-scale));mask-size:100% calc(64px * var(--ts-scale))}
+.trackseam .ts-spill{position:absolute;left:50%;top:0;width:calc(230px * var(--ts-scale));height:calc(230px * var(--ts-scale));margin:calc(-150px * var(--ts-scale)) 0 0 calc(-115px * var(--ts-scale));pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,146,46,.36),rgba(255,84,18,.12) 44%,rgba(255,60,10,0) 76%)}
+.trackseam .ts-puddle{position:absolute;left:50%;top:0;width:calc(19px * var(--ts-scale));height:calc(16px * var(--ts-scale));margin:calc(-7px * var(--ts-scale)) 0 0 calc(-9.5px * var(--ts-scale));z-index:2;pointer-events:none;
+  border-radius:50% 50% 54% 54%/40% 40% 60% 60%;
+  background:radial-gradient(60% 52% at 50% 34%,#FFFDF4 0%,#FFE39A 26%,#FFA23A 56%,#E4571A 82%,#9E2708 100%);
+  box-shadow:0 0 calc(10px * var(--ts-scale)) calc(2px * var(--ts-scale)) rgba(255,150,50,.75),0 calc(3px * var(--ts-scale)) calc(9px * var(--ts-scale)) calc(1px * var(--ts-scale)) rgba(255,90,20,.55);filter:blur(.35px)}
+.trackseam canvas{position:absolute;top:0;bottom:0;left:50%;width:calc(260px * var(--ts-scale));margin-left:calc(-130px * var(--ts-scale));height:100%;pointer-events:none;z-index:3}
+.trackseam.done .ts-puddle,.trackseam.done canvas,.trackseam.done .ts-spill{opacity:0;transition:opacity .5s}
+@media (max-width:900px){.trackseam{--ts-scale:.5;left:0;width:calc(10px * var(--ts-scale))}.trackseam canvas{width:calc(180px * var(--ts-scale));margin-left:calc(-90px * var(--ts-scale))}}
+@media (prefers-reduced-motion:reduce){.trackseam canvas,.trackseam .ts-spill{display:none}}
+
+/* the words: hotter as they land, and a torch head that writes them */
+.sec .w.hot{color:#FFF1CE;-webkit-text-stroke-color:rgba(255,195,110,.95);
+  text-shadow:0 0 5px rgba(255,210,140,.95),0 0 16px rgba(255,150,50,.75),0 0 34px rgba(255,110,20,.4)}
+.sec .fold{position:relative}
+.sec .cutspark{position:absolute;top:0;bottom:0;width:26px;margin-left:-13px;pointer-events:none;opacity:0;z-index:3;
+  background:radial-gradient(closest-side,rgba(255,255,245,.95),rgba(255,180,80,.55) 42%,rgba(255,120,20,0) 78%);
+  filter:blur(.4px);mix-blend-mode:screen}
+
+/* ── the quote section he picked ── */
+.quote.qmix{position:relative;padding:clamp(34px,6vw,76px) var(--pad);
+  background:linear-gradient(180deg,rgba(6,8,10,.80),rgba(6,8,10,.93)),url(../images/texture/panel-steel.jpg) center/cover;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),inset 0 60px 110px -60px #000,inset 0 -60px 110px -60px #000}
+.quote.qmix .tick{position:absolute;width:16px;height:16px;border:2px solid rgba(255,255,255,.42);pointer-events:none}
+.quote.qmix .tick.tl{top:16px;left:16px;border-right:0;border-bottom:0}
+.quote.qmix .tick.tr{top:16px;right:16px;border-left:0;border-bottom:0}
+.quote.qmix .tick.bl{bottom:16px;left:16px;border-right:0;border-top:0}
+.quote.qmix .tick.br{bottom:16px;right:16px;border-left:0;border-top:0}
+.qmix-in{position:relative;z-index:2;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:minmax(200px,.62fr) 1.38fr;
+  gap:clamp(24px,4.4vw,72px);align-items:center}
+.qmix-in>*{min-width:0}
+.qmix-mark{text-align:center}
+.qmix-mark img{width:min(32vw,320px);height:auto;margin:0 auto;
+  filter:drop-shadow(0 28px 48px rgba(0,0,0,.85)) drop-shadow(0 0 40px rgba(36,183,202,.22))}
+.qmix-mark p{margin:20px 0 0;font:600 11px/1.9 var(--body);letter-spacing:.28em;text-transform:uppercase;color:var(--mute,#9AA3AD)}
+.qmix-eye{margin:0 0 20px;font:600 12px/1 var(--body);letter-spacing:.32em;text-transform:uppercase;color:var(--spark,#24B7CA)}
+.qmix-lines{border-top:1px solid rgba(255,255,255,.14)}
+.qrow{position:relative;overflow:hidden}
+.qrow::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(62% 150% at 50% 128%,rgba(36,183,202,.42),rgba(36,183,202,.10) 42%,transparent 72%)}
+.qrow:hover::after,.qrow.open::after{opacity:1}
+.qline{position:relative;z-index:2;display:flex;align-items:baseline;gap:clamp(12px,1.6vw,22px);width:100%;
+  padding:clamp(14px,1.9vw,24px) 0;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.14);
+  color:var(--ink,#E9ECEF);font:400 clamp(22px,4.2vw,58px)/1 var(--display);letter-spacing:.01em;text-transform:uppercase;
+  text-align:left;cursor:pointer;transition:color .22s,text-shadow .22s}
+.qrow:hover .qline,.qrow.open .qline{color:#fff;text-shadow:0 0 34px rgba(36,183,202,.55)}
+.qk{flex:none;font:600 11px/1 var(--body);letter-spacing:.22em;color:var(--mute,#9AA3AD);transition:color .22s}
+.qrow:hover .qk,.qrow.open .qk{color:var(--spark2,#7FE3F2)}
+.qline i{margin-left:auto;font-style:normal;font-size:.42em;color:var(--mute,#9AA3AD);transition:transform .28s,color .22s}
+.qrow.open .qline i{transform:rotate(90deg);color:var(--spark,#24B7CA)}
+.qslot{position:relative;z-index:2;max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.3,.02,.2,1);
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.qrow.open .qslot{max-height:190px}
+.qslot input,.qslot textarea{width:100%;margin:16px 0;padding:15px 17px;background:rgba(6,8,10,.62);
+  border:1px solid rgba(255,255,255,.15);border-radius:3px;color:var(--ink,#E9ECEF);font:500 17px/1.5 var(--body);resize:none;
+  box-shadow:inset 0 2px 7px rgba(0,0,0,.55)}
+.qslot ::placeholder{color:#78828C}
+.qslot input:focus,.qslot textarea:focus{outline:0;border-color:var(--spark,#24B7CA);
+  box-shadow:inset 0 2px 7px rgba(0,0,0,.55),0 0 0 1px var(--spark,#24B7CA)}
+.qmix-act{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:clamp(20px,3vw,32px)}
+.qmix-side{font:500 15px/1.6 var(--body);color:var(--mute,#9AA3AD)}
+.qmix-side a{color:var(--spark2,#7FE3F2)}
+.qmix .form-success{margin:16px 0 0;opacity:0;transition:opacity .3s}
+.qmix.sent .form-success,.qmix-in.sent .form-success{opacity:1}
+@media (max-width:900px){.qmix-in{grid-template-columns:1fr;gap:28px}.qmix-mark img{width:min(52vw,230px)}}
+
+/* ── tap one of the small photos and it pops out in 3D (Hayden 11/6: "like we did for Gage's cards") ──
+   Aceternity 3D Card, the same port Gage uses. The card takes the grid slot; the body and item size to the
+   photo instead of the demo's fixed 24rem square. */
+.wtj-photos .tdc{display:block;width:100%;height:100%;padding:0;perspective:900px}
+.wtj-photos .tdc-container{display:block;width:100%;height:100%}
+.wtj-photos .tdc-body{height:100%;width:100%}
+.wtj-photos .tdc-item{width:100%;height:100%}
+.wtj-photos .tdc figure{position:relative;width:100%;height:100%;margin:0}
+.wtj-photos .tdc-up figure{box-shadow:0 34px 64px -20px rgba(0,0,0,.95),0 0 0 1px rgba(36,183,202,.4);z-index:4}
+.wtj-photos .tdc figure{transition:box-shadow .25s ease}
+
+/* ── tap a photo and it pops (Hayden 11/6: "not full size, just a pop up like an animation gadget") ──
+   A clone is lifted out at the photo's exact position and springs up in place. No takeover, no scrim. */
+.sstage .shot figure,.wtj-photos figure:not(.wtj-chip){cursor:zoom-in}
+.sstage .shot figure figcaption,.wtj-photos figure figcaption{pointer-events:none}
+.pop{position:fixed;z-index:180;margin:0;pointer-events:auto;cursor:zoom-out;transform-origin:50% 50%;
+  will-change:transform;transition:transform .42s cubic-bezier(.22,1.1,.3,1),box-shadow .42s ease;
+  box-shadow:0 0 0 rgba(0,0,0,0)}
+.pop.up{box-shadow:0 44px 90px -30px rgba(0,0,0,.92),0 0 0 1px rgba(36,183,202,.3)}
+.pop img{width:100%;height:100%;object-fit:cover;display:block;border:4px solid #000}
+.pop figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 12px 9px;
+  background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,0));color:#fff;
+  font:600 11px/1.3 var(--body);letter-spacing:.16em;text-transform:uppercase;opacity:0;transition:opacity .3s ease .12s}
+.pop.up figcaption{opacity:1}
+/* the dimmest possible hint that the rest is behind it — not a lightbox */
+.pop-veil{position:fixed;inset:0;z-index:179;background:rgba(5,7,9,.42);opacity:0;
+  transition:opacity .36s ease;pointer-events:auto;cursor:zoom-out}
+.pop-veil.on{opacity:1}
+/* his size dial, edit mode only */
+.pop-size{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:182;display:none;align-items:center;gap:12px;
+  padding:11px 16px;border-radius:7px;background:rgba(10,13,16,.95);border:1px solid rgba(255,255,255,.16)}
+.pop-size.on{display:flex}
+.pop-size span{font:600 10px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:#9fb0bd}
+.pop-size input{width:190px;accent-color:#24B7CA}
+.pop-size output{font:600 12px/1 var(--body);color:#FFC98A;min-width:52px;text-align:right}
+@media (prefers-reduced-motion:reduce){.pop{transition:none}.pop-veil{transition:none}}
+
+/* ── the stage on a laptop, for visitors (11/7, found by the version 2 builder) ─────────
+   Outside edit mode the drag handle (.colgrab) is removed, so the steel plate fell into the handle's
+   0-px middle column: on any laptop off localhost the plate was 0 px wide and the words stacked one per line.
+   Pin both: photos in column 1, the plate in column 3, whether or not the handle is there. */
+@media (min-width:901px){.sstage>.shot{grid-column:1;grid-row:1}.sstage>.panel{grid-column:3;grid-row:1}}

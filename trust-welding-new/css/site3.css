@@ -1,0 +1,115 @@
+/* Trust Welding · third pass (Hayden 11/3, his words): three sections only. The photos scroll on the left; the right side is ONE
+   continuous panel of silver steel that never moves; the words unfold in white on it, a new section every seven photos. */
+:root{
+  --panel-body:'Archivo','Barlow','Helvetica Neue',Arial,sans-serif;   /* the panel's body face (11/4: a different font for the paragraphs); the rest of the site keeps --body */
+  --bg:#0A0C0E; --bg2:#101317; --ink:#E9ECEF; --mute:#9AA3AD; --line:rgba(255,255,255,.09);
+  --spark:#24B7CA; --spark2:#7FE3F2; --deep:#0F7D8C;
+  --display:'Russo One','Arial Black',Impact,sans-serif; --body:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --header-h:64px; --pad:clamp(18px,4vw,56px); --maxw:1560px; --frame:6px;
+}
+*{box-sizing:border-box} html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:hidden}
+img{display:block;max-width:100%} a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:4px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--ink);font:600 14px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.btn:hover{background:rgba(36,183,202,.14);border-color:rgba(36,183,202,.6);transform:translateY(-1px)}
+.btn.primary{background:var(--spark);border-color:var(--spark);color:#041014} .btn.primary:hover{background:var(--spark2);border-color:var(--spark2)}
+/* header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:20;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);background:linear-gradient(rgba(10,12,14,.94),rgba(10,12,14,.78));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none} .brand img{width:40px;height:40px;border-radius:50%} .brand b{font:400 16px/1 var(--display);letter-spacing:.06em;text-transform:uppercase}
+#main-nav{display:flex;align-items:center;gap:26px} #main-nav a{font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);text-decoration:none} #main-nav a:hover{color:var(--ink)} #main-nav .btn{min-height:40px;padding:0 16px;color:var(--ink)}
+/* 1 · hero: Hayden's approved still (emblem composited in by the hero session, 11/3) — shown as approved, no vignette */
+.hero{position:relative;height:100svh;min-height:560px;background:#000;overflow:hidden;display:grid;place-items:center}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 53%;animation:settle 8s cubic-bezier(.2,.7,.2,1) both}
+@keyframes settle{from{transform:scale(1.06)}to{transform:scale(1)}}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,0) 24%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14%;background:linear-gradient(to top,var(--bg),rgba(10,12,14,0))}
+.emblem{position:relative;z-index:2;width:min(62vw,560px);height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.75)) drop-shadow(0 0 40px rgba(36,183,202,.25))}
+.cue{position:absolute;z-index:3;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);font:600 11px/1 var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--mute);opacity:.85}
+.cue::after{content:"";display:block;width:1px;height:26px;margin:10px auto 0;background:linear-gradient(var(--mute),transparent)}
+/* 2 · the work: photos left (scroll), the steel panel right (holds) */
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.photos{padding:clamp(28px,5vh,64px) clamp(18px,2.6vw,40px) clamp(60px,10vh,120px) 0}
+.photos figure{margin:0 0 clamp(16px,2.2vw,30px);position:relative;border:var(--frame) solid #000;background:#000;box-shadow:0 18px 50px -24px rgba(0,0,0,.9)}
+.photos img{width:100%;height:auto;display:block}
+.photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0));color:#fff;font:600 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.photos figcaption::before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;background:var(--spark);transform:rotate(45deg);vertical-align:1px}
+.panel{position:sticky;top:var(--header-h);height:calc(100svh - var(--header-h));align-self:start;
+  /* the scratched steel plate (Hayden's reference, 11/4): a real texture photo, darkened a touch so the white words hold */
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.30) 100%),
+    url(../images/texture/panel-steel.jpg) center/cover no-repeat,
+    #6b7178;
+  box-shadow:inset var(--frame) 0 0 #000, inset 0 0 0 1px rgba(0,0,0,.35), inset 0 0 120px rgba(0,0,0,.25)}
+.panel::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.02' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");mix-blend-mode:overlay;pointer-events:none;opacity:.9}
+.stack{position:relative;height:100%;padding:var(--pad-y,clamp(22px,3vw,44px)) var(--pad-x,52px)}
+.sec{position:absolute;inset:0;padding:inherit;display:flex;flex-direction:column;justify-content:var(--block-y,flex-start);align-items:var(--block-x,stretch);gap:var(--gap,22px);opacity:0;visibility:hidden}
+.sec.is-on{opacity:1;visibility:visible}
+.sec .fold{width:var(--block-w,100%);position:relative;z-index:0}
+.sec .fold::before{content:"";position:absolute;inset:-22px -26px;z-index:-1;border-radius:28px;background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,var(--pool,.62)) 0%,rgba(255,255,255,calc(var(--pool,.62)*.55)) 55%,rgba(255,255,255,0) 100%);filter:blur(22px);pointer-events:none} .eyebrow{margin:0 0 10px;font:600 12px/1 var(--body);letter-spacing:.26em;text-transform:uppercase;color:#CFF7FC;text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.sec h2{margin:0 0 14px;font:400 var(--t-size,46px)/1.02 var(--display);letter-spacing:.01em;text-transform:uppercase;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.35);text-wrap:balance}
+.sec p{margin:0 0 10px;max-width:var(--b-max,none);color:#fff;font-size:var(--b-size,22px);font-weight:var(--b-weight,700);line-height:var(--b-lh,1.9);font-family:var(--panel-body,var(--body));text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.sec ul,.sec ol{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.sec li{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start;color:#fff;font-size:var(--b-size,22px);font-weight:var(--b-weight,700);line-height:var(--b-lh,1.9);font-family:var(--panel-body,var(--body));text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.sec ul li::before{content:"";width:11px;height:11px;margin-top:11px;background:var(--spark2);border:2px solid var(--spark2);transform:rotate(45deg)}
+.sec ol{counter-reset:step} .sec ol li{grid-template-columns:36px 1fr;counter-increment:step} .sec ol li::before{content:counter(step,decimal-leading-zero);font:400 15px/1.5 var(--display);color:var(--spark2)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin:4px 0 14px}
+.facts div{border-top:2px solid rgba(255,255,255,.55);padding-top:10px} .facts b{display:block;font:400 clamp(20px,1.8vw,26px)/1.05 var(--display);color:#fff} .facts span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#E6F7FA}
+.sec .line{display:inline-block;overflow:hidden;vertical-align:bottom}   /* the unfold: each line rises out of a clipped slot */
+.dots{position:absolute;left:clamp(26px,4vw,72px);bottom:clamp(14px,3vh,28px);display:flex;gap:8px}
+.dots i{width:22px;height:2px;background:rgba(0,0,0,.35);transition:background .3s} .dots i.on{background:#fff}
+/* 3 · contact: dark gray into blue */
+.quote{padding:clamp(56px,9vh,110px) var(--pad);background:linear-gradient(180deg,#171b20,#0d1116 60%,#0a1a21);border-top:1px solid var(--line)}
+.quote-in{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.quote .eyebrow{color:var(--spark)}
+.quote h2{margin:0 0 12px;font:400 clamp(32px,4vw,58px)/1 var(--display);text-transform:uppercase;color:#fff}
+.quote p{margin:0 0 18px;color:#C9CFD5;max-width:46ch} .ways{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.contact-form{display:grid;gap:12px} .contact-form label{display:grid;gap:6px;font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.contact-form input,.contact-form textarea{width:100%;min-height:48px;padding:12px 14px;border-radius:4px;border:1px solid rgba(255,255,255,.16);background:#0b0e12;color:var(--ink);font:16px/1.4 var(--body)} .contact-form textarea{min-height:120px;resize:vertical}
+.contact-form input:focus,.contact-form textarea:focus{outline:2px solid var(--spark);outline-offset:1px;border-color:transparent}
+.form-note{font-size:13px;color:var(--mute)} .form-success{display:none;padding:16px;border:1px solid rgba(36,183,202,.5);border-radius:4px;color:var(--spark2)} .contact-form.sent .form-success{display:block} .contact-form.sent .fields{display:none}
+.site-footer{padding:28px var(--pad) max(28px,env(safe-area-inset-bottom));background:#07161b;border-top:2px solid var(--deep);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute)} .site-footer a{color:var(--ink);text-decoration:none}
+/* phones: the steel panel becomes a sheet at the foot, the photos run under it */
+@media (max-width:900px){
+  :root{--header-h:56px;--frame:5px}
+  .brand b{font-size:14px} #main-nav a:not(.btn){display:none}
+  .hero{height:100svh;min-height:460px} .hero-bg{object-position:50% 50%}
+  .flow{display:block;padding:0 var(--pad)}
+  .photos{padding:22px 0 50svh}
+  .panel{position:sticky;top:auto;bottom:0;height:auto;max-height:50svh;margin:0 calc(var(--pad)*-1);z-index:5;box-shadow:inset 0 var(--frame) 0 #000,inset 0 0 0 1px rgba(0,0,0,.35)}
+  .stack{padding:18px var(--pad) max(16px,env(safe-area-inset-bottom));height:auto;min-height:32svh;max-height:50svh;overflow:auto}
+  .sec{position:relative;inset:auto;padding:0;display:none;justify-content:flex-start;gap:8px} .sec.is-on{display:flex}
+  .sec h2{font-size:clamp(26px,7vw,34px)} .sec p{font-size:16.5px;max-width:none} .sec li{font-size:15.5px} .sec ul,.sec ol{gap:5px}
+  .facts{gap:8px 12px} .facts b{font-size:19px}
+  .dots{position:static;margin-top:8px}
+  .quote-in{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.hero-bg{animation:none}}
+/* Fold Text in the panel (11/4): keep our type metrics; the original's display metrics apply only to the h2 */
+.sec .fold-text{display:inline;line-height:inherit;letter-spacing:inherit;white-space:normal}
+.sec h2 .fold-text{line-height:1.02;letter-spacing:.01em}
+.sec .fold-text-segment{vertical-align:baseline}
+.sec li .fold-text,.sec p .fold-text{color:inherit}
+
+/* panel words (Hayden 11/4): black with a light border, like letters stamped into the plate */
+.sec{color:#0A0C0E;text-shadow:none}
+.sec h2,.sec p,.sec li,.sec .eyebrow,.sec .facts b,.sec .facts span{color:#0A0C0E;-webkit-text-stroke:var(--stroke,1.2px) rgba(255,255,255,.6);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.25)}
+.sec .eyebrow{color:#0F7D8C;-webkit-text-stroke:0}
+.sec .fold-text-piece::after{--fold-shade:linear-gradient(180deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.2) 42%,rgba(0,0,0,.35) 100%)}
+
+/* the Format panel (localhost / ?edit=1 only): Hayden's sliders for the section block */
+.fmt{position:fixed;left:12px;bottom:12px;z-index:999;width:250px;background:rgba(10,12,14,.94);color:#E8EEF6;border:1px solid #243040;border-radius:8px;font:12px/1.3 system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.fmt.min .fmt-b{display:none}.fmt-h{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #243040;cursor:pointer;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:10.5px}
+.fmt-b{padding:8px 10px;display:grid;gap:6px}.fmt label{display:grid;grid-template-columns:86px 1fr 40px;gap:6px;align-items:center}.fmt input[type=range]{width:100%;accent-color:#24B7CA}.fmt select{background:#141A22;color:#E8EEF6;border:1px solid #243040;border-radius:4px;font:inherit}
+.fmt output{text-align:right;color:#8697AB;font-variant-numeric:tabular-nums}.fmt .row{display:flex;gap:6px}.fmt button{flex:1;background:#141A22;color:#E8EEF6;border:1px solid #243040;border-radius:4px;padding:5px;font:inherit;cursor:pointer}.fmt textarea{width:100%;height:46px;background:#070b12;color:#8697AB;border:1px solid #243040;border-radius:4px;font:10.5px/1.3 ui-monospace,monospace}
+
+/* life (11/5): the client strip under the hero and the ember drift */
+.clients{position:relative;z-index:2;overflow:hidden;background:#0d1013;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.clients-track{display:flex;align-items:center;gap:0;width:max-content;animation:clients var(--dur,40s) linear infinite;will-change:transform}
+.clients:hover .clients-track,.clients:active .clients-track{animation-play-state:paused}
+.clients-track span{font:400 13px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:#C9D1D9;padding:14px 22px;white-space:nowrap}
+.clients-track i{width:8px;height:8px;background:var(--spark);transform:rotate(45deg);flex:none;opacity:.9}
+@keyframes clients{to{transform:translateX(calc(var(--w,50%) * -1))}}
+@media (prefers-reduced-motion:reduce){.clients-track{animation:none}}
+.embers{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.site-header{z-index:20}.hero{z-index:0}.flow{position:relative;z-index:2}.quote{position:relative;z-index:2}

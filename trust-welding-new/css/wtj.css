@@ -1,0 +1,79 @@
+/* What's the job? — tap-a-picture counter-question gadget. Tokens first; recolor per site by overriding these. */
+.wtj{
+  --wtj-bg:#0A0C0E; --wtj-bg2:#101317; --wtj-ink:#E9ECEF; --wtj-mute:#9AA3AD; --wtj-line:rgba(255,255,255,.10);
+  --wtj-accent:#24B7CA; --wtj-accent2:#7FE3F2; --wtj-on-accent:#041014;
+  --wtj-display:'Russo One','Arial Black',Impact,sans-serif; --wtj-body:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --wtj-pad:clamp(16px,4vw,56px); --wtj-maxw:1320px; --wtj-frame:5px;
+  position:relative; background:var(--wtj-bg); color:var(--wtj-ink); font:16px/1.5 var(--wtj-body);
+  padding:clamp(40px,8vh,96px) var(--wtj-pad);
+}
+.wtj *{box-sizing:border-box}
+.wtj-in{max-width:var(--wtj-maxw);margin:0 auto}
+.wtj-eyebrow{margin:0 0 10px;font:600 12px/1 var(--wtj-body);letter-spacing:.28em;text-transform:uppercase;color:var(--wtj-accent)}
+.wtj-h2{margin:0;font:400 clamp(30px,5.4vw,64px)/1 var(--wtj-display);text-transform:uppercase;letter-spacing:.01em}
+.wtj-hint{margin:12px 0 clamp(18px,3vh,32px);font:500 17px/1.3 var(--wtj-body);color:var(--wtj-mute)}
+
+.wtj-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(14px,2vw,28px);align-items:stretch}
+.wtj-tiles{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.2vw,16px)}
+
+/* the tiles: his real photos, grey until you pick yours */
+.wtj-tile{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:0;margin:0;border:var(--wtj-frame) solid #000;border-radius:2px;
+  background:#000;overflow:hidden;cursor:pointer;color:var(--wtj-ink);-webkit-tap-highlight-color:transparent;
+  box-shadow:0 14px 34px -18px rgba(0,0,0,.95);transition:transform .18s cubic-bezier(.2,.7,.2,1),border-color .2s}
+.wtj-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.78) contrast(1.04) saturate(1.05);
+  transform:scale(1.04);transition:filter .45s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+.wtj-tile .wtj-label{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 11px;background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,0));
+  font:400 clamp(15px,1.5vw,21px)/1 var(--wtj-display);text-transform:uppercase;letter-spacing:.04em;text-align:left}
+.wtj-tile .wtj-label::before{content:"";display:inline-block;width:9px;height:9px;margin-right:9px;border:2px solid var(--wtj-ink);border-radius:50%;vertical-align:1px;transition:background .2s,border-color .2s}
+.wtj-tile::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--fx,50%) var(--fy,50%),rgba(255,255,255,.95),rgba(255,214,140,.55) 12%,rgba(36,183,202,0) 46%)}
+.wtj-tile:hover img{filter:brightness(.94) contrast(1.02) saturate(1.1)}
+.wtj-tile:active{transform:scale(.97)}
+.wtj-tile:focus-visible{outline:3px solid var(--wtj-accent2);outline-offset:3px}
+.wtj-tile[aria-pressed="true"]{border-color:var(--wtj-accent)}
+.wtj-tile[aria-pressed="true"] img{filter:none;transform:scale(1)}
+.wtj-tile[aria-pressed="true"] .wtj-label::before{background:var(--wtj-accent);border-color:var(--wtj-accent)}
+.wtj-tile.is-struck::after{animation:wtj-flash .42s ease-out}
+@keyframes wtj-flash{0%{opacity:1}100%{opacity:0}}
+
+/* the stage: the number + his real jobs of that kind + the text button */
+.wtj-stage{position:relative;display:flex;flex-direction:column;border:var(--wtj-frame) solid #000;background:var(--wtj-bg2);overflow:hidden;min-height:100%;
+  box-shadow:0 18px 50px -24px rgba(0,0,0,.95)}
+.wtj-idle,.wtj-show{position:absolute;inset:0;display:flex;flex-direction:column;transition:opacity .35s ease}
+.wtj-idle{justify-content:center;align-items:flex-start;padding:clamp(20px,3vw,44px);background:#2a2f34 var(--wtj-plate,none) center/cover no-repeat}
+.wtj-idle::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(10,12,14,.78),rgba(10,12,14,.25) 70%)}
+.wtj-idle>*{position:relative}
+.wtj-big{font:400 clamp(72px,11vw,168px)/.86 var(--wtj-display);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.wtj-sub{margin-top:10px;font:600 clamp(13px,1.2vw,16px)/1.2 var(--wtj-body);letter-spacing:.2em;text-transform:uppercase;color:var(--wtj-mute)}
+.wtj-stage[data-on] .wtj-idle{opacity:0;pointer-events:none}
+.wtj-stage:not([data-on]) .wtj-show{opacity:0;pointer-events:none}
+
+.wtj-photos{flex:1;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:var(--wtj-frame);background:#000;min-height:0}
+.wtj-photo{position:relative;margin:0;overflow:hidden;background:#000;opacity:0;transform:translateY(14px)}
+.wtj-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.wtj-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 9px;background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,0));
+  font:600 12px/1.25 var(--wtj-body);letter-spacing:.08em;text-transform:uppercase}
+.wtj-photo.in{opacity:1;transform:none;transition:opacity .4s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
+
+.wtj-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px clamp(12px,1.6vw,20px);background:var(--wtj-bg);border-top:var(--wtj-frame) solid #000}
+.wtj-count{display:flex;align-items:baseline;gap:10px;min-width:0}
+.wtj-count b{font:400 clamp(40px,4.6vw,64px)/.9 var(--wtj-display);color:var(--wtj-accent2);font-variant-numeric:tabular-nums}
+.wtj-count span{font:600 12px/1.2 var(--wtj-body);letter-spacing:.16em;text-transform:uppercase;color:var(--wtj-mute)}
+.wtj-text{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:4px;background:var(--wtj-accent);color:var(--wtj-on-accent);
+  font:700 13px/1.1 var(--wtj-body);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;text-align:center;transition:background .2s}
+.wtj-text:hover{background:var(--wtj-accent2)}
+
+@media (max-width:760px){
+  /* phones: the thing that changes sits ABOVE the thing you tap */
+  .wtj-grid{grid-template-columns:1fr}
+  .wtj-stage{order:-1;min-height:0;aspect-ratio:auto;height:clamp(300px,86vw,380px)}
+  .wtj-tile{aspect-ratio:5/4}
+  .wtj-bar{padding:10px 10px}
+  .wtj-count{flex-direction:column;align-items:flex-start;gap:2px}
+  .wtj-count span{font-size:11px;letter-spacing:.12em}
+  .wtj-text{padding:0 14px;font-size:12px;max-width:52%}
+}
+@media (prefers-reduced-motion:reduce){
+  .wtj-tile,.wtj-tile img,.wtj-idle,.wtj-show,.wtj-photo.in{transition:none}
+  .wtj-tile.is-struck::after{animation:none}
+  .wtj-photo{transform:none}
+}
