@@ -142,3 +142,22 @@
   color:#8697AB;font:11px/1.35 ui-monospace,Menlo,monospace;pointer-events:none;max-width:260px}
 .meterchip b{color:#7FE3F2;font-weight:600}
 @media (max-width:900px){.meterchip{bottom:84px}}
+
+/* ── phones: the stage scrolls as one story (Hayden 11/9, on his iPhone: "the photos are shrunk and the text is cropped in the sections").
+   A pinned 34/66 photo-and-plate split can't hold big photos and the fuller words on a ~660 px Safari screen. So on phones each part of
+   the business is its words on the steel, then its three photos at full width, in page order, and nothing is cropped. The Mac keeps the
+   pinned plate. The class is set in <head> before first paint (no layout jump), and the page script skips the pin and the cut on phones. */
+.flow-phone .stageflow{height:auto !important}
+.flow-phone .sstage{position:static;height:auto;display:flex;flex-direction:column;overflow:visible}
+.flow-phone .sstage .shot,.flow-phone .sstage .panel,.flow-phone .sstage .stack{display:contents}
+.flow-phone .sstage .seam,.flow-phone .sstage .colgrab,.flow-phone .sstage .dots{display:none}
+.flow-phone .sstage .sec{display:flex;flex-direction:column;gap:10px;position:relative;inset:auto;opacity:1;visibility:visible;margin:10px 0 16px;padding:34px var(--pad) 30px;
+  background:linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.30) 100%),image-set(url(../images/v2/texture/panel-steel-900.avif) type("image/avif"),url(../images/texture/panel-steel.jpg) type("image/jpeg")) center/cover no-repeat,#6b7178;
+  box-shadow:inset 0 var(--frame) 0 #000,inset 0 calc(var(--frame) * -1) 0 #000}
+.flow-phone .sstage .shot figure{position:relative;inset:auto;clip-path:none !important;margin:0 var(--pad) 14px;aspect-ratio:4/5;
+  border:var(--frame) solid #000;background:#000;overflow:hidden;box-shadow:0 24px 60px -28px rgba(0,0,0,.95)}
+.flow-phone .sstage .shot figure.wide{aspect-ratio:4/3}
+/* page order: words, then that part's three photos */
+.flow-phone #what{order:1}.flow-phone .sstage .shot figure:nth-of-type(1){order:2}.flow-phone .sstage .shot figure:nth-of-type(2){order:3}.flow-phone .sstage .shot figure:nth-of-type(3){order:4}
+.flow-phone #outside{order:5}.flow-phone .sstage .shot figure:nth-of-type(4){order:6}.flow-phone .sstage .shot figure:nth-of-type(5){order:7}.flow-phone .sstage .shot figure:nth-of-type(6){order:8}
+.flow-phone #why{order:9}.flow-phone .sstage .shot figure:nth-of-type(7){order:10}.flow-phone .sstage .shot figure:nth-of-type(8){order:11}.flow-phone .sstage .shot figure:nth-of-type(9){order:12}

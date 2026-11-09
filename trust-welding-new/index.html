@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>if (matchMedia('(max-width:900px)').matches) document.documentElement.classList.add('flow-phone');</script>   <!-- 11/9: phones scroll the stage as one story, set before first paint -->
 <meta name="robots" content="noindex">
 <!-- STAGING (11/7): VERSION 2 = the site after a pass with the week's new systems (needs brief, niche playbook, the 25 best cards).
      Built by build-new-skills.py; changes listed in lab/preview/V2-CHANGES.md. The opening clip is draft C5: licensed footage only
@@ -28,13 +29,13 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Trust Welding", "description": "Welding & metal fabrication. Mobile welding, serving King County.", "telephone": "+1-425-283-6496", "areaServed": {"@type": "AdministrativeArea", "name": "King County, Washington"}, "foundingDate": "2025", "sameAs": ["https://www.instagram.com/trust.welding/"], "url": "https://hjsdesigns.github.io/demos/trust-welding-new/", "image": "https://hjsdesigns.github.io/demos/trust-welding-new/images/v2/og-1200x630.jpg", "logo": "https://hjsdesigns.github.io/demos/trust-welding-new/images/badge-986.jpg"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@400;500;600&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site3.css?v=1794252690">
-<link rel="stylesheet" href="css/wtj.css?v=1794252690">
-<link rel="stylesheet" href="css/3d-card.css?v=1794252690">
-<link rel="stylesheet" href="css/opening.css?v=1794252690">
-<link rel="stylesheet" href="css/opening-video.css?v=1794252690">
-<link rel="stylesheet" href="css/learned.css?v=1794252690">
-<link rel="stylesheet" href="css/v2-skills.css?v=1794252690">
+<link rel="stylesheet" href="css/site3.css?v=1794253408">
+<link rel="stylesheet" href="css/wtj.css?v=1794253408">
+<link rel="stylesheet" href="css/3d-card.css?v=1794253408">
+<link rel="stylesheet" href="css/opening.css?v=1794253408">
+<link rel="stylesheet" href="css/opening-video.css?v=1794253408">
+<link rel="stylesheet" href="css/learned.css?v=1794253408">
+<link rel="stylesheet" href="css/v2-skills.css?v=1794253408">
 </head>
 <body>
 <a class="skiplink" href="#quote">Skip to the job form</a>
@@ -52,7 +53,7 @@
     </picture>
     <p class="cue" aria-hidden="true">Scroll</p>
     <div class="opening opening--video" id="opening-video" aria-hidden="true" data-src-phone="media/intro/trust-welding-opening-phone" data-src-wide="media/intro/trust-welding-opening-wide"><video class="frame" muted playsinline autoplay preload="auto" disablepictureinpicture></video><button class="skip" type="button">Lift the helmet</button></div>
-    <script src="js/opening-video.js?v=1794252690"></script>
+    <script src="js/opening-video.js?v=1794253408"></script>
   </section>
   <!-- NEEDS 3.4: where and when, directly under the hero (his bio's words). No hours, range or reply time until Trustin answers Q2 and Q4. -->
   <section class="where" id="where" aria-labelledby="where-h">
@@ -168,16 +169,19 @@
 <script>window.TW_COPY = {"contact": {"phone": "425-283-6496", "sms": "sms:+14252836496", "tel": "tel:+14252836496", "instagram": "https://www.instagram.com/trust.welding/"}, "gadget": {"eyebrow": "Before you text", "h2": "Can Trustin weld this?", "hint": "Tap what you've got.", "idle": "His photos land here.", "button": "Text Trustin a photo", "sms_body": "Hi Trustin, I've got a {ask}. Here's a photo:", "groups": [{"key": "truck", "label": "Truck", "alt": "A silver Duramax pickup shot low from the gravel, bars running under the cab.", "cover": "track-bars-duramax", "ask": "truck job", "jobs": [{"file": "track-bars-2", "caption": "Track bars · Duramax LBZ"}, {"file": "track-bars-3", "caption": "The bars · in a paint booth"}]}, {"key": "equipment", "label": "Equipment", "alt": "A steel gantry lift on casters, seen from one side.", "cover": "gantry-lift-2", "ask": "equipment job", "jobs": [{"file": "gantry-lift", "caption": "Gantry lift · on casters"}, {"file": "gantry-lift-3", "caption": "The lift · from the front"}]}, {"key": "outdoor", "label": "Outdoor", "alt": "Close on rusted Corten capping the end of a gray seat wall, a logo cut into the top.", "cover": "corten-fire-pit-2", "ask": "yard or patio job", "jobs": [{"file": "steel-planter-boxes", "caption": "Steel planter box · raw", "pos": "50% 70%"}, {"file": "story-fab-4", "caption": "In place · out front"}]}, {"key": "signs", "label": "Signs & installs", "alt": "The Hopper Group sign from the front, HG cut large above the name.", "cover": "custom-sign-hopper-2", "ask": "sign, cut-out or install job", "jobs": [{"file": "mariners-trident-2", "caption": "The cut-out · in hand"}, {"file": "story-fab-1", "caption": "Grill piece"}]}]}, "form": {"need_job": "Tell me what needs welding first.", "success_touch": "Your text to Trustin is ready. Hit Send.", "fail_touch": "No text app opened. Copy the message and text it to 425-283-6496.", "status_laptop": "Scan the code with your phone, or copy the message. Nothing reaches Trustin until you hit Send on your phone.", "ticket": {"prefix": "Hi Trustin, job for you: ", "where": "Where: ", "phone": "My number: "}}, "door": {"eyebrow": "From your phone", "h2": "Text Trustin", "close": "Close", "qr_alt": "QR code: scan it with your phone to text Trustin", "qr_with_msg": "Scan with your phone camera. The text to Trustin opens with your job filled in.", "qr_plain": "Scan with your phone camera to start a text to Trustin.", "copy_number": "Copy the number", "copied": "Copied", "msg_label": "Your message", "copy_message": "Copy the message", "call_pre": "Or call", "mac": "Open Messages on this Mac", "meter_label": "Hand-offs in this browser"}};</script>
 <script src="js/vendor/gsap.min.js"></script>
 <script src="js/vendor/ScrollTrigger.min.js"></script>
-<script src="js/vendor/wtj/whats-the-job.js?v=1794252690"></script>
+<script src="js/vendor/wtj/whats-the-job.js?v=1794253408"></script>
 <script>
 // the panel holds; the section changes every 3 photos (the photo column's scroll progress)
 gsap.registerPlugin(ScrollTrigger);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Hayden 11/9 on his iPhone: no pinned split on phones (css/v2-skills.css .flow-phone). The stage stands still there, like reduced motion.
+const phoneFlow = document.documentElement.classList.contains('flow-phone'), still = reduce || phoneFlow;
+matchMedia('(max-width:900px)').addEventListener('change', () => location.reload());   // crossing the phone line (an iPad turning) rebuilds the right stage
 const secs = [...document.querySelectorAll('.sec')], shot = document.querySelector('.shot'), figs = [...shot.querySelectorAll('figure')], seams = [...shot.querySelectorAll('.seam')], flow = document.getElementById('flow'), dots = document.querySelector('.dots');
 secs.forEach(() => dots.appendChild(document.createElement('i')));
 // the words are cut out of the plate in one pass, right to left, no line; the plate and its light pool never move (Hayden 11/6: "the background should just stay what it is"; "6b… go right to left and don't put the line down the middle. Just have it be the words")
 function splitWords(el) { let host = el; if (el.tagName === 'LI') { host = document.createElement('span'); host.className = 't'; host.append(...el.childNodes); el.append(host); } const text = host.textContent; host.textContent = ''; const out = []; text.split(/(\s+)/).forEach(tok => { if (!tok) return; if (/^\s+$/.test(tok)) { host.append(' '); return; } const w = document.createElement('span'); w.className = 'w'; w.textContent = tok; host.append(w); out.push(w); }); return out; }
-const cuts = secs.map(s => reduce ? null : { fold: s.querySelector('.fold'), words: [...s.querySelectorAll('h2, p:not(.eyebrow), li')].flatMap(splitWords) });
+const cuts = secs.map(s => still ? null : { fold: s.querySelector('.fold'), words: [...s.querySelectorAll('h2, p:not(.eyebrow), li')].flatMap(splitWords) });
 function playCut(i) { const c = cuts[i]; if (!c) return; const D = 0.567, W = c.fold.offsetWidth || 1, parts = [...c.fold.children]; gsap.killTweensOf(parts);
   // D was 0.85 — Hayden 11/6: "one and a half times as fast as they are right now"
   c.words.forEach(w => w.classList.add('hot')); gsap.set(parts, { clipPath: 'inset(-6% -1% -6% 100%)', willChange: 'clip-path' });
@@ -200,7 +204,7 @@ function show(i) {
   secs.forEach((s, j) => s.classList.toggle('is-on', j === i));
   [...dots.children].forEach((d, j) => d.classList.toggle('on', j === i));
   document.dispatchEvent(new CustomEvent('tw:section', { detail: i }));   // v2: the thumb bar listens instead of polling
-  if (reduce) return;
+  if (still) return;
   // every other section goes back to fully drawn. Without this, a cut killed part-way leaves
   // clip-path at 100% and that section is simply gone (Hayden 11/6: "it's kind of glitching out").
   cuts.forEach((c, j) => { if (!c || j === i) return;
@@ -215,7 +219,7 @@ function show(i) {
 }
 // the photos change with the weld seam as you scroll (the Colibri move, on every photo; Hayden 11/6); the words change every 3 photos
 const per = 3, GAP = 1.7, total = (figs.length - 1) * GAP + 0.85;   // 11/6: ~1 screen of weld, ~1 screen of hold, per photo
-if (!reduce && figs.length > 1) {
+if (!still && figs.length > 1) {
   const tl = gsap.timeline({ defaults: { ease: 'none' } });
   for (let i = 1; i < figs.length; i++) {
     const t = i * GAP - 0.78;   // 11/6: twice as slow across the photo — "sometimes when you're going to scroll down it jump cuts and you can barely see it"
@@ -360,7 +364,7 @@ document.addEventListener('click', e => {
 // tap one of the small photos on the right and it pops out in 3D — the same Aceternity 3D Card port
 // Gage's cards use (js/vendor/3d-card.js), reused, not rewritten. The photo grid is rebuilt every time
 // you pick a different job, so it is re-wired on each change.
-import create3DCard from './js/vendor/3d-card.js?v=1794252690';
+import create3DCard from './js/vendor/3d-card.js?v=1794253408';
 (function wire(tries) {
   const box = document.querySelector('.wtj-photos');
   if (!box) { if (tries < 40) setTimeout(() => wire(tries + 1), 120); return; }
@@ -469,7 +473,7 @@ import create3DCard from './js/vendor/3d-card.js?v=1794252690';
   }
 })();
 </script>
-<script src="js/v2-learned.js?v=1794252690"></script>
+<script src="js/v2-learned.js?v=1794253408"></script>
 <script>
 // Format panel (Hayden 11/4: "themes or formats… for me to manually adjust and edit"): localhost or ?edit=1; sliders set CSS variables on <html>, remembered in localStorage 'tw-format'; Copy puts the JSON on the clipboard
 if ((location.hostname === 'localhost' || location.search.includes('edit=1')) && !location.search.includes('nofmt')) (function () {
@@ -502,7 +506,7 @@ if ((location.hostname === 'localhost' || location.search.includes('edit=1')) &&
 })();
 show(0);
 </script>
-<script src="js/v2-qr.js?v=1794252690"></script>
-<script src="js/v2-doors.js?v=1794252690"></script>
+<script src="js/v2-qr.js?v=1794253408"></script>
+<script src="js/v2-doors.js?v=1794253408"></script>
 </body>
 </html>
