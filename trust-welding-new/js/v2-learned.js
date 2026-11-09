@@ -15,6 +15,12 @@
       sms: SMS, button: G.button, smsBody: x => G.sms_body.replace('{ask}', x.ask),
       groups: G.groups.map(gr => ({ key: gr.key, label: gr.label, alt: gr.alt, cover: P(gr.cover), noun: '', ask: gr.ask,
         jobs: gr.jobs.map(j => ({ src: P(j.file), caption: j.caption, pos: j.pos })) })) });
+    // 11/9 (Hayden: "the photos on the bottom section only pop up when you click the bottom button twice"). iOS Safari often
+    // doesn't fetch lazy images that a script inserted until something on the page changes, so the first tap only woke them.
+    // The four tile covers load now, and every job photo is fetched once the page is idle, so a single tap shows them at once.
+    g.querySelectorAll('.wtj-tile img').forEach(im => { im.loading = 'eager'; });
+    const warm = () => G.groups.forEach(gr => (gr.jobs || []).forEach(j => { if (j.file) { const im = new Image(); im.decoding = 'async'; im.src = P(j.file); } }));
+    ('requestIdleCallback' in window) ? requestIdleCallback(warm, { timeout: 2500 }) : setTimeout(warm, 1200);
     // the idle number is hidden (Hayden 11/5: no counts); keep it out of the accessibility tree too
     const big = g.querySelector('.wtj-big'); if (big) big.setAttribute('aria-hidden', 'true');
   }
