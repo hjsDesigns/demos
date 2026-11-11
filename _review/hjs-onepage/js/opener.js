@@ -21,6 +21,10 @@ function start() {
 
   const mb = createMacbookScroll(host, { mode: 'manual', src: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', alt: '', logo: 'HJS' });
   const screen = mb.screen, shot = screen.querySelector('.mb-img');
+  // his card, lit on the screen first (the 10/29 beat: "the screen where the card is lit"), then the city comes up behind it
+  const card = document.createElement('div'); card.className = 'screen-card';
+  card.innerHTML = '<div class="card-mark"><span class="cm-name">HJS Designs</span><span class="rule"></span><span class="echo">HJS Designs</span></div>';
+  screen.append(card);
   const useSrc = () => { const s = pic.currentSrc || pic.src; if (s && shot.getAttribute('src') !== s) shot.src = s; };
   useSrc(); pic.addEventListener('load', () => { useSrc(); measure(); }, { once: !1 });
   window.__opReady = true;
@@ -45,7 +49,7 @@ function start() {
   let W = 0, H = 0, R = null, r0 = 0, m = 1, K = 1, D = 1, base = '';
   function measure() {
     setRanges();
-    base = wide() ? 'translate(-50%,-50%)' : 'translate(-50%,0)';
+    base = 'translate(-50%,0)';
     const keepS = screen.style.transform, keepL = host.style.transform, keepO = host.style.transformOrigin;
     host.style.transform = base; host.style.transformOrigin = '50% 0';
     screen.style.transform = screenAt(0.3);
@@ -95,6 +99,7 @@ function start() {
 
     // the rest: cue goes, shade comes with the world, the actions arrive
     stage.style.setProperty('--a', a.toFixed(3));
+    stage.style.setProperty('--sc', (1 - clamp((a - 0.5) / 0.4)).toFixed(3));
     stage.style.setProperty('--b', eb.toFixed(3));
     stage.style.setProperty('--c', out(c).toFixed(3));
     stage.style.setProperty('--cv', c > 0 ? 'visible' : 'hidden');

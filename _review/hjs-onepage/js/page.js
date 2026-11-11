@@ -8,7 +8,7 @@
   // header: the small name and a backing appear once the opener is behind you
   const header = document.getElementById('header'), opener = document.querySelector('.opener');
   // and only one "Text Hayden" on screen at a time: the header's steps aside while the opener's own buttons show
-  const heroCta = document.querySelector('.lockup .actions');
+  const heroCta = document.querySelector('.lockup');
   const solid = () => {
     const past = opener.getBoundingClientRect().bottom <= header.offsetHeight + 1;
     header.classList.toggle('solid', past);
