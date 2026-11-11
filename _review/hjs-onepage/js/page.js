@@ -7,7 +7,13 @@
 
   // header: the small name and a backing appear once the opener is behind you
   const header = document.getElementById('header'), opener = document.querySelector('.opener');
-  const solid = () => header.classList.toggle('solid', opener.getBoundingClientRect().bottom <= header.offsetHeight + 1);
+  // and only one "Text Hayden" on screen at a time: the header's steps aside while the opener's own buttons show
+  const heroCta = document.querySelector('.lockup .actions');
+  const solid = () => {
+    const past = opener.getBoundingClientRect().bottom <= header.offsetHeight + 1;
+    header.classList.toggle('solid', past);
+    header.classList.toggle('cta-off', !past && parseFloat(getComputedStyle(heroCta).opacity) > 0.05);
+  };
   addEventListener('scroll', solid, { passive: true }); addEventListener('resize', solid); solid();
 
   // ribbon: a second copy for a seamless loop, 40 px a second (the saved review-ribbon pace); hover or touch holds it
