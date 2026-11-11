@@ -35,7 +35,7 @@ All twelve final saved revisions are approved. Preserve their current content, d
 
 ## Source and editing map
 
-[Download current source](source.zip). The archive contains the twelve published site directories using the URL slugs above, with their required assets and relative paths preserved. Start with each site's `index.html`; follow its relative stylesheet, script, image, and media references. Use the archive manifest, when supplied, to check file identity. The rendered pages alone are not the source handoff.
+The source archive (taken off this site 2026-11-10 to stay under GitHub Pages’ size limit; the source stays in the factory) contained the twelve published site directories using the URL slugs above, with their required assets and relative paths preserved. Start with each site's `index.html`; follow its relative stylesheet, script, image, and media references. Use the archive manifest, when supplied, to check file identity. The rendered pages alone are not the source handoff.
 
 [Open the approved link index](https://hjsdesigns.github.io/demos/approved-oct23/).
 
