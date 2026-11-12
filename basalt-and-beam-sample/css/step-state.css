@@ -1,0 +1,7 @@
+/* pair with step-state.js. Pin = sticky stage in a tall track; never overflow:hidden on an ancestor (use clip on the stage). */
+.sec{opacity:0;visibility:hidden}
+.sec.is-on{opacity:1;visibility:visible}
+.sec .w{display:inline-block;clip-path:inset(-8% -2% -8% 103%);transition:clip-path .1s linear var(--d,0s)}
+.sec.is-on .w{clip-path:inset(-8% -2% -8% -2%)}
+.bead{position:absolute;left:0;bottom:-6px;height:3px;width:calc(var(--o,0) * 100%)}   /* the one continuous mark: a function of o */
+@media (prefers-reduced-motion:reduce){.sec{opacity:1;visibility:visible}.sec .w{clip-path:none;transition:none}.bead{display:none}}

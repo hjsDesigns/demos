@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Basalt &amp; Beam · a sample builder site by HJS Designs</title>
+<meta name="description" content="A sample website by HJS Designs for a made-up Pacific Northwest builder: scroll to watch a home go up, tap to remodel a kitchen, tap to add a backyard cottage.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121414">
+<meta property="og:title" content="Basalt & Beam · a sample builder site by HJS Designs">
+<meta property="og:description" content="Scroll and watch a house go up, from the bare lot to the lights coming on.">
+<meta property="og:image" content="images/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/step-state.css?v=1">
+</head>
+<body>
+<p class="sample-bar">A sample site by <a href="https://hjsdesigns.github.io/">HJS Designs</a>. Basalt &amp; Beam is made up, and every image is a concept render.</p>
+
+<header class="site-header">
+  <a class="mark" href="#top" aria-label="Basalt and Beam, back to the top">Basalt <em>&amp;</em> Beam</a>
+  <nav id="main-nav" aria-label="Main">
+    <a href="#build">Homes</a>
+    <a href="#remodel">Remodels</a>
+    <a href="#cottage">Cottages</a>
+  </nav>
+  <a class="btn btn-quote" href="#quote">Get a quote</a>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-label="Basalt and Beam">
+    <img class="hero-img hero-off" src="images/hero-off-900.jpg" srcset="images/hero-off-900.jpg 900w, images/hero-off-1520.jpg 1520w" sizes="100vw" alt="" aria-hidden="true" fetchpriority="high">
+    <img class="hero-img hero-on" src="images/hero-900.jpg" srcset="images/hero-900.jpg 900w, images/hero-1520.jpg 1520w" sizes="100vw" alt="A finished black board-and-batten house with a cedar entry and a basalt stone base at dusk, its windows lit, with fir trees and a snowy mountain behind (concept render)" fetchpriority="high">
+    <div class="hero-copy">
+      <h1>Basalt <em>&amp;</em> Beam</h1>
+      <div class="hero-actions">
+        <a class="btn" href="#build">Watch one go up</a>
+        <a class="btn btn-ghost" href="#quote">Get a quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="build" class="film" aria-labelledby="build-h">
+    <h2 id="build-h" class="sr-only">How a Basalt and Beam home goes up</h2>
+    <div class="film-track">
+      <div class="film-stage">
+        <div class="film-panel">
+          <canvas id="film" aria-hidden="true"></canvas>
+          <img class="film-poster" src="images/stage-1-900.jpg" alt="" aria-hidden="true">
+        </div>
+        <div class="film-words">
+          <div class="sec"><p class="eyebrow">01 · Groundwork</p><h3>It starts with your dirt.</h3><p>We walk the lot with you, stake the corners and pour a foundation for the ground it sits on.</p><span class="bead"></span></div>
+          <div class="sec"><p class="eyebrow">02 · Framing</p><h3>The house stands up.</h3><p>Walls, floors and roof go up in weeks. It's the first time you can walk your rooms.</p><span class="bead"></span></div>
+          <div class="sec"><p class="eyebrow">03 · Dried in</p><h3>Roof on, rain out.</h3><p>Metal roof, house wrap, windows in. From here the weather can't touch the work.</p><span class="bead"></span></div>
+          <div class="sec"><p class="eyebrow">04 · Finishes</p><h3>Siding, cedar, stone.</h3><p>The outside goes on, then the dirt turns to lawn.</p><span class="bead"></span></div>
+          <div class="sec"><p class="eyebrow">05 · Lights on</p><h3>The first night home.</h3><p>The windows you picked, lit from the inside.</p><span class="bead"></span></div>
+        </div>
+      </div>
+    </div>
+    <ol class="film-static" aria-label="The build, stage by stage">
+      <li><img src="images/stage-1-900.jpg" alt="The bare lot with survey stakes (concept render)" loading="lazy"><span>01 · Groundwork</span></li>
+      <li><img src="images/stage-2-900.jpg" alt="The poured concrete foundation (concept render)" loading="lazy"><span>02 · Foundation</span></li>
+      <li><img src="images/stage-3-900.jpg" alt="The wood framing standing on the foundation (concept render)" loading="lazy"><span>03 · Framing</span></li>
+      <li><img src="images/stage-4-900.jpg" alt="Dried in with the roof on, house wrap and windows (concept render)" loading="lazy"><span>04 · Dried in</span></li>
+      <li><img src="images/stage-5-900.jpg" alt="The finished house in daylight (concept render)" loading="lazy"><span>05 · Finished</span></li>
+    </ol>
+  </section>
+
+  <section id="remodel" class="room" aria-labelledby="remodel-h">
+    <div class="room-copy">
+      <p class="eyebrow">Remodels</p>
+      <h2 id="remodel-h">Tap to remodel the kitchen.</h2>
+      <p>Same room, same window, three ways to finish it. Pick one, and that's where your remodel starts.</p>
+    </div>
+    <figure class="room-view" data-chooser>
+      <div class="room-frame">
+        <img class="room-img is-on" data-key="" src="images/kitchen-before.jpg" alt="A dated 1990s kitchen with honey-oak cabinets and almond appliances (concept render)">
+        <img class="room-img" data-key="oak" src="images/kitchen-oak.jpg" alt="The same kitchen remodeled in white oak with white quartz and brass pendants (concept render)" loading="lazy">
+        <img class="room-img" data-key="green" src="images/kitchen-green.jpg" alt="The same kitchen remodeled with fir-green cabinets, marble and brass (concept render)" loading="lazy">
+        <img class="room-img" data-key="charcoal" src="images/kitchen-charcoal.jpg" alt="The same kitchen remodeled in charcoal with walnut shelves and a concrete counter (concept render)" loading="lazy">
+        <span class="room-tag" aria-live="polite">Before</span>
+      </div>
+      <figcaption>
+        <div class="chips" role="group" aria-label="Pick a finish">
+          <button type="button" class="chip" data-key="oak" data-label="White oak" aria-pressed="false">White oak</button>
+          <button type="button" class="chip" data-key="green" data-label="Fir green" aria-pressed="false">Fir green</button>
+          <button type="button" class="chip" data-key="charcoal" data-label="Charcoal &amp; walnut" aria-pressed="false">Charcoal &amp; walnut</button>
+        </div>
+        <p class="hint">Tap a finish. Tap it again to see the before.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="cottage" class="room room-flip" aria-labelledby="cottage-h">
+    <div class="room-copy">
+      <p class="eyebrow">Backyard cottages</p>
+      <h2 id="cottage-h">Put a cottage on the lawn you already own.</h2>
+      <p>A small house out back for a parent, a renter or an office. One tap shows what it does to your yard.</p>
+    </div>
+    <figure class="room-view" data-toggle>
+      <div class="room-frame">
+        <img class="room-img is-on" data-key="" src="images/backyard-empty.jpg" alt="An open backyard lawn with a cedar fence and tall firs (concept render)">
+        <img class="room-img" data-key="cottage" src="images/backyard-cottage.jpg" alt="The same backyard with a small black-and-cedar cottage at the back of the lawn (concept render)" loading="lazy">
+        <span class="room-tag" aria-live="polite">Your yard today</span>
+      </div>
+      <figcaption>
+        <div class="chips" role="group" aria-label="Backyard cottage">
+          <button type="button" class="chip chip-wide" data-key="cottage" data-label="With a cottage" data-on="Take it away" data-off="Add the cottage" aria-pressed="false">Add the cottage</button>
+        </div>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="how" class="how" aria-labelledby="how-h">
+    <p class="eyebrow">How it works</p>
+    <h2 id="how-h">From the first call to the keys.</h2>
+    <ol class="steps">
+      <li><b>Call or send the form</b><span>Tell us where the lot is and what you're picturing.</span></li>
+      <li><b>Walk the lot together</b><span>We look at the ground, the trees, the view and the drive.</span></li>
+      <li><b>Plans and a price</b><span>Drawings you can change, and a number you can plan around.</span></li>
+      <li><b>The build</b><span>Photos from the site every week, so you never have to wonder.</span></li>
+      <li><b>The keys</b><span>A walk-through, a punch list, and then it's yours.</span></li>
+    </ol>
+  </section>
+
+  <section id="quote" class="quote" aria-labelledby="quote-h">
+    <div class="quote-copy">
+      <p class="eyebrow">Get a quote</p>
+      <h2 id="quote-h">Send us your lot.</h2>
+      <p>A few lines and a photo or two is plenty to start.</p>
+    </div>
+    <form class="contact-form" novalidate>
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
+      <label>Where's the lot or house?<input name="where" placeholder="Address or nearest town"></label>
+      <label>What are you building?
+        <select name="what"><option>A custom home</option><option>A remodel</option><option>A backyard cottage</option><option>Not sure yet</option></select>
+      </label>
+      <label>Photos (optional)<input name="photos" type="file" accept="image/*" multiple></label>
+      <label>Anything else?<textarea name="notes" rows="3"></textarea></label>
+      <button class="btn" type="submit">Send it</button>
+    </form>
+    <p class="form-success" role="status" hidden>Got it. On a builder's real site this lands in their inbox and texts their phone. This one is a sample, so nothing was sent.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p class="mark">Basalt <em>&amp;</em> Beam</p>
+  <p>Custom homes, remodels and backyard cottages · Enumclaw · Buckley · Bonney Lake · Maple Valley</p>
+  <p class="fine">On a real site, the builder's WA license number shows here.</p>
+  <p class="made">Basalt &amp; Beam is a made-up company. HJS Designs built this sample to show builders what their website could do, and every image on it is a concept render, not a real project.<br>
+  Want one for your company? <a href="https://hjsdesigns.github.io/">HJS Designs</a> · <a href="mailto:hjsdesignsco@gmail.com">hjsdesignsco@gmail.com</a> · <a href="tel:+12532594558">(253) 259-4558</a></p>
+</footer>
+
+
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/frames.js?v=1"></script>
+<script src="js/main.js?v=3"></script>
+</body>
+</html>
